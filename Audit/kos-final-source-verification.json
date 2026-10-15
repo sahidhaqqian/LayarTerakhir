@@ -1,0 +1,142 @@
+{
+  "utc": "2026-10-15T09:54:12.204129+00:00",
+  "assets": [
+    {
+      "id": "office_notepads",
+      "sourcePage": "https://polyhaven.com/a/office_notepads",
+      "authors": {
+        "Ulan Cabanilla": "All"
+      },
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "attributionRequired": false,
+      "reviewer": "Codex environment integration",
+      "originalFiles": [
+        {
+          "path": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/office_notepads/office_notepads_1k.fbx",
+          "sha256": "f59605849d17e497f68ae724678c7698a9b048d3c7ceb88b9e7c6c4dfe7de3f0",
+          "bytes": 52268,
+          "sourceMd5Verified": true,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/office_notepads/office_notepads_1k.fbx"
+        },
+        {
+          "path": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/office_notepads/office_notepads_nor_gl_1k.jpg",
+          "sha256": "d6be173e3c16755e3c163724b205114f0dc93ff2d6a746b819815f4100432018",
+          "bytes": 393394,
+          "sourceMd5Verified": true,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/office_notepads/office_notepads_nor_gl_1k.jpg"
+        },
+        {
+          "path": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/office_notepads/office_notepads_diff_1k.jpg",
+          "sha256": "6cce5f76748a73954a9158904b6d26319f028f796166c140b3cbf0bbb7c62727",
+          "bytes": 460873,
+          "sourceMd5Verified": true,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/office_notepads/office_notepads_diff_1k.jpg"
+        },
+        {
+          "path": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/office_notepads/office_notepads_arm_1k.jpg",
+          "sha256": "a4a1c7356075ab0de890ae7de0397a0b4c35f6dd7feacafe3a32e773b76c7e68",
+          "bytes": 445320,
+          "sourceMd5Verified": true,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/office_notepads/office_notepads_arm_1k.jpg"
+        }
+      ],
+      "derivedMask": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/office_notepads/office_notepads_mask.png",
+      "runtimeTextureMaximum": 512,
+      "note": "Inspected exact FBX in Blender and local preview; source/license page independently checked. Only a subset of the notepad meshes is placed."
+    },
+    {
+      "id": "plastic_thermos",
+      "sourcePage": "https://polyhaven.com/a/plastic_thermos",
+      "authors": {
+        "PierreB3D": "All"
+      },
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "attributionRequired": false,
+      "reviewer": "Codex environment integration",
+      "originalFiles": [
+        {
+          "path": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/plastic_thermos/plastic_thermos_1k.fbx",
+          "sha256": "04beb90c26649ab92c51aefdd3879fa17661fe6d9edc35c14d3331ef93b750d5",
+          "bytes": 163324,
+          "sourceMd5Verified": true,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/plastic_thermos/plastic_thermos_1k.fbx"
+        },
+        {
+          "path": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/plastic_thermos/plastic_thermos_nor_gl_1k.jpg",
+          "sha256": "2d1e7525c7bc34fb2a10c8e8bbb1fc5ff2a89331bb82bae39b22ef6bdc9d0476",
+          "bytes": 364839,
+          "sourceMd5Verified": true,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/plastic_thermos/plastic_thermos_nor_gl_1k.jpg"
+        },
+        {
+          "path": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/plastic_thermos/plastic_thermos_diff_1k.jpg",
+          "sha256": "14cd6b03824ee4f4ec774aa6101d1eb3f75800c68de5e2e2304b4bb7a4447077",
+          "bytes": 289855,
+          "sourceMd5Verified": true,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/plastic_thermos/plastic_thermos_diff_1k.jpg"
+        },
+        {
+          "path": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/plastic_thermos/plastic_thermos_arm_1k.jpg",
+          "sha256": "4438bf3575a4904706a6b0ff3c697d4ae079318dcf4d2b09884292c8f8c65bd1",
+          "bytes": 678833,
+          "sourceMd5Verified": true,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/plastic_thermos/plastic_thermos_arm_1k.jpg"
+        }
+      ],
+      "derivedMask": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/plastic_thermos/plastic_thermos_mask.png",
+      "runtimeTextureMaximum": 512,
+      "note": "Inspected exact FBX in Blender and local preview; source/license page independently checked. Only a subset of the notepad meshes is placed."
+    },
+    {
+      "id": "gamepad",
+      "sourcePage": "https://polyhaven.com/a/gamepad",
+      "authors": {
+        "Josh Dean": "All"
+      },
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "attributionRequired": false,
+      "reviewer": "Codex environment integration",
+      "originalFiles": [
+        {
+          "path": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/gamepad/gamepad_1k.fbx",
+          "sha256": "a4f136b9b7c05a940218bfd20ae8edba7279189b07a4dd701c2a143a12dd58fe",
+          "bytes": 270956,
+          "sourceMd5Verified": true,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/gamepad/gamepad_1k.fbx"
+        },
+        {
+          "path": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/gamepad/gamepad_diff_1k.jpg",
+          "sha256": "d66b82f9790c304efaae5b0dc45a1dffd57ff64ec57d57d7e5a2fe1b1b067b5c",
+          "bytes": 309469,
+          "sourceMd5Verified": true,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/gamepad/gamepad_diff_1k.jpg"
+        },
+        {
+          "path": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/gamepad/gamepad_nor_gl_1k.jpg",
+          "sha256": "90b7eb4ce8578797c2e5386f979c306a247a8a280ba980eb5380828dcb42edd8",
+          "bytes": 241556,
+          "sourceMd5Verified": true,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/gamepad/gamepad_nor_gl_1k.jpg"
+        },
+        {
+          "path": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/gamepad/gamepad_arm_1k.jpg",
+          "sha256": "cb5481bb081c12a92213a5decbe41112788896fe4e1810ee74f086e45e4cf5f1",
+          "bytes": 510273,
+          "sourceMd5Verified": true,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/gamepad/gamepad_arm_1k.jpg"
+        }
+      ],
+      "derivedMask": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/gamepad/gamepad_mask.png",
+      "runtimeTextureMaximum": 512,
+      "note": "Inspected exact FBX in Blender and local preview; source/license page independently checked. Only a subset of the notepad meshes is placed."
+    }
+  ],
+  "rejectedNotImported": [
+    "industrial_pastic_container",
+    "retro_multimeter",
+    "cassette_player"
+  ]
+}

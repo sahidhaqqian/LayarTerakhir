@@ -1,7 +1,7 @@
 Golden Scene production — 15 October 2026 UTC
 
 Historical Golden pass below; current developer-approved room is 5 × 3.8m.
-Latest visual polish/build: [compact Kos report](kos-compact-polish.md).
+Latest visual polish/build: [final Kos refinement](kos-final-refinement.md).
 
 | Phase | Actual progress |
 | --- | --- |

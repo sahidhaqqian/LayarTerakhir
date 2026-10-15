@@ -1,7 +1,7 @@
 # Golden reference scene — review candidate, 15 October 2026
 
 This earlier 6 × 4.5m delivery is superseded by the developer's compact-room revision.
-For the current layout/build, see [compact Kos polish](kos-compact-polish.md).
+For the current layout/build, see [final Kos refinement](kos-final-refinement.md).
 
 Implemented all five production phases. **Not developer-approved or frozen.** The final Windows visual,
 listening and Iris Xe performance acceptance remains with the developer.

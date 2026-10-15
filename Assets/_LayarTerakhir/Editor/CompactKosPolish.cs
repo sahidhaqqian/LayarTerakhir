@@ -98,7 +98,7 @@ namespace LayarTerakhir.Editor
             Find("BareWarmBulb").transform.position=new Vector3(-.15f,2.49f,-.05f);
             Find("WeakTungstenCeiling").transform.position=new Vector3(-.15f,2.48f,-.05f);
             Find("WeakTungstenCeiling").GetComponent<Light>().intensity=11.5f;
-            // Indirect warm bounce from the entry/bed side also lights the back of the portable cloth.
+            // Existing indirect bounce reveals bedside belongings without adding a new light.
             Find("WarmWallBounce").transform.position=new Vector3(-.60f,1.55f,-1.20f);
             Find("WarmWallBounce").GetComponent<Light>().intensity=1.6f;
             Points("CeilingFlex",new Vector3(-.15f,2.8f,-.05f),new Vector3(-.15f,2.52f,-.05f));
@@ -107,7 +107,7 @@ namespace LayarTerakhir.Editor
             floorMat.SetTextureScale("_BumpMap",new Vector2(Width*.5f,Depth*.5f));
             floorMat.SetTextureScale("_MetallicGlossMap",new Vector2(Width*.5f,Depth*.5f));
             floorMat.SetTextureScale("_OcclusionMap",new Vector2(Width*.5f,Depth*.5f));
-            floorMat.SetFloat("_Smoothness",.22f);floorMat.SetColor("_BaseColor",new Color(.80f,.78f,.69f));EditorUtility.SetDirty(floorMat);
+            floorMat.SetFloat("_Smoothness",.14f);floorMat.SetColor("_BaseColor",new Color(.76f,.74f,.67f));EditorUtility.SetDirty(floorMat);
         }
         private static void MoveSet(string anchor,Vector2 centre,params GameObject[] roots)
         {
@@ -192,33 +192,80 @@ namespace LayarTerakhir.Editor
         {
             var green=Plain("CompactGreenCloth",new Color(.025f,.48f,.065f),.04f);
             green.SetTexture("_BumpMap",Existing("CurtainCottonV2").GetTexture("_BumpMap"));green.SetFloat("_BumpScale",.12f);green.EnableKeyword("_NORMALMAP");
-            var screen=Spawn("KosStreamerGreenScreen","StreamerGreenScreen",new Vector3(1.70f,2.04f,.42f),new Vector3(-.4f,1.02f,-.35f),0,n=>n.Contains("GreenFabric")?green:Existing("DarkOxidisedMetal"));Ground(screen);
-            Solid(screen,"GreenClothCollision",new Vector3(-.4f,1.10f,-.35f),new Vector3(1.42f,1.80f,.035f));
-            foreach(float x in new[]{-1.17f,.37f})
-            {Solid(screen,"BackdropPoleCollision",new Vector3(x,1.02f,-.35f),new Vector3(.045f,2.04f,.045f));Solid(screen,"BackdropFootCollision",new Vector3(x,.023f,-.35f),new Vector3(.12f,.032f,.42f));}
+            var screen=Spawn("KosStoredGreenScreen","StreamerGreenScreen",new Vector3(.54f,1.62f,.24f),new Vector3(-1.62f,.81f,1.68f),0,n=>n.Contains("GreenFabric")?green:Existing("DarkOxidisedMetal"));Ground(screen);
+            // Lowered telescopic frame and gathered cloth, stored beside the desk rather than across the bed view.
+            var stored=KosVisualV2.BoundsOf(screen);Solid(screen,"StoredBackdropCollision",stored.center,stored.size);
             PrefabUtility.SaveAsPrefabAsset(screen,"Assets/_LayarTerakhir/Production/Prefabs/StreamerGreenScreen.prefab");
             var monitor=KosVisualV2.BoundsOf(Object.FindFirstObjectByType<KamarKosPrologDirector>().pcMonitorItem.gameObject);
             var webcam=Spawn("KosBudgetWebcam","BudgetStreamingWebcam",new Vector3(.085f,.055f,.046f),new Vector3(monitor.center.x,monitor.max.y+.020f,monitor.min.z+.015f),180,n=>n.Contains("Lens")?Plain("CompactWebcamLens",new Color(.018f,.023f,.025f),.7f):Existing("OldComputerPlastic"));
             var lens=webcam.GetComponentsInChildren<Renderer>().Single(r=>r.name.Contains("Lens"));
             if(Vector3.Dot(lens.bounds.center-KosVisualV2.BoundsOf(webcam).center,new Vector3(0,0,-1))<0)webcam.transform.RotateAround(KosVisualV2.BoundsOf(webcam).center,Vector3.up,180);
-            var socks=Spawn("KosDroppedSocks","DroppedSocksByBed",new Vector3(.18f,.065f,.23f),new Vector3(-1.17f,.04f,-1.03f),-17,n=>Plain("Compact"+n,n.Contains("Rib")?new Color(.27f,.29f,.26f):new Color(.47f,.46f,.39f)));Ground(socks);
-            var news=Spawn("KosOldNewspaper","OldNewspaperByDesk",new Vector3(.38f,.012f,.29f),new Vector3(-1.10f,.018f,.84f),-13,n=>Plain("Compact"+n,n.Contains("Ink")?new Color(.19f,.18f,.15f):new Color(.67f,.63f,.51f),.06f));Ground(news);
-            var shirt=Spawn("KosFoldedTshirt","FoldedTshirtOnBed",new Vector3(.30f,.038f,.24f),new Vector3(-2.02f,.5f,-1.13f),12,n=>Plain("Compact"+n,n.Contains("Rib")?new Color(.40f,.42f,.40f):new Color(.30f,.35f,.34f),.08f));Rest(shirt,Find("vintage_day_bed"),-2.02f,-1.13f);
-            // A spare page is used on the bedside stool, connecting sleep and work routines.
-            var bedsidePaper=Object.Instantiate(news,details,true);bedsidePaper.name="ReadingPaperOnStool";
-            KosVisualV2.Resize(bedsidePaper,new Vector3(.23f,.007f,.18f));Rest(bedsidePaper,Find("BedsideWornStool"),-1.60f,.49f);
+            var socks=Spawn("KosDroppedSocks","DroppedSocksByBed",new Vector3(.23f,.065f,.29f),new Vector3(-1.17f,.04f,-1.15f),-17,n=>Plain("Compact"+n,n.Contains("Rib")?new Color(.35f,.36f,.31f):new Color(.64f,.62f,.51f)));Ground(socks);
+            var news=Spawn("KosOldNewspaper","OldNewspaperByDesk",new Vector3(.43f,.013f,.31f),new Vector3(-.90f,.018f,-.28f),-13,n=>Plain("Compact"+n,n.Contains("Ink")?new Color(.19f,.18f,.15f):new Color(.84f,.80f,.69f),.06f));Ground(news);
+            // Ink is printed detail, not a forest of shadow-casting 3D strips at sub-millimetre spacing.
+            foreach(var r in news.GetComponentsInChildren<Renderer>())r.shadowCastingMode=ShadowCastingMode.Off;
+            var shirt=Spawn("KosFoldedTshirt","FoldedTshirtOnBed",new Vector3(.34f,.043f,.26f),new Vector3(-2.10f,.5f,-.70f),12,n=>Plain("Compact"+n,n.Contains("Rib")?new Color(.58f,.34f,.25f):new Color(.46f,.22f,.17f),.08f));Rest(shirt,Find("vintage_day_bed"),-2.10f,-.70f);
+            ApprovedClutter();
             var lead=new GameObject("WebcamUSBLead",typeof(LineRenderer));lead.transform.SetParent(details,false);
             var line=lead.GetComponent<LineRenderer>();line.sharedMaterial=Existing("OldComputerPlastic");line.widthMultiplier=.002f;line.positionCount=4;line.generateLightingData=true;
             line.SetPositions(new[]{webcam.transform.position,new Vector3(monitor.center.x+.10f,monitor.max.y,monitor.max.z),new Vector3(monitor.center.x+.14f,.78f,monitor.max.z),new Vector3(monitor.center.x+.10f,.08f,1.65f)});
         }
+        private static GameObject Imported(string id,string name,string meshPart=null)
+        {
+            string dir=Art+"Imported/PolyHaven/"+id+"/";
+            foreach(var path in Directory.GetFiles(dir).Where(p=>!p.EndsWith(".meta")))
+            {
+                if(AssetImporter.GetAtPath(path) is TextureImporter ti)
+                {
+                    ti.maxTextureSize=512;ti.textureCompression=TextureImporterCompression.Compressed;
+                    ti.textureType=path.Contains("_nor_gl_")?TextureImporterType.NormalMap:TextureImporterType.Default;
+                    ti.sRGBTexture=path.Contains("_diff_");ti.mipmapEnabled=true;ti.anisoLevel=2;ti.SaveAndReimport();
+                }
+            }
+            string fbx=dir+id+"_1k.fbx";var mi=(ModelImporter)AssetImporter.GetAtPath(fbx);
+            mi.importAnimation=false;mi.importCameras=false;mi.importLights=false;mi.addCollider=false;
+            mi.materialImportMode=ModelImporterMaterialImportMode.None;mi.meshCompression=ModelImporterMeshCompression.Low;mi.SaveAndReimport();
+            var mat=Plain("Refined_"+id,Color.white,.25f);
+            mat.SetTexture("_BaseMap",AssetDatabase.LoadAssetAtPath<Texture2D>(dir+id+"_diff_1k.jpg"));
+            mat.SetTexture("_BumpMap",AssetDatabase.LoadAssetAtPath<Texture2D>(dir+id+"_nor_gl_1k.jpg"));
+            var mask=AssetDatabase.LoadAssetAtPath<Texture2D>(dir+id+"_mask.png");
+            mat.SetTexture("_MetallicGlossMap",mask);mat.SetTexture("_OcclusionMap",mask);
+            mat.SetFloat("_BumpScale",.65f);mat.SetFloat("_OcclusionStrength",.75f);
+            mat.EnableKeyword("_NORMALMAP");mat.EnableKeyword("_METALLICSPECGLOSSMAP");mat.EnableKeyword("_OCCLUSIONMAP");EditorUtility.SetDirty(mat);
+            var go=new GameObject(name);go.transform.SetParent(details,false);
+            var model=AssetDatabase.LoadAssetAtPath<GameObject>(fbx);
+            if(meshPart==null)
+            {var instance=(GameObject)PrefabUtility.InstantiatePrefab(model);instance.transform.SetParent(go.transform,false);}
+            else
+            {
+                // Select one actual source mesh instead of dropping the entire arranged notepad collection into the room.
+                var source=model.GetComponentsInChildren<MeshFilter>().Single(f=>f.name==meshPart);
+                var part=new GameObject(meshPart,typeof(MeshFilter),typeof(MeshRenderer));part.transform.SetParent(go.transform,false);
+                part.GetComponent<MeshFilter>().sharedMesh=source.sharedMesh;
+                part.transform.rotation=source.transform.rotation;part.transform.localScale=source.transform.lossyScale;
+            }
+            foreach(var r in go.GetComponentsInChildren<Renderer>())r.sharedMaterials=Enumerable.Repeat(mat,Mathf.Max(1,r.sharedMaterials.Length)).ToArray();
+            return go;
+        }
+        private static void ApprovedClutter()
+        {
+            var pad=Imported("office_notepads","ReadingPadOnStool","office_notepads_a4_stack");
+            KosVisualV2.Resize(pad,new Vector3(.21f,.010f,.29f));Rest(pad,Find("BedsideWornStool"),-1.60f,.49f);
+            var thermos=Imported("plastic_thermos","BedsidePlasticThermos");
+            KosVisualV2.Resize(thermos,new Vector3(.14f,.32f,.11f));Rest(thermos,pad,-1.58f,.51f);
+            var gamepad=Imported("gamepad","WiredGamepadOnBed");
+            KosVisualV2.Resize(gamepad,new Vector3(.40f,.019f,.43f));Rest(gamepad,Find("vintage_day_bed"),-1.84f,-1.16f);
+            // Keep small static props honest to physics without introducing interactive systems.
+            foreach(var prop in new[]{pad,thermos,gamepad})Solid(prop,"ClutterCollision",KosVisualV2.BoundsOf(prop).center,KosVisualV2.BoundsOf(prop).size);
+        }
         private static void Wear()
         {
-            var stain=Plain("CompactFloorTrackedDust",new Color(.20f,.16f,.10f,.36f),.02f);
+            var stain=Plain("CompactFloorTrackedDust",new Color(.20f,.16f,.10f,.58f),.02f);
             stain.SetTexture("_BaseMap",Existing("DampStain").GetTexture("_BaseMap"));
             stain.SetFloat("_Surface",1);stain.SetFloat("_SrcBlend",(float)BlendMode.SrcAlpha);stain.SetFloat("_DstBlend",(float)BlendMode.OneMinusSrcAlpha);
             stain.SetFloat("_ZWrite",0);stain.SetFloat("_SpecularHighlights",0);stain.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");stain.EnableKeyword("_SPECULARHIGHLIGHTS_OFF");
             stain.renderQueue=3000;stain.SetShaderPassEnabled("ShadowCaster",false);
-            var patches=new[]{new Vector4(.83f,-1.31f,.80f,.55f),new Vector4(.8f,-.45f,.48f,.83f),new Vector4(.50f,.37f,.65f,.65f),new Vector4(-.54f,.50f,.85f,.7f),new Vector4(-.87f,-.99f,.6f,.4f),new Vector4(1.93f,-.85f,.5f,.7f)};
+            var patches=new[]{new Vector4(.83f,-1.31f,.80f,.55f),new Vector4(.8f,-.45f,.48f,.83f),new Vector4(.50f,.37f,.65f,.65f),new Vector4(-.54f,.50f,.85f,.7f),new Vector4(-.87f,-.99f,.6f,.4f),new Vector4(1.93f,-.85f,.5f,.7f),new Vector4(-1.23f,-1.26f,.53f,.35f),new Vector4(-.48f,.34f,.82f,.72f)};
             var temporary=GameObject.CreatePrimitive(PrimitiveType.Quad);var quad=temporary.GetComponent<MeshFilter>().sharedMesh;Object.DestroyImmediate(temporary);
             var combine=new CombineInstance[patches.Length];
             for(int i=0;i<patches.Length;i++)

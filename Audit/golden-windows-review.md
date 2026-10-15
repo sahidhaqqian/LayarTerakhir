@@ -3,7 +3,7 @@
 Extract the whole Windows folder and launch LayarTerakhir.exe. Startup is Prolog_KamarKos.
 Review candidate only: the headless host cannot approve Windows visuals, listening balance or Iris Xe performance.
 Current composition: a 5 × 3.8 m Indonesian city kos, with sleep/work/streaming in one room,
-a portable green screen behind the chair, budget webcam, and intentional everyday clutter/wear.
+a folded portable green screen stored beside the desk, budget webcam, and intentional everyday clutter/wear.
 
 Manual controls: WASD, mouse, E interact, Tab phone, F screen, Ctrl crouch, Shift sprint,
 B powerbank. Follow the letter, phone, calendar/sticky-note clue (148), drawer/jacket, then door.
@@ -26,7 +26,8 @@ No flag means no audit component, automatic screenshots, WAV recording or save-p
 Acceptance checklist:
 
 - Traverse bed, desk, storage and door, including crouch/headroom; verify no snagging/floating props.
-- Walk around the green-screen stand via the right aisle/south bedside route; confirm the phone and drawer remain accessible.
+- Confirm the folded green screen leaves the bed view open, and the phone/drawer remain accessible.
+- Inspect the gamepad/clothing on the bed, thermos/notepad on the stool, newspaper/socks and subtle worn floor.
 - Check readable dark corners, motivated practical lights, no pink shaders or window glare.
 - Read full letter and scroll the Damar transcript to its final line; confirm modal close and wrong/right codes.
 - Check minimal HUD at 1280×720, 1920×1080 and 16:10; no clipped objective/phone controls/subtitles.

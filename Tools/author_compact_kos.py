@@ -1,7 +1,7 @@
 """Original, unbranded city-kos props. Blender 4: blender -b --python Tools/author_compact_kos.py.
 Static meshes only; no cloth simulation or new gameplay dependencies.
 """
-import bpy, math
+import bpy, math, sys
 from pathlib import Path
 
 OUT=Path(__file__).resolve().parents[1]/'Assets/_LayarTerakhir/Art/Original/Models'
@@ -47,6 +47,35 @@ def export(name,unwrap=True):
             bpy.ops.object.mode_set(mode='EDIT');bpy.ops.mesh.select_all(action='SELECT');bpy.ops.uv.smart_project(island_margin=.015);bpy.ops.object.mode_set(mode='OBJECT')
     bpy.ops.object.select_all(action='SELECT')
     bpy.ops.export_scene.fbx(filepath=str(OUT/(name+'.fbx')),object_types={'MESH'},bake_anim=False,axis_forward='-Z',axis_up='Y',add_leaf_bones=False)
+
+if '--stored-only' in sys.argv:
+    # Folded portable backdrop: telescopic uprights lowered, cloth gathered in accordion pleats.
+    # A genuine storage state, not a full-width screen squeezed non-uniformly in Unity.
+    clear()
+    for x in [-.22,.22]:
+        cyl('Collapsed upright',(x,0,.80),.012,1.56,'BackdropStand')
+        cyl('Locking collar',(x,0,.89),.018,.045,'BackdropStand')
+        box('Closed low foot',(x,0,.018),(.045,.23,.024),'BackdropStand',.004)
+    cyl('Shortened crossbar',(0,0,1.57),.012,.52,'BackdropStand',(0,math.pi/2,0))
+    verts=[];faces=[];nx=32;nz=20
+    for j in range(nz+1):
+        v=j/nz
+        for i in range(nx+1):
+            u=i/nx
+            y=.035*math.cos(u*math.pi*16)+.005*math.sin(v*9+u*13)
+            verts.append(((u-.5)*.42,y,.32+v*1.23-.018*math.sin(u*math.pi)*(1-v)))
+    for j in range(nz):
+        for i in range(nx):
+            a=j*(nx+1)+i;faces.append((a,a+1,a+nx+2,a+nx+1))
+    mesh=bpy.data.meshes.new('Accordion folded cloth');mesh.from_pydata(verts,[],faces);mesh.update()
+    obj=bpy.data.objects.new('GreenFabric',mesh);bpy.context.collection.objects.link(obj);finish(obj,obj.name,'GreenFabric')
+    solid=obj.modifiers.new('Real cloth backface','SOLIDIFY');solid.thickness=.002;bpy.context.view_layer.objects.active=obj;bpy.ops.object.modifier_apply(modifier=solid.name)
+    for polygon in obj.data.polygons:polygon.use_smooth=True
+    for z in [.72,1.26]:box('Cloth storage strap',(0,-.041,z),(.43,.012,.035),'BackdropStand',.004)
+    for x in [-.18,.18]:box('Retained clamp',(x,0,1.56),(.03,.04,.05),'BackdropStand',.003)
+    export('KosStoredGreenScreen')
+    print('STORED_GREEN_SCREEN_EXPORTED',OUT)
+    raise SystemExit
 
 clear()
 for x in [-.80,.80]:

@@ -82,7 +82,7 @@ namespace LayarTerakhir.Diagnostics
             yield return Shot("03-workstation");
             View(new Vector3(1.0f,1.5f,-.15f),new Vector3(2.45f,1.5f,-.55f));
             yield return Shot("04-window");
-            View(new Vector3(-.58f,1.5f,-1.16f),new Vector3(-1.92f,.48f,-.55f));
+            View(new Vector3(-.40f,1.5f,-1.45f),new Vector3(-1.65f,.36f,-.40f));
             yield return Shot("05-bedside");
             View(new Vector3(.95f,1.6f,-.75f),director.suratKosItem.GetComponent<Collider>().bounds.center);
             yield return Shot("06-letter-prompt");
@@ -92,7 +92,7 @@ namespace LayarTerakhir.Diagnostics
             yield return WaitStage(KosPrologStage.WaitPickupSmartphone);
             var rig=director.environmentAudio;receipt.phoneVibrationStarted=rig.HasPhoneVibration;Check(receipt.phoneVibrationStarted,"Existing phone stage starts positional vibration");
             View(new Vector3(-.8f,1.6f,-.98f),director.smartphoneBedItem.GetComponent<Collider>().bounds.center);yield return null;
-            Check(ReferenceEquals(player.GetComponent<InteractionInteractor>().CurrentTarget,director.smartphoneBedItem),"Bedside phone remains raycast-accessible behind the green screen");
+            Check(ReferenceEquals(player.GetComponent<InteractionInteractor>().CurrentTarget,director.smartphoneBedItem),"Bedside phone remains raycast-accessible with the stored backdrop and visible clutter");
             director.smartphoneBedItem.Interact();receipt.phoneVibrationStopped=!rig.HasPhoneVibration;Check(receipt.phoneVibrationStopped,"Phone pickup stops vibration");
             yield return new WaitForSeconds(.5f);
             var scroll=hud.GetComponent<HudPresentation>().documentScroll;

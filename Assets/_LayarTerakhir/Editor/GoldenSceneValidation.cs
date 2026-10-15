@@ -52,20 +52,35 @@ namespace LayarTerakhir.Editor
             Check(up>.9f,"Bed mat actual imported surface normals face the ceiling, not the floor");
             var screen=GameObject.Find("StreamerGreenScreen");var screenBounds=KosVisualV2.BoundsOf(screen);
             var chair=KosVisualV2.BoundsOf(GameObject.Find("painted_wooden_chair_01"));
-            Check(screenBounds.max.z<chair.min.z-.15f&&screen.GetComponentsInChildren<Collider>().Length==5,"Portable green screen is behind the streamer chair, with cloth/stand collision");
+            Check(screenBounds.size.x<.60f&&screenBounds.max.x<-1.2f&&screenBounds.min.z>1.4f&&screen.GetComponentsInChildren<Collider>().Length==1,"Green screen is genuinely folded and stored beside the workstation, not across the bed view");
+            var player=Object.FindFirstObjectByType<LayarTerakhir.Player.FirstPersonController>();
+            var eye=player.GetComponent<LayarTerakhir.Player.InteractionInteractor>().playerCamera.transform.position;
+            Check(!Physics.RaycastAll(eye,(bed.center-eye).normalized,Vector3.Distance(eye,bed.center),~0,QueryTriggerInteraction.Ignore).Any(h=>h.transform.IsChildOf(screen.transform)),"Stored backdrop does not intersect the opening camera-to-bed sightline");
             var webcam=GameObject.Find("BudgetStreamingWebcam");var cameraBounds=KosVisualV2.BoundsOf(webcam);
             var monitor=KosVisualV2.BoundsOf(Object.FindFirstObjectByType<KamarKosPrologDirector>().pcMonitorItem.gameObject);
             var lens=webcam.GetComponentsInChildren<Renderer>().Single(r=>r.name.Contains("Lens"));
-            Check(cameraBounds.min.y>=monitor.max.y-.025f&&Vector3.Dot(lens.bounds.center-cameraBounds.center,screenBounds.center-cameraBounds.center)>0,"Budget webcam clips to the monitor and faces the green-screen seating area");
-            foreach(var pair in new[]{("FoldedTshirtOnBed","vintage_day_bed"),("ReadingPaperOnStool","BedsideWornStool")})
+            Check(cameraBounds.min.y>=monitor.max.y-.025f&&Vector3.Dot(lens.bounds.center-cameraBounds.center,chair.center-cameraBounds.center)>0,"Budget webcam clips to the monitor and still faces the seating area");
+            foreach(var pair in new[]{("FoldedTshirtOnBed","vintage_day_bed"),("ReadingPadOnStool","BedsideWornStool"),("BedsidePlasticThermos","ReadingPadOnStool"),("WiredGamepadOnBed","vintage_day_bed")})
             {
                 var prop=KosVisualV2.BoundsOf(GameObject.Find(pair.Item1));
                 float gap=prop.min.y-KosVisualV2.SurfaceHeight(GameObject.Find(pair.Item2),prop.center.x,prop.center.z);
                 Check(gap>=-.008f&&gap<=.012f,pair.Item1+" rests on the actual mesh surface, not in mid-air");
             }
-            var news=GameObject.Find("ReadingPaperOnStool").GetComponentsInChildren<MeshFilter>().Single(f=>f.name=="Newsprint");
+            var news=GameObject.Find("OldNewspaperByDesk").GetComponentsInChildren<MeshFilter>().Single(f=>f.name=="Newsprint");
             float newsUp=news.sharedMesh.normals.Average(n=>news.transform.TransformDirection(n).y);
             Check(newsUp>.9f,"Decorative newsprint face normals point up toward the room lighting");
+            foreach(string name in new[]{"OldNewspaperByDesk","DroppedSocksByBed"})
+                Check(Mathf.Abs(KosVisualV2.BoundsOf(GameObject.Find(name)).min.y-KosVisualV2.FloorY)<.005f,name+" remains grounded");
+            var shirt=KosVisualV2.BoundsOf(GameObject.Find("FoldedTshirtOnBed"));
+            var gamepad=KosVisualV2.BoundsOf(GameObject.Find("WiredGamepadOnBed"));
+            var phone=KosVisualV2.BoundsOf(GameObject.Find("Smartphone"));
+            Check(!shirt.Intersects(gamepad)&&!shirt.Intersects(phone)&&!gamepad.Intersects(phone),"Bed clothing/controller/phone do not intersect");
+            Check(baseReport.triangles<120000&&baseReport.renderers<=212&&Object.FindObjectsByType<Camera>(FindObjectsInactive.Include,FindObjectsSortMode.None).Length==1&&Object.FindObjectsByType<Light>(FindObjectsInactive.Include,FindObjectsSortMode.None).Length==8,"Selective imports remain below 120k art triangles and 212 renderers; one camera/eight authored lights unchanged");
+            foreach(string id in new[]{"office_notepads","plastic_thermos","gamepad"})
+            {
+                var material=AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/Art/Generated/Materials/Refined_"+id+".mat");
+                Check(material&&material.shader.name=="Universal Render Pipeline/Lit"&&new[]{"_BaseMap","_BumpMap","_MetallicGlossMap","_OcclusionMap"}.All(n=>material.GetTexture(n)&&material.GetTexture(n).width<=512&&material.GetTexture(n).height<=512),id+" has complete URP texture bindings capped at 512px");
+            }
             foreach(string path in new[]{GoldenHudBuilder.PrefabPath,"Assets/_LayarTerakhir/Production/Prefabs/KosEnvironmentalAudio.prefab","Assets/_LayarTerakhir/Production/Prefabs/GoldenPracticalLighting.prefab"})
                 Check(AssetDatabase.LoadAssetAtPath<GameObject>(path),"Reusable prefab "+Path.GetFileName(path));
             var report=new Record{utc=DateTime.UtcNow.ToString("o"),scene=baseReport.scene,failures=failures,triangles=baseReport.triangles,renderers=baseReport.renderers,

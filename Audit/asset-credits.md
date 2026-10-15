@@ -75,3 +75,28 @@ not downloads, extracted game assets or new story documents. They follow the pro
 Existing original DampStain alpha is reused for small tracked-floor-dirt patches (one combined mesh),
 and the existing CC0 fabric normal map is reused on the matte green cloth. No new textures, external
 asset packs, fonts or audio were downloaded for this visual-only pass; prior third-party licenses above remain unchanged.
+
+## Final Golden refinement — reviewed staging imports (15 October 2026)
+
+Independent integration review by Codex: exact staged FBXs opened in Blender; eight approved candidate
+previews inspected. The following three assets were selected, with source pages and the current
+[Poly Haven CC0 license](https://polyhaven.com/license) checked independently. Original FBX/JPG bytes
+match both the staging SHA-256 and current source API MD5. No unrelated replacement search/download.
+
+| Integrated asset | Author | Source / license | Use and modifications |
+| --- | --- | --- | --- |
+| Office Notepads | Ulan Cabanilla | [Poly Haven](https://polyhaven.com/a/office_notepads), CC0-1.0 | One A4 stack mesh on the bedside stool, replaces the spare newspaper; no full collection scatter |
+| Plastic Thermos | PierreB3D | [Poly Haven](https://polyhaven.com/a/plastic_thermos), CC0-1.0 | Modest drink flask on the bedside stool/notepad; natural 32cm height |
+| Gamepad | Josh Dean | [Poly Haven](https://polyhaven.com/a/gamepad), CC0-1.0 | Wired budget controller left on the mattress, reinforcing Raka's streamer routine |
+
+Attribution is voluntary for these CC0 assets. URP/Lit materials use 512px runtime imports, OpenGL
+normal maps and derived masks (R metallic / G AO / A inverse roughness); no maps misbound as ARM.
+Full source hashes and URLs: `Audit/kos-final-source-verification.json`; repeatable import:
+`Tools/prepare_kos_refinement.py`. No official website previews are included in the playable build.
+Clipboard/stationery/crate would duplicate current desk/storage clutter; wall clock and broom were
+not needed for this composition. Rejected industrial container, multimeter and cassette player
+were not imported. No additional fonts/audio or gameplay dependencies.
+
+The original backdrop's new folded storage mesh is authored by
+`Tools/author_compact_kos.py --stored-only`; it retains the green cloth and collapsed frame,
+with no cloth simulation. It follows the original project's license, not Poly Haven's CC0.

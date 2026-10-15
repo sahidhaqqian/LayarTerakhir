@@ -11,6 +11,9 @@ their collision and interaction roots together. Do not rerun `PrologKosSceneBuil
 Use `CompactKosPolish.Apply` / `--stage polish` for current visual/layout edits. Do not rerun the
 historical greybox/V1/V2 builders: their original coordinates predate the approved smaller room.
 The Golden production menu routes an already-compact scene back to this polish pass.
+The green screen is now folded/stored beside the workstation, never a divider across the bed view.
+Only three reviewed staging assets are integrated (notepad stack, thermos, gamepad); source hashes
+and licenses are recorded in `Audit/kos-final-source-verification.json`. Do not import the full research drop.
 
 Folders below `Assets/_LayarTerakhir`: `Art/Imported/<provider>/<source-id>` for legal source models;
 `Art/Original/Models` for project-authored FBXs; `Art/Generated/Materials` for shared URP materials;

@@ -1,11 +1,11 @@
 {
     "scene": "Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity",
-    "utc": "2026-10-15T09:26:27.9204610Z",
+    "utc": "2026-10-15T10:01:18.4897360Z",
     "failures": 0,
-    "triangles": 101747,
-    "renderers": 207,
+    "triangles": 114455,
+    "renderers": 208,
     "textureMaximum": 1024,
-    "reachableGridCells": 75,
+    "reachableGridCells": 95,
     "roomDimensions": {
         "x": 5.0,
         "y": 2.799999952316284,
@@ -225,7 +225,7 @@
         {
             "subject": "StreamerGreenScreen",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (-0.40, 1.03, -0.35), Extents: (0.85, 1.02, 0.21)",
+            "detail": "Actual mesh bounds Center: (-1.62, 0.82, 1.68), Extents: (0.27, 0.81, 0.12)",
             "passed": true,
             "measured": 0.0
         },
@@ -1756,14 +1756,21 @@
             "measured": 0.0
         },
         {
-            "subject": "Newsprint",
+            "subject": "office_notepads_a4_stack",
             "kind": "mesh-reference",
             "detail": "Visible MeshFilter must reference an imported/generated mesh",
             "passed": true,
             "measured": 0.0
         },
         {
-            "subject": "NewsprintInk",
+            "subject": "plastic_thermos_1k",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "gamepad_1k",
             "kind": "mesh-reference",
             "detail": "Visible MeshFilter must reference an imported/generated mesh",
             "passed": true,
@@ -4651,7 +4658,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 154.41477966308595
+            "measured": 154.414794921875
         },
         {
             "subject": "BackdropStand",
@@ -4665,7 +4672,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 172.50747680664063
+            "measured": 179.4382781982422
         },
         {
             "subject": "GreenFabric",
@@ -4679,7 +4686,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 172.50747680664063
+            "measured": 179.4382781982422
         },
         {
             "subject": "WebcamLens",
@@ -4721,7 +4728,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 155.4929656982422
+            "measured": 183.66563415527345
         },
         {
             "subject": "SockRib",
@@ -4735,7 +4742,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 155.4929656982422
+            "measured": 183.66563415527345
         },
         {
             "subject": "Newsprint",
@@ -4749,7 +4756,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 154.3402099609375
+            "measured": 169.050537109375
         },
         {
             "subject": "NewsprintInk",
@@ -4763,7 +4770,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 154.3402099609375
+            "measured": 169.050537109375
         },
         {
             "subject": "ShirtCotton",
@@ -4777,7 +4784,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 160.77891540527345
+            "measured": 180.14955139160157
         },
         {
             "subject": "ShirtRib",
@@ -4791,35 +4798,49 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 160.77891540527345
+            "measured": 180.14955139160157
         },
         {
-            "subject": "Newsprint",
+            "subject": "office_notepads_a4_stack",
             "kind": "material-reference",
-            "detail": "CompactNewsprint",
+            "detail": "Refined_office_notepads",
             "passed": true,
             "measured": 0.0
         },
         {
-            "subject": "Newsprint",
+            "subject": "office_notepads_a4_stack",
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 92.47303771972656
+            "measured": 173.20135498046876
         },
         {
-            "subject": "NewsprintInk",
+            "subject": "plastic_thermos_1k",
             "kind": "material-reference",
-            "detail": "CompactNewsprintInk",
+            "detail": "Refined_plastic_thermos",
             "passed": true,
             "measured": 0.0
         },
         {
-            "subject": "NewsprintInk",
+            "subject": "plastic_thermos_1k",
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 92.47303771972656
+            "measured": 173.2708282470703
+        },
+        {
+            "subject": "gamepad_1k",
+            "kind": "material-reference",
+            "detail": "Refined_gamepad",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "gamepad_1k",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 172.19973754882813
         },
         {
             "subject": "WebcamUSBLead",
@@ -7489,7 +7510,7 @@
             "measured": 0.0
         },
         {
-            "subject": "KosStreamerGreenScreen",
+            "subject": "KosStoredGreenScreen",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
             "passed": true,
@@ -7510,35 +7531,7 @@
             "measured": 0.0
         },
         {
-            "subject": "GreenClothCollision",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "BackdropPoleCollision",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "BackdropFootCollision",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "BackdropPoleCollision",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "BackdropFootCollision",
+            "subject": "StoredBackdropCollision",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
             "passed": true,
@@ -7657,28 +7650,63 @@
             "measured": 0.0
         },
         {
-            "subject": "ReadingPaperOnStool",
+            "subject": "ReadingPadOnStool",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
             "passed": true,
             "measured": 0.0
         },
         {
-            "subject": "KosOldNewspaper",
+            "subject": "office_notepads_a4_stack",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
             "passed": true,
             "measured": 0.0
         },
         {
-            "subject": "Newsprint",
+            "subject": "ClutterCollision",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
             "passed": true,
             "measured": 0.0
         },
         {
-            "subject": "NewsprintInk",
+            "subject": "BedsidePlasticThermos",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "plastic_thermos_1k",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "ClutterCollision",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "WiredGamepadOnBed",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "gamepad_1k",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "ClutterCollision",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
             "passed": true,
@@ -7808,35 +7836,14 @@
             "kind": "navigation-cells-clear",
             "detail": "Every returned cell must ignore only the player, never world collision",
             "passed": true,
-            "measured": 75.0
+            "measured": 95.0
         },
         {
             "subject": "Player",
             "kind": "pathway",
             "detail": "Flood-fill actual capsule-clear floor cells from player spawn; 25cm grid",
             "passed": true,
-            "measured": 75.0
-        },
-        {
-            "subject": "PINTU_KOS",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PINTU_KOS",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 0.009999990463256836
-        },
-        {
-            "subject": "PINTU_KOS",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.8480633",
-            "passed": true,
-            "measured": 61.0
+            "measured": 95.0
         },
         {
             "subject": "SMARTPHONE_BED",
@@ -7855,9 +7862,9 @@
         {
             "subject": "SMARTPHONE_BED",
             "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.465606",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.448448",
             "passed": true,
-            "measured": 26.0
+            "measured": 46.0
         },
         {
             "subject": "PC_MONITOR",
@@ -7878,7 +7885,49 @@
             "kind": "reachable-interaction",
             "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.253847",
             "passed": true,
-            "measured": 36.0
+            "measured": 67.0
+        },
+        {
+            "subject": "JAKET_PINTU",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "JAKET_PINTU",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 2.384185791015625e-7
+        },
+        {
+            "subject": "JAKET_PINTU",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.7637089",
+            "passed": true,
+            "measured": 54.0
+        },
+        {
+            "subject": "PINTU_KOS",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PINTU_KOS",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 0.009999990463256836
+        },
+        {
+            "subject": "PINTU_KOS",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.8480633",
+            "passed": true,
+            "measured": 78.0
         },
         {
             "subject": "KALENDER_DINDING",
@@ -7899,49 +7948,7 @@
             "kind": "reachable-interaction",
             "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.4781578",
             "passed": true,
-            "measured": 36.0
-        },
-        {
-            "subject": "JAKET_PINTU",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "JAKET_PINTU",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "JAKET_PINTU",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.763709",
-            "passed": true,
-            "measured": 47.0
-        },
-        {
-            "subject": "STICKY_NOTE",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "STICKY_NOTE",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "STICKY_NOTE",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.116146",
-            "passed": true,
-            "measured": 40.0
+            "measured": 52.0
         },
         {
             "subject": "SURAT_KOS",
@@ -7962,7 +7969,28 @@
             "kind": "reachable-interaction",
             "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.675999",
             "passed": true,
-            "measured": 47.0
+            "measured": 58.0
+        },
+        {
+            "subject": "STICKY_NOTE",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "STICKY_NOTE",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "STICKY_NOTE",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.116146",
+            "passed": true,
+            "measured": 72.0
         },
         {
             "subject": "LACI_MEJA",
@@ -7981,9 +8009,9 @@
         {
             "subject": "LACI_MEJA",
             "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.977822",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.720983",
             "passed": true,
-            "measured": 10.0
+            "measured": 38.0
         },
         {
             "subject": "KosDoor",
@@ -8032,7 +8060,7 @@
             "kind": "triangle-budget",
             "detail": "Visible scene meshes, actual submesh index counts",
             "passed": true,
-            "measured": 101747.0
+            "measured": 114455.0
         },
         {
             "subject": "Art",

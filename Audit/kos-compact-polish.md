@@ -1,5 +1,8 @@
 # Kamar kos Raka — compact sleep/work/stream polish
 
+Historical first compact pass. The folded backdrop, clearer clutter and newest playtest delivery
+supersede this report: see [final refinement](kos-final-refinement.md).
+
 15 October 2026. Implements the latest `goal.md` and the requested young city-streamer setting.
 Visual/composition pass only: no new gameplay systems or Adegan 2.
 
