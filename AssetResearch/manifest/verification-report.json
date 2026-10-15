@@ -1,0 +1,854 @@
+{
+  "verifiedAt": "2026-10-15T09:21:13Z",
+  "assets": [
+    {
+      "id": "office_notepads",
+      "sourcePage": "https://polyhaven.com/a/office_notepads",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "office_notepads/office_notepads_1k.fbx",
+          "exists": true,
+          "sha256": "f59605849d17e497f68ae724678c7698a9b048d3c7ceb88b9e7c6c4dfe7de3f0",
+          "bytes": 52268,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "a0bcf3644e111813a0013db8fb0bb930",
+          "md5": "a0bcf3644e111813a0013db8fb0bb930",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "office_notepads/textures/office_notepads_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "d6be173e3c16755e3c163724b205114f0dc93ff2d6a746b819815f4100432018",
+          "bytes": 393394,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "ab84db9081b5fa234edd539d8ac8d8bf",
+          "md5": "ab84db9081b5fa234edd539d8ac8d8bf",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "office_notepads/textures/office_notepads_diff_1k.jpg",
+          "exists": true,
+          "sha256": "6cce5f76748a73954a9158904b6d26319f028f796166c140b3cbf0bbb7c62727",
+          "bytes": 460873,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "8e0b41ecab0c337761582b50499b465c",
+          "md5": "8e0b41ecab0c337761582b50499b465c",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "office_notepads/textures/office_notepads_arm_1k.jpg",
+          "exists": true,
+          "sha256": "a4a1c7356075ab0de890ae7de0397a0b4c35f6dd7feacafe3a32e773b76c7e68",
+          "bytes": 445320,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "9232150728af44604f8ec2dc6c409084",
+          "md5": "9232150728af44604f8ec2dc6c409084",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "office_notepads/source-preview.png",
+          "exists": true,
+          "sha256": "8f378a6ee5ff78b4df4572c3ec059c378555b7bc77e60cd21df561b12e37d637",
+          "bytes": 17160,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "stationery_supplies",
+      "sourcePage": "https://polyhaven.com/a/stationery_supplies",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "stationery_supplies/stationery_supplies_1k.fbx",
+          "exists": true,
+          "sha256": "a1944f67fc094b94eb5200bbd11315fdd4aa900c1c9e74ac6d8afa5a195df5c2",
+          "bytes": 187756,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "5003d26ba2406c0fbe79eebd9745ca9e",
+          "md5": "5003d26ba2406c0fbe79eebd9745ca9e",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "stationery_supplies/textures/stationery_supplies_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "23c332f95ca9cafc24f51a1ad54ca81548d3ab60559401e793fdec00cbe7952c",
+          "bytes": 475821,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "b4041a9882047b1b138417ffd8984cd3",
+          "md5": "b4041a9882047b1b138417ffd8984cd3",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "stationery_supplies/textures/stationery_supplies_diff_1k.jpg",
+          "exists": true,
+          "sha256": "a70e92052b2da3457a6059aec0fa83bc01bf0d376be814661cee0b49e4abb9ad",
+          "bytes": 646389,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "6137e4177fe5b002254d57eb5c7003eb",
+          "md5": "6137e4177fe5b002254d57eb5c7003eb",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "stationery_supplies/textures/stationery_supplies_arm_1k.jpg",
+          "exists": true,
+          "sha256": "b7b00e07f043d9928aa4b6dc6a3feede9c870e6e810ae75b54692171cfba6052",
+          "bytes": 720443,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "7d4c4c9f4f7e880b09b37e2b13a044cf",
+          "md5": "7d4c4c9f4f7e880b09b37e2b13a044cf",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "stationery_supplies/source-preview.png",
+          "exists": true,
+          "sha256": "070de7adcbf1630a9c34b609f81b7b1cad14dc5eb102a92d645ec9ad66b00cf1",
+          "bytes": 31500,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "clipboard",
+      "sourcePage": "https://polyhaven.com/a/clipboard",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "clipboard/clipboard_1k.fbx",
+          "exists": true,
+          "sha256": "48fe1c8fb9090916b1aad0835a5d6078bb3e1d6463474b51f4d84c8e80f4b215",
+          "bytes": 186732,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "0469cdc7ed3fee20d5d8c49ad79651ba",
+          "md5": "0469cdc7ed3fee20d5d8c49ad79651ba",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "clipboard/textures/clipboard_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "ea6700ba026222656f47c654d1631f075aedb57d52977ca22bdf8d417e1eca07",
+          "bytes": 406898,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "073ac31d4b1b916ed1d10040f0c1987f",
+          "md5": "073ac31d4b1b916ed1d10040f0c1987f",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "clipboard/textures/clipboard_diff_1k.jpg",
+          "exists": true,
+          "sha256": "2e823a490f24a70ff76418c578871f08608bfc370f64f5068d833e5ee63b457a",
+          "bytes": 572026,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "bfcf21f8bd08f8180293fccfefe3428a",
+          "md5": "bfcf21f8bd08f8180293fccfefe3428a",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "clipboard/textures/clipboard_arm_1k.jpg",
+          "exists": true,
+          "sha256": "79658043713f9adb64d2dfc956e2818cda727d7a08fd85aa0967f1f4f9ce660f",
+          "bytes": 620747,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "0c5d2b64984d32e13fc484aa4df5b98f",
+          "md5": "0c5d2b64984d32e13fc484aa4df5b98f",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "clipboard/source-preview.png",
+          "exists": true,
+          "sha256": "f495d4fd5a162ea3dd5c579d3573a3e590d182236898a1d2617f97f0458ec5dc",
+          "bytes": 15866,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "plastic_thermos",
+      "sourcePage": "https://polyhaven.com/a/plastic_thermos",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "plastic_thermos/plastic_thermos_1k.fbx",
+          "exists": true,
+          "sha256": "04beb90c26649ab92c51aefdd3879fa17661fe6d9edc35c14d3331ef93b750d5",
+          "bytes": 163324,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "5adecafd7c51556257234287fbe62152",
+          "md5": "5adecafd7c51556257234287fbe62152",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "plastic_thermos/textures/plastic_thermos_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "2d1e7525c7bc34fb2a10c8e8bbb1fc5ff2a89331bb82bae39b22ef6bdc9d0476",
+          "bytes": 364839,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "1f60440a80168aa1a53067024207db96",
+          "md5": "1f60440a80168aa1a53067024207db96",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "plastic_thermos/textures/plastic_thermos_diff_1k.jpg",
+          "exists": true,
+          "sha256": "14cd6b03824ee4f4ec774aa6101d1eb3f75800c68de5e2e2304b4bb7a4447077",
+          "bytes": 289855,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "a7609b0cb49b723b9c395fbc8c421b72",
+          "md5": "a7609b0cb49b723b9c395fbc8c421b72",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "plastic_thermos/textures/plastic_thermos_arm_1k.jpg",
+          "exists": true,
+          "sha256": "4438bf3575a4904706a6b0ff3c697d4ae079318dcf4d2b09884292c8f8c65bd1",
+          "bytes": 678833,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "5783b060d6640955982a0e47f31774bf",
+          "md5": "5783b060d6640955982a0e47f31774bf",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "plastic_thermos/source-preview.png",
+          "exists": true,
+          "sha256": "8231e333d51fa27137ca074106fe6e2a2048cd0c1e23ba3b78fb55dcf0fa0c64",
+          "bytes": 15996,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "plastic_crate_02",
+      "sourcePage": "https://polyhaven.com/a/plastic_crate_02",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "plastic_crate_02/plastic_crate_02_1k.fbx",
+          "exists": true,
+          "sha256": "93f5fd277c554b9160b27d4c6ae9c6663273f888f79d54da0c8e2fcecc9e217e",
+          "bytes": 135532,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "d07131ebbc055f2b0e6b93e85ab730aa",
+          "md5": "d07131ebbc055f2b0e6b93e85ab730aa",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "plastic_crate_02/textures/plastic_crate_02_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "492b4cb03b043fb30a21b5de1cdf91dfbcd9bb7d080957af69a333d622050f30",
+          "bytes": 558561,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "3fd1bb590ead064e6b7cf6eb3cd46fa6",
+          "md5": "3fd1bb590ead064e6b7cf6eb3cd46fa6",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "plastic_crate_02/textures/plastic_crate_02_diff_1k.jpg",
+          "exists": true,
+          "sha256": "f153478d5f44f39ab27a967850caac27b35ee8f04185d0d4eaf7ad501742fb15",
+          "bytes": 492862,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "55ddafcf50ffebdb2806e6b863e9b254",
+          "md5": "55ddafcf50ffebdb2806e6b863e9b254",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "plastic_crate_02/textures/plastic_crate_02_arm_1k.jpg",
+          "exists": true,
+          "sha256": "f0c667358c7afd46be37b40c30435b63ae3dba8432b45c507f3298fc6f163418",
+          "bytes": 597561,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "032b8738359d2423f7bf8dd0aa6f3e5b",
+          "md5": "032b8738359d2423f7bf8dd0aa6f3e5b",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "plastic_crate_02/source-preview.png",
+          "exists": true,
+          "sha256": "4323c80df3356bd732595e8bece32ad54c07a1849ac6b0e4e990904bb06b0fca",
+          "bytes": 45352,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "industrial_pastic_container",
+      "sourcePage": "https://polyhaven.com/a/industrial_pastic_container",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "industrial_pastic_container/industrial_pastic_container_1k.fbx",
+          "exists": true,
+          "sha256": "2ddbbcba61925927426dd67b8f10af14556e8e3acf1dbde70e4f71c88bcef497",
+          "bytes": 203484,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "823de5669036d3611949bd75d2fab3bc",
+          "md5": "823de5669036d3611949bd75d2fab3bc",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "industrial_pastic_container/textures/industrial_pastic_container_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "608ccf9fd66eed1cf4c41f30e104e3fc535513e4c67b4912a16d9c6903c72a84",
+          "bytes": 125304,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "0704784279c977d8d4b645e2f9bda94a",
+          "md5": "0704784279c977d8d4b645e2f9bda94a",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "industrial_pastic_container/textures/industrial_pastic_container_diff_1k.jpg",
+          "exists": true,
+          "sha256": "dd4711467c6976f521983c56116dbcfa68f6ae8bdf02352212fa1468f73b81bc",
+          "bytes": 184497,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "4e43de54f8d4c1cdd8d3606bd8a33a2b",
+          "md5": "4e43de54f8d4c1cdd8d3606bd8a33a2b",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "industrial_pastic_container/textures/industrial_pastic_container_arm_1k.jpg",
+          "exists": true,
+          "sha256": "41e9b8f374013fc5e552f48de06e3dbdb86cfd3e0ee24576c499e6b4689c363c",
+          "bytes": 881895,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "74c4ca9b23d48b709d571c20d11ee689",
+          "md5": "74c4ca9b23d48b709d571c20d11ee689",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "industrial_pastic_container/source-preview.png",
+          "exists": true,
+          "sha256": "32d537490e7fd53a2e19c4e6c8105fba585f812e82547b9e9951244b7b70ec3c",
+          "bytes": 24886,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "gamepad",
+      "sourcePage": "https://polyhaven.com/a/gamepad",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "gamepad/gamepad_1k.fbx",
+          "exists": true,
+          "sha256": "a4f136b9b7c05a940218bfd20ae8edba7279189b07a4dd701c2a143a12dd58fe",
+          "bytes": 270956,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "be268ab63aca28861b9798a6cd1039e6",
+          "md5": "be268ab63aca28861b9798a6cd1039e6",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "gamepad/textures/gamepad_diff_1k.jpg",
+          "exists": true,
+          "sha256": "d66b82f9790c304efaae5b0dc45a1dffd57ff64ec57d57d7e5a2fe1b1b067b5c",
+          "bytes": 309469,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "481e2ef26e548cec00140a32dce30ddd",
+          "md5": "481e2ef26e548cec00140a32dce30ddd",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "gamepad/textures/gamepad_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "90b7eb4ce8578797c2e5386f979c306a247a8a280ba980eb5380828dcb42edd8",
+          "bytes": 241556,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "0ee54f5549614917728ed1293cc63f64",
+          "md5": "0ee54f5549614917728ed1293cc63f64",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "gamepad/textures/gamepad_arm_1k.jpg",
+          "exists": true,
+          "sha256": "cb5481bb081c12a92213a5decbe41112788896fe4e1810ee74f086e45e4cf5f1",
+          "bytes": 510273,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "67c3c5c000441d0d79a9e14df40d93a3",
+          "md5": "67c3c5c000441d0d79a9e14df40d93a3",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "gamepad/source-preview.png",
+          "exists": true,
+          "sha256": "536242bae0d0912657bbf2b17c59bdca19fd6ea0cec2e56f560e7caf2c95b40b",
+          "bytes": 32248,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "retro_multimeter",
+      "sourcePage": "https://polyhaven.com/a/retro_multimeter",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "retro_multimeter/retro_multimeter_1k.fbx",
+          "exists": true,
+          "sha256": "f3b459c105d11da9dc92e06b2b616b0c63c5f97cb636e8d04d75a0e28e4467b5",
+          "bytes": 339596,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "67eb956e09eecc9650b82e0a4c8422c4",
+          "md5": "67eb956e09eecc9650b82e0a4c8422c4",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "retro_multimeter/textures/retro_multimeter_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "d30fd3007cb35e62a0a5171d148df0dba3bee688e96c76d4ffbc314761fac183",
+          "bytes": 252642,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "6ad1b7963ba777dbaa7bfce231ed38f6",
+          "md5": "6ad1b7963ba777dbaa7bfce231ed38f6",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "retro_multimeter/textures/retro_multimeter_diff_1k.jpg",
+          "exists": true,
+          "sha256": "46baf6d9026f3cc79cfe6105c20101ec4436f728ced143f1647931b6d68a2e3b",
+          "bytes": 399388,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "47901b8cbb376b1a3a94425c83647cf4",
+          "md5": "47901b8cbb376b1a3a94425c83647cf4",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "retro_multimeter/textures/retro_multimeter_arm_1k.jpg",
+          "exists": true,
+          "sha256": "3fbf956cfc9830fb866535ad8c50a6923ffb848b06707c5d957bbb8d73385c46",
+          "bytes": 454111,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "79e1c577441d03097ab2230e55df5a89",
+          "md5": "79e1c577441d03097ab2230e55df5a89",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "retro_multimeter/source-preview.png",
+          "exists": true,
+          "sha256": "bce4dff12cb00295da041114030c92192151468e6f57a65ad91a895fd051aa9f",
+          "bytes": 26394,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "cassette_player",
+      "sourcePage": "https://polyhaven.com/a/cassette_player",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "cassette_player/cassette_player_1k.fbx",
+          "exists": true,
+          "sha256": "9254cb8460568fbb8c6ee6a8fbf11a4df61fc0574dab8de3e2c915c7221449b2",
+          "bytes": 233212,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "e98063d7d61c6a1058877f2617bbf2b3",
+          "md5": "e98063d7d61c6a1058877f2617bbf2b3",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "cassette_player/textures/cassette_player_tape_orangeblue_diff_1k.jpg",
+          "exists": true,
+          "sha256": "17dc2f98a700e2e2e6e753c148aff10d5e7ec792fbc5b75aaeaab8a55810b5ae",
+          "bytes": 155829,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "03062c000139772b84233434f74f1387",
+          "md5": "03062c000139772b84233434f74f1387",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "cassette_player/textures/cassette_player_body_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "1fad4388095f157a57f47b02788f24e75bd7eef236ffb3c8d07632e073079d63",
+          "bytes": 138542,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "ba648a99c4aa40ea0aac365a49864505",
+          "md5": "ba648a99c4aa40ea0aac365a49864505",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "cassette_player/textures/cassette_player_tape_arm_1k.jpg",
+          "exists": true,
+          "sha256": "ac1c67cc2871ff3ffb3d31d673dc2707723822674fd587f48070c5536dca66e3",
+          "bytes": 102646,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "4468d4aa2833be4b2d5cd4159ea59014",
+          "md5": "4468d4aa2833be4b2d5cd4159ea59014",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "cassette_player/textures/cassette_player_body_arm_1k.jpg",
+          "exists": true,
+          "sha256": "2bfc0ee4521354c8bb8ea6a132dec90d6e4ff2425c7a6ac71d6ecfe24ac6a941",
+          "bytes": 180349,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "5ddc73de05f808c0e79669a0c4851c17",
+          "md5": "5ddc73de05f808c0e79669a0c4851c17",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "cassette_player/textures/cassette_player_body_diff_1k.jpg",
+          "exists": true,
+          "sha256": "2ba804ff09613f4e4fda13e0c5fa0aba6bb0d771febe093c60623f53149c4061",
+          "bytes": 92420,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "c59b047a7a4d0ab3bb806d4ad4fa0fcb",
+          "md5": "c59b047a7a4d0ab3bb806d4ad4fa0fcb",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "cassette_player/textures/cassette_player_tape_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "99a5c90fdc8d3bfa8c73f506d51a2ed047bc12322f2e3239b8bf33a261007d6f",
+          "bytes": 119871,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "e7bdf4c1098a1ea44567a90f6e82cac1",
+          "md5": "e7bdf4c1098a1ea44567a90f6e82cac1",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "cassette_player/source-preview.png",
+          "exists": true,
+          "sha256": "2b5d3752562aa824c866609dbb5da9150ea3fb16d21d0b22f73b2d717964e30c",
+          "bytes": 29850,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "wall_clock",
+      "sourcePage": "https://polyhaven.com/a/wall_clock",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "wall_clock/wall_clock_1k.fbx",
+          "exists": true,
+          "sha256": "1134703dab540da8a2f0a43f819e3d5d1bb468680b1e06bcf0effeb523c414a2",
+          "bytes": 153756,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "45e6e0a9a6ac65cd33fb4609a5b470b0",
+          "md5": "45e6e0a9a6ac65cd33fb4609a5b470b0",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "wall_clock/textures/wall_clock_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "6138946e055828e92d5e0d8d50c75e3d2da0ea789dd6512b30f85f0e18435d00",
+          "bytes": 236489,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "d6404c2ffb48b17fbeed2cb9bf187a29",
+          "md5": "d6404c2ffb48b17fbeed2cb9bf187a29",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "wall_clock/textures/wall_clock_diff_1k.jpg",
+          "exists": true,
+          "sha256": "012bfc3ceecd5e35679fe5764e33b6d1b8a631ad4fc9f5b267af25ad10468672",
+          "bytes": 366683,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "32e8346296eebf4776e7e917f0080c7f",
+          "md5": "32e8346296eebf4776e7e917f0080c7f",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "wall_clock/textures/wall_clock_arm_1k.jpg",
+          "exists": true,
+          "sha256": "c78aabec7bb4af4fd6818be1099523e59bf12d88c872530b2260cdea08d81968",
+          "bytes": 444044,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "6d962d1263bd5b34e16a69fa5473e8ac",
+          "md5": "6d962d1263bd5b34e16a69fa5473e8ac",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "wall_clock/textures/wall_clock_glass_arm_1k.jpg",
+          "exists": true,
+          "sha256": "42804955958b3d0fdc1da8d4c4e8e909b04f659ae1b02911e148abe0741b8b84",
+          "bytes": 376244,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "5e84b53fb7e087f4114de28d70787f5c",
+          "md5": "5e84b53fb7e087f4114de28d70787f5c",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "wall_clock/source-preview.png",
+          "exists": true,
+          "sha256": "05e961d2a529f2ab0a7afa72858c45c6fa5d2dd3e9be6d6ba8e2f407ec22a810",
+          "bytes": 27046,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "alarm_clock_01",
+      "sourcePage": "https://polyhaven.com/a/alarm_clock_01",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "alarm_clock_01/alarm_clock_01_1k.fbx",
+          "exists": true,
+          "sha256": "efc7881828eff2e486363b5166d59349bb370d798ea5aeaaeff5bab037a214e2",
+          "bytes": 491004,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "c105307dc2704f73bd51f38e8775d718",
+          "md5": "c105307dc2704f73bd51f38e8775d718",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "alarm_clock_01/textures/alarm_clock_01_diff_1k.jpg",
+          "exists": true,
+          "sha256": "deb82094c2c1aa8cda0a0ce7192b193a81c5376743344503764abbcd2db19ac1",
+          "bytes": 404998,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "27a85fe476bc1c0debe34b37ac824ad8",
+          "md5": "27a85fe476bc1c0debe34b37ac824ad8",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "alarm_clock_01/textures/alarm_clock_01_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "a0a7b35de5712e23d06832e49516ec0e1170aa159eb60ec9b2af0b0df2102fa4",
+          "bytes": 420026,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "7cd24fe02d79a68cce132650b6ede34b",
+          "md5": "7cd24fe02d79a68cce132650b6ede34b",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "alarm_clock_01/textures/alarm_clock_01_arm_1k.jpg",
+          "exists": true,
+          "sha256": "99727eb8908dfea5aac2a2353af7ff60857e40c50b396d7efbe15df685fe4918",
+          "bytes": 538163,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "cb2b21cf42ccda7f0c5e1f82d47b85bf",
+          "md5": "cb2b21cf42ccda7f0c5e1f82d47b85bf",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "alarm_clock_01/source-preview.png",
+          "exists": true,
+          "sha256": "d9572218f7d1f0221a11daf4c0ac088ae838b01ccff1a7abcb18e8ee8e57c396",
+          "bytes": 35844,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "wooden_broom",
+      "sourcePage": "https://polyhaven.com/a/wooden_broom",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "wooden_broom/wooden_broom_1k.fbx",
+          "exists": true,
+          "sha256": "7f06133cc5ec9aebd78c9b935c10774d96d2c4f80b36c49cd0d2b527fcf0736c",
+          "bytes": 482124,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "657d417446d2b98f933c684d85227d6f",
+          "md5": "657d417446d2b98f933c684d85227d6f",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "wooden_broom/textures/wooden_broom_bristles_diff_1k.jpg",
+          "exists": true,
+          "sha256": "deebfae62affe0007c73bc57b5afcd216d920ec69c2f67d8399a5aab6a9088a8",
+          "bytes": 388640,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "463e5bd2311720359f4e5cd19720601c",
+          "md5": "463e5bd2311720359f4e5cd19720601c",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "wooden_broom/textures/wooden_broom_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "6ecda3297647a6b8b36b6a2d96240fa6c3ba973e4c795d307a5e8829e661b1be",
+          "bytes": 873442,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "20fee130def21a2365679b78bb4e2cbb",
+          "md5": "20fee130def21a2365679b78bb4e2cbb",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "wooden_broom/textures/wooden_broom_diff_1k.jpg",
+          "exists": true,
+          "sha256": "525f5ba0cb4669b4e0c9d1ea0ca45471bcc28d3e061e0e1e5ab72a3c0c8edb81",
+          "bytes": 759771,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "ff42e9a9b701b859e232d19474e62618",
+          "md5": "ff42e9a9b701b859e232d19474e62618",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "wooden_broom/textures/wooden_broom_arm_1k.jpg",
+          "exists": true,
+          "sha256": "43692c6109afa9a3a694a4295c69051e21edcbe30d8750ba434cc1674bb9db0c",
+          "bytes": 885939,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "5877e946e33ec34b2d344bbda0946ac6",
+          "md5": "5877e946e33ec34b2d344bbda0946ac6",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "wooden_broom/source-preview.png",
+          "exists": true,
+          "sha256": "b1d051e001176c164546ecd4adafa375836c71fc72a9ed948f9544efa1fcee6f",
+          "bytes": 25212,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "vintage_flashlight",
+      "sourcePage": "https://polyhaven.com/a/vintage_flashlight",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "vintage_flashlight/vintage_flashlight_1k.fbx",
+          "exists": true,
+          "sha256": "9e459e4c836cd553a603006b6d285777ed8dfb3b816f4d12a38abb56621334b0",
+          "bytes": 314380,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "bf2ac10dea8dd831fe8684943e32b3eb",
+          "md5": "bf2ac10dea8dd831fe8684943e32b3eb",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "vintage_flashlight/textures/vintage_flashlight_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "a4474869f8e0d721f908ba0324b415eafcaa576cf061d9b84e86e6be9b5b28fd",
+          "bytes": 164093,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "5dbb094acddadbf642b05dce91392175",
+          "md5": "5dbb094acddadbf642b05dce91392175",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "vintage_flashlight/textures/vintage_flashlight_diff_1k.jpg",
+          "exists": true,
+          "sha256": "2b428ccd2c41ef56d5204f319b2c7e914af29531446caf1aa396acc312ac8692",
+          "bytes": 550114,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "3a402729b84c43bcd4150dc93013d35a",
+          "md5": "3a402729b84c43bcd4150dc93013d35a",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "vintage_flashlight/textures/vintage_flashlight_arm_1k.jpg",
+          "exists": true,
+          "sha256": "5183d389859b02f5bb6d89b3869792020e3177e04a11866923e535c72373a03d",
+          "bytes": 620007,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "5106205b55117ae98f43efe217ad2813",
+          "md5": "5106205b55117ae98f43efe217ad2813",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "vintage_flashlight/source-preview.png",
+          "exists": true,
+          "sha256": "99f26737edc4628afb90a36179377ca9edf032ad342b424c9d64d84792f4af89",
+          "bytes": 39510,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    }
+  ],
+  "passed": true
+}
