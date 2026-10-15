@@ -1,0 +1,4758 @@
+{
+  "verifiedAt": "2026-10-15T10:04:04Z",
+  "ogaLicenseFields": {
+    "wooden-door-0": {
+      "url": "https://opengameart.org/content/wooden-door-0",
+      "licenseField": "&nbsp; CC0"
+    },
+    "breakable-doors-and-windows": {
+      "url": "https://opengameart.org/content/breakable-doors-and-windows",
+      "licenseField": "&nbsp; CC0"
+    },
+    "chain": {
+      "url": "https://opengameart.org/content/chain",
+      "licenseField": "&nbsp; CC-BY 4.0"
+    },
+    "small-old-house": {
+      "url": "https://opengameart.org/content/small-old-house",
+      "licenseField": "&nbsp; CC-BY 3.0"
+    }
+  },
+  "assets": [
+    {
+      "id": "large_iron_gate",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/large_iron_gate",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/large_iron_gate/large_iron_gate_1k.fbx",
+          "exists": true,
+          "sha256": "8a8a34ede62860b6e053c61a98b1be7dee64ec08e870c6f64ddae7fb6b805b12",
+          "bytes": 1110444,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "9241d2c3967f28fe9f6123c5137fafec",
+          "md5": "9241d2c3967f28fe9f6123c5137fafec",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/large_iron_gate/textures/large_iron_gate_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "c46a14086705f0d4bc2858c461aa8dfdd3bf7a09955c370591511612429d60fb",
+          "bytes": 698636,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "1fe340c4402bd9fa9989d85df59f87ea",
+          "md5": "1fe340c4402bd9fa9989d85df59f87ea",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/large_iron_gate/textures/large_iron_gate_diff_1k.jpg",
+          "exists": true,
+          "sha256": "422b17616829c7a48805211fcca9699c0aec63dee40a8d851f5ba81fcf329575",
+          "bytes": 610309,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "8e76fe5edca3f7ac2409ebcd2e963d02",
+          "md5": "8e76fe5edca3f7ac2409ebcd2e963d02",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/large_iron_gate/textures/large_iron_gate_arm_1k.jpg",
+          "exists": true,
+          "sha256": "f528b46396e097324af2c14cc2f15b855b5f9b909bf6a8da9819f528e6ebde4a",
+          "bytes": 840287,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "0713e910c767c79e8d5d048d215a6763",
+          "md5": "0713e910c767c79e8d5d048d215a6763",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/large_iron_gate/source-preview.png",
+          "exists": true,
+          "sha256": "53febe2929ca71bdfaeeec23e93c6e175c10ab361ec95e92eb60c67d67317388",
+          "bytes": 101726,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "gate_latch_01",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/gate_latch_01",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/gate_latch_01/gate_latch_01_1k.fbx",
+          "exists": true,
+          "sha256": "c96f29988d8e456e4de55380477fa9be6e1a1acbc65177aad3a45bc8d6d278a5",
+          "bytes": 193292,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "39600bbfee31788d5f169f2090e767f3",
+          "md5": "39600bbfee31788d5f169f2090e767f3",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/gate_latch_01/textures/gate_latch_01_arm_1k.jpg",
+          "exists": true,
+          "sha256": "9b7241c7a6885daccd2a20bef96529b4fbc665c55bde1b1fd1b6313b2b80f475",
+          "bytes": 647224,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "b2c032bd203155a7f41a04abd21feb69",
+          "md5": "b2c032bd203155a7f41a04abd21feb69",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/gate_latch_01/textures/gate_latch_01_diff_1k.jpg",
+          "exists": true,
+          "sha256": "bc007d7fc182879bfff8cab350a4225f5700b159bf3c0b1b6c6b0974a4b7d1a9",
+          "bytes": 664394,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "dadd57b4894f23716034de2c21c0defb",
+          "md5": "dadd57b4894f23716034de2c21c0defb",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/gate_latch_01/textures/gate_latch_01_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "a804378a896c99b2cdebf358f8477c313fc630a2d2858629e74d464baad9730e",
+          "bytes": 607584,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "d6e3d888a037883401ad64e31930ab52",
+          "md5": "d6e3d888a037883401ad64e31930ab52",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/gate_latch_01/source-preview.png",
+          "exists": true,
+          "sha256": "5bb69985efc55e55b8c824887337a713416f1f1c8fe25ec02a5bc40fbeb81808",
+          "bytes": 18494,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "modular_metal_gutter",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/modular_metal_gutter",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/modular_metal_gutter/modular_metal_gutter_1k.fbx",
+          "exists": true,
+          "sha256": "016741d7c8be5519510d18b4392237eedb8252d691d41e70e674cb73d8d261ef",
+          "bytes": 527564,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "0e53e8999649279b9d58d3cc4a9f667d",
+          "md5": "0e53e8999649279b9d58d3cc4a9f667d",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/modular_metal_gutter/textures/modular_metal_gutter_arm_1k.jpg",
+          "exists": true,
+          "sha256": "8501be1fc4f6092caed475fc08a31f69699f44fb28760734fd69ae2df2818277",
+          "bytes": 651054,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "b93541cc697f67e1b7bc2ea3f006696f",
+          "md5": "b93541cc697f67e1b7bc2ea3f006696f",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/modular_metal_gutter/textures/modular_metal_gutter_diff_1k.jpg",
+          "exists": true,
+          "sha256": "458152e55e2256477b62088515e40fa17e5cc7dd050e99f959535943b9ba2b58",
+          "bytes": 532828,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "94f55c016d2c4d26d8584ac59254583f",
+          "md5": "94f55c016d2c4d26d8584ac59254583f",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/modular_metal_gutter/textures/modular_metal_gutter_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "83bd6f51d1ed46991f4cfffae0e7f73b683b3f49daf1456831b7f2d47e637c19",
+          "bytes": 538980,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "e1747c2ff94bf6d0f13b209d894f80a0",
+          "md5": "e1747c2ff94bf6d0f13b209d894f80a0",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/modular_metal_gutter/source-preview.png",
+          "exists": true,
+          "sha256": "594433b827225e8e61a5e398b98e659bc95624174682b93b77b021e7be525a21",
+          "bytes": 31474,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "modular_pipes_plastic_01",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/modular_pipes_plastic_01",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/modular_pipes_plastic_01/modular_pipes_plastic_01_1k.fbx",
+          "exists": true,
+          "sha256": "fd78edb1d15cb64b0434ea2faa8321ec9d1ae43599a8f2e6a76ce7de39cca835",
+          "bytes": 1473804,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "98786efc8f0cf8d4dd7dedafe858aefc",
+          "md5": "98786efc8f0cf8d4dd7dedafe858aefc",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/modular_pipes_plastic_01/textures/modular_pipes_plastic_01_diff_1k.jpg",
+          "exists": true,
+          "sha256": "ed3550753b08a45d2691f730f3450985f45a3e1d1c5ae4665ebf8b5277ab609c",
+          "bytes": 579649,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "b8d0792ea77af6db8023f09377e81d5e",
+          "md5": "b8d0792ea77af6db8023f09377e81d5e",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/modular_pipes_plastic_01/textures/modular_pipes_plastic_01_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "e90883f4b0fbb01fd09f139a6ab151c79e65f401c50c359376bc8c1a81496f4e",
+          "bytes": 389959,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "8c359f828d3192568af375254e7532bc",
+          "md5": "8c359f828d3192568af375254e7532bc",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/modular_pipes_plastic_01/textures/modular_pipes_plastic_01_arm_1k.jpg",
+          "exists": true,
+          "sha256": "e4df360f1c32b4b1c74081285dae13439b57e2b7d9d850a9309e2b3fc6440ca4",
+          "bytes": 619390,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "9e10b42ec4373baa43ceb85ddbd29686",
+          "md5": "9e10b42ec4373baa43ceb85ddbd29686",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/modular_pipes_plastic_01/source-preview.png",
+          "exists": true,
+          "sha256": "fff17040b750fe7c63d39b2548afec27c9fdeda784d5807785f4aba60f3b8801",
+          "bytes": 21228,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "modular_electricity_poles",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/modular_electricity_poles",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/modular_electricity_poles/modular_electricity_poles_1k.fbx",
+          "exists": true,
+          "sha256": "248c024f861b252f7b87689c67c3e294fd658908ca0ae9acef410415a4b90cde",
+          "bytes": 6041596,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "8ae989bc4551564ee8f620a3e2074d9c",
+          "md5": "8ae989bc4551564ee8f620a3e2074d9c",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/modular_electricity_poles/textures/modular_electricity_poles_pieces_diff_1k.jpg",
+          "exists": true,
+          "sha256": "c681efa29ce6b28eb3377cfcdb35d1c88a9265189920e9979419d2d5b4086c1d",
+          "bytes": 802771,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "89d3636e70e2bf7fd8ca25440dbd9f8f",
+          "md5": "89d3636e70e2bf7fd8ca25440dbd9f8f",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/modular_electricity_poles/textures/modular_electricity_poles_pieces_arm_1k.jpg",
+          "exists": true,
+          "sha256": "4648fab787b80889e54ea90e79fcb3de4c644729c16b8616ae79707b3e5515dd",
+          "bytes": 1052303,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "f1557e1cfdaa2f191697f582063ead9d",
+          "md5": "f1557e1cfdaa2f191697f582063ead9d",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/modular_electricity_poles/textures/modular_electricity_poles_pieces_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "c78ec7efc67caebc9d43c1c29e5d3972c23bf17e865267cc3acb793774125caa",
+          "bytes": 865048,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "54b2b71a53740f86fce87be506c1a89f",
+          "md5": "54b2b71a53740f86fce87be506c1a89f",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/modular_electricity_poles/textures/modular_electricity_poles_arm_1k.jpg",
+          "exists": true,
+          "sha256": "4765dd2e76a1191b271b2fb1c93354fe3b9cb12a323bafd7f1661effe88fc441",
+          "bytes": 748382,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "8242b81c3bc7216233199e122023dfb3",
+          "md5": "8242b81c3bc7216233199e122023dfb3",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/modular_electricity_poles/textures/modular_electricity_poles_diff_1k.jpg",
+          "exists": true,
+          "sha256": "da86d0fc97683a99fc2670f8b889b9632dd6da05e9c042c40cc7bf9e4d0b0104",
+          "bytes": 658915,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "34df50003850fdc33507c5d0713af802",
+          "md5": "34df50003850fdc33507c5d0713af802",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/modular_electricity_poles/textures/modular_electricity_poles_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "7c77d694c898139a82a66543e33748b4ab7b1f7cf456cdd453d5509810ae238a",
+          "bytes": 931236,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "d2f75d2c5f3868c93f8c4c03bbd78144",
+          "md5": "d2f75d2c5f3868c93f8c4c03bbd78144",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/modular_electricity_poles/source-preview.png",
+          "exists": true,
+          "sha256": "300a32d5e0b08f7a31d84e7beb6e3266b431fc6f0daede62a5db7c5a700bd74a",
+          "bytes": 35774,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "water_manhole_cover",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/water_manhole_cover",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/water_manhole_cover/water_manhole_cover_1k.fbx",
+          "exists": true,
+          "sha256": "d81ca2905a49a85e2593ade3942019d71411376d4be44fb9c0417d77b97edc3a",
+          "bytes": 201180,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "c4b9c98ac04e87ae184e0db79f665063",
+          "md5": "c4b9c98ac04e87ae184e0db79f665063",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/water_manhole_cover/textures/water_manhole_cover_arm_1k.jpg",
+          "exists": true,
+          "sha256": "6d5856a467c9286fc993f2bd80bb5c30464fd8a127c8418fc8fc6c34bc54231d",
+          "bytes": 669586,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "e94e96f6f560b6f0a5d95f99a4b98e82",
+          "md5": "e94e96f6f560b6f0a5d95f99a4b98e82",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/water_manhole_cover/textures/water_manhole_cover_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "e2c1eac759b8c7430ffc8c59a45f4db98f890f9a22c3d968605a81e99e92bf43",
+          "bytes": 1008913,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "9cf9265a949ae4affd6f2542277e3902",
+          "md5": "9cf9265a949ae4affd6f2542277e3902",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/water_manhole_cover/textures/water_manhole_cover_diff_1k.jpg",
+          "exists": true,
+          "sha256": "cb78919f60c929125317f19f9ecbba9f21089b7c0d6e0428c68f6fa401e6e720",
+          "bytes": 448420,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "bec6433403d16d5f7c20887d87075890",
+          "md5": "bec6433403d16d5f7c20887d87075890",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/water_manhole_cover/source-preview.png",
+          "exists": true,
+          "sha256": "06ac310eb929c99f2170f480340dcf7f85b01a08c443bd10a085fca817e56fe1",
+          "bytes": 42824,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "exterior_aircon_unit",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/exterior_aircon_unit",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/exterior_aircon_unit/exterior_aircon_unit_1k.fbx",
+          "exists": true,
+          "sha256": "d886a5418c9d6765fc03dfb8d4791d65a25b8f5f7586e0107ba35d0bcebe1613",
+          "bytes": 626444,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "2c65dec41975985948e3e4ed8a9f3418",
+          "md5": "2c65dec41975985948e3e4ed8a9f3418",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/exterior_aircon_unit/textures/exterior_aircon_unit_01_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "e5a6f3c135b942d6efe62a24496c575d03f6a4316188efe65079035d7faf1c38",
+          "bytes": 472088,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "244025f2008cbdc8c8680f0c962ed26f",
+          "md5": "244025f2008cbdc8c8680f0c962ed26f",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/exterior_aircon_unit/textures/exterior_aircon_unit_01_opacity_1k.jpg",
+          "exists": true,
+          "sha256": "c19feb434c2b01923fbb3e16ace3aa6d9cb16b05c2a5c479ad237759b2d331d6",
+          "bytes": 333675,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "f253dbcb057612371dd1b6d37095c6ba",
+          "md5": "f253dbcb057612371dd1b6d37095c6ba",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/exterior_aircon_unit/textures/exterior_aircon_unit_rusted_01_arm_1k.jpg",
+          "exists": true,
+          "sha256": "51c103926b118bf00b902826001db802b15755c6eefa12b00afa24c60d7b341b",
+          "bytes": 673246,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "f1c2653ac0fb58e8641f9076a2af8a67",
+          "md5": "f1c2653ac0fb58e8641f9076a2af8a67",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/exterior_aircon_unit/textures/exterior_aircon_unit_01_arm_1k.jpg",
+          "exists": true,
+          "sha256": "14671920f716691dc3b8940432f7aba5c469e3b466441ff8ad500de92d3178fb",
+          "bytes": 651293,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "9af3805e7371643962ffe6079d547b00",
+          "md5": "9af3805e7371643962ffe6079d547b00",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/exterior_aircon_unit/textures/exterior_aircon_unit_02_arm_1k.jpg",
+          "exists": true,
+          "sha256": "1cdfa2d1c938c3af61a5f06510b0d94aeddddd4bdc1832008b3826240dd1535d",
+          "bytes": 484026,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "98b44ba240f832fe4fa94e90d1887c6a",
+          "md5": "98b44ba240f832fe4fa94e90d1887c6a",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/exterior_aircon_unit/textures/exterior_aircon_unit_rusted_02_arm_1k.jpg",
+          "exists": true,
+          "sha256": "6ac4cfca6a8d8bec6ef1ff756652eb1f36b780d1ff7d70d9cb3e0f7fe1faf271",
+          "bytes": 605557,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "6e2bee1569b55a3b01d18799e942a6af",
+          "md5": "6e2bee1569b55a3b01d18799e942a6af",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/exterior_aircon_unit/textures/exterior_aircon_unit_02_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "864c0fb1e55aff910d826a8c1f6a2ad459f7db0124b5846445d466cabf0cadf5",
+          "bytes": 942230,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "e00f9c963e9f3dc798d84f7ebcc4185a",
+          "md5": "e00f9c963e9f3dc798d84f7ebcc4185a",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/exterior_aircon_unit/textures/exterior_aircon_unit_rusted_01_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "14f105cda9172290be2e8b23b8e895099b65e222619850af3b13105901d922e2",
+          "bytes": 583620,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "5b9df77429c9010ea389aef30fd7d460",
+          "md5": "5b9df77429c9010ea389aef30fd7d460",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/exterior_aircon_unit/textures/exterior_aircon_unit_rusted_01_diff_1k.jpg",
+          "exists": true,
+          "sha256": "a8771db98ed7f3d46ce48fd70867f58a74a2530666c339f8dcc14f3e5de86d0b",
+          "bytes": 606076,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "7b9fba8819918dc388c49f05b5522575",
+          "md5": "7b9fba8819918dc388c49f05b5522575",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/exterior_aircon_unit/textures/exterior_aircon_unit_01_diff_1k.jpg",
+          "exists": true,
+          "sha256": "2ae5005b4836d2c91d1e712d9acf425c7dcc4973b7c0fc6f23da9afaa6381da6",
+          "bytes": 506664,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "81003ea4afe59ed4dac090791e41f562",
+          "md5": "81003ea4afe59ed4dac090791e41f562",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/exterior_aircon_unit/textures/exterior_aircon_unit_rusted_02_opacity_1k.jpg",
+          "exists": true,
+          "sha256": "a86bcaf9c4858cf250fd67c9a0ee362504454b9972ff6e1ac44e38bac3213421",
+          "bytes": 357558,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "0540ff18330b76e4e55053d5bd21f59e",
+          "md5": "0540ff18330b76e4e55053d5bd21f59e",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/exterior_aircon_unit/textures/exterior_aircon_unit_rusted_02_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "3af4716b42812b742577594c7a0a342accd79925f02037c152b1da1c5831bb78",
+          "bytes": 947477,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "53f4890e3c9b9fb2efcd96f3143f579b",
+          "md5": "53f4890e3c9b9fb2efcd96f3143f579b",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/exterior_aircon_unit/source-preview.png",
+          "exists": true,
+          "sha256": "fd276ee692791e465e1eb410ab04fae6bcbc7e0249bef77cb4fdf46454ae1fec",
+          "bytes": 31380,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "security_light",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/security_light",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/security_light/security_light_1k.fbx",
+          "exists": true,
+          "sha256": "23550495fff30afc13ed48a52029a4146a1986e2b2fb7099a13a0669436c1b36",
+          "bytes": 176620,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "6b9ebe2c6591e4b6e3a08de9695d3c3c",
+          "md5": "6b9ebe2c6591e4b6e3a08de9695d3c3c",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/security_light/textures/security_light_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "7d14ecdf5f6c70152ca6fdfc290c72a28553248f0e5a79e7b77c8f601b00ddc2",
+          "bytes": 788815,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "44772c73720886e5d762c3d7ef09eb03",
+          "md5": "44772c73720886e5d762c3d7ef09eb03",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/security_light/textures/security_light_diff_1k.jpg",
+          "exists": true,
+          "sha256": "2e7064d89f03ef51bffda6f78c86baac1edba3346f82f243aa0c33b20fa8b0e5",
+          "bytes": 588463,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "b7c8f67d7a5b0db24d578eb9154fd1bf",
+          "md5": "b7c8f67d7a5b0db24d578eb9154fd1bf",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/security_light/textures/security_light_arm_1k.jpg",
+          "exists": true,
+          "sha256": "4f8fe251eb31144de0eff820a7aef205d306b3b5dd4a19aff0ad4e87ca50a767",
+          "bytes": 865226,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "9f827fc14a511d7061a713ae2f80988d",
+          "md5": "9f827fc14a511d7061a713ae2f80988d",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/security_light/source-preview.png",
+          "exists": true,
+          "sha256": "27b8b2203509720b1c15b1b998ce7d950c2150f08f59227b61e43d82dce68817",
+          "bytes": 45102,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "industrial_wall_lamp",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/industrial_wall_lamp",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/industrial_wall_lamp/industrial_wall_lamp_1k.fbx",
+          "exists": true,
+          "sha256": "9d8eb1e2fb81a7e56030adac610f809f10a75a6247f07ca5c91d26f70d4e9d63",
+          "bytes": 153356,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "1ba52267e8001c8bfae808b97611fd04",
+          "md5": "1ba52267e8001c8bfae808b97611fd04",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/industrial_wall_lamp/textures/industrial_wall_lamp_emissive_1k.jpg",
+          "exists": true,
+          "sha256": "cf80eeeb6fec87499fb8444f554eae62e471ad79f8906d6fd693d7fde53b012f",
+          "bytes": 62349,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "32a123a424debe690c0bde4dc0ddeab0",
+          "md5": "32a123a424debe690c0bde4dc0ddeab0",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/industrial_wall_lamp/textures/industrial_wall_lamp_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "427bafa2f14d9f81a5949507d5d6915bfb4b70a8e5e5076a3a18c7de49b3d78b",
+          "bytes": 673018,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "e1b1f9f223e26c4631418a338f1fe08f",
+          "md5": "e1b1f9f223e26c4631418a338f1fe08f",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/industrial_wall_lamp/textures/industrial_wall_lamp_diff_1k.jpg",
+          "exists": true,
+          "sha256": "e0f824b7e639fceb7ca5b7b7f67a8168bc53db184b818770126167d16d424b2e",
+          "bytes": 669629,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "fec1b0755dccb02b19b6a386169460cc",
+          "md5": "fec1b0755dccb02b19b6a386169460cc",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/industrial_wall_lamp/textures/industrial_wall_lamp_arm_1k.jpg",
+          "exists": true,
+          "sha256": "70adef2921bfcf985f951f9f85fca8dbfb63dc84535613c3872684fea65ab025",
+          "bytes": 753080,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "10de18cfac3070f42bc4fcd79d3993f4",
+          "md5": "10de18cfac3070f42bc4fcd79d3993f4",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/industrial_wall_lamp/textures/industrial_wall_lamp_glass_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "73ce4f34d90aee29db9a5e301934c0642bf89136353d7e400f63db1c2f99f345",
+          "bytes": 585913,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "05d60c2d147a240b347023e01df7129f",
+          "md5": "05d60c2d147a240b347023e01df7129f",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/industrial_wall_lamp/textures/industrial_wall_lamp_glass_diff_1k.jpg",
+          "exists": true,
+          "sha256": "215457a5d41ae5d999e94f4ea0f424ff769940e71e1449ce712f35687e33af67",
+          "bytes": 316099,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "3b92d16c0f316b2648e2c4dbd0ed4776",
+          "md5": "3b92d16c0f316b2648e2c4dbd0ed4776",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/industrial_wall_lamp/textures/industrial_wall_lamp_glass_arm_1k.jpg",
+          "exists": true,
+          "sha256": "a3ba7f76ff395ada04a804b94f4f2f506bc994336189916d2a414173e2360069",
+          "bytes": 570850,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "8e7922054b07fcf58beb8009f88db049",
+          "md5": "8e7922054b07fcf58beb8009f88db049",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/industrial_wall_lamp/source-preview.png",
+          "exists": true,
+          "sha256": "8e3e5167489a6cefbd8cf475c6ab4b85cbc05d3e26ea9aeb9859503757539f9f",
+          "bytes": 24896,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "street_lamp_02",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/street_lamp_02",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/street_lamp_02/street_lamp_02_1k.fbx",
+          "exists": true,
+          "sha256": "f542536a8c8379b9906204a9d4bc373985dc34e657f2ef80e98934354bb64efb",
+          "bytes": 600844,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "ae78b086fd707858165a7e8d7e70399e",
+          "md5": "ae78b086fd707858165a7e8d7e70399e",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/street_lamp_02/textures/street_lamp_02_diff_1k.jpg",
+          "exists": true,
+          "sha256": "19882567313dd43fef60f9fa41a4c55f81a957f9fee539e931fc36a32e386b6c",
+          "bytes": 303714,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "381097a4c700b86b1c8f7e0d115b1a0a",
+          "md5": "381097a4c700b86b1c8f7e0d115b1a0a",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/street_lamp_02/textures/street_lamp_02_arm_1k.jpg",
+          "exists": true,
+          "sha256": "a1e2d654e7d5d48a1fdfbf720840192d171df54e5ea5f055145d0472d617eede",
+          "bytes": 657710,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "d4d49b0153762ebe5ccde8e87af87dd5",
+          "md5": "d4d49b0153762ebe5ccde8e87af87dd5",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/street_lamp_02/textures/street_lamp_02_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "fdd9fb26ca853020ed156fdd84e90ce3f9a68bf94edf71c0ffe72add67e316c6",
+          "bytes": 372301,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "39389c9a5c2c467ea559ac3ad3a03218",
+          "md5": "39389c9a5c2c467ea559ac3ad3a03218",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/street_lamp_02/source-preview.png",
+          "exists": true,
+          "sha256": "fcd6b8c0ba274dfbaf29b8cc981df4b30364539d60287ceffaba5294d2d84bf0",
+          "bytes": 26560,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "pachira_aquatica_01",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/pachira_aquatica_01",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Vegetation/pachira_aquatica_01/pachira_aquatica_01_1k.fbx",
+          "exists": true,
+          "sha256": "50952ca5953057eccb6d9451a75fa5c346b4d03dc408fbc638729aef6e624702",
+          "bytes": 2481564,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "ab20d2326cc2e3e19a920be9e77015f4",
+          "md5": "ab20d2326cc2e3e19a920be9e77015f4",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/pachira_aquatica_01/textures/pachira_aquatica_01_bark_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "389b0f8cc3e8bf4ee78ea12c367ff3003d69d8e83de8baf908e6f2e123d1e6a8",
+          "bytes": 723624,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "de36315221e10e1d594946a825678eae",
+          "md5": "de36315221e10e1d594946a825678eae",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/pachira_aquatica_01/textures/pachira_aquatica_01_leaves_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "3a442aa75df0e6f37bb7410f8ae09927b419d2dba202943cda40f52a7194804c",
+          "bytes": 490166,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "ce579513b75d94b077eb45107f78a513",
+          "md5": "ce579513b75d94b077eb45107f78a513",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/pachira_aquatica_01/textures/pachira_aquatica_01_leaves_diff_1k.jpg",
+          "exists": true,
+          "sha256": "b3211c240dd2ea7913326e7f21f9db9d029ee487b5e59d58d0e10c8cc77d203f",
+          "bytes": 320484,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "32dde4e411de4fcaf3d4b88fb3a72913",
+          "md5": "32dde4e411de4fcaf3d4b88fb3a72913",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/pachira_aquatica_01/textures/pachira_aquatica_01_bark_arm_1k.jpg",
+          "exists": true,
+          "sha256": "7c44f930e3a6c14acb9043e50d8244da7869f8937233c58276d1b3212a3a6960",
+          "bytes": 588614,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "3b3a69f6e56a58eef1b3f314c855b2a8",
+          "md5": "3b3a69f6e56a58eef1b3f314c855b2a8",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/pachira_aquatica_01/textures/pachira_aquatica_01_bark_diff_1k.jpg",
+          "exists": true,
+          "sha256": "9ca175a1c105a3555c47626ebead36505c29482ea0018f4c6e9a5828ce6d7b25",
+          "bytes": 592488,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "70e2a72e0146e333f40ce8d2c36ddb7c",
+          "md5": "70e2a72e0146e333f40ce8d2c36ddb7c",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/pachira_aquatica_01/textures/pachira_aquatica_01_leaves_arm_1k.jpg",
+          "exists": true,
+          "sha256": "42824afde27e7f0111a2e673f0a7cfe0b18bc21d2201b85d9737fce48c1016a3",
+          "bytes": 372937,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "dd5afb417b488286d57ba5bf5fb71192",
+          "md5": "dd5afb417b488286d57ba5bf5fb71192",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/pachira_aquatica_01/source-preview.png",
+          "exists": true,
+          "sha256": "91ccadfd05fd4a99dbf5fc59f5e9c5b01e5516073ff288ba5ed03dc28617bb72",
+          "bytes": 17624,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "shrub_02",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/shrub_02",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Vegetation/shrub_02/shrub_02_1k.fbx",
+          "exists": true,
+          "sha256": "7bd42e635ed83a9341a9953280845dc2685615a4a4a5441e31eedd39d5431ec8",
+          "bytes": 832300,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "f4d00cbfa3dd3a6594e5b63c6324cb42",
+          "md5": "f4d00cbfa3dd3a6594e5b63c6324cb42",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/shrub_02/textures/shrub_02_arm_1k.jpg",
+          "exists": true,
+          "sha256": "7186bf604d5c02f873aef6de2346cc06b6fa48f47d054edbef36d2c3772c0890",
+          "bytes": 313715,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "28c218aeb7cab930d99ee16578984241",
+          "md5": "28c218aeb7cab930d99ee16578984241",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/shrub_02/textures/shrub_02_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "54c24e433365d5410223b7ebd2b33042b80831f80976e10768114db5ef6911d7",
+          "bytes": 490815,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "51a7f2db7e06a207171fd725585241d5",
+          "md5": "51a7f2db7e06a207171fd725585241d5",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/shrub_02/textures/shrub_02_diff_1k.jpg",
+          "exists": true,
+          "sha256": "9956eff294034d70516d867e9668428a23d782feb3d4c34061dce5e44bacd5a8",
+          "bytes": 395120,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "3f4ae281928de030c7d4e41ad5b88a8b",
+          "md5": "3f4ae281928de030c7d4e41ad5b88a8b",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/shrub_02/source-preview.png",
+          "exists": true,
+          "sha256": "e5e1ff50d8ff649f416c1c3654255c5cf49af735194e7e648abf1fea9c3e20f6",
+          "bytes": 27796,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "shrub_03",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/shrub_03",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Vegetation/shrub_03/shrub_03_1k.fbx",
+          "exists": true,
+          "sha256": "81cf3b341356b2938faec4f7935c0e694b923db1a5bca39660afa6fcfc22dcc7",
+          "bytes": 290956,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "321b133f596ba7fa7f78c8ab8b914c90",
+          "md5": "321b133f596ba7fa7f78c8ab8b914c90",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/shrub_03/textures/shrub_03_arm_1k.jpg",
+          "exists": true,
+          "sha256": "3e2b16812a623037138eedace958210c5f3443a827bbe69663045bba5612f815",
+          "bytes": 396238,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "67faf4c5c213589b41a3bd18d378fa7d",
+          "md5": "67faf4c5c213589b41a3bd18d378fa7d",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/shrub_03/textures/shrub_03_diff_1k.jpg",
+          "exists": true,
+          "sha256": "3cadc7aba46d3aabbd7d6d2b1d04aa32e2a7da0bc87c2d38ef3cb1ee42cb03ec",
+          "bytes": 481841,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "5da9190b7c2837a9e209a3fe774dba3c",
+          "md5": "5da9190b7c2837a9e209a3fe774dba3c",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/shrub_03/textures/shrub_03_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "ff856bacfce859b8a7555dd9a3b92fbd36b2e775d486be71df485afb4235d6c9",
+          "bytes": 504734,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "38956b2171644cfefda2ef542e055100",
+          "md5": "38956b2171644cfefda2ef542e055100",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/shrub_03/source-preview.png",
+          "exists": true,
+          "sha256": "f37e5f7c1b7a7945cdab22c69cbe295e92483cfd0634ee9ef8f4d5bd27ac1bc0",
+          "bytes": 17172,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "shrub_04",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/shrub_04",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Vegetation/shrub_04/shrub_04_1k.fbx",
+          "exists": true,
+          "sha256": "ebfaf1b728e8c9b8ae62f90df3a6f1837c233fd736665342391c2f3029f3ad37",
+          "bytes": 852540,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "3b313098938fa2c6bbef69761685da05",
+          "md5": "3b313098938fa2c6bbef69761685da05",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/shrub_04/textures/shrub_04_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "200d791e0474495bfc876ba1c289dade669c6a5b124647c55bc840a875f6b51c",
+          "bytes": 449241,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "b08f500d19ee9b29d7da06fc0e874bb2",
+          "md5": "b08f500d19ee9b29d7da06fc0e874bb2",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/shrub_04/textures/shrub_04_diff_1k.jpg",
+          "exists": true,
+          "sha256": "0b0fa0a474753d13f3093858cea79d0de05da1e6a0c5d6e181cd351080980b6c",
+          "bytes": 373350,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "b2b4682a82f44be10b8d4b4d481a4fe8",
+          "md5": "b2b4682a82f44be10b8d4b4d481a4fe8",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/shrub_04/textures/shrub_04_arm_1k.jpg",
+          "exists": true,
+          "sha256": "d1085df021928b29b0f38dde7e58e9a2e304c4e8d838e390b37cf57f8aa492e8",
+          "bytes": 332957,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "65e414abd3533b7157f05aed63f5f329",
+          "md5": "65e414abd3533b7157f05aed63f5f329",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/shrub_04/source-preview.png",
+          "exists": true,
+          "sha256": "b9690a760c9af4167d64d7cc92557f8c20213960a3f7f642e50e8eefbacdaf33",
+          "bytes": 38402,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "fern_02",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/fern_02",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Vegetation/fern_02/fern_02_1k.fbx",
+          "exists": true,
+          "sha256": "6d8238b9cc1bbb5f5766396c2db26f2219c0d0e5ca226fb81dcc44bdb35045e8",
+          "bytes": 223596,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "65fd395dca9867cfa5e4d91e3fcc38df",
+          "md5": "65fd395dca9867cfa5e4d91e3fcc38df",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/fern_02/textures/fern_02_arm_1k.jpg",
+          "exists": true,
+          "sha256": "ebfb5d76ce9cbdaec20bcd22dce9b755f0b1b8650ef29ca13555e3e6961025d7",
+          "bytes": 280359,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "1bbb2b22951f450720d28e17d93a2987",
+          "md5": "1bbb2b22951f450720d28e17d93a2987",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/fern_02/textures/fern_02_diff_1k.jpg",
+          "exists": true,
+          "sha256": "a828a6e7b4c01c826911e2eac4b3afc7457dab7b3b392a31c681ed88b7d50029",
+          "bytes": 315705,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "82c18a6cfd5ae91c37c0e078f591181c",
+          "md5": "82c18a6cfd5ae91c37c0e078f591181c",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/fern_02/textures/fern_02_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "45bce132c6e96a0864bc89ab5da51361ab3f4afa83a6669ae499ab5ca811f621",
+          "bytes": 367222,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "43aed63dff79554f6064627515afd9d7",
+          "md5": "43aed63dff79554f6064627515afd9d7",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/fern_02/source-preview.png",
+          "exists": true,
+          "sha256": "4d69eb8033aac1f3690d9202a7762d41d06160201de7ff43ebb56569b5374321",
+          "bytes": 34284,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "weed_plant_02",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/weed_plant_02",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Vegetation/weed_plant_02/weed_plant_02_1k.fbx",
+          "exists": true,
+          "sha256": "47773d532983e109627178c888d3ceb7c05076f3fd9abc194698fdb998233467",
+          "bytes": 377244,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "3d5e6b9cd276b2c9dbc6c5ea3b9fb49c",
+          "md5": "3d5e6b9cd276b2c9dbc6c5ea3b9fb49c",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/weed_plant_02/textures/weed_plant_02_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "53e277362656eaea87a59bc7c5b551e73d2cdb5b852b21d0ffb84becfc7b941d",
+          "bytes": 679362,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "1f58acb112882c7d0eb7b7d8e58d65c0",
+          "md5": "1f58acb112882c7d0eb7b7d8e58d65c0",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/weed_plant_02/textures/weed_plant_02_diff_1k.jpg",
+          "exists": true,
+          "sha256": "6bcbf7f0b8eaf5156b9021f998dd9233ba4b095aa590f3621b94f47550e21eb9",
+          "bytes": 457595,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "147c346358cf123ca50473cf05df7b86",
+          "md5": "147c346358cf123ca50473cf05df7b86",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/weed_plant_02/textures/weed_plant_02_arm_1k.jpg",
+          "exists": true,
+          "sha256": "82dd00b135a605aecf09d46bdaa6e71cdfc221d7b53e20e6f446da6e9e5bf942",
+          "bytes": 571490,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "ef589b514bd7515ded97f81466e27dd8",
+          "md5": "ef589b514bd7515ded97f81466e27dd8",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/weed_plant_02/source-preview.png",
+          "exists": true,
+          "sha256": "25e7d59eb64785821571de5a7ba926926066d9f4bc7560161d39fdad4e01a228",
+          "bytes": 21146,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "nettle_plant",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/nettle_plant",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Vegetation/nettle_plant/nettle_plant_1k.fbx",
+          "exists": true,
+          "sha256": "a5b264b9d7b6639e241f5c7bbaf3bf3659c1f6daa2bb7ffd0269650d521a3bd4",
+          "bytes": 1014364,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "83f89ebcc4eb89f7596c0d3547506c6a",
+          "md5": "83f89ebcc4eb89f7596c0d3547506c6a",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/nettle_plant/textures/nettle_plant_arm_1k.jpg",
+          "exists": true,
+          "sha256": "8fb33e5e939b4e089f08c867bf449d9e27aa32af94990c3cad1a89dcabd44f14",
+          "bytes": 467172,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "7244d9f04fdc0b53212c3d38f5a215b4",
+          "md5": "7244d9f04fdc0b53212c3d38f5a215b4",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/nettle_plant/textures/nettle_plant_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "ab5d0cdc9a487a8874b6e9a11bf67ef90319f02bbd74579576198aca90b0fa85",
+          "bytes": 654754,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "471821200314d7eee64cbd35bf3e5bd0",
+          "md5": "471821200314d7eee64cbd35bf3e5bd0",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/nettle_plant/textures/nettle_plant_diff_1k.jpg",
+          "exists": true,
+          "sha256": "7172a9971818a18a7cb7ebaa144d9d2313b83d2a6180c9582000f7260542ea7b",
+          "bytes": 388629,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "efa546b37e9a8669b214b1fea1422892",
+          "md5": "efa546b37e9a8669b214b1fea1422892",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/nettle_plant/source-preview.png",
+          "exists": true,
+          "sha256": "cf1f0d78cd4442251eebf8fa4579d0ab00dbef1be383e44fa808d7c0dd020d57",
+          "bytes": 44684,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "grass_bermuda_01",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/grass_bermuda_01",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Vegetation/grass_bermuda_01/grass_bermuda_01_1k.fbx",
+          "exists": true,
+          "sha256": "ec188edf028e1a76ed2e63f7483165ea765f0212b317e4b73fdc3d64610500cd",
+          "bytes": 107212,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "e1f0ae4d7dc8de99b9c07f0dd6da6014",
+          "md5": "e1f0ae4d7dc8de99b9c07f0dd6da6014",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/grass_bermuda_01/textures/grass_bermuda_01_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "4475b37d6e4d217ce03547216f62d1ef6e65cafda2355fd0cb2aeb6d919b9338",
+          "bytes": 709845,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "73a585e0963ff6bf3cefa845cbee0645",
+          "md5": "73a585e0963ff6bf3cefa845cbee0645",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/grass_bermuda_01/textures/grass_bermuda_01_diff_1k.jpg",
+          "exists": true,
+          "sha256": "ef202eeb8f8fb3312446009acecc87e5679a7d612e4dee859d8a849e00af5fcb",
+          "bytes": 175425,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "234be9f52cfcd3380c7f782baaa841c3",
+          "md5": "234be9f52cfcd3380c7f782baaa841c3",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/grass_bermuda_01/textures/grass_bermuda_01_arm_1k.jpg",
+          "exists": true,
+          "sha256": "38190d342fe951c33ff8c37dd2e3de37aca4cc7633e91be8b0d1c1f71057a641",
+          "bytes": 500088,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "87c58d5d3345d579eab570f7eb446313",
+          "md5": "87c58d5d3345d579eab570f7eb446313",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/grass_bermuda_01/source-preview.png",
+          "exists": true,
+          "sha256": "96c6fb3c82c9ca40117878aee628d95f1b21dd924913e1fac74086347851dd4a",
+          "bytes": 118126,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "moss_01",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/moss_01",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Vegetation/moss_01/moss_01_1k.fbx",
+          "exists": true,
+          "sha256": "77dc310cbf59893b0374993b58b6ae438035331cafce8feaa16757cc11797a84",
+          "bytes": 51484,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "897ba5d50fd47c74f0634fc8d1623d5e",
+          "md5": "897ba5d50fd47c74f0634fc8d1623d5e",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/moss_01/textures/moss_01_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "531d6bea634ac956d87b176a89740f229ec7e8137a6413e290bab640c6a8b0ec",
+          "bytes": 388925,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "faf161f708abe274db1b8087800fa08b",
+          "md5": "faf161f708abe274db1b8087800fa08b",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/moss_01/textures/moss_01_diff_1k.jpg",
+          "exists": true,
+          "sha256": "7c8d0794dd9db0a82f668a276896818d195c644cfed35f0fbf984a3260e70e50",
+          "bytes": 170297,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "5768f973a7d6d2846a2e76a6b0669a83",
+          "md5": "5768f973a7d6d2846a2e76a6b0669a83",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/moss_01/textures/moss_01_arm_1k.jpg",
+          "exists": true,
+          "sha256": "0cf0aabfc370a51e7d330ae01e63ca380f88a9bb0fcfa94730374476183a12cf",
+          "bytes": 336140,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "e3b6adf32db7076885afe0e179cc1850",
+          "md5": "e3b6adf32db7076885afe0e179cc1850",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/moss_01/source-preview.png",
+          "exists": true,
+          "sha256": "4820833cd1b0b2a03ab3b3acd68a7aef735874c08c1220d46a1f93e64cbb3ba6",
+          "bytes": 81236,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "dead_tree_trunk",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/dead_tree_trunk",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Vegetation/dead_tree_trunk/dead_tree_trunk_1k.fbx",
+          "exists": true,
+          "sha256": "e33acd43726010e16c743039b351b4f713e9d7b1555f2763eee9f869614a4d23",
+          "bytes": 7165036,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "18c5c7086ddbb1f50799aa22abaf6970",
+          "md5": "18c5c7086ddbb1f50799aa22abaf6970",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/dead_tree_trunk/textures/dead_tree_trunk_arm_1k.jpg",
+          "exists": true,
+          "sha256": "0e0f7d64ac4ee3a7e7861a48f4bbd1ec2c026facd8f48b756f6b5d4557af3fd3",
+          "bytes": 724384,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "548a72849ce709a9f38fa06776732a07",
+          "md5": "548a72849ce709a9f38fa06776732a07",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/dead_tree_trunk/textures/dead_tree_trunk_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "b7c393204c93f0c67535ff3b5d723b26598f9dbb2b5110b74249ab88189f026f",
+          "bytes": 1053075,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "28992c1123371ae1899e49360953c846",
+          "md5": "28992c1123371ae1899e49360953c846",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/dead_tree_trunk/textures/dead_tree_trunk_diff_1k.jpg",
+          "exists": true,
+          "sha256": "bc31d7d23db90d90cfb568c583914eeec11b29716b79096818b706a9e3e0216c",
+          "bytes": 713480,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "fe92c64532d4684d3239f6edc7733192",
+          "md5": "fe92c64532d4684d3239f6edc7733192",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/dead_tree_trunk/source-preview.png",
+          "exists": true,
+          "sha256": "3a565b443f40aec7f9cdd4eb44364bffa6b76af2ad25799c4755cc1aff804355",
+          "bytes": 8806,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "root_cluster_01",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/root_cluster_01",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Vegetation/root_cluster_01/root_cluster_01_1k.fbx",
+          "exists": true,
+          "sha256": "8cde507bb16107565e8f3a69bc79296b238865c79811b6990727e9a9344966fe",
+          "bytes": 12078748,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "784335f439d5257053ba064847ec4967",
+          "md5": "784335f439d5257053ba064847ec4967",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/root_cluster_01/textures/root_cluster_01_arm_1k.jpg",
+          "exists": true,
+          "sha256": "493dde9d58cd89366af63277148bcdfef50e3df9167ce965742eecd111cbd798",
+          "bytes": 875276,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "23df6aea4553abed0760b74195feaf22",
+          "md5": "23df6aea4553abed0760b74195feaf22",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/root_cluster_01/textures/root_cluster_01_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "4e16ca657a47112137cfbb2985e4473c1f2554631739826985fd61fc49c25e5b",
+          "bytes": 1340361,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "8d0c2f342d5112959bb6cb8d4561be2b",
+          "md5": "8d0c2f342d5112959bb6cb8d4561be2b",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/root_cluster_01/textures/root_cluster_01_diff_1k.jpg",
+          "exists": true,
+          "sha256": "3f4dbb0864982d228d37ee283125b8f8eb442b019fa5469249b332cb7b9d6d62",
+          "bytes": 769880,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "e16fcba268d6ab34622fb476c9f3f560",
+          "md5": "e16fcba268d6ab34622fb476c9f3f560",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/root_cluster_01/source-preview.png",
+          "exists": true,
+          "sha256": "55130355c5460e603d4d6fffaf118876d93dd1f75cc7be22b2ab3efbd7c2801a",
+          "bytes": 32450,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "dry_branches_medium_01",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/dry_branches_medium_01",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Vegetation/dry_branches_medium_01/dry_branches_medium_01_1k.fbx",
+          "exists": true,
+          "sha256": "3e47b10e0710b7736688521d66b3eb09aad14cb2db6179d9758a0fd5716ce639",
+          "bytes": 699532,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "ea1bc65806c3d8b43fceb5e21bedc65b",
+          "md5": "ea1bc65806c3d8b43fceb5e21bedc65b",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/dry_branches_medium_01/textures/dry_branches_medium_01_arm_1k.jpg",
+          "exists": true,
+          "sha256": "6d1ba6f4763d2815301a15bf62eaf68c345cecafb107e2681d12f26fbc657f5a",
+          "bytes": 831180,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "a0c5fface8ffdf81a806fcd5cf05788f",
+          "md5": "a0c5fface8ffdf81a806fcd5cf05788f",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/dry_branches_medium_01/textures/dry_branches_medium_01_diff_1k.jpg",
+          "exists": true,
+          "sha256": "1fbaf810a9ca29d2faf0a179834e8dce10cf4854bafe13f63af111030b3ec660",
+          "bytes": 778799,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "2b01d9d1613c88496250f64828566f7c",
+          "md5": "2b01d9d1613c88496250f64828566f7c",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/dry_branches_medium_01/textures/dry_branches_medium_01_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "62f5205bfec599000bb7a430e003bbada939bc8d7976a7d3ab7709fd5893413c",
+          "bytes": 1170647,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "d374fbbd8c4829310104cce0de7cd826",
+          "md5": "d374fbbd8c4829310104cce0de7cd826",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/dry_branches_medium_01/source-preview.png",
+          "exists": true,
+          "sha256": "a87b4b45d5c3bab434abd90242b2cd8717a59dd80e0e7dd48d2d602bd1945a34",
+          "bytes": 17254,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "tree_stump_01",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/tree_stump_01",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Vegetation/tree_stump_01/tree_stump_01_1k.fbx",
+          "exists": true,
+          "sha256": "754a6b668361456a8ad3405d163735ac7fdd4a75b8e4fe16db777fcfe40f692d",
+          "bytes": 2871068,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "0356305935a31f7ca47900fa8338109d",
+          "md5": "0356305935a31f7ca47900fa8338109d",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/tree_stump_01/textures/tree_stump_01_diff_1k.jpg",
+          "exists": true,
+          "sha256": "781ebe420ac4d84f2e44b9e9937a596e3d5d90711d978a1392f8bf3771b5bf31",
+          "bytes": 907451,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "c71fe60400276a37b8847048cbec3720",
+          "md5": "c71fe60400276a37b8847048cbec3720",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/tree_stump_01/textures/tree_stump_01_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "425117514b0386bb6df41cb64a61a624d2596472e05777483d4021b3285e3ceb",
+          "bytes": 1238404,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "cc2a3c6e4682a521b15cccc61a416bbf",
+          "md5": "cc2a3c6e4682a521b15cccc61a416bbf",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/tree_stump_01/textures/tree_stump_01_arm_1k.jpg",
+          "exists": true,
+          "sha256": "d845cd6ab45288c546267d059ebe1f8a737e174330fe9375e5f99e753f2f95d8",
+          "bytes": 825646,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "09b7aa228dccb93f5cf4188ba5530578",
+          "md5": "09b7aa228dccb93f5cf4188ba5530578",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/tree_stump_01/source-preview.png",
+          "exists": true,
+          "sha256": "f7f87e978b59b4494cf5ba4c701398cf6e480f408855326c1267d3384c1db0ed",
+          "bytes": 36672,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "rock_moss_set_01",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/rock_moss_set_01",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Vegetation/rock_moss_set_01/rock_moss_set_01_1k.fbx",
+          "exists": true,
+          "sha256": "8fa2a2666ecc4591f59e1d45db05d86857115b55492c8522917f3de5e650e6f9",
+          "bytes": 2652988,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "3f82316eb266746b71ae287f5609bafb",
+          "md5": "3f82316eb266746b71ae287f5609bafb",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/rock_moss_set_01/textures/rock_moss_set_01_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "eb4aad3f207f1dc5b624d74ae240372171626a66912bd71adf7bd3e518181d6e",
+          "bytes": 209975,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "eb7ebd31ad08e78d0497900652ff1568",
+          "md5": "eb7ebd31ad08e78d0497900652ff1568",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/rock_moss_set_01/textures/rock_moss_set_01_rough_1k.jpg",
+          "exists": true,
+          "sha256": "4d6ec46623abd8e2cdb855f59c7ce31873ad61b36b60e4de579e9e776a497c6b",
+          "bytes": 82624,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "ed9d8a2c863262f76f881346e8047c6a",
+          "md5": "ed9d8a2c863262f76f881346e8047c6a",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/rock_moss_set_01/textures/rock_moss_set_01_diff_1k.jpg",
+          "exists": true,
+          "sha256": "40cea65d8aa4ee73a93b04af19963834d061eee9779c3fc2c1cba76eef812ccc",
+          "bytes": 168099,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "b8742301e6b4bc5683d2de712e83f772",
+          "md5": "b8742301e6b4bc5683d2de712e83f772",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/rock_moss_set_01/source-preview.png",
+          "exists": true,
+          "sha256": "68206395c556d7e8128652b0e1f5e2d6b6e27cd6159e2f343c9e071af0532bfc",
+          "bytes": 22184,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "rock_07",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/rock_07",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Vegetation/rock_07/rock_07_1k.fbx",
+          "exists": true,
+          "sha256": "3c36fbebbedaca6deab892d7384ccbc6cd380fc1492af4fe401e23956da9ce0a",
+          "bytes": 1160220,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "8b550c111e682ee67edc244fc20bdc2d",
+          "md5": "8b550c111e682ee67edc244fc20bdc2d",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/rock_07/textures/rock_07_arm_1k.jpg",
+          "exists": true,
+          "sha256": "1ed76e9a8542c76bdc6b7b018720ae1f52cd75d9f5ae719f613de3f5032cf4da",
+          "bytes": 309735,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "530bfd2a510fe6f778bb1198a2395574",
+          "md5": "530bfd2a510fe6f778bb1198a2395574",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/rock_07/textures/rock_07_diff_1k.jpg",
+          "exists": true,
+          "sha256": "8ff1965aa1664cc4abcc0131c44ee2b97ab14d6e131d7a51429ff261eeb101c8",
+          "bytes": 635452,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "b68ac1824bb3bd3867641b830ad02099",
+          "md5": "b68ac1824bb3bd3867641b830ad02099",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/rock_07/textures/rock_07_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "57cb2210951aeb376164fce5f7c65f03e5599def04873b56cad0f173c275d78d",
+          "bytes": 766986,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "d3a2a0df0db0177c4df8ef644b003652",
+          "md5": "d3a2a0df0db0177c4df8ef644b003652",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/rock_07/source-preview.png",
+          "exists": true,
+          "sha256": "e6940c0d621ff3524f8a6eec4cbc298ce25b4354a4fa9c96686973592e1e38d2",
+          "bytes": 32432,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "plastic_monobloc_chair_01",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/plastic_monobloc_chair_01",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Props/plastic_monobloc_chair_01/plastic_monobloc_chair_01_1k.fbx",
+          "exists": true,
+          "sha256": "cb47578bffb24aba941bb6c984f87cf29eb7c56c4885e38ea073b83348adb90e",
+          "bytes": 152892,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "45518f40c92a03672a5ea5a90654bd66",
+          "md5": "45518f40c92a03672a5ea5a90654bd66",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/plastic_monobloc_chair_01/textures/plastic_monobloc_chair_01_arm_1k.jpg",
+          "exists": true,
+          "sha256": "78a67659a19a9df9efc0ef71789de0c949a727db62ade4c4c8887cd2c803c1a2",
+          "bytes": 634320,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "ce9271797fd8893a6c84f639f952d0b9",
+          "md5": "ce9271797fd8893a6c84f639f952d0b9",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/plastic_monobloc_chair_01/textures/plastic_monobloc_chair_01_diff_1k.jpg",
+          "exists": true,
+          "sha256": "fdd1255a02bf684cfcff2eae75c0e3eea0db1fb5ecbfbd8c4f9beab8fd83ff6c",
+          "bytes": 560823,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "c36dfe0f38d6ca1632ba426c598e6764",
+          "md5": "c36dfe0f38d6ca1632ba426c598e6764",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/plastic_monobloc_chair_01/textures/plastic_monobloc_chair_01_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "9ffa876b37d72ae1c0aed84d4dc1f62c956c844b3efec1f786f9080c10f63c9e",
+          "bytes": 630024,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "387f81f09c0754416298398277fb2a6d",
+          "md5": "387f81f09c0754416298398277fb2a6d",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/plastic_monobloc_chair_01/source-preview.png",
+          "exists": true,
+          "sha256": "7007ad11cb31a7dc67557e78fb87b1c478a5e31b54a97c13492662b1fc3f8a60",
+          "bytes": 26600,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "metal_trash_can",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/metal_trash_can",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Props/metal_trash_can/metal_trash_can_1k.fbx",
+          "exists": true,
+          "sha256": "e5f5176cccf94a09b05350f2500f11ec7ffed191247f5ccf908f9936324ebca0",
+          "bytes": 431724,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "dde180dd41cddaad272a54dcc45a0416",
+          "md5": "dde180dd41cddaad272a54dcc45a0416",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/metal_trash_can/textures/metal_trash_can_diff_1k.jpg",
+          "exists": true,
+          "sha256": "920c895a31b1cd2c000123c0592c70c33d46562752987da98070e7e0eebb662f",
+          "bytes": 551939,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "55d375d8d51b268b6ed8a4308155959c",
+          "md5": "55d375d8d51b268b6ed8a4308155959c",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/metal_trash_can/textures/metal_trash_can_rust_diff_1k.jpg",
+          "exists": true,
+          "sha256": "51c44248305b111d978f7e0cbfe4a71ab7f49549968ce37c54b635d74c2cfba1",
+          "bytes": 768161,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "8b90447d250cb790ca537748a2b16691",
+          "md5": "8b90447d250cb790ca537748a2b16691",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/metal_trash_can/textures/metal_trash_can_arm_1k.jpg",
+          "exists": true,
+          "sha256": "b23dcdb2ed40c1c6cfbd2d2779c6f075025b7269bfbbed2a70c6bdb7167e47fb",
+          "bytes": 731776,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "af676572c13fae2bb584538f03175efc",
+          "md5": "af676572c13fae2bb584538f03175efc",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/metal_trash_can/textures/metal_trash_can_rust_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "a5497588e00e5e56db72e701457fc8a46d3a1fa7d9dd7bf9d79e02cada09e84b",
+          "bytes": 1085844,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "25187818d1236815d4a34fd743cadc29",
+          "md5": "25187818d1236815d4a34fd743cadc29",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/metal_trash_can/textures/metal_trash_can_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "b977f17aa9d4718ffc91a62868b7171b4479578b8cffd1d32001d92552af81a4",
+          "bytes": 842945,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "fa6db04e021f6335ae2d9ad501120cae",
+          "md5": "fa6db04e021f6335ae2d9ad501120cae",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/metal_trash_can/textures/metal_trash_can_rust_arm_1k.jpg",
+          "exists": true,
+          "sha256": "31a6269e98a3a8b2a2d6db8f58724e0151d5312b5137e6d59b5a2ba873989159",
+          "bytes": 620549,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "ed9f635917cde411f235d4585c90b310",
+          "md5": "ed9f635917cde411f235d4585c90b310",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/metal_trash_can/source-preview.png",
+          "exists": true,
+          "sha256": "f2abf4fd91e7bd9f491f1710b36f8a2de9e1d8bd451c18c25f342b19259f58af",
+          "bytes": 36306,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "trashbag",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/trashbag",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Props/trashbag/trashbag_1k.fbx",
+          "exists": true,
+          "sha256": "c4255ca3ee1b586a00a85cf57813b1701b642358dfe49119e5575841d6c77f7f",
+          "bytes": 151148,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "af499779032990f49ccf890e97dead0d",
+          "md5": "af499779032990f49ccf890e97dead0d",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/trashbag/textures/trashbag_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "33ddb9711bb3ab2ff1ed19fa361a4251909643fada7e5579a28f6346a58b4daf",
+          "bytes": 573449,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "e576356779a07ac478126012544ab7b7",
+          "md5": "e576356779a07ac478126012544ab7b7",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/trashbag/textures/trashbag_diff_1k.jpg",
+          "exists": true,
+          "sha256": "676e01cbeef39b51c9ecd67315c952a605c8db9c11544fbe11e14dcbd00be27f",
+          "bytes": 332301,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "255360a490bf3838f55e7f21c7ab57ab",
+          "md5": "255360a490bf3838f55e7f21c7ab57ab",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/trashbag/textures/trashbag_arm_1k.jpg",
+          "exists": true,
+          "sha256": "95e69ba47bc7b84f342cdbe4385cfab670295827740fb09407b967ea2114c0aa",
+          "bytes": 684660,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "1efc021580dd12ef73a27b5d974056aa",
+          "md5": "1efc021580dd12ef73a27b5d974056aa",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/trashbag/source-preview.png",
+          "exists": true,
+          "sha256": "670f4e9b1c6e01c1614076d514ec0414019109454499423a4b41597381a96f3c",
+          "bytes": 38068,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "watering_can_metal_01",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/watering_can_metal_01",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Props/watering_can_metal_01/watering_can_metal_01_1k.fbx",
+          "exists": true,
+          "sha256": "016fbbad528f7f88c74d7cd361378117519ccddb8473c58eebb6098a0389fddf",
+          "bytes": 396140,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "fb98dd6cefba6245a137089973620b98",
+          "md5": "fb98dd6cefba6245a137089973620b98",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/watering_can_metal_01/textures/watering_can_metal_01_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "13aaedd908aba518ab28d3401881529c9d2ee656459a110f5619b9aad2e86be7",
+          "bytes": 725001,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "a94eebe05e42b53dd3b8f75a9a341598",
+          "md5": "a94eebe05e42b53dd3b8f75a9a341598",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/watering_can_metal_01/textures/watering_can_metal_01_arm_1k.jpg",
+          "exists": true,
+          "sha256": "966f78fca72dd7ae358c3199f6f7734830a7b09c782673e3e4bdfd0ce2d16689",
+          "bytes": 944654,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "ccc868c2394c1d085f1f76997626ccac",
+          "md5": "ccc868c2394c1d085f1f76997626ccac",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/watering_can_metal_01/textures/watering_can_metal_01_diff_1k.jpg",
+          "exists": true,
+          "sha256": "e684096ed02bf20dbe46875185aeef02bbc50d31730badfe5853a36ccc5ee2fe",
+          "bytes": 619613,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "ea49aa546a86f15b6401b1a1bdc8cac2",
+          "md5": "ea49aa546a86f15b6401b1a1bdc8cac2",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/watering_can_metal_01/source-preview.png",
+          "exists": true,
+          "sha256": "a252289dfd41199413bdb0f1a98767e81d85ec604f9f39b3237a0275a4baf6b3",
+          "bytes": 26618,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "planter_pot_clay",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/planter_pot_clay",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Props/planter_pot_clay/planter_pot_clay_1k.fbx",
+          "exists": true,
+          "sha256": "0cc83ed888fa668f0568960ef8b231c87a4717b89d73c7597ff4f4b6f497b4b9",
+          "bytes": 130252,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "eaf86b88b597006754997bb2c4b1dbd8",
+          "md5": "eaf86b88b597006754997bb2c4b1dbd8",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/planter_pot_clay/textures/planter_pot_clay_diff_1k.jpg",
+          "exists": true,
+          "sha256": "4f2962fd238401e49fd400596fdccd1ee9e2cca9ed21e44bb924dca3076f524c",
+          "bytes": 596319,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "6823eb18ca73c8cdcb3cbc04704c443b",
+          "md5": "6823eb18ca73c8cdcb3cbc04704c443b",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/planter_pot_clay/textures/planter_pot_clay_arm_1k.jpg",
+          "exists": true,
+          "sha256": "68e9e509db4e330b48924c606d4a9a99b54e105c1fe1690ff2811a05d95a0def",
+          "bytes": 613484,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "ec397ae29f1f52292cbc9482037c11c4",
+          "md5": "ec397ae29f1f52292cbc9482037c11c4",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/planter_pot_clay/textures/planter_pot_clay_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "25a564e55b247a94863b513853b1aeaad5c894dd78e92e1fd89e794b83b483c4",
+          "bytes": 506446,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "269b48d6a5038e97acf9d670b7381b3a",
+          "md5": "269b48d6a5038e97acf9d670b7381b3a",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/planter_pot_clay/source-preview.png",
+          "exists": true,
+          "sha256": "b107499e46761c9c944b461cf08fc2e3bda9e73f91b4fc5fcc035686b71a1d37",
+          "bytes": 33404,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "planter_box_02",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/planter_box_02",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Props/planter_box_02/planter_box_02_1k.fbx",
+          "exists": true,
+          "sha256": "a533417ccca6195339de512c2ecd34cfc5c4db7d38bb28ae89a54763f2968842",
+          "bytes": 387964,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "e3e7d4b3c85b7775b22fabd5d41eb817",
+          "md5": "e3e7d4b3c85b7775b22fabd5d41eb817",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/planter_box_02/textures/planter_box_02_diff_1k.jpg",
+          "exists": true,
+          "sha256": "0500b512d922e2dc311fb4d1bd23dd982732f1ed2d79264f608487e69ef193c1",
+          "bytes": 620574,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "96fa881a3ac88e033669a2ad8ca20b6c",
+          "md5": "96fa881a3ac88e033669a2ad8ca20b6c",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/planter_box_02/textures/planter_box_02_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "c55e6d9db96b71cf4c863735927a80c0a3e4fed1c48229b386e8e1d29af8da58",
+          "bytes": 735299,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "9348a31f18fd4136a74ae7e7d5e7ac11",
+          "md5": "9348a31f18fd4136a74ae7e7d5e7ac11",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/planter_box_02/textures/planter_box_02_arm_1k.jpg",
+          "exists": true,
+          "sha256": "dcb9a181bd084811fdecb3412b5cb5167d9acedda53eb2eae50455e0b4b63b40",
+          "bytes": 750404,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "1a35f166fda4a2b2846b9d2b3bc4181d",
+          "md5": "1a35f166fda4a2b2846b9d2b3bc4181d",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/planter_box_02/source-preview.png",
+          "exists": true,
+          "sha256": "f47d20d5ca5ca3cf830802d99bba7ca80e8d7b7f88b3fb12fd70c70222fb0871",
+          "bytes": 22458,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "garden_hose_wall_mounted_01",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/garden_hose_wall_mounted_01",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Props/garden_hose_wall_mounted_01/garden_hose_wall_mounted_01_1k.fbx",
+          "exists": true,
+          "sha256": "28d8a7456405dfc28239dc8c6ba2b0d698fdcb0df4572a828a245ec1626bb406",
+          "bytes": 370188,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "90983f24a34a6e15b522ba9051a23c95",
+          "md5": "90983f24a34a6e15b522ba9051a23c95",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/garden_hose_wall_mounted_01/textures/garden_hose_wall_mounted_01_arm_1k.jpg",
+          "exists": true,
+          "sha256": "a046e6e3bdfc5a91513f897df0f315039282df17ffa7217096e23fd2353dd0bc",
+          "bytes": 878931,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "dc51c6e0a6ed39a3168ca81f54265456",
+          "md5": "dc51c6e0a6ed39a3168ca81f54265456",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/garden_hose_wall_mounted_01/textures/garden_hose_wall_mounted_01_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "39ea8429455828b523bcff93ebe03ac4673873cb55df94cb894f1b232d9c90d4",
+          "bytes": 612921,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "8de7b001a5e4a3a86effd35d802dde1c",
+          "md5": "8de7b001a5e4a3a86effd35d802dde1c",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/garden_hose_wall_mounted_01/textures/garden_hose_wall_mounted_01_diff_1k.jpg",
+          "exists": true,
+          "sha256": "164ec96f0f2131f7ffb806eb0c55f9fd202e7855cd0d4883130d5438cedea0b5",
+          "bytes": 786985,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "a874ce98e7fe2e726a52001a25f78d5c",
+          "md5": "a874ce98e7fe2e726a52001a25f78d5c",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/garden_hose_wall_mounted_01/source-preview.png",
+          "exists": true,
+          "sha256": "ce495def086843bc29803ae740f056ec55fd8a7e90e463031f085ab982bd4d6c",
+          "bytes": 75176,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "rusted_spade_01",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/rusted_spade_01",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Props/rusted_spade_01/rusted_spade_01_1k.fbx",
+          "exists": true,
+          "sha256": "8a1428c162e43334ff1ca73e308c98c60db1d4067639dbc168528bd6edc770e2",
+          "bytes": 357100,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "8fcdfe5d75d8100c594f618ac236deda",
+          "md5": "8fcdfe5d75d8100c594f618ac236deda",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/rusted_spade_01/textures/rusted_spade_01_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "fd2c47c4f7ea5f72cb4ba45c1f2113d516b83c6462509d152776eb1e0a22cd96",
+          "bytes": 737050,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "e74e88df7540d62a922a682c69cc7065",
+          "md5": "e74e88df7540d62a922a682c69cc7065",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/rusted_spade_01/textures/rusted_spade_01_arm_1k.jpg",
+          "exists": true,
+          "sha256": "8d39c9c1be0df4146267331a962d25e5f3b670b915fea7833cf665680322a539",
+          "bytes": 776600,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "7f044d6fe73243259de3d3e2a9f32f26",
+          "md5": "7f044d6fe73243259de3d3e2a9f32f26",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/rusted_spade_01/textures/rusted_spade_01_diff_1k.jpg",
+          "exists": true,
+          "sha256": "9f7e1647cfffb8d0ce48c0ed4876092c2e70155910b7948d1b9fd8015d6dbec8",
+          "bytes": 625643,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "f45b63ecdafaf0b2a9ba11af71d499d4",
+          "md5": "f45b63ecdafaf0b2a9ba11af71d499d4",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/rusted_spade_01/source-preview.png",
+          "exists": true,
+          "sha256": "54e62931f2bf08ad1c2341a4ba55d442581ece08a4847012fa2a96251aff1592",
+          "bytes": 6300,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "machete",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/machete",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Props/machete/machete_1k.fbx",
+          "exists": true,
+          "sha256": "d189ddf7c3875b1e9a8a815b88fb3a2214f8d5556fdbadf1de5276093dae5c02",
+          "bytes": 113036,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "07f8c362998bda2d226bcaca0ebf5bc1",
+          "md5": "07f8c362998bda2d226bcaca0ebf5bc1",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/machete/textures/machete_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "92617bfb6077d2131feb32c4ceb009f85e1878ee9174ed1842b7e61f2fd5551e",
+          "bytes": 915855,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "44296250fa2540af75c2e351659adeb4",
+          "md5": "44296250fa2540af75c2e351659adeb4",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/machete/textures/machete_diff_1k.jpg",
+          "exists": true,
+          "sha256": "ccecb7324eaa72102290b4caeb9d9d328146d8e360006e77283ad41a3e787433",
+          "bytes": 679468,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "fd61e44d808059acfd354f9167ad4e65",
+          "md5": "fd61e44d808059acfd354f9167ad4e65",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/machete/textures/machete_arm_1k.jpg",
+          "exists": true,
+          "sha256": "bc6aa9ef54abffe6c312633e2966509fb34f1805855f27b5ede7bfca550c40c3",
+          "bytes": 752047,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "7e6e936108601a0956526f33aeac50ce",
+          "md5": "7e6e936108601a0956526f33aeac50ce",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/machete/source-preview.png",
+          "exists": true,
+          "sha256": "48743442b60fbcb9fa73fb1e472c57064672a59222442d7b6a7b378d65cc919d",
+          "bytes": 6118,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "old_tyre",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/old_tyre",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Props/old_tyre/old_tyre_1k.fbx",
+          "exists": true,
+          "sha256": "b5b6e3f5f43739e450f18112155386fae456a9e2e86a1db395ef48654d0cff70",
+          "bytes": 96780,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "f43fdca9ad17ee17eda237136bee7270",
+          "md5": "f43fdca9ad17ee17eda237136bee7270",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/old_tyre/textures/old_tyre_diff_1k.jpg",
+          "exists": true,
+          "sha256": "0e34ce658c0844c0c94022233226d495930d514c917a5fa15ffee4760567439e",
+          "bytes": 650708,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "f52b712b8373b1d1a7c46702613f76cb",
+          "md5": "f52b712b8373b1d1a7c46702613f76cb",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/old_tyre/textures/old_tyre_arm_1k.jpg",
+          "exists": true,
+          "sha256": "3bcf192f5b99a7a574f9e21e75927043e6726c601a5da15e3210a31db05e12d4",
+          "bytes": 776823,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "c9256d0d7cac005512cba4744ab29ab4",
+          "md5": "c9256d0d7cac005512cba4744ab29ab4",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/old_tyre/textures/old_tyre_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "34b716e140408985ddbab7d4bf1d8d430edf834cd2fd4639d82b14cb393fa73e",
+          "bytes": 722778,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "e5eb6dd2cf7a8e80813bbc1bc21a6d3d",
+          "md5": "e5eb6dd2cf7a8e80813bbc1bc21a6d3d",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/old_tyre/source-preview.png",
+          "exists": true,
+          "sha256": "046c9fe1656870f1ce38f7fc120b0e89931f45f09ec07c169424d564512e039c",
+          "bytes": 30146,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "rusted_wheel_rim_01",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/rusted_wheel_rim_01",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Props/rusted_wheel_rim_01/rusted_wheel_rim_01_1k.fbx",
+          "exists": true,
+          "sha256": "a8fbccf354bb8e025f31172db894ebe039f1fac549d1208709c3f1567e0fae3c",
+          "bytes": 511276,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "1754832c350cbaa5a231a04621c24e8e",
+          "md5": "1754832c350cbaa5a231a04621c24e8e",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/rusted_wheel_rim_01/textures/rusted_wheel_rim_01_arm_1k.jpg",
+          "exists": true,
+          "sha256": "e3c5ec3531901f2b9901d232afb512bd0922289ba64cc9b9f975d1b4ed46da27",
+          "bytes": 606086,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "bb7c0076656eaa5d357ca753d4048c3a",
+          "md5": "bb7c0076656eaa5d357ca753d4048c3a",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/rusted_wheel_rim_01/textures/rusted_wheel_rim_01_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "6ec1550711bf462579f27237fab6fa77141dadc2b21dc13e6a37c59f185e7ecd",
+          "bytes": 816565,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "a9c25d4ee4e79e2c968519dc3d417315",
+          "md5": "a9c25d4ee4e79e2c968519dc3d417315",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/rusted_wheel_rim_01/textures/rusted_wheel_rim_01_diff_1k.jpg",
+          "exists": true,
+          "sha256": "e533e5d6b7d1526218f3795f5e3694541d3a87e428242645d04783bc3e416e61",
+          "bytes": 517042,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "07ed02f15027a1d937f257ea638ebc1f",
+          "md5": "07ed02f15027a1d937f257ea638ebc1f",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/rusted_wheel_rim_01/source-preview.png",
+          "exists": true,
+          "sha256": "aab87894685ae5f21f25c67d33ebd57a8d38eba33345bfc4e2528685bd8bf77c",
+          "bytes": 39540,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "wooden_bucket_01",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/wooden_bucket_01",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Props/wooden_bucket_01/wooden_bucket_01_1k.fbx",
+          "exists": true,
+          "sha256": "c4169585ef42b6ebad3619316d6f346eb437d4f2acc22e51ef467c4d552cdf51",
+          "bytes": 203132,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "be94d109a8648558654d8b0aa21cf9fe",
+          "md5": "be94d109a8648558654d8b0aa21cf9fe",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/wooden_bucket_01/textures/wooden_bucket_01_arm_1k.jpg",
+          "exists": true,
+          "sha256": "3f093ca45792584632bbcc94fcc6a6521e5338a19202545f143303de6f6e8f17",
+          "bytes": 777463,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "9f42842024b3117b557348ec265cfeee",
+          "md5": "9f42842024b3117b557348ec265cfeee",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/wooden_bucket_01/textures/wooden_bucket_01_diff_1k.jpg",
+          "exists": true,
+          "sha256": "d9a8ec311099bc94510abdc4b246b67c893df5e829ada4a1014021dbc7c84561",
+          "bytes": 698083,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "d6296adf55e03bb1acc5de3e5fc8b10f",
+          "md5": "d6296adf55e03bb1acc5de3e5fc8b10f",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/wooden_bucket_01/textures/wooden_bucket_01_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "ae12106f8dd1e69813d42d714e9c99b70af3b5fcce6953cfbf8d8a741b4da40f",
+          "bytes": 693440,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "68ad3de3f685798a8d46c070da840e5a",
+          "md5": "68ad3de3f685798a8d46c070da840e5a",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/wooden_bucket_01/source-preview.png",
+          "exists": true,
+          "sha256": "b013b25fd34f33d7e21765472140a7ededc6a6590805bd6b73609c5379ef6e26",
+          "bytes": 24928,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "cement_bag",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/cement_bag",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Props/cement_bag/cement_bag_1k.fbx",
+          "exists": true,
+          "sha256": "9603077917412aae3178d24ab709cf28545bbcbbd4d9fe4cc94b46f1c183908d",
+          "bytes": 47596,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "1fa3fa1302d85604b1ece59f801649e6",
+          "md5": "1fa3fa1302d85604b1ece59f801649e6",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/cement_bag/textures/cement_bag_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "4f9b5ff34b029b47744dca27b864d35c167472792073a2141a5f69fc4cb39ddd",
+          "bytes": 397422,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "41aadb053e937f40139d17e8f87cc7a7",
+          "md5": "41aadb053e937f40139d17e8f87cc7a7",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/cement_bag/textures/cement_bag_diff_1k.jpg",
+          "exists": true,
+          "sha256": "0f1a45ba37e569b744325976b0a4514bc9e0b073bc12f1adb4d3232f6e90ed3e",
+          "bytes": 616339,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "68ce7268114b04a53547350c4356e6fa",
+          "md5": "68ce7268114b04a53547350c4356e6fa",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/cement_bag/textures/cement_bag_arm_1k.jpg",
+          "exists": true,
+          "sha256": "ab39330e5c00b8d8c3febc58076717394d261daea50faba1c9fa90d8c51f06a4",
+          "bytes": 409263,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "48a87e3e4cc3e0f2af378c94000219e3",
+          "md5": "48a87e3e4cc3e0f2af378c94000219e3",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/cement_bag/source-preview.png",
+          "exists": true,
+          "sha256": "b6e7440d8106ae0ebf3ab1df8e7919d8e54ead5dd3e7c891116b1083108b354b",
+          "bytes": 26000,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "small_lpg_tank",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/small_lpg_tank",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Props/small_lpg_tank/small_lpg_tank_1k.fbx",
+          "exists": true,
+          "sha256": "b02e91b9bbb0bf23fbad0be2a9cfdedb8f9b913851acd0caaf5be741d5c599e7",
+          "bytes": 489196,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "f42b7d87a6ccd48ab93cf8a384ae2244",
+          "md5": "f42b7d87a6ccd48ab93cf8a384ae2244",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/small_lpg_tank/textures/small_lpg_tank_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "1e6690a7e7c64da080b2047fb316c5a439cbd3c720729f686f0b07d02ae8122f",
+          "bytes": 750461,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "11d55dbb80f58c0eb3e344f32c6ea307",
+          "md5": "11d55dbb80f58c0eb3e344f32c6ea307",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/small_lpg_tank/textures/small_lpg_tank_diff_1k.jpg",
+          "exists": true,
+          "sha256": "7c998ddf9bf0824d5e7d7e0ba4dc171b2f39c6ac124f583d98dc0e8bb62d4f1b",
+          "bytes": 712049,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "074120d4d0db683233da0ccd6db6680a",
+          "md5": "074120d4d0db683233da0ccd6db6680a",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/small_lpg_tank/textures/small_lpg_tank_arm_1k.jpg",
+          "exists": true,
+          "sha256": "419ece07a7dd6800e25b38357c0ac55f94664aa4d3253234abf78b3225a094a1",
+          "bytes": 926422,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "7a8c9b8ff1eb2a921ae46e2d768f9c4e",
+          "md5": "7a8c9b8ff1eb2a921ae46e2d768f9c4e",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/small_lpg_tank/source-preview.png",
+          "exists": true,
+          "sha256": "98fc10bd4ae55427c2203df416776e2a879b4897ce4601af92c94ecab83c7fc3",
+          "bytes": 26952,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "oil_tin",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/oil_tin",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Props/oil_tin/oil_tin_1k.fbx",
+          "exists": true,
+          "sha256": "ab2fe206b494c930503fbfab16bf2191de7644d4dd44fd3f37a9f57d8309c597",
+          "bytes": 120668,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "b67ddbb4938eb060ce024d78340140fb",
+          "md5": "b67ddbb4938eb060ce024d78340140fb",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/oil_tin/textures/oil_tin_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "6002933496c5f9cab97f24daa6a1b743f8b052f98ae45135fc052bbdd35b0d19",
+          "bytes": 744753,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "62c09587ae0f325c41fc2c3dfc4285aa",
+          "md5": "62c09587ae0f325c41fc2c3dfc4285aa",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/oil_tin/textures/oil_tin_diff_1k.jpg",
+          "exists": true,
+          "sha256": "6ceb66c99081fb1b5528176b2ee57423b951b0a7c9f4624c85f144715e9b6fb5",
+          "bytes": 615722,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "0945b7a7285d258335d6a9cd65d6c08b",
+          "md5": "0945b7a7285d258335d6a9cd65d6c08b",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/oil_tin/textures/oil_tin_arm_1k.jpg",
+          "exists": true,
+          "sha256": "d1877a3a060addbbe0a1390c2ccbff1f5f3fa7358115f88c3bd9bdf48782066b",
+          "bytes": 650313,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "9bf8319573e325e03af8945b0b19d776",
+          "md5": "9bf8319573e325e03af8945b0b19d776",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/oil_tin/source-preview.png",
+          "exists": true,
+          "sha256": "f0ccbd560e18c5257db75eac3f4fb7ae6f108bf0e6e862c853d721e0edf85eea",
+          "bytes": 31460,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "can_rusted",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/can_rusted",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Props/can_rusted/can_rusted_1k.fbx",
+          "exists": true,
+          "sha256": "ebc3a128749adad7755917115eb544351a45026f2c0f5922244cb45312019d1d",
+          "bytes": 148428,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "d6c6d0b165355514dd7129d14518a647",
+          "md5": "d6c6d0b165355514dd7129d14518a647",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/can_rusted/textures/can_rusted_diff_1k.jpg",
+          "exists": true,
+          "sha256": "ed838bd8c1f0bd73d5a2914cebb68b394d97b18e191785f214b919a233b4b246",
+          "bytes": 739913,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "24b33db877edaec5188dce65173c0b21",
+          "md5": "24b33db877edaec5188dce65173c0b21",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/can_rusted/textures/can_rusted_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "f4f049846ec80e39d65b29dee588ea643643e0e3ca12b56d6f6374acffefd366",
+          "bytes": 663638,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "ed5ad746cce6b3c445a38027ff362c15",
+          "md5": "ed5ad746cce6b3c445a38027ff362c15",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/can_rusted/textures/can_rusted_arm_1k.jpg",
+          "exists": true,
+          "sha256": "d1eb839ad1f4c3eca3032de0298176ce5ef7ae49e10cd0c13dd789945ce36849",
+          "bytes": 609708,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "c0244295d1e9d94070676a1bcd72c482",
+          "md5": "c0244295d1e9d94070676a1bcd72c482",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/can_rusted/source-preview.png",
+          "exists": true,
+          "sha256": "d7529822f415a6a7ed7057f2d013db51a7b1a31eefdd5d31884e3e5659847c32",
+          "bytes": 47620,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "wooden_lantern_01",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/wooden_lantern_01",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Props/wooden_lantern_01/wooden_lantern_01_1k.fbx",
+          "exists": true,
+          "sha256": "e5999ce0f88c01289604cb14852e7f4875110f87728a9dbdf6241df76284a9f5",
+          "bytes": 300524,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "df28f7571892a400384c60c848e86328",
+          "md5": "df28f7571892a400384c60c848e86328",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/wooden_lantern_01/textures/wooden_lantern_01_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "06a7d3bb7342b5aa96d8c22d46883153df8948b59cab26e19f0e91ba82dba9ef",
+          "bytes": 747945,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "9db1fa975880b3cf6da5e6c30853e0cf",
+          "md5": "9db1fa975880b3cf6da5e6c30853e0cf",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/wooden_lantern_01/textures/wooden_lantern_01_diff_1k.jpg",
+          "exists": true,
+          "sha256": "5a346e7e3335e9502eb4e25178d16ba29ae49786b75853d7bd36b386edf7a30d",
+          "bytes": 712250,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "8f9f537ab312b1ec85acb1f5aaf7ad17",
+          "md5": "8f9f537ab312b1ec85acb1f5aaf7ad17",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/wooden_lantern_01/textures/wooden_lantern_01_glass_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "0aaab86f76172aeb7ccfa5f5c7f047f616726e6b3ce6636e162caf633f173c0a",
+          "bytes": 216436,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "38549e36957f90dc61587010c3a8ff3a",
+          "md5": "38549e36957f90dc61587010c3a8ff3a",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/wooden_lantern_01/textures/wooden_lantern_01_glass_arm_1k.jpg",
+          "exists": true,
+          "sha256": "2d549dde55d65c690872f148581d81b3468100e8a0eb22847f31273e47d8f1fb",
+          "bytes": 561615,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "890c1dd6ad9c37521f9f0a0d9d08fba2",
+          "md5": "890c1dd6ad9c37521f9f0a0d9d08fba2",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/wooden_lantern_01/textures/wooden_lantern_01_arm_1k.jpg",
+          "exists": true,
+          "sha256": "6bbe63887f60d20445df75dcaef75653b86cb47fe9e139baab717de542cab429",
+          "bytes": 842111,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "87b5bdc9f3d5853caef38a00589541ae",
+          "md5": "87b5bdc9f3d5853caef38a00589541ae",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/wooden_lantern_01/textures/wooden_lantern_01_glass_diff_1k.jpg",
+          "exists": true,
+          "sha256": "1bfced8c9470ea01e73085439e8cee0c44c8ee8199b806a22cc4f2434ae2f151",
+          "bytes": 410747,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "c1e45d48f344f86726d02c81679af6a4",
+          "md5": "c1e45d48f344f86726d02c81679af6a4",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/wooden_lantern_01/source-preview.png",
+          "exists": true,
+          "sha256": "1ab63f8f4cb6f04097e6c6e93eb7d6bf5d5b0e9d568ee3861a5b51828ab22d0f",
+          "bytes": 26594,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "pastic_torch_6v",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/pastic_torch_6v",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Props/pastic_torch_6v/pastic_torch_6v_1k.fbx",
+          "exists": true,
+          "sha256": "39a5409c40cb9b3a8b6335fe45fa478ed1aef72a24b88300a1c5a766cb96c38a",
+          "bytes": 192012,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "ee6ac52fa15ddb01e7d3de667135b578",
+          "md5": "ee6ac52fa15ddb01e7d3de667135b578",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/pastic_torch_6v/textures/pastic_torch_6v_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "b56304f9e16cb3ffb1f7a79fcd95fd34ce235ebc25a316e147716f02f8fdb96f",
+          "bytes": 437677,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "6ec79d9b4718635bc3e260a8000122ca",
+          "md5": "6ec79d9b4718635bc3e260a8000122ca",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/pastic_torch_6v/textures/pastic_torch_6v_diff_1k.jpg",
+          "exists": true,
+          "sha256": "9b4285be725182aa89e530f1a9ba8bc0724cbe33762c181e7438acf5710686f3",
+          "bytes": 380642,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "f1cdbc52b626b8fe3c34c29c26899415",
+          "md5": "f1cdbc52b626b8fe3c34c29c26899415",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/pastic_torch_6v/textures/pastic_torch_6v_arm_1k.jpg",
+          "exists": true,
+          "sha256": "50dba864eb927824e53935f92dc52431d59ee4cc6e01e84e1f1d3bbac2023b0a",
+          "bytes": 643906,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "6b6a6e2640faa6878fbc932ee1479b0b",
+          "md5": "6b6a6e2640faa6878fbc932ee1479b0b",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Props/pastic_torch_6v/source-preview.png",
+          "exists": true,
+          "sha256": "7b3d1ddf40ce8fa0f104368723090920111232855ce44779a5139bd2b4003888",
+          "bytes": 25946,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "clay_roof_tiles_02",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/clay_roof_tiles_02",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/clay_roof_tiles_02/clay_roof_tiles_02_diff_1k.jpg",
+          "exists": true,
+          "sha256": "227a062b38b170e02c27eaa513dae45dc8bc893a62cbd8d0c08e2c32b381fc25",
+          "bytes": 903929,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "43c45fa3ac4c68ffb28aa813cec32608",
+          "md5": "43c45fa3ac4c68ffb28aa813cec32608",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/clay_roof_tiles_02/clay_roof_tiles_02_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "1548d3ebce335a4590d9e421556c4189a7b63852c793a568c71b9e533f8b62d5",
+          "bytes": 990101,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "9e24ddc6fbf048291f8e24bfb1f16e6d",
+          "md5": "9e24ddc6fbf048291f8e24bfb1f16e6d",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/clay_roof_tiles_02/clay_roof_tiles_02_arm_1k.jpg",
+          "exists": true,
+          "sha256": "da94d4ce78607c4cb0450c669e8ca5d18852eb284def75445663f959cc1af63b",
+          "bytes": 564611,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "b3ecf39f9c8eb803131f84fbfe20e865",
+          "md5": "b3ecf39f9c8eb803131f84fbfe20e865",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/clay_roof_tiles_02/source-preview.png",
+          "exists": true,
+          "sha256": "5378184e50237cb31cfbefa17d81864a2bc2f01550e3a37ae62203fd3b188637",
+          "bytes": 57734,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Architecture/clay_roof_tiles_02/preview.png",
+          "exists": true,
+          "sha256": "5b8d2358459d8af13aebfb2bc1ca29f8fc6a241c199baf1b9069a3133a28d743",
+          "bytes": 456460,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "clay_roof_tiles_03",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/clay_roof_tiles_03",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/clay_roof_tiles_03/clay_roof_tiles_03_diff_1k.jpg",
+          "exists": true,
+          "sha256": "6719293429932a27c8ed3526b22cd65d1cd1d43194ce30fa5f4590bb3c513844",
+          "bytes": 970368,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "3600516ecf26b60a8d46dabe2007a7ba",
+          "md5": "3600516ecf26b60a8d46dabe2007a7ba",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/clay_roof_tiles_03/clay_roof_tiles_03_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "7db087939613b6b0ef1d0c21a3956eafcf7e9d0f146267290e409448f1adc17b",
+          "bytes": 974757,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "61b471769ef1f72674d1647ff08cc87b",
+          "md5": "61b471769ef1f72674d1647ff08cc87b",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/clay_roof_tiles_03/clay_roof_tiles_03_arm_1k.jpg",
+          "exists": true,
+          "sha256": "0553be64eb6f3338da2b3d68bc5eb0a867d016d2dcd10a3fb9fd8d349fb7382d",
+          "bytes": 620705,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "c93203da05b1d1671877b1e97fdb10fb",
+          "md5": "c93203da05b1d1671877b1e97fdb10fb",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/clay_roof_tiles_03/source-preview.png",
+          "exists": true,
+          "sha256": "d3cef46e0502f86b6a37b97bd4702cc3e5c015b7a50c6dd174017b1ae22724f5",
+          "bytes": 60108,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Architecture/clay_roof_tiles_03/preview.png",
+          "exists": true,
+          "sha256": "93f6374fd29b4ef67a03d10775c2ebab943d811c1501c3fa96296f0feca60d73",
+          "bytes": 479835,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "rusty_corrugated_iron",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/rusty_corrugated_iron",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/rusty_corrugated_iron/rusty_corrugated_iron_diff_1k.jpg",
+          "exists": true,
+          "sha256": "2525deb17323eefe39e8a90c6384033e31832b6aa9736bea27f81f4148508087",
+          "bytes": 619706,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "6e30158f4ff9f8492cfc800803b484dd",
+          "md5": "6e30158f4ff9f8492cfc800803b484dd",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/rusty_corrugated_iron/rusty_corrugated_iron_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "09f015ab44ff5e5a2f8e3f4718f2848df9eaa1ce42f184d361a5b902f200a216",
+          "bytes": 631058,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "b4effdfcd2ec71faa91bb6c92f531f48",
+          "md5": "b4effdfcd2ec71faa91bb6c92f531f48",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/rusty_corrugated_iron/rusty_corrugated_iron_arm_1k.jpg",
+          "exists": true,
+          "sha256": "ae6da49b59bfe3e3eba5dd4c738a5f82e190c562e582f6680e89e0b1dc9c4674",
+          "bytes": 427876,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "9d24b3fa4c2abf82d262f18ee58e57e1",
+          "md5": "9d24b3fa4c2abf82d262f18ee58e57e1",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/rusty_corrugated_iron/source-preview.png",
+          "exists": true,
+          "sha256": "fe8f54aa4cd8bcdd5ee1f219189cf53da824153e52cca9beb9414ad3a90cb509",
+          "bytes": 32742,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Architecture/rusty_corrugated_iron/preview.png",
+          "exists": true,
+          "sha256": "486139e2689de1e2f20434f9949eb514b594e27c1f7a671c957dc07e4bb60f6a",
+          "bytes": 301246,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "corrugated_iron_03",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/corrugated_iron_03",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/corrugated_iron_03/corrugated_iron_03_diff_1k.jpg",
+          "exists": true,
+          "sha256": "d1378cbe96c625f79180147873c586bfc653ef5a66ea7a4a58cd5b18701f2bb4",
+          "bytes": 479372,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "e066ab142176aee5e974f86c0463c02c",
+          "md5": "e066ab142176aee5e974f86c0463c02c",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/corrugated_iron_03/corrugated_iron_03_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "4d53371c5d615b0c60a6eb5c1944d85fc640c433d1468490bd01c4caa6a80bae",
+          "bytes": 524530,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "0e32aa6a9b361b237c0faf236f0cbdec",
+          "md5": "0e32aa6a9b361b237c0faf236f0cbdec",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/corrugated_iron_03/corrugated_iron_03_arm_1k.jpg",
+          "exists": true,
+          "sha256": "a1c6282f54fc1f4469af18dd2ae3b9d1fbe038963e5c118ffce162fa6ceadfb6",
+          "bytes": 322655,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "d05e31d030df0fefb776ed2fabd83637",
+          "md5": "d05e31d030df0fefb776ed2fabd83637",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/corrugated_iron_03/source-preview.png",
+          "exists": true,
+          "sha256": "ea9dd48a525fbebddf87d37f17bada39ba0f6425a6f85112626f2eaa2dbf2ea9",
+          "bytes": 38028,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Architecture/corrugated_iron_03/preview.png",
+          "exists": true,
+          "sha256": "fa32a8fd1b669a5d5886d57fecd5874d2eb550af1b62e44c4f00b91c8f58ce73",
+          "bytes": 255589,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "worn_mossy_plasterwall",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/worn_mossy_plasterwall",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/worn_mossy_plasterwall/worn_mossy_plasterwall_diff_1k.jpg",
+          "exists": true,
+          "sha256": "415cbcbe8f70269569aa4f2f1efc13ca1bd5f2fabc791dff428ef0fa243e1e9e",
+          "bytes": 964249,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "f396a70667b8b383a7ebc207a6344481",
+          "md5": "f396a70667b8b383a7ebc207a6344481",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/worn_mossy_plasterwall/worn_mossy_plasterwall_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "0fdf1e22066c4f6fc2c820ae9b11aa5f9ea6ea131ccf3abb65f37251ab9f6a5d",
+          "bytes": 870753,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "d9c20e0db2c6ef279e4afb3010d8d999",
+          "md5": "d9c20e0db2c6ef279e4afb3010d8d999",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/worn_mossy_plasterwall/worn_mossy_plasterwall_arm_1k.jpg",
+          "exists": true,
+          "sha256": "9c4f1395513d57663222bbbdbbda78e28f924a924bc8f813312e539f9816f4c7",
+          "bytes": 719996,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "bd06801ec064754bbb5d7db0bcc46b3e",
+          "md5": "bd06801ec064754bbb5d7db0bcc46b3e",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/worn_mossy_plasterwall/source-preview.png",
+          "exists": true,
+          "sha256": "8f012a04357943d1e14e244983f2ce86cc1ec3cebd62dc183cefae983820ff9f",
+          "bytes": 59796,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Architecture/worn_mossy_plasterwall/preview.png",
+          "exists": true,
+          "sha256": "59fdc78d921350c17c93f1bd5aafedaed82245262f7121aac61c67080de05645",
+          "bytes": 521197,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "damaged_plaster",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/damaged_plaster",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/damaged_plaster/damaged_plaster_diff_1k.jpg",
+          "exists": true,
+          "sha256": "391649dbb391c978b0d95cdd2351617fe3b7a577e432b94171208e576c9b2c63",
+          "bytes": 850524,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "a8df39b93ebece3c1c84290e3e916ec1",
+          "md5": "a8df39b93ebece3c1c84290e3e916ec1",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/damaged_plaster/damaged_plaster_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "9d2e4c261211c951fc424fe695483596e821f86b13d1d05485551ef0240d6b67",
+          "bytes": 959148,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "f51f2fb57309e9d1974b9841f9b605ea",
+          "md5": "f51f2fb57309e9d1974b9841f9b605ea",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/damaged_plaster/damaged_plaster_arm_1k.jpg",
+          "exists": true,
+          "sha256": "78f228161cc3c37cf4a335d8ea0f2a6b4dd5ff7bef50a8aa9fa0397d7ff4de13",
+          "bytes": 575588,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "b87917884ffc658b904d9982b3559467",
+          "md5": "b87917884ffc658b904d9982b3559467",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/damaged_plaster/source-preview.png",
+          "exists": true,
+          "sha256": "52622623565805a9a1d84c40e40df629d3f57253a353549052d3952d26787371",
+          "bytes": 51872,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Architecture/damaged_plaster/preview.png",
+          "exists": true,
+          "sha256": "923e1a21d700a3dc8a1b0c87a493e84ff1960ca7fd59a24600288a5adceb8128",
+          "bytes": 457635,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "grey_plaster_03",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/grey_plaster_03",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/grey_plaster_03/grey_plaster_03_diff_1k.jpg",
+          "exists": true,
+          "sha256": "b0952ccabee3f68a1962684a8bc2fe64101b92e569cfd13cf1d8c11b65f395d9",
+          "bytes": 486612,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "9c46bc51a016ff7e58769a7fdea0c0c9",
+          "md5": "9c46bc51a016ff7e58769a7fdea0c0c9",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/grey_plaster_03/grey_plaster_03_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "801b002ad7a8872cc998080f9a0345b68e49708c09570050e09e1e0fb3af161d",
+          "bytes": 467515,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "bd794bbe247196728af6928e68ddc314",
+          "md5": "bd794bbe247196728af6928e68ddc314",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/grey_plaster_03/grey_plaster_03_arm_1k.jpg",
+          "exists": true,
+          "sha256": "6a474794dc56b1906e993d550338c48864279bcc60ea3be35fd2373b64333ba9",
+          "bytes": 182473,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "aff137f058a5b176bfc0cb5a4dedb813",
+          "md5": "aff137f058a5b176bfc0cb5a4dedb813",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/grey_plaster_03/source-preview.png",
+          "exists": true,
+          "sha256": "21c7e5b7657713e75ead1d11d5d6760cf955d3b02b50bc9eb849669dc9a4d0fe",
+          "bytes": 33226,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Architecture/grey_plaster_03/preview.png",
+          "exists": true,
+          "sha256": "f05fa6708f9dad4a0b761f5e6f25d57a53bd2c8e6b4af2075a5754ef0f1faa3b",
+          "bytes": 418248,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "peeling_painted_wall",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/peeling_painted_wall",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/peeling_painted_wall/peeling_painted_wall_diff_1k.jpg",
+          "exists": true,
+          "sha256": "21455a65cae020ef32f79a00605eb706d7bbd2d47716485a94a3f6571460d254",
+          "bytes": 440121,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "333a66d4fd60e0febd593f8e0d2d8978",
+          "md5": "333a66d4fd60e0febd593f8e0d2d8978",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/peeling_painted_wall/peeling_painted_wall_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "c1d15c30b089861dbc2995492ec77cd64f530a35bb340879fe0dc86ec3bb9b5c",
+          "bytes": 910482,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "e2b0b6c1c98a4ec87bb480e237c2cfce",
+          "md5": "e2b0b6c1c98a4ec87bb480e237c2cfce",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/peeling_painted_wall/peeling_painted_wall_arm_1k.jpg",
+          "exists": true,
+          "sha256": "17dd49cdda749812b781766cddad870cacfe50ad69e6be30d87ac139b8a3d26b",
+          "bytes": 783136,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "23fde88ccb15792c65eab33295ec7433",
+          "md5": "23fde88ccb15792c65eab33295ec7433",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/peeling_painted_wall/source-preview.png",
+          "exists": true,
+          "sha256": "d288f124fbb788b5e1a7233a8113cebbc89e6bf96a625be23991c524effeb61e",
+          "bytes": 36354,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Architecture/peeling_painted_wall/preview.png",
+          "exists": true,
+          "sha256": "48346c7975b09f4d68bf32f737211c22acca5ccc512e7015b30a2ff685a969f3",
+          "bytes": 274727,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "brick_moss_001",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/brick_moss_001",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/brick_moss_001/brick_moss_001_diff_1k.jpg",
+          "exists": true,
+          "sha256": "c1f631043c4fd72851f3ede3894904371028c894bfcc80de991e6621a6660337",
+          "bytes": 248015,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "c0d01bf4ad31e076a3edf705ec35ad68",
+          "md5": "c0d01bf4ad31e076a3edf705ec35ad68",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/brick_moss_001/brick_moss_001_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "0133893b9dda4912d82322543804a9fa9eb1663c9ba41edaee59b79b11277c53",
+          "bytes": 267457,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "47b6164c2c712659c6797c81d7d1e7eb",
+          "md5": "47b6164c2c712659c6797c81d7d1e7eb",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/brick_moss_001/brick_moss_001_arm_1k.jpg",
+          "exists": true,
+          "sha256": "f6e70e3b1471b272d611f3252006aad6d1cf36fec911c4103595b8220086e4df",
+          "bytes": 169543,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "34fd897b0008c72bc6da9c779ac9f99c",
+          "md5": "34fd897b0008c72bc6da9c779ac9f99c",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/brick_moss_001/source-preview.png",
+          "exists": true,
+          "sha256": "e038b606fa9afdefbb78a3cb168f7fc6b6c21b7dec9e62331b5eb8f1dc525cb3",
+          "bytes": 48150,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Architecture/brick_moss_001/preview.png",
+          "exists": true,
+          "sha256": "74baaf42afbaf1a4dfc6232459c1387976707b9728c13fb74c4526ed66f83e72",
+          "bytes": 462306,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "mossy_stone_wall",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/mossy_stone_wall",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/mossy_stone_wall/mossy_stone_wall_diff_1k.jpg",
+          "exists": true,
+          "sha256": "7240e55cfc662ea403600fc7d5143f72983fbe8098d55fc6ccae75d21421dce4",
+          "bytes": 939649,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "ae70425d2aec4b8f454dc1762c1ec881",
+          "md5": "ae70425d2aec4b8f454dc1762c1ec881",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/mossy_stone_wall/mossy_stone_wall_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "e159e429269bc933743ee47051b4081261e6131e994242bf26e05ab0a0df4542",
+          "bytes": 1282621,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "e7e6c0318498ddb0bc0ece957ee2d86d",
+          "md5": "e7e6c0318498ddb0bc0ece957ee2d86d",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/mossy_stone_wall/mossy_stone_wall_arm_1k.jpg",
+          "exists": true,
+          "sha256": "c76fd89a80b95a1daa63af4b467a97117322207a04f7d59b86a5db160bbe8001",
+          "bytes": 716865,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "4a343a3de5134ef04f38dab2495d4e20",
+          "md5": "4a343a3de5134ef04f38dab2495d4e20",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/mossy_stone_wall/source-preview.png",
+          "exists": true,
+          "sha256": "f4c5a8cfd5f794e20a8a7bf46525a541e957060609aa2020b5c1372924082e38",
+          "bytes": 60964,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Architecture/mossy_stone_wall/preview.png",
+          "exists": true,
+          "sha256": "94db00089d7209daab571756c2a46f93acf80bc04ff3b40a7e1d53dd9c79022a",
+          "bytes": 495797,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "concrete_moss",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/concrete_moss",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/concrete_moss/concrete_moss_diff_1k.jpg",
+          "exists": true,
+          "sha256": "7a3f88bcdf20c2b6b1851549594611c0c24677d4f42c669a21d4367b8f5aeacc",
+          "bytes": 697265,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "7a867685b1d14b65020884573ae43dc4",
+          "md5": "7a867685b1d14b65020884573ae43dc4",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/concrete_moss/concrete_moss_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "ead99715fadfd3b1b037b6219a9ed97342701732bffee5b05084da4c99b7467b",
+          "bytes": 898376,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "591790eb179354959efb03c33c6fc231",
+          "md5": "591790eb179354959efb03c33c6fc231",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/concrete_moss/concrete_moss_arm_1k.jpg",
+          "exists": true,
+          "sha256": "db5c64065bdec04820743c1285316bbedab6f0f318103e7c4b74ec12c4df96f7",
+          "bytes": 367316,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "2ffc67e50b471e0bdc3455d4a7d2671b",
+          "md5": "2ffc67e50b471e0bdc3455d4a7d2671b",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/concrete_moss/source-preview.png",
+          "exists": true,
+          "sha256": "eecfa6e57431981466f4ad7f4dd804f2d1b08cee20000611e61607896b7ff775",
+          "bytes": 27058,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Architecture/concrete_moss/preview.png",
+          "exists": true,
+          "sha256": "c2b7c73b0b9b328448fd2c676ad8979fa725fd5fad7a2f1a6aca17e484d1f450",
+          "bytes": 372043,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "wood_peeling_paint_weathered",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/wood_peeling_paint_weathered",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/wood_peeling_paint_weathered/wood_peeling_paint_weathered_diff_1k.jpg",
+          "exists": true,
+          "sha256": "7311e60ec0ca3de10383dd5f2d398819e2198ea78244cf4f6627d1cb26cf4b53",
+          "bytes": 890162,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "aefb69e623845126ade66707a6893fc2",
+          "md5": "aefb69e623845126ade66707a6893fc2",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/wood_peeling_paint_weathered/wood_peeling_paint_weathered_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "5828f259fc99aa2bde31f778a0084ce8d0c83faa60306f6b998ac82c120ccffa",
+          "bytes": 892366,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "8f00472450256df53d39481a7a91fdd8",
+          "md5": "8f00472450256df53d39481a7a91fdd8",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/wood_peeling_paint_weathered/wood_peeling_paint_weathered_arm_1k.jpg",
+          "exists": true,
+          "sha256": "b87ce5d06c5df2986c95e4da1b702de139eb8aee6faadb784d371d551967fa32",
+          "bytes": 484940,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "b40456c20ef902b128734223c7cce345",
+          "md5": "b40456c20ef902b128734223c7cce345",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/wood_peeling_paint_weathered/source-preview.png",
+          "exists": true,
+          "sha256": "d50e0fb1df88e0a607fe6a273be1412ddc7e896f6ab4aae430c21dcc07ab827e",
+          "bytes": 53724,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Architecture/wood_peeling_paint_weathered/preview.png",
+          "exists": true,
+          "sha256": "c0fdb2cc6f760d359578e0830eb86dcba8c891c06e97f31563e6c5e6a874b47f",
+          "bytes": 432153,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "wood_planks_grey",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/wood_planks_grey",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/wood_planks_grey/wood_planks_grey_diff_1k.jpg",
+          "exists": true,
+          "sha256": "d758be23e8fe7bfbd73bc4ab257cfd59406e1835f6557c12a67cd4fdb15de0d8",
+          "bytes": 228279,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "f2b4a70fed329c13850917c5f2d1498c",
+          "md5": "f2b4a70fed329c13850917c5f2d1498c",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/wood_planks_grey/wood_planks_grey_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "5e570e57d688b016b217b9e8e0592f9a8b3364406e22bf6cd775da990452bdb6",
+          "bytes": 157419,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "fe633ea606ac22b732d4204a7fa52b03",
+          "md5": "fe633ea606ac22b732d4204a7fa52b03",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/wood_planks_grey/wood_planks_grey_arm_1k.jpg",
+          "exists": true,
+          "sha256": "0464853147811dd6dcf9f286ca3753fb63fa654d081ae708070fbf0fd4614d97",
+          "bytes": 155198,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "2da2c5b43105bd0b1bcc8712e8164406",
+          "md5": "2da2c5b43105bd0b1bcc8712e8164406",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/wood_planks_grey/source-preview.png",
+          "exists": true,
+          "sha256": "90d13acb4e4784c3a5d28bf941163601966238690dc62598ac9e44dec78f645a",
+          "bytes": 34364,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Architecture/wood_planks_grey/preview.png",
+          "exists": true,
+          "sha256": "1cee6a16d44e1ab42fcd71a98f0a1105a9ee386423e0bbdb1e11bd5f3f1a5b43",
+          "bytes": 301858,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "rusty_metal_sheet",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/rusty_metal_sheet",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Architecture/rusty_metal_sheet/rusty_metal_sheet_diff_1k.jpg",
+          "exists": true,
+          "sha256": "ecfacdea466b43162b63867b419576b7d35d34ea37c96969cf05e5a07faeb705",
+          "bytes": 793031,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "ccbfebdd62b6d021d1b3f890ab0e5a6d",
+          "md5": "ccbfebdd62b6d021d1b3f890ab0e5a6d",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/rusty_metal_sheet/rusty_metal_sheet_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "473e8ec4079a8be8c9bef59df8d95f61fd43f9961f4ec42421f21dee07713a5d",
+          "bytes": 409291,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "ace5dbc3f612ed8f46e70a0bef3c162e",
+          "md5": "ace5dbc3f612ed8f46e70a0bef3c162e",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/rusty_metal_sheet/rusty_metal_sheet_arm_1k.jpg",
+          "exists": true,
+          "sha256": "c69fdd31b70e24e394d80b580c0b62ebea54576d839ee3644badfacb558ea6e6",
+          "bytes": 732574,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "a91f97aaae115b5c3e86a17f9ffbd45b",
+          "md5": "a91f97aaae115b5c3e86a17f9ffbd45b",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Architecture/rusty_metal_sheet/source-preview.png",
+          "exists": true,
+          "sha256": "787d78a7578b296bad4b98398fb6933c9248db13a929ebd0ccf62d0f22fcdc06",
+          "bytes": 32094,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Architecture/rusty_metal_sheet/preview.png",
+          "exists": true,
+          "sha256": "2f2392f5a4f7232ef9216ada8d94b9e3a93eddc1500d57916c4bbc373c0532c8",
+          "bytes": 419869,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "bark_brown_02",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/bark_brown_02",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Vegetation/bark_brown_02/bark_brown_02_diff_1k.jpg",
+          "exists": true,
+          "sha256": "920fa0bed0c9d78c1d530e99795113afd532d7db746de440f4a85d7c83ed0f1a",
+          "bytes": 659592,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "6669cca520594bdca19f94084984ab72",
+          "md5": "6669cca520594bdca19f94084984ab72",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/bark_brown_02/bark_brown_02_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "0d5e691e8ad8bcd093a3587887fda2a6b4a948b5708a4f256f7919584c6eb857",
+          "bytes": 1015623,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "1cad3fe0349a44df2d4d1c2859c79920",
+          "md5": "1cad3fe0349a44df2d4d1c2859c79920",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/bark_brown_02/bark_brown_02_arm_1k.jpg",
+          "exists": true,
+          "sha256": "6bd86d37b3b9b40cc30a4b661e382ec41fa7463a8b1144ff44708b19fa675af1",
+          "bytes": 232742,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "6a566390a8930454c9ad4056273b08fb",
+          "md5": "6a566390a8930454c9ad4056273b08fb",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Vegetation/bark_brown_02/source-preview.png",
+          "exists": true,
+          "sha256": "691945cea262a5950ca15f000d2a5e8f9e5ba473da6e6969a98c376a008c945c",
+          "bytes": 70862,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Vegetation/bark_brown_02/preview.png",
+          "exists": true,
+          "sha256": "de9627a929799a52ab4fe18c841c5040e66424a2723b34b4bcec8480031be8c9",
+          "bytes": 558154,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "brown_mud_03",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/brown_mud_03",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Ground_Materials/brown_mud_03/brown_mud_03_diff_1k.jpg",
+          "exists": true,
+          "sha256": "6da4fbd6fc5d21044dcbdbd96e098fb464ed544b42c982e72ce8ccd1d53686c5",
+          "bytes": 526262,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "b99d14c26debf660457b9497f2facec6",
+          "md5": "b99d14c26debf660457b9497f2facec6",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/brown_mud_03/brown_mud_03_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "b53758dbc93f1ab3ad2884ca07a217dd90450e6a70d055f34573573668812a2a",
+          "bytes": 1229474,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "97e4449786551a25c69587a864be6eb3",
+          "md5": "97e4449786551a25c69587a864be6eb3",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/brown_mud_03/brown_mud_03_arm_1k.jpg",
+          "exists": true,
+          "sha256": "5ccf63481d1e10893d389a55280c764034e218de173dd6a40610f1b111e06249",
+          "bytes": 277655,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "7b38c1d97fc073b4128982314b27af27",
+          "md5": "7b38c1d97fc073b4128982314b27af27",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/brown_mud_03/source-preview.png",
+          "exists": true,
+          "sha256": "32c9d690dee2f68aef57895a69deca44be8be09bb1d6ad56e3e5f57cb39f32ed",
+          "bytes": 77728,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Ground_Materials/brown_mud_03/preview.png",
+          "exists": true,
+          "sha256": "06f1da420149797aa0b6ea5a059a19d6ce8561d16716e991348b8d071be9be36",
+          "bytes": 482273,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "brown_mud_02",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/brown_mud_02",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Ground_Materials/brown_mud_02/brown_mud_02_diff_1k.jpg",
+          "exists": true,
+          "sha256": "058b6f12493305ec6b47cb5ea77f013c9e7e58216b34af3700a3d3d7d821732d",
+          "bytes": 527741,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "c3842f023e11a08c8cf521c947ce08c8",
+          "md5": "c3842f023e11a08c8cf521c947ce08c8",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/brown_mud_02/brown_mud_02_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "9ca6f68d25599c98ba5e594df221f5653d93faceda1ba26a0babb1143e8c615f",
+          "bytes": 1397011,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "880720109b4fe95652137b2243e41ca4",
+          "md5": "880720109b4fe95652137b2243e41ca4",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/brown_mud_02/brown_mud_02_arm_1k.jpg",
+          "exists": true,
+          "sha256": "e747ee8ea4e3ca38aaa20acea1524b242c0b500abb93772c5a31aca112259f09",
+          "bytes": 261722,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "286d4937781fe2b10c563106a2d6b817",
+          "md5": "286d4937781fe2b10c563106a2d6b817",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/brown_mud_02/source-preview.png",
+          "exists": true,
+          "sha256": "6b9f71d919927d961983f13dc490a71dabf95b3e673fc4d3bb5a52c19a8ce54a",
+          "bytes": 60304,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Ground_Materials/brown_mud_02/preview.png",
+          "exists": true,
+          "sha256": "c1daf5c0b36981dc5130fc7fb604210120a845beeb621e0ac42ddc4597d3f391",
+          "bytes": 474732,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "stony_dirt_path",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/stony_dirt_path",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Ground_Materials/stony_dirt_path/stony_dirt_path_diff_1k.jpg",
+          "exists": true,
+          "sha256": "a662000ff3f7f64e23c25d2b8cd5947b9c8fd893510c5ed49c0daa2847004758",
+          "bytes": 1234067,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "8fd2cfd0f6498288510429bd5a0bf0a1",
+          "md5": "8fd2cfd0f6498288510429bd5a0bf0a1",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/stony_dirt_path/stony_dirt_path_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "2866303f71066f42bd218410bf6d38d9a21cda34c6e3543a8ac92900b7a09c75",
+          "bytes": 1416394,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "4a7c5fc32e1a057bd54507212554114b",
+          "md5": "4a7c5fc32e1a057bd54507212554114b",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/stony_dirt_path/stony_dirt_path_arm_1k.jpg",
+          "exists": true,
+          "sha256": "e38820894100350df10c2490dbe8a1b4c31dc523266a84c6c7a1a829d2792502",
+          "bytes": 848546,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "aa4afa93d80b336bd8ca2c8aaaf54110",
+          "md5": "aa4afa93d80b336bd8ca2c8aaaf54110",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/stony_dirt_path/source-preview.png",
+          "exists": true,
+          "sha256": "45796be3651c23ea58c8f0ab77c290172dcdfd36f6ea68e9400d9820b19050b5",
+          "bytes": 80862,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Ground_Materials/stony_dirt_path/preview.png",
+          "exists": true,
+          "sha256": "c070e40eacde0da57c8049a584d12f51e17cd66caad3bd6579deb61ae42adf40",
+          "bytes": 614306,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "mossy_cobblestone",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/mossy_cobblestone",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Ground_Materials/mossy_cobblestone/mossy_cobblestone_diff_1k.jpg",
+          "exists": true,
+          "sha256": "105d6209ff99952ca316e814eebf06c1c3cb244da62184137a97e29aee74b7d7",
+          "bytes": 1089617,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "e400e051cac040e67d759dbd9a51ca3d",
+          "md5": "e400e051cac040e67d759dbd9a51ca3d",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/mossy_cobblestone/mossy_cobblestone_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "32a128c921cf0311798ebb6c6a766db900a10419233c87cc52f8d226b2aa4cc0",
+          "bytes": 980112,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "3bcd336a29c8eb273b8d54e8953eb5f3",
+          "md5": "3bcd336a29c8eb273b8d54e8953eb5f3",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/mossy_cobblestone/mossy_cobblestone_arm_1k.jpg",
+          "exists": true,
+          "sha256": "8d737b10700257d179dc0413f278477c1bdc79d346f2bf6e8b504e850bde7c82",
+          "bytes": 715595,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "8db2351fa887ec044b696c98436ab9a1",
+          "md5": "8db2351fa887ec044b696c98436ab9a1",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/mossy_cobblestone/source-preview.png",
+          "exists": true,
+          "sha256": "7ddeba7aba0cf447bc6578b305322c8eb7a38853d2c7771cba7efa2df8c316db",
+          "bytes": 65908,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Ground_Materials/mossy_cobblestone/preview.png",
+          "exists": true,
+          "sha256": "07a88069cb5d5ec924186f772df4e92f49c1f8e405a800614cb4ac45960486b7",
+          "bytes": 538157,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "grassy_cobblestone",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/grassy_cobblestone",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Ground_Materials/grassy_cobblestone/grassy_cobblestone_diff_1k.jpg",
+          "exists": true,
+          "sha256": "9e7ba40919fd1bb4b98397b9522de0e6e537be8ea4121344772238d63fe50fcc",
+          "bytes": 742841,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "c0f0002775d2a64d02fdbcfb2e06ac25",
+          "md5": "c0f0002775d2a64d02fdbcfb2e06ac25",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/grassy_cobblestone/grassy_cobblestone_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "f9721ccd828523edbb19b3f391ad706efe3f5fe142133ea9c137bfd2f7751cd9",
+          "bytes": 1040297,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "a95e7dede95018c974854601f4773f80",
+          "md5": "a95e7dede95018c974854601f4773f80",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/grassy_cobblestone/grassy_cobblestone_arm_1k.jpg",
+          "exists": true,
+          "sha256": "d80c29fbae508d39f3bf46a34f848341ba606fa74230f6e62019878e894e16a0",
+          "bytes": 783391,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "148840737fd88b8e14fd607839d14931",
+          "md5": "148840737fd88b8e14fd607839d14931",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/grassy_cobblestone/source-preview.png",
+          "exists": true,
+          "sha256": "59a2a540bbb1a29e0eb317564ddfec72d4863f5b4be980342f9f5c2ab9c753b5",
+          "bytes": 48006,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Ground_Materials/grassy_cobblestone/preview.png",
+          "exists": true,
+          "sha256": "0aea82b41f88af29ae2f379cdfcc8141a21686b4fb323887c401f54bf6b3bd86",
+          "bytes": 400065,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "dirty_concrete",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/dirty_concrete",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Ground_Materials/dirty_concrete/dirty_concrete_diff_1k.jpg",
+          "exists": true,
+          "sha256": "322c588a5e883c27743c9555833ca3c4e95fbb20796a81559bb082a94569ce2c",
+          "bytes": 666452,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "c6a8dc8bd2aa5f81e7038561f7e602a8",
+          "md5": "c6a8dc8bd2aa5f81e7038561f7e602a8",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/dirty_concrete/dirty_concrete_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "9a22ecfaa7e84544790bb908e1b9cba7da69a4aebb62d992465a2f67348a865a",
+          "bytes": 350169,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "bf8286fc94f90dbc117efafe5bb381c0",
+          "md5": "bf8286fc94f90dbc117efafe5bb381c0",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/dirty_concrete/dirty_concrete_arm_1k.jpg",
+          "exists": true,
+          "sha256": "294874a571936c86d6bd29f2f73e279be7daaa4d1f4da26c733046ad0b9dba2d",
+          "bytes": 112953,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "c0760744b70851195aa3f44c5b65d806",
+          "md5": "c0760744b70851195aa3f44c5b65d806",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/dirty_concrete/source-preview.png",
+          "exists": true,
+          "sha256": "8a10980566f3b04986a4f39a45da9a62a74064d14262d8a2dfebaeee7368c2d3",
+          "bytes": 57922,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Ground_Materials/dirty_concrete/preview.png",
+          "exists": true,
+          "sha256": "f75234137ac0483ec554e181f0ded02a5a6eaccab26f32e09203a6510c27591d",
+          "bytes": 496142,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "concrete_floor_damaged_01",
+      "source": "polyhaven",
+      "sourcePage": "https://polyhaven.com/a/concrete_floor_damaged_01",
+      "license": "CC0-1.0",
+      "passed": true,
+      "expectedButNotDownloaded": [],
+      "checks": [
+        {
+          "file": "Ground_Materials/concrete_floor_damaged_01/concrete_floor_damaged_01_diff_1k.jpg",
+          "exists": true,
+          "sha256": "9b41f6e1f66804c3cface2365a7d246618ad8814a5864be43bb9349fc3fb6db6",
+          "bytes": 596910,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "949771369880f4586a8ef8570b1d59f1",
+          "md5": "949771369880f4586a8ef8570b1d59f1",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/concrete_floor_damaged_01/concrete_floor_damaged_01_nor_gl_1k.jpg",
+          "exists": true,
+          "sha256": "9f6d4282857b23daf2d9c87e567047a8f6ede4cc9eb8ec35ebd053bab4e457a0",
+          "bytes": 665253,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "6affa7bd6641bfe19fc97784f7d0ac04",
+          "md5": "6affa7bd6641bfe19fc97784f7d0ac04",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/concrete_floor_damaged_01/concrete_floor_damaged_01_arm_1k.jpg",
+          "exists": true,
+          "sha256": "b73ad44f6b8c34b791e77ed60777b477fa33d9da21596b2ea56b7f4bbf6c75cb",
+          "bytes": 738004,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "apiMd5": "dd2829dbcea3fddf209a16eecd3b8ddd",
+          "md5": "dd2829dbcea3fddf209a16eecd3b8ddd",
+          "md5MatchesSource": true
+        },
+        {
+          "file": "Ground_Materials/concrete_floor_damaged_01/source-preview.png",
+          "exists": true,
+          "sha256": "8968ef652acea202fbf1a62491eb4e033ef979163fe226662870453387626d05",
+          "bytes": 34112,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Ground_Materials/concrete_floor_damaged_01/preview.png",
+          "exists": true,
+          "sha256": "42f937c024ec5721dc3c18acf9f3151df25b8652a275252159ef7ca615b7af77",
+          "bytes": 326779,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "wooden-door-0",
+      "source": "opengameart",
+      "sourcePage": "https://opengameart.org/content/wooden-door-0",
+      "license": "CC0-1.0",
+      "passed": true,
+      "checks": [
+        {
+          "file": "Wooden%20Door.zip",
+          "kind": "sourceArchive",
+          "sha256MatchesManifest": true,
+          "sha256": "02c9d4829191ceba42ee993f20f1cd9d5b4b39663d98ba260e45c7f6adab89d2",
+          "bytes": 3553781
+        },
+        {
+          "file": "Story_Objects/wooden-door-0/Wooden_Door.fbx",
+          "exists": true,
+          "member": "Wooden Door.fbx",
+          "sha256": "c0a49a28f43dce95dfc05c1d161f90a694591490c786f2f6c3ab6f697c0b5f62",
+          "sha256MatchesArchiveMember": true
+        },
+        {
+          "file": "Story_Objects/wooden-door-0/Wooden_Door_basecolor.png",
+          "exists": true,
+          "sha256": "a1b9930f2580c19b7a48cd1816c66d7df35b9a7df16a7993807f9f409b55de8e",
+          "bytes": 1419762,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Story_Objects/wooden-door-0/Wooden_Door_normal.png",
+          "exists": true,
+          "sha256": "cdf425934b47e458a4c5bb8eded28c23a24db17876ea89df98afb9a50e866f41",
+          "bytes": 1352852,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Story_Objects/wooden-door-0/Wooden_Door_specular.png",
+          "exists": true,
+          "sha256": "2922e3080b81c4d89c79060ee09bc56e15d309a760de56ce09dadebb3b50f78d",
+          "bytes": 614576,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Story_Objects/wooden-door-0/source-preview.png",
+          "exists": true,
+          "sha256": "9f4d709ceb8b998e87c7f1cac2afb8fcbbe53305dd9ecb8225cd2ae30f8d1c2b",
+          "bytes": 450300,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "breakable-doors-and-windows",
+      "source": "opengameart",
+      "sourcePage": "https://opengameart.org/content/breakable-doors-and-windows",
+      "license": "CC0-1.0",
+      "passed": true,
+      "checks": [
+        {
+          "file": "doorsandwindows_fbx_gltf_textures_blend.zip",
+          "kind": "sourceArchive",
+          "sha256MatchesManifest": true,
+          "sha256": "bdbd02be973599096d4ee43b197c1429415798b7e3f91c5596d54763d839195d",
+          "bytes": 20015359
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/fbx/Door_DoorFrame_Single_1.fbx",
+          "exists": true,
+          "member": "FBXs/Door_DoorFrame_Single_1.fbx",
+          "sha256": "7fda6f3a25084f87964798fbdc5cb175dcb4b737efeb522cbaa6cc0b00384820",
+          "sha256MatchesArchiveMember": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/fbx/Door_DoorFrame_Single_2.fbx",
+          "exists": true,
+          "member": "FBXs/Door_DoorFrame_Single_2.fbx",
+          "sha256": "9f96d980d44e340159fa3e61c1d1ff19a52117f4a1c0ad224890e20fb8a2dc8f",
+          "sha256MatchesArchiveMember": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/fbx/Door_DoorFrame_Double.fbx",
+          "exists": true,
+          "member": "FBXs/Door_DoorFrame_Double.fbx",
+          "sha256": "5cc7f35da600dec46b0f86e292121a5fda2803000f7044c30a1f9157ba264cfa",
+          "sha256MatchesArchiveMember": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/fbx/Door_DoorFrame_Broken_Single_1.fbx",
+          "exists": true,
+          "member": "FBXs/Door_DoorFrame_Broken_Single_1.fbx",
+          "sha256": "064a9699b8020ea08379bd3721afc44bf4058ecf1c29e25f1a67900e22d48222",
+          "sha256MatchesArchiveMember": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/fbx/Door_DoorFrame_Broken_single_2.fbx",
+          "exists": true,
+          "member": "FBXs/Door_DoorFrame_Broken_single_2.fbx",
+          "sha256": "759f0944919a7aa8bafb0213a8e9064413048d6be29d4b25648b6f1fab0f01b9",
+          "sha256MatchesArchiveMember": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/fbx/Door_DoorFrame_Broken_Double.fbx",
+          "exists": true,
+          "member": "FBXs/Door_DoorFrame_Broken_Double.fbx",
+          "sha256": "90ddf871f5cbf8b567468d7230b9f17113ced5c66dd96b420d8eef577a852468",
+          "sha256MatchesArchiveMember": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/fbx/Windows_Window_1.fbx",
+          "exists": true,
+          "member": "FBXs/Windows_Window_1.fbx",
+          "sha256": "fa8ff89fb8f5ce80c0ae1f3bd4b9dd9f005c68980cfc948d239ba812cba6e7db",
+          "sha256MatchesArchiveMember": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/fbx/Windows_Window_2.fbx",
+          "exists": true,
+          "member": "FBXs/Windows_Window_2.fbx",
+          "sha256": "b0299459219ef0a4c84110e1afe8f955ad1400a6eb5d4f578b85d0ec96a5e6f5",
+          "sha256MatchesArchiveMember": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/fbx/Windows_BrokenWindow_1.fbx",
+          "exists": true,
+          "member": "FBXs/Windows_BrokenWindow_1.fbx",
+          "sha256": "9d2afe14180d2f78e3e70f418454e2884157eb76d46a068f88cfb47c0be9a6f1",
+          "sha256MatchesArchiveMember": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/fbx/Windows_BrokenWindow_2.fbx",
+          "exists": true,
+          "member": "FBXs/Windows_BrokenWindow_2.fbx",
+          "sha256": "adae31cc012af27dc795c195404c5b7fb0eb6b755ee654418be5b5e60996592c",
+          "sha256MatchesArchiveMember": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/README.txt",
+          "exists": true,
+          "member": "README.txt",
+          "sha256": "da6fb4244e87397f8fc6ed376a0108e01330ea8cb8a5928fd21fb8cc409bf8a8",
+          "sha256MatchesArchiveMember": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/textures/Base__Color_1_BreakableEntrances.png",
+          "exists": true,
+          "sha256": "088da4eca28a7712dbfc95ed470a5ed0d9963c3355f19694f9c2d9d922926519",
+          "bytes": 625544,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "withinTexLimit": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/textures/Base__Color_2_BreakableEntrances.png",
+          "exists": true,
+          "sha256": "287fa9d189a82324c72754307d5796bd58d8719db03dd1759b45ae9315d02ce8",
+          "bytes": 632866,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "withinTexLimit": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/textures/Base__Color_3_BreakableEntrances.png",
+          "exists": true,
+          "sha256": "c878772480a06f2421ae29254dd318010d40f95ff0205968529f3361989d273f",
+          "bytes": 581018,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "withinTexLimit": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/textures/Base__Color_4_BreakableEntrances.png",
+          "exists": true,
+          "sha256": "c8e6ada7cc798faba4379162b39b2d2e23673a41f77ddf81acadad5c9653440f",
+          "bytes": 500141,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "withinTexLimit": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/textures/BASE_COLOR_1_BreakableEntrances.png",
+          "exists": true,
+          "sha256": "a3ce87fe744c2090f718f8f0189122fea5136b8019df9a82965936e9d3ba3572",
+          "bytes": 619737,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "withinTexLimit": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/textures/BASE_COLOR_2_BreakableEntrances.png",
+          "exists": true,
+          "sha256": "71d8fd9a4a510ac350e377f37dab37798be1f4514099f098936815108897e071",
+          "bytes": 631624,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "withinTexLimit": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/textures/BASE_COLOR_3_BreakableEntrances.png",
+          "exists": true,
+          "sha256": "73d1a4745eb47ffd7132716a6eeda5b64597a8d556d27c2d51212c78bceae827",
+          "bytes": 572325,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "withinTexLimit": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/textures/BASE_COLOR_4_BreakableEntrances.png",
+          "exists": true,
+          "sha256": "3f144b4f89a9a2d7f8d0c22a776fe48cad93f965da04e41796b82afcddb6b0eb",
+          "bytes": 472628,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "withinTexLimit": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/textures/NORMAL_BreakableEntrances.png",
+          "exists": true,
+          "sha256": "892824818c91da2c78169734e7ee1841bd43ad07d3da24709672045f29da7e47",
+          "bytes": 557808,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "withinTexLimit": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/textures/ROUGHNESS_BreakableEntrances.png",
+          "exists": true,
+          "sha256": "ce8034843ea3e50f8230871a820daa66c8843115438e3002f291bedb47213be5",
+          "bytes": 196447,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "withinTexLimit": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/textures/METALLIC_BreakableEntrances.png",
+          "exists": true,
+          "sha256": "a87d3b6a86d8a03fac99c3044765af709edad90428ea60721319a0a8886c3107",
+          "bytes": 49508,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "withinTexLimit": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/textures/AO_BreakableEntrances.png",
+          "exists": true,
+          "sha256": "9641fea8b07ce31c4a2117a6a78421170639263d734a6c5b7f0705ddeeb96d96",
+          "bytes": 887393,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "withinTexLimit": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/textures/DamageMask_DoorsWindows.png",
+          "exists": true,
+          "sha256": "bedfb2bb6495c0352b442d331d15b4e76d00424a3fe587fbccaa7d70ec265dfa",
+          "bytes": 23268,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "withinTexLimit": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/textures/EdgeMask1k_DoorsWindows.png",
+          "exists": true,
+          "sha256": "6d5249acdafee7a5e8deca244d5f577980266f37799306d587826185b93dfb41",
+          "bytes": 773070,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "withinTexLimit": true
+        },
+        {
+          "file": "Story_Objects/breakable-doors-and-windows/source-preview.png",
+          "exists": true,
+          "sha256": "3e1e816496542d5db90447f8d315a814a2cc065d42745c164ffb9fa6851328fa",
+          "bytes": 111769,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "chain",
+      "source": "opengameart",
+      "sourcePage": "https://opengameart.org/content/chain",
+      "license": "CC-BY-4.0",
+      "passed": true,
+      "checks": [
+        {
+          "file": "chain.7z",
+          "kind": "sourceArchive",
+          "sha256MatchesManifest": true,
+          "sha256": "85024783ff7d5de1326aa5364d1a5e80bc356f61d3cbc4c2872a6337c50ee6c3",
+          "bytes": 36800407
+        },
+        {
+          "file": "Story_Objects/chain/chain.fbx",
+          "exists": true,
+          "member": "chain.FBX",
+          "sha256": "ec7b3515e51445f4b5a47bd3a63f1aecbb77720628017ea467a268cf3ea7efe8",
+          "sha256MatchesArchiveMember": true
+        },
+        {
+          "file": "Story_Objects/chain/textures/DefaultMaterial_Base_Color.png",
+          "exists": true,
+          "sha256": "28998209346fa7cfe66020998150c35adf451d1b686a1cd464ad6a4b3e1f89f2",
+          "bytes": 1433450,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "withinTexLimit": true
+        },
+        {
+          "file": "Story_Objects/chain/textures/DefaultMaterial_Normal_OpenGL.png",
+          "exists": true,
+          "sha256": "d56a4d65d712c35893e42f2cdb528e468a84ebaee0461b89f259d2b892143964",
+          "bytes": 1897550,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "withinTexLimit": true
+        },
+        {
+          "file": "Story_Objects/chain/textures/DefaultMaterial_Roughness.png",
+          "exists": true,
+          "sha256": "40d9eeccdbbeee949e3cdfada463990f0c72ee3c5faae428496bebdfca9d7414",
+          "bytes": 564476,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "withinTexLimit": true
+        },
+        {
+          "file": "Story_Objects/chain/textures/DefaultMaterial_Metallic.png",
+          "exists": true,
+          "sha256": "e27234bdcabcab4f15a2d63b842a46be552c7fa6e61892a940e808de5ae3d4fc",
+          "bytes": 573502,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "withinTexLimit": true
+        },
+        {
+          "file": "Story_Objects/chain/textures/DefaultMaterial_Mixed_AO.png",
+          "exists": true,
+          "sha256": "e89f93c534a2e0f20570455a6ca29491ca5885c3721a287d58404cc269968190",
+          "bytes": 137080,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "withinTexLimit": true
+        },
+        {
+          "file": "Story_Objects/chain/source-preview.png",
+          "exists": true,
+          "sha256": "efad7fcb128469b6fc65ccfc8e26b208f6a567fa30da59b21f62a14f0dea1bc2",
+          "bytes": 499888,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    },
+    {
+      "id": "small-old-house",
+      "source": "opengameart",
+      "sourcePage": "https://opengameart.org/content/small-old-house",
+      "license": "CC-BY-3.0",
+      "passed": true,
+      "checks": [
+        {
+          "file": "House.zip",
+          "kind": "sourceArchive",
+          "sha256MatchesManifest": true,
+          "sha256": "016139d2e83d6ef6d8b92dc9bae5985f6ecd3a8bd9ead4155ed7e8e697e334a4",
+          "bytes": 8226258
+        },
+        {
+          "file": "Architecture/small-old-house/House.obj",
+          "exists": true,
+          "member": "House.obj",
+          "sha256": "d748e7ebb6d1f74d8630b38c28cdd05ce55d923446f34225533f3f0b6e6285a9",
+          "sha256MatchesArchiveMember": true
+        },
+        {
+          "file": "Architecture/small-old-house/House.mtl",
+          "exists": true,
+          "member": "House.mtl",
+          "sha256": "1b08e81dd1e05059ca185ee50aec37f6ab58306a9962943d0e51b999c6c006c8",
+          "sha256MatchesArchiveMember": true
+        },
+        {
+          "file": "Architecture/small-old-house/readme.txt",
+          "exists": true,
+          "member": "readme.txt",
+          "sha256": "eefb2ee9e152451358d2e60c6955cbcfedfe29e862de505533502e50a346333b",
+          "sha256MatchesArchiveMember": true
+        },
+        {
+          "file": "Architecture/small-old-house/tex/house_tex.png",
+          "exists": true,
+          "sha256": "bd9376369dc872ee80ecdfd1a4f73dbb7557e1887ffad8009dfcd81deb5ec872",
+          "bytes": 1158742,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Architecture/small-old-house/tex/house_nor.jpg",
+          "exists": true,
+          "sha256": "c0a93b6d83836e86800cfef042a584675b1609051e8b21367d683f74732c1d87",
+          "bytes": 159393,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        },
+        {
+          "file": "Architecture/small-old-house/tex/house_spec.jpg",
+          "exists": true,
+          "sha256": "fe3b85428b8043e3b0baf871bade231310e74885e659674b41b2d410c87939d1",
+          "bytes": 133475,
+          "sha256MatchesManifest": true,
+          "bytesMatchManifest": true
+        }
+      ]
+    }
+  ],
+  "passed": true
+}
