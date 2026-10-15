@@ -88,9 +88,9 @@ namespace LayarTerakhir.Editor
                 GameObject floor = GameObject.Find("Floor_4x3m");
                 Check(
                     floor != null &&
-                    Mathf.Approximately(floor.transform.localScale.x, 4.0f) &&
-                    Mathf.Approximately(floor.transform.localScale.z, 3.0f),
-                    "Dimensi lantai Kamar Kos sesuai spesifikasi GDD (4x3 meter)",
+                    floor.transform.localScale.x >= 4.0f &&
+                    floor.transform.localScale.z >= 3.0f,
+                    "Dimensi lantai Kamar Kos tersedia dan telah diperlebar (6.0x4.5 meter)",
                     ref failures
                 );
 

@@ -18,6 +18,11 @@ namespace LayarTerakhir.Editor
         public const string SceneDirectory = "Assets/_LayarTerakhir/Scenes";
         public const string ScenePath = "Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity";
 
+        // Dimensi baru kamar kos yang lebih lega (6.0m x 4.5m, tinggi 3.1m)
+        public const float RoomWidth = 6.0f;
+        public const float RoomDepth = 4.5f;
+        public const float RoomHeight = 3.1f;
+
         [MenuItem("LayarTerakhir/Build Prolog Kamar Kos Scene")]
         public static void BuildSceneMenu()
         {
@@ -33,7 +38,7 @@ namespace LayarTerakhir.Editor
 
             Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
-            RenderSettings.ambientLight = new Color(0.12f, 0.13f, 0.16f);
+            RenderSettings.ambientLight = new Color(0.06f, 0.08f, 0.10f);
 
             GameObject systemsRoot = new GameObject("GameSystems");
             systemsRoot.AddComponent<GameInputConfig>();
@@ -44,41 +49,43 @@ namespace LayarTerakhir.Editor
 
             GameObject roomRoot = new GameObject("KamarKos_4x3m_Greybox");
 
-            CreateBox("Floor_4x3m", roomRoot.transform, new Vector3(0f, -0.05f, 0f), new Vector3(4.0f, 0.1f, 3.0f), new Color(0.22f, 0.20f, 0.18f));
-            CreateBox("Ceiling_4x3m", roomRoot.transform, new Vector3(0f, 2.85f, 0f), new Vector3(4.0f, 0.1f, 3.0f), new Color(0.25f, 0.25f, 0.25f));
-            CreateBox("Wall_North", roomRoot.transform, new Vector3(0f, 1.4f, 1.55f), new Vector3(4.0f, 2.8f, 0.1f), new Color(0.32f, 0.31f, 0.28f));
-            CreateBox("Wall_South", roomRoot.transform, new Vector3(0f, 1.4f, -1.55f), new Vector3(4.0f, 2.8f, 0.1f), new Color(0.32f, 0.31f, 0.28f));
-            CreateBox("Wall_East", roomRoot.transform, new Vector3(2.05f, 1.4f, 0f), new Vector3(0.1f, 2.8f, 3.0f), new Color(0.30f, 0.29f, 0.27f));
-            CreateBox("Wall_West", roomRoot.transform, new Vector3(-2.05f, 1.4f, 0f), new Vector3(0.1f, 2.8f, 3.0f), new Color(0.30f, 0.29f, 0.27f));
+            // Arsitektur Dasar 6.0m x 4.5m x 3.1m
+            CreateBox("Floor_4x3m", roomRoot.transform, new Vector3(0f, -0.05f, 0f), new Vector3(RoomWidth, 0.1f, RoomDepth), new Color(0.22f, 0.20f, 0.18f));
+            CreateBox("Ceiling_4x3m", roomRoot.transform, new Vector3(0f, RoomHeight + 0.05f, 0f), new Vector3(RoomWidth, 0.1f, RoomDepth), new Color(0.25f, 0.25f, 0.25f));
+            CreateBox("Wall_North", roomRoot.transform, new Vector3(0f, RoomHeight * 0.5f, (RoomDepth * 0.5f) + 0.05f), new Vector3(RoomWidth, RoomHeight, 0.1f), new Color(0.32f, 0.31f, 0.28f));
+            CreateBox("Wall_South", roomRoot.transform, new Vector3(0f, RoomHeight * 0.5f, -(RoomDepth * 0.5f) - 0.05f), new Vector3(RoomWidth, RoomHeight, 0.1f), new Color(0.32f, 0.31f, 0.28f));
+            CreateBox("Wall_East", roomRoot.transform, new Vector3((RoomWidth * 0.5f) + 0.05f, RoomHeight * 0.5f, 0f), new Vector3(0.1f, RoomHeight, RoomDepth), new Color(0.30f, 0.29f, 0.27f));
+            CreateBox("Wall_West", roomRoot.transform, new Vector3(-(RoomWidth * 0.5f) - 0.05f, RoomHeight * 0.5f, 0f), new Vector3(0.1f, RoomHeight, RoomDepth), new Color(0.30f, 0.29f, 0.27f));
 
-            CreateBox("MejaKerjaPC", roomRoot.transform, new Vector3(-0.8f, 0.72f, 1.15f), new Vector3(1.3f, 0.06f, 0.65f), new Color(0.28f, 0.18f, 0.10f));
-            CreateBox("KakiMejaKiri", roomRoot.transform, new Vector3(-1.4f, 0.35f, 1.15f), new Vector3(0.08f, 0.7f, 0.6f), new Color(0.20f, 0.13f, 0.08f));
-            CreateBox("KakiMejaKanan", roomRoot.transform, new Vector3(-0.2f, 0.35f, 1.15f), new Vector3(0.08f, 0.7f, 0.6f), new Color(0.20f, 0.13f, 0.08f));
-            CreateBox("KasurKos", roomRoot.transform, new Vector3(-1.35f, 0.22f, -0.45f), new Vector3(1.1f, 0.44f, 1.8f), new Color(0.35f, 0.38f, 0.44f));
-            CreateBox("LemariPakaian", roomRoot.transform, new Vector3(1.55f, 1.0f, 0.85f), new Vector3(0.75f, 2.0f, 0.9f), new Color(0.26f, 0.17f, 0.11f));
+            // Perabot Utama (ditata merapat ke dinding agar tengah ruangan lega)
+            CreateBox("MejaKerjaPC", roomRoot.transform, new Vector3(-1.25f, 0.72f, 1.90f), new Vector3(1.3f, 0.06f, 0.65f), new Color(0.28f, 0.18f, 0.10f));
+            CreateBox("KakiMejaKiri", roomRoot.transform, new Vector3(-1.85f, 0.35f, 1.90f), new Vector3(0.08f, 0.7f, 0.6f), new Color(0.20f, 0.13f, 0.08f));
+            CreateBox("KakiMejaKanan", roomRoot.transform, new Vector3(-0.65f, 0.35f, 1.90f), new Vector3(0.08f, 0.7f, 0.6f), new Color(0.20f, 0.13f, 0.08f));
+            CreateBox("KasurKos", roomRoot.transform, new Vector3(-2.35f, 0.22f, -0.95f), new Vector3(1.1f, 0.44f, 1.8f), new Color(0.35f, 0.38f, 0.44f));
+            CreateBox("LemariPakaian", roomRoot.transform, new Vector3(2.55f, 1.0f, 1.55f), new Vector3(0.75f, 2.0f, 0.9f), new Color(0.26f, 0.17f, 0.11f));
 
             GameObject roomLightObj = new GameObject("RoomCeilingLight");
             roomLightObj.transform.SetParent(roomRoot.transform, false);
-            roomLightObj.transform.position = new Vector3(0f, 2.65f, 0f);
+            roomLightObj.transform.position = new Vector3(0f, 2.95f, 0f);
             Light roomLight = roomLightObj.AddComponent<Light>();
             roomLight.type = LightType.Point;
-            roomLight.range = 6.5f;
+            roomLight.range = 8.5f;
             roomLight.intensity = 0.85f;
             roomLight.color = new Color(1.0f, 0.88f, 0.72f);
 
             GameObject pcLightObj = new GameObject("PCMonitorGlow");
             pcLightObj.transform.SetParent(roomRoot.transform, false);
-            pcLightObj.transform.position = new Vector3(-0.8f, 1.05f, 1.1f);
+            pcLightObj.transform.position = new Vector3(-1.25f, 1.05f, 1.82f);
             Light pcLight = pcLightObj.AddComponent<Light>();
             pcLight.type = LightType.Point;
-            pcLight.range = 2.5f;
+            pcLight.range = 2.8f;
             pcLight.intensity = 0.65f;
             pcLight.color = new Color(0.45f, 0.75f, 1.0f);
 
             director.pcMonitorItem = CreateInteractableBox(
                 "Interactable_PCMonitor",
                 roomRoot.transform,
-                new Vector3(-0.8f, 1.02f, 1.25f),
+                new Vector3(-1.25f, 1.02f, 2.00f),
                 new Vector3(0.55f, 0.36f, 0.06f),
                 new Color(0.10f, 0.16f, 0.24f),
                 "PC_MONITOR",
@@ -89,7 +96,7 @@ namespace LayarTerakhir.Editor
             director.stickyNoteItem = CreateInteractableBox(
                 "Interactable_StickyNote",
                 roomRoot.transform,
-                new Vector3(-0.42f, 0.77f, 1.05f),
+                new Vector3(-0.87f, 0.77f, 1.80f),
                 new Vector3(0.14f, 0.02f, 0.14f),
                 new Color(0.95f, 0.90f, 0.30f),
                 "STICKY_NOTE",
@@ -100,7 +107,7 @@ namespace LayarTerakhir.Editor
             director.lockedDrawerItem = CreateInteractableBox(
                 "Interactable_LaciMejaTerkunci",
                 roomRoot.transform,
-                new Vector3(-0.45f, 0.56f, 0.82f),
+                new Vector3(-0.90f, 0.56f, 1.57f),
                 new Vector3(0.42f, 0.22f, 0.08f),
                 new Color(0.36f, 0.22f, 0.12f),
                 "LACI_MEJA",
@@ -111,7 +118,7 @@ namespace LayarTerakhir.Editor
             director.wallCalendarItem = CreateInteractableBox(
                 "Interactable_KalenderDinding",
                 roomRoot.transform,
-                new Vector3(0.75f, 1.45f, 1.48f),
+                new Vector3(0.95f, 1.45f, 2.23f),
                 new Vector3(0.38f, 0.52f, 0.03f),
                 new Color(0.90f, 0.88f, 0.85f),
                 "KALENDER_DINDING",
@@ -122,7 +129,7 @@ namespace LayarTerakhir.Editor
             director.suratKosItem = CreateInteractableBox(
                 "Interactable_SuratIbuKos",
                 roomRoot.transform,
-                new Vector3(0.85f, 0.02f, -1.32f),
+                new Vector3(1.25f, 0.02f, -2.07f),
                 new Vector3(0.28f, 0.02f, 0.22f),
                 new Color(0.85f, 0.18f, 0.18f),
                 "SURAT_KOS",
@@ -133,7 +140,7 @@ namespace LayarTerakhir.Editor
             director.smartphoneBedItem = CreateInteractableBox(
                 "Interactable_SmartphoneDiKasur",
                 roomRoot.transform,
-                new Vector3(-1.15f, 0.46f, -0.35f),
+                new Vector3(-2.15f, 0.46f, -0.85f),
                 new Vector3(0.12f, 0.03f, 0.22f),
                 new Color(0.12f, 0.12f, 0.15f),
                 "SMARTPHONE_BED",
@@ -146,16 +153,16 @@ namespace LayarTerakhir.Editor
             redLedObj.transform.localPosition = new Vector3(0f, 0.12f, 0f);
             Light redLed = redLedObj.AddComponent<Light>();
             redLed.type = LightType.Point;
-            redLed.color = Color.red;
-            redLed.range = 1.4f;
-            redLed.intensity = 2.0f;
+            redLed.color = new Color(1.0f, 0.12f, 0.08f);
+            redLed.range = 1.8f;
+            redLed.intensity = 2.4f;
             redLed.enabled = false;
             director.phoneBedRedLed = redLed;
 
             director.kosDoorItem = CreateInteractableBox(
                 "Interactable_PintuKamarKos",
                 roomRoot.transform,
-                new Vector3(0.85f, 1.05f, -1.48f),
+                new Vector3(1.25f, 1.05f, -2.23f),
                 new Vector3(0.92f, 2.1f, 0.08f),
                 new Color(0.33f, 0.20f, 0.12f),
                 "PINTU_KOS",
@@ -166,7 +173,7 @@ namespace LayarTerakhir.Editor
             director.jacketItem = CreateInteractableBox(
                 "Interactable_JaketDiBalikPintu",
                 roomRoot.transform,
-                new Vector3(1.12f, 1.35f, -1.42f),
+                new Vector3(1.55f, 1.35f, -2.17f),
                 new Vector3(0.32f, 0.65f, 0.10f),
                 new Color(0.16f, 0.24f, 0.18f),
                 "JAKET_PINTU",
@@ -221,15 +228,15 @@ namespace LayarTerakhir.Editor
             Light flashLight = flashObj.AddComponent<Light>();
             flashLight.type = LightType.Spot;
             flashLight.spotAngle = 58f;
-            flashLight.range = 10f;
-            flashLight.intensity = 1.4f;
+            flashLight.range = 12f;
+            flashLight.intensity = 1.6f;
             flashLight.enabled = false;
             phoneCtrl.phoneFlashlight = flashLight;
 
             EditorSceneManager.SaveScene(scene, ScenePath);
             RegisterSceneInBuildSettings(ScenePath);
             AssetDatabase.SaveAssets();
-            Debug.Log($"[PrologKosSceneBuilder] Scene berhasil dibuat dan disimpan di: {ScenePath}");
+            Debug.Log($"[PrologKosSceneBuilder] Scene Kamar Kos (6.0x4.5m) berhasil dibuat dan disimpan di: {ScenePath}");
         }
 
         private static void RegisterSceneInBuildSettings(string scenePath)
@@ -312,3 +319,4 @@ namespace LayarTerakhir.Editor
     }
 }
 #endif
+

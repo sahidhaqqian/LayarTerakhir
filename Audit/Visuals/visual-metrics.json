@@ -1,0 +1,60 @@
+{
+    "gpuName": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "postProcessingActive": true,
+    "shots": [
+        {
+            "shotName": "01-gameplay-startup",
+            "meanLuminance": 0.0019748688209801914,
+            "stdDevLuminance": 0.0265837199985981,
+            "darkPixelRatio": 0.9946310520172119,
+            "highlightPixelRatio": 0.0004600694519467652,
+            "tealVsWarmBalance": 0.00039746734546497464,
+            "critiqueHint": "TOO_DARK: Ruangan terlalu gelap buta. Naikkan sedikit postExposure atau lampu aksen."
+        },
+        {
+            "shotName": "02-gameplay-wide-room",
+            "meanLuminance": 0.0004224377335049212,
+            "stdDevLuminance": 0.010133960284292698,
+            "darkPixelRatio": 0.998901903629303,
+            "highlightPixelRatio": 0.000039062499126885086,
+            "tealVsWarmBalance": -0.00011652369721559808,
+            "critiqueHint": "TOO_DARK: Ruangan terlalu gelap buta. Naikkan sedikit postExposure atau lampu aksen."
+        },
+        {
+            "shotName": "03-gameplay-desk-pc",
+            "meanLuminance": 0.005677464883774519,
+            "stdDevLuminance": 0.04105062037706375,
+            "darkPixelRatio": 0.9803038239479065,
+            "highlightPixelRatio": 0.0004991319729015231,
+            "tealVsWarmBalance": 0.0015791973564773799,
+            "critiqueHint": "TOO_DARK: Ruangan terlalu gelap buta. Naikkan sedikit postExposure atau lampu aksen."
+        },
+        {
+            "shotName": "04-gameplay-window-moonlight",
+            "meanLuminance": 0.0000028712317998724758,
+            "stdDevLuminance": 0.0003980580368079245,
+            "darkPixelRatio": 0.9999912977218628,
+            "highlightPixelRatio": 0.0,
+            "tealVsWarmBalance": -0.000010978349564538803,
+            "critiqueHint": "TOO_DARK: Ruangan terlalu gelap buta. Naikkan sedikit postExposure atau lampu aksen."
+        },
+        {
+            "shotName": "05-gameplay-bed-red-led",
+            "meanLuminance": 0.023152969777584077,
+            "stdDevLuminance": 0.09206924587488175,
+            "darkPixelRatio": 0.9307118058204651,
+            "highlightPixelRatio": 0.003854166716337204,
+            "tealVsWarmBalance": 0.053023047745227817,
+            "critiqueHint": "TOO_DARK: Ruangan terlalu gelap buta. Naikkan sedikit postExposure atau lampu aksen."
+        },
+        {
+            "shotName": "06-gameplay-door-flashlight",
+            "meanLuminance": 0.000021414738512248732,
+            "stdDevLuminance": 0.0003589499683585018,
+            "darkPixelRatio": 1.0,
+            "highlightPixelRatio": 0.0,
+            "tealVsWarmBalance": -0.000015948393411235884,
+            "critiqueHint": "TOO_DARK: Ruangan terlalu gelap buta. Naikkan sedikit postExposure atau lampu aksen."
+        }
+    ]
+}
