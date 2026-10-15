@@ -85,7 +85,7 @@ namespace LayarTerakhir.Editor.Tests
             yield return Interact(director.kosDoorItem, new Vector3(0.85f, 0.05f, -0.3f));
             Assert.That(director.currentStage, Is.EqualTo(KosPrologStage.WakeUpAndKnocks));
             yield return WaitForStage(KosPrologStage.WaitReadSuratIbuKos);
-            yield return Interact(director.pcMonitorItem, new Vector3(-0.4f, 0.05f, 0.1f));
+            yield return Interact(director.pcMonitorItem, new Vector3(.85f, .05f, -.05f));
             Assert.That(hud.documentBodyText.text, Does.Contain("32"));
             CloseDocument();
             yield return Interact(director.suratKosItem, new Vector3(0.85f, 0.05f, -0.25f));
@@ -98,25 +98,25 @@ namespace LayarTerakhir.Editor.Tests
             yield return Press();
             CloseDocument();
             yield return WaitForStage(KosPrologStage.WaitPickupSmartphone);
-            yield return Interact(director.smartphoneBedItem, new Vector3(-0.35f, 0.05f, -0.35f));
+            yield return Interact(director.smartphoneBedItem, new Vector3(-.8f, .05f, -.98f));
             Assert.That(Find<SmartphoneController>().hasSmartphoneInInventory, Is.True);
             Assert.That(hud.documentBodyText.text, Does.Contain("14 Panggilan"));
             CloseDocument();
             yield return WaitForStage(KosPrologStage.PreparationAndDrawerPuzzle);
             Assert.That(campaign.Data.wallet_bound, Is.EqualTo(5000000));
-            yield return Interact(director.stickyNoteItem, new Vector3(-0.35f, 0.05f, 0f));
+            yield return Interact(director.stickyNoteItem, new Vector3(.85f, .05f, -.05f));
             Assert.That(hud.documentBodyText.text, Does.Contain("Tanggal & bulan"));
             CloseDocument();
-            yield return Interact(director.wallCalendarItem, new Vector3(0.6f, 0.05f, 0f));
+            yield return Interact(director.wallCalendarItem, new Vector3(.85f, .05f, .5f));
             Assert.That(hud.documentBodyText.text, Does.Contain("14 - 08"));
             CloseDocument();
             if (jacketFirst) yield return Interact(director.jacketItem, new Vector3(1.05f, 0.05f, -0.4f));
-            yield return Interact(director.lockedDrawerItem, new Vector3(-0.35f, 0.05f, 0f));
+            yield return Interact(director.lockedDrawerItem, new Vector3(.95f, .05f, -.65f));
             FoundationAuditTests.Button(hud, "UnlockPadlockBtn").onClick.Invoke();
             Assert.That(director.isDrawerUnlocked, Is.False);
             Assert.That(hud.padlockFeedbackText.text, Does.Contain("salah"));
             FoundationAuditTests.Button(hud, "CancelPadlockBtn").onClick.Invoke();
-            yield return Interact(director.lockedDrawerItem, new Vector3(-0.35f, 0.05f, 0f));
+            yield return Interact(director.lockedDrawerItem, new Vector3(.95f, .05f, -.65f));
             int[] digits = { 1, 4, 8 };
             for (int slot = 0; slot < 3; slot++)
                 for (int n = 0; n < digits[slot]; n++) FoundationAuditTests.Button(hud, "DigitUp_" + slot).onClick.Invoke();
@@ -248,11 +248,15 @@ namespace LayarTerakhir.Editor.Tests
         private IEnumerator MovementCollisionAndCrouchHeadroomUseRuntimePhysicsRoutine()
         {
             Time.timeScale = 1f;
-            PlacePlayer(new Vector3(0.3f, 0.05f, 0f));
+            PlacePlayer(new Vector3(1.4f, .05f, 0f));
             var player = Find<FirstPersonController>();
             InputSystem.QueueStateEvent(_keyboard, new KeyboardState(Key.W));
             yield return new WaitForSeconds(3f);
-            Assert.That(player.transform.position.z, Is.InRange(1.70f, 2.00f));
+            // Same runtime collision check, now against the compact layout's cupboard front.
+            float front=GameObject.Find("CupboardCollision").GetComponent<Collider>().bounds.min.z;
+            var capsule=player.GetComponent<CharacterController>();
+            float expected=front-capsule.radius-capsule.skinWidth;
+            Assert.That(player.transform.position.z, Is.InRange(expected-.04f, expected+.04f));
             yield return Press(Key.LeftCtrl);
             InputSystem.QueueStateEvent(_keyboard, new KeyboardState(Key.LeftCtrl));
             yield return new WaitForSeconds(0.3f);

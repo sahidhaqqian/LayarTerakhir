@@ -17,7 +17,7 @@ namespace LayarTerakhir.Editor
     {
         public static readonly string[] FloorModels = { "vintage_day_bed", "wooden_table_02", "painted_wooden_chair_01",
             "bookcaseClosedDoors", "painted_wooden_cabinet_02", "OldPCTower", "RefillWaterGallon",
-            "plastic_bottle_gallon", "trashcan", "cardboardBoxOpen", "plastic_container", "wicker_basket_02", "KosSandals", "KosBackpack" };
+            "plastic_bottle_gallon", "trashcan", "cardboardBoxOpen", "plastic_container", "wicker_basket_02", "KosSandals", "KosBackpack", "StreamerGreenScreen" };
         [Serializable] public class Check { public string subject, kind, detail; public bool passed; public float measured; }
         [Serializable] public class Report
         {
@@ -40,7 +40,7 @@ namespace LayarTerakhir.Editor
             float floorY=KosVisualV2.FloorY;
             var report=new Report { scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().path,utc=DateTime.UtcNow.ToString("o"),
                 roomDimensions=new Vector3(floor.size.x,GameObject.Find("Ceiling_4x3m").GetComponent<Collider>().bounds.min.y-floor.max.y,floor.size.z)};
-            Add(checks,"Room","dimensions",Mathf.Abs(floor.size.x-6)<.001f&&Mathf.Abs(floor.size.z-4.5f)<.001f,floor.size.x*floor.size.z,"Actual floor collider: "+floor.size);
+            Add(checks,"Room","dimensions",Mathf.Abs(floor.size.x-CompactKosPolish.Width)<.001f&&Mathf.Abs(floor.size.z-CompactKosPolish.Depth)<.001f,floor.size.x*floor.size.z,"Developer-approved compact room, actual floor collider: "+floor.size);
             var grounded=new List<GameObject>();
             foreach(var name in FloorModels)
             {
@@ -113,6 +113,8 @@ namespace LayarTerakhir.Editor
             var controller=player.GetComponent<CharacterController>();
             var grid=ReachableGrid(floor,controller,player.transform.position,floorY);
             report.reachableGridCells=grid.Count;
+            Add(checks,"Player","navigation-cells-clear",grid.All(p=>Physics.OverlapCapsule(p+Vector3.up*controller.radius,p+Vector3.up*(controller.height-controller.radius),controller.radius,~0,QueryTriggerInteraction.Ignore)
+                .All(c=>c==controller||c.transform.IsChildOf(controller.transform))),grid.Count,"Every returned cell must ignore only the player, never world collision");
             Add(checks,"Player","pathway",grid.Count>30,grid.Count,"Flood-fill actual capsule-clear floor cells from player spawn; 25cm grid");
             var interactor=player.GetComponent<InteractionInteractor>();
             foreach(var item in Object.FindObjectsByType<KosInteractableItem>(FindObjectsSortMode.None))
@@ -183,7 +185,7 @@ namespace LayarTerakhir.Editor
             {
                 var p=new Vector3(floor.min.x+step*(x+.5f),floorY+.025f,floor.min.z+step*(z+.5f));
                 var overlaps=Physics.OverlapCapsule(p+Vector3.up*radius,p+Vector3.up*(height-radius),radius,~0,QueryTriggerInteraction.Ignore);
-                if(overlaps.All(c=>c!=controller&&!c.transform.IsChildOf(controller.transform)))free[new Vector2Int(x,z)]=p;
+                if(overlaps.All(c=>c==controller||c.transform.IsChildOf(controller.transform)))free[new Vector2Int(x,z)]=p;
             }
             if(free.Count==0)return new List<Vector3>();
             var start=free.OrderBy(k=>Vector3.SqrMagnitude(k.Value-spawn)).First().Key;

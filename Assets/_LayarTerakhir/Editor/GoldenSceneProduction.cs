@@ -34,6 +34,8 @@ namespace LayarTerakhir.Editor
             AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
             Directory.CreateDirectory(Production+"Prefabs");Directory.CreateDirectory(Production+"Presets");
             ConfigureImports();EditorSceneManager.OpenScene(PrologKosSceneBuilder.ScenePath);
+            // Preserve the later developer-approved compact layout when using the original production menu.
+            if(GameObject.Find("Compact_Kos_Details")){CompactKosPolish.Apply();return;}
             MoveWorkstation();Dress();Lighting();GoldenHudBuilder.Install();Audio();
             Physics.SyncTransforms();EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
             EditorSceneManager.SaveOpenScenes();AssetDatabase.SaveAssets();

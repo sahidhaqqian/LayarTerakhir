@@ -1,0 +1,19 @@
+{
+  "stage": "polish",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.CompactKosPolish.Apply",
+    "-logFile",
+    "/root/Projects/LayarTerakhir/Audit/golden-polish.log"
+  ],
+  "startedUtc": "2026-10-15T09:18:12.314073+00:00",
+  "status": "Finished",
+  "endedUtc": "2026-10-15T09:18:44.234415+00:00",
+  "exitCode": 0
+}

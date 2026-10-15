@@ -65,3 +65,13 @@ The earlier CC0 statement concerns artwork, **not all Golden audio/fonts**. Thes
 The five Freesound downloads are the official, freely served high-quality MP3 previews, **not** the login-protected WAV masters. Source-page licenses were checked before downloading. Their exact CDN URLs, source links, authors, licenses, hashes and sizes are in `golden-source-manifest.json`. The CC BY 4.0 motorcycle recording permits commercial adaptation and redistribution subject to attribution, license link and indication of changes; these notices accompany the compiled game. No DRM or additional restriction is imposed on that recording. Kenney license files are retained under `Audio/Imported/`; only selected clips were extracted, not the full packs.
 
 `Tools/prepare_golden_audio.py` records mono conversion, sample rates, gain/filtering, crossfaded loop seams, peaks, RMS and SHA-256 in `golden-audio-processing.json`. The phone-vibration clip is **original synthesized mechanical vibration**, not a field recording. The microphone and curled bedside-mat mesh are original unbranded project artwork authored with `Tools/author_golden_details.py`; the 56 keyboard keycaps share one generated mesh. These original works follow the project license; third-party works retain the licenses above.
+
+## Compact city-streamer polish — original project art
+
+`Tools/author_compact_kos.py` authors the new portable green screen (sewn/creased cloth, spring clips,
+telescoping poles and low T feet), monitor-clip budget webcam, dropped cotton socks, folded T-shirt,
+and creased old newspaper with coarse printed columns. These are original, unbranded static meshes,
+not downloads, extracted game assets or new story documents. They follow the project license.
+Existing original DampStain alpha is reused for small tracked-floor-dirt patches (one combined mesh),
+and the existing CC0 fabric normal map is reused on the matte green cloth. No new textures, external
+asset packs, fonts or audio were downloaded for this visual-only pass; prior third-party licenses above remain unchanged.

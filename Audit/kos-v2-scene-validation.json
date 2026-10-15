@@ -1,35 +1,35 @@
 {
     "scene": "Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity",
-    "utc": "2026-10-15T08:18:51.0014870Z",
+    "utc": "2026-10-15T09:26:27.9204610Z",
     "failures": 0,
-    "triangles": 93635,
-    "renderers": 193,
+    "triangles": 101747,
+    "renderers": 207,
     "textureMaximum": 1024,
-    "reachableGridCells": 163,
+    "reachableGridCells": 75,
     "roomDimensions": {
-        "x": 6.0,
-        "y": 3.1000001430511476,
-        "z": 4.5
+        "x": 5.0,
+        "y": 2.799999952316284,
+        "z": 3.799999952316284
     },
     "checks": [
         {
             "subject": "Room",
             "kind": "dimensions",
-            "detail": "Actual floor collider: (6.00, 0.10, 4.50)",
+            "detail": "Developer-approved compact room, actual floor collider: (5.00, 0.10, 3.80)",
             "passed": true,
-            "measured": 27.0
+            "measured": 19.0
         },
         {
             "subject": "vintage_day_bed",
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0009999992325901986
+            "measured": 0.0010000411421060563
         },
         {
             "subject": "vintage_day_bed",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (-2.35, 0.46, -0.95), Extents: (0.54, 0.45, 0.90)",
+            "detail": "Actual mesh bounds Center: (-1.89, 0.46, -0.65), Extents: (0.54, 0.45, 0.90)",
             "passed": true,
             "measured": 0.0
         },
@@ -38,12 +38,12 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0009999992325901986
+            "measured": 0.0010000411421060563
         },
         {
             "subject": "wooden_table_02",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (-1.25, 0.38, 1.60), Extents: (0.65, 0.38, 0.33)",
+            "detail": "Actual mesh bounds Center: (-0.45, 0.38, 1.30), Extents: (0.65, 0.38, 0.33)",
             "passed": true,
             "measured": 0.0
         },
@@ -52,12 +52,12 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0009999992325901986
+            "measured": 0.0010000411421060563
         },
         {
             "subject": "painted_wooden_chair_01",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (-1.30, 0.44, 0.86), Extents: (0.23, 0.43, 0.25)",
+            "detail": "Actual mesh bounds Center: (-0.50, 0.44, 0.56), Extents: (0.23, 0.43, 0.25)",
             "passed": true,
             "measured": 0.0
         },
@@ -66,12 +66,12 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0009999992325901986
+            "measured": 0.0010000411421060563
         },
         {
             "subject": "bookcaseClosedDoors",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (2.62, 0.98, 1.48), Extents: (0.28, 0.98, 0.48)",
+            "detail": "Actual mesh bounds Center: (2.12, 0.98, 1.25), Extents: (0.28, 0.98, 0.48)",
             "passed": true,
             "measured": 0.0
         },
@@ -80,12 +80,12 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0009999992325901986
+            "measured": 0.0010000411421060563
         },
         {
             "subject": "painted_wooden_cabinet_02",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (1.65, 0.61, 2.05), Extents: (0.23, 0.60, 0.13)",
+            "detail": "Actual mesh bounds Center: (1.40, 0.61, 1.70), Extents: (0.23, 0.60, 0.13)",
             "passed": true,
             "measured": 0.0
         },
@@ -94,12 +94,12 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0009999992325901986
+            "measured": 0.0010000411421060563
         },
         {
             "subject": "OldPCTower",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (-1.49, 0.22, 1.73), Extents: (0.10, 0.21, 0.19)",
+            "detail": "Actual mesh bounds Center: (-0.69, 0.22, 1.43), Extents: (0.09, 0.21, 0.19)",
             "passed": true,
             "measured": 0.0
         },
@@ -108,12 +108,12 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0009999992325901986
+            "measured": 0.0010000411421060563
         },
         {
             "subject": "RefillWaterGallon",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (2.62, 0.28, -1.25), Extents: (0.15, 0.27, 0.15)",
+            "detail": "Actual mesh bounds Center: (2.10, 0.28, -1.13), Extents: (0.15, 0.27, 0.15)",
             "passed": true,
             "measured": 0.0
         },
@@ -122,12 +122,12 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0009999992325901986
+            "measured": 0.0010000411421060563
         },
         {
             "subject": "plastic_bottle_gallon",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (2.72, 0.16, -1.78), Extents: (0.08, 0.16, 0.07)",
+            "detail": "Actual mesh bounds Center: (2.19, 0.16, -1.62), Extents: (0.08, 0.16, 0.07)",
             "passed": true,
             "measured": 0.0
         },
@@ -136,12 +136,12 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0009999992325901986
+            "measured": 0.0010000411421060563
         },
         {
             "subject": "trashcan",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (-0.42, 0.16, 2.02), Extents: (0.11, 0.15, 0.11)",
+            "detail": "Actual mesh bounds Center: (0.49, 0.16, 1.67), Extents: (0.11, 0.15, 0.11)",
             "passed": true,
             "measured": 0.0
         },
@@ -150,12 +150,12 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0009999992325901986
+            "measured": 0.0010000411421060563
         },
         {
             "subject": "cardboardBoxOpen",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (2.59, 0.14, -0.20), Extents: (0.23, 0.13, 0.15)",
+            "detail": "Actual mesh bounds Center: (2.12, 0.14, -0.48), Extents: (0.23, 0.13, 0.15)",
             "passed": true,
             "measured": 0.0
         },
@@ -164,12 +164,12 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0009999992325901986
+            "measured": 0.0010000411421060563
         },
         {
             "subject": "plastic_container",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (-2.36, 0.15, -2.03), Extents: (0.24, 0.15, 0.15)",
+            "detail": "Actual mesh bounds Center: (-1.94, 0.15, -1.69), Extents: (0.24, 0.15, 0.15)",
             "passed": true,
             "measured": 0.0
         },
@@ -178,12 +178,12 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0009999992325901986
+            "measured": 0.0010000411421060563
         },
         {
             "subject": "wicker_basket_02",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (2.57, 0.24, 0.35), Extents: (0.20, 0.23, 0.19)",
+            "detail": "Actual mesh bounds Center: (2.12, 0.24, 0.13), Extents: (0.20, 0.23, 0.19)",
             "passed": true,
             "measured": 0.0
         },
@@ -192,12 +192,12 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0009999992325901986
+            "measured": 0.0010000411421060563
         },
         {
             "subject": "KosSandals",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (0.60, 0.04, -1.85), Extents: (0.13, 0.03, 0.13)",
+            "detail": "Actual mesh bounds Center: (0.60, 0.04, -1.51), Extents: (0.13, 0.03, 0.13)",
             "passed": true,
             "measured": 0.0
         },
@@ -206,28 +206,49 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0009999992325901986
+            "measured": 0.0010000411421060563
         },
         {
             "subject": "KosBackpack",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (-2.65, 0.23, 0.19), Extents: (0.15, 0.22, 0.13)",
+            "detail": "Actual mesh bounds Center: (-2.18, 0.23, 0.50), Extents: (0.15, 0.22, 0.13)",
             "passed": true,
             "measured": 0.0
+        },
+        {
+            "subject": "StreamerGreenScreen",
+            "kind": "floor-contact",
+            "detail": "Transformed renderer minimum minus actual tile surface (metres)",
+            "passed": true,
+            "measured": 0.0009999815374612809
+        },
+        {
+            "subject": "StreamerGreenScreen",
+            "kind": "room-containment",
+            "detail": "Actual mesh bounds Center: (-0.40, 1.03, -0.35), Extents: (0.85, 1.02, 0.21)",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "vintage_day_bed / plastic_container",
+            "kind": "major-intersection",
+            "detail": "Actual world-space footprints overlap; allowance is 25mm",
+            "passed": true,
+            "measured": 0.009999871253967286
         },
         {
             "subject": "DeskChair",
             "kind": "backrest-direction",
             "detail": "Upper mesh vertices must put the backrest on the side away from the desk",
             "passed": true,
-            "measured": -0.9833475947380066
+            "measured": -0.9833476543426514
         },
         {
             "subject": "DeskChair",
             "kind": "seat-height",
             "detail": "Actual mesh surface at the seat centre; detects toppled/stretched chair orientation",
             "passed": true,
-            "measured": 0.4030717611312866
+            "measured": 0.4030718207359314
         },
         {
             "subject": "PC / KakiMejaKiri",
@@ -1630,20 +1651,6 @@
             "measured": 0.0
         },
         {
-            "subject": "painted_wooden_stool",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "KosBedMat",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
             "subject": "MicBody",
             "kind": "mesh-reference",
             "detail": "Visible MeshFilter must reference an imported/generated mesh",
@@ -1665,6 +1672,111 @@
             "measured": 0.0
         },
         {
+            "subject": "painted_wooden_stool",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosBedMat",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "BackdropStand",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "GreenFabric",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "WebcamLens",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "WebcamShell",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "SockCotton",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "SockRib",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "Newsprint",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "NewsprintInk",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "ShirtCotton",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "ShirtRib",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "Newsprint",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "NewsprintInk",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "TrackedFloorWear",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
             "subject": "CeramicTileFloor",
             "kind": "material-reference",
             "detail": "CeramicTiles",
@@ -1676,7 +1788,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 7.566373348236084
+            "measured": 6.359245777130127
         },
         {
             "subject": "LimewashedCeiling",
@@ -1690,7 +1802,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 7.566373348236084
+            "measured": 6.359245777130127
         },
         {
             "subject": "NorthDado",
@@ -1704,7 +1816,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 6.171029090881348
+            "measured": 5.203998565673828
         },
         {
             "subject": "NorthLimewash",
@@ -1718,7 +1830,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 6.422118186950684
+            "measured": 5.394218921661377
         },
         {
             "subject": "WestDado",
@@ -1732,7 +1844,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 4.725633144378662
+            "measured": 4.064678192138672
         },
         {
             "subject": "WestLimewash",
@@ -1746,7 +1858,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 5.049119472503662
+            "measured": 4.305531978607178
         },
         {
             "subject": "EastDado",
@@ -1760,7 +1872,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 4.739199161529541
+            "measured": 4.080441951751709
         },
         {
             "subject": "EastAboveWindow",
@@ -1774,7 +1886,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 4.696808338165283
+            "measured": 3.9749224185943605
         },
         {
             "subject": "EastNorthOfWindow",
@@ -1788,7 +1900,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 2.6967577934265138
+            "measured": 2.412468194961548
         },
         {
             "subject": "EastSouthOfWindow",
@@ -1802,7 +1914,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 1.8794949054718018
+            "measured": 1.6881946325302125
         },
         {
             "subject": "SouthLeftDado",
@@ -1816,7 +1928,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 4.02730655670166
+            "measured": 3.5649964809417726
         },
         {
             "subject": "SouthLeftLimewash",
@@ -1830,7 +1942,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 4.402408599853516
+            "measured": 3.8373427391052248
         },
         {
             "subject": "SouthRightDado",
@@ -1844,7 +1956,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 1.9155155420303345
+            "measured": 1.6307053565979005
         },
         {
             "subject": "SouthRightLimewash",
@@ -1858,7 +1970,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 2.6136562824249269
+            "measured": 2.1622209548950197
         },
         {
             "subject": "DoorLintelPlaster",
@@ -1872,7 +1984,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 1.70903480052948
+            "measured": 1.5565346479415894
         },
         {
             "subject": "NorthSkirting",
@@ -1886,7 +1998,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 6.001141548156738
+            "measured": 5.001369953155518
         },
         {
             "subject": "WestSkirting",
@@ -1900,7 +2012,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 4.501522064208984
+            "measured": 3.801802158355713
         },
         {
             "subject": "EastSkirting",
@@ -1914,7 +2026,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 4.501522064208984
+            "measured": 3.801802158355713
         },
         {
             "subject": "SouthSkirtingLeft",
@@ -1928,7 +2040,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 3.7618212699890138
+            "measured": 3.2621004581451418
         },
         {
             "subject": "SouthSkirtingRight",
@@ -1942,7 +2054,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 1.2654248476028443
+            "measured": 0.7689603567123413
         },
         {
             "subject": "CeilingTimber_0",
@@ -1956,7 +2068,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 4.500944137573242
+            "measured": 3.8011181354522707
         },
         {
             "subject": "CeilingTimber_1",
@@ -1970,7 +2082,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 4.500944137573242
+            "measured": 3.8011181354522707
         },
         {
             "subject": "CeilingTimber_2",
@@ -1984,7 +2096,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 4.500944137573242
+            "measured": 3.8011181354522707
         },
         {
             "subject": "CeilingTimber_3",
@@ -1998,7 +2110,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 4.500944137573242
+            "measured": 3.8011181354522707
         },
         {
             "subject": "CeilingTimber_4",
@@ -2012,7 +2124,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 4.500944137573242
+            "measured": 3.8011181354522707
         },
         {
             "subject": "CeilingTimber_5",
@@ -2026,7 +2138,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 4.500944137573242
+            "measured": 3.8011181354522707
         },
         {
             "subject": "CeilingCrossBeam_North",
@@ -2040,7 +2152,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 6.0005998611450199
+            "measured": 5.000720024108887
         },
         {
             "subject": "CeilingCrossBeam_South",
@@ -2054,7 +2166,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 6.0005998611450199
+            "measured": 5.000720024108887
         },
         {
             "subject": "NorthDampPatch",
@@ -2068,7 +2180,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 4.336184978485107
+            "measured": 3.7805423736572267
         },
         {
             "subject": "NorthEastDampPatch",
@@ -2082,7 +2194,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 2.7078588008880617
+            "measured": 2.4103941917419435
         },
         {
             "subject": "WestDampPatch",
@@ -2096,7 +2208,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 4.167733669281006
+            "measured": 3.685105562210083
         },
         {
             "subject": "SouthDampPatch",
@@ -2110,7 +2222,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 3.4058773517608644
+            "measured": 3.133687734603882
         },
         {
             "subject": "Window_glass",
@@ -4472,34 +4584,6 @@
             "measured": 0.099887415766716
         },
         {
-            "subject": "painted_wooden_stool",
-            "kind": "material-reference",
-            "detail": "GoldenStool",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "painted_wooden_stool",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 123.67060852050781
-        },
-        {
-            "subject": "KosBedMat",
-            "kind": "material-reference",
-            "detail": "GoldenBedMat",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "KosBedMat",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 165.5018768310547
-        },
-        {
             "subject": "MicBody",
             "kind": "material-reference",
             "detail": "GoldenMicBody",
@@ -4536,6 +4620,230 @@
         },
         {
             "subject": "KeyboardKeycaps",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 1.7320507764816285
+        },
+        {
+            "subject": "painted_wooden_stool",
+            "kind": "material-reference",
+            "detail": "GoldenStool",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "painted_wooden_stool",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 123.67060852050781
+        },
+        {
+            "subject": "KosBedMat",
+            "kind": "material-reference",
+            "detail": "GoldenBedMat",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosBedMat",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 154.41477966308595
+        },
+        {
+            "subject": "BackdropStand",
+            "kind": "material-reference",
+            "detail": "DarkOxidisedMetal",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "BackdropStand",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 172.50747680664063
+        },
+        {
+            "subject": "GreenFabric",
+            "kind": "material-reference",
+            "detail": "CompactGreenCloth",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "GreenFabric",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 172.50747680664063
+        },
+        {
+            "subject": "WebcamLens",
+            "kind": "material-reference",
+            "detail": "CompactWebcamLens",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "WebcamLens",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 161.17335510253907
+        },
+        {
+            "subject": "WebcamShell",
+            "kind": "material-reference",
+            "detail": "OldComputerPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "WebcamShell",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 161.17340087890626
+        },
+        {
+            "subject": "SockCotton",
+            "kind": "material-reference",
+            "detail": "CompactSockCotton",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "SockCotton",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 155.4929656982422
+        },
+        {
+            "subject": "SockRib",
+            "kind": "material-reference",
+            "detail": "CompactSockRib",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "SockRib",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 155.4929656982422
+        },
+        {
+            "subject": "Newsprint",
+            "kind": "material-reference",
+            "detail": "CompactNewsprint",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "Newsprint",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 154.3402099609375
+        },
+        {
+            "subject": "NewsprintInk",
+            "kind": "material-reference",
+            "detail": "CompactNewsprintInk",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "NewsprintInk",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 154.3402099609375
+        },
+        {
+            "subject": "ShirtCotton",
+            "kind": "material-reference",
+            "detail": "CompactShirtCotton",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "ShirtCotton",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 160.77891540527345
+        },
+        {
+            "subject": "ShirtRib",
+            "kind": "material-reference",
+            "detail": "CompactShirtRib",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "ShirtRib",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 160.77891540527345
+        },
+        {
+            "subject": "Newsprint",
+            "kind": "material-reference",
+            "detail": "CompactNewsprint",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "Newsprint",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 92.47303771972656
+        },
+        {
+            "subject": "NewsprintInk",
+            "kind": "material-reference",
+            "detail": "CompactNewsprintInk",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "NewsprintInk",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 92.47303771972656
+        },
+        {
+            "subject": "WebcamUSBLead",
+            "kind": "material-reference",
+            "detail": "OldComputerPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "WebcamUSBLead",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 1.7320507764816285
+        },
+        {
+            "subject": "TrackedFloorWear",
+            "kind": "material-reference",
+            "detail": "CompactFloorTrackedDust",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "TrackedFloorWear",
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
@@ -7097,6 +7405,41 @@
             "measured": 0.0
         },
         {
+            "subject": "BudgetStreamingMicrophone",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosBudgetMicrophone",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "MicBody",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "MicGrille",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KeyboardKeycaps",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
             "subject": "Golden_Dressing",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
@@ -7132,35 +7475,224 @@
             "measured": 0.0
         },
         {
-            "subject": "BudgetStreamingMicrophone",
+            "subject": "Compact_Kos_Details",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
             "passed": true,
             "measured": 0.0
         },
         {
-            "subject": "KosBudgetMicrophone",
+            "subject": "StreamerGreenScreen",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
             "passed": true,
             "measured": 0.0
         },
         {
-            "subject": "MicBody",
+            "subject": "KosStreamerGreenScreen",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
             "passed": true,
             "measured": 0.0
         },
         {
-            "subject": "MicGrille",
+            "subject": "BackdropStand",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
             "passed": true,
             "measured": 0.0
         },
         {
-            "subject": "KeyboardKeycaps",
+            "subject": "GreenFabric",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "GreenClothCollision",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "BackdropPoleCollision",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "BackdropFootCollision",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "BackdropPoleCollision",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "BackdropFootCollision",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "BudgetStreamingWebcam",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosBudgetWebcam",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "WebcamLens",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "WebcamShell",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "DroppedSocksByBed",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosDroppedSocks",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "SockCotton",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "SockRib",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "OldNewspaperByDesk",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosOldNewspaper",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "Newsprint",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "NewsprintInk",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FoldedTshirtOnBed",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosFoldedTshirt",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "ShirtCotton",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "ShirtRib",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "ReadingPaperOnStool",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosOldNewspaper",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "Newsprint",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "NewsprintInk",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "WebcamUSBLead",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "TrackedFloorWear",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
             "passed": true,
@@ -7273,73 +7805,17 @@
         },
         {
             "subject": "Player",
+            "kind": "navigation-cells-clear",
+            "detail": "Every returned cell must ignore only the player, never world collision",
+            "passed": true,
+            "measured": 75.0
+        },
+        {
+            "subject": "Player",
             "kind": "pathway",
             "detail": "Flood-fill actual capsule-clear floor cells from player spawn; 25cm grid",
             "passed": true,
-            "measured": 163.0
-        },
-        {
-            "subject": "PC_MONITOR",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PC_MONITOR",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 0.003999948501586914
-        },
-        {
-            "subject": "PC_MONITOR",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.217428",
-            "passed": true,
-            "measured": 59.0
-        },
-        {
-            "subject": "JAKET_PINTU",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "JAKET_PINTU",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "JAKET_PINTU",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.5650232",
-            "passed": true,
-            "measured": 73.0
-        },
-        {
-            "subject": "LACI_MEJA",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "LACI_MEJA",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "LACI_MEJA",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.657176",
-            "passed": true,
-            "measured": 33.0
+            "measured": 75.0
         },
         {
             "subject": "PINTU_KOS",
@@ -7360,7 +7836,7 @@
             "kind": "reachable-interaction",
             "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.8480633",
             "passed": true,
-            "measured": 94.0
+            "measured": 61.0
         },
         {
             "subject": "SMARTPHONE_BED",
@@ -7374,14 +7850,98 @@
             "kind": "raycast-geometry-alignment",
             "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
             "passed": true,
-            "measured": 0.0
+            "measured": 1.1920928955078126e-7
         },
         {
             "subject": "SMARTPHONE_BED",
             "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.426325",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.465606",
             "passed": true,
-            "measured": 41.0
+            "measured": 26.0
+        },
+        {
+            "subject": "PC_MONITOR",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PC_MONITOR",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 0.004000067710876465
+        },
+        {
+            "subject": "PC_MONITOR",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.253847",
+            "passed": true,
+            "measured": 36.0
+        },
+        {
+            "subject": "KALENDER_DINDING",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KALENDER_DINDING",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 0.02200007438659668
+        },
+        {
+            "subject": "KALENDER_DINDING",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.4781578",
+            "passed": true,
+            "measured": 36.0
+        },
+        {
+            "subject": "JAKET_PINTU",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "JAKET_PINTU",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "JAKET_PINTU",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.763709",
+            "passed": true,
+            "measured": 47.0
+        },
+        {
+            "subject": "STICKY_NOTE",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "STICKY_NOTE",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "STICKY_NOTE",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.116146",
+            "passed": true,
+            "measured": 40.0
         },
         {
             "subject": "SURAT_KOS",
@@ -7402,49 +7962,28 @@
             "kind": "reachable-interaction",
             "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.675999",
             "passed": true,
-            "measured": 74.0
+            "measured": 47.0
         },
         {
-            "subject": "KALENDER_DINDING",
+            "subject": "LACI_MEJA",
             "kind": "interaction-references",
             "detail": "Existing item ID, collider and director binding",
             "passed": true,
             "measured": 0.0
         },
         {
-            "subject": "KALENDER_DINDING",
+            "subject": "LACI_MEJA",
             "kind": "raycast-geometry-alignment",
             "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
             "passed": true,
-            "measured": 0.02200007438659668
+            "measured": 1.4901161193847657e-8
         },
         {
-            "subject": "KALENDER_DINDING",
+            "subject": "LACI_MEJA",
             "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.4054764",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.977822",
             "passed": true,
-            "measured": 70.0
-        },
-        {
-            "subject": "STICKY_NOTE",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "STICKY_NOTE",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "STICKY_NOTE",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.13039",
-            "passed": true,
-            "measured": 75.0
+            "measured": 10.0
         },
         {
             "subject": "KosDoor",
@@ -7458,21 +7997,21 @@
             "kind": "approach-clearance",
             "detail": "Nearest capsule-clear reachable floor cell to actual collider centre",
             "passed": true,
-            "measured": 0.9778802394866943
+            "measured": 1.0226681232452393
         },
         {
             "subject": "MejaKerjaPC",
             "kind": "approach-clearance",
             "detail": "Nearest capsule-clear reachable floor cell to actual collider centre",
             "passed": true,
-            "measured": 0.9572095274925232
+            "measured": 1.005609154701233
         },
         {
             "subject": "LemariPakaian",
             "kind": "approach-clearance",
             "detail": "Nearest capsule-clear reachable floor cell to actual collider centre",
             "passed": true,
-            "measured": 0.752362847328186
+            "measured": 0.7454192042350769
         },
         {
             "subject": "DoorOpening",
@@ -7493,7 +8032,7 @@
             "kind": "triangle-budget",
             "detail": "Visible scene meshes, actual submesh index counts",
             "passed": true,
-            "measured": 93635.0
+            "measured": 101747.0
         },
         {
             "subject": "Art",

@@ -45,10 +45,27 @@ namespace LayarTerakhir.Editor
             Check(!hud.documentPanel.activeSelf&&!hud.padlockPanel.activeSelf&&hud.blackFadeImage.color.a==0,"No modal/debug presentation serialized open");
             var stool=GameObject.Find("BedsideWornStool");var b=KosVisualV2.BoundsOf(stool);
             Check(Mathf.Abs(b.min.y-KosVisualV2.FloorY)<.005f&&stool.GetComponent<BoxCollider>().bounds.Contains(b.center),"New stool grounded with fitted collision");
-            Check(b.max.x<KosVisualV2.BoundsOf(GameObject.Find("BedsideMat")).max.x&&b.max.z<-.99f,"Bedside stool stays away from room centre and phone route");
+            var bed=KosVisualV2.BoundsOf(GameObject.Find("vintage_day_bed"));
+            Check(bed.SqrDistance(b.center)<.25f&&b.min.z>bed.max.z-.025f,"Bedside stool stays beside the bed head, clear of its footprint and phone route");
             var rug=GameObject.Find("BedsideMat");
             float up=rug.GetComponentsInChildren<MeshFilter>().SelectMany(f=>f.sharedMesh.normals.Select(n=>f.transform.TransformDirection(n).y)).Average();
             Check(up>.9f,"Bed mat actual imported surface normals face the ceiling, not the floor");
+            var screen=GameObject.Find("StreamerGreenScreen");var screenBounds=KosVisualV2.BoundsOf(screen);
+            var chair=KosVisualV2.BoundsOf(GameObject.Find("painted_wooden_chair_01"));
+            Check(screenBounds.max.z<chair.min.z-.15f&&screen.GetComponentsInChildren<Collider>().Length==5,"Portable green screen is behind the streamer chair, with cloth/stand collision");
+            var webcam=GameObject.Find("BudgetStreamingWebcam");var cameraBounds=KosVisualV2.BoundsOf(webcam);
+            var monitor=KosVisualV2.BoundsOf(Object.FindFirstObjectByType<KamarKosPrologDirector>().pcMonitorItem.gameObject);
+            var lens=webcam.GetComponentsInChildren<Renderer>().Single(r=>r.name.Contains("Lens"));
+            Check(cameraBounds.min.y>=monitor.max.y-.025f&&Vector3.Dot(lens.bounds.center-cameraBounds.center,screenBounds.center-cameraBounds.center)>0,"Budget webcam clips to the monitor and faces the green-screen seating area");
+            foreach(var pair in new[]{("FoldedTshirtOnBed","vintage_day_bed"),("ReadingPaperOnStool","BedsideWornStool")})
+            {
+                var prop=KosVisualV2.BoundsOf(GameObject.Find(pair.Item1));
+                float gap=prop.min.y-KosVisualV2.SurfaceHeight(GameObject.Find(pair.Item2),prop.center.x,prop.center.z);
+                Check(gap>=-.008f&&gap<=.012f,pair.Item1+" rests on the actual mesh surface, not in mid-air");
+            }
+            var news=GameObject.Find("ReadingPaperOnStool").GetComponentsInChildren<MeshFilter>().Single(f=>f.name=="Newsprint");
+            float newsUp=news.sharedMesh.normals.Average(n=>news.transform.TransformDirection(n).y);
+            Check(newsUp>.9f,"Decorative newsprint face normals point up toward the room lighting");
             foreach(string path in new[]{GoldenHudBuilder.PrefabPath,"Assets/_LayarTerakhir/Production/Prefabs/KosEnvironmentalAudio.prefab","Assets/_LayarTerakhir/Production/Prefabs/GoldenPracticalLighting.prefab"})
                 Check(AssetDatabase.LoadAssetAtPath<GameObject>(path),"Reusable prefab "+Path.GetFileName(path));
             var report=new Record{utc=DateTime.UtcNow.ToString("o"),scene=baseReport.scene,failures=failures,triangles=baseReport.triangles,renderers=baseReport.renderers,

@@ -35,7 +35,7 @@ namespace LayarTerakhir.Diagnostics
         private KamarKosPrologDirector director;
         private HudController hud;
         private FirstPersonController player;
-        private Camera camera;
+        private Camera playerCamera;
         private Receipt receipt;
         private GoldenAudioTap tap;
         private bool failed,done;
@@ -60,12 +60,12 @@ namespace LayarTerakhir.Diagnostics
         {
             yield return null;
             director=FindFirstObjectByType<KamarKosPrologDirector>();hud=HudController.Instance;
-            player=FindFirstObjectByType<FirstPersonController>();camera=player.GetComponent<InteractionInteractor>().playerCamera;
+            player=FindFirstObjectByType<FirstPersonController>();playerCamera=player.GetComponent<InteractionInteractor>().playerCamera;
             receipt=new Receipt{utc=DateTime.UtcNow.ToString("o"),platform=Application.platform.ToString(),gpu=SystemInfo.graphicsDeviceName,
                 graphicsApi=SystemInfo.graphicsDeviceType.ToString(),scene=SceneManager.GetActiveScene().path,actualStandalonePlayer=!Application.isEditor,
                 saveDirectory=Environment.GetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY"),width=Screen.width,height=Screen.height};
             Debug.Log("GOLDEN_PLAYER_AUDIT Starting; actual framebuffer "+Screen.width+"x"+Screen.height+"; GPU="+receipt.gpu);
-            tap=camera.gameObject.AddComponent<GoldenAudioTap>();
+            tap=playerCamera.gameObject.AddComponent<GoldenAudioTap>();
             yield return new WaitForSeconds(4);
             yield return Shot("01-opening");
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-goldenAuditFast")>=0)
@@ -76,20 +76,23 @@ namespace LayarTerakhir.Diagnostics
             }
             yield return WaitStage(KosPrologStage.WaitReadSuratIbuKos);
             player.enabled=false; // Posed gameplay camera, not a claim of manual navigation.
-            View(new Vector3(2.30f,1.6f,-1.55f),new Vector3(-1.10f,.95f,.65f));
+            View(new Vector3(1.50f,1.6f,-1.38f),new Vector3(-.95f,.95f,.22f));
             yield return Shot("02-wide-room");
-            View(new Vector3(-.20f,1.5f,.35f),new Vector3(-1.27f,.85f,1.5f));
+            View(new Vector3(.90f,1.5f,.20f),director.pcMonitorItem.GetComponent<Collider>().bounds.center);
             yield return Shot("03-workstation");
-            View(new Vector3(.05f,1.5f,-.25f),new Vector3(2.95f,1.5f,-.55f));
+            View(new Vector3(1.0f,1.5f,-.15f),new Vector3(2.45f,1.5f,-.55f));
             yield return Shot("04-window");
-            View(new Vector3(-.45f,1.5f,-.35f),new Vector3(-1.95f,.48f,-.95f));
+            View(new Vector3(-.58f,1.5f,-1.16f),new Vector3(-1.92f,.48f,-.55f));
             yield return Shot("05-bedside");
-            View(new Vector3(.3f,1.6f,-.25f),director.suratKosItem.GetComponent<Collider>().bounds.center);
+            View(new Vector3(.95f,1.6f,-.75f),director.suratKosItem.GetComponent<Collider>().bounds.center);
             yield return Shot("06-letter-prompt");
+            Check(ReferenceEquals(player.GetComponent<InteractionInteractor>().CurrentTarget,director.suratKosItem),"Letter is the first interaction ray hit in compact layout");
             director.suratKosItem.Interact();Check(hud.documentPanel.activeSelf,"Letter opens actual document modal");
             yield return Shot("07-letter");hud.documentCloseButton.onClick.Invoke();
             yield return WaitStage(KosPrologStage.WaitPickupSmartphone);
             var rig=director.environmentAudio;receipt.phoneVibrationStarted=rig.HasPhoneVibration;Check(receipt.phoneVibrationStarted,"Existing phone stage starts positional vibration");
+            View(new Vector3(-.8f,1.6f,-.98f),director.smartphoneBedItem.GetComponent<Collider>().bounds.center);yield return null;
+            Check(ReferenceEquals(player.GetComponent<InteractionInteractor>().CurrentTarget,director.smartphoneBedItem),"Bedside phone remains raycast-accessible behind the green screen");
             director.smartphoneBedItem.Interact();receipt.phoneVibrationStopped=!rig.HasPhoneVibration;Check(receipt.phoneVibrationStopped,"Phone pickup stops vibration");
             yield return new WaitForSeconds(.5f);
             var scroll=hud.GetComponent<HudPresentation>().documentScroll;
@@ -98,7 +101,7 @@ namespace LayarTerakhir.Diagnostics
             yield return Shot("08-phone-document-top");scroll.verticalNormalizedPosition=0;
             yield return Shot("09-phone-document-bottom");hud.documentCloseButton.onClick.Invoke();
             yield return WaitStage(KosPrologStage.PreparationAndDrawerPuzzle);
-            View(new Vector3(.20f,1.6f,.10f),new Vector3(2.6f,1.05f,1.4f));
+            View(new Vector3(.80f,1.6f,.10f),new Vector3(2.12f,1.05f,1.15f));
             yield return Shot("10-donation-and-phone");
             director.lockedDrawerItem.Interact();Button("UnlockPadlockBtn").onClick.Invoke();
             Check(!director.isDrawerUnlocked&&hud.padlockPanel.activeSelf,"Wrong code stays locked");
@@ -122,7 +125,7 @@ namespace LayarTerakhir.Diagnostics
         private void View(Vector3 eye,Vector3 target)
         {
             var controller=player.GetComponent<CharacterController>();controller.enabled=false;
-            player.transform.position=new Vector3(eye.x,.03f,eye.z);camera.transform.position=eye;camera.transform.LookAt(target);
+            player.transform.position=new Vector3(eye.x,.03f,eye.z);playerCamera.transform.position=eye;playerCamera.transform.LookAt(target);
             Physics.SyncTransforms();
         }
         private IEnumerator Shot(string name)

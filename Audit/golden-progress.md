@@ -1,5 +1,8 @@
 Golden Scene production — 15 October 2026 UTC
 
+Historical Golden pass below; current developer-approved room is 5 × 3.8m.
+Latest visual polish/build: [compact Kos report](kos-compact-polish.md).
+
 | Phase | Actual progress |
 | --- | --- |
 | 1 Environment | Implemented: workstation moved 27cm into room with its colliders/items/cables; worn bedside stool/mat, original streaming mic and single-mesh keycaps. 6 × 4.5m unchanged; all eight interactions reachable. |

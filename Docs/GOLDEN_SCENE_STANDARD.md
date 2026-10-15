@@ -5,9 +5,12 @@ This is a review candidate, not developer-approved or frozen. Windows/Iris Xe ac
 
 ## Environment and materials
 
-Use metres, Y up. Kos stays **6 × 4.5 m**. Preserve interaction IDs and move visible models,
+Use metres, Y up. The latest developer-approved Kos is **5 × 3.8 m**, ceiling **2.8 m**
+(supersedes the earlier 6 × 4.5 m reference). Preserve interaction IDs and move visible models,
 their collision and interaction roots together. Do not rerun `PrologKosSceneBuilder` over the furnished scene.
-`GoldenSceneProduction.Apply` is an incremental, repeatable production pass, not a new greybox.
+Use `CompactKosPolish.Apply` / `--stage polish` for current visual/layout edits. Do not rerun the
+historical greybox/V1/V2 builders: their original coordinates predate the approved smaller room.
+The Golden production menu routes an already-compact scene back to this polish pass.
 
 Folders below `Assets/_LayarTerakhir`: `Art/Imported/<provider>/<source-id>` for legal source models;
 `Art/Original/Models` for project-authored FBXs; `Art/Generated/Materials` for shared URP materials;
@@ -81,6 +84,7 @@ Run with no other Editor instance on this project:
 
 ```sh
 python3 Tools/run_golden_checks.py --stage apply     # only when authoring the production pass
+python3 Tools/run_golden_checks.py --stage polish    # current 5 × 3.8m sleep/work/stream composition
 python3 Tools/run_golden_checks.py --stage validate
 python3 Tools/run_golden_checks.py --stage test      # EditMode plus enter/exit-PlayMode UnityTests
 python3 Tools/run_golden_checks.py --stage linux

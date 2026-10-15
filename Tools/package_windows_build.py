@@ -39,7 +39,7 @@ assert 'Assembly-CSharp.dll' in assemblies and 'Assembly-CSharp-Editor.dll' not 
 for name in assemblies:assert (out/'LayarTerakhir_Data/Managed'/name).is_file(),name
 assert b'DevelopmentScreenshotCapture' in (out/'LayarTerakhir_Data/Managed/Assembly-CSharp.dll').read_bytes(),'Development screenshot utility is missing'
 scene_data=(out/'LayarTerakhir_Data/level0').read_bytes()
-for marker in ['Kos_Environment_Art','Kos_V2_Details','KosDeskFan','KosCurtains','CeramicTileFloor','WeakTungstenCeiling','CalendarAugust','vintage_day_bed','GoldenHUD','GoldenAudioRig','Golden_Dressing','BedsideWornStool']:assert marker.encode() in scene_data,marker
+for marker in ['Kos_Environment_Art','Kos_V2_Details','KosDeskFan','KosCurtains','CeramicTileFloor','WeakTungstenCeiling','CalendarAugust','vintage_day_bed','GoldenHUD','GoldenAudioRig','Golden_Dressing','BedsideWornStool','Compact_Kos_Details','StreamerGreenScreen','BudgetStreamingWebcam']:assert marker.encode() in scene_data,marker
 assert b'Prolog_KamarKos' in (out/'LayarTerakhir_Data/globalgamemanagers').read_bytes()
 shutil.copy2(root/'Audit/asset-credits.md',out/'Asset-Credits.txt')
 shutil.copy2(root/'Audit/windows-kos-capture.md',out/'Screenshot-Guide.txt')

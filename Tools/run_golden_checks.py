@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 UNITY='/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity'
 parser=argparse.ArgumentParser()
-parser.add_argument('--stage',required=True,choices=['apply','validate','test','linux','windows','player'])
+parser.add_argument('--stage',required=True,choices=['apply','polish','validate','test','linux','windows','player'])
 parser.add_argument('--width',type=int,default=1280)
 parser.add_argument('--height',type=int,default=720)
 parser.add_argument('--graphics',choices=['glcore','vulkan'],default='glcore')
@@ -25,7 +25,7 @@ elif stage=='player':
              '-goldenAudit',str(ROOT/'Audit/Visuals/Golden-Linux'),'-logFile',str(log)]
     if args.fast:command+=['-goldenAuditFast']
 else:
-    methods={'apply':'GoldenSceneProduction.Apply','validate':'GoldenSceneValidation.Run','linux':'GoldenLinuxBuild.Build','windows':'WindowsDevelopmentBuild.Build'}
+    methods={'apply':'GoldenSceneProduction.Apply','polish':'CompactKosPolish.Apply','validate':'GoldenSceneValidation.Run','linux':'GoldenLinuxBuild.Build','windows':'WindowsDevelopmentBuild.Build'}
     if stage in ['linux','windows']:command+=['-buildTarget','Linux64' if stage=='linux' else 'Win64']
     if stage=='windows':
         prior=ROOT/'Builds/Previous'/('before-golden-'+datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S'))
