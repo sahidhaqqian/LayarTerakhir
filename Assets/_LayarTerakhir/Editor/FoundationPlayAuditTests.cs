@@ -251,8 +251,8 @@ namespace LayarTerakhir.Editor.Tests
             PlacePlayer(new Vector3(0.3f, 0.05f, 0f));
             var player = Find<FirstPersonController>();
             InputSystem.QueueStateEvent(_keyboard, new KeyboardState(Key.W));
-            yield return new WaitForSeconds(1f);
-            Assert.That(player.transform.position.z, Is.InRange(0.9f, 1.25f));
+            yield return new WaitForSeconds(3f);
+            Assert.That(player.transform.position.z, Is.InRange(1.70f, 2.00f));
             yield return Press(Key.LeftCtrl);
             InputSystem.QueueStateEvent(_keyboard, new KeyboardState(Key.LeftCtrl));
             yield return new WaitForSeconds(0.3f);
