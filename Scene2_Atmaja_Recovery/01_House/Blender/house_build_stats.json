@@ -1,0 +1,2208 @@
+{
+ "objects": 357,
+ "triangles": 7930,
+ "materials": [
+  "MAT_BrickBase",
+  "MAT_Concrete",
+  "MAT_GlassDark",
+  "MAT_PlasterDamaged",
+  "MAT_PlasterLower",
+  "MAT_PlasterUpper",
+  "MAT_RoofTiles",
+  "MAT_RoofTilesAnnex",
+  "MAT_RustMetal",
+  "MAT_TrimTeak",
+  "MAT_WoodDoor",
+  "MAT_WoodFrameWhite",
+  "WoodTrimSheet01",
+  "WoodTrimSheet01.001",
+  "WoodTrimSheet01.002",
+  "WoodTrimSheet01.003",
+  "WoodTrimSheet01.004",
+  "WoodTrimSheet01.005",
+  "WoodTrimSheet01.006",
+  "WoodTrimSheet01.007",
+  "WoodTrimSheet01.008",
+  "WoodTrimSheet01.009",
+  "WoodTrimSheet01.010",
+  "WoodTrimSheet01.011",
+  "WoodTrimSheet01.012",
+  "WoodTrimSheet01.013",
+  "WoodTrimSheet01.014",
+  "WoodTrimSheet01.015",
+  "WoodTrimSheet01.016",
+  "WoodTrimSheet01.017",
+  "WoodTrimSheet01.018",
+  "WoodTrimSheet01.019",
+  "WoodTrimSheet01.020",
+  "WoodTrimSheet01.021",
+  "WoodTrimSheet01.022",
+  "WoodTrimSheet01.023",
+  "WoodTrimSheet01.024",
+  "WoodTrimSheet01.025",
+  "WoodTrimSheet01.026",
+  "WoodTrimSheet01.027",
+  "WoodTrimSheet01.028",
+  "WoodTrimSheet01.029",
+  "WoodTrimSheet01.030",
+  "WoodTrimSheet01.031",
+  "WoodTrimSheet01.032",
+  "WoodTrimSheet01.033",
+  "WoodTrimSheet01.034",
+  "WoodTrimSheet01.035",
+  "WoodTrimSheet01.036",
+  "WoodTrimSheet01.037",
+  "WoodTrimSheet01.038",
+  "WoodTrimSheet01.039",
+  "WoodTrimSheet01.040",
+  "WoodTrimSheet01.041",
+  "WoodTrimSheet01.042",
+  "WoodTrimSheet01.043",
+  "WoodTrimSheet01.044",
+  "WoodTrimSheet01.045"
+ ],
+ "perObject": {
+  "ANNEX_BACK_lintel_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "ANNEX_BACK_pier_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "ANNEX_BACK_pier_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "ANNEX_EAST_lintel_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "ANNEX_EAST_pier_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "ANNEX_EAST_pier_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "ANNEX_EAST_sill_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "ANNEX_WEST_pier_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "BAND_annex": {
+   "tris": 12,
+   "materials": [
+    "MAT_Concrete"
+   ]
+  },
+  "BAND_mid": {
+   "tris": 12,
+   "materials": [
+    "MAT_Concrete"
+   ]
+  },
+  "DOOR_annex_frame_l": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_annex_frame_r": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_annex_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_annex_leaf_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_annex_panel_0_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_annex_panel_0_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_back_frame_l": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_back_frame_r": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_back_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_back_leaf_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_back_panel_0_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_back_panel_0_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_main_frame_l": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_main_frame_r": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_main_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_main_leaf_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_main_leaf_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_main_panel_0_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_main_panel_0_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_main_panel_1_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_main_panel_1_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_main_transom_bar": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "DOOR_main_transom_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "GUTTER_front": {
+   "tris": 12,
+   "materials": [
+    "MAT_RustMetal"
+   ]
+  },
+  "KIT_Column_TowerOverhangColumn.001": {
+   "tris": 398,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Column_TowerOverhangColumn.002": {
+   "tris": 398,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Column_TowerOverhangColumn.003": {
+   "tris": 398,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter01_polySurface54.001": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter01_polySurface54.002": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter01_polySurface54.003": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter01_polySurface54.004": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter01_polySurface54.005": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter01_polySurface54.006": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter01_polySurface54.007": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter01_polySurface54.008": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter01_polySurface54.009": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter01_polySurface54.010": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter01_polySurface54.011": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter01_polySurface54.012": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter01_polySurface54.013": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter01_polySurface54.014": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter01_polySurface54.015": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter01_polySurface54.016": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter01_polySurface54.017": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter02_polySurface57.001": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter02_polySurface57.002": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter02_polySurface57.003": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter02_polySurface57.004": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter02_polySurface57.005": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter02_polySurface57.006": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter02_polySurface57.007": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter02_polySurface57.008": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter02_polySurface57.009": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter02_polySurface57.010": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter02_polySurface57.011": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter02_polySurface57.012": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter02_polySurface57.013": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter02_polySurface57.014": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter02_polySurface57.015": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter02_polySurface57.016": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter02_polySurface57.017": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter02_polySurface57.018": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_TopTrim_2x1_polySurface101": {
+   "tris": 14,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_WoodenSupportStraight_polySurface139.001": {
+   "tris": 26,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_WoodenSupportStraight_polySurface139.002": {
+   "tris": 26,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_WoodenSupportStraight_polySurface139.003": {
+   "tris": 26,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KITCHEN_broken_pane_0_2": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "KITCHEN_broken_pane_0_4": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "KITCHEN_broken_pane_1_2": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "KITCHEN_broken_pane_2_3": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "KITCHEN_broken_pane_3_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "KITCHEN_broken_pane_3_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "KITCHEN_broken_pane_3_2": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "KITCHEN_broken_pane_3_3": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "KITCHEN_broken_pane_3_4": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "KITCHEN_broken_shard_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "KITCHEN_broken_shard_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "KITCHEN_broken_shard_2": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "PATCH_damaged_east": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterDamaged"
+   ]
+  },
+  "PATCH_damaged_front": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterDamaged"
+   ]
+  },
+  "PIPE_downpipe_e": {
+   "tris": 12,
+   "materials": [
+    "MAT_RustMetal"
+   ]
+  },
+  "PIPE_downpipe_w": {
+   "tris": 12,
+   "materials": [
+    "MAT_RustMetal"
+   ]
+  },
+  "PIPE_elbow_e": {
+   "tris": 12,
+   "materials": [
+    "MAT_RustMetal"
+   ]
+  },
+  "PIPE_elbow_w": {
+   "tris": 12,
+   "materials": [
+    "MAT_RustMetal"
+   ]
+  },
+  "PLINTH": {
+   "tris": 12,
+   "materials": [
+    "MAT_BrickBase"
+   ]
+  },
+  "PLINTH_annex": {
+   "tris": 12,
+   "materials": [
+    "MAT_BrickBase"
+   ]
+  },
+  "KIT_Column_TowerOverhangColumn": {
+   "tris": 398,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_WoodenSupportStraight_polySurface139": {
+   "tris": 26,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter01_polySurface54": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "KIT_Shutter02_polySurface57": {
+   "tris": 68,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "RAFTER_front_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "RAFTER_front_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "RAFTER_front_10": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "RAFTER_front_11": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "RAFTER_front_12": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "RAFTER_front_13": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "RAFTER_front_14": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "RAFTER_front_15": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "RAFTER_front_16": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "RAFTER_front_17": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "RAFTER_front_2": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "RAFTER_front_3": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "RAFTER_front_4": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "RAFTER_front_5": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "RAFTER_front_6": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "RAFTER_front_7": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "RAFTER_front_8": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "RAFTER_front_9": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "RIDGE_hip_0": {
+   "tris": 8,
+   "materials": [
+    "MAT_RoofTilesAnnex"
+   ]
+  },
+  "RIDGE_hip_1": {
+   "tris": 8,
+   "materials": [
+    "MAT_RoofTilesAnnex"
+   ]
+  },
+  "RIDGE_hip_2": {
+   "tris": 8,
+   "materials": [
+    "MAT_RoofTilesAnnex"
+   ]
+  },
+  "RIDGE_hip_3": {
+   "tris": 8,
+   "materials": [
+    "MAT_RoofTilesAnnex"
+   ]
+  },
+  "RIDGE_main": {
+   "tris": 8,
+   "materials": [
+    "MAT_RoofTilesAnnex"
+   ]
+  },
+  "ROOF_annex": {
+   "tris": 12,
+   "materials": [
+    "MAT_RoofTilesAnnex"
+   ]
+  },
+  "ROOF_main_back": {
+   "tris": 12,
+   "materials": [
+    "MAT_RoofTiles"
+   ]
+  },
+  "ROOF_main_front": {
+   "tris": 12,
+   "materials": [
+    "MAT_RoofTiles"
+   ]
+  },
+  "ROOF_main_left": {
+   "tris": 8,
+   "materials": [
+    "MAT_RoofTiles"
+   ]
+  },
+  "ROOF_main_right": {
+   "tris": 8,
+   "materials": [
+    "MAT_RoofTiles"
+   ]
+  },
+  "ROOF_veranda": {
+   "tris": 12,
+   "materials": [
+    "MAT_RoofTiles"
+   ]
+  },
+  "VERANDA_beam": {
+   "tris": 12,
+   "materials": [
+    "MAT_TrimTeak"
+   ]
+  },
+  "VERANDA_platform": {
+   "tris": 12,
+   "materials": [
+    "MAT_Concrete"
+   ]
+  },
+  "VERANDA_step_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_Concrete"
+   ]
+  },
+  "VERANDA_step_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_Concrete"
+   ]
+  },
+  "VERANDA_step_2": {
+   "tris": 12,
+   "materials": [
+    "MAT_Concrete"
+   ]
+  },
+  "WALL_BACK_lintel_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_BACK_lintel_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_BACK_lintel_2": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_BACK_lintel_3": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_BACK_pier_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_BACK_pier_2": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_BACK_pier_4": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_BACK_sill_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_BACK_sill_2": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_BACK_sill_3": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_EAST_lintel_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_EAST_lintel_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_EAST_lintel_2": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_EAST_lintel_3": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_EAST_lintel_4": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_EAST_pier_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_EAST_pier_2": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_EAST_pier_4": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_EAST_pier_5": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_EAST_sill_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_EAST_sill_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_EAST_sill_2": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_EAST_sill_3": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_EAST_sill_4": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_FRONT_lintel_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_FRONT_lintel_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_FRONT_lintel_2": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_FRONT_lintel_3": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_FRONT_lintel_4": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_FRONT_lintel_5": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_FRONT_lintel_6": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_FRONT_pier_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_FRONT_pier_2": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_FRONT_pier_5": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_FRONT_pier_7": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_FRONT_sill_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_FRONT_sill_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_FRONT_sill_2": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_FRONT_sill_4": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_FRONT_sill_5": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_FRONT_sill_6": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_WEST_lintel_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_WEST_lintel_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_WEST_lintel_2": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_WEST_lintel_3": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_WEST_pier_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_WEST_pier_2": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_WEST_pier_4": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_WEST_sill_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_WEST_sill_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_WEST_sill_2": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WALL_WEST_sill_3": {
+   "tris": 12,
+   "materials": [
+    "MAT_PlasterLower"
+   ]
+  },
+  "WIN_b_u0_frame_bottom": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_u0_frame_left": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_u0_frame_right": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_u0_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_u0_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "WIN_b_u0_mullion": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_u0_muntin_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_u0_muntin_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_u0_sill": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_u1_frame_bottom": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_u1_frame_left": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_u1_frame_right": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_u1_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_u1_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "WIN_b_u1_mullion": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_u1_muntin_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_u1_muntin_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_u1_sill": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_w_frame_bottom": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_w_frame_left": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_w_frame_right": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_w_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_w_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "WIN_b_w_mullion": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_w_muntin_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_w_muntin_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_b_w_sill": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_g0_frame_bottom": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_g0_frame_left": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_g0_frame_right": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_g0_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_g0_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "WIN_e_g0_mullion": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_g0_muntin_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_g0_muntin_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_g0_sill": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_g1_frame_bottom": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_g1_frame_left": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_g1_frame_right": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_g1_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_g1_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "WIN_e_g1_mullion": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_g1_muntin_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_g1_muntin_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_g1_sill": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u0_frame_bottom": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u0_frame_left": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u0_frame_right": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u0_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u0_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "WIN_e_u0_mullion": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u0_muntin_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u0_muntin_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u0_sill": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u1_frame_bottom": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u1_frame_left": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u1_frame_right": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u1_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u1_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "WIN_e_u1_mullion": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u1_muntin_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u1_muntin_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u1_sill": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u2_frame_bottom": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u2_frame_left": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u2_frame_right": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u2_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u2_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "WIN_e_u2_mullion": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u2_muntin_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u2_muntin_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_e_u2_sill": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_gL_frame_bottom": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_gL_frame_left": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_gL_frame_right": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_gL_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_gL_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "WIN_f_gL_mullion": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_gL_muntin_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_gL_muntin_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_gL_sill": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_gR_frame_bottom": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_gR_frame_left": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_gR_frame_right": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_gR_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_gR_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "WIN_f_gR_mullion": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_gR_muntin_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_gR_muntin_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_gR_sill": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u0_frame_bottom": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u0_frame_left": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u0_frame_right": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u0_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u0_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "WIN_f_u0_mullion": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u0_muntin_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u0_muntin_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u0_sill": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u1_frame_bottom": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u1_frame_left": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u1_frame_right": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u1_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u1_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "WIN_f_u1_mullion": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u1_muntin_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u1_muntin_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u1_sill": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u2_frame_bottom": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u2_frame_left": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u2_frame_right": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u2_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u2_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "WIN_f_u2_mullion": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u2_muntin_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u2_muntin_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u2_sill": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u3_frame_bottom": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u3_frame_left": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u3_frame_right": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u3_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u3_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "WIN_f_u3_mullion": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u3_muntin_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u3_muntin_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_f_u3_sill": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_kitchen_broken_frame_bottom": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "WIN_kitchen_broken_frame_left": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "WIN_kitchen_broken_frame_right": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "WIN_kitchen_broken_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "WIN_kitchen_broken_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "WIN_kitchen_broken_mullion": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "WIN_kitchen_broken_muntin_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "WIN_kitchen_broken_muntin_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "WIN_kitchen_broken_sill": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodDoor"
+   ]
+  },
+  "WIN_w_g0_frame_bottom": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_g0_frame_left": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_g0_frame_right": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_g0_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_g0_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "WIN_w_g0_mullion": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_g0_muntin_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_g0_muntin_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_g0_sill": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_g1_frame_bottom": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_g1_frame_left": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_g1_frame_right": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_g1_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_g1_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "WIN_w_g1_mullion": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_g1_muntin_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_g1_muntin_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_g1_sill": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_u0_frame_bottom": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_u0_frame_left": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_u0_frame_right": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_u0_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_u0_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "WIN_w_u0_mullion": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_u0_muntin_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_u0_muntin_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_u0_sill": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_u1_frame_bottom": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_u1_frame_left": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_u1_frame_right": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_u1_frame_top": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_u1_glass": {
+   "tris": 12,
+   "materials": [
+    "MAT_GlassDark"
+   ]
+  },
+  "WIN_w_u1_mullion": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_u1_muntin_0": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_u1_muntin_1": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  },
+  "WIN_w_u1_sill": {
+   "tris": 12,
+   "materials": [
+    "MAT_WoodFrameWhite"
+   ]
+  }
+ }
+}
