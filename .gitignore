@@ -111,3 +111,15 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# Scene 2 asset research download cache (re-downloadable; see tools/fetch_scene2_assets.py)
+/Scene2_Atmaja_Assets/.cache/
+
+# Generated asset-package archives (reproducible via tools/package_*.py)
+/AssetResearch/*.zip
+/AssetResearch/*.zip.sha256
+/Scene2_Atmaja_Assets/*.zip
+/Scene2_Atmaja_Assets/*.zip.sha256
+
+# Python bytecode
+__pycache__/

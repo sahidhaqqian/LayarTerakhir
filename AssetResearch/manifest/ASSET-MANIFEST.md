@@ -1,8 +1,10 @@
 # Asset manifest - Kamar Kos clutter drop
 
-Curated by the Asset Researcher role (`deepseek.md`) for the LayarTerakhir Kamar Kos environment. All 13 assets are
+Curated by the Asset Researcher role (`deepseek.md`) for the LayarTerakhir Kamar Kos environment. All 10 assets are
 **Poly Haven CC0-1.0** downloads verified against the live API ([verification report](verification-report.json), license evidence in `../evidence/polyhaven-license.txt`).
 Nothing was installed into the Unity project; integration happens only after the independent review in `../REVIEW-CHECKLIST.md`.
+
+Review cleanup 2026-10-15: three previously downloaded assets (industrial_pastic_container, retro_multimeter, cassette_player) were rejected and removed from the collection, with textures and previews; see "Removed on review" below.
 
 | # | Asset | Category | Tris | Author | Local preview | Source render |
 | --- | --- | --- | ---: | --- | --- | --- |
@@ -11,14 +13,11 @@ Nothing was installed into the Unity project; integration happens only after the
 | 3 | [Clipboard](https://polyhaven.com/a/clipboard) | loose papers | 6176 | ProgrammerOnCoffee | <img src="../assets/clipboard/preview.png" width="160"> | <img src="../assets/clipboard/source-preview.png" width="160"> |
 | 4 | [Plastic Thermos](https://polyhaven.com/a/plastic_thermos) | water bottle or cup | 5514 | PierreB3D | <img src="../assets/plastic_thermos/preview.png" width="160"> | <img src="../assets/plastic_thermos/source-preview.png" width="160"> |
 | 5 | [Plastic Crate 02](https://polyhaven.com/a/plastic_crate_02) | small storage box | 5840 | Fabi_G | <img src="../assets/plastic_crate_02/preview.png" width="160"> | <img src="../assets/plastic_crate_02/source-preview.png" width="160"> |
-| 6 | [Industrial Plastic Container](https://polyhaven.com/a/industrial_pastic_container) | small storage box | 7118 | Galo Benivegna | <img src="../assets/industrial_pastic_container/preview.png" width="160"> | <img src="../assets/industrial_pastic_container/source-preview.png" width="160"> |
-| 7 | [Gamepad](https://polyhaven.com/a/gamepad) | cables / chargers (electronics) | 9546 | Josh Dean | <img src="../assets/gamepad/preview.png" width="160"> | <img src="../assets/gamepad/source-preview.png" width="160"> |
-| 8 | [Retro Multimeter](https://polyhaven.com/a/retro_multimeter) | cables / chargers (electronics) | 13356 | elli moeller | <img src="../assets/retro_multimeter/preview.png" width="160"> | <img src="../assets/retro_multimeter/source-preview.png" width="160"> |
-| 9 | [Cassette Player](https://polyhaven.com/a/cassette_player) | miscellaneous small items | 4830 | Oday Abuzaeed | <img src="../assets/cassette_player/preview.png" width="160"> | <img src="../assets/cassette_player/source-preview.png" width="160"> |
-| 10 | [Wall Clock](https://polyhaven.com/a/wall_clock) | room dressing | 3658 | PierreB3D | <img src="../assets/wall_clock/preview.png" width="160"> | <img src="../assets/wall_clock/source-preview.png" width="160"> |
-| 11 | [Alarm Clock 01](https://polyhaven.com/a/alarm_clock_01) | miscellaneous small items | 13006 | Yann Kervran, James Ray Cock | <img src="../assets/alarm_clock_01/preview.png" width="160"> | <img src="../assets/alarm_clock_01/source-preview.png" width="160"> |
-| 12 | [Wooden Broom](https://polyhaven.com/a/wooden_broom) | lived-in utility | 14258 | Balen | <img src="../assets/wooden_broom/preview.png" width="160"> | <img src="../assets/wooden_broom/source-preview.png" width="160"> |
-| 13 | [Vintage Flashlight](https://polyhaven.com/a/vintage_flashlight) | lived-in utility | 10562 | Omar M. El-Safy | <img src="../assets/vintage_flashlight/preview.png" width="160"> | <img src="../assets/vintage_flashlight/source-preview.png" width="160"> |
+| 6 | [Gamepad](https://polyhaven.com/a/gamepad) | cables / chargers (electronics) | 9546 | Josh Dean | <img src="../assets/gamepad/preview.png" width="160"> | <img src="../assets/gamepad/source-preview.png" width="160"> |
+| 7 | [Wall Clock](https://polyhaven.com/a/wall_clock) | room dressing | 3658 | PierreB3D | <img src="../assets/wall_clock/preview.png" width="160"> | <img src="../assets/wall_clock/source-preview.png" width="160"> |
+| 8 | [Alarm Clock 01](https://polyhaven.com/a/alarm_clock_01) | miscellaneous small items | 13006 | Yann Kervran, James Ray Cock | <img src="../assets/alarm_clock_01/preview.png" width="160"> | <img src="../assets/alarm_clock_01/source-preview.png" width="160"> |
+| 9 | [Wooden Broom](https://polyhaven.com/a/wooden_broom) | lived-in utility | 14258 | Balen | <img src="../assets/wooden_broom/preview.png" width="160"> | <img src="../assets/wooden_broom/source-preview.png" width="160"> |
+| 10 | [Vintage Flashlight](https://polyhaven.com/a/vintage_flashlight) | lived-in utility | 10562 | Omar M. El-Safy | <img src="../assets/vintage_flashlight/preview.png" width="160"> | <img src="../assets/vintage_flashlight/source-preview.png" width="160"> |
 
 Preview columns: left is a local Cycles render of the exact downloaded FBX (1K JPG maps, glass simplified); right is the official source render.
 
@@ -127,28 +126,7 @@ Preview columns: left is a local Cycles render of the exact downloaded FBX (1K J
   - `assets/plastic_crate_02/source-preview.png` - 45,352 bytes, sha256 `4323c80df3356bd7...`
     - source: https://cdn.polyhaven.com/asset_img/thumbs/plastic_crate_02.png?width=512&height=512&format=webp&v=e6f7ff77
 
-## 6. Industrial Plastic Container
-
-- **Source:** https://polyhaven.com/a/industrial_pastic_container
-- **Author:** Galo Benivegna
-- **License:** CC0-1.0 (https://polyhaven.com/license); attribution not required
-- **Geometry:** 7118 triangles; source bounds 0.476 x 0.631 x 0.423 m (measured FBX union 0.476 x 0.631 x 0.423 m)
-- **Suggested use:** Lidded plastic storage box with ribbed sides; storage for clothing or electronics.
-- **Suggested placement:** Top of the wardrobe or under the desk.
-- **Import guidance:** texture preset 512 px, mipmaps on, anisotropy 2, simple fitted collider, no lights/cameras/animation, no automatic mesh colliders
-- **Files:**
-  - `assets/industrial_pastic_container/industrial_pastic_container_1k.fbx` - 203,484 bytes, sha256 `2ddbbcba61925927...`
-    - source: https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/industrial_pastic_container/industrial_pastic_container_1k.fbx
-  - `assets/industrial_pastic_container/textures/industrial_pastic_container_nor_gl_1k.jpg` - 125,304 bytes, sha256 `608ccf9fd66eed1c...`
-    - source: https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/industrial_pastic_container/industrial_pastic_container_nor_gl_1k.jpg
-  - `assets/industrial_pastic_container/textures/industrial_pastic_container_diff_1k.jpg` - 184,497 bytes, sha256 `dd4711467c6976f5...`
-    - source: https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/industrial_pastic_container/industrial_pastic_container_diff_1k.jpg
-  - `assets/industrial_pastic_container/textures/industrial_pastic_container_arm_1k.jpg` - 881,895 bytes, sha256 `41e9b8f374013fc5...`
-    - source: https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/industrial_pastic_container/industrial_pastic_container_arm_1k.jpg
-  - `assets/industrial_pastic_container/source-preview.png` - 24,886 bytes, sha256 `32d537490e7fd53a...`
-    - source: https://cdn.polyhaven.com/asset_img/thumbs/industrial_pastic_container.png?width=512&height=512&format=webp&v=c1aa7f7b
-
-## 7. Gamepad
+## 6. Gamepad
 
 - **Source:** https://polyhaven.com/a/gamepad
 - **Author:** Josh Dean
@@ -169,55 +147,7 @@ Preview columns: left is a local Cycles render of the exact downloaded FBX (1K J
   - `assets/gamepad/source-preview.png` - 32,248 bytes, sha256 `536242bae0d09126...`
     - source: https://cdn.polyhaven.com/asset_img/thumbs/gamepad.png?width=512&height=512&format=webp&v=18f750ce
 
-## 8. Retro Multimeter
-
-- **Source:** https://polyhaven.com/a/retro_multimeter
-- **Author:** elli moeller
-- **License:** CC0-1.0 (https://polyhaven.com/license); attribution not required
-- **Geometry:** 13356 triangles; source bounds 0.216 x 0.203 x 0.279 m (measured FBX union 0.216 x 0.203 x 0.279 m)
-- **Suggested use:** Analog multimeter with coiled red/black probes; fits Raka tinkering with his stream rig.
-- **Suggested placement:** Desk or shelf; keep the probes resting on the surface.
-- **Import guidance:** texture preset 512 px, mipmaps on, anisotropy 2, simple fitted collider, no lights/cameras/animation, no automatic mesh colliders
-- **Files:**
-  - `assets/retro_multimeter/retro_multimeter_1k.fbx` - 339,596 bytes, sha256 `f3b459c105d11da9...`
-    - source: https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/retro_multimeter/retro_multimeter_1k.fbx
-  - `assets/retro_multimeter/textures/retro_multimeter_nor_gl_1k.jpg` - 252,642 bytes, sha256 `d30fd3007cb35e62...`
-    - source: https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/retro_multimeter/retro_multimeter_nor_gl_1k.jpg
-  - `assets/retro_multimeter/textures/retro_multimeter_diff_1k.jpg` - 399,388 bytes, sha256 `46baf6d9026f3cc7...`
-    - source: https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/retro_multimeter/retro_multimeter_diff_1k.jpg
-  - `assets/retro_multimeter/textures/retro_multimeter_arm_1k.jpg` - 454,111 bytes, sha256 `3fbf956cfc9830fb...`
-    - source: https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/retro_multimeter/retro_multimeter_arm_1k.jpg
-  - `assets/retro_multimeter/source-preview.png` - 26,394 bytes, sha256 `bce4dff12cb00295...`
-    - source: https://cdn.polyhaven.com/asset_img/thumbs/retro_multimeter.png?width=512&height=512&format=webp&v=014e4b6a
-
-## 9. Cassette Player
-
-- **Source:** https://polyhaven.com/a/cassette_player
-- **Author:** Oday Abuzaeed
-- **License:** CC0-1.0 (https://polyhaven.com/license); attribution not required
-- **Geometry:** 4830 triangles; source bounds 0.130 x 0.049 x 0.237 m (measured FBX union 0.130 x 0.049 x 0.237 m)
-- **Suggested use:** Old radio/cassette unit; lived-in music device for a budget room.
-- **Suggested placement:** Shelf or desk edge, against the wall.
-- **Import guidance:** texture preset 512 px, mipmaps on, anisotropy 2, simple fitted collider, no lights/cameras/animation, no automatic mesh colliders
-- **Files:**
-  - `assets/cassette_player/cassette_player_1k.fbx` - 233,212 bytes, sha256 `9254cb8460568fbb...`
-    - source: https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/cassette_player/cassette_player_1k.fbx
-  - `assets/cassette_player/textures/cassette_player_tape_orangeblue_diff_1k.jpg` - 155,829 bytes, sha256 `17dc2f98a700e2e2...`
-    - source: https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/cassette_player/cassette_player_tape_orangeblue_diff_1k.jpg
-  - `assets/cassette_player/textures/cassette_player_body_nor_gl_1k.jpg` - 138,542 bytes, sha256 `1fad4388095f157a...`
-    - source: https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/cassette_player/cassette_player_body_nor_gl_1k.jpg
-  - `assets/cassette_player/textures/cassette_player_tape_arm_1k.jpg` - 102,646 bytes, sha256 `ac1c67cc2871ff3f...`
-    - source: https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/cassette_player/cassette_player_tape_arm_1k.jpg
-  - `assets/cassette_player/textures/cassette_player_body_arm_1k.jpg` - 180,349 bytes, sha256 `2bfc0ee4521354c8...`
-    - source: https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/cassette_player/cassette_player_body_arm_1k.jpg
-  - `assets/cassette_player/textures/cassette_player_body_diff_1k.jpg` - 92,420 bytes, sha256 `2ba804ff09613f4e...`
-    - source: https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/cassette_player/cassette_player_body_diff_1k.jpg
-  - `assets/cassette_player/textures/cassette_player_tape_nor_gl_1k.jpg` - 119,871 bytes, sha256 `99a5c90fdc8d3bfa...`
-    - source: https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/cassette_player/cassette_player_tape_nor_gl_1k.jpg
-  - `assets/cassette_player/source-preview.png` - 29,850 bytes, sha256 `2b5d3752562aa824...`
-    - source: https://cdn.polyhaven.com/asset_img/thumbs/cassette_player.png?width=512&height=512&format=webp&v=3124c347
-
-## 10. Wall Clock
+## 7. Wall Clock
 
 - **Source:** https://polyhaven.com/a/wall_clock
 - **Author:** PierreB3D
@@ -240,7 +170,7 @@ Preview columns: left is a local Cycles render of the exact downloaded FBX (1K J
   - `assets/wall_clock/source-preview.png` - 27,046 bytes, sha256 `05e961d2a529f2ab...`
     - source: https://cdn.polyhaven.com/asset_img/thumbs/wall_clock.png?width=512&height=512&format=webp&v=65459aa0
 
-## 11. Alarm Clock 01
+## 8. Alarm Clock 01
 
 - **Source:** https://polyhaven.com/a/alarm_clock_01
 - **Author:** Yann Kervran, James Ray Cock
@@ -261,7 +191,7 @@ Preview columns: left is a local Cycles render of the exact downloaded FBX (1K J
   - `assets/alarm_clock_01/source-preview.png` - 35,844 bytes, sha256 `d9572218f7d1f022...`
     - source: https://cdn.polyhaven.com/asset_img/thumbs/alarm_clock_01.png?width=512&height=512&format=webp&v=597e9c0a
 
-## 12. Wooden Broom
+## 9. Wooden Broom
 
 - **Source:** https://polyhaven.com/a/wooden_broom
 - **Author:** Balen
@@ -284,7 +214,7 @@ Preview columns: left is a local Cycles render of the exact downloaded FBX (1K J
   - `assets/wooden_broom/source-preview.png` - 25,212 bytes, sha256 `b1d051e001176c16...`
     - source: https://cdn.polyhaven.com/asset_img/thumbs/wooden_broom.png?width=512&height=512&format=webp&v=47c9f648
 
-## 13. Vintage Flashlight
+## 10. Vintage Flashlight
 
 - **Source:** https://polyhaven.com/a/vintage_flashlight
 - **Author:** Omar M. El-Safy
@@ -327,6 +257,16 @@ Preview columns: left is a local Cycles render of the exact downloaded FBX (1K J
 | dustpan | Could pair with the broom, but not part of the approved clutter list. |
 | potted_plant_04 | Plausible but purely decorative; deferred to avoid random props. |
 | classic_laptop | Redundant with the existing desktop workstation; deferred. |
+
+## Removed on review (2026-10-15)
+
+Previously downloaded, then rejected by the asset review; files, textures and previews were deleted from this drop and are not downloaded again.
+
+| Removed asset | Reason |
+| --- | --- |
+| industrial_pastic_container | Rejected on review: the industrial storage tub does not fit the modest kos; plastic_crate_02 already covers storage. Files, textures and previews deleted; not re-downloaded. |
+| retro_multimeter | Rejected on review: technician tool reads as unneeded clutter next to the existing desk electronics. Files, textures and previews deleted; not re-downloaded. |
+| cassette_player | Rejected on review: retro music device is not part of the approved clutter list. Files, textures and previews deleted; not re-downloaded. |
 
 ## Gaps not covered by downloads
 

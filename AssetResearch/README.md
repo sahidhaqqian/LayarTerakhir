@@ -6,9 +6,14 @@ The approved production brief (`goal.md`, handled separately by the scene-polish
 the lived-in clutter this drop targets: loose papers, a water bottle/cup, a small storage box,
 notebook/misc small items and believable cable/electronics clutter.
 
-**13 assets are delivered as real files** (FBX 1K + PBR maps + previews), each independently
+**10 assets are delivered as real files** (FBX 1K + PBR maps + previews), each independently
 downloadable and hash-verified against the live source. Nothing here is installed in the Unity
 project: integration is gated behind the review in [`REVIEW-CHECKLIST.md`](REVIEW-CHECKLIST.md).
+
+**Review cleanup 2026-10-15:** industrial_pastic_container, retro_multimeter and cassette_player
+were rejected by the asset review and removed from the collection together with their textures and
+previews (files verified absent from production content first). They are not downloaded again and
+are listed under "Removed on review" in the manifest.
 
 ## Contents
 
@@ -55,18 +60,15 @@ voluntarily in the manifest. The API was used per the public terms saved in `evi
 | clipboard | loose papers | 6,176 | polyhaven.com/a/clipboard |
 | plastic_thermos | water bottle / cup | 5,514 | polyhaven.com/a/plastic_thermos |
 | plastic_crate_02 | small storage box | 5,840 | polyhaven.com/a/plastic_crate_02 |
-| industrial_pastic_container | storage box | 7,118 | polyhaven.com/a/industrial_pastic_container |
 | gamepad | cables / electronics | 9,546 | polyhaven.com/a/gamepad |
-| retro_multimeter | cables / electronics | 13,356 | polyhaven.com/a/retro_multimeter |
-| cassette_player | misc small items | 4,830 | polyhaven.com/a/cassette_player |
 | wall_clock | room dressing | 3,658 | polyhaven.com/a/wall_clock |
 | alarm_clock_01 | misc small items | 13,006 | polyhaven.com/a/alarm_clock_01 |
 | wooden_broom | lived-in utility | 14,258 | polyhaven.com/a/wooden_broom |
 | vintage_flashlight | lived-in utility | 10,562 | polyhaven.com/a/vintage_flashlight |
 
-Total ~99k triangles if everything were placed; see `ASSET-MANIFEST.md` for per-asset placement
-notes, rejected candidates (with reasons) and categories no CC0 source could cover honestly
-(clothing, chargers, Indonesian print).
+Total ~74k triangles if everything were placed; see `ASSET-MANIFEST.md` for per-asset placement
+notes, rejected candidates (with reasons, including the three removed on review) and categories no
+CC0 source could cover honestly (clothing, chargers, Indonesian print).
 
 ## Reproduce
 
@@ -85,10 +87,11 @@ python3 AssetResearch/tools/package_zip.py          # ZIP + SHA-256
 2. Prefer CC0 - all 13 are CC0 1.0. Yes.
 3. Actual model files and required textures downloaded - FBX + diff/nor_gl/arm JPGs. Yes.
 4. FBX/GLB/GLTF/OBJ prioritized - FBX 1K for each. Yes.
-5. Reject low-quality/cartoonish/oversized/inconsistent - 18 candidates rejected with reasons. Yes.
+5. Reject low-quality/cartoonish/oversized/inconsistent - 18 candidates rejected with reasons
+   before download, plus 3 downloaded assets removed on review. Yes.
 6. No unnecessary polycounts or 4K - 666-14k tris each, 1K source maps, 512px recommended at runtime. Yes.
 7. Source URLs, licenses, attribution requirements - per asset in both manifests. Yes.
-8. Preview image for every asset - local render **and** official render for all 13. Yes.
+8. Preview image for every asset - local render **and** official render for all 10. Yes.
 9. Organized by asset name, packaged in a ZIP - see the ZIP in this folder. Yes.
 10. Unity project untouched - everything lives under `AssetResearch/`. Yes.
 

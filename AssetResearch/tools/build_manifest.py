@@ -46,26 +46,11 @@ CURATION = {
         'use': 'Stackable plastic crate for personal storage (books, cables, supplies).',
         'placement': 'Under the bed or at the foot of the wardrobe, on the floor.',
     },
-    'industrial_pastic_container': {
-        'category': 'small storage box',
-        'use': 'Lidded plastic storage box with ribbed sides; storage for clothing or electronics.',
-        'placement': 'Top of the wardrobe or under the desk.',
-    },
     'gamepad': {
         'category': 'cables / chargers (electronics)',
         'use': 'Worn wired gamepad with its coiled cable; streamer/gamer clutter and a believable cable source.',
         'placement': 'Desk surface next to the keyboard.',
         'notes': 'The long cable is part of the mesh; trim or route it per the existing desk layout.',
-    },
-    'retro_multimeter': {
-        'category': 'cables / chargers (electronics)',
-        'use': 'Analog multimeter with coiled red/black probes; fits Raka tinkering with his stream rig.',
-        'placement': 'Desk or shelf; keep the probes resting on the surface.',
-    },
-    'cassette_player': {
-        'category': 'miscellaneous small items',
-        'use': 'Old radio/cassette unit; lived-in music device for a budget room.',
-        'placement': 'Shelf or desk edge, against the wall.',
     },
     'wall_clock': {
         'category': 'room dressing',
@@ -110,6 +95,20 @@ REJECTED = [
     ('dustpan', 'Could pair with the broom, but not part of the approved clutter list.'),
     ('potted_plant_04', 'Plausible but purely decorative; deferred to avoid random props.'),
     ('classic_laptop', 'Redundant with the existing desktop workstation; deferred.'),
+]
+
+# Already downloaded, then rejected during the 2026-10-15 review (deepseek.md /
+# goal.md) and removed from the drop together with their textures and previews.
+REJECTED_IN_REVIEW = [
+    ('industrial_pastic_container',
+     'Rejected on review: the industrial storage tub does not fit the modest kos; '
+     'plastic_crate_02 already covers storage. Files, textures and previews deleted; not re-downloaded.'),
+    ('retro_multimeter',
+     'Rejected on review: technician tool reads as unneeded clutter next to the existing '
+     'desk electronics. Files, textures and previews deleted; not re-downloaded.'),
+    ('cassette_player',
+     'Rejected on review: retro music device is not part of the approved clutter list. '
+     'Files, textures and previews deleted; not re-downloaded.'),
 ]
 
 GAPS = [
@@ -171,6 +170,7 @@ def main() -> None:
         },
         'assets': curated,
         'rejectedCandidates': [{'id': i, 'reason': r} for i, r in REJECTED],
+        'removedOnReview': [{'id': i, 'reason': r} for i, r in REJECTED_IN_REVIEW],
         'gapsNotCoveredByDownloads': [{'topic': t, 'details': d} for t, d in GAPS],
     }, indent=2) + '\n')
 
@@ -178,12 +178,17 @@ def main() -> None:
         '# Asset manifest - Kamar Kos clutter drop',
         '',
         'Curated by the Asset Researcher role (`deepseek.md`) for the LayarTerakhir '
-        'Kamar Kos environment. All 13 assets are',
+        'Kamar Kos environment. All 10 assets are',
         '**Poly Haven CC0-1.0** downloads verified against the live API '
         '([verification report](verification-report.json), '
         'license evidence in `../evidence/polyhaven-license.txt`).',
         'Nothing was installed into the Unity project; integration happens only after '
         'the independent review in `../REVIEW-CHECKLIST.md`.',
+        '',
+        'Review cleanup 2026-10-15: three previously downloaded assets '
+        '(industrial_pastic_container, retro_multimeter, cassette_player) were rejected '
+        'and removed from the collection, with textures and previews; see '
+        '"Removed on review" below.',
         '',
         '| # | Asset | Category | Tris | Author | Local preview | Source render |',
         '| --- | --- | --- | ---: | --- | --- | --- |',
@@ -227,6 +232,12 @@ def main() -> None:
     lines += ['## Considered but rejected', '',
               '| Candidate | Reason |', '| --- | --- |']
     for asset_id, reason in REJECTED:
+        lines.append(f'| {asset_id} | {reason} |')
+    lines += ['', '## Removed on review (2026-10-15)', '',
+              'Previously downloaded, then rejected by the asset review; files, textures and '
+              'previews were deleted from this drop and are not downloaded again.', '',
+              '| Removed asset | Reason |', '| --- | --- |']
+    for asset_id, reason in REJECTED_IN_REVIEW:
         lines.append(f'| {asset_id} | {reason} |')
     lines += ['', '## Gaps not covered by downloads', '']
     for topic, details in GAPS:

@@ -1,4 +1,4 @@
-Fetched: 2026-10-15T09:21:13Z
+Fetched: 2026-10-15T09:52:56Z
 URL: https://raw.githubusercontent.com/Poly-Haven/Public-API/master/ToS.md
 
 # Poly Haven API Terms of Service

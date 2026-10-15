@@ -24,16 +24,15 @@ USER_AGENT = 'LayarTerakhir-AssetResearch/1.0'
 
 # Selected for the modest Indonesian kos room and its streamer/student routine.
 # Every entry is a realistic, PBR, lightweight Poly Haven CC0 prop.
+# Review 2026-10-15: industrial_pastic_container, retro_multimeter and
+# cassette_player were rejected and removed; do not re-download them.
 SELECTED = [
     'office_notepads',              # loose papers / notebooks on the desk
     'stationery_supplies',          # pens, pencils, eraser in a cup
     'clipboard',                    # worn clipboard with a sheet
     'plastic_thermos',              # water bottle with cup lid
     'plastic_crate_02',             # small stackable storage box
-    'industrial_pastic_container',  # larger storage box with hinged lid
     'gamepad',                      # wired gamepad and cable (streamer desk)
-    'retro_multimeter',             # analog multimeter with coiled probes
-    'cassette_player',              # old radio/cassette unit
     'wall_clock',                   # wall clock
     'alarm_clock_01',               # twin-bell bedside alarm clock
     'wooden_broom',                 # sapu ijuk corner broom

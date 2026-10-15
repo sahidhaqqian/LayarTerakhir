@@ -23,12 +23,15 @@ into `Assets/_LayarTerakhir/Art/Imported/PolyHaven/<id>/`.
 
 ## Initial review status (researcher pass only)
 
-All 13 assets passed the **source-level** review during research:
+All 10 remaining assets passed the **source-level** review during research:
 
-- 13/13 fetched with API MD5 match; SHA-256 recorded (`manifest/verification-report.json`).
-- 13/13 local previews rendered from the downloaded FBX (`assets/<id>/preview.png`).
+- 10/10 fetched with API MD5 match; SHA-256 recorded (`manifest/verification-report.json`).
+- 10/10 local previews rendered from the downloaded FBX (`assets/<id>/preview.png`).
 - License evidence captured from the original site (`evidence/polyhaven-license.txt`).
 - Candidate rejection log present in `manifest/ASSET-MANIFEST.md`.
+- Review cleanup 2026-10-15: industrial_pastic_container, retro_multimeter and cassette_player
+  were rejected by the asset review and removed from this drop (files, textures, previews);
+  verified they were referenced by no production content before deletion.
 
 The in-engine checks (rows 3-10) require Unity and are **not** claimed as done here.
 Actual integration remains a separate, reviewed step by the environment owner.
