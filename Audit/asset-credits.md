@@ -30,3 +30,17 @@ All downloaded texture variants are 1K or smaller. Masks were repacked from glTF
 Original project-specific art was authored for this pass: hanging jacket, enamel mug, refill-water gallon, computer tower, smartphone shell, combination padlock, electrical fittings, wall surfaces and trims; August calendar, birthday circle, rent warning, creator dashboard, generic noodle packaging, kos rules, poster, water label, woven mat, grime and contact masks. `Tools/author_kos_details.py` and `Tools/prepare_kos_art.py` retain the authoring steps. These original works follow the project license; the downloaded CC0 works retain their CC0 status. The printed labels use the system DejaVu fonts for rasterization; no font software is bundled by these tools ([DejaVu license](https://dejavu-fonts.github.io/License.html)).
 
 The calendar and sticky note preserve the existing puzzle clue: 14 August / 14-08, with the existing 148 lock logic unchanged. The monitor texture preserves the established offline channel and 32-viewer story. DreadOut 2 was used only as an atmospheric direction; no DreadOut assets, screenshots, logos, sounds, or textures were imported.
+
+V2 additions — verified against the live source/license on 2026-10-15 UTC:
+
+| Asset | Author | Source / license | Scene use |
+| --- | --- | --- | --- |
+| Plastic Container | PierreB3D | [Poly Haven source](https://polyhaven.com/a/plastic_container), [CC0-1.0](https://polyhaven.com/license) | Compact personal storage at the foot of the bed; 512px maps |
+| Wicker Basket 02 | Kuutti Siitonen | [Poly Haven source](https://polyhaven.com/a/wicker_basket_02), [CC0-1.0](https://polyhaven.com/license) | Lidded laundry basket beside the wardrobe; 512px maps |
+| Fabric Pattern 07 (col_1) | Rob Tuytel | [Poly Haven source](https://polyhaven.com/a/fabric_pattern_07), [CC0-1.0](https://polyhaven.com/license) | Sewn window curtains; 1024px maps |
+
+These CC0 assets allow commercial use, modification and redistribution; attribution is voluntary. [kos-v2-asset-manifest.json](kos-v2-asset-manifest.json) records the exact download URLs, API-provided MD5 checks, original SHA-256 digests, imported SHA-256 digests and source sizes. The V2 production downloader uses the User-Agent `LayarTerakhir-EnvironmentProduction/2.0`; neither the game nor its screenshot tool calls the asset API. Only selected 1K source variants were downloaded (about 6.3 MB total), then small-prop maps were reduced to 512px. No preview images or oversized packs were imported.
+
+V2 original modeled artwork: an unbranded wire-guard desk fan, canvas backpack with zippers/straps, a pair of rubber flip-flops, folded/sewn curtain panels, and a small router. The original mesh authoring source is `Tools/author_kos_v2.py`; these works follow the project license. Door hardware, shelf brackets, wall sockets, charger, power strip, and connected leads are lightweight scene geometry. The original V1 furniture, printed clues, props and attribution above are retained.
+
+The existing Kenney `wallWindow.fbx` was repaired from the same verified source kit: its prefab wall panel was removed so it no longer covers the scene's own opening, and the original glass, wood and metal surfaces were separated for appropriate materials. `Tools/repair_kos_window.py` records that derivative workflow. The window derivative remains CC0-1.0, attributed to Kenney above.

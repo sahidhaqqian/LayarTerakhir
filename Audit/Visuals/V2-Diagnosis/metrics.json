@@ -1,0 +1,43 @@
+{
+    "gpu": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "originalModeName": "PerPixel",
+    "originalAdditionalLightsMode": 1,
+    "shots": [
+        {
+            "name": "01-original-HDR",
+            "mean": 0.00003617143374867737,
+            "contrast": 0.002217560540884733,
+            "darkRatio": 0.9999120831489563
+        },
+        {
+            "name": "02-original-sRGB",
+            "mean": 0.0025165160186588766,
+            "contrast": 0.01987764798104763,
+            "darkRatio": 0.99560546875
+        },
+        {
+            "name": "03-no-post",
+            "mean": 0.11524263024330139,
+            "contrast": 0.06842517107725144,
+            "darkRatio": 0.34581488370895388
+        },
+        {
+            "name": "04-no-split-toning",
+            "mean": 0.013641152530908585,
+            "contrast": 0.03375769034028053,
+            "darkRatio": 0.9601855278015137
+        },
+        {
+            "name": "05-no-split-or-SMH",
+            "mean": 0.017002126201987268,
+            "contrast": 0.03812053054571152,
+            "darkRatio": 0.9364344477653503
+        },
+        {
+            "name": "06-no-bulb-shadow",
+            "mean": 0.017002156004309655,
+            "contrast": 0.038120608776807788,
+            "darkRatio": 0.9364333748817444
+        }
+    ]
+}

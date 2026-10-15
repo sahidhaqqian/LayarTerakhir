@@ -1,0 +1,68 @@
+{
+  "build": {
+    "unityVersion": "6000.3.26f1",
+    "result": "Succeeded",
+    "target": "StandaloneWindows64",
+    "scriptingBackend": "Mono2x",
+    "options": "ForceOptimizeScriptCompilation, Il2CPP, CompressTextures, StripDebugSymbols, ShaderLivelinkSupport, Development",
+    "outputPath": "/root/Projects/LayarTerakhir/Builds/Windows/LayarTerakhir.exe",
+    "startedUtc": "2026-10-15T06:35:02.7340810Z",
+    "endedUtc": "2026-10-15T06:35:11.3330810Z",
+    "scenes": [
+      "Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity",
+      "Assets/Scenes/SampleScene.unity"
+    ],
+    "totalSizeBytes": 226528557,
+    "totalErrors": 0,
+    "totalWarnings": 0,
+    "durationSeconds": 8.599
+  },
+  "verification": {
+    "verifiedUtc": "2026-10-15T06:35:34.083017+00:00",
+    "unityExitCode": 0,
+    "result": "Succeeded",
+    "target": "StandaloneWindows64",
+    "scriptingBackend": "Mono2x",
+    "development": true,
+    "startupScene": "Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity",
+    "executable": "/root/Projects/LayarTerakhir/Builds/Windows/LayarTerakhir.exe",
+    "nativeArchitectures": {
+      "LayarTerakhir.exe": "PE32+ AMD64 (0x8664)",
+      "UnityPlayer.dll": "PE32+ AMD64 (0x8664)",
+      "MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll": "PE32+ AMD64 (0x8664)"
+    },
+    "unityReportedFilesVerified": 288,
+    "scriptingAssembliesVerified": 112,
+    "unityReportedSizeBytes": 226528557,
+    "buildFileCount": 290,
+    "totalBuildSizeBytes": 226538205,
+    "archivePath": "/root/Projects/LayarTerakhir/Builds/LayarTerakhir-Windows-x86_64-Development.zip",
+    "archiveSizeBytes": 111847744,
+    "archiveSha256": "b89c0e7a2bbd2b9ba762766bd724f1ead4cf9cd58a0163ca22ff8995a75a8d63",
+    "zipCrcVerified": true,
+    "zipContainsAllBuildFiles": true,
+    "windowsRuntimeTested": false,
+    "sourceSceneSha256": "17be674df519d76918e5d3267bf0bb6ec28a80fc1ab8feaa0f0cc086e009b713",
+    "developmentScreenshotUtilityIncluded": true
+  },
+  "invocation": {
+    "stage": "build",
+    "command": [
+      "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+      "-batchmode",
+      "-projectPath",
+      "/root/Projects/LayarTerakhir",
+      "-nographics",
+      "-quit",
+      "-buildTarget",
+      "Win64",
+      "-executeMethod",
+      "LayarTerakhir.Editor.WindowsDevelopmentBuild.Build",
+      "-logFile",
+      "/root/Projects/LayarTerakhir/Builds/Logs/windows-development.log"
+    ],
+    "startedUtc": "2026-10-15T06:34:49.278489+00:00",
+    "endedUtc": "2026-10-15T06:35:19.277928+00:00",
+    "exitCode": 0
+  }
+}

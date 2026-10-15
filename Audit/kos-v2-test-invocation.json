@@ -1,0 +1,22 @@
+{
+  "stage": "test",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir",
+    "-nographics",
+    "-runTests",
+    "-testPlatform",
+    "EditMode",
+    "-testFilter",
+    "LayarTerakhir.Editor.Tests",
+    "-testResults",
+    "/root/Projects/LayarTerakhir/Audit/kos-v2-tests.xml",
+    "-logFile",
+    "/root/Projects/LayarTerakhir/Audit/kos-v2-test.log"
+  ],
+  "startedUtc": "2026-10-15T06:29:15.166394+00:00",
+  "endedUtc": "2026-10-15T06:30:49.643780+00:00",
+  "exitCode": 0
+}

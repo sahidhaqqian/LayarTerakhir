@@ -1,0 +1,21 @@
+{
+  "stage": "capture",
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir",
+    "-force-glcore",
+    "-executeMethod",
+    "LayarTerakhir.Editor.KosVisualCapture.Gameplay",
+    "-logFile",
+    "/root/Projects/LayarTerakhir/Audit/kos-v2-capture.log"
+  ],
+  "startedUtc": "2026-10-15T06:33:48.977841+00:00",
+  "endedUtc": "2026-10-15T06:34:49.216641+00:00",
+  "exitCode": 0
+}

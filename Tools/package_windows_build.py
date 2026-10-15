@@ -35,10 +35,12 @@ for entry in report['files']:
 assemblies=json.loads((out/'LayarTerakhir_Data/ScriptingAssemblies.json').read_text())['names']
 assert 'Assembly-CSharp.dll' in assemblies and 'Assembly-CSharp-Editor.dll' not in assemblies
 for name in assemblies:assert (out/'LayarTerakhir_Data/Managed'/name).is_file(),name
+assert b'DevelopmentScreenshotCapture' in (out/'LayarTerakhir_Data/Managed/Assembly-CSharp.dll').read_bytes(),'Development screenshot utility is missing'
 scene_data=(out/'LayarTerakhir_Data/level0').read_bytes()
-for marker in ['Kos_Environment_Art','CeramicTileFloor','WeakTungstenCeiling','CalendarAugust','vintage_day_bed']:assert marker.encode() in scene_data,marker
+for marker in ['Kos_Environment_Art','Kos_V2_Details','KosDeskFan','KosCurtains','CeramicTileFloor','WeakTungstenCeiling','CalendarAugust','vintage_day_bed']:assert marker.encode() in scene_data,marker
 assert b'Prolog_KamarKos' in (out/'LayarTerakhir_Data/globalgamemanagers').read_bytes()
 shutil.copy2(root/'Audit/asset-credits.md',out/'Asset-Credits.txt')
+shutil.copy2(root/'Audit/windows-kos-capture.md',out/'Screenshot-Guide.txt')
 files=sorted(p for p in out.rglob('*') if p.is_file());manifest=[]
 for p in files:
  digest=hashlib.sha256();crc=0
@@ -66,5 +68,7 @@ verification={'verifiedUtc':datetime.now(timezone.utc).isoformat(),'unityExitCod
  'totalBuildSizeBytes':sum(f['sizeBytes'] for f in manifest),'archivePath':str(archive),
  'archiveSizeBytes':archive.stat().st_size,'archiveSha256':archive_sha,'zipCrcVerified':True,'zipContainsAllBuildFiles':True,
  'windowsRuntimeTested':False,'files':manifest}
+verification['sourceSceneSha256']=hashlib.sha256((root/'Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity').read_bytes()).hexdigest()
+verification['developmentScreenshotUtilityIncluded']=True
 (logs/'windows-build-verification.json').write_text(json.dumps(verification,indent=2)+'\n')
 print(json.dumps({k:v for k,v in verification.items() if k not in ['files','nativeArchitectures']},indent=2))

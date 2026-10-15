@@ -1,0 +1,18 @@
+{
+  "stage": "validate",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir",
+    "-nographics",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.PrologMilestoneValidator.RunValidation",
+    "-logFile",
+    "/root/Projects/LayarTerakhir/Audit/kos-v2-validate.log"
+  ],
+  "startedUtc": "2026-10-15T06:28:55.150470+00:00",
+  "endedUtc": "2026-10-15T06:29:15.107942+00:00",
+  "exitCode": 0
+}
