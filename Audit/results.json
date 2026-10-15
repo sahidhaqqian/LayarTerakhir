@@ -1,0 +1,35 @@
+{
+  "unity_version": "6000.3.26f1",
+  "urp_version": "17.3.0",
+  "original_validation_passes": 20,
+  "original_structural_checks": 19,
+  "original_save_roundtrip_checks": 1,
+  "final_validation_passes": 20,
+  "validation_exit_code": 0,
+  "automated_tests": {
+    "total": 32,
+    "passed": 32,
+    "failed": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "by_fixture": {
+      "FoundationAuditTests": 23,
+      "FoundationPlayAuditTests": 9
+    }
+  },
+  "execution": "headless Editor; runtime scenarios explicitly enter Play Mode and execute on Unity player loop",
+  "graphical_playtest": false,
+  "human_interactive_playtest": false,
+  "standalone_player_build": false,
+  "player_save_unchanged": true,
+  "pipeline_asset_restored_to_pre_audit": true,
+  "settings_and_packages_unchanged": [
+    "ProjectSettings/GraphicsSettings.asset",
+    "ProjectSettings/QualitySettings.asset",
+    "ProjectSettings/ProjectSettings.asset",
+    "Packages/manifest.json",
+    "Packages/packages-lock.json",
+    "Assets/Scenes/SampleScene.unity"
+  ],
+  "pc_pipeline_sha256": "bcef31006339d245d47d5e8ad208f9f34471618496d08e9f9d06e8d449c71d97"
+}

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="11" result="Failed(Child)" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-14 23:00:40Z" end-time="2026-10-14 23:00:44Z" duration="3.3352859">
+  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-14 23:00:40Z" end-time="2026-10-14 23:00:44Z" duration="3.335286" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1015" name="Assembly-CSharp-Editor.dll" fullname="/root/Projects/LayarTerakhir/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-14 23:00:40Z" end-time="2026-10-14 23:00:44Z" duration="3.324241" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="35997" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1016" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-14 23:00:40Z" end-time="2026-10-14 23:00:44Z" duration="3.323513" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1017" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-14 23:00:40Z" end-time="2026-10-14 23:00:44Z" duration="3.323161" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestSuite" id="1018" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-14 23:00:40Z" end-time="2026-10-14 23:00:44Z" duration="3.322666" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestFixture" id="1001" name="FoundationAuditTests" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-14 23:00:40Z" end-time="2026-10-14 23:00:44Z" duration="3.321699" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1007" name="BuildStartsInKos" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.BuildStartsInKos" methodname="BuildStartsInKos" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="2072546828" result="Failed" start-time="2026-10-14 23:00:40Z" end-time="2026-10-14 23:00:41Z" duration="0.407642" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 50 but was 31. Strings differ at index 7.
+  Expected: "Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity"
+  But was:  "Assets/Scenes/SampleScene.unity"
+  ------------------^
+]]></message>
+                  <stack-trace><![CDATA[at LayarTerakhir.Editor.Tests.FoundationAuditTests.BuildStartsInKos () [0x00016] in /root/Projects/LayarTerakhir/Assets/_LayarTerakhir/Editor/FoundationAuditTests.cs:105
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1005" name="PadlockCallbackCannotRepeatAfterSuccessfulSubmission" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.PadlockCallbackCannotRepeatAfterSuccessfulSubmission" methodname="PadlockCallbackCannotRepeatAfterSuccessfulSubmission" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="473111207" result="Failed" start-time="2026-10-14 23:00:41Z" end-time="2026-10-14 23:00:41Z" duration="0.281706" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at LayarTerakhir.Editor.Tests.FoundationAuditTests.PadlockCallbackCannotRepeatAfterSuccessfulSubmission () [0x0003e] in /root/Projects/LayarTerakhir/Assets/_LayarTerakhir/Editor/FoundationAuditTests.cs:89
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1006" name="PhoneRigUsesCameraLocalOffset" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.PhoneRigUsesCameraLocalOffset" methodname="PhoneRigUsesCameraLocalOffset" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="721121316" result="Failed" start-time="2026-10-14 23:00:41Z" end-time="2026-10-14 23:00:41Z" duration="0.277808" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: less than 0.00100000005f
+  But was:  1.85067558f
+]]></message>
+                  <stack-trace><![CDATA[at LayarTerakhir.Editor.Tests.FoundationAuditTests.PhoneRigUsesCameraLocalOffset () [0x00005] in /root/Projects/LayarTerakhir/Assets/_LayarTerakhir/Editor/FoundationAuditTests.cs:96
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1014" name="PowerbankKeyWorksWithStoredOrDeadPhone" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.PowerbankKeyWorksWithStoredOrDeadPhone" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-14 23:00:41Z" end-time="2026-10-14 23:00:42Z" duration="0.588100" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1012" name="PowerbankKeyWorksWithStoredOrDeadPhone(False,True)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.PowerbankKeyWorksWithStoredOrDeadPhone(False,True)" methodname="PowerbankKeyWorksWithStoredOrDeadPhone" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1466180955" result="Failed" start-time="2026-10-14 23:00:41Z" end-time="2026-10-14 23:00:42Z" duration="0.307313" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Expected: 35.0f
+  But was:  0.0f
+]]></message>
+                    <stack-trace><![CDATA[at LayarTerakhir.Editor.Tests.FoundationAuditTests.PowerbankKeyWorksWithStoredOrDeadPhone (System.Boolean raised, System.Boolean screenOn) [0x0006a] in /root/Projects/LayarTerakhir/Assets/_LayarTerakhir/Editor/FoundationAuditTests.cs:133
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1013" name="PowerbankKeyWorksWithStoredOrDeadPhone(True,False)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.PowerbankKeyWorksWithStoredOrDeadPhone(True,False)" methodname="PowerbankKeyWorksWithStoredOrDeadPhone" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="621344178" result="Failed" start-time="2026-10-14 23:00:42Z" end-time="2026-10-14 23:00:42Z" duration="0.277468" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Expected: 35.0f
+  But was:  0.0f
+]]></message>
+                    <stack-trace><![CDATA[at LayarTerakhir.Editor.Tests.FoundationAuditTests.PowerbankKeyWorksWithStoredOrDeadPhone (System.Boolean raised, System.Boolean screenOn) [0x0006a] in /root/Projects/LayarTerakhir/Assets/_LayarTerakhir/Editor/FoundationAuditTests.cs:133
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1011" name="RemappedMovementReadsNonDefaultKeys" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.RemappedMovementReadsNonDefaultKeys" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-14 23:00:42Z" end-time="2026-10-14 23:00:43Z" duration="0.879089" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1008" name="RemappedMovementReadsNonDefaultKeys(UpArrow,UpArrow)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.RemappedMovementReadsNonDefaultKeys(UpArrow,UpArrow)" methodname="RemappedMovementReadsNonDefaultKeys" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="183599200" result="Failed" start-time="2026-10-14 23:00:42Z" end-time="2026-10-14 23:00:42Z" duration="0.278406" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Expected: 1.0f
+  But was:  0.0f
+]]></message>
+                    <stack-trace><![CDATA[at LayarTerakhir.Editor.Tests.FoundationAuditTests.RemappedMovementReadsNonDefaultKeys (UnityEngine.KeyCode binding, UnityEngine.InputSystem.Key key) [0x00036] in /root/Projects/LayarTerakhir/Assets/_LayarTerakhir/Editor/FoundationAuditTests.cs:117
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1009" name="RemappedMovementReadsNonDefaultKeys(Alpha1,Digit1)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.RemappedMovementReadsNonDefaultKeys(Alpha1,Digit1)" methodname="RemappedMovementReadsNonDefaultKeys" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1225688355" result="Failed" start-time="2026-10-14 23:00:42Z" end-time="2026-10-14 23:00:43Z" duration="0.280650" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Expected: 1.0f
+  But was:  0.0f
+]]></message>
+                    <stack-trace><![CDATA[at LayarTerakhir.Editor.Tests.FoundationAuditTests.RemappedMovementReadsNonDefaultKeys (UnityEngine.KeyCode binding, UnityEngine.InputSystem.Key key) [0x00036] in /root/Projects/LayarTerakhir/Assets/_LayarTerakhir/Editor/FoundationAuditTests.cs:117
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1010" name="RemappedMovementReadsNonDefaultKeys(RightControl,RightCtrl)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.RemappedMovementReadsNonDefaultKeys(RightControl,RightCtrl)" methodname="RemappedMovementReadsNonDefaultKeys" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="834519989" result="Failed" start-time="2026-10-14 23:00:43Z" end-time="2026-10-14 23:00:43Z" duration="0.318190" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Expected: 1.0f
+  But was:  0.0f
+]]></message>
+                    <stack-trace><![CDATA[at LayarTerakhir.Editor.Tests.FoundationAuditTests.RemappedMovementReadsNonDefaultKeys (UnityEngine.KeyCode binding, UnityEngine.InputSystem.Key key) [0x00036] in /root/Projects/LayarTerakhir/Assets/_LayarTerakhir/Editor/FoundationAuditTests.cs:117
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-case id="1002" name="SavedDocumentCloseButtonClosesAndCallsBackOnce" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.SavedDocumentCloseButtonClosesAndCallsBackOnce" methodname="SavedDocumentCloseButtonClosesAndCallsBackOnce" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="660223306" result="Failed" start-time="2026-10-14 23:00:43Z" end-time="2026-10-14 23:00:43Z" duration="0.271378" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at LayarTerakhir.Editor.Tests.FoundationAuditTests.SavedDocumentCloseButtonClosesAndCallsBackOnce () [0x0003e] in /root/Projects/LayarTerakhir/Assets/_LayarTerakhir/Editor/FoundationAuditTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1003" name="SavedPadlockButtonsSolve148Once" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.SavedPadlockButtonsSolve148Once" methodname="SavedPadlockButtonsSolve148Once" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1365694544" result="Failed" start-time="2026-10-14 23:00:43Z" end-time="2026-10-14 23:00:43Z" duration="0.295747" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at LayarTerakhir.Editor.Tests.FoundationAuditTests.SavedPadlockButtonsSolve148Once () [0x0008a] in /root/Projects/LayarTerakhir/Assets/_LayarTerakhir/Editor/FoundationAuditTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1004" name="SavedPadlockRejectsWrongCodeAndCancelCloses" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.SavedPadlockRejectsWrongCodeAndCancelCloses" methodname="SavedPadlockRejectsWrongCodeAndCancelCloses" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1087741368" result="Failed" start-time="2026-10-14 23:00:43Z" end-time="2026-10-14 23:00:44Z" duration="0.300952" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "salah"
+  But was:  "Masukkan 3 digit kombinasi gembok laci."
+]]></message>
+                  <stack-trace><![CDATA[at LayarTerakhir.Editor.Tests.FoundationAuditTests.SavedPadlockRejectsWrongCodeAndCancelCloses () [0x0003e] in /root/Projects/LayarTerakhir/Assets/_LayarTerakhir/Editor/FoundationAuditTests.cs:74
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[Saving results to: /root/.config/unity3d/DefaultCompany/LayarTerakhir/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

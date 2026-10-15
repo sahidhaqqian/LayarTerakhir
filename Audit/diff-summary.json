@@ -1,0 +1,81 @@
+[
+  {
+    "path": "Assets/_LayarTerakhir/Editor/PrologMilestoneValidator.cs",
+    "added": 9,
+    "removed": 1
+  },
+  {
+    "path": "Assets/_LayarTerakhir/Editor/PrologKosSceneBuilder.cs",
+    "added": 22,
+    "removed": 14
+  },
+  {
+    "path": "Assets/_LayarTerakhir/Scripts/UI/HudController.cs",
+    "added": 51,
+    "removed": 13
+  },
+  {
+    "path": "Assets/_LayarTerakhir/Scripts/Core/GameInputConfig.cs",
+    "added": 37,
+    "removed": 5
+  },
+  {
+    "path": "Assets/_LayarTerakhir/Scripts/Core/CampaignState.cs",
+    "added": 79,
+    "removed": 13
+  },
+  {
+    "path": "Assets/_LayarTerakhir/Scripts/Prolog/KamarKosPrologDirector.cs",
+    "added": 38,
+    "removed": 6
+  },
+  {
+    "path": "Assets/_LayarTerakhir/Scripts/Smartphone/SmartphoneController.cs",
+    "added": 6,
+    "removed": 4
+  },
+  {
+    "path": "Assets/_LayarTerakhir/Scripts/Player/InteractionInteractor.cs",
+    "added": 20,
+    "removed": 1
+  },
+  {
+    "path": "Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity",
+    "added": 4,
+    "removed": 4
+  },
+  {
+    "path": "ProjectSettings/EditorBuildSettings.asset",
+    "added": 3,
+    "removed": 3
+  },
+  {
+    "path": "install_milestone1.sh",
+    "added": 5,
+    "removed": 0
+  },
+  {
+    "path": "Assets/_LayarTerakhir/Editor/FoundationAuditTests.cs",
+    "added": 249,
+    "removed": 0,
+    "new": true
+  },
+  {
+    "path": "Assets/_LayarTerakhir/Editor/FoundationAuditTests.cs.meta",
+    "added": 2,
+    "removed": 0,
+    "new": true
+  },
+  {
+    "path": "Assets/_LayarTerakhir/Editor/FoundationPlayAuditTests.cs",
+    "added": 391,
+    "removed": 0,
+    "new": true
+  },
+  {
+    "path": "Assets/_LayarTerakhir/Editor/FoundationPlayAuditTests.cs.meta",
+    "added": 2,
+    "removed": 0,
+    "new": true
+  }
+]

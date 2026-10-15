@@ -1,0 +1,1332 @@
+--- a/Assets/_LayarTerakhir/Editor/PrologMilestoneValidator.cs
++++ b/Assets/_LayarTerakhir/Editor/PrologMilestoneValidator.cs
+@@ -18,6 +18,9 @@
+         public static void RunValidation()
+         {
+             int failures = 0;
++            string previousSaveDirectory = Environment.GetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY");
++            string validationDirectory = Path.Combine(Path.GetTempPath(), "LayarTerakhir-Validation-" + Guid.NewGuid());
++            Environment.SetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY", validationDirectory);
+             Debug.Log("=== [VALIDATOR] MEMULAI VALIDASI MILESTONE 1 LAYAR TERAKHIR ===");
+ 
+             try
+@@ -101,7 +104,7 @@
+                         saved && loaded &&
+                         campaign.Data.checkpoint_id == "VALIDATOR_TEST_CHECKPOINT" &&
+                         campaign.HasInventoryItem("KUNCI_MOTOR"),
+-                        "Penyimpanan dan pemulihan checkpoint JSON atomik berfungsi",
++                        "Penyimpanan dan pemulihan checkpoint JSON (round trip) berfungsi",
+                         ref failures
+                     );
+                 }
+@@ -110,6 +113,11 @@
+             {
+                 failures++;
+                 Debug.LogError($"[VALIDATOR] [FAIL] Exception saat validasi: {ex}");
++            }
++            finally
++            {
++                Environment.SetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY", previousSaveDirectory);
++                if (Directory.Exists(validationDirectory)) Directory.Delete(validationDirectory, true);
+             }
+ 
+             if (failures == 0)
+--- a/Assets/_LayarTerakhir/Editor/PrologKosSceneBuilder.cs
++++ b/Assets/_LayarTerakhir/Editor/PrologKosSceneBuilder.cs
+@@ -1,5 +1,6 @@
+ #if UNITY_EDITOR
+ using System.IO;
++using System.Collections.Generic;
+ using LayarTerakhir.Core;
+ using LayarTerakhir.Player;
+ using LayarTerakhir.Prolog;
+@@ -175,7 +176,7 @@
+ 
+             GameObject playerObj = new GameObject("Player_RakaWijaya");
+             playerObj.tag = "Player";
+-            playerObj.transform.position = new Vector3(-0.8f, 0.05f, 0.25f);
++            playerObj.transform.position = new Vector3(-0.4f, 0.05f, 0.25f);
+             playerObj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+ 
+             CharacterController cc = playerObj.AddComponent<CharacterController>();
+@@ -210,7 +211,9 @@
+                 new Color(0.10f, 0.10f, 0.12f),
+                 withCollider: false
+             );
++            handPhoneMesh.transform.localPosition = new Vector3(0.24f, -0.18f, 0.38f);
+             phoneCtrl.handPhoneMeshRoot = handPhoneMesh;
++            handPhoneMesh.SetActive(false);
+ 
+             GameObject flashObj = new GameObject("SmartphoneFlashlight");
+             flashObj.transform.SetParent(handPhoneMesh.transform, false);
+@@ -220,6 +223,7 @@
+             flashLight.spotAngle = 58f;
+             flashLight.range = 10f;
+             flashLight.intensity = 1.4f;
++            flashLight.enabled = false;
+             phoneCtrl.phoneFlashlight = flashLight;
+ 
+             EditorSceneManager.SaveScene(scene, ScenePath);
+@@ -230,19 +234,23 @@
+ 
+         private static void RegisterSceneInBuildSettings(string scenePath)
+         {
+-            var existing = EditorBuildSettings.scenes;
+-            foreach (var s in existing)
+-            {
+-                if (s.path == scenePath)
+-                    return;
+-            }
+-
+-            var updated = new EditorBuildSettingsScene[existing.Length + 1];
+-            for (int i = 0; i < existing.Length; i++)
+-                updated[i] = existing[i];
+-
+-            updated[existing.Length] = new EditorBuildSettingsScene(scenePath, true);
+-            EditorBuildSettings.scenes = updated;
++            var updated = new List<EditorBuildSettingsScene> { new EditorBuildSettingsScene(scenePath, true) };
++            foreach (var scene in EditorBuildSettings.scenes)
++                if (scene.path != scenePath) updated.Add(scene);
++            EditorBuildSettings.scenes = updated.ToArray();
++        }
++
++        public static void RepairFoundationSceneHeadless()
++        {
++            var scene = EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
++            var phone = Object.FindFirstObjectByType<SmartphoneController>();
++            phone.handPhoneMeshRoot.transform.localPosition = new Vector3(0.24f, -0.18f, 0.38f);
++            phone.handPhoneMeshRoot.SetActive(false);
++            phone.phoneFlashlight.enabled = false;
++            Object.FindFirstObjectByType<FirstPersonController>().transform.position = new Vector3(-0.4f, 0.05f, 0.25f);
++            EditorSceneManager.SaveScene(scene);
++            RegisterSceneInBuildSettings(ScenePath);
++            AssetDatabase.SaveAssets();
+         }
+ 
+         private static KosInteractableItem CreateInteractableBox(
+--- a/Assets/_LayarTerakhir/Scripts/UI/HudController.cs
++++ b/Assets/_LayarTerakhir/Scripts/UI/HudController.cs
+@@ -39,6 +39,9 @@
+         private readonly Queue<(string speaker, string line, float duration)> _subtitleQueue =
+             new Queue<(string, string, float)>();
+         private Coroutine _subtitleRoutine;
++        private Coroutine _broadcastRoutine;
++        private readonly Dictionary<Button, UnityEngine.Events.UnityAction> _buttonCallbacks =
++            new Dictionary<Button, UnityEngine.Events.UnityAction>();
+         private Action _onDocumentClosed;
+         private Action _onPadlockSolved;
+         private readonly int[] _digits = { 0, 0, 0 };
+@@ -58,7 +61,10 @@
+         public void EnsureRuntimeUIBuilt()
+         {
+             if (objectiveText != null && documentPanel != null && padlockPanel != null && blackFadeImage != null)
++            {
++                BindUIEvents();
+                 return;
++            }
+ 
+             Canvas canvas = GetComponentInChildren<Canvas>();
+             if (canvas == null)
+@@ -157,7 +163,7 @@
+             docBodyRect.anchoredPosition = new Vector2(0f, 15f);
+             docBodyRect.sizeDelta = new Vector2(780f, 300f);
+ 
+-            documentCloseButton = CreateButton("CloseDocumentButton", documentPanel.transform, defaultFont, "[TUTUP DOKUMEN]", new Vector2(0f, -195f), new Vector2(260f, 50f), CloseDocumentModal);
++            documentCloseButton = CreateButton("CloseDocumentButton", documentPanel.transform, defaultFont, "[TUTUP DOKUMEN]", new Vector2(0f, -195f), new Vector2(260f, 50f));
+             documentPanel.SetActive(false);
+ 
+             padlockPanel = CreateModalPanel("PadlockModalPanel", canvas.transform, new Vector2(680f, 460f));
+@@ -177,15 +183,43 @@
+ 
+             for (int i = 0; i < 3; i++)
+             {
+-                int index = i;
+                 float xPos = (i - 1) * 140f;
+-                CreateButton($"DigitUp_{i}", padlockPanel.transform, defaultFont, "+", new Vector2(xPos, 110f), new Vector2(80f, 42f), () => AdjustDigit(index, 1));
+-                CreateButton($"DigitDown_{i}", padlockPanel.transform, defaultFont, "-", new Vector2(xPos, -20f), new Vector2(80f, 42f), () => AdjustDigit(index, -1));
+-            }
+-
+-            CreateButton("UnlockPadlockBtn", padlockPanel.transform, defaultFont, "[BUKA GEMBOK]", new Vector2(-120f, -155f), new Vector2(210f, 48f), SubmitPadlockCode);
+-            CreateButton("CancelPadlockBtn", padlockPanel.transform, defaultFont, "[BATAL]", new Vector2(120f, -155f), new Vector2(210f, 48f), ClosePadlockModal);
++                CreateButton($"DigitUp_{i}", padlockPanel.transform, defaultFont, "+", new Vector2(xPos, 110f), new Vector2(80f, 42f));
++                CreateButton($"DigitDown_{i}", padlockPanel.transform, defaultFont, "-", new Vector2(xPos, -20f), new Vector2(80f, 42f));
++            }
++
++            CreateButton("UnlockPadlockBtn", padlockPanel.transform, defaultFont, "[BUKA GEMBOK]", new Vector2(-120f, -155f), new Vector2(210f, 48f));
++            CreateButton("CancelPadlockBtn", padlockPanel.transform, defaultFont, "[BATAL]", new Vector2(120f, -155f), new Vector2(210f, 48f));
+             padlockPanel.SetActive(false);
++            BindUIEvents();
++        }
++
++        // Scene serialization does not retain AddListener delegates. Bind both saved and newly built UI.
++        private void BindUIEvents()
++        {
++            BindButton(documentCloseButton, CloseDocumentModal);
++            foreach (Button button in padlockPanel.GetComponentsInChildren<Button>(true))
++            {
++                if (button.name == "UnlockPadlockBtn") BindButton(button, SubmitPadlockCode);
++                else if (button.name == "CancelPadlockBtn") BindButton(button, ClosePadlockModal);
++                else
++                {
++                    for (int slot = 0; slot < 3; slot++)
++                    {
++                        int index = slot;
++                        if (button.name == $"DigitUp_{slot}") BindButton(button, () => AdjustDigit(index, 1));
++                        if (button.name == $"DigitDown_{slot}") BindButton(button, () => AdjustDigit(index, -1));
++                    }
++                }
++            }
++        }
++
++        private void BindButton(Button button, UnityEngine.Events.UnityAction callback)
++        {
++            if (button == null) return;
++            if (_buttonCallbacks.TryGetValue(button, out var previous)) button.onClick.RemoveListener(previous);
++            button.onClick.AddListener(callback);
++            _buttonCallbacks[button] = callback;
+         }
+ 
+         public void SetObjective(string objective)
+@@ -216,9 +250,9 @@
+         public void ShowBroadcastNotification(string message, float duration = 8f)
+         {
+             if (broadcastToastText == null) return;
+-            StopCoroutine(nameof(ClearBroadcastRoutine));
++            if (_broadcastRoutine != null) StopCoroutine(_broadcastRoutine);
+             broadcastToastText.text = message;
+-            StartCoroutine(ClearBroadcastRoutine(duration));
++            _broadcastRoutine = StartCoroutine(ClearBroadcastRoutine(duration));
+         }
+ 
+         public void UpdatePhoneStatusUI(SmartphoneController phone)
+@@ -277,6 +311,7 @@
+         public void ClosePadlockModal()
+         {
+             if (padlockPanel == null) return;
++            _onPadlockSolved = null;
+             padlockPanel.SetActive(false);
+             SetPlayerLockForModal(false);
+         }
+@@ -285,6 +320,7 @@
+         {
+             if (blackFadeImage != null)
+             {
++                blackFadeImage.transform.SetAsLastSibling();
+                 Color c = blackFadeImage.color;
+                 c.a = Mathf.Clamp01(alpha);
+                 blackFadeImage.color = c;
+@@ -312,11 +348,13 @@
+ 
+         private void SubmitPadlockCode()
+         {
++            if (padlockPanel == null || !padlockPanel.activeSelf) return;
+             string entered = $"{_digits[0]}{_digits[1]}{_digits[2]}";
+             if (entered == _targetPadlockCode)
+             {
++                Action callback = _onPadlockSolved;
+                 ClosePadlockModal();
+-                _onPadlockSolved?.Invoke();
++                callback?.Invoke();
+             }
+             else if (padlockFeedbackText != null)
+             {
+@@ -358,6 +396,7 @@
+             yield return new WaitForSeconds(delay);
+             if (broadcastToastText != null)
+                 broadcastToastText.text = string.Empty;
++            _broadcastRoutine = null;
+         }
+ 
+         private IEnumerator FadeRoutine(float fromAlpha, float toAlpha, float duration)
+@@ -421,7 +460,7 @@
+             return panel;
+         }
+ 
+-        private static Button CreateButton(string name, Transform parent, Font font, string label, Vector2 pos, Vector2 size, UnityEngine.Events.UnityAction onClick)
++        private static Button CreateButton(string name, Transform parent, Font font, string label, Vector2 pos, Vector2 size)
+         {
+             GameObject btnObj = CreateUIObject(name, parent);
+             RectTransform rect = btnObj.GetComponent<RectTransform>();
+@@ -433,7 +472,6 @@
+ 
+             Button btn = btnObj.AddComponent<Button>();
+             btn.targetGraphic = img;
+-            btn.onClick.AddListener(onClick);
+ 
+             Text txt = CreateText("Label", btnObj.transform, font, 18, TextAnchor.MiddleCenter);
+             StretchFull(txt.GetComponent<RectTransform>());
+--- a/Assets/_LayarTerakhir/Scripts/Core/GameInputConfig.cs
++++ b/Assets/_LayarTerakhir/Scripts/Core/GameInputConfig.cs
+@@ -207,12 +207,20 @@
+             held = false;
+             up = false;
+ 
+-            if (keyCode == KeyCode.Mouse0)
++            if (keyCode >= KeyCode.Mouse0 && keyCode <= KeyCode.Mouse4)
+             {
+                 if (Mouse.current == null) return false;
+-                down = Mouse.current.leftButton.wasPressedThisFrame;
+-                held = Mouse.current.leftButton.isPressed;
+-                up = Mouse.current.leftButton.wasReleasedThisFrame;
++                var button = keyCode switch
++                {
++                    KeyCode.Mouse1 => Mouse.current.rightButton,
++                    KeyCode.Mouse2 => Mouse.current.middleButton,
++                    KeyCode.Mouse3 => Mouse.current.backButton,
++                    KeyCode.Mouse4 => Mouse.current.forwardButton,
++                    _ => Mouse.current.leftButton
++                };
++                down = button.wasPressedThisFrame;
++                held = button.isPressed;
++                up = button.wasReleasedThisFrame;
+                 return true;
+             }
+ 
+@@ -240,7 +248,20 @@
+                 KeyCode.LeftShift => Key.LeftShift,
+                 KeyCode.LeftControl => Key.LeftCtrl,
+                 KeyCode.Escape => Key.Escape,
+-                _ => Key.None
++                KeyCode.RightControl => Key.RightCtrl,
++                KeyCode.Return => Key.Enter,
++                KeyCode.KeypadEnter => Key.NumpadEnter,
++                KeyCode.KeypadPlus => Key.NumpadPlus,
++                KeyCode.KeypadMinus => Key.NumpadMinus,
++                KeyCode.KeypadMultiply => Key.NumpadMultiply,
++                KeyCode.KeypadDivide => Key.NumpadDivide,
++                KeyCode.KeypadPeriod => Key.NumpadPeriod,
++                KeyCode.KeypadEquals => Key.NumpadEquals,
++                KeyCode.LeftCommand => Key.LeftMeta,
++                KeyCode.RightCommand => Key.RightMeta,
++                KeyCode.LeftWindows => Key.LeftMeta,
++                KeyCode.RightWindows => Key.RightMeta,
++                _ => MapOtherKey(keyCode)
+             };
+ 
+             if (mapped == Key.None) return false;
+@@ -250,6 +271,17 @@
+             up = control.wasReleasedThisFrame;
+             return true;
+         }
++
++        private static Key MapOtherKey(KeyCode keyCode)
++        {
++            if (keyCode >= KeyCode.Alpha0 && keyCode <= KeyCode.Alpha9)
++                return keyCode == KeyCode.Alpha0 ? Key.Digit0
++                    : (Key)((int)Key.Digit1 + (int)keyCode - (int)KeyCode.Alpha1);
++            if (keyCode >= KeyCode.Keypad0 && keyCode <= KeyCode.Keypad9)
++                return (Key)((int)Key.Numpad0 + (int)keyCode - (int)KeyCode.Keypad0);
++            return Enum.TryParse(keyCode.ToString(), true, out Key key) && Enum.IsDefined(typeof(Key), key)
++                ? key : Key.None;
++        }
+ #endif
+     }
+ }
+--- a/Assets/_LayarTerakhir/Scripts/Core/CampaignState.cs
++++ b/Assets/_LayarTerakhir/Scripts/Core/CampaignState.cs
+@@ -42,8 +42,21 @@
+ 
+         public CampaignData Data { get; private set; } = new CampaignData();
+ 
+-        private string SaveFilePath => Path.Combine(Application.persistentDataPath, "layar_terakhir_save.json");
+-        private string TempSaveFilePath => Path.Combine(Application.persistentDataPath, "layar_terakhir_save.json.tmp");
++        private string SaveDirectory
++        {
++            get
++            {
++#if UNITY_EDITOR
++                // Headless validation and tests must never overwrite the player's checkpoint.
++                string testDirectory = Environment.GetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY");
++                if (!string.IsNullOrEmpty(testDirectory)) return testDirectory;
++#endif
++                return Application.persistentDataPath;
++            }
++        }
++        private string SaveFilePath => Path.Combine(SaveDirectory, "layar_terakhir_save.json");
++        private string TempSaveFilePath => SaveFilePath + ".tmp";
++        private string BackupSaveFilePath => SaveFilePath + ".bak";
+ 
+         private void Awake()
+         {
+@@ -84,21 +97,35 @@
+ 
+         public bool SaveCheckpointAtomic(string checkpointId)
+         {
++            string previousCheckpoint = Data.checkpoint_id;
+             try
+             {
++                if (string.IsNullOrWhiteSpace(checkpointId)) return false;
+                 Data.checkpoint_id = checkpointId;
++                if (!IsValid(Data))
++                {
++                    Data.checkpoint_id = previousCheckpoint;
++                    return false;
++                }
+                 string json = JsonUtility.ToJson(Data, true);
+-                File.WriteAllText(TempSaveFilePath, json);
++                Directory.CreateDirectory(SaveDirectory);
++                using (var stream = new FileStream(TempSaveFilePath, FileMode.Create, FileAccess.Write, FileShare.None))
++                {
++                    byte[] bytes = System.Text.Encoding.UTF8.GetBytes(json);
++                    stream.Write(bytes, 0, bytes.Length);
++                    stream.Flush(true);
++                }
+ 
+                 if (File.Exists(SaveFilePath))
+                 {
+-                    File.Delete(SaveFilePath);
++                    File.Replace(TempSaveFilePath, SaveFilePath, BackupSaveFilePath);
+                 }
+-                File.Move(TempSaveFilePath, SaveFilePath);
++                else File.Move(TempSaveFilePath, SaveFilePath);
+                 return true;
+             }
+             catch (Exception ex)
+             {
++                Data.checkpoint_id = previousCheckpoint;
+                 Debug.LogError($"[CampaignState] Gagal menyimpan checkpoint secara atomik: {ex.Message}");
+                 return false;
+             }
+@@ -108,22 +135,61 @@
+         {
+             try
+             {
+-                if (!File.Exists(SaveFilePath))
++                if (!File.Exists(SaveFilePath) || !TryReadCheckpoint(SaveFilePath, out CampaignData loaded))
+                     return false;
+-
+-                string json = File.ReadAllText(SaveFilePath);
+-                CampaignData loaded = JsonUtility.FromJson<CampaignData>(json);
+-                if (loaded == null || loaded.schema_version != 1)
+-                    return false;
+-
+                 Data = loaded;
+                 return true;
+             }
+             catch (Exception ex)
+             {
+-                Debug.LogError($"[CampaignState] File simpan rusak atau gagal dimuat: {ex.Message}");
++                Debug.LogWarning($"[CampaignState] File simpan rusak atau gagal dimuat: {ex.Message}");
+                 return false;
+             }
+         }
++
++        // Explicit recovery keeps the caller in control of accepting an older snapshot.
++        public bool LoadBackupCheckpoint()
++        {
++            try
++            {
++                if (!File.Exists(BackupSaveFilePath) || !TryReadCheckpoint(BackupSaveFilePath, out var loaded))
++                    return false;
++                Data = loaded;
++                return true;
++            }
++            catch (Exception ex)
++            {
++                Debug.LogWarning($"[CampaignState] Snapshot cadangan gagal dimuat: {ex.Message}");
++                return false;
++            }
++        }
++
++        private static bool TryReadCheckpoint(string path, out CampaignData loaded)
++        {
++            loaded = new CampaignData { schema_version = 0 };
++            JsonUtility.FromJsonOverwrite(File.ReadAllText(path), loaded);
++            return IsValid(loaded);
++        }
++
++        private static bool IsValid(CampaignData data)
++        {
++            return data != null && data.schema_version == 1 && data.chapter_id >= 0 &&
++                !string.IsNullOrWhiteSpace(data.checkpoint_id) &&
++                data.battery >= 0f && data.battery <= 100f && data.sanity >= 0f && data.sanity <= 100f &&
++                data.wallet_legitimate >= 0 && data.wallet_bound >= 0 && data.spent >= 0 &&
++                Enum.IsDefined(typeof(EndingType), data.ending) &&
++                ValidIds(data.inventory) && ValidIds(data.evidence_ids) && ValidIds(data.relic_ids) &&
++                ValidIds(data.location_seals) && ValidIds(data.upgrades) && ValidIds(data.secret_items) &&
++                ValidIds(data.secret_notes_read);
++        }
++
++        private static bool ValidIds(List<string> ids)
++        {
++            if (ids == null) return false;
++            var unique = new HashSet<string>();
++            foreach (string id in ids)
++                if (string.IsNullOrWhiteSpace(id) || !unique.Add(id)) return false;
++            return true;
++        }
+     }
+ }
+--- a/Assets/_LayarTerakhir/Scripts/Prolog/KamarKosPrologDirector.cs
++++ b/Assets/_LayarTerakhir/Scripts/Prolog/KamarKosPrologDirector.cs
+@@ -1,5 +1,6 @@
+ using System.Collections;
+ using LayarTerakhir.Core;
++using LayarTerakhir.Player;
+ using LayarTerakhir.Smartphone;
+ using LayarTerakhir.UI;
+ using UnityEngine;
+@@ -42,6 +43,8 @@
+         {
+             if (CampaignState.Instance != null)
+             {
++                if (CampaignState.Instance.LoadCheckpoint() && TryRestoreKosCheckpoint())
++                    return;
+                 CampaignState.Instance.StartNewGame();
+             }
+ 
+@@ -52,6 +55,31 @@
+             StartCoroutine(BeginOpeningSequenceRoutine());
+         }
+ 
++        private bool TryRestoreKosCheckpoint()
++        {
++            var campaign = CampaignState.Instance;
++            if (campaign.Data.chapter_id != 0 || campaign.Data.checkpoint_id != "PROLOG_KOS_COMPLETE" ||
++                !campaign.HasInventoryItem("SMARTPHONE_RAKA") || !campaign.HasInventoryItem("KUNCI_MOTOR") ||
++                !campaign.HasInventoryItem("JAKET_RAKA")) return false;
++
++            hasJacket = hasMotorKey = hasSpareBattery = isDrawerUnlocked = true;
++            suratKosItem.gameObject.SetActive(false);
++            smartphoneBedItem.gameObject.SetActive(false);
++            jacketItem.gameObject.SetActive(false);
++            lockedDrawerItem.isInteractable = false;
++            phoneBedRedLed.enabled = false;
++            var phone = SmartphoneController.Instance;
++            phone.hasSmartphoneInInventory = true;
++            phone.batteryPercent = campaign.Data.battery;
++            phone.isPhoneRaised = false;
++            phone.isScreenOn = phone.batteryPercent > 0f;
++            phone.SyncVisualState();
++            currentStage = KosPrologStage.ReadyToDepart;
++            HudController.Instance.SetFadeAlpha(0f);
++            HudController.Instance.SetObjective("Keluar dari Kamar Kos dan berangkat ke Rumah Keluarga Atmaja.");
++            return true;
++        }
++
+         private void Update()
+         {
+             if (phoneBedRedLed != null && phoneBedRedLed.enabled)
+@@ -98,7 +126,8 @@
+ 
+         public void OnObjectInteracted(KosInteractableItem item)
+         {
+-            if (item == null || HudController.Instance == null)
++            if (item == null || !item.CanInteract() || HudController.Instance == null ||
++                HudController.Instance.IsModalOpen || currentStage == KosPrologStage.Completed)
+                 return;
+ 
+             switch (item.itemId)
+@@ -356,17 +385,20 @@
+             if (currentStage == KosPrologStage.Completed)
+                 return;
+ 
++            if (CampaignState.Instance == null || !CampaignState.Instance.SaveCheckpointAtomic("PROLOG_KOS_COMPLETE"))
++            {
++                HudController.Instance.EnqueueSubtitle("Sistem", "Checkpoint gagal disimpan. Coba buka pintu lagi.", 3f);
++                return;
++            }
++
+             currentStage = KosPrologStage.Completed;
++            var player = FindFirstObjectByType<FirstPersonController>();
++            if (player != null) player.MovementLocked = true;
+             StartCoroutine(DepartKosSequenceRoutine());
+         }
+ 
+         private IEnumerator DepartKosSequenceRoutine()
+         {
+-            if (CampaignState.Instance != null)
+-            {
+-                CampaignState.Instance.SaveCheckpointAtomic("PROLOG_KOS_COMPLETE");
+-            }
+-
+             HudController.Instance.SetObjective("Berangkat menuju Rumah Keluarga Atmaja...");
+             HudController.Instance.EnqueueSubtitle(
+                 "SFX",
+--- a/Assets/_LayarTerakhir/Scripts/Smartphone/SmartphoneController.cs
++++ b/Assets/_LayarTerakhir/Scripts/Smartphone/SmartphoneController.cs
+@@ -102,6 +102,12 @@
+                 }
+             }
+ 
++            // Recharging must remain possible after battery depletion or while the phone is stored.
++            if (GameInputConfig.Instance.GetActionDown(GameAction.UsePowerbank))
++            {
++                TryUsePowerbank();
++            }
++
+             if (!isPhoneRaised || !isScreenOn)
+                 return;
+ 
+@@ -126,10 +132,6 @@
+                 SyncVisualState();
+             }
+ 
+-            if (GameInputConfig.Instance.GetActionDown(GameAction.UsePowerbank))
+-            {
+-                TryUsePowerbank();
+-            }
+         }
+ 
+         private void UpdateBatteryDrain()
+--- a/Assets/_LayarTerakhir/Scripts/Player/InteractionInteractor.cs
++++ b/Assets/_LayarTerakhir/Scripts/Player/InteractionInteractor.cs
+@@ -12,6 +12,7 @@
+         public LayerMask interactableMask = ~0;
+ 
+         public IInteractable CurrentTarget { get; private set; }
++        private readonly RaycastHit[] _hits = new RaycastHit[16];
+ 
+         private void Update()
+         {
+@@ -38,7 +39,25 @@
+                 return;
+ 
+             Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+-            if (Physics.Raycast(ray, out RaycastHit hit, interactionDistance, interactableMask, QueryTriggerInteraction.Collide))
++            int hitCount = Physics.RaycastNonAlloc(ray, _hits, interactionDistance, interactableMask, QueryTriggerInteraction.Collide);
++            RaycastHit[] hits = _hits;
++            if (hitCount == _hits.Length)
++            {
++                hits = Physics.RaycastAll(ray, interactionDistance, interactableMask, QueryTriggerInteraction.Collide);
++                hitCount = hits.Length;
++            }
++            RaycastHit hit = default;
++            bool found = false;
++            for (int i = 0; i < hitCount; i++)
++            {
++                if (hits[i].collider.transform.IsChildOf(transform)) continue;
++                if (!found || hits[i].distance < hit.distance)
++                {
++                    hit = hits[i];
++                    found = true;
++                }
++            }
++            if (found)
+             {
+                 IInteractable interactable = hit.collider.GetComponentInParent<IInteractable>();
+                 if (interactable != null && interactable.CanInteract())
+--- a/Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity
++++ b/Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity
+@@ -1049,7 +1049,7 @@
+   m_GameObject: {fileID: 352441978}
+   serializedVersion: 2
+   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+-  m_LocalPosition: {x: -0.8, y: 0.05, z: 0.25}
++  m_LocalPosition: {x: -0.4, y: 0.05, z: 0.25}
+   m_LocalScale: {x: 1, y: 1, z: 1}
+   m_ConstrainProportionsScale: 0
+   m_Children:
+@@ -4547,7 +4547,7 @@
+   m_Icon: {fileID: 0}
+   m_NavMeshLayer: 0
+   m_StaticEditorFlags: 0
+-  m_IsActive: 1
++  m_IsActive: 0
+ --- !u!4 &1158788318
+ Transform:
+   m_ObjectHideFlags: 0
+@@ -4557,7 +4557,7 @@
+   m_GameObject: {fileID: 1158788317}
+   serializedVersion: 2
+   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+-  m_LocalPosition: {x: 1.04, y: -1.83, z: 0.13}
++  m_LocalPosition: {x: 0.24, y: -0.18, z: 0.38}
+   m_LocalScale: {x: 0.08, y: 0.15, z: 0.02}
+   m_ConstrainProportionsScale: 0
+   m_Children:
+@@ -6476,7 +6476,7 @@
+   m_PrefabInstance: {fileID: 0}
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 1588064337}
+-  m_Enabled: 1
++  m_Enabled: 0
+   serializedVersion: 12
+   m_Type: 0
+   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- a/ProjectSettings/EditorBuildSettings.asset
++++ b/ProjectSettings/EditorBuildSettings.asset
+@@ -6,11 +6,11 @@
+   serializedVersion: 2
+   m_Scenes:
+   - enabled: 1
++    path: Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity
++    guid: d5733aef23f389e9eb6d1d485062d1cc
++  - enabled: 1
+     path: Assets/Scenes/SampleScene.unity
+     guid: 99c9720ab356a0642a771bea13969a05
+-  - enabled: 1
+-    path: Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity
+-    guid: d5733aef23f389e9eb6d1d485062d1cc
+   m_configObjects:
+     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+   m_UseUCBPForAssetBundles: 0
+--- a/install_milestone1.sh
++++ b/install_milestone1.sh
+@@ -5,6 +5,11 @@
+ 
+ if [ ! -d "$PROJECT_ROOT/Assets" ]; then
+     echo "[ERROR] Direktori $PROJECT_ROOT/Assets tidak ditemukan. Pastikan path proyek Unity benar."
++    exit 1
++fi
++
++if [ -d "$PROJECT_ROOT/Assets/_LayarTerakhir/Scripts" ]; then
++    echo "[ERROR] Foundation sources already exist. This legacy installer would overwrite audited fixes."
+     exit 1
+ fi
+ 
+--- /dev/null
++++ b/Assets/_LayarTerakhir/Editor/FoundationAuditTests.cs
+@@ -0,0 +1,249 @@
++#if UNITY_EDITOR
++using System;
++using System.Reflection;
++using System.IO;
++using System.Text.RegularExpressions;
++using LayarTerakhir.Core;
++using LayarTerakhir.Player;
++using LayarTerakhir.Smartphone;
++using LayarTerakhir.UI;
++using NUnit.Framework;
++using UnityEditor;
++using UnityEditor.SceneManagement;
++using UnityEngine;
++using UnityEngine.InputSystem;
++using UnityEngine.InputSystem.LowLevel;
++using UnityEngine.UI;
++using UnityEngine.TestTools;
++
++namespace LayarTerakhir.Editor.Tests
++{
++    public class FoundationAuditTests
++    {
++        private Keyboard _keyboard;
++        private string _saveDirectory;
++        private string _previousSaveDirectory;
++
++        [SetUp]
++        public void SetUp()
++        {
++            _previousSaveDirectory = Environment.GetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY");
++            _saveDirectory = Path.Combine(Path.GetTempPath(), "LayarTerakhir-Test-" + Guid.NewGuid());
++            Environment.SetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY", _saveDirectory);
++            EditorSceneManager.OpenScene(PrologKosSceneBuilder.ScenePath);
++            Invoke(Find<CampaignState>(), "Awake");
++            Invoke(Find<GameInputConfig>(), "Awake");
++            Invoke(Find<HudController>(), "Awake");
++            Invoke(Find<SmartphoneController>(), "Awake");
++            _keyboard = InputSystem.AddDevice<Keyboard>();
++        }
++
++        [TearDown]
++        public void TearDown()
++        {
++            if (_keyboard != null) InputSystem.RemoveDevice(_keyboard);
++            EditorSceneManager.NewScene(NewSceneSetup.EmptyScene);
++            Environment.SetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY", _previousSaveDirectory);
++            if (Directory.Exists(_saveDirectory)) Directory.Delete(_saveDirectory, true);
++        }
++
++        [Test]
++        public void SavedDocumentCloseButtonClosesAndCallsBackOnce()
++        {
++            var hud = Find<HudController>();
++            int calls = 0;
++            hud.OpenDocumentModal("Audit", "Document", () => calls++);
++            hud.documentCloseButton.onClick.Invoke();
++            Assert.That(hud.IsModalOpen, Is.False);
++            hud.documentCloseButton.onClick.Invoke();
++            Assert.That(calls, Is.EqualTo(1));
++        }
++
++        [Test]
++        public void SavedPadlockButtonsSolve148Once()
++        {
++            var hud = Find<HudController>();
++            hud.EnsureRuntimeUIBuilt();
++            hud.EnsureRuntimeUIBuilt();
++            int calls = 0;
++            hud.OpenPadlockModal("148", () => calls++);
++            for (int slot = 0; slot < 3; slot++)
++            {
++                Button(hud, "DigitDown_" + slot).onClick.Invoke();
++                Button(hud, "DigitUp_" + slot).onClick.Invoke();
++                for (int n = 0; n < new[] { 1, 4, 8 }[slot]; n++)
++                    Button(hud, "DigitUp_" + slot).onClick.Invoke();
++            }
++            Button(hud, "UnlockPadlockBtn").onClick.Invoke();
++            Assert.That(hud.IsModalOpen, Is.False);
++            Button(hud, "UnlockPadlockBtn").onClick.Invoke();
++            Assert.That(calls, Is.EqualTo(1));
++        }
++
++        [Test]
++        public void SavedPadlockRejectsWrongCodeAndCancelCloses()
++        {
++            var hud = Find<HudController>();
++            int calls = 0;
++            hud.OpenPadlockModal("148", () => calls++);
++            Button(hud, "UnlockPadlockBtn").onClick.Invoke();
++            Assert.That(hud.padlockFeedbackText.text, Does.Contain("salah"));
++            Assert.That(hud.IsModalOpen, Is.True);
++            Button(hud, "CancelPadlockBtn").onClick.Invoke();
++            Assert.That(hud.IsModalOpen, Is.False);
++            Assert.That(calls, Is.Zero);
++        }
++
++        [Test]
++        public void PadlockCallbackCannotRepeatAfterSuccessfulSubmission()
++        {
++            var hud = Find<HudController>();
++            int calls = 0;
++            hud.OpenPadlockModal("000", () => calls++);
++            Invoke(hud, "SubmitPadlockCode");
++            Invoke(hud, "SubmitPadlockCode");
++            Assert.That(calls, Is.EqualTo(1));
++        }
++
++        [Test]
++        public void PhoneRigUsesCameraLocalOffset()
++        {
++            var phone = Find<SmartphoneController>();
++            Assert.That(Vector3.Distance(phone.handPhoneMeshRoot.transform.localPosition,
++                new Vector3(0.24f, -0.18f, 0.38f)), Is.LessThan(0.001f));
++            Assert.That(phone.handPhoneMeshRoot.GetComponent<Collider>(), Is.Null);
++        }
++
++        [Test]
++        public void BuildStartsInKos()
++        {
++            Assert.That(EditorBuildSettings.scenes[0].enabled, Is.True);
++            Assert.That(EditorBuildSettings.scenes[0].path, Is.EqualTo(PrologKosSceneBuilder.ScenePath));
++        }
++
++        [Test]
++        public void InitialPlayerCapsuleDoesNotOverlapFurniture()
++        {
++            var cc = Find<FirstPersonController>().GetComponent<CharacterController>();
++            Physics.SyncTransforms();
++            Vector3 bottom = cc.transform.position + Vector3.up * cc.radius;
++            Vector3 top = cc.transform.position + Vector3.up * (cc.height - cc.radius);
++            foreach (var collider in Physics.OverlapCapsule(bottom, top, cc.radius))
++                Assert.That(collider == cc, Is.True, "Spawn overlaps " + collider.name);
++        }
++
++        [TestCase("Assets/Scenes/SampleScene.unity")]
++        [TestCase(PrologKosSceneBuilder.ScenePath)]
++        public void SceneHasNoMissingScriptsOrSerializedObjectReferences(string path)
++        {
++            var scene = EditorSceneManager.OpenScene(path);
++            foreach (var root in scene.GetRootGameObjects())
++            foreach (var transform in root.GetComponentsInChildren<Transform>(true))
++            {
++                Assert.That(GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(transform.gameObject), Is.Zero, transform.name);
++                foreach (var component in transform.GetComponents<Component>())
++                {
++                    var property = new SerializedObject(component).GetIterator();
++                    while (property.Next(true))
++                        if (property.propertyType == SerializedPropertyType.ObjectReference && property.objectReferenceValue == null)
++                            Assert.That(property.objectReferenceInstanceIDValue, Is.Zero, transform.name + "." + property.propertyPath);
++                }
++            }
++        }
++
++        [Test]
++        public void SaveReplacementKeepsBackupAndRestoresFullSnapshot()
++        {
++            var campaign = Find<CampaignState>();
++            campaign.AddInventoryItem("SMARTPHONE_RAKA");
++            Assert.That(campaign.AddInventoryItem("SMARTPHONE_RAKA"), Is.False);
++            Assert.That(campaign.SaveCheckpointAtomic("FIRST"), Is.True);
++            campaign.Data.battery = 37.5f;
++            campaign.AddBoundDonation(5000000);
++            campaign.AddInventoryItem("JAKET_RAKA");
++            Assert.That(campaign.SaveCheckpointAtomic("SECOND"), Is.True);
++            campaign.StartNewGame();
++            Assert.That(campaign.LoadCheckpoint(), Is.True);
++            Assert.That(campaign.Data.checkpoint_id, Is.EqualTo("SECOND"));
++            Assert.That(campaign.Data.battery, Is.EqualTo(37.5f));
++            Assert.That(campaign.Data.wallet_bound, Is.EqualTo(5000000));
++            Assert.That(campaign.Data.inventory, Is.EquivalentTo(new[] { "SMARTPHONE_RAKA", "JAKET_RAKA" }));
++            Assert.That(campaign.LoadBackupCheckpoint(), Is.True);
++            Assert.That(campaign.Data.checkpoint_id, Is.EqualTo("FIRST"));
++            Assert.That(campaign.Data.wallet_bound, Is.Zero);
++        }
++
++        [Test]
++        public void FailedSavePreservesPreviousFileAndInMemoryCheckpoint()
++        {
++            var campaign = Find<CampaignState>();
++            Assert.That(campaign.SaveCheckpointAtomic("GOOD"), Is.True);
++            string path = Path.Combine(_saveDirectory, "layar_terakhir_save.json");
++            string before = File.ReadAllText(path);
++            Directory.CreateDirectory(path + ".tmp");
++            LogAssert.Expect(LogType.Error, new Regex("Gagal menyimpan checkpoint"));
++            Assert.That(campaign.SaveCheckpointAtomic("FAILED"), Is.False);
++            Assert.That(File.ReadAllText(path), Is.EqualTo(before));
++            Assert.That(campaign.Data.checkpoint_id, Is.EqualTo("GOOD"));
++        }
++
++        [TestCase("{bad json")]
++        [TestCase("{}")]
++        [TestCase("{\"schema_version\":99}")]
++        [TestCase("{\"schema_version\":1,\"battery\":-1}")]
++        [TestCase("{\"schema_version\":1,\"sanity\":101}")]
++        [TestCase("{\"schema_version\":1,\"inventory\":[\"KEY\",\"KEY\"]}")]
++        [TestCase("{\"schema_version\":1,\"wallet_bound\":-1}")]
++        [TestCase("{\"schema_version\":1,\"ending\":99}")]
++        public void CorruptSaveDoesNotReplaceLiveData(string json)
++        {
++            var campaign = Find<CampaignState>();
++            campaign.AddInventoryItem("KEEP_ME");
++            var before = campaign.Data;
++            Directory.CreateDirectory(_saveDirectory);
++            File.WriteAllText(Path.Combine(_saveDirectory, "layar_terakhir_save.json"), json);
++            Assert.That(campaign.LoadCheckpoint(), Is.False);
++            Assert.That(campaign.Data, Is.SameAs(before));
++            Assert.That(campaign.HasInventoryItem("KEEP_ME"), Is.True);
++        }
++
++        [Test]
++        public void NewGameResetsInventoryAndWallet()
++        {
++            var campaign = Find<CampaignState>();
++            campaign.AddInventoryItem("KEY");
++            campaign.AddBoundDonation(5000000);
++            campaign.StartNewGame();
++            Assert.That(campaign.Data.inventory, Is.Empty);
++            Assert.That(campaign.Data.wallet_bound, Is.Zero);
++            Assert.That(campaign.Data.checkpoint_id, Is.EqualTo("PROLOG_KOS_START"));
++        }
++
++        [TestCase(KeyCode.UpArrow, Key.UpArrow)]
++        [TestCase(KeyCode.Alpha1, Key.Digit1)]
++        [TestCase(KeyCode.RightControl, Key.RightCtrl)]
++        public void RemappedMovementReadsNonDefaultKeys(KeyCode binding, Key key)
++        {
++            var input = Find<GameInputConfig>();
++            input.RemapAction(GameAction.MoveForward, binding);
++            InputSystem.QueueStateEvent(_keyboard, new KeyboardState(key));
++            InputSystem.Update();
++            Assert.That(input.GetMovementInput().y, Is.EqualTo(1f));
++        }
++
++        internal static T Find<T>() where T : UnityEngine.Object => UnityEngine.Object.FindFirstObjectByType<T>();
++
++        internal static void Invoke(object target, string method)
++        {
++            target.GetType().GetMethod(method, BindingFlags.Instance | BindingFlags.NonPublic).Invoke(target, null);
++        }
++
++        internal static Button Button(HudController hud, string name)
++        {
++            foreach (var button in hud.GetComponentsInChildren<Button>(true))
++                if (button.name == name) return button;
++            throw new InvalidOperationException("Missing UI button: " + name);
++        }
++    }
++}
++#endif
+--- /dev/null
++++ b/Assets/_LayarTerakhir/Editor/FoundationAuditTests.cs.meta
+@@ -0,0 +1,2 @@
++fileFormatVersion: 2
++guid: 770111d3cdb0c4036a2c8a5e11c87139--- /dev/null
++++ b/Assets/_LayarTerakhir/Editor/FoundationPlayAuditTests.cs
+@@ -0,0 +1,391 @@
++#if UNITY_EDITOR
++using System;
++using System.Collections;
++using System.Collections.Generic;
++using System.IO;
++using System.Text.RegularExpressions;
++using LayarTerakhir.Core;
++using LayarTerakhir.Player;
++using LayarTerakhir.Prolog;
++using LayarTerakhir.Smartphone;
++using LayarTerakhir.UI;
++using NUnit.Framework;
++using UnityEditor;
++using UnityEditor.SceneManagement;
++using UnityEngine;
++using UnityEngine.InputSystem;
++using UnityEngine.InputSystem.LowLevel;
++using UnityEngine.SceneManagement;
++using UnityEngine.TestTools;
++
++namespace LayarTerakhir.Editor.Tests
++{
++    // Discovered as Editor tests; each test explicitly enters actual Play Mode headlessly.
++    public sealed class FoundationAuditCoroutineHost : MonoBehaviour { }
++
++    public class FoundationPlayAuditTests
++    {
++        private Keyboard _keyboard;
++        private Mouse _mouse;
++
++        [UnitySetUp]
++        public IEnumerator SetUp()
++        {
++            SessionState.SetString("LayarAudit.PreviousSaveDirectory",
++                Environment.GetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY") ?? "");
++            Environment.SetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY",
++                Path.Combine(Path.GetTempPath(), "LayarTerakhir-PlayTest-" + Guid.NewGuid()));
++            EditorSceneManager.OpenScene(PrologKosSceneBuilder.ScenePath);
++            yield return new EnterPlayMode();
++            SessionState.SetString("LayarAudit.PreviousInputSettings", JsonUtility.ToJson(InputSystem.settings));
++            var settings = UnityEngine.Object.Instantiate(InputSystem.settings);
++            settings.editorInputBehaviorInPlayMode = InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
++            settings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
++            InputSystem.settings = settings;
++            _keyboard = InputSystem.AddDevice<Keyboard>();
++            _mouse = InputSystem.AddDevice<Mouse>();
++            Time.timeScale = 10f;
++            Assert.That(Application.isPlaying, Is.True);
++            int initialFrame = Time.frameCount;
++            while (Time.frameCount == initialFrame) yield return null;
++        }
++
++        [UnityTearDown]
++        public IEnumerator TearDown()
++        {
++            if (_keyboard != null) InputSystem.RemoveDevice(_keyboard);
++            if (_mouse != null) InputSystem.RemoveDevice(_mouse);
++            var settings = InputSystem.settings;
++            var restoredSettings = ScriptableObject.CreateInstance<InputSettings>();
++            JsonUtility.FromJsonOverwrite(SessionState.GetString("LayarAudit.PreviousInputSettings", "{}"), restoredSettings);
++            InputSystem.settings = restoredSettings;
++            UnityEngine.Object.Destroy(settings);
++            Time.timeScale = 1f;
++            yield return new ExitPlayMode();
++            string directory = Environment.GetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY");
++            string previous = SessionState.GetString("LayarAudit.PreviousSaveDirectory", "");
++            Environment.SetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY", previous);
++            if (!string.IsNullOrEmpty(directory) && Directory.Exists(directory)) Directory.Delete(directory, true);
++            EditorSceneManager.NewScene(NewSceneSetup.EmptyScene);
++        }
++
++        [UnityTest]
++        public IEnumerator KosSequenceWithJacketFirst() => RunInPlayerLoop(CompleteKos(true));
++
++        [UnityTest]
++        public IEnumerator KosSequenceWithDrawerFirst() => RunInPlayerLoop(CompleteKos(false));
++
++        private IEnumerator CompleteKos(bool jacketFirst)
++        {
++            var director = Find<KamarKosPrologDirector>();
++            var hud = Find<HudController>();
++            var campaign = Find<CampaignState>();
++            Assert.That(director.suratKosItem.CanInteract(), Is.False);
++            Assert.That(director.smartphoneBedItem.CanInteract(), Is.False);
++            yield return Interact(director.kosDoorItem, new Vector3(0.85f, 0.05f, -0.3f));
++            Assert.That(director.currentStage, Is.EqualTo(KosPrologStage.WakeUpAndKnocks));
++            yield return WaitForStage(KosPrologStage.WaitReadSuratIbuKos);
++            yield return Interact(director.pcMonitorItem, new Vector3(-0.4f, 0.05f, 0.1f));
++            Assert.That(hud.documentBodyText.text, Does.Contain("32"));
++            CloseDocument();
++            yield return Interact(director.suratKosItem, new Vector3(0.85f, 0.05f, -0.25f));
++            Assert.That(hud.IsModalOpen, Is.True);
++            Vector3 modalPosition = Find<FirstPersonController>().transform.position;
++            InputSystem.QueueStateEvent(_keyboard, new KeyboardState(Key.W));
++            yield return new WaitForSeconds(0.5f);
++            Assert.That(Vector2.Distance(new Vector2(modalPosition.x, modalPosition.z),
++                new Vector2(Find<FirstPersonController>().transform.position.x, Find<FirstPersonController>().transform.position.z)), Is.LessThan(0.001f));
++            yield return Press();
++            CloseDocument();
++            yield return WaitForStage(KosPrologStage.WaitPickupSmartphone);
++            yield return Interact(director.smartphoneBedItem, new Vector3(-0.35f, 0.05f, -0.35f));
++            Assert.That(Find<SmartphoneController>().hasSmartphoneInInventory, Is.True);
++            Assert.That(hud.documentBodyText.text, Does.Contain("14 Panggilan"));
++            CloseDocument();
++            yield return WaitForStage(KosPrologStage.PreparationAndDrawerPuzzle);
++            Assert.That(campaign.Data.wallet_bound, Is.EqualTo(5000000));
++            yield return Interact(director.stickyNoteItem, new Vector3(-0.35f, 0.05f, 0f));
++            Assert.That(hud.documentBodyText.text, Does.Contain("Tanggal & bulan"));
++            CloseDocument();
++            yield return Interact(director.wallCalendarItem, new Vector3(0.6f, 0.05f, 0f));
++            Assert.That(hud.documentBodyText.text, Does.Contain("14 - 08"));
++            CloseDocument();
++            if (jacketFirst) yield return Interact(director.jacketItem, new Vector3(1.05f, 0.05f, -0.4f));
++            yield return Interact(director.lockedDrawerItem, new Vector3(-0.35f, 0.05f, 0f));
++            FoundationAuditTests.Button(hud, "UnlockPadlockBtn").onClick.Invoke();
++            Assert.That(director.isDrawerUnlocked, Is.False);
++            Assert.That(hud.padlockFeedbackText.text, Does.Contain("salah"));
++            FoundationAuditTests.Button(hud, "CancelPadlockBtn").onClick.Invoke();
++            yield return Interact(director.lockedDrawerItem, new Vector3(-0.35f, 0.05f, 0f));
++            int[] digits = { 1, 4, 8 };
++            for (int slot = 0; slot < 3; slot++)
++                for (int n = 0; n < digits[slot]; n++) FoundationAuditTests.Button(hud, "DigitUp_" + slot).onClick.Invoke();
++            FoundationAuditTests.Button(hud, "UnlockPadlockBtn").onClick.Invoke();
++            Assert.That(director.isDrawerUnlocked, Is.True);
++            if (!jacketFirst) yield return Interact(director.jacketItem, new Vector3(1.05f, 0.05f, -0.4f));
++            Assert.That(director.currentStage, Is.EqualTo(KosPrologStage.ReadyToDepart));
++            Assert.That(campaign.Data.inventory, Is.EquivalentTo(new[] {
++                "DOC_PROLOG_01_SURAT_KOS", "SMARTPHONE_RAKA", "KUNCI_MOTOR", "POWERBANK_KECIL_KOS", "JAKET_RAKA" }));
++            yield return Interact(director.kosDoorItem, new Vector3(0.85f, 0.05f, -0.3f));
++            Assert.That(director.currentStage, Is.EqualTo(KosPrologStage.Completed));
++            yield return new WaitForSeconds(4f);
++            Assert.That(hud.blackFadeImage.color.a, Is.EqualTo(1f));
++            Assert.That(hud.blackFadeImage.transform.GetSiblingIndex(), Is.EqualTo(hud.blackFadeImage.transform.parent.childCount - 1));
++            Assert.That(Find<FirstPersonController>().MovementLocked, Is.True);
++            Assert.That(campaign.LoadCheckpoint(), Is.True);
++            Assert.That(campaign.Data.checkpoint_id, Is.EqualTo("PROLOG_KOS_COMPLETE"));
++            Assert.That(campaign.Data.wallet_bound, Is.EqualTo(5000000));
++        }
++
++        [UnityTest]
++        public IEnumerator ReloadRestoresKosObjectsBatteryAndWalletWithoutRegrantingConsumables() => RunInPlayerLoop(ReloadRestoresKosObjectsBatteryAndWalletWithoutRegrantingConsumablesRoutine());
++
++        private IEnumerator ReloadRestoresKosObjectsBatteryAndWalletWithoutRegrantingConsumablesRoutine()
++        {
++            var campaign = Find<CampaignState>();
++            campaign.AddInventoryItem("SMARTPHONE_RAKA");
++            campaign.AddInventoryItem("JAKET_RAKA");
++            campaign.AddInventoryItem("KUNCI_MOTOR");
++            campaign.Data.battery = 42f;
++            campaign.AddBoundDonation(5000000);
++            Assert.That(campaign.SaveCheckpointAtomic("PROLOG_KOS_COMPLETE"), Is.True);
++            yield return SceneManager.LoadSceneAsync(PrologKosSceneBuilder.ScenePath);
++            yield return null;
++            var director = Find<KamarKosPrologDirector>();
++            Assert.That(director.currentStage, Is.EqualTo(KosPrologStage.ReadyToDepart));
++            Assert.That(director.suratKosItem.gameObject.activeSelf, Is.False);
++            Assert.That(director.smartphoneBedItem.gameObject.activeSelf, Is.False);
++            Assert.That(director.jacketItem.gameObject.activeSelf, Is.False);
++            Assert.That(director.lockedDrawerItem.CanInteract(), Is.False);
++            Assert.That(Find<SmartphoneController>().batteryPercent, Is.EqualTo(42f));
++            Assert.That(Find<CampaignState>().Data.wallet_bound, Is.EqualTo(5000000));
++            Assert.That(Find<CampaignState>().HasInventoryItem("POWERBANK_KECIL_KOS"), Is.False);
++        }
++
++        [UnityTest]
++        public IEnumerator DepartureCanRetryAfterSaveFailure() => RunInPlayerLoop(DepartureCanRetryAfterSaveFailureRoutine());
++
++        private IEnumerator DepartureCanRetryAfterSaveFailureRoutine()
++        {
++            var director = Find<KamarKosPrologDirector>();
++            director.StopAllCoroutines();
++            director.currentStage = KosPrologStage.ReadyToDepart;
++            var campaign = Find<CampaignState>();
++            Assert.That(campaign.SaveCheckpointAtomic("GOOD"), Is.True);
++            string temporaryPath = Path.Combine(Environment.GetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY"), "layar_terakhir_save.json.tmp");
++            Directory.CreateDirectory(temporaryPath);
++            LogAssert.Expect(LogType.Error, new Regex("Gagal menyimpan checkpoint"));
++            director.OnObjectInteracted(director.kosDoorItem);
++            Assert.That(director.currentStage, Is.EqualTo(KosPrologStage.ReadyToDepart));
++            Assert.That(campaign.Data.checkpoint_id, Is.EqualTo("GOOD"));
++            Directory.Delete(temporaryPath);
++            director.OnObjectInteracted(director.kosDoorItem);
++            Assert.That(director.currentStage, Is.EqualTo(KosPrologStage.Completed));
++            yield return null;
++        }
++
++        [UnityTest]
++        public IEnumerator PhoneDrainModesDarkBroadcastAndZeroBatteryRecharge() => RunInPlayerLoop(PhoneDrainModesDarkBroadcastAndZeroBatteryRechargeRoutine());
++
++        private IEnumerator PhoneDrainModesDarkBroadcastAndZeroBatteryRechargeRoutine()
++        {
++            var phone = Find<SmartphoneController>();
++            phone.AcquireSmartphone();
++            phone.isBroadcastConnected = true;
++            phone.batteryPercent = 100f;
++            yield return new WaitForSeconds(2f);
++            float normalDrain = 100f - phone.batteryPercent;
++            Assert.That(normalDrain, Is.InRange(0.07f, 0.14f));
++            yield return Press(Key.Q);
++            Assert.That(phone.currentScanMode, Is.EqualTo(ScanVisualMode.Normal));
++            phone.arModuleUnlocked = phone.uvModuleUnlocked = true;
++            yield return Press(Key.Q);
++            Assert.That(phone.currentScanMode, Is.EqualTo(ScanVisualMode.AR));
++            yield return Press(Key.R);
++            Assert.That(phone.currentScanMode, Is.EqualTo(ScanVisualMode.UV));
++            float before = phone.batteryPercent;
++            yield return new WaitForSeconds(2f);
++            Assert.That(before - phone.batteryPercent, Is.InRange(0.17f, 0.25f));
++            yield return Press(Key.F);
++            before = phone.batteryPercent;
++            yield return new WaitForSeconds(2f);
++            Assert.That(phone.batteryPercent, Is.EqualTo(before));
++            Assert.That(phone.isBroadcastConnected, Is.True);
++            phone.ConsumeBattery(100f);
++            Find<CampaignState>().AddInventoryItem("POWERBANK_BESAR");
++            yield return Press(Key.B);
++            Assert.That(phone.batteryPercent, Is.EqualTo(80f));
++            Assert.That(phone.isScreenOn, Is.False);
++            yield return Press(Key.F);
++            Assert.That(phone.phoneFlashlight.enabled, Is.True);
++            yield return Press(Key.Tab);
++            before = phone.batteryPercent;
++            yield return new WaitForSeconds(2f);
++            Assert.That(phone.batteryPercent, Is.EqualTo(before));
++            Assert.That(phone.handPhoneMeshRoot.activeSelf, Is.False);
++            Assert.That(phone.phoneFlashlight.enabled, Is.False);
++            Assert.That(phone.isBroadcastConnected, Is.True);
++        }
++
++        [UnityTest]
++        public IEnumerator NewBroadcastNotificationKeepsItsOwnDuration() => RunInPlayerLoop(NewBroadcastNotificationKeepsItsOwnDurationRoutine());
++
++        private IEnumerator NewBroadcastNotificationKeepsItsOwnDurationRoutine()
++        {
++            var hud = Find<HudController>();
++            hud.ShowBroadcastNotification("Old", 0.5f);
++            yield return new WaitForSeconds(0.2f);
++            hud.ShowBroadcastNotification("New", 2f);
++            yield return new WaitForSeconds(0.7f);
++            Assert.That(hud.broadcastToastText.text, Is.EqualTo("New"));
++            yield return new WaitForSeconds(2f);
++            Assert.That(hud.broadcastToastText.text, Is.Empty);
++        }
++
++        [UnityTest]
++        public IEnumerator MovementCollisionAndCrouchHeadroomUseRuntimePhysics() => RunInPlayerLoop(MovementCollisionAndCrouchHeadroomUseRuntimePhysicsRoutine());
++
++        private IEnumerator MovementCollisionAndCrouchHeadroomUseRuntimePhysicsRoutine()
++        {
++            Time.timeScale = 1f;
++            PlacePlayer(new Vector3(0.3f, 0.05f, 0f));
++            var player = Find<FirstPersonController>();
++            InputSystem.QueueStateEvent(_keyboard, new KeyboardState(Key.W));
++            yield return new WaitForSeconds(1f);
++            Assert.That(player.transform.position.z, Is.InRange(0.9f, 1.25f));
++            yield return Press(Key.LeftCtrl);
++            InputSystem.QueueStateEvent(_keyboard, new KeyboardState(Key.LeftCtrl));
++            yield return new WaitForSeconds(0.3f);
++            Assert.That(player.IsCrouching, Is.True);
++            Assert.That(player.GetComponent<CharacterController>().height, Is.LessThan(1.15f));
++            var ceiling = GameObject.CreatePrimitive(PrimitiveType.Cube);
++            ceiling.transform.position = player.transform.position + Vector3.up * 1.5f;
++            ceiling.transform.localScale = new Vector3(1f, 0.1f, 1f);
++            Physics.SyncTransforms();
++            yield return Press();
++            yield return new WaitForSeconds(0.2f);
++            Assert.That(player.IsCrouching, Is.True);
++            UnityEngine.Object.Destroy(ceiling);
++            yield return new WaitForSeconds(0.4f);
++            Assert.That(player.IsCrouching, Is.False);
++            Assert.That(player.GetComponent<CharacterController>().height, Is.GreaterThan(1.6f));
++        }
++
++        [UnityTest]
++        public IEnumerator PowerbankKeyWorksWithStoredPhone() => RunInPlayerLoop(RechargePhone(false));
++
++        [UnityTest]
++        public IEnumerator PowerbankKeyWorksWithDeadPhone() => RunInPlayerLoop(RechargePhone(true));
++
++        private IEnumerator RechargePhone(bool raised)
++        {
++            var phone = Find<SmartphoneController>();
++            phone.AcquireSmartphone();
++            phone.ConsumeBattery(100f);
++            phone.isPhoneRaised = raised;
++            Find<CampaignState>().AddInventoryItem("POWERBANK_KECIL_KOS");
++            yield return Press(Key.B);
++            Assert.That(phone.batteryPercent, Is.EqualTo(35f));
++            Assert.That(Find<CampaignState>().HasInventoryItem("POWERBANK_KECIL_KOS"), Is.False);
++        }
++
++        private static IEnumerator RunInPlayerLoop(IEnumerator scenario)
++        {
++            var hostObject = new GameObject("FoundationAuditCoroutineHost");
++            UnityEngine.Object.DontDestroyOnLoad(hostObject);
++            var host = hostObject.AddComponent<FoundationAuditCoroutineHost>();
++            bool finished = false;
++            Exception failure = null;
++            host.StartCoroutine(DriveScenario(scenario, error => { failure = error; finished = true; }));
++            float deadline = Time.realtimeSinceStartup + 45f;
++            while (!finished && Time.realtimeSinceStartup < deadline) yield return null;
++            UnityEngine.Object.Destroy(hostObject);
++            Assert.That(finished, Is.True, "Runtime scenario timed out");
++            if (failure != null) throw failure;
++        }
++
++        private static IEnumerator DriveScenario(IEnumerator scenario, Action<Exception> complete)
++        {
++            var stack = new Stack<IEnumerator>();
++            stack.Push(scenario);
++            while (stack.Count > 0)
++            {
++                object instruction = null;
++                Exception failure = null;
++                bool advanced = false;
++                try
++                {
++                    advanced = stack.Peek().MoveNext();
++                    if (advanced) instruction = stack.Peek().Current;
++                }
++                catch (Exception exception) { failure = exception; }
++                if (failure != null) { complete(failure); yield break; }
++                if (!advanced) { stack.Pop(); continue; }
++                if (instruction is IEnumerator nested) stack.Push(nested);
++                else yield return instruction;
++            }
++            complete(null);
++        }
++
++        private IEnumerator Interact(KosInteractableItem item, Vector3 position)
++        {
++            PlacePlayer(position);
++            var interactor = Find<InteractionInteractor>();
++            interactor.playerCamera.transform.LookAt(item.transform.position);
++            Physics.SyncTransforms();
++            yield return null;
++            var camera = interactor.playerCamera.transform;
++            Physics.Raycast(camera.position, camera.forward, out var hit, interactor.interactionDistance);
++            Assert.That(interactor.CurrentTarget, Is.SameAs(item),
++                $"Raycast cannot reach {item.itemId}; hit={hit.collider?.name}; origin={camera.position}; direction={camera.forward}; modal={Find<HudController>().IsModalOpen}; inputSingleton={GameInputConfig.Instance != null}");
++            var obstruction = GameObject.CreatePrimitive(PrimitiveType.Cube);
++            obstruction.transform.position = camera.position + camera.forward * 0.4f;
++            obstruction.transform.localScale = Vector3.one * 0.1f;
++            Physics.SyncTransforms();
++            yield return null;
++            Assert.That(interactor.CurrentTarget, Is.Null, "World obstruction must block interaction");
++            UnityEngine.Object.Destroy(obstruction);
++            yield return null;
++            yield return Press(Key.E);
++        }
++
++        private static void PlacePlayer(Vector3 position)
++        {
++            var player = Find<FirstPersonController>();
++            var controller = player.GetComponent<CharacterController>();
++            controller.enabled = false;
++            player.transform.SetPositionAndRotation(position, Quaternion.identity);
++            player.cameraPivot.localRotation = Quaternion.identity;
++            Find<InteractionInteractor>().playerCamera.transform.localRotation = Quaternion.identity;
++            controller.enabled = true;
++        }
++
++        private IEnumerator Press(params Key[] keys)
++        {
++            InputSystem.QueueStateEvent(_keyboard, new KeyboardState(keys));
++            yield return null;
++            foreach (Key key in keys)
++                Assert.That(_keyboard[key].isPressed, Is.True, "Synthetic keyboard event was not delivered: " + key);
++            InputSystem.QueueStateEvent(_keyboard, new KeyboardState());
++            yield return null;
++        }
++
++        private static IEnumerator WaitForStage(KosPrologStage stage)
++        {
++            float deadline = Time.realtimeSinceStartup + 20f;
++            while (Find<KamarKosPrologDirector>().currentStage != stage && Time.realtimeSinceStartup < deadline)
++                yield return null;
++            Assert.That(Find<KamarKosPrologDirector>().currentStage, Is.EqualTo(stage));
++        }
++
++        private static void CloseDocument()
++        {
++            var hud = Find<HudController>();
++            hud.documentCloseButton.onClick.Invoke();
++            Assert.That(hud.IsModalOpen, Is.False);
++        }
++
++        private static T Find<T>() where T : UnityEngine.Object => UnityEngine.Object.FindFirstObjectByType<T>();
++    }
++}
++#endif
+--- /dev/null
++++ b/Assets/_LayarTerakhir/Editor/FoundationPlayAuditTests.cs.meta
+@@ -0,0 +1,2 @@
++fileFormatVersion: 2
++guid: 2e67af9176af6ea7980e40477ec39396
