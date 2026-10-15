@@ -1,0 +1,32 @@
+Asset provenance for the furnished Kamar Kos environment, verified 2026-10-15 UTC.
+
+All downloaded artwork used in this pass is **CC0 1.0 Universal**. Poly Haven explicitly permits commercial use, modification, and redistribution, without mandatory attribution ([asset license](https://polyhaven.com/license)); Kenney labels the Furniture Kit CC0 and includes the same commercial-use permission in its bundled License.txt ([asset page](https://kenney.nl/assets/furniture-kit)). Voluntary credits follow.
+
+| Imported asset | Creator credited by source | Original source | Use / license |
+| --- | --- | --- | --- |
+| Vintage Day Bed | Aron Łyczek | [vintage_day_bed](https://polyhaven.com/a/vintage_day_bed) | Bed frame, mattress, pillow and draped quilt; CC0-1.0 |
+| Wooden Table 02 | Serhii Khromov | [wooden_table_02](https://polyhaven.com/a/wooden_table_02) | Work desk; CC0-1.0 |
+| Painted Wooden Chair 01 | Kuutti Siitonen | [painted_wooden_chair_01](https://polyhaven.com/a/painted_wooden_chair_01) | Worn wooden desk chair; CC0-1.0 |
+| Painted Wooden Cabinet 02 | Kirill Sannikov | [painted_wooden_cabinet_02](https://polyhaven.com/a/painted_wooden_cabinet_02) | Blue cupboard and shelves; CC0-1.0 |
+| Wooden Bookshelf Worn | Ulan Cabanilla | [wooden_bookshelf_worn](https://polyhaven.com/a/wooden_bookshelf_worn) | Wall storage; CC0-1.0 |
+| Plastic Bottle Gallon | Rahul Chaudhary | [plastic_bottle_gallon](https://polyhaven.com/a/plastic_bottle_gallon) | Cleaning jug; CC0-1.0 |
+| Desk Lamp Arm 01 | Yann Kervran, Kuutti Siitonen | [desk_lamp_arm_01](https://polyhaven.com/a/desk_lamp_arm_01) | Desk lamp; CC0-1.0 |
+| Binder Notebook | DaDrood | [binder_notebook](https://polyhaven.com/a/binder_notebook) | Notebook / desk clutter; CC0-1.0 |
+| Worn Plaster Wall | Dimitrios Savva | [worn_plaster_wall](https://polyhaven.com/a/worn_plaster_wall) | Tiling PBR material; CC0-1.0 |
+| Painted Plaster Wall | Amal Kumar | [painted_plaster_wall](https://polyhaven.com/a/painted_plaster_wall) | Tiling PBR material; CC0-1.0 |
+| Floor Tiles 04 | Rob Tuytel | [floor_tiles_04](https://polyhaven.com/a/floor_tiles_04) | Tiling PBR material; CC0-1.0 |
+| Wood Table Worn | Dimitrios Savva, Rico Cilliers | [wood_table_worn](https://polyhaven.com/a/wood_table_worn) | Tiling PBR material; CC0-1.0 |
+| Denim Fabric | Rob Tuytel | [denim_fabric](https://polyhaven.com/a/denim_fabric) | Tiling PBR material; CC0-1.0 |
+| Rusty Metal | Rob Tuytel | [rusty_metal](https://polyhaven.com/a/rusty_metal) | Tiling PBR material; CC0-1.0 |
+
+Kenney Furniture Kit 2.0 — Kenney / Kenney.nl. Imported parts: computerScreen, computerKeyboard, computerMouse, speakerSmall, bookcaseClosedDoors, cabinetBedDrawer, doorwayFront, wallWindow, books, cardboardBoxOpen, trashcan, ceilingFan and coatRack. The last two are available in the project but not placed in the scene. All are CC0-1.0. The simple props were assigned new URP PBR materials in this project. The wardrobe, drawer, door and window meshes were converted from the same kit's OBJ variants and re-unwrapped for wood grain instead of their original palette UVs; see `Tools/retexture_kenney_wood.py`.
+
+Verified original ZIP download: [kenney_furniture-kit.zip](https://kenney.nl/media/pages/assets/furniture-kit/440e0608a4-1677580847/kenney_furniture-kit.zip). Downloaded 5,130,729 bytes; SHA-256 `e67652d0932cee41683f74711c03d3e192a2af9979ef8e6b237711f5482d46b0`. The source archive was opened and its included License.txt inspected. A copy is retained at `Assets/_LayarTerakhir/Art/Imported/Kenney/License.txt`.
+
+The exact Poly Haven model and texture download URLs, source MD5 values, SHA-256 digests, file sizes, authors, and imported paths are recorded in [asset-download-manifest.json](asset-download-manifest.json). All downloads were checked against the API-supplied MD5. The live API was used only by the production downloader with the User-Agent `LayarTerakhir-EnvironmentProduction/1.0`; the game makes no Poly Haven API requests. [Current API terms](https://github.com/Poly-Haven/Public-API/blob/master/ToS.md) permit commercial API access and distinguish it from the unconditional CC0 asset license.
+
+All downloaded texture variants are 1K or smaller. Masks were repacked from glTF ARM (R ambient occlusion, G roughness, B metalness) to Unity R metalness / G ambient occlusion / A smoothness. Normal maps use the OpenGL convention and Unity NormalMap import. Small-prop maps were reduced to 512 pixels. Some source meshes were decimated; the before/after counts are in [model-processing.json](model-processing.json). No source assets were obtained from games, unauthorized mirrors, or models with unknown license terms.
+
+Original project-specific art was authored for this pass: hanging jacket, enamel mug, refill-water gallon, computer tower, smartphone shell, combination padlock, electrical fittings, wall surfaces and trims; August calendar, birthday circle, rent warning, creator dashboard, generic noodle packaging, kos rules, poster, water label, woven mat, grime and contact masks. `Tools/author_kos_details.py` and `Tools/prepare_kos_art.py` retain the authoring steps. These original works follow the project license; the downloaded CC0 works retain their CC0 status. The printed labels use the system DejaVu fonts for rasterization; no font software is bundled by these tools ([DejaVu license](https://dejavu-fonts.github.io/License.html)).
+
+The calendar and sticky note preserve the existing puzzle clue: 14 August / 14-08, with the existing 148 lock logic unchanged. The monitor texture preserves the established offline channel and 32-viewer story. DreadOut 2 was used only as an atmospheric direction; no DreadOut assets, screenshots, logos, sounds, or textures were imported.

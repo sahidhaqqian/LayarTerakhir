@@ -1,0 +1,70 @@
+"""Verify real Unity output, then ZIP the complete player for Windows transfer.
+Usage: python3 Tools/package_windows_build.py
+Requires a completed WindowsDevelopmentBuild invocation and its real BuildReport.
+"""
+from pathlib import Path
+from datetime import datetime,timezone
+import hashlib,json,struct,zipfile,zlib,shutil
+root=Path(__file__).resolve().parents[1];out=root/'Builds/Windows';logs=root/'Builds/Logs'
+report=json.loads((logs/'windows-development-build-report.json').read_text())
+invocation=json.loads((logs/'windows-build-invocation.json').read_text())
+assert invocation['exitCode']==0,'Unity did not exit successfully'
+assert report['result']=='Succeeded' and report['totalErrors']==0,'Unity build failed'
+assert report['target']=='StandaloneWindows64' and report['scriptingBackend']=='Mono2x'
+assert 'Development' in report['options']
+assert report['scenes'][0]=='Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity'
+required=['LayarTerakhir.exe','UnityPlayer.dll','UnityCrashHandler64.exe',
+ 'MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll','MonoBleedingEdge/EmbedRuntime/MonoPosixHelper.dll',
+ 'MonoBleedingEdge/etc/mono/config','LayarTerakhir_Data/globalgamemanagers',
+ 'LayarTerakhir_Data/globalgamemanagers.assets','LayarTerakhir_Data/boot.config','LayarTerakhir_Data/level0',
+ 'LayarTerakhir_Data/resources.assets','LayarTerakhir_Data/sharedassets0.assets',
+ 'LayarTerakhir_Data/Managed/Assembly-CSharp.dll','LayarTerakhir_Data/Managed/Unity.InputSystem.dll',
+ 'LayarTerakhir_Data/Managed/Unity.RenderPipelines.Universal.Runtime.dll',
+ 'LayarTerakhir_Data/Resources/unity default resources','LayarTerakhir_Data/Resources/unity_builtin_extra']
+for name in required:assert (out/name).is_file() and (out/name).stat().st_size>0,name
+architectures={}
+for name in required[:1]+['UnityPlayer.dll','MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll']:
+ with (out/name).open('rb') as f:
+  assert f.read(2)==b'MZ',name;f.seek(0x3c);offset=struct.unpack('<I',f.read(4))[0];f.seek(offset)
+  assert f.read(4)==b'PE\0\0' and struct.unpack('<H',f.read(2))[0]==0x8664,name
+  f.seek(offset+24);assert struct.unpack('<H',f.read(2))[0]==0x20b,name
+  architectures[name]='PE32+ AMD64 (0x8664)'
+for entry in report['files']:
+ p=Path(entry['path']);assert p.is_relative_to(out),str(p)
+ assert p.is_file() and p.stat().st_size==entry['sizeBytes'],str(p)
+assemblies=json.loads((out/'LayarTerakhir_Data/ScriptingAssemblies.json').read_text())['names']
+assert 'Assembly-CSharp.dll' in assemblies and 'Assembly-CSharp-Editor.dll' not in assemblies
+for name in assemblies:assert (out/'LayarTerakhir_Data/Managed'/name).is_file(),name
+scene_data=(out/'LayarTerakhir_Data/level0').read_bytes()
+for marker in ['Kos_Environment_Art','CeramicTileFloor','WeakTungstenCeiling','CalendarAugust','vintage_day_bed']:assert marker.encode() in scene_data,marker
+assert b'Prolog_KamarKos' in (out/'LayarTerakhir_Data/globalgamemanagers').read_bytes()
+shutil.copy2(root/'Audit/asset-credits.md',out/'Asset-Credits.txt')
+files=sorted(p for p in out.rglob('*') if p.is_file());manifest=[]
+for p in files:
+ digest=hashlib.sha256();crc=0
+ with p.open('rb') as f:
+  for block in iter(lambda:f.read(1024*1024),b''):digest.update(block);crc=zlib.crc32(block,crc)
+ manifest.append({'path':p.relative_to(out).as_posix(),'sizeBytes':p.stat().st_size,'sha256':digest.hexdigest(),'crc32':crc&0xffffffff})
+archive=root/'Builds/LayarTerakhir-Windows-x86_64-Development.zip';partial=archive.with_suffix('.zip.partial')
+assert not archive.exists() and not partial.exists(),'Preserve the existing archive before packaging a new version'
+with zipfile.ZipFile(partial,'x',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
+ for p in files:z.write(p,Path('Windows')/p.relative_to(out))
+with zipfile.ZipFile(partial) as z:
+ assert z.testzip() is None,'ZIP CRC check failed'
+ assert set(z.namelist())=={'Windows/'+f['path'] for f in manifest}
+ for f in manifest:
+  info=z.getinfo('Windows/'+f['path']);assert info.file_size==f['sizeBytes'] and info.CRC==f['crc32'],f['path']
+partial.rename(archive)
+with archive.open('rb') as f:archive_sha=hashlib.file_digest(f,'sha256').hexdigest()
+archive.with_suffix('.zip.sha256').write_text(f'{archive_sha}  {archive.name}\n')
+(logs/'windows-build-files.sha256').write_text(''.join(f"{f['sha256']}  {f['path']}\n" for f in manifest))
+verification={'verifiedUtc':datetime.now(timezone.utc).isoformat(),'unityExitCode':invocation['exitCode'],
+ 'result':report['result'],'target':report['target'],'scriptingBackend':report['scriptingBackend'],'development':True,
+ 'startupScene':report['scenes'][0],'executable':str(out/'LayarTerakhir.exe'),'nativeArchitectures':architectures,
+ 'unityReportedFilesVerified':len(report['files']),'scriptingAssembliesVerified':len(assemblies),
+ 'unityReportedSizeBytes':report['totalSizeBytes'],'buildFileCount':len(files),
+ 'totalBuildSizeBytes':sum(f['sizeBytes'] for f in manifest),'archivePath':str(archive),
+ 'archiveSizeBytes':archive.stat().st_size,'archiveSha256':archive_sha,'zipCrcVerified':True,'zipContainsAllBuildFiles':True,
+ 'windowsRuntimeTested':False,'files':manifest}
+(logs/'windows-build-verification.json').write_text(json.dumps(verification,indent=2)+'\n')
+print(json.dumps({k:v for k,v in verification.items() if k not in ['files','nativeArchitectures']},indent=2))

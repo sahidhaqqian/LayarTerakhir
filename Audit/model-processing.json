@@ -1,0 +1,162 @@
+[
+  {
+    "file": "plastic_bottle_gallon.fbx",
+    "beforeTriangles": 13728,
+    "afterTriangles": 2400,
+    "dimensionsBlender": [
+      0.16635707765817642,
+      0.12643052637577057,
+      0.2745616525207879
+    ],
+    "materials": [
+      "plastic_bottle_gallon"
+    ],
+    "objects": [
+      "plastic_bottle_gallon"
+    ]
+  },
+  {
+    "file": "desk_lamp_arm_01.fbx",
+    "beforeTriangles": 26286,
+    "afterTriangles": 18924,
+    "dimensionsBlender": [
+      0.6173094213008881,
+      0.4601716548204422,
+      0.8790190741419792
+    ],
+    "materials": [
+      "desk_lamp_arm_01",
+      "desk_lamp_arm_01_light"
+    ],
+    "objects": [
+      "geo_middle_wire",
+      "geo_top_wire",
+      "geo_middle-pivot",
+      "geo_arm_1_b",
+      "geo_base_pivot",
+      "geo_lower-spring_a",
+      "geo_top-spring_a",
+      "geo_lamp-head-button",
+      "geo_lamp-head",
+      "geo_arm_2_a",
+      "geo_arm_1_a",
+      "geo_pivot-holder",
+      "geo_lower-spring_top-bar",
+      "geo_lower-spring_b_bottom-hook",
+      "geo_top-spring_b",
+      "geo_top-pivot",
+      "geo_arm_2_b",
+      "geo_lamp-base-pivot",
+      "geo_lower-spring_a_bottom-hook",
+      "geo_lower-spring_b_top-hook",
+      "geo_top-spring_a_top-hook",
+      "geo_top-spring_a_bottom-hook",
+      "geo_arm_1_c",
+      "geo_lower-spring_b",
+      "geo_lower-spring_a_top-hook",
+      "geo_top-spring_b_bottom-hook",
+      "geo_top-spring_b_top-hook",
+      "cur_top_wire",
+      "cur_middle_wire"
+    ]
+  },
+  {
+    "file": "binder_notebook.fbx",
+    "beforeTriangles": 18077,
+    "afterTriangles": 6999,
+    "dimensionsBlender": [
+      0.5838811695575714,
+      0.19989383965730667,
+      0.02524809120222926
+    ],
+    "materials": [
+      "binder_notebook"
+    ],
+    "objects": [
+      "binder_notebook",
+      "binder_notebook_closed"
+    ]
+  },
+  {
+    "file": "vintage_day_bed.fbx",
+    "beforeTriangles": 2715,
+    "afterTriangles": 2715,
+    "dimensionsBlender": [
+      1.9725552201271057,
+      0.8547762036323547,
+      1.1273465609488085
+    ],
+    "materials": [
+      "vintage_day_bed"
+    ],
+    "objects": [
+      "vintage_day_bed"
+    ]
+  },
+  {
+    "file": "wooden_table_02.fbx",
+    "beforeTriangles": 196,
+    "afterTriangles": 196,
+    "dimensionsBlender": [
+      1.13441663980484,
+      0.7060249447822571,
+      0.7995430041628424
+    ],
+    "materials": [
+      "wooden_table_02"
+    ],
+    "objects": [
+      "wooden_table_02"
+    ]
+  },
+  {
+    "file": "painted_wooden_chair_01.fbx",
+    "beforeTriangles": 724,
+    "afterTriangles": 724,
+    "dimensionsBlender": [
+      0.43175144493579865,
+      0.5398243218660355,
+      0.956482244131621
+    ],
+    "materials": [
+      "painted_wooden_chair_01"
+    ],
+    "objects": [
+      "painted_wooden_chair_01"
+    ]
+  },
+  {
+    "file": "painted_wooden_cabinet_02.fbx",
+    "beforeTriangles": 966,
+    "afterTriangles": 966,
+    "dimensionsBlender": [
+      0.9969334602355957,
+      0.7294298112392426,
+      2.5685725519433618
+    ],
+    "materials": [
+      "painted_wooden_cabinet_02"
+    ],
+    "objects": [
+      "painted_wooden_cabinet_02",
+      "painted_wooden_cabinet_02_drawer",
+      "painted_wooden_cabinet_02_door"
+    ]
+  },
+  {
+    "file": "wooden_bookshelf_worn.fbx",
+    "beforeTriangles": 10106,
+    "afterTriangles": 10106,
+    "dimensionsBlender": [
+      1.37395179271698,
+      0.5813021063804626,
+      2.063442064115435
+    ],
+    "materials": [
+      "wooden_bookshelf_worn"
+    ],
+    "objects": [
+      "wooden_bookshelf_worn"
+    ]
+  }
+]

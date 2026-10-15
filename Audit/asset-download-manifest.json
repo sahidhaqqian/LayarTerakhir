@@ -1,0 +1,762 @@
+[
+  {
+    "id": "vintage_day_bed",
+    "name": "Vintage Day Bed",
+    "authors": {
+      "Aron \u0141yczek": "All"
+    },
+    "sourcePage": "https://polyhaven.com/a/vintage_day_bed",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "kind": "model",
+    "sourcePolygons": 2715,
+    "files": [
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/vintage_day_bed/vintage_day_bed_1k.fbx",
+        "localSource": "PolyHaven/vintage_day_bed/vintage_day_bed.fbx",
+        "bytes": 121948,
+        "sourceMd5": "e9de6fd1f1cc13e4bdb015a0656ce5bc",
+        "sha256": "cc48ec9b06361d3c5b9bd56dceb484f9c8c05f510d71be836050dc236cecdda7"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/vintage_day_bed/vintage_day_bed_nor_gl_1k.jpg",
+        "localSource": "PolyHaven/vintage_day_bed/vintage_day_bed_nor_gl_1k.jpg",
+        "bytes": 856688,
+        "sourceMd5": "273b3d446777942c7df2154465789777",
+        "sha256": "2902f47f4778fce0667c2a1dbff7e2e861a0aed475668ea3fce8a485487598eb"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/vintage_day_bed/vintage_day_bed_diff_1k.jpg",
+        "localSource": "PolyHaven/vintage_day_bed/vintage_day_bed_diff_1k.jpg",
+        "bytes": 807128,
+        "sourceMd5": "240104a7390e20898a234297b9030fac",
+        "sha256": "78b7036a3254c780052b87ac962ac6ba212501821af03c56faa2d7a9ccb955ce"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/vintage_day_bed/vintage_day_bed_arm_1k.jpg",
+        "localSource": "PolyHaven/vintage_day_bed/vintage_day_bed_arm_1k.jpg",
+        "bytes": 678880,
+        "sourceMd5": "d7278e9bb05a5e612a71ef7b493e0be9",
+        "sha256": "b60e71c345fc1d16396a94a133390b4cdde5c05a38ebaadf2f5dc96be2895b11"
+      }
+    ],
+    "importedDirectory": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/vintage_day_bed",
+    "importedFiles": [
+      "vintage_day_bed_diff_1k.jpg",
+      "vintage_day_bed_nor_gl_1k.jpg",
+      "vintage_day_bed_mask.png",
+      "vintage_day_bed.fbx",
+      "vintage_day_bed_arm_1k.jpg"
+    ],
+    "maxTextureSize": 1024,
+    "importedSha256": {
+      "vintage_day_bed_diff_1k.jpg": "841e093cc3c0871dd3bc065a2817d713cc00b4a23125c14e37a12eddca797fe7",
+      "vintage_day_bed_nor_gl_1k.jpg": "5e2ea5d22d5ebed9f4eaccc19d93ce48116de91a3584d8dfb5e060ad1f977912",
+      "vintage_day_bed_mask.png": "8f77e371352355b218db7a666038710e7029ff3997ece8a4916184b6590161e0",
+      "vintage_day_bed.fbx": "cc48ec9b06361d3c5b9bd56dceb484f9c8c05f510d71be836050dc236cecdda7",
+      "vintage_day_bed_arm_1k.jpg": "042157f77dc8949fff4ebce7d5520f2336f686fcd4a32aedfd23d75af191866e"
+    }
+  },
+  {
+    "id": "wooden_table_02",
+    "name": "Wooden Table 02",
+    "authors": {
+      "Serhii Khromov": "All"
+    },
+    "sourcePage": "https://polyhaven.com/a/wooden_table_02",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "kind": "model",
+    "sourcePolygons": 196,
+    "files": [
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/wooden_table_02/wooden_table_02_1k.fbx",
+        "localSource": "PolyHaven/wooden_table_02/wooden_table_02.fbx",
+        "bytes": 28284,
+        "sourceMd5": "ce8625d9dff124b89577c64d2c6a0bce",
+        "sha256": "a8082e5b8f27eaa06896c82d725e855caa0cbe141a7efa965b424df73ac68ae0"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/wooden_table_02/wooden_table_02_diff_1k.jpg",
+        "localSource": "PolyHaven/wooden_table_02/wooden_table_02_diff_1k.jpg",
+        "bytes": 178379,
+        "sourceMd5": "07075a87918208594260c86c727e4396",
+        "sha256": "2334ac3e23d69222322515d9bad066b4e90d7d81989fe231b8fb12f39179ad9e"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/wooden_table_02/wooden_table_02_nor_gl_1k.jpg",
+        "localSource": "PolyHaven/wooden_table_02/wooden_table_02_nor_gl_1k.jpg",
+        "bytes": 122129,
+        "sourceMd5": "63ac7819b624149e77ae9459472ded6d",
+        "sha256": "9470e08e5dab4ab6a7cafab2a488a50fb54fa8f38890e9032c39dcbf7f5846d2"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/wooden_table_02/wooden_table_02_arm_1k.jpg",
+        "localSource": "PolyHaven/wooden_table_02/wooden_table_02_arm_1k.jpg",
+        "bytes": 174545,
+        "sourceMd5": "8ee06c71a226e7f53b2ba53da79a55be",
+        "sha256": "b970a81e4b03f3b8a341c9eb639f112fff1782d681c846255ebc9073cd803ced"
+      }
+    ],
+    "importedDirectory": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/wooden_table_02",
+    "importedFiles": [
+      "wooden_table_02_diff_1k.jpg",
+      "wooden_table_02_arm_1k.jpg",
+      "wooden_table_02_nor_gl_1k.jpg",
+      "wooden_table_02.fbx",
+      "wooden_table_02_mask.png"
+    ],
+    "maxTextureSize": 1024,
+    "importedSha256": {
+      "wooden_table_02_diff_1k.jpg": "c7078cc0418057a8cfa66220e238bd3d0159a8bef3241c072e818f9f048b8033",
+      "wooden_table_02_arm_1k.jpg": "f0f8910fb28d08a5b4b03ea69c08ee1329038d456fc16f6b8e0ff851a9570d13",
+      "wooden_table_02_nor_gl_1k.jpg": "8dec8a01d5040a773def76748a222f4f7376520872fd1119d00742f46e72e70a",
+      "wooden_table_02.fbx": "a8082e5b8f27eaa06896c82d725e855caa0cbe141a7efa965b424df73ac68ae0",
+      "wooden_table_02_mask.png": "bea50b2b5172eeb0356c30adbf5cf3293e83b39481c2708e9c671859eea794c8"
+    }
+  },
+  {
+    "id": "painted_wooden_chair_01",
+    "name": "Painted Wooden Chair 01",
+    "authors": {
+      "Kuutti Siitonen": "All"
+    },
+    "sourcePage": "https://polyhaven.com/a/painted_wooden_chair_01",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "kind": "model",
+    "sourcePolygons": 724,
+    "files": [
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/painted_wooden_chair_01/painted_wooden_chair_01_1k.fbx",
+        "localSource": "PolyHaven/painted_wooden_chair_01/painted_wooden_chair_01.fbx",
+        "bytes": 45884,
+        "sourceMd5": "1ef5a5bdf32a979c55357f35d01c96f9",
+        "sha256": "8dcb4fbcaf244a6a47956ed87a05d2e35044023023a66f8377a9f9bfd1f197d1"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/painted_wooden_chair_01/painted_wooden_chair_01_diff_1k.jpg",
+        "localSource": "PolyHaven/painted_wooden_chair_01/painted_wooden_chair_01_diff_1k.jpg",
+        "bytes": 168040,
+        "sourceMd5": "94c34f4a211eec5bd30017564e09be4c",
+        "sha256": "de67d1f8a0318616a7ee769cbe5c513301c2b25056542d011bb4359498f9e25d"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/painted_wooden_chair_01/painted_wooden_chair_01_nor_gl_1k.jpg",
+        "localSource": "PolyHaven/painted_wooden_chair_01/painted_wooden_chair_01_nor_gl_1k.jpg",
+        "bytes": 140110,
+        "sourceMd5": "5150e3034d2f69b0d7f0576955e51e3e",
+        "sha256": "27301c3ac6a7daf9e0ba418ec85feaa44cc898e61d048211bca57133f22e1807"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/painted_wooden_chair_01/painted_wooden_chair_01_arm_1k.jpg",
+        "localSource": "PolyHaven/painted_wooden_chair_01/painted_wooden_chair_01_arm_1k.jpg",
+        "bytes": 144503,
+        "sourceMd5": "2ee02ed8f2dda4303428eaf6443f928a",
+        "sha256": "9d2de0ea0d630e8e5af05424b1f41b1ae4a80465d27a78eb471cd7f8556db84e"
+      }
+    ],
+    "importedDirectory": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/painted_wooden_chair_01",
+    "importedFiles": [
+      "painted_wooden_chair_01.fbx",
+      "painted_wooden_chair_01_arm_1k.jpg",
+      "painted_wooden_chair_01_nor_gl_1k.jpg",
+      "painted_wooden_chair_01_mask.png",
+      "painted_wooden_chair_01_diff_1k.jpg"
+    ],
+    "maxTextureSize": 1024,
+    "importedSha256": {
+      "painted_wooden_chair_01.fbx": "8dcb4fbcaf244a6a47956ed87a05d2e35044023023a66f8377a9f9bfd1f197d1",
+      "painted_wooden_chair_01_arm_1k.jpg": "617876ce3219ee641ee44bdea6e568ceb7e234b59501f2da79552d553ae0c744",
+      "painted_wooden_chair_01_nor_gl_1k.jpg": "4860241c56eb64d9d1f1febf560fe6872f569fd158e4edba3d31a6554c1bfabb",
+      "painted_wooden_chair_01_mask.png": "8805894d7c90a7c330f8428c63f253463a9d44b9072f7cd86c159b367891ca53",
+      "painted_wooden_chair_01_diff_1k.jpg": "2ca83b7e7c95359543fe51363f3f8980df22d68f083e2765638d3ae1894bbe9c"
+    }
+  },
+  {
+    "id": "painted_wooden_cabinet_02",
+    "name": "Painted Wooden Cabinet 02",
+    "authors": {
+      "Kirill Sannikov": "All"
+    },
+    "sourcePage": "https://polyhaven.com/a/painted_wooden_cabinet_02",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "kind": "model",
+    "sourcePolygons": 966,
+    "files": [
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/painted_wooden_cabinet_02/painted_wooden_cabinet_02_1k.fbx",
+        "localSource": "PolyHaven/painted_wooden_cabinet_02/painted_wooden_cabinet_02.fbx",
+        "bytes": 58604,
+        "sourceMd5": "a6888f3c5745e8433c8888b888eafce9",
+        "sha256": "7aa575b313003f5e4f68f51d7dc6f7b69a9dc5def9fb848aecc881055662e120"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/painted_wooden_cabinet_02/painted_wooden_cabinet_02_arm_1k.jpg",
+        "localSource": "PolyHaven/painted_wooden_cabinet_02/painted_wooden_cabinet_02_arm_1k.jpg",
+        "bytes": 463616,
+        "sourceMd5": "e4e6a5138eb5b78e591cec0dc39f3e6d",
+        "sha256": "0cf309449d4b0c1ecb0a3adbc17837b6f77f36cb45c1f0ceb6013b07fac44214"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/painted_wooden_cabinet_02/painted_wooden_cabinet_02_nor_gl_1k.jpg",
+        "localSource": "PolyHaven/painted_wooden_cabinet_02/painted_wooden_cabinet_02_nor_gl_1k.jpg",
+        "bytes": 526407,
+        "sourceMd5": "0af50294d21a0686a4bdfd4ef82da5c1",
+        "sha256": "46e8df6be06eca30a05d0e90f12e8799e6e11c73ab7c910cc3541b0833ee0103"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/painted_wooden_cabinet_02/painted_wooden_cabinet_02_diff_1k.jpg",
+        "localSource": "PolyHaven/painted_wooden_cabinet_02/painted_wooden_cabinet_02_diff_1k.jpg",
+        "bytes": 560790,
+        "sourceMd5": "2f41fe301044d30f852ca526334b77a4",
+        "sha256": "ddb2cace49bb05b8e03e6c205223a69f95e5eef84ec66e97e5d0e49d2a1af09e"
+      }
+    ],
+    "importedDirectory": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/painted_wooden_cabinet_02",
+    "importedFiles": [
+      "painted_wooden_cabinet_02_mask.png",
+      "painted_wooden_cabinet_02_nor_gl_1k.jpg",
+      "painted_wooden_cabinet_02.fbx",
+      "painted_wooden_cabinet_02_arm_1k.jpg",
+      "painted_wooden_cabinet_02_diff_1k.jpg"
+    ],
+    "maxTextureSize": 1024,
+    "importedSha256": {
+      "painted_wooden_cabinet_02_mask.png": "aa1b5782c4aea99bfc58d57c34d61c3c19e7f818c155795cc548e06bd7cf75f0",
+      "painted_wooden_cabinet_02_nor_gl_1k.jpg": "2ebaebf729389279f75e08294ee4b581cab1c3ac37ecdcecbdef6a3a85fd35ae",
+      "painted_wooden_cabinet_02.fbx": "7aa575b313003f5e4f68f51d7dc6f7b69a9dc5def9fb848aecc881055662e120",
+      "painted_wooden_cabinet_02_arm_1k.jpg": "b2fb7b8154cc6241185fba88817baf2ea34a859074693e2b7c3d2ca437c75c93",
+      "painted_wooden_cabinet_02_diff_1k.jpg": "7bb68b48fadf18e2ccab01b25ef5556d6168759913529cc6230b77a6cef59c32"
+    }
+  },
+  {
+    "id": "wooden_bookshelf_worn",
+    "name": "Wooden Bookshelf Worn",
+    "authors": {
+      "Ulan Cabanilla": "All"
+    },
+    "sourcePage": "https://polyhaven.com/a/wooden_bookshelf_worn",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "kind": "model",
+    "sourcePolygons": 10106,
+    "files": [
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/wooden_bookshelf_worn/wooden_bookshelf_worn_1k.fbx",
+        "localSource": "PolyHaven/wooden_bookshelf_worn/wooden_bookshelf_worn.fbx",
+        "bytes": 314092,
+        "sourceMd5": "b08c221fe3f8c07b101ddf240a85bbac",
+        "sha256": "0e7b4870f4def36822d2466ed9e47bd5162279a64117e37a7e76eca97ae640ba"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/wooden_bookshelf_worn/wooden_bookshelf_worn_nor_gl_1k.jpg",
+        "localSource": "PolyHaven/wooden_bookshelf_worn/wooden_bookshelf_worn_nor_gl_1k.jpg",
+        "bytes": 993276,
+        "sourceMd5": "0e6f33c00eec432dd17178a4e5feb4f2",
+        "sha256": "90ffb1b3f7bb638d5a7e1a2b244a260d623e314a6010a6b8c23c57203e510ac9"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/wooden_bookshelf_worn/wooden_bookshelf_worn_arm_1k.jpg",
+        "localSource": "PolyHaven/wooden_bookshelf_worn/wooden_bookshelf_worn_arm_1k.jpg",
+        "bytes": 713979,
+        "sourceMd5": "7252efe4bd18f6dfdc014a9f4ccdf065",
+        "sha256": "41b3aca38fb55cb300d971016a597c80425da3744a6d33d82fe78f9dbe609eaa"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/wooden_bookshelf_worn/wooden_bookshelf_worn_diff_1k.jpg",
+        "localSource": "PolyHaven/wooden_bookshelf_worn/wooden_bookshelf_worn_diff_1k.jpg",
+        "bytes": 799126,
+        "sourceMd5": "8f92c92e6473010e7df9b11f32d1234a",
+        "sha256": "970f60178decadd0d8fb1e5872f718350a49b027fd69469210c41ead350cba56"
+      }
+    ],
+    "importedDirectory": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/wooden_bookshelf_worn",
+    "importedFiles": [
+      "wooden_bookshelf_worn.fbx",
+      "wooden_bookshelf_worn_nor_gl_1k.jpg",
+      "wooden_bookshelf_worn_arm_1k.jpg",
+      "wooden_bookshelf_worn_diff_1k.jpg",
+      "wooden_bookshelf_worn_mask.png"
+    ],
+    "maxTextureSize": 1024,
+    "importedSha256": {
+      "wooden_bookshelf_worn.fbx": "0e7b4870f4def36822d2466ed9e47bd5162279a64117e37a7e76eca97ae640ba",
+      "wooden_bookshelf_worn_nor_gl_1k.jpg": "edf5d24d64f5ea7b630856756f96067ea36c57e1f09909cc72391b832a7bddb6",
+      "wooden_bookshelf_worn_arm_1k.jpg": "2cfd9cfdf9e1e907ba0c83a193de24da76bb93177746bf0d80124ab1cd8e06b4",
+      "wooden_bookshelf_worn_diff_1k.jpg": "9958f2dd26f4b3600967bd5003e3163cda6bdc96344bb2eaf4c0b2683c3add90",
+      "wooden_bookshelf_worn_mask.png": "1d86387cb85118c8b94ffbff10e847ccc0d2be03372e16c026d6024ea72b075a"
+    }
+  },
+  {
+    "id": "plastic_bottle_gallon",
+    "name": "Plastic Bottle Gallon",
+    "authors": {
+      "Rahul Chaudhary": "All"
+    },
+    "sourcePage": "https://polyhaven.com/a/plastic_bottle_gallon",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "kind": "model",
+    "sourcePolygons": 13728,
+    "files": [
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/plastic_bottle_gallon/plastic_bottle_gallon_1k.fbx",
+        "localSource": "PolyHaven/plastic_bottle_gallon/plastic_bottle_gallon.fbx",
+        "bytes": 457116,
+        "sourceMd5": "f15d5be5af797e2cbf3b2320ad7cfd27",
+        "sha256": "881b0c39a2fce66385fe14eaf64b06f7fa85c4efdc0b6ad17cdb93b316e52f67"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/plastic_bottle_gallon/plastic_bottle_gallon_arm_1k.jpg",
+        "localSource": "PolyHaven/plastic_bottle_gallon/plastic_bottle_gallon_arm_1k.jpg",
+        "bytes": 343990,
+        "sourceMd5": "8d1149d4c332907ccaf2fda0a4d343c0",
+        "sha256": "9586b0b81719f6a97213f59682822331e77dbf5291b29869413ee526b18403d4"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/plastic_bottle_gallon/plastic_bottle_gallon_diff_1k.jpg",
+        "localSource": "PolyHaven/plastic_bottle_gallon/plastic_bottle_gallon_diff_1k.jpg",
+        "bytes": 317396,
+        "sourceMd5": "e3655eb80c6bce520865a4f4a2b37bd9",
+        "sha256": "b763c4dd071baf9aa319eb3a94e8045614fa7f52404fda9e61c660164f8444f2"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/plastic_bottle_gallon/plastic_bottle_gallon_nor_gl_1k.jpg",
+        "localSource": "PolyHaven/plastic_bottle_gallon/plastic_bottle_gallon_nor_gl_1k.jpg",
+        "bytes": 407414,
+        "sourceMd5": "9c8b20cae8a297d617ba3ec64ddb6209",
+        "sha256": "8cefc29b47a68200fa9c8b4330a6c76a9c21153d0e5e95ef45a4c45793d110a6"
+      }
+    ],
+    "importedDirectory": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/plastic_bottle_gallon",
+    "importedFiles": [
+      "plastic_bottle_gallon_arm_1k.jpg",
+      "plastic_bottle_gallon_diff_1k.jpg",
+      "plastic_bottle_gallon_nor_gl_1k.jpg",
+      "plastic_bottle_gallon.fbx",
+      "plastic_bottle_gallon_mask.png"
+    ],
+    "maxTextureSize": 512,
+    "importedSha256": {
+      "plastic_bottle_gallon_arm_1k.jpg": "c60f765429f0bbd467eb3a014e60a969a587231add4ab340f5de6205a1e68633",
+      "plastic_bottle_gallon_diff_1k.jpg": "99df53e25eb93610d5a2b88dd0fafbb032c2448e60b7f5c60519874137e53384",
+      "plastic_bottle_gallon_nor_gl_1k.jpg": "eb987bc454cd384ecba77870563f90e7dda5691be6f12115cb9e395986afb79d",
+      "plastic_bottle_gallon.fbx": "eb0bd2e4cb44317fd2c9a5f7ea8253847c08f87b03c45eb17c6d0b35584bc4a6",
+      "plastic_bottle_gallon_mask.png": "f5b9f11b783cc2ed9d9ac05120b433ffb0c1cfa376b0a305859bd08d0b74e52c"
+    }
+  },
+  {
+    "id": "desk_lamp_arm_01",
+    "name": "Desk Lamp Arm 01",
+    "authors": {
+      "Yann Kervran": "Rigging",
+      "Kuutti Siitonen": "Modeling & texturing"
+    },
+    "sourcePage": "https://polyhaven.com/a/desk_lamp_arm_01",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "kind": "model",
+    "sourcePolygons": 25710,
+    "files": [
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/desk_lamp_arm_01/desk_lamp_arm_01_1k.fbx",
+        "localSource": "PolyHaven/desk_lamp_arm_01/desk_lamp_arm_01.fbx",
+        "bytes": 2304508,
+        "sourceMd5": "21f20854b6f97a147bdb093afbc3dedb",
+        "sha256": "f8c7a9e2b09ce34349c40426574dd22416477ef3f0218291d19231c35503e443"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/desk_lamp_arm_01/desk_lamp_arm_01_nor_gl_1k.jpg",
+        "localSource": "PolyHaven/desk_lamp_arm_01/desk_lamp_arm_01_nor_gl_1k.jpg",
+        "bytes": 651826,
+        "sourceMd5": "5aabbfe920ea6726d5299be7d6224551",
+        "sha256": "feefedc3835ecef3634e97a24977451671f8f57747a023f48cd14c84bc73513a"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/desk_lamp_arm_01/desk_lamp_arm_01_arm_1k.jpg",
+        "localSource": "PolyHaven/desk_lamp_arm_01/desk_lamp_arm_01_arm_1k.jpg",
+        "bytes": 780379,
+        "sourceMd5": "0b887af80f561216baa3da94d001d51a",
+        "sha256": "206404c79fb7dcf8e2c4558c13544342f87d2190526231a1750c3c9adc256fbc"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/desk_lamp_arm_01/desk_lamp_arm_01_diff_1k.jpg",
+        "localSource": "PolyHaven/desk_lamp_arm_01/desk_lamp_arm_01_diff_1k.jpg",
+        "bytes": 702522,
+        "sourceMd5": "a5c1bf5465da39ca6ca9039dd4e3fd66",
+        "sha256": "159eb178aba3271bd555cbe07ca36431d8af9a006f0b8e9d8c67030cbdc9e4d3"
+      }
+    ],
+    "importedDirectory": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/desk_lamp_arm_01",
+    "importedFiles": [
+      "desk_lamp_arm_01.fbx",
+      "desk_lamp_arm_01_mask.png",
+      "desk_lamp_arm_01_diff_1k.jpg",
+      "desk_lamp_arm_01_nor_gl_1k.jpg",
+      "desk_lamp_arm_01_arm_1k.jpg"
+    ],
+    "maxTextureSize": 512,
+    "importedSha256": {
+      "desk_lamp_arm_01.fbx": "73dd00f6845479f78e353d2f4802cf9985078c3ea93fa9db4942ff14f16d4bb9",
+      "desk_lamp_arm_01_mask.png": "f7c1409af90d646ff7765b94258456c9b4a9871c7e38324c6d230618703bf2dc",
+      "desk_lamp_arm_01_diff_1k.jpg": "1fbcd70c2305fe950dc8db5ac95c37a2834fb7cf926ed8c316d085baea068f72",
+      "desk_lamp_arm_01_nor_gl_1k.jpg": "beb5c6c09400f9bf5a2615329b08f573c877b0a952b27615b6b43e0faf3da0b9",
+      "desk_lamp_arm_01_arm_1k.jpg": "e83c8be4f9fe7ae6381afb40024386ce1bab42d7bd4aa675bbc9aa467245d86c"
+    }
+  },
+  {
+    "id": "binder_notebook",
+    "name": "Binder Notebook",
+    "authors": {
+      "DaDrood": "All"
+    },
+    "sourcePage": "https://polyhaven.com/a/binder_notebook",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "kind": "model",
+    "sourcePolygons": 18077,
+    "files": [
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/binder_notebook/binder_notebook_1k.fbx",
+        "localSource": "PolyHaven/binder_notebook/binder_notebook.fbx",
+        "bytes": 573404,
+        "sourceMd5": "ec97e4d72114d1685b009250e7353fc8",
+        "sha256": "d4de5da356605b5b8c55e500e9a1f178f241fdd4d6dd05a03f295b07238afb9c"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/binder_notebook/binder_notebook_nor_gl_1k.jpg",
+        "localSource": "PolyHaven/binder_notebook/binder_notebook_nor_gl_1k.jpg",
+        "bytes": 319694,
+        "sourceMd5": "51af6519e740f1e53d33b8eb09def5dd",
+        "sha256": "24b18d9792c3816337d7d09b30aed400a887747ea6beb04b23612b6e1210a29e"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/binder_notebook/binder_notebook_diff_1k.jpg",
+        "localSource": "PolyHaven/binder_notebook/binder_notebook_diff_1k.jpg",
+        "bytes": 533256,
+        "sourceMd5": "0c6bbb11b58934e7ed6b6a0729e20e8b",
+        "sha256": "8591cce815138bd737c252dc12a4d9bf41bceb499ace7dbfef0725e64dadda2d"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/binder_notebook/binder_notebook_arm_1k.jpg",
+        "localSource": "PolyHaven/binder_notebook/binder_notebook_arm_1k.jpg",
+        "bytes": 507028,
+        "sourceMd5": "825aa742d0d2083656d8ebe636cde087",
+        "sha256": "c0bc38cd13e5ada9552c3a9b60f88c36acf9e672011d97d066a6c0148f01898a"
+      }
+    ],
+    "importedDirectory": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/binder_notebook",
+    "importedFiles": [
+      "binder_notebook_arm_1k.jpg",
+      "binder_notebook.fbx",
+      "binder_notebook_diff_1k.jpg",
+      "binder_notebook_mask.png",
+      "binder_notebook_nor_gl_1k.jpg"
+    ],
+    "maxTextureSize": 512,
+    "importedSha256": {
+      "binder_notebook_arm_1k.jpg": "ee7ddedce09d5ec0a1bde54f5ec719f0aef47f91318c41ad6f8f7bbf5a324003",
+      "binder_notebook.fbx": "1133140e85a51e6999628ee0307487224a6285078fa7763e99bb86df72e67290",
+      "binder_notebook_diff_1k.jpg": "637d68b0d323fc466db02b086de3ea7149b467b037450add5441e96675c01de0",
+      "binder_notebook_mask.png": "b2f39c592ba50425d99d166e9e7fbf69227fd34b79a55c5ef70bfe4aef214294",
+      "binder_notebook_nor_gl_1k.jpg": "a71adfca79aa8dfa613e76cf8e1e3a13aba6e5f5b4a2a50bc25c0793d57f1cfb"
+    }
+  },
+  {
+    "id": "worn_plaster_wall",
+    "name": "Worn Plaster Wall",
+    "authors": {
+      "Dimitrios Savva": "All"
+    },
+    "sourcePage": "https://polyhaven.com/a/worn_plaster_wall",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "kind": "PBR texture",
+    "sourcePolygons": null,
+    "files": [
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/worn_plaster_wall/worn_plaster_wall_diff_1k.jpg",
+        "localSource": "PolyHaven/worn_plaster_wall/worn_plaster_wall_diff_1k.jpg",
+        "bytes": 750361,
+        "sourceMd5": "31aab3a5bf3859361cd423e15b9735bc",
+        "sha256": "f769bee35504ff713e89e89d2b64c1eb3c373dd184973ac8706310f19fd63efe"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/worn_plaster_wall/worn_plaster_wall_nor_gl_1k.jpg",
+        "localSource": "PolyHaven/worn_plaster_wall/worn_plaster_wall_nor_gl_1k.jpg",
+        "bytes": 680164,
+        "sourceMd5": "2e1cb2651163105acda653e9c9b9b7b8",
+        "sha256": "5d1dc80a354fc7de3f0ada286176b56d50067c85c9f95140aadf7d5db15adee1"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/worn_plaster_wall/worn_plaster_wall_arm_1k.jpg",
+        "localSource": "PolyHaven/worn_plaster_wall/worn_plaster_wall_arm_1k.jpg",
+        "bytes": 404665,
+        "sourceMd5": "c05a77f6150c8f25400ea124a5871179",
+        "sha256": "e16208925a30c07d17d579c33132e4a8aae2881844cdd1736fc59a00b577b995"
+      }
+    ],
+    "importedDirectory": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/worn_plaster_wall",
+    "importedFiles": [
+      "worn_plaster_wall_nor_gl_1k.jpg",
+      "worn_plaster_wall_arm_1k.jpg",
+      "worn_plaster_wall_mask.png",
+      "worn_plaster_wall_diff_1k.jpg"
+    ],
+    "maxTextureSize": 1024,
+    "importedSha256": {
+      "worn_plaster_wall_nor_gl_1k.jpg": "945a28457f96c9bd0d7f05c92e58bacc59f3be975b0bb3bdba0de06e4337e11f",
+      "worn_plaster_wall_arm_1k.jpg": "d65b408559be295d7d0b5eb0e7f368bbf44d50efd675d77f32dd1dececedccd9",
+      "worn_plaster_wall_mask.png": "84c42d7be33a7df2c5413f2f6a9ed6a0b321bfa1fa9ba597553ba9f6fcf62015",
+      "worn_plaster_wall_diff_1k.jpg": "7d499b4a555b7bbef4c0742fa2a67f9f3638fabf738769b95f7e92714f1cc67e"
+    }
+  },
+  {
+    "id": "painted_plaster_wall",
+    "name": "Painted Plaster Wall",
+    "authors": {
+      "Amal Kumar": "All"
+    },
+    "sourcePage": "https://polyhaven.com/a/painted_plaster_wall",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "kind": "PBR texture",
+    "sourcePolygons": null,
+    "files": [
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/painted_plaster_wall/painted_plaster_wall_diff_1k.jpg",
+        "localSource": "PolyHaven/painted_plaster_wall/painted_plaster_wall_diff_1k.jpg",
+        "bytes": 686726,
+        "sourceMd5": "15ba8c1f63a5ab412b1eabe31728540a",
+        "sha256": "440310f05af089f2c93353167573403cbc3f805948203237b5d26431eeb9e19c"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/painted_plaster_wall/painted_plaster_wall_nor_gl_1k.jpg",
+        "localSource": "PolyHaven/painted_plaster_wall/painted_plaster_wall_nor_gl_1k.jpg",
+        "bytes": 900461,
+        "sourceMd5": "43fff290583dbdfc9bfa088a2750e840",
+        "sha256": "8eb01647d126eb5341e2c325821ad48c8ca11349dbef53447c95422c5d91cc9d"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/painted_plaster_wall/painted_plaster_wall_arm_1k.jpg",
+        "localSource": "PolyHaven/painted_plaster_wall/painted_plaster_wall_arm_1k.jpg",
+        "bytes": 511105,
+        "sourceMd5": "a4c1ff7470669daec9e274d915471246",
+        "sha256": "2f13ed444e3e8f13087bca0890969d30795ed074bcfb11737d1ad6f5f0b53992"
+      }
+    ],
+    "importedDirectory": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/painted_plaster_wall",
+    "importedFiles": [
+      "painted_plaster_wall_diff_1k.jpg",
+      "painted_plaster_wall_nor_gl_1k.jpg",
+      "painted_plaster_wall_arm_1k.jpg",
+      "painted_plaster_wall_mask.png"
+    ],
+    "maxTextureSize": 1024,
+    "importedSha256": {
+      "painted_plaster_wall_diff_1k.jpg": "ed743839baf40c9515d011f855121ee2b11f26cb3f512b90876089a4c00e195d",
+      "painted_plaster_wall_nor_gl_1k.jpg": "526e2430e5d1e78a66961bd53e3b5443165902e11d281eb1bd41b5e5276e79ad",
+      "painted_plaster_wall_arm_1k.jpg": "6d16cea9ddad8041daa7cdadd654c592a15f373c84c62176a7bb515636993806",
+      "painted_plaster_wall_mask.png": "276a0854f2b60069c63ff96ddb6e1bffd3e2f629592794df8499afe2e2b76612"
+    }
+  },
+  {
+    "id": "floor_tiles_04",
+    "name": "Floor Tiles 04",
+    "authors": {
+      "Rob Tuytel": "All"
+    },
+    "sourcePage": "https://polyhaven.com/a/floor_tiles_04",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "kind": "PBR texture",
+    "sourcePolygons": null,
+    "files": [
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/floor_tiles_04/floor_tiles_04_diff_1k.jpg",
+        "localSource": "PolyHaven/floor_tiles_04/floor_tiles_04_diff_1k.jpg",
+        "bytes": 315465,
+        "sourceMd5": "0d7ce812a7183fea21d39d5c169eefdf",
+        "sha256": "064fafb57de6f00d3d8f3b643a6a342c681a53949120b67608d31a54eceac88e"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/floor_tiles_04/floor_tiles_04_nor_gl_1k.jpg",
+        "localSource": "PolyHaven/floor_tiles_04/floor_tiles_04_nor_gl_1k.jpg",
+        "bytes": 155276,
+        "sourceMd5": "8768215ad979f9e08714ea9496b0b753",
+        "sha256": "983fbdca6e45fef2a1941b172029080c6ba233be8505bfb73ff49d0c3e628a1e"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/floor_tiles_04/floor_tiles_04_arm_1k.jpg",
+        "localSource": "PolyHaven/floor_tiles_04/floor_tiles_04_arm_1k.jpg",
+        "bytes": 50020,
+        "sourceMd5": "aa0a4aafabf21b8df8d116178dfe4936",
+        "sha256": "cb26508eb16e9307ddc6baea957d22595efd4f02ec1a20c91759ecbbaf47c668"
+      }
+    ],
+    "importedDirectory": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/floor_tiles_04",
+    "importedFiles": [
+      "floor_tiles_04_arm_1k.jpg",
+      "floor_tiles_04_nor_gl_1k.jpg",
+      "floor_tiles_04_diff_1k.jpg",
+      "floor_tiles_04_mask.png"
+    ],
+    "maxTextureSize": 1024,
+    "importedSha256": {
+      "floor_tiles_04_arm_1k.jpg": "9c9a7afd330f3e7eeb56e6a2562eb5fa7b0f0b9110b1b5446091f867d7df62c5",
+      "floor_tiles_04_nor_gl_1k.jpg": "380e71e4e826c2804a02a0ed5727c8b6a88300ba39bae96a57c82fca2b29981c",
+      "floor_tiles_04_diff_1k.jpg": "ea9fde6876c0add8e9269808b3ff78501091b3d1042a47a927e37c4c19f5ad64",
+      "floor_tiles_04_mask.png": "af58eff8a28b2d3f3c982addf43953902102ac75ca25835a9c8e545eab5d8cfe"
+    }
+  },
+  {
+    "id": "wood_table_worn",
+    "name": "Wood Table Worn",
+    "authors": {
+      "Dimitrios Savva": "Photography",
+      "Rico Cilliers": "Processing"
+    },
+    "sourcePage": "https://polyhaven.com/a/wood_table_worn",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "kind": "PBR texture",
+    "sourcePolygons": null,
+    "files": [
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_table_worn/wood_table_worn_diff_1k.jpg",
+        "localSource": "PolyHaven/wood_table_worn/wood_table_worn_diff_1k.jpg",
+        "bytes": 761543,
+        "sourceMd5": "8c71f701f70fef34b87fb7c8742ad0a5",
+        "sha256": "092ab3465a6a24b24d092ea86865f332c3bd239b8eb2fd664b70357082031a3f"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_table_worn/wood_table_worn_nor_gl_1k.jpg",
+        "localSource": "PolyHaven/wood_table_worn/wood_table_worn_nor_gl_1k.jpg",
+        "bytes": 747433,
+        "sourceMd5": "d8e76d135e94e32bc81eedb3342c7614",
+        "sha256": "0d494f3fe08320a05f0f966a7a3ca3c4cd6e3f7cde5b176b9bc167b5593fd00d"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_table_worn/wood_table_worn_arm_1k.jpg",
+        "localSource": "PolyHaven/wood_table_worn/wood_table_worn_arm_1k.jpg",
+        "bytes": 739348,
+        "sourceMd5": "337f3d8c644bfb190f9f30aad0689163",
+        "sha256": "b4f07c36a701bfd8dfe95e1fa836b32ae9dd5c0b4b73346cfdf5e1bacbb98435"
+      }
+    ],
+    "importedDirectory": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/wood_table_worn",
+    "importedFiles": [
+      "wood_table_worn_nor_gl_1k.jpg",
+      "wood_table_worn_diff_1k.jpg",
+      "wood_table_worn_arm_1k.jpg",
+      "wood_table_worn_mask.png"
+    ],
+    "maxTextureSize": 1024,
+    "importedSha256": {
+      "wood_table_worn_nor_gl_1k.jpg": "6843955a3e2227cb3837c4e0a2a82df7b1e27388cf21317252ae1c7aa6ada255",
+      "wood_table_worn_diff_1k.jpg": "920231bed7b85adcc40e9defc6999a61db56080761febeb47562d095fc82a6f0",
+      "wood_table_worn_arm_1k.jpg": "0d69ee63fa76a77edf4bd585df33dff397a6ec702c9471251f5a1b78d2416b5b",
+      "wood_table_worn_mask.png": "99af3c1d2b1f6e86654e272bcbf16051a55780469f3a977ffdff2be66492fd12"
+    }
+  },
+  {
+    "id": "denim_fabric",
+    "name": "Denim Fabric",
+    "authors": {
+      "Rob Tuytel": "All"
+    },
+    "sourcePage": "https://polyhaven.com/a/denim_fabric",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "kind": "PBR texture",
+    "sourcePolygons": null,
+    "files": [
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/denim_fabric/denim_fabric_diff_1k.jpg",
+        "localSource": "PolyHaven/denim_fabric/denim_fabric_diff_1k.jpg",
+        "bytes": 886486,
+        "sourceMd5": "3835b5e277dd99784bfe68d985da14ae",
+        "sha256": "d6d0254e2c90768482b0be8cfdc16e18117acc92bad00d406fd4b9be24facdec"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/denim_fabric/denim_fabric_nor_gl_1k.jpg",
+        "localSource": "PolyHaven/denim_fabric/denim_fabric_nor_gl_1k.jpg",
+        "bytes": 474669,
+        "sourceMd5": "9008fe723671f9cb3e6d0889eab9adb0",
+        "sha256": "de0e9c5ed5cce7dacd50a67be16c6d8b8dc036907638e3702729c2f60296094e"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/denim_fabric/denim_fabric_arm_1k.jpg",
+        "localSource": "PolyHaven/denim_fabric/denim_fabric_arm_1k.jpg",
+        "bytes": 223457,
+        "sourceMd5": "385c5826b9b3d40d8df051ad79043ff8",
+        "sha256": "2f46deb1894bff05a9416f89ecdc42a33d8f879f5152d18b2e2dc3b6b675eb8e"
+      }
+    ],
+    "importedDirectory": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/denim_fabric",
+    "importedFiles": [
+      "denim_fabric_diff_1k.jpg",
+      "denim_fabric_arm_1k.jpg",
+      "denim_fabric_mask.png",
+      "denim_fabric_nor_gl_1k.jpg"
+    ],
+    "maxTextureSize": 1024,
+    "importedSha256": {
+      "denim_fabric_diff_1k.jpg": "b162fb09a2bf044104a2a28eff81b9eadff353eb390b03b70db951cd63e4177d",
+      "denim_fabric_arm_1k.jpg": "2377b22dc93742d418bd11017a760a0b60b192ab4252693b859977e737a8cc99",
+      "denim_fabric_mask.png": "2689df2bdc44d4c0b33750d3a872d8af7b4a857ee3b506909bfc025ad385067f",
+      "denim_fabric_nor_gl_1k.jpg": "366aa2d62fb31ad3ed3170973bf75d79db71159f2402ebd58167629a5330e935"
+    }
+  },
+  {
+    "id": "rusty_metal",
+    "name": "Rusty Metal",
+    "authors": {
+      "Rob Tuytel": "All"
+    },
+    "sourcePage": "https://polyhaven.com/a/rusty_metal",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "kind": "PBR texture",
+    "sourcePolygons": null,
+    "files": [
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rusty_metal/rusty_metal_diff_1k.jpg",
+        "localSource": "PolyHaven/rusty_metal/rusty_metal_diff_1k.jpg",
+        "bytes": 577389,
+        "sourceMd5": "ba829f953270d3ad87d8e86d840f71d6",
+        "sha256": "b532f22a08a9c36b5adf785373e213cd635a2d3769cb61196bbf5404cce7cd43"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rusty_metal/rusty_metal_nor_gl_1k.jpg",
+        "localSource": "PolyHaven/rusty_metal/rusty_metal_nor_gl_1k.jpg",
+        "bytes": 420984,
+        "sourceMd5": "6133cf0df6fd63d0c484ca1669f90935",
+        "sha256": "cf7c8d72c7b5e1923321762d47f91d59b5233cb5b3c456823c54a2403109ff6a"
+      },
+      {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rusty_metal/rusty_metal_arm_1k.jpg",
+        "localSource": "PolyHaven/rusty_metal/rusty_metal_arm_1k.jpg",
+        "bytes": 130505,
+        "sourceMd5": "b7ffa07b5d83989a3fd418cae59b46f2",
+        "sha256": "a9e7409b0e0b0ee2982802e3f70f8dbfc86eafd67b8c7f3d5fbdcb9974e42f67"
+      }
+    ],
+    "importedDirectory": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/rusty_metal",
+    "importedFiles": [
+      "rusty_metal_mask.png",
+      "rusty_metal_nor_gl_1k.jpg",
+      "rusty_metal_diff_1k.jpg",
+      "rusty_metal_arm_1k.jpg"
+    ],
+    "maxTextureSize": 1024,
+    "importedSha256": {
+      "rusty_metal_mask.png": "cda09e9606aa87cc4e5a0ae9788b34a03f817fd17b4edc871f9a7db986f23ac9",
+      "rusty_metal_nor_gl_1k.jpg": "ea1675e4d5f3f95ea6b62374381ac6b37ded412dd13d194f5700b88b97c2306b",
+      "rusty_metal_diff_1k.jpg": "3433bedb459a5a5d9097d54a80dc668803083aede1c93029fdf48a89fa9bf1f2",
+      "rusty_metal_arm_1k.jpg": "92eb2ab6834ec2e3377537f891ad4cfbc65095529c210cb8776356721c6a9a47"
+    }
+  }
+]
