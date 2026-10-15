@@ -1,0 +1,29 @@
+{
+    "utc": "2026-10-15T08:18:50.1253560Z",
+    "scene": "Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity",
+    "failures": 0,
+    "triangles": 93635,
+    "renderers": 193,
+    "reachableGridCells": 163,
+    "textureMaximum": 1024,
+    "audioClips": 15,
+    "sourcePcmBytes": 4126080,
+    "checks": [
+        "PASS Scene audio profile and player bindings",
+        "PASS All nine audio sources routed; no Doppler/autoplay",
+        "PASS Three real ambient loops with bounded gains and fades",
+        "PASS Fifteen valid mono 32k clips",
+        "PASS Existing story director invokes audio rig",
+        "PASS Exactly one HUD controller",
+        "PASS HUD style, bundled fonts and three padlock digits",
+        "PASS Long documents scroll inside a clipped viewport",
+        "PASS Resolution-scaled shared HUD prefab",
+        "PASS No modal/debug presentation serialized open",
+        "PASS New stool grounded with fitted collision",
+        "PASS Bedside stool stays away from room centre and phone route",
+        "PASS Bed mat actual imported surface normals face the ceiling, not the floor",
+        "PASS Reusable prefab GoldenHUD.prefab",
+        "PASS Reusable prefab KosEnvironmentalAudio.prefab",
+        "PASS Reusable prefab GoldenPracticalLighting.prefab"
+    ]
+}

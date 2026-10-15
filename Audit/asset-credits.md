@@ -44,3 +44,24 @@ These CC0 assets allow commercial use, modification and redistribution; attribut
 V2 original modeled artwork: an unbranded wire-guard desk fan, canvas backpack with zippers/straps, a pair of rubber flip-flops, folded/sewn curtain panels, and a small router. The original mesh authoring source is `Tools/author_kos_v2.py`; these works follow the project license. Door hardware, shelf brackets, wall sockets, charger, power strip, and connected leads are lightweight scene geometry. The original V1 furniture, printed clues, props and attribution above are retained.
 
 The existing Kenney `wallWindow.fbx` was repaired from the same verified source kit: its prefab wall panel was removed so it no longer covers the scene's own opening, and the original glass, wood and metal surfaces were separated for appropriate materials. `Tools/repair_kos_window.py` records that derivative workflow. The window derivative remains CC0-1.0, attributed to Kenney above.
+
+## Golden reference additions — 2026-10-15
+
+The earlier CC0 statement concerns artwork, **not all Golden audio/fonts**. These additions have their own licenses:
+
+| Imported source | Author | Source / license | Actual derivative/use |
+| --- | --- | --- | --- |
+| Painted Wooden Stool | Kirill Sannikov | [Poly Haven](https://polyhaven.com/a/painted_wooden_stool), [CC0](https://polyhaven.com/license) | Worn bedside stool, original 676-triangle model, 512px maps |
+| Dirty Carpet | Rohit Seervi | [Poly Haven](https://polyhaven.com/a/dirty_carpet), [CC0](https://polyhaven.com/license) | Muted bedside mat material, 512px runtime import |
+| Rain on Tin | Srirachasocks | [Freesound 832559](https://freesound.org/people/Srirachasocks/sounds/832559/), [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/) | RainRoof: mono, filtered, normalized, resampled, crossfaded loop |
+| Extractor Fan 03 | JarredGibb | [Freesound 219489](https://freesound.org/people/JarredGibb/sounds/219489/), [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/) | PCFan: low-passed ventilation recording adapted as old computer fan; not a recording of this PC |
+| ApartmentLivingRoom2 | leonelmail | [Freesound 329533](https://freesound.org/people/leonelmail/sounds/329533/), [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/) | Quiet mono room-tone loop |
+| Clothing Rustling 2 | Sheyvan | [Freesound 476804](https://freesound.org/people/Sheyvan/sounds/476804/), [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/) | Trimmed cloth pickup; also adapted as quiet document-handling rustle |
+| Motorcycle start | roman_cgr | [Freesound 415038](https://freesound.org/people/roman_cgr/sounds/415038/), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | DepartureEngine: excerpted, mono downmix, normalized, resampled 32 kHz. Changes made by LayarTerakhir; no author endorsement implied. |
+| Impact Sounds | Kenney | [Official asset page](https://kenney.nl/assets/impact-sounds), CC0-1.0 | Selected wood/metal/bell and concrete-footstep recordings, trimmed/normalized; source filenames in processing tool |
+| UI Audio | Kenney | [Official asset page](https://kenney.nl/assets/ui-audio), CC0-1.0 | click1 and switch1, lowered level, mono 32k |
+| Barlow Regular / SemiBold | The Barlow Project Authors | [Official Google Fonts source](https://github.com/google/fonts/tree/main/ofl/barlow), [SIL OFL 1.1](https://openfontlicense.org/) | Unmodified bundled font software; full copyright/license retained in `UI/Fonts/OFL.txt` and Windows distribution |
+
+The five Freesound downloads are the official, freely served high-quality MP3 previews, **not** the login-protected WAV masters. Source-page licenses were checked before downloading. Their exact CDN URLs, source links, authors, licenses, hashes and sizes are in `golden-source-manifest.json`. The CC BY 4.0 motorcycle recording permits commercial adaptation and redistribution subject to attribution, license link and indication of changes; these notices accompany the compiled game. No DRM or additional restriction is imposed on that recording. Kenney license files are retained under `Audio/Imported/`; only selected clips were extracted, not the full packs.
+
+`Tools/prepare_golden_audio.py` records mono conversion, sample rates, gain/filtering, crossfaded loop seams, peaks, RMS and SHA-256 in `golden-audio-processing.json`. The phone-vibration clip is **original synthesized mechanical vibration**, not a field recording. The microphone and curled bedside-mat mesh are original unbranded project artwork authored with `Tools/author_golden_details.py`; the 56 keyboard keycaps share one generated mesh. These original works follow the project license; third-party works retain the licenses above.

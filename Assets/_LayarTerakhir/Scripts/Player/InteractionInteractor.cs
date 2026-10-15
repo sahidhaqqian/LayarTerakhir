@@ -13,6 +13,8 @@ namespace LayarTerakhir.Player
 
         public IInteractable CurrentTarget { get; private set; }
         private readonly RaycastHit[] _hits = new RaycastHit[16];
+        private string _lastPromptSource, _cachedPrompt;
+        private KeyCode _lastPromptKey;
 
         private void Update()
         {
@@ -65,7 +67,14 @@ namespace LayarTerakhir.Player
                     CurrentTarget = interactable;
                     if (HudController.Instance != null)
                     {
-                        HudController.Instance.SetInteractionPrompt($"[E] {interactable.GetInteractionPrompt()}");
+                        string source=interactable.GetInteractionPrompt();
+                        var key=GameInputConfig.Instance?GameInputConfig.Instance.interactKey:KeyCode.E;
+                        if(source!=_lastPromptSource||key!=_lastPromptKey)
+                        {
+                            _lastPromptSource=source;_lastPromptKey=key;
+                            _cachedPrompt=$"[{key}] {source}";
+                        }
+                        HudController.Instance.SetInteractionPrompt(_cachedPrompt);
                     }
                     return;
                 }

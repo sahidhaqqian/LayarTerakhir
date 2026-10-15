@@ -1,5 +1,6 @@
 using System.Collections;
 using LayarTerakhir.Core;
+using LayarTerakhir.Audio;
 using LayarTerakhir.Player;
 using LayarTerakhir.Smartphone;
 using LayarTerakhir.UI;
@@ -38,6 +39,7 @@ namespace LayarTerakhir.Prolog
         public KosInteractableItem jacketItem;
         public KosInteractableItem kosDoorItem;
         public Light phoneBedRedLed;
+        public KosSceneAudio environmentAudio;
 
         private void Start()
         {
@@ -110,6 +112,7 @@ namespace LayarTerakhir.Prolog
             );
             yield return new WaitForSeconds(5.2f);
 
+            if(environmentAudio)environmentAudio.PlayKnocks();
             HudController.Instance.EnqueueSubtitle(
                 "SFX",
                 "[TOK! TOK! TOK! Ketukan keras 3 kali di pintu kayu kamar kos, disusul langkah kaki berat menjauh]",
@@ -171,6 +174,7 @@ namespace LayarTerakhir.Prolog
 
         private void HandleReadSuratIbuKos(KosInteractableItem suratItem)
         {
+            if(environmentAudio)environmentAudio.PlayItem("paper",suratItem.transform.position);
             const string suratBody =
                 "\"Raka, ini peringatan terakhir dari saya. Tunggakan kos kamu sudah 3 bulan ditambah uang listrik totalnya Rp3.500.000. " +
                 "Jangan alasan ibumu masuk rumah sakit terus. Besok pagi jam 08.00 kalau belum ditransfer, gembok kamar saya ganti dan " +
@@ -207,6 +211,7 @@ namespace LayarTerakhir.Prolog
 
             if (phoneBedRedLed != null)
                 phoneBedRedLed.enabled = true;
+            if(environmentAudio)environmentAudio.SetPhoneVibration(true);
             if (smartphoneBedItem != null)
                 smartphoneBedItem.isInteractable = true;
 
@@ -221,6 +226,7 @@ namespace LayarTerakhir.Prolog
 
         private void HandlePickupSmartphone(KosInteractableItem phoneItem)
         {
+            if(environmentAudio)environmentAudio.SetPhoneVibration(false);
             if (phoneBedRedLed != null)
                 phoneBedRedLed.enabled = false;
 
@@ -261,6 +267,7 @@ namespace LayarTerakhir.Prolog
             );
             yield return new WaitForSeconds(3.3f);
 
+            if(environmentAudio)environmentAudio.NotifyDonation();
             HudController.Instance.ShowBroadcastNotification(
                 "[GLITCH LAYAR 1 DETIK — KRING!]\n" +
                 "[NOTIFIKASI DONASI MASUK: Rp5.000.000 dari Penonton_Terakhir]\n" +
@@ -314,6 +321,7 @@ namespace LayarTerakhir.Prolog
             HudController.Instance.OpenPadlockModal(DrawerPasscode, () =>
             {
                 isDrawerUnlocked = true;
+                if(environmentAudio)environmentAudio.PlayItem("unlock",drawerItem.transform.position);
                 hasMotorKey = true;
                 hasSpareBattery = true;
                 drawerItem.isInteractable = false;
@@ -346,6 +354,7 @@ namespace LayarTerakhir.Prolog
             }
 
             hasJacket = true;
+            if(environmentAudio)environmentAudio.PlayItem("cloth",jacket.transform.position);
             jacket.gameObject.SetActive(false);
 
             if (CampaignState.Instance != null)
@@ -399,6 +408,7 @@ namespace LayarTerakhir.Prolog
 
         private IEnumerator DepartKosSequenceRoutine()
         {
+            if(environmentAudio)environmentAudio.Depart();
             HudController.Instance.SetObjective("Berangkat menuju Rumah Keluarga Atmaja...");
             HudController.Instance.EnqueueSubtitle(
                 "SFX",

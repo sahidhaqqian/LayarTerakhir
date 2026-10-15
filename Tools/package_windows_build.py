@@ -9,6 +9,8 @@ root=Path(__file__).resolve().parents[1];out=root/'Builds/Windows';logs=root/'Bu
 report=json.loads((logs/'windows-development-build-report.json').read_text())
 invocation=json.loads((logs/'windows-build-invocation.json').read_text())
 assert invocation['exitCode']==0,'Unity did not exit successfully'
+assert invocation.get('status')=='Finished','Build invocation has not completed'
+assert datetime.fromisoformat(invocation['startedUtc'])<=datetime.fromisoformat(report['startedUtc'])<=datetime.fromisoformat(report['endedUtc'])<=datetime.fromisoformat(invocation['endedUtc']),'Build report is stale or does not belong to this invocation'
 assert report['result']=='Succeeded' and report['totalErrors']==0,'Unity build failed'
 assert report['target']=='StandaloneWindows64' and report['scriptingBackend']=='Mono2x'
 assert 'Development' in report['options']
@@ -37,10 +39,12 @@ assert 'Assembly-CSharp.dll' in assemblies and 'Assembly-CSharp-Editor.dll' not 
 for name in assemblies:assert (out/'LayarTerakhir_Data/Managed'/name).is_file(),name
 assert b'DevelopmentScreenshotCapture' in (out/'LayarTerakhir_Data/Managed/Assembly-CSharp.dll').read_bytes(),'Development screenshot utility is missing'
 scene_data=(out/'LayarTerakhir_Data/level0').read_bytes()
-for marker in ['Kos_Environment_Art','Kos_V2_Details','KosDeskFan','KosCurtains','CeramicTileFloor','WeakTungstenCeiling','CalendarAugust','vintage_day_bed']:assert marker.encode() in scene_data,marker
+for marker in ['Kos_Environment_Art','Kos_V2_Details','KosDeskFan','KosCurtains','CeramicTileFloor','WeakTungstenCeiling','CalendarAugust','vintage_day_bed','GoldenHUD','GoldenAudioRig','Golden_Dressing','BedsideWornStool']:assert marker.encode() in scene_data,marker
 assert b'Prolog_KamarKos' in (out/'LayarTerakhir_Data/globalgamemanagers').read_bytes()
 shutil.copy2(root/'Audit/asset-credits.md',out/'Asset-Credits.txt')
 shutil.copy2(root/'Audit/windows-kos-capture.md',out/'Screenshot-Guide.txt')
+shutil.copy2(root/'Assets/_LayarTerakhir/UI/Fonts/OFL.txt',out/'Barlow-OFL.txt')
+shutil.copy2(root/'Audit/golden-windows-review.md',out/'Golden-Review-Guide.txt')
 files=sorted(p for p in out.rglob('*') if p.is_file());manifest=[]
 for p in files:
  digest=hashlib.sha256();crc=0
@@ -71,4 +75,7 @@ verification={'verifiedUtc':datetime.now(timezone.utc).isoformat(),'unityExitCod
 verification['sourceSceneSha256']=hashlib.sha256((root/'Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity').read_bytes()).hexdigest()
 verification['developmentScreenshotUtilityIncluded']=True
 (logs/'windows-build-verification.json').write_text(json.dumps(verification,indent=2)+'\n')
-print(json.dumps({k:v for k,v in verification.items() if k not in ['files','nativeArchitectures']},indent=2))
+summary={k:v for k,v in verification.items() if k not in ['files','nativeArchitectures']}
+(root/'Audit/golden-build-summary.json').write_text(json.dumps(summary,indent=2)+'\n')
+shutil.copy2(logs/'windows-build-invocation.json',root/'Audit/golden-windows-invocation.json')
+print(json.dumps(summary,indent=2))

@@ -1,0 +1,24 @@
+{
+    "utc": "2026-10-15T08:05:41.5754050Z",
+    "platform": "LinuxPlayer",
+    "gpu": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "graphicsApi": "OpenGLCore",
+    "scene": "Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity",
+    "saveDirectory": "/root/Projects/LayarTerakhir/Audit/Visuals/Golden-Linux/IsolatedSave-c97283903bcd4ccc8826192f8bd8d916",
+    "actualStandalonePlayer": true,
+    "completed": false,
+    "checkpointSaved": false,
+    "phoneVibrationStarted": false,
+    "phoneVibrationStopped": false,
+    "documentsOverflow": false,
+    "screenshots": [
+        "01-opening.png"
+    ],
+    "checks": [
+        "FAIL Stage WaitReadSuratIbuKos"
+    ],
+    "width": 1280,
+    "height": 720,
+    "mixRms": 0.03260011598467827,
+    "mixPeak": 0.19156651198863984
+}

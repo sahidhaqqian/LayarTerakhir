@@ -1,0 +1,18 @@
+{
+  "stage": "apply",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.GoldenSceneProduction.Apply",
+    "-logFile",
+    "/root/Projects/LayarTerakhir/Audit/golden-apply.log"
+  ],
+  "startedUtc": "2026-10-15T08:15:47.944520+00:00",
+  "endedUtc": "2026-10-15T08:16:12.891566+00:00",
+  "exitCode": 0
+}

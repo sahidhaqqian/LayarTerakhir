@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e973ea0b653c0c5d934fbecf6472931, type: 3}
+  m_Name: GoldenHudStyle
+  m_EditorClassIdentifier: Assembly-CSharp::LayarTerakhir.UI.HudStyle
+  bodyFont: {fileID: 12800000, guid: 0a753425ecbca20a987f1ec2d689fb11, type: 3}
+  emphasisFont: {fileID: 12800000, guid: da3390959f7fb8faeb207fc8d7f96616, type: 3}
+  referenceResolution: {x: 1600, y: 900}
+  safeMargins: {x: 64, y: 44}
+  text: {r: 0.91, g: 0.89, b: 0.81, a: 1}
+  muted: {r: 0.68, g: 0.68, b: 0.61, a: 1}
+  accent: {r: 0.61, g: 0.47, b: 0.28, a: 1}
+  danger: {r: 0.74, g: 0.28, b: 0.22, a: 1}
+  panel: {r: 0.045, g: 0.052, b: 0.048, a: 0.93}
+  paper: {r: 0.77, g: 0.74, b: 0.64, a: 0.98}
+  ink: {r: 0.13, g: 0.14, b: 0.12, a: 1}
+  bodySize: 26
+  subtitleSize: 28
+  titleSize: 32
+  fadeDuration: 0.18

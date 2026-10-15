@@ -46,7 +46,7 @@ namespace LayarTerakhir.Core
         {
             get
             {
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
                 // Headless validation and tests must never overwrite the player's checkpoint.
                 string testDirectory = Environment.GetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY");
                 if (!string.IsNullOrEmpty(testDirectory)) return testDirectory;

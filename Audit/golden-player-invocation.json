@@ -1,0 +1,29 @@
+{
+  "stage": "player",
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Projects/LayarTerakhir/Builds/LinuxAudit/LayarTerakhir.x86_64",
+    "-force-glcore",
+    "-screen-fullscreen",
+    "0",
+    "-screen-width",
+    "640",
+    "-screen-height",
+    "360",
+    "-goldenAudit",
+    "/root/Projects/LayarTerakhir/Audit/Visuals/Golden-Linux",
+    "-logFile",
+    "/root/Projects/LayarTerakhir/Audit/golden-player.log",
+    "-goldenAuditFast"
+  ],
+  "startedUtc": "2026-10-15T08:23:46.383589+00:00",
+  "audioBackend": "Private clocked PulseAudio null sink; real listener tap, no physical audio hardware",
+  "status": "Finished",
+  "endedUtc": "2026-10-15T08:24:52.279981+00:00",
+  "exitCode": 0,
+  "screenCapturesVerified": 13,
+  "completedSmokeReceiptVerified": true
+}

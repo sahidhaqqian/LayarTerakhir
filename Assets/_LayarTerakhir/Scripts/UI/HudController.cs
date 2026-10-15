@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using LayarTerakhir.Player;
 using LayarTerakhir.Smartphone;
+using LayarTerakhir.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -46,6 +47,8 @@ namespace LayarTerakhir.UI
         private Action _onPadlockSolved;
         private readonly int[] _digits = { 0, 0, 0 };
         private string _targetPadlockCode = "148";
+        private int _lastPhoneState=-1, _lastPhoneBattery=-1;
+        private KeyCode _lastPhoneKey, _lastScreenKey;
 
         private void Awake()
         {
@@ -226,7 +229,7 @@ namespace LayarTerakhir.UI
         {
             if (objectiveText != null)
             {
-                objectiveText.text = string.IsNullOrEmpty(objective) ? string.Empty : $"OBJEKTIF: {objective}";
+                objectiveText.text = objective ?? string.Empty;
             }
         }
 
@@ -251,7 +254,8 @@ namespace LayarTerakhir.UI
         {
             if (broadcastToastText == null) return;
             if (_broadcastRoutine != null) StopCoroutine(_broadcastRoutine);
-            broadcastToastText.text = message;
+            broadcastToastText.text = message.Replace("[GLITCH LAYAR 1 DETIK — KRING!]\n",string.Empty)
+                .Replace("[NOTIFIKASI DONASI MASUK: ",string.Empty).Replace("Penonton_Terakhir]","Penonton_Terakhir");
             _broadcastRoutine = StartCoroutine(ClearBroadcastRoutine(duration));
         }
 
@@ -262,16 +266,23 @@ namespace LayarTerakhir.UI
 
             if (!phone.hasSmartphoneInInventory)
             {
-                phoneStatusText.text = "[HP BELUM DIAMBIL]";
+                phoneStatusText.text = string.Empty;
+                _lastPhoneState=-1;
                 return;
             }
-
-            string screenState = phone.isScreenOn ? "LAYAR NYALA" : "LAYAR MATI [HEMAT DAYA]";
-            string holderState = phone.isPhoneRaised ? "DIANGKAT [TAB]" : "DISIMPAN [TAB]";
-            phoneStatusText.text =
-                $"SMARTPHONE RAKA ({holderState})\n" +
-                $"Baterai: {phone.batteryPercent:0}% | {screenState} [F]\n" +
-                $"Mode Visual: {phone.currentScanMode}";
+            int state=(phone.isPhoneRaised?1:0)|(phone.isScreenOn?2:0)|(phone.isBroadcastConnected?4:0)|((int)phone.currentScanMode<<3);
+            int battery=Mathf.Clamp(Mathf.CeilToInt(phone.batteryPercent),0,100);
+            var input=GameInputConfig.Instance;
+            var phoneKey=input?input.togglePhoneKey:KeyCode.Tab;
+            var screenKey=input?input.toggleScreenKey:KeyCode.F;
+            if(state==_lastPhoneState&&battery==_lastPhoneBattery&&phoneKey==_lastPhoneKey&&screenKey==_lastScreenKey)return;
+            _lastPhoneState=state;_lastPhoneBattery=battery;_lastPhoneKey=phoneKey;_lastScreenKey=screenKey;
+            string mode=phone.currentScanMode==ScanVisualMode.AR?"MataBatin AR":phone.currentScanMode==ScanVisualMode.UV?"Lensa UV":"Kamera biasa";
+            string screen=!phone.isPhoneRaised?"Tersimpan":phone.isScreenOn?mode:"Layar mati · Hemat daya";
+            phoneStatusText.text=$"{battery}%    {(phone.isBroadcastConnected?"LIVE":"Offline")}\n{screen}";
+            var presentation=GetComponent<HudPresentation>();
+            if(presentation&&presentation.phoneHints)
+                presentation.phoneHints.text=$"{phoneKey.ToString().ToUpperInvariant()}  {(phone.isPhoneRaised?"Simpan":"Angkat")}   ·   {screenKey.ToString().ToUpperInvariant()}  {(phone.isScreenOn?"Matikan layar":"Nyalakan layar")}";
         }
 
         public void OpenDocumentModal(string title, string body, Action onClosed = null)
@@ -281,6 +292,13 @@ namespace LayarTerakhir.UI
             documentTitleText.text = title;
             documentBodyText.text = body;
             documentPanel.SetActive(true);
+            var presentation=GetComponent<HudPresentation>();
+            if(presentation&&presentation.documentScroll)
+            {
+                Canvas.ForceUpdateCanvases();
+                presentation.documentScroll.StopMovement();
+                presentation.documentScroll.verticalNormalizedPosition=1;
+            }
             SetPlayerLockForModal(true);
         }
 
@@ -342,7 +360,7 @@ namespace LayarTerakhir.UI
         {
             if (padlockDigitsText != null)
             {
-                padlockDigitsText.text = $"[ {_digits[0]} ]   -   [ {_digits[1]} ]   -   [ {_digits[2]} ]";
+                padlockDigitsText.text = $"{_digits[0]}       {_digits[1]}       {_digits[2]}";
             }
         }
 
@@ -378,9 +396,8 @@ namespace LayarTerakhir.UI
                 var (speaker, line, duration) = _subtitleQueue.Dequeue();
                 if (subtitleText != null)
                 {
-                    subtitleText.text = string.IsNullOrEmpty(speaker)
-                        ? line
-                        : $"{speaker}: \"{line}\"";
+                    subtitleText.text = speaker=="SFX" ? $"<i>{line.Trim('[',']')}</i>" :
+                        string.IsNullOrEmpty(speaker)?line:$"<size=18><b>{speaker.ToUpperInvariant()}</b></size>\n{line}";
                 }
                 yield return new WaitForSeconds(duration);
             }
