@@ -1,0 +1,2337 @@
+{
+  "materials": [
+    {
+      "name": "House_MAT_BrickBase",
+      "color": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "roughness": 0.800000011920929,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/brick_moss_001_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/brick_moss_001_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/brick_moss_001_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/House_MAT_BrickBase_mask.png"
+    },
+    {
+      "name": "House_MAT_Concrete",
+      "color": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "roughness": 0.800000011920929,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/concrete_moss_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/concrete_moss_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/concrete_moss_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/House_MAT_Concrete_mask.png"
+    },
+    {
+      "name": "House_MAT_GlassDark",
+      "color": [
+        0.04500000178813934,
+        0.05000000074505806,
+        0.05999999865889549,
+        1.0
+      ],
+      "roughness": 0.2800000011920929,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "arm": ""
+    },
+    {
+      "name": "House_MAT_PlasterDamaged",
+      "color": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "roughness": 0.800000011920929,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/damaged_plaster_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/damaged_plaster_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/damaged_plaster_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/House_MAT_PlasterDamaged_mask.png"
+    },
+    {
+      "name": "House_MAT_PlasterLower",
+      "color": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "roughness": 0.800000011920929,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/worn_mossy_plasterwall_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/worn_mossy_plasterwall_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/worn_mossy_plasterwall_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/House_MAT_PlasterLower_mask.png"
+    },
+    {
+      "name": "House_MAT_RoofTiles",
+      "color": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "roughness": 0.800000011920929,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/clay_roof_tiles_02_diff_1k_weathered.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/clay_roof_tiles_02_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/clay_roof_tiles_02_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/House_MAT_RoofTiles_mask.png"
+    },
+    {
+      "name": "House_MAT_RoofTilesAnnex",
+      "color": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "roughness": 0.800000011920929,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/clay_roof_tiles_03_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/clay_roof_tiles_03_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/clay_roof_tiles_03_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/House_MAT_RoofTilesAnnex_mask.png"
+    },
+    {
+      "name": "House_MAT_RustMetal",
+      "color": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "roughness": 0.800000011920929,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/rusty_metal_sheet_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/rusty_metal_sheet_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/rusty_metal_sheet_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/House_MAT_RustMetal_mask.png"
+    },
+    {
+      "name": "House_MAT_TrimTeak",
+      "color": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "roughness": 0.800000011920929,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/WoodTrimSheet_BaseColor_Teak.png",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/WoodTrimSheet_Normal.png",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/WoodTrimSheet_Roughness.png",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/House_MAT_TrimTeak_mask.png"
+    },
+    {
+      "name": "House_MAT_WoodDoor",
+      "color": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "roughness": 0.800000011920929,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/wood_planks_grey_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/wood_planks_grey_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/wood_planks_grey_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/House_MAT_WoodDoor_mask.png"
+    },
+    {
+      "name": "House_MAT_WoodFrameWhite",
+      "color": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "roughness": 0.800000011920929,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/wood_peeling_paint_weathered_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/wood_peeling_paint_weathered_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/wood_peeling_paint_weathered_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/House_MAT_WoodFrameWhite_mask.png"
+    },
+    {
+      "name": "Scooter_MOTO_Amber",
+      "color": [
+        0.550000011920929,
+        0.2199999988079071,
+        0.019999999552965164,
+        1.0
+      ],
+      "roughness": 0.25,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "arm": ""
+    },
+    {
+      "name": "Scooter_MOTO_BodyPaint",
+      "color": [
+        0.054999999701976776,
+        0.05999999865889549,
+        0.07500000298023224,
+        1.0
+      ],
+      "roughness": 0.2800000011920929,
+      "metallic": 0.3499999940395355,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "arm": ""
+    },
+    {
+      "name": "Scooter_MOTO_Chrome",
+      "color": [
+        0.75,
+        0.7599999904632568,
+        0.7799999713897705,
+        1.0
+      ],
+      "roughness": 0.14000000059604645,
+      "metallic": 1.0,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "arm": ""
+    },
+    {
+      "name": "Scooter_MOTO_DarkPlastic",
+      "color": [
+        0.019999999552965164,
+        0.019999999552965164,
+        0.023000000044703484,
+        1.0
+      ],
+      "roughness": 0.550000011920929,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "arm": ""
+    },
+    {
+      "name": "Scooter_MOTO_Engine",
+      "color": [
+        0.30000001192092896,
+        0.30000001192092896,
+        0.3100000023841858,
+        1.0
+      ],
+      "roughness": 0.44999998807907104,
+      "metallic": 0.75,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "arm": ""
+    },
+    {
+      "name": "Scooter_MOTO_HeadlightLens",
+      "color": [
+        0.75,
+        0.7699999809265137,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.11999999731779099,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "arm": ""
+    },
+    {
+      "name": "Scooter_MOTO_Rim",
+      "color": [
+        0.41999998688697815,
+        0.4300000071525574,
+        0.44999998807907104,
+        1.0
+      ],
+      "roughness": 0.3199999928474426,
+      "metallic": 0.8500000238418579,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "arm": ""
+    },
+    {
+      "name": "Scooter_MOTO_SeatVinyl",
+      "color": [
+        0.017999999225139618,
+        0.017999999225139618,
+        0.019999999552965164,
+        1.0
+      ],
+      "roughness": 0.47999998927116394,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "arm": ""
+    },
+    {
+      "name": "Scooter_MOTO_TailLight",
+      "color": [
+        0.41999998688697815,
+        0.019999999552965164,
+        0.019999999552965164,
+        1.0
+      ],
+      "roughness": 0.2199999988079071,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "arm": ""
+    },
+    {
+      "name": "Scooter_MOTO_TireRubber",
+      "color": [
+        0.012000000104308128,
+        0.012000000104308128,
+        0.012000000104308128,
+        1.0
+      ],
+      "roughness": 0.8799999952316284,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "arm": ""
+    },
+    {
+      "name": "Scooter_SurveyNotebookPaper",
+      "color": [
+        0.699999988079071,
+        0.6600000262260437,
+        0.5,
+        1.0
+      ],
+      "roughness": 0.8,
+      "metallic": 0,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "arm": ""
+    },
+    {
+      "name": "Tree_FRANG_Bark",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.5,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/dead_tree_trunk_02_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/dead_tree_trunk_02_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/dead_tree_trunk_02_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/Tree_FRANG_Bark_mask.png"
+    },
+    {
+      "name": "Tree_FRANG_Flower",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.6000000238418579,
+      "metallic": 0.0,
+      "alphaClip": true,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/flower.png",
+      "normal": "",
+      "arm": ""
+    },
+    {
+      "name": "Tree_FRANG_Leaf",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.6000000238418579,
+      "metallic": 0.0,
+      "alphaClip": true,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/leaf.png",
+      "normal": "",
+      "arm": ""
+    },
+    {
+      "name": "Tree_root_cluster_01",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.5,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/root_cluster_01_diff_1k.jpg",
+      "normal": "",
+      "arm": ""
+    },
+    {
+      "name": "large_iron_gate_large_iron_gate",
+      "color": [
+        0.010167748667299747,
+        0.010167748667299747,
+        0.010167748667299747,
+        1.0
+      ],
+      "roughness": 0.27358490228652954,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/large_iron_gate_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/large_iron_gate_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/large_iron_gate_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/large_iron_gate_large_iron_gate_mask.png"
+    },
+    {
+      "name": "shrub_03_shrub_03",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.4000000059604645,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/shrub_03_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/shrub_03_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/shrub_03_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/shrub_03_shrub_03_mask.png"
+    },
+    {
+      "name": "fern_02_fern_02",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.4000000059604645,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/fern_02_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/fern_02_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/fern_02_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/fern_02_fern_02_mask.png"
+    },
+    {
+      "name": "grass_bermuda_01_grass_bermuda_01",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.5,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/grass_bermuda_01_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/grass_bermuda_01_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/grass_bermuda_01_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/grass_bermuda_01_grass_bermuda_01_mask.png"
+    },
+    {
+      "name": "plastic_monobloc_chair_01_plastic_monobloc_chair_01",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.5,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/plastic_monobloc_chair_01_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/plastic_monobloc_chair_01_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/plastic_monobloc_chair_01_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/plastic_monobloc_chair_01_plastic_monobloc_chair_01_mask.png"
+    },
+    {
+      "name": "planter_pot_clay_planter_pot_clay",
+      "color": [
+        0.0030953800305724144,
+        0.0030953800305724144,
+        0.0030953800305724144,
+        1.0
+      ],
+      "roughness": 0.5905511975288391,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/planter_pot_clay_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/planter_pot_clay_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/planter_pot_clay_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/planter_pot_clay_planter_pot_clay_mask.png"
+    },
+    {
+      "name": "wooden_bucket_01_wooden_bucket_01",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.5,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/wooden_bucket_01_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/wooden_bucket_01_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/wooden_bucket_01_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/wooden_bucket_01_wooden_bucket_01_mask.png"
+    },
+    {
+      "name": "security_light_security_light",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.5,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/security_light_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/security_light_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/security_light_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/security_light_security_light_mask.png"
+    },
+    {
+      "name": "security_light_security_light_bulb",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.5,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/security_light_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/security_light_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/security_light_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/security_light_security_light_bulb_mask.png"
+    },
+    {
+      "name": "security_light_security_light_glass",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.5,
+      "metallic": 0.0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/security_light_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/security_light_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/security_light_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/security_light_security_light_glass_mask.png"
+    },
+    {
+      "name": "brown_mud_03",
+      "color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.8,
+      "metallic": 0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/brown_mud_03_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/brown_mud_03_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/brown_mud_03_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/brown_mud_03_mask.png"
+    },
+    {
+      "name": "stony_dirt_path",
+      "color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.8,
+      "metallic": 0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/stony_dirt_path_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/stony_dirt_path_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/stony_dirt_path_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/stony_dirt_path_mask.png"
+    },
+    {
+      "name": "mossy_cobblestone",
+      "color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.8,
+      "metallic": 0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/mossy_cobblestone_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/mossy_cobblestone_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/mossy_cobblestone_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/mossy_cobblestone_mask.png"
+    },
+    {
+      "name": "dirty_concrete",
+      "color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.8,
+      "metallic": 0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/dirty_concrete_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/dirty_concrete_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/dirty_concrete_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/dirty_concrete_mask.png"
+    },
+    {
+      "name": "concrete_floor_damaged_01",
+      "color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "roughness": 0.8,
+      "metallic": 0,
+      "alphaClip": false,
+      "albedo": "Assets/_LayarTerakhir/Art/Atmaja/Textures/concrete_floor_damaged_01_diff_1k.jpg",
+      "normal": "Assets/_LayarTerakhir/Art/Atmaja/Textures/concrete_floor_damaged_01_nor_gl_1k.jpg",
+      "arm": "Assets/_LayarTerakhir/Art/Atmaja/Textures/concrete_floor_damaged_01_arm_1k.jpg",
+      "mask": "Assets/_LayarTerakhir/Art/Atmaja/Textures/concrete_floor_damaged_01_mask.png"
+    },
+    {
+      "name": "Detail_AgedBrass",
+      "color": [
+        0.37,
+        0.26,
+        0.1,
+        1
+      ],
+      "roughness": 0.5,
+      "metallic": 0.6,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "mask": ""
+    },
+    {
+      "name": "Detail_ARCloth",
+      "color": [
+        0.26,
+        0.29,
+        0.25,
+        1
+      ],
+      "roughness": 0.95,
+      "metallic": 0,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "mask": ""
+    },
+    {
+      "name": "Detail_ARHair",
+      "color": [
+        0.018,
+        0.02,
+        0.017,
+        1
+      ],
+      "roughness": 0.86,
+      "metallic": 0,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "mask": ""
+    },
+    {
+      "name": "Detail_ARSkin",
+      "color": [
+        0.31,
+        0.33,
+        0.28,
+        1
+      ],
+      "roughness": 0.82,
+      "metallic": 0,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "mask": ""
+    }
+  ],
+  "models": [
+    {
+      "name": "RumahAtmaja",
+      "path": "Assets/_LayarTerakhir/Art/Atmaja/Models/RumahAtmaja.fbx",
+      "triangles": 7906,
+      "renderers": 13,
+      "hulls": [
+        {
+          "name": "WALL_KitchenPassage_0",
+          "low": [
+            1.5499999523162842,
+            8.824999809265137,
+            0.4499998092651367
+          ],
+          "high": [
+            3.3999998569488525,
+            9.175000190734863,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_KitchenPassage_1",
+          "low": [
+            4.600000381469727,
+            8.824999809265137,
+            0.4499998092651367
+          ],
+          "high": [
+            6.0,
+            9.175000190734863,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_KitchenPassage_2",
+          "low": [
+            3.5,
+            8.5,
+            4.599999904632568
+          ],
+          "high": [
+            4.5,
+            9.5,
+            5.599999904632568
+          ]
+        },
+        {
+          "name": "PLINTH",
+          "low": [
+            -6.28000020980835,
+            -0.2800000011920929,
+            0.0
+          ],
+          "high": [
+            6.28000020980835,
+            9.279999732971191,
+            0.5
+          ]
+        },
+        {
+          "name": "PLINTH_annex",
+          "low": [
+            1.7999999523162842,
+            8.800000190734863,
+            0.0
+          ],
+          "high": [
+            6.199999809265137,
+            12.399999618530273,
+            0.3400000035762787
+          ]
+        },
+        {
+          "name": "WALL_FRONT_pier_0",
+          "low": [
+            -6.0,
+            -0.17499999701976776,
+            0.44999998807907104
+          ],
+          "high": [
+            -3.700000047683716,
+            0.17499999701976776,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_FRONT_sill_0",
+          "low": [
+            -3.700000047683716,
+            -0.17499999701976776,
+            0.44999998807907104
+          ],
+          "high": [
+            -2.75,
+            0.17499999701976776,
+            0.949999988079071
+          ]
+        },
+        {
+          "name": "WALL_FRONT_lintel_0",
+          "low": [
+            -3.700000047683716,
+            -0.17499999701976776,
+            2.8499999046325684
+          ],
+          "high": [
+            -2.75,
+            0.17499999701976776,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_FRONT_sill_1",
+          "low": [
+            -3.700000047683716,
+            -0.17499999701976776,
+            0.44999998807907104
+          ],
+          "high": [
+            -2.75,
+            0.17499999701976776,
+            4.949999809265137
+          ]
+        },
+        {
+          "name": "WALL_FRONT_lintel_1",
+          "low": [
+            -3.700000047683716,
+            -0.17499999701976776,
+            6.849999904632568
+          ],
+          "high": [
+            -2.75,
+            0.17499999701976776,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_FRONT_pier_2",
+          "low": [
+            -2.75,
+            -0.17499999701976776,
+            0.44999998807907104
+          ],
+          "high": [
+            -1.5499999523162842,
+            0.17499999701976776,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_FRONT_sill_2",
+          "low": [
+            -1.5499999523162842,
+            -0.17499999701976776,
+            0.44999998807907104
+          ],
+          "high": [
+            -0.6000000238418579,
+            0.17499999701976776,
+            4.949999809265137
+          ]
+        },
+        {
+          "name": "WALL_FRONT_lintel_2",
+          "low": [
+            -1.5499999523162842,
+            -0.17499999701976776,
+            6.849999904632568
+          ],
+          "high": [
+            -0.6000000238418579,
+            0.17499999701976776,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_FRONT_lintel_3",
+          "low": [
+            -0.800000011920929,
+            -0.17499999701976776,
+            3.450000047683716
+          ],
+          "high": [
+            0.800000011920929,
+            0.17499999701976776,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_FRONT_sill_4",
+          "low": [
+            0.6000000238418579,
+            -0.17499999701976776,
+            0.44999998807907104
+          ],
+          "high": [
+            1.5499999523162842,
+            0.17499999701976776,
+            4.949999809265137
+          ]
+        },
+        {
+          "name": "WALL_FRONT_lintel_4",
+          "low": [
+            0.6000000238418579,
+            -0.17499999701976776,
+            6.849999904632568
+          ],
+          "high": [
+            1.5499999523162842,
+            0.17499999701976776,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_FRONT_pier_5",
+          "low": [
+            1.5499999523162842,
+            -0.17499999701976776,
+            0.44999998807907104
+          ],
+          "high": [
+            2.75,
+            0.17499999701976776,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_FRONT_sill_5",
+          "low": [
+            2.75,
+            -0.17499999701976776,
+            0.44999998807907104
+          ],
+          "high": [
+            3.700000047683716,
+            0.17499999701976776,
+            0.949999988079071
+          ]
+        },
+        {
+          "name": "WALL_FRONT_lintel_5",
+          "low": [
+            2.75,
+            -0.17499999701976776,
+            2.8499999046325684
+          ],
+          "high": [
+            3.700000047683716,
+            0.17499999701976776,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_FRONT_sill_6",
+          "low": [
+            2.75,
+            -0.17499999701976776,
+            0.44999998807907104
+          ],
+          "high": [
+            3.700000047683716,
+            0.17499999701976776,
+            4.949999809265137
+          ]
+        },
+        {
+          "name": "WALL_FRONT_lintel_6",
+          "low": [
+            2.75,
+            -0.17499999701976776,
+            6.849999904632568
+          ],
+          "high": [
+            3.700000047683716,
+            0.17499999701976776,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_FRONT_pier_7",
+          "low": [
+            3.700000047683716,
+            -0.17499999701976776,
+            0.44999998807907104
+          ],
+          "high": [
+            6.0,
+            0.17499999701976776,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_BACK_pier_0",
+          "low": [
+            -6.0,
+            8.824999809265137,
+            0.44999998807907104
+          ],
+          "high": [
+            -3.049999952316284,
+            9.175000190734863,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_BACK_sill_0",
+          "low": [
+            -3.049999952316284,
+            8.824999809265137,
+            0.44999998807907104
+          ],
+          "high": [
+            -2.1500000953674316,
+            9.175000190734863,
+            4.949999809265137
+          ]
+        },
+        {
+          "name": "WALL_BACK_lintel_0",
+          "low": [
+            -3.049999952316284,
+            8.824999809265137,
+            6.449999809265137
+          ],
+          "high": [
+            -2.1500000953674316,
+            9.175000190734863,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_BACK_lintel_1",
+          "low": [
+            -3.0,
+            8.824999809265137,
+            2.9000000953674316
+          ],
+          "high": [
+            -2.0,
+            9.175000190734863,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_BACK_pier_2",
+          "low": [
+            -2.0,
+            8.824999809265137,
+            0.44999998807907104
+          ],
+          "high": [
+            0.6499999761581421,
+            9.175000190734863,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_BACK_sill_2",
+          "low": [
+            0.6499999761581421,
+            8.824999809265137,
+            0.44999998807907104
+          ],
+          "high": [
+            1.5499999523162842,
+            9.175000190734863,
+            1.0
+          ]
+        },
+        {
+          "name": "WALL_BACK_lintel_2",
+          "low": [
+            0.6499999761581421,
+            8.824999809265137,
+            2.5
+          ],
+          "high": [
+            1.5499999523162842,
+            9.175000190734863,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_BACK_sill_3",
+          "low": [
+            0.6499999761581421,
+            8.824999809265137,
+            0.44999998807907104
+          ],
+          "high": [
+            1.5499999523162842,
+            9.175000190734863,
+            4.949999809265137
+          ]
+        },
+        {
+          "name": "WALL_BACK_lintel_3",
+          "low": [
+            0.6499999761581421,
+            8.824999809265137,
+            6.449999809265137
+          ],
+          "high": [
+            1.5499999523162842,
+            9.175000190734863,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_EAST_pier_0",
+          "low": [
+            5.824999809265137,
+            0.0,
+            0.44999998807907104
+          ],
+          "high": [
+            6.175000190734863,
+            1.600000023841858,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_EAST_sill_0",
+          "low": [
+            5.824999809265137,
+            1.600000023841858,
+            0.44999998807907104
+          ],
+          "high": [
+            6.175000190734863,
+            2.5,
+            4.949999809265137
+          ]
+        },
+        {
+          "name": "WALL_EAST_lintel_0",
+          "low": [
+            5.824999809265137,
+            1.600000023841858,
+            6.849999904632568
+          ],
+          "high": [
+            6.175000190734863,
+            2.5,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_EAST_sill_1",
+          "low": [
+            5.824999809265137,
+            1.7000000476837158,
+            0.44999998807907104
+          ],
+          "high": [
+            6.175000190734863,
+            2.5999999046325684,
+            0.949999988079071
+          ]
+        },
+        {
+          "name": "WALL_EAST_lintel_1",
+          "low": [
+            5.824999809265137,
+            1.7000000476837158,
+            2.8499999046325684
+          ],
+          "high": [
+            6.175000190734863,
+            2.5999999046325684,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_EAST_pier_2",
+          "low": [
+            5.824999809265137,
+            2.5999999046325684,
+            0.44999998807907104
+          ],
+          "high": [
+            6.175000190734863,
+            3.549999952316284,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_EAST_sill_2",
+          "low": [
+            5.824999809265137,
+            3.549999952316284,
+            0.44999998807907104
+          ],
+          "high": [
+            6.175000190734863,
+            4.449999809265137,
+            4.949999809265137
+          ]
+        },
+        {
+          "name": "WALL_EAST_lintel_2",
+          "low": [
+            5.824999809265137,
+            3.549999952316284,
+            6.849999904632568
+          ],
+          "high": [
+            6.175000190734863,
+            4.449999809265137,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_EAST_sill_3",
+          "low": [
+            5.824999809265137,
+            4.300000190734863,
+            0.44999998807907104
+          ],
+          "high": [
+            6.175000190734863,
+            5.199999809265137,
+            0.949999988079071
+          ]
+        },
+        {
+          "name": "WALL_EAST_lintel_3",
+          "low": [
+            5.824999809265137,
+            4.300000190734863,
+            2.8499999046325684
+          ],
+          "high": [
+            6.175000190734863,
+            5.199999809265137,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_EAST_pier_4",
+          "low": [
+            5.824999809265137,
+            5.199999809265137,
+            0.44999998807907104
+          ],
+          "high": [
+            6.175000190734863,
+            5.5,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_EAST_sill_4",
+          "low": [
+            5.824999809265137,
+            5.5,
+            0.44999998807907104
+          ],
+          "high": [
+            6.175000190734863,
+            6.400000095367432,
+            4.949999809265137
+          ]
+        },
+        {
+          "name": "WALL_EAST_lintel_4",
+          "low": [
+            5.824999809265137,
+            5.5,
+            6.849999904632568
+          ],
+          "high": [
+            6.175000190734863,
+            6.400000095367432,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_EAST_pier_5",
+          "low": [
+            5.824999809265137,
+            6.400000095367432,
+            0.44999998807907104
+          ],
+          "high": [
+            6.175000190734863,
+            9.0,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_WEST_pier_0",
+          "low": [
+            -6.175000190734863,
+            0.0,
+            0.44999998807907104
+          ],
+          "high": [
+            -5.824999809265137,
+            2.0999999046325684,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_WEST_sill_0",
+          "low": [
+            -6.175000190734863,
+            2.0999999046325684,
+            0.44999998807907104
+          ],
+          "high": [
+            -5.824999809265137,
+            3.0,
+            0.949999988079071
+          ]
+        },
+        {
+          "name": "WALL_WEST_lintel_0",
+          "low": [
+            -6.175000190734863,
+            2.0999999046325684,
+            2.8499999046325684
+          ],
+          "high": [
+            -5.824999809265137,
+            3.0,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_WEST_sill_1",
+          "low": [
+            -6.175000190734863,
+            2.0999999046325684,
+            0.44999998807907104
+          ],
+          "high": [
+            -5.824999809265137,
+            3.0,
+            4.949999809265137
+          ]
+        },
+        {
+          "name": "WALL_WEST_lintel_1",
+          "low": [
+            -6.175000190734863,
+            2.0999999046325684,
+            6.849999904632568
+          ],
+          "high": [
+            -5.824999809265137,
+            3.0,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_WEST_pier_2",
+          "low": [
+            -6.175000190734863,
+            3.0,
+            0.44999998807907104
+          ],
+          "high": [
+            -5.824999809265137,
+            5.0,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_WEST_sill_2",
+          "low": [
+            -6.175000190734863,
+            5.0,
+            0.44999998807907104
+          ],
+          "high": [
+            -5.824999809265137,
+            5.900000095367432,
+            0.949999988079071
+          ]
+        },
+        {
+          "name": "WALL_WEST_lintel_2",
+          "low": [
+            -6.175000190734863,
+            5.0,
+            2.8499999046325684
+          ],
+          "high": [
+            -5.824999809265137,
+            5.900000095367432,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_WEST_sill_3",
+          "low": [
+            -6.175000190734863,
+            5.0,
+            0.44999998807907104
+          ],
+          "high": [
+            -5.824999809265137,
+            5.900000095367432,
+            4.949999809265137
+          ]
+        },
+        {
+          "name": "WALL_WEST_lintel_3",
+          "low": [
+            -6.175000190734863,
+            5.0,
+            6.849999904632568
+          ],
+          "high": [
+            -5.824999809265137,
+            5.900000095367432,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "WALL_WEST_pier_4",
+          "low": [
+            -6.175000190734863,
+            5.900000095367432,
+            0.44999998807907104
+          ],
+          "high": [
+            -5.824999809265137,
+            9.0,
+            7.400000095367432
+          ]
+        },
+        {
+          "name": "DOOR_main_leaf_0",
+          "low": [
+            -0.7799999713897705,
+            -0.03500000014901161,
+            0.4699999988079071
+          ],
+          "high": [
+            0.0,
+            0.03500000014901161,
+            2.9800000190734863
+          ]
+        },
+        {
+          "name": "DOOR_main_leaf_1",
+          "low": [
+            0.03999999910593033,
+            -0.03500000014901161,
+            0.4699999988079071
+          ],
+          "high": [
+            0.8199999928474426,
+            0.03500000014901161,
+            2.9800000190734863
+          ]
+        },
+        {
+          "name": "DOOR_back_leaf_0",
+          "low": [
+            -2.9800000190734863,
+            8.96500015258789,
+            0.4699999988079071
+          ],
+          "high": [
+            -2.0199999809265137,
+            9.03499984741211,
+            2.630000114440918
+          ]
+        },
+        {
+          "name": "WIN_f_gL_glass",
+          "low": [
+            -3.6500000953674316,
+            -0.004999999888241291,
+            1.0
+          ],
+          "high": [
+            -2.799999952316284,
+            0.004999999888241291,
+            2.799999952316284
+          ]
+        },
+        {
+          "name": "WIN_f_gR_glass",
+          "low": [
+            2.799999952316284,
+            -0.004999999888241291,
+            1.0
+          ],
+          "high": [
+            3.6500000953674316,
+            0.004999999888241291,
+            2.799999952316284
+          ]
+        },
+        {
+          "name": "WIN_f_u0_glass",
+          "low": [
+            -3.6500000953674316,
+            -0.004999999888241291,
+            5.0
+          ],
+          "high": [
+            -2.799999952316284,
+            0.004999999888241291,
+            6.800000190734863
+          ]
+        },
+        {
+          "name": "WIN_f_u1_glass",
+          "low": [
+            -1.5,
+            -0.004999999888241291,
+            5.0
+          ],
+          "high": [
+            -0.6499999761581421,
+            0.004999999888241291,
+            6.800000190734863
+          ]
+        },
+        {
+          "name": "WIN_f_u2_glass",
+          "low": [
+            0.6499999761581421,
+            -0.004999999888241291,
+            5.0
+          ],
+          "high": [
+            1.5,
+            0.004999999888241291,
+            6.800000190734863
+          ]
+        },
+        {
+          "name": "WIN_f_u3_glass",
+          "low": [
+            2.799999952316284,
+            -0.004999999888241291,
+            5.0
+          ],
+          "high": [
+            3.6500000953674316,
+            0.004999999888241291,
+            6.800000190734863
+          ]
+        },
+        {
+          "name": "WIN_b_w_glass",
+          "low": [
+            0.699999988079071,
+            8.994999885559082,
+            1.0499999523162842
+          ],
+          "high": [
+            1.5,
+            9.005000114440918,
+            2.450000047683716
+          ]
+        },
+        {
+          "name": "WIN_b_u0_glass",
+          "low": [
+            -3.0,
+            8.994999885559082,
+            5.0
+          ],
+          "high": [
+            -2.200000047683716,
+            9.005000114440918,
+            6.400000095367432
+          ]
+        },
+        {
+          "name": "WIN_b_u1_glass",
+          "low": [
+            0.699999988079071,
+            8.994999885559082,
+            5.0
+          ],
+          "high": [
+            1.5,
+            9.005000114440918,
+            6.400000095367432
+          ]
+        },
+        {
+          "name": "WIN_e_g0_glass",
+          "low": [
+            5.994999885559082,
+            1.75,
+            1.0
+          ],
+          "high": [
+            6.005000114440918,
+            2.549999952316284,
+            2.799999952316284
+          ]
+        },
+        {
+          "name": "WIN_e_g1_glass",
+          "low": [
+            5.994999885559082,
+            4.349999904632568,
+            1.0
+          ],
+          "high": [
+            6.005000114440918,
+            5.150000095367432,
+            2.799999952316284
+          ]
+        },
+        {
+          "name": "WIN_e_u0_glass",
+          "low": [
+            5.994999885559082,
+            1.649999976158142,
+            5.0
+          ],
+          "high": [
+            6.005000114440918,
+            2.450000047683716,
+            6.800000190734863
+          ]
+        },
+        {
+          "name": "WIN_e_u1_glass",
+          "low": [
+            5.994999885559082,
+            3.5999999046325684,
+            5.0
+          ],
+          "high": [
+            6.005000114440918,
+            4.400000095367432,
+            6.800000190734863
+          ]
+        },
+        {
+          "name": "WIN_e_u2_glass",
+          "low": [
+            5.994999885559082,
+            5.550000190734863,
+            5.0
+          ],
+          "high": [
+            6.005000114440918,
+            6.349999904632568,
+            6.800000190734863
+          ]
+        },
+        {
+          "name": "WIN_w_g0_glass",
+          "low": [
+            -6.005000114440918,
+            2.1500000953674316,
+            1.0
+          ],
+          "high": [
+            -5.994999885559082,
+            2.950000047683716,
+            2.799999952316284
+          ]
+        },
+        {
+          "name": "WIN_w_u0_glass",
+          "low": [
+            -6.005000114440918,
+            2.1500000953674316,
+            5.0
+          ],
+          "high": [
+            -5.994999885559082,
+            2.950000047683716,
+            6.800000190734863
+          ]
+        },
+        {
+          "name": "WIN_w_g1_glass",
+          "low": [
+            -6.005000114440918,
+            5.050000190734863,
+            1.0
+          ],
+          "high": [
+            -5.994999885559082,
+            5.849999904632568,
+            2.799999952316284
+          ]
+        },
+        {
+          "name": "WIN_w_u1_glass",
+          "low": [
+            -6.005000114440918,
+            5.050000190734863,
+            5.0
+          ],
+          "high": [
+            -5.994999885559082,
+            5.849999904632568,
+            6.800000190734863
+          ]
+        },
+        {
+          "name": "VERANDA_platform",
+          "low": [
+            -3.5999999046325684,
+            -2.700000047683716,
+            0.05000000074505806
+          ],
+          "high": [
+            3.5999999046325684,
+            0.0,
+            0.44999998807907104
+          ]
+        },
+        {
+          "name": "VERANDA_step_0",
+          "low": [
+            -0.8999999761581421,
+            -3.6500000953674316,
+            0.0
+          ],
+          "high": [
+            0.8999999761581421,
+            -3.309999942779541,
+            0.1850000023841858
+          ]
+        },
+        {
+          "name": "VERANDA_step_1",
+          "low": [
+            -0.8999999761581421,
+            -3.3299999237060547,
+            0.0
+          ],
+          "high": [
+            0.8999999761581421,
+            -2.990000009536743,
+            0.3199999928474426
+          ]
+        },
+        {
+          "name": "VERANDA_step_2",
+          "low": [
+            -0.8999999761581421,
+            -3.009999990463257,
+            0.0
+          ],
+          "high": [
+            0.8999999761581421,
+            -2.6700000762939453,
+            0.44999998807907104
+          ]
+        },
+        {
+          "name": "ANNEX_EAST_pier_0",
+          "low": [
+            5.875,
+            9.0,
+            0.30000001192092896
+          ],
+          "high": [
+            6.125,
+            10.399999618530273,
+            3.1500000953674316
+          ]
+        },
+        {
+          "name": "ANNEX_EAST_sill_0",
+          "low": [
+            5.875,
+            10.399999618530273,
+            0.30000001192092896
+          ],
+          "high": [
+            6.125,
+            11.550000190734863,
+            0.949999988079071
+          ]
+        },
+        {
+          "name": "ANNEX_EAST_lintel_0",
+          "low": [
+            5.875,
+            10.399999618530273,
+            2.299999952316284
+          ],
+          "high": [
+            6.125,
+            11.550000190734863,
+            3.1500000953674316
+          ]
+        },
+        {
+          "name": "ANNEX_EAST_pier_1",
+          "low": [
+            5.875,
+            11.550000190734863,
+            0.30000001192092896
+          ],
+          "high": [
+            6.125,
+            12.199999809265137,
+            3.1500000953674316
+          ]
+        },
+        {
+          "name": "ANNEX_WEST_pier_0",
+          "low": [
+            1.875,
+            9.0,
+            0.30000001192092896
+          ],
+          "high": [
+            2.125,
+            12.199999809265137,
+            3.1500000953674316
+          ]
+        },
+        {
+          "name": "ANNEX_BACK_pier_0",
+          "low": [
+            2.0,
+            12.074999809265137,
+            0.30000001192092896
+          ],
+          "high": [
+            3.4000000953674316,
+            12.324999809265137,
+            3.1500000953674316
+          ]
+        },
+        {
+          "name": "ANNEX_BACK_lintel_0",
+          "low": [
+            3.4000000953674316,
+            12.074999809265137,
+            2.299999952316284
+          ],
+          "high": [
+            4.599999904632568,
+            12.324999809265137,
+            3.1500000953674316
+          ]
+        },
+        {
+          "name": "ANNEX_BACK_pier_1",
+          "low": [
+            4.599999904632568,
+            12.074999809265137,
+            0.30000001192092896
+          ],
+          "high": [
+            6.0,
+            12.324999809265137,
+            3.1500000953674316
+          ]
+        },
+        {
+          "name": "DOOR_annex_leaf_0",
+          "low": [
+            3.569999933242798,
+            12.164999961853027,
+            0.36000001430511475
+          ],
+          "high": [
+            4.429999828338623,
+            12.234999656677246,
+            2.2699999809265137
+          ]
+        }
+      ],
+      "sourceCoordinateNote": "Blender Z-up, front -Y; Unity import inspected separately"
+    },
+    {
+      "name": "DamarScooter",
+      "path": "Assets/_LayarTerakhir/Art/Atmaja/Models/DamarScooter.fbx",
+      "triangles": 17904,
+      "renderers": 11,
+      "hulls": [],
+      "sourceCoordinateNote": "Blender Z-up, front -Y; Unity import inspected separately"
+    },
+    {
+      "name": "FallenFrangipani",
+      "path": "Assets/_LayarTerakhir/Art/Atmaja/Models/FallenFrangipani.fbx",
+      "triangles": 28825,
+      "renderers": 4,
+      "hulls": [],
+      "sourceCoordinateNote": "Blender Z-up, front -Y; Unity import inspected separately"
+    },
+    {
+      "name": "large_iron_gate",
+      "path": "Assets/_LayarTerakhir/Art/Atmaja/Models/large_iron_gate.fbx",
+      "triangles": 11385,
+      "renderers": 1,
+      "hulls": [],
+      "sourceCoordinateNote": "Blender Z-up, front -Y; Unity import inspected separately"
+    },
+    {
+      "name": "shrub_03",
+      "path": "Assets/_LayarTerakhir/Art/Atmaja/Models/shrub_03.fbx",
+      "triangles": 3726,
+      "renderers": 1,
+      "hulls": [],
+      "sourceCoordinateNote": "Blender Z-up, front -Y; Unity import inspected separately"
+    },
+    {
+      "name": "fern_02",
+      "path": "Assets/_LayarTerakhir/Art/Atmaja/Models/fern_02.fbx",
+      "triangles": 3683,
+      "renderers": 1,
+      "hulls": [],
+      "sourceCoordinateNote": "Blender Z-up, front -Y; Unity import inspected separately"
+    },
+    {
+      "name": "grass_bermuda_01",
+      "path": "Assets/_LayarTerakhir/Art/Atmaja/Models/grass_bermuda_01.fbx",
+      "triangles": 941,
+      "renderers": 1,
+      "hulls": [],
+      "sourceCoordinateNote": "Blender Z-up, front -Y; Unity import inspected separately"
+    },
+    {
+      "name": "plastic_monobloc_chair_01",
+      "path": "Assets/_LayarTerakhir/Art/Atmaja/Models/plastic_monobloc_chair_01.fbx",
+      "triangles": 3356,
+      "renderers": 1,
+      "hulls": [],
+      "sourceCoordinateNote": "Blender Z-up, front -Y; Unity import inspected separately"
+    },
+    {
+      "name": "planter_pot_clay",
+      "path": "Assets/_LayarTerakhir/Art/Atmaja/Models/planter_pot_clay.fbx",
+      "triangles": 3080,
+      "renderers": 1,
+      "hulls": [],
+      "sourceCoordinateNote": "Blender Z-up, front -Y; Unity import inspected separately"
+    },
+    {
+      "name": "wooden_bucket_01",
+      "path": "Assets/_LayarTerakhir/Art/Atmaja/Models/wooden_bucket_01.fbx",
+      "triangles": 3321,
+      "renderers": 1,
+      "hulls": [],
+      "sourceCoordinateNote": "Blender Z-up, front -Y; Unity import inspected separately"
+    },
+    {
+      "name": "security_light",
+      "path": "Assets/_LayarTerakhir/Art/Atmaja/Models/security_light.fbx",
+      "triangles": 2397,
+      "renderers": 1,
+      "hulls": [],
+      "sourceCoordinateNote": "Blender Z-up, front -Y; Unity import inspected separately"
+    }
+  ],
+  "sources": [
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/RumahAtmaja_House.blend",
+      "sha256": "c4eb3497c84bb73d38c2670f9abc348bd96de1b946deaf20f7e6f8220aceb6b3"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/brick_moss_001_diff_1k.jpg",
+      "sha256": "c1f631043c4fd72851f3ede3894904371028c894bfcc80de991e6621a6660337"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/brick_moss_001_nor_gl_1k.jpg",
+      "sha256": "0133893b9dda4912d82322543804a9fa9eb1663c9ba41edaee59b79b11277c53"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/brick_moss_001_arm_1k.jpg",
+      "sha256": "f6e70e3b1471b272d611f3252006aad6d1cf36fec911c4103595b8220086e4df"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/concrete_moss_diff_1k.jpg",
+      "sha256": "7a3f88bcdf20c2b6b1851549594611c0c24677d4f42c669a21d4367b8f5aeacc"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/concrete_moss_nor_gl_1k.jpg",
+      "sha256": "ead99715fadfd3b1b037b6219a9ed97342701732bffee5b05084da4c99b7467b"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/concrete_moss_arm_1k.jpg",
+      "sha256": "db5c64065bdec04820743c1285316bbedab6f0f318103e7c4b74ec12c4df96f7"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/damaged_plaster_diff_1k.jpg",
+      "sha256": "391649dbb391c978b0d95cdd2351617fe3b7a577e432b94171208e576c9b2c63"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/damaged_plaster_nor_gl_1k.jpg",
+      "sha256": "9d2e4c261211c951fc424fe695483596e821f86b13d1d05485551ef0240d6b67"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/damaged_plaster_arm_1k.jpg",
+      "sha256": "78f228161cc3c37cf4a335d8ea0f2a6b4dd5ff7bef50a8aa9fa0397d7ff4de13"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/worn_mossy_plasterwall_diff_1k.jpg",
+      "sha256": "415cbcbe8f70269569aa4f2f1efc13ca1bd5f2fabc791dff428ef0fa243e1e9e"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/worn_mossy_plasterwall_nor_gl_1k.jpg",
+      "sha256": "0fdf1e22066c4f6fc2c820ae9b11aa5f9ea6ea131ccf3abb65f37251ab9f6a5d"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/worn_mossy_plasterwall_arm_1k.jpg",
+      "sha256": "9c4f1395513d57663222bbbdbbda78e28f924a924bc8f813312e539f9816f4c7"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/clay_roof_tiles_02_diff_1k_weathered.jpg",
+      "sha256": "545adce712103edbb9bcfb5522f37bf289d7833b723d5efdc48d8f49651f3225"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/clay_roof_tiles_02_nor_gl_1k.jpg",
+      "sha256": "1548d3ebce335a4590d9e421556c4189a7b63852c793a568c71b9e533f8b62d5"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/clay_roof_tiles_02_arm_1k.jpg",
+      "sha256": "da94d4ce78607c4cb0450c669e8ca5d18852eb284def75445663f959cc1af63b"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/clay_roof_tiles_03_diff_1k.jpg",
+      "sha256": "6719293429932a27c8ed3526b22cd65d1cd1d43194ce30fa5f4590bb3c513844"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/clay_roof_tiles_03_nor_gl_1k.jpg",
+      "sha256": "7db087939613b6b0ef1d0c21a3956eafcf7e9d0f146267290e409448f1adc17b"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/clay_roof_tiles_03_arm_1k.jpg",
+      "sha256": "0553be64eb6f3338da2b3d68bc5eb0a867d016d2dcd10a3fb9fd8d349fb7382d"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/rusty_metal_sheet_diff_1k.jpg",
+      "sha256": "ecfacdea466b43162b63867b419576b7d35d34ea37c96969cf05e5a07faeb705"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/rusty_metal_sheet_nor_gl_1k.jpg",
+      "sha256": "473e8ec4079a8be8c9bef59df8d95f61fd43f9961f4ec42421f21dee07713a5d"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/rusty_metal_sheet_arm_1k.jpg",
+      "sha256": "c69fdd31b70e24e394d80b580c0b62ebea54576d839ee3644badfacb558ea6e6"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/WoodTrimSheet_BaseColor_Teak.png",
+      "sha256": "2a305543a4ab0d1a0c61acd1ed231cc511c57607df8591a3c9c9cdf38b1a1375"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Sources/TowerOverhangKit/Textures/WoodTrimSheet_Normal.png",
+      "sha256": "d293b8c5e0002c4623bf647241cb4021858d39c312ee48338635d49d9042491b"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Sources/TowerOverhangKit/Textures/WoodTrimSheet_Roughness.png",
+      "sha256": "f7f7c56aef21cab969e8ea8364d8cf2026efe72a1783b1d1af5fc4b436e3481e"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/wood_planks_grey_diff_1k.jpg",
+      "sha256": "d758be23e8fe7bfbd73bc4ab257cfd59406e1835f6557c12a67cd4fdb15de0d8"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/wood_planks_grey_nor_gl_1k.jpg",
+      "sha256": "5e570e57d688b016b217b9e8e0592f9a8b3364406e22bf6cd775da990452bdb6"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/wood_planks_grey_arm_1k.jpg",
+      "sha256": "0464853147811dd6dcf9f286ca3753fb63fa654d081ae708070fbf0fd4614d97"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/wood_peeling_paint_weathered_diff_1k.jpg",
+      "sha256": "7311e60ec0ca3de10383dd5f2d398819e2198ea78244cf4f6627d1cb26cf4b53"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/wood_peeling_paint_weathered_nor_gl_1k.jpg",
+      "sha256": "5828f259fc99aa2bde31f778a0084ce8d0c83faa60306f6b998ac82c120ccffa"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/01_House/Blender/../Textures/wood_peeling_paint_weathered_arm_1k.jpg",
+      "sha256": "b87ce5d06c5df2986c95e4da1b702de139eb8aee6faadb784d371d551967fa32"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/02_Motorcycle/Blender/DamarScooter.blend",
+      "sha256": "5ee4af132e8e1bc4c86ae8cfd8bf5ed9b9c22bd22100ccad5e3aaeb445b7e416"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/03_Frangipani_Tree/Blender/FallenFrangipani.blend",
+      "sha256": "af2245769200f056a676ce44ea5c44cd3055be6023108a915f92313f24b14b4f"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/03_Frangipani_Tree/Blender/../Sources/textures/dead_tree_trunk_02_diff_1k.jpg",
+      "sha256": "fac23e81ab5639dcde93db605e5dd94c65e0aa2b1fb4a303f37de9afbb9af5b4"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/03_Frangipani_Tree/Blender/../Sources/textures/dead_tree_trunk_02_nor_gl_1k.jpg",
+      "sha256": "9b26c29b89afced0ddb91dbe6f917e59038bed5ba6076dfceb8d1b4b00ca04f7"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/03_Frangipani_Tree/Blender/../Sources/textures/dead_tree_trunk_02_arm_1k.jpg",
+      "sha256": "ea15561ce36572ebd0db3c997f70d68a76d4bcbfef7efb4f91c8fd3b5f766e62"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/03_Frangipani_Tree/Blender/../Textures/flower.png",
+      "sha256": "0460765fc2f9d842065d2a070af535391050199b5c1501ca4536f95b11708ef8"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/03_Frangipani_Tree/Blender/../Textures/leaf.png",
+      "sha256": "63301349addfb1eb7b30cfa44ef9c4e261284edb0bfad0a94841f867575266c7"
+    },
+    {
+      "path": "Scene2_Atmaja_Recovery/03_Frangipani_Tree/Blender/../../../Scene2_Atmaja_Assets/Vegetation/root_cluster_01/textures/root_cluster_01_diff_1k.jpg",
+      "sha256": "3f4dbb0864982d228d37ee283125b8f8eb442b019fa5469249b332cb7b9d6d62"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Architecture/large_iron_gate/large_iron_gate_1k.fbx",
+      "sha256": "8a8a34ede62860b6e053c61a98b1be7dee64ec08e870c6f64ddae7fb6b805b12"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Architecture/large_iron_gate/textures/large_iron_gate_diff_1k.jpg",
+      "sha256": "422b17616829c7a48805211fcca9699c0aec63dee40a8d851f5ba81fcf329575"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Architecture/large_iron_gate/textures/large_iron_gate_nor_gl_1k.jpg",
+      "sha256": "c46a14086705f0d4bc2858c461aa8dfdd3bf7a09955c370591511612429d60fb"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Architecture/large_iron_gate/textures/large_iron_gate_arm_1k.jpg",
+      "sha256": "f528b46396e097324af2c14cc2f15b855b5f9b909bf6a8da9819f528e6ebde4a"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Vegetation/shrub_03/shrub_03_1k.fbx",
+      "sha256": "81cf3b341356b2938faec4f7935c0e694b923db1a5bca39660afa6fcfc22dcc7"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Vegetation/shrub_03/textures/shrub_03_diff_1k.jpg",
+      "sha256": "3cadc7aba46d3aabbd7d6d2b1d04aa32e2a7da0bc87c2d38ef3cb1ee42cb03ec"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Vegetation/shrub_03/textures/shrub_03_nor_gl_1k.jpg",
+      "sha256": "ff856bacfce859b8a7555dd9a3b92fbd36b2e775d486be71df485afb4235d6c9"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Vegetation/shrub_03/textures/shrub_03_arm_1k.jpg",
+      "sha256": "3e2b16812a623037138eedace958210c5f3443a827bbe69663045bba5612f815"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Vegetation/fern_02/fern_02_1k.fbx",
+      "sha256": "6d8238b9cc1bbb5f5766396c2db26f2219c0d0e5ca226fb81dcc44bdb35045e8"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Vegetation/fern_02/textures/fern_02_diff_1k.jpg",
+      "sha256": "a828a6e7b4c01c826911e2eac4b3afc7457dab7b3b392a31c681ed88b7d50029"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Vegetation/fern_02/textures/fern_02_nor_gl_1k.jpg",
+      "sha256": "45bce132c6e96a0864bc89ab5da51361ab3f4afa83a6669ae499ab5ca811f621"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Vegetation/fern_02/textures/fern_02_arm_1k.jpg",
+      "sha256": "ebfb5d76ce9cbdaec20bcd22dce9b755f0b1b8650ef29ca13555e3e6961025d7"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Vegetation/grass_bermuda_01/grass_bermuda_01_1k.fbx",
+      "sha256": "ec188edf028e1a76ed2e63f7483165ea765f0212b317e4b73fdc3d64610500cd"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Vegetation/grass_bermuda_01/textures/grass_bermuda_01_diff_1k.jpg",
+      "sha256": "ef202eeb8f8fb3312446009acecc87e5679a7d612e4dee859d8a849e00af5fcb"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Vegetation/grass_bermuda_01/textures/grass_bermuda_01_nor_gl_1k.jpg",
+      "sha256": "4475b37d6e4d217ce03547216f62d1ef6e65cafda2355fd0cb2aeb6d919b9338"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Vegetation/grass_bermuda_01/textures/grass_bermuda_01_arm_1k.jpg",
+      "sha256": "38190d342fe951c33ff8c37dd2e3de37aca4cc7633e91be8b0d1c1f71057a641"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Props/plastic_monobloc_chair_01/plastic_monobloc_chair_01_1k.fbx",
+      "sha256": "cb47578bffb24aba941bb6c984f87cf29eb7c56c4885e38ea073b83348adb90e"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Props/plastic_monobloc_chair_01/textures/plastic_monobloc_chair_01_diff_1k.jpg",
+      "sha256": "fdd1255a02bf684cfcff2eae75c0e3eea0db1fb5ecbfbd8c4f9beab8fd83ff6c"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Props/plastic_monobloc_chair_01/textures/plastic_monobloc_chair_01_nor_gl_1k.jpg",
+      "sha256": "9ffa876b37d72ae1c0aed84d4dc1f62c956c844b3efec1f786f9080c10f63c9e"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Props/plastic_monobloc_chair_01/textures/plastic_monobloc_chair_01_arm_1k.jpg",
+      "sha256": "78a67659a19a9df9efc0ef71789de0c949a727db62ade4c4c8887cd2c803c1a2"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Props/planter_pot_clay/planter_pot_clay_1k.fbx",
+      "sha256": "0cc83ed888fa668f0568960ef8b231c87a4717b89d73c7597ff4f4b6f497b4b9"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Props/planter_pot_clay/textures/planter_pot_clay_diff_1k.jpg",
+      "sha256": "4f2962fd238401e49fd400596fdccd1ee9e2cca9ed21e44bb924dca3076f524c"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Props/planter_pot_clay/textures/planter_pot_clay_nor_gl_1k.jpg",
+      "sha256": "25a564e55b247a94863b513853b1aeaad5c894dd78e92e1fd89e794b83b483c4"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Props/planter_pot_clay/textures/planter_pot_clay_arm_1k.jpg",
+      "sha256": "68e9e509db4e330b48924c606d4a9a99b54e105c1fe1690ff2811a05d95a0def"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Props/wooden_bucket_01/wooden_bucket_01_1k.fbx",
+      "sha256": "c4169585ef42b6ebad3619316d6f346eb437d4f2acc22e51ef467c4d552cdf51"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Props/wooden_bucket_01/textures/wooden_bucket_01_diff_1k.jpg",
+      "sha256": "d9a8ec311099bc94510abdc4b246b67c893df5e829ada4a1014021dbc7c84561"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Props/wooden_bucket_01/textures/wooden_bucket_01_nor_gl_1k.jpg",
+      "sha256": "ae12106f8dd1e69813d42d714e9c99b70af3b5fcce6953cfbf8d8a741b4da40f"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Props/wooden_bucket_01/textures/wooden_bucket_01_arm_1k.jpg",
+      "sha256": "3f093ca45792584632bbcc94fcc6a6521e5338a19202545f143303de6f6e8f17"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Architecture/security_light/security_light_1k.fbx",
+      "sha256": "23550495fff30afc13ed48a52029a4146a1986e2b2fb7099a13a0669436c1b36"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Architecture/security_light/textures/security_light_diff_1k.jpg",
+      "sha256": "2e7064d89f03ef51bffda6f78c86baac1edba3346f82f243aa0c33b20fa8b0e5"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Architecture/security_light/textures/security_light_nor_gl_1k.jpg",
+      "sha256": "7d14ecdf5f6c70152ca6fdfc290c72a28553248f0e5a79e7b77c8f601b00ddc2"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Architecture/security_light/textures/security_light_arm_1k.jpg",
+      "sha256": "4f8fe251eb31144de0eff820a7aef205d306b3b5dd4a19aff0ad4e87ca50a767"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Architecture/security_light/textures/security_light_diff_1k.jpg",
+      "sha256": "2e7064d89f03ef51bffda6f78c86baac1edba3346f82f243aa0c33b20fa8b0e5"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Architecture/security_light/textures/security_light_nor_gl_1k.jpg",
+      "sha256": "7d14ecdf5f6c70152ca6fdfc290c72a28553248f0e5a79e7b77c8f601b00ddc2"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Architecture/security_light/textures/security_light_arm_1k.jpg",
+      "sha256": "4f8fe251eb31144de0eff820a7aef205d306b3b5dd4a19aff0ad4e87ca50a767"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Architecture/security_light/textures/security_light_diff_1k.jpg",
+      "sha256": "2e7064d89f03ef51bffda6f78c86baac1edba3346f82f243aa0c33b20fa8b0e5"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Architecture/security_light/textures/security_light_nor_gl_1k.jpg",
+      "sha256": "7d14ecdf5f6c70152ca6fdfc290c72a28553248f0e5a79e7b77c8f601b00ddc2"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Architecture/security_light/textures/security_light_arm_1k.jpg",
+      "sha256": "4f8fe251eb31144de0eff820a7aef205d306b3b5dd4a19aff0ad4e87ca50a767"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Ground_Materials/brown_mud_03/brown_mud_03_diff_1k.jpg",
+      "sha256": "6da4fbd6fc5d21044dcbdbd96e098fb464ed544b42c982e72ce8ccd1d53686c5"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Ground_Materials/brown_mud_03/brown_mud_03_nor_gl_1k.jpg",
+      "sha256": "b53758dbc93f1ab3ad2884ca07a217dd90450e6a70d055f34573573668812a2a"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Ground_Materials/brown_mud_03/brown_mud_03_arm_1k.jpg",
+      "sha256": "5ccf63481d1e10893d389a55280c764034e218de173dd6a40610f1b111e06249"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Ground_Materials/stony_dirt_path/stony_dirt_path_diff_1k.jpg",
+      "sha256": "a662000ff3f7f64e23c25d2b8cd5947b9c8fd893510c5ed49c0daa2847004758"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Ground_Materials/stony_dirt_path/stony_dirt_path_nor_gl_1k.jpg",
+      "sha256": "2866303f71066f42bd218410bf6d38d9a21cda34c6e3543a8ac92900b7a09c75"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Ground_Materials/stony_dirt_path/stony_dirt_path_arm_1k.jpg",
+      "sha256": "e38820894100350df10c2490dbe8a1b4c31dc523266a84c6c7a1a829d2792502"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Ground_Materials/mossy_cobblestone/mossy_cobblestone_diff_1k.jpg",
+      "sha256": "105d6209ff99952ca316e814eebf06c1c3cb244da62184137a97e29aee74b7d7"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Ground_Materials/mossy_cobblestone/mossy_cobblestone_nor_gl_1k.jpg",
+      "sha256": "32a128c921cf0311798ebb6c6a766db900a10419233c87cc52f8d226b2aa4cc0"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Ground_Materials/mossy_cobblestone/mossy_cobblestone_arm_1k.jpg",
+      "sha256": "8d737b10700257d179dc0413f278477c1bdc79d346f2bf6e8b504e850bde7c82"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Ground_Materials/dirty_concrete/dirty_concrete_diff_1k.jpg",
+      "sha256": "322c588a5e883c27743c9555833ca3c4e95fbb20796a81559bb082a94569ce2c"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Ground_Materials/dirty_concrete/dirty_concrete_nor_gl_1k.jpg",
+      "sha256": "9a22ecfaa7e84544790bb908e1b9cba7da69a4aebb62d992465a2f67348a865a"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Ground_Materials/dirty_concrete/dirty_concrete_arm_1k.jpg",
+      "sha256": "294874a571936c86d6bd29f2f73e279be7daaa4d1f4da26c733046ad0b9dba2d"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Ground_Materials/concrete_floor_damaged_01/concrete_floor_damaged_01_diff_1k.jpg",
+      "sha256": "9b41f6e1f66804c3cface2365a7d246618ad8814a5864be43bb9349fc3fb6db6"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Ground_Materials/concrete_floor_damaged_01/concrete_floor_damaged_01_nor_gl_1k.jpg",
+      "sha256": "9f6d4282857b23daf2d9c87e567047a8f6ede4cc9eb8ec35ebd053bab4e457a0"
+    },
+    {
+      "path": "Scene2_Atmaja_Assets/Ground_Materials/concrete_floor_damaged_01/concrete_floor_damaged_01_arm_1k.jpg",
+      "sha256": "b73ad44f6b8c34b791e77ed60777b477fa33d9da21596b2ea56b7f4bbf6c75cb"
+    }
+  ],
+  "protectedGoldenSceneSha256": "4b73b117b832fb753b92d3de885c163bc1dd3f6225101867f7b4e2437c8b793a"
+}

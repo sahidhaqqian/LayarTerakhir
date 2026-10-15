@@ -46,6 +46,7 @@ namespace LayarTerakhir.Diagnostics
             var args=Environment.GetCommandLineArgs();int i=Array.IndexOf(args,"-goldenAudit");
             if(i<0||i+1>=args.Length)return;
             output=Path.GetFullPath(args[i+1]);Directory.CreateDirectory(output);
+            PrologSceneFlow.AutomaticTransitions=false; // Keep the optional Golden-only capture scoped to Kos.
             Application.runInBackground=true; // Xvfb has no window manager to keep the game focused.
             // Fresh isolated directory even if the supplied evidence directory already exists. Never delete any saves.
             Environment.SetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY",Path.Combine(output,"IsolatedSave-"+Guid.NewGuid().ToString("N")));

@@ -1,6 +1,8 @@
 # Arsitektur LayarTerakhir
 
-Dokumen ini menjelaskan arsitektur teknis proyek pada kondisi saat ini: satu scene referensi (`Prolog_KamarKos`) yang berjalan di Unity 6000.3.26f1 + URP 17.3.0, ditargetkan sebagai Windows x86_64 Mono. Dokumen desain cerita/gameplay tetap menjadi acuan terpisah: `Rancangan.MD`, `Prolog.MD`, `Phase1.MD`–`Phase5.MD`, dan `Checklist.MD`.
+Dokumen ini menjelaskan fondasi `Prolog_KamarKos` yang sudah approved serta kelanjutan `Prolog_RumahAtmaja` (Adegan 2–3, sampai pintu tangga), Unity 6000.3.26f1 + URP 17.3.0, Windows x86_64 Mono. Dokumen cerita/gameplay tetap menjadi acuan: `Rancangan.MD`, `Prolog.MD`, `Phase1.MD`–`Phase5.MD`, dan `Checklist.MD`.
+
+Kelanjutan bersifat aditif: `PrologSceneFlow` memindahkan scene setelah fade Kos dan mengarahkan checkpoint Atmaja saat startup. Binding input dibawa lewat transisi; `CampaignState` baru membaca save atomik yang sama, tanpa singleton gameplay lintas-scene. `AtmajaDirector` menyimpan event idempotent dalam inventory, mengembalikan donasi/flag jika save gagal, dan memulihkan objek/spawn. `AtmajaVault` mengonsumsi binding Vault sebelum FPS jump. `AtmajaPhoneView` menambah UI scene-local di HUD yang sama: RT 320×400 hanya hidup saat layar aktif, layer 29 hanya di kamera HP. Golden HUD/player/material/pipeline asset tidak diubah. Detail/batasan dan bukti: `Audit/atmaja-prolog-continuation.md`.
 
 Standar produksi visual/audio/UI ringkas ada di `Docs/GOLDEN_SCENE_STANDARD.md`. Dokumen ini berfokus pada struktur kode, kepemilikan tanggung jawab, aliran data, dan pipeline produksi.
 
@@ -16,7 +18,7 @@ Standar produksi visual/audio/UI ringkas ada di `Docs/GOLDEN_SCENE_STANDARD.md`.
 | Testing | Unity Test Framework `1.6.0` (EditMode + PlayMode) |
 | Target rilis | `StandaloneWindows64`, backend `Mono2x`, opsi `Development` |
 | Scene startup | `Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity` (index 0) |
-| Scene tambahan | `Assets/Scenes/SampleScene.unity` (template, tidak dipakai gameplay) |
+| Scene kelanjutan | `Assets/_LayarTerakhir/Scenes/Prolog_RumahAtmaja.unity` (index 1); SampleScene tidak dipakai |
 | Host pengembangan | Ubuntu 24.04 headless, `-batchmode -nographics`, tanpa GPU diskrit |
 | Hardware target pemain | Intel i5-1155G7, Intel Iris Xe, 8 GB RAM, Windows 11 |
 | Target performa | 30 FPS stabil (target, bukan hasil terukur di host ini) |
@@ -69,7 +71,7 @@ Prolog_KamarKos
 │   ├── GoldenHUD (prefab)         HudController + HudPresentation + Canvas
 │   └── GoldenAudioRig             KosSceneAudio + 9 AudioSource + 3 loop
 ├── KamarKos_4x3m                  root fisik (nama lama dipertahankan)
-│   ├── Floor_4x3m, Ceiling_4x3m, Wall_North/South/East/West   collider 6×4,5×3,1 m
+│   ├── Floor_4x3m, Ceiling_4x3m, Wall_North/South/East/West   collider 5×3,8×2,8 m
 │   ├── KamarKos_4x3m furniture    collider & titik interaksi lama
 │   └── Kos_Environment_Art
 │       ├── Kos_V2_Details         pass koreksi V2 (clutter, socket, kabel)
@@ -84,7 +86,7 @@ Prolog_KamarKos
 └── GoldenPracticalLighting (prefab) 5 sumber cahaya praktis
 ```
 
-Prinsip penting: **collider fisik, root interaksi, dan state cerita tidak dihapus oleh pass visual**. Pass produksi hanya mengganti renderer/menambah detail di sekitar objek yang sudah ada. Nama lama seperti `Floor_4x3m` dan `KamarKos_4x3m` sengaja dipertahankan karena validasi dan tes mengacu ke nama tersebut meskipun ruangan resmi berukuran 6 × 4,5 m.
+Prinsip penting: **collider fisik, root interaksi, dan state cerita tidak dihapus oleh pass visual**. Nama lama seperti `Floor_4x3m` dan `KamarKos_4x3m` dipertahankan untuk kompatibilitas meskipun kos approved kini 5 × 3,8 m. Jangan menjalankan pass visual lama pada Golden yang sudah disetujui.
 
 ---
 
@@ -203,7 +205,7 @@ Start
                                     → Completed (MovementLocked, fade 3,5 dtk)
 ```
 
-Objek pendukung opsional: `PC_MONITOR` (dashboard kanal), `STICKY_NOTE` (petunjuk password), `KALENDER_DINDING` (14–08). Scene saat ini berakhir pada fade keberangkatan; tujuan berikutnya (Rumah Atmaja) belum dibangun (lihat `Audit/REPORT.md`).
+Objek pendukung opsional: `PC_MONITOR` (dashboard kanal), `STICKY_NOTE` (petunjuk password), `KALENDER_DINDING` (14–08). Fade keberangkatan sekarang memuat scene Atmaja; endpoint playtest terbaru adalah pintu tangga lantai dasar (lihat `Audit/atmaja-prolog-continuation.md`).
 
 ---
 
@@ -237,7 +239,7 @@ Semua skrip di `Assets/_LayarTerakhir/Editor/` dibungkus `#if UNITY_EDITOR` dan 
 - **Tekstur**: preset `PropAlbedo512`/`PropNormal512` untuk prop kecil, maksimum 1024 untuk permukaan besar; mipmap aktif, anisotropi 2, kompresi desktop.
 - **Model**: tanpa light/camera/animasi impor, tanpa mesh collider otomatis, kompresi mesh Low, `isReadable` tidak diperlukan runtime.
 - **Prefab produksi**: `WornBedsideStool`, `WornBedMat`, `BudgetMicrophone`, `GoldenPracticalLighting`, `KosEnvironmentalAudio`, `GoldenHUD`.
-- **Meter dan orientasi**: satuan meter, Y up; kos 6 × 4,5 m dipertahankan. Jalur pemain ke pintu, kasur, meja, dan lemari harus tetap mudah dilalui.
+- **Meter dan orientasi**: satuan meter, Y up; kos approved 5 × 3,8 m dipertahankan. Jalur pemain ke pintu, kasur, meja, dan lemari harus tetap mudah dilalui.
 - Audio: `Prepared/*.wav` mono 32 kHz; ambience Vorbis in-memory, SFX pendek ADPCM decompress-on-load.
 
 ---
@@ -266,13 +268,13 @@ python3 Tools/package_windows_build.py                # verifikasi report lalu Z
 
 ## 10. Batasan dan keputusan yang mengikat
 
-1. **Ruang kos 6 × 4,5 m** dengan tinggi 3,1 m — keputusan yang disetujui; jangan kembali ke 4 × 3 m. Nama objek lama tetap dipakai untuk kompatibilitas.
+1. **Ruang kos 5 × 3,8 m** dengan tinggi 2,8 m sudah approved/frozen dalam revisi `goal.md`. Ukuran 6 × 4,5 m adalah tahap historis. Nama objek lama tetap dipakai untuk kompatibilitas.
 2. **Gameplay yang sudah bekerja tidak ditulis ulang**: controller, interaksi, puzzle, smartphone, save/load, dan progresi. Perubahan harus aditif.
 3. **Pass visual bersifat inkremental**: jangan menjalankan `PrologKosSceneBuilder` di atas scene berfurnitur; geser model bersama collider dan root interaksinya.
 4. **Save pemain tidak boleh tersentuh** oleh Editor, tes, atau audit; gunakan `LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY`.
 5. **Bukti harus nyata**: host headless tidak boleh mengklaim FPS, visual, atau audio yang tidak terukur. Klaim performa Iris Xe menunggu pengujian pemain di Windows.
 6. **Anggaran scene**: ≤ 160k triangle terlihat, tekstur ≤ 1024, satu sumber cahaya praktis berbayang, SSAO half-res, MSAA 1× + FXAA, render scale 1, shadow atlas 1024, jarak bayangan 10 m.
-7. **Scope**: hanya Prolog Kamar Kos yang diimplementasikan sampai fade keberangkatan; Adegan 2 (Rumah Atmaja) dan babak berikutnya belum dibangun.
+7. **Scope**: Kos serta Adegan 2–3 Atmaja sampai pintu tangga sudah diimplementasikan; Adegan 4–7 dan babak berikutnya belum tersedia. Jangan menyamakan cakupan ini dengan keseluruhan Prolog.
 
 ---
 

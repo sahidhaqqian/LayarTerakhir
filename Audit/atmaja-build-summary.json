@@ -1,0 +1,28 @@
+{
+  "verifiedUtc": "2026-10-15T14:40:04.326322+00:00",
+  "unityExitCode": 0,
+  "result": "Succeeded",
+  "target": "StandaloneWindows64",
+  "scriptingBackend": "Mono2x",
+  "development": true,
+  "startupScene": "Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity",
+  "executable": "/root/Projects/LayarTerakhir/Builds/Windows/LayarTerakhir.exe",
+  "unityReportedFilesVerified": 290,
+  "scriptingAssembliesVerified": 112,
+  "unityReportedSizeBytes": 288549968,
+  "buildFileCount": 296,
+  "totalBuildSizeBytes": 288773107,
+  "archivePath": "/root/Projects/LayarTerakhir/Builds/LayarTerakhir-Windows-x86_64-Development.zip",
+  "archiveSizeBytes": 158687933,
+  "archiveSha256": "8e0f94c2f22258a5d6f0ba55a43ff3c807ca0d4050478ca27310aff9875132dc",
+  "zipCrcVerified": true,
+  "zipContainsAllBuildFiles": true,
+  "windowsRuntimeTested": false,
+  "sourceSceneSha256": "4b73b117b832fb753b92d3de885c163bc1dd3f6225101867f7b4e2437c8b793a",
+  "atmajaSceneSha256": "bb741bda459a489c7b2b627e346cb97634888c52b1fa215fe07fbd96c6b26448",
+  "developmentScreenshotUtilityIncluded": true,
+  "includedScenes": [
+    "Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity",
+    "Assets/_LayarTerakhir/Scenes/Prolog_RumahAtmaja.unity"
+  ]
+}

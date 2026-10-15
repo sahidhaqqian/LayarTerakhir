@@ -1,4 +1,35 @@
-Asset provenance for the furnished Kamar Kos environment, verified 2026-10-15 UTC.
+Asset provenance for Kamar Kos and the Atmaja continuation, verified 2026-10-15 UTC.
+
+## Atmaja continuation — source staging reused, no new asset downloads
+
+**Required credit: Wooden Overhang Modular Kit by Trey Ramm (minime453), [OpenGameArt source](https://opengameart.org/content/wooden-overhang-modular-kit), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).** Changes: kit parts rescaled/repositioned, base-color darkened, combined into the recovery house; Unity derivative joins parts by material and cuts the kitchen passage. This third-party component remains CC BY 4.0, not CC0 or relicensed as project code. License/source captures are in `Scene2_Atmaja_Recovery/Licenses/`.
+
+Other selected staged artwork is CC0-1.0, under the [Poly Haven asset license](https://polyhaven.com/license). Voluntary credits (source IDs link to the original item):
+
+| Source asset | Creator | Use / changes |
+| --- | --- | --- |
+| [large_iron_gate](https://polyhaven.com/a/large_iron_gate) | Josh Dean | Decimated, separate hinge + physical collider |
+| [security_light](https://polyhaven.com/a/security_light) | Maximilian Schuster | Porch fixture, reduced mesh |
+| [shrub_03](https://polyhaven.com/a/shrub_03), [grass_bermuda_01](https://polyhaven.com/a/grass_bermuda_01) | Rico Cilliers | Courtyard vegetation, shrub reduced |
+| [fern_02](https://polyhaven.com/a/fern_02) | Rico Cilliers, Rob Tuytel | Reduced east-path foliage |
+| [plastic_monobloc_chair_01](https://polyhaven.com/a/plastic_monobloc_chair_01) | Kuutti Siitonen | Porch/dining chairs |
+| [planter_pot_clay](https://polyhaven.com/a/planter_pot_clay) | Amal Kumar | Porch pots |
+| [wooden_bucket_01](https://polyhaven.com/a/wooden_bucket_01) | James Ray Cock | Reduced kitchen bucket |
+| [brown_mud_03](https://polyhaven.com/a/brown_mud_03), [dirty_concrete](https://polyhaven.com/a/dirty_concrete), [concrete_floor_damaged_01](https://polyhaven.com/a/concrete_floor_damaged_01) | Rob Tuytel | Ground/floor PBR, Unity packed masks |
+| [stony_dirt_path](https://polyhaven.com/a/stony_dirt_path) | eye-candy.xyz | Front path |
+| [mossy_cobblestone](https://polyhaven.com/a/mossy_cobblestone) | Sơn Nguyễn | Wall caps |
+| [root_cluster_01](https://polyhaven.com/a/root_cluster_01) | Jenelle van Heerden, Rico Cilliers | Recovery tree/root PBR |
+| [dead_tree_trunk_02](https://polyhaven.com/a/dead_tree_trunk_02) | Rob Tuytel | Recovery frangipani source, heavily decimated; arch adjusted for crouch clearance |
+| [clay_roof_tiles_02](https://polyhaven.com/a/clay_roof_tiles_02), [clay_roof_tiles_03](https://polyhaven.com/a/clay_roof_tiles_03), [worn_mossy_plasterwall](https://polyhaven.com/a/worn_mossy_plasterwall), [damaged_plaster](https://polyhaven.com/a/damaged_plaster), [rusty_metal_sheet](https://polyhaven.com/a/rusty_metal_sheet) | Amal Kumar | Recovery house PBR, reduced to 1K |
+| [grey_plaster_03](https://polyhaven.com/a/grey_plaster_03), [concrete_moss](https://polyhaven.com/a/concrete_moss), [wood_planks_grey](https://polyhaven.com/a/wood_planks_grey) | Rob Tuytel | Recovery house PBR |
+| [brick_moss_001](https://polyhaven.com/a/brick_moss_001) | Dimitrios Savva, Rico Cilliers | Recovery house base |
+| [wood_peeling_paint_weathered](https://polyhaven.com/a/wood_peeling_paint_weathered) | Rob Tuytel, Dimitrios Savva | Recovery house joinery |
+
+The procedural recovery scooter/house details/frangipani leaves and flowers are project-authored; derivative repairs correct scooter wheel axes/seat and physical window openings. Original added meshes: banquet table, grandfather clock/hands/drawer, seated bent-neck AR figure, linked chains, well boards, cracked phone details and kitchen fittings. The backpack reuses the original Kos FBX without changing that source asset. These original works follow the project license. No branded motorcycle model, ripped game art, or new download is used.
+
+`Audit/atmaja-art-manifest.json` records hashes of consumed staged sources, derivative model counts and material paths; `Tools/prepare_atmaja_art.py`, `Tools/pack_atmaja_masks.py`, `Tools/author_atmaja_details.py` preserve the workflow. Selected model/material imports are at `Assets/_LayarTerakhir/Art/Atmaja`. Existing Kos audio clips, Barlow OFL, and CC0 art remain credited below. No new voice recording is supplied (well whisper is subtitled, with existing foley).
+
+## Kamar Kos (earlier passes, preserved)
 
 All downloaded artwork used in this pass is **CC0 1.0 Universal**. Poly Haven explicitly permits commercial use, modification, and redistribution, without mandatory attribution ([asset license](https://polyhaven.com/license)); Kenney labels the Furniture Kit CC0 and includes the same commercial-use permission in its bundled License.txt ([asset page](https://kenney.nl/assets/furniture-kit)). Voluntary credits follow.
 

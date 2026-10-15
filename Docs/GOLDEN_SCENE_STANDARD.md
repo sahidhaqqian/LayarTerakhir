@@ -1,14 +1,14 @@
 # Golden scene production standard
 
 Reference: `Prolog_KamarKos`, Unity 6000.3.26f1 / URP 17.3, Windows x64 Mono.
-This is a review candidate, not developer-approved or frozen. Windows/Iris Xe acceptance is mandatory.
+The Kos scene is developer-approved and frozen by the revised `goal.md`. Do not rebuild or polish it while continuing Atmaja. Windows/Iris Xe performance measurement remains outstanding and is distinct from that approval.
 
 ## Environment and materials
 
 Use metres, Y up. The latest developer-approved Kos is **5 × 3.8 m**, ceiling **2.8 m**
 (supersedes the earlier 6 × 4.5 m reference). Preserve interaction IDs and move visible models,
 their collision and interaction roots together. Do not rerun `PrologKosSceneBuilder` over the furnished scene.
-Use `CompactKosPolish.Apply` / `--stage polish` for current visual/layout edits. Do not rerun the
+`CompactKosPolish.Apply` / `--stage polish` are historical authoring tools, not continuation steps. Do not rerun the
 historical greybox/V1/V2 builders: their original coordinates predate the approved smaller room.
 The Golden production menu routes an already-compact scene back to this polish pass.
 The green screen is now folded/stored beside the workstation, never a divider across the bed view.

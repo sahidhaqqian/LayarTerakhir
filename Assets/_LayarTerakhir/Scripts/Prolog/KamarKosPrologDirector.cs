@@ -45,8 +45,16 @@ namespace LayarTerakhir.Prolog
         {
             if (CampaignState.Instance != null)
             {
-                if (CampaignState.Instance.LoadCheckpoint() && TryRestoreKosCheckpoint())
-                    return;
+                if (CampaignState.Instance.LoadCheckpoint())
+                {
+                    if (PrologSceneFlow.CanContinue && PrologSceneFlow.IsAtmajaCheckpoint(CampaignState.Instance.Data.checkpoint_id))
+                    {
+                        HudController.Instance.SetFadeAlpha(1f);
+                        StartCoroutine(PrologSceneFlow.LoadAtmaja());
+                        return;
+                    }
+                    if (TryRestoreKosCheckpoint()) return;
+                }
                 CampaignState.Instance.StartNewGame();
             }
 
@@ -417,6 +425,7 @@ namespace LayarTerakhir.Prolog
             );
 
             yield return HudController.Instance.FadeBlack(0f, 1f, 3.5f);
+            yield return PrologSceneFlow.LoadAtmaja();
         }
     }
 }

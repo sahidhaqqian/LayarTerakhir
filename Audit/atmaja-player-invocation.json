@@ -1,0 +1,28 @@
+{
+  "stage": "atmaja-player",
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Projects/LayarTerakhir/Builds/LinuxAudit/LayarTerakhir.x86_64",
+    "-force-glcore",
+    "-screen-fullscreen",
+    "0",
+    "-screen-width",
+    "1280",
+    "-screen-height",
+    "720",
+    "-atmajaAudit",
+    "/root/Projects/LayarTerakhir/Audit/Visuals/Atmaja-Linux",
+    "-logFile",
+    "/root/Projects/LayarTerakhir/Audit/atmaja-player.log"
+  ],
+  "startedUtc": "2026-10-15T14:35:08.596157+00:00",
+  "audioBackend": "Private clocked PulseAudio null sink; real listener tap, no physical audio hardware",
+  "status": "Finished",
+  "endedUtc": "2026-10-15T14:36:42.125853+00:00",
+  "exitCode": 0,
+  "screenCapturesVerified": 12,
+  "completedSmokeReceiptVerified": true
+}

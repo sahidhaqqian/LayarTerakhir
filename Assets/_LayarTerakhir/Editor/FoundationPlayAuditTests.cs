@@ -37,6 +37,7 @@ namespace LayarTerakhir.Editor.Tests
                 Path.Combine(Path.GetTempPath(), "LayarTerakhir-PlayTest-" + Guid.NewGuid()));
             EditorSceneManager.OpenScene(PrologKosSceneBuilder.ScenePath);
             yield return new EnterPlayMode();
+            PrologSceneFlow.AutomaticTransitions=false; // This fixture specifically tests the approved Kos endpoint.
             SessionState.SetString("LayarAudit.PreviousInputSettings", JsonUtility.ToJson(InputSystem.settings));
             var settings = UnityEngine.Object.Instantiate(InputSystem.settings);
             settings.editorInputBehaviorInPlayMode = InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;

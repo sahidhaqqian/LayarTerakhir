@@ -15,6 +15,7 @@ assert report['result']=='Succeeded' and report['totalErrors']==0,'Unity build f
 assert report['target']=='StandaloneWindows64' and report['scriptingBackend']=='Mono2x'
 assert 'Development' in report['options']
 assert report['scenes'][0]=='Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity'
+assert 'Assets/_LayarTerakhir/Scenes/Prolog_RumahAtmaja.unity' in report['scenes'],'Atmaja continuation missing from build'
 required=['LayarTerakhir.exe','UnityPlayer.dll','UnityCrashHandler64.exe',
  'MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll','MonoBleedingEdge/EmbedRuntime/MonoPosixHelper.dll',
  'MonoBleedingEdge/etc/mono/config','LayarTerakhir_Data/globalgamemanagers',
@@ -41,10 +42,15 @@ assert b'DevelopmentScreenshotCapture' in (out/'LayarTerakhir_Data/Managed/Assem
 scene_data=(out/'LayarTerakhir_Data/level0').read_bytes()
 for marker in ['Kos_Environment_Art','Kos_V2_Details','KosDeskFan','KosCurtains','CeramicTileFloor','WeakTungstenCeiling','CalendarAugust','vintage_day_bed','GoldenHUD','GoldenAudioRig','Golden_Dressing','BedsideWornStool','Compact_Kos_Details','StreamerGreenScreen','BudgetStreamingWebcam','ReadingPadOnStool','BedsidePlasticThermos','WiredGamepadOnBed']:assert marker.encode() in scene_data,marker
 assert b'Prolog_KamarKos' in (out/'LayarTerakhir_Data/globalgamemanagers').read_bytes()
+atmaja_data=(out/'LayarTerakhir_Data/level1').read_bytes()
+for marker in ['Atmaja_Environment_Art','DamarParkedScooter','FallenKamboja','KitchenVaultOutside','LongDiningTable','GrandfatherClock','AR_SeatedSriAtmaja']:
+ assert marker.encode() in atmaja_data,marker
+assert b'Prolog_RumahAtmaja' in (out/'LayarTerakhir_Data/globalgamemanagers').read_bytes()
 shutil.copy2(root/'Audit/asset-credits.md',out/'Asset-Credits.txt')
 shutil.copy2(root/'Audit/windows-kos-capture.md',out/'Screenshot-Guide.txt')
 shutil.copy2(root/'Assets/_LayarTerakhir/UI/Fonts/OFL.txt',out/'Barlow-OFL.txt')
 shutil.copy2(root/'Audit/golden-windows-review.md',out/'Golden-Review-Guide.txt')
+shutil.copy2(root/'Audit/atmaja-windows-playtest.md',out/'Atmaja-Playtest-Guide.txt')
 files=sorted(p for p in out.rglob('*') if p.is_file());manifest=[]
 for p in files:
  digest=hashlib.sha256();crc=0
@@ -73,9 +79,14 @@ verification={'verifiedUtc':datetime.now(timezone.utc).isoformat(),'unityExitCod
  'archiveSizeBytes':archive.stat().st_size,'archiveSha256':archive_sha,'zipCrcVerified':True,'zipContainsAllBuildFiles':True,
  'windowsRuntimeTested':False,'files':manifest}
 verification['sourceSceneSha256']=hashlib.sha256((root/'Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity').read_bytes()).hexdigest()
+verification['atmajaSceneSha256']=hashlib.sha256((root/'Assets/_LayarTerakhir/Scenes/Prolog_RumahAtmaja.unity').read_bytes()).hexdigest()
+assert verification['sourceSceneSha256']==json.loads((root/'Audit/atmaja-art-manifest.json').read_text())['protectedGoldenSceneSha256'],'Golden source scene changed'
 verification['developmentScreenshotUtilityIncluded']=True
+verification['includedScenes']=report['scenes']
 (logs/'windows-build-verification.json').write_text(json.dumps(verification,indent=2)+'\n')
 summary={k:v for k,v in verification.items() if k not in ['files','nativeArchitectures']}
 (root/'Audit/golden-build-summary.json').write_text(json.dumps(summary,indent=2)+'\n')
+(root/'Audit/atmaja-build-summary.json').write_text(json.dumps(summary,indent=2)+'\n')
 shutil.copy2(logs/'windows-build-invocation.json',root/'Audit/golden-windows-invocation.json')
+shutil.copy2(logs/'windows-build-invocation.json',root/'Audit/atmaja-windows-invocation.json')
 print(json.dumps(summary,indent=2))
