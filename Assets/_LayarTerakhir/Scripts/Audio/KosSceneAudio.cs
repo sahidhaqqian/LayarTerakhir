@@ -1,4 +1,5 @@
 using System.Collections;
+using LayarTerakhir.Core;
 using LayarTerakhir.Player;
 using LayarTerakhir.Smartphone;
 using LayarTerakhir.UI;
@@ -22,6 +23,10 @@ namespace LayarTerakhir.Audio
         public bool HasPhoneVibration => phoneSource && phoneSource.isPlaying;
         public int OpeningKnockCount {get;private set;}
         public int DepartingFootstepCount {get;private set;}
+        public int RingtoneStarts {get;private set;}
+        public int CallPanicEvents {get;private set;}
+        private AudioSource ringtoneSource;
+        private AudioClip Authored(string id)=>Resources.Load<AudioClip>("KosAudio/"+id);
 
         private void Start()
         {
@@ -76,16 +81,30 @@ namespace LayarTerakhir.Audio
             if(!phoneSource)return;
             if(active && phoneSource.clip && !phoneSource.isPlaying)phoneSource.Play();
             else if(!active)phoneSource.Stop();
+            if(active)
+            {
+                if(!ringtoneSource)
+                {
+                    ringtoneSource=phoneSource.gameObject.AddComponent<AudioSource>();ringtoneSource.playOnAwake=false;
+                    ringtoneSource.outputAudioMixerGroup=profile.effectsBus;ringtoneSource.spatialBlend=.6f;
+                    ringtoneSource.minDistance=2;ringtoneSource.maxDistance=9;ringtoneSource.dopplerLevel=0;
+                    ringtoneSource.clip=Authored("IncomingCall");ringtoneSource.loop=true;ringtoneSource.volume=.65f;
+                }
+                if(ringtoneSource.clip&&!ringtoneSource.isPlaying){ringtoneSource.Play();RingtoneStarts++;}
+            }
+            else if(ringtoneSource)ringtoneSource.Stop();
         }
         public void PlayKnocks()=>StartCoroutine(Knocks());
-        public IEnumerator PlayOpeningKnocks()=>Knocks();
-        private IEnumerator Knocks()
+        public IEnumerator PlayOpeningKnocks(System.Action firstKnock=null,System.Action afterKnocks=null)=>Knocks(firstKnock,afterKnocks);
+        private IEnumerator Knocks(System.Action firstKnock=null,System.Action afterKnocks=null)
         {
             if(!doorSource||!profile||!profile.knock)yield break;
             var origin=doorSource.transform.position;
-            doorSource.minDistance=2.5f;doorSource.maxDistance=16;doorSource.volume=1;doorSource.pitch=1;
+            doorSource.minDistance=5;doorSource.maxDistance=20;doorSource.volume=1;doorSource.pitch=1;
+            var hardKnock=Authored("HardDoorKnock");
             for(int i=0;i<3;i++)
-            {OpeningKnockCount++;doorSource.PlayOneShot(profile.knock,.95f);yield return new WaitForSeconds(.64f);}
+            {OpeningKnockCount++;doorSource.PlayOneShot(hardKnock?hardKnock:profile.knock,.95f);if(i==0)firstKnock?.Invoke();yield return new WaitForSeconds(.64f);}
+            afterKnocks?.Invoke();
             yield return new WaitForSeconds(.55f);
             for(int i=0;i<6&&profile.tileSteps.Length>0;i++)
             {
@@ -94,6 +113,17 @@ namespace LayarTerakhir.Audio
                 yield return new WaitForSeconds(.52f);
             }
             doorSource.transform.position=origin;
+        }
+        public IEnumerator PlayCallPanic()
+        {
+            CallPanicEvents++;
+            var drag=Authored("CallMetalScrape");if(drag)uiSource.PlayOneShot(drag,.65f);
+            yield return new WaitForSeconds(.55f);
+            // The scream is an original, separately rendered Damar performance, not a caption.
+            var scream=PresentationProfile.Load()?.Voice("Damar",LayarTerakhir.UI.KosDialogue.DamarScream);
+            if(scream){uiSource.PlayOneShot(scream,.85f);yield return new WaitForSeconds(scream.length*.72f);}
+            var glass=Authored("CallGlassCutoff");if(glass)uiSource.PlayOneShot(glass,.65f);
+            yield return new WaitForSeconds(.65f);
         }
         public void NotifyDonation() { if(uiSource)uiSource.PlayOneShot(profile.notification,.7f); }
         public void Depart()

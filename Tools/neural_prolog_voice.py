@@ -64,7 +64,7 @@ for name in ['Prolog/KamarKosPrologDirector.cs','Prolog/AtmajaDirector.cs']:
     source=(ROOT/'Assets/_LayarTerakhir/Scripts'/name).read_text()
     for speaker,line in re.findall(r'(?:EnqueueSubtitle|PlayPriorityDialogue)\(\s*"(Raka|Bisikan|Damar)"\s*,\s*"((?:[^"\\]|\\.)*)"',source):lines.append((speaker,json.loads('"'+line+'"')))
 source=(ROOT/'Assets/_LayarTerakhir/Scripts/UI/PhoneDesktop.cs').read_text()
-for key,speaker in [('DamarVoiceNote','Damar'),('Trapped','Raka')]:
+for key,speaker in [('DamarVoiceNote','Damar'),('DamarScream','Damar'),('ContractReaction','Raka'),('Trapped','Raka')]:
     m=re.search(r'const string '+key+r'="((?:[^"\\]|\\.)*)"',source);lines.append((speaker,json.loads('"'+m[1]+'"')))
 source=(ROOT/'Assets/_LayarTerakhir/Scripts/Prolog/AtmajaDirector.cs').read_text();m=re.search(r'const string LiveIntro="((?:[^"\\]|\\.)*)"',source);lines.append(('Raka',json.loads('"'+m[1]+'"')))
 progress_path=ROOT/'Audit/neural-voice-progress.json'

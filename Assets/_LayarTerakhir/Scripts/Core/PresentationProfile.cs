@@ -25,6 +25,8 @@ namespace LayarTerakhir.Core
     {
         public static bool Menu,Clock,Phone,Cinematic;
         public static bool HardModal=>Menu||Clock;
+        // Apps own the pointer, not the player's legs. World-object clicks still stay isolated.
+        public static bool BlocksMovement=>HardModal||Cinematic;
         public static bool BlocksWorld=>HardModal||Phone||Cinematic;
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void Reset(){Menu=Clock=Phone=Cinematic=false;}

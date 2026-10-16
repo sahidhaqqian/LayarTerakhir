@@ -21,7 +21,7 @@ namespace LayarTerakhir.Prolog
         private Text stowLabel;private KeyCode lastStowBinding=(KeyCode)(-1);
         public bool HasGraphicsDevice=>SystemInfo.graphicsDeviceType!=GraphicsDeviceType.Null;
         public bool IsCameraApp=>Apps&&Apps.CurrentApp==PhoneApp.Camera;
-        private Text header,mode,chat;private GameObject cameraRoot;private RawImage cameraImage;private RenderTexture feed;private Material runtimeFeedMaterial;
+        private Text header,mode,chat,walkHint;private GameObject cameraRoot;private RawImage cameraImage;private RenderTexture feed;private Material runtimeFeedMaterial;
         private readonly Queue<string> messages=new Queue<string>();
         private HudController Hud=>HudController.Instance;private SmartphoneController Phone=>SmartphoneController.Instance;
         private void Start()
@@ -52,6 +52,7 @@ namespace LayarTerakhir.Prolog
             stowLabel=stow.GetComponentInChildren<Text>();
             PhoneSkin.Card("GestureBar",Panel.transform,new Vector2(.37f,.014f),new Vector2(.63f,.019f),new Color(.55f,.57f,.6f));
             chat=UiWidgets.Text("AtmajaLiveChat",canvas,"",new Vector2(.035f,.17f),new Vector2(.32f,.43f),18);chat.color=new Color(.82f,.83f,.77f,.93f);
+            walkHint=UiWidgets.Text("PhoneWalkHint",canvas,"WASD jalan · tahan klik kanan untuk menoleh",new Vector2(.52f,.008f),new Vector2(.97f,.04f),16,TextAnchor.MiddleRight);
             Apps=gameObject.AddComponent<PhoneDesktop>();Apps.Initialize(this);Panel.transform.SetAsFirstSibling();chat.transform.SetAsFirstSibling();
             if(Phone.handPhoneMeshRoot)foreach(var r in Phone.handPhoneMeshRoot.GetComponentsInChildren<Renderer>(true))r.enabled=false;
         }
@@ -69,7 +70,8 @@ namespace LayarTerakhir.Prolog
             mode.text=screen&&IsCameraApp?(Phone.currentScanMode==ScanVisualMode.AR?"MATA BATIN / AR":"KAMERA")+$" • {Phone.batteryPercent:0}%\n[Z] Aplikasi   [M] Peta":"";
             LiveButton.gameObject.SetActive(screen&&IsCameraApp&&director&&!Phone.isBroadcastConnected);LiveButton.interactable=director&&director.HasSurvey&&!director.Busy;
             UiFocus.Phone=active&&screen&&(!IsCameraApp||(director&&!Phone.isBroadcastConnected));
-            var player=FindFirstObjectByType<FirstPersonController>();if(player&&!UiFocus.HardModal&&!Hud.IsModalOpen)player.SetCursorLock(!UiFocus.Phone);
+            var player=FindFirstObjectByType<FirstPersonController>();if(player&&!UiFocus.HardModal&&!Hud.IsModalOpen&&!UiFocus.Cinematic)player.SetCursorLock(!UiFocus.Phone||FirstPersonController.PhoneLookHeld);
+            walkHint.enabled=UiFocus.Phone&&!UiFocus.Cinematic&&!Hud.IsModalOpen;
             chat.enabled=director&&Phone.isBroadcastConnected&&!Hud.IsModalOpen;
         }
         public void AddChat(string author,string text){messages.Enqueue($"<color=#C0AA7A>{author}</color> {text}");while(messages.Count>3)messages.Dequeue();if(chat)chat.text=string.Join("\n\n",messages);}

@@ -97,6 +97,7 @@ namespace LayarTerakhir.Editor.Tests
             var director = Find<KamarKosPrologDirector>();
             var hud = Find<HudController>();
             var campaign = Find<CampaignState>();
+            Assert.That(director.suratKosItem.gameObject.activeSelf,Is.False,"Letter must not be lying inside the room before the knocks");
             Assert.That(director.suratKosItem.CanInteract(), Is.False);
             Assert.That(director.smartphoneBedItem.CanInteract(), Is.False);
             // The bed wake/landlady sequence owns input; early door use must not skip it.
@@ -151,14 +152,15 @@ namespace LayarTerakhir.Editor.Tests
                 for (int n = 0; n < digits[slot]; n++) FoundationAuditTests.Button(hud, "DigitUp_" + slot).onClick.Invoke();
             FoundationAuditTests.Button(hud, "UnlockPadlockBtn").onClick.Invoke();
             Assert.That(director.isDrawerUnlocked, Is.True);
-            Assert.That(director.hasMotorKey,Is.False,"Drawer only contains a powerbank; motor keys are on the desktop");
+            Assert.That(director.hasMotorKey,Is.False,"Motor keys remain on the desktop, not inside the drawer");
+            Assert.That(campaign.HasInventoryItem("DOMPET_RAKA")&&campaign.HasInventoryItem("DIARY_RAKA"),Is.True);
             Assert.That(UiFocus.Phone||hud.IsModalOpen||Find<FirstPersonController>().MovementLocked,Is.False,"Closing the drawer releases world input");
             yield return WalkTo(new Vector3(.4f,.05f,-.15f));
             yield return UseFromCurrentFeet(director.motorKeyItem);
             if (!jacketFirst){yield return WalkTo(new Vector3(1.05f,.05f,-.4f));yield return UseFromCurrentFeet(director.jacketItem);}
             Assert.That(director.currentStage, Is.EqualTo(KosPrologStage.ReadyToDepart));
             Assert.That(campaign.Data.inventory, Is.EquivalentTo(new[] {
-                "DOC_PROLOG_01_SURAT_KOS", "SMARTPHONE_RAKA", "KUNCI_MOTOR", "POWERBANK_KECIL_KOS", "JAKET_RAKA" }));
+                "DOC_PROLOG_01_SURAT_KOS", "SMARTPHONE_RAKA", "KUNCI_MOTOR", "POWERBANK_KECIL_KOS", "JAKET_RAKA", "DOMPET_RAKA", "DIARY_RAKA" }));
             yield return WalkTo(new Vector3(.9f,.05f,-.6f));yield return UseFromCurrentFeet(director.kosDoorItem);
             Assert.That(director.currentStage, Is.EqualTo(KosPrologStage.Completed));
             yield return new WaitForSeconds(4f);
@@ -278,6 +280,41 @@ namespace LayarTerakhir.Editor.Tests
         }
 
         [UnityTest]
+        public IEnumerator PhoneAppsAllowActualWasdMovement() => RunInPlayerLoop(PhoneAppsAllowActualWasdMovementRoutine());
+
+        private IEnumerator PhoneAppsAllowActualWasdMovementRoutine()
+        {
+            yield return WaitForStage(KosPrologStage.WaitReadSuratIbuKos);Time.timeScale=1;
+            var phone=Find<SmartphoneController>();phone.AcquireSmartphone();
+            var view=Find<AtmajaPhoneView>();view.Apps.Open(PhoneApp.Home);yield return null;
+            Assert.That(UiFocus.Phone,Is.True);Assert.That(UiFocus.BlocksMovement,Is.False);
+            PlacePlayer(new Vector3(.6f,.08f,-.5f));var player=Find<FirstPersonController>();
+            var from=player.transform.position;InputSystem.QueueStateEvent(_keyboard,new KeyboardState(Key.W));
+            yield return new WaitForSeconds(.16f);yield return Press();
+            Assert.That(Vector3.Distance(from,player.transform.position),Is.GreaterThan(.15f));
+            Assert.That(phone.isPhoneRaised,Is.True,"Walking must not close the handset");
+            Assert.That(PhoneDesktop.Contacts.Length,Is.GreaterThanOrEqualTo(3));
+        }
+
+        [UnityTest]
+        public IEnumerator OverlappingTabletopPreventsStandingAndStepPop() => RunInPlayerLoop(OverlappingTabletopPreventsStandingAndStepPopRoutine());
+
+        private IEnumerator OverlappingTabletopPreventsStandingAndStepPopRoutine()
+        {
+            yield return WaitForStage(KosPrologStage.WaitReadSuratIbuKos);Time.timeScale=1;
+            PlacePlayer(new Vector3(.6f,.08f,-.5f));var player=Find<FirstPersonController>();
+            player.crouchHeight=.78f;player.cameraCrouchY=.62f;
+            InputSystem.QueueStateEvent(_keyboard,new KeyboardState(Key.LeftCtrl));yield return new WaitForSeconds(.5f);
+            var table=GameObject.CreatePrimitive(PrimitiveType.Cube);table.name="RegressionLowTable";
+            table.transform.position=player.transform.position+Vector3.up*.91f;table.transform.localScale=new Vector3(1.3f,.12f,1.3f);Physics.SyncTransforms();
+            float foot=player.transform.position.y;yield return Press();yield return new WaitForSeconds(.6f);
+            Assert.That(player.CanStandUp(),Is.False);Assert.That(player.IsCrouching,Is.True);
+            Assert.That(player.GetComponent<CharacterController>().height,Is.LessThan(.84f));
+            Assert.That(player.transform.position.y,Is.LessThan(foot+.05f),"Releasing CTRL under the table must not lift the player onto it");
+            UnityEngine.Object.Destroy(table);yield return new WaitForSeconds(.5f);Assert.That(player.IsCrouching,Is.False);
+        }
+
+        [UnityTest]
         public IEnumerator MovementCollisionAndCrouchHeadroomUseRuntimePhysics() => RunInPlayerLoop(MovementCollisionAndCrouchHeadroomUseRuntimePhysicsRoutine());
 
         private IEnumerator MovementCollisionAndCrouchHeadroomUseRuntimePhysicsRoutine()
@@ -342,7 +379,7 @@ namespace LayarTerakhir.Editor.Tests
             while (!finished && Time.realtimeSinceStartup < deadline) yield return null;
             UnityEngine.Object.Destroy(hostObject);
             Assert.That(finished, Is.True, "Runtime scenario timed out");
-            if (failure != null) throw failure;
+            if (failure != null) System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(failure).Throw();
         }
 
         private static IEnumerator DriveScenario(IEnumerator scenario, Action<Exception> complete)

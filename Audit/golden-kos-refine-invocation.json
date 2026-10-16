@@ -1,0 +1,19 @@
+{
+  "stage": "kos-refine",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.PlaytestRevisionBuilder.RefineKos",
+    "-logFile",
+    "/root/Projects/LayarTerakhir/Audit/golden-kos-refine.log"
+  ],
+  "startedUtc": "2026-10-16T09:40:24.119393+00:00",
+  "status": "Finished",
+  "endedUtc": "2026-10-16T09:40:54.856484+00:00",
+  "exitCode": 0
+}

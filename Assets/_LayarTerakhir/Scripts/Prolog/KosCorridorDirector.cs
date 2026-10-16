@@ -12,6 +12,7 @@ namespace LayarTerakhir.Prolog
         public FirstPersonController player;public Transform spawnLanding,spawnGround,motor,gateHinge,rideAnchor,rideExit;
         public AudioSource engine,rain;public SceneAudioProfile audioProfile;
         public Light motorHeadlight;
+        public HingedDoor entranceDoor;
         public bool Busy {get;private set;}
         private bool savedGround;
         public bool CanDepart=>!Busy&&player&&player.transform.position.y<.8f&&
@@ -33,8 +34,16 @@ namespace LayarTerakhir.Prolog
         private void Update()
         {
             if(Busy||!player||UiFocus.HardModal)return;
-            if(!savedGround&&player.transform.position.y<.5f)
+            if(player.transform.position.y< -2){StartCoroutine(RecoverInsideBuilding());return;}
+            if(!savedGround&&player.transform.position.y<.5f&&player.GetComponent<CharacterController>().isGrounded)
             {savedGround=CampaignState.Instance.SaveCheckpointAtomic("PROLOG_KOS_YARD");HudController.Instance.SetObjective("Keluar ke halaman. Periksa peta dan berangkat dari motor/gerbang kos.");}
+        }
+        private IEnumerator RecoverInsideBuilding()
+        {
+            Busy=true;player.MovementLocked=true;yield return HudController.Instance.FadeBlack(0,1,.2f);
+            var spawn=savedGround?spawnGround:spawnLanding;var cc=player.GetComponent<CharacterController>();cc.enabled=false;
+            player.transform.SetPositionAndRotation(spawn.position,spawn.rotation);cc.enabled=true;
+            yield return HudController.Instance.FadeBlack(1,0,.3f);player.MovementLocked=false;Busy=false;
         }
         public void OpenMap()
         {

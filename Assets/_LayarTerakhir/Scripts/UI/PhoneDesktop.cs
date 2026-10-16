@@ -16,6 +16,10 @@ namespace LayarTerakhir.UI
         public bool CallActive {get;private set;}
         private AtmajaPhoneView view;private GameObject root,page,banner;private bool lastAR;
         private float callStarted,bannerUntil;private Text callTimer;private string latestMessage;
+        public string DialedContact {get;private set;}
+        public static readonly string[] Contacts={"Damar", "Ibu", "Bu Haji Ratna"};
+        private static readonly string[] ContactNumbers={"08•• •••• 2140", "08•• •••• 5729", "08•• •••• 0800"};
+        private bool dialing;
         private SmartphoneController Phone=>SmartphoneController.Instance;
         private static string Money(long amount)=>"Rp"+amount.ToString("N0",CultureInfo.GetCultureInfo("id-ID"));
         public void Initialize(AtmajaPhoneView owner){view=owner;root=UiWidgets.Rect("PhoneApps",view.Panel.transform,new Vector2(.045f,.09f),new Vector2(.955f,.91f));Open(PhoneApp.Home);}
@@ -92,13 +96,38 @@ namespace LayarTerakhir.UI
         public void EndDamarCall(){CallActive=false;Open(PhoneApp.Call);}
         private void CallScreen()
         {
+            if(!CallActive){ContactsScreen();return;}
             UiWidgets.Text("CallNetwork",page.transform,CallActive?"PANGGILAN SUARA":"TELEPON",new Vector2(.08f,.85f),new Vector2(.92f,.94f),20,TextAnchor.MiddleCenter);
             var avatar=PhoneSkin.Card("DamarAvatar",page.transform,new Vector2(.32f,.59f),new Vector2(.68f,.79f),new Color(.17f,.29f,.35f));UiWidgets.Text("Initial",avatar.transform,"D",Vector2.zero,Vector2.one,76,TextAnchor.MiddleCenter);
             UiWidgets.Text("CallerName",page.transform,"Damar",new Vector2(.08f,.46f),new Vector2(.92f,.57f),48,TextAnchor.MiddleCenter);UiWidgets.Text("CallerRole",page.transform,"Kameramen",new Vector2(.08f,.42f),new Vector2(.92f,.48f),21,TextAnchor.MiddleCenter);
             callTimer=UiWidgets.Text("CallTimer",page.transform,CallActive?"00:00  •  Tersambung":"Panggilan terputus",new Vector2(.08f,.33f),new Vector2(.92f,.40f),23,TextAnchor.MiddleCenter);
             PhoneSkin.Icon("Call",page.transform,new Vector2(.39f,.15f),new Vector2(.61f,.27f),CallActive?new Color(.48f,.8f,.65f):new Color(.85f,.3f,.27f));UiWidgets.Text("CallHistory",page.transform,"14 panggilan tak terjawab  •  21:15",new Vector2(.07f,.06f),new Vector2(.93f,.13f),19,TextAnchor.MiddleCenter);
         }
-        public void ReceiveContract(){Phone.isPhoneRaised=Phone.isScreenOn=true;Phone.SyncVisualState();Open(PhoneApp.Messages);}
+        private void ContactsScreen()
+        {
+            UiWidgets.Text("ContactsTitle",page.transform,"Telepon",new Vector2(.075f,.88f),new Vector2(.93f,.98f),34);
+            UiWidgets.Text("MissedCallHistory",page.transform,"Damar · 14 panggilan tak terjawab\nMalam ini, 21:15",new Vector2(.075f,.72f),new Vector2(.93f,.86f),21);
+            for(int i=0;i<Contacts.Length;i++)
+            {
+                string contact=Contacts[i];float y=.54f-i*.15f;
+                string detail=ContactNumbers[i];
+                PhoneSkin.Button("Contact_"+i,page.transform,contact+"  ·  "+detail+"   ↗",new Vector2(.06f,y),new Vector2(.94f,y+.125f),()=>StartCoroutine(DialContact(contact)));
+            }
+            PhoneSkin.Button("ContactsHome",page.transform,"‹  Aplikasi",new Vector2(.06f,.015f),new Vector2(.94f,.085f),()=>Open(PhoneApp.Home));
+            if(!string.IsNullOrEmpty(DialedContact))UiWidgets.Text("DialResult",page.transform,DialedContact+"\nTidak dapat dihubungi",new Vector2(.075f,.11f),new Vector2(.93f,.23f),22);
+        }
+        private System.Collections.IEnumerator DialContact(string contact)
+        {
+            if(dialing||CallActive)yield break;dialing=true;
+            DialedContact=contact;Open(PhoneApp.Call);
+            var result=GameObject.Find("DialResult").GetComponent<Text>();result.text=contact+"\nMemanggil…";
+            var source=gameObject.AddComponent<AudioSource>();source.outputAudioMixerGroup=PresentationProfile.Load().audio.uiBus;
+            source.clip=Resources.Load<AudioClip>("KosAudio/OutgoingCall");source.volume=.45f;if(source.clip)source.Play();
+            yield return new WaitForSeconds(3.2f);if(source){source.Stop();Destroy(source);}
+            dialing=false;
+            if(CurrentApp==PhoneApp.Call&&!CallActive)Open(PhoneApp.Call);
+        }
+        public void ReceiveContract(){Phone.isPhoneRaised=Phone.isScreenOn=true;Phone.SyncVisualState();Open(PhoneApp.Messages);Notify("Rp5.000.000 diterima");}
         public void Notify(string message)
         {
             latestMessage=message;if(banner)Destroy(banner);bannerUntil=Time.unscaledTime+9;banner=PhoneSkin.Card("PhoneNotification",view.Panel.transform,new Vector2(.07f,.77f),new Vector2(.93f,.91f),new Color(.13f,.20f,.27f,.99f));
@@ -119,17 +148,21 @@ namespace LayarTerakhir.UI
         }
         private void Journal()
         {
-            var c=CampaignState.Instance;var t=new StringBuilder("DOKUMEN DITEMUKAN\n\n");if(c.HasInventoryItem("DOC_PROLOG_01_SURAT_KOS"))t.AppendLine("01 • Surat peringatan kos\nTunggakan Rp3.500.000; besok 08:00.\n");if(c.HasInventoryItem(AtmajaDirector.SurveyId))t.AppendLine("02 • Survei Damar\nPintu depan dirantai. Lorong timur menuju jendela dapur.\n");if(c.HasInventoryItem("DOC_PROLOG_03_KORAN_1998"))t.AppendLine("03 • Koran tragedi Atmaja, 1998\n");if(c.HasInventoryItem("EVENT_P0_AR_CLUE_READ"))t.AppendLine("Petunjuk AR: III : XLV\n");if(t.Length<30)t.Append("Belum ada dokumen. Periksa benda di sekitar.");UiWidgets.ScrollText("JournalEntries",page.transform,t.ToString(),new Vector2(.075f,.12f),new Vector2(.93f,.87f));
+            var c=CampaignState.Instance;var t=new StringBuilder("DOKUMEN DITEMUKAN\n\n");if(c.HasInventoryItem("DOC_PROLOG_01_SURAT_KOS"))t.AppendLine("01 • Surat peringatan kos\nTunggakan Rp3.500.000; besok 08:00.\n");if(c.HasInventoryItem("DIARY_RAKA"))t.AppendLine("Buku harian Raka\nCatatan pribadi dari laci meja.\n"+KosDialogue.Diary+"\n");if(c.HasInventoryItem(AtmajaDirector.SurveyId))t.AppendLine("02 • Survei Damar\nPintu depan dirantai. Lorong timur menuju jendela dapur.\n");if(c.HasInventoryItem("DOC_PROLOG_03_KORAN_1998"))t.AppendLine("03 • Koran tragedi Atmaja, 1998\n");if(c.HasInventoryItem("EVENT_P0_AR_CLUE_READ"))t.AppendLine("Petunjuk AR: III : XLV\n");if(t.Length<30)t.Append("Belum ada dokumen. Periksa benda di sekitar.");UiWidgets.ScrollText("JournalEntries",page.transform,t.ToString(),new Vector2(.075f,.12f),new Vector2(.93f,.87f));
         }
         private void Inventory()
         {
-            var c=CampaignState.Instance;var t=new StringBuilder("BARANG BAWAAN\n\n");foreach(var item in new[]{("SMARTPHONE_RAKA","Smartphone Raka"),("KUNCI_MOTOR","Kunci motor"),("JAKET_RAKA","Jaket"),("POWERBANK_KECIL_KOS","Powerbank kecil"),("MATABATIN_APK","Modul MataBatin"),("ITEM_P0_CLOCK_HANDS","Jarum kuningan"),("KUNCI_TANGGA_TENGAH","Kunci tangga")})if(c.HasInventoryItem(item.Item1))t.AppendLine("• "+item.Item2+"\n");UiWidgets.ScrollText("InventoryEntries",page.transform,t.ToString(),new Vector2(.075f,.12f),new Vector2(.93f,.87f));
+            var c=CampaignState.Instance;var t=new StringBuilder("BARANG BAWAAN\n\n");foreach(var item in new[]{("SMARTPHONE_RAKA","Smartphone Raka"),("KUNCI_MOTOR","Kunci motor"),("JAKET_RAKA","Jaket"),("POWERBANK_KECIL_KOS","Powerbank kecil"),("DOMPET_RAKA","Dompet Raka"),("DIARY_RAKA","Buku harian Raka"),("MATABATIN_APK","Modul MataBatin"),("ITEM_P0_CLOCK_HANDS","Jarum kuningan"),("KUNCI_TANGGA_TENGAH","Kunci tangga")})if(c.HasInventoryItem(item.Item1))t.AppendLine("• "+item.Item2+"\n");UiWidgets.ScrollText("InventoryEntries",page.transform,t.ToString(),new Vector2(.075f,.12f),new Vector2(.93f,.87f));
+            if(c.HasInventoryItem("DIARY_RAKA"))PhoneSkin.Button("ReadDiary",page.transform,"Baca buku harian  →",new Vector2(.06f,.13f),new Vector2(.94f,.22f),()=>Open(PhoneApp.Journal));
         }
         private void OnDestroy(){UiFocus.Phone=false;if(root)Destroy(root);}
     }
     public static class KosDialogue
     {
         public const string DamarVoiceNote="Ka... Raka, jangan ke Rumah Atmaja sendirian. Tolong dengerin gue. Aplikasi kamera yang gue oprek dari forum kemarin... itu bukan filter AR biasa, Ka. Rumah ini nggak kosong. Di lantai dua ada suara perempuan nyanyi tembang Jawa, tapi pas gue sorot pakai kamera HP, dia udah berdiri tepat di depan muka gue—";
+        public const string DamarScream="Raka! Tolong! Aaaah!";
+        public const string ContractReaction="Anjir, Damar dalam bahaya! Duit ini nggak gratis... Untuk sementara gue harus ikutin perintah dari pesan ini.";
+        public const string Diary="32 penonton. Tunggakan kos tiga bulan. Besok harus cari cara buat biaya rumah sakit Ibu. Damar belum bisa dihubungi.";
         public const string Contract="Uang muka untuk kosmu dan biaya RS ibumu. Kalau mau temanmu tetap bernapas dan sisa Rp495.000.000 cair, nyalakan live di Rumah Keluarga Atmaja sebelum jam 12 malam. Waktu jalan terus.";
         public const string Trapped="Hmm... kok tiba-tiba ketutup, ya? Kayaknya kita cuma bisa lanjut.";
     }

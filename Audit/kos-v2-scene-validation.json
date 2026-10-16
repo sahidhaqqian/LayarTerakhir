@@ -1,6 +1,6 @@
 {
     "scene": "Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity",
-    "utc": "2026-10-16T07:01:01.7351290Z",
+    "utc": "2026-10-16T09:38:41.8148830Z",
     "failures": 0,
     "triangles": 114455,
     "renderers": 208,
@@ -7867,25 +7867,88 @@
             "measured": 72.0
         },
         {
-            "subject": "KALENDER_DINDING",
+            "subject": "PINTU_KOS",
             "kind": "interaction-references",
             "detail": "Existing item ID, collider and director binding",
             "passed": true,
             "measured": 0.0
         },
         {
-            "subject": "KALENDER_DINDING",
+            "subject": "PINTU_KOS",
             "kind": "raycast-geometry-alignment",
             "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
             "passed": true,
-            "measured": 0.02200007438659668
+            "measured": 0.009999990463256836
         },
         {
-            "subject": "KALENDER_DINDING",
+            "subject": "PINTU_KOS",
             "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.4781578",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.8480633",
             "passed": true,
-            "measured": 52.0
+            "measured": 78.0
+        },
+        {
+            "subject": "JAKET_PINTU",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "JAKET_PINTU",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 2.384185791015625e-7
+        },
+        {
+            "subject": "JAKET_PINTU",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.7637089",
+            "passed": true,
+            "measured": 54.0
+        },
+        {
+            "subject": "LACI_MEJA",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "LACI_MEJA",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 1.4901161193847657e-8
+        },
+        {
+            "subject": "LACI_MEJA",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.720983",
+            "passed": true,
+            "measured": 38.0
+        },
+        {
+            "subject": "PC_MONITOR",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PC_MONITOR",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 0.004000067710876465
+        },
+        {
+            "subject": "PC_MONITOR",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.253847",
+            "passed": true,
+            "measured": 67.0
         },
         {
             "subject": "SURAT_KOS",
@@ -7930,88 +7993,25 @@
             "measured": 46.0
         },
         {
-            "subject": "PC_MONITOR",
+            "subject": "KALENDER_DINDING",
             "kind": "interaction-references",
             "detail": "Existing item ID, collider and director binding",
             "passed": true,
             "measured": 0.0
         },
         {
-            "subject": "PC_MONITOR",
+            "subject": "KALENDER_DINDING",
             "kind": "raycast-geometry-alignment",
             "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
             "passed": true,
-            "measured": 0.004000067710876465
+            "measured": 0.02200007438659668
         },
         {
-            "subject": "PC_MONITOR",
+            "subject": "KALENDER_DINDING",
             "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.253847",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.4781578",
             "passed": true,
-            "measured": 67.0
-        },
-        {
-            "subject": "JAKET_PINTU",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "JAKET_PINTU",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 2.384185791015625e-7
-        },
-        {
-            "subject": "JAKET_PINTU",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.7637089",
-            "passed": true,
-            "measured": 54.0
-        },
-        {
-            "subject": "PINTU_KOS",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PINTU_KOS",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 0.009999990463256836
-        },
-        {
-            "subject": "PINTU_KOS",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.8480633",
-            "passed": true,
-            "measured": 78.0
-        },
-        {
-            "subject": "LACI_MEJA",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "LACI_MEJA",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 1.4901161193847657e-8
-        },
-        {
-            "subject": "LACI_MEJA",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.720983",
-            "passed": true,
-            "measured": 38.0
+            "measured": 52.0
         },
         {
             "subject": "KosDoor",

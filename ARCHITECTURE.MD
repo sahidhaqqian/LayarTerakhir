@@ -14,6 +14,10 @@ Revisi playtest 16 Oktober 2026: scene/aset kamar Golden tetap byte-identical, t
 
 Standar produksi visual/audio/UI ringkas ada di `Docs/GOLDEN_SCENE_STANDARD.md`. Dokumen ini berfokus pada struktur kode, kepemilikan tanggung jawab, aliran data, dan pipeline produksi.
 
+Revisi immersion Kos berikutnya: `UiFocus.BlocksMovement` hanya mengunci menu/jam/cutscene, bukan aplikasi HP. Browsing tetap memiliki pointer dan memblokir klik objek dunia; WASD berjalan, tahan RMB untuk mouse-look. `CanStandUp` memeriksa overlap seluruh kapsul berdiri (mengabaikan hull sendiri/trigger), bukan SphereCast dari titik yang mungkin sudah menembus meja. `KosCorridorBuilding` melengkapi builder dengan 14 sel kamar tertutup, fondasi, guardrail dalam tangga, fasad/atap/teras, pintu utama `HingedDoor`, wainscot/ventilasi/kelistrikan dan detail penghuni. Pintu utama diserialisasi di director; checkpoint lantai bawah mensyaratkan kaki benar-benar grounded dan recovery bawah bangunan hanya sebagai pengaman terakhir.
+
+Pembuka kini menyembunyikan surat hingga tiga ketukan keras, mengarahkan pandangan Raka, memainkan ringtone, distress cry Damar, jeda pesan dan respons kontrak. Lima SFX original ada di `Resources/KosAudio`; bank neural berisi 17 baris. Retake memakai reference-only controllable cloning: mode transkrip lama ternyata mengabaikan kontrol emosi. Laci menambah `DOMPET_RAKA`/`DIARY_RAKA` tanpa memberi uang; isi buku harian dibaca dari Jurnal. `PlaytestRevisionBuilder.RefineKos` mengimpor presentasi dan membangun koridor saja, tidak menulis ulang scene Golden maupun Atmaja.
+
 ---
 
 ## 1. Ringkasan teknis

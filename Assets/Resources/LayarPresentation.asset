@@ -30,9 +30,6 @@ MonoBehaviour:
     text: Gue cek dulu apa yang diselipin di bawah pintu tadi.
     clip: {fileID: 8300000, guid: 497b90beed83d721cb2a9c68c1f42c58, type: 3}
   - speaker: Raka
-    text: Kebuka. Powerbank-nya masih penuh.
-    clip: {fileID: 8300000, guid: d427f7a16e1e1192ba391b747aeccd8c, type: 3}
-  - speaker: Raka
     text: Bentar, gue belum mau keluar sebelum cek bawah pintu.
     clip: {fileID: 8300000, guid: 72df1d32b4a8198d7ad0483142a19a48, type: 3}
   - speaker: Raka
@@ -69,3 +66,13 @@ MonoBehaviour:
       ini gue nggak sendirian... maksudnya, gue lagi nyusulin Damar yang hilang kontak
       di Rumah Tua Atmaja. Buat yang baru gabung, bantu pantau layar ya.
     clip: {fileID: 8300000, guid: 338ca84ed04656e4cad0e7b62e7cdb52, type: 3}
+  - speaker: Damar
+    text: Raka! Tolong! Aaaah!
+    clip: {fileID: 8300000, guid: 2c2de3795775c1e6aa25392e465ccf80, type: 3}
+  - speaker: Raka
+    text: Anjir, Damar dalam bahaya! Duit ini nggak gratis... Untuk sementara gue
+      harus ikutin perintah dari pesan ini.
+    clip: {fileID: 8300000, guid: 0cedc67bc1cabb42793bf91721e95764, type: 3}
+  - speaker: Raka
+    text: Kebuka. Powerbank, dompet, sama buku harian gue masih di sini.
+    clip: {fileID: 8300000, guid: b7ea53967dbfe15ec97e46d9176cd537, type: 3}

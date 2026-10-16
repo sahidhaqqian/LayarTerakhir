@@ -92,16 +92,21 @@ namespace LayarTerakhir.Diagnostics
             yield return Shot("04-door-knocks-no-caption");
             yield return Wait(()=>kos.currentStage==KosPrologStage.WaitReadSuratIbuKos,60,"Opening completes before letter interaction");
             Check(kos.environmentAudio.OpeningKnockCount==3&&kos.environmentAudio.DepartingFootstepCount==6&&!Hud.HasPlayedVoice("Bu Haji Ratna"),"Three actual knocks precede six departing footsteps; no landlady VO");
+            Check(kos.suratKosItem.gameObject.activeSelf,"Letter appears inside only after physical knocking");Aim(kos.suratKosItem.transform.position);yield return Shot("04b-letter-under-door");
             if(tap){var levels=tap.Save(Path.Combine(output,"actual-opening-mix.wav"));receipt.mixRms=levels.x;receipt.mixPeak=levels.y;}
             yield return KosUse(kos.suratKosItem,new Vector3(.85f,.05f,-.25f));yield return Shot("05-landlady-letter");Hud.documentCloseButton.onClick.Invoke();
             yield return Wait(()=>kos.currentStage==KosPrologStage.WaitPickupSmartphone,20,"Phone wakes after warning letter");
+            Check(kos.environmentAudio.RingtoneStarts==1,"Incoming call has an actual audible ringtone, not vibration only");
             yield return KosUse(kos.smartphoneBedItem,new Vector3(-.8f,.05f,-.98f));
             yield return Wait(()=>Hud.HasPlayedVoice("Damar"),40,"Damar voice clip starts through the real audio source");
             Check(View.Apps.CallActive&&View.Apps.CurrentApp==PhoneApp.Call&&!Hud.IsModalOpen,"Pickup directly connects Damar call; no play-message document");
             yield return Shot("06a-automatic-damar-call");
             yield return Wait(()=>kos.currentStage==KosPrologStage.PreparationAndDrawerPuzzle,90,"Damar call finishes and contract arrives on handset");
+            Check(kos.environmentAudio.CallPanicEvents==1,"Damar distress cry/metal/glass plays before call ends");
             yield return Shot("07-phone-messages");
+            View.Apps.Open(PhoneApp.Call);yield return Shot("06b-phone-contacts");Check(PhoneDesktop.Contacts.Length>=3,"Telephone includes Damar, Ibu and Ratna contacts");
             Phone.isPhoneRaised=true;Phone.SyncVisualState();View.Apps.Open(PhoneApp.Home);yield return Shot("06-phone-apps");
+            Check(UiFocus.Phone&&!UiFocus.BlocksMovement,"Handset apps own pointer but leave walking enabled");
             View.Apps.Open(PhoneApp.Bank);yield return null;Check(GameObject.Find("BankBalance").GetComponent<Text>().text.Contains("5.000.000"),"Bank app reads real contract funds");yield return Shot("07b-phone-bank");
             View.Apps.Open(PhoneApp.Inventory);yield return null;var inventory=GameObject.Find("InventoryEntries").GetComponent<Text>().text;Check(inventory.Contains("Smartphone Raka")&&!inventory.Contains("Rp"),"Phone inventory contains items, not donation balances");yield return Shot("07c-phone-inventory");
             View.Apps.Open(PhoneApp.Journal);yield return null;Check(GameObject.Find("JournalEntries").GetComponent<Text>().text.Contains("Surat peringatan kos"),"Phone journal app reads the actual discovered letter");
@@ -114,6 +119,8 @@ namespace LayarTerakhir.Diagnostics
             for(int slot=0;slot<4;slot++)for(int n=0;n<new[]{1,4,0,8}[slot];n++)Click("DigitUp_"+slot);
             yield return Shot("07e-four-wheel-padlock");Click("UnlockPadlockBtn");yield return null;
             Check(!UiFocus.Phone&&!Hud.IsModalOpen&&!player.MovementLocked&&!kos.hasMotorKey,"Drawer closes without trapping world input; keys not hidden in drawer");
+            Check(CampaignState.Instance.HasInventoryItem("DOMPET_RAKA")&&CampaignState.Instance.HasInventoryItem("DIARY_RAKA"),"Locked drawer also protects wallet and personal diary");
+            Phone.isPhoneRaised=true;Phone.SyncVisualState();View.Apps.Open(PhoneApp.Journal);yield return Shot("07g-diary-in-journal");Stow();
             yield return Walk(new Vector3(.4f,.05f,-.15f));yield return Use(kos.motorKeyItem,kos.motorKeyItem.GetComponent<Collider>().bounds.center);
             yield return Walk(new Vector3(1.05f,.05f,-.4f));Aim(kos.jacketItem.GetComponent<Collider>().bounds.center);yield return Shot("07f-visible-jacket");
             yield return Use(kos.jacketItem,kos.jacketItem.GetComponent<Collider>().bounds.center);
@@ -128,15 +135,22 @@ namespace LayarTerakhir.Diagnostics
             // The map is accessible anywhere but cannot teleport the player from upstairs.
             yield return Press(Key.M);yield return null;Check(View.Apps.CurrentApp==PhoneApp.Map&&!View.Apps.TravelSelection,"Map opens upstairs but departure is gate-only");Stow();
             yield return Walk(new Vector3(-.60f,3.3f,12.7f));Aim(new Vector3(-.60f,1.9f,16.4f));yield return Shot("09-kos-stairs");
+            yield return Walk(new Vector3(.70f,3.3f,13.6f),true);Check(player.transform.position.y>3,"Upper inner stair guard blocks the open drop");
+            Aim(new Vector3(1.1f,3.8f,14));yield return Shot("09a-stair-guardrails");yield return Walk(new Vector3(-.60f,3.3f,12.7f));
             yield return Walk(new Vector3(-.60f,1.65f,16.4f));yield return Walk(new Vector3(1.75f,1.65f,16.4f));
-            yield return Walk(new Vector3(1.75f,0,12.6f));yield return Walk(new Vector3(1.75f,0,11.5f));yield return Walk(new Vector3(0,0,11.5f));
+            yield return Walk(new Vector3(1.75f,0,12.6f));yield return Walk(new Vector3(0,0,12.6f));yield return Walk(new Vector3(0,0,11.5f));
             Check(player.transform.position.y<.15f,"Both complete stair flights are physically descended without teleporting");
             yield return Walk(new Vector3(0,0,4.25f));
             var kitchen=GameObject.Find("DAPUR BERSAMADoor").GetComponent<HingedDoor>();yield return Use(kitchen,kitchen.GetComponent<Collider>().bounds.center);
             yield return new WaitForSeconds(1.2f);yield return Walk(new Vector3(-2.7f,0,4.25f));Aim(new Vector3(-4.2f,1,4.8f));yield return Shot("10-kos-shared-kitchen");
             yield return Walk(new Vector3(0,0,4.25f));var bath=GameObject.Find("KAMAR MANDIDoor").GetComponent<HingedDoor>();yield return Use(bath,bath.GetComponent<Collider>().bounds.center);
             yield return new WaitForSeconds(1.2f);yield return Walk(new Vector3(2.5f,0,4.25f));Aim(new Vector3(4.1f,.6f,5.25f));yield return Shot("11-kos-shared-bathroom");
-            yield return Walk(new Vector3(0,0,4.25f));yield return Walk(new Vector3(0,0,-4.7f));Aim(corridor.motor.position+Vector3.up*.2f);
+            yield return Walk(new Vector3(0,0,4.25f));yield return Walk(new Vector3(0,0,.8f));
+            Aim(corridor.entranceDoor.GetComponent<Collider>().bounds.center);yield return Shot("11a-main-building-door");
+            yield return Walk(new Vector3(0,0,-2.0f),true);Check(!corridor.entranceDoor.IsOpen&&player.transform.position.z>-.9f,"Closed main entrance physically blocks the exit");
+            yield return Use(corridor.entranceDoor,corridor.entranceDoor.GetComponent<Collider>().bounds.center);yield return new WaitForSeconds(1.2f);
+            yield return Walk(new Vector3(0,0,-4.7f));Check(corridor.entranceDoor.IsOpen,"Main entrance must be opened before walking into yard");
+            Aim(new Vector3(0,3,-1));yield return Shot("11b-kos-facade-and-porch");Aim(corridor.motor.position+Vector3.up*.2f);
             yield return Use(corridor.motor.GetComponent<KosTravelItem>(),corridor.motor.GetComponent<Collider>().bounds.center);
             Check(View.Apps.TravelSelection&&corridor.CanDepart,"Motor interaction opens a valid destination map at the kos gate");yield return Shot("12-departure-map");
             // Cinematic movement needs multiple real samples even on a very slow software renderer.
@@ -173,6 +187,9 @@ namespace LayarTerakhir.Diagnostics
             yield return Crouch(true);yield return Walk(d.P(4.6f,6.2f,.54f));
             yield return Use(Item(AtmajaAction.DamarPhone),d.damarPhone.GetComponent<Collider>().bounds.center);yield return Shot("21-crouched-backpack-access");
             Check(Phone.arModuleUnlocked&&CampaignState.Instance.HasInventoryItem("MATABATIN_APK"),"Damar phone reached from the side, below table, using crouch and real first-hit interaction");
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());player.enabled=true;float crawlFoot=player.transform.position.y;
+            yield return new WaitForSeconds(.5f);player.enabled=false;
+            Check(player.IsCrouching&&player.transform.position.y<crawlFoot+.06f,"Releasing CTRL under actual dining table cannot stand or pop onto tabletop");
             yield return Walk(d.P(5.35f,6.2f,.54f));yield return Crouch(false);
             yield return Walk(d.P(5.35f,1.3f,.54f));yield return Walk(d.P(2.1f,1.3f,.54f));yield return Walk(d.P(2.1f,4.1f,.54f));
             Check(receipt.maximumInteriorFootY<.7f,"Dining route crossed both sides and end with feet on floor, never on tabletop");

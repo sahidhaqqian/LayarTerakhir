@@ -7,7 +7,7 @@ from datetime import datetime,timezone
 import hashlib,json,struct,zipfile,zlib,shutil
 root=Path(__file__).resolve().parents[1];out=root/'Builds/Windows';logs=root/'Builds/Logs'
 voices=json.loads((root/'Audit/prolog-voice-manifest.json').read_text())
-assert 'VoxCPM2' in voices['engine'] and len(voices['entries'])==15,'Wrong/stale speech bank'
+assert 'VoxCPM2' in voices['engine'] and len(voices['entries'])>=17,'Wrong/stale speech bank'
 assert not any(v['speaker']=='Bu Haji Ratna' for v in voices['entries']),'Landlady must not have VO'
 for voice in voices['entries']:
  assert hashlib.sha256((root/voice['path']).read_bytes()).hexdigest()==voice['sha256'],'Stale voice hash: '+voice['path']
@@ -53,7 +53,7 @@ for marker in ['Atmaja_Environment_Art','DamarParkedScooter','FallenKamboja','Ki
  assert marker.encode() in atmaja_data,marker
 assert b'Prolog_RumahAtmaja' in (out/'LayarTerakhir_Data/globalgamemanagers').read_bytes()
 corridor_data=(out/'LayarTerakhir_Data/level2').read_bytes()
-for marker in ['Spawn_KosFloor2','StairA_9','StairB_9','DAPUR BERSAMA','KAMAR MANDI','RakaMotor','RakaMotorHeadlight','KosGateHinge','KosStreetDeparture']:
+for marker in ['Spawn_KosFloor2','StairA_9','StairB_9','DAPUR BERSAMA','KAMAR MANDI','RakaMotor','RakaMotorHeadlight','KosGateHinge','KosStreetDeparture','KosMainEntranceDoor','StairwellFoundation','UpperLandingGuard','StairInnerGuardA_9','RoomCell_F2_21','KosPitchedRoof']:
  assert marker.encode() in corridor_data,marker
 runtime=(out/'LayarTerakhir_Data/Managed/Assembly-CSharp.dll').read_bytes()
 for marker in ['GameShell','PhoneDesktop','PhoneSkin','KosRoomCorrections','ClockPuzzleView','ClockAmbience','KosCorridorDirector','KosTravelItem','ReviewPlayerAudit']:

@@ -2,6 +2,8 @@
 
 Revisi desain 16 Oktober 2026, mengikuti koreksi playtest pengguna untuk Kos/HP. Revisi ini menggantikan gembok 3 digit dan presentasi voice note di GDD 15 Oktober: sekarang empat roda tanggal/bulan dan panggilan otomatis. Lokasi: Kamar Kos Raka dan Rumah Keluarga Atmaja. Ancaman: Nyonya Sri Atmaja. Durasi jalur utama 90 menit. Prolog tidak memberikan segel lokasi dan tidak memiliki item rahasia wajib untuk secret ending.
 
+Revisi lanjutan `goal.md`: ketukan keras memotong ujung monolog dan Raka menoleh ke pintu; surat baru diselipkan setelah ketukan. HP memiliki ringtone masuk. Jeritan Damar dan bunyi gangguan mendahului putusnya panggilan; setelah respons Raka ada jeda 3,5 detik sebelum pesan kontrak masuk. Raka bereaksi, "Anjir, Damar dalam bahaya! Duit ini nggak gratis... Untuk sementara gue harus ikutin perintah dari pesan ini." Telepon menyediakan kontak Damar, Ibu dan Bu Haji Ratna, tanpa menambah dialog mereka. HP tetap dapat dibuka sambil WASD berjalan; tahan klik kanan untuk menoleh saat pointer aplikasi aktif. Laci juga menyimpan dompet dan buku harian pribadi Raka (bisa dibaca lewat Jurnal), bukan hanya powerbank. Kos merupakan bangunan tertutup dengan kamar bervolume, tangga berpembatas, serta pintu utama berengsel sebelum halaman; pintu utama harus dibuka secara fisik.
+
 Kontrol dan parameter HP mengikuti Rancangan.MD. Tiga foto tragedi membuka pintu Kamar Utama; ini merupakan tutorial bukti, bukan konfirmasi boss. Foto bukti menguras 1%, sedangkan Blitz darurat menguras 15%. HP Raka merupakan satu perangkat aktif setelah kartu aplikasi Damar dipindahkan. Damar mengoprek aplikasi yang berasal dari pengikut Mbah Suro, bukan menciptakan sumber kutukannya.
 
 Foreshadowing Arsip Saksi: tambahkan simbol mata tertutup di belakang bingkai foto ketiga. Jika diperiksa dengan AR, muncul teks "Saksi menyimpan nama, penonton hanya menyimpan wajah". Catatan ini memperkenalkan simbol tanpa menambah collectible di luar Phase1–Phase5.
@@ -63,7 +65,7 @@ HP Raka di atas kasur bergetar keras dengan lampu LED berkedip merah.
 * **Cara Menyelesaikan Puzzle Laci:**
 * *Sticky note*: *"Empat putaran. Yang merawatku lebih dulu. Hari mendahului bulan."*
 * **Kalender Agustus** menandai tanggal 17 sebagai Merdeka, dengan catatan *"Ibu bertambah usia tiga hari sebelumnya. Jangan lupa telepon."* Pemain harus menghubungkan dua petunjuk; angka jawaban lengkap tidak dicetak di dokumen/objektif.
-* Jawaban desain tetap ulang tahun Ibu **14 Agustus**, yaitu **`14-08` / `1408`**, bukan `148`. Laci memberi **1x powerbank kecil**; kunci motor tetap harus diambil dari meja.
+* Jawaban desain tetap ulang tahun Ibu **14 Agustus**, yaitu **`14-08` / `1408`**, bukan `148`. Laci memberi **1x powerbank kecil, dompet dan buku harian Raka**; kunci motor tetap harus diambil dari meja. Buku harian tidak menambah pusaka/collectible wajib atau uang.
 
 * Pintu kamar menuju lorong kos **lantai 2**, melewati kamar-kamar tertutup dan tangga ke lantai bawah yang memiliki dapur/kamar mandi bersama. Pemain keluar ke halaman/gerbang, memilih Atmaja di Peta HP, lalu animasi menaiki motor dan benar-benar melewati gerbang berlangsung sebelum transisi tujuan. Pintu kamar tidak langsung menteleport pemain ke Atmaja.
 

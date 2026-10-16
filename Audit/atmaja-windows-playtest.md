@@ -7,16 +7,22 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
 1. NEW GAME: bangun dari kasur, monolog Raka, **tiga ketukan sungguhan lalu langkah menjauh**.
    Tidak ada caption SFX atau suara ibu kos. Baca surat bawah pintu, lalu ambil HP:
    panggilan Damar langsung tersambung tanpa dokumen/tombol putar pesan. Setelahnya pesan kontrak
-   masuk di Pesan dan dana tercatat di Bank. Simpan HP dengan tombol di layar/TAB untuk eksplorasi.
+   masuk di Pesan sesudah jeda 3,5 detik dan dana tercatat di Bank; Raka bereaksi terhadap ancaman.
+   Ketukan harus keras dan Raka menoleh; surat baru masuk setelah ketukan. Sebelum pickup ada ringtone;
+   sebelum telepon putus ada teriakan Damar. HP boleh tetap dibuka sambil WASD; tahan RMB untuk menoleh.
    Cocokkan sticky note dan kalender untuk **empat roda tanggal/bulan**; petunjuk tidak mencetak jawaban.
-   Ambil kunci yang terlihat di meja, powerbank dari laci dan jaket di gantungan. Setelah menutup
+   Ambil kunci yang terlihat di meja, powerbank/dompet/buku harian dari laci dan jaket di gantungan. Baca buku harian melalui Jurnal/Tas. Setelah menutup
    gembok/modal, WASD/E harus tetap bekerja; daftar persiapan menunjukkan barang yang belum diambil.
 2. Pintu kamar harus menuju **lorong lantai 2**, dengan kamar penghuni lain tertutup.
    Turuni dua flight tangga, coba pintu dapur bersama dan kamar mandi di bawah.
-   Berjalan ke halaman dan motor/gerbang. Tidak boleh langsung pindah ke Atmaja.
+   Periksa guardrail sisi dalam tangga; jangan sampai jatuh ke void. Buka pintu utama bangunan secara
+   fisik, lalu berjalan ke teras, halaman dan motor/gerbang. Lihat kembali fasad/atap kos.
+   Tidak boleh langsung pindah ke Atmaja. Kamar tertutup mempunyai lantai/dinding/plafon di belakangnya.
 3. TAB angkat HP. Z beralih aplikasi/kamera; M membuka peta jalan dari mana saja.
    Kamera, Peta dengan pin Kos/Atmaja, Pesan, Jurnal, Tas, Bank, Telepon dan Setelan dapat diperiksa.
    Tas hanya barang, bukan saldo. Status HUD lama tidak boleh menumpuk di bezel/status bar HP.
+   Telepon mempunyai Damar, Ibu dan Bu Haji Ratna; panggilan keluar lokal berbunyi lalu gagal tersambung,
+   bukan jaringan telepon sungguhan. Nomor fiktif disamarkan, tidak menelepon orang di dunia nyata.
    Tujuan lain masih terkunci. Berangkat ke Atmaja **hanya dekat motor/gerbang**, bukan dari kamar.
    Setelah pilih tujuan, lihat animasi mendekat/naik motor, tangan di setang, gerbang membuka,
    lampu depan menyorot jalan dari lensa motor, dan motor melaju melewati gerbang sebelum

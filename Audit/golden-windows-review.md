@@ -21,7 +21,7 @@ Optional isolated automated smoke (PowerShell, from extracted Windows directory)
 This flag creates a fresh IsolatedSave-GUID subfolder, never reads/deletes the personal checkpoint,
 poses some compact-room views, then uses continuous CharacterController walking to gather the
 remaining preparation items, exit the room, descend both stairs and traverse Atmaja. It captures
-35 raw screenshots with HUD, records up to 45 seconds of actual listener output, solves real UI
+41 raw screenshots with HUD, records up to 45 seconds of actual listener output, solves real UI
 buttons and verifies checkpoint/Continue without touching personal saves. Story timers are accelerated
 after the bed wake, so it is not natural dialogue pacing/acting acceptance. The player exits with
 code 0 on success / 1 on failure. Inspect player-audit.json. The old `-goldenAudit` is a retired 3-digit diagnostic.
@@ -40,6 +40,13 @@ Acceptance checklist:
 - Check minimal HUD at 1280×720, 1920×1080 and 16:10; no clipped objective/phone controls/subtitles.
 - Listen to rain, PC and room tone; no conspicuous loop seams, clipping or overpowering mix.
 - Verify phone vibration stops on pickup, modal ducking, knocks, foley, donation and departure fades.
+- Confirm loud knocks turn Raka toward the door and the letter only then slides in; a ringtone precedes pickup.
+- Listen for Damar's panicked delivery/distress cry, cutoff, message delay and Raka's contract reaction.
+- Keep apps open while walking with WASD; hold right mouse to look. Test all three local phone contacts.
+- Retrieve wallet/diary with the powerbank; read the diary in Jurnal. Neither grants extra money.
+- Try walking toward the stair's inner drop; physical guards must stop it. Inspect the closed room volumes.
+- Open the real main building door before entering the porch/yard; inspect the facade looking back.
+- Release CTRL while directly below the Atmaja tabletop: stay crouched, never pop onto the table.
 - Run both jacket/drawer orders, save/reload checkpoint, phone screen/battery controls.
 - Measure frame pacing and CPU/GPU time on i5-1155G7 / Iris Xe / 8 GB. Target ≥30 FPS; not yet claimed.
 

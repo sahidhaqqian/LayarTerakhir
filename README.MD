@@ -12,6 +12,8 @@ Permainan berjalan dalam enam babak bercerita (Babak 0–5) dengan mekanik eksor
 
 Scene/aset kamar kos approved 5 × 3,8 m dipertahankan. Revisi feedback terbaru memakai empat roda gembok dengan petunjuk deduksi, kunci motor di meja, jaket terlihat dan laci berisi powerbank. Ibu kos hanya meninggalkan surat; HP langsung menyambungkan panggilan Damar, tanpa dokumen/tombol putar pesan. Pintu kamar menuju `Prolog_KoridorKos`: lantai 2, kamar tertutup, tangga, dapur/kamar mandi bersama, halaman, peta dan animasi motor melewati gerbang. Baru kemudian ke `Prolog_RumahAtmaja`.
 
+Pass immersion berikutnya melengkapi kos dengan 14 ruang kamar bervolume, fondasi/guardrail tangga, pintu utama yang benar-benar dibuka, fasad/atap/teras, ventilasi, kelistrikan dan detail penghuni. Ketukan keras membuat Raka menoleh, surat baru diselipkan, HP berdering, Damar menjerit sebelum putus, kemudian pesan datang setelah jeda. Retake neural memakai kontrol emosi yang aktif; Telepon mempunyai tiga kontak lokal. WASD tetap berjalan saat aplikasi HP terbuka, tahan RMB untuk menoleh. Dompet dan buku harian ikut tersimpan di laci; buku harian terbaca di Jurnal. Laporan: [`Audit/kos-immersion-2026-10-16.md`](Audit/kos-immersion-2026-10-16.md).
+
 Atmaja memiliki kursi kayu berarah, jalur samping meja, ruang tamu depan/gudang, meja kecil pojok, jam menempel dinding dengan tik-tok dan kontrol jam/menit, tulisan darah merah lewat AR, serta interior gelap dengan cahaya HP. HP memiliki bezel/status bar, ikon vektor, Kamera, Peta jalan berlisensi CC0 dengan pin Kos/Atmaja, Pesan, Jurnal, Tas, Bank, Setelan dan Telepon. Dana tidak ditampilkan di Tas. Peta offline memakai gambar internet; pin/rute adalah lokasi cerita fiktif.
 
 Yang **belum** dibangun: Adegan 4–7 (lantai dua Atmaja sampai akhir Prolog), UV/Selfie lanjutan, stealth/chase, ritual, dan ending. Tujuan peta berikutnya masih terkunci. VO neural sintetis tiga karakter telah menggantikan suara lama; kualitas akting/intonasi, animasi motor first-person dan kesulitan/tensi masih perlu review manusia. Uji visual/performa akhir wajib di Windows Iris Xe; Linux software-rendering tidak membuktikan target 30 FPS. Laporan revisi terbaru: [`Audit/kos-feedback-2026-10-16.md`](Audit/kos-feedback-2026-10-16.md); laporan sebelumnya: [`Audit/playtest-fixes-2026-10-16.md`](Audit/playtest-fixes-2026-10-16.md).
@@ -128,13 +130,17 @@ Bukti (log, XML tes, JSON validasi, screenshot, checksum) tersimpan di `Audit/`.
 
 `-reviewAudit <dir>` menguji alur revisi dengan save terisolasi dan screenshot framebuffer aktual. Interaksi kamar Golden diposisikan untuk regresi; koridor/tangga/Atmaja ditempuh lewat substep CharacterController, bukan teleport. Timer cerita dipercepat dan waktu dibekukan singkat saat capture; bukan pengujian pacing/VO natural atau FPS. `-goldenAudit` lama hanya untuk smoke Kos terisolasi; `-atmajaAudit` lama bukan bukti revisi ini. Stage `atmaja-player` kini alias `review-player`. Semua flag audit tidak aktif pada permainan normal.
 
-Regenerasi revisi (host authoring Linux dengan Blender, eSpeak NG, FFmpeg, fonts-dejavu-core):
+Regenerasi revisi (host authoring Linux dengan Blender, Python voice environment, FFmpeg, fonts-dejavu-core):
 
 ```sh
 blender -b --python Tools/repair_playtest_art.py
 python3 Tools/synth_prolog_voice.py
 python3 Tools/run_golden_checks.py --stage review-build
 ```
+
+Untuk koridor/presentasi saja, gunakan `--stage kos-refine` agar scene Atmaja tidak ditulis ulang.
+`Tools/improve_kos_audio.py` membuat SFX original dan retake terarah melalui demo publik resmi OpenBMB;
+hanya naskah fiksi/referensi sintetis original yang dikirim, tidak ada audio pribadi atau save.
 
 Jalankan repair di atas setelah authoring Atmaja lama agar model revisi tidak tertimpa pass lama.
 
@@ -144,7 +150,7 @@ Jalankan repair di atas setelah authoring Atmaja lama agar model revisi tidak te
 
 - Kode proyek: lihat [`LICENSE`](LICENSE) (GPL-2.0).
 - Aset pihak ketiga: PolyHaven/Kenney (CC0), bagian Wooden Overhang Modular Kit oleh Trey Ramm (CC BY 4.0; kredit wajib), font Barlow (SIL OFL). Sumber dan perubahan dicatat di [`Audit/asset-credits.md`](Audit/asset-credits.md), [`Audit/atmaja-art-manifest.json`](Audit/atmaja-art-manifest.json).
-- Build Windows menyertakan `Asset-Credits.txt`, `Barlow-OFL.txt`, dan `DejaVu-Font-License.txt` (outline angka jam); jangan menghapus pemberitahuan lisensi. Suara sintetis sementara dibuat offline dengan eSpeak NG; tool sintesis tidak dibundel.
+- Build Windows menyertakan `Asset-Credits.txt`, `Barlow-OFL.txt`, dan `DejaVu-Font-License.txt` (outline angka jam); jangan menghapus pemberitahuan lisensi. VO neural sintetis dirender menjadi WAV offline; model/tool/service sintesis tidak dibundel dan tidak dibutuhkan saat bermain. SFX tambahan adalah karya original proyek.
 
 ---
 

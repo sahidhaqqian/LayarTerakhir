@@ -1,5 +1,22 @@
 Asset provenance for Kamar Kos and the Atmaja continuation, with the 2026-10-16 playtest revision.
 
+## Kos immersion follow-up — 16 October 2026
+
+`KosCorridorBuilding.cs` is original Unity-native architectural/dressing geometry (room shells,
+stair guards, facade/roof/porch, main door, conduit, vents, slipper pairs). Materials, gate, scooter,
+planters and ferns reuse already-credited assets below; no additional environment pack was downloaded.
+`Tools/improve_kos_audio.py` authors five original mathematical/noise PCM effects: forceful wooden
+door knock, incoming ringtone, outgoing local call tone, metal scrape and glass/cutoff. No external
+recordings, melodies or human voice identity are sampled for these effects.
+
+Six targeted neural retakes use the same original fictional Raka/Damar references and the official
+OpenBMB VoxCPM2 public demo, reference-only controllable cloning. The previous transcript-continuation
+mode explicitly omitted style control in the service implementation; the corrected mode now applies
+the performance direction. The [official source](https://huggingface.co/spaces/openbmb/VoxCPM-Demo/raw/main/app.py)
+and [Apache-2.0 model card](https://huggingface.co/openbmb/VoxCPM2) were checked again. Added distress
+cry and contract reaction are synthetic; acting quality remains subject to human approval. The current
+17-entry manifest is authoritative; no synthesis service or model runs inside the shipped game.
+
 ## Playtest revision — 16 October 2026
 
 No new environment asset pack was downloaded. `Tools/repair_playtest_art.py` authors worn wooden chairs,

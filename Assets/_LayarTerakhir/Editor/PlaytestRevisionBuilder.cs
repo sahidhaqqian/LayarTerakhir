@@ -19,6 +19,22 @@ namespace LayarTerakhir.Editor
             var map=(TextureImporter)AssetImporter.GetAtPath("Assets/Resources/Phone/JakartaStreetMap.png");
             if(map){map.maxTextureSize=1024;map.mipmapEnabled=false;map.wrapMode=TextureWrapMode.Clamp;map.textureCompression=TextureImporterCompression.Compressed;map.SaveAndReimport();}
             AtmajaSceneBuilder.Build();
+            ImportPresentation();KosCorridorBuilder.Build();
+            Debug.Log("PLAYTEST_REVISION_BUILD complete; Golden room scene preserved");
+        }
+        [MenuItem("LayarTerakhir/Prolog/Refine Kos only (preserve both approved scenes)")]
+        public static void RefineKos()
+        {
+            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+            ImportPresentation();KosCorridorBuilder.Build();
+            Debug.Log("KOS_REFINEMENT_BUILD complete; Golden and Atmaja source scenes not rewritten");
+        }
+        private static void ImportPresentation()
+        {
+            foreach(var path in Directory.GetFiles("Assets/Resources/KosAudio","*.wav"))
+            {
+                var importer=(AudioImporter)AssetImporter.GetAtPath(path);importer.forceToMono=true;var settings=importer.defaultSampleSettings;settings.loadType=AudioClipLoadType.DecompressOnLoad;settings.compressionFormat=AudioCompressionFormat.ADPCM;importer.defaultSampleSettings=settings;importer.SaveAndReimport();
+            }
             foreach(var path in Directory.GetFiles("Assets/_LayarTerakhir/Audio/Dialogue","*.wav"))
             {
                 var importer=(AudioImporter)AssetImporter.GetAtPath(path);importer.forceToMono=true;var settings=importer.defaultSampleSettings;settings.loadType=AudioClipLoadType.CompressedInMemory;settings.compressionFormat=AudioCompressionFormat.Vorbis;settings.quality=.7f;settings.sampleRateSetting=AudioSampleRateSetting.OverrideSampleRate;settings.sampleRateOverride=22050;importer.defaultSampleSettings=settings;importer.SaveAndReimport();
@@ -28,8 +44,7 @@ namespace LayarTerakhir.Editor
             if(!profile){profile=ScriptableObject.CreateInstance<PresentationProfile>();AssetDatabase.CreateAsset(profile,profilePath);}
             profile.bodyFont=AssetDatabase.LoadAssetAtPath<Font>("Assets/_LayarTerakhir/UI/Fonts/Barlow-Regular.ttf");profile.audio=AssetDatabase.LoadAssetAtPath<SceneAudioProfile>("Assets/_LayarTerakhir/Audio/KosAudioProfile.asset");profile.phoneFeedMaterial=AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/Art/Atmaja/Materials/PhoneFeed.mat");
             var voices=JsonUtility.FromJson<VoiceManifest>(File.ReadAllText("Audit/prolog-voice-manifest.json"));profile.voices=voices.entries.Select(v=>new PresentationProfile.VoiceLine{speaker=v.speaker,text=v.text,clip=AssetDatabase.LoadAssetAtPath<AudioClip>(v.path)}).ToArray();
-            EditorUtility.SetDirty(profile);AssetDatabase.SaveAssets();KosCorridorBuilder.Build();
-            Debug.Log("PLAYTEST_REVISION_BUILD complete; Golden room scene preserved; voice entries="+profile.voices.Length);
+            EditorUtility.SetDirty(profile);AssetDatabase.SaveAssets();
         }
     }
 }

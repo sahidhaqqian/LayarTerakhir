@@ -54,11 +54,25 @@ namespace LayarTerakhir.Editor
             Check(GameObject.Find("StairA_0")&&GameObject.Find("StairA_9")&&GameObject.Find("StairB_0")&&GameObject.Find("StairB_9"),"Two complete flights connect the kos floors");
             Check(corridor.motor&&corridor.gateHinge&&corridor.rideExit.position.z<-10,"Motorcycle and gate-to-street departure path are bound");
             Check(corridor.motorHeadlight&&!corridor.motorHeadlight.enabled&&corridor.motorHeadlight.transform.IsChildOf(corridor.motor),"Departure headlight is attached to the real scooter lens and starts off");
+            Check(corridor.entranceDoor&&corridor.entranceDoor.hinge&&corridor.entranceDoor.GetComponent<Collider>()&&!corridor.entranceDoor.locked,"Building has a real framed, collidable, operable main entrance");
+            Check(GameObject.Find("StairwellFoundation")&&GameObject.Find("UpperLandingGuard")&&GameObject.Find("StairInnerGuardA_9")&&GameObject.Find("StairInnerGuardB_9"),"Inner stair edges and upper landing have physical guards over a closed foundation");
+            var cells=GameObject.Find("Kos_Building_Corridors").GetComponentsInChildren<Transform>().Where(t=>t.name.StartsWith("RoomCell_")).ToArray();
+            Check(cells.Length==14,"Every locked tenant door belongs to one of fourteen enclosed room cells");
+            Physics.SyncTransforms();
+            bool enclosed=cells.All(cell=>
+            {
+                var floor=cell.Find("RoomFloor").GetComponent<Collider>().bounds;
+                var point=new Vector3(floor.center.x,floor.max.y+1.45f,floor.center.z);
+                return new[]{Vector3.down,Vector3.up,Vector3.forward,Vector3.back,Vector3.left,Vector3.right}.All(dir=>Physics.Raycast(point,dir,5,~0,QueryTriggerInteraction.Ignore));
+            });
+            Check(enclosed,"Room-cell centres hit actual floor, ceiling and walls in all six directions, not skybox");
+            Check(Resources.Load<AudioClip>("KosAudio/IncomingCall")&&Resources.Load<AudioClip>("KosAudio/HardDoorKnock"),"Loud original knocks and ringtone are packaged offline Resources");
             Check(Object.FindObjectsByType<HingedDoor>(FindObjectsSortMode.None).Length>=14&&Object.FindObjectsByType<KosTravelItem>(FindObjectsSortMode.None).Length==2,"Closed kos doors, shared doors and travel interactions survive serialization");
             foreach(var t in UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects().SelectMany(g=>g.GetComponentsInChildren<Transform>(true)))
                 Check(GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(t.gameObject)==0,"No missing corridor scripts: "+t.name);
             var profile=PresentationProfile.Load();Check(profile&&profile.voices.Length>=14&&profile.voices.All(v=>v.clip&&v.clip.length>.3f),"Neural dialogue WAV bank is complete and serialized in build");
             Check(profile&&!profile.voices.Any(v=>v.speaker=="Bu Haji Ratna")&&profile.voices.Any(v=>v.text==LayarTerakhir.UI.KosDialogue.Trapped),"Landlady only leaves a letter; trapped-window dialogue remains voiced");
+            Check(profile&&profile.voices.Any(v=>v.text==LayarTerakhir.UI.KosDialogue.DamarScream)&&profile.voices.Any(v=>v.text==LayarTerakhir.UI.KosDialogue.ContractReaction),"Distress cry and post-message reaction both have actual speech clips");
             File.WriteAllText("Audit/playtest-review-validation.json",JsonUtility.ToJson(new Record{utc=DateTime.UtcNow.ToString("o"),failures=failures,checks=checks.ToArray()},true)+"\n");
             if(failures>0)throw new Exception("Playtest review validation failed: "+failures);
         }

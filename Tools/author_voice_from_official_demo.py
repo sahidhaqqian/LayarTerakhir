@@ -18,7 +18,7 @@ for name in ['Prolog/KamarKosPrologDirector.cs','Prolog/AtmajaDirector.cs']:
     source=(ROOT/'Assets/_LayarTerakhir/Scripts'/name).read_text()
     for speaker,line in re.findall(r'(?:EnqueueSubtitle|PlayPriorityDialogue)\(\s*"(Raka|Bisikan|Damar)"\s*,\s*"((?:[^"\\]|\\.)*)"',source):lines.append((speaker,json.loads('"'+line+'"')))
 source=(ROOT/'Assets/_LayarTerakhir/Scripts/UI/PhoneDesktop.cs').read_text()
-for key,speaker in [('DamarVoiceNote','Damar'),('Trapped','Raka')]:
+for key,speaker in [('DamarVoiceNote','Damar'),('DamarScream','Damar'),('ContractReaction','Raka'),('Trapped','Raka')]:
     m=re.search(r'const string '+key+r'="((?:[^"\\]|\\.)*)"',source);lines.append((speaker,json.loads('"'+m[1]+'"')))
 source=(ROOT/'Assets/_LayarTerakhir/Scripts/Prolog/AtmajaDirector.cs').read_text();m=re.search(r'const string LiveIntro="((?:[^"\\]|\\.)*)"',source);lines.append(('Raka',json.loads('"'+m[1]+'"')))
 progress=ROOT/'Audit/official-voice-progress.json';previous=json.loads(progress.read_text()).get('entries',[]) if progress.exists() else []
@@ -33,7 +33,7 @@ for index,(speaker,text) in enumerate(dict.fromkeys(lines)):
     if speaker=='Damar':delivery='Breathless and frightened, urgently warning a close friend, hushed voice'
     elif speaker=='Bisikan':delivery='Slow, ominous, raspy whisper'
     elif '?' in text or '!' in text:delivery='Anxious and urgent, natural spoken Indonesian'
-    source_file=client.predict(text_input=spoken,control_instruction=delivery,reference_wav_path_input=handle_file(str(SAMPLES/(speaker+'.wav'))),use_prompt_text=True,prompt_text_input=casting[speaker][1],cfg_value_input=2.0,do_normalize=False,denoise=False,api_name='/generate')
+    source_file=client.predict(text_input=spoken,control_instruction=delivery,reference_wav_path_input=handle_file(str(SAMPLES/(speaker+'.wav'))),use_prompt_text=False,prompt_text_input='',cfg_value_input=2.0,do_normalize=False,denoise=False,api_name='/generate')
     filters='highpass=f=70,lowpass=f=8500,loudnorm=I=-18:TP=-3:LRA=9'
     if speaker=='Damar':filters='highpass=f=220,lowpass=f=4400,loudnorm=I=-17:TP=-3:LRA=9'
     if speaker=='Bisikan':filters='highpass=f=180,lowpass=f=4500,aecho=0.6:0.4:95:0.16,loudnorm=I=-23:TP=-5:LRA=9'

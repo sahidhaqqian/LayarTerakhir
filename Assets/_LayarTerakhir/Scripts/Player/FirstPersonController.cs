@@ -1,6 +1,7 @@
 using LayarTerakhir.Core;
 using LayarTerakhir.UI;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace LayarTerakhir.Player
 {
@@ -41,6 +42,8 @@ namespace LayarTerakhir.Player
         private float _slideTimer;
         private Vector3 _slideDirection;
         private float _standingStepOffset;
+        private readonly Collider[] _headroomHits = new Collider[24];
+        public static bool PhoneLookHeld => UiFocus.Phone && Mouse.current != null && Mouse.current.rightButton.isPressed;
 
         private void Awake()
         {
@@ -58,13 +61,13 @@ namespace LayarTerakhir.Player
         private void Update()
         {
             bool modalOpen = HudController.Instance != null && HudController.Instance.IsModalOpen;
-            if (modalOpen || MovementLocked || UiFocus.BlocksWorld)
+            if (modalOpen || MovementLocked || UiFocus.BlocksMovement)
             {
                 ApplyGravityOnly();
                 return;
             }
 
-            HandleMouseLook();
+            if (!UiFocus.Phone || PhoneLookHeld) HandleMouseLook();
             HandleMovementAndPosture();
         }
 
@@ -166,14 +169,21 @@ namespace LayarTerakhir.Player
             _controller.Move(_verticalVelocity * Time.deltaTime);
         }
 
-        private bool CanStandUp()
+        public bool CanStandUp()
         {
-            if (!IsCrouching)
-                return true;
-
-            Vector3 origin = transform.position + Vector3.up * crouchHeight;
-            float checkDistance = (standingHeight - crouchHeight) + 0.05f;
-            return !Physics.SphereCast(origin, _controller.radius * 0.85f, Vector3.up, out _, checkDistance);
+            if (!IsCrouching && _controller.height >= standingHeight - .05f) return true;
+            // A cast misses a tabletop already overlapping its start sphere. Test the entire
+            // prospective standing capsule, excluding our own hull and harmless triggers.
+            float radius = Mathf.Max(.05f, _controller.radius - .025f);
+            Vector3 bottom = transform.position + Vector3.up * (radius + .025f);
+            Vector3 top = transform.position + Vector3.up * (standingHeight - radius);
+            int count = Physics.OverlapCapsuleNonAlloc(bottom, top, radius, _headroomHits, ~0, QueryTriggerInteraction.Ignore);
+            var hits = count == _headroomHits.Length
+                ? Physics.OverlapCapsule(bottom, top, radius, ~0, QueryTriggerInteraction.Ignore) : _headroomHits;
+            if (hits != _headroomHits) count = hits.Length;
+            for (int i = 0; i < count; i++)
+                if (hits[i] && hits[i] != _controller && !hits[i].transform.IsChildOf(transform)) return false;
+            return true;
         }
     }
 }

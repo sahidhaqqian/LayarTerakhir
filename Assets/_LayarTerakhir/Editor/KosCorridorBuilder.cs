@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 using Object=UnityEngine.Object;
 namespace LayarTerakhir.Editor
 {
-    public static class KosCorridorBuilder
+    public static partial class KosCorridorBuilder
     {
         public const string ScenePath="Assets/_LayarTerakhir/Scenes/Prolog_KoridorKos.unity";
         private static Transform root;private static KosCorridorDirector d;private static Material wall,floor,wood,metal;
@@ -34,11 +34,9 @@ namespace LayarTerakhir.Editor
             Box("UpperHallFrontWall",new Vector3(0,4.75f,-1),new Vector3(3.1f,2.9f,.18f),wall);
             foreach(float x in new[]{-1.5f,1.5f})
             {
-                Box("UpperRoomWall",new Vector3(x,4.75f,6),new Vector3(.18f,2.9f,14),wall);
+                HallWallWithDoorways(x,3.3f);
+                HallWallWithDoorways(x,0);
                 Box("UpperHallSkirting",new Vector3(x-Mathf.Sign(x)*.11f,3.4f,6),new Vector3(.045f,.18f,14),metal);
-                // Ground side walls stop at the shared kitchen/bath opening.
-                Box("GroundRoomWallFront",new Vector3(x,1.45f,1.0f),new Vector3(.18f,2.9f,3),wall);
-                Box("GroundRoomWallRear",new Vector3(x,1.45f,8.5f),new Vector3(.18f,2.9f,5),wall);
                 for(int i=0;i<4;i++)
                 {
                     float z=1.5f+i*3;
@@ -68,6 +66,7 @@ namespace LayarTerakhir.Editor
                 Beam("StairRailPostB",new Vector3(2.4f,1.65f-y+1.65f,z),new Vector3(2.4f,1.65f-y+2.55f,z),.038f);
             }
             SharedRoom(-1,"DAPUR BERSAMA");SharedRoom(1,"KAMAR MANDI");
+            CompleteBuilding();
             Box("KosYard",new Vector3(0,-.08f,-5),new Vector3(11,.16f,10),floor);
             Box("KosStreet",new Vector3(0,-.10f,-12),new Vector3(12,.2f,8),AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/Art/Atmaja/Materials/dirty_concrete.mat"));
             foreach(float x in new[]{-5.5f,5.5f})Box("YardBoundary",new Vector3(x,1.3f,-4),new Vector3(.2f,2.6f,8),wall);
@@ -84,8 +83,8 @@ namespace LayarTerakhir.Editor
             d.rideExit=Anchor("KosStreetDeparture",new Vector3(0,motor.transform.position.y,-12),Vector3.back);
             d.spawnLanding=Anchor("Spawn_KosFloor2",new Vector3(-.70f,3.34f,1.5f),Vector3.forward);d.spawnGround=Anchor("Spawn_KosGround",new Vector3(0,.04f,1),Vector3.back);
             p.transform.SetPositionAndRotation(d.spawnLanding.position,d.spawnLanding.rotation);var camera=p.GetComponent<InteractionInteractor>().playerCamera;camera.backgroundColor=new Color(.018f,.025f,.035f);camera.farClipPlane=50;
-            RenderSettings.skybox=null;RenderSettings.ambientMode=AmbientMode.Flat;RenderSettings.ambientLight=new Color(.07f,.075f,.085f);RenderSettings.fog=false;
-            for(int level=0;level<2;level++)foreach(float z in new[]{2f,8f,13.5f})Practical(new Vector3(0,2.65f+level*3.3f,z),new Color(.75f,.83f,.76f),1.2f,5);
+            RenderSettings.skybox=null;RenderSettings.ambientMode=AmbientMode.Flat;RenderSettings.ambientLight=new Color(.08f,.085f,.095f);RenderSettings.fog=true;RenderSettings.fogMode=FogMode.ExponentialSquared;RenderSettings.fogDensity=.016f;RenderSettings.fogColor=new Color(.018f,.025f,.035f);
+            for(int level=0;level<2;level++)foreach(float z in new[]{2f,8f,13.5f})Practical(new Vector3(0,2.65f+level*3.3f,z),new Color(.75f,.83f,.76f),2.8f,6.2f);
             Practical(new Vector3(0,3.3f,-.5f),new Color(.88f,.72f,.45f),1.6f,6);
             Box("StairWallLampHousing",new Vector3(-1.39f,2.85f,16.3f),new Vector3(.08f,.32f,.24f),metal);
             var diffuser=Material("KosLampDiffuser",new Color(.73f,.78f,.69f));diffuser.EnableKeyword("_EMISSION");diffuser.SetColor("_EmissionColor",new Color(.73f,.78f,.69f)*1.2f);EditorUtility.SetDirty(diffuser);
@@ -93,6 +92,12 @@ namespace LayarTerakhir.Editor
             var stairLamp=new GameObject("StairWallLampLight",typeof(Light));stairLamp.transform.SetParent(root,false);stairLamp.transform.position=new Vector3(-1.25f,2.85f,16.3f);var sl=stairLamp.GetComponent<Light>();sl.type=LightType.Point;sl.intensity=2.8f;sl.range=5;sl.color=new Color(.83f,.86f,.76f);sl.shadows=LightShadows.None;
             var volume=new GameObject("KosCorridorPost",typeof(Volume)).GetComponent<Volume>();volume.isGlobal=true;volume.sharedProfile=profile;
             d.engine=Source("RakaMotorEngine",d.audioProfile.effectsBus,1);d.engine.transform.position=motor.transform.position;d.rain=Source("KosYardRain",d.audioProfile.ambienceBus,0);d.rain.clip=d.audioProfile.rain;d.rain.loop=true;d.rain.volume=.25f;
+            var footsteps=sys.AddComponent<KosSceneAudio>();footsteps.profile=d.audioProfile;footsteps.player=d.player;
+            footsteps.stepsSource=Source("KosHallFootsteps",d.audioProfile.effectsBus,.8f);footsteps.uiSource=Source("KosHallHandsetSounds",d.audioProfile.uiBus,0);
+            // Unity bakes static batches at build time; moving doors/motor/gate stay unbatched.
+            foreach(var renderer in root.GetComponentsInChildren<MeshRenderer>())
+                if(!renderer.GetComponentInParent<HingedDoor>()&&!renderer.GetComponentInParent<KosTravelItem>())
+                    GameObjectUtility.SetStaticEditorFlags(renderer.gameObject,StaticEditorFlags.BatchingStatic);
             EditorSceneManager.SaveScene(scene,ScenePath);AssetDatabase.SaveAssets();
             EditorBuildSettings.scenes=new[]{new EditorBuildSettingsScene(PrologKosSceneBuilder.ScenePath,true),new EditorBuildSettingsScene(AtmajaSceneBuilder.ScenePath,true),new EditorBuildSettingsScene(ScenePath,true)};
             Debug.Log("KOS_CORRIDOR_BUILD two floors, U stairs, closed rooms, shared kitchen/bath, gate and ride");

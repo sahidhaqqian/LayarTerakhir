@@ -42,7 +42,11 @@ namespace LayarTerakhir.Prolog
         public Light phoneBedRedLed;
         public KosSceneAudio environmentAudio;
 
-        private void Awake() => KosRoomCorrections.Apply(this);
+        private void Awake()
+        {
+            KosRoomCorrections.Apply(this);
+            if(suratKosItem){suratKosItem.isInteractable=false;suratKosItem.gameObject.SetActive(false);}
+        }
         private void Start()
         {StartCoroutine(AwaitMenuChoice());}
         private IEnumerator AwaitMenuChoice()
@@ -69,7 +73,7 @@ namespace LayarTerakhir.Prolog
                 CampaignState.Instance.StartNewGame();
             }
 
-            if (suratKosItem != null) suratKosItem.isInteractable = false;
+            if (suratKosItem != null){suratKosItem.isInteractable = false;suratKosItem.gameObject.SetActive(false);}
             if (smartphoneBedItem != null) smartphoneBedItem.isInteractable = false;
             if (phoneBedRedLed != null) phoneBedRedLed.enabled = false;
 
@@ -124,10 +128,13 @@ namespace LayarTerakhir.Prolog
                 "Tiga puluh dua penonton... Itu pun paling setengahnya akun bot. Kalau malam ini nggak ada konten yang meledak, tamat riwayat gue di Jakarta.",
                 5.0f
             );
-            yield return new WaitForSeconds(monologue+.2f);
+            // Knock interrupts the end of Raka's muttering; he visibly turns toward its source.
+            yield return new WaitForSeconds(Mathf.Max(.5f,monologue-1.2f));
 
             // Ratna leaves a letter, not a spoken warning. Let the physical sequence finish.
-            if(environmentAudio)yield return environmentAudio.PlayOpeningKnocks();
+            if(environmentAudio)yield return environmentAudio.PlayOpeningKnocks(
+                ()=>StartCoroutine(TurnTowardDoor()),()=>StartCoroutine(SlideWarningLetter()));
+            else yield return SlideWarningLetter();
             UiFocus.Cinematic=false;var awakePlayer=FindFirstObjectByType<FirstPersonController>();if(awakePlayer)awakePlayer.MovementLocked=false;
 
             currentStage = KosPrologStage.WaitReadSuratIbuKos;
@@ -135,6 +142,23 @@ namespace LayarTerakhir.Prolog
                 suratKosItem.isInteractable = true;
 
             HudController.Instance.SetObjective("Periksa bawah pintu kamar.");
+        }
+        private IEnumerator TurnTowardDoor()
+        {
+            var player=FindFirstObjectByType<FirstPersonController>();var from=player.transform.rotation;
+            var direction=kosDoorItem.transform.position-player.transform.position;direction.y=0;
+            var target=Quaternion.LookRotation(direction);
+            for(float t=0;t<1;t+=Time.deltaTime/.65f){player.transform.rotation=Quaternion.Slerp(from,target,Mathf.SmoothStep(0,1,t));yield return null;}
+            player.transform.rotation=target;
+        }
+        private IEnumerator SlideWarningLetter()
+        {
+            if(!suratKosItem)yield break;
+            var end=suratKosItem.transform.position;var inward=end-kosDoorItem.transform.position;inward.y=0;
+            if(inward.sqrMagnitude<.001f)inward=Vector3.forward;inward.Normalize();
+            var start=end-inward*.32f;suratKosItem.gameObject.SetActive(true);
+            for(float t=0;t<1;t+=Time.deltaTime/.7f){suratKosItem.transform.position=Vector3.Lerp(start,end,Mathf.SmoothStep(0,1,t));yield return null;}
+            suratKosItem.transform.position=end;
         }
         private IEnumerator WakeFromBed()
         {
@@ -280,6 +304,7 @@ namespace LayarTerakhir.Prolog
             HudController.Instance.SetObjective("Dengarkan Damar.");
             float voice=HudController.Instance.PlayPriorityDialogue("Damar",KosDialogue.DamarVoiceNote,22);
             yield return new WaitForSeconds(voice+.2f);
+            if(environmentAudio)yield return environmentAudio.PlayCallPanic();
             view.Apps.EndDamarCall();
             float response=HudController.Instance.PlayPriorityDialogue(
                 "Raka",
@@ -287,6 +312,8 @@ namespace LayarTerakhir.Prolog
                 3.2f
             );
             yield return new WaitForSeconds(response+.2f);
+
+            yield return new WaitForSeconds(3.5f);
 
             if(environmentAudio)environmentAudio.NotifyDonation();
             if (CampaignState.Instance != null)
@@ -296,6 +323,7 @@ namespace LayarTerakhir.Prolog
 
             currentStage=KosPrologStage.PreparationAndDrawerPuzzle;
             view.Apps.ReceiveContract();
+            HudController.Instance.PlayPriorityDialogue("Raka",KosDialogue.ContractReaction,5);
             preparationStarted=true;CheckPreparationComplete();
         }
 
@@ -340,11 +368,13 @@ namespace LayarTerakhir.Prolog
                 if (CampaignState.Instance != null)
                 {
                     CampaignState.Instance.AddInventoryItem("POWERBANK_KECIL_KOS");
+                    CampaignState.Instance.AddInventoryItem("DOMPET_RAKA");
+                    CampaignState.Instance.AddInventoryItem("DIARY_RAKA");
                 }
 
                 HudController.Instance.EnqueueSubtitle(
                     "Raka",
-                    "Kebuka. Powerbank-nya masih penuh.",
+                    "Kebuka. Powerbank, dompet, sama buku harian gue masih di sini.",
                     3.5f
                 );
                 CheckPreparationComplete();

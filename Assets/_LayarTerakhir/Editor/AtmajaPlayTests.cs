@@ -58,12 +58,14 @@ namespace LayarTerakhir.Editor.Tests
             yield return SceneManager.LoadSceneAsync(PrologSceneFlow.CorridorScene);yield return new WaitForSeconds(1);
             var corridor=Find<KosCorridorDirector>();var p=corridor.player;p.enabled=false;
             Assert.That(p.transform.position.y,Is.GreaterThan(3));Assert.That(corridor.CanDepart,Is.False);
-            foreach(var point in new[]{new Vector3(-.6f,3.3f,12.7f),new Vector3(-.6f,1.65f,16.4f),new Vector3(1.75f,1.65f,16.4f),new Vector3(1.75f,0,12.6f),new Vector3(1.75f,0,11.5f),new Vector3(0,0,11.5f),new Vector3(0,0,4.25f)})yield return WalkCapsule(p,point);
+            foreach(var point in new[]{new Vector3(-.6f,3.3f,12.7f),new Vector3(-.6f,1.65f,16.4f),new Vector3(1.75f,1.65f,16.4f),new Vector3(1.75f,0,12.6f),new Vector3(0,0,12.6f),new Vector3(0,0,11.5f),new Vector3(0,0,4.25f)})yield return WalkCapsule(p,point);
             Assert.That(p.transform.position.y,Is.LessThan(.15f));
             GameObject.Find("DAPUR BERSAMADoor").GetComponent<HingedDoor>().Interact();yield return new WaitForSeconds(1.2f);
             yield return WalkCapsule(p,new Vector3(-2.7f,0,4.25f));yield return WalkCapsule(p,new Vector3(0,0,4.25f));
             GameObject.Find("KAMAR MANDIDoor").GetComponent<HingedDoor>().Interact();yield return new WaitForSeconds(1.2f);
-            yield return WalkCapsule(p,new Vector3(2.5f,0,4.25f));yield return WalkCapsule(p,new Vector3(0,0,4.25f));yield return WalkCapsule(p,new Vector3(0,0,-4.7f));
+            yield return WalkCapsule(p,new Vector3(2.5f,0,4.25f));yield return WalkCapsule(p,new Vector3(0,0,4.25f));yield return WalkCapsule(p,new Vector3(0,0,.8f));
+            Assert.That(corridor.entranceDoor.IsOpen,Is.False);corridor.entranceDoor.Interact();yield return new WaitForSeconds(1.2f);
+            Assert.That(corridor.entranceDoor.IsOpen,Is.True);yield return WalkCapsule(p,new Vector3(0,0,-4.7f));
             Assert.That(corridor.CanDepart,Is.True);Assert.That(CampaignState.Instance.Data.checkpoint_id,Is.EqualTo("PROLOG_KOS_YARD"));
         }
         private IEnumerator DiningNavigation()
