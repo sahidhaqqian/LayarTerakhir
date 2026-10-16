@@ -13,10 +13,12 @@ casting={
  'Damar':('Young adult man, low rough and urgent hushed voice','Raka, tolong dengerin gue. Rumah ini nggak kosong.'),
  'Bisikan':('Elderly woman, low raspy whisper','Haus... bukakan...'),
 }
+cast_voice={'Damar (rekaman)':'Damar','Nyonya Sri Atmaja':'Bisikan'}
 lines=[]
-for name in ['Prolog/KamarKosPrologDirector.cs','Prolog/AtmajaDirector.cs']:
+for name in ['Prolog/KamarKosPrologDirector.cs','Prolog/AtmajaDirector.cs','Prolog/AtmajaUpperDirector.cs','Prolog/AtmajaBasementHorror.cs','Prolog/AtmajaChaseSequence.cs']:
     source=(ROOT/'Assets/_LayarTerakhir/Scripts'/name).read_text()
-    for speaker,line in re.findall(r'(?:EnqueueSubtitle|PlayPriorityDialogue)\(\s*"(Raka|Bisikan|Damar)"\s*,\s*"((?:[^"\\]|\\.)*)"',source):lines.append((speaker,json.loads('"'+line+'"')))
+    for speaker,line in re.findall(r'(?:EnqueueSubtitle|PlayPriorityDialogue)\(\s*"([^"]+)"\s*,\s*"((?:[^"\\]|\\.)*)"',source):
+        if speaker in casting or speaker in cast_voice:lines.append((speaker,json.loads('"'+line+'"')))
 source=(ROOT/'Assets/_LayarTerakhir/Scripts/UI/PhoneDesktop.cs').read_text()
 for key,speaker in [('DamarVoiceNote','Damar'),('DamarScream','Damar'),('ContractReaction','Raka'),('Trapped','Raka')]:
     m=re.search(r'const string '+key+r'="((?:[^"\\]|\\.)*)"',source);lines.append((speaker,json.loads('"'+m[1]+'"')))
@@ -29,14 +31,19 @@ for index,(speaker,text) in enumerate(dict.fromkeys(lines)):
     if prior and output.exists() and hashlib.sha256(output.read_bytes()).hexdigest()==prior['sha256']:
         records.append(prior);print('VOICE_CACHED',index,speaker,flush=True);continue
     spoken=text.replace('MataBatin.apk','Mata Batin').replace('filter AR','filter A R').replace('HP','hape')
+    spoken=re.sub(r'\*[^*]*\*','',spoken).strip()
+    voice=cast_voice.get(speaker,speaker)
     delivery='Natural conversational Indonesian, quietly worried'
-    if speaker=='Damar':delivery='Breathless and frightened, urgently warning a close friend, hushed voice'
-    elif speaker=='Bisikan':delivery='Slow, ominous, raspy whisper'
+    if voice=='Damar':delivery='Breathless and frightened, urgently warning a close friend, hushed voice'
+    elif voice=='Bisikan':delivery='Slow, ominous, raspy whisper'
     elif '?' in text or '!' in text:delivery='Anxious and urgent, natural spoken Indonesian'
-    source_file=client.predict(text_input=spoken,control_instruction=delivery,reference_wav_path_input=handle_file(str(SAMPLES/(speaker+'.wav'))),use_prompt_text=False,prompt_text_input='',cfg_value_input=2.0,do_normalize=False,denoise=False,api_name='/generate')
+    if speaker=='Damar (rekaman)':delivery='Frantic breathless young man speaking through a broken phone recording, terrified, pleading'
+    if speaker=='Nyonya Sri Atmaja':delivery='An elderly woman screaming in enraged supernatural pain, loud and raw'
+    source_file=client.predict(text_input=spoken,control_instruction=delivery,reference_wav_path_input=handle_file(str(SAMPLES/(voice+'.wav'))),use_prompt_text=False,prompt_text_input='',cfg_value_input=2.0,do_normalize=False,denoise=False,api_name='/generate')
     filters='highpass=f=70,lowpass=f=8500,loudnorm=I=-18:TP=-3:LRA=9'
-    if speaker=='Damar':filters='highpass=f=220,lowpass=f=4400,loudnorm=I=-17:TP=-3:LRA=9'
-    if speaker=='Bisikan':filters='highpass=f=180,lowpass=f=4500,aecho=0.6:0.4:95:0.16,loudnorm=I=-23:TP=-5:LRA=9'
+    if voice=='Damar':filters='highpass=f=220,lowpass=f=4400,loudnorm=I=-17:TP=-3:LRA=9'
+    if voice=='Bisikan':filters='highpass=f=180,lowpass=f=4500,aecho=0.6:0.4:95:0.16,loudnorm=I=-23:TP=-5:LRA=9'
+    if speaker=='Damar (rekaman)':filters='highpass=f=300,lowpass=f=3400,loudnorm=I=-16:TP=-3:LRA=9'
     subprocess.run(['ffmpeg','-loglevel','error','-y','-i',str(source_file),'-af',filters,'-ac','1','-ar','24000','-c:a','pcm_s16le',str(output)],check=True)
     with wave.open(str(output),'rb') as w:
         rate=w.getframerate();samples=struct.unpack('<'+'h'*w.getnframes(),w.readframes(w.getnframes()))

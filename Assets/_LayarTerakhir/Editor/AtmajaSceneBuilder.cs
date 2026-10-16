@@ -64,7 +64,7 @@ namespace LayarTerakhir.Editor
                 // Uniform 1cm local size reproduces the source hull, including its rotated axes.
                 var c=marker.gameObject.AddComponent<BoxCollider>();c.size=Vector3.one*.01f;
             }
-            ShellAndGarden();ExteriorStoryObjects();AtmajaReviewDressing.Build();Lighting(profile);Audio();
+            ShellAndGarden();ExteriorStoryObjects();AtmajaReviewDressing.Build();AtmajaUpperBuilder.Build();Lighting(profile);Audio();
             director.spawnCourtyard=Anchor("Spawn_Courtyard",P(0,-12.2f,.06f),P(0,1,3.2f));
             director.spawnKitchen=Anchor("Spawn_Kitchen",P(5.0f,11.0f,.37f),P(3.0f,10.2f,1.3f));
             director.spawnDining=Anchor("Spawn_Dining",P(4.8f,7.7f,.53f),P(3.6f,5.7f,1.4f));
@@ -78,7 +78,7 @@ namespace LayarTerakhir.Editor
             var vault=player.AddComponent<AtmajaVault>();vault.director=director;
             var volume=new GameObject("AtmajaPostProcessing",typeof(Volume)).GetComponent<Volume>();volume.isGlobal=true;volume.sharedProfile=profile;
             EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene,ScenePath);AssetDatabase.SaveAssets();
-            EditorBuildSettings.scenes=new[]{new EditorBuildSettingsScene(PrologKosSceneBuilder.ScenePath,true),new EditorBuildSettingsScene(ScenePath,true)};
+            EditorBuildSettings.scenes=new[]{new EditorBuildSettingsScene(PrologKosSceneBuilder.ScenePath,true),new EditorBuildSettingsScene(ScenePath,true),new EditorBuildSettingsScene(KosCorridorBuilder.ScenePath,true)};
             Debug.Log("ATMAJA_BUILD Saved exterior + ground floor; approved Golden scene not written.");
         }
         private static void Imports()
@@ -89,7 +89,7 @@ namespace LayarTerakhir.Editor
                 var ti=AssetImporter.GetAtPath(path) as TextureImporter;if(ti==null)continue;
                 ti.textureType=path.Contains("nor_gl")||path.Contains("Normal")?TextureImporterType.NormalMap:TextureImporterType.Default;
                 ti.sRGBTexture=path.Contains("_diff_")||path.Contains("BaseColor")||path.EndsWith("leaf.png")||path.EndsWith("flower.png");
-                ti.maxTextureSize=path.Contains("House")||path.Contains("plaster")||path.Contains("roof")||path.Contains("mud")||path.Contains("path")||path.Contains("concrete")?1024:512;
+                ti.maxTextureSize=path.Contains("House")||path.Contains("plaster")||path.Contains("roof")||path.Contains("mud")||path.Contains("path")||path.Contains("concrete")||path.Contains("wallpaper")||path.Contains("wood_floor")||path.Contains("tiles")||path.Contains("fabric")||path.Contains("pine")||path.Contains("ceiling")?1024:512;
                 ti.textureCompression=TextureImporterCompression.Compressed;ti.mipmapEnabled=true;ti.anisoLevel=2;ti.alphaIsTransparency=path.EndsWith("leaf.png")||path.EndsWith("flower.png");ti.SaveAndReimport();
             }
             foreach(string path in Directory.GetFiles(Art+"Models","*.fbx"))

@@ -13,7 +13,12 @@ namespace LayarTerakhir.Editor
             var wood=Mat("House_MAT_WoodDoor");var plaster=Mat("House_MAT_PlasterDamaged");
             Surface("DiningDirtyTile",0,4.5f,.512f,11.6f,8.8f,Mat("concrete_floor_damaged_01"));
             Surface("KitchenDirtyTile",4,10.6f,.352f,3.7f,2.9f,Mat("concrete_floor_damaged_01"));
-            Box("GroundFloorCeiling",P(0,4.5f,3.75f),new Vector3(11.7f,.14f,8.9f),Mat("House_MAT_Concrete"));
+            Box("GroundFloorCeiling_0",P(-4.925f,4.5f,3.75f),new Vector3(1.85f,.14f,8.9f),Mat("House_MAT_Concrete"));
+            Box("GroundFloorCeiling_1",P(-1.15f,2.925f,3.75f),new Vector3(5.7f,.14f,5.75f),Mat("House_MAT_Concrete"));
+            Box("GroundFloorCeiling_2",P(2.05f,4.5f,3.75f),new Vector3(.7f,.14f,8.9f),Mat("House_MAT_Concrete"));
+            Box("GroundFloorCeiling_3",P(3.7f,1.725f,3.75f),new Vector3(2.6f,.14f,3.35f),Mat("House_MAT_Concrete"));
+            Box("GroundFloorCeiling_4",P(3.7f,7.075f,3.75f),new Vector3(2.6f,.14f,3.75f),Mat("House_MAT_Concrete"));
+            Box("GroundFloorCeiling_5",P(5.425f,4.5f,3.75f),new Vector3(.85f,.14f,8.9f),Mat("House_MAT_Concrete"));
             Box("KitchenCeiling",P(4,10.6f,2.95f),new Vector3(3.8f,.13f,3.0f),Mat("House_MAT_Concrete"));
             Box("DiningDividerSouth",P(1.6f,1.6f,2.2f),new Vector3(.18f,3.4f,3.2f),plaster);
             Box("DiningDividerNorth",P(1.6f,6.7f,2.2f),new Vector3(.18f,3.4f,4.2f),plaster);
@@ -62,7 +67,9 @@ namespace LayarTerakhir.Editor
             var tick=clock.AddComponent<ClockAmbience>();tick.pendulum=clock.GetComponentsInChildren<Transform>().Single(t=>t.name.StartsWith("ClockPendulum__"));tick.pivot=new Vector3(0,1.4f,.15f);tick.axis=Vector3.forward;
             tick.source=clock.AddComponent<AudioSource>();tick.source.playOnAwake=false;tick.source.dopplerLevel=0;tick.source.spatialBlend=1;tick.source.minDistance=.8f;tick.source.maxDistance=7;tick.source.rolloffMode=AudioRolloffMode.Linear;tick.source.outputAudioMixerGroup=director.audioProfile.effectsBus;
             var stair=Box("LockedCentralStairDoor",P(-3.55f,7.7f,1.8f),new Vector3(1.25f,2.6f,.14f),wood);Item(stair,AtmajaAction.StairDoor,"Buka pintu tangga tengah");
-            Box("StairHallWall",P(-2.2f,7.9f,2.1f),new Vector3(7.4f,3.2f,.16f),plaster);
+            Box("StairHallWall_W",P(-5.04f,7.9f,2.1f),new Vector3(1.73f,3.2f,.16f),plaster);
+            Box("StairHallWall_E",P(-.71f,7.9f,2.1f),new Vector3(4.43f,3.2f,.16f),plaster);
+            Box("StairHallLintel",P(-3.55f,7.9f,3.4f),new Vector3(1.25f,.6f,.16f),plaster);
             director.arClue=BloodWriting.Build(environment,P(-1.75f,7.817f,2.17f),east,Vector3.up,-north);director.arClue.SetActive(false);
             director.arFigure=Model("ARSeatedAtmaja","AR_SeatedSriAtmaja",P(3.7f,2.15f,.52f));director.arFigure.transform.rotation=Facing(north);foreach(var t in director.arFigure.GetComponentsInChildren<Transform>(true))t.gameObject.layer=AtmajaPhoneView.ARLayer;director.arFigure.SetActive(false);
         }

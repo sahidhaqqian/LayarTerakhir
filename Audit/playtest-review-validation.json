@@ -1,5 +1,5 @@
 {
-    "utc": "2026-10-16T09:44:34.9310600Z",
+    "utc": "2026-10-16T18:20:57.7047770Z",
     "failures": 0,
     "checks": [
         "PASS Tree geometry stays outside the east wall; no root plate in dining chairs",
@@ -7,7 +7,7 @@
         "PASS No plastic-chair models remain in Atmaja",
         "PASS Clock faces into room with rear flush against west wall",
         "PASS Clock has positional, mixer-routed ticking",
-        "PASS Both exploration room doors survive scene serialization",
+        "PASS All five exploration doors (sitting, storage, child, bath, master) survive scene serialization",
         "PASS AR clue is red blood-stroke geometry, not floating font UI",
         "PASS Blood writing is attached to the wall plane",
         "PASS No unmotivated interior fill lights; phone lights exploration",

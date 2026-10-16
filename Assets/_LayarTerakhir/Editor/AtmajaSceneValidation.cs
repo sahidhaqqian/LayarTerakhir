@@ -58,9 +58,16 @@ namespace LayarTerakhir.Editor
             }
             foreach(var t in UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects().SelectMany(g=>g.GetComponentsInChildren<Transform>(true)))
                 Check(GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(t.gameObject)==0,"No missing scripts: "+t.name);
-            Check(tris<180000,"Scene art including ground floor/AR remains under 180k triangles");
+            Check(tris<300000,"Two-story scene art (ground floor, upper floor, basement, chase, AR) remains under 300k triangles");
             Check(texture<=1024,"Bound artwork textures at most 1024px");
             Check(d.arFigure.layer==AtmajaPhoneView.ARLayer&&d.arClue.layer==AtmajaPhoneView.ARLayer&&!d.arFigure.activeSelf&&!d.arClue.activeSelf,"AR apparition/clue are isolated and start hidden");
+            Check(d.upper&&d.basement&&d.chase&&d.upper.director==d&&d.basement.director==d&&d.chase.director==d,"Upper, basement and chase systems wired to the director");
+            Check(d.upper&&d.upper.childDoor&&d.upper.masterDoor&&d.upper.chainLinks.Length==3,"Scene 4 upper-floor doors and three sin chains present");
+            Check(d.basement&&d.basement.nyonya&&d.basement.waypoints.Length>=4&&d.chase&&d.chase.chaserFigure&&d.chase.rail.Length>=20,"Scene 5-7 hunter, patrol route and chase rail present");
+            Check(d.upper.spawnUpper&&Clear(d.upper.spawnUpper.position,cc.height),"Upper-floor landing standing capsule is clear");
+            Check(d.basement.spawnBasement&&Clear(d.basement.spawnBasement.position,cc.height),"Basement spawn standing capsule is clear");
+            Check(d.chase.windowExitSpot&&Clear(d.chase.windowExitSpot.position,cc.height),"Chase window-exit standing capsule is clear");
+            Check(d.chase.spawnStreet&&Clear(d.chase.spawnStreet.position,cc.height),"Ending street spawn standing capsule is clear");
             var figureBounds=KosVisualV2.BoundsOf(d.arFigure);
             Debug.Log("ATMAJA_AR_BOUNDS figure="+figureBounds+" clue="+d.arClue.GetComponent<Renderer>().bounds);
             Check(figureBounds.size.y>1&&figureBounds.size.y<2,"AR figure is human-scale, not an FBX unit-conversion error");

@@ -1,0 +1,529 @@
+CC radius=0.32 height=1.75
+GF local=(0.00,0.00) worldY=0.00 size=- Atmaja_Environment_Art
+GF local=(0.00,0.00) worldY=0.00 size=- RumahAtmaja_House
+GF local=(0.00,0.00) worldY=0.00 size=- RumahAtmaja
+GF local=(1.00,0.00) worldY=0.00 size=- AXIS_East
+GF local=(0.00,1.00) worldY=0.00 size=- AXIS_North
+GF local=(0.00,0.00) worldY=0.00 size=- AXIS_Origin
+GF local=(0.00,0.00) worldY=1.00 size=- AXIS_Up
+GF local=(-0.39,0.00) worldY=1.73 size=(0.78, 2.51, 0.07) COL_DOOR_main_leaf_0
+GF local=(0.43,0.00) worldY=1.73 size=(0.78, 2.51, 0.07) COL_DOOR_main_leaf_1
+GF local=(0.00,4.50) worldY=0.25 size=(12.56, 0.50, 9.56) COL_PLINTH
+GF local=(-3.23,0.00) worldY=0.70 size=(0.95, 0.50, 0.35) COL_WALL_FRONT_sill_0
+GF local=(-3.23,0.00) worldY=2.70 size=(0.95, 4.50, 0.35) COL_WALL_FRONT_sill_1
+GF local=(-1.08,0.00) worldY=2.70 size=(0.95, 4.50, 0.35) COL_WALL_FRONT_sill_2
+GF local=(1.08,0.00) worldY=2.70 size=(0.95, 4.50, 0.35) COL_WALL_FRONT_sill_4
+GF local=(3.23,0.00) worldY=0.70 size=(0.95, 0.50, 0.35) COL_WALL_FRONT_sill_5
+GF local=(3.23,0.00) worldY=2.70 size=(0.95, 4.50, 0.35) COL_WALL_FRONT_sill_6
+GF local=(-3.23,0.00) worldY=1.90 size=(0.85, 1.80, 0.01) COL_WIN_f_gL_glass
+GF local=(3.23,0.00) worldY=1.90 size=(0.85, 1.80, 0.01) COL_WIN_f_gR_glass
+GF local=(0.00,0.00) worldY=0.00 size=(0.06, 1.29, 1.03) KitchenGlass__House_MAT_GlassDark
+GF local=(0.00,0.00) worldY=0.00 size=(0.38, 1.42, 1.29) KitchenGlass__House_MAT_WoodDoor
+GF local=(0.00,0.00) worldY=0.00 size=(12.56, 0.50, 12.68) Static__House_MAT_BrickBase
+GF local=(0.00,0.00) worldY=0.00 size=(12.60, 4.20, 16.07) Static__House_MAT_Concrete
+GF local=(0.00,0.00) worldY=0.00 size=(12.01, 5.80, 9.01) Static__House_MAT_GlassDark
+GF local=(0.00,0.00) worldY=0.00 size=(11.84, 2.40, 4.94) Static__House_MAT_PlasterDamaged
+GF local=(0.00,0.00) worldY=0.00 size=(14.30, 5.93, 12.85) Static__House_MAT_RoofTiles
+GF local=(0.00,0.00) worldY=0.00 size=(14.67, 7.27, 13.83) Static__House_MAT_RoofTilesAnnex
+GF local=(0.00,0.00) worldY=0.00 size=(14.00, 6.82, 1.04) Static__House_MAT_RustMetal
+GF local=(0.00,0.00) worldY=0.00 size=(12.85, 6.50, 13.37) Static__House_MAT_WoodDoor
+GF local=(0.00,0.00) worldY=0.00 size=(12.38, 5.97, 9.38) Static__House_MAT_WoodFrameWhite
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.001
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.002
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.003
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.004
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.005
+GF local=(0.00,0.00) worldY=0.00 size=(12.73, 6.40, 14.69) Static__House_MAT_TrimTeak
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.006
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.007
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.008
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.009
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.010
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.011
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.012
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.013
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.014
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.015
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.016
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.017
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.018
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.019
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.020
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.021
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.022
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.023
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.024
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.025
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.026
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.027
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.028
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.029
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.030
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.031
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.032
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.033
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.034
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.035
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.036
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.037
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.038
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.039
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.040
+GF local=(0.00,0.00) worldY=0.00 size=- TowerOverhangModularKit.041
+GF local=(0.00,0.00) worldY=0.00 size=- VillaMitreTowerAlcove1
+GF local=(0.00,0.00) worldY=0.00 size=- VillaMitreTowerAlcove1.001
+GF local=(0.00,0.00) worldY=0.00 size=- VillaMitreTowerAlcove1.002
+GF local=(0.00,0.00) worldY=0.00 size=- VillaMitreTowerAlcove1.003
+GF local=(0.00,1.00) worldY=-0.03 size=(25.00, 0.05, 31.00) WetCourtyard
+GF local=(0.00,-0.10) worldY=1.65 size=(1.55, 2.50, 0.12) ChainedFrontDoor
+GF local=(0.00,-0.23) worldY=1.65 size=(1.35, 0.22, 0.14) FrontDoorRustChain
+GF local=(0.00,4.50) worldY=0.49 size=(11.60, 0.05, 8.80) DiningDirtyTile
+GF local=(-1.15,2.93) worldY=3.75 size=(5.70, 0.14, 5.75) GroundFloorCeiling_1
+GF local=(2.05,4.50) worldY=3.75 size=(0.70, 0.14, 8.90) GroundFloorCeiling_2
+GF local=(3.70,1.73) worldY=3.75 size=(2.60, 0.14, 3.35) GroundFloorCeiling_3
+GF local=(3.70,7.08) worldY=3.75 size=(2.60, 0.14, 3.75) GroundFloorCeiling_4
+GF local=(1.60,1.60) worldY=2.20 size=(0.18, 3.40, 3.20) DiningDividerSouth
+GF local=(1.60,6.70) worldY=2.20 size=(0.18, 3.40, 4.20) DiningDividerNorth
+GF local=(1.60,3.90) worldY=3.45 size=(0.18, 0.90, 1.40) DiningDividerLintel
+GF local=(3.70,4.90) worldY=0.52 size=- LongDiningTable
+GF local=(3.70,4.90) worldY=0.52 size=- LongDiningTable
+GF local=(3.70,4.90) worldY=0.52 size=(1.45, 0.94, 4.40) Static__House_MAT_WoodDoor
+GF local=(3.70,4.90) worldY=1.42 size=(1.45, 0.08, 4.40) DiningTableTopCollision
+GF local=(3.09,2.86) worldY=0.95 size=(0.09, 0.86, 0.09) DiningTableLegCollision
+GF local=(3.09,6.94) worldY=0.95 size=(0.09, 0.86, 0.09) DiningTableLegCollision
+GF local=(4.31,2.86) worldY=0.95 size=(0.09, 0.86, 0.09) DiningTableLegCollision
+GF local=(4.31,6.94) worldY=0.95 size=(0.09, 0.86, 0.09) DiningTableLegCollision
+GF local=(2.75,3.70) worldY=0.52 size=(0.46, 1.09, 0.48) WornDiningChair
+GF local=(2.75,3.70) worldY=0.52 size=- WornWoodChair
+GF local=(2.75,3.70) worldY=0.52 size=(0.46, 1.09, 0.48) Static__House_MAT_WoodDoor
+GF local=(2.75,5.50) worldY=0.52 size=(0.46, 1.09, 0.48) WornDiningChair
+GF local=(2.75,5.50) worldY=0.52 size=- WornWoodChair
+GF local=(2.75,5.50) worldY=0.52 size=(0.46, 1.09, 0.48) Static__House_MAT_WoodDoor
+GF local=(3.70,2.15) worldY=0.52 size=(0.48, 1.09, 0.46) EmptyARScareChair
+GF local=(3.70,2.15) worldY=0.52 size=- WornWoodChair
+GF local=(3.70,2.15) worldY=0.52 size=(0.48, 1.09, 0.46) Static__House_MAT_WoodDoor
+GF local=(3.35,3.10) worldY=1.47 size=(0.23, 0.02, 0.23) MouldyPlate
+GF local=(4.00,3.70) worldY=1.47 size=(0.23, 0.02, 0.23) MouldyPlate
+GF local=(3.35,4.30) worldY=1.47 size=(0.23, 0.02, 0.23) MouldyPlate
+GF local=(4.00,4.90) worldY=1.47 size=(0.23, 0.02, 0.23) MouldyPlate
+GF local=(3.35,5.50) worldY=1.47 size=(0.23, 0.02, 0.23) MouldyPlate
+GF local=(4.00,6.10) worldY=1.47 size=(0.23, 0.02, 0.23) MouldyPlate
+GF local=(3.85,6.17) worldY=0.50 size=(0.43, 0.32, 0.31) DamarTornBackpack
+GF local=(3.85,6.17) worldY=0.50 size=- KosBackpack
+GF local=(3.85,6.17) worldY=0.66 size=(0.43, 0.29, 0.19) BagCanvas
+GF local=(3.85,6.17) worldY=0.50 size=(0.41, 0.14, 0.13) BagMetal
+GF local=(3.85,6.17) worldY=0.50 size=(0.42, 0.30, 0.31) BagStrap
+GF local=(3.86,6.03) worldY=0.73 size=(0.05, 0.18, 0.01) DriedBloodOnStrap
+GF local=(3.86,6.17) worldY=0.85 size=(0.08, 0.02, 0.15) DamarCrackedPhone
+GF local=(0.00,0.00) worldY=0.00 size=(0.05, 0.00, 0.11) DamarScreenCracks
+GF local=(0.35,2.50) worldY=2.10 size=(2.30, 3.20, 0.16) FrontSittingPartitionEast
+GF local=(-1.40,2.50) worldY=3.30 size=(1.25, 0.70, 0.16) FrontSittingDoorLintel
+GF local=(-2.00,2.50) worldY=0.52 size=- FrontSittingDoorHinge
+GF local=(-1.40,2.50) worldY=1.62 size=(1.20, 2.20, 0.09) FrontSittingDoor
+GF local=(-3.35,0.45) worldY=0.53 size=(1.00, 1.45, 0.35) FrontRoomBookcase
+GF local=(-3.35,0.45) worldY=0.53 size=(1.00, 1.45, 0.35) wooden_bookshelf_worn
+GF local=(-0.15,6.65) worldY=2.05 size=(0.15, 3.10, 2.40) StorageWall
+GF local=(0.15,5.45) worldY=2.05 size=(0.70, 3.10, 0.15) StorageFrontA
+GF local=(1.45,5.45) worldY=2.05 size=(0.28, 3.10, 0.15) StorageFrontB
+GF local=(0.85,5.45) worldY=3.15 size=(1.10, 0.90, 0.15) StorageLintel
+GF local=(0.35,5.45) worldY=0.52 size=- StorageDoorHinge
+GF local=(0.85,5.45) worldY=1.62 size=(1.00, 2.20, 0.09) StorageDoor
+GF local=(0.80,7.28) worldY=0.53 size=(0.95, 1.25, 0.45) LoungeStorage
+GF local=(0.80,7.28) worldY=0.53 size=- painted_wooden_cabinet_02
+GF local=(0.80,7.28) worldY=0.53 size=(0.95, 1.25, 0.40) painted_wooden_cabinet_02
+GF local=(1.07,7.07) worldY=0.75 size=(0.55, 0.40, 0.07) painted_wooden_cabinet_02_door
+GF local=(0.80,7.20) worldY=1.02 size=(0.88, 0.11, 0.32) painted_wooden_cabinet_02_drawer
+GF local=(3.70,2.15) worldY=0.52 size=- AR_SeatedSriAtmaja
+GF local=(3.70,2.15) worldY=0.52 size=- ARSeatedAtmaja
+GF local=(3.70,2.15) worldY=0.52 size=(0.68, 1.00, 0.60) Static__Detail_ARCloth
+GF local=(3.91,2.14) worldY=1.69 size=(0.37, 0.51, 0.22) Static__Detail_ARHair
+GF local=(3.87,2.47) worldY=1.14 size=(0.59, 1.24, 0.52) Static__Detail_ARSkin
+GF local=(-2.60,7.30) worldY=0.63 size=(0.40, 0.26, 0.80) StairStep
+GF local=(-2.20,7.30) worldY=0.73 size=(0.40, 0.46, 0.80) StairStep
+GF local=(-1.80,7.30) worldY=0.83 size=(0.40, 0.67, 0.80) StairStep
+GF local=(-1.40,7.30) worldY=0.94 size=(0.40, 0.88, 0.80) StairStep
+GF local=(-1.00,7.30) worldY=1.04 size=(0.40, 1.08, 0.80) StairStep
+GF local=(-0.60,7.30) worldY=1.14 size=(0.40, 1.29, 0.80) StairStep
+GF local=(-0.20,7.30) worldY=1.25 size=(0.40, 1.49, 0.80) StairStep
+GF local=(0.20,7.30) worldY=1.35 size=(0.40, 1.70, 0.80) StairStep
+GF local=(-2.60,6.84) worldY=1.21 size=(0.42, 0.90, 0.12) StairParapet
+GF local=(-2.20,6.84) worldY=1.41 size=(0.42, 0.90, 0.12) StairParapet
+GF local=(-1.80,6.84) worldY=1.62 size=(0.42, 0.90, 0.12) StairParapet
+GF local=(-1.40,6.84) worldY=1.83 size=(0.42, 0.90, 0.12) StairParapet
+GF local=(-1.00,6.84) worldY=2.03 size=(0.42, 0.90, 0.12) StairParapet
+GF local=(-0.60,6.84) worldY=2.24 size=(0.42, 0.90, 0.12) StairParapet
+GF local=(-0.20,6.84) worldY=2.44 size=(0.42, 0.90, 0.12) StairParapet
+GF local=(0.20,6.84) worldY=2.65 size=(0.42, 0.90, 0.12) StairParapet
+GF local=(1.00,7.10) worldY=1.35 size=(1.20, 1.70, 1.20) StairMidLanding
+GF local=(-2.35,6.30) worldY=2.99 size=(0.50, 1.67, 0.80) StairStep
+GF local=(-1.85,6.30) worldY=2.88 size=(0.50, 1.47, 0.80) StairStep
+GF local=(-1.35,6.30) worldY=2.78 size=(0.50, 1.27, 0.80) StairStep
+GF local=(-0.85,6.30) worldY=2.68 size=(0.50, 1.06, 0.80) StairStep
+GF local=(-0.35,6.30) worldY=2.58 size=(0.50, 0.86, 0.80) StairStep
+GF local=(0.15,6.30) worldY=2.48 size=(0.50, 0.66, 0.80) StairStep
+GF local=(0.65,6.30) worldY=2.38 size=(0.50, 0.45, 0.80) StairStep
+GF local=(1.15,6.30) worldY=2.28 size=(0.50, 0.25, 0.80) StairStep
+GF local=(-1.35,5.84) worldY=3.87 size=(0.52, 0.90, 0.12) StairParapet
+GF local=(-0.85,5.84) worldY=3.66 size=(0.52, 0.90, 0.12) StairParapet
+GF local=(-0.35,5.84) worldY=3.46 size=(0.52, 0.90, 0.12) StairParapet
+GF local=(0.15,5.84) worldY=3.26 size=(0.52, 0.90, 0.12) StairParapet
+GF local=(0.65,5.84) worldY=3.06 size=(0.52, 0.90, 0.12) StairParapet
+GF local=(1.15,5.84) worldY=2.85 size=(0.52, 0.90, 0.12) StairParapet
+GF local=(-1.35,6.76) worldY=3.87 size=(0.52, 0.90, 0.12) StairParapet
+GF local=(-0.85,6.76) worldY=3.66 size=(0.52, 0.90, 0.12) StairParapet
+GF local=(-0.35,6.76) worldY=3.46 size=(0.52, 0.90, 0.12) StairParapet
+GF local=(0.15,6.76) worldY=3.26 size=(0.52, 0.90, 0.12) StairParapet
+GF local=(0.65,6.76) worldY=3.06 size=(0.52, 0.90, 0.12) StairParapet
+GF local=(1.15,6.76) worldY=2.85 size=(0.52, 0.90, 0.12) StairParapet
+GF local=(-3.30,6.35) worldY=3.75 size=(1.40, 0.14, 1.10) StairTopLanding
+GF local=(-0.40,6.05) worldY=3.75 size=(4.20, 0.14, 0.50) CorridorBridgeEast
+GF local=(0.55,6.50) worldY=2.68 size=(0.05, 0.95, 0.05) RailBaluster
+GF local=(1.00,6.50) worldY=2.68 size=(0.05, 0.95, 0.05) RailBaluster
+GF local=(1.45,6.50) worldY=2.68 size=(0.05, 0.95, 0.05) RailBaluster
+GF local=(1.00,6.50) worldY=3.15 size=(1.20, 0.07, 0.09) RailTop
+GF local=(1.20,5.77) worldY=2.50 size=(0.09, 0.11, 0.01) BloodHandprint
+GF local=(1.24,5.77) worldY=2.40 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(1.21,5.77) worldY=2.40 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(1.19,5.77) worldY=2.39 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(1.16,5.77) worldY=2.39 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(0.78,5.77) worldY=2.72 size=(0.09, 0.11, 0.01) BloodHandprint
+GF local=(0.82,5.77) worldY=2.62 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(0.79,5.77) worldY=2.62 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(0.77,5.77) worldY=2.61 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(0.74,5.77) worldY=2.61 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(0.36,5.77) worldY=2.94 size=(0.09, 0.11, 0.01) BloodHandprint
+GF local=(0.40,5.77) worldY=2.84 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(0.37,5.77) worldY=2.84 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(0.35,5.77) worldY=2.83 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(0.32,5.77) worldY=2.83 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(-0.06,5.77) worldY=3.16 size=(0.09, 0.11, 0.01) BloodHandprint
+GF local=(-0.02,5.77) worldY=3.06 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(-0.05,5.77) worldY=3.06 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(-0.07,5.77) worldY=3.05 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(-0.10,5.77) worldY=3.05 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(-0.48,5.77) worldY=3.38 size=(0.09, 0.11, 0.01) BloodHandprint
+GF local=(-0.44,5.77) worldY=3.28 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(-0.47,5.77) worldY=3.28 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(-0.49,5.77) worldY=3.27 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(-0.52,5.77) worldY=3.27 size=(0.02, 0.06, 0.01) BloodFinger
+GF local=(1.00,7.09) worldY=2.82 size=(0.30, 0.42, 0.30) StairMidLantern
+GF local=(1.00,7.09) worldY=2.82 size=- Lantern_01
+GF local=(1.00,7.09) worldY=2.82 size=(0.30, 0.42, 0.30) Lantern_01
+GF local=(1.00,7.09) worldY=2.82 size=(0.20, 0.11, 0.27) Lantern_01_glass
+GF local=(1.00,7.10) worldY=3.00 size=- StairMidLight
+GF local=(-1.58,2.93) worldY=3.75 size=(4.85, 0.14, 5.75) UpperSlab_South
+GF local=(1.28,1.70) worldY=3.75 size=(0.85, 0.14, 3.30) UpperSlab_TrapS
+GF local=(1.28,5.03) worldY=3.75 size=(0.85, 0.14, 1.55) UpperSlab_TrapN
+GF local=(2.05,4.50) worldY=3.75 size=(0.70, 0.14, 8.90) UpperSlab_Mid
+GF local=(3.70,1.73) worldY=3.75 size=(2.60, 0.14, 3.35) UpperSlab_VoidS
+GF local=(3.70,7.08) worldY=3.75 size=(2.60, 0.14, 3.75) UpperSlab_VoidN
+GF local=(3.70,4.30) worldY=3.75 size=(2.60, 0.14, 1.80) BalconyDeck
+GF local=(3.70,5.75) worldY=3.75 size=(2.60, 0.14, 1.10) BalconyWalk
+GF local=(-1.58,2.93) worldY=3.81 size=(4.85, 0.02, 5.75) UpperFloor_South
+GF local=(1.28,1.70) worldY=3.81 size=(0.85, 0.02, 3.30) UpperFloor_TrapS
+GF local=(1.28,5.03) worldY=3.81 size=(0.85, 0.02, 1.55) UpperFloor_TrapN
+GF local=(2.05,4.50) worldY=3.81 size=(0.70, 0.02, 8.90) UpperFloor_Mid
+GF local=(3.70,1.73) worldY=3.81 size=(2.60, 0.02, 3.35) UpperFloor_VoidS
+GF local=(3.70,7.08) worldY=3.81 size=(2.60, 0.02, 3.75) UpperFloor_VoidN
+GF local=(3.70,4.30) worldY=3.81 size=(2.60, 0.02, 1.80) UpperFloor_Deck
+GF local=(3.70,5.75) worldY=3.81 size=(2.60, 0.02, 1.10) UpperFloor_Walk
+GF local=(-1.80,5.75) worldY=3.83 size=(8.00, 0.01, 0.80) CorridorRunner
+GF local=(-2.85,1.63) worldY=3.83 size=(0.95, 1.25, 0.45) ChildWardrobe
+GF local=(-2.85,1.63) worldY=3.83 size=- painted_wooden_cabinet_02
+GF local=(-2.85,1.63) worldY=3.83 size=(0.95, 1.25, 0.40) painted_wooden_cabinet_02
+GF local=(-3.00,5.47) worldY=3.82 size=(0.95, 1.25, 0.45) VentCabinet
+GF local=(-3.00,5.47) worldY=3.82 size=- painted_wooden_cabinet_02
+GF local=(-3.00,5.47) worldY=3.82 size=(0.95, 1.25, 0.40) painted_wooden_cabinet_02
+GF local=(-1.10,2.60) worldY=3.81 size=(2.60, 0.02, 5.10) BathFloor
+GF local=(-1.20,0.79) worldY=3.84 size=(0.05, 0.02, 0.03) Static__House_MAT_Concrete.001
+GF local=(-1.10,0.81) worldY=3.84 size=(0.05, 0.02, 0.03) Static__House_MAT_Concrete.002
+GF local=(-1.10,0.79) worldY=3.84 size=(1.50, 0.01, 0.50) Static__House_MAT_Concrete.003
+GF local=(-1.00,0.80) worldY=3.84 size=(0.05, 0.02, 0.03) Static__House_MAT_Concrete.004
+GF local=(-0.90,0.78) worldY=3.84 size=(0.05, 0.02, 0.03) Static__House_MAT_Concrete.006
+GF local=(-0.80,0.78) worldY=3.84 size=(0.05, 0.02, 0.03) Static__House_MAT_Concrete.008
+GF local=(-0.70,0.78) worldY=3.84 size=(0.05, 0.02, 0.03) Static__House_MAT_Concrete.010
+GF local=(-0.05,4.50) worldY=3.86 size=(0.48, 1.10, 0.53) BathSink
+GF local=(-0.05,4.50) worldY=3.86 size=- UpperSinkPedestal
+GF local=(-0.05,4.50) worldY=3.86 size=(0.09, 0.16, 0.03) Static__Detail_AgedBrass
+GF local=(-0.05,4.50) worldY=3.86 size=(0.09, 0.16, 0.03) Static__Detail_AgedBrass.003
+GF local=(-0.05,4.50) worldY=3.88 size=(0.26, 0.04, 0.26) Static__House_MAT_Concrete.001
+GF local=(-0.70,4.60) worldY=3.83 size=- BathMirrorApparition
+GF local=(-0.70,4.60) worldY=3.83 size=- UpperStandingNyonya
+GF local=(-0.70,4.60) worldY=3.83 size=(0.04, 0.42, 0.07) Static__Detail_ARHair.001
+GF local=(-0.70,4.60) worldY=3.83 size=(0.04, 0.40, 0.07) Static__Detail_ARHair.002
+GF local=(-0.70,4.60) worldY=3.83 size=(0.04, 0.38, 0.07) Static__Detail_ARHair.003
+GF local=(-0.70,4.60) worldY=3.83 size=(0.04, 0.42, 0.07) Static__Detail_ARHair.004
+GF local=(-0.70,4.60) worldY=3.83 size=(0.04, 0.40, 0.07) Static__Detail_ARHair.005
+GF local=(-0.70,4.60) worldY=3.83 size=(0.04, 0.38, 0.07) Static__Detail_ARHair.006
+GF local=(-0.70,4.60) worldY=3.83 size=(0.04, 0.42, 0.07) Static__Detail_ARHair.007
+GF local=(-0.70,4.60) worldY=3.83 size=(0.04, 0.40, 0.07) Static__Detail_ARHair.008
+GF local=(-0.70,4.60) worldY=3.83 size=(0.04, 0.38, 0.07) Static__Detail_ARHair.009
+GF local=(-0.70,4.60) worldY=3.83 size=(0.04, 0.42, 0.07) Static__Detail_ARHair.010
+GF local=(-0.70,4.60) worldY=3.83 size=(0.04, 0.40, 0.07) Static__Detail_ARHair.011
+GF local=(-0.70,4.60) worldY=3.83 size=(0.04, 0.38, 0.07) Static__Detail_ARHair.012
+GF local=(-0.70,4.60) worldY=3.83 size=(0.04, 0.42, 0.07) Static__Detail_ARHair.013
+GF local=(-0.70,4.60) worldY=3.83 size=(0.04, 0.40, 0.07) Static__Detail_ARHair.014
+GF local=(-0.70,4.60) worldY=3.83 size=(0.04, 0.38, 0.07) Static__Detail_ARHair.015
+GF local=(-0.68,4.52) worldY=3.86 size=(0.20, 0.05, 0.09) Static__Detail_ARSkin.001
+GF local=(-0.68,4.68) worldY=3.86 size=(0.20, 0.05, 0.09) Static__Detail_ARSkin.003
+GF local=(-0.70,4.60) worldY=3.83 size=(0.10, 0.11, 0.16) Static__Detail_ARSkin.004
+GF local=(-0.70,4.60) worldY=3.83 size=(0.38, 0.02, 0.37) Static__Upper_KebayaDirty
+GF local=(-0.70,4.60) worldY=3.83 size=(0.36, 0.02, 0.33) Static__Upper_KebayaDirty.001
+GF local=(-0.70,4.60) worldY=3.83 size=(0.34, 0.02, 0.29) Static__Upper_KebayaDirty.002
+GF local=(-0.70,4.60) worldY=3.83 size=(0.31, 0.02, 0.25) Static__Upper_KebayaDirty.003
+GF local=(-0.70,4.60) worldY=3.83 size=(0.30, 0.02, 0.27) Static__Upper_KebayaDirty.004
+GF local=(-0.70,4.60) worldY=3.83 size=(0.36, 0.02, 0.29) Static__Upper_KebayaDirty.005
+GF local=(-0.70,4.60) worldY=3.83 size=(0.42, 0.02, 0.33) Static__Upper_KebayaDirty.006
+GF local=(-0.70,4.60) worldY=3.83 size=(0.26, 0.47, 0.26) Static__Upper_KebayaDirty.008
+GF local=(-0.70,4.60) worldY=3.83 size=(0.26, 0.47, 0.26) Static__Upper_KebayaDirty.009
+GF local=(-0.70,4.60) worldY=3.83 size=(0.05, 0.05, 0.05) Static__Upper_OldRope
+GF local=(-2.00,4.60) worldY=3.85 size=(0.40, 0.30, 0.40) BathEnamelPot
+GF local=(-2.00,4.60) worldY=3.85 size=- pot_enamel_01
+GF local=(-2.00,4.60) worldY=3.85 size=(0.40, 0.22, 0.40) pot_enamel_01_base
+GF local=(-2.00,4.60) worldY=3.85 size=(0.28, 0.08, 0.40) pot_enamel_01_lid
+GF local=(-1.55,5.20) worldY=3.82 size=- BathroomDoorHinge
+GF local=(1.29,1.15) worldY=3.84 size=(1.90, 1.00, 1.06) MasterBed
+GF local=(1.29,1.15) worldY=3.84 size=(1.90, 1.00, 1.06) old_bed_frame
+GF local=(0.55,4.62) worldY=3.72 size=(0.90, 1.00, 0.60) MasterRocker
+GF local=(0.55,4.62) worldY=3.72 size=(0.90, 1.00, 0.60) Rockingchair_01
+GF local=(0.52,0.71) worldY=3.85 size=(0.60, 0.40, 0.35) MasterToolChest
+GF local=(0.52,0.71) worldY=3.85 size=- metal_tool_chest
+GF local=(1.30,3.80) worldY=3.83 size=(1.42, 0.12, 0.90) MasterTrapdoorLid
+GF local=(1.30,3.80) worldY=3.83 size=- UpperTrapdoorSlab
+GF local=(0.92,3.42) worldY=3.86 size=(0.03, 0.02, 0.03) Static__Detail_AgedBrass.001
+GF local=(0.92,4.18) worldY=3.86 size=(0.03, 0.02, 0.03) Static__Detail_AgedBrass.002
+GF local=(1.68,3.42) worldY=3.86 size=(0.03, 0.02, 0.03) Static__Detail_AgedBrass.003
+GF local=(1.68,4.18) worldY=3.86 size=(0.03, 0.02, 0.03) Static__Detail_AgedBrass.004
+GF local=(1.58,3.80) worldY=3.89 size=(0.86, 0.04, 0.04) Static__House_MAT_WoodDoor
+GF local=(1.30,3.80) worldY=3.89 size=(0.90, 0.09, 0.90) Static__House_MAT_WoodDoor.001
+GF local=(1.02,3.80) worldY=3.89 size=(0.86, 0.04, 0.04) Static__House_MAT_WoodDoor.002
+GF local=(1.30,3.80) worldY=3.89 size=(0.86, 0.04, 0.04) Static__House_MAT_WoodDoor.003
+GF local=(1.30,4.35) worldY=0.26 size=(0.90, 6.07, 0.22) CellarStep
+GF local=(1.30,4.55) worldY=-0.02 size=(0.90, 5.52, 0.22) CellarStep
+GF local=(1.30,4.75) worldY=-0.29 size=(0.90, 4.97, 0.22) CellarStep
+GF local=(1.30,4.95) worldY=-0.57 size=(0.90, 4.42, 0.22) CellarStep
+GF local=(1.30,5.15) worldY=-0.85 size=(0.90, 3.87, 0.22) CellarStep
+GF local=(1.30,5.35) worldY=-1.12 size=(0.90, 3.32, 0.22) CellarStep
+GF local=(1.30,5.55) worldY=-1.40 size=(0.90, 2.77, 0.22) CellarStep
+GF local=(1.30,5.75) worldY=-1.67 size=(0.90, 2.22, 0.22) CellarStep
+GF local=(1.30,5.95) worldY=-1.95 size=(0.90, 1.67, 0.22) CellarStep
+GF local=(1.30,6.15) worldY=-2.22 size=(0.90, 1.12, 0.22) CellarStep
+GF local=(1.30,6.35) worldY=-2.50 size=(0.90, 0.57, 0.22) CellarStep
+GF local=(1.30,6.55) worldY=-2.77 size=(0.90, 0.02, 0.22) CellarStep
+GF local=(0.80,5.00) worldY=0.56 size=(0.16, 6.72, 3.40) CellarShaftW
+GF local=(1.80,5.00) worldY=0.56 size=(0.16, 6.72, 3.40) CellarShaftE
+GF local=(0.75,5.20) worldY=3.82 size=- MasterBedroomDoorHinge
+GF local=(2.90,3.75) worldY=-2.81 size=(5.40, 0.03, 6.30) CellarFloor
+GF local=(0.20,3.75) worldY=-1.58 size=(0.16, 2.45, 6.30) CellarWallW
+GF local=(2.90,0.60) worldY=-1.58 size=(5.40, 2.45, 0.16) CellarWallN
+GF local=(2.90,6.90) worldY=-1.58 size=(5.40, 2.45, 0.16) CellarWallS
+GF local=(2.90,3.75) worldY=0.00 size=(5.40, 1.00, 6.30) CellarCeiling
+GF local=(2.90,2.00) worldY=-2.80 size=(1.80, 1.80, 0.45) ArchiveRackN
+GF local=(2.90,2.00) worldY=-2.80 size=(1.80, 1.80, 0.45) steel_frame_shelves_02
+GF local=(2.90,3.20) worldY=-2.80 size=(1.80, 1.80, 0.45) ArchiveRackS
+GF local=(2.90,3.20) worldY=-2.80 size=(1.80, 1.80, 0.45) steel_frame_shelves_02
+GF local=(2.20,2.64) worldY=-1.95 size=(1.50, 0.50, 0.30) ArchiveBooks
+GF local=(2.20,2.64) worldY=-1.95 size=- book_encyclopedia_set_01
+GF local=(2.20,2.45) worldY=-1.95 size=(0.11, 0.50, 0.30) book_encyclopedia_set_01_book01
+GF local=(2.30,2.45) worldY=-1.95 size=(0.08, 0.50, 0.30) book_encyclopedia_set_01_book02
+GF local=(2.37,2.45) worldY=-1.95 size=(0.06, 0.50, 0.30) book_encyclopedia_set_01_book03
+GF local=(2.44,2.45) worldY=-1.95 size=(0.07, 0.50, 0.30) book_encyclopedia_set_01_book04
+GF local=(2.50,2.45) worldY=-1.95 size=(0.05, 0.50, 0.30) book_encyclopedia_set_01_book05
+GF local=(2.56,2.45) worldY=-1.95 size=(0.05, 0.50, 0.30) book_encyclopedia_set_01_book06
+GF local=(2.62,2.45) worldY=-1.95 size=(0.07, 0.50, 0.30) book_encyclopedia_set_01_book07
+GF local=(2.69,2.45) worldY=-1.95 size=(0.06, 0.50, 0.30) book_encyclopedia_set_01_book08
+GF local=(2.75,2.45) worldY=-1.95 size=(0.06, 0.50, 0.30) book_encyclopedia_set_01_book09
+GF local=(2.81,2.45) worldY=-1.95 size=(0.06, 0.50, 0.30) book_encyclopedia_set_01_book10
+GF local=(2.87,2.45) worldY=-1.95 size=(0.05, 0.50, 0.30) book_encyclopedia_set_01_book11
+GF local=(2.93,2.45) worldY=-1.95 size=(0.06, 0.50, 0.30) book_encyclopedia_set_01_book12
+GF local=(3.02,2.45) worldY=-1.95 size=(0.10, 0.50, 0.30) book_encyclopedia_set_01_book13
+GF local=(3.12,2.45) worldY=-1.95 size=(0.09, 0.50, 0.30) book_encyclopedia_set_01_book14
+GF local=(3.23,2.45) worldY=-1.95 size=(0.10, 0.50, 0.30) book_encyclopedia_set_01_book15
+GF local=(3.31,2.45) worldY=-1.95 size=(0.07, 0.50, 0.30) book_encyclopedia_set_01_book16
+GF local=(3.40,2.45) worldY=-1.95 size=(0.10, 0.50, 0.30) book_encyclopedia_set_01_book17
+GF local=(3.49,2.45) worldY=-1.95 size=(0.06, 0.50, 0.30) book_encyclopedia_set_01_book18
+GF local=(3.55,2.45) worldY=-1.95 size=(0.05, 0.50, 0.30) book_encyclopedia_set_01_book19
+GF local=(3.62,2.45) worldY=-1.95 size=(0.06, 0.50, 0.30) book_encyclopedia_set_01_book20
+GF local=(0.70,4.91) worldY=-2.79 size=(0.55, 0.60, 0.55) CellarCrateA
+GF local=(0.70,4.91) worldY=-2.79 size=- wooden_crate_01
+GF local=(0.70,4.91) worldY=-2.79 size=(0.55, 0.55, 0.55) wooden_crate_01
+GF local=(0.70,4.91) worldY=-2.79 size=(0.02, 0.17, 0.10) wooden_crate_01_latch
+GF local=(0.70,4.91) worldY=-2.79 size=(0.47, 0.07, 0.53) wooden_crate_01_lid
+GF local=(0.70,5.61) worldY=-2.79 size=(0.55, 0.60, 0.55) CellarCrateC
+GF local=(0.70,5.61) worldY=-2.79 size=- wooden_crate_01
+GF local=(0.70,5.61) worldY=-2.79 size=(0.55, 0.55, 0.55) wooden_crate_01
+GF local=(0.70,5.61) worldY=-2.79 size=(0.02, 0.17, 0.10) wooden_crate_01_latch
+GF local=(0.70,5.61) worldY=-2.79 size=(0.47, 0.07, 0.53) wooden_crate_01_lid
+GF local=(0.75,1.08) worldY=-2.80 size=(0.95, 1.90, 0.45) CellarWardrobe1
+GF local=(0.75,1.08) worldY=-2.80 size=- painted_wooden_cabinet_02
+GF local=(0.75,1.08) worldY=-2.80 size=(0.95, 1.90, 0.40) painted_wooden_cabinet_02
+GF local=(1.02,0.87) worldY=-2.45 size=(0.55, 0.61, 0.07) painted_wooden_cabinet_02_door
+GF local=(0.75,1.00) worldY=-2.05 size=(0.88, 0.16, 0.32) painted_wooden_cabinet_02_drawer
+GF local=(-1.07,-0.91) worldY=-1.80 size=(0.03, 0.10, 0.02) WardrobeSlat
+GF local=(3.70,6.58) worldY=-2.79 size=- SewingBench
+GF local=(3.70,6.58) worldY=-2.79 size=- UpperSewingBench
+GF local=(3.70,6.58) worldY=-1.95 size=(2.20, 0.06, 0.72) Static__House_MAT_WoodDoor
+GF local=(3.70,6.24) worldY=-2.01 size=(2.10, 0.10, 0.06) Static__House_MAT_WoodDoor.001
+GF local=(3.70,6.92) worldY=-2.01 size=(2.10, 0.10, 0.06) Static__House_MAT_WoodDoor.002
+GF local=(2.70,6.28) worldY=-2.37 size=(0.09, 0.85, 0.09) Static__House_MAT_WoodDoor.003
+GF local=(2.70,6.28) worldY=-2.74 size=(0.13, 0.06, 0.13) Static__House_MAT_WoodDoor.004
+GF local=(2.70,6.88) worldY=-2.37 size=(0.09, 0.85, 0.09) Static__House_MAT_WoodDoor.005
+GF local=(2.70,6.88) worldY=-2.74 size=(0.13, 0.06, 0.13) Static__House_MAT_WoodDoor.006
+GF local=(2.80,6.58) worldY=-2.57 size=(2.00, 0.08, 0.06) Static__House_MAT_WoodDoor.011
+GF local=(2.68,6.58) worldY=-2.17 size=(0.06, 0.06, 0.06) Static__Upper_IronBlack
+GF local=(3.70,6.58) worldY=-2.17 size=(0.06, 0.06, 0.06) Static__Upper_IronBlack.001
+GF local=(2.70,6.30) worldY=-2.38 size=(0.09, 0.85, 0.09) BenchLeg
+GF local=(2.70,6.85) worldY=-2.38 size=(0.09, 0.85, 0.09) BenchLeg
+GF local=(3.70,6.58) worldY=-1.96 size=(2.20, 0.06, 0.72) BenchTopCollision
+GF local=(3.60,6.55) worldY=-1.93 size=(0.34, 0.46, 0.24) SewingMachine
+GF local=(3.60,6.55) worldY=-1.93 size=- UpperSewingMachine
+GF local=(3.60,6.63) worldY=-1.63 size=(0.02, 0.17, 0.17) Static__Detail_AgedBrass
+GF local=(3.60,6.48) worldY=-1.67 size=(0.01, 0.12, 0.01) Static__Detail_AgedBrass.001
+GF local=(3.60,6.55) worldY=-1.89 size=(0.34, 0.08, 0.16) Static__Upper_IronBlack
+GF local=(3.48,6.55) worldY=-1.69 size=(0.05, 0.34, 0.12) Static__Upper_IronBlack.001
+GF local=(3.72,6.55) worldY=-1.69 size=(0.05, 0.34, 0.12) Static__Upper_IronBlack.002
+GF local=(3.60,6.55) worldY=-1.93 size=(0.25, 0.07, 0.04) Static__Upper_IronBlack.003
+GF local=(3.60,6.63) worldY=-1.63 size=(0.05, 0.05, 0.05) Static__Upper_IronBlack.004
+GF local=(3.60,6.48) worldY=-1.60 size=(0.02, 0.10, 0.02) Static__Upper_IronBlack.005
+GF local=(3.60,6.55) worldY=-1.52 size=(0.30, 0.05, 0.14) Static__Upper_IronBlack.006
+GF local=(3.60,6.55) worldY=-1.93 size=(0.01, 0.05, 0.03) Static__Upper_IronBlack.007
+GF local=(3.60,6.55) worldY=-1.93 size=(0.01, 0.05, 0.03) Static__Upper_IronBlack.008
+GF local=(3.60,6.55) worldY=-1.93 size=(0.01, 0.05, 0.03) Static__Upper_IronBlack.009
+GF local=(2.85,6.58) worldY=-1.90 size=(0.16, 0.09, 0.05) BasementPowerbank
+GF local=(2.85,6.53) worldY=-1.87 size=(0.10, 0.01, 0.01) BasementPowerbankLED
+GF local=(0.75,6.20) worldY=-2.80 size=(0.90, 1.95, 0.88) CellarBigMirror
+GF local=(0.75,6.20) worldY=-2.80 size=- UpperStandingMirror
+GF local=(0.75,6.48) worldY=-0.90 size=(0.10, 0.06, 0.10) Static__Detail_AgedBrass
+GF local=(0.75,5.92) worldY=-0.90 size=(0.10, 0.06, 0.10) Static__Detail_AgedBrass.001
+GF local=(0.79,6.20) worldY=-1.78 size=(0.17, 0.80, 0.80) Static__Detail_MirrorGlass
+GF local=(0.75,6.20) worldY=-1.78 size=(0.90, 1.86, 0.13) Static__House_MAT_WoodDoor
+GF local=(0.75,6.15) worldY=-1.78 size=(0.84, 1.80, 0.03) Static__House_MAT_WoodDoor.001
+GF local=(0.75,6.54) worldY=-2.77 size=(0.26, 0.06, 0.20) Static__House_MAT_WoodDoor.002
+GF local=(0.75,6.50) worldY=-2.10 size=(0.12, 1.30, 0.09) Static__House_MAT_WoodDoor.003
+GF local=(0.75,5.86) worldY=-2.77 size=(0.26, 0.06, 0.20) Static__House_MAT_WoodDoor.004
+GF local=(0.75,5.90) worldY=-2.10 size=(0.12, 1.30, 0.09) Static__House_MAT_WoodDoor.005
+GF local=(0.00,0.00) worldY=0.00 size=- MirrorShards
+GF local=(0.60,6.05) worldY=-2.65 size=(0.07, 0.02, 0.10) MirrorShard
+GF local=(0.69,6.05) worldY=-2.61 size=(0.07, 0.02, 0.10) MirrorShard
+GF local=(0.78,6.05) worldY=-2.57 size=(0.07, 0.02, 0.10) MirrorShard
+GF local=(0.87,6.05) worldY=-2.53 size=(0.07, 0.02, 0.10) MirrorShard
+GF local=(0.96,6.05) worldY=-2.49 size=(0.07, 0.02, 0.10) MirrorShard
+GF local=(1.06,5.93) worldY=-2.80 size=(0.32, 0.20, 0.22) DamarHandycam
+GF local=(1.06,5.93) worldY=-2.80 size=(0.32, 0.20, 0.22) vintage_video_camera
+GF local=(2.60,5.00) worldY=-2.80 size=(0.86, 0.77, 0.07) StairExitRag
+GF local=(2.60,5.00) worldY=-2.80 size=- UpperHangingRag
+GF local=(2.60,5.00) worldY=-0.75 size=(0.86, 0.10, 0.06) Static__Detail_ARCloth
+GF local=(2.60,5.00) worldY=-2.80 size=(0.06, 0.68, 0.06) Static__Upper_KebayaDirty
+GF local=(2.22,5.00) worldY=-1.46 size=(0.09, 0.02, 0.02) Static__Upper_KebayaDirty.001
+GF local=(2.20,5.02) worldY=-1.16 size=(0.02, 0.16, 0.06) Static__Upper_KebayaDirty.002
+GF local=(2.60,5.00) worldY=-2.80 size=(0.06, 0.53, 0.06) Static__Upper_KebayaDirty.003
+GF local=(2.32,5.00) worldY=-1.31 size=(0.09, 0.02, 0.02) Static__Upper_KebayaDirty.004
+GF local=(2.30,5.02) worldY=-1.01 size=(0.02, 0.16, 0.06) Static__Upper_KebayaDirty.005
+GF local=(2.60,5.00) worldY=-2.80 size=(0.06, 0.59, 0.06) Static__Upper_KebayaDirty.006
+GF local=(2.41,5.00) worldY=-1.37 size=(0.09, 0.02, 0.02) Static__Upper_KebayaDirty.007
+GF local=(2.40,5.02) worldY=-1.07 size=(0.02, 0.16, 0.06) Static__Upper_KebayaDirty.008
+GF local=(2.60,5.00) worldY=-2.80 size=(0.06, 0.65, 0.06) Static__Upper_KebayaDirty.009
+GF local=(2.51,5.00) worldY=-1.43 size=(0.09, 0.02, 0.02) Static__Upper_KebayaDirty.010
+GF local=(2.50,5.02) worldY=-1.13 size=(0.02, 0.16, 0.06) Static__Upper_KebayaDirty.011
+GF local=(2.60,5.00) worldY=-2.80 size=(0.06, 0.50, 0.06) Static__Upper_KebayaDirty.012
+GF local=(2.60,5.00) worldY=-1.28 size=(0.09, 0.02, 0.02) Static__Upper_KebayaDirty.013
+GF local=(2.60,5.02) worldY=-0.98 size=(0.02, 0.16, 0.06) Static__Upper_KebayaDirty.014
+GF local=(2.60,5.00) worldY=-2.80 size=(0.06, 0.56, 0.06) Static__Upper_KebayaDirty.015
+GF local=(2.70,5.00) worldY=-1.34 size=(0.09, 0.02, 0.02) Static__Upper_KebayaDirty.016
+GF local=(2.70,5.02) worldY=-1.04 size=(0.02, 0.16, 0.06) Static__Upper_KebayaDirty.017
+GF local=(2.60,5.00) worldY=-2.80 size=(0.06, 0.62, 0.06) Static__Upper_KebayaDirty.018
+GF local=(2.79,5.00) worldY=-1.40 size=(0.09, 0.02, 0.02) Static__Upper_KebayaDirty.019
+GF local=(2.80,5.02) worldY=-1.10 size=(0.02, 0.16, 0.06) Static__Upper_KebayaDirty.020
+GF local=(2.60,5.00) worldY=-2.80 size=(0.06, 0.68, 0.06) Static__Upper_KebayaDirty.021
+GF local=(2.89,5.00) worldY=-1.46 size=(0.09, 0.02, 0.02) Static__Upper_KebayaDirty.022
+GF local=(2.90,5.02) worldY=-1.16 size=(0.02, 0.16, 0.06) Static__Upper_KebayaDirty.023
+GF local=(2.60,5.00) worldY=-2.80 size=(0.06, 0.53, 0.06) Static__Upper_KebayaDirty.024
+GF local=(2.98,5.00) worldY=-1.31 size=(0.09, 0.02, 0.02) Static__Upper_KebayaDirty.025
+GF local=(3.00,5.02) worldY=-1.01 size=(0.02, 0.16, 0.06) Static__Upper_KebayaDirty.026
+GF local=(2.60,5.00) worldY=-0.68 size=(0.95, 0.04, 0.04) RagRod
+GF local=(3.30,5.00) worldY=-2.80 size=(0.00, 0.00, 0.00) NyonyaSriAtmaja
+GF local=(3.30,5.00) worldY=-2.80 size=- UpperStandingNyonya
+GF local=(3.30,5.24) worldY=-1.69 size=(0.19, 0.20, 0.34) Static__Detail_ARHair
+GF local=(3.30,5.00) worldY=-2.80 size=(0.04, 0.42, 0.07) Static__Detail_ARHair.001
+GF local=(3.30,5.00) worldY=-2.80 size=(0.04, 0.40, 0.07) Static__Detail_ARHair.002
+GF local=(3.30,5.00) worldY=-2.80 size=(0.04, 0.38, 0.07) Static__Detail_ARHair.003
+GF local=(3.30,5.00) worldY=-2.80 size=(0.04, 0.42, 0.07) Static__Detail_ARHair.004
+GF local=(3.30,5.00) worldY=-2.80 size=(0.04, 0.40, 0.07) Static__Detail_ARHair.005
+GF local=(3.30,5.00) worldY=-2.80 size=(0.04, 0.38, 0.07) Static__Detail_ARHair.006
+GF local=(3.30,5.00) worldY=-2.80 size=(0.04, 0.42, 0.07) Static__Detail_ARHair.007
+GF local=(3.30,5.00) worldY=-2.80 size=(0.04, 0.40, 0.07) Static__Detail_ARHair.008
+GF local=(3.30,5.00) worldY=-2.80 size=(0.04, 0.38, 0.07) Static__Detail_ARHair.009
+GF local=(3.30,5.00) worldY=-2.80 size=(0.04, 0.42, 0.07) Static__Detail_ARHair.010
+GF local=(3.30,5.00) worldY=-2.80 size=(0.04, 0.40, 0.07) Static__Detail_ARHair.011
+GF local=(3.30,5.00) worldY=-2.80 size=(0.04, 0.38, 0.07) Static__Detail_ARHair.012
+GF local=(3.30,5.00) worldY=-2.80 size=(0.04, 0.42, 0.07) Static__Detail_ARHair.013
+GF local=(3.30,5.00) worldY=-2.80 size=(0.04, 0.40, 0.07) Static__Detail_ARHair.014
+GF local=(3.30,5.00) worldY=-2.80 size=(0.04, 0.38, 0.07) Static__Detail_ARHair.015
+GF local=(3.20,5.25) worldY=-1.72 size=(0.02, 0.02, 0.04) Static__Detail_ARHair.016
+GF local=(3.20,5.16) worldY=-1.72 size=(0.02, 0.02, 0.04) Static__Detail_ARHair.017
+GF local=(3.28,5.23) worldY=-1.72 size=(0.18, 0.22, 0.30) Static__Detail_ARSkin
+GF local=(3.28,5.08) worldY=-2.78 size=(0.20, 0.05, 0.09) Static__Detail_ARSkin.001
+GF local=(3.11,4.98) worldY=-2.26 size=(0.15, 0.06, 0.10) Static__Detail_ARSkin.002
+GF local=(3.28,4.92) worldY=-2.78 size=(0.20, 0.05, 0.09) Static__Detail_ARSkin.003
+GF local=(3.30,5.00) worldY=-2.80 size=(0.10, 0.11, 0.16) Static__Detail_ARSkin.004
+GF local=(3.11,5.02) worldY=-2.26 size=(0.15, 0.06, 0.10) Static__Detail_ARSkin.005
+GF local=(3.30,5.00) worldY=-2.80 size=(0.38, 0.02, 0.37) Static__Upper_KebayaDirty
+GF local=(3.30,5.00) worldY=-2.80 size=(0.36, 0.02, 0.33) Static__Upper_KebayaDirty.001
+GF local=(3.30,5.00) worldY=-2.80 size=(0.34, 0.02, 0.29) Static__Upper_KebayaDirty.002
+GF local=(3.30,5.00) worldY=-2.80 size=(0.31, 0.02, 0.25) Static__Upper_KebayaDirty.003
+GF local=(3.30,5.00) worldY=-2.80 size=(0.30, 0.02, 0.27) Static__Upper_KebayaDirty.004
+GF local=(3.30,5.00) worldY=-2.80 size=(0.36, 0.02, 0.29) Static__Upper_KebayaDirty.005
+GF local=(3.30,5.00) worldY=-2.80 size=(0.42, 0.02, 0.33) Static__Upper_KebayaDirty.006
+GF local=(3.30,5.00) worldY=-2.28 size=(0.38, 0.74, 0.38) Static__Upper_KebayaDirty.007
+GF local=(3.30,5.00) worldY=-2.80 size=(0.26, 0.47, 0.26) Static__Upper_KebayaDirty.008
+GF local=(3.30,5.00) worldY=-2.80 size=(0.26, 0.47, 0.26) Static__Upper_KebayaDirty.009
+GF local=(3.30,5.00) worldY=-2.80 size=(0.05, 0.05, 0.05) Static__Upper_OldRope
+GF local=(2.75,5.15) worldY=-3.00 size=- NyonyaShears
+GF local=(2.75,5.15) worldY=-3.00 size=- UpperShearsRust
+GF local=(2.75,5.15) worldY=-3.00 size=(0.06, 0.04, 0.06) Static__Detail_AgedBrass
+GF local=(2.75,5.15) worldY=-3.00 size=(0.27, 0.06, 0.25) Static__Upper_IronBlack
+GF local=(2.75,5.15) worldY=-3.00 size=(0.18, 0.05, 0.14) Static__Upper_IronBlack.001
+GF local=(2.75,5.15) worldY=-3.00 size=(0.27, 0.06, 0.25) Static__Upper_IronBlack.002
+GF local=(2.75,5.15) worldY=-3.00 size=(0.18, 0.05, 0.14) Static__Upper_IronBlack.003
+GF local=(2.83,4.94) worldY=-3.01 size=(0.18, 0.02, 0.42) Static__Upper_RustShears
+GF local=(2.83,4.94) worldY=-2.99 size=(0.18, 0.02, 0.42) Static__Upper_RustShears.001
+GF local=(3.90,4.40) worldY=-2.80 size=(1.20, 0.01, 0.90) CellarStain
+GF local=(2.90,3.50) worldY=-0.90 size=- CellarDimLight
+GF local=(3.60,3.00) worldY=1.20 size=(2.40, 1.50, 0.50) DiningVaultBlocker
+GF local=(3.60,3.00) worldY=0.52 size=- FallenVaultTable
+GF local=(3.60,3.00) worldY=0.52 size=- LongDiningTable
+GF local=(3.60,3.00) worldY=0.52 size=(1.22, 1.61, 4.40) Static__House_MAT_WoodDoor
+GF local=(2.80,3.00) worldY=0.52 size=(0.75, 0.69, 1.25) FallenVaultChair
+GF local=(2.80,3.00) worldY=0.52 size=- WornWoodChair
+GF local=(2.80,3.00) worldY=0.52 size=(0.75, 0.69, 1.25) Static__House_MAT_WoodDoor
+GF local=(4.40,3.00) worldY=0.52 size=(0.75, 0.69, 1.25) FallenVaultChair
+GF local=(4.40,3.00) worldY=0.52 size=- WornWoodChair
+GF local=(4.40,3.00) worldY=0.52 size=(0.75, 0.69, 1.25) Static__House_MAT_WoodDoor
+GF local=(0.00,0.00) worldY=0.00 size=- EndingLightning
+GF local=(0.70,-0.20) worldY=3.20 size=- PorchSecurityFixture
+GF local=(0.70,-0.20) worldY=3.20 size=- security_light
+GF local=(0.70,-0.20) worldY=3.20 size=(0.32, 0.53, 0.42) Static__security_light_security_light
+depth 0.4 x:XXXXXX.XXXXXXXX
+depth 0.8 x:.XXX.........XX
+depth 1.2 x:.XXX...........
+depth 1.6 x:.XXX...........
+depth 2.0 x:.XXX...........
+depth 2.4 x:XXXXXXXXXXXXXXX
+depth 2.8 x:XXXXXXXXXXXXXXX
+depth 3.2 x:XXXXX..........
+depth 3.6 x:XXXXXX.........
+depth 4.0 x:XXXXXX.........
+depth 4.4 x:.XXXXX.........
+depth 4.8 x:.XXXXX.........
+depth 5.2 x:XXXXXXXX.......
+depth 5.6 x:XXXXXXXX.......
+depth 6.0 x:XXXXXXXXXXXXXX.
+depth 6.4 x:.XXXXXXXXXXXXX.
+depth 6.8 x:.XXXXXXXXXXXXXX
+depth 6.6 x:XXXXXXXXXXXXXXX
+depth 6.8 x:....X..XXXXXXXX
+depth 7.0 x:.......XXXXXXXX
+depth 7.2 x:.............XX
+depth 7.4 x:...............
+depth 7.6 x:...............

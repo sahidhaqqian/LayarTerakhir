@@ -8,12 +8,12 @@
     "/root/Projects/LayarTerakhir",
     "-quit",
     "-executeMethod",
-    "LayarTerakhir.Editor.AtmajaSceneBuilder.Build",
+    "LayarTerakhir.Editor.PlaytestRevisionBuilder.Build",
     "-logFile",
     "/root/Projects/LayarTerakhir/Audit/atmaja-build.log"
   ],
-  "startedUtc": "2026-10-15T14:33:29.376540+00:00",
+  "startedUtc": "2026-10-16T16:20:37.071456+00:00",
   "status": "Finished",
-  "endedUtc": "2026-10-15T14:34:04.348852+00:00",
+  "endedUtc": "2026-10-16T16:21:17.036710+00:00",
   "exitCode": 0
 }

@@ -44,14 +44,35 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
    punggungnya menempel dinding; cek angka Romawi dan bunyi tik-tok saat mendekat.
    E jam; kontrol **jam/menit** (bukan gembok 3 digit). Waktu salah tidak membuka.
    Atur 03:45, pasang; baca koran 1998. Gunakan kunci di pintu tangga.
-8. ESC → Menu Utama → Continue: harus kembali di checkpoint Atmaja dengan uang/item/baterai
-   yang sama dan tanpa donasi ulang. Lantai dua Atmaja/Adegan 4–7 belum tersedia.
+8. Naiki tangga ke lantai 2. Ikuti jejak tangan berdarah. Kamar anak terkunci: nyalakan
+   AR dan merunduklah menembus celah ventilasi di balik lemari. Baca **buku harian Bima**,
+   lalu potret cangkir susu yang retak dengan Kamera AR (rantai 1) — pintu kamar anak terbuka.
+   Kamar mandi: buka tirai bak, potret cakaran jari kecil (rantai 2). Balkon dalam:
+   baca surat wasiat Nyonya, lalu potret tali tambang yang berayun (rantai 3).
+   Cermin di kamar mandi dapat memunculkan jump-scare sekali; layar HP/AR tetap satu-satunya
+   tempat sosok tampak. Pintu Kamar Tidur Utama terbuka setelah tiga rantai.
+9. Kamar utama: angkat karpet merah, buka pintu jebakan kayu, turun ke ruang bawah tanah.
+   Daya HP jatuh ke 12%: ambil **Powerbank Besar** di meja jahit sisi kiri (baterai 80%).
+   Nyonya Sri Atmaja bangun dan berpatroli — hindari garis pandang, jangan berlari,
+   sembunyi di lemari [E] bila dikejar dan **matikan layar HP [F]** saat dia memeriksa celah.
+   Tertangkap = kembali ke checkpoint basement tanpa kehilangan progres. Ambil **Handycam**
+   di depan cermin besar (merangkak lewat kolong meja) dan putar rekaman terakhir Damar.
+10. Chase: lari mengikuti rute — meluncur [CTRL] lewat pintu jebakan yang menutup,
+    naik keluar dari tangga batu (otomatis), lompati meja makan yang roboh [V],
+    lewati lampu yang pecah, lalu berhenti di jendela dapur. Slow-motion: **klik kiri**
+    untuk menembakkan Blitz flash tepat waktu (3 detik; butuh baterai). Gagal = ulang chase.
+11. Setelah Blitz, berguling keluar jendela dan lari menembus gerbang besi ke jalan raya.
+    Ending: siluet di jendela lantai 2 saat kilat, kartu judul **LAYAR TERAKHIR**,
+    surat Penonton_Terakhir, lalu **Prolog selesai** (54.820 penonton / sawer Rp25.450.000).
+12. ESC → Menu Utama → Continue: harus kembali di checkpoint Atmaja dengan uang/item/baterai
+    yang sama dan tanpa donasi ulang. Restart build baru wajib memakai NEW GAME.
 
 SETTINGS: volume, sensitivitas, subtitle, reduksi glitch, remap delapan aksi utama.
 M/Z/ESC adalah shortcut UI tetap. Tombol J dan modul cerita lanjutan belum diimplementasikan.
-Suara memakai tiga identitas neural sintetis berbeda; intonasi/kejelasan tetap perlu penilaian pendengar,
-bukan dianggap final voice acting. Kesulitan/tensi masih perlu review manusia;
-build ini memperluas eksplorasi dan memperbaiki navigasi, belum menambahkan chase atau musuh baru.
+Suara memakai lima identitas neural sintetis (Raka, Damar, rekaman Damar, Bisikan, Nyonya);
+intonasi/kejelasan tetap perlu penilaian pendengar, bukan dianggap final voice acting.
+Tiga adegan lantai dua, basement stealth, chase rail + QTE Blitz, dan ending sudah tersedia;
+kesulitan/tensi tetap perlu review manusia dan pengukuran FPS Windows.
 
 Uji tambahan: remap E/CTRL/SPACE/TAB/Q; baterai 0; gunakan powerbank B; port USB motor
 dan charger dapur memulihkan ke 35% agar tidak softlock. Coba buka HP saat modal/menu,
