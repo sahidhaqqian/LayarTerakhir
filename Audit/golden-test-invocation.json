@@ -17,5 +17,13 @@
     "/root/Projects/LayarTerakhir/Audit/golden-test.log"
   ],
   "startedUtc": "2026-10-16T09:41:33.126509+00:00",
-  "status": "Running"
+  "status": "Finished",
+  "endedUtc": "2026-10-16T09:44:49.320715+00:00",
+  "exitCode": 0,
+  "testsVerified": {
+    "total": 57,
+    "passed": 57,
+    "failed": 0,
+    "skipped": 0
+  }
 }

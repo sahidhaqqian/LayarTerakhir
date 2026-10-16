@@ -122,7 +122,7 @@ Prinsip penting: **collider fisik, root interaksi, dan state cerita tidak dihapu
 **`FirstPersonController`** (`Scripts/Player/FirstPersonController.cs`)
 - Berbasis `CharacterController`. Kecepatan: walk 2,8 / sprint 4,6 / crouch 1,6 / slide 5,5; tinggi berdiri 1,75, crouch 1,0; gravitasi −19,62.
 - Slide dipicu crouch saat sprint dengan input maju; Space adalah impuls vertikal umum, tetapi `AtmajaVault` mengonsumsi lebih dahulu saat konteks jendela valid. Atmaja memakai crouch height .78 m untuk akses kolong meja.
-- `MovementLocked` dan modal HUD membekukan input; saat terkunci hanya gravitasi yang berjalan. `CanStandUp()` memakai SphereCast agar tidak berdiri di bawah langit-langit rendah.
+- `MovementLocked` dan modal HUD membekukan input; saat terkunci hanya gravitasi yang berjalan. Browsing HP tetap mengizinkan gerak. `CanStandUp()` memeriksa overlap kapsul berdiri agar kepala tidak menembus meja/langit-langit rendah.
 - Mouse look memakai `GameInputConfig.GetLookDelta()`; pitch dibatasi ±80°.
 
 **`InteractionInteractor`** (`Scripts/Player/InteractionInteractor.cs`)

@@ -21,8 +21,8 @@ Yang **belum** dibangun: Adegan 4–7 (lantai dua Atmaja sampai akhir Prolog), U
 | Item | Status |
 | --- | --- |
 | Scene startup | `Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity` |
-| Tes otomatis | 55/55 lulus; `Audit/golden-test-invocation.json` dan `Audit/golden-tests.xml` (EditMode + PlayMode) |
-| Validasi scene | 0 kegagalan; 35 capture diagnostik standalone Linux aktual 640×360 di `Audit/Visuals/Review-Linux/` (bukan validasi Windows 1280×720) |
+| Tes otomatis | 57/57 lulus; `Audit/golden-test-invocation.json` dan `Audit/golden-tests.xml` (EditMode + PlayMode) |
+| Validasi scene | 0 kegagalan; 167 pemeriksaan player + 41 capture aktual 640×360 di `Audit/Visuals/Review-Linux/`; 7 capture tambahan 960×540 di `Audit/Visuals/Kos-Immersion-960/` (bukan validasi Windows/Iris Xe) |
 | Build Windows | Development Mono x86_64, ZIP di `Builds/`; diupload ke R2 dan SHA-256 dibuktikan lewat unduh-balik (`Audit/r2-windows-build-upload.json`) |
 | Pengujian manual Windows | **Belum dilakukan** — menunggu pengembang |
 
