@@ -9,7 +9,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `02993125`
+- Built from commit: `b107da48`
 - Commit above is the pre-commit base, not a freshness check. Verify source/artifact hashes with `python3 Tools/update_graphify.py --check`.
 - Regenerate safely with `python3 Tools/update_graphify.py` before commit/push.
 
@@ -245,16 +245,16 @@ Nodes (4): ScanVisualMode, AR, Normal, UV
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `AtmajaDirector` connect `Community 5` to `Community 0`, `Community 1`, `Community 2`, `Community 3`, `Community 36`, `Community 34`, `Community 8`, `Community 10`, `Community 13`, `Community 16`, `Community 20`, `Community 22`, `Community 24`, `Community 29`, `Community 30`, `Community 31`?**
-  _High betweenness centrality (0.071) - this node is a cross-community bridge._
+  _High betweenness centrality (0.072) - this node is a cross-community bridge._
 - **What connects `FloorY`, `CurrentDialogueSpeaker`, `Instance` to the rest of the system?**
   _133 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.05456953642384106 - nodes in this community are weakly interconnected._
 - **Why does `HudController` connect `Community 10` to `Community 0`, `Community 33`, `Community 1`, `Community 3`, `Community 5`, `Community 6`, `Community 7`, `Community 13`, `Community 17`, `Community 19`, `Community 21`, `Community 24`, `Community 25`, `Community 29`, `Community 30`?**
-  _High betweenness centrality (0.064) - this node is a cross-community bridge._
+  _High betweenness centrality (0.058) - this node is a cross-community bridge._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.10202020202020202 - nodes in this community are weakly interconnected._
 - **Why does `FirstPersonController` connect `Community 31` to `Community 0`, `Community 1`, `Community 2`, `Community 3`, `Community 4`, `Community 5`, `Community 7`, `Community 8`, `Community 10`, `Community 11`, `Community 13`, `Community 17`, `Community 18`, `Community 19`, `Community 20`, `Community 24`, `Community 29`, `Community 30`, `Community 33`, `Community 37`, `Community 41`?**
-  _High betweenness centrality (0.057) - this node is a cross-community bridge._
+  _High betweenness centrality (0.058) - this node is a cross-community bridge._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.05711849957374254 - nodes in this community are weakly interconnected._
