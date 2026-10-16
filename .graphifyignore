@@ -1,0 +1,24 @@
+# Deny by default. Only first-party source code belongs in the knowledge graph.
+# Do NOT replace this with !Assets/**: Unity's Assets directory contains media.
+*
+
+!Assets/
+!Assets/_LayarTerakhir/
+!Assets/_LayarTerakhir/Scripts/
+!Assets/_LayarTerakhir/Scripts/**/
+!Assets/_LayarTerakhir/Scripts/**/*.cs
+!Assets/_LayarTerakhir/Editor/
+!Assets/_LayarTerakhir/Editor/**/
+!Assets/_LayarTerakhir/Editor/**/*.cs
+!Assets/_LayarTerakhir/Tests/
+!Assets/_LayarTerakhir/Tests/**/
+!Assets/_LayarTerakhir/Tests/**/*.cs
+
+!Tools/
+!Tools/**/
+!Tools/**/*.py
+!Tools/**/*.sh
+
+# Everything else stays excluded, including Art, Audio, Models, Textures,
+# Scenes, Resources, StreamingAssets, .meta, .unity, .prefab, .asset, .mat,
+# screenshots/Bugs, AssetResearch, Scene2_*, Packages, Library and Builds.

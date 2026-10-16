@@ -125,3 +125,10 @@ InitTestScene*.unity*
 __pycache__/
 /Scene2_Atmaja_Recovery/*.zip
 /Scene2_Atmaja_Recovery/*.zip.sha256
+
+# Keep only the portable, reviewed Graphify deliverables in git.
+/graphify-out/*
+!/graphify-out/graph.json
+!/graphify-out/GRAPH_REPORT.md
+!/graphify-out/graph.html
+!/graphify-out/source-manifest.json
