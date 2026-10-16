@@ -13,7 +13,7 @@ For an automatic startup screenshot, launch from PowerShell in the extracted fol
 .\LayarTerakhir.exe -kosCapture
 ```
 
-This captures once after eight seconds; F12 remains available for other views. If the application is still showing its opening fade, take another capture with F12 after it clears. Each PNG has a unique UTC filename. The `Player.log` in the same LayarTerakhir data directory records the output path, graphics device and resolution under `KOS_SCREENSHOT`.
+This captures once after eight seconds; the standalone starts at the main menu, so that capture may show the menu if a game has not been started. Choose NEW GAME or CONTINUE and use F12 for gameplay views. If the opening fade is still visible, take another capture after it clears. Each PNG has a unique UTC filename. The `Player.log` in the same data directory records the output path, graphics device and resolution under `KOS_SCREENSHOT`.
 
 The capture utility is compiled only for the Editor and development players. It uses Unity's end-of-frame ScreenCapture without brightness adjustments, image filters, artificial lighting or changes to game state. It does not hide the HUD or alter the phone/gameplay capture action. Editor evidence in `Audit/Visuals/V2/` uses the existing gameplay camera through one URP StandardRequest into an explicit sRGB render target; those evidence views omit overlay-canvas UI. Windows F12 captures include it.
 

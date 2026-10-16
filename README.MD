@@ -10,18 +10,18 @@ Permainan berjalan dalam enam babak bercerita (Babak 0–5) dengan mekanik eksor
 
 **Milestone: revisi playtest Kos–Atmaja, Adegan 2–3 sampai checkpoint pintu tangga.**
 
-Scene/aset kamar kos approved 5 × 3,8 m dipertahankan. Sesuai revisi pengguna, runtime menambah menu, animasi bangun dan suara sintetis Ratna/Damar/Raka. Pintu kamar menuju `Prolog_KoridorKos`: lantai 2, kamar tertutup, tangga, dapur/kamar mandi bersama, halaman, peta dan animasi motor melewati gerbang. Baru kemudian ke `Prolog_RumahAtmaja`.
+Scene/aset kamar kos approved 5 × 3,8 m dipertahankan. Revisi feedback terbaru memakai empat roda gembok dengan petunjuk deduksi, kunci motor di meja, jaket terlihat dan laci berisi powerbank. Ibu kos hanya meninggalkan surat; HP langsung menyambungkan panggilan Damar, tanpa dokumen/tombol putar pesan. Pintu kamar menuju `Prolog_KoridorKos`: lantai 2, kamar tertutup, tangga, dapur/kamar mandi bersama, halaman, peta dan animasi motor melewati gerbang. Baru kemudian ke `Prolog_RumahAtmaja`.
 
-Atmaja memiliki kursi kayu berarah, jalur samping meja, ruang tamu depan/gudang, meja kecil pojok, jam menempel dinding dengan tik-tok dan kontrol jam/menit, tulisan darah merah lewat AR, serta interior gelap dengan cahaya HP. Aplikasi HP: Kamera, Peta skematik, Pesan, Jurnal, Tas, Setelan. Aset staging diperbaiki di Blender; tidak ada unduhan environment baru.
+Atmaja memiliki kursi kayu berarah, jalur samping meja, ruang tamu depan/gudang, meja kecil pojok, jam menempel dinding dengan tik-tok dan kontrol jam/menit, tulisan darah merah lewat AR, serta interior gelap dengan cahaya HP. HP memiliki bezel/status bar, ikon vektor, Kamera, Peta jalan berlisensi CC0 dengan pin Kos/Atmaja, Pesan, Jurnal, Tas, Bank, Setelan dan Telepon. Dana tidak ditampilkan di Tas. Peta offline memakai gambar internet; pin/rute adalah lokasi cerita fiktif.
 
-Yang **belum** dibangun: Adegan 4–7 (lantai dua Atmaja sampai akhir Prolog), UV/Selfie lanjutan, stealth/chase, ritual, dan ending. Tujuan peta berikutnya masih terkunci. VO sintetis generik dan animasi motor first-person masih prototipe; kesulitan/tensi perlu review manusia. Uji visual/performa akhir wajib di Windows Iris Xe; Linux software-rendering tidak membuktikan target 30 FPS. Laporan revisi: [`Audit/playtest-fixes-2026-10-16.md`](Audit/playtest-fixes-2026-10-16.md).
+Yang **belum** dibangun: Adegan 4–7 (lantai dua Atmaja sampai akhir Prolog), UV/Selfie lanjutan, stealth/chase, ritual, dan ending. Tujuan peta berikutnya masih terkunci. VO neural sintetis tiga karakter telah menggantikan suara lama; kualitas akting/intonasi, animasi motor first-person dan kesulitan/tensi masih perlu review manusia. Uji visual/performa akhir wajib di Windows Iris Xe; Linux software-rendering tidak membuktikan target 30 FPS. Laporan revisi terbaru: [`Audit/kos-feedback-2026-10-16.md`](Audit/kos-feedback-2026-10-16.md); laporan sebelumnya: [`Audit/playtest-fixes-2026-10-16.md`](Audit/playtest-fixes-2026-10-16.md).
 
 | Item | Status |
 | --- | --- |
 | Scene startup | `Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity` |
-| Tes otomatis | 52/52 lulus; `Audit/golden-test-invocation.json` dan `Audit/golden-tests.xml` (EditMode + PlayMode) |
-| Validasi scene | 0 kegagalan; 29 capture diagnostik standalone Linux aktual 640×360 di `Audit/Visuals/Review-Linux/` (bukan validasi Windows 1280×720) |
-| Build Windows | Development build Mono x86_64 berhasil, ZIP tersedia di `Builds/` (lokal, tidak di-commit) |
+| Tes otomatis | 55/55 lulus; `Audit/golden-test-invocation.json` dan `Audit/golden-tests.xml` (EditMode + PlayMode) |
+| Validasi scene | 0 kegagalan; 35 capture diagnostik standalone Linux aktual 640×360 di `Audit/Visuals/Review-Linux/` (bukan validasi Windows 1280×720) |
+| Build Windows | Development Mono x86_64, ZIP di `Builds/`; diupload ke R2 dan SHA-256 dibuktikan lewat unduh-balik (`Audit/r2-windows-build-upload.json`) |
 | Pengujian manual Windows | **Belum dilakukan** — menunggu pengembang |
 
 ---

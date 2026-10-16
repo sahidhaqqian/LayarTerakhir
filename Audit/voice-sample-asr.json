@@ -1,0 +1,20 @@
+{
+  "method": "faster-whisper 1.2.1 / Whisper base INT8 CPU, language=id; diagnostic, not human acceptance",
+  "entries": [
+    {
+      "path": "Audit/VoiceSamples/Raka.wav",
+      "transcript": "Malam ini gue harus cari damar, semoga dia baik-baik aja",
+      "duration": 4.0
+    },
+    {
+      "path": "Audit/VoiceSamples/Damar.wav",
+      "transcript": "Raka, tolong dengarin gue, rumah ini gak kosong.",
+      "duration": 4.8
+    },
+    {
+      "path": "Audit/VoiceSamples/Bisikan.wav",
+      "transcript": "haus, bukakan.",
+      "duration": 2.08
+    }
+  ]
+}

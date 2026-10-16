@@ -15,8 +15,8 @@ parser.add_argument('--height',type=int,default=720)
 parser.add_argument('--graphics',choices=['glcore','vulkan'],default='glcore')
 parser.add_argument('--fast',action='store_true',help='Explicitly accelerate smoke story waits; never a timing/FPS test')
 args=parser.parse_args();stage=args.stage
-if stage=='atmaja-player':
-    print('atmaja-player now runs the reviewed three-scene audit (review-player)',flush=True)
+if stage in ('atmaja-player','player'):
+    print(stage+' now runs the reviewed three-scene audit (review-player)',flush=True)
     stage='review-player'
 command=[UNITY,'-batchmode','-nographics','-projectPath',str(ROOT)]
 record_path=ROOT/('Audit/golden-'+stage+'-invocation.json')
@@ -76,12 +76,12 @@ if stage=='test' and result.returncode==0:
         tests=ROOT/'Audit/golden-tests.xml'
         assert tests.stat().st_mtime>=datetime.fromisoformat(record['startedUtc']).timestamp(),'Stale test XML'
         summary=ET.parse(tests).getroot()
-        assert summary.get('result')=='Passed' and int(summary.get('failed',1))==0 and int(summary.get('total',0))>=42,'Incomplete/failed Unity suite'
+        assert summary.get('result')=='Passed' and int(summary.get('failed',1))==0 and int(summary.get('total',0))>=55,'Incomplete/failed Unity suite'
         record['testsVerified']={key:int(summary.get(key,0)) for key in ['total','passed','failed','skipped']}
     except (AssertionError,OSError,ET.ParseError) as error:
         record['exitCode']=1;record['validationError']=str(error)
 if is_player and result.returncode==0:
-    review=stage=='review-player';atmaja=stage=='atmaja-player';expected=29 if review else 12 if atmaja else 13
+    review=stage=='review-player';atmaja=stage=='atmaja-player';expected=35 if review else 12 if atmaja else 13
     receipt=ROOT/('Audit/Visuals/Review-Linux/player-audit.json' if review else 'Audit/Visuals/Atmaja-Linux/player-audit.json' if atmaja else 'Audit/Visuals/Golden-Linux/player-audit.json')
     data=json.loads(receipt.read_text()) if receipt.exists() else {}
     try:

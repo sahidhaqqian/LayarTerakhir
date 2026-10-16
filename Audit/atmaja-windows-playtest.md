@@ -4,15 +4,19 @@ Jalankan LayarTerakhir.exe tanpa flag audit. Main menu: NEW GAME (save lama diar
 CONTINUE (checkpoint terakhir), SETTINGS, EXIT. ESC saat bermain membuka pause menu.
 Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di ArchivedCampaigns.
 
-1. NEW GAME harus menampilkan animasi bangun di tempat tidur, monolog Raka, tiga ketukan,
-   dan suara sintetis Ratna. Surat di bawah pintu baru aktif setelah pembuka selesai.
-   Ambil HP dari kasur, klik PUTAR PESAN SUARA, dengarkan Damar dan tunggu donasi.
-   Baca sticky note/kalender; laci 148, kunci/powerbank, dan jaket tetap seperti cerita asal.
+1. NEW GAME: bangun dari kasur, monolog Raka, **tiga ketukan sungguhan lalu langkah menjauh**.
+   Tidak ada caption SFX atau suara ibu kos. Baca surat bawah pintu, lalu ambil HP:
+   panggilan Damar langsung tersambung tanpa dokumen/tombol putar pesan. Setelahnya pesan kontrak
+   masuk di Pesan dan dana tercatat di Bank. Simpan HP dengan tombol di layar/TAB untuk eksplorasi.
+   Cocokkan sticky note dan kalender untuk **empat roda tanggal/bulan**; petunjuk tidak mencetak jawaban.
+   Ambil kunci yang terlihat di meja, powerbank dari laci dan jaket di gantungan. Setelah menutup
+   gembok/modal, WASD/E harus tetap bekerja; daftar persiapan menunjukkan barang yang belum diambil.
 2. Pintu kamar harus menuju **lorong lantai 2**, dengan kamar penghuni lain tertutup.
    Turuni dua flight tangga, coba pintu dapur bersama dan kamar mandi di bawah.
    Berjalan ke halaman dan motor/gerbang. Tidak boleh langsung pindah ke Atmaja.
-3. TAB angkat HP. Z beralih aplikasi/kamera; M membuka peta skematik dari mana saja.
-   Kamera, Peta, Pesan (putar ulang Damar), Jurnal, Tas dan Setelan dapat diperiksa.
+3. TAB angkat HP. Z beralih aplikasi/kamera; M membuka peta jalan dari mana saja.
+   Kamera, Peta dengan pin Kos/Atmaja, Pesan, Jurnal, Tas, Bank, Telepon dan Setelan dapat diperiksa.
+   Tas hanya barang, bukan saldo. Status HUD lama tidak boleh menumpuk di bezel/status bar HP.
    Tujuan lain masih terkunci. Berangkat ke Atmaja **hanya dekat motor/gerbang**, bukan dari kamar.
    Setelah pilih tujuan, lihat animasi mendekat/naik motor, tangan di setang, gerbang membuka,
    lampu depan menyorot jalan dari lensa motor, dan motor melaju melewati gerbang sebelum
@@ -39,7 +43,8 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
 
 SETTINGS: volume, sensitivitas, subtitle, reduksi glitch, remap delapan aksi utama.
 M/Z/ESC adalah shortcut UI tetap. Tombol J dan modul cerita lanjutan belum diimplementasikan.
-Suara saat ini sintetis generik, bukan final voice acting. Kesulitan/tensi masih perlu review manusia;
+Suara memakai tiga identitas neural sintetis berbeda; intonasi/kejelasan tetap perlu penilaian pendengar,
+bukan dianggap final voice acting. Kesulitan/tensi masih perlu review manusia;
 build ini memperluas eksplorasi dan memperbaiki navigasi, belum menambahkan chase atau musuh baru.
 
 Uji tambahan: remap E/CTRL/SPACE/TAB/Q; baterai 0; gunakan powerbank B; port USB motor

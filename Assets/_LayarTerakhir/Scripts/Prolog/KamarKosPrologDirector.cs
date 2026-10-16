@@ -20,7 +20,7 @@ namespace LayarTerakhir.Prolog
 
     public class KamarKosPrologDirector : MonoBehaviour
     {
-        public const string DrawerPasscode = "148";
+        public const string DrawerPasscode = "1408";
 
         [Header("Progression State")]
         public KosPrologStage currentStage = KosPrologStage.WakeUpAndKnocks;
@@ -37,10 +37,12 @@ namespace LayarTerakhir.Prolog
         public KosInteractableItem wallCalendarItem;
         public KosInteractableItem lockedDrawerItem;
         public KosInteractableItem jacketItem;
+        public KosInteractableItem motorKeyItem;
         public KosInteractableItem kosDoorItem;
         public Light phoneBedRedLed;
         public KosSceneAudio environmentAudio;
 
+        private void Awake() => KosRoomCorrections.Apply(this);
         private void Start()
         {StartCoroutine(AwaitMenuChoice());}
         private IEnumerator AwaitMenuChoice()
@@ -85,6 +87,7 @@ namespace LayarTerakhir.Prolog
             suratKosItem.gameObject.SetActive(false);
             smartphoneBedItem.gameObject.SetActive(false);
             jacketItem.gameObject.SetActive(false);
+            if(motorKeyItem)motorKeyItem.gameObject.SetActive(false);
             lockedDrawerItem.isInteractable = false;
             phoneBedRedLed.enabled = false;
             var phone = SmartphoneController.Instance;
@@ -114,12 +117,6 @@ namespace LayarTerakhir.Prolog
 
             HudController.Instance.SetFadeAlpha(1f);
             HudController.Instance.SetObjective(string.Empty);
-            HudController.Instance.EnqueueSubtitle(
-                "SFX",
-                "[Suara hujan deras menghantam atap seng & dengung kipas PC tua]",
-                2.5f
-            );
-
             yield return WakeFromBed();
 
             float monologue=HudController.Instance.EnqueueSubtitle(
@@ -129,15 +126,8 @@ namespace LayarTerakhir.Prolog
             );
             yield return new WaitForSeconds(monologue+.2f);
 
-            if(environmentAudio)environmentAudio.PlayKnocks();
-            HudController.Instance.EnqueueSubtitle(
-                "SFX",
-                "[TOK! TOK! TOK! Ketukan keras 3 kali di pintu kayu kamar kos, disusul langkah kaki berat menjauh]",
-                3.5f
-            );
-            yield return new WaitForSeconds(3.6f);
-            float warning=HudController.Instance.EnqueueSubtitle("Bu Haji Ratna",KosDialogue.RatnaWarning,6);
-            yield return new WaitForSeconds(warning+.2f);
+            // Ratna leaves a letter, not a spoken warning. Let the physical sequence finish.
+            if(environmentAudio)yield return environmentAudio.PlayOpeningKnocks();
             UiFocus.Cinematic=false;var awakePlayer=FindFirstObjectByType<FirstPersonController>();if(awakePlayer)awakePlayer.MovementLocked=false;
 
             currentStage = KosPrologStage.WaitReadSuratIbuKos;
@@ -191,6 +181,13 @@ namespace LayarTerakhir.Prolog
                 case "JAKET_PINTU":
                     HandlePickupJacket(item);
                     break;
+                case "KUNCI_MOTOR_MEJA":
+                    if(currentStage<KosPrologStage.PreparationAndDrawerPuzzle)return;
+                    hasMotorKey=true;item.gameObject.SetActive(false);
+                    CampaignState.Instance.AddInventoryItem("KUNCI_MOTOR");
+                    if(environmentAudio)environmentAudio.PlayItem("unlock",item.transform.position);
+                    CheckPreparationComplete();
+                    break;
                 case "PINTU_KOS":
                     HandleInteractKosDoor();
                     break;
@@ -237,12 +234,12 @@ namespace LayarTerakhir.Prolog
 
         private IEnumerator AfterSuratReadRoutine()
         {
-            HudController.Instance.EnqueueSubtitle(
+            float reaction=HudController.Instance.PlayPriorityDialogue(
                 "Raka",
                 "Tiga setengah juta besok pagi... Gue cari ke mana jam segini?!",
                 3.5f
             );
-            yield return new WaitForSeconds(3.6f);
+            yield return new WaitForSeconds(reaction+.2f);
 
             if (phoneBedRedLed != null)
                 phoneBedRedLed.enabled = true;
@@ -251,11 +248,6 @@ namespace LayarTerakhir.Prolog
                 smartphoneBedItem.isInteractable = true;
 
             currentStage = KosPrologStage.WaitPickupSmartphone;
-            HudController.Instance.EnqueueSubtitle(
-                "SFX",
-                "[HP Raka di atas kasur bergetar keras dengan lampu LED berkedip merah]",
-                2.8f
-            );
             HudController.Instance.SetObjective("Ambil Smartphone di atas kasur.");
         }
 
@@ -277,57 +269,41 @@ namespace LayarTerakhir.Prolog
                 CampaignState.Instance.AddInventoryItem("SMARTPHONE_RAKA");
             }
 
-            const string phoneScreenContent =
-                "14 Panggilan Tak Terjawab dari \"Damar (Kameramen)\" — Pukul 21:15 WIB\n" +
-                "1 Pesan Suara (Voice Note) — Durasi 00:22\n\n" +
-                "[MEMUTAR VOICE NOTE DAMAR]:\n" +
-                "\"Ka... Raka, jangan ke Rumah Atmaja sendirian. Tolong dengerin gue. Aplikasi kamera yang gue oprek dari forum kemarin... " +
-                "itu bukan filter AR biasa, Ka. Rumah ini nggak kosong. Di lantai dua ada suara perempuan nyanyi tembang Jawa, tapi pas gue " +
-                "sorot pakai kamera HP, dia udah berdiri tepat di depan muka gue—\"\n\n" +
-                "(Terdengar suara benda logam diseret, jeritan tertahan Damar, lalu bunyi kaca pecah sebelum rekaman mati total).";
-
-            HudController.Instance.OpenDocumentModal(
-                "LAYAR SMARTPHONE RAKA — VOICE NOTE DAMAR",
-                phoneScreenContent,
-                () => StartCoroutine(AfterVoiceNotePlayedRoutine())
-            );
+            StartCoroutine(AfterVoiceNotePlayedRoutine());
         }
 
         private IEnumerator AfterVoiceNotePlayedRoutine()
         {
-            HudController.Instance.SetObjective("Dengarkan pesan suara Damar.");
-            float voice=HudController.Instance.EnqueueSubtitle("Damar",KosDialogue.DamarVoiceNote,22);
+            var view=FindFirstObjectByType<AtmajaPhoneView>();
+            while(!view||!view.Apps){yield return null;view=FindFirstObjectByType<AtmajaPhoneView>();}
+            view.Apps.BeginDamarCall();
+            HudController.Instance.SetObjective("Dengarkan Damar.");
+            float voice=HudController.Instance.PlayPriorityDialogue("Damar",KosDialogue.DamarVoiceNote,22);
             yield return new WaitForSeconds(voice+.2f);
-            HudController.Instance.EnqueueSubtitle(
+            view.Apps.EndDamarCall();
+            float response=HudController.Instance.PlayPriorityDialogue(
                 "Raka",
                 "Dam?! Halo, Damar?! Sial, nomornya nggak aktif!",
                 3.2f
             );
-            yield return new WaitForSeconds(3.3f);
+            yield return new WaitForSeconds(response+.2f);
 
             if(environmentAudio)environmentAudio.NotifyDonation();
-            HudController.Instance.ShowBroadcastNotification(
-                "[GLITCH LAYAR 1 DETIK — KRING!]\n" +
-                "[NOTIFIKASI DONASI MASUK: Rp5.000.000 dari Penonton_Terakhir]\n" +
-                "\"Uang muka untuk kosmu dan biaya RS ibumu. Kalau mau temanmu tetap bernapas dan sisa Rp495.000.000 cair, " +
-                "nyalakan live di Rumah Keluarga Atmaja sebelum jam 12 malam. Waktu jalan terus.\"",
-                12f
-            );
-
             if (CampaignState.Instance != null)
             {
                 CampaignState.Instance.AddBoundDonation(5000000);
             }
 
-            currentStage = KosPrologStage.PreparationAndDrawerPuzzle;
-            HudController.Instance.SetObjective("Ambil Kunci Motor, Jaket, dan Baterai Cadangan sebelum berangkat.");
+            currentStage=KosPrologStage.PreparationAndDrawerPuzzle;
+            view.Apps.ReceiveContract();
+            preparationStarted=true;CheckPreparationComplete();
         }
 
         private void HandleInspectStickyNote()
         {
             HudController.Instance.OpenDocumentModal(
                 "STICKY NOTE DI MEJA PC",
-                "\"Password gembok: Tanggal & bulan ulang tahun Ibu biar nggak lupa.\""
+                "Empat putaran. Yang merawatku lebih dulu.\nHari mendahului bulan."
             );
         }
 
@@ -335,9 +311,7 @@ namespace LayarTerakhir.Prolog
         {
             HudController.Instance.OpenDocumentModal(
                 "KALENDER DINDING KAMAR KOS",
-                "Bulan: 08 (Agustus)\n" +
-                "Tanggal 14 dilingkari spidol merah tebal dengan tulisan tangan:\n" +
-                "\"Ultah Ibu (14 - 08)\""
+                "AGUSTUS\n\nTanggal 17 ditandai: Merdeka.\nDi bawahnya ada catatan kecil:\n\"Ibu bertambah usia tiga hari sebelumnya. Jangan lupa telepon.\""
             );
         }
 
@@ -360,19 +334,17 @@ namespace LayarTerakhir.Prolog
             {
                 isDrawerUnlocked = true;
                 if(environmentAudio)environmentAudio.PlayItem("unlock",drawerItem.transform.position);
-                hasMotorKey = true;
                 hasSpareBattery = true;
                 drawerItem.isInteractable = false;
 
                 if (CampaignState.Instance != null)
                 {
-                    CampaignState.Instance.AddInventoryItem("KUNCI_MOTOR");
                     CampaignState.Instance.AddInventoryItem("POWERBANK_KECIL_KOS");
                 }
 
                 HudController.Instance.EnqueueSubtitle(
                     "Raka",
-                    "Kebuka. Kunci motor sama powerbank cadangan udah di tangan.",
+                    "Kebuka. Powerbank-nya masih penuh.",
                     3.5f
                 );
                 CheckPreparationComplete();
@@ -408,13 +380,18 @@ namespace LayarTerakhir.Prolog
             CheckPreparationComplete();
         }
 
+        private bool preparationStarted;
         private void CheckPreparationComplete()
         {
+            if(!preparationStarted)return;
             if (hasJacket && hasMotorKey && hasSpareBattery)
             {
                 currentStage = KosPrologStage.ReadyToDepart;
                 HudController.Instance.SetObjective("Keluar dari Kamar Kos dan berangkat ke Rumah Keluarga Atmaja.");
             }
+            else HudController.Instance.SetObjective("Persiapan berangkat\n"+
+                (hasMotorKey?"✓":"○")+" Kunci motor di meja   "+(hasJacket?"✓":"○")+" Jaket di gantungan\n"+
+                (hasSpareBattery?"✓":"○")+" Powerbank di laci");
         }
 
         private void HandleInteractKosDoor()
@@ -423,9 +400,10 @@ namespace LayarTerakhir.Prolog
             {
                 HudController.Instance.EnqueueSubtitle(
                     "Raka",
-                    "Gue harus ambil Smartphone, Jaket, Kunci Motor, sama Baterai Cadangan dulu sebelum berangkat.",
+                    "Gue belum siap berangkat.",
                     3.2f
                 );
+                CheckPreparationComplete();
                 return;
             }
 

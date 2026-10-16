@@ -46,7 +46,9 @@ namespace LayarTerakhir.UI
             new Dictionary<Button, UnityEngine.Events.UnityAction>();
         private Action _onDocumentClosed;
         private Action _onPadlockSolved;
-        private readonly int[] _digits = { 0, 0, 0 };
+        private int[] _digits = { 0, 0, 0 };
+        private int _wrongAttempts;
+        private float _retryAfter;
         private string _targetPadlockCode = "148";
         private int _lastPhoneState=-1, _lastPhoneBattery=-1;
         private KeyCode _lastPhoneKey, _lastScreenKey;
@@ -54,6 +56,7 @@ namespace LayarTerakhir.UI
         private AudioSource _voice;
         public string CurrentDialogueSpeaker { get; private set; }
         public bool IsDialoguePlaying => _voice && _voice.isPlaying;
+        public bool IsHandsetNotification {get;private set;}
         private readonly HashSet<string> _voicedSpeakers=new HashSet<string>();
         public bool HasPlayedVoice(string speaker)=>_voicedSpeakers.Contains(speaker);
 
@@ -265,14 +268,23 @@ namespace LayarTerakhir.UI
             }
             return duration;
         }
+        public float PlayPriorityDialogue(string speaker,string text,float duration)
+        {
+            // A phone call must connect now, not wait behind repeated optional item remarks.
+            _subtitleQueue.Clear();if(_subtitleRoutine!=null){StopCoroutine(_subtitleRoutine);_subtitleRoutine=null;}
+            if(_voice)_voice.Stop();return EnqueueSubtitle(speaker,text,duration);
+        }
 
         public void ShowBroadcastNotification(string message, float duration = 8f)
         {
             if (broadcastToastText == null) return;
+            IsHandsetNotification=message.Contains("Penonton_Terakhir")||message.Contains("SAWER")||message.Contains("DONASI");
             if (_broadcastRoutine != null) StopCoroutine(_broadcastRoutine);
             broadcastToastText.text = message.Replace("[GLITCH LAYAR 1 DETIK — KRING!]\n",string.Empty)
                 .Replace("[NOTIFIKASI DONASI MASUK: ",string.Empty).Replace("Penonton_Terakhir]","Penonton_Terakhir");
             _broadcastRoutine = StartCoroutine(ClearBroadcastRoutine(duration));
+            var view=FindFirstObjectByType<LayarTerakhir.Prolog.AtmajaPhoneView>();
+            if(IsHandsetNotification&&view&&view.Apps)view.Apps.Notify(broadcastToastText.text);
         }
 
         public void UpdatePhoneStatusUI(SmartphoneController phone)
@@ -304,10 +316,11 @@ namespace LayarTerakhir.UI
         public void OpenDocumentModal(string title, string body, Action onClosed = null)
         {
             if (documentPanel == null) return;
+            LowerPhoneForWorldObject();
             _onDocumentClosed = onClosed;
             documentTitleText.text = title;
             documentBodyText.text = body;
-            var closeLabel=documentCloseButton.GetComponentInChildren<Text>();if(closeLabel)closeLabel.text=title.Contains("VOICE NOTE")?"▶ PUTAR PESAN SUARA":"TUTUP DOKUMEN";
+            var closeLabel=documentCloseButton.GetComponentInChildren<Text>();if(closeLabel)closeLabel.text="TUTUP DOKUMEN";
             documentPanel.SetActive(true);
             var presentation=GetComponent<HudPresentation>();
             if(presentation&&presentation.documentScroll)
@@ -332,12 +345,12 @@ namespace LayarTerakhir.UI
         public void OpenPadlockModal(string targetCode, Action onSolved)
         {
             if (padlockPanel == null) return;
+            LowerPhoneForWorldObject();
             _targetPadlockCode = targetCode;
             _onPadlockSolved = onSolved;
-            _digits[0] = 0;
-            _digits[1] = 0;
-            _digits[2] = 0;
-            padlockFeedbackText.text = "Masukkan 3 digit kombinasi gembok laci.";
+            _digits = new int[targetCode.Length];
+            ConfigureDigitWheels();
+            padlockFeedbackText.text = "Putar roda angka. Temukan petunjuknya di kamar.";
             RefreshPadlockDisplay();
             padlockPanel.SetActive(true);
             SetPlayerLockForModal(true);
@@ -377,14 +390,15 @@ namespace LayarTerakhir.UI
         {
             if (padlockDigitsText != null)
             {
-                padlockDigitsText.text = $"{_digits[0]}       {_digits[1]}       {_digits[2]}";
+                padlockDigitsText.text = string.Join("       ",_digits);
             }
         }
 
         private void SubmitPadlockCode()
         {
             if (padlockPanel == null || !padlockPanel.activeSelf) return;
-            string entered = $"{_digits[0]}{_digits[1]}{_digits[2]}";
+            if(Time.unscaledTime<_retryAfter){padlockFeedbackText.text="Mekanisme tersangkut. Tunggu sebentar.";return;}
+            string entered = string.Concat(_digits);
             if (entered == _targetPadlockCode)
             {
                 Action callback = _onPadlockSolved;
@@ -393,7 +407,45 @@ namespace LayarTerakhir.UI
             }
             else if (padlockFeedbackText != null)
             {
-                padlockFeedbackText.text = $"Kode {entered} salah. Gembok masih terkunci.";
+                _wrongAttempts++;if(_wrongAttempts%3==0)_retryAfter=Time.unscaledTime+3;
+                padlockFeedbackText.text = "Kombinasi salah. Tidak ada bunyi klik.";
+            }
+        }
+
+        // Inspecting a physical object lowers the handset. Closing the drawer cannot leave
+        // invisible phone-app focus consuming WASD, mouse look and interaction.
+        private void LowerPhoneForWorldObject()
+        {
+            var phone=SmartphoneController.Instance;
+            if(phone){phone.isPhoneRaised=false;phone.SyncVisualState();}
+            UiFocus.Phone=false;
+        }
+        private void ConfigureDigitWheels()
+        {
+            var presentation=GetComponent<HudPresentation>();
+            if(!presentation)return;
+            foreach(var t in padlockPanel.GetComponentsInChildren<Transform>(true))
+                if(t.name.StartsWith("DigitCell_"))t.gameObject.SetActive(false);
+                else if((t.name.StartsWith("DigitUp_")||t.name.StartsWith("DigitDown_"))&&int.TryParse(t.name.Substring(t.name.LastIndexOf('_')+1),out int slot))t.gameObject.SetActive(slot<_digits.Length);
+            var header=padlockPanel.transform.Find("PadlockHeader").GetComponent<Text>();header.text="LACI MEJA KERJA · "+_digits.Length+" RODA";
+            presentation.digitDisplays=new Text[_digits.Length];
+            var separator=padlockPanel.transform.Find("DateSeparator");if(separator)separator.gameObject.SetActive(_digits.Length==4);
+            else if(_digits.Length==4)
+            {var dash=UiWidgets.Text("DateSeparator",padlockPanel.transform,"–",Vector2.zero,Vector2.zero,32,TextAnchor.MiddleCenter);dash.rectTransform.anchorMin=dash.rectTransform.anchorMax=new Vector2(.5f,.5f);dash.rectTransform.anchoredPosition=new Vector2(0,45);dash.rectTransform.sizeDelta=new Vector2(24,82);}
+            for(int i=0;i<_digits.Length;i++)
+            {
+                float x=(i-(_digits.Length-1)*.5f)*115;
+                foreach(bool up in new[]{true,false})
+                {
+                    string name=(up?"DigitUp_":"DigitDown_")+i;
+                    var child=padlockPanel.transform.Find(name);
+                    var button=child?child.GetComponent<Button>():CreateButton(name,padlockPanel.transform,LoadSafeFont(),up?"+":"−",Vector2.zero,new Vector2(80,42));
+                    button.gameObject.SetActive(true);button.GetComponent<RectTransform>().anchoredPosition=new Vector2(x,up?110:-20);
+                    int slot=i;BindButton(button,()=>AdjustDigit(slot,up?1:-1));
+                }
+                var cell=UiWidgets.Panel("DigitCell_Runtime_"+i,padlockPanel.transform,Vector2.zero,Vector2.zero,new Color(.11f,.125f,.11f));
+                var rect=cell.GetComponent<RectTransform>();rect.anchorMin=rect.anchorMax=new Vector2(.5f,.5f);rect.anchoredPosition=new Vector2(x,45);rect.sizeDelta=new Vector2(84,82);
+                presentation.digitDisplays[i]=UiWidgets.Text("Digit",cell.transform,"0",Vector2.zero,Vector2.one,48,TextAnchor.MiddleCenter);
             }
         }
 

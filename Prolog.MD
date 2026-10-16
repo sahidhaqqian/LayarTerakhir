@@ -1,6 +1,6 @@
 # Prolog Malam Pertama di Rumah Atmaja
 
-Revisi desain 15 Oktober 2026. Lokasi: Kamar Kos Raka dan Rumah Keluarga Atmaja. Ancaman: Nyonya Sri Atmaja. Durasi jalur utama 90 menit. Prolog tidak memberikan segel lokasi dan tidak memiliki item rahasia wajib untuk secret ending.
+Revisi desain 16 Oktober 2026, mengikuti koreksi playtest pengguna untuk Kos/HP. Revisi ini menggantikan gembok 3 digit dan presentasi voice note di GDD 15 Oktober: sekarang empat roda tanggal/bulan dan panggilan otomatis. Lokasi: Kamar Kos Raka dan Rumah Keluarga Atmaja. Ancaman: Nyonya Sri Atmaja. Durasi jalur utama 90 menit. Prolog tidak memberikan segel lokasi dan tidak memiliki item rahasia wajib untuk secret ending.
 
 Kontrol dan parameter HP mengikuti Rancangan.MD. Tiga foto tragedi membuka pintu Kamar Utama; ini merupakan tutorial bukti, bukan konfirmasi boss. Foto bukti menguras 1%, sedangkan Blitz darurat menguras 15%. HP Raka merupakan satu perangkat aktif setelah kartu aplikasi Damar dipindahkan. Damar mengoprek aplikasi yang berasal dari pengikut Mbah Suro, bukan menciptakan sumber kutukannya.
 
@@ -34,20 +34,20 @@ Pemain berjalan ke pintu dan mengambil kertas merah yang diselipkan di bawah cel
 
 * **Raka (Monolog Suara):** *"Tiga setengah juta besok pagi... Gue cari ke mana jam segini?!"*
 
-#### 3. Voice Note Damar & Intervensi `Penonton_Terakhir`
+#### 3. Panggilan Damar & Intervensi `Penonton_Terakhir`
 
 HP Raka di atas kasur bergetar keras dengan lampu LED berkedip merah.
 
 * **Objektif Layar:** `Ambil Smartphone di atas kasur.`
 
-* Saat pemain mengambil HP, layar menampilkan **14 Panggilan Tak Terjawab dari "Damar (Kameramen)"** pada pukul **21:15 WIB** dan **1 Pesan Suara (Voice Note)** berdurasi 22 detik. Pemain menekan tombol *Play*:
+* Saat pemain mengambil HP, layar langsung masuk mode telepon dan suara Damar otomatis terdengar. Riwayat **14 Panggilan Tak Terjawab dari "Damar (Kameramen)"** pada pukul **21:15 WIB** ada di layar telepon. Tidak ada dokumen transkrip/tombol putar voice note.
 
-* **Damar (Suara di Voice Note — napas tersengal-sengal dan berbisik panik):** "Ka... Raka, jangan ke Rumah Atmaja sendirian. Tolong dengerin gue. Aplikasi kamera yang gue oprek dari forum kemarin... itu bukan filter AR biasa, Ka. Rumah ini nggak kosong. Di lantai dua ada suara perempuan nyanyi tembang Jawa, tapi pas gue sorot pakai kamera HP, dia udah berdiri tepat di depan muka gue—"
+* **Damar (Suara telepon — napas tersengal-sengal dan berbisik panik):** "Ka... Raka, jangan ke Rumah Atmaja sendirian. Tolong dengerin gue. Aplikasi kamera yang gue oprek dari forum kemarin... itu bukan filter AR biasa, Ka. Rumah ini nggak kosong. Di lantai dua ada suara perempuan nyanyi tembang Jawa, tapi pas gue sorot pakai kamera HP, dia udah berdiri tepat di depan muka gue—"
 
 * *(Terdengar suara benda logam diseret, jeritan tertahan Damar, lalu bunyi kaca pecah sebelum rekaman mati total)*.
 
 * **Raka (Monolog Suara):** *"Dam?! Halo, Damar?! Sial, nomornya nggak aktif!"*
-* Tiba-tiba layar HP Raka *glitch* selama 1 detik. Aplikasi *streaming* terbuka sendiri dan memunculkan bunyi notifikasi saweran keras (*"Kring!"*):
+* Bunyi notifikasi saweran (*"Kring!"*) terdengar. Pesan kontrak masuk di aplikasi **Pesan** HP; dana tercatat di aplikasi **Bank**, bukan Tas/inventori atau kartu teks besar di HUD:
 
 * **[NOTIFIKASI DONASI MASUK: Rp5.000.000 dari `Penonton_Terakhir`]**
 
@@ -55,16 +55,17 @@ HP Raka di atas kasur bergetar keras dengan lampu LED berkedip merah.
 
 #### 4. Puzzle Laci Terkunci & Persiapan Berangkat
 
-* **Objektif Layar:** `Ambil Kunci Motor, Jaket, dan Baterai Cadangan sebelum berangkat.`
+* **Objektif Layar:** `Ambil kunci motor, jaket, dan powerbank sebelum berangkat.` Daftar persiapan mencentang barang yang sudah diambil.
 
-* **Jaket:** Tergantung di balik pintu kamar.
-* **Kunci Motor & Baterai Cadangan:** Berada di dalam laci meja kerja yang digembok dengan **Gembok Angka 3 Digit**.
+* **Jaket:** Terlihat pada gantungan yang dapat dijangkau di dekat pintu kamar.
+* **Kunci Motor:** Terletak di atas meja kerja sebagai objek terpisah yang bisa diambil.
+* **Powerbank:** Berada di dalam laci meja kerja dengan **gembok empat roda angka**, dibaca sebagai hari-bulan.
 * **Cara Menyelesaikan Puzzle Laci:**
-* Jika pemain memeriksa meja PC, ada *sticky note* bertuliskan: *"Password gembok: Tanggal & bulan ulang tahun Ibu biar nggak lupa."*
-* Pemain menoleh ke **Kalender Dinding** di sebelah lemari pakaian: tanggal **14 bulan 08 (Agustus)** dilingkari spidol merah dengan tulisan *"Ultah Ibu"*.
-* Pemain memasukkan kode **`1 - 4 - 8`** pada gembok laci → laci terbuka, pemain mendapatkan **Kunci Motor** dan **1x Baterai Cadangan (Powerbank Kecil)**.
+* *Sticky note*: *"Empat putaran. Yang merawatku lebih dulu. Hari mendahului bulan."*
+* **Kalender Agustus** menandai tanggal 17 sebagai Merdeka, dengan catatan *"Ibu bertambah usia tiga hari sebelumnya. Jangan lupa telepon."* Pemain harus menghubungkan dua petunjuk; angka jawaban lengkap tidak dicetak di dokumen/objektif.
+* Jawaban desain tetap ulang tahun Ibu **14 Agustus**, yaitu **`14-08` / `1408`**, bukan `148`. Laci memberi **1x powerbank kecil**; kunci motor tetap harus diambil dari meja.
 
-* Pemain membuka pintu kamar kos → *Fade to Black* diiringi suara deru motor menembus hujan deras.
+* Pintu kamar menuju lorong kos **lantai 2**, melewati kamar-kamar tertutup dan tangga ke lantai bawah yang memiliki dapur/kamar mandi bersama. Pemain keluar ke halaman/gerbang, memilih Atmaja di Peta HP, lalu animasi menaiki motor dan benar-benar melewati gerbang berlangsung sebelum transisi tujuan. Pintu kamar tidak langsung menteleport pemain ke Atmaja.
 
 ---
 

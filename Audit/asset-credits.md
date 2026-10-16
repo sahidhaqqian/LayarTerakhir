@@ -14,13 +14,26 @@ Clock dial numerals are mesh outlines generated from **DejaVu Serif**, copyright
 DejaVu changes are public domain. The original Bitstream Vera permission notice accompanies the project
 and Windows build in `Audit/dejavu-font-license.txt` / `DejaVu-Font-License.txt`. No font is renamed as Bitstream Vera.
 
-Dialogue is **temporary synthetic Indonesian speech**, explicitly approved by the developer, generated offline
-with [eSpeak NG](https://github.com/espeak-ng/espeak-ng) (GPL-3.0-or-later synthesis tool) and processed with
-FFmpeg. The game contains rendered mono dialogue WAVs, not the synthesis executable, neural weights,
-or a cloned actor's voice. Raka, Damar, Ratna and the well whisper use generic synthetic variants, not
-final voice acting. `Tools/synth_prolog_voice.py` and `Audit/prolog-voice-manifest.json` record exact dialogue,
-engine, processing, SHA-256, peak/RMS and duration. No restricted/non-commercial Piper voice model was used.
+Current dialogue is **synthetic Indonesian neural speech**, allowed by the developer, from
+[OpenBMB VoxCPM2](https://huggingface.co/openbmb/VoxCPM2), whose released model is Apache-2.0.
+Original model-designed samples distinguish Raka, Damar and the well whisper; no real actor/person
+was cloned. The landlady has no spoken line. Reference samples were authored locally, then the
+dialogue clips were rendered through the [official public demo](https://huggingface.co/spaces/openbmb/VoxCPM-Demo)
+and normalized with FFmpeg. Only fictional script/synthetic reference audio was sent, never saves
+or personal recordings. The game uses ordinary rendered WAV/Vorbis audio and remains offline;
+no model weights or Python/cloud inference dependencies are included. The exact two-word whisper
+uses its original local voice-design sample for clearer, slower delivery. Acting quality still needs listening approval.
+`Tools/author_voice_from_official_demo.py`, `Tools/neural_prolog_voice.py` and
+`Audit/prolog-voice-manifest.json` record exact lines, references, processing, durations and SHA-256.
+The former eSpeak source clips are historical/unreferenced, not the current bank. No NC Piper or OmniVoice
+pretrained voice is included; the latter was rejected after reading its full model license.
 Clock tick/tock is an original short mechanical waveform generated at runtime.
+
+Phone map: [Jakarta Indonesia street map](https://commons.wikimedia.org/wiki/File:Jakarta_Indonesia_street_map.svg)
+by Kirill Shrayber, CC0 1.0, downloaded as Wikimedia's PNG rendering. Image pixels are retained;
+phone UV cropping, fictional Kos/Atmaja pins and illustrative route are original UI overlays.
+Attribution is shown in the phone. These are not real household addresses or real navigation directions.
+Phone bezel, rounded UI panels, app glyphs, desk key and four-wheel lock are original code-native artwork.
 
 ## Atmaja continuation — source staging reused, no new asset downloads
 

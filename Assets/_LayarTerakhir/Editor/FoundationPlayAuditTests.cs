@@ -118,15 +118,26 @@ namespace LayarTerakhir.Editor.Tests
             yield return WaitForStage(KosPrologStage.WaitPickupSmartphone);
             yield return Interact(director.smartphoneBedItem, new Vector3(-.8f, .05f, -.98f));
             Assert.That(Find<SmartphoneController>().hasSmartphoneInInventory, Is.True);
-            Assert.That(hud.documentBodyText.text, Does.Contain("14 Panggilan"));
-            CloseDocument();
+            yield return null;
+            var view=Find<AtmajaPhoneView>();
+            Assert.That(hud.IsModalOpen,Is.False,"Picking up the phone must not open a voice-note document");
+            Assert.That(view.Apps.CallActive,Is.True);
+            Assert.That(view.Apps.CurrentApp,Is.EqualTo(PhoneApp.Call));
             yield return WaitForStage(KosPrologStage.PreparationAndDrawerPuzzle);
             Assert.That(campaign.Data.wallet_bound, Is.EqualTo(5000000));
+            Assert.That(view.Apps.CurrentApp,Is.EqualTo(PhoneApp.Messages));
+            view.Apps.Open(PhoneApp.Bank);yield return null;
+            Assert.That(GameObject.Find("BankBalance").GetComponent<UnityEngine.UI.Text>().text,Does.Contain("5.000.000"));
+            view.Apps.Open(PhoneApp.Inventory);yield return null;
+            Assert.That(GameObject.Find("InventoryEntries").GetComponent<UnityEngine.UI.Text>().text,Does.Not.Contain("DONASI").And.Not.Contain("Rp"));
+            // Actual user action, no direct edits to UiFocus or handset state.
+            yield return Press(Key.Tab);yield return null;
+            Assert.That(UiFocus.Phone,Is.False);
             yield return Interact(director.stickyNoteItem, new Vector3(.85f, .05f, -.05f));
-            Assert.That(hud.documentBodyText.text, Does.Contain("Tanggal & bulan"));
+            Assert.That(hud.documentBodyText.text, Does.Contain("Hari mendahului bulan"));
             CloseDocument();
             yield return Interact(director.wallCalendarItem, new Vector3(.85f, .05f, .5f));
-            Assert.That(hud.documentBodyText.text, Does.Contain("14 - 08"));
+            Assert.That(hud.documentBodyText.text, Does.Contain("tiga hari sebelumnya").And.Not.Contain("1408").And.Not.Contain("14 - 08"));
             CloseDocument();
             if (jacketFirst) yield return Interact(director.jacketItem, new Vector3(1.05f, 0.05f, -0.4f));
             yield return Interact(director.lockedDrawerItem, new Vector3(.95f, .05f, -.65f));
@@ -135,16 +146,20 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(hud.padlockFeedbackText.text, Does.Contain("salah"));
             FoundationAuditTests.Button(hud, "CancelPadlockBtn").onClick.Invoke();
             yield return Interact(director.lockedDrawerItem, new Vector3(.95f, .05f, -.65f));
-            int[] digits = { 1, 4, 8 };
-            for (int slot = 0; slot < 3; slot++)
+            int[] digits = { 1, 4, 0, 8 };
+            for (int slot = 0; slot < 4; slot++)
                 for (int n = 0; n < digits[slot]; n++) FoundationAuditTests.Button(hud, "DigitUp_" + slot).onClick.Invoke();
             FoundationAuditTests.Button(hud, "UnlockPadlockBtn").onClick.Invoke();
             Assert.That(director.isDrawerUnlocked, Is.True);
-            if (!jacketFirst) yield return Interact(director.jacketItem, new Vector3(1.05f, 0.05f, -0.4f));
+            Assert.That(director.hasMotorKey,Is.False,"Drawer only contains a powerbank; motor keys are on the desktop");
+            Assert.That(UiFocus.Phone||hud.IsModalOpen||Find<FirstPersonController>().MovementLocked,Is.False,"Closing the drawer releases world input");
+            yield return WalkTo(new Vector3(.4f,.05f,-.15f));
+            yield return UseFromCurrentFeet(director.motorKeyItem);
+            if (!jacketFirst){yield return WalkTo(new Vector3(1.05f,.05f,-.4f));yield return UseFromCurrentFeet(director.jacketItem);}
             Assert.That(director.currentStage, Is.EqualTo(KosPrologStage.ReadyToDepart));
             Assert.That(campaign.Data.inventory, Is.EquivalentTo(new[] {
                 "DOC_PROLOG_01_SURAT_KOS", "SMARTPHONE_RAKA", "KUNCI_MOTOR", "POWERBANK_KECIL_KOS", "JAKET_RAKA" }));
-            yield return Interact(director.kosDoorItem, new Vector3(0.85f, 0.05f, -0.3f));
+            yield return WalkTo(new Vector3(.9f,.05f,-.6f));yield return UseFromCurrentFeet(director.kosDoorItem);
             Assert.That(director.currentStage, Is.EqualTo(KosPrologStage.Completed));
             yield return new WaitForSeconds(4f);
             Assert.That(hud.blackFadeImage.color.a, Is.EqualTo(1f));
@@ -375,6 +390,24 @@ namespace LayarTerakhir.Editor.Tests
             yield return Press(Key.E);
         }
 
+        private IEnumerator WalkTo(Vector3 target)
+        {
+            var player=Find<FirstPersonController>();var cc=player.GetComponent<CharacterController>();player.enabled=false;
+            for(int i=0;i<100;i++)
+            {
+                var delta=target-player.transform.position;delta.y=0;if(delta.magnitude<.08f)break;
+                cc.Move(Vector3.ClampMagnitude(delta,.08f)+Vector3.down*.08f);yield return null;
+            }
+            var remaining=target-player.transform.position;remaining.y=0;player.enabled=true;
+            Assert.That(remaining.magnitude,Is.LessThan(.14f),"Preparation items and exit must be reachable with continuous floor walking");
+        }
+        private IEnumerator UseFromCurrentFeet(KosInteractableItem item)
+        {
+            var interactor=Find<InteractionInteractor>();interactor.playerCamera.transform.LookAt(item.GetComponent<Collider>().bounds.center);Physics.SyncTransforms();yield return null;
+            Assert.That(interactor.CurrentTarget,Is.SameAs(item),"Preparation item must be first-hit reachable from the aisle: "+item.name);
+            yield return Press(Key.E);
+        }
+
         private static void PlacePlayer(Vector3 position)
         {
             var player = Find<FirstPersonController>();
@@ -409,8 +442,7 @@ namespace LayarTerakhir.Editor.Tests
             var hud = Find<HudController>();
             hud.documentCloseButton.onClick.Invoke();
             Assert.That(hud.IsModalOpen, Is.False);
-            // World-interaction scenarios stow the phone, rather than clicking through its app desktop.
-            var phone=SmartphoneController.Instance;if(phone){phone.isPhoneRaised=false;phone.SyncVisualState();UiFocus.Phone=false;}
+            // World-object modal owns lowering the phone; the test must not clear focus itself.
         }
 
         private static T Find<T>() where T : UnityEngine.Object => UnityEngine.Object.FindFirstObjectByType<T>();

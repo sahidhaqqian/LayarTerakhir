@@ -1,5 +1,5 @@
 {
-    "utc": "2026-10-16T03:19:52.6090900Z",
+    "utc": "2026-10-16T07:01:02.4593210Z",
     "failures": 0,
     "checks": [
         "PASS Tree geometry stays outside the east wall; no root plate in dining chairs",
@@ -322,7 +322,7 @@
         "PASS No missing corridor scripts: StairWallLampDiffuser",
         "PASS No missing corridor scripts: StairWallLampLight",
         "PASS No missing corridor scripts: KosCorridorPost",
-        "PASS Synthesized dialogue WAV bank is complete and serialized in build",
-        "PASS Landlady and trapped-window dialogue are voiced"
+        "PASS Neural dialogue WAV bank is complete and serialized in build",
+        "PASS Landlady only leaves a letter; trapped-window dialogue remains voiced"
     ]
 }

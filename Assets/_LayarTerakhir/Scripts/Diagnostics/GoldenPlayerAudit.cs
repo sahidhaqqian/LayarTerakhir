@@ -153,7 +153,7 @@ namespace LayarTerakhir.Diagnostics
         private float[] samples;
         private volatile int written;
         private int rate,channelCount;
-        private void Awake(){rate=AudioSettings.outputSampleRate;samples=new float[rate*2*14];}
+        private void Awake(){rate=AudioSettings.outputSampleRate;samples=new float[rate*2*45];}
         private void OnAudioFilterRead(float[] data,int channels)
         {
             if(samples==null)return;channelCount=channels;

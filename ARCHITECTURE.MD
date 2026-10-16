@@ -4,11 +4,11 @@ Dokumen ini menjelaskan fondasi `Prolog_KamarKos` yang sudah approved serta kela
 
 Revisi playtest 16 Oktober 2026: scene/aset kamar Golden tetap byte-identical, tetapi runtime pembuka/keluar diperluas sesuai arahan pengguna. Lihat `Audit/playtest-fixes-2026-10-16.md` untuk batasan dan bukti terbaru. Bagian fondasi di bawah menjelaskan sistem asal; tambahan revisi berikut menggantikan alur keluar/HP lama.
 
-`GameShell` adalah satu UI persisten sebelum scene pertama: menu awal/jeda/pengaturan, pemuatan New Game/Continue, volume/sensitivitas/subtitle/reduksi glitch/remap. New Game mengarsipkan slot lama byte-for-byte sebelum membuat campaign baru. `UiFocus` memisahkan menu/jam (hard modal), browsing HP dan cutscene; TAB/F tetap dapat dipakai ketika browsing HP. `KamarKosPrologDirector` menunggu pilihan menu, memainkan bangun dari kasur, Ratna dan voice note, lalu memuat koridor, bukan langsung Atmaja.
+`GameShell` adalah satu UI persisten sebelum scene pertama: menu awal/jeda/pengaturan, pemuatan New Game/Continue, volume/sensitivitas/subtitle/reduksi glitch/remap. New Game mengarsipkan slot lama byte-for-byte sebelum membuat campaign baru. `UiFocus` memisahkan menu/jam (hard modal), browsing HP dan cutscene; TAB/F tetap dapat dipakai ketika browsing HP. `KamarKosPrologDirector` menunggu pilihan menu, memainkan bangun dari kasur, ketukan/langkah, surat dan panggilan Damar otomatis. Ratna tidak bersuara. Persiapan memakai gembok empat roda, kunci terpisah di meja, jaket terlihat dan powerbank di laci; pintu memuat koridor, bukan langsung Atmaja. `KosRoomCorrections` adalah pass runtime terarah yang tidak menyimpan ulang scene Golden. Modal benda dunia menurunkan HP agar fokus aplikasi tidak menyisakan softlock gerak/interaksi.
 
 `PrologSceneFlow`: Kos (index 0) → KoridorKos (index 2) → Atmaja (index 1). Index dipertahankan untuk kompatibilitas build lama; urutan cerita memakai nama scene. `KosCorridorDirector` menangani checkpoint lantai 2/halaman dan perjalanan: peta dapat dilihat dari mana saja, tetapi departure hanya di dekat gerbang/motor. Motor, kamera, tangan first-person dan gerbang bergerak nyata sebelum fade/load Atmaja. Binding input dibawa lewat transisi; singleton campaign scene baru membaca save atomik yang sama.
 
-`AtmajaPhoneView` sekarang dipasang pada HUD semua scene, dengan `PhoneDesktop` (Kamera/Peta/Pesan/Jurnal/Tas/Setelan). RT 320×400 hanya aktif saat aplikasi Kamera dan layar HP hidup; layer 29 hanya kamera HP, bukan kamera dunia. Jurnal/inventori memakai scroll. `PresentationProfile` di Resources mengikat font, shader-feed, mixer dan bank 16 WAV VO sintetis; `HudController` menyatukan antrean subtitle/audio. `ClockAmbience` menyediakan tik-tok spasial, `HingedDoor` pintu eksplorasi, `ClockPuzzleView` kontrol jam/menit. Tulisan AR adalah mesh guratan merah pada plane dinding; shader-feed mempertahankan warna merahnya. `AtmajaDirector` mensyaratkan petunjuk benar-benar dibidik melalui AR sebelum puzzle jam terbuka; event tetap idempotent dan rollback bila save gagal.
+`AtmajaPhoneView` dipasang pada HUD semua scene, dengan `PhoneDesktop` (Kamera/Peta/Pesan/Jurnal/Tas/Bank/Setelan/Telepon), `PhoneSkin` dan ikon vektor `PhoneGlyph`. RT portrait 256×448 hanya aktif saat aplikasi Kamera dan layar HP hidup; layer 29 hanya kamera HP, bukan kamera dunia. Status HUD eksternal disembunyikan ketika handset diangkat agar tidak bertumpuk dengan status bar. Pesan donasi tampil di HP; feedback dunia/save tetap berupa toast ringkas yang terlihat meski HP mati. Jurnal/inventori memakai scroll; saldo hanya di Bank. Peta memakai PNG jalan Jakarta CC0 dengan UV crop/pin/rute cerita fiktif. `PresentationProfile` di Resources mengikat font, shader-feed, mixer dan 15 WAV VO neural; `HudController` menyatukan antrean subtitle/audio serta priority call agar panggilan tidak tertunda komentar opsional. `ClockAmbience` menyediakan tik-tok spasial, `HingedDoor` pintu eksplorasi, `ClockPuzzleView` kontrol jam/menit. Tulisan AR adalah mesh guratan merah pada plane dinding; shader-feed mempertahankan warna merahnya. `AtmajaDirector` mensyaratkan petunjuk benar-benar dibidik melalui AR sebelum puzzle jam terbuka; event tetap idempotent dan rollback bila save gagal.
 
 `PlaytestRevisionBuilder` meregenerasi scene Atmaja, bank presentasi dan koridor tanpa menyimpan ulang scene kamar. `PlaytestReviewValidation` memeriksa serialisasi komponen, geometri, kapsul jalur meja, dua lantai dan VO. `ReviewPlayerAudit` adalah opt-in development-only dengan save terisolasi, menu aktual, perjalanan motor, jalan CharacterController kontinu dan capture aktual; timer dipercepat/capture freeze dicatat, bukan bukti performa/pacing manual.
 
@@ -134,7 +134,7 @@ Prinsip penting: **collider fisik, root interaksi, dan state cerita tidak dihapu
 **`KamarKosPrologDirector`** (`Scripts/Prolog/KamarKosPrologDirector.cs`)
 - State machine `KosPrologStage`: `WakeUpAndKnocks → WaitReadSuratIbuKos → WaitPickupSmartphone → PreparationAndDrawerPuzzle → ReadyToDepart → Completed`.
 - `Start()` memuat checkpoint; jika `PROLOG_KOS_COMPLETE` valid dan inventori berisi `SMARTPHONE_RAKA` + `KUNCI_MOTOR` + `JAKET_RAKA`, scene dipulihkan langsung ke `ReadyToDepart` (objek yang sudah diambil dinonaktifkan, baterai HP dipulihkan).
-- Merangkai adegan pembuka (fade, subtitle, ketukan pintu), membaca surat, voice note Damar, donasi terikat Rp5.000.000, puzzle gembok `148`, pengambilan jaket, lalu pintu keluar yang menyimpan checkpoint sebelum fade hitam.
+- Merangkai bangun, tiga ketukan lalu langkah menjauh (bukan caption), surat tanpa VO ibu kos, panggilan Damar otomatis, pesan/dana Rp5.000.000, puzzle `1408`, kunci di meja, jaket dan powerbank, lalu checkpoint pintu keluar ke koridor.
 - ID inventori: `DOC_PROLOG_01_SURAT_KOS`, `SMARTPHONE_RAKA`, `KUNCI_MOTOR`, `POWERBANK_KECIL_KOS`, `JAKET_RAKA`. Checkpoint: `PROLOG_KOS_COMPLETE`.
 - `OnObjectInteracted(item)` adalah satu-satunya pintu masuk aksi interaksi; semua efek cerita (audio, subtitle, HUD, save) dikelola di sini agar tidak ada script lain yang menduplikasi logika.
 
@@ -156,7 +156,7 @@ ID interaksi scene kos: `PC_MONITOR`, `STICKY_NOTE`, `LACI_MEJA`, `KALENDER_DIND
 **`HudController`** (`Scripts/UI/HudController.cs`) — logika & state
 - Singleton; `Awake()` memastikan UI runtime dibangun (`EnsureRuntimeUIBuilt`) atau memakai UI tersimpan, lalu selalu mengikat ulang callback button (`Scene serialization does not retain AddListener delegates`).
 - Elemen: objective, subtitle, interaction prompt, status HP, toast donasi, `BlackFadeOverlay`, crosshair.
-- Modal: `DocumentModalPanel` (judul + body + tombol `CloseDocumentButton`, scroll) dan `PadlockModalPanel` (3 digit dengan button `DigitUp_i`/`DigitDown_i`, `UnlockPadlockBtn`, `CancelPadlockBtn`).
+- Modal: `DocumentModalPanel` (judul + body + tombol `CloseDocumentButton`, scroll) dan `PadlockModalPanel` (empat digit Kos; panjang dinamis tetap mendukung tes kompatibilitas tiga digit; button `DigitUp_i`/`DigitDown_i`, `UnlockPadlockBtn`, `CancelPadlockBtn`).
 - API publik: `SetObjective`, `SetInteractionPrompt`, `EnqueueSubtitle` (antrean dengan durasi, format speaker/SFX), `ShowBroadcastNotification`, `OpenDocumentModal(title, body, onClosed)`, `OpenPadlockModal(code, onSolved)`, `SetFadeAlpha`, `FadeBlack`, `UpdatePhoneStatusUI`.
 - `IsModalOpen` dipakai bersama oleh controller pemain, smartphone, dan audio untuk membekukan/menduck input dan suara.
 
@@ -206,7 +206,8 @@ Start
       └─ WaitReadSuratIbuKos        objek: SURAT_KOS        → DOC_PROLOG_01_SURAT_KOS
            └─ WaitPickupSmartphone  objek: SMARTPHONE_BED  → SMARTPHONE_RAKA + donasi terikat 5 juta
                 └─ PreparationAndDrawerPuzzle
-                     ├─ LACI_MEJA  → gembok 148 → KUNCI_MOTOR + POWERBANK_KECIL_KOS
+                     ├─ LACI_MEJA  → gembok 1408 → POWERBANK_KECIL_KOS
+                     ├─ KUNCI_MOTOR_MEJA → KUNCI_MOTOR
                      └─ JAKET_PINTU → JAKET_RAKA
                           └─ ReadyToDepart (objective pintu)
                                └─ PINTU_KOS → SaveCheckpointAtomic(PROLOG_KOS_COMPLETE)

@@ -6,6 +6,11 @@ from pathlib import Path
 from datetime import datetime,timezone
 import hashlib,json,struct,zipfile,zlib,shutil
 root=Path(__file__).resolve().parents[1];out=root/'Builds/Windows';logs=root/'Builds/Logs'
+voices=json.loads((root/'Audit/prolog-voice-manifest.json').read_text())
+assert 'VoxCPM2' in voices['engine'] and len(voices['entries'])==15,'Wrong/stale speech bank'
+assert not any(v['speaker']=='Bu Haji Ratna' for v in voices['entries']),'Landlady must not have VO'
+for voice in voices['entries']:
+ assert hashlib.sha256((root/voice['path']).read_bytes()).hexdigest()==voice['sha256'],'Stale voice hash: '+voice['path']
 report=json.loads((logs/'windows-development-build-report.json').read_text())
 invocation=json.loads((logs/'windows-build-invocation.json').read_text())
 assert invocation['exitCode']==0,'Unity did not exit successfully'
@@ -51,7 +56,7 @@ corridor_data=(out/'LayarTerakhir_Data/level2').read_bytes()
 for marker in ['Spawn_KosFloor2','StairA_9','StairB_9','DAPUR BERSAMA','KAMAR MANDI','RakaMotor','RakaMotorHeadlight','KosGateHinge','KosStreetDeparture']:
  assert marker.encode() in corridor_data,marker
 runtime=(out/'LayarTerakhir_Data/Managed/Assembly-CSharp.dll').read_bytes()
-for marker in ['GameShell','PhoneDesktop','ClockPuzzleView','ClockAmbience','KosCorridorDirector','KosTravelItem','ReviewPlayerAudit']:
+for marker in ['GameShell','PhoneDesktop','PhoneSkin','KosRoomCorrections','ClockPuzzleView','ClockAmbience','KosCorridorDirector','KosTravelItem','ReviewPlayerAudit']:
  assert marker.encode() in runtime,marker
 assert b'LayarPresentation' in (out/'LayarTerakhir_Data/resources.assets').read_bytes(),'Presentation/voice resource missing'
 shutil.copy2(root/'Audit/asset-credits.md',out/'Asset-Credits.txt')

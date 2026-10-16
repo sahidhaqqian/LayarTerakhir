@@ -60,18 +60,40 @@ namespace LayarTerakhir.Editor.Tests
         }
 
         [Test]
-        public void SavedPadlockButtonsSolve148Once()
+        public void MonitorDashboardFollowsMeasuredGlassPlaneWithinTwoMillimeters()
+        {
+            LayarTerakhir.Prolog.KosRoomCorrections.AlignMonitor();
+            var screen=GameObject.Find("MonitorDashboard").transform;
+            var normal=new Vector3(0,.1314f,-.9913f);
+            float separation=Vector3.Dot(screen.position-new Vector3(-.7251642f,1.203817f,1.4236f),normal);
+            Assert.That(separation,Is.InRange(.0001f,.002f));
+            Assert.That(Vector3.Dot(-screen.forward,normal),Is.GreaterThan(.9999f));
+        }
+
+        [Test]
+        public void PhysicalDrawerLowersPhoneAndReleasesItsFocusWithoutRemovingOtherLocks()
+        {
+            var phone=Find<SmartphoneController>();var player=Find<FirstPersonController>();var hud=Find<HudController>();
+            phone.hasSmartphoneInInventory=phone.isPhoneRaised=true;UiFocus.Phone=true;player.MovementLocked=true;
+            hud.OpenPadlockModal("1408",()=>{});hud.ClosePadlockModal();
+            Assert.That(phone.isPhoneRaised||UiFocus.Phone||hud.IsModalOpen,Is.False);
+            Assert.That(player.MovementLocked,Is.True,"Closing a modal must not undo unrelated cinematic locks");
+        }
+
+        [TestCase("148")]
+        [TestCase("1408")]
+        public void SavedPadlockButtonsSolveOnce(string code)
         {
             var hud = Find<HudController>();
             hud.EnsureRuntimeUIBuilt();
             hud.EnsureRuntimeUIBuilt();
             int calls = 0;
-            hud.OpenPadlockModal("148", () => calls++);
-            for (int slot = 0; slot < 3; slot++)
+            hud.OpenPadlockModal(code, () => calls++);
+            for (int slot = 0; slot < code.Length; slot++)
             {
                 Button(hud, "DigitDown_" + slot).onClick.Invoke();
                 Button(hud, "DigitUp_" + slot).onClick.Invoke();
-                for (int n = 0; n < new[] { 1, 4, 8 }[slot]; n++)
+                for (int n = 0; n < code[slot]-'0'; n++)
                     Button(hud, "DigitUp_" + slot).onClick.Invoke();
             }
             Button(hud, "UnlockPadlockBtn").onClick.Invoke();

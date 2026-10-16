@@ -57,8 +57,8 @@ namespace LayarTerakhir.Editor
             Check(Object.FindObjectsByType<HingedDoor>(FindObjectsSortMode.None).Length>=14&&Object.FindObjectsByType<KosTravelItem>(FindObjectsSortMode.None).Length==2,"Closed kos doors, shared doors and travel interactions survive serialization");
             foreach(var t in UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects().SelectMany(g=>g.GetComponentsInChildren<Transform>(true)))
                 Check(GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(t.gameObject)==0,"No missing corridor scripts: "+t.name);
-            var profile=PresentationProfile.Load();Check(profile&&profile.voices.Length>=16&&profile.voices.All(v=>v.clip&&v.clip.length>.3f),"Synthesized dialogue WAV bank is complete and serialized in build");
-            Check(profile&&profile.voices.Any(v=>v.speaker=="Bu Haji Ratna")&&profile.voices.Any(v=>v.text==LayarTerakhir.UI.KosDialogue.Trapped),"Landlady and trapped-window dialogue are voiced");
+            var profile=PresentationProfile.Load();Check(profile&&profile.voices.Length>=14&&profile.voices.All(v=>v.clip&&v.clip.length>.3f),"Neural dialogue WAV bank is complete and serialized in build");
+            Check(profile&&!profile.voices.Any(v=>v.speaker=="Bu Haji Ratna")&&profile.voices.Any(v=>v.text==LayarTerakhir.UI.KosDialogue.Trapped),"Landlady only leaves a letter; trapped-window dialogue remains voiced");
             File.WriteAllText("Audit/playtest-review-validation.json",JsonUtility.ToJson(new Record{utc=DateTime.UtcNow.ToString("o"),failures=failures,checks=checks.ToArray()},true)+"\n");
             if(failures>0)throw new Exception("Playtest review validation failed: "+failures);
         }

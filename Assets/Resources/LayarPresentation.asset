@@ -30,8 +30,8 @@ MonoBehaviour:
     text: Gue cek dulu apa yang diselipin di bawah pintu tadi.
     clip: {fileID: 8300000, guid: 497b90beed83d721cb2a9c68c1f42c58, type: 3}
   - speaker: Raka
-    text: Kebuka. Kunci motor sama powerbank cadangan udah di tangan.
-    clip: {fileID: 8300000, guid: 357fd382dc3eaac7a82327f4a7976c38, type: 3}
+    text: Kebuka. Powerbank-nya masih penuh.
+    clip: {fileID: 8300000, guid: d427f7a16e1e1192ba391b747aeccd8c, type: 3}
   - speaker: Raka
     text: Bentar, gue belum mau keluar sebelum cek bawah pintu.
     clip: {fileID: 8300000, guid: 72df1d32b4a8198d7ad0483142a19a48, type: 3}
@@ -39,9 +39,8 @@ MonoBehaviour:
     text: Jaket udah dipakai. Hujan di luar makin deres.
     clip: {fileID: 8300000, guid: 91e154a0fc5e541fca12c9a3bb36cfdb, type: 3}
   - speaker: Raka
-    text: Gue harus ambil Smartphone, Jaket, Kunci Motor, sama Baterai Cadangan dulu
-      sebelum berangkat.
-    clip: {fileID: 8300000, guid: 1782d607f99f7344380d49d66a292731, type: 3}
+    text: Gue belum siap berangkat.
+    clip: {fileID: 8300000, guid: be020d926eae86f8bae1d844be94a0a6, type: 3}
   - speaker: Bisikan
     text: Haus... bukakan...
     clip: {fileID: 8300000, guid: 014c39716574bb5c68ce7cff99153b44, type: 3}
@@ -62,11 +61,6 @@ MonoBehaviour:
       Rumah ini nggak kosong. Di lantai dua ada suara perempuan nyanyi tembang Jawa,
       tapi pas gue sorot pakai kamera HP, dia udah berdiri tepat di depan muka gue\u2014"
     clip: {fileID: 8300000, guid: b5ea98dcb41c712d394a4721d10059cc, type: 3}
-  - speaker: Bu Haji Ratna
-    text: Raka, ini peringatan terakhir dari saya. Tunggakan kos kamu sudah tiga
-      bulan ditambah uang listrik totalnya tiga juta lima ratus ribu rupiah. Besok
-      pagi jam delapan kalau belum ditransfer, gembok kamar saya ganti.
-    clip: {fileID: 8300000, guid: cd9ccfbcf31f4731fbec2d77e0bc21cf, type: 3}
   - speaker: Raka
     text: Hmm... kok tiba-tiba ketutup, ya? Kayaknya kita cuma bisa lanjut.
     clip: {fileID: 8300000, guid: e31868448e6b91f63af3121b41d8c910, type: 3}

@@ -20,6 +20,8 @@ namespace LayarTerakhir.Audio
         private bool lastRaised,lastScreen;
         private CharacterController controller;
         public bool HasPhoneVibration => phoneSource && phoneSource.isPlaying;
+        public int OpeningKnockCount {get;private set;}
+        public int DepartingFootstepCount {get;private set;}
 
         private void Start()
         {
@@ -76,13 +78,22 @@ namespace LayarTerakhir.Audio
             else if(!active)phoneSource.Stop();
         }
         public void PlayKnocks()=>StartCoroutine(Knocks());
+        public IEnumerator PlayOpeningKnocks()=>Knocks();
         private IEnumerator Knocks()
         {
-            for(int i=0;i<3;i++){doorSource.PlayOneShot(profile.knock,profile.effectsGain);yield return new WaitForSeconds(.28f);}
-            // The authored opening already contains departing footsteps after the knock.
-            yield return new WaitForSeconds(.2f);
-            for(int i=0;i<4;i++)
-            {doorSource.PlayOneShot(profile.tileSteps[i%profile.tileSteps.Length],.22f*(1-i*.17f));yield return new WaitForSeconds(.4f);}
+            if(!doorSource||!profile||!profile.knock)yield break;
+            var origin=doorSource.transform.position;
+            doorSource.minDistance=2.5f;doorSource.maxDistance=16;doorSource.volume=1;doorSource.pitch=1;
+            for(int i=0;i<3;i++)
+            {OpeningKnockCount++;doorSource.PlayOneShot(profile.knock,.95f);yield return new WaitForSeconds(.64f);}
+            yield return new WaitForSeconds(.55f);
+            for(int i=0;i<6&&profile.tileSteps.Length>0;i++)
+            {
+                doorSource.transform.position=origin+Vector3.left*(i*.65f);
+                DepartingFootstepCount++;doorSource.PlayOneShot(profile.tileSteps[i%profile.tileSteps.Length],.65f*Mathf.Pow(.76f,i));
+                yield return new WaitForSeconds(.52f);
+            }
+            doorSource.transform.position=origin;
         }
         public void NotifyDonation() { if(uiSource)uiSource.PlayOneShot(profile.notification,.7f); }
         public void Depart()

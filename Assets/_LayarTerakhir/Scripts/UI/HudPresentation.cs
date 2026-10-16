@@ -28,6 +28,15 @@ namespace LayarTerakhir.UI
         private void Start()
         {
             audioRig=FindFirstObjectByType<KosSceneAudio>();
+            // Ordinary world/save feedback stays readable even with a dead/stowed phone.
+            // Only actual incoming donor messages belong in the handset.
+            if(toastGroup)
+            {
+                var group=toastGroup.GetComponent<RectTransform>();group.anchorMin=group.anchorMax=Vector2.zero;group.pivot=Vector2.zero;group.anchoredPosition=new Vector2(54,190);group.sizeDelta=new Vector2(900,112);
+                var heading=toastGroup.transform.Find("Heading");if(heading)heading.gameObject.SetActive(false);
+                foreach(string name in new[]{"MessageBacking","MessageAccent"}){var child=toastGroup.transform.Find(name) as RectTransform;if(child)child.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,112);}
+                hud.broadcastToastText.rectTransform.anchoredPosition=new Vector2(24,-14);hud.broadcastToastText.rectTransform.sizeDelta=new Vector2(850,88);
+            }
             var rect=hud.subtitleText.rectTransform;subtitleMin=rect.anchorMin;subtitleMax=rect.anchorMax;subtitleOffsetMin=rect.offsetMin;subtitleOffsetMax=rect.offsetMax;subtitlePivot=rect.pivot;
             foreach(var button in GetComponentsInChildren<Button>(true))button.onClick.AddListener(Click);
         }
@@ -40,7 +49,7 @@ namespace LayarTerakhir.UI
             Fade(objectiveGroup,!modal&&!string.IsNullOrEmpty(objective) ? (Time.unscaledTime-changedAt>12 ? .65f : 1) : 0);
             Fade(interactionGroup,!modal&&!string.IsNullOrEmpty(hud.interactionPromptText.text)?1:0);
             Fade(subtitleGroup,!string.IsNullOrEmpty(hud.subtitleText.text)?1:0);
-            Fade(toastGroup,!modal&&!string.IsNullOrEmpty(hud.broadcastToastText.text)?1:0);
+            Fade(toastGroup,!modal&&!hud.IsHandsetNotification&&!string.IsNullOrEmpty(hud.broadcastToastText.text)?1:0);
             var phone=SmartphoneController.Instance;
             bool narrow=phone&&phone.isPhoneRaised&&!modal;
             if(narrow!=narrowSubtitle)
@@ -49,7 +58,8 @@ namespace LayarTerakhir.UI
                 if(narrow){rect.anchorMin=new Vector2(.035f,0);rect.anchorMax=new Vector2(.66f,0);rect.pivot=new Vector2(.5f,0);rect.offsetMin=new Vector2(0,45);rect.offsetMax=new Vector2(0,210);}
                 else{rect.anchorMin=subtitleMin;rect.anchorMax=subtitleMax;rect.pivot=subtitlePivot;rect.offsetMin=subtitleOffsetMin;rect.offsetMax=subtitleOffsetMax;}
             }
-            Fade(phoneGroup,!modal&&phone&&phone.hasSmartphoneInInventory?1:0);
+            // Handset status lives inside its bezel. External status is only for a stowed phone.
+            Fade(phoneGroup,!modal&&phone&&phone.hasSmartphoneInInventory&&!phone.isPhoneRaised?1:0);
             if(modalBackdrop && modalBackdrop.activeSelf!=modal)modalBackdrop.SetActive(modal);
             if(reticle)reticle.enabled=!modal&&!UiFocus.Cinematic&&!UiFocus.Phone&&hud.blackFadeImage.color.a<.01f;
             if(hud.padlockDigitsText && digits!=hud.padlockDigitsText.text)

@@ -16,6 +16,8 @@ namespace LayarTerakhir.Editor
         public static void Build()
         {
             AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+            var map=(TextureImporter)AssetImporter.GetAtPath("Assets/Resources/Phone/JakartaStreetMap.png");
+            if(map){map.maxTextureSize=1024;map.mipmapEnabled=false;map.wrapMode=TextureWrapMode.Clamp;map.textureCompression=TextureImporterCompression.Compressed;map.SaveAndReimport();}
             AtmajaSceneBuilder.Build();
             foreach(var path in Directory.GetFiles("Assets/_LayarTerakhir/Audio/Dialogue","*.wav"))
             {
