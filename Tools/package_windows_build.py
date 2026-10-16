@@ -16,11 +16,12 @@ assert report['target']=='StandaloneWindows64' and report['scriptingBackend']=='
 assert 'Development' in report['options']
 assert report['scenes'][0]=='Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity'
 assert 'Assets/_LayarTerakhir/Scenes/Prolog_RumahAtmaja.unity' in report['scenes'],'Atmaja continuation missing from build'
+assert report['scenes'][2]=='Assets/_LayarTerakhir/Scenes/Prolog_KoridorKos.unity','Two-floor kos corridor missing from build'
 required=['LayarTerakhir.exe','UnityPlayer.dll','UnityCrashHandler64.exe',
  'MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll','MonoBleedingEdge/EmbedRuntime/MonoPosixHelper.dll',
  'MonoBleedingEdge/etc/mono/config','LayarTerakhir_Data/globalgamemanagers',
  'LayarTerakhir_Data/globalgamemanagers.assets','LayarTerakhir_Data/boot.config','LayarTerakhir_Data/level0',
- 'LayarTerakhir_Data/resources.assets','LayarTerakhir_Data/sharedassets0.assets',
+ 'LayarTerakhir_Data/resources.assets','LayarTerakhir_Data/sharedassets0.assets','LayarTerakhir_Data/level2',
  'LayarTerakhir_Data/Managed/Assembly-CSharp.dll','LayarTerakhir_Data/Managed/Unity.InputSystem.dll',
  'LayarTerakhir_Data/Managed/Unity.RenderPipelines.Universal.Runtime.dll',
  'LayarTerakhir_Data/Resources/unity default resources','LayarTerakhir_Data/Resources/unity_builtin_extra']
@@ -46,11 +47,19 @@ atmaja_data=(out/'LayarTerakhir_Data/level1').read_bytes()
 for marker in ['Atmaja_Environment_Art','DamarParkedScooter','FallenKamboja','KitchenVaultOutside','LongDiningTable','GrandfatherClock','AR_SeatedSriAtmaja']:
  assert marker.encode() in atmaja_data,marker
 assert b'Prolog_RumahAtmaja' in (out/'LayarTerakhir_Data/globalgamemanagers').read_bytes()
+corridor_data=(out/'LayarTerakhir_Data/level2').read_bytes()
+for marker in ['Spawn_KosFloor2','StairA_9','StairB_9','DAPUR BERSAMA','KAMAR MANDI','RakaMotor','RakaMotorHeadlight','KosGateHinge','KosStreetDeparture']:
+ assert marker.encode() in corridor_data,marker
+runtime=(out/'LayarTerakhir_Data/Managed/Assembly-CSharp.dll').read_bytes()
+for marker in ['GameShell','PhoneDesktop','ClockPuzzleView','ClockAmbience','KosCorridorDirector','KosTravelItem','ReviewPlayerAudit']:
+ assert marker.encode() in runtime,marker
+assert b'LayarPresentation' in (out/'LayarTerakhir_Data/resources.assets').read_bytes(),'Presentation/voice resource missing'
 shutil.copy2(root/'Audit/asset-credits.md',out/'Asset-Credits.txt')
 shutil.copy2(root/'Audit/windows-kos-capture.md',out/'Screenshot-Guide.txt')
 shutil.copy2(root/'Assets/_LayarTerakhir/UI/Fonts/OFL.txt',out/'Barlow-OFL.txt')
 shutil.copy2(root/'Audit/golden-windows-review.md',out/'Golden-Review-Guide.txt')
 shutil.copy2(root/'Audit/atmaja-windows-playtest.md',out/'Atmaja-Playtest-Guide.txt')
+shutil.copy2(root/'Audit/dejavu-font-license.txt',out/'DejaVu-Font-License.txt')
 files=sorted(p for p in out.rglob('*') if p.is_file());manifest=[]
 for p in files:
  digest=hashlib.sha256();crc=0

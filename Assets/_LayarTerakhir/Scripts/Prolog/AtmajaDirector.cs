@@ -20,6 +20,7 @@ namespace LayarTerakhir.Prolog
         public GameObject kitchenShutter,damarPhone,clockHands,arFigure,arClue;
         public Transform clockHour,clockMinute,clockDrawer;
         public Vector3 clockDialCentre;
+        public Vector3 clockFaceNormal=Vector3.forward;
         public AtmajaPhoneView phoneView;
         public SceneAudioProfile audioProfile;
         public AudioSource rainSource,foleySource,notificationSource,stepsSource;
@@ -55,6 +56,7 @@ namespace LayarTerakhir.Prolog
             Phone.isPhoneRaised=false;Phone.isScreenOn=Phone.batteryPercent>0;Phone.isBroadcastConnected=LiveConnected;
             Phone.arModuleUnlocked=Has("MATABATIN_APK");Phone.SyncVisualState();
             RestoreWorld();previousPosition=player.transform.position;
+            if(!Has("EVENT_P0_ATMAJA_ARRIVED"))Commit("EVENT_P0_ATMAJA_ARRIVED","PROLOG_ATMAJA_COURTYARD");
             Hud.SetFadeAlpha(1);yield return Hud.FadeBlack(1,0,1.4f);
             Objective();
         }
@@ -64,7 +66,7 @@ namespace LayarTerakhir.Prolog
         {
             gateHinge.localRotation=Quaternion.Euler(0,Has("EVENT_P0_GATE_OPEN")?-95:0,0);
             bool inside=Has("EVENT_P0_KITCHEN_ENTERED");kitchenShutter.SetActive(inside);
-            if(kitchenDoor)kitchenDoor.localRotation=Quaternion.Euler(0,Has("EVENT_P0_DINING_OPEN")?95:0,0);
+            if(kitchenDoor)kitchenDoor.localRotation=Quaternion.Euler(0,Has("EVENT_P0_DINING_OPEN")?-95:0,0);
             if(damarPhone)damarPhone.SetActive(!Has("MATABATIN_APK"));
             if(clockHands)clockHands.SetActive(!Has("ITEM_P0_CLOCK_HANDS"));
             if(clockHour)clockHour.gameObject.SetActive(Has("EVENT_P0_CLOCK_UNLOCKED"));
@@ -86,7 +88,7 @@ namespace LayarTerakhir.Prolog
         }
         private void Update()
         {
-            if(!player||!Campaign||!Hud||Busy)return;
+            if(!player||!Campaign||!Hud||Busy||UiFocus.HardModal)return;
             bool modal=Hud.IsModalOpen;float duck=modal ? .45f : 1;
             if(rainSource)rainSource.GetComponent<AmbientAudioLoop>().LevelMultiplier=duck;
             var local=LocalPosition(player.transform.position);
@@ -99,10 +101,11 @@ namespace LayarTerakhir.Prolog
             }
             if(Phone&&Phone.arModuleUnlocked)
             {
-                bool ar=Phone.isPhoneRaised&&Phone.isScreenOn&&Phone.currentScanMode==ScanVisualMode.AR;
+                bool ar=Phone.isPhoneRaised&&Phone.isScreenOn&&Phone.currentScanMode==ScanVisualMode.AR&&phoneView.IsCameraApp;
                 if(arFigure)arFigure.SetActive(ar);
                 if(arClue)arClue.SetActive(ar);
                 if(ar&&!Has("EVENT_P0_AR_REVEALED"))RevealAR();
+                if(ar&&!Has("EVENT_P0_AR_CLUE_READ"))ObserveClue();
             }
             if(Has("EVENT_P0_KITCHEN_ENTERED")&&!wellHeard&&Vector3.Distance(player.transform.position,P(2.7f,11.2f,.35f))<2)
             {wellHeard=true;Hud.EnqueueSubtitle("SFX","[KLOTAK... KLOTAK... Suara ember timba ditarik dari dasar sumur]",3);Hud.EnqueueSubtitle("Bisikan","Haus... bukakan...",3);Sfx(audioProfile.knock,P(2.7f,11.2f,.4f),.4f);}
@@ -125,7 +128,7 @@ namespace LayarTerakhir.Prolog
                     Hud.OpenDocumentModal("CATATAN SURVEI DAMAR • DOKUMEN #2",SurveyText,()=>{if(Commit(SurveyId,"PROLOG_ATMAJA_COURTYARD")){Stage=LiveConnected?AtmajaStage.Live:AtmajaStage.SurveyRead;Objective();}});break;
                 case AtmajaAction.FrontDoor:Hud.ShowBroadcastNotification("Pintu depan digembok rantai dari dalam.\nCatatan Damar: masuk lewat jendela dapur di lorong samping timur.",6);break;
                 case AtmajaAction.KitchenDoor:
-                    if(Commit("EVENT_P0_DINING_OPEN","PROLOG_ATMAJA_KITCHEN")){StartCoroutine(Swing(kitchenDoor,95));Objective();}break;
+                    if(Commit("EVENT_P0_DINING_OPEN","PROLOG_ATMAJA_KITCHEN")){StartCoroutine(Swing(kitchenDoor,-95));Objective();}break;
                 case AtmajaAction.DamarPhone:TakeDamarPhone();break;
                 case AtmajaAction.Well:Hud.ShowBroadcastNotification("Sumur tua ditutup papan lapuk dan dililit rantai.\nSorot celah papan dengan kamera HP.",5);break;
                 case AtmajaAction.ClockHands:
@@ -167,6 +170,7 @@ namespace LayarTerakhir.Prolog
             phoneView.AddChat("@intan_permata","Bang tadi pas abang lompat jendela, di kaca lantai 2 kayak ada tirai gerak sendiri sumpah demi Allah!");
             phoneView.AddChat("@bocil_kematian","Gimmick paling itu bang Damar ngumpet di atas.");
             Hud.EnqueueSubtitle("Raka","Anjir! Anginnya kenceng banget... Eh bentar, ini jendelanya kok nyangkut?!",5);Objective();
+            Hud.EnqueueSubtitle("Raka",KosDialogue.Trapped,4);
         }
         private IEnumerator Swing(Transform hinge,float angle)
         {var from=hinge.localRotation;var to=Quaternion.Euler(0,angle,0);float t=0;while(t<1){t+=Time.deltaTime;hinge.localRotation=Quaternion.Slerp(from,to,Mathf.SmoothStep(0,1,t));yield return null;}}
@@ -200,7 +204,7 @@ namespace LayarTerakhir.Prolog
             notificationSource.PlayOneShot(arStatic,.65f);
             phoneView.AddChat("@agung_gaming","ANJIR APAAN TUH DI UJUNG MEJA BARUSAN?!");
             phoneView.AddChat("@siti_nurhaliza","ITU BUKAN SETTINGAN WOI KEPALANYA MIRING!");
-            phoneView.AddChat("@horor_hunter","Bang Raka lari bang! Itu фильтр kameranya nangkep penunggu situ!");Objective();
+            phoneView.AddChat("@horor_hunter","Bang Raka lari bang! Itu filter kameranya nangkep penunggu situ!");Objective();
         }
         public bool TryPhotographWell()
         {
@@ -216,28 +220,37 @@ namespace LayarTerakhir.Prolog
         }
         private void ClockPuzzle()
         {
+            if(!Has("MATABATIN_APK")){Hud.ShowBroadcastNotification("Cari HP Damar dan pasang modul kameranya terlebih dahulu.",4);return;}
             if(!Has("ITEM_P0_CLOCK_HANDS")){Hud.ShowBroadcastNotification("Jarum jam copot. Cari Jarum Jam Kuningan di meja tamu.",5);return;}
             if(Has("EVENT_P0_CLOCK_UNLOCKED")){if(!Has("DOC_PROLOG_03_KORAN_1998"))OpenNewspaper();else Hud.ShowBroadcastNotification("Jam menunjukkan 03:45. Kunci Pintu Tangga Tengah sudah diambil.",4);return;}
-            Hud.OpenPadlockModal("345",()=>
+            if(!Has("EVENT_P0_AR_CLUE_READ")){Hud.ShowBroadcastNotification("Belum tahu waktu yang benar. Periksa dinding rumah melalui kamera AR.",4);return;}
+            var puzzle=GetComponent<ClockPuzzleView>();if(!puzzle)puzzle=gameObject.AddComponent<ClockPuzzleView>();
+            puzzle.Open(()=>
             {
                 if(!Commit("EVENT_P0_CLOCK_UNLOCKED","PROLOG_MATABATIN_ACQUIRED",()=>Campaign.AddInventoryItem("KUNCI_TANGGA_TENGAH")))return;
                 Stage=AtmajaStage.ClockUnlocked;
                 ShowClockTime();Sfx(audioProfile.unlock,clockDialCentre,.6f);
                 OpenNewspaper();
             });
-            phoneView.LabelClockModal();
+        }
+        private void ObserveClue()
+        {
+            var camera=player.GetComponent<InteractionInteractor>().playerCamera;var delta=arClue.transform.position-camera.transform.position;
+            if(delta.magnitude>3.4f||Vector3.Dot(camera.transform.forward,delta.normalized)<.86f)return;
+            if(Physics.Raycast(camera.transform.position,delta.normalized,Mathf.Max(0,delta.magnitude-.03f),~0,QueryTriggerInteraction.Ignore))return;
+            if(Commit("EVENT_P0_AR_CLUE_READ","PROLOG_MATABATIN_ACQUIRED"))Hud.ShowBroadcastNotification("Petunjuk dinding dicatat di Jurnal HP.",3);
         }
         private void OpenNewspaper()=>Hud.OpenDocumentModal("KLIPING KORAN 1998 • DOKUMEN #3","TRAGEDI KELUARGA ATMAJA: Satu Keluarga Ditemukan Tewas Mengenaskan. Polisi menduga sang ibu, Nyonya Sri Atmaja (38), mengalami depresi berat dan gangguan jiwa akibat mengikuti aliran klenik sebelum meracuni anak-anaknya dan mengakhiri hidupnya sendiri di lantai dua pada tengah malam.",()=>{Commit("DOC_PROLOG_03_KORAN_1998","PROLOG_MATABATIN_ACQUIRED");Objective();});
         private void ShowClockTime()
         {
             if(clockTimeShown)return;clockTimeShown=true;
-            if(clockHour){clockHour.gameObject.SetActive(true);clockHour.RotateAround(clockDialCentre,-north,112.5f);}
-            if(clockMinute){clockMinute.gameObject.SetActive(true);clockMinute.RotateAround(clockDialCentre,-north,270);}
-            if(clockDrawer)clockDrawer.position-=north*.18f;
+            if(clockHour){clockHour.gameObject.SetActive(true);clockHour.RotateAround(clockDialCentre,clockFaceNormal,112.5f);}
+            if(clockMinute){clockMinute.gameObject.SetActive(true);clockMinute.RotateAround(clockDialCentre,clockFaceNormal,270);}
+            if(clockDrawer)clockDrawer.position+=clockFaceNormal*.18f;
         }
         public void Objective()
         {
-            string text=Stage==AtmajaStage.StairCheckpoint?"Checkpoint Lantai 1 • Kelanjutan Lantai 2 belum tersedia dalam build ini.":Has("EVENT_P0_CLOCK_UNLOCKED")?"Gunakan Kunci Pintu Tangga Tengah.":Has("EVENT_P0_AR_REVEALED")?"Periksa petunjuk AR di samping pintu tangga; pasang jarum jam dan atur waktu kematian.":Has("MATABATIN_APK")?"Angkat HP, lalu aktifkan Lensa AR MataBatin.apk.":Has("EVENT_P0_DINING_OPEN")?"Cari HP Damar di dalam ransel, di kolong meja makan.":Has("EVENT_P0_KITCHEN_ENTERED")?"Buka pintu penghubung menuju ruang makan.":TreeCleared?"Dekati jendela dapur yang pecah. Tekan tombol Vault untuk memanjat masuk.":LiveConnected?"Susuri lorong samping timur. Merunduk di bawah kamboja tumbang.":HasSurvey?"Angkat Smartphone, lalu klik MULAI LIVE.":"23:52 WIB • Periksa motor Damar di dekat semak halaman.";
+            string text=Stage==AtmajaStage.StairCheckpoint?"Checkpoint Lantai 1 • Kelanjutan Lantai 2 belum tersedia dalam build ini.":Has("EVENT_P0_CLOCK_UNLOCKED")?"Gunakan Kunci Pintu Tangga Tengah.":Has("EVENT_P0_AR_CLUE_READ")?"Cari komponen yang hilang, lalu cocokkan mekanisme jam dengan petunjuk.":Has("EVENT_P0_AR_REVEALED")?"Jelajahi ruang tamu dan ruangan depan. Cari petunjuk lewat kamera.":Has("MATABATIN_APK")?"Buka aplikasi Kamera, lalu aktifkan MataBatin AR.":Has("EVENT_P0_DINING_OPEN")?"Periksa ruang makan. Cari barang milik Damar.":Has("EVENT_P0_KITCHEN_ENTERED")?"Jendela terkunci. Cari jalan ke ruangan lain.":TreeCleared?"Dekati jendela dapur yang pecah. Gunakan tombol Vault.":LiveConnected?"Cari jalan masuk di sisi timur rumah.":HasSurvey?"Buka Kamera di aplikasi HP, lalu mulai live.":"23:52 WIB • Cari jejak Damar di halaman rumah.";
             Hud.SetObjective(text);
         }
         private void Sfx(AudioClip clip,Vector3 where,float gain)

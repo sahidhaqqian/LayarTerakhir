@@ -34,6 +34,7 @@ namespace LayarTerakhir.UI
         public Image blackFadeImage;
 
         public bool IsModalOpen =>
+            UiFocus.HardModal ||
             (documentPanel != null && documentPanel.activeSelf) ||
             (padlockPanel != null && padlockPanel.activeSelf);
 
@@ -49,6 +50,12 @@ namespace LayarTerakhir.UI
         private string _targetPadlockCode = "148";
         private int _lastPhoneState=-1, _lastPhoneBattery=-1;
         private KeyCode _lastPhoneKey, _lastScreenKey;
+        private PresentationProfile _profile;
+        private AudioSource _voice;
+        public string CurrentDialogueSpeaker { get; private set; }
+        public bool IsDialoguePlaying => _voice && _voice.isPlaying;
+        private readonly HashSet<string> _voicedSpeakers=new HashSet<string>();
+        public bool HasPlayedVoice(string speaker)=>_voicedSpeakers.Contains(speaker);
 
         private void Awake()
         {
@@ -59,6 +66,12 @@ namespace LayarTerakhir.UI
             }
             Instance = this;
             EnsureRuntimeUIBuilt();
+            _profile=PresentationProfile.Load();
+            if(_profile&&_profile.audio)
+            {
+                _voice=gameObject.AddComponent<AudioSource>();_voice.playOnAwake=false;_voice.dopplerLevel=0;
+                _voice.outputAudioMixerGroup=_profile.audio.uiBus;_voice.volume=.85f;
+            }
         }
 
         public void EnsureRuntimeUIBuilt()
@@ -241,13 +254,16 @@ namespace LayarTerakhir.UI
             }
         }
 
-        public void EnqueueSubtitle(string speaker, string text, float duration = 4.5f)
+        public float EnqueueSubtitle(string speaker, string text, float duration = 4.5f)
         {
+            var clip=_profile?_profile.Voice(speaker,text):null;
+            if(clip)duration=Mathf.Max(duration,clip.length+.25f);
             _subtitleQueue.Enqueue((speaker, text, duration));
             if (_subtitleRoutine == null)
             {
                 _subtitleRoutine = StartCoroutine(ProcessSubtitlesRoutine());
             }
+            return duration;
         }
 
         public void ShowBroadcastNotification(string message, float duration = 8f)
@@ -291,6 +307,7 @@ namespace LayarTerakhir.UI
             _onDocumentClosed = onClosed;
             documentTitleText.text = title;
             documentBodyText.text = body;
+            var closeLabel=documentCloseButton.GetComponentInChildren<Text>();if(closeLabel)closeLabel.text=title.Contains("VOICE NOTE")?"▶ PUTAR PESAN SUARA":"TUTUP DOKUMEN";
             documentPanel.SetActive(true);
             var presentation=GetComponent<HudPresentation>();
             if(presentation&&presentation.documentScroll)
@@ -394,9 +411,12 @@ namespace LayarTerakhir.UI
             while (_subtitleQueue.Count > 0)
             {
                 var (speaker, line, duration) = _subtitleQueue.Dequeue();
+                CurrentDialogueSpeaker=speaker;
+                var clip=_profile?_profile.Voice(speaker,line):null;
+                if(clip&&_voice){_voice.clip=clip;_voice.Play();_voicedSpeakers.Add(speaker);}
                 if (subtitleText != null)
                 {
-                    subtitleText.text = speaker=="SFX" ? $"<i>{line.Trim('[',']')}</i>" :
+                    subtitleText.text = !GameShell.Subtitles?string.Empty:speaker=="SFX" ? $"<i>{line.Trim('[',']')}</i>" :
                         string.IsNullOrEmpty(speaker)?line:$"<size=18><b>{speaker.ToUpperInvariant()}</b></size>\n{line}";
                 }
                 yield return new WaitForSeconds(duration);
@@ -406,6 +426,7 @@ namespace LayarTerakhir.UI
                 subtitleText.text = string.Empty;
 
             _subtitleRoutine = null;
+            CurrentDialogueSpeaker=string.Empty;
         }
 
         private IEnumerator ClearBroadcastRoutine(float delay)

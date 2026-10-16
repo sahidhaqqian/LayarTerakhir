@@ -1,0 +1,38 @@
+{
+    "utc": "2026-10-16T02:23:29.8696480Z",
+    "platform": "LinuxPlayer",
+    "gpu": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "saveDirectory": "/root/Projects/LayarTerakhir/Audit/Visuals/Review-Linux/IsolatedSave-f28f2e7ed37540178e1998e5df30f974",
+    "navigationMethod": "Posed compact Golden-room interactions; continuous <=0.16m CharacterController walks in kos corridors/stairs and Atmaja. Game-owned wake/vault/motor cinematics. Not manual acceptance or hardware performance.",
+    "actualStandalonePlayer": true,
+    "completed": false,
+    "checkpointSaved": false,
+    "transitionFromKos": false,
+    "motorPassedGate": false,
+    "previousSaveArchived": true,
+    "acceleratedStoryTimers": false,
+    "width": 1280,
+    "height": 720,
+    "walkedMeters": 0.0,
+    "maximumInteriorFootY": 0.0,
+    "mixRms": 0.0,
+    "mixPeak": 0.0,
+    "screenshots": [
+        "01-main-menu.png",
+        "02-settings.png",
+        "03-bed-wake.png"
+    ],
+    "checks": [
+        "PASS Standalone starts at actual main menu, not a room spawn",
+        "PASS Main menu has an unlocked cursor and validates Continue",
+        "PASS UI button: Settings",
+        "PASS Settings volume slider controls the real listener",
+        "PASS UI button: BackSettings",
+        "PASS UI button: NewGame",
+        "PASS UI button: ConfirmNew",
+        "PASS New Game scene load",
+        "PASS New Game preserves the complete previous save in ArchivedCampaigns",
+        "PASS New Game plays the bed wake cinematic with input owned",
+        "FAIL Landlady spoken dialogue"
+    ]
+}

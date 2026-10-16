@@ -42,11 +42,20 @@ namespace LayarTerakhir.Prolog
         public KosSceneAudio environmentAudio;
 
         private void Start()
+        {StartCoroutine(AwaitMenuChoice());}
+        private IEnumerator AwaitMenuChoice()
+        {
+            while(GameShell.AwaitingStart||GameShell.MenuSceneLoading)yield return null;
+            InitializeStory();
+        }
+        private void InitializeStory()
         {
             if (CampaignState.Instance != null)
             {
                 if (CampaignState.Instance.LoadCheckpoint())
                 {
+                    if(PrologSceneFlow.AutomaticTransitions&&PrologSceneFlow.IsCorridorCheckpoint(CampaignState.Instance.Data.checkpoint_id))
+                    {HudController.Instance.SetFadeAlpha(1);StartCoroutine(PrologSceneFlow.LoadCorridor());return;}
                     if (PrologSceneFlow.CanContinue && PrologSceneFlow.IsAtmajaCheckpoint(CampaignState.Instance.Data.checkpoint_id))
                     {
                         HudController.Instance.SetFadeAlpha(1f);
@@ -111,14 +120,14 @@ namespace LayarTerakhir.Prolog
                 2.5f
             );
 
-            yield return HudController.Instance.FadeBlack(1f, 0f, 3.0f);
+            yield return WakeFromBed();
 
-            HudController.Instance.EnqueueSubtitle(
+            float monologue=HudController.Instance.EnqueueSubtitle(
                 "Raka",
                 "Tiga puluh dua penonton... Itu pun paling setengahnya akun bot. Kalau malam ini nggak ada konten yang meledak, tamat riwayat gue di Jakarta.",
                 5.0f
             );
-            yield return new WaitForSeconds(5.2f);
+            yield return new WaitForSeconds(monologue+.2f);
 
             if(environmentAudio)environmentAudio.PlayKnocks();
             HudController.Instance.EnqueueSubtitle(
@@ -127,6 +136,9 @@ namespace LayarTerakhir.Prolog
                 3.5f
             );
             yield return new WaitForSeconds(3.6f);
+            float warning=HudController.Instance.EnqueueSubtitle("Bu Haji Ratna",KosDialogue.RatnaWarning,6);
+            yield return new WaitForSeconds(warning+.2f);
+            UiFocus.Cinematic=false;var awakePlayer=FindFirstObjectByType<FirstPersonController>();if(awakePlayer)awakePlayer.MovementLocked=false;
 
             currentStage = KosPrologStage.WaitReadSuratIbuKos;
             if (suratKosItem != null)
@@ -134,11 +146,26 @@ namespace LayarTerakhir.Prolog
 
             HudController.Instance.SetObjective("Periksa bawah pintu kamar.");
         }
+        private IEnumerator WakeFromBed()
+        {
+            var player=FindFirstObjectByType<FirstPersonController>();var cc=player.GetComponent<CharacterController>();var camera=player.GetComponent<InteractionInteractor>().playerCamera.transform;
+            UiFocus.Cinematic=true;player.MovementLocked=true;player.enabled=false;cc.enabled=false;
+            var cameraLocal=camera.localPosition;var cameraRotation=camera.localRotation;
+            var bed=GameObject.Find("vintage_day_bed");var bounds=new Bounds(new Vector3(-1.89f,.5f,-.65f),Vector3.one);bool first=true;
+            if(bed)foreach(var r in bed.GetComponentsInChildren<Renderer>()){if(first){bounds=r.bounds;first=false;}else bounds.Encapsulate(r.bounds);}
+            var lying=new Vector3(bounds.center.x,bounds.max.y+.16f,bounds.center.z+.35f);
+            camera.position=lying;camera.rotation=Quaternion.Euler(-38,75,-60);
+            yield return HudController.Instance.FadeBlack(1,.35f,.55f);yield return HudController.Instance.FadeBlack(.35f,.9f,.16f);yield return HudController.Instance.FadeBlack(.9f,0,.65f);
+            var standing=new Vector3(-.8f,.05f,-.98f);var monitor=pcMonitorItem.transform.position;var facing=monitor-standing;facing.y=0;var yaw=Quaternion.LookRotation(facing);
+            var end=standing+Vector3.up*player.cameraStandingY;var fromRotation=camera.rotation;
+            for(float t=0;t<1;t+=Time.deltaTime/3.2f){camera.position=Vector3.Lerp(lying,end,Mathf.SmoothStep(0,1,t))+Vector3.up*Mathf.Sin(t*Mathf.PI)*.08f;camera.rotation=Quaternion.Slerp(fromRotation,yaw,Mathf.SmoothStep(0,1,t));yield return null;}
+            player.transform.SetPositionAndRotation(standing,yaw);player.cameraPivot.localPosition=Vector3.up*player.cameraStandingY;player.cameraPivot.localRotation=Quaternion.identity;camera.localPosition=cameraLocal;camera.localRotation=cameraRotation;cc.enabled=true;player.enabled=true;
+        }
 
         public void OnObjectInteracted(KosInteractableItem item)
         {
             if (item == null || !item.CanInteract() || HudController.Instance == null ||
-                HudController.Instance.IsModalOpen || currentStage == KosPrologStage.Completed)
+                HudController.Instance.IsModalOpen || UiFocus.Cinematic || currentStage == KosPrologStage.Completed)
                 return;
 
             switch (item.itemId)
@@ -268,6 +295,9 @@ namespace LayarTerakhir.Prolog
 
         private IEnumerator AfterVoiceNotePlayedRoutine()
         {
+            HudController.Instance.SetObjective("Dengarkan pesan suara Damar.");
+            float voice=HudController.Instance.EnqueueSubtitle("Damar",KosDialogue.DamarVoiceNote,22);
+            yield return new WaitForSeconds(voice+.2f);
             HudController.Instance.EnqueueSubtitle(
                 "Raka",
                 "Dam?! Halo, Damar?! Sial, nomornya nggak aktif!",
@@ -416,6 +446,12 @@ namespace LayarTerakhir.Prolog
 
         private IEnumerator DepartKosSequenceRoutine()
         {
+            if(PrologSceneFlow.AutomaticTransitions&&UnityEngine.SceneManagement.SceneManager.GetSceneByName(PrologSceneFlow.CorridorScene).IsValid()==false&&Application.CanStreamedLevelBeLoaded(PrologSceneFlow.CorridorScene))
+            {
+                HudController.Instance.SetObjective("Keluar ke lorong kos lantai dua.");
+                if(environmentAudio)environmentAudio.PlayItem("unlock",kosDoorItem.transform.position);
+                yield return HudController.Instance.FadeBlack(0,1,.4f);yield return PrologSceneFlow.LoadCorridor();yield break;
+            }
             if(environmentAudio)environmentAudio.Depart();
             HudController.Instance.SetObjective("Berangkat menuju Rumah Keluarga Atmaja...");
             HudController.Instance.EnqueueSubtitle(

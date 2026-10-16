@@ -18,7 +18,7 @@ namespace LayarTerakhir.Player
 
         private void Update()
         {
-            if (HudController.Instance != null && HudController.Instance.IsModalOpen)
+            if (UiFocus.BlocksWorld || (HudController.Instance != null && HudController.Instance.IsModalOpen))
             {
                 CurrentTarget = null;
                 HudController.Instance.SetInteractionPrompt(string.Empty);

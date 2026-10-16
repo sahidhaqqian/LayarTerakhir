@@ -147,6 +147,24 @@ namespace LayarTerakhir.Core
             }
         }
 
+        public bool HasValidCheckpoint{get{try{return File.Exists(SaveFilePath)&&TryReadCheckpoint(SaveFilePath,out _);}catch{return false;}}}
+        // New Game is an explicit menu action. Preserve the old campaign, including a corrupt slot.
+        public bool BeginNewCampaignPreservingPrevious()
+        {
+            var previous=Data;
+            try
+            {
+                if(File.Exists(SaveFilePath))
+                {
+                    var archive=Path.Combine(SaveDirectory,"ArchivedCampaigns");Directory.CreateDirectory(archive);
+                    File.Copy(SaveFilePath,Path.Combine(archive,"campaign-"+DateTime.UtcNow.ToString("yyyyMMdd-HHmmss")+"-"+Guid.NewGuid().ToString("N")+".json"));
+                }
+                StartNewGame();if(SaveCheckpointAtomic("PROLOG_KOS_START"))return true;
+            }
+            catch(Exception e){Debug.LogWarning("New Game tidak dapat mengarsipkan save: "+e.Message);}
+            Data=previous;return false;
+        }
+
         // Explicit recovery keeps the caller in control of accepting an older snapshot.
         public bool LoadBackupCheckpoint()
         {

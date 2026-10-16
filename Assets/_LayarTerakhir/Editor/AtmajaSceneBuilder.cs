@@ -24,11 +24,11 @@ namespace LayarTerakhir.Editor
         [Serializable] public class MaterialRecord{public string name,albedo,normal,mask;public float[] color;public float roughness,metallic;public bool alphaClip;}
         [Serializable] public class Manifest{public MaterialRecord[] materials;public string protectedGoldenSceneSha256;}
         private static Manifest manifest;
-        private static Transform environment,house;
-        private static AtmajaDirector director;
-        private static Vector3 origin,east,north;
-        private static Vector3 P(float x,float depth,float y)=>origin+east*x+north*depth+Vector3.up*y;
-        private static Quaternion Facing(Vector3 dir)=>Quaternion.LookRotation(dir,Vector3.up);
+        internal static Transform environment,house;
+        internal static AtmajaDirector director;
+        internal static Vector3 origin,east,north;
+        internal static Vector3 P(float x,float depth,float y)=>origin+east*x+north*depth+Vector3.up*y;
+        internal static Quaternion Facing(Vector3 dir)=>Quaternion.LookRotation(dir,Vector3.up);
         private static Transform Named(Transform root,string name)=>root.GetComponentsInChildren<Transform>(true).Single(t=>t.name==name);
 
         [MenuItem("LayarTerakhir/Prolog/Build Atmaja continuation (preserve Golden Kos)")]
@@ -64,7 +64,7 @@ namespace LayarTerakhir.Editor
                 // Uniform 1cm local size reproduces the source hull, including its rotated axes.
                 var c=marker.gameObject.AddComponent<BoxCollider>();c.size=Vector3.one*.01f;
             }
-            ShellAndGarden();ExteriorStoryObjects();Interior();Lighting(profile);Audio();
+            ShellAndGarden();ExteriorStoryObjects();AtmajaReviewDressing.Build();Lighting(profile);Audio();
             director.spawnCourtyard=Anchor("Spawn_Courtyard",P(0,-12.2f,.06f),P(0,1,3.2f));
             director.spawnKitchen=Anchor("Spawn_Kitchen",P(5.0f,11.0f,.37f),P(3.0f,10.2f,1.3f));
             director.spawnDining=Anchor("Spawn_Dining",P(4.8f,7.7f,.53f),P(3.6f,5.7f,1.4f));
@@ -107,10 +107,10 @@ namespace LayarTerakhir.Editor
                 EditorUtility.SetDirty(mat);
             }
         }
-        private static Material Plain(string name,Color tint,float smooth=.18f)
+        internal static Material Plain(string name,Color tint,float smooth=.18f)
         {string path=Art+"Materials/"+name+".mat";var m=AssetDatabase.LoadAssetAtPath<Material>(path);if(!m){m=new Material(Shader.Find("Universal Render Pipeline/Lit"));AssetDatabase.CreateAsset(m,path);}m.SetColor("_BaseColor",tint);m.SetFloat("_Smoothness",smooth);m.enableInstancing=true;EditorUtility.SetDirty(m);return m;}
-        private static Material Mat(string name)=>AssetDatabase.LoadAssetAtPath<Material>(Art+"Materials/"+name+".mat");
-        private static GameObject Model(string id,string name,Vector3 pos)
+        internal static Material Mat(string name)=>AssetDatabase.LoadAssetAtPath<Material>(Art+"Materials/"+name+".mat");
+        internal static GameObject Model(string id,string name,Vector3 pos)
         {
             var go=new GameObject(name);go.transform.SetParent(environment,false);
             var instance=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(Art+"Models/"+id+".fbx"));instance.transform.SetParent(go.transform,false);
@@ -125,14 +125,14 @@ namespace LayarTerakhir.Editor
             }
             go.transform.position=pos;return go;
         }
-        private static void Ground(GameObject go,float y=0)
+        internal static void Ground(GameObject go,float y=0)
         {go.transform.position+=Vector3.up*(y+.004f-KosVisualV2.BoundsOf(go).min.y);}
-        private static GameObject Box(string name,Vector3 pos,Vector3 size,Material material,bool solid=true)
+        internal static GameObject Box(string name,Vector3 pos,Vector3 size,Material material,bool solid=true)
         {
             var go=GameObject.CreatePrimitive(PrimitiveType.Cube);go.name=name;go.transform.SetParent(environment,false);go.transform.SetPositionAndRotation(pos,Facing(north));go.transform.localScale=size;
             go.GetComponent<Renderer>().sharedMaterial=material;if(!solid)Object.DestroyImmediate(go.GetComponent<Collider>());return go;
         }
-        private static GameObject Surface(string name,float x,float depth,float y,float w,float d,Material material,bool solid=true)
+        internal static GameObject Surface(string name,float x,float depth,float y,float w,float d,Material material,bool solid=true)
         {
             var go=Box(name,P(x,depth,y-.025f),new Vector3(w,.05f,d),material,solid);
             var local=new Material(material){name=name+"_Tiled"};local.SetTextureScale("_BaseMap",new Vector2(w*.5f,d*.5f));
@@ -141,10 +141,23 @@ namespace LayarTerakhir.Editor
         }
         private static Transform Anchor(string name,Vector3 pos,Vector3 look)
         {var t=new GameObject(name).transform;t.SetParent(director.transform,false);var direction=look-pos;direction.y=0;t.SetPositionAndRotation(pos,Facing(direction));return t;}
-        private static AtmajaItem Item(GameObject root,AtmajaAction action,string label)
+        internal static AtmajaItem Item(GameObject root,AtmajaAction action,string label)
         {var item=root.AddComponent<AtmajaItem>();item.director=director;item.action=action;item.label=label;return item;}
-        private static void FitCollider(GameObject go)
-        {KosVisualV2.FitBox(go.AddComponent<BoxCollider>(),KosVisualV2.BoundsOf(go));}
+        internal static void FitCollider(GameObject go)
+        {
+            // Use root-local geometry bounds. A rotated world AABB swapped chair/clock dimensions.
+            Bounds bounds=default;bool first=true;
+            foreach(var f in go.GetComponentsInChildren<MeshFilter>(true))
+            {
+                if(!f.sharedMesh)continue;var b=f.sharedMesh.bounds;
+                for(int i=0;i<8;i++)
+                {
+                    var local=b.center+Vector3.Scale(b.extents,new Vector3((i&1)==0?-1:1,(i&2)==0?-1:1,(i&4)==0?-1:1));
+                    var p=go.transform.InverseTransformPoint(f.transform.TransformPoint(local));if(first){bounds=new Bounds(p,Vector3.zero);first=false;}else bounds.Encapsulate(p);
+                }
+            }
+            var collider=go.AddComponent<BoxCollider>();collider.center=bounds.center;collider.size=bounds.size;
+        }
         private static void ShellAndGarden()
         {
             Surface("WetCourtyard",0,1,0,25,31,Mat("brown_mud_03"));
@@ -173,7 +186,14 @@ namespace LayarTerakhir.Editor
             var limb=new GameObject("KambojaCrouchLimb",typeof(CapsuleCollider));limb.transform.SetParent(environment,false);limb.transform.SetPositionAndRotation(P(8.2f,5.5f,1.41f),Facing(north));
             var c=limb.GetComponent<CapsuleCollider>();c.direction=0;c.height=4.2f;c.radius=.18f;
             Box("KambojaRootCollision",P(6.8f,5.1f,.46f),new Vector3(.6f,.9f,.9f),Mat("Tree_FRANG_Bark")).GetComponent<Renderer>().enabled=false;
-            var chair=Model("plastic_monobloc_chair_01","AbandonedPorchChair",P(-2.5f,-1.0f,.45f));Ground(chair,.45f);FitCollider(chair);
+            var chair=Model("WornWoodChair","AbandonedPorchChair",P(-2.5f,-1.0f,.45f));chair.transform.rotation=Facing(-north);Ground(chair,.45f);FitCollider(chair);
+            // The west passage is visibly obstructed, not an invisible wrong-way trigger.
+            for(int i=0;i<4;i++)
+            {
+                float height=1.6f+(i%2)*.45f;
+                Box("WestCollapsedMasonry_"+i,P(-9.7f+i*.9f,1.0f,height*.5f),new Vector3(.96f,height,.75f),Mat("House_MAT_BrickBase"));
+            }
+            var brace=Box("WestFallenFenceBrace",P(-8.3f,.55f,1.1f),new Vector3(3.8f,.13f,.15f),Mat("House_MAT_WoodDoor"));brace.transform.Rotate(north,18,Space.World);
             for(int i=0;i<2;i++){var pot=Model("planter_pot_clay","PorchClayPot_"+i,P(i==0?-4.8f:4.8f,-.9f,0));Ground(pot);FitCollider(pot);}
         }
         private static void ExteriorStoryObjects()
@@ -249,7 +269,7 @@ namespace LayarTerakhir.Editor
             var text=root.GetComponent<TextMesh>();text.text=words;text.font=AssetDatabase.LoadAssetAtPath<Font>("Assets/_LayarTerakhir/UI/Fonts/Barlow-Regular.ttf");text.fontSize=48;text.characterSize=scale/10;text.anchor=TextAnchor.MiddleCenter;text.alignment=TextAlignment.Center;text.color=new Color(.72f,.68f,.52f);
             root.GetComponent<MeshRenderer>().sharedMaterial=text.font.material;return root;
         }
-        private static void Chain(Vector3 pos,float length,bool horizontal)
+        internal static void Chain(Vector3 pos,float length,bool horizontal)
         {
             // Eight linked, low-poly native torus rings, one combined static mesh/material.
             var verts=new System.Collections.Generic.List<Vector3>();var tris=new System.Collections.Generic.List<int>();
@@ -269,13 +289,9 @@ namespace LayarTerakhir.Editor
         {var go=new GameObject(name,typeof(Light));go.transform.SetParent(environment,false);go.transform.SetPositionAndRotation(pos,Facing(look-pos));var light=go.GetComponent<Light>();light.type=type;light.intensity=power;light.range=range;light.color=color;light.shadows=LightShadows.None;light.spotAngle=62;return light;}
         private static void Lighting(VolumeProfile profile)
         {
-            RenderSettings.skybox=null;RenderSettings.ambientMode=AmbientMode.Flat;RenderSettings.ambientLight=new Color(.17f,.21f,.26f);RenderSettings.ambientIntensity=1;
+            RenderSettings.skybox=null;RenderSettings.ambientMode=AmbientMode.Flat;RenderSettings.ambientLight=new Color(.023f,.030f,.040f);RenderSettings.ambientIntensity=1;
             RenderSettings.fog=true;RenderSettings.fogMode=FogMode.ExponentialSquared;RenderSettings.fogColor=new Color(.035f,.052f,.073f);RenderSettings.fogDensity=.018f;
-            var moon=LightAt("CloudedMoon",P(0,0,20),LightType.Directional,.8f,50,new Color(.51f,.65f,.84f),P(-5,8,0));moon.shadows=LightShadows.Soft;moon.shadowStrength=.65f;
-            LightAt("PorchPractical",P(0,-.45f,3.3f),LightType.Point,3.8f,6,new Color(1,.66f,.36f),P(0,-3,0));
-            LightAt("KitchenPractical",P(4,11.5f,2.7f),LightType.Point,2.1f,4,new Color(.85f,.72f,.49f),P(4,10,.3f));
-            LightAt("DiningColdSpill",P(4.9f,5.5f,3),LightType.Point,2.6f,5,new Color(.42f,.58f,.68f),P(3.7f,6,.5f));
-            LightAt("LivingFaintPractical",P(-2.5f,4.0f,3.4f),LightType.Point,2.0f,6,new Color(.8f,.66f,.39f),P(-2,4,.5f));
+            var moon=LightAt("CloudedMoon",P(0,0,20),LightType.Directional,.15f,50,new Color(.51f,.65f,.84f),P(-5,8,0));moon.shadows=LightShadows.Soft;moon.shadowStrength=.85f;
             var fixture=Model("security_light","PorchSecurityFixture",P(.7f,-.2f,3.2f));
             var material=new Material(Shader.Find("Universal Render Pipeline/Particles/Unlit"));material.SetColor("_BaseColor",new Color(.55f,.65f,.7f,.25f));material.SetFloat("_Surface",1);material.SetFloat("_SrcBlend",(float)BlendMode.SrcAlpha);material.SetFloat("_DstBlend",(float)BlendMode.OneMinusSrcAlpha);material.SetFloat("_ZWrite",0);material.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");material.renderQueue=3000;
             string path=Art+"Materials/Rain.mat";var old=AssetDatabase.LoadAssetAtPath<Material>(path);if(old){EditorUtility.CopySerialized(material,old);Object.DestroyImmediate(material);material=old;}else AssetDatabase.CreateAsset(material,path);

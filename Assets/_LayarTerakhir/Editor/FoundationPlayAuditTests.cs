@@ -74,6 +74,22 @@ namespace LayarTerakhir.Editor.Tests
         public IEnumerator KosSequenceWithJacketFirst() => RunInPlayerLoop(CompleteKos(true));
 
         [UnityTest]
+        public IEnumerator PauseSettingsAndResumeOwnInputAndTime() => RunInPlayerLoop(PauseSettings());
+
+        private IEnumerator PauseSettings()
+        {
+            yield return WaitForStage(KosPrologStage.WaitReadSuratIbuKos);
+            float scale=Time.timeScale;var shell=GameShell.Instance;shell.Pause();yield return null;
+            Assert.That(UiFocus.Menu,Is.True);Assert.That(Time.timeScale,Is.Zero);Assert.That(AudioListener.pause,Is.True);
+            var settings=UnityEngine.Object.FindObjectsByType<UnityEngine.UI.Button>(FindObjectsSortMode.None);
+            Array.Find(settings,b=>b.name=="Settings").onClick.Invoke();yield return null;
+            var slider=Array.Find(UnityEngine.Object.FindObjectsByType<UnityEngine.UI.Slider>(FindObjectsSortMode.None),s=>s.name=="MasterVolume");
+            Assert.That(slider,Is.Not.Null);slider.value=.45f;Assert.That(AudioListener.volume,Is.EqualTo(.45f).Within(.01f));
+            shell.Resume();Assert.That(UiFocus.Menu,Is.False);Assert.That(Time.timeScale,Is.EqualTo(scale));Assert.That(AudioListener.pause,Is.False);
+            AudioListener.volume=1;
+        }
+
+        [UnityTest]
         public IEnumerator KosSequenceWithDrawerFirst() => RunInPlayerLoop(CompleteKos(false));
 
         private IEnumerator CompleteKos(bool jacketFirst)
@@ -83,7 +99,8 @@ namespace LayarTerakhir.Editor.Tests
             var campaign = Find<CampaignState>();
             Assert.That(director.suratKosItem.CanInteract(), Is.False);
             Assert.That(director.smartphoneBedItem.CanInteract(), Is.False);
-            yield return Interact(director.kosDoorItem, new Vector3(0.85f, 0.05f, -0.3f));
+            // The bed wake/landlady sequence owns input; early door use must not skip it.
+            director.kosDoorItem.Interact();
             Assert.That(director.currentStage, Is.EqualTo(KosPrologStage.WakeUpAndKnocks));
             yield return WaitForStage(KosPrologStage.WaitReadSuratIbuKos);
             yield return Interact(director.pcMonitorItem, new Vector3(.85f, .05f, -.05f));
@@ -168,6 +185,7 @@ namespace LayarTerakhir.Editor.Tests
 
         private IEnumerator DepartureCanRetryAfterSaveFailureRoutine()
         {
+            yield return WaitForStage(KosPrologStage.WaitReadSuratIbuKos);
             var director = Find<KamarKosPrologDirector>();
             director.StopAllCoroutines();
             director.currentStage = KosPrologStage.ReadyToDepart;
@@ -190,6 +208,7 @@ namespace LayarTerakhir.Editor.Tests
 
         private IEnumerator PhoneDrainModesDarkBroadcastAndZeroBatteryRechargeRoutine()
         {
+            yield return WaitForStage(KosPrologStage.WaitReadSuratIbuKos);
             var phone = Find<SmartphoneController>();
             phone.AcquireSmartphone();
             phone.isBroadcastConnected = true;
@@ -248,6 +267,7 @@ namespace LayarTerakhir.Editor.Tests
 
         private IEnumerator MovementCollisionAndCrouchHeadroomUseRuntimePhysicsRoutine()
         {
+            yield return WaitForStage(KosPrologStage.WaitReadSuratIbuKos);
             Time.timeScale = 1f;
             PlacePlayer(new Vector3(1.4f, .05f, 0f));
             var player = Find<FirstPersonController>();
@@ -284,6 +304,7 @@ namespace LayarTerakhir.Editor.Tests
 
         private IEnumerator RechargePhone(bool raised)
         {
+            yield return WaitForStage(KosPrologStage.WaitReadSuratIbuKos);
             var phone = Find<SmartphoneController>();
             phone.AcquireSmartphone();
             phone.ConsumeBattery(100f);
@@ -388,6 +409,8 @@ namespace LayarTerakhir.Editor.Tests
             var hud = Find<HudController>();
             hud.documentCloseButton.onClick.Invoke();
             Assert.That(hud.IsModalOpen, Is.False);
+            // World-interaction scenarios stow the phone, rather than clicking through its app desktop.
+            var phone=SmartphoneController.Instance;if(phone){phone.isPhoneRaised=false;phone.SyncVisualState();UiFocus.Phone=false;}
         }
 
         private static T Find<T>() where T : UnityEngine.Object => UnityEngine.Object.FindFirstObjectByType<T>();

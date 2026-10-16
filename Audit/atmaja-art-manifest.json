@@ -700,6 +700,21 @@
       "albedo": "",
       "normal": "",
       "mask": ""
+    },
+    {
+      "name": "Detail_ClockInk",
+      "color": [
+        0.055,
+        0.039,
+        0.02,
+        1
+      ],
+      "roughness": 0.95,
+      "metallic": 0,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "mask": ""
     }
   ],
   "models": [
@@ -1891,14 +1906,6 @@
       "sourceCoordinateNote": "Blender Z-up, front -Y; Unity import inspected separately"
     },
     {
-      "name": "FallenFrangipani",
-      "path": "Assets/_LayarTerakhir/Art/Atmaja/Models/FallenFrangipani.fbx",
-      "triangles": 28825,
-      "renderers": 4,
-      "hulls": [],
-      "sourceCoordinateNote": "Blender Z-up, front -Y; Unity import inspected separately"
-    },
-    {
       "name": "large_iron_gate",
       "path": "Assets/_LayarTerakhir/Art/Atmaja/Models/large_iron_gate.fbx",
       "triangles": 11385,
@@ -1961,6 +1968,41 @@
       "renderers": 1,
       "hulls": [],
       "sourceCoordinateNote": "Blender Z-up, front -Y; Unity import inspected separately"
+    },
+    {
+      "name": "WornWoodChair",
+      "path": "Assets/_LayarTerakhir/Art/Atmaja/Models/WornWoodChair.fbx",
+      "triangles": 2160,
+      "renderers": 1,
+      "revision": "2026-10-16 playtest repair"
+    },
+    {
+      "name": "LongDiningTable",
+      "path": "Assets/_LayarTerakhir/Art/Atmaja/Models/LongDiningTable.fbx",
+      "triangles": 756,
+      "renderers": 1,
+      "revision": "2026-10-16 playtest repair"
+    },
+    {
+      "name": "CornerSideTable",
+      "path": "Assets/_LayarTerakhir/Art/Atmaja/Models/CornerSideTable.fbx",
+      "triangles": 648,
+      "renderers": 1,
+      "revision": "2026-10-16 playtest repair"
+    },
+    {
+      "name": "GrandfatherClock",
+      "path": "Assets/_LayarTerakhir/Art/Atmaja/Models/GrandfatherClock.fbx",
+      "triangles": 2003,
+      "renderers": 8,
+      "revision": "2026-10-16 playtest repair"
+    },
+    {
+      "name": "FallenFrangipani",
+      "path": "Assets/_LayarTerakhir/Art/Atmaja/Models/FallenFrangipani.fbx",
+      "triangles": 5293,
+      "renderers": 3,
+      "revision": "2026-10-16 playtest repair"
     }
   ],
   "sources": [

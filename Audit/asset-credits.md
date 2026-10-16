@@ -1,4 +1,26 @@
-Asset provenance for Kamar Kos and the Atmaja continuation, verified 2026-10-15 UTC.
+Asset provenance for Kamar Kos and the Atmaja continuation, with the 2026-10-16 playtest revision.
+
+## Playtest revision — 16 October 2026
+
+No new environment asset pack was downloaded. `Tools/repair_playtest_art.py` authors worn wooden chairs,
+a longer dining table and a small corner table, repairs the existing grandfather clock, and removes the
+oversized recovery root plate from the tree. Wooden chairs replace the earlier plastic-chair instances;
+the original unused import and its credit below are retained. Leaves/flowers are reduced, card transforms
+are baked before joining, and the existing licensed source meshes/materials retain their source licenses.
+Kos corridor art reuses the existing floor/plaster/wood, gate, scooter and bucket, with native original geometry.
+The red AR blood-writing mesh is original vector-stroke artwork, not an imported font or extracted game texture.
+
+Clock dial numerals are mesh outlines generated from **DejaVu Serif**, copyright (c) 2003 Bitstream, Inc.;
+DejaVu changes are public domain. The original Bitstream Vera permission notice accompanies the project
+and Windows build in `Audit/dejavu-font-license.txt` / `DejaVu-Font-License.txt`. No font is renamed as Bitstream Vera.
+
+Dialogue is **temporary synthetic Indonesian speech**, explicitly approved by the developer, generated offline
+with [eSpeak NG](https://github.com/espeak-ng/espeak-ng) (GPL-3.0-or-later synthesis tool) and processed with
+FFmpeg. The game contains rendered mono dialogue WAVs, not the synthesis executable, neural weights,
+or a cloned actor's voice. Raka, Damar, Ratna and the well whisper use generic synthetic variants, not
+final voice acting. `Tools/synth_prolog_voice.py` and `Audit/prolog-voice-manifest.json` record exact dialogue,
+engine, processing, SHA-256, peak/RMS and duration. No restricted/non-commercial Piper voice model was used.
+Clock tick/tock is an original short mechanical waveform generated at runtime.
 
 ## Atmaja continuation — source staging reused, no new asset downloads
 
@@ -27,7 +49,7 @@ Other selected staged artwork is CC0-1.0, under the [Poly Haven asset license](h
 
 The procedural recovery scooter/house details/frangipani leaves and flowers are project-authored; derivative repairs correct scooter wheel axes/seat and physical window openings. Original added meshes: banquet table, grandfather clock/hands/drawer, seated bent-neck AR figure, linked chains, well boards, cracked phone details and kitchen fittings. The backpack reuses the original Kos FBX without changing that source asset. These original works follow the project license. No branded motorcycle model, ripped game art, or new download is used.
 
-`Audit/atmaja-art-manifest.json` records hashes of consumed staged sources, derivative model counts and material paths; `Tools/prepare_atmaja_art.py`, `Tools/pack_atmaja_masks.py`, `Tools/author_atmaja_details.py` preserve the workflow. Selected model/material imports are at `Assets/_LayarTerakhir/Art/Atmaja`. Existing Kos audio clips, Barlow OFL, and CC0 art remain credited below. No new voice recording is supplied (well whisper is subtitled, with existing foley).
+`Audit/atmaja-art-manifest.json` records hashes of consumed staged sources, derivative model counts and material paths; `Tools/prepare_atmaja_art.py`, `Tools/pack_atmaja_masks.py`, `Tools/author_atmaja_details.py` preserve the workflow. Selected model/material imports are at `Assets/_LayarTerakhir/Art/Atmaja`. Existing Kos audio clips, Barlow OFL, and CC0 art remain credited below. The later synthetic dialogue revision is described above.
 
 ## Kamar Kos (earlier passes, preserved)
 

@@ -1,0 +1,19 @@
+{
+  "stage": "review-validate",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.PlaytestReviewValidation.Run",
+    "-logFile",
+    "/root/Projects/LayarTerakhir/Audit/review-validate.log"
+  ],
+  "startedUtc": "2026-10-16T03:19:33.719147+00:00",
+  "status": "Finished",
+  "endedUtc": "2026-10-16T03:19:59.975389+00:00",
+  "exitCode": 0
+}

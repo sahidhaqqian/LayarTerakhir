@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_LayarTerakhir/Scenes/Prolog_RumahAtmaja.unity
     guid: d352cbe4d6cfd6505939e08305a81985
+  - enabled: 1
+    path: Assets/_LayarTerakhir/Scenes/Prolog_KoridorKos.unity
+    guid: 8ee214c16cd07c7a195e4d8281be1cf2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

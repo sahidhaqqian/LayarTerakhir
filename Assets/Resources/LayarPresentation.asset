@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 971419719008922eca8b0492f1604d8e, type: 3}
+  m_Name: LayarPresentation
+  m_EditorClassIdentifier: Assembly-CSharp::LayarTerakhir.Core.PresentationProfile
+  bodyFont: {fileID: 12800000, guid: 0a753425ecbca20a987f1ec2d689fb11, type: 3}
+  phoneFeedMaterial: {fileID: 2100000, guid: 8b08d15e604db8547bc2795fcc4aef09, type: 2}
+  audio: {fileID: 11400000, guid: 88c1da6064516fc40850805345f28e0d, type: 2}
+  voices:
+  - speaker: Raka
+    text: Tiga puluh dua penonton... Itu pun paling setengahnya akun bot. Kalau malam
+      ini nggak ada konten yang meledak, tamat riwayat gue di Jakarta.
+    clip: {fileID: 8300000, guid: 0c5bbe55251246511b32190a007d0287, type: 3}
+  - speaker: Raka
+    text: Tiga setengah juta besok pagi... Gue cari ke mana jam segini?!
+    clip: {fileID: 8300000, guid: 97f4d81de71a4c56f8836848ae9d6aee, type: 3}
+  - speaker: Raka
+    text: Dam?! Halo, Damar?! Sial, nomornya nggak aktif!
+    clip: {fileID: 8300000, guid: 2a49eec4de91f9021977e779b881f83f, type: 3}
+  - speaker: Raka
+    text: Gue cek dulu apa yang diselipin di bawah pintu tadi.
+    clip: {fileID: 8300000, guid: 497b90beed83d721cb2a9c68c1f42c58, type: 3}
+  - speaker: Raka
+    text: Kebuka. Kunci motor sama powerbank cadangan udah di tangan.
+    clip: {fileID: 8300000, guid: 357fd382dc3eaac7a82327f4a7976c38, type: 3}
+  - speaker: Raka
+    text: Bentar, gue belum mau keluar sebelum cek bawah pintu.
+    clip: {fileID: 8300000, guid: 72df1d32b4a8198d7ad0483142a19a48, type: 3}
+  - speaker: Raka
+    text: Jaket udah dipakai. Hujan di luar makin deres.
+    clip: {fileID: 8300000, guid: 91e154a0fc5e541fca12c9a3bb36cfdb, type: 3}
+  - speaker: Raka
+    text: Gue harus ambil Smartphone, Jaket, Kunci Motor, sama Baterai Cadangan dulu
+      sebelum berangkat.
+    clip: {fileID: 8300000, guid: 1782d607f99f7344380d49d66a292731, type: 3}
+  - speaker: Bisikan
+    text: Haus... bukakan...
+    clip: {fileID: 8300000, guid: 014c39716574bb5c68ce7cff99153b44, type: 3}
+  - speaker: Raka
+    text: Itu motornya Damar... Mesinnya udah dingin, berarti dia udah di dalem sejak
+      jam sembilan tadi.
+    clip: {fileID: 8300000, guid: 86373617a552f63d3b6c90b6ba2181e8, type: 3}
+  - speaker: Raka
+    text: Anjir! Anginnya kenceng banget... Eh bentar, ini jendelanya kok nyangkut?!
+    clip: {fileID: 8300000, guid: bc71b6f9472fed142a8269a90b16924c, type: 3}
+  - speaker: Raka
+    text: Ini HP-nya Damar... Layarnya pecah, tapi kartu memorinya masih kebaca.
+      Gue pindahin dulu aplikasinya ke HP gue.
+    clip: {fileID: 8300000, guid: 63854c79fc304e2f2956a696a8d3322a, type: 3}
+  - speaker: Damar
+    text: "Ka... Raka, jangan ke Rumah Atmaja sendirian. Tolong dengerin gue. Aplikasi
+      kamera yang gue oprek dari forum kemarin... itu bukan filter AR biasa, Ka.
+      Rumah ini nggak kosong. Di lantai dua ada suara perempuan nyanyi tembang Jawa,
+      tapi pas gue sorot pakai kamera HP, dia udah berdiri tepat di depan muka gue\u2014"
+    clip: {fileID: 8300000, guid: b5ea98dcb41c712d394a4721d10059cc, type: 3}
+  - speaker: Bu Haji Ratna
+    text: Raka, ini peringatan terakhir dari saya. Tunggakan kos kamu sudah tiga
+      bulan ditambah uang listrik totalnya tiga juta lima ratus ribu rupiah. Besok
+      pagi jam delapan kalau belum ditransfer, gembok kamar saya ganti.
+    clip: {fileID: 8300000, guid: cd9ccfbcf31f4731fbec2d77e0bc21cf, type: 3}
+  - speaker: Raka
+    text: Hmm... kok tiba-tiba ketutup, ya? Kayaknya kita cuma bisa lanjut.
+    clip: {fileID: 8300000, guid: e31868448e6b91f63af3121b41d8c910, type: 3}
+  - speaker: Raka
+    text: Oke... tes, satu dua. Malam semuanya, balik lagi di Malam Keramat. Malam
+      ini gue nggak sendirian... maksudnya, gue lagi nyusulin Damar yang hilang kontak
+      di Rumah Tua Atmaja. Buat yang baru gabung, bantu pantau layar ya.
+    clip: {fileID: 8300000, guid: 338ca84ed04656e4cad0e7b62e7cdb52, type: 3}

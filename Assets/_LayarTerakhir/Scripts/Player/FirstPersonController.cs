@@ -40,23 +40,25 @@ namespace LayarTerakhir.Player
         private Vector3 _verticalVelocity;
         private float _slideTimer;
         private Vector3 _slideDirection;
+        private float _standingStepOffset;
 
         private void Awake()
         {
             _controller = GetComponent<CharacterController>();
+            _standingStepOffset = _controller.stepOffset;
             _controller.height = standingHeight;
             _controller.center = new Vector3(0f, standingHeight * 0.5f, 0f);
         }
 
         private void Start()
         {
-            SetCursorLock(true);
+            SetCursorLock(!UiFocus.BlocksWorld);
         }
 
         private void Update()
         {
             bool modalOpen = HudController.Instance != null && HudController.Instance.IsModalOpen;
-            if (modalOpen || MovementLocked)
+            if (modalOpen || MovementLocked || UiFocus.BlocksWorld)
             {
                 ApplyGravityOnly();
                 return;
@@ -115,6 +117,10 @@ namespace LayarTerakhir.Player
 
             IsCrouching = crouchHeld || IsSliding || !CanStandUp();
             IsSprinting = !IsCrouching && sprintHeld && input.y > 0.1f;
+
+            // Full-height step-up sweeps catch the underside of furniture even when the
+            // crouched capsule fits. Crawl with a small step, restore the normal stair step on stand.
+            _controller.stepOffset = IsCrouching ? Mathf.Min(_standingStepOffset, .06f) : _standingStepOffset;
 
             float targetHeight = IsCrouching ? crouchHeight : standingHeight;
             _controller.height = Mathf.Lerp(_controller.height, targetHeight, Time.deltaTime * postureLerpSpeed);

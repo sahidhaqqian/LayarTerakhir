@@ -151,6 +151,23 @@ namespace LayarTerakhir.Editor.Tests
             }
         }
 
+        [TestCase(false)]
+        [TestCase(true)]
+        public void NewGameArchivesPreviousSlotByteForByte(bool corrupt)
+        {
+            var c=Find<CampaignState>();c.AddInventoryItem("PREVIOUS_CAMPAIGN");
+            Assert.That(c.SaveCheckpointAtomic("PROLOG_ATMAJA_KITCHEN"),Is.True);
+            string slot=Path.Combine(_saveDirectory,"layar_terakhir_save.json");
+            if(corrupt)File.WriteAllText(slot,"{ incomplete old save");
+            string before=File.ReadAllText(slot);
+            Assert.That(c.HasValidCheckpoint,Is.EqualTo(!corrupt));
+            Assert.That(c.BeginNewCampaignPreservingPrevious(),Is.True);
+            string[] archived=Directory.GetFiles(Path.Combine(_saveDirectory,"ArchivedCampaigns"),"*.json");
+            Assert.That(archived.Length,Is.EqualTo(1));Assert.That(File.ReadAllText(archived[0]),Is.EqualTo(before));
+            Assert.That(c.LoadCheckpoint(),Is.True);Assert.That(c.Data.checkpoint_id,Is.EqualTo("PROLOG_KOS_START"));
+            Assert.That(c.HasInventoryItem("PREVIOUS_CAMPAIGN"),Is.False);
+        }
+
         [Test]
         public void SaveReplacementKeepsBackupAndRestoresFullSnapshot()
         {

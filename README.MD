@@ -8,17 +8,19 @@ Permainan berjalan dalam enam babak bercerita (Babak 0–5) dengan mekanik eksor
 
 ## Status saat ini
 
-**Milestone: Kos approved + kelanjutan Atmaja, Adegan 2–3 sampai checkpoint pintu tangga.**
+**Milestone: revisi playtest Kos–Atmaja, Adegan 2–3 sampai checkpoint pintu tangga.**
 
-Scene kos approved 5 × 3,8 m dipertahankan tanpa perubahan scene/prefab/material. Alur pembuka diteruskan lewat scene transition ke `Prolog_RumahAtmaja`: catatan motor Damar, MULAI LIVE, kamboja crouch, vault dapur, HP Damar/MataBatin AR, jam 03:45, dan kunci tangga. Aset staging dipilih dan diperbaiki di Blender, bukan diunduh ulang.
+Scene/aset kamar kos approved 5 × 3,8 m dipertahankan. Sesuai revisi pengguna, runtime menambah menu, animasi bangun dan suara sintetis Ratna/Damar/Raka. Pintu kamar menuju `Prolog_KoridorKos`: lantai 2, kamar tertutup, tangga, dapur/kamar mandi bersama, halaman, peta dan animasi motor melewati gerbang. Baru kemudian ke `Prolog_RumahAtmaja`.
 
-Yang **belum** dibangun: Adegan 4–7 (lantai dua sampai akhir Prolog), UV/Selfie lanjutan, Jurnal, stealth/chase, ritual, dan ending. AR lantai dasar tampil hanya lewat render kamera HP, bukan kamera dunia. Uji visual dan performa akhir wajib dilakukan pengembang di Windows (Iris Xe); host ini tidak membuktikan target 30 FPS. Status bukti terbaru: [`Audit/atmaja-prolog-continuation.md`](Audit/atmaja-prolog-continuation.md).
+Atmaja memiliki kursi kayu berarah, jalur samping meja, ruang tamu depan/gudang, meja kecil pojok, jam menempel dinding dengan tik-tok dan kontrol jam/menit, tulisan darah merah lewat AR, serta interior gelap dengan cahaya HP. Aplikasi HP: Kamera, Peta skematik, Pesan, Jurnal, Tas, Setelan. Aset staging diperbaiki di Blender; tidak ada unduhan environment baru.
+
+Yang **belum** dibangun: Adegan 4–7 (lantai dua Atmaja sampai akhir Prolog), UV/Selfie lanjutan, stealth/chase, ritual, dan ending. Tujuan peta berikutnya masih terkunci. VO sintetis generik dan animasi motor first-person masih prototipe; kesulitan/tensi perlu review manusia. Uji visual/performa akhir wajib di Windows Iris Xe; Linux software-rendering tidak membuktikan target 30 FPS. Laporan revisi: [`Audit/playtest-fixes-2026-10-16.md`](Audit/playtest-fixes-2026-10-16.md).
 
 | Item | Status |
 | --- | --- |
 | Scene startup | `Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity` |
-| Tes otomatis | 42/42 lulus; `Audit/golden-tests.xml` (EditMode + PlayMode) |
-| Validasi scene | Golden/Kos + Atmaja lulus; `Audit/atmaja-scene-validation.json`; 12 screenshot standalone aktual 1280×720 |
+| Tes otomatis | 52/52 lulus; `Audit/golden-test-invocation.json` dan `Audit/golden-tests.xml` (EditMode + PlayMode) |
+| Validasi scene | 0 kegagalan; 29 capture diagnostik standalone Linux aktual 640×360 di `Audit/Visuals/Review-Linux/` (bukan validasi Windows 1280×720) |
 | Build Windows | Development build Mono x86_64 berhasil, ZIP tersedia di `Builds/` (lokal, tidak di-commit) |
 | Pengujian manual Windows | **Belum dilakukan** — menunggu pengembang |
 
@@ -41,7 +43,7 @@ Yang **belum** dibangun: Adegan 4–7 (lantai dua sampai akhir Prolog), UV/Selfi
 
 ```
 Assets/_LayarTerakhir/
-  Scenes/      Prolog_KamarKos.unity (approved) + Prolog_RumahAtmaja.unity
+  Scenes/      Prolog_KamarKos (approved), Prolog_KoridorKos, Prolog_RumahAtmaja
   Scripts/     Core, Player, Prolog, Smartphone, UI, Audio, Diagnostics
   Editor/      alat produksi: builder scene, pass visual, validasi, build
   Art/         model & tekstur (Imported / Original / Generated)
@@ -63,7 +65,8 @@ Dokumentasi lengkap arsitektur kode ada di [`ARCHITECTURE.MD`](ARCHITECTURE.MD).
 **Unity Editor**
 1. Buka folder proyek ini dengan Unity `6000.3.26f1` (URP; Windows Build Support Mono diperlukan untuk build).
 2. Buka `Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity`.
-3. Tekan Play. Scene sudah berisi seluruh sistem; tidak ada langkah setup manual.
+3. Tekan Play. Editor melewati menu untuk iterasi scene; standalone selalu mulai dari menu.
+   Untuk memeriksa menu di Editor panggil `GameShell.Instance.OpenMain()` saat Play.
 
 **Menu editor `LayarTerakhir/*`** dipakai untuk produksi scene. Jangan menjalankan `Build Prolog Kamar Kos Scene` (greybox builder) di atas scene berfurnitur — pass produksi berikutnya bersifat inkremental.
 
@@ -89,17 +92,19 @@ python3 Tools/run_golden_checks.py --stage test
 | `F` | Matikan/nyalakan layar HP | `LMB` | Foto / Blitz |
 | `Q` / `R` | AR / UV | `V` | Kamera Selfie |
 
-Semua tombol dapat dipetakan ulang (`GameInputConfig`); prompt HUD selalu menampilkan binding aktif. AR dan UV saling menggantikan pada satu slot pemindaian.
+Delapan aksi utama bisa di-remap lewat SETTINGS; binding lain tersedia di `GameInputConfig`. Prompt dunia mengikuti binding aktif. Shortcut UI tetap: `ESC` menu/jeda, `Z` aplikasi ↔ kamera HP, `M` peta HP. Jurnal saat ini dibuka dari aplikasi HP, bukan `J`. Baris modul cerita lanjutan di tabel adalah rancangan, belum semuanya playable. AR dan UV memakai satu slot pemindaian.
 
 ---
 
 ## Alur Prolog Kamar Kos (milestone saat ini)
 
-1. **Bangun** — monolog, suara hujan & ketukan pintu.
+0. **Menu** — NEW GAME (mengarsipkan save lama), CONTINUE (checkpoint valid), SETTINGS, EXIT.
+1. **Bangun** — animasi dari kasur, monolog, hujan, ketukan dan suara Ratna.
 2. **Periksa bawah pintu** — ambil surat peringatan ibu kos (`DOC_PROLOG_01_SURAT_KOS`).
 3. **Ambil smartphone di kasur** — voice note Damar, lalu notifikasi donasi terikat Rp5.000.000 dari `Penonton_Terakhir`.
 4. **Persiapan berangkat** — baca sticky note + kalender, pecahkan gembok laci `148` (kunci motor + powerbank), ambil jaket.
-5. **Keluar** — save checkpoint `PROLOG_KOS_COMPLETE`, fade dan load Rumah Atmaja. Save dengan prefiks `PROLOG_ATMAJA_` atau `PROLOG_MATABATIN_ACQUIRED` langsung melanjutkan Atmaja, tanpa mengulang kos.
+5. **Keluar kamar** — checkpoint `PROLOG_KOS_COMPLETE`, lalu lorong lantai 2, tangga, fasilitas bersama dan halaman kos. Checkpoint lorong/halaman memuat kembali scene koridor.
+6. **Berangkat** — dekat motor/gerbang pilih Atmaja lewat peta HP; animasi naik motor dan melaju keluar gerbang sebelum load Atmaja. Continue dengan prefiks `PROLOG_ATMAJA_` atau `PROLOG_MATABATIN_ACQUIRED` langsung ke Atmaja tanpa mengulang pembuka.
 
 Checkpoint dapat dimuat kembali; state inventori, baterai HP, dan objek yang sudah diambil dipulihkan tanpa menggandakan hadiah.
 
@@ -110,9 +115,10 @@ Checkpoint dapat dimuat kembali; state inventori, baterai HP, dan objek yang sud
 ```sh
 python3 Tools/run_golden_checks.py --stage validate   # validasi geometri, audio, HUD, prefab
 python3 Tools/run_golden_checks.py --stage atmaja-validate
+python3 Tools/run_golden_checks.py --stage review-validate
 python3 Tools/run_golden_checks.py --stage test       # EditMode + PlayMode
-python3 Tools/run_golden_checks.py --stage linux      # dua scene untuk audit standalone
-python3 Tools/run_golden_checks.py --stage atmaja-player --width 640 --height 360
+python3 Tools/run_golden_checks.py --stage linux      # tiga scene untuk audit standalone
+python3 Tools/run_golden_checks.py --stage review-player # menu, kos, tangga, motor, jalan fisik Atmaja
 python3 Tools/run_golden_checks.py --stage player     # smoke player Linux via Xvfb (bukan bukti Windows)
 python3 Tools/run_golden_checks.py --stage windows    # build Windows Development
 python3 Tools/package_windows_build.py                # verifikasi + ZIP untuk WinSCP
@@ -120,7 +126,17 @@ python3 Tools/package_windows_build.py                # verifikasi + ZIP untuk W
 
 Bukti (log, XML tes, JSON validasi, screenshot, checksum) tersimpan di `Audit/`. Panduan pengujian manual Windows ada di `Audit/windows-kos-capture.md` dan `Builds/Windows/Screenshot-Guide.txt`.
 
-Saat menjalankan build player dengan flag `-goldenAudit <dir>`, game menjalankan smoke test terarah dengan folder save terisolasi dan menulis 13 screenshot + rekaman mix audio nyata. Flag ini tidak aktif pada permainan normal.
+`-reviewAudit <dir>` menguji alur revisi dengan save terisolasi dan screenshot framebuffer aktual. Interaksi kamar Golden diposisikan untuk regresi; koridor/tangga/Atmaja ditempuh lewat substep CharacterController, bukan teleport. Timer cerita dipercepat dan waktu dibekukan singkat saat capture; bukan pengujian pacing/VO natural atau FPS. `-goldenAudit` lama hanya untuk smoke Kos terisolasi; `-atmajaAudit` lama bukan bukti revisi ini. Stage `atmaja-player` kini alias `review-player`. Semua flag audit tidak aktif pada permainan normal.
+
+Regenerasi revisi (host authoring Linux dengan Blender, eSpeak NG, FFmpeg, fonts-dejavu-core):
+
+```sh
+blender -b --python Tools/repair_playtest_art.py
+python3 Tools/synth_prolog_voice.py
+python3 Tools/run_golden_checks.py --stage review-build
+```
+
+Jalankan repair di atas setelah authoring Atmaja lama agar model revisi tidak tertimpa pass lama.
 
 ---
 
@@ -128,7 +144,7 @@ Saat menjalankan build player dengan flag `-goldenAudit <dir>`, game menjalankan
 
 - Kode proyek: lihat [`LICENSE`](LICENSE) (GPL-2.0).
 - Aset pihak ketiga: PolyHaven/Kenney (CC0), bagian Wooden Overhang Modular Kit oleh Trey Ramm (CC BY 4.0; kredit wajib), font Barlow (SIL OFL). Sumber dan perubahan dicatat di [`Audit/asset-credits.md`](Audit/asset-credits.md), [`Audit/atmaja-art-manifest.json`](Audit/atmaja-art-manifest.json).
-- Build Windows menyertakan `Asset-Credits.txt` dan `Barlow-OFL.txt`; jangan mendistribusikan build tanpa berkas tersebut.
+- Build Windows menyertakan `Asset-Credits.txt`, `Barlow-OFL.txt`, dan `DejaVu-Font-License.txt` (outline angka jam); jangan menghapus pemberitahuan lisensi. Suara sintetis sementara dibuat offline dengan eSpeak NG; tool sintesis tidak dibundel.
 
 ---
 

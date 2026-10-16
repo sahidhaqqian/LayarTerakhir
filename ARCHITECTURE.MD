@@ -2,7 +2,15 @@
 
 Dokumen ini menjelaskan fondasi `Prolog_KamarKos` yang sudah approved serta kelanjutan `Prolog_RumahAtmaja` (Adegan 2–3, sampai pintu tangga), Unity 6000.3.26f1 + URP 17.3.0, Windows x86_64 Mono. Dokumen cerita/gameplay tetap menjadi acuan: `Rancangan.MD`, `Prolog.MD`, `Phase1.MD`–`Phase5.MD`, dan `Checklist.MD`.
 
-Kelanjutan bersifat aditif: `PrologSceneFlow` memindahkan scene setelah fade Kos dan mengarahkan checkpoint Atmaja saat startup. Binding input dibawa lewat transisi; `CampaignState` baru membaca save atomik yang sama, tanpa singleton gameplay lintas-scene. `AtmajaDirector` menyimpan event idempotent dalam inventory, mengembalikan donasi/flag jika save gagal, dan memulihkan objek/spawn. `AtmajaVault` mengonsumsi binding Vault sebelum FPS jump. `AtmajaPhoneView` menambah UI scene-local di HUD yang sama: RT 320×400 hanya hidup saat layar aktif, layer 29 hanya di kamera HP. Golden HUD/player/material/pipeline asset tidak diubah. Detail/batasan dan bukti: `Audit/atmaja-prolog-continuation.md`.
+Revisi playtest 16 Oktober 2026: scene/aset kamar Golden tetap byte-identical, tetapi runtime pembuka/keluar diperluas sesuai arahan pengguna. Lihat `Audit/playtest-fixes-2026-10-16.md` untuk batasan dan bukti terbaru. Bagian fondasi di bawah menjelaskan sistem asal; tambahan revisi berikut menggantikan alur keluar/HP lama.
+
+`GameShell` adalah satu UI persisten sebelum scene pertama: menu awal/jeda/pengaturan, pemuatan New Game/Continue, volume/sensitivitas/subtitle/reduksi glitch/remap. New Game mengarsipkan slot lama byte-for-byte sebelum membuat campaign baru. `UiFocus` memisahkan menu/jam (hard modal), browsing HP dan cutscene; TAB/F tetap dapat dipakai ketika browsing HP. `KamarKosPrologDirector` menunggu pilihan menu, memainkan bangun dari kasur, Ratna dan voice note, lalu memuat koridor, bukan langsung Atmaja.
+
+`PrologSceneFlow`: Kos (index 0) → KoridorKos (index 2) → Atmaja (index 1). Index dipertahankan untuk kompatibilitas build lama; urutan cerita memakai nama scene. `KosCorridorDirector` menangani checkpoint lantai 2/halaman dan perjalanan: peta dapat dilihat dari mana saja, tetapi departure hanya di dekat gerbang/motor. Motor, kamera, tangan first-person dan gerbang bergerak nyata sebelum fade/load Atmaja. Binding input dibawa lewat transisi; singleton campaign scene baru membaca save atomik yang sama.
+
+`AtmajaPhoneView` sekarang dipasang pada HUD semua scene, dengan `PhoneDesktop` (Kamera/Peta/Pesan/Jurnal/Tas/Setelan). RT 320×400 hanya aktif saat aplikasi Kamera dan layar HP hidup; layer 29 hanya kamera HP, bukan kamera dunia. Jurnal/inventori memakai scroll. `PresentationProfile` di Resources mengikat font, shader-feed, mixer dan bank 16 WAV VO sintetis; `HudController` menyatukan antrean subtitle/audio. `ClockAmbience` menyediakan tik-tok spasial, `HingedDoor` pintu eksplorasi, `ClockPuzzleView` kontrol jam/menit. Tulisan AR adalah mesh guratan merah pada plane dinding; shader-feed mempertahankan warna merahnya. `AtmajaDirector` mensyaratkan petunjuk benar-benar dibidik melalui AR sebelum puzzle jam terbuka; event tetap idempotent dan rollback bila save gagal.
+
+`PlaytestRevisionBuilder` meregenerasi scene Atmaja, bank presentasi dan koridor tanpa menyimpan ulang scene kamar. `PlaytestReviewValidation` memeriksa serialisasi komponen, geometri, kapsul jalur meja, dua lantai dan VO. `ReviewPlayerAudit` adalah opt-in development-only dengan save terisolasi, menu aktual, perjalanan motor, jalan CharacterController kontinu dan capture aktual; timer dipercepat/capture freeze dicatat, bukan bukti performa/pacing manual.
 
 Standar produksi visual/audio/UI ringkas ada di `Docs/GOLDEN_SCENE_STANDARD.md`. Dokumen ini berfokus pada struktur kode, kepemilikan tanggung jawab, aliran data, dan pipeline produksi.
 
@@ -18,7 +26,7 @@ Standar produksi visual/audio/UI ringkas ada di `Docs/GOLDEN_SCENE_STANDARD.md`.
 | Testing | Unity Test Framework `1.6.0` (EditMode + PlayMode) |
 | Target rilis | `StandaloneWindows64`, backend `Mono2x`, opsi `Development` |
 | Scene startup | `Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity` (index 0) |
-| Scene kelanjutan | `Assets/_LayarTerakhir/Scenes/Prolog_RumahAtmaja.unity` (index 1); SampleScene tidak dipakai |
+| Scene kelanjutan | `Prolog_RumahAtmaja.unity` (index 1), `Prolog_KoridorKos.unity` (index 2); SampleScene tidak dipakai |
 | Host pengembangan | Ubuntu 24.04 headless, `-batchmode -nographics`, tanpa GPU diskrit |
 | Hardware target pemain | Intel i5-1155G7, Intel Iris Xe, 8 GB RAM, Windows 11 |
 | Target performa | 30 FPS stabil (target, bukan hasil terukur di host ini) |
@@ -109,7 +117,7 @@ Prinsip penting: **collider fisik, root interaksi, dan state cerita tidak dihapu
 
 **`FirstPersonController`** (`Scripts/Player/FirstPersonController.cs`)
 - Berbasis `CharacterController`. Kecepatan: walk 2,8 / sprint 4,6 / crouch 1,6 / slide 5,5; tinggi berdiri 1,75, crouch 1,0; gravitasi −19,62.
-- Slide dipicu crouch saat sprint dengan input maju; vault saat ini berupa impuls vertikal (`vaultImpulse`), belum vault kontekstual.
+- Slide dipicu crouch saat sprint dengan input maju; Space adalah impuls vertikal umum, tetapi `AtmajaVault` mengonsumsi lebih dahulu saat konteks jendela valid. Atmaja memakai crouch height .78 m untuk akses kolong meja.
 - `MovementLocked` dan modal HUD membekukan input; saat terkunci hanya gravitasi yang berjalan. `CanStandUp()` memakai SphereCast agar tidak berdiri di bawah langit-langit rendah.
 - Mouse look memakai `GameInputConfig.GetLookDelta()`; pitch dibatasi ±80°.
 
@@ -141,7 +149,7 @@ ID interaksi scene kos: `PC_MONITOR`, `STICKY_NOTE`, `LACI_MEJA`, `KALENDER_DIND
 - State perangkat: dimiliki/tidak, diangkat, layar hidup, live broadcast, kamera selfie, `ScanVisualMode.Normal|AR|UV`, serta unlock modul (`arModuleUnlocked`, `uvModuleUnlocked`, `selfieModuleUnlocked`).
 - Parameter baterai mengikuti `Rancangan.MD`: normal 1%/20 dtk, AR/UV 1%/10 dtk, foto 1%, Blitz 15% dengan cooldown 6 dtk; powerbank besar +80, kecil +35.
 - Baterai 0 otomatis mematikan layar dan mengembalikan mode ke Normal. `TryUsePowerbank()` menangani recharge walau HP tersimpan atau layar mati (perbaikan audit).
-- `SyncVisualState()` mengatur rig tangan dan lampu flashlight. Mode dan state saat ini adalah fondasi; AR/UV/Selfie belum melakukan rendering kamera atau gameplay lanjutan (lihat `Audit/REPORT.md`).
+- `SyncVisualState()` mengatur rig tangan dan lampu flashlight. AR lantai dasar dirender lewat kamera `AtmajaPhoneView`; UV/Selfie dan mekanik babak lanjutan belum playable.
 
 ### 4.5 UI
 

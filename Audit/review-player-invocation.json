@@ -1,0 +1,28 @@
+{
+  "stage": "review-player",
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Projects/LayarTerakhir/Builds/LinuxAudit/LayarTerakhir.x86_64",
+    "-force-glcore",
+    "-screen-fullscreen",
+    "0",
+    "-screen-width",
+    "640",
+    "-screen-height",
+    "360",
+    "-reviewAudit",
+    "/root/Projects/LayarTerakhir/Audit/Visuals/Review-Linux",
+    "-logFile",
+    "/root/Projects/LayarTerakhir/Audit/review-player.log"
+  ],
+  "startedUtc": "2026-10-16T03:19:32.597352+00:00",
+  "audioBackend": "Private clocked PulseAudio null sink; real listener tap, no physical audio hardware",
+  "status": "Finished",
+  "endedUtc": "2026-10-16T03:23:58.240148+00:00",
+  "exitCode": 0,
+  "screenCapturesVerified": 29,
+  "completedSmokeReceiptVerified": true
+}

@@ -12,7 +12,7 @@ namespace LayarTerakhir.Prolog
         public AtmajaDirector director;
         private void Update()
         {
-            if(!director||!director.player||director.Busy||!GameInputConfig.Instance||HudController.Instance.IsModalOpen)return;
+            if(!director||!director.player||director.Busy||!GameInputConfig.Instance||HudController.Instance.IsModalOpen||UiFocus.BlocksWorld)return;
             var player=director.player;var eye=player.GetComponent<InteractionInteractor>().playerCamera;
             var target=Vector3.Lerp(director.vaultOutside.position,director.vaultInside.position,.65f)+Vector3.up*1.3f;
             bool close=Vector3.Distance(player.transform.position,director.vaultOutside.position)<1.5f;

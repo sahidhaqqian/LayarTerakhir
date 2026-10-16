@@ -9,27 +9,30 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 UNITY='/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity'
 parser=argparse.ArgumentParser()
-parser.add_argument('--stage',required=True,choices=['apply','polish','validate','test','linux','windows','player','atmaja-build','atmaja-validate','atmaja-player'])
+parser.add_argument('--stage',required=True,choices=['apply','polish','validate','test','linux','windows','player','atmaja-build','atmaja-validate','atmaja-player','review-build','review-validate','review-player'])
 parser.add_argument('--width',type=int,default=1280)
 parser.add_argument('--height',type=int,default=720)
 parser.add_argument('--graphics',choices=['glcore','vulkan'],default='glcore')
 parser.add_argument('--fast',action='store_true',help='Explicitly accelerate smoke story waits; never a timing/FPS test')
 args=parser.parse_args();stage=args.stage
+if stage=='atmaja-player':
+    print('atmaja-player now runs the reviewed three-scene audit (review-player)',flush=True)
+    stage='review-player'
 command=[UNITY,'-batchmode','-nographics','-projectPath',str(ROOT)]
 record_path=ROOT/('Audit/golden-'+stage+'-invocation.json')
 log=ROOT/('Audit/golden-'+stage+'.log')
-is_player=stage in ['player','atmaja-player']
-if stage.startswith('atmaja-'):
+is_player=stage in ['player','atmaja-player','review-player']
+if stage.startswith(('atmaja-','review-')):
     record_path=ROOT/('Audit/'+stage+'-invocation.json');log=ROOT/('Audit/'+stage+'.log')
 if stage=='test':
     command+=['-runTests','-testPlatform','EditMode','-testFilter','LayarTerakhir.Editor.Tests','-testResults',str(ROOT/'Audit/golden-tests.xml')]
 elif is_player:
     command=['xvfb-run','-a','-s','-screen 0 1280x720x24',str(ROOT/'Builds/LinuxAudit/LayarTerakhir.x86_64'),
              '-force-'+args.graphics,'-screen-fullscreen','0','-screen-width',str(args.width),'-screen-height',str(args.height),
-             '-atmajaAudit' if stage=='atmaja-player' else '-goldenAudit',str(ROOT/('Audit/Visuals/Atmaja-Linux' if stage=='atmaja-player' else 'Audit/Visuals/Golden-Linux')),'-logFile',str(log)]
+             '-reviewAudit' if stage=='review-player' else '-atmajaAudit' if stage=='atmaja-player' else '-goldenAudit',str(ROOT/('Audit/Visuals/Review-Linux' if stage=='review-player' else 'Audit/Visuals/Atmaja-Linux' if stage=='atmaja-player' else 'Audit/Visuals/Golden-Linux')),'-logFile',str(log)]
     if args.fast and stage=='player':command+=['-goldenAuditFast']
 else:
-    methods={'apply':'GoldenSceneProduction.Apply','polish':'CompactKosPolish.Apply','validate':'GoldenSceneValidation.Run','linux':'GoldenLinuxBuild.Build','windows':'WindowsDevelopmentBuild.Build','atmaja-build':'AtmajaSceneBuilder.Build','atmaja-validate':'AtmajaSceneValidation.Run'}
+    methods={'apply':'GoldenSceneProduction.Apply','polish':'CompactKosPolish.Apply','validate':'GoldenSceneValidation.Run','linux':'GoldenLinuxBuild.Build','windows':'WindowsDevelopmentBuild.Build','atmaja-build':'PlaytestRevisionBuilder.Build','atmaja-validate':'AtmajaSceneValidation.Run','review-build':'PlaytestRevisionBuilder.Build','review-validate':'PlaytestReviewValidation.Run'}
     if stage in ['linux','windows']:command+=['-buildTarget','Linux64' if stage=='linux' else 'Win64']
     if stage=='windows':
         prior=ROOT/'Builds/Previous'/('before-golden-'+datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S'))
@@ -78,13 +81,18 @@ if stage=='test' and result.returncode==0:
     except (AssertionError,OSError,ET.ParseError) as error:
         record['exitCode']=1;record['validationError']=str(error)
 if is_player and result.returncode==0:
-    atmaja=stage=='atmaja-player';expected=12 if atmaja else 13
-    receipt=ROOT/('Audit/Visuals/Atmaja-Linux/player-audit.json' if atmaja else 'Audit/Visuals/Golden-Linux/player-audit.json')
+    review=stage=='review-player';atmaja=stage=='atmaja-player';expected=29 if review else 12 if atmaja else 13
+    receipt=ROOT/('Audit/Visuals/Review-Linux/player-audit.json' if review else 'Audit/Visuals/Atmaja-Linux/player-audit.json' if atmaja else 'Audit/Visuals/Golden-Linux/player-audit.json')
     data=json.loads(receipt.read_text()) if receipt.exists() else {}
     try:
         assert data.get('completed') and data.get('actualStandalonePlayer') and len(data.get('screenshots',[]))==expected
         assert data.get('checkpointSaved')
-        if atmaja:
+        if review:
+            assert data.get('transitionFromKos') and data.get('motorPassedGate') and data.get('previousSaveArchived')
+            assert data.get('walkedMeters',0)>90 and data.get('maximumInteriorFootY',2)<.7
+            assert all(c.startswith('PASS ') for c in data['checks'])
+            assert .00001<data.get('mixRms',0) and 0<data.get('mixPeak',0)<.98
+        elif atmaja:
             assert data.get('transitionFromKos') and all(c.startswith('PASS ') for c in data['checks'])
         else:
             assert data.get('phoneVibrationStarted') and data.get('phoneVibrationStopped') and data.get('documentsOverflow')
