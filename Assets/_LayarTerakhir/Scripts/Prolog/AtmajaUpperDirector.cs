@@ -36,6 +36,100 @@ namespace LayarTerakhir.Prolog
             }
             var clip=AudioClip.Create("AtmajaSynth_Melody",samples.Length,1,rate,false);clip.SetData(samples,0);return clip;
         }
+        public static AudioClip Creak(float seconds,int rate=22050)
+        {
+            // Rope/timber groan: a slow friction bend with a gritty low rub.
+            int n=(int)(seconds*rate);var samples=new float[n];var random=new System.Random(7788);double phase=0;
+            for(int i=0;i<n;i++)
+            {
+                double t=i/(double)n;double f=172+58*Math.Sin(i*.0045);phase+=2*Math.PI*f/rate;
+                double wobble=.52+.42*Math.Sin(i*.017)+.14*Math.Sin(i*.091);
+                double grit=(random.NextDouble()*2-1)*.09;
+                samples[i]=(float)(((Math.Sin(phase)*.5+Math.Sin(phase*2.17)*.18)*wobble*.5+grit)*Math.Sin(Math.PI*Math.Min(1,t*1.12)));
+            }
+            var clip=AudioClip.Create("AtmajaSynth_Creak",n,1,rate,false);clip.SetData(samples,0);return clip;
+        }
+        public static AudioClip Drip(int rate=22050)
+        {
+            // Single ceramic drip: fast downward blip with a tiny tail.
+            int n=(int)(.14f*rate);var samples=new float[n];double phase=0;
+            for(int i=0;i<n;i++)
+            {
+                double t=i/(double)n;double f=1380-980*t;phase+=2*Math.PI*f/rate;
+                samples[i]=(float)(Math.Sin(phase)*Math.Exp(-9*t)*.65);
+            }
+            var clip=AudioClip.Create("AtmajaSynth_Drip",n,1,rate,false);clip.SetData(samples,0);return clip;
+        }
+        public static AudioClip Scrape(float seconds,int rate=22050)
+        {
+            // Rusted shears dragged across stone: resonant metal rasp over grit.
+            int n=(int)(seconds*rate);var samples=new float[n];var random=new System.Random(4242);double phase=0;
+            for(int i=0;i<n;i++)
+            {
+                double t=i/(double)n;double f=1620+270*Math.Sin(i*.021);phase+=2*Math.PI*f/rate;
+                double env=Math.Sin(Math.PI*Math.Min(1,t*1.15));
+                samples[i]=(float)((((random.NextDouble()*2-1)*.48)+(Math.Sin(phase)*.22))*env);
+            }
+            var clip=AudioClip.Create("AtmajaSynth_Scrape",n,1,rate,false);clip.SetData(samples,0);return clip;
+        }
+        public static AudioClip Shutter(int rate=22050)
+        {
+            // Heavy analog camera shutter: two mechanical clacks.
+            int n=(int)(.5f*rate);var samples=new float[n];var random=new System.Random(90210);
+            void Click(float at,float dur,float gain)
+            {
+                int start=(int)(at*rate),len=(int)(dur*rate);
+                for(int i=0;i<len&&start+i<n;i++){float t=i/(float)len;samples[start+i]+=((float)random.NextDouble()*2-1)*(float)Math.Exp(-26*t)*gain;}
+            }
+            Click(0,.06f,.85f);Click(.09f,.09f,.6f);
+            var clip=AudioClip.Create("AtmajaSynth_Shutter",n,1,rate,false);clip.SetData(samples,0);return clip;
+        }
+        public static AudioClip ChaseLoop(int rate=22050,float bpm=150)
+        {
+            // Original kendang + saron chase bed with a glitch-siren wail. Two 16-step bars.
+            float step=60f/bpm/4f;const int steps=32;int n=(int)(steps*step*rate)+rate/2;
+            var data=new float[n];var random=new System.Random(1506);
+            void Add(float at,float freq,float dur,float gain,float noise,float drop)
+            {
+                int start=(int)(at*rate),len=(int)(dur*rate);double phase=0;
+                for(int i=0;i<len&&start+i<n;i++)
+                {
+                    float t=i/(float)len;double f=freq*(1+(drop-1)*t);phase+=2*Math.PI*f/rate;
+                    float env=(float)Math.Exp(-4.5*t)*(1-t);
+                    float s=(float)Math.Sin(phase)*(1-noise)+(float)(random.NextDouble()*2-1)*noise;
+                    data[start+i]+=s*env*gain;
+                }
+            }
+            void Metal(float at,float freq,float dur,float gain)
+            {
+                int start=(int)(at*rate),len=(int)(dur*rate);double p1=0,p2=0,p3=0;
+                for(int i=0;i<len&&start+i<n;i++)
+                {
+                    float t=i/(float)len;float env=(float)Math.Exp(-6*t);
+                    p1+=2*Math.PI*freq/rate;p2+=2*Math.PI*freq*2.76/rate;p3+=2*Math.PI*freq*5.4/rate;
+                    data[start+i]+=(float)(Math.Sin(p1)+.45*Math.Sin(p2)+.22*Math.Sin(p3))*env*gain;
+                }
+            }
+            void Siren(float at,float dur,float from,float to,float gain)
+            {
+                int start=(int)(at*rate),len=(int)(dur*rate);double phase=0;
+                for(int i=0;i<len&&start+i<n;i++)
+                {
+                    float t=i/(float)len;double f=from+(to-from)*t;phase+=2*Math.PI*f/rate;
+                    data[start+i]+=(float)Math.Sin(phase)*(float)Math.Sin(Math.PI*t)*gain;
+                }
+            }
+            foreach(int s in new[]{0,3,6,10,16,19,22,26})Add(s*step,92,0.22f,.55f,.25f,.62f);
+            foreach(int s in new[]{4,7,12,14,20,23,28,30})Add(s*step,235,0.07f,.30f,.60f,.80f);
+            foreach(int s in new[]{1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31})Add(s*step,0,0.03f,.05f,1f,1f);
+            float[] saron={392,466.2f,523.3f,466.2f,587.3f,523.3f,466.2f,392};
+            int[] saronStep={2,5,8,11,18,21,24,27};
+            for(int i=0;i<saron.Length;i++)Metal(saronStep[i]*step,saron[i],.5f,.16f);
+            Siren(0,1.0f,320,880,.07f);Siren(16*step,1.0f,360,920,.07f);
+            float peak=0;for(int i=0;i<n;i++)peak=Mathf.Max(peak,Mathf.Abs(data[i]));
+            if(peak>1)for(int i=0;i<n;i++)data[i]/=peak;
+            var clip=AudioClip.Create("AtmajaSynth_ChaseLoop",n,1,rate,false);clip.SetData(data,0);return clip;
+        }
     }
 
     public sealed class AtmajaUpperDirector:MonoBehaviour
@@ -54,7 +148,10 @@ namespace LayarTerakhir.Prolog
         public Transform ropePivot;
         private Quaternion ropeBase;
         private bool ropeInit;
+        private AudioClip creakClip,dripClip;
+        private float creakTimer,dripTimer;
         public GameObject ventHoleAR,bathScratchesAR;
+        public AudioSource doorSong;
         public GameObject[] portraitBloodAR=new GameObject[3];
         public Transform cupAim,scratchAim,ropeAim,ventMouth,mirrorSpot,ropeSpot;
         private CampaignState Campaign=>CampaignState.Instance;
@@ -101,6 +198,11 @@ namespace LayarTerakhir.Prolog
         private void Update()
         {
             if(!director||!director.player||!Campaign||!Hud||director.Busy||UiFocus.HardModal)return;
+            if(doorSong)
+            {
+                bool sing=Has("EVENT_P0_UPPER_REACHED")&&!Has("EVENT_P0_MASTER_OPEN")&&director.Stage<AtmajaStage.BasementEntry;
+                if(doorSong.enabled!=sing)doorSong.enabled=sing;
+            }
             bool ar=ArActive;
             if(ventHoleAR)ventHoleAR.SetActive(ar&&!Has("EVENT_P0_CHAIN1_BROKEN"));
             if(bathScratchesAR)bathScratchesAR.SetActive(ar&&Has("EVENT_P0_CHAIN1_BROKEN")&&!Has("EVENT_P0_CHAIN2_BROKEN"));
@@ -135,6 +237,23 @@ namespace LayarTerakhir.Prolog
             {
                 if(!ropeInit){ropeBase=ropePivot.rotation;ropeInit=true;}
                 ropePivot.rotation=ropeBase*Quaternion.Euler(Mathf.Sin(Time.time*.9f)*4,0,0);
+                creakTimer-=Time.deltaTime;
+                if(creakTimer<=0&&Vector3.Distance(director.player.transform.position,ropePivot.position)<7.5f)
+                {
+                    creakTimer=2.8f+UnityEngine.Random.value*2.2f;
+                    if(!creakClip)creakClip=AtmajaSynth.Creak(1.1f);
+                    Sfx(creakClip,ropePivot.position,.32f);
+                }
+            }
+            if(bathWater)
+            {
+                dripTimer-=Time.deltaTime;
+                if(dripTimer<=0&&Vector3.Distance(director.player.transform.position,bathWater.transform.position)<6.5f)
+                {
+                    dripTimer=1.9f+UnityEngine.Random.value*1.8f;
+                    if(!dripClip)dripClip=AtmajaSynth.Drip();
+                    Sfx(dripClip,bathWater.transform.position,.4f);
+                }
             }
         }
         private IEnumerator FlashFigure(GameObject figure,float seconds,string speaker,string line)

@@ -32,6 +32,8 @@ namespace LayarTerakhir.Prolog
         private Vector3 suspicionPoint,inspectPoint;
         private bool lockerCheckRunning;
         private Transform hiddenIn;
+        private ParticleSystem breath;
+        private AudioClip scrapeClip;
         private CampaignState Campaign=>CampaignState.Instance;
         private SmartphoneController Phone=>SmartphoneController.Instance;
         private HudController Hud=>HudController.Instance;
@@ -54,6 +56,7 @@ namespace LayarTerakhir.Prolog
             if(nyonya)nyonya.SetActive(entered&&!played);
             if(ragOriginal)ragOriginal.SetActive(entered&&!chased);
             if(teplokFlame)teplokFlame.SetActive(!played);
+            if(teplokLight)teplokLight.enabled=!played;
             if(powerbankObj)powerbankObj.SetActive(entered&&!Has(PowerbankId)&&!Has("EVENT_P0_POWERBANK_TAKEN"));
             if(handycamObj)handycamObj.SetActive(entered&&!Has(HandycamId));
             if(humSource)humSource.enabled=entered&&!played;
@@ -62,6 +65,7 @@ namespace LayarTerakhir.Prolog
             if(wardrobeCol2)wardrobeCol2.enabled=true;
             detect=0;suspicionTimer=0;lockerCheckRunning=false;
             if(director.player)director.player.MovementLocked=false;
+            if(breath)Breath(false);
             if(nyonya&&waypoints.Length>0){nyonya.transform.position=waypoints[0].position;}
         }
         public string Objective()
@@ -100,6 +104,25 @@ namespace LayarTerakhir.Prolog
                 else ExitWardrobe();
             }
         }
+        private void Breath(bool on)
+        {
+            if(on&&!breath)
+            {
+                var cam=director.player.GetComponent<InteractionInteractor>().playerCamera;
+                var shader=Shader.Find("Universal Render Pipeline/Particles/Unlit")??Shader.Find("Particles/Standard Unlit");
+                if(!cam||!shader)return;
+                var go=new GameObject("BreathVapor",typeof(ParticleSystem));go.transform.SetParent(cam.transform,false);
+                breath=go.GetComponent<ParticleSystem>();var main=breath.main;
+                main.loop=true;main.startLifetime=1.1f;main.startSpeed=.10f;main.startSize=new ParticleSystem.MinMaxCurve(.02f,.045f);
+                main.startColor=new Color(1,1,1,.10f);main.simulationSpace=ParticleSystemSimulationSpace.Local;main.maxParticles=24;main.gravityModifier=-.012f;
+                var emission=breath.emission;emission.rateOverTime=2.4f;
+                var shape=breath.shape;shape.shapeType=ParticleSystemShapeType.Cone;shape.angle=16;shape.radius=.02f;shape.rotation=new Vector3(118,0,0);
+                var renderer=go.GetComponent<ParticleSystemRenderer>();renderer.material=new Material(shader);renderer.material.SetColor("_BaseColor",new Color(1,1,1,.10f));
+                renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;renderer.receiveShadows=false;
+                breath.Play();
+            }
+            if(breath){var emission=breath.emission;emission.enabled=on;}
+        }
         private void EnterWardrobe(Transform wardrobe)
         {
             var anchor=Vector3.Distance(director.player.transform.position,hideAnchor1.position)<Vector3.Distance(director.player.transform.position,hideAnchor2.position)?hideAnchor1:hideAnchor2;
@@ -128,12 +151,14 @@ namespace LayarTerakhir.Prolog
                     Commit("EVENT_P0_POWER_GLITCH","PROLOG_BASEMENT_ENTRY",()=>{Campaign.AddInventoryItem("RESERVE_BATTERY_"+Mathf.RoundToInt(Phone.batteryPercent));Phone.batteryPercent=12;Campaign.Data.battery=12;});
                 Phone.SyncVisualState();RestoreWorld();EnterBasementBeats();return;
             }
+            // Cold cellar breath vapor while the stealth beat is live.
+            Breath(director.Stage==AtmajaStage.BasementEntry||director.Stage==AtmajaStage.BasementStealth);
             if(mind==Mind.Dormant||mind==Mind.Done||!nyonya||!nyonya.activeSelf)return;
             if(hiddenIn==null&&director.player.MovementLocked)return;
             float dt=Mathf.Min(Time.deltaTime,.05f);
             dragTimer-=dt;
-            if(dragTimer<=0){dragTimer=.62f;Sfx(AtmajaSynth.Noise(.4f,.10f),nyonya.transform.position,.22f);}
-            if(teplokLight)teplokLight.intensity=1.35f+Mathf.Sin(Time.time*13)*.18f+Mathf.Sin(Time.time*47)*.07f;
+            if(dragTimer<=0){dragTimer=.62f;if(!scrapeClip)scrapeClip=AtmajaSynth.Scrape(.42f);Sfx(scrapeClip,nyonya.transform.position,.30f);}
+            if(teplokLight&&teplokLight.enabled)teplokLight.intensity=1.35f+Mathf.Sin(Time.time*13)*.18f+Mathf.Sin(Time.time*47)*.07f;
             if(humSource)humSource.volume=Mathf.Clamp01(1.4f-Vector3.Distance(nyonya.transform.position,director.player.transform.position)/9f)*.5f;
             if(hiddenIn!=null){HiddenTick(dt);return;}
             SenseTick(dt);
@@ -160,7 +185,11 @@ namespace LayarTerakhir.Prolog
         private IEnumerator Emerge()
         {
             mind=Mind.Emerge;yield return new WaitForSeconds(1.2f);
-            if(teplokFlame)teplokFlame.SetActive(true);
+            // The teplok lamp gutters out before she appears; the cellar goes black.
+            if(teplokFlame)teplokFlame.SetActive(false);
+            if(teplokLight)teplokLight.enabled=false;
+            Ui(AtmajaSynth.Tone(.5f,240,90,.35f),.5f);
+            yield return new WaitForSeconds(.85f);
             Hud.ShowBroadcastNotification("[BAHAYA KRITIS: ENTITAS BELUM TERIDENTIFIKASI — KEBAL TERHADAP SERANGAN KAMERA! SEMBUNYI DAN MATIKAN CAHAYA LAYAR!]",7);
             Ui(AtmajaSynth.Tone(1.4f,180,70,.5f),.6f);
             yield return new WaitForSeconds(1f);

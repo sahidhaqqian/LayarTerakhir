@@ -27,10 +27,10 @@ Revisi 15 Oktober 2026. Setiap kotak adalah pekerjaan yang belum ditandai selesa
 
 ## Prolog Rumah Atmaja
 
-- [ ] **P0-SYS** — Puzzle laci empat roda 1408 (14-08, revisi playtest 16 Oktober), jam 03:45, tiga foto tragedi, unlock AR, tutorial matikan layar, daya 12% sekali, grand chase dan Blitz 4 detik.
-- [ ] **P0-3D** — Kos 4×3 meter, rumah dua lantai, dapur/sumur, koridor lukisan, basement U, dua lemari, meja kolong, cermin, rig Nyonya Sri Atmaja dan gunting.
-- [ ] **P0-AV** — Surat kos tanpa VO ibu kos, panggilan Damar otomatis di HP, pesan/dana di Pesan/Bank, catatan 1998, chat per trigger, hujan/derit/gesekan gunting, title drop, simbol mata tertutup pada bingkai.
-- [ ] **P0-QA** — Jalur prolog selesai tanpa collectible; puzzle tidak memakai Blitz mahal; fail chase memulihkan checkpoint dan sumber daya.
+- [x] **P0-SYS** — Puzzle laci empat roda 1408 (14-08, revisi playtest 16 Oktober), jam 03:45, tiga foto tragedi, unlock AR, tutorial matikan layar, daya 12% sekali, grand chase dan Blitz 4 detik. *(selesai; 57/57 tes + validasi scene 0 gagal, rincian `Audit/prolog-gdd-compliance.md`)*
+- [x] **P0-3D** — Kos 4×3 meter (revisi disetujui 5×3.8 m), rumah dua lantai, dapur/sumur, koridor lukisan, basement U, dua lemari, meja kolong, cermin, rig Nyonya Sri Atmaja dan gunting. *(selesai)*
+- [x] **P0-AV** — Surat kos tanpa VO ibu kos, panggilan Damar otomatis di HP, pesan/dana di Pesan/Bank, catatan 1998, chat per trigger, hujan/derit/gesekan gunting, title drop, simbol mata tertutup pada bingkai. *(selesai; simbol mata tertutup AR + senandung pintu utama ditambahkan 16 Oktober)*
+- [x] **P0-QA** — Jalur prolog selesai tanpa collectible; puzzle tidak memakai Blitz mahal; fail chase memulihkan checkpoint dan sumber daya. *(selesai; resume chase + fail-restore diverifikasi)*
 
 ## Babak 1 Rusunawa Griya Asri
 

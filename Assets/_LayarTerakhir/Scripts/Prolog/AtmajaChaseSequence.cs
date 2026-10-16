@@ -28,6 +28,10 @@ namespace LayarTerakhir.Prolog
         private Canvas cineCanvas;
         private Image barTop,barBottom;
         private Text cinePrompt;
+        private AudioSource music;
+        private Camera playerCamera;
+        private float baseFov;
+        private bool fovInit;
         private CampaignState Campaign=>CampaignState.Instance;
         private SmartphoneController Phone=>SmartphoneController.Instance;
         private HudController Hud=>HudController.Instance;
@@ -55,15 +59,28 @@ namespace LayarTerakhir.Prolog
             if(mirrorShards)mirrorShards.SetActive(started&&!done);
             SetBars(false);SetPrompt(null);
             if(director.player)director.player.MovementLocked=false;
+            if(!playerCamera&&director.player)playerCamera=director.player.GetComponent<InteractionInteractor>().playerCamera;
+            if(playerCamera){if(!fovInit){baseFov=playerCamera.fieldOfView;fovInit=true;}playerCamera.fieldOfView=baseFov;}
             // A caught runner (or a reload mid-chase) must resume the pursuit, not freeze the hunter.
             if(started&&!done)ResumeChase();
-            else if(chaserFigure)chaserFigure.SetActive(false);
+            else{if(chaserFigure)chaserFigure.SetActive(false);Music(false);}
         }
         private void ResumeChase()
         {
             run=Run.Breaking;railIndex=0;blitzFired=false;climbedOut=false;stunTimer=0;Time.timeScale=1;
             if(chaserFigure){chaserFigure.SetActive(true);if(rail.Length>0)chaserFigure.transform.position=rail[0].position;}
+            Music(true);
             StartCoroutine(BreakBeat());
+        }
+        private void Music(bool on)
+        {
+            if(on&&!music)
+            {
+                var go=new GameObject("ChaseMusic");go.transform.SetParent(director.transform,false);
+                music=go.AddComponent<AudioSource>();music.playOnAwake=false;music.loop=true;music.spatialBlend=0;music.volume=.40f;
+                music.clip=AtmajaSynth.ChaseLoop();music.outputAudioMixerGroup=director.audioProfile.effectsBus;music.Play();
+            }
+            else if(!on&&music)music.Stop();
         }
         public string Objective()
         {
@@ -155,6 +172,15 @@ namespace LayarTerakhir.Prolog
                 case Run.WindowStandoff:StandoffTick();break;
                 case Run.Stunned:StunnedTick(dt);break;
                 case Run.GateRun:GateTick(dt);break;
+            }
+            // Nightmare corridor: the upper hallway stretches with a breathing lens while she runs it.
+            if(!playerCamera)playerCamera=director.player.GetComponent<InteractionInteractor>().playerCamera;
+            if(playerCamera)
+            {
+                if(!fovInit){baseFov=playerCamera.fieldOfView;fovInit=true;}
+                bool corridor=(run==Run.Pursuit||run==Run.Stunned)&&director.player.transform.position.y>3.2f;
+                float target=corridor?baseFov+1.9f+Mathf.Sin(Time.time*2.4f)*1.5f:baseFov;
+                playerCamera.fieldOfView=Mathf.Lerp(playerCamera.fieldOfView,target,dt*3f);
             }
             if(run==Run.Pursuit&&Vector3.Distance(director.player.transform.position,windowExitSpot.position)<3.2f)BeginStandoff();
         }
@@ -260,6 +286,7 @@ namespace LayarTerakhir.Prolog
         private IEnumerator Ending()
         {
             run=Run.Ending;Time.timeScale=1;director.SetStage(AtmajaStage.EndingVista);
+            Music(false);
             director.player.MovementLocked=true;SetBars(true);
             director.PlacePlayer(spawnStreet.position,spawnStreet.rotation);
             Hud.EnqueueSubtitle("Raka","*terengah-engah* ...Gue... selamat... Damar... gue bakal balik buat lo...",6);
@@ -285,6 +312,8 @@ namespace LayarTerakhir.Prolog
             yield return new WaitForSeconds(2.5f);
             Hud.OpenDocumentModal("PENONTON_TERAKHIR","\"Satu malam selesai. Empat segel harus kau kumpulkan sebelum gerbang kelima terbuka. Sekarang kau tahu di mana sahabatmu berada. Kalau kau berani mematikan siaranmu besok malam, kepala Damar yang akan tampil di layar kameramu. Istirahatlah di kosmu... Besok malam pukul 23:59, kita bertemu di Rusunawa Terbengkalai Griya Asri.\"",null);
             yield return new WaitUntil(()=>!Hud.IsModalOpen);
+            // Heavy analog shutter before the title drop.
+            Sfx(AtmajaSynth.Shutter(),director.player.transform.position,1f);
             Sfx(AtmajaSynth.Noise(.35f,.9f),director.player.transform.position,1f);
             yield return Hud.FadeBlack(0,1,1.2f);
             if(endingTitle)endingTitle.SetActive(true);

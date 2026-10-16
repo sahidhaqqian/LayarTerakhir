@@ -64,6 +64,21 @@ namespace LayarTerakhir.Editor
             Plain("Upper_BookPaper",new Color(.62f,.56f,.44f),.05f);
             Plain("Upper_SteelRust",new Color(.25f,.12f,.07f),.3f);
             Plain("Upper_HandycamBody",new Color(.05f,.05f,.06f),.4f);
+            // AR-only ink for the closed-eye Arsip Saksi foreshadowing; unlit so the dark house cannot swallow it.
+            var ink=Plain("ARSecretInk",new Color(.6f,.02f,.01f),.24f);
+            ink.shader=Shader.Find("Universal Render Pipeline/Unlit");ink.shaderKeywords=System.Array.Empty<string>();EditorUtility.SetDirty(ink);
+        }
+        private static void EyeSymbol(Transform parent,Material ink)
+        {
+            void Segment(string name,float x,float y,float length,float angle)
+            {
+                var seg=Box(name,parent.position,new Vector3(length,.011f,.018f),ink,false);
+                seg.transform.SetParent(parent,true);seg.transform.localPosition=new Vector3(x,y,0f);seg.transform.localRotation=Quaternion.Euler(0,0,angle);
+            }
+            // A closed eye: arched upper lid, shallow lower lid and three lashes.
+            Segment("EyeLidU1",-.031f,.010f,.037f,34);Segment("EyeLidU2",0,.019f,.035f,0);Segment("EyeLidU3",.031f,.010f,.037f,-34);
+            Segment("EyeLidL1",-.026f,-.004f,.034f,-16);Segment("EyeLidL2",.026f,-.004f,.034f,16);
+            Segment("EyeLash1",-.018f,-.015f,.021f,-58);Segment("EyeLash2",0,-.020f,.022f,-90);Segment("EyeLash3",.018f,-.015f,.021f,58);
         }
         private static GameObject Slab(string name,float x0,float x1,float d0,float d1,float y0,float y1,Material material)
         {
@@ -243,6 +258,16 @@ namespace LayarTerakhir.Editor
             var blood=Plaque(name+"_BloodAR",arText??"DIA MELIHAT\nKAU MEMOTRET",center-north*.1f+Vector3.up*-.55f,.22f,new Color(.5f,.02f,.01f));
             blood.transform.rotation=Facing(-north);
             Layer(blood,AtmajaPhoneView.ARLayer);blood.SetActive(false);bloodSlot[bloodIndex]=blood;
+            if(arText!=null)
+            {
+                // GDD foreshadowing: closed-eye Arsip Saksi mark behind the third frame, AR-visible only.
+                var ink=Mat("ARSecretInk");
+                if(ink)
+                {
+                    var eye=new GameObject(name+"_ClosedEye");eye.transform.SetParent(blood.transform,false);
+                    eye.transform.localPosition=new Vector3(0,.16f,-.004f);EyeSymbol(eye.transform,ink);Layer(eye,AtmajaPhoneView.ARLayer);
+                }
+            }
         }
         private static void DressCorridor()
         {
@@ -387,6 +412,11 @@ namespace LayarTerakhir.Editor
             WallX("CellarShaftW",.55f,.55f,2.25f,-.35f,F2+.1f,stone);
             WallX("CellarShaftE",1.5f,.55f,2.25f,-.35f,F2+.1f,stone);
             director.upper.masterDoor=Door("MasterBedroomDoor",P(.75f,5.2f,F2),P(1.3f,5.2f,F2+1.1f),new Vector3(1.1f,2.2f,.1f),"Kamar Tidur Utama (disegel)",true,-95);
+            // A thin Javanese tembang hum drifts through the sealed door until the seal breaks.
+            var song=new GameObject("MasterDoorSong",typeof(AudioSource));song.transform.SetParent(environment,false);song.transform.position=P(1.3f,5.6f,F2+1.2f);
+            var songSource=song.GetComponent<AudioSource>();songSource.playOnAwake=true;songSource.loop=true;songSource.spatialBlend=1;songSource.minDistance=1.5f;songSource.maxDistance=10;songSource.rolloffMode=AudioRolloffMode.Linear;songSource.outputAudioMixerGroup=director.audioProfile.effectsBus;
+            songSource.clip=AtmajaSynth.Melody(new[]{233.1f,207.7f,196f,174.6f,196f,207.7f},1.35f,.11f);songSource.volume=.32f;
+            director.upper.doorSong=songSource;
             for(int i=0;i<3;i++)
             {
                 var link=ChainLink("MasterSealChain"+i,P(1.3f,5.06f,4.7f+i*.65f),.92f);
