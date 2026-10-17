@@ -39,7 +39,7 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
    Kamera → Q untuk AR. Sosok ujung meja dan tulisan darah hanya di feed HP,
    bukan kamera dunia. Tulisan harus tampak merah dan menempel dinding, bukan teks putih melayang.
    F mematikan layar/kamera tambahan; broadcast tetap berjalan.
-7. Buka ruang tamu depan. Ambil jarum kuningan di meja kecil pojok; telusuri lounge/gudang.
+7. Buka ruang tamu depan. Ambil jarum kuningan di meja kecil pojok; telusuri lounge.
    Arahkan AR ke tulisan dinding sampai tercatat di Jurnal. Jam menghadap ke ruang dan
    punggungnya menempel dinding; cek angka Romawi dan bunyi tik-tok saat mendekat.
    E jam; kontrol **jam/menit** (bukan gembok 3 digit). Waktu salah tidak membuka.

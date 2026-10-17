@@ -204,9 +204,12 @@ namespace LayarTerakhir.Prolog
                 if(doorSong.enabled!=sing)doorSong.enabled=sing;
             }
             bool ar=ArActive;
-            if(ventHoleAR)ventHoleAR.SetActive(ar&&!Has("EVENT_P0_CHAIN1_BROKEN"));
-            if(bathScratchesAR)bathScratchesAR.SetActive(ar&&Has("EVENT_P0_CHAIN1_BROKEN")&&!Has("EVENT_P0_CHAIN2_BROKEN"));
-            for(int i=0;i<portraitBloodAR.Length;i++)if(portraitBloodAR[i])portraitBloodAR[i].SetActive(ar);
+            // Upper-floor AR ink only appears while the player is actually upstairs, so it cannot
+            // bleed through the floor and be read from the ground level.
+            bool upstairs=director.Stage>=AtmajaStage.StairLanding&&director.Stage<=AtmajaStage.MasterOpen;
+            if(ventHoleAR)ventHoleAR.SetActive(ar&&upstairs&&!Has("EVENT_P0_CHAIN1_BROKEN"));
+            if(bathScratchesAR)bathScratchesAR.SetActive(ar&&upstairs&&Has("EVENT_P0_CHAIN1_BROKEN")&&!Has("EVENT_P0_CHAIN2_BROKEN"));
+            for(int i=0;i<portraitBloodAR.Length;i++)if(portraitBloodAR[i])portraitBloodAR[i].SetActive(ar&&upstairs);
             // Stair landing detection: the pocket door is open and the capsule climbs past the slab.
             if(director.Stage==AtmajaStage.StairCheckpoint&&director.player.transform.position.y>3.4f)
             {

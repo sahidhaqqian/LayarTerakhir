@@ -30,7 +30,7 @@ namespace LayarTerakhir.Editor
             Check(!GameObject.Find("Atmaja_Environment_Art").GetComponentsInChildren<Transform>().Any(t=>t.name.Contains("plastic_monobloc")),"No plastic-chair models remain in Atmaja");
             var clock=GameObject.Find("GrandfatherClock");Check(Vector3.Dot(clock.transform.forward,d.east)>.95f&&Mathf.Abs(d.LocalPosition(clock.transform.position).x+5.58f)<.01f,"Clock faces into room with rear flush against west wall");
             var ticking=d.clockHour.GetComponentInParent<ClockAmbience>();Check(ticking&&ticking.source&&ticking.source.outputAudioMixerGroup,"Clock has positional, mixer-routed ticking");
-            Check(Object.FindObjectsByType<HingedDoor>(FindObjectsSortMode.None).Length==5,"All five exploration doors (sitting, storage, child, bath, master) survive scene serialization");
+            Check(Object.FindObjectsByType<HingedDoor>(FindObjectsSortMode.None).Length==4,"All four exploration doors (sitting, child, bath, master) survive scene serialization");
             var clue=d.arClue;Check(clue.GetComponent<MeshFilter>()&&!clue.GetComponent<TextMesh>()&&clue.GetComponent<Renderer>().sharedMaterial.GetColor("_BaseColor").r>.3f,"AR clue is red blood-stroke geometry, not floating font UI");
             Check(Mathf.Abs(d.LocalPosition(clue.transform.position).y-7.817f)<.001f,"Blood writing is attached to the wall plane");
             Check(!Object.FindObjectsByType<Light>(FindObjectsSortMode.None).Any(l=>l.name=="KitchenPractical"||l.name=="LivingFaintPractical"||l.name=="DiningColdSpill"),"No unmotivated interior fill lights; phone lights exploration");

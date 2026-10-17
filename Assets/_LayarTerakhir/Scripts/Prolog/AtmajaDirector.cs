@@ -120,10 +120,12 @@ namespace LayarTerakhir.Prolog
             if(Phone&&Phone.arModuleUnlocked)
             {
                 bool ar=Phone.isPhoneRaised&&Phone.isScreenOn&&Phone.currentScanMode==ScanVisualMode.AR&&phoneView.IsCameraApp;
-                if(arFigure)arFigure.SetActive(ar);
-                if(arClue)arClue.SetActive(ar);
-                if(ar&&!Has("EVENT_P0_AR_REVEALED"))RevealAR();
-                if(ar&&!Has("EVENT_P0_AR_CLUE_READ"))ObserveClue();
+                // The MataBatin overlay only tracks this floor's apparitions; upstairs marks stay upstairs.
+                bool downstairs=Stage<AtmajaStage.StairLanding;
+                if(arFigure)arFigure.SetActive(ar&&downstairs);
+                if(arClue)arClue.SetActive(ar&&downstairs);
+                if(ar&&downstairs&&!Has("EVENT_P0_AR_REVEALED"))RevealAR();
+                if(ar&&downstairs&&!Has("EVENT_P0_AR_CLUE_READ"))ObserveClue();
             }
             if(Has("EVENT_P0_KITCHEN_ENTERED")&&!wellHeard&&Vector3.Distance(player.transform.position,P(2.7f,11.2f,.35f))<2)
             {wellHeard=true;Hud.EnqueueSubtitle("SFX","[KLOTAK... KLOTAK... Suara ember timba ditarik dari dasar sumur]",3);Hud.EnqueueSubtitle("Bisikan","Haus... bukakan...",3);Sfx(audioProfile.knock,P(2.7f,11.2f,.4f),.4f);}

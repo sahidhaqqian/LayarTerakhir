@@ -162,6 +162,7 @@ namespace LayarTerakhir.Editor
         // Solid stepped mass. ascendEast=true climbs toward +x, false toward -x.
         private static void StairMass(float x0,float x1,float d0,float d1,float yLow,float yHigh,int steps,Material mat,bool ascendEast=true)
         {
+            // Solid stepped mass only; parapets are placed explicitly so they never cross a landing.
             float w=(x1-x0)/steps,rise=(yHigh-yLow)/steps;
             for(int i=0;i<steps;i++)
             {
@@ -169,12 +170,6 @@ namespace LayarTerakhir.Editor
                 float yGround=yLow-.05f;
                 Box("StairStep",P(x0+(i+.5f)*w,(d0+d1)/2,(yGround+top)/2),new Vector3(w,top-yGround,d1-d0),mat);
             }
-            foreach(float d in new[]{d0-.06f,d1+.06f})
-                for(int i=0;i<steps;i++)
-                {
-                    float top=ascendEast?yLow+(i+1)*rise:yHigh-i*rise;
-                    Box("StairParapet",P(x0+(i+.5f)*w,d,top+.45f),new Vector3(w+.02f,.9f,.12f),mat);
-                }
         }
         private static void GuardRail(float x0,float x1,float d,float y,float height=.95f)
         {
@@ -191,19 +186,21 @@ namespace LayarTerakhir.Editor
         private static void BuildStairs()
         {
             var wood=Mat("House_MAT_WoodDoor");
-            Box("StairEntryPlatform",P(-3.55f,7.4f,.53f),new Vector3(1.5f,.1f,1.0f),wood);
-            StairMass(-2.8f,.4f,6.9f,7.7f,.55f,2.2f,8,wood,true);
-            Box("StairMidLanding",P(1.0f,7.1f,1.35f),new Vector3(1.2f,1.7f,1.2f),wood);
-            StairMass(-2.6f,1.4f,5.9f,6.7f,2.2f,3.82f,8,wood,false);
-            Box("StairTopLanding",P(-3.3f,6.35f,3.75f),new Vector3(1.4f,.14f,1.1f),wood);
-            Box("CorridorBridgeEast",P(-.4f,6.05f,3.75f),new Vector3(4.2f,.14f,.5f),wood);
-            GuardRailD(6.85f,7.75f,-4.32f,.55f);GuardRail(.4f,1.6f,6.5f,2.2f);GuardRail(.4f,1.6f,7.7f,2.2f);
-            GuardRail(-4.0f,-2.6f,6.85f,3.82f);
-            for(int i=0;i<7;i++)SmearCluster(P(-2.6f+i*.42f,7.825f,.9f+i*.24f),-north,east);
-            for(int i=0;i<5;i++)SmearCluster(P(1.2f-i*.42f,5.77f,2.5f+i*.22f),north,-east);
-            var lamp=Existing("Lantern_01","StairMidLantern",P(1.0f,7.1f,3.1f),new Vector3(.3f,.42f,.3f),"Upper_ChandelierBrass");
-            Box("StairLanternCord",P(1.0f,7.1f,5.0f),new Vector3(.03f,3.6f,.03f),wood,false);
-            LightAt("StairMidLight",P(1.0f,7.1f,3.0f),LightType.Point,1.1f,6,new Color(.9f,.75f,.5f),P(1.0f,6.0f,1.5f));
+            // Clear U-flight hugging the north wall: vestibule -> east flight -> mid landing -> west flight
+            // -> top landing that opens through the corridor's stairwell gap. Nothing crosses the path.
+            Box("StairEntryPlatform",P(-3.5f,7.5f,.53f),new Vector3(1.2f,.1f,.8f),wood);
+            StairMass(-3.0f,.2f,7.1f,7.9f,.58f,2.0f,8,wood,true);
+            Box("StairMidLanding",P(.2f,7.1f,1.0f),new Vector3(1.0f,2.0f,1.6f),wood);
+            StairMass(-3.0f,.4f,6.3f,7.1f,2.0f,3.82f,9,wood,false);
+            Box("StairTopLanding",P(-3.25f,6.45f,3.75f),new Vector3(1.5f,.14f,1.3f),wood);
+            GuardRail(-2.4f,1.0f,6.28f,3.82f);
+            GuardRail(.4f,.7f,6.28f,2.0f);
+            GuardRail(-4.0f,-3.05f,7.14f,3.82f);
+            for(int i=0;i<6;i++)SmearCluster(P(-3.0f+i*.46f,7.845f,.95f+i*.22f),-north,east);
+            for(int i=0;i<6;i++)SmearCluster(P(-2.4f+i*.46f,7.845f,2.35f+i*.22f),-north,east);
+            var lamp=Existing("Lantern_01","StairMidLantern",P(.2f,7.1f,4.55f),new Vector3(.3f,.42f,.3f),"Upper_ChandelierBrass");
+            Box("StairLanternCord",P(.2f,7.1f,5.7f),new Vector3(.03f,2.4f,.03f),wood,false);
+            LightAt("StairMidLight",P(.2f,7.1f,4.3f),LightType.Point,1.1f,6,new Color(.9f,.75f,.5f),P(.2f,6.0f,1.5f));
             LightAt("StairTopLight",P(-3.25f,6.4f,4.6f),LightType.Point,1.1f,6,new Color(.9f,.75f,.5f),P(-3.25f,5.5f,3.8f));
             director.upper.spawnUpper=Anchor("Spawn_UpperLanding",P(-3.25f,6.1f,3.83f),P(0,6.1f,4.5f));
         }
@@ -231,6 +228,11 @@ namespace LayarTerakhir.Editor
             Slab("UpperFloor_East",5.0f,5.85f,.05f,8.95f,3.795f,3.82f,woodFloor);
             Slab("UpperFloor_Deck",2.4f,5.0f,3.4f,5.2f,3.795f,3.82f,woodFloor);
             Slab("UpperFloor_Walk",2.4f,5.0f,5.2f,6.3f,3.795f,3.82f,woodFloor);
+            // Corridor floor extended to the new south wall, leaving only the stairwell void open.
+            Slab("UpperSlab_CorrFillW",-2.5f,1.0f,5.8f,6.3f,3.68f,3.82f,concrete);
+            Slab("UpperFloor_CorrFillW",-2.5f,1.0f,5.8f,6.3f,3.795f,3.82f,woodFloor);
+            Slab("UpperSlab_CorrFillE",1.0f,1.7f,5.8f,6.88f,3.68f,3.82f,concrete);
+            Slab("UpperFloor_CorrFillE",1.0f,1.7f,5.8f,6.88f,3.795f,3.82f,woodFloor);
             Box("UpperCeiling",P(0,4.5f,6.9f),new Vector3(11.7f,.14f,8.9f),ceiling);
             WallD("CorrWallN_A",5.2f,-6,-4.9f,F2,C2,plaster);
             WallD("CorrWallN_B",5.2f,-3.9f,-1.55f,F2,C2,plaster);
@@ -238,8 +240,8 @@ namespace LayarTerakhir.Editor
             WallD("CorrWallN_D",5.2f,1.85f,2.4f,F2,C2,plaster);
             foreach(float c in new[]{4.4f,1.1f})WallD("CorrLintelN",5.2f,c-.5f,c+.5f,5.95f,C2,plaster);
             WallD("CorrLintelMaster",5.2f,.75f,1.85f,5.95f,C2,plaster);
-            WallD("CorrWallS_A",6.3f,-6,-4.0f,F2,C2,plaster);
-            WallD("CorrWallS_B",6.3f,-2.5f,2.4f,F2,C2,plaster);
+            WallD("CorrWallS_A",6.8f,-6,-4.0f,F2,C2,plaster);
+            WallD("CorrWallS_B",6.8f,1.0f,2.4f,F2,C2,plaster);
             Box("CorridorRunner",P(-1.8f,5.75f,3.825f),new Vector3(8.0f,.012f,.8f),Mat("Upper_RedCarpet"),false);
             WallX("ChildBathWall",-2.4f,0,5.2f,F2,C2,plaster);
             WallX("BathMasterWall",.2f,0,5.2f,F2,C2,plaster);

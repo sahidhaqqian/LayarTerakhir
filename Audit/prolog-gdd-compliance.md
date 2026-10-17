@@ -40,7 +40,7 @@ Status: **sesuai, dengan dua revisi playtest yang disetujui dan empat keterbatas
 
 ## Verifikasi teknis saat audit
 
-- 57/57 tes Unity lulus; validasi scene 0 gagal (259.110 tris, 863 renderer, tekstur ≤1024).
-- Windows Mono Development build dibangun ulang setelah polish: 294 file keluaran Unity, 112 assembly, 301 entri ZIP, CRC penuh.
-- ZIP `175.324.724 byte`, SHA-256 `203d85655f61bb6353fa1ca6ebe6fb0bfb41654eb81abaaba8b0a966dc3eeaaf`; diunggah ke R2 dan diverifikasi baca-balik penuh (`Audit/r2-windows-build-upload.json`).
+- 58/58 tes Unity lulus, termasuk tes Play Mode yang benar-benar menggerakkan kapsul menaiki tangga dari lantai 1 ke lantai 2 (`GroundFloorStairsAreContinuouslyWalkableToUpperFloor`) dan gating AR per lantai; validasi scene 0 gagal (257.736 tris, 826 renderer, tekstur ≤1024).
+- Windows Mono Development build dibangun ulang setelah perbaikan tangga: 294 file keluaran Unity, 112 assembly, 301 entri ZIP, CRC penuh.
+- ZIP `175.322.182 byte`, SHA-256 `b7fcd5880debdc09517915c97d7c51473b1fa16f2cf965bf283548fc36807b24`; diunggah ke R2 (nama standar dan `LayarTerakhir-PrologTamat-Windows-x86_64-OpenCode.zip`) dan diverifikasi baca-balik penuh.
 - Eksekusi Windows, pacing manusia, dan FPS Iris Xe tetap menjadi tugas audit pengguna.

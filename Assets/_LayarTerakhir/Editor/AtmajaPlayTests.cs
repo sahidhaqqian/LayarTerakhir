@@ -53,6 +53,7 @@ namespace LayarTerakhir.Editor.Tests
         [UnityTest] public IEnumerator PhoneAppsExposeCampaignAndAllowStowing()=>Run(PhoneApps());
         [UnityTest] public IEnumerator KosBothStairFlightsAndSharedRoomsAreContinuouslyWalkable()=>Run(KosNavigation());
         [UnityTest] public IEnumerator DiningSidesBackpackAndCornerRoomAreContinuouslyWalkable()=>Run(DiningNavigation());
+        [UnityTest] public IEnumerator GroundFloorStairsAreContinuouslyWalkableToUpperFloor()=>Run(StairNavigation());
         private IEnumerator KosNavigation()
         {
             yield return SceneManager.LoadSceneAsync(PrologSceneFlow.CorridorScene);yield return new WaitForSeconds(1);
@@ -88,6 +89,32 @@ namespace LayarTerakhir.Editor.Tests
             eye.transform.LookAt(d.clockHands.transform.position);yield return null;yield return null;
             Assert.That(p.GetComponent<InteractionInteractor>().CurrentTarget,Is.SameAs(Item(AtmajaAction.ClockHands)));yield return Press(Key.E);
             Assert.That(CampaignState.Instance.HasInventoryItem("ITEM_P0_CLOCK_HANDS"),Is.True);
+        }
+        private IEnumerator StairNavigation()
+        {
+            yield return new WaitForSeconds(1);
+            var d=Find<AtmajaDirector>();var p=d.player;var phone=SmartphoneController.Instance;
+            foreach(var id in new[]{AtmajaDirector.SurveyId,"EVENT_P0_LIVE_STARTED","EVENT_P0_SIDE_CHAT","EVENT_P0_KITCHEN_ENTERED","EVENT_P0_DINING_OPEN","EVENT_P0_CLOCK_UNLOCKED","EVENT_P0_STAIRS_UNLOCKED","EVENT_P0_AR_REVEALED","MATABATIN_APK"})CampaignState.Instance.AddInventoryItem(id);
+            phone.arModuleUnlocked=true;d.RestoreWorld();p.enabled=false;
+            Assert.That(d.Stage,Is.EqualTo(AtmajaStage.StairCheckpoint));
+            // AR on the ground floor must not reveal the upstairs marks through the ceiling.
+            phone.isPhoneRaised=true;phone.isScreenOn=true;phone.currentScanMode=ScanVisualMode.AR;d.phoneView.Apps.Open(PhoneApp.Camera);
+            yield return null;yield return null;
+            Assert.That(d.upper.portraitBloodAR[0].activeSelf,Is.False,"Upstairs AR ink must stay hidden while on the ground floor");
+            Assert.That(d.arClue.activeSelf,Is.True,"Ground-floor AR clue is visible downstairs");
+            // Walk from the lounge approach, through the unlocked stair door, up both flights to the top landing.
+            d.PlacePlayer(d.P(-3.5f,6.3f,.53f),Quaternion.LookRotation(d.north));
+            foreach(var point in new[]
+            {
+                d.P(-3.5f,7.4f,.56f),d.P(-2.6f,7.5f,.8f),d.P(-1.6f,7.5f,1.4f),d.P(-0.5f,7.5f,1.9f),
+                d.P(.2f,7.4f,2.1f),d.P(.2f,6.8f,2.3f),d.P(-0.6f,6.7f,2.6f),d.P(-1.6f,6.7f,3.05f),d.P(-2.7f,6.7f,3.7f),d.P(-3.25f,6.35f,3.83f)
+            })yield return WalkCapsule(p,point,3.95f);
+            p.enabled=true;yield return new WaitForSeconds(.6f);p.enabled=false;
+            Assert.That(p.transform.position.y,Is.GreaterThan(3.4f),"Stairs must physically lift the capsule to the upper floor");
+            yield return new WaitForSeconds(.4f);
+            Assert.That(CampaignState.Instance.HasInventoryItem("EVENT_P0_UPPER_REACHED"),Is.True,"Stepping onto the landing must register the upper floor");
+            Assert.That(d.upper.portraitBloodAR[0].activeSelf,Is.True,"Upstairs AR ink appears once the player is upstairs");
+            Assert.That(d.arClue.activeSelf,Is.False,"Ground-floor AR clue must not bleed into the upper floor");
         }
         private static IEnumerator WalkCapsule(FirstPersonController p,Vector3 target,float maxHeight=float.PositiveInfinity)
         {
@@ -171,8 +198,8 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(d.phoneView.FeedCamera.enabled,Is.False);Assert.That(d.arFigure.activeSelf,Is.False);Assert.That(phone.isBroadcastConnected,Is.True);
             Assert.That(d.phoneView.Panel.GetComponentInChildren<UnityEngine.UI.RawImage>(true).enabled,Is.False);
             phone.isScreenOn=true;phone.currentScanMode=ScanVisualMode.AR;d.phoneView.Apps.Open(PhoneApp.Camera);
-            d.player.enabled=false;d.PlacePlayer(d.P(-1.75f,5.5f,.54f),Quaternion.LookRotation(d.north));
-            var clueCamera=d.player.GetComponent<InteractionInteractor>().playerCamera;clueCamera.transform.position=d.P(-1.75f,5.5f,2.0f);clueCamera.transform.LookAt(d.arClue.transform.position);yield return null;yield return null;
+            d.player.enabled=false;d.PlacePlayer(d.P(-5.0f,6.5f,.54f),Quaternion.LookRotation(d.north));
+            var clueCamera=d.player.GetComponent<InteractionInteractor>().playerCamera;clueCamera.transform.position=d.P(-5.0f,6.5f,1.85f);clueCamera.transform.LookAt(d.arClue.transform.position);yield return null;yield return null;
             Assert.That(campaign.HasInventoryItem("EVENT_P0_AR_CLUE_READ"),Is.True,"Clue must actually be aimed at before solving");
             Item(AtmajaAction.ClockHands).Interact();Item(AtmajaAction.Clock).Interact();
             var puzzle=Find<ClockPuzzleView>();puzzle.Confirm();Assert.That(campaign.HasInventoryItem("KUNCI_TANGGA_TENGAH"),Is.False);

@@ -54,13 +54,6 @@ namespace LayarTerakhir.Editor
             director.clockHands=Box("BrassClockHands",P(-5.05f,1.15f,1.30f),new Vector3(.18f,.025f,.03f),Mat("Detail_AgedBrass"));Item(director.clockHands,AtmajaAction.ClockHands,"Ambil Jarum Jam Kuningan");
             var ashtray=GameObject.CreatePrimitive(PrimitiveType.Cylinder);ashtray.name="OldAshtray";ashtray.transform.SetParent(environment,false);ashtray.transform.position=P(-4.85f,1.1f,1.30f);ashtray.transform.localScale=new Vector3(.12f,.015f,.12f);ashtray.GetComponent<Renderer>().sharedMaterial=Mat("House_MAT_Concrete");Object.DestroyImmediate(ashtray.GetComponent<Collider>());
             Chair("FrontRoomWoodChair",P(-4.25f,.8f,.52f),P(-4.25f,2,.52f));Existing("wooden_bookshelf_worn","FrontRoomBookcase",P(-3.35f,.45f,1.25f),new Vector3(1.0f,1.45f,.35f));
-            // Small storage room off the lounge, not another mandatory story key.
-            Box("StorageWall",P(-.15f,6.65f,2.05f),new Vector3(.15f,3.1f,2.4f),plaster);
-            Box("StorageFrontA",P(.15f,5.45f,2.05f),new Vector3(.7f,3.1f,.15f),plaster);
-            Box("StorageFrontB",P(1.45f,5.45f,2.05f),new Vector3(.28f,3.1f,.15f),plaster);
-            Box("StorageLintel",P(.85f,5.45f,3.15f),new Vector3(1.1f,.9f,.15f),plaster);
-            Door("StorageDoor",P(.35f,5.45f,.52f),P(.85f,5.45f,1.62f),new Vector3(1,2.2f,.09f),"Buka ruang penyimpanan");
-            Existing("painted_wooden_cabinet_02","LoungeStorage",P(.8f,7.25f,1.15f),new Vector3(.95f,1.25f,.45f));
             var clock=Model("GrandfatherClock","GrandfatherClock",P(-5.58f,5.8f,.52f));clock.transform.rotation=Facing(east);FitCollider(clock);Item(clock,AtmajaAction.Clock,"Periksa jam bandul tua");
             director.clockFaceNormal=east;director.clockDialCentre=clock.transform.position+east*.184f+Vector3.up*1.78f;
             director.clockHour=clock.GetComponentsInChildren<Transform>().Single(t=>t.name.StartsWith("ClockHourBlade__"));director.clockMinute=clock.GetComponentsInChildren<Transform>().Single(t=>t.name.StartsWith("ClockMinuteBlade__"));director.clockDrawer=clock.GetComponentsInChildren<Transform>().Single(t=>t.name.StartsWith("ClockDrawer__"));
@@ -70,7 +63,7 @@ namespace LayarTerakhir.Editor
             Box("StairHallWall_W",P(-5.04f,7.9f,2.1f),new Vector3(1.73f,3.2f,.16f),plaster);
             Box("StairHallWall_E",P(-.71f,7.9f,2.1f),new Vector3(4.43f,3.2f,.16f),plaster);
             Box("StairHallLintel",P(-3.55f,7.9f,3.4f),new Vector3(1.25f,.6f,.16f),plaster);
-            director.arClue=BloodWriting.Build(environment,P(-1.75f,7.817f,2.17f),east,Vector3.up,-north);director.arClue.SetActive(false);
+            director.arClue=BloodWriting.Build(environment,P(-5.0f,7.817f,2.0f),east,Vector3.up,-north);director.arClue.SetActive(false);
             director.arFigure=Model("ARSeatedAtmaja","AR_SeatedSriAtmaja",P(3.7f,2.15f,.52f));director.arFigure.transform.rotation=Facing(north);foreach(var t in director.arFigure.GetComponentsInChildren<Transform>(true))t.gameObject.layer=AtmajaPhoneView.ARLayer;director.arFigure.SetActive(false);
         }
         private static void Chair(string name,Vector3 where,Vector3 target){var c=Model("WornWoodChair",name,where);c.transform.rotation=Facing((target-where).normalized);Ground(c,where.y);FitCollider(c);}
