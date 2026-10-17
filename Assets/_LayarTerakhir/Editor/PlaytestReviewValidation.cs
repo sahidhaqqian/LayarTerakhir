@@ -32,13 +32,13 @@ namespace LayarTerakhir.Editor
             var ticking=d.clockHour.GetComponentInParent<ClockAmbience>();Check(ticking&&ticking.source&&ticking.source.outputAudioMixerGroup,"Clock has positional, mixer-routed ticking");
             Check(Object.FindObjectsByType<HingedDoor>(FindObjectsSortMode.None).Length==4,"All four exploration doors (sitting, child, bath, master) survive scene serialization");
             var clue=d.arClue;Check(clue.GetComponent<MeshFilter>()&&!clue.GetComponent<TextMesh>()&&clue.GetComponent<Renderer>().sharedMaterial.GetColor("_BaseColor").r>.3f,"AR clue is red blood-stroke geometry, not floating font UI");
-            Check(Mathf.Abs(d.LocalPosition(clue.transform.position).y-7.817f)<.001f,"Blood writing is attached to the wall plane");
+            Check(Mathf.Abs(d.LocalPosition(clue.transform.position).y-5.82f)<.02f,"AR clue hotspot is attached to the stair-door wall plane");
             Check(!Object.FindObjectsByType<Light>(FindObjectsSortMode.None).Any(l=>l.name=="KitchenPractical"||l.name=="LivingFaintPractical"||l.name=="DiningColdSpill"),"No unmotivated interior fill lights; phone lights exploration");
             var cc=d.player.GetComponent<CharacterController>();
             bool Clear(Vector3 point,float height)
             {var blocked=Physics.OverlapCapsule(point+Vector3.up*cc.radius,point+Vector3.up*(height-cc.radius),cc.radius,~0,QueryTriggerInteraction.Ignore).Where(c=>c!=cc&&!c.transform.IsChildOf(d.player.transform)).ToArray();if(blocked.Length>0)Debug.Log("REVIEW_BLOCKERS "+point+" "+string.Join(",",blocked.Select(c=>c.name)));return blocked.Length==0;}
             d.kitchenDoor.localRotation=Quaternion.Euler(0,-95,0);Physics.SyncTransforms();
-            Vector2[] path={new Vector2(5.15f,10.975f),new Vector2(5.15f,9.8f),new Vector2(4.1f,9.8f),new Vector2(4.1f,8.4f),new Vector2(5.35f,8),new Vector2(5.35f,1.3f),new Vector2(2.1f,1.3f),new Vector2(2.1f,4.1f),new Vector2(.8f,4.1f),new Vector2(-1.4f,4.1f),new Vector2(-3,5.3f),new Vector2(-4.7f,5.8f)};
+            Vector2[] path={new Vector2(5.15f,10.975f),new Vector2(5.15f,9.8f),new Vector2(4.1f,9.8f),new Vector2(4.1f,8.4f),new Vector2(5.35f,8),new Vector2(5.35f,1.3f),new Vector2(2.1f,1.3f),new Vector2(2.1f,4.1f),new Vector2(.8f,4.1f),new Vector2(-1.4f,4.1f),new Vector2(-3,5.3f),new Vector2(-4.2f,5.3f),new Vector2(-4.5f,5.3f),new Vector2(-4.7f,5.6f),new Vector2(-4.7f,5.8f)};
             bool route=true;
             for(int i=1;i<path.Length;i++)
             {

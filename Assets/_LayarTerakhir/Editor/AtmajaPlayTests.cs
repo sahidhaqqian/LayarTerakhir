@@ -103,11 +103,11 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(d.upper.portraitBloodAR[0].activeSelf,Is.False,"Upstairs AR ink must stay hidden while on the ground floor");
             Assert.That(d.arClue.activeSelf,Is.True,"Ground-floor AR clue is visible downstairs");
             // Walk from the lounge approach, through the unlocked stair door, up both flights to the top landing.
-            d.PlacePlayer(d.P(-3.5f,6.3f,.53f),Quaternion.LookRotation(d.north));
+            d.PlacePlayer(d.P(-2.4f,4.9f,.53f),Quaternion.LookRotation(d.north));
             foreach(var point in new[]
             {
-                d.P(-3.5f,7.4f,.56f),d.P(-2.6f,7.5f,.8f),d.P(-1.6f,7.5f,1.4f),d.P(-0.5f,7.5f,1.9f),
-                d.P(.2f,7.4f,2.1f),d.P(.2f,6.8f,2.3f),d.P(-0.6f,6.7f,2.6f),d.P(-1.6f,6.7f,3.05f),d.P(-2.7f,6.7f,3.7f),d.P(-3.25f,6.35f,3.83f)
+                d.P(-2.4f,6.4f,.55f),d.P(-3.5f,6.4f,.56f),d.P(-3.5f,7.5f,.62f),d.P(-2.7f,7.45f,.8f),d.P(-1.6f,7.45f,1.44f),d.P(-0.5f,7.45f,1.95f),
+                d.P(.2f,7.45f,2.08f),d.P(.2f,7.0f,2.3f),d.P(-0.6f,7.0f,2.6f),d.P(-1.6f,7.0f,3.06f),d.P(-2.7f,7.0f,3.7f),d.P(-3.25f,6.45f,3.83f)
             })yield return WalkCapsule(p,point,3.95f);
             p.enabled=true;yield return new WaitForSeconds(.6f);p.enabled=false;
             Assert.That(p.transform.position.y,Is.GreaterThan(3.4f),"Stairs must physically lift the capsule to the upper floor");
@@ -122,12 +122,19 @@ namespace LayarTerakhir.Editor.Tests
             for(int frame=0;frame<500;frame++)
             {
                 var delta=target-p.transform.position;delta.y=0;if(delta.magnitude<.1f)break;
-                var before=p.transform.position;cc.Move(Vector3.ClampMagnitude(delta,.16f)+Vector3.down*.18f);
+                var before=p.transform.position;
+                // Drop the ground-stick push once stalled so the capsule is free to climb stair treads.
+                cc.Move(Vector3.ClampMagnitude(delta,.16f)+Vector3.down*(stalled>2?0f:.18f));
                 Assert.That(p.transform.position.y,Is.LessThanOrEqualTo(maxHeight),"Feet must stay below tabletop height");
                 if(Vector3.Distance(before,p.transform.position)<.003f)stalled++;else stalled=0;if(stalled>15)break;yield return null;
             }
             var remaining=target-p.transform.position;remaining.y=0;
-            Assert.That(remaining.magnitude,Is.LessThan(.16f),"Continuous CC route blocked at "+p.transform.position+" on way to "+target);
+            if(remaining.magnitude>=.16f)
+            {
+                var pos=p.transform.position;
+                var hits=Physics.OverlapCapsule(pos+Vector3.up*cc.radius,pos+Vector3.up*(cc.height-cc.radius),cc.radius+.02f,~0,QueryTriggerInteraction.Collide).Where(c=>c!=cc&&!c.transform.IsChildOf(p.transform)).Select(c=>c.name+"@"+c.bounds.center.ToString("F2"));
+                Assert.That(remaining.magnitude,Is.LessThan(.16f),"Continuous CC route blocked at "+pos+" on way to "+target+" by ["+string.Join(",",hits)+"]");
+            }
         }
         private IEnumerator PhoneApps()
         {
@@ -198,8 +205,8 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(d.phoneView.FeedCamera.enabled,Is.False);Assert.That(d.arFigure.activeSelf,Is.False);Assert.That(phone.isBroadcastConnected,Is.True);
             Assert.That(d.phoneView.Panel.GetComponentInChildren<UnityEngine.UI.RawImage>(true).enabled,Is.False);
             phone.isScreenOn=true;phone.currentScanMode=ScanVisualMode.AR;d.phoneView.Apps.Open(PhoneApp.Camera);
-            d.player.enabled=false;d.PlacePlayer(d.P(-5.0f,6.5f,.54f),Quaternion.LookRotation(d.north));
-            var clueCamera=d.player.GetComponent<InteractionInteractor>().playerCamera;clueCamera.transform.position=d.P(-5.0f,6.5f,1.85f);clueCamera.transform.LookAt(d.arClue.transform.position);yield return null;yield return null;
+            d.player.enabled=false;d.PlacePlayer(d.P(-1.3f,4.9f,.54f),Quaternion.LookRotation(d.north));
+            var clueCamera=d.player.GetComponent<InteractionInteractor>().playerCamera;clueCamera.transform.position=d.P(-1.3f,4.9f,1.85f);clueCamera.transform.LookAt(d.arClue.transform.position);yield return null;yield return null;
             Assert.That(campaign.HasInventoryItem("EVENT_P0_AR_CLUE_READ"),Is.True,"Clue must actually be aimed at before solving");
             Item(AtmajaAction.ClockHands).Interact();Item(AtmajaAction.Clock).Interact();
             var puzzle=Find<ClockPuzzleView>();puzzle.Confirm();Assert.That(campaign.HasInventoryItem("KUNCI_TANGGA_TENGAH"),Is.False);

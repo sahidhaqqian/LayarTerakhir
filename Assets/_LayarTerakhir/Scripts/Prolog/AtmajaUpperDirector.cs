@@ -154,6 +154,8 @@ namespace LayarTerakhir.Prolog
         public AudioSource doorSong;
         public GameObject[] portraitBloodAR=new GameObject[3];
         public Transform cupAim,scratchAim,ropeAim,ventMouth,mirrorSpot,ropeSpot;
+        private Transform cupMark,scratchMark,ropeMark;
+        private Material markerMaterial;
         private CampaignState Campaign=>CampaignState.Instance;
         private SmartphoneController Phone=>SmartphoneController.Instance;
         private HudController Hud=>HudController.Instance;
@@ -172,8 +174,7 @@ namespace LayarTerakhir.Prolog
         private void Ui(AudioClip clip,float gain){if(director.notificationSource&&clip)director.notificationSource.PlayOneShot(clip,gain);}
         public void RestoreWorld()
         {
-            bool c1=Has("EVENT_P0_CHAIN1_BROKEN"),c2=Has("EVENT_P0_CHAIN2_BROKEN"),c3=Has("EVENT_P0_CHAIN3_BROKEN");
-            for(int i=0;i<chainLinks.Length;i++)if(chainLinks[i])chainLinks[i].SetActive(!(i==0?c1:i==1?c2:c3));
+            bool c1=Has("EVENT_P0_CHAIN1_BROKEN"),c2=Has("EVENT_P0_CHAIN2_BROKEN"),c3=Has("EVENT_P0_CHAIN3_BROKEN");            for(int i=0;i<chainLinks.Length;i++)if(chainLinks[i])chainLinks[i].SetActive(!(i==0?c1:i==1?c2:c3));
             if(childCup)childCup.SetActive(!c1);
             if(childDoor)childDoor.locked=!c1;
             if(masterDoor){masterDoor.locked=!c3;masterDoor.hinge.localRotation=Quaternion.Euler(0,c3?-95:0,0);}
@@ -187,6 +188,39 @@ namespace LayarTerakhir.Prolog
             if(ventHoleAR)ventHoleAR.SetActive(false);
             if(bathScratchesAR)bathScratchesAR.SetActive(false);
             foreach(var p in portraitBloodAR)if(p)p.SetActive(false);
+            // The developer wants clean walls: AR labels are silent hotspots (blinking markers)
+            // instead of floating text.
+            HideText(ventHoleAR);HideText(bathScratchesAR);
+            foreach(var p in portraitBloodAR)HideText(p);
+            if(cupMark)cupMark.gameObject.SetActive(false);
+            if(scratchMark)scratchMark.gameObject.SetActive(false);
+            if(ropeMark)ropeMark.gameObject.SetActive(false);
+        }
+        private void HideText(GameObject go)
+        {
+            if(!go)return;
+            var r=go.GetComponent<Renderer>();if(r)r.enabled=false;
+        }
+        private Transform MakeMarker(Transform host)
+        {
+            if(!host)return null;
+            var go=GameObject.CreatePrimitive(PrimitiveType.Sphere);go.name="ARPhotoMarker";go.transform.SetParent(host,false);
+            go.transform.localPosition=Vector3.zero;go.transform.localScale=Vector3.one*.2f;
+            var col=go.GetComponent<Collider>();if(col)Destroy(col);
+            if(!markerMaterial)
+            {
+                var shader=Shader.Find("Universal Render Pipeline/Unlit")??Shader.Find("Unlit/Color");
+                markerMaterial=new Material(shader);markerMaterial.color=new Color(1f,.16f,.05f);
+            }
+            go.GetComponent<Renderer>().sharedMaterial=markerMaterial;
+            foreach(var t in go.GetComponentsInChildren<Transform>(true))t.gameObject.layer=AtmajaPhoneView.ARLayer;
+            go.SetActive(false);return go.transform;
+        }
+        private void PulseMarker(Transform marker,float phase)
+        {
+            if(!marker)return;
+            float s=.16f+.06f*Mathf.Sin(Time.time*6f+phase);
+            marker.localScale=new Vector3(s,s,s);
         }
         public string Objective()
         {
@@ -210,6 +244,17 @@ namespace LayarTerakhir.Prolog
             if(ventHoleAR)ventHoleAR.SetActive(ar&&upstairs&&!Has("EVENT_P0_CHAIN1_BROKEN"));
             if(bathScratchesAR)bathScratchesAR.SetActive(ar&&upstairs&&Has("EVENT_P0_CHAIN1_BROKEN")&&!Has("EVENT_P0_CHAIN2_BROKEN"));
             for(int i=0;i<portraitBloodAR.Length;i++)if(portraitBloodAR[i])portraitBloodAR[i].SetActive(ar&&upstairs);
+            // Blinking AR hotspot on the next evidence the player must photograph.
+            bool show=ar&&upstairs;
+            if(!cupMark)cupMark=MakeMarker(cupAim);
+            if(!scratchMark)scratchMark=MakeMarker(scratchAim);
+            if(!ropeMark)ropeMark=MakeMarker(ropeAim);
+            bool wantCup=show&&!Has("EVENT_P0_CHAIN1_BROKEN")&&Has(DiaryId);
+            bool wantScratch=show&&Has("EVENT_P0_CHAIN1_BROKEN")&&!Has("EVENT_P0_CHAIN2_BROKEN");
+            bool wantRope=show&&Has("EVENT_P0_CHAIN2_BROKEN")&&!Has("EVENT_P0_CHAIN3_BROKEN");
+            if(cupMark){cupMark.gameObject.SetActive(wantCup);if(wantCup)PulseMarker(cupMark,0);}
+            if(scratchMark){scratchMark.gameObject.SetActive(wantScratch);if(wantScratch)PulseMarker(scratchMark,2.1f);}
+            if(ropeMark){ropeMark.gameObject.SetActive(wantRope);if(wantRope)PulseMarker(ropeMark,4.2f);}
             // Stair landing detection: the pocket door is open and the capsule climbs past the slab.
             if(director.Stage==AtmajaStage.StairCheckpoint&&director.player.transform.position.y>3.4f)
             {
@@ -269,11 +314,17 @@ namespace LayarTerakhir.Prolog
         {
             if(!aim)return false;
             var eye=director.player.GetComponent<InteractionInteractor>().playerCamera;var delta=aim.position-eye.transform.position;
-            if(delta.magnitude>range||Vector3.Dot(eye.transform.forward,delta.normalized)<dot)return false;
-            var hits=Physics.RaycastAll(eye.transform.position,delta.normalized,delta.magnitude,~0,QueryTriggerInteraction.Ignore);
+            float distance=delta.magnitude;
+            if(distance>range||Vector3.Dot(eye.transform.forward,delta/distance)<dot)return false;
+            // The hotspot must be reachable: accept when nothing solid blocks the line of sight
+            // up to (or at) the aim point. The target itself may be the first hit.
+            var hits=Physics.RaycastAll(eye.transform.position,delta/distance,distance,~0,QueryTriggerInteraction.Ignore);
             Array.Sort(hits,(a,b)=>a.distance.CompareTo(b.distance));
             var first=Array.Find(hits,h=>!h.transform.IsChildOf(director.player.transform));
-            return !first.collider||first.collider.isTrigger||first.transform==aim||first.transform.IsChildOf(aim.parent);
+            if(!first.collider)return true;
+            if(first.collider.isTrigger)return true;
+            if(first.transform==aim||first.transform.IsChildOf(aim))return true;
+            return first.distance>=distance-.14f;
         }
         public void TryPhotoTick()
         {
@@ -287,10 +338,29 @@ namespace LayarTerakhir.Prolog
             if(!Commit(flag,"PROLOG_ATMAJA_UPPER",()=>{Campaign.Data.battery=Mathf.Max(0,Phone.batteryPercent-1);}))return;
             Phone.ConsumeBattery(1);RestoreWorld();Sfx(director.audioProfile.unlock,director.player.transform.position,.7f);
             Ui(AtmajaSynth.Tone(1.2f,140,60,.5f),.6f);
+            var spot=n==1?cupAim:n==2?scratchAim:ropeAim;
+            if(spot)StartCoroutine(CleanseSmoke(spot.position));
             Hud.ShowBroadcastNotification($"Rantai {n} putus! {toast}",5);
             director.phoneView.AddChat("@horor_hunter","BARUSAN RANTAINYA PUTUS SENDIRI WOI");
             if(n==3){StartCoroutine(FlashFigure(hangedFlashFigure,.5f,"Raka","Dia... tergantung di sana..."));OpenMasterDoor();}
             director.Objective();
+        }
+        private IEnumerator CleanseSmoke(Vector3 position)
+        {
+            // Dark cleansing plume when the evidence is captured.
+            var shader=Shader.Find("Universal Render Pipeline/Particles/Unlit")??Shader.Find("Particles/Standard Unlit");
+            if(!shader)yield break;
+            var go=new GameObject("CleanseSmoke",typeof(ParticleSystem));go.transform.position=position;
+            var ps=go.GetComponent<ParticleSystem>();var main=ps.main;
+            main.startLifetime=1.8f;main.startSpeed=new ParticleSystem.MinMaxCurve(.15f,.65f);
+            main.startSize=new ParticleSystem.MinMaxCurve(.12f,.32f);main.startColor=new Color(.02f,.02f,.025f,.85f);
+            main.maxParticles=70;main.gravityModifier=-.06f;main.simulationSpace=ParticleSystemSimulationSpace.World;
+            var emission=ps.emission;emission.rateOverTime=0;
+            var shape=ps.shape;shape.shapeType=ParticleSystemShapeType.Sphere;shape.radius=.16f;
+            var renderer=go.GetComponent<ParticleSystemRenderer>();renderer.material=new Material(shader);renderer.material.SetColor("_BaseColor",new Color(.02f,.02f,.025f,.85f));
+            renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;renderer.receiveShadows=false;
+            ps.Play();ps.Emit(50);
+            yield return new WaitForSeconds(2.4f);Destroy(go);
         }
         private void OpenMasterDoor()
         {

@@ -1,7 +1,7 @@
 mari kita focus mode designer
 
-1. cahaya dari kamera hp masih kurang aku jadinya harus mainnya liatin dari hp
-2. hpnya kegedean weh
+1. cahaya dari kamera hp masih kurang aku jadinya harus mainnya liatin dari hp  ← [SKIP] tugas codex/chatgpt
+2. hpnya kegedean weh  ← [SELESAI/SKIP] tugas codex/chatgpt
 3. aku mau kau ganti viewnya jadi Third-Person Over-the-Shoulder
 4 bug di dialog kak raka...bla bla keluar dari kotak dialog
 5. tolong dong di lantai Bawah ada dapur sama kamar mandi cewek cowok sama ruang makan juga  jadi kayak ruang kos beneran gak kayak Lorong hotel/kost doang weh

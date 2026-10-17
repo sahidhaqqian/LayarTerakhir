@@ -43,6 +43,8 @@ namespace LayarTerakhir.Prolog
             }
         }
         private bool underTree,wellHeard;
+        private Transform clueMarker;
+        private Material clueMarkerMaterial;
         private bool clockTimeShown;
         private AudioClip arStatic;
         private Vector3 previousPosition;
@@ -93,6 +95,9 @@ namespace LayarTerakhir.Prolog
             PlacePlayer(spawn.position,spawn.rotation);
             Stage=Has("PROLOG_COMPLETE")?AtmajaStage.EndingVista:Has("EVENT_P0_CHASE_STARTED")?AtmajaStage.Chase:Has("EVENT_P0_HANDYCAM_PLAYED")?AtmajaStage.HandycamPlayed:Has("EVENT_P0_BASEMENT_ENTERED")?AtmajaStage.BasementStealth:Has("EVENT_P0_UPPER_REACHED")?(upper&&upper.ChainsBroken>=3?AtmajaStage.MasterOpen:AtmajaStage.EvidenceHunt):Has("EVENT_P0_STAIRS_UNLOCKED")?AtmajaStage.StairCheckpoint:Has("EVENT_P0_CLOCK_UNLOCKED")?AtmajaStage.ClockUnlocked:Has("EVENT_P0_AR_REVEALED")?AtmajaStage.ARRevealed:Has("MATABATIN_APK")?AtmajaStage.DamarPhone:inside?AtmajaStage.Kitchen:TreeCleared?AtmajaStage.SidePassage:LiveConnected?AtmajaStage.Live:HasSurvey?AtmajaStage.SurveyRead:AtmajaStage.Courtyard;
             if(upper)upper.RestoreWorld();if(basement)basement.RestoreWorld();if(chase)chase.RestoreWorld();
+            // The death-time hint is a silent AR hotspot now, not painted writing on the wall.
+            if(arClue){var clueRenderer=arClue.GetComponent<Renderer>();if(clueRenderer)clueRenderer.enabled=false;}
+            if(clueMarker)clueMarker.gameObject.SetActive(false);
         }
         public void PlacePlayer(Vector3 position,Quaternion rotation)
         {var cc=player.GetComponent<CharacterController>();cc.enabled=false;player.transform.SetPositionAndRotation(position,rotation);cc.enabled=true;Physics.SyncTransforms();}
@@ -124,6 +129,10 @@ namespace LayarTerakhir.Prolog
                 bool downstairs=Stage<AtmajaStage.StairLanding;
                 if(arFigure)arFigure.SetActive(ar&&downstairs);
                 if(arClue)arClue.SetActive(ar&&downstairs);
+                // Blinking hotspot on the wall beside the stair door until the time clue is logged.
+                bool wantClue=ar&&downstairs&&!Has("EVENT_P0_AR_CLUE_READ")&&arClue;
+                if(arClue&&!clueMarker)clueMarker=MakeClueMarker(arClue.transform);
+                if(clueMarker){clueMarker.gameObject.SetActive(wantClue);if(wantClue){float s=.18f+.06f*Mathf.Sin(Time.time*6f);clueMarker.localScale=new Vector3(s,s,s);}}
                 if(ar&&downstairs&&!Has("EVENT_P0_AR_REVEALED"))RevealAR();
                 if(ar&&downstairs&&!Has("EVENT_P0_AR_CLUE_READ"))ObserveClue();
             }
@@ -289,7 +298,21 @@ namespace LayarTerakhir.Prolog
             var camera=player.GetComponent<InteractionInteractor>().playerCamera;var delta=arClue.transform.position-camera.transform.position;
             if(delta.magnitude>3.4f||Vector3.Dot(camera.transform.forward,delta.normalized)<.86f)return;
             if(Physics.Raycast(camera.transform.position,delta.normalized,Mathf.Max(0,delta.magnitude-.03f),~0,QueryTriggerInteraction.Ignore))return;
-            if(Commit("EVENT_P0_AR_CLUE_READ","PROLOG_MATABATIN_ACQUIRED"))Hud.ShowBroadcastNotification("Petunjuk dinding dicatat di Jurnal HP.",3);
+            if(Commit("EVENT_P0_AR_CLUE_READ","PROLOG_MATABATIN_ACQUIRED"))Hud.ShowBroadcastNotification("Petunjuk dinding tercatat di Jurnal.\nWAKTU KEMATIAN KAMI — III : XLV\n(Atur jam bandul ke 03:45)",6);
+        }
+        private Transform MakeClueMarker(Transform host)
+        {
+            var go=GameObject.CreatePrimitive(PrimitiveType.Sphere);go.name="ARClueMarker";go.transform.SetParent(host,false);
+            go.transform.localPosition=Vector3.zero;go.transform.localScale=Vector3.one*.18f;
+            var col=go.GetComponent<Collider>();if(col)Destroy(col);
+            if(!clueMarkerMaterial)
+            {
+                var shader=Shader.Find("Universal Render Pipeline/Unlit")??Shader.Find("Unlit/Color");
+                clueMarkerMaterial=new Material(shader);clueMarkerMaterial.color=new Color(1f,.16f,.05f);
+            }
+            go.GetComponent<Renderer>().sharedMaterial=clueMarkerMaterial;
+            foreach(var t in go.GetComponentsInChildren<Transform>(true))t.gameObject.layer=AtmajaPhoneView.ARLayer;
+            go.SetActive(false);return go.transform;
         }
         private void OpenNewspaper()=>Hud.OpenDocumentModal("KLIPING KORAN 1998 • DOKUMEN #3","TRAGEDI KELUARGA ATMAJA: Satu Keluarga Ditemukan Tewas Mengenaskan. Polisi menduga sang ibu, Nyonya Sri Atmaja (38), mengalami depresi berat dan gangguan jiwa akibat mengikuti aliran klenik sebelum meracuni anak-anaknya dan mengakhiri hidupnya sendiri di lantai dua pada tengah malam.",()=>{Commit("DOC_PROLOG_03_KORAN_1998","PROLOG_MATABATIN_ACQUIRED");Objective();});
         private void ShowClockTime()

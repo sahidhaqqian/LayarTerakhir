@@ -13,12 +13,12 @@ namespace LayarTerakhir.Editor
             var wood=Mat("House_MAT_WoodDoor");var plaster=Mat("House_MAT_PlasterDamaged");
             Surface("DiningDirtyTile",0,4.5f,.512f,11.6f,8.8f,Mat("concrete_floor_damaged_01"));
             Surface("KitchenDirtyTile",4,10.6f,.352f,3.7f,2.9f,Mat("concrete_floor_damaged_01"));
-            Box("GroundFloorCeiling_0",P(-4.925f,4.5f,3.75f),new Vector3(1.85f,.14f,8.9f),Mat("House_MAT_Concrete"));
-            Box("GroundFloorCeiling_1",P(-1.15f,2.925f,3.75f),new Vector3(5.7f,.14f,5.75f),Mat("House_MAT_Concrete"));
-            Box("GroundFloorCeiling_2",P(2.05f,4.5f,3.75f),new Vector3(.7f,.14f,8.9f),Mat("House_MAT_Concrete"));
-            Box("GroundFloorCeiling_3",P(3.7f,1.725f,3.75f),new Vector3(2.6f,.14f,3.35f),Mat("House_MAT_Concrete"));
-            Box("GroundFloorCeiling_4",P(3.7f,7.075f,3.75f),new Vector3(2.6f,.14f,3.75f),Mat("House_MAT_Concrete"));
-            Box("GroundFloorCeiling_5",P(5.425f,4.5f,3.75f),new Vector3(.85f,.14f,8.9f),Mat("House_MAT_Concrete"));
+            Box("GroundFloorCeiling_0",P(-4.925f,4.5f,3.72f),new Vector3(1.85f,.14f,8.9f),Mat("House_MAT_Concrete"));
+            Box("GroundFloorCeiling_1",P(-1.15f,2.925f,3.72f),new Vector3(5.7f,.14f,5.75f),Mat("House_MAT_Concrete"));
+            Box("GroundFloorCeiling_2",P(2.05f,4.5f,3.72f),new Vector3(.7f,.14f,8.9f),Mat("House_MAT_Concrete"));
+            Box("GroundFloorCeiling_3",P(3.7f,1.725f,3.72f),new Vector3(2.6f,.14f,3.35f),Mat("House_MAT_Concrete"));
+            Box("GroundFloorCeiling_4",P(3.7f,7.075f,3.72f),new Vector3(2.6f,.14f,3.75f),Mat("House_MAT_Concrete"));
+            Box("GroundFloorCeiling_5",P(5.425f,4.5f,3.72f),new Vector3(.85f,.14f,8.9f),Mat("House_MAT_Concrete"));
             Box("KitchenCeiling",P(4,10.6f,2.95f),new Vector3(3.8f,.13f,3.0f),Mat("House_MAT_Concrete"));
             Box("DiningDividerSouth",P(1.6f,1.6f,2.2f),new Vector3(.18f,3.4f,3.2f),plaster);
             Box("DiningDividerNorth",P(1.6f,6.7f,2.2f),new Vector3(.18f,3.4f,4.2f),plaster);
@@ -59,11 +59,18 @@ namespace LayarTerakhir.Editor
             director.clockHour=clock.GetComponentsInChildren<Transform>().Single(t=>t.name.StartsWith("ClockHourBlade__"));director.clockMinute=clock.GetComponentsInChildren<Transform>().Single(t=>t.name.StartsWith("ClockMinuteBlade__"));director.clockDrawer=clock.GetComponentsInChildren<Transform>().Single(t=>t.name.StartsWith("ClockDrawer__"));
             var tick=clock.AddComponent<ClockAmbience>();tick.pendulum=clock.GetComponentsInChildren<Transform>().Single(t=>t.name.StartsWith("ClockPendulum__"));tick.pivot=new Vector3(0,1.4f,.15f);tick.axis=Vector3.forward;
             tick.source=clock.AddComponent<AudioSource>();tick.source.playOnAwake=false;tick.source.dopplerLevel=0;tick.source.spatialBlend=1;tick.source.minDistance=.8f;tick.source.maxDistance=7;tick.source.rolloffMode=AudioRolloffMode.Linear;tick.source.outputAudioMixerGroup=director.audioProfile.effectsBus;
-            var stair=Box("LockedCentralStairDoor",P(-3.55f,7.7f,1.8f),new Vector3(1.25f,2.6f,.14f),wood);Item(stair,AtmajaAction.StairDoor,"Buka pintu tangga tengah");
+            var stair=Box("LockedCentralStairDoor",P(-2.375f,5.9f,1.8f),new Vector3(1.25f,2.6f,.14f),wood);Item(stair,AtmajaAction.StairDoor,"Buka pintu tangga tengah");
+            // Enclosed central stair chamber: the only way in is through the stair door.
             Box("StairHallWall_W",P(-5.04f,7.9f,2.1f),new Vector3(1.73f,3.2f,.16f),plaster);
             Box("StairHallWall_E",P(-.71f,7.9f,2.1f),new Vector3(4.43f,3.2f,.16f),plaster);
-            Box("StairHallLintel",P(-3.55f,7.9f,3.4f),new Vector3(1.25f,.6f,.16f),plaster);
-            director.arClue=BloodWriting.Build(environment,P(-5.0f,7.817f,2.0f),east,Vector3.up,-north);director.arClue.SetActive(false);
+            Box("StairHallFill",P(-3.55f,7.9f,2.1f),new Vector3(1.25f,3.2f,.16f),plaster);
+            Box("StairRoomWallS_A",P(-3.55f,5.9f,2.16f),new Vector3(1.1f,3.32f,.16f),plaster);
+            Box("StairRoomWallS_B",P(-.375f,5.9f,2.16f),new Vector3(2.75f,3.32f,.16f),plaster);
+            Box("StairRoomLintelS",P(-2.375f,5.9f,3.46f),new Vector3(1.25f,.72f,.16f),plaster);
+            Box("StairRoomWallW",P(-4.1f,6.9f,2.16f),new Vector3(.16f,3.32f,2.0f),plaster);
+            Box("StairRoomWallE",P(1.0f,6.9f,2.16f),new Vector3(.16f,3.32f,2.0f),plaster);
+            Box("StairChamberFloor",P(-1.55f,6.9f,.53f),new Vector3(5.1f,.04f,2.0f),wood);
+            director.arClue=BloodWriting.Build(environment,P(-1.3f,5.82f,2.0f),east,Vector3.up,-north);director.arClue.SetActive(false);
             director.arFigure=Model("ARSeatedAtmaja","AR_SeatedSriAtmaja",P(3.7f,2.15f,.52f));director.arFigure.transform.rotation=Facing(north);foreach(var t in director.arFigure.GetComponentsInChildren<Transform>(true))t.gameObject.layer=AtmajaPhoneView.ARLayer;director.arFigure.SetActive(false);
         }
         private static void Chair(string name,Vector3 where,Vector3 target){var c=Model("WornWoodChair",name,where);c.transform.rotation=Facing((target-where).normalized);Ground(c,where.y);FitCollider(c);}

@@ -1,5 +1,5 @@
 {
-    "utc": "2026-10-17T01:02:37.7031300Z",
+    "utc": "2026-10-17T04:56:39.9223270Z",
     "failures": 0,
     "checks": [
         "PASS Tree geometry stays outside the east wall; no root plate in dining chairs",
@@ -9,7 +9,7 @@
         "PASS Clock has positional, mixer-routed ticking",
         "PASS All four exploration doors (sitting, child, bath, master) survive scene serialization",
         "PASS AR clue is red blood-stroke geometry, not floating font UI",
-        "PASS Blood writing is attached to the wall plane",
+        "PASS AR clue hotspot is attached to the stair-door wall plane",
         "PASS No unmotivated interior fill lights; phone lights exploration",
         "PASS Continuous standing route from kitchen around dining-table sides to lounge/clock; no tabletop waypoints",
         "PASS Crouched access beside the backpack, without jumping onto furniture",

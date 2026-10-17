@@ -74,7 +74,7 @@ namespace LayarTerakhir.Editor
             Check(d.upper&&d.upper.childDoor&&d.upper.masterDoor&&d.upper.chainLinks.Length==3,"Scene 4 upper-floor doors and three sin chains present");
             Check(d.basement&&d.basement.nyonya&&d.basement.waypoints.Length>=4&&d.chase&&d.chase.chaserFigure&&d.chase.rail.Length>=20,"Scene 5-7 hunter, patrol route and chase rail present");
             Check(d.upper.spawnUpper&&Clear(d.upper.spawnUpper.position,cc.height),"Upper-floor landing standing capsule is clear");
-            var stairRoute=new[]{d.P(-3.5f,7.5f,.62f),d.P(-2.8f,7.5f,.82f),d.P(-1.5f,7.5f,1.44f),d.P(-0.2f,7.5f,2.0f),d.P(0.6f,7.1f,2.08f),d.P(-0.2f,6.7f,2.6f),d.P(-1.5f,6.7f,3.06f),d.P(-2.8f,6.7f,3.76f),d.P(-3.25f,6.4f,3.88f)};
+            var stairRoute=new[]{d.P(-2.4f,5.5f,.53f),d.P(-2.4f,6.4f,.56f),d.P(-3.5f,6.4f,.56f),d.P(-3.5f,7.5f,.62f),d.P(-2.7f,7.45f,.82f),d.P(-1.6f,7.45f,1.44f),d.P(-0.5f,7.45f,1.95f),d.P(.2f,7.45f,2.08f),d.P(.2f,7.0f,2.3f),d.P(-0.6f,7.0f,2.6f),d.P(-1.6f,7.0f,3.06f),d.P(-2.7f,7.0f,3.7f),d.P(-3.25f,6.45f,3.88f)};
             Check(stairRoute.All(StairClear),"Ground-to-upper stair route is continuously capsule-clear");
             Check(d.basement.spawnBasement&&Clear(d.basement.spawnBasement.position,cc.height),"Basement spawn standing capsule is clear");
             Check(d.chase.windowExitSpot&&Clear(d.chase.windowExitSpot.position,cc.height),"Chase window-exit standing capsule is clear");

@@ -187,17 +187,21 @@ namespace LayarTerakhir.Editor
         {
             var wood=Mat("House_MAT_WoodDoor");
             // Clear U-flight hugging the north wall: vestibule -> east flight -> mid landing -> west flight
-            // -> top landing that opens through the corridor's stairwell gap. Nothing crosses the path.
-            Box("StairEntryPlatform",P(-3.5f,7.5f,.53f),new Vector3(1.2f,.1f,.8f),wood);
-            StairMass(-3.0f,.2f,7.1f,7.9f,.58f,2.0f,8,wood,true);
-            Box("StairMidLanding",P(.2f,7.1f,1.0f),new Vector3(1.0f,2.0f,1.6f),wood);
-            StairMass(-3.0f,.4f,6.3f,7.1f,2.0f,3.82f,9,wood,false);
+            // -> top landing that opens through the corridor's stairwell gap. The south strip between the
+            // chamber door wall and flight two is 0.77m deep so the standing capsule fits through.
+            // Raised entry platform flush with the first tread's top (.58+1*.1775=.7575) so the
+            // standing capsule never jams in the skin-width corner of a low platform vs the riser.
+            Box("StairEntryPlatform",P(-3.5f,7.5f,.6575f),new Vector3(1.2f,.2f,.8f),wood);
+            StairMass(-3.0f,.2f,7.35f,7.82f,.58f,2.0f,8,wood,true);
+            Box("StairMidLanding",P(.2f,7.35f,1.0f),new Vector3(1.0f,2.0f,1.2f),wood);
+            StairMass(-3.0f,.4f,6.75f,7.35f,2.0f,3.82f,9,wood,false);
             Box("StairTopLanding",P(-3.25f,6.45f,3.75f),new Vector3(1.5f,.14f,1.3f),wood);
             GuardRail(-2.4f,1.0f,6.28f,3.82f);
-            GuardRail(.4f,.7f,6.28f,2.0f);
+            GuardRail(.4f,.7f,6.72f,2.0f);
+            GuardRailD(6.3f,7.1f,-2.5f,3.82f);
             GuardRail(-4.0f,-3.05f,7.14f,3.82f);
-            for(int i=0;i<6;i++)SmearCluster(P(-3.0f+i*.46f,7.845f,.95f+i*.22f),-north,east);
-            for(int i=0;i<6;i++)SmearCluster(P(-2.4f+i*.46f,7.845f,2.35f+i*.22f),-north,east);
+            for(int i=0;i<6;i++)SmearCluster(P(-3.0f+i*.46f,7.80f,.95f+i*.22f),-north,east);
+            for(int i=0;i<6;i++)SmearCluster(P(-2.4f+i*.46f,7.80f,2.35f+i*.22f),-north,east);
             var lamp=Existing("Lantern_01","StairMidLantern",P(.2f,7.1f,4.55f),new Vector3(.3f,.42f,.3f),"Upper_ChandelierBrass");
             Box("StairLanternCord",P(.2f,7.1f,5.7f),new Vector3(.03f,2.4f,.03f),wood,false);
             LightAt("StairMidLight",P(.2f,7.1f,4.3f),LightType.Point,1.1f,6,new Color(.9f,.75f,.5f),P(.2f,6.0f,1.5f));
@@ -208,16 +212,16 @@ namespace LayarTerakhir.Editor
         {
             var plaster=Mat("House_MAT_PlasterDamaged");var concrete=Mat("House_MAT_Concrete");
             var woodFloor=Mat("Upper_WoodFloor");var ceiling=Mat("Upper_CeilingWood");
-            Slab("UpperSlab_West",-5.85f,-4.0f,.05f,8.95f,3.68f,3.82f,concrete);
-            Slab("UpperSlab_South",-4.0f,.55f,.05f,5.8f,3.68f,3.82f,concrete);
-            Slab("UpperSlab_TrapS",.55f,1.7f,.05f,.55f,3.68f,3.82f,concrete);
-            Slab("UpperSlab_TrapN",.55f,1.7f,2.25f,5.8f,3.68f,3.82f,concrete);
-            Slab("UpperSlab_Mid",1.7f,2.4f,.05f,8.95f,3.68f,3.82f,concrete);
-            Slab("UpperSlab_VoidS",2.4f,5.0f,.05f,3.4f,3.68f,3.82f,concrete);
-            Slab("UpperSlab_VoidN",2.4f,5.0f,5.2f,8.95f,3.68f,3.82f,concrete);
-            Slab("UpperSlab_East",5.0f,5.85f,.05f,8.95f,3.68f,3.82f,concrete);
-            Slab("BalconyDeck",2.4f,5.0f,3.4f,5.2f,3.68f,3.82f,concrete);
-            Slab("BalconyWalk",2.4f,5.0f,5.2f,6.3f,3.68f,3.82f,concrete);
+            Slab("UpperSlab_West",-5.85f,-4.0f,.05f,8.95f,3.68f,3.795f,concrete);
+            Slab("UpperSlab_South",-4.0f,.55f,.05f,5.8f,3.68f,3.795f,concrete);
+            Slab("UpperSlab_TrapS",.55f,1.7f,.05f,.55f,3.68f,3.795f,concrete);
+            Slab("UpperSlab_TrapN",.55f,1.7f,2.25f,5.8f,3.68f,3.795f,concrete);
+            Slab("UpperSlab_Mid",1.7f,2.4f,.05f,8.95f,3.68f,3.795f,concrete);
+            Slab("UpperSlab_VoidS",2.4f,5.0f,.05f,3.4f,3.68f,3.795f,concrete);
+            Slab("UpperSlab_VoidN",2.4f,5.0f,5.2f,8.95f,3.68f,3.795f,concrete);
+            Slab("UpperSlab_East",5.0f,5.85f,.05f,8.95f,3.68f,3.795f,concrete);
+            Slab("BalconyDeck",2.4f,5.0f,3.4f,5.2f,3.68f,3.795f,concrete);
+            Slab("BalconyWalk",2.4f,5.0f,5.2f,6.3f,3.68f,3.795f,concrete);
             Slab("UpperFloor_West",-5.85f,-4.0f,.05f,8.95f,3.795f,3.82f,woodFloor);
             Slab("UpperFloor_South",-4.0f,.55f,.05f,5.8f,3.795f,3.82f,woodFloor);
             Slab("UpperFloor_TrapS",.55f,1.7f,.05f,.55f,3.795f,3.82f,woodFloor);
@@ -229,9 +233,9 @@ namespace LayarTerakhir.Editor
             Slab("UpperFloor_Deck",2.4f,5.0f,3.4f,5.2f,3.795f,3.82f,woodFloor);
             Slab("UpperFloor_Walk",2.4f,5.0f,5.2f,6.3f,3.795f,3.82f,woodFloor);
             // Corridor floor extended to the new south wall, leaving only the stairwell void open.
-            Slab("UpperSlab_CorrFillW",-2.5f,1.0f,5.8f,6.3f,3.68f,3.82f,concrete);
+            Slab("UpperSlab_CorrFillW",-2.5f,1.0f,5.8f,6.3f,3.68f,3.795f,concrete);
             Slab("UpperFloor_CorrFillW",-2.5f,1.0f,5.8f,6.3f,3.795f,3.82f,woodFloor);
-            Slab("UpperSlab_CorrFillE",1.0f,1.7f,5.8f,6.88f,3.68f,3.82f,concrete);
+            Slab("UpperSlab_CorrFillE",1.0f,1.7f,5.8f,6.88f,3.68f,3.795f,concrete);
             Slab("UpperFloor_CorrFillE",1.0f,1.7f,5.8f,6.88f,3.795f,3.82f,woodFloor);
             Box("UpperCeiling",P(0,4.5f,6.9f),new Vector3(11.7f,.14f,8.9f),ceiling);
             WallD("CorrWallN_A",5.2f,-6,-4.9f,F2,C2,plaster);

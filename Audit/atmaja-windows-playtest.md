@@ -40,11 +40,15 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
    bukan kamera dunia. Tulisan harus tampak merah dan menempel dinding, bukan teks putih melayang.
    F mematikan layar/kamera tambahan; broadcast tetap berjalan.
 7. Buka ruang tamu depan. Ambil jarum kuningan di meja kecil pojok; telusuri lounge.
-   Arahkan AR ke tulisan dinding sampai tercatat di Jurnal. Jam menghadap ke ruang dan
+   Arahkan AR ke **titik berkedip** di dinding samping pintu tangga sampai petunjuk waktu
+   tercatat di Jurnal (teks dinding diganti hotspot AR tanpa tulisan). Jam menghadap ke ruang dan
    punggungnya menempel dinding; cek angka Romawi dan bunyi tik-tok saat mendekat.
    E jam; kontrol **jam/menit** (bukan gembok 3 digit). Waktu salah tidak membuka.
    Atur 03:45, pasang; baca koran 1998. Gunakan kunci di pintu tangga.
-8. Naiki tangga ke lantai 2. Ikuti jejak tangan berdarah. Kamar anak terkunci: nyalakan
+8. Naiki tangga ke lantai 2 lewat pintu tangga tengah (tangga kini di dalam ruang tangga
+   tersendiri; tidak bisa dipanjat dari lorong tanpa membuka pintu). Ikuti jejak tangan berdarah.
+   Bukti yang harus difoto ditandai **titik AR berkedip**; saat berhasil dipotret keluar
+   **asap hitam** sebagai efek pembersihan. Kamar anak terkunci: nyalakan
    AR dan merunduklah menembus celah ventilasi di balik lemari. Baca **buku harian Bima**,
    lalu potret cangkir susu yang retak dengan Kamera AR (rantai 1) — pintu kamar anak terbuka.
    Kamar mandi: buka tirai bak, potret cakaran jari kecil (rantai 2). Balkon dalam:
