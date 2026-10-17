@@ -1,0 +1,222 @@
+{
+  "repositoryRevision": "a8bc2d54ff0ac92e78ff71431b1023eda42bf482",
+  "license": "CC0-1.0 graphical assets only",
+  "licenseSource": "https://github.com/makehumancommunity/makehuman/blob/a8bc2d54ff0ac92e78ff71431b1023eda42bf482/LICENSE.md",
+  "communityLicense": "https://static.makehumancommunity.org/about/license.html",
+  "systemAssets": "https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html",
+  "packUrl": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+  "packSha256": "b542127a8e25547c7c29c19f2d1d2adb9a664c80396ecd694095dbc8028a0107",
+  "assets": [
+    {
+      "source": "https://raw.githubusercontent.com/makehumancommunity/makehuman/a8bc2d54ff0ac92e78ff71431b1023eda42bf482/LICENSE.ASSETS.md",
+      "cachedPath": "Builds/ArtSources/MakeHuman/LICENSE.ASSETS.md",
+      "sha256": "f6089cba01cb570a24712b41ab8a586ccd3cc5ef53dc266ca50b95c288956d2c"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/makehumancommunity/makehuman/a8bc2d54ff0ac92e78ff71431b1023eda42bf482/makehuman/data/3dobjs/base.obj",
+      "cachedPath": "Builds/ArtSources/MakeHuman/base.obj",
+      "sha256": "8e761e6624b8f54536409135d1636da63b32486a90d4897f84e121d144f6fb4c"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/makehumancommunity/makehuman/a8bc2d54ff0ac92e78ff71431b1023eda42bf482/makehuman/data/rigs/default.mhskel",
+      "cachedPath": "Builds/ArtSources/MakeHuman/default.mhskel",
+      "sha256": "99f179bce0aa850b45d4191a1d0d234c5851f881c057439470ded3bddf729a24"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/makehumancommunity/makehuman/a8bc2d54ff0ac92e78ff71431b1023eda42bf482/makehuman/data/rigs/default_weights.mhw",
+      "cachedPath": "Builds/ArtSources/MakeHuman/default_weights.mhw",
+      "sha256": "0f3641d651ae3d00ad6b4ccee43142edb109d3bd909d27d9e4139ef1beed8625"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/makehumancommunity/makehuman/a8bc2d54ff0ac92e78ff71431b1023eda42bf482/makehuman/data/targets/macrodetails/asian-female-young.target",
+      "cachedPath": "Builds/ArtSources/MakeHuman/asian-female-young.target",
+      "sha256": "095fe79694fa19e1fe98d93009ec116199bd524e081c640351a10eccf2cca1eb"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/makehumancommunity/makehuman/a8bc2d54ff0ac92e78ff71431b1023eda42bf482/makehuman/data/targets/macrodetails/asian-female-old.target",
+      "cachedPath": "Builds/ArtSources/MakeHuman/asian-female-old.target",
+      "sha256": "1a90cb281df640df55fbce3acd6588f27b28affeb96a7f693f6f038aefc204d8"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/makehumancommunity/makehuman/a8bc2d54ff0ac92e78ff71431b1023eda42bf482/makehuman/data/targets/macrodetails/asian-male-young.target",
+      "cachedPath": "Builds/ArtSources/MakeHuman/asian-male-young.target",
+      "sha256": "ed2e8c191cb6b87b4a2d97c80486acb2604fa549316c7aa2a738a5d5a14334dc"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/skins/middleage_asian_female/middleage_asian_female.mhmat",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/skins/middleage_asian_female/middleage_asian_female.mhmat",
+      "sha256": "d002c338239d2aeeeec037e21f9dd22cd484ba8a955aee22aa0fe279ad6a3960"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/skins/middleage_asian_female/middleage_asian_female.thumb",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/skins/middleage_asian_female/middleage_asian_female.thumb",
+      "sha256": "2e043a42391e4266b7fe1904d7b2175351e737a1efa0f4e45d6b14b48a39c55a"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/skins/middleage_asian_female/middleage_lightskinned_female_diffuse2.png",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/skins/middleage_asian_female/middleage_lightskinned_female_diffuse2.png",
+      "sha256": "39c505ca224387bef0b20cd2bf513c3997c27c7e7434447228c9991b87cb8d01"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/skins/young_asian_male/young_asian_male.mhmat",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/skins/young_asian_male/young_asian_male.mhmat",
+      "sha256": "9fdfc9863cd15d1359311435f2da7de3906f81d6eea549fba6bf14cd82ceb6a0"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/skins/young_asian_male/young_asian_male.thumb",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/skins/young_asian_male/young_asian_male.thumb",
+      "sha256": "21245c121a4efc96d18cb64a2fc7d95bfcc768f7b333d59b7a471708551ed13d"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/skins/young_asian_male/young_lightskinned_male_diffuse3.png",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/skins/young_asian_male/young_lightskinned_male_diffuse3.png",
+      "sha256": "f50016a5507fc687dc8df06599c8ea48de950cd185de33a71cafc1319ddab4d5"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/clothes/male_casualsuit05/male_casualsuit05.mhclo",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/clothes/male_casualsuit05/male_casualsuit05.mhclo",
+      "sha256": "df41c9fba3da054e35b964706ad2f8d189e65cc00a45f4a34f65235946f647f0"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/clothes/male_casualsuit05/male_casualsuit05.thumb",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/clothes/male_casualsuit05/male_casualsuit05.thumb",
+      "sha256": "ad39df902cbf63ce390e00bf3ceec495a6f94c3827875f57f669746cccf51ffb"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/clothes/male_casualsuit05/male_casualsuit05.mhmat",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/clothes/male_casualsuit05/male_casualsuit05.mhmat",
+      "sha256": "e29fdf895bfc03ebf49f1fcb784cd41cfd8cf95beba4a0a54bc95c084b9b9528"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/clothes/male_casualsuit05/male_casualsuit05_ao.png",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/clothes/male_casualsuit05/male_casualsuit05_ao.png",
+      "sha256": "cf22b778ce3d2c92cf0c5e7eef2bcc2a0d9812e578d4c08a4bb428eb33eacc66"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/clothes/male_casualsuit05/male_casualsuit05.obj",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/clothes/male_casualsuit05/male_casualsuit05.obj",
+      "sha256": "6069dd8b828591c16f74678c235387954775b815b5b77640d24fb7c9541b85c2"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/clothes/male_casualsuit05/male_casualsuit05_normal.png",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/clothes/male_casualsuit05/male_casualsuit05_normal.png",
+      "sha256": "aec19a8fa1988aa178e7ead9f9c0b290fc441ed62ce47d5c4dd611a0037a796c"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/clothes/male_casualsuit05/male_casualsuit05_diffuse.png",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/clothes/male_casualsuit05/male_casualsuit05_diffuse.png",
+      "sha256": "d4345efe9332c23e9302f5a3bca8c895004be841b5ebea593c96189870e3852a"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/clothes/shoes01/shoes01.mhclo",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/clothes/shoes01/shoes01.mhclo",
+      "sha256": "7994e38f7cdcee0bd5f55101660badcce0162fcdfc7f432218dd1eb301626252"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/clothes/shoes01/shoes01_diffuse.png",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/clothes/shoes01/shoes01_diffuse.png",
+      "sha256": "50c9a406a7f1cb6aa7b42912348e78f09d0252aa3963c8229cf18dfe8353cdbf"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/clothes/shoes01/shoes01.thumb",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/clothes/shoes01/shoes01.thumb",
+      "sha256": "a118291fe3e83e3c616febf52fdb480186c816e7cd4d77d331adffd457421cbb"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/clothes/shoes01/shoes01_normal.png",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/clothes/shoes01/shoes01_normal.png",
+      "sha256": "a9bfd7223e98b8f93100e89596135e3a94e6044f9db11b4d23cec625c37a4599"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/clothes/shoes01/shoes01.mhw",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/clothes/shoes01/shoes01.mhw",
+      "sha256": "b377d91e6d0264521f672c3990c366b2631103accba4921fc3965c2ed5ce395b"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/clothes/shoes01/shoes01.mhmat",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/clothes/shoes01/shoes01.mhmat",
+      "sha256": "db1711e2dfea4dd8c24459643603a190d9a9da603fd26da5542002a73d740be8"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/clothes/shoes01/shoes01.obj",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/clothes/shoes01/shoes01.obj",
+      "sha256": "eac355a842a8eb8ae2f09fac8dd18a877a24ef2521ed2d6bf38559b42ce4b49a"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/hair/long01/long01_diffuse.png",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/hair/long01/long01_diffuse.png",
+      "sha256": "e8dc25d90f8f62467e8630420e1240a400d070054fb7c3f1d3f7bf3e457d6c2c"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/hair/long01/long01.mhmat",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/hair/long01/long01.mhmat",
+      "sha256": "74ec88267e679d316f8037a074511ffc887b27e198ea381d0ae4a3f180f96760"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/hair/long01/long01.obj",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/hair/long01/long01.obj",
+      "sha256": "7f1d6dadbdf9e96435251955d6657e77ea5433c9bc7c85a5c5f5e4eae0cb9a8c"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/hair/long01/long01.mhclo",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/hair/long01/long01.mhclo",
+      "sha256": "94ecbebfd834da2cbee2ce90b730972590eb22a252ecd9592038ea736e063646"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/hair/long01/long01.thumb",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/hair/long01/long01.thumb",
+      "sha256": "4cb13248134980fc69fdbe298e2bdde58864aec764243cb3c50cb0da7dc0ed98"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/hair/short04/short04.mhmat",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/hair/short04/short04.mhmat",
+      "sha256": "7a3ac74db8478aa0afdb8a596c6fe3997d1a8a09d12211d70e8f1e9f0b7e0e97"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/hair/short04/short04.obj",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/hair/short04/short04.obj",
+      "sha256": "676964a133ee35ffcea1195382bf75542da7a298931e4001bc7b0d7b707225de"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/hair/short04/short04.mhclo",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/hair/short04/short04.mhclo",
+      "sha256": "d60640aa4c4ffce1aa269647ba436b6ee0bb21bb948f927b84e27a48d2107157"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/hair/short04/short04_diffuse.png",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/hair/short04/short04_diffuse.png",
+      "sha256": "0bef7fc0e403db5a40fabb2111ebfa6f7e8158e204c6e56b8da98e9ef527846e"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/hair/short04/short04.thumb",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/hair/short04/short04.thumb",
+      "sha256": "a7db8f3db6e2a53194993de73b875d000f928b66a8ac4d6efab51bfd8e6664fd"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/eyes/materials/brown.mhmat",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/eyes/materials/brown.mhmat",
+      "sha256": "4abad93ce50541c08127721e77bce035640c9f16bed16cd0f5524b1cd5908465"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/eyes/materials/brown_eye.png",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/eyes/materials/brown_eye.png",
+      "sha256": "4659691c7295ad6206c78b003e5fd0e5f91dcd53032fa914a229bb48cabe424b"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/eyes/low-poly/low-poly.thumb",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/eyes/low-poly/low-poly.thumb",
+      "sha256": "27b09c5a2bd792671c99a00016ec836855278f199bc4753c3018f1ac73068c72"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/eyes/low-poly/low-poly.mhclo",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/eyes/low-poly/low-poly.mhclo",
+      "sha256": "68582e28e9176cba7cfcf35208f671b6201b8d1bc95c32decff61a3160ec34d8"
+    },
+    {
+      "source": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip#/eyes/low-poly/low-poly.obj",
+      "cachedPath": "Builds/ArtSources/MakeHuman/system/eyes/low-poly/low-poly.obj",
+      "sha256": "783fe1e6331162c876520b4c2bed7a8ca06354ca15497e8ebd68bb1b59f4d3de"
+    }
+  ],
+  "scope": "Only graphical data. No AGPL application code, source generator or service is included in the game."
+}

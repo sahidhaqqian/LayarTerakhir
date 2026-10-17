@@ -31,8 +31,10 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
    Tujuan lain masih terkunci. Berangkat ke Atmaja **hanya dekat motor/gerbang**, bukan dari kamar.
    Setelah pilih tujuan, lihat animasi mendekat/naik motor, tangan di setang, gerbang membuka,
    lampu depan menyorot jalan dari lensa motor, dan motor melaju melewati gerbang sebelum
-   transisi lokasi. Kamera eksplorasi third-person over-the-shoulder; badan Raka masih model
-   prosedural sederhana, bukan karakter rigged final. Coba E pintu sambil aplikasi HP terbuka.
+   transisi lokasi. Kamera eksplorasi dimulai dengan over-the-shoulder; tekan **V** untuk
+   berpindah ke first-person dan kembali, atau pilih di Settings. Raka memakai model
+   berkerangka dengan pose jalan/lari/jongkok/HP/motor. Coba E pintu dalam kedua pandangan
+   sambil aplikasi HP terbuka. Pilihan kamera tersimpan antar-scene dan antar-launch.
    Saat kamera terdesak dinding hingga terlalu dekat, tubuh disembunyikan sementara
    agar kepala/punggung tidak menutup pandangan; kembali terlihat ketika ada ruang.
 4. Di Atmaja: E kedua daun gerbang; coba pintu depan yang macet dan lihat gerakan percobaannya.
@@ -88,7 +90,10 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
     Coba pause/Settings saat kontrak akhir dan title; sesudah Resume pointer tombol harus tetap dapat dipakai.
     Save lama boleh dilanjutkan; gunakan NEW GAME untuk menguji pembuka dari awal.
 
-SETTINGS: volume, sensitivitas, subtitle, reduksi glitch, remap delapan aksi utama.
+SETTINGS: volume, sensitivitas, subtitle, reduksi glitch, pilihan kamera, remap sembilan aksi utama.
+Default V memilih perspektif; selfie memakai X untuk menghindari benturan. Di lemari
+dan standoff Blitz, kamera menjadi first-person sementara lalu memulihkan pilihan.
+Coba remap perspektif ke L, uji dekat dinding, jongkok dan pause tanpa mengubah checkpoint.
 Mode layar: fullscreen borderless/windowed lewat Settings atau Alt+Enter, juga saat pause.
 Pilihan tersimpan antar-launch; windowed dapat di-resize/maximize. Peluncuran normal pertama
 memakai fullscreen pada resolusi monitor. Flag `-screen-*` untuk audit tetap dihormati.

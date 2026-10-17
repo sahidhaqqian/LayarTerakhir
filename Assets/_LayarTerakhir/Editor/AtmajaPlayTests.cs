@@ -62,6 +62,55 @@ namespace LayarTerakhir.Editor.Tests
         [UnityTest] public IEnumerator FinishedPrologRestoresTheTitleWithoutAnotherDonation()=>Run(FinishedProlog());
         [UnityTest] public IEnumerator MissedEmergencyBlitzRestoresChaseMusicBatteryAndInput()=>Run(BlitzRetry());
         [UnityTest] public IEnumerator MasterCellarAndClosingTrapdoorHaveConnectedCapsuleRoutes()=>Run(FinaleGeometry());
+        [UnityTest] public IEnumerator HybridCameraUsesRemappedInputAndPreservesChoiceDuringForcedCloseups()=>Run(HybridCamera());
+        private IEnumerator HybridCamera()
+        {
+            yield return new WaitForSeconds(2);var d=Find<AtmajaDirector>();var p=d.player;
+            var rig=p.GetComponent<ShoulderCameraRig>();var input=GameInputConfig.Instance;
+            var eye=p.GetComponent<InteractionInteractor>().playerCamera;
+            d.PlacePlayer(d.P(8.2f,-2,.06f),Quaternion.LookRotation(d.north));p.enabled=true;
+            yield return null;yield return null;
+            Assert.That(rig.SelectedPerspective,Is.EqualTo(PlayerPerspective.OverShoulder));
+            Assert.That(input.GetKeyForAction(GameAction.TogglePerspective),Is.EqualTo(KeyCode.V));
+            Assert.That(input.modeSelfieKey,Is.EqualTo(KeyCode.X),"Old serialized V selfie binding must migrate without colliding with perspective");
+            var avatar=rig.Avatar.GetComponent<AnimatedRakaAvatar>();Assert.That(avatar,Is.Not.Null);
+            Assert.That(avatar.motion.GetClipCount(),Is.EqualTo(11));
+            Assert.That(rig.Avatar.GetComponentsInChildren<SkinnedMeshRenderer>().Length,Is.GreaterThanOrEqualTo(5));
+            Assert.That(d.phoneView.FeedCamera.cullingMask&(1<<ShoulderCameraRig.AvatarLayer),Is.Zero,"Raka's shoulder/handset must not obscure the separate phone feed");
+            var bounce=p.transform.Find("RakaSoftBounce").GetComponent<Light>();
+            Assert.That(bounce.cullingMask,Is.EqualTo(1<<ShoulderCameraRig.AvatarLayer));Assert.That(bounce.shadows,Is.EqualTo(LightShadows.None));
+            Assert.That((uint)bounce.GetComponent<UnityEngine.Rendering.Universal.UniversalAdditionalLightData>().renderingLayers,Is.EqualTo(ShoulderCameraRig.AvatarRenderingLayer));
+            Assert.That(rig.Avatar.GetComponentsInChildren<Renderer>(true).All(r=>(r.renderingLayerMask&ShoulderCameraRig.AvatarRenderingLayer)!=0),Is.True,"Only avatar renderers opt into the body fill's URP rendering layer");
+            long wallet=CampaignState.Instance.Data.wallet_bound;var checkpoint=CampaignState.Instance.Data.checkpoint_id;
+            yield return Press(Key.V);
+            Assert.That(rig.IsFirstPerson,Is.True);Assert.That(Vector3.Distance(eye.transform.position,p.cameraPivot.position),Is.LessThan(.001f));
+            Assert.That(bounce.enabled,Is.False,"First-person does not need the visual-only body fill");
+            Assert.That(rig.Avatar.GetComponentsInChildren<Renderer>(true).All(r=>r.shadowCastingMode==UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly),Is.True);
+            yield return Press(Key.V);Assert.That(rig.IsFirstPerson,Is.False);Assert.That(rig.CurrentDistance,Is.GreaterThan(1));
+            rig.FirstPersonOverride=true;rig.RefreshCameraPose();yield return Press(Key.V);
+            Assert.That(rig.IsFirstPerson,Is.True);Assert.That(rig.SelectedPerspective,Is.EqualTo(PlayerPerspective.OverShoulder));
+            rig.FirstPersonOverride=false;rig.RefreshCameraPose();Assert.That(rig.IsFirstPerson,Is.False);
+            rig.SetPerspective(PlayerPerspective.FirstPerson);rig.FirstPersonOverride=true;rig.FirstPersonOverride=false;
+            Assert.That(rig.SelectedPerspective,Is.EqualTo(PlayerPerspective.FirstPerson));
+            input.RemapAction(GameAction.TogglePerspective,KeyCode.L);yield return Press(Key.V);
+            Assert.That(rig.SelectedPerspective,Is.EqualTo(PlayerPerspective.FirstPerson));
+            yield return Press(Key.L);Assert.That(rig.SelectedPerspective,Is.EqualTo(PlayerPerspective.OverShoulder));
+            input.RemapAction(GameAction.TogglePerspective,KeyCode.V);
+            GameShell.Instance.ShowSettings();yield return null;
+            var setting=GameObject.Find("PerspectiveMode").GetComponent<UnityEngine.UI.Button>();setting.onClick.Invoke();yield return null;
+            Assert.That(rig.SelectedPerspective,Is.EqualTo(PlayerPerspective.FirstPerson));
+            GameShell.Instance.Resume();rig.SetPerspective(PlayerPerspective.OverShoulder);p.enabled=false;
+            var wall=GameObject.CreatePrimitive(PrimitiveType.Cube);wall.name="HybridCameraOccluder";
+            wall.transform.SetPositionAndRotation(p.cameraPivot.TransformPoint(0,0,-.55f),p.transform.rotation);wall.transform.localScale=new Vector3(4,3,.12f);
+            Physics.SyncTransforms();rig.RefreshCameraPose();Assert.That(rig.CurrentDistance,Is.LessThan(.9f));
+            Assert.That(rig.Avatar.GetComponentsInChildren<Renderer>(true).All(r=>r.shadowCastingMode==UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly),Is.True,"A squeezed camera must not render inside Raka's head");
+            Object.DestroyImmediate(wall);Physics.SyncTransforms();rig.RefreshCameraPose();Assert.That(rig.CurrentDistance,Is.GreaterThan(1));
+            var feet=p.transform.position;rig.Riding=true;rig.RefreshCameraPose();
+            Assert.That(rig.Avatar.localPosition.y,Is.GreaterThan(.25f),"The seated clip compensates for the existing motor mount anchor");
+            Assert.That(p.transform.position,Is.EqualTo(feet),"Rider pose compensation must only move the visual mesh");
+            rig.Riding=false;rig.RefreshCameraPose();Assert.That(rig.Avatar.localPosition,Is.EqualTo(Vector3.zero));
+            Assert.That(CampaignState.Instance.Data.wallet_bound,Is.EqualTo(wallet));Assert.That(CampaignState.Instance.Data.checkpoint_id,Is.EqualTo(checkpoint));
+        }
         private IEnumerator FinaleGeometry()
         {
             yield return new WaitForSeconds(2);var d=SeedBasement();var p=d.player;var cc=p.GetComponent<CharacterController>();
@@ -167,11 +216,13 @@ namespace LayarTerakhir.Editor.Tests
             b.nyonya.transform.position=b.exitAnchor1.position;Physics.SyncTransforms();
             var item=b.wardrobeCol1.GetComponent<AtmajaItem>();item.Interact();yield return null;
             Time.timeScale=1;Assert.That(b.IsHidden&&d.player.MovementLocked,Is.True);
+            var rig=d.player.GetComponent<ShoulderCameraRig>();Assert.That(rig.IsFirstPerson,Is.True);Assert.That(rig.SelectedPerspective,Is.EqualTo(PlayerPerspective.OverShoulder));
             yield return new WaitForSeconds(.4f);Assert.That(b.InspectingLocker,Is.True,"Warning must start before the screen can expose Raka");
             yield return Press(Key.F);Assert.That(phone.isScreenOn,Is.False,"The real screen binding remains live while hidden");
             yield return new WaitForSeconds(5.4f);Assert.That(b.IsHidden,Is.True);Assert.That(b.InspectingLocker,Is.False);
             var at=b.nyonya.transform.position;yield return new WaitForSeconds(.7f);Assert.That(Vector3.Distance(at,b.nyonya.transform.position),Is.GreaterThan(.05f),"Patrol must continue while the player remains hidden");
             yield return Press(Key.E);Assert.That(b.IsHidden,Is.False);Assert.That(d.player.MovementLocked,Is.False);
+            Assert.That(rig.IsFirstPerson,Is.False,"Exiting a real wardrobe restores the shoulder selection");
             Assert.That(Vector3.Distance(d.player.transform.position,b.exitAnchor1.position),Is.LessThan(.2f));
         }
         private IEnumerator InterruptedRecording()

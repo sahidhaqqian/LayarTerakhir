@@ -1,6 +1,6 @@
 # Layar Terakhir
 
-Game horor psikologis Indonesia dengan kamera third-person over-the-shoulder. Pemain berperan sebagai **Raka Wijaya**, livestreamer muda yang terjebak kontrak dengan entitas misterius **Penonton_Terakhir**: nyalakan siaran di Rumah Keluarga Atmaja sebelum tengah malam, atau nyawa kameramennya, Damar, taruhannya.
+Game horor psikologis Indonesia dengan kamera **over-the-shoulder third-person / first-person**, dipilih dengan **V** atau Settings. Pemain berperan sebagai **Raka Wijaya**, livestreamer muda yang terjebak kontrak dengan entitas misterius **Penonton_Terakhir**: nyalakan siaran di Rumah Keluarga Atmaja sebelum tengah malam, atau nyawa kameramennya, Damar, taruhannya.
 
 Permainan berjalan dalam enam babak bercerita (Babak 0–5) dengan mekanik eksorsisme berbasis kamera smartphone — AR, UV, Selfie, ThermoKlenik, EVP — serta empat ending: **Bad, Normal, True, dan Secret "Saksi Tanpa Layar"**. Acuan lengkap ada di [`Rancangan.MD`](Rancangan.MD).
 
@@ -22,11 +22,18 @@ rute perabot/kamar utama dan transisi pelarian. Rekaman handycam sekarang menamp
 adegan visual original di engine: pasar malam di balik cermin, tangan yang meraih,
 dan kamera Damar ditarik masuk. Cermin kamar mandi memakai refleksi terbatas dan
 aparisi yang hanya terlihat di cermin; petunjuk AR menggunakan guratan fisik.
-Nyonya memakai model original baru dengan kebaya gading, wajah, rambut, tangan,
-sendi gerak dan gunting yang mengikuti tangan; animasinya masih prosedural.
+Raka dan Nyonya kini memakai mesh berkulit dan kerangka 48 tulang dari data grafis
+CC0 MakeHuman yang diadaptasi, dengan klip gerak buatan proyek. Raka mempunyai 11 klip
+untuk berjalan, berlari, jongkok, HP dan motor; Nyonya mempunyai lima klip untuk
+diam, patroli, kejar, ancaman dan recoil Blitz. Kebaya gading memakai tekstur renda
+original yang dihasilkan dengan imagegen; asal dan lisensi tercatat di kredit aset.
+OTS menjadi pilihan awal, V berpindah ke first-person. Lemari dan standoff Blitz
+menggunakan closeup first-person sementara, lalu mengembalikan pilihan pemain.
 
 Laporan dan bukti sesi penyelesaian ada di
 [`Audit/prolog-completion-2026-10-17.md`](Audit/prolog-completion-2026-10-17.md).
+Revisi kamera dan karakter berikutnya dicatat di
+[`Audit/hybrid-camera-2026-10-17.md`](Audit/hybrid-camera-2026-10-17.md).
 Panduan bermain dan pemeriksaan Windows ada di
 [`Audit/atmaja-windows-playtest.md`](Audit/atmaja-windows-playtest.md).
 
@@ -101,9 +108,10 @@ python3 Tools/run_golden_checks.py --stage test
 | `E` | Interaksi dunia | `G` | Flare |
 | `TAB` | Angkat/simpan HP | `H` | Kemenyan |
 | `F` | Matikan/nyalakan layar HP | `LMB` | Foto / Blitz |
-| `Q` / `R` | AR / UV | `V` | Kamera Selfie |
+| `Q` / `R` | AR / UV | `V` | OTS ↔ first-person |
+| `X` | Kamera Selfie (modul lanjutan) | | |
 
-Delapan aksi utama bisa di-remap lewat SETTINGS; binding lain tersedia di `GameInputConfig`. Prompt dunia mengikuti binding aktif. Shortcut UI tetap: `ESC` menu/jeda, `Z` aplikasi ↔ kamera HP, `M` peta HP. `J` membuka Jurnal; entri dapat diklik untuk detail. Baris modul cerita lanjutan di tabel adalah rancangan, belum semuanya playable. AR dan UV memakai satu slot pemindaian.
+Sembilan aksi utama bisa di-remap lewat SETTINGS; binding lain tersedia di `GameInputConfig`. Prompt dunia mengikuti binding aktif. Shortcut UI tetap: `ESC` menu/jeda, `Z` aplikasi ↔ kamera HP, `M` peta HP. `J` membuka Jurnal; entri dapat diklik untuk detail. Baris modul cerita lanjutan di tabel adalah rancangan, belum semuanya playable. AR dan UV memakai satu slot pemindaian.
 
 ---
 

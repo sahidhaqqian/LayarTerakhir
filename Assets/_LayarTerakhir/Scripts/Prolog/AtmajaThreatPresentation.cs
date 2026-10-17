@@ -10,11 +10,13 @@ namespace LayarTerakhir.Prolog
         public Transform leftArm,rightArm,leftLeg,rightLeg,head;
         public bool HasCharacterRig=>leftArm&&rightArm;
         public ParticleSystem blitzSmoke;
+        public Animation authoredMotion;
         private Quaternion bodyBase, weaponBase;
         private Vector3 bodyPosition, weaponPosition, previous;
         private float stride;
         private bool ready, wasStunned;
         private Quaternion leftArmBase,rightArmBase,leftLegBase,rightLegBase,headBase;
+        private string currentClip;
         private void Start()
         {
             if (!body || !weapon) return;
@@ -31,6 +33,19 @@ namespace LayarTerakhir.Prolog
             float moved = Vector3.Distance(previous, transform.position); previous = transform.position;
             if (moved < .6f) stride += moved * 9;
             float motion = moved > .001f ? 1 : 0;
+            if(authoredMotion)
+            {
+                string clip=recoil?"Stun":windup?"Windup":motion>0?(chase.IsPursuing||chase.IsGateRun?"Run":"Walk"):"Idle";
+                var state=authoredMotion[clip];
+                if(state)
+                {
+                    state.wrapMode=recoil||windup?WrapMode.ClampForever:WrapMode.Loop;
+                    if(clip=="Walk"||clip=="Run")state.speed=Mathf.Clamp(moved/Mathf.Max(.001f,Time.deltaTime)/(clip=="Run"?3.2f:.9f),.65f,1.5f);
+                    if(currentClip!=clip||!authoredMotion.IsPlaying(clip)){authoredMotion.CrossFade(clip,.18f);currentClip=clip;}
+                }
+                if(blitzSmoke&&recoil&&!wasStunned)blitzSmoke.Play();wasStunned=recoil;
+                return;
+            }
             Quaternion lean = Quaternion.Euler(recoil ? -19 : windup ? 12 : Mathf.Sin(stride) * 2 * motion, 0, recoil ? 13 : Mathf.Sin(stride * .5f) * 2 * motion);
             body.localRotation = Quaternion.Slerp(body.localRotation, bodyBase * lean, Time.unscaledDeltaTime * 5);
             body.localPosition = bodyPosition + Vector3.up * (Mathf.Sin(stride * 2) * .004f * motion);

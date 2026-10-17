@@ -66,7 +66,7 @@ namespace LayarTerakhir.Prolog
             homeButton.gameObject.SetActive(screen&&!UiFocus.Cinematic);stowButton.gameObject.SetActive(screen&&!UiFocus.Cinematic);
             var stowBinding=GameInputConfig.Instance?GameInputConfig.Instance.togglePhoneKey:KeyCode.Tab;
             if(stowBinding!=lastStowBinding){lastStowBinding=stowBinding;stowLabel.text="SIMPAN  ["+stowBinding.ToString().ToUpperInvariant()+"]";}
-            FeedCamera.cullingMask=playerCamera.cullingMask|((Phone.currentScanMode==ScanVisualMode.AR)?1<<ARLayer:0);
+            FeedCamera.cullingMask=(playerCamera.cullingMask|((Phone.currentScanMode==ScanVisualMode.AR)?1<<ARLayer:0))&~(1<<ShoulderCameraRig.AvatarLayer);
             var owner=FindFirstObjectByType<FirstPersonController>();
             if(owner&&owner.cameraPivot)FeedCamera.transform.SetPositionAndRotation(owner.cameraPivot.position+owner.transform.forward*.26f,owner.cameraPivot.rotation);
             runtimeFeedMaterial.SetFloat("_ARGain",Phone.currentScanMode==ScanVisualMode.AR?2:1);runtimeFeedMaterial.SetFloat("_ReducedGlitch",GameShell.ReducedGlitch?1:0);

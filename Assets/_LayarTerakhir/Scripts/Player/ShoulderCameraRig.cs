@@ -1,15 +1,20 @@
+using System;
 using LayarTerakhir.Smartphone;
 using LayarTerakhir.UI;
 using LayarTerakhir.Core;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 namespace LayarTerakhir.Player
 {
+    public enum PlayerPerspective { OverShoulder, FirstPerson }
     // Keeps the existing movement/save contract, but renders Raka from a collision-aware shoulder.
     [DefaultExecutionOrder(100)]
     public sealed class ShoulderCameraRig : MonoBehaviour
     {
+        public const int AvatarLayer = 26;
+        public const uint AvatarRenderingLayer = 1u<<7;
         public Vector3 shoulderOffset = new Vector3(.48f, .10f, -1.85f);
         public float collisionRadius = .16f;
         public float CurrentDistance { get; private set; }
@@ -17,6 +22,9 @@ namespace LayarTerakhir.Player
         public bool CinematicVisible { get; set; }
         public bool Riding { get; set; }
         public bool FirstPersonOverride { get; set; }
+        public PlayerPerspective SelectedPerspective { get; private set; }
+        public bool IsFirstPerson => FirstPersonOverride || SelectedPerspective == PlayerPerspective.FirstPerson;
+        public static PlayerPerspective SavedPerspective => string.IsNullOrEmpty(Environment.GetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY")) && PlayerPrefs.GetInt("LT.Perspective",0)==1 ? PlayerPerspective.FirstPerson : PlayerPerspective.OverShoulder;
         private FirstPersonController player;
         private Camera eye;
         private Transform leftArm, rightArm, leftLeg, rightLeg, head, torso, handset;
@@ -25,6 +33,8 @@ namespace LayarTerakhir.Player
         private float stride;
         private readonly RaycastHit[] hits = new RaycastHit[48];
         private Material skin, hair, jacket, jeans, shoes, shirt;
+        private AnimatedRakaAvatar authoredAvatar;
+        private Light avatarBounce;
 
         private void Start()
         {
@@ -32,16 +42,40 @@ namespace LayarTerakhir.Player
             eye = GetComponent<InteractionInteractor>().playerCamera;
             eye.nearClipPlane = .055f;
             BuildRaka();
+            foreach(var part in Avatar.GetComponentsInChildren<Transform>(true))part.gameObject.layer=AvatarLayer;
+            foreach(var renderer in bodyRenderers)renderer.renderingLayerMask|=1u|AvatarRenderingLayer;
+            eye.cullingMask|=1<<AvatarLayer;
+            var bounce=new GameObject("RakaSoftBounce",typeof(Light));bounce.transform.SetParent(transform,false);
+            bounce.transform.localPosition=new Vector3(.55f,1.85f,-.9f);avatarBounce=bounce.GetComponent<Light>();
+            avatarBounce.type=LightType.Point;avatarBounce.range=2.8f;avatarBounce.intensity=6;
+            avatarBounce.color=new Color(.62f,.68f,.76f);avatarBounce.shadows=LightShadows.None;avatarBounce.cullingMask=1<<AvatarLayer;
+            avatarBounce.renderMode=LightRenderMode.ForcePixel;
+            avatarBounce.GetUniversalAdditionalLightData().renderingLayers=(RenderingLayerMask)AvatarRenderingLayer;
+            SelectedPerspective=SavedPerspective;
             lastPosition = transform.position;
         }
+
+        public void SetPerspective(PlayerPerspective perspective)
+        {
+            SelectedPerspective=perspective;
+            if(string.IsNullOrEmpty(Environment.GetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY")))
+            {PlayerPrefs.SetInt("LT.Perspective",(int)perspective);PlayerPrefs.Save();}
+            if(!UiFocus.Cinematic)RefreshCameraPose();
+        }
+
+        public void TogglePerspective()=>SetPerspective(SelectedPerspective==PlayerPerspective.OverShoulder?PlayerPerspective.FirstPerson:PlayerPerspective.OverShoulder);
 
         private void LateUpdate()
         {
             if (!eye || !player.cameraPivot) return;
+            bool modal=HudController.Instance&&HudController.Instance.IsModalOpen;
+            if(player.enabled&&!UiFocus.Cinematic&&!UiFocus.HardModal&&!modal&&!FirstPersonOverride&&GameInputConfig.Instance&&GameInputConfig.Instance.GetActionDown(GameAction.TogglePerspective))
+                TogglePerspective();
             // Wake-up and motorcycle shots temporarily own the camera.
             foreach (var renderer in bodyRenderers) renderer.enabled = !UiFocus.Cinematic || CinematicVisible;
             if (UiFocus.Cinematic)
             {
+                avatarBounce.enabled=CinematicVisible;
                 if(CinematicVisible)
                 {
                     foreach(var renderer in bodyRenderers)renderer.shadowCastingMode=ShadowCastingMode.On;
@@ -57,9 +91,12 @@ namespace LayarTerakhir.Player
         {
             if (!eye || !player || !player.cameraPivot) return;
             var pivot = player.cameraPivot;
-            if (FirstPersonOverride)
+            if (IsFirstPerson)
             {
+                avatarBounce.enabled=false;
+                CurrentDistance=0;
                 eye.transform.SetPositionAndRotation(pivot.position, pivot.rotation);
+                AnimateRaka();
                 foreach (var renderer in bodyRenderers) renderer.shadowCastingMode = ShadowCastingMode.ShadowsOnly;
                 return;
             }
@@ -77,6 +114,7 @@ namespace LayarTerakhir.Player
                 if (results[i].collider && !results[i].transform.IsChildOf(transform))
                     distance = Mathf.Min(distance, Mathf.Max(.12f, results[i].distance - .06f));
             CurrentDistance = distance;
+            avatarBounce.enabled=distance>=.9f;
             eye.transform.SetPositionAndRotation(anchor + direction.normalized * distance, pivot.rotation);
             AnimateRaka();
             foreach (var renderer in bodyRenderers)
@@ -92,6 +130,14 @@ namespace LayarTerakhir.Player
             if (speed < 9) stride += delta.magnitude * 7;
             float swing = Mathf.Sin(stride) * Mathf.Clamp01(speed / 1.5f) * (player.IsCrouching ? 19 : 30);
             bool phone = SmartphoneController.Instance && SmartphoneController.Instance.isPhoneRaised;
+            if (authoredAvatar)
+            {
+                // The seated clip lowers the pelvis by .4 m; the existing motorcycle
+                // mount was authored against the standing avatar's pelvis height.
+                Avatar.localPosition=Riding?Vector3.up*.4f:Vector3.zero;
+                authoredAvatar.Present(speed,player.IsCrouching,phone,Riding);
+                return;
+            }
             if(Riding)
             {
                 leftLeg.localRotation=rightLeg.localRotation=Quaternion.Euler(-65,0,0);
@@ -134,6 +180,15 @@ namespace LayarTerakhir.Player
 
         private void BuildRaka()
         {
+            var authored=Resources.Load<GameObject>("RakaCharacter");
+            if(authored)
+            {
+                Avatar=Instantiate(authored,transform,false).transform;
+                Avatar.name="Raka_AnimatedCharacter";
+                authoredAvatar=Avatar.GetComponent<AnimatedRakaAvatar>();
+                bodyRenderers=Avatar.GetComponentsInChildren<Renderer>();
+                return;
+            }
             // Original articulated, clothed young-adult silhouette; never a visible controller capsule.
             skin = ColorMaterial("Raka warm skin", new Color(.48f, .29f, .19f));
             hair = ColorMaterial("Raka black hair", new Color(.025f, .022f, .021f));

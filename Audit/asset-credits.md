@@ -261,3 +261,24 @@ in-engine mirror/market recording described in the completion section above.
 The original backdrop's new folded storage mesh is authored by
 `Tools/author_compact_kos.py --stored-only`; it retains the green cloth and collapsed frame,
 with no cloth simulation. It follows the original project's license, not Poly Haven's CC0.
+
+## Skinned character presentation / hybrid camera — 17 October 2026
+
+Raka and Sri Atmaja adapt **MakeHuman graphical data under CC0-1.0**. Source geometry,
+skin textures, eyes, hair, Raka's casual outfit and shoes come from the official core
+repository revision `a8bc2d54ff0ac92e78ff71431b1023eda42bf482` and official CC0 system
+asset pack. [Official licensing](https://static.makehumancommunity.org/about/license.html)
+distinguishes graphical data from the AGPL program. No MakeHuman program code is shipped.
+Exact URLs, hashes and pack SHA-256 are in `character-source-manifest.json`; the full
+graphical asset license is `makehuman-assets-CC0.txt` and included in the Windows ZIP.
+`Tools/fetch_character_sources.py` fetches the pinned inputs;
+`Tools/author_prolog_characters.py` is project-authored parsing, rig adaptation,
+mesh budgeting, garment/tool geometry and baked animation. The characters are adapted
+CC0 assets, not entirely original sculpts or extracted DreadOut assets.
+
+`SriKebayaLace-v1.png` is an original opaque ivory lace texture generated with the
+built-in imagegen tool. Its exact prompt and SHA-256 are retained in
+`character-generated-cloth.json`. The dark skirt reuses/tints the already credited
+Poly Haven CC0 `quatrefoil_jacquard_fabric` diffuse map. Portrait previews in
+`Visuals/Character-Authoring` are Blender previews; standalone screenshots provide
+the game-rendering evidence. Joint animations are authored/baked, not motion capture.

@@ -1,0 +1,153 @@
+{
+  "sourceManifest": "Audit/character-source-manifest.json",
+  "generatedCloth": "Audit/character-generated-cloth.json",
+  "method": "CC0 MakeHuman graphical data adapted into clothed, budgeted skinned meshes; original baked joint animation and garment/tool geometry; generated opaque ivory lace and CC0 PolyHaven jacquard",
+  "characters": [
+    {
+      "character": "SriAtmajaRigged",
+      "triangles": 15803,
+      "renderers": 9,
+      "bones": 48,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Run",
+        "Windup",
+        "Stun"
+      ],
+      "poseBoundsMetres": {
+        "Idle": {
+          "min": [
+            -0.2363,
+            -0.2451,
+            -0.0
+          ],
+          "max": [
+            0.2363,
+            0.1738,
+            1.5968
+          ]
+        },
+        "Run": {
+          "min": [
+            -0.2354,
+            -0.707,
+            0.0
+          ],
+          "max": [
+            0.2366,
+            0.5107,
+            1.5858
+          ]
+        },
+        "Seated": {
+          "min": [
+            -0.3727,
+            -0.5355,
+            -0.1072
+          ],
+          "max": [
+            0.3727,
+            0.1176,
+            1.1968
+          ]
+        }
+      },
+      "SriAtmajaEchoTriangles": 2382,
+      "SriAtmajaSeatedTriangles": 2382
+    },
+    {
+      "character": "RakaRigged",
+      "triangles": 14336,
+      "renderers": 6,
+      "bones": 48,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Run",
+        "Crouch",
+        "CrouchWalk",
+        "PhoneIdle",
+        "PhoneWalk",
+        "PhoneRun",
+        "PhoneCrouch",
+        "PhoneCrouchWalk",
+        "Riding"
+      ],
+      "poseBoundsMetres": {
+        "Idle": {
+          "min": [
+            -0.2918,
+            -0.2024,
+            -0.0029
+          ],
+          "max": [
+            0.292,
+            0.1466,
+            1.7416
+          ]
+        },
+        "Run": {
+          "min": [
+            -0.2945,
+            -0.7023,
+            -0.0029
+          ],
+          "max": [
+            0.2868,
+            0.5646,
+            1.7179
+          ]
+        },
+        "Crouch": {
+          "min": [
+            -0.364,
+            -0.491,
+            -0.0029
+          ],
+          "max": [
+            0.4371,
+            0.1347,
+            0.9818
+          ]
+        },
+        "CrouchWalk": {
+          "min": [
+            -0.3763,
+            -0.491,
+            -0.0029
+          ],
+          "max": [
+            0.4392,
+            0.1646,
+            0.9878
+          ]
+        },
+        "PhoneCrouch": {
+          "min": [
+            -0.436,
+            -0.491,
+            -0.0029
+          ],
+          "max": [
+            0.4371,
+            0.1347,
+            0.9818
+          ]
+        },
+        "Riding": {
+          "min": [
+            -0.3553,
+            -0.6737,
+            0.2261
+          ],
+          "max": [
+            0.3558,
+            0.1374,
+            1.3255
+          ]
+        }
+      }
+    }
+  ]
+}

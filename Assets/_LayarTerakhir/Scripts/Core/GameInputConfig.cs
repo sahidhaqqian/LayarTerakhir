@@ -27,7 +27,8 @@ namespace LayarTerakhir.Core
         UsePowerbank,
         UseFlare,
         UseIncense,
-        CaptureOrBlitz
+        CaptureOrBlitz,
+        TogglePerspective
     }
 
     [Serializable]
@@ -48,7 +49,8 @@ namespace LayarTerakhir.Core
         public KeyCode toggleScreenKey = KeyCode.F;
         public KeyCode modeARKey = KeyCode.Q;
         public KeyCode modeUVKey = KeyCode.R;
-        public KeyCode modeSelfieKey = KeyCode.V;
+        public KeyCode modeSelfieKey = KeyCode.X;
+        public KeyCode togglePerspectiveKey = KeyCode.V;
         public KeyCode modeThermoKey = KeyCode.T;
         public KeyCode modeEVPKey = KeyCode.C;
         public KeyCode openJournalKey = KeyCode.J;
@@ -68,7 +70,13 @@ namespace LayarTerakhir.Core
                 return;
             }
             Instance = this;
+            UpgradePerspectiveBinding();
         }
+
+        // Older scenes/preferences used V for a later, locked selfie lens.
+        // V now selects the requested world perspective; X retains that lens shortcut.
+        public void UpgradePerspectiveBinding()
+        { if (modeSelfieKey == KeyCode.V && togglePerspectiveKey == KeyCode.V) modeSelfieKey = KeyCode.X; }
 
         public void RemapAction(GameAction action, KeyCode newKey)
         {
@@ -94,6 +102,7 @@ namespace LayarTerakhir.Core
                 case GameAction.UseFlare: useFlareKey = newKey; break;
                 case GameAction.UseIncense: useIncenseKey = newKey; break;
                 case GameAction.CaptureOrBlitz: captureOrBlitzKey = newKey; break;
+                case GameAction.TogglePerspective: togglePerspectiveKey = newKey; break;
             }
         }
 
@@ -121,6 +130,7 @@ namespace LayarTerakhir.Core
                 GameAction.UseFlare => useFlareKey,
                 GameAction.UseIncense => useIncenseKey,
                 GameAction.CaptureOrBlitz => captureOrBlitzKey,
+                GameAction.TogglePerspective => togglePerspectiveKey,
                 _ => KeyCode.None
             };
         }

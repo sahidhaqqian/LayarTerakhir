@@ -1,0 +1,71 @@
+{
+  "utc": "2026-10-17T21:15:39.509344+00:00",
+  "trigger": "URP shader material validation on scene load during AtmajaSceneValidation, before Linux build invocation",
+  "changedFiles": [
+    {
+      "path": "Assets/_LayarTerakhir/Art/Characters/Materials/Sri_Batik.mat",
+      "beforeSha256": "363baca808fd1f43a1042b0227678ca9e9145852aaf168b438d5378969cd9c93",
+      "afterSha256": "87940ad88d89678a8e7c75f952a84cff61ddafee600d735b3c38f26a943bc2bc",
+      "normalizations": [
+        "_MainTex/_Color aliases synchronized to _BaseMap/_BaseColor by URP"
+      ],
+      "exactPreviousBytesReconstructed": true
+    },
+    {
+      "path": "Assets/_LayarTerakhir/Art/Characters/Materials/Sri_Cloth.mat",
+      "beforeSha256": "ea996dbba8b666490e24c7c1d67b06f315f96fbf7437d7ee319bb4193039f7d4",
+      "afterSha256": "88c6c49bed875fb239b9cc26b9589d68cc06383c3ba14286e864151354f6bb9a",
+      "normalizations": [
+        "_MainTex/_Color aliases synchronized to _BaseMap/_BaseColor by URP"
+      ],
+      "exactPreviousBytesReconstructed": true
+    },
+    {
+      "path": "Assets/_LayarTerakhir/Art/Characters/Materials/Sri_Eye.mat",
+      "beforeSha256": "7740d6251a34f90aa399181bf087fa420804eba603b59a1ca5a00bc7bbf26479",
+      "afterSha256": "eed7e679a95e7f00b43b9665b6d4a91e58e5f193a47c5e7eeac16759164d859e",
+      "normalizations": [
+        "_MainTex/_Color aliases synchronized to _BaseMap/_BaseColor by URP"
+      ],
+      "exactPreviousBytesReconstructed": true
+    },
+    {
+      "path": "Assets/_LayarTerakhir/Art/Characters/Materials/Sri_Hair.mat",
+      "beforeSha256": "c8b5fb8b2b829929d864cbc653c4ede5b104ad4b3170a408a31df8f44933b7a5",
+      "afterSha256": "ab728939745f44d645ed5bc78510f93e0ab0e2ad801deeb0de9fea8eab8ffbe2",
+      "normalizations": [
+        "_MainTex/_Color aliases synchronized to _BaseMap/_BaseColor by URP",
+        "Alpha-to-coverage, double-sided GI and TransparentCutout tag normalized from the already authored alpha-clip/cull settings"
+      ],
+      "exactPreviousBytesReconstructed": true
+    },
+    {
+      "path": "Assets/_LayarTerakhir/Art/Characters/Materials/Sri_Rust.mat",
+      "beforeSha256": "07f7a0d1fa656aa1602fd06a1e3baa22f5d045708dd1949fc88c8082f788af43",
+      "afterSha256": "46253b8de145995c179c882d314238d29dadcf5c9f3889c102165a3878a7ae28",
+      "normalizations": [
+        "_MainTex/_Color aliases synchronized to _BaseMap/_BaseColor by URP"
+      ],
+      "exactPreviousBytesReconstructed": true
+    },
+    {
+      "path": "Assets/_LayarTerakhir/Art/Characters/Materials/Sri_Seam.mat",
+      "beforeSha256": "a796cf524555a395f30883043191782e5447d508f0b7c95d3a0df06a2341eb94",
+      "afterSha256": "7530d43c0d0e97443e0543092d59676c5715b4467229bfb7928a8b183059b2ee",
+      "normalizations": [
+        "_MainTex/_Color aliases synchronized to _BaseMap/_BaseColor by URP"
+      ],
+      "exactPreviousBytesReconstructed": true
+    },
+    {
+      "path": "Assets/_LayarTerakhir/Art/Characters/Materials/Sri_Skin.mat",
+      "beforeSha256": "8c00c0ce34aaace1a8f92a4a816d53fe1015cfa1260883142d26253881cae0c3",
+      "afterSha256": "74838818a4646e2f3eff919cef195bbaf04085212abdc6efd60d6c724f4ad7bd",
+      "normalizations": [
+        "_MainTex/_Color aliases synchronized to _BaseMap/_BaseColor by URP"
+      ],
+      "exactPreviousBytesReconstructed": true
+    }
+  ],
+  "otherSourceFilesUnchanged": true
+}

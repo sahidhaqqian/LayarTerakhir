@@ -17,7 +17,7 @@ namespace LayarTerakhir.Editor
 {
     public static class AtmajaSceneValidation
     {
-        [Serializable] public class Report {public string utc,goldenSceneSha256;public int triangles,renderers,textureMaximum,failures;public string[] checks;}
+        [Serializable] public class Report {public string utc,goldenSceneSha256;public int triangles,staticTriangles,skinnedTriangles,runtimeRakaTriangles,renderers,textureMaximum,failures;public string[] checks;}
         public static void Run(){EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);Validate();}
         public static Report Validate(bool throwOnFailure=true)
         {
@@ -49,6 +49,13 @@ namespace LayarTerakhir.Editor
             var root=GameObject.Find("Atmaja_Environment_Art");int tris=0,texture=0;
             foreach(var f in root.GetComponentsInChildren<MeshFilter>(true))
             {Check(f.sharedMesh,"Mesh reference: "+f.name);if(f.sharedMesh)for(int s=0;s<f.sharedMesh.subMeshCount;s++)tris+=(int)f.sharedMesh.GetIndexCount(s)/3;}
+            int staticTris=tris,skinnedTris=0,rakaTris=0;
+            int Triangles(Mesh mesh){int count=0;if(mesh)for(int i=0;i<mesh.subMeshCount;i++)count+=(int)mesh.GetIndexCount(i)/3;return count;}
+            foreach(var skin in root.GetComponentsInChildren<SkinnedMeshRenderer>(true))skinnedTris+=Triangles(skin.sharedMesh);
+            var raka=Resources.Load<GameObject>("RakaCharacter");
+            Check(raka&&raka.GetComponent<AnimatedRakaAvatar>(),"Runtime Raka has an authored skinned-character resource");
+            if(raka)foreach(var skin in raka.GetComponentsInChildren<SkinnedMeshRenderer>(true))rakaTris+=Triangles(skin.sharedMesh);
+            tris+=skinnedTris+rakaTris;
             var renderers=root.GetComponentsInChildren<Renderer>(true);
             foreach(var r in renderers)
             foreach(var mat in r.sharedMaterials)
@@ -58,7 +65,7 @@ namespace LayarTerakhir.Editor
             }
             foreach(var t in UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects().SelectMany(g=>g.GetComponentsInChildren<Transform>(true)))
                 Check(GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(t.gameObject)==0,"No missing scripts: "+t.name);
-            Check(tris<300000,"Two-story scene art (ground floor, upper floor, basement, chase, AR) remains under 300k triangles");
+            Check(tris<300000,"Scene, skinned hunter and runtime Raka together remain under 300k authored triangles");
             Check(texture<=1024,"Bound artwork textures at most 1024px");
             Check(d.arFigure.layer==AtmajaPhoneView.ARLayer&&d.arClue.layer==AtmajaPhoneView.ARLayer&&!d.arFigure.activeSelf&&!d.arClue.activeSelf,"AR apparition/clue are isolated and start hidden");
             Check(d.upper&&d.basement&&d.chase&&d.upper.director==d&&d.basement.director==d&&d.chase.director==d,"Upper, basement and chase systems wired to the director");
@@ -66,6 +73,7 @@ namespace LayarTerakhir.Editor
             Check(d.basement&&d.basement.nyonya&&d.basement.waypoints.Length>=4&&d.chase&&d.chase.chaserFigure&&d.chase.rail.Length>=20,"Scene 5-7 hunter, patrol route and chase rail present");
             var threat=d.basement.nyonya.GetComponent<AtmajaThreatPresentation>();
             Check(threat&&threat.HasCharacterRig&&threat.head&&threat.weapon==d.basement.shearsProp.transform,"Articulated Sri Atmaja character, head and hand-held shears wired");
+            Check(threat&&threat.authoredMotion&&threat.authoredMotion.GetClipCount()==5,"Skinned hunter has five imported locomotion/attack/recoil clips");
             Check(d.chase.recording&&d.chase.recording.recordingSet&&d.chase.recording.recordingCamera&&d.chase.recording.reachingHands.Length==10,"Original handycam visual recording and ten reaching hands wired");
             Check(d.chase.recording.recordingCamera.cullingMask==(1<<AtmajaHandycamPlayback.RecordingLayer)&&!d.chase.recording.recordingSet.activeSelf,"Recording set isolated from gameplay and inactive by default");
             Check(d.chase.finale&&d.chase.cellarExitApproach&&d.chase.diningVaultStart&&d.chase.diningVaultEnd&&d.chase.cellarEgressFloor,"Complete cellar, table, window and title flow wired");
@@ -83,7 +91,7 @@ namespace LayarTerakhir.Editor
             using(var sha=SHA256.Create())hash=BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(PrologKosSceneBuilder.ScenePath))).Replace("-","").ToLowerInvariant();
             var protectedData=JsonUtility.FromJson<AtmajaSceneBuilder.Manifest>(File.ReadAllText("Audit/atmaja-art-manifest.json"));
             Check(hash==protectedData.protectedGoldenSceneSha256,"Approved Golden scene bytes preserved exactly");
-            var report=new Report{utc=DateTime.UtcNow.ToString("o"),triangles=tris,renderers=renderers.Length,textureMaximum=texture,failures=failures,goldenSceneSha256=hash,checks=checks.ToArray()};
+            var report=new Report{utc=DateTime.UtcNow.ToString("o"),triangles=tris,staticTriangles=staticTris,skinnedTriangles=skinnedTris,runtimeRakaTriangles=rakaTris,renderers=renderers.Length,textureMaximum=texture,failures=failures,goldenSceneSha256=hash,checks=checks.ToArray()};
             File.WriteAllText("Audit/atmaja-scene-validation.json",JsonUtility.ToJson(report,true)+"\n");
             Debug.Log("ATMAJA_VALIDATION checks="+checks.Count+" failures="+failures+" tris="+tris+" renderers="+renderers.Length);
             if(throwOnFailure&&failures>0)throw new Exception("Atmaja scene validation failed: "+failures);return report;

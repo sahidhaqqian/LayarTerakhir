@@ -1,0 +1,16 @@
+{
+  "utc": "2026-10-17T21:39:27.485561+00:00",
+  "reason": "Unity editor stalled before test setup while NewScene waited in native GarbageCollectSharedAssets; asset-GC worker blocked inside Mono TLS lookup. No test result was accepted from the stalled process.",
+  "observedMainThread": [
+    "GarbageCollectSharedAssets",
+    "UnloadUnusedAssetsOperation::IntegrateMainThread",
+    "EditorSceneManager::NewScene"
+  ],
+  "observedWorker": [
+    "ProcessMonoBehaviour",
+    "mono_domain_get",
+    "__tls_get_addr",
+    "pthread_mutex_lock"
+  ],
+  "action": "Stop only this test editor and retry the unchanged source in a fresh editor process"
+}

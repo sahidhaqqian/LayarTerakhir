@@ -87,9 +87,17 @@ namespace LayarTerakhir.Diagnostics
             yield return new WaitForSeconds(1.7f); Bind(); player.enabled = false;
             if(chaseOnly)goto Escape;
             Check(d.Stage == AtmajaStage.StairCheckpoint, "Continuation starts at the real stair checkpoint");
+            var hybrid=player.GetComponent<ShoulderCameraRig>();
+            Check(hybrid.SelectedPerspective==PlayerPerspective.OverShoulder,"Exploration defaults to over-the-shoulder third person");
+            Check(hybrid.Avatar.GetComponent<AnimatedRakaAvatar>()&&hybrid.Avatar.GetComponent<Animation>().GetClipCount()==11,"Standalone loads the skinned Raka resource and eleven motion clips");
             foreach (var p in new[] { d.P(-3.55f,5.1f,.54f),d.P(-3.55f,8.2f,.54f),d.P(1.05f,8.2f,2.2f),d.P(1.05f,6.925f,2.2f),d.P(-3.3f,6.925f,3.82f),d.P(-3.3f,5.75f,3.82f) }) yield return Walk(p);
             Check(Campaign.HasInventoryItem("EVENT_P0_UPPER_REACHED"), "Walking both flights triggers the upper-floor checkpoint");
             Aim(d.P(1.1f,5.1f,5.35f)); yield return Shot("01-upper-corridor-and-seals");
+            var standingPosition=player.transform.position;long cameraWallet=Campaign.Data.wallet_bound;
+            yield return ChangePerspective();Check(hybrid.IsFirstPerson&&Vector3.Distance(eye.transform.position,player.cameraPivot.position)<.01f,"V places the world camera at Raka's eyes");
+            Aim(d.P(1.1f,5.1f,5.35f));yield return Shot("01a-first-person-same-corridor");
+            Check(Vector3.Distance(player.transform.position,standingPosition)<.08f&&Campaign.Data.wallet_bound==cameraWallet,"Changing perspective preserves player position and wallet");
+            yield return ChangePerspective();Check(!hybrid.IsFirstPerson,"Second V restores the shoulder view");
             yield return Walk(d.P(-2.05f,5.80f,3.83f));
             Phone.isPhoneRaised=Phone.isScreenOn=true;Phone.SyncVisualState();d.phoneView.Apps.Open(PhoneApp.Camera);
             Aim(d.P(-2.05f,5.365f,5.35f));yield return Shot("01b-scratched-family-photograph");
@@ -102,10 +110,12 @@ namespace LayarTerakhir.Diagnostics
             foreach (var p in new[] { d.P(-5.1f,3.6f,3.83f),d.P(-4.8f,4.45f,3.83f),d.P(-4.4f,4.45f,3.83f) }) yield return Walk(p);
             yield return Use(d.upper.childDoor); yield return new WaitForSeconds(1.1f); yield return Walk(d.P(-4.4f,5.75f,3.83f));
             yield return Walk(d.P(-1.1f,5.75f,3.83f)); yield return Use(d.upper.bathDoor); yield return new WaitForSeconds(1.1f);
+            yield return ChangePerspective();Check(hybrid.IsFirstPerson,"Bathroom interactions and AR photography also run in first person");
             yield return Walk(d.P(-1.1f,4.4f,3.83f)); Aim(d.upper.mirrorSpot.position); yield return new WaitForSeconds(.3f); yield return Shot("05-bathroom-mirror");
             yield return Walk(d.P(-1.1f,3.0f,3.83f)); yield return Use(Item(AtmajaAction.BathCurtain)); yield return Shot("06-open-bath-curtain");
             RaiseAR(); yield return Walk(d.P(-1.1f,3.8f,3.83f)); Aim(d.upper.scratchAim.position); yield return null; yield return null; yield return ClickMouse();
             Check(d.upper.ChainsBroken == 2, "AR scratches follow the opened bathroom door and photo breaks chain two"); yield return Shot("07-second-evidence");
+            yield return ChangePerspective();Check(!hybrid.IsFirstPerson,"Third-person exploration resumes after the second photograph");
             yield return Walk(d.P(-1.1f,5.75f,3.83f)); yield return Walk(d.P(3.4f,5.75f,3.83f)); yield return Walk(d.P(3.4f,4.25f,3.83f));
             yield return Use(Item(AtmajaAction.WillLetter)); yield return Shot("08-nyonya-last-letter"); Hud.CloseDocumentModal();
             RaiseAR(); Aim(d.upper.ropeAim.position); yield return null; yield return null; yield return ClickMouse();
@@ -120,10 +130,12 @@ namespace LayarTerakhir.Diagnostics
             yield return Walk(d.basement.exitAnchor1.position); Phone.isPhoneRaised=Phone.isScreenOn=true;Phone.SyncVisualState();
             yield return Use(d.basement.wardrobeCol1.GetComponent<AtmajaItem>());
             Check(d.basement.IsHidden && player.MovementLocked, "Actual wardrobe interaction locks movement inside the slats");
+            Check(hybrid.IsFirstPerson&&hybrid.SelectedPerspective==PlayerPerspective.OverShoulder,"Wardrobe uses a temporary first-person closeup without changing the selected view");
             yield return Press(Key.F); Check(!Phone.isScreenOn, "Screen-off binding works while concealed");
             yield return Wait(() => d.basement.InspectingLocker, 90, "Hunter reaches the occupied wardrobe"); yield return Shot("12-locker-inspection-screen-off");
             yield return Wait(() => !d.basement.InspectingLocker, 15, "Four-second inspection completes with the phone dark");
             yield return new WaitForSeconds(3);yield return Press(Key.E); Check(!d.basement.IsHidden && !player.MovementLocked, "Player can leave the wardrobe after the hunter passes");
+            Check(!hybrid.IsFirstPerson,"Leaving the wardrobe restores the selected shoulder perspective");
             yield return Crouch(true);
             foreach(var p in new[]{d.P(1.45f,4.0f,-2.79f),d.P(1.45f,5.4f,-2.79f),d.P(2.1f,5.45f,-2.79f)})yield return Walk(p);
             yield return Crouch(false);yield return Use(Item(AtmajaAction.Powerbank));
@@ -136,7 +148,12 @@ namespace LayarTerakhir.Diagnostics
             Escape:
             yield return Wait(()=>d.chase.IsPursuing,30,"Recording ends in an atomic chase checkpoint");
             Check(Campaign.Data.checkpoint_id==AtmajaChaseSequence.ChaseCheckpoint,"Escape can be retried without replaying the full prolog");
-            foreach(var p in new[]{d.P(1.4f,4.3f,-2.79f),d.P(1.4f,2.8f,-2.79f),d.chase.cellarExitApproach.position})yield return Walk(p);
+            yield return Walk(d.P(1.4f,4.3f,-2.79f));
+            // The handycam is reached crouched. Release Ctrl in the clear aisle
+            // before sprinting; keeping the disabled controller's crouch latch
+            // here incorrectly simulated crawling away from the chase.
+            yield return Crouch(false);
+            foreach(var p in new[]{d.P(1.4f,2.8f,-2.79f),d.chase.cellarExitApproach.position})yield return Walk(p);
             InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftShift));yield return null;
             yield return Wait(()=>d.chase.Traversing,10,"Sprint initiates the cellar stair escape");yield return Wait(()=>!d.chase.Traversing,15,"Cellar ascent reaches the closing trapdoor");
             InputSystem.QueueStateEvent(keyboard,new KeyboardState());yield return Crouch(true);yield return Shot("16-slide-under-closing-trapdoor");
@@ -148,7 +165,8 @@ namespace LayarTerakhir.Diagnostics
             yield return Wait(()=>!d.chase.Traversing&&d.player.transform.position.z!=0,10,"Vault animation finishes");
             Check(Vector3.Distance(player.transform.position,d.chase.diningVaultEnd.position)<.25f,"Space actually carries Raka across the fallen table");
             foreach(var p in new[]{d.P(4.1f,8.4f,.54f),d.P(4.1f,9.8f,.37f),d.P(4.9f,10.5f,.37f)})yield return Walk(p);
-            yield return Wait(()=>d.chase.AwaitingBlitz,10,"Nyonya blocks the kitchen window in slow motion");Aim(d.chase.windowBlockSpot.position+Vector3.up*1.3f);yield return Shot("19-emergency-blitz-standoff");
+            yield return Wait(()=>d.chase.AwaitingBlitz,10,"Nyonya blocks the kitchen window in slow motion");
+            Check(player.GetComponent<ShoulderCameraRig>().IsFirstPerson,"Emergency Blitz uses the first-person aiming closeup");Aim(d.chase.windowBlockSpot.position+Vector3.up*1.3f);yield return Shot("19-emergency-blitz-standoff");
             float battery=Phone.batteryPercent;yield return ClickMouse();Check(d.chase.IsStunned&&Time.timeScale==1,"Real left click fires the emergency Blitz and restores normal time");
             Check(Mathf.Abs(battery-Phone.batteryPercent-15)<.25f,"Emergency Blitz costs fifteen percent once");yield return Press(Key.Space);
             yield return Wait(()=>d.chase.IsGateRun,10,"Space breaks through the kitchen window into the side yard");yield return Shot("20-kitchen-window-escape");
@@ -168,6 +186,7 @@ namespace LayarTerakhir.Diagnostics
             receipt.checkpointSaved=true;
         }
         private void Bind(){d=FindFirstObjectByType<AtmajaDirector>();player=d.player;eye=player.GetComponent<InteractionInteractor>().playerCamera;}
+        private IEnumerator ChangePerspective(){player.enabled=true;yield return Press(Key.V);player.enabled=false;}
         private void RaiseAR(){Phone.isPhoneRaised=Phone.isScreenOn=true;Phone.currentScanMode=ScanVisualMode.AR;Phone.SyncVisualState();d.phoneView.Apps.Open(PhoneApp.Camera);}
         private void Aim(Vector3 target)
         {

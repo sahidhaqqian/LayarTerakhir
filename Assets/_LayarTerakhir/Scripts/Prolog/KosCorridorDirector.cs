@@ -62,7 +62,7 @@ namespace LayarTerakhir.Prolog
             var start=player.transform.position;var target=motor.position+motor.right*-.55f;
             for(float t=0;t<1;t+=Time.deltaTime/.9f){player.transform.position=Vector3.Lerp(start,target,Mathf.SmoothStep(0,1,t));player.transform.rotation=Quaternion.Slerp(player.transform.rotation,motor.rotation,t);yield return null;}
             var camera=player.GetComponent<InteractionInteractor>().playerCamera.transform;
-            var mountStart=camera.position;var mountEnd=motor.TransformPoint(new Vector3(.65f,1.7f,-2.5f));
+            var mountStart=camera.position;var mountEnd=motor.TransformPoint(new Vector3(-1.1f,1.7f,-2.35f));
             for(float t=0;t<1;t+=Time.deltaTime/1.5f)
             {camera.position=Vector3.Lerp(mountStart,mountEnd,Mathf.SmoothStep(0,1,t))+Vector3.up*Mathf.Sin(t*Mathf.PI)*.18f;camera.LookAt(motor.position+Vector3.up*.8f);yield return null;}
             player.transform.SetParent(motor,true);player.transform.localRotation=Quaternion.identity;player.transform.localPosition=new Vector3(0,-.45f,0);if(shoulder)shoulder.Riding=true;
@@ -78,7 +78,7 @@ namespace LayarTerakhir.Prolog
                 var turn=Vector3.Lerp(motorStart,new Vector3(0,motorStart.y,-5.4f),Mathf.Clamp01(t*3));
                 motor.position=t<.33f?turn:Vector3.Lerp(new Vector3(0,motorStart.y,-5.4f),end,Mathf.SmoothStep(0,1,(t-.33f)/.67f));
                 motor.rotation=Quaternion.Slerp(motor.rotation,Quaternion.LookRotation(Vector3.back),Time.deltaTime*3);
-                camera.position=motor.TransformPoint(new Vector3(.65f,1.7f,-2.5f));camera.LookAt(motor.position+Vector3.up*.8f);
+                camera.position=motor.TransformPoint(new Vector3(-1.1f,1.7f,-2.35f));camera.LookAt(motor.position+Vector3.up*.8f);
                 if(engine)engine.pitch=Mathf.Lerp(.8f,1.35f,t);yield return null;
             }
             CampaignState.Instance.SaveCheckpointAtomic("PROLOG_TRAVEL_ATMAJA");yield return HudController.Instance.FadeBlack(0,1,1.1f);yield return PrologSceneFlow.LoadAtmaja();

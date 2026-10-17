@@ -68,6 +68,10 @@ for marker in ['Spawn_KosFloor2','StairA_9','StairB_9','DAPUR BERSAMA','KAMAR MA
 runtime=(out/'LayarTerakhir_Data/Managed/Assembly-CSharp.dll').read_bytes()
 for marker in ['GameShell','PhoneDesktop','PhoneSkin','KosRoomCorrections','ClockPuzzleView','ClockAmbience','KosCorridorDirector','KosTravelItem','ReviewPlayerAudit','ShoulderCameraRig','ExplorationCommentary','StoryMapGraphic','DoubleLeafGate','TryPayFamilyBill','DisplayPreferences','AtmajaUpperDirector','AtmajaBasementHorror','AtmajaChaseSequence']:
  assert marker.encode() in runtime,marker
+if 'presentation' in args.source_record.lower():
+ for marker in ['PlayerPerspective','TogglePerspective','AnimatedRakaAvatar']:
+  assert marker.encode() in runtime,marker
+ assert b'RakaCharacter' in (out/'LayarTerakhir_Data/resources.assets').read_bytes(),'Skinned Raka prefab missing from resources'
 if 'prolog' in args.source_record.lower():
  for marker in ['PrologFinaleView','AtmajaHandycamPlayback','AtmajaMirrorReflection','AtmajaThreatPresentation','PrologCompletionAudit']:
   assert marker.encode() in runtime,marker
@@ -80,6 +84,7 @@ shutil.copy2(root/'Audit/atmaja-windows-playtest.md',out/'Atmaja-Playtest-Guide.
 shutil.copy2(root/'Audit/Recording/dialogue-recording.csv',out/'Dialogue-For-Recording.csv')
 shutil.copy2(root/'Audit/Recording/README.md',out/'Dialogue-Recording-Readme.txt')
 shutil.copy2(root/'Audit/dejavu-font-license.txt',out/'DejaVu-Font-License.txt')
+if (root/'Audit/makehuman-assets-CC0.txt').exists():shutil.copy2(root/'Audit/makehuman-assets-CC0.txt',out/'MakeHuman-Graphical-Assets-CC0.txt')
 files=sorted(p for p in out.rglob('*') if p.is_file());manifest=[]
 for p in files:
  digest=hashlib.sha256();crc=0

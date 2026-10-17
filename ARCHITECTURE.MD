@@ -20,6 +20,21 @@ mengabaikan collider sendiri/pemain dalam sensor dan merutekan gerak mengitari r
 Lemari tidak membekukan patroli; warning 1,25 detik mendahului pemeriksaan empat detik.
 `ShoulderCameraRig.FirstPersonOverride` memberi pandangan melalui kisi selama bersembunyi.
 
+Revisi kamera hibrida: `ShoulderCameraRig.SelectedPerspective` memisahkan pilihan
+OTS/first-person dari override lemari/Blitz. V adalah `GameAction.TogglePerspective`
+yang bisa di-remap; binding selfie V lama dipindah ke X. Pilihan tersimpan pada
+`LT.Perspective` dan dibaca setiap scene; fixture audit tidak membaca/menulis preferensi
+pemain. Kamera bahu memakai spherecast dan menyembunyikan tubuh saat jarak <0,9 m;
+first-person tetap menganimasikan bayangan tubuh. Layer 26 mengisolasi avatar dari feed
+HP dan membatasi cahaya pantul tanpa shadow ke tubuh Raka; fill mati di first-person
+atau saat tubuh tersembunyi. Cutscene dan modal memiliki kamera/input.
+`Resources/RakaCharacter` menyediakan mesh skinned 48 tulang dan 11 klip Legacy;
+`AnimatedRakaAvatar` hanya memilih gerak visual, tanpa root motion atau collider tambahan.
+Nyonya menggunakan lima klip melalui `AtmajaThreatPresentation`; AI tetap memegang
+posisi root. `PrologPresentationBuilder.Apply` mengganti visual saja dan memverifikasi
+hash kedua scene kos. Sumber grafis CC0, tekstur renda original dan ukuran mesh/pose
+dicatat di `Audit/character-*.json` serta `Audit/rigged-character-authoring.json`.
+
 `AtmajaHandycamPlayback` merender set original di layer 28 ke RT 640×360 hanya ketika
 rekaman aktif. Gameplay dan HP mengecualikan layer ini. `AtmajaMirrorReflection` memakai
 RT 256×384 yang hanya aktif dekat kamar mandi, tanpa shadow/post tambahan; layer 27
@@ -130,7 +145,7 @@ Prinsip penting: **collider fisik, root interaksi, dan state cerita tidak dihapu
 ### 4.1 Core
 
 **`LayarTerakhir.Core.GameInputConfig`** (`Scripts/Core/GameInputConfig.cs`)
-- Singleton pada `GameSystems`; memegang 20 `KeyCode` untuk `GameAction` (gerak, sprint, crouch, vault, interaksi, HP, mode pemindaian, jurnal, powerbank, flare, kemenyan, tangkap/Blitz).
+- Singleton pada `GameSystems`; memegang 21 `KeyCode` untuk `GameAction` (gerak, sprint, crouch, vault, interaksi, HP, mode pemindaian, jurnal, powerbank, flare, kemenyan, tangkap/Blitz).
 - `RemapAction`, `GetKeyForAction`, `GetActionDown/Held/Up`, `GetMovementInput`, `GetLookDelta`.
 - Membaca Input System (`Keyboard`/`Mouse`) dengan pemetaan numerik/keypad/modifier, dan fallback ke legacy `Input` bila `ENABLE_LEGACY_INPUT_MANAGER` aktif. Label prompt HUD selalu mengikuti binding aktif.
 

@@ -1,0 +1,7 @@
+{
+  "asset": "Assets/_LayarTerakhir/Art/Characters/Textures/SriKebayaLace-v1.png",
+  "prompt": "Use case: photorealistic-natural. Asset type: seamless square albedo texture for an opaque modest old ivory Javanese kebaya in an Indonesian horror game, Layar Terakhir. Subject: a very close flat scan of old cream cotton lace fabric with tiny traditional floral embroidered motifs, subtle fine woven threads, irregular faint gray-brown soil stains and age-yellowing. The fabric remains predominantly desaturated warm gray-ivory, readable in a dim flashlight, never bright white. Realistic worn garment material, tasteful small-scale lace texture. This is only a material texture, not a garment illustration: fill the entire square edge to edge with the same cloth surface, no seams, no folds casting shadows, no person, no body, no clothing silhouette, no mannequin, no room. Opaque fine backing behind lace: no transparency, holes remain dark cream rather than black. Flat, even diffuse lighting, no highlights, no large directional gradients, no baked specular or ambient occlusion. All four edges should tile cleanly. No text, no logos, no watermark. One finished square game texture.",
+  "method": "Built-in image_gen tool; imagegen skill",
+  "purpose": "Opaque worn ivory kebaya material for the skinned Nyonya character",
+  "sha256": "aafed517b02ecc1925dd93d5311fae45dad3a75c38cdd6f3ae58a07ac583a839"
+}

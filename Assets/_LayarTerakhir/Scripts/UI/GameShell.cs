@@ -52,6 +52,7 @@ namespace LayarTerakhir.UI
             if(GameInputConfig.Instance&&string.IsNullOrEmpty(Environment.GetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY")))
             {
                 var saved=PlayerPrefs.GetString("LT.Bindings","");if(!string.IsNullOrEmpty(saved))JsonUtility.FromJsonOverwrite(saved,GameInputConfig.Instance);
+                GameInputConfig.Instance.UpgradePerspectiveBinding();
                 GameInputConfig.Instance.mouseSensitivity=PlayerPrefs.GetFloat("LT.Sensitivity",2);
             }
             if(awaiting)Draw();
@@ -142,14 +143,17 @@ namespace LayarTerakhir.UI
             UiWidgets.Button("Subtitles",page.transform,"SUBTITLE: "+(Subtitles?"AKTIF":"MATI"),new Vector2(.08f,.38f),new Vector2(.30f,.44f),()=>{Subtitles=!Subtitles;SaveSettings();Draw();});
             UiWidgets.Button("Glitch",page.transform,"GLITCH: "+(ReducedGlitch?"REDUKSI":"NORMAL"),new Vector2(.32f,.38f),new Vector2(.56f,.44f),()=>{ReducedGlitch=!ReducedGlitch;SaveSettings();Draw();});
             UiWidgets.Button("DisplayMode",page.transform,"LAYAR: "+(Screen.fullScreen?"FULLSCREEN (BORDERLESS)":"WINDOWED")+"  ↔",new Vector2(.08f,.29f),new Vector2(.56f,.35f),()=>{DisplayPreferences.Toggle();StartCoroutine(RefreshDisplayLabel());});
-            var actions=new[]{GameAction.Interact,GameAction.Crouch,GameAction.Vault,GameAction.TogglePhone,GameAction.ToggleScreen,GameAction.ModeAR,GameAction.UsePowerbank,GameAction.Sprint};
+            var rig=FindFirstObjectByType<ShoulderCameraRig>();var perspective=rig?rig.SelectedPerspective:ShoulderCameraRig.SavedPerspective;
+            UiWidgets.Button("PerspectiveMode",page.transform,"KAMERA: "+(perspective==PlayerPerspective.OverShoulder?"ORANG KETIGA • BAHU":"ORANG PERTAMA"),new Vector2(.08f,.205f),new Vector2(.56f,.265f),()=>{if(rig)rig.TogglePerspective();Draw();});
+            var actions=new[]{GameAction.Interact,GameAction.Crouch,GameAction.Vault,GameAction.TogglePhone,GameAction.ToggleScreen,GameAction.ModeAR,GameAction.UsePowerbank,GameAction.Sprint,GameAction.TogglePerspective};
             for(int i=0;i<actions.Length;i++)
             {
                 var action=actions[i];float y=.59f-i*.052f;
                 UiWidgets.Button("Remap_"+action,page.transform,action+"   ["+(GameInputConfig.Instance?GameInputConfig.Instance.GetKeyForAction(action).ToString():"-")+"]",new Vector2(.63f,y),new Vector2(.92f,y+.043f),()=>{remapping=action;if(remapLabel)remapLabel.text="Tekan tombol baru untuk "+action+" • ESC batal";});
             }
-            remapLabel=UiWidgets.Text("RemapHint",page.transform,"Alt+Enter fullscreen • ESC kembali",new Vector2(.08f,.245f),new Vector2(.58f,.28f),20);
-            MenuButton("BackSettings","KEMBALI",.16f,()=>{settings=false;Draw();});
+            string cameraKey=GameInputConfig.Instance?GameInputConfig.Instance.GetActionLabel(GameAction.TogglePerspective):"V";
+            remapLabel=UiWidgets.Text("RemapHint",page.transform,cameraKey+" ganti sudut pandang • Alt+Enter fullscreen",new Vector2(.08f,.03f),new Vector2(.58f,.08f),20);
+            MenuButton("BackSettings","KEMBALI",.105f,()=>{settings=false;Draw();});
         }
         private IEnumerator RefreshDisplayLabel(){yield return null;yield return null;if(settings)Draw();}
         private static void SaveSettings()

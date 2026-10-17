@@ -14,15 +14,15 @@
     "-screen-height",
     "360",
     "-prologAudit",
-    "/root/Projects/LayarTerakhir-main/Audit/Visuals/Prolog-Completion-Final",
+    "/root/Projects/LayarTerakhir-main/Audit/Visuals/Hybrid-Camera-Final",
     "-logFile",
     "/root/Projects/LayarTerakhir-main/Audit/golden-prolog-player.log"
   ],
-  "startedUtc": "2026-10-17T16:16:14.039116+00:00",
-  "audioBackend": "Private clocked PulseAudio null sink; real listener tap, no physical audio hardware",
+  "startedUtc": "2026-10-17T21:54:37.839094+00:00",
+  "audioBackend": "Private clocked PulseAudio null sink; virtual audio device; this fixture does not measure listener audio, no physical audio hardware",
   "status": "Finished",
-  "endedUtc": "2026-10-17T16:19:03.566595+00:00",
+  "endedUtc": "2026-10-17T21:58:11.046178+00:00",
   "exitCode": 0,
-  "screenCapturesVerified": 25,
+  "screenCapturesVerified": 26,
   "completedSmokeReceiptVerified": true
 }
