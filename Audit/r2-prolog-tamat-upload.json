@@ -1,0 +1,14 @@
+{
+  "purpose": "Additional clearly-named copy so the OpenCode prolog-complete build is distinguishable from other uploads",
+  "remote": "r2:layarterakhir/Layarterakhir/LayarTerakhir-PrologTamat-Windows-x86_64-OpenCode.zip",
+  "sizeBytes": 175324724,
+  "sha256": "203d85655f61bb6353fa1ca6ebe6fb0bfb41654eb81abaaba8b0a966dc3eeaaf",
+  "sourceLocal": "Builds/LayarTerakhir-Windows-x86_64-Development.zip",
+  "verification": "Full remote object readback SHA-256 equals local archive",
+  "targetScenes": [
+    "Prolog_KamarKos",
+    "Prolog_RumahAtmaja",
+    "Prolog_KoridorKos"
+  ],
+  "note": "Content identical to the standard-named build; only the object name differs"
+}
