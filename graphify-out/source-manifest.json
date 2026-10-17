@@ -1,14 +1,14 @@
 {
   "artifacts_sha256": {
-    "GRAPH_REPORT.md": "a16952616a70b9227647433247bed682eedca19146450555ad69eb198462324e",
+    "GRAPH_REPORT.md": "5a937eea7ef2082ef2394a5401ffed1f1df624c7b89eb7c98777df19ac3f7fb8",
     "graph.html": "ec5e1eefd72bfb1bae5a2680fbb04c618662c534e1830de86f2de3e7d1dedd95",
-    "graph.json": "e6e458417a9be0f4c1df0e54c08cbb9b106e1fbb531fe3ca4b0c9af0696c62a3"
+    "graph.json": "207751da8e212aff7ea3d7d2abfea85ae8546816cf12e7349e7d515c91779baf"
   },
   "asset_file_count": 0,
   "code_file_count": 109,
   "edge_count": 5086,
   "graphify_version": "graphify 0.9.92",
-  "ignore_sha256": "b28e3a50e6155b0e09330487da0fb524dac2caa9dbd156561d0a90df78537be0",
+  "ignore_sha256": "70da6f4100feee08f427f1e0be48815e42c1bbc17969e4e48528c98e74d4d1af",
   "mode": "local-code-only; no LLM/community labeling",
   "node_count": 1529,
   "referenced_source_count": 109,

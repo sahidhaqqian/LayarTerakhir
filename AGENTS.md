@@ -11,7 +11,7 @@
 - Jangan mengartikan "mode designer" sebagai permintaan agar agen hanya membuat konsep, merangkum, atau berhenti sebelum implementasi. Pengguna sedang memberi arahan desain; agen mengerjakannya.
 - Dalam konteks melanjutkan revisi game, permintaan "baca goal.md" berarti baca versi terbaru lalu terapkan instruksinya, bukan sekadar membalas bahwa file sudah dibaca. Jika pengguna secara eksplisit meminta diskusi, review, atau rencana saja, ikuti batasan tersebut tanpa mengubah game.
 - Kerjakan pilihan teknis yang wajar secara mandiri, pertahankan maksud desain pengguna, dan verifikasi perubahan. Jangan meminta persetujuan ulang untuk perubahan yang sudah diminta; klarifikasi hanya jika ada konflik atau keputusan penting yang benar-benar belum ditentukan.
-- Screenshot di folder `Bugs` yang sudah dinyatakan lama oleh pengguna diabaikan. Gunakan catatan playtest terbaru di `goal.md`; pakai screenshot hanya jika pengguna menyatakan bukti tersebut baru/relevan.
+- Folder `Bugs` sudah dihapus (17 Oktober 2026) karena tidak dipakai lagi; gunakan catatan playtest terbaru di `goal.md` sebagai referensi.
 - Laporan akhir harus membedakan perubahan yang benar-benar diterapkan dan diverifikasi dari hal yang masih tertunda. Jangan mengaku selesai hanya karena sudah membuat daftar rencana.
 
 ## Graphify — wajib setiap sesi sebelum commit dan push
