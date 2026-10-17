@@ -39,7 +39,15 @@ namespace LayarTerakhir.Player
             if (!eye || !player.cameraPivot) return;
             // Wake-up and motorcycle shots temporarily own the camera.
             foreach (var renderer in bodyRenderers) renderer.enabled = !UiFocus.Cinematic || CinematicVisible;
-            if (UiFocus.Cinematic) { if(CinematicVisible) AnimateRaka(); return; }
+            if (UiFocus.Cinematic)
+            {
+                if(CinematicVisible)
+                {
+                    foreach(var renderer in bodyRenderers)renderer.shadowCastingMode=ShadowCastingMode.On;
+                    AnimateRaka();
+                }
+                return;
+            }
             if (!player.enabled) return;
             RefreshCameraPose();
         }
@@ -65,7 +73,7 @@ namespace LayarTerakhir.Player
             eye.transform.SetPositionAndRotation(anchor + direction.normalized * distance, pivot.rotation);
             AnimateRaka();
             foreach (var renderer in bodyRenderers)
-                renderer.shadowCastingMode = distance < .42f ? ShadowCastingMode.ShadowsOnly : ShadowCastingMode.On;
+                renderer.shadowCastingMode = distance < .9f ? ShadowCastingMode.ShadowsOnly : ShadowCastingMode.On;
         }
 
         private void AnimateRaka()
@@ -88,7 +96,7 @@ namespace LayarTerakhir.Player
             leftArm.localRotation = Quaternion.Euler(-swing * .7f, 0, 7);
             rightArm.localRotation = Quaternion.Euler(phone ? -68 : swing * .7f, phone ? -12 : 0, -7);
             handset.gameObject.SetActive(phone);
-            Avatar.localScale = new Vector3(1, player.IsCrouching ? .61f : 1, 1);
+            Avatar.localScale = new Vector3(1,Mathf.Clamp(GetComponent<CharacterController>().height/player.standingHeight,.35f,1),1);
             torso.localRotation = Quaternion.Euler(player.IsCrouching ? 18 : 0, 0, 0);
         }
 

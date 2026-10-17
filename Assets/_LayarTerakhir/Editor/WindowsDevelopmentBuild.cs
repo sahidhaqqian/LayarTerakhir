@@ -41,6 +41,7 @@ namespace LayarTerakhir.Editor
             PlayerSettings.defaultScreenWidth = 1280;
             PlayerSettings.defaultScreenHeight = 720;
             PlayerSettings.fullScreenMode = FullScreenMode.Windowed;
+            PlayerSettings.resizableWindow=true;PlayerSettings.allowFullscreenSwitch=false;
             EditorUserBuildSettings.selectedStandaloneTarget = target;
             EditorUserBuildSettings.standaloneBuildSubtarget = StandaloneBuildSubtarget.Player;
             EditorUserBuildSettings.development = true;

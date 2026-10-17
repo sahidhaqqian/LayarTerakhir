@@ -79,6 +79,12 @@ namespace LayarTerakhir.Diagnostics
             yield return Shot("01-main-menu");Click("Settings");yield return null;
             var slider=FindObjectsByType<Slider>(FindObjectsSortMode.None).First(s=>s.name=="MasterVolume");slider.value=.8f;
             Check(Mathf.Abs(AudioListener.volume-.8f)<.01f,"Settings volume slider controls the real listener");
+            int windowWidth=Screen.width,windowHeight=Screen.height;
+            Click("DisplayMode");yield return Wait(()=>Screen.fullScreen,15,"Settings switches into real borderless fullscreen");
+            UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(Button("DisplayMode").gameObject);
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftAlt,Key.Enter));yield return null;yield return null;
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());
+            yield return Wait(()=>!Screen.fullScreen&&Screen.width==windowWidth&&Screen.height==windowHeight,15,"Alt+Enter restores previous window dimensions");
             yield return Shot("02-settings");Click("BackSettings");yield return null;Click("NewGame");yield return null;Click("ConfirmNew");
             yield return Wait(()=>!GameShell.MenuSceneLoading&&FindFirstObjectByType<KamarKosPrologDirector>()!=null,90,"New Game scene load");
             BindPlayer();tap=eye.gameObject.AddComponent<GoldenAudioTap>();
@@ -155,11 +161,21 @@ namespace LayarTerakhir.Diagnostics
             yield return Walk(new Vector3(-.60f,1.65f,16.4f));yield return Walk(new Vector3(1.75f,1.65f,16.4f));
             yield return Walk(new Vector3(1.75f,0,12.6f));yield return Walk(new Vector3(0,0,12.6f));yield return Walk(new Vector3(0,0,11.5f));
             Check(player.transform.position.y<.15f,"Both complete stair flights are physically descended without teleporting");
+            yield return Walk(new Vector3(0,0,7.5f));
+            var dining=GameObject.Find("SharedDiningDoor").GetComponent<HingedDoor>();yield return Use(dining,dining.GetComponent<Collider>().bounds.center);
+            yield return new WaitForSeconds(1.2f);yield return Walk(new Vector3(-2.4f,0,7.5f));Aim(new Vector3(-3.8f,.9f,7.5f));yield return Shot("10a-kos-communal-dining");
+            yield return Walk(new Vector3(0,0,7.5f));
             yield return Walk(new Vector3(0,0,4.25f));
             var kitchen=GameObject.Find("DAPUR BERSAMADoor").GetComponent<HingedDoor>();yield return Use(kitchen,kitchen.GetComponent<Collider>().bounds.center);
             yield return new WaitForSeconds(1.2f);yield return Walk(new Vector3(-2.7f,0,4.25f));Aim(new Vector3(-4.2f,1,4.8f));yield return Shot("10-kos-shared-kitchen");
             yield return Walk(new Vector3(0,0,4.25f));var bath=GameObject.Find("KAMAR MANDIDoor").GetComponent<HingedDoor>();yield return Use(bath,bath.GetComponent<Collider>().bounds.center);
-            yield return new WaitForSeconds(1.2f);yield return Walk(new Vector3(2.5f,0,4.25f));Aim(new Vector3(4.1f,.6f,5.25f));yield return Shot("11-kos-shared-bathroom");
+            yield return new WaitForSeconds(1.2f);yield return Walk(new Vector3(2.1f,0,4.25f));Aim(new Vector3(2.82f,1.4f,5.2f));yield return Shot("11-kos-shared-bathroom");
+            yield return Walk(new Vector3(2.1f,0,5.2f));var women=GameObject.Find("BathroomWANITADoor").GetComponent<HingedDoor>();yield return Use(women,women.GetComponent<Collider>().bounds.center);
+            yield return new WaitForSeconds(1.2f);yield return Walk(new Vector3(3.45f,0,5.2f));Aim(new Vector3(5.7f,1.2f,5.2f));yield return Shot("11c-kos-womens-bathroom");
+            yield return Walk(new Vector3(2.1f,0,5.2f));yield return Walk(new Vector3(2.1f,0,4.25f));yield return Walk(new Vector3(2.1f,0,3.3f));
+            var men=GameObject.Find("BathroomPRIADoor").GetComponent<HingedDoor>();yield return Use(men,men.GetComponent<Collider>().bounds.center);
+            yield return new WaitForSeconds(1.2f);yield return Walk(new Vector3(3.45f,0,3.3f));Aim(new Vector3(5.7f,1.2f,3.3f));yield return Shot("11d-kos-mens-bathroom");
+            yield return Walk(new Vector3(2.1f,0,3.3f));yield return Walk(new Vector3(2.1f,0,4.25f));
             yield return Walk(new Vector3(0,0,4.25f));yield return Walk(new Vector3(0,0,.8f));
             Aim(corridor.entranceDoor.GetComponent<Collider>().bounds.center);yield return Shot("11a-main-building-door");
             yield return Walk(new Vector3(0,0,-2.0f),true);Check(!corridor.entranceDoor.IsOpen&&player.transform.position.z>-.9f,"Closed main entrance physically blocks the exit");
@@ -167,7 +183,8 @@ namespace LayarTerakhir.Diagnostics
             yield return Use(corridor.entranceDoor,corridor.entranceDoor.GetComponent<Collider>().bounds.center);yield return new WaitForSeconds(1.2f);
             Check(Phone.isPhoneRaised&&corridor.entranceDoor.IsOpen,"Real E interaction opens building door while browsing phone");Stow();
             yield return Walk(new Vector3(0,0,-4.7f));Check(corridor.entranceDoor.IsOpen,"Main entrance must be opened before walking into yard");
-            Aim(new Vector3(0,3,-1));yield return Shot("11b-kos-facade-and-porch");Aim(corridor.motor.position+Vector3.up*.2f);
+            Aim(new Vector3(0,3,-1));yield return Shot("11b-kos-facade-and-porch");
+            Aim(player.transform.position+new Vector3(.3f,.48f,-.82f)*70);yield return Shot("11e-kos-night-sky");Aim(corridor.motor.position+Vector3.up*.2f);
             yield return Use(corridor.motor.GetComponent<KosTravelItem>(),corridor.motor.GetComponent<Collider>().bounds.center);
             Check(View.Apps.TravelSelection&&corridor.CanDepart,"Motor interaction opens a valid destination map at the kos gate");yield return Shot("12-departure-map");
             // Cinematic movement needs multiple real samples even on a very slow software renderer.
@@ -182,12 +199,14 @@ namespace LayarTerakhir.Diagnostics
             Aim(d.P(0,-7.0f,1.2f));yield return Shot("15-atmaja-arrival");
             yield return Walk(d.P(0,-11.4f,.06f));yield return Use(Item(AtmajaAction.Gate),Item(AtmajaAction.Gate).GetComponent<Collider>().bounds.center);
             yield return new WaitForSeconds(1.2f);yield return Walk(d.P(0,-6.2f,.06f));yield return Walk(d.P(4.8f,-6.4f,.06f));
-            yield return Walk(d.P(0,-1.4f,.06f));yield return Use(Item(AtmajaAction.FrontDoor),Item(AtmajaAction.FrontDoor).GetComponent<Collider>().bounds.center);
+            // Return to the paved centre approach rather than cutting diagonally through
+            // the parked scooter and raised porch. These are continuous walks, not poses.
+            yield return Walk(d.P(0,-6.4f,.06f));yield return Walk(d.P(0,-1.4f,.06f));yield return Use(Item(AtmajaAction.FrontDoor),Item(AtmajaAction.FrontDoor).GetComponent<Collider>().bounds.center);
             yield return Wait(()=>!d.Busy,15,"Front door handle/rattle attempt finishes");
             Check(CampaignState.Instance.HasInventoryItem("EVENT_P0_FRONT_DOOR_TRIED")&&!d.HasSurvey,"Player discovers locked front door before finding indoor Damar note");yield return Shot("16-front-door-attempt");
             Phone.isPhoneRaised=true;Phone.isScreenOn=true;Phone.SyncVisualState();View.Apps.Open(PhoneApp.Camera);yield return null;
             View.LiveButton.onClick.Invoke();yield return null;Check(Phone.isBroadcastConnected&&d.Viewers==14,"Camera app starts the real 14-viewer live broadcast");Stow();
-            yield return Walk(d.P(8.2f,-6.4f,.06f));yield return Walk(d.P(8.2f,4.15f,.06f));Phone.isPhoneRaised=true;Phone.isScreenOn=true;View.Apps.Open(PhoneApp.Camera);Phone.SyncVisualState();Aim(d.P(8.2f,5.5f,1.2f));yield return Shot("17-natural-kamboja-right-route");
+            yield return Walk(d.P(0,-6.4f,.06f));yield return Walk(d.P(8.2f,-6.4f,.06f));yield return Walk(d.P(8.2f,4.15f,.06f));Phone.isPhoneRaised=true;Phone.isScreenOn=true;View.Apps.Open(PhoneApp.Camera);Phone.SyncVisualState();Aim(d.P(8.2f,5.5f,1.2f));yield return Shot("17-natural-kamboja-right-route");
             Check(CampaignState.Instance.Data.wallet_bound==500000,"Side-passage donation is applied once without restoring already spent funds");
             yield return Walk(d.P(8.2f,6.8f,.06f),true);
             Check(d.LocalPosition(player.transform.position).y<5.1f,"Standing capsule is stopped by tree limb");
@@ -203,6 +222,8 @@ namespace LayarTerakhir.Diagnostics
             yield return Use(Item(AtmajaAction.KitchenDoor),Item(AtmajaAction.KitchenDoor).GetComponent<Collider>().bounds.center);yield return new WaitForSeconds(1.2f);
             yield return Walk(d.P(4.1f,9.8f,.37f));yield return Walk(d.P(4.1f,8.4f,.54f));yield return Walk(d.P(5.35f,8,.54f));yield return Walk(d.P(5.35f,6.2f,.54f));
             Aim(d.P(3.7f,4.9f,1.3f));yield return Shot("20-wood-chairs-clear-aisle");
+            var rig=player.GetComponent<ShoulderCameraRig>();
+            Check(rig.CurrentDistance>=.9f||rig.Avatar.GetComponentsInChildren<Renderer>(true).All(r=>r.shadowCastingMode==UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly),"Compressed shoulder camera hides the body instead of blocking the table view");
             yield return Crouch(true);yield return Walk(d.P(4.6f,6.2f,.54f));
             yield return Use(Item(AtmajaAction.DamarPhone),d.damarPhone.GetComponent<Collider>().bounds.center);yield return Shot("21-crouched-backpack-access");
             Check(Phone.arModuleUnlocked&&CampaignState.Instance.HasInventoryItem("MATABATIN_APK"),"Damar phone reached from the side, below table, using crouch and real first-hit interaction");
@@ -212,7 +233,9 @@ namespace LayarTerakhir.Diagnostics
             yield return Walk(d.P(5.35f,6.2f,.54f));yield return Crouch(false);
             yield return Walk(d.P(5.35f,1.3f,.54f));yield return Walk(d.P(2.1f,1.3f,.54f));yield return Walk(d.P(2.1f,4.1f,.54f));
             Check(receipt.maximumInteriorFootY<.7f,"Dining route crossed both sides and end with feet on floor, never on tabletop");
-            Phone.isPhoneRaised=true;Phone.isScreenOn=true;View.Apps.Open(PhoneApp.Camera);Phone.currentScanMode=ScanVisualMode.AR;Phone.SyncVisualState();Aim(d.P(3.7f,2.15f,1.4f));yield return Shot("22-ar-figure");
+            Phone.isPhoneRaised=true;Phone.isScreenOn=true;View.Apps.Open(PhoneApp.Camera);Phone.currentScanMode=ScanVisualMode.Normal;Phone.SyncVisualState();Aim(d.P(3.7f,2.15f,1.4f));yield return Shot("22a-seated-doll-normal");
+            Check(GameObject.Find("SeatedDollOnEndChair").GetComponentsInChildren<Renderer>().All(r=>(eye.cullingMask&(1<<r.gameObject.layer))!=0),"Seated doll is visible to the ordinary world camera, not AR-only");
+            Phone.currentScanMode=ScanVisualMode.AR;Phone.SyncVisualState();yield return Shot("22-ar-figure");
             Check(d.arFigure.activeSelf&&(eye.cullingMask&(1<<AtmajaPhoneView.ARLayer))==0&&View.FeedCamera.enabled,"AR apparition is phone-only, with the normal world camera excluding its layer");
             Phone.isScreenOn=false;Phone.SyncVisualState();yield return null;Check(Phone.isBroadcastConnected&&!View.FeedCamera.enabled,"Turning screen off preserves live but disables additional camera rendering");
             Phone.isScreenOn=true;Phone.SyncVisualState();
@@ -220,7 +243,7 @@ namespace LayarTerakhir.Diagnostics
             var sitting=GameObject.Find("FrontSittingDoor").GetComponent<HingedDoor>();yield return Use(sitting,sitting.GetComponent<Collider>().bounds.center);yield return new WaitForSeconds(1.2f);
             yield return Walk(d.P(-1.4f,1.5f,.54f));yield return Walk(d.P(-4.4f,1.5f,.54f));Aim(d.clockHands.transform.position);yield return Shot("23-corner-table-exploration");
             yield return Use(Item(AtmajaAction.ClockHands),d.clockHands.GetComponent<Collider>().bounds.center);
-            yield return Walk(d.P(-1.4f,1.5f,.54f));yield return Walk(d.P(-1.4f,4.1f,.54f));yield return Walk(d.P(-1.75f,5.5f,.54f));Aim(d.arClue.transform.position);
+            yield return Walk(d.P(-1.4f,1.5f,.54f));yield return Walk(d.P(-1.4f,4.1f,.54f));yield return Walk(d.P(-3.7f,4.6f,.54f));Aim(d.arClue.transform.position);
             yield return Wait(()=>CampaignState.Instance.HasInventoryItem("EVENT_P0_AR_CLUE_READ"),15,"Player aims AR at actual wall blood clue");yield return Shot("24-red-wall-ar-writing");
             yield return new WaitForEndOfFrame();var frame=ScreenCapture.CaptureScreenshotAsTexture();int redPixels=0;
             for(int y=(int)(frame.height*.23f);y<frame.height*.68f;y++)for(int x=(int)(frame.width*.72f);x<frame.width*.95f;x++)

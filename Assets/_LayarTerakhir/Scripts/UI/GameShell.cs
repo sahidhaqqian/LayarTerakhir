@@ -28,6 +28,7 @@ namespace LayarTerakhir.UI
         private void Awake()
         {
             if(Instance){Destroy(gameObject);return;}Instance=this;
+            DisplayPreferences.Restore();
             var args=Environment.GetCommandLineArgs();bool audit=Array.Exists(args,a=>a!="-reviewAudit"&&a.EndsWith("Audit",StringComparison.Ordinal));
             awaiting=!Application.isEditor&&!audit;
             var profile=PresentationProfile.Load();UiWidgets.Font=profile?profile.bodyFont:null;
@@ -57,6 +58,9 @@ namespace LayarTerakhir.UI
         }
         private void Update()
         {
+            var keys=Keyboard.current;
+            if(!remapping.HasValue&&keys!=null&&(keys.leftAltKey.isPressed||keys.rightAltKey.isPressed)&&keys.enterKey.wasPressedThisFrame)
+            {DisplayPreferences.Toggle();if(settings)StartCoroutine(RefreshDisplayLabel());return;}
             if(remapping.HasValue&&Keyboard.current!=null)
             {
                 foreach(var key in Keyboard.current.allKeys)
@@ -137,15 +141,17 @@ namespace LayarTerakhir.UI
             UiWidgets.Slider("Sensitivity",page.transform,"Sensitivitas mouse",new Vector2(.08f,.48f),new Vector2(.56f,.55f),.25f,5,GameInputConfig.Instance?GameInputConfig.Instance.mouseSensitivity:2,v=>{if(GameInputConfig.Instance)GameInputConfig.Instance.mouseSensitivity=v;SaveSettings();});
             UiWidgets.Button("Subtitles",page.transform,"SUBTITLE: "+(Subtitles?"AKTIF":"MATI"),new Vector2(.08f,.38f),new Vector2(.30f,.44f),()=>{Subtitles=!Subtitles;SaveSettings();Draw();});
             UiWidgets.Button("Glitch",page.transform,"GLITCH: "+(ReducedGlitch?"REDUKSI":"NORMAL"),new Vector2(.32f,.38f),new Vector2(.56f,.44f),()=>{ReducedGlitch=!ReducedGlitch;SaveSettings();Draw();});
+            UiWidgets.Button("DisplayMode",page.transform,"LAYAR: "+(Screen.fullScreen?"FULLSCREEN (BORDERLESS)":"WINDOWED")+"  ↔",new Vector2(.08f,.29f),new Vector2(.56f,.35f),()=>{DisplayPreferences.Toggle();StartCoroutine(RefreshDisplayLabel());});
             var actions=new[]{GameAction.Interact,GameAction.Crouch,GameAction.Vault,GameAction.TogglePhone,GameAction.ToggleScreen,GameAction.ModeAR,GameAction.UsePowerbank,GameAction.Sprint};
             for(int i=0;i<actions.Length;i++)
             {
                 var action=actions[i];float y=.59f-i*.052f;
                 UiWidgets.Button("Remap_"+action,page.transform,action+"   ["+(GameInputConfig.Instance?GameInputConfig.Instance.GetKeyForAction(action).ToString():"-")+"]",new Vector2(.63f,y),new Vector2(.92f,y+.043f),()=>{remapping=action;if(remapLabel)remapLabel.text="Tekan tombol baru untuk "+action+" • ESC batal";});
             }
-            remapLabel=UiWidgets.Text("RemapHint",page.transform,"ESC kembali • M peta • Z aplikasi HP",new Vector2(.08f,.27f),new Vector2(.58f,.34f),20);
+            remapLabel=UiWidgets.Text("RemapHint",page.transform,"Alt+Enter fullscreen • ESC kembali",new Vector2(.08f,.245f),new Vector2(.58f,.28f),20);
             MenuButton("BackSettings","KEMBALI",.16f,()=>{settings=false;Draw();});
         }
+        private IEnumerator RefreshDisplayLabel(){yield return null;yield return null;if(settings)Draw();}
         private static void SaveSettings()
         {
             if(!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY")))return;

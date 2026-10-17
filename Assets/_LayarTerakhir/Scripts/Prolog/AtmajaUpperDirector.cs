@@ -176,7 +176,7 @@ namespace LayarTerakhir.Prolog
             for(int i=0;i<chainLinks.Length;i++)if(chainLinks[i])chainLinks[i].SetActive(!(i==0?c1:i==1?c2:c3));
             if(childCup)childCup.SetActive(!c1);
             if(childDoor)childDoor.locked=!c1;
-            if(masterDoor){masterDoor.locked=!c3;masterDoor.hinge.localRotation=Quaternion.Euler(0,c3?-95:0,0);}
+            if(masterDoor){masterDoor.locked=!c3;masterDoor.SetOpenImmediate(Has("EVENT_P0_MASTER_OPEN"));}
             if(bathCurtain)bathCurtain.SetActive(!Has("EVENT_P0_CURTAIN_OPEN"));
             if(bathWater)bathWater.SetActive(Has("EVENT_P0_CURTAIN_OPEN"));
             if(carpetRoll)carpetRoll.SetActive(!Has("EVENT_P0_CARPET_LIFTED"));
@@ -270,7 +270,9 @@ namespace LayarTerakhir.Prolog
             var hits=Physics.RaycastAll(eye.transform.position,delta.normalized,delta.magnitude,~0,QueryTriggerInteraction.Ignore);
             Array.Sort(hits,(a,b)=>a.distance.CompareTo(b.distance));
             var first=Array.Find(hits,h=>!h.transform.IsChildOf(director.player.transform));
-            return !first.collider||first.collider.isTrigger||first.transform==aim||first.transform.IsChildOf(aim.parent);
+            // Aim anchors are in GameSystems, while the actual cup/rope meshes live in
+            // the environment. A hit on the target's own surface is not an obstruction.
+            return !first.collider||Vector3.Distance(first.point,aim.position)<=.10f;
         }
         public void TryPhotoTick()
         {
@@ -292,7 +294,7 @@ namespace LayarTerakhir.Prolog
         private void OpenMasterDoor()
         {
             if(!Commit("EVENT_P0_MASTER_OPEN","PROLOG_ATMAJA_UPPER"))return;
-            if(masterDoor){masterDoor.locked=false;masterDoor.Interact();}
+            if(masterDoor){masterDoor.locked=false;if(!masterDoor.IsOpen)masterDoor.Interact();}
             director.SetStage(AtmajaStage.MasterOpen);Sfx(AtmajaSynth.Tone(1.6f,90,55,.5f),masterDoor?masterDoor.transform.position:director.player.transform.position,.6f);
             Hud.ShowBroadcastNotification("Pintu Kamar Tidur Utama terbuka perlahan...",5);
             director.phoneView.AddChat("@dinda_ayu","bang jangan masuk bang sumpah jangan masuk");

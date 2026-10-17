@@ -146,7 +146,11 @@ namespace LayarTerakhir.Prolog
                 case AtmajaAction.Survey:
                     Hud.EnqueueSubtitle("Raka","Tulisan Damar... Dia benar-benar udah masuk ke sini.",4);
                     Sfx(audioProfile.cloth,item.transform.position,.4f);
-                    Hud.OpenDocumentModal("CATATAN SURVEI DAMAR • DOKUMEN #2",SurveyText,()=>{if(Commit(SurveyId,"PROLOG_ATMAJA_COURTYARD")){Stage=LiveConnected?AtmajaStage.Live:AtmajaStage.SurveyRead;Objective();}});break;
+                    Hud.OpenDocumentModal("CATATAN SURVEI DAMAR • DOKUMEN #2",SurveyText,()=>
+                    {
+                        string checkpoint=Has("EVENT_P0_KITCHEN_ENTERED")?Campaign.Data.checkpoint_id:"PROLOG_ATMAJA_COURTYARD";
+                        if(Commit(SurveyId,checkpoint)){if(!Has("EVENT_P0_KITCHEN_ENTERED"))Stage=LiveConnected?AtmajaStage.Live:AtmajaStage.SurveyRead;Objective();}
+                    });break;
                 case AtmajaAction.FrontDoor:StartCoroutine(TryFrontDoor(item.transform));break;
                 case AtmajaAction.KitchenDoor:
                     if(Commit("EVENT_P0_DINING_OPEN","PROLOG_ATMAJA_KITCHEN")){StartCoroutine(Swing(kitchenDoor,-95));Objective();}break;
@@ -157,12 +161,12 @@ namespace LayarTerakhir.Prolog
                 case AtmajaAction.Clock:ClockPuzzle();break;
                 case AtmajaAction.StairDoor:
                     if(!Has("EVENT_P0_CLOCK_UNLOCKED")){Hud.ShowBroadcastNotification("Pintu tangga terkunci. Periksa jam bandul dan dinding di sampingnya dengan AR.",5);break;}
-                    if(Commit("EVENT_P0_STAIRS_UNLOCKED","PROLOG_ATMAJA_STAIRS_UNLOCKED")){Stage=AtmajaStage.StairCheckpoint;RestoreWorld();Objective();Hud.ShowBroadcastNotification("Pintu tangga terbuka. Naik ke lantai 2, ikuti jejak tangan berdarah.",8);}break;
+                    if(Commit("EVENT_P0_STAIRS_UNLOCKED","PROLOG_ATMAJA_STAIRS_UNLOCKED")){Stage=AtmajaStage.StairCheckpoint;if(stairDoorLeaf){stairDoorLeaf.transform.position=P(-3.55f,7.7f,-.85f);stairDoorLeaf.GetComponent<Collider>().enabled=false;}Objective();Hud.ShowBroadcastNotification("Kunci berputar. Jalan ke lantai atas sudah terbuka.",5);}break;
                 case AtmajaAction.CupPhoto:case AtmajaAction.Diary:case AtmajaAction.BathCurtain:case AtmajaAction.BathScratches:case AtmajaAction.WillLetter:case AtmajaAction.RopePhoto:if(upper)upper.HandleEvidence(item);break;
                 case AtmajaAction.CarpetLift:case AtmajaAction.Trapdoor:if(upper)upper.HandleMaster(item);break;
                 case AtmajaAction.Powerbank:case AtmajaAction.Handycam:case AtmajaAction.WardrobeHide:if(basement)basement.Handle(item);break;
                 case AtmajaAction.Charge:if(Phone.batteryPercent<35)StartCoroutine(Charge());break;
-                case AtmajaAction.Window:Hud.ShowBroadcastNotification($"[{GameInputConfig.Instance.vaultKey}] Panjat jendela dapur\n"+(TreeCleared?"Dekati jendela dan hadap ke dalam.":"Baca catatan, mulai live, dan lewati kamboja sambil merunduk."),4);break;
+                case AtmajaAction.Window:Hud.ShowBroadcastNotification($"[{GameInputConfig.Instance.vaultKey}] Panjat jendela dapur\n"+(TreeCleared?"Dekati jendela dan hadap ke dalam.":"Mulai live dan cari jalan melewati kamboja."),4);break;
             }
         }
         public bool StartLive()
@@ -259,8 +263,8 @@ namespace LayarTerakhir.Prolog
         }
         private void RevealAR()
         {
-            if(!Commit("EVENT_P0_AR_REVEALED","PROLOG_MATABATIN_ACQUIRED"))return;
-            Stage=AtmajaStage.ARRevealed;
+            if(!Commit("EVENT_P0_AR_REVEALED",Stage>AtmajaStage.ARRevealed?Campaign.Data.checkpoint_id:"PROLOG_MATABATIN_ACQUIRED"))return;
+            if(Stage<AtmajaStage.ARRevealed)Stage=AtmajaStage.ARRevealed;
             // Original short, enveloped static burst, routed through the existing UI mixer.
             if(!arStatic)
             {
@@ -304,7 +308,8 @@ namespace LayarTerakhir.Prolog
         {
             var camera=phoneView&&phoneView.FeedCamera?phoneView.FeedCamera:player.GetComponent<InteractionInteractor>().playerCamera;var delta=arClue.transform.position-camera.transform.position;
             if(delta.magnitude>3.4f||Vector3.Dot(camera.transform.forward,delta.normalized)<.86f)return;
-            if(Physics.Raycast(camera.transform.position,delta.normalized,Mathf.Max(0,delta.magnitude-.03f),~0,QueryTriggerInteraction.Ignore))return;
+            var blockers=Physics.RaycastAll(camera.transform.position,delta.normalized,Mathf.Max(0,delta.magnitude-.03f),~0,QueryTriggerInteraction.Ignore);
+            if(Array.Exists(blockers,h=>!h.transform.IsChildOf(player.transform)))return;
             if(Commit("EVENT_P0_AR_CLUE_READ","PROLOG_MATABATIN_ACQUIRED"))Hud.ShowBroadcastNotification("Petunjuk dinding dicatat di Jurnal HP.",3);
         }
         private void OpenNewspaper()=>Hud.OpenDocumentModal("KLIPING KORAN 1998 • DOKUMEN #3","TRAGEDI KELUARGA ATMAJA: Satu Keluarga Ditemukan Tewas Mengenaskan. Polisi menduga sang ibu, Nyonya Sri Atmaja (38), mengalami depresi berat dan gangguan jiwa akibat mengikuti aliran klenik sebelum meracuni anak-anaknya dan mengakhiri hidupnya sendiri di lantai dua pada tengah malam.",()=>{Commit("DOC_PROLOG_03_KORAN_1998","PROLOG_MATABATIN_ACQUIRED");Objective();});

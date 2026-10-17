@@ -53,17 +53,65 @@ namespace LayarTerakhir.Editor.Tests
         [UnityTest] public IEnumerator PhoneAppsExposeCampaignAndAllowStowing()=>Run(PhoneApps());
         [UnityTest] public IEnumerator KosBothStairFlightsAndSharedRoomsAreContinuouslyWalkable()=>Run(KosNavigation());
         [UnityTest] public IEnumerator DiningSidesBackpackAndCornerRoomAreContinuouslyWalkable()=>Run(DiningNavigation());
+        [UnityTest] public IEnumerator UpperEvidenceUsesPhoneLensAndAcceptsTargetSurface()=>Run(UpperPhonePhotos());
+        [UnityTest] public IEnumerator AtmajaStairsReachUpperCorridorWithoutTeleport()=>Run(UpperStairNavigation());
+        private IEnumerator UpperStairNavigation()
+        {
+            yield return new WaitForSeconds(1);var d=Find<AtmajaDirector>();var c=CampaignState.Instance;
+            foreach(var id in new[]{"EVENT_P0_GATE_OPEN","EVENT_P0_LIVE_STARTED","EVENT_P0_KITCHEN_ENTERED","EVENT_P0_DINING_OPEN","MATABATIN_APK","EVENT_P0_STAIRS_UNLOCKED"})c.AddInventoryItem(id);
+            d.RestoreWorld();var p=d.player;p.enabled=false;
+            foreach(var point in new[]{d.P(-3.55f,5.1f,.54f),d.P(-3.55f,8.2f,.54f),d.P(1.05f,8.2f,2.2f),d.P(1.05f,6.925f,2.4f),d.P(-3.3f,6.925f,3.82f),d.P(-3.3f,5.75f,3.82f),d.P(-1.1f,5.75f,3.82f)})yield return WalkCapsule(p,point,float.PositiveInfinity,.025f);
+            Assert.That(p.transform.position.y,Is.GreaterThan(3.75f));
+            yield return WalkCapsule(p,d.P(-3,5.75f,3.82f),float.PositiveInfinity,.025f);
+            var phone=SmartphoneController.Instance;phone.arModuleUnlocked=true;phone.isPhoneRaised=phone.isScreenOn=true;phone.currentScanMode=ScanVisualMode.AR;
+            d.phoneView.Apps.Open(PhoneApp.Camera);phone.SyncVisualState();
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftCtrl));p.enabled=true;yield return new WaitForSeconds(.6f);p.enabled=false;
+            Assert.That(p.IsCrouching,Is.True);yield return WalkCapsule(p,d.P(-3,4.6f,3.82f));
+            Assert.That(d.LocalPosition(p.transform.position).y,Is.LessThan(5),"AR/crouch vent must have a real opening through the child-room wall");
+        }
+        private IEnumerator UpperPhonePhotos()
+        {
+            yield return new WaitForSeconds(1);
+            var d=Find<AtmajaDirector>();var c=CampaignState.Instance;var phone=SmartphoneController.Instance;
+            foreach(var id in new[]{"EVENT_P0_GATE_OPEN","EVENT_P0_LIVE_STARTED","EVENT_P0_KITCHEN_ENTERED","EVENT_P0_DINING_OPEN","MATABATIN_APK","EVENT_P0_STAIRS_UNLOCKED","EVENT_P0_UPPER_REACHED",AtmajaUpperDirector.DiaryId})c.AddInventoryItem(id);
+            d.RestoreWorld();d.SetStage(AtmajaStage.EvidenceHunt);d.player.enabled=false;
+            phone.arModuleUnlocked=true;phone.currentScanMode=ScanVisualMode.AR;phone.isPhoneRaised=phone.isScreenOn=true;phone.batteryPercent=100;
+            d.phoneView.Apps.Open(PhoneApp.Camera);phone.SyncVisualState();yield return null;
+            var lens=d.phoneView.FeedCamera;
+            Transform[] targets={d.upper.cupAim,d.upper.scratchAim,d.upper.ropeAim};
+            for(int i=0;i<3;i++)
+            {
+                var target=targets[i];Vector3 side=i==0?d.north:-d.north;
+                lens.transform.position=target.position+side*1.2f+Vector3.up*(i==0?.7f:i==2?-.5f:.1f);
+                lens.transform.LookAt(target);Physics.SyncTransforms();d.upper.TryPhotoTick();
+                var delta=target.position-lens.transform.position;
+                var hits=Physics.RaycastAll(lens.transform.position,delta.normalized,delta.magnitude,~0,QueryTriggerInteraction.Ignore).OrderBy(h=>h.distance);
+                Assert.That(c.HasInventoryItem("EVENT_P0_CHAIN"+(i+1)+"_BROKEN"),Is.True,"Actual phone lens must photograph evidence "+(i+1)+"; stage="+d.Stage+"; AR="+phone.currentScanMode+"; hits="+string.Join(", ",hits.Select(h=>h.collider.name+" at "+h.point)));
+                yield return null;
+            }
+            Assert.That(d.upper.ChainsBroken,Is.EqualTo(3));
+        }
         private IEnumerator KosNavigation()
         {
             yield return SceneManager.LoadSceneAsync(PrologSceneFlow.CorridorScene);yield return new WaitForSeconds(1);
             var corridor=Find<KosCorridorDirector>();var p=corridor.player;p.enabled=false;
             Assert.That(p.transform.position.y,Is.GreaterThan(3));Assert.That(corridor.CanDepart,Is.False);
-            foreach(var point in new[]{new Vector3(-.6f,3.3f,12.7f),new Vector3(-.6f,1.65f,16.4f),new Vector3(1.75f,1.65f,16.4f),new Vector3(1.75f,0,12.6f),new Vector3(0,0,12.6f),new Vector3(0,0,11.5f),new Vector3(0,0,4.25f)})yield return WalkCapsule(p,point);
+            foreach(var point in new[]{new Vector3(-.6f,3.3f,12.7f),new Vector3(-.6f,1.65f,16.4f),new Vector3(1.75f,1.65f,16.4f),new Vector3(1.75f,0,12.6f),new Vector3(0,0,12.6f),new Vector3(0,0,11.5f),new Vector3(0,0,7.5f)})yield return WalkCapsule(p,point);
             Assert.That(p.transform.position.y,Is.LessThan(.15f));
+            GameObject.Find("SharedDiningDoor").GetComponent<HingedDoor>().Interact();yield return new WaitForSeconds(1.2f);
+            yield return WalkCapsule(p,new Vector3(-2.4f,0,7.5f));yield return WalkCapsule(p,new Vector3(0,0,7.5f));yield return WalkCapsule(p,new Vector3(0,0,4.25f));
             GameObject.Find("DAPUR BERSAMADoor").GetComponent<HingedDoor>().Interact();yield return new WaitForSeconds(1.2f);
             yield return WalkCapsule(p,new Vector3(-2.7f,0,4.25f));yield return WalkCapsule(p,new Vector3(0,0,4.25f));
             GameObject.Find("KAMAR MANDIDoor").GetComponent<HingedDoor>().Interact();yield return new WaitForSeconds(1.2f);
-            yield return WalkCapsule(p,new Vector3(2.5f,0,4.25f));yield return WalkCapsule(p,new Vector3(0,0,4.25f));yield return WalkCapsule(p,new Vector3(0,0,.8f));
+            yield return WalkCapsule(p,new Vector3(2.1f,0,4.25f));
+            foreach(var cubicle in new[]{("WANITA",5.2f),("PRIA",3.3f)})
+            {
+                yield return WalkCapsule(p,new Vector3(2.1f,0,cubicle.Item2));
+                GameObject.Find("Bathroom"+cubicle.Item1+"Door").GetComponent<HingedDoor>().Interact();yield return new WaitForSeconds(1.2f);
+                yield return WalkCapsule(p,new Vector3(3.45f,0,cubicle.Item2));yield return WalkCapsule(p,new Vector3(2.1f,0,cubicle.Item2));
+                yield return WalkCapsule(p,new Vector3(2.1f,0,4.25f));
+            }
+            yield return WalkCapsule(p,new Vector3(0,0,4.25f));yield return WalkCapsule(p,new Vector3(0,0,.8f));
             Assert.That(corridor.entranceDoor.IsOpen,Is.False);corridor.entranceDoor.Interact();yield return new WaitForSeconds(1.2f);
             Assert.That(corridor.entranceDoor.IsOpen,Is.True);yield return WalkCapsule(p,new Vector3(0,0,-4.7f));
             Assert.That(corridor.CanDepart,Is.True);Assert.That(CampaignState.Instance.Data.checkpoint_id,Is.EqualTo("PROLOG_KOS_YARD"));
@@ -89,12 +137,12 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(p.GetComponent<InteractionInteractor>().CurrentTarget,Is.SameAs(Item(AtmajaAction.ClockHands)));yield return Press(Key.E);
             Assert.That(CampaignState.Instance.HasInventoryItem("ITEM_P0_CLOCK_HANDS"),Is.True);
         }
-        private static IEnumerator WalkCapsule(FirstPersonController p,Vector3 target,float maxHeight=float.PositiveInfinity)
+        private static IEnumerator WalkCapsule(FirstPersonController p,Vector3 target,float maxHeight=float.PositiveInfinity,float tolerance=.1f)
         {
             p.enabled=false;var cc=p.GetComponent<CharacterController>();int stalled=0;
             for(int frame=0;frame<500;frame++)
             {
-                var delta=target-p.transform.position;delta.y=0;if(delta.magnitude<.1f)break;
+                var delta=target-p.transform.position;delta.y=0;if(delta.magnitude<tolerance)break;
                 var before=p.transform.position;cc.Move(Vector3.ClampMagnitude(delta,.16f)+Vector3.down*.18f);
                 Assert.That(p.transform.position.y,Is.LessThanOrEqualTo(maxHeight),"Feet must stay below tabletop height");
                 if(Vector3.Distance(before,p.transform.position)<.003f)stalled++;else stalled=0;if(stalled>15)break;yield return null;
@@ -108,8 +156,10 @@ namespace LayarTerakhir.Editor.Tests
             phone.isPhoneRaised=true;phone.isScreenOn=true;phone.SyncVisualState();view.Apps.Open(PhoneApp.Home);yield return null;
             Assert.That(view.Panel.GetComponentsInChildren<UnityEngine.UI.Button>().Length,Is.GreaterThanOrEqualTo(7));
             CampaignState.Instance.AddInventoryItem(AtmajaDirector.SurveyId);view.Apps.Open(PhoneApp.Journal);yield return null;
-            var entries=GameObject.Find("JournalEntries").GetComponent<UnityEngine.UI.Text>();Assert.That(entries.text,Does.Contain("Survei Damar"));
+            var entries=GameObject.Find("JournalEntry_2").GetComponent<UnityEngine.UI.Button>();
             Assert.That(entries.GetComponentInParent<UnityEngine.UI.ScrollRect>().vertical,Is.True);
+            entries.onClick.Invoke();yield return null;
+            Assert.That(GameObject.Find("EntryTitle").GetComponent<UnityEngine.UI.Text>().text,Does.Contain("survei Damar"));
             view.Apps.Open(PhoneApp.Inventory);yield return null;Assert.That(GameObject.Find("InventoryEntries").GetComponent<UnityEngine.UI.Text>().text,Does.Contain("Smartphone Raka"));
             Assert.That(UiFocus.Phone,Is.True);yield return Press(Key.Tab);yield return null;
             Assert.That(phone.isPhoneRaised,Is.False);Assert.That(UiFocus.Phone,Is.False);
@@ -118,8 +168,9 @@ namespace LayarTerakhir.Editor.Tests
         {
             yield return new WaitForSeconds(2);
             var d=Find<AtmajaDirector>();var phone=SmartphoneController.Instance;var campaign=CampaignState.Instance;
-            Assert.That(d.StartLive(),Is.False,"Cannot broadcast before reading Damar's survey");
-            Item(AtmajaAction.Survey).Interact();Assert.That(HudController.Instance.documentBodyText.text,Is.EqualTo(AtmajaDirector.SurveyText));CloseDocument();
+            Assert.That(d.StartLive(),Is.False,"Cannot broadcast before attempting the locked front door");
+            Item(AtmajaAction.FrontDoor).Interact();yield return new WaitForSeconds(2);
+            Assert.That(campaign.HasInventoryItem("EVENT_P0_FRONT_DOOR_TRIED"),Is.True);Assert.That(d.HasSurvey,Is.False);
             yield return Press(Key.Tab);Assert.That(phone.isPhoneRaised,Is.True);
             d.phoneView.Apps.Open(PhoneApp.Camera);
             d.phoneView.LiveButton.onClick.Invoke();yield return null;
@@ -145,7 +196,7 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(Vector3.Distance(d.player.transform.position,d.vaultInside.position),Is.LessThan(.3f));
             Assert.That(campaign.Data.checkpoint_id,Is.EqualTo("PROLOG_ATMAJA_KITCHEN"));
             d.PlacePlayer(d.P(5,10.9f,.37f),Quaternion.LookRotation(d.north));
-            camera.transform.position=d.P(5,10.9f,1.7f);camera.transform.LookAt(d.P(2.7f,11.2f,.75f));Physics.SyncTransforms();
+            camera=d.phoneView.FeedCamera;camera.transform.position=d.P(5,10.9f,1.7f);camera.transform.LookAt(d.P(2.7f,11.2f,.75f));Physics.SyncTransforms();
             Assert.That(d.TryPhotographWell(),Is.True,"Optional bonus needs the actual well sight line");
             Assert.That(campaign.Data.wallet_legitimate,Is.EqualTo(150000));
             Assert.That(d.TryPhotographWell(),Is.False,"No repeated well farming");Assert.That(campaign.Data.wallet_legitimate,Is.EqualTo(150000));
@@ -171,8 +222,10 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(d.phoneView.FeedCamera.enabled,Is.False);Assert.That(d.arFigure.activeSelf,Is.False);Assert.That(phone.isBroadcastConnected,Is.True);
             Assert.That(d.phoneView.Panel.GetComponentInChildren<UnityEngine.UI.RawImage>(true).enabled,Is.False);
             phone.isScreenOn=true;phone.currentScanMode=ScanVisualMode.AR;d.phoneView.Apps.Open(PhoneApp.Camera);
-            d.player.enabled=false;d.PlacePlayer(d.P(-1.75f,5.5f,.54f),Quaternion.LookRotation(d.north));
-            var clueCamera=d.player.GetComponent<InteractionInteractor>().playerCamera;clueCamera.transform.position=d.P(-1.75f,5.5f,2.0f);clueCamera.transform.LookAt(d.arClue.transform.position);yield return null;yield return null;
+            d.PlacePlayer(d.P(-3.7f,4.6f,.54f),Quaternion.LookRotation(-d.east));d.player.enabled=true;
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());yield return new WaitForSeconds(.6f);d.player.enabled=false;
+            var direction=d.arClue.transform.position-d.player.cameraPivot.position;d.player.cameraPivot.rotation=Quaternion.LookRotation(direction);
+            yield return null;yield return null;
             Assert.That(campaign.HasInventoryItem("EVENT_P0_AR_CLUE_READ"),Is.True,"Clue must actually be aimed at before solving");
             Item(AtmajaAction.ClockHands).Interact();Item(AtmajaAction.Clock).Interact();
             var puzzle=Find<ClockPuzzleView>();puzzle.Confirm();Assert.That(campaign.HasInventoryItem("KUNCI_TANGGA_TENGAH"),Is.False);

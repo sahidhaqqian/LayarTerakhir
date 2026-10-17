@@ -21,7 +21,7 @@ Optional isolated automated smoke (PowerShell, from extracted Windows directory)
 This flag creates a fresh IsolatedSave-GUID subfolder, never reads/deletes the personal checkpoint,
 poses some compact-room views, then uses continuous CharacterController walking to gather the
 remaining preparation items, exit the room, descend both stairs and traverse Atmaja. It captures
-41 raw screenshots with HUD, records up to 45 seconds of actual listener output, solves real UI
+the screenshots declared in ReviewPlayerAudit.cs, records up to 45 seconds of actual listener output, solves real UI
 buttons and verifies checkpoint/Continue without touching personal saves. Story timers are accelerated
 after the bed wake, so it is not natural dialogue pacing/acting acceptance. The player exits with
 code 0 on success / 1 on failure. Inspect player-audit.json. The old `-goldenAudit` is a retired 3-digit diagnostic.
@@ -35,9 +35,13 @@ Acceptance checklist:
 - Inspect the gamepad/clothing on the bed, thermos/notepad on the stool, newspaper/socks and subtle worn floor.
 - Check readable dark corners, motivated practical lights, no pink shaders or window glare.
 - Read the letter; confirm Damar's call starts automatically and no transcript/play document appears.
-- Check messages, Bank balances, item-only Tas and the downloaded map with fictional destination pins.
+- Check delayed message reaction, paid Bank receipts, item-only Tas and the offline illustrated map with fictional destination pins.
 - Test wrong/right four-wheel combinations; close/cancel repeatedly and confirm world input recovers.
 - Check minimal HUD at 1280×720, 1920×1080 and 16:10; no clipped objective/phone controls/subtitles.
+- Toggle borderless fullscreen in Settings and with Alt+Enter, including while a UI button is focused.
+  Return to the previous window size, relaunch to check persistence, and try resize/maximize in windowed mode.
+- In a tight doorway, the compressed shoulder camera hides Raka's body so it cannot block the view;
+  check that the body reappears when clear and remains visible during the motorcycle cinematic.
 - Listen to rain, PC and room tone; no conspicuous loop seams, clipping or overpowering mix.
 - Verify phone vibration stops on pickup, modal ducking, knocks, foley, donation and departure fades.
 - Confirm loud knocks turn Raka toward the door and the letter only then slides in; a ringtone precedes pickup.
@@ -50,7 +54,8 @@ Acceptance checklist:
 - Run both jacket/drawer orders, save/reload checkpoint, phone screen/battery controls.
 - Measure frame pacing and CPU/GPU time on i5-1155G7 / Iris Xe / 8 GB. Target ≥30 FPS; not yet claimed.
 
-Raka, Damar and the well whisper use separate neural synthetic voices. The landlady only leaves a letter.
+Existing synthetic voices remain placeholders; no new speech was synthesized. The arrival landlady
+only leaves a letter; the later Ibu and Ratna calls have new subtitles awaiting human recordings.
 Listen to full lines at normal time scale; ASR diagnostics are not acting-quality approval. Linux/Mesa
 captures are useful reference evidence, not Windows rendering or target-hardware approval.
 Asset-Credits.txt includes the CC BY 4.0 motorcycle attribution and modification notice.

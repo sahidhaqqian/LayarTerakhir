@@ -16,6 +16,7 @@ namespace LayarTerakhir.Editor
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.Standalone,ScriptingImplementation.Mono2x);
             PlayerSettings.defaultScreenWidth=1280;PlayerSettings.defaultScreenHeight=720;PlayerSettings.defaultIsNativeResolution=false;
             PlayerSettings.fullScreenMode=FullScreenMode.Windowed;
+            PlayerSettings.resizableWindow=true;PlayerSettings.allowFullscreenSwitch=false;
             var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=EditorBuildSettings.scenes.Where(s=>s.enabled).Select(s=>s.path).ToArray(),
                 target=BuildTarget.StandaloneLinux64,locationPathName="Builds/LinuxAudit/LayarTerakhir.x86_64",options=BuildOptions.Development});
             Directory.CreateDirectory("Audit");File.WriteAllText("Audit/golden-linux-build.json",JsonUtility.ToJson(new Record{result=report.summary.result.ToString(),

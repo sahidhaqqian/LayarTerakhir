@@ -303,7 +303,7 @@ namespace LayarTerakhir.Prolog
                 yield return new WaitForSeconds(i==2?1.2f:.7f);
             }
             Phone.isBroadcastConnected=true;
-            long target=25450000,delta=target-Campaign.Data.wallet_bound;
+            long target=25450000,delta=target-(Campaign.Data.wallet_bound+Campaign.Data.spent);
             if(delta>0&&Commit("EVENT_P0_FINAL_SAWER","PROLOG_COMPLETE",()=>Campaign.AddBoundDonation(delta)))
                 Hud.ShowBroadcastNotification($"Penonton_Terakhir • SAWER Rp{delta:N0}\nSatu malam selesai.",8);
             director.phoneView.AddChat("@viral_horor_id","GILA INI LIVE TERGILA TAHUN INI");

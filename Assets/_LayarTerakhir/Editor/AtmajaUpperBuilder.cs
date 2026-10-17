@@ -172,6 +172,8 @@ namespace LayarTerakhir.Editor
             foreach(float d in new[]{d0-.06f,d1+.06f})
                 for(int i=0;i<steps;i++)
                 {
+                    // Leave a real opening from the half landing into the return flight.
+                    if(!ascendEast&&i>=steps-2&&d>d1)continue;
                     float top=ascendEast?yLow+(i+1)*rise:yHigh-i*rise;
                     Box("StairParapet",P(x0+(i+.5f)*w,d,top+.45f),new Vector3(w+.02f,.9f,.12f),mat);
                 }
@@ -191,21 +193,31 @@ namespace LayarTerakhir.Editor
         private static void BuildStairs()
         {
             var wood=Mat("House_MAT_WoodDoor");
-            Box("StairEntryPlatform",P(-3.55f,7.4f,.53f),new Vector3(1.5f,.1f,1.0f),wood);
-            StairMass(-2.8f,.4f,6.9f,7.7f,.55f,2.2f,8,wood,true);
-            Box("StairMidLanding",P(1.0f,7.1f,1.35f),new Vector3(1.2f,1.7f,1.2f),wood);
-            StairMass(-2.6f,1.4f,5.9f,6.7f,2.2f,3.82f,8,wood,false);
-            Box("StairTopLanding",P(-3.3f,6.35f,3.75f),new Vector3(1.4f,.14f,1.1f),wood);
-            Box("CorridorBridgeEast",P(-.4f,6.05f,3.75f),new Vector3(4.2f,.14f,.5f),wood);
-            GuardRailD(6.85f,7.75f,-4.32f,.55f);GuardRail(.4f,1.6f,6.5f,2.2f);GuardRail(.4f,1.6f,7.7f,2.2f);
-            GuardRail(-4.0f,-2.6f,6.85f,3.82f);
-            for(int i=0;i<7;i++)SmearCluster(P(-2.6f+i*.42f,7.825f,.9f+i*.24f),-north,east);
-            for(int i=0;i<5;i++)SmearCluster(P(1.2f-i*.42f,5.77f,2.5f+i*.22f),north,-east);
-            var lamp=Existing("Lantern_01","StairMidLantern",P(1.0f,7.1f,3.1f),new Vector3(.3f,.42f,.3f),"Upper_ChandelierBrass");
-            Box("StairLanternCord",P(1.0f,7.1f,5.0f),new Vector3(.03f,3.6f,.03f),wood,false);
-            LightAt("StairMidLight",P(1.0f,7.1f,3.0f),LightType.Point,1.1f,6,new Color(.9f,.75f,.5f),P(1.0f,6.0f,1.5f));
-            LightAt("StairTopLight",P(-3.25f,6.4f,4.6f),LightType.Point,1.1f,6,new Color(.9f,.75f,.5f),P(-3.25f,5.5f,3.8f));
-            director.upper.spawnUpper=Anchor("Spawn_UpperLanding",P(-3.25f,6.1f,3.83f),P(0,6.1f,4.5f));
+            // The old ground-floor storage divider crossed both stair flights.
+            // Keep its room-side stub, leaving the authored stairwell genuinely open.
+            var storage=GameObject.Find("StorageWall");
+            if(storage){storage.transform.position=P(-.15f,5.625f,2.05f);storage.transform.localScale=new Vector3(.16f,3.1f,.35f);}
+            // Give both flights full capsule width without stealing the upper corridor floor.
+            foreach(string wall in new[]{"StairHallWall_W","StairHallWall_E","StairHallLintel"})
+            {var go=GameObject.Find(wall);if(go){var p=director.LocalPosition(go.transform.position);go.transform.position=P(p.x,8.85f,go.transform.position.y-director.origin.y);}}
+            Box("StairEntryPlatform",P(-3.55f,8.1f,.53f),new Vector3(1.5f,.1f,1.6f),wood);
+            Box("StairEntryWestWall",P(-4.32f,7.85f,2.1f),new Vector3(.16f,3.2f,2.0f),wood);
+            Box("StairEntryEastWall",P(-2.8f,7.225f,2.05f),new Vector3(.16f,3.1f,.75f),wood);
+            foreach(float x in new[]{-4.23f,-2.87f})Box("StairDoorJamb",P(x,7.7f,2.1f),new Vector3(.18f,3.2f,.16f),wood);
+            Box("StairEntryDoorLintel",P(-3.55f,7.7f,3.4f),new Vector3(1.5f,.6f,.16f),wood);
+            StairMass(-2.8f,.4f,7.6f,8.65f,.55f,2.2f,8,wood,true);
+            Box("StairMidLanding",P(1.0f,7.55f,1.35f),new Vector3(1.2f,1.7f,2.3f),wood);
+            StairMass(-2.6f,1.4f,6.4f,7.45f,2.2f,3.82f,8,wood,false);
+            Box("StairTopLanding",P(-3.3f,6.925f,3.75f),new Vector3(1.4f,.14f,1.25f),wood);
+            GuardRailD(6.4f,8.7f,1.66f,2.2f);GuardRail(.4f,1.6f,8.7f,2.2f);
+            GuardRail(-4.0f,-2.6f,7.57f,3.82f);
+            for(int i=0;i<7;i++)SmearCluster(P(-2.6f+i*.42f,8.765f,.9f+i*.24f),-north,east);
+            for(int i=0;i<5;i++)SmearCluster(P(1.2f-i*.42f,6.405f,2.5f+i*.22f),north,-east);
+            var lamp=Existing("Lantern_01","StairMidLantern",P(1.0f,7.55f,5.55f),new Vector3(.3f,.42f,.3f),"Upper_ChandelierBrass");
+            Box("StairLanternCord",P(1.0f,7.55f,6.3f),new Vector3(.03f,1.15f,.03f),wood,false);
+            LightAt("StairMidLight",P(1.0f,7.55f,5.36f),LightType.Point,1.1f,6,new Color(.9f,.75f,.5f),P(1.0f,7.0f,1.5f));
+            LightAt("StairTopLight",P(-3.25f,6.925f,4.6f),LightType.Point,1.1f,6,new Color(.9f,.75f,.5f),P(-3.25f,5.5f,3.8f));
+            director.upper.spawnUpper=Anchor("Spawn_UpperLanding",P(-3.25f,6.5f,3.83f),P(0,5.75f,4.5f));
         }
         private static void BuildUpperShell()
         {
@@ -213,6 +225,7 @@ namespace LayarTerakhir.Editor
             var woodFloor=Mat("Upper_WoodFloor");var ceiling=Mat("Upper_CeilingWood");
             Slab("UpperSlab_West",-5.85f,-4.0f,.05f,8.95f,3.68f,3.82f,concrete);
             Slab("UpperSlab_South",-4.0f,.55f,.05f,5.8f,3.68f,3.82f,concrete);
+            Slab("UpperSlab_CorridorLip",-4.0f,1.7f,5.8f,6.3f,3.68f,3.82f,concrete);
             Slab("UpperSlab_TrapS",.55f,1.7f,.05f,.55f,3.68f,3.82f,concrete);
             Slab("UpperSlab_TrapN",.55f,1.7f,2.25f,5.8f,3.68f,3.82f,concrete);
             Slab("UpperSlab_Mid",1.7f,2.4f,.05f,8.95f,3.68f,3.82f,concrete);
@@ -223,6 +236,7 @@ namespace LayarTerakhir.Editor
             Slab("BalconyWalk",2.4f,5.0f,5.2f,6.3f,3.68f,3.82f,concrete);
             Slab("UpperFloor_West",-5.85f,-4.0f,.05f,8.95f,3.795f,3.82f,woodFloor);
             Slab("UpperFloor_South",-4.0f,.55f,.05f,5.8f,3.795f,3.82f,woodFloor);
+            Slab("UpperFloor_CorridorLip",-4.0f,1.7f,5.8f,6.3f,3.795f,3.82f,woodFloor);
             Slab("UpperFloor_TrapS",.55f,1.7f,.05f,.55f,3.795f,3.82f,woodFloor);
             Slab("UpperFloor_TrapN",.55f,1.7f,2.25f,5.8f,3.795f,3.82f,woodFloor);
             Slab("UpperFloor_Mid",1.7f,2.4f,.05f,8.95f,3.795f,3.82f,woodFloor);
@@ -233,7 +247,9 @@ namespace LayarTerakhir.Editor
             Slab("UpperFloor_Walk",2.4f,5.0f,5.2f,6.3f,3.795f,3.82f,woodFloor);
             Box("UpperCeiling",P(0,4.5f,6.9f),new Vector3(11.7f,.14f,8.9f),ceiling);
             WallD("CorrWallN_A",5.2f,-6,-4.9f,F2,C2,plaster);
-            WallD("CorrWallN_B",5.2f,-3.9f,-1.55f,F2,C2,plaster);
+            WallD("CorrWallN_B",5.2f,-3.9f,-3.45f,F2,C2,plaster);
+            WallD("CorrWallN_B_Right",5.2f,-2.55f,-1.55f,F2,C2,plaster);
+            WallD("VentOpeningHeader",5.2f,-3.45f,-2.55f,4.9f,C2,plaster);
             WallD("CorrWallN_C",5.2f,-.65f,.75f,F2,C2,plaster);
             WallD("CorrWallN_D",5.2f,1.85f,2.4f,F2,C2,plaster);
             foreach(float c in new[]{4.4f,1.1f})WallD("CorrLintelN",5.2f,c-.5f,c+.5f,5.95f,C2,plaster);
@@ -288,10 +304,10 @@ namespace LayarTerakhir.Editor
         {
             var wallpaper=Mat("Upper_Wallpaper");var plaster=Mat("House_MAT_PlasterDamaged");
             Box("ChildWallpaperWest",P(-5.9f,2.6f,5.3f),new Vector3(.03f,3.0f,5.2f),wallpaper,false);
-            var bed=Existing("old_bed_frame","ChildBed",P(-4.9f,1.3f,4.35f),new Vector3(1.0f,1.9f,1.06f));
-            Box("ChildMattress",P(-4.9f,1.3f,4.62f),new Vector3(.92f,1.8f,.22f),Mat("Upper_BedFabric"));
-            var pillow=Existing("throw_pillows_01","ChildPillow",P(-4.9f,.65f,4.78f),new Vector3(.5f,.34f,.16f),"Upper_BedFabric");
-            Box("ChildBlanket",P(-4.9f,1.75f,4.78f),new Vector3(.94f,.9f,.1f),Mat("Upper_RedCarpet"),false);
+            var bed=Existing("old_bed_frame","ChildBed",P(-3.5f,2.8f,4.35f),new Vector3(1.0f,1.9f,1.06f));
+            Box("ChildMattress",P(-3.5f,2.8f,4.62f),new Vector3(.92f,1.8f,.22f),Mat("Upper_BedFabric"));
+            var pillow=Existing("throw_pillows_01","ChildPillow",P(-3.5f,2.15f,4.78f),new Vector3(.5f,.34f,.16f),"Upper_BedFabric");
+            Box("ChildBlanket",P(-3.5f,3.25f,4.78f),new Vector3(.94f,.9f,.1f),Mat("Upper_RedCarpet"),false);
             Box("ChildDeskTop",P(-5.3f,.55f,4.52f),new Vector3(1.2f,.08f,.6f),Mat("Upper_PineTable"));
             foreach(float x in new[]{-5.8f,-4.8f})foreach(float z in new[]{.35f,.75f})Box("ChildDeskLeg",P(x,z,4.17f),new Vector3(.07f,.7f,.07f),Mat("House_MAT_WoodDoor"));
             var chair=Existing("painted_wooden_chair_01","ChildStudyChair",P(-5.3f,1.35f,4.2f),new Vector3(.42f,.85f,.42f));
@@ -315,10 +331,10 @@ namespace LayarTerakhir.Editor
             var ventAR=Plaque("VentHoleAR","LUBANG VENTILASI\nJEBOL — MERANGKAK\nDENGAN AR MENYALA",P(-3.0f,5.45f,4.5f),.20f,new Color(.5f,.02f,.01f));
             ventAR.transform.rotation=Facing(-north);
             Layer(ventAR,AtmajaPhoneView.ARLayer);ventAR.SetActive(false);director.upper.ventHoleAR=ventAR;
-            var gate=Box("VentPassGate",P(-3.0f,5.4f,4.4f),new Vector3(.8f,1.2f,.6f),plaster);gate.GetComponent<Renderer>().enabled=false;
+            var gate=Box("VentPassGate",P(-3.0f,5.2f,4.4f),new Vector3(.9f,1.2f,.12f),plaster);gate.GetComponent<Renderer>().enabled=false;
             director.upper.ventGate=gate.GetComponent<Collider>();
             director.upper.ventMouth=Anchor("VentMouth",P(-3.0f,5.6f,4.4f),P(-3.0f,4.5f,4.4f));
-            var cabinetCover=Existing("painted_wooden_cabinet_02","VentCabinet",P(-3.0f,5.445f,4.445f),new Vector3(.95f,1.25f,.45f));
+            var cabinetCover=Existing("painted_wooden_cabinet_02","VentCabinet",P(-3.0f,4.95f,4.445f),new Vector3(.95f,1.25f,.45f));
             director.upper.ventCabinet=cabinetCover;
             LightAt("ChildRoomLight",P(-4.3f,2.6f,6.2f),LightType.Point,1.1f,7,new Color(.95f,.85f,.65f),P(-4.3f,2.6f,3.9f));
         }

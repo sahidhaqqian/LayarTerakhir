@@ -70,7 +70,7 @@ namespace LayarTerakhir.Editor
             Box("StairHallWall_W",P(-5.04f,7.9f,2.1f),new Vector3(1.73f,3.2f,.16f),plaster);
             Box("StairHallWall_E",P(-.71f,7.9f,2.1f),new Vector3(4.43f,3.2f,.16f),plaster);
             Box("StairHallLintel",P(-3.55f,7.9f,3.4f),new Vector3(1.25f,.6f,.16f),plaster);
-            director.arClue=BloodWriting.Build(environment,P(-1.75f,7.817f,2.17f),east,Vector3.up,-north);director.arClue.SetActive(false);
+            director.arClue=BloodWriting.Build(environment,P(-5.76f,4.6f,2.17f),north,Vector3.up,east);director.arClue.SetActive(false);
             director.arFigure=Model("ARSeatedAtmaja","AR_SeatedSriAtmaja",P(3.7f,2.15f,.52f));director.arFigure.transform.rotation=Facing(north);foreach(var t in director.arFigure.GetComponentsInChildren<Transform>(true))t.gameObject.layer=AtmajaPhoneView.ARLayer;director.arFigure.SetActive(false);
         }
         private static void Chair(string name,Vector3 where,Vector3 target){var c=Model("WornWoodChair",name,where);c.transform.rotation=Facing((target-where).normalized);Ground(c,where.y);FitCollider(c);}

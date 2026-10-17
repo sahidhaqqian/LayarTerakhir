@@ -5,10 +5,14 @@ Requires a completed WindowsDevelopmentBuild invocation and its real BuildReport
 from pathlib import Path
 from datetime import datetime,timezone
 import hashlib,json,struct,zipfile,zlib,shutil
+from record_designer_sources import snapshot
 root=Path(__file__).resolve().parents[1];out=root/'Builds/Windows';logs=root/'Builds/Logs'
+source_record=json.loads((root/'Audit/designer-build-sources.json').read_text())
+assert source_record['sources']==snapshot(),'Source changed after the designer build snapshot'
 voices=json.loads((root/'Audit/prolog-voice-manifest.json').read_text())
 assert 'VoxCPM2' in voices['engine'] and len(voices['entries'])>=17,'Wrong/stale speech bank'
-assert not any(v['speaker']=='Bu Haji Ratna' for v in voices['entries']),'Landlady must not have VO'
+# This manifest verifies the retained placeholder bank, not final acting quality.
+# Ibu/Ratna conversations use subtitles pending the designer's human recordings.
 for voice in voices['entries']:
  assert hashlib.sha256((root/voice['path']).read_bytes()).hexdigest()==voice['sha256'],'Stale voice hash: '+voice['path']
 report=json.loads((logs/'windows-development-build-report.json').read_text())
@@ -49,14 +53,14 @@ scene_data=(out/'LayarTerakhir_Data/level0').read_bytes()
 for marker in ['Kos_Environment_Art','Kos_V2_Details','KosDeskFan','KosCurtains','CeramicTileFloor','WeakTungstenCeiling','CalendarAugust','vintage_day_bed','GoldenHUD','GoldenAudioRig','Golden_Dressing','BedsideWornStool','Compact_Kos_Details','StreamerGreenScreen','BudgetStreamingWebcam','ReadingPadOnStool','BedsidePlasticThermos','WiredGamepadOnBed']:assert marker.encode() in scene_data,marker
 assert b'Prolog_KamarKos' in (out/'LayarTerakhir_Data/globalgamemanagers').read_bytes()
 atmaja_data=(out/'LayarTerakhir_Data/level1').read_bytes()
-for marker in ['Atmaja_Environment_Art','DamarParkedScooter','FallenKamboja','KitchenVaultOutside','LongDiningTable','GrandfatherClock','AR_SeatedSriAtmaja']:
+for marker in ['Atmaja_Environment_Art','DamarParkedScooter','FallenKamboja','KitchenVaultOutside','LongDiningTable','GrandfatherClock','AR_SeatedSriAtmaja','ChildBedroomDoor','VentPassGate','DamarHandycam','Spawn_Basement','Spawn_Chase','DamarSurveyInsideDining','SeatedDollOnEndChair']:
  assert marker.encode() in atmaja_data,marker
 assert b'Prolog_RumahAtmaja' in (out/'LayarTerakhir_Data/globalgamemanagers').read_bytes()
 corridor_data=(out/'LayarTerakhir_Data/level2').read_bytes()
-for marker in ['Spawn_KosFloor2','StairA_9','StairB_9','DAPUR BERSAMA','KAMAR MANDI','RakaMotor','RakaMotorHeadlight','KosGateHinge','KosStreetDeparture','KosMainEntranceDoor','StairwellFoundation','UpperLandingGuard','StairInnerGuardA_9','RoomCell_F2_21','KosPitchedRoof']:
+for marker in ['Spawn_KosFloor2','StairA_9','StairB_9','DAPUR BERSAMA','KAMAR MANDI','RakaMotor','RakaMotorHeadlight','DoubleLeafIronGate','KosStreetDeparture','KosMainEntranceDoor','StairwellFoundation','UpperLandingGuard','StairInnerGuardA_9','RoomCell_F2_21','KosPitchedRoof','SharedDiningDoor','BathroomWANITADoor','BathroomPRIADoor','KosFrontWindowGlass']:
  assert marker.encode() in corridor_data,marker
 runtime=(out/'LayarTerakhir_Data/Managed/Assembly-CSharp.dll').read_bytes()
-for marker in ['GameShell','PhoneDesktop','PhoneSkin','KosRoomCorrections','ClockPuzzleView','ClockAmbience','KosCorridorDirector','KosTravelItem','ReviewPlayerAudit']:
+for marker in ['GameShell','PhoneDesktop','PhoneSkin','KosRoomCorrections','ClockPuzzleView','ClockAmbience','KosCorridorDirector','KosTravelItem','ReviewPlayerAudit','ShoulderCameraRig','ExplorationCommentary','StoryMapGraphic','DoubleLeafGate','TryPayFamilyBill','DisplayPreferences','AtmajaUpperDirector','AtmajaBasementHorror','AtmajaChaseSequence']:
  assert marker.encode() in runtime,marker
 assert b'LayarPresentation' in (out/'LayarTerakhir_Data/resources.assets').read_bytes(),'Presentation/voice resource missing'
 shutil.copy2(root/'Audit/asset-credits.md',out/'Asset-Credits.txt')
@@ -64,6 +68,8 @@ shutil.copy2(root/'Audit/windows-kos-capture.md',out/'Screenshot-Guide.txt')
 shutil.copy2(root/'Assets/_LayarTerakhir/UI/Fonts/OFL.txt',out/'Barlow-OFL.txt')
 shutil.copy2(root/'Audit/golden-windows-review.md',out/'Golden-Review-Guide.txt')
 shutil.copy2(root/'Audit/atmaja-windows-playtest.md',out/'Atmaja-Playtest-Guide.txt')
+shutil.copy2(root/'Audit/Recording/dialogue-recording.csv',out/'Dialogue-For-Recording.csv')
+shutil.copy2(root/'Audit/Recording/README.md',out/'Dialogue-Recording-Readme.txt')
 shutil.copy2(root/'Audit/dejavu-font-license.txt',out/'DejaVu-Font-License.txt')
 files=sorted(p for p in out.rglob('*') if p.is_file());manifest=[]
 for p in files:

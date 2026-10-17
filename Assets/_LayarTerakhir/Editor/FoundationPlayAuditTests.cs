@@ -126,7 +126,11 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(view.Apps.CurrentApp,Is.EqualTo(PhoneApp.Call));
             yield return WaitForStage(KosPrologStage.PreparationAndDrawerPuzzle);
             Assert.That(campaign.Data.wallet_bound, Is.EqualTo(5000000));
-            Assert.That(view.Apps.CurrentApp,Is.EqualTo(PhoneApp.Messages));
+            Assert.That(Find<SmartphoneController>().isPhoneRaised,Is.False);
+            Assert.That(campaign.HasInventoryItem("EVENT_P0_CONTRACT_READ"),Is.False);
+            yield return Press(Key.Tab);view.Apps.Open(PhoneApp.Messages);yield return null;
+            Assert.That(campaign.HasInventoryItem("EVENT_P0_CONTRACT_READ"),Is.True);
+            yield return new WaitForSeconds(10.2f);
             view.Apps.Open(PhoneApp.Bank);yield return null;
             Assert.That(GameObject.Find("BankBalance").GetComponent<UnityEngine.UI.Text>().text,Does.Contain("5.000.000"));
             view.Apps.Open(PhoneApp.Inventory);yield return null;
@@ -160,7 +164,8 @@ namespace LayarTerakhir.Editor.Tests
             if (!jacketFirst){yield return WalkTo(new Vector3(1.05f,.05f,-.4f));yield return UseFromCurrentFeet(director.jacketItem);}
             Assert.That(director.currentStage, Is.EqualTo(KosPrologStage.ReadyToDepart));
             Assert.That(campaign.Data.inventory, Is.EquivalentTo(new[] {
-                "DOC_PROLOG_01_SURAT_KOS", "SMARTPHONE_RAKA", "KUNCI_MOTOR", "POWERBANK_KECIL_KOS", "JAKET_RAKA", "DOMPET_RAKA", "DIARY_RAKA" }));
+                "DOC_PROLOG_01_SURAT_KOS", "SMARTPHONE_RAKA", "KUNCI_MOTOR", "POWERBANK_KECIL_KOS", "JAKET_RAKA", "DOMPET_RAKA", "DIARY_RAKA",
+                "EVENT_P0_CONTRACT_RECEIVED", "EVENT_P0_CONTRACT_READ", "EVENT_P0_CONTRACT_REACTION" }));
             yield return WalkTo(new Vector3(.9f,.05f,-.6f));yield return UseFromCurrentFeet(director.kosDoorItem);
             Assert.That(director.currentStage, Is.EqualTo(KosPrologStage.Completed));
             yield return new WaitForSeconds(4f);
@@ -408,6 +413,8 @@ namespace LayarTerakhir.Editor.Tests
         private IEnumerator Interact(KosInteractableItem item, Vector3 position)
         {
             PlacePlayer(position);
+            var player=Find<FirstPersonController>();bool wasEnabled=player.enabled;player.enabled=false;
+            var shoulder=player.GetComponent<ShoulderCameraRig>();if(shoulder)shoulder.RefreshCameraPose();
             var interactor = Find<InteractionInteractor>();
             interactor.playerCamera.transform.LookAt(item.transform.position);
             Physics.SyncTransforms();
@@ -425,6 +432,7 @@ namespace LayarTerakhir.Editor.Tests
             UnityEngine.Object.Destroy(obstruction);
             yield return null;
             yield return Press(Key.E);
+            player.enabled=wasEnabled;
         }
 
         private IEnumerator WalkTo(Vector3 target)
@@ -440,9 +448,12 @@ namespace LayarTerakhir.Editor.Tests
         }
         private IEnumerator UseFromCurrentFeet(KosInteractableItem item)
         {
+            var player=Find<FirstPersonController>();bool wasEnabled=player.enabled;player.enabled=false;
+            var shoulder=player.GetComponent<ShoulderCameraRig>();if(shoulder)shoulder.RefreshCameraPose();
             var interactor=Find<InteractionInteractor>();interactor.playerCamera.transform.LookAt(item.GetComponent<Collider>().bounds.center);Physics.SyncTransforms();yield return null;
             Assert.That(interactor.CurrentTarget,Is.SameAs(item),"Preparation item must be first-hit reachable from the aisle: "+item.name);
             yield return Press(Key.E);
+            player.enabled=wasEnabled;
         }
 
         private static void PlacePlayer(Vector3 position)

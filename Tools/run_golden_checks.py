@@ -1,7 +1,7 @@
 """Serial, recorded Unity invocations for the Golden reference scene.
 Player captures are real standalone output, not evidence of Windows/Iris Xe performance.
 """
-import argparse, json, os, shutil, struct, subprocess, sys, tempfile, time
+import argparse, json, os, re, shutil, struct, subprocess, sys, tempfile, time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
@@ -14,7 +14,10 @@ parser.add_argument('--width',type=int,default=1280)
 parser.add_argument('--height',type=int,default=720)
 parser.add_argument('--graphics',choices=['glcore','vulkan'],default='glcore')
 parser.add_argument('--fast',action='store_true',help='Explicitly accelerate smoke story waits; never a timing/FPS test')
+parser.add_argument('--review-output',default='Audit/Visuals/Review-Linux',help='Separate reviewed-player evidence directory under Audit/Visuals')
 args=parser.parse_args();stage=args.stage
+review_output=(ROOT/args.review_output).resolve()
+assert review_output.is_relative_to((ROOT/'Audit/Visuals').resolve()),'Review captures must stay under Audit/Visuals'
 if stage in ('atmaja-player','player'):
     print(stage+' now runs the reviewed three-scene audit (review-player)',flush=True)
     stage='review-player'
@@ -29,7 +32,7 @@ if stage=='test':
 elif is_player:
     command=['xvfb-run','-a','-s','-screen 0 1280x720x24',str(ROOT/'Builds/LinuxAudit/LayarTerakhir.x86_64'),
              '-force-'+args.graphics,'-screen-fullscreen','0','-screen-width',str(args.width),'-screen-height',str(args.height),
-             '-reviewAudit' if stage=='review-player' else '-atmajaAudit' if stage=='atmaja-player' else '-goldenAudit',str(ROOT/('Audit/Visuals/Review-Linux' if stage=='review-player' else 'Audit/Visuals/Atmaja-Linux' if stage=='atmaja-player' else 'Audit/Visuals/Golden-Linux')),'-logFile',str(log)]
+             '-reviewAudit' if stage=='review-player' else '-atmajaAudit' if stage=='atmaja-player' else '-goldenAudit',str(review_output if stage=='review-player' else ROOT/('Audit/Visuals/Atmaja-Linux' if stage=='atmaja-player' else 'Audit/Visuals/Golden-Linux')),'-logFile',str(log)]
     if args.fast and stage=='player':command+=['-goldenAuditFast']
 else:
     methods={'apply':'GoldenSceneProduction.Apply','polish':'CompactKosPolish.Apply','validate':'GoldenSceneValidation.Run','linux':'GoldenLinuxBuild.Build','windows':'WindowsDevelopmentBuild.Build','atmaja-build':'PlaytestRevisionBuilder.Build','atmaja-validate':'AtmajaSceneValidation.Run','review-build':'PlaytestRevisionBuilder.Build','review-validate':'PlaytestReviewValidation.Run','kos-refine':'PlaytestRevisionBuilder.RefineKos'}
@@ -46,26 +49,43 @@ if stage=='test':command+=['-logFile',str(log)]
 env=os.environ.copy()
 pulse=None
 pulse_temp=None
-if is_player:
+if is_player or stage=='test':
     # Clocked private virtual sink: ALSA's unclocked null sink can busy-loop on hosts without a soundcard.
     env['LIBGL_ALWAYS_SOFTWARE']='1'
     pulse_temp=tempfile.TemporaryDirectory(prefix='layar-golden-pulse-')
+    env['PULSE_RUNTIME_PATH']=pulse_temp.name
     socket=str(Path(pulse_temp.name)/'native')
+    pulse_env=env.copy()
+    # A second daemon must not claim the player's existing session-bus name.
+    # Native-protocol Unix sockets are sufficient on this headless host.
+    pulse_env['DBUS_SESSION_BUS_ADDRESS']='unix:path='+str(Path(pulse_temp.name)/'no-session-bus')
     pulse=subprocess.Popen(['pulseaudio','-n','--daemonize=no','--use-pid-file=no','--exit-idle-time=-1',
         '--log-level=error','--load=module-null-sink sink_name=golden rate=48000 channels=2',
-        '--load=module-native-protocol-unix socket='+socket+' auth-anonymous=1'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+        '--load=module-native-protocol-unix socket='+socket+' auth-anonymous=1'],env=pulse_env,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE,start_new_session=True)
     deadline=time.monotonic()+5
     while not Path(socket).exists() and pulse.poll() is None and time.monotonic()<deadline:time.sleep(.05)
-    assert Path(socket).exists(),'Private PulseAudio sink did not start; install pulseaudio and pulseaudio-utils'
+    if not Path(socket).exists():
+        if pulse.poll() is None:pulse.terminate()
+        _,diagnostic=pulse.communicate(timeout=10)
+        pulse_temp.cleanup()
+        raise RuntimeError('Private PulseAudio sink did not start: '+diagnostic.decode(errors='replace').strip())
     env['PULSE_SERVER']='unix:'+socket
 record={'stage':stage,'command':command,'startedUtc':datetime.now(timezone.utc).isoformat()}
-if pulse:record['audioBackend']='Private clocked PulseAudio null sink; real listener tap, no physical audio hardware'
+if pulse:record['audioBackend']='Private clocked PulseAudio null sink; '+('real listener tap' if is_player else 'headless test audio device')+', no physical audio hardware'
 record['status']='Running'
+record_path.parent.mkdir(parents=True,exist_ok=True)
+log.parent.mkdir(parents=True,exist_ok=True)
 record_path.write_text(json.dumps(record,indent=2)+'\n')
 print('GOLDEN_STAGE',stage,'START',flush=True)
 try:
     with log.with_suffix('.console.log').open('w') as console:
-        result=subprocess.run(command,cwd=ROOT,env=env,stdout=console,stderr=subprocess.STDOUT)
+        result=subprocess.Popen(command,cwd=ROOT,env=env,stdout=console,stderr=subprocess.STDOUT,start_new_session=True)
+        while True:
+            try:
+                result.wait(timeout=30)
+                break
+            except subprocess.TimeoutExpired:
+                print('GOLDEN_STAGE',stage,'RUNNING',flush=True)
 finally:
     if pulse:
         pulse.terminate();pulse.wait(timeout=10);pulse_temp.cleanup()
@@ -81,13 +101,16 @@ if stage=='test' and result.returncode==0:
     except (AssertionError,OSError,ET.ParseError) as error:
         record['exitCode']=1;record['validationError']=str(error)
 if is_player and result.returncode==0:
-    review=stage=='review-player';atmaja=stage=='atmaja-player';expected=41 if review else 12 if atmaja else 13
-    receipt=ROOT/('Audit/Visuals/Review-Linux/player-audit.json' if review else 'Audit/Visuals/Atmaja-Linux/player-audit.json' if atmaja else 'Audit/Visuals/Golden-Linux/player-audit.json')
+    review=stage=='review-player';atmaja=stage=='atmaja-player'
+    expected_names=re.findall(r'\bShot\("([^"\n]+)"\)',(ROOT/'Assets/_LayarTerakhir/Scripts/Diagnostics/ReviewPlayerAudit.cs').read_text()) if review else []
+    expected=len(expected_names) if review else 12 if atmaja else 13
+    receipt=review_output/'player-audit.json' if review else ROOT/('Audit/Visuals/Atmaja-Linux/player-audit.json' if atmaja else 'Audit/Visuals/Golden-Linux/player-audit.json')
     data=json.loads(receipt.read_text()) if receipt.exists() else {}
     try:
         assert data.get('completed') and data.get('actualStandalonePlayer') and len(data.get('screenshots',[]))==expected
         assert data.get('checkpointSaved')
         if review:
+            assert set(data['screenshots'])=={name+'.png' for name in expected_names},'Missing declared review screenshots'
             assert data.get('transitionFromKos') and data.get('motorPassedGate') and data.get('previousSaveArchived')
             assert data.get('walkedMeters',0)>90 and data.get('maximumInteriorFootY',2)<.7
             assert all(c.startswith('PASS ') for c in data['checks'])

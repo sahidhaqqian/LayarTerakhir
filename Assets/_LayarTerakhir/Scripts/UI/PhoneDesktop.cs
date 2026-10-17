@@ -19,7 +19,7 @@ namespace LayarTerakhir.UI
         public string DialedContact {get;private set;}
         public static readonly string[] Contacts={"Damar", "Ibu", "Bu Haji Ratna"};
         private static readonly string[] ContactNumbers={"08•• •••• 2140", "08•• •••• 5729", "08•• •••• 0800"};
-        private bool dialing,pendingNotification;
+        private bool dialing,pendingNotification,outgoingConnected;
         public bool IsCalling=>dialing||CallActive;
         private bool ContractReceived=>CampaignState.Instance&&(CampaignState.Instance.HasInventoryItem("EVENT_P0_CONTRACT_RECEIVED")||CampaignState.Instance.Data.wallet_bound>0||CampaignState.Instance.Data.spent>0);
         private SmartphoneController Phone=>SmartphoneController.Instance;
@@ -28,7 +28,7 @@ namespace LayarTerakhir.UI
         private void Update()
         {
             if(banner&&Time.unscaledTime>bannerUntil){Destroy(banner);banner=null;}
-            if(callTimer&&CallActive){int seconds=Mathf.FloorToInt(Time.time-callStarted);callTimer.text=$"{seconds/60:00}:{seconds%60:00}  •  Tersambung";}
+            if(callTimer&&IsCalling){int seconds=Mathf.FloorToInt(Time.time-callStarted);callTimer.text=dialing&&!outgoingConnected?"Memanggil…":$"{seconds/60:00}:{seconds%60:00}  •  Tersambung";}
             if(!Phone||!Phone.hasSmartphoneInInventory||!root||UiFocus.Cinematic||HudController.Instance.IsModalOpen)return;
             if(Keyboard.current!=null)
             {
@@ -64,6 +64,8 @@ namespace LayarTerakhir.UI
                 var b=PhoneSkin.Button("AppButton_"+i,slot.transform,"",new Vector2(.12f,.33f),new Vector2(.88f,1),()=>
                 {if(index==6){GameShell.Instance?.ShowSettings();return;}Open(index==0?PhoneApp.Camera:index==1?PhoneApp.Map:index==2?PhoneApp.Messages:index==3?PhoneApp.Journal:index==4?PhoneApp.Inventory:index==5?PhoneApp.Bank:PhoneApp.Call);},colors[i]);
                 PhoneSkin.Icon(glyphs[i],b.transform,new Vector2(.19f,.16f),new Vector2(.81f,.84f));UiWidgets.Text("AppLabel",slot.transform,labels[i],Vector2.zero,new Vector2(1,.31f),20,TextAnchor.MiddleCenter);
+                if(index==2&&ContractReceived&&!CampaignState.Instance.HasInventoryItem("EVENT_P0_CONTRACT_READ"))
+                {var badge=PhoneSkin.Card("MessageUnreadBadge",b.transform,new Vector2(.72f,.70f),new Vector2(1.02f,1.02f),new Color(.77f,.15f,.16f));UiWidgets.Text("Count",badge.transform,"1",Vector2.zero,Vector2.one,18,TextAnchor.MiddleCenter);}
             }
         }
         private void Map()
@@ -103,12 +105,13 @@ namespace LayarTerakhir.UI
         public void EndDamarCall(){CallActive=false;Open(PhoneApp.Call);}
         private void CallScreen()
         {
-            if(!CallActive){ContactsScreen();return;}
+            if(!IsCalling){ContactsScreen();return;}
+            string contact=CallActive?"Damar":DialedContact;
             UiWidgets.Text("CallNetwork",page.transform,CallActive?"PANGGILAN SUARA":"TELEPON",new Vector2(.08f,.85f),new Vector2(.92f,.94f),20,TextAnchor.MiddleCenter);
-            var avatar=PhoneSkin.Card("DamarAvatar",page.transform,new Vector2(.32f,.59f),new Vector2(.68f,.79f),new Color(.17f,.29f,.35f));UiWidgets.Text("Initial",avatar.transform,"D",Vector2.zero,Vector2.one,76,TextAnchor.MiddleCenter);
-            UiWidgets.Text("CallerName",page.transform,"Damar",new Vector2(.08f,.46f),new Vector2(.92f,.57f),48,TextAnchor.MiddleCenter);UiWidgets.Text("CallerRole",page.transform,"Kameramen",new Vector2(.08f,.42f),new Vector2(.92f,.48f),21,TextAnchor.MiddleCenter);
+            var avatar=PhoneSkin.Card("DamarAvatar",page.transform,new Vector2(.32f,.59f),new Vector2(.68f,.79f),new Color(.17f,.29f,.35f));UiWidgets.Text("Initial",avatar.transform,contact.Substring(0,1),Vector2.zero,Vector2.one,76,TextAnchor.MiddleCenter);
+            UiWidgets.Text("CallerName",page.transform,contact,new Vector2(.08f,.46f),new Vector2(.92f,.57f),48,TextAnchor.MiddleCenter);UiWidgets.Text("CallerRole",page.transform,contact=="Ibu"?"Keluarga":contact=="Damar"?"Kameramen":"Pemilik kos",new Vector2(.08f,.42f),new Vector2(.92f,.48f),21,TextAnchor.MiddleCenter);
             callTimer=UiWidgets.Text("CallTimer",page.transform,CallActive?"00:00  •  Tersambung":"Panggilan terputus",new Vector2(.08f,.33f),new Vector2(.92f,.40f),23,TextAnchor.MiddleCenter);
-            PhoneSkin.Icon("Call",page.transform,new Vector2(.39f,.15f),new Vector2(.61f,.27f),CallActive?new Color(.48f,.8f,.65f):new Color(.85f,.3f,.27f));UiWidgets.Text("CallHistory",page.transform,"14 panggilan tak terjawab  •  21:15",new Vector2(.07f,.06f),new Vector2(.93f,.13f),19,TextAnchor.MiddleCenter);
+            PhoneSkin.Icon("Call",page.transform,new Vector2(.39f,.15f),new Vector2(.61f,.27f),new Color(.48f,.8f,.65f));UiWidgets.Text("CallHistory",page.transform,CallActive?"14 panggilan tak terjawab  •  21:15":"Panggilan keluar • LTE",new Vector2(.07f,.06f),new Vector2(.93f,.13f),19,TextAnchor.MiddleCenter);
         }
         private void ContactsScreen()
         {
@@ -121,18 +124,19 @@ namespace LayarTerakhir.UI
                 PhoneSkin.Button("Contact_"+i,page.transform,contact+"  ·  "+detail+"   ↗",new Vector2(.06f,y),new Vector2(.94f,y+.125f),()=>StartCoroutine(DialContact(contact)));
             }
             PhoneSkin.Button("ContactsHome",page.transform,"‹  Aplikasi",new Vector2(.06f,.015f),new Vector2(.94f,.085f),()=>Open(PhoneApp.Home));
-            if(!string.IsNullOrEmpty(DialedContact))UiWidgets.Text("DialResult",page.transform,DialedContact+"\nTidak dapat dihubungi",new Vector2(.075f,.11f),new Vector2(.93f,.23f),22);
+            if(!string.IsNullOrEmpty(DialedContact))UiWidgets.Text("DialResult",page.transform,DialedContact+"\n"+(DialedContact!="Damar"&&CampaignState.Instance.HasInventoryItem(DialedContact=="Ibu"?"EVENT_CALLED_IBU":"EVENT_CALLED_RATNA")?"Panggilan selesai • lihat Bank":"Tidak dapat dihubungi"),new Vector2(.075f,.11f),new Vector2(.93f,.23f),22);
         }
         private System.Collections.IEnumerator DialContact(string contact)
         {
             if(dialing||CallActive)yield break;dialing=true;
-            DialedContact=contact;Open(PhoneApp.Call);
+            DialedContact=contact;outgoingConnected=false;callStarted=Time.time;Open(PhoneApp.Call);
             var result=page.transform.Find("DialResult")?.GetComponent<Text>();if(result)result.text=contact+"\nMemanggil…";
             var source=gameObject.AddComponent<AudioSource>();source.outputAudioMixerGroup=PresentationProfile.Load().audio.uiBus;
             source.clip=Resources.Load<AudioClip>("KosAudio/OutgoingCall");source.volume=.45f;if(source.clip)source.Play();
             yield return new WaitForSeconds(3.2f);if(source){source.Stop();Destroy(source);}
             if(contact!="Damar"&&ContractReceived)
             {
+                outgoingConnected=true;callStarted=Time.time;
                 if(result)result.text=contact+"\nTersambung";
                 string[] speakers=contact=="Ibu"?new[]{"Ibu","Raka","Ibu","Raka"}:new[]{"Bu Haji Ratna","Raka","Bu Haji Ratna","Raka"};
                 string[] lines=contact=="Ibu"?new[]{KosDialogue.MotherHello,KosDialogue.RakaMother,KosDialogue.MotherReply,KosDialogue.RakaMotherGoodbye}:new[]{KosDialogue.RatnaHello,KosDialogue.RakaRatna,KosDialogue.RatnaReply,KosDialogue.RakaRatnaGoodbye};
@@ -148,6 +152,7 @@ namespace LayarTerakhir.UI
             }
             else if(result)result.text=contact+"\nTidak dapat dihubungi";
             dialing=false;
+            if(CurrentApp==PhoneApp.Call)Open(PhoneApp.Call);
         }
         public void ReceiveContract(){CampaignState.Instance.AddInventoryItem("EVENT_P0_CONTRACT_RECEIVED");Open(PhoneApp.Home);Notify("Rp5.000.000 diterima");}
         public void Notify(string message)
@@ -158,7 +163,7 @@ namespace LayarTerakhir.UI
         private void ShowNotification()
         {
             if(banner)Destroy(banner);bannerUntil=Time.unscaledTime+6;banner=PhoneSkin.Card("PhoneNotification",view.Panel.transform,new Vector2(.055f,.765f),new Vector2(.945f,.915f),new Color(.13f,.20f,.27f,.99f));
-            var button=banner.AddComponent<Button>();button.targetGraphic=banner.GetComponent<Image>();button.onClick.AddListener(()=>{Destroy(banner);Open(PhoneApp.Messages);});UiWidgets.Text("Preview",banner.transform,"PESAN MASUK\nPenonton_Terakhir",new Vector2(.06f,.10f),new Vector2(.94f,.93f),22);
+            var button=banner.AddComponent<Button>();button.targetGraphic=banner.GetComponent<Image>();button.onClick.AddListener(()=>{Destroy(banner);Open(PhoneApp.Messages);});UiWidgets.Text("Preview",banner.transform,"Penonton_Terakhir\n"+(latestMessage.Length>90?latestMessage.Substring(0,90)+"…":latestMessage),new Vector2(.06f,.10f),new Vector2(.94f,.93f),22);
         }
         private void Messages()
         {
@@ -209,6 +214,11 @@ namespace LayarTerakhir.UI
             if(c.HasInventoryItem(AtmajaDirector.SurveyId))entries.Add(("Catatan survei Damar",AtmajaDirector.SurveyText));
             if(c.HasInventoryItem("DOC_PROLOG_03_KORAN_1998"))entries.Add(("Koran tragedi 1998","Satu keluarga ditemukan tewas. Polisi menduga peristiwa bermula di lantai dua menjelang tengah malam. Ada sesuatu yang sengaja tidak ditulis di koran ini."));
             if(c.HasInventoryItem("EVENT_P0_AR_CLUE_READ"))entries.Add(("Tulisan di dinding","WAKTU KEMATIAN KAMI ADALAH KUNCI.\nIII : XLV"));
+            if(c.HasInventoryItem(AtmajaUpperDirector.DiaryId))entries.Add(("Buku harian Bima",AtmajaUpperDirector.DiaryText));
+            if(c.HasInventoryItem(AtmajaUpperDirector.WillId))entries.Add(("Surat wasiat Nyonya",AtmajaUpperDirector.WillText));
+            if(c.HasInventoryItem("EVENT_P0_CHAIN1_BROKEN"))entries.Add(("Foto cangkir retak","Bukti pertama: cangkir susu yang ditinggalkan di kamar anak. Ada aura yang tidak terlihat tanpa kamera."));
+            if(c.HasInventoryItem("EVENT_P0_CHAIN2_BROKEN"))entries.Add(("Foto cakaran","Bukti kedua: jejak jari kecil di balik kamar mandi."));
+            if(c.HasInventoryItem("EVENT_P0_CHAIN3_BROKEN"))entries.Add(("Foto tali","Bukti ketiga: tali di atas balkon. Tiga bukti terhubung dengan tragedi keluarga ini."));
             var host=UiWidgets.Panel("JournalList",page.transform,new Vector2(.05f,.12f),new Vector2(.95f,.88f),new Color(0,0,0,.01f));
             var scroll=host.AddComponent<ScrollRect>();scroll.horizontal=false;scroll.scrollSensitivity=30;scroll.movementType=ScrollRect.MovementType.Clamped;
             var viewport=UiWidgets.Rect("Viewport",host.transform,Vector2.zero,Vector2.one).GetComponent<RectTransform>();viewport.gameObject.AddComponent<RectMask2D>();
@@ -216,7 +226,8 @@ namespace LayarTerakhir.UI
             for(int i=0;i<entries.Count;i++)
             {
                 var entry=entries[i];float top=1-i/(float)entries.Count,bottom=1-(i+1)/(float)entries.Count;
-                PhoneSkin.Button("JournalEntry_"+i,content,entry.title+"   ›",new Vector2(.015f,bottom+.012f),new Vector2(.985f,top-.012f),()=>JournalDetail(entry.title,entry.body));
+                float inset=.06f/entries.Count;
+                PhoneSkin.Button("JournalEntry_"+i,content,entry.title+"   ›",new Vector2(.015f,bottom+inset),new Vector2(.985f,top-inset),()=>JournalDetail(entry.title,entry.body));
             }
         }
         private void JournalDetail(string title,string body)

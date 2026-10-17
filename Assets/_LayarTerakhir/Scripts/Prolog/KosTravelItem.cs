@@ -8,7 +8,7 @@ namespace LayarTerakhir.Prolog
     {
         public KosCorridorDirector director;public string label="Pilih tujuan perjalanan";
         public string InteractableId=>name;
-        public bool CanInteract()=>director&&!director.Busy&&!UiFocus.BlocksWorld&&!HudController.Instance.IsModalOpen;
+        public bool CanInteract()=>director&&!director.Busy&&!UiFocus.HardModal&&!UiFocus.Cinematic&&!(HudController.Instance&&HudController.Instance.IsModalOpen);
         public string GetInteractionPrompt()=>label;
         public void Interact(){if(CanInteract())director.OpenMap();}
     }

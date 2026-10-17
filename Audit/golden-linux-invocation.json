@@ -5,17 +5,17 @@
     "-batchmode",
     "-nographics",
     "-projectPath",
-    "/root/Projects/LayarTerakhir",
+    "/root/Projects/LayarTerakhir-main",
     "-buildTarget",
     "Linux64",
     "-quit",
     "-executeMethod",
     "LayarTerakhir.Editor.GoldenLinuxBuild.Build",
     "-logFile",
-    "/root/Projects/LayarTerakhir/Audit/golden-linux.log"
+    "/root/Projects/LayarTerakhir-main/Audit/golden-linux.log"
   ],
-  "startedUtc": "2026-10-16T09:45:19.461520+00:00",
+  "startedUtc": "2026-10-17T06:10:26.963111+00:00",
   "status": "Finished",
-  "endedUtc": "2026-10-16T09:46:25.337867+00:00",
+  "endedUtc": "2026-10-17T06:11:11.955215+00:00",
   "exitCode": 0
 }

@@ -5,17 +5,17 @@
     "-batchmode",
     "-nographics",
     "-projectPath",
-    "/root/Projects/LayarTerakhir",
+    "/root/Projects/LayarTerakhir-main",
     "-buildTarget",
     "Win64",
     "-quit",
     "-executeMethod",
     "LayarTerakhir.Editor.WindowsDevelopmentBuild.Build",
     "-logFile",
-    "/root/Projects/LayarTerakhir/Builds/Logs/windows-development.log"
+    "/root/Projects/LayarTerakhir-main/Builds/Logs/windows-development.log"
   ],
-  "startedUtc": "2026-10-16T18:45:05.750813+00:00",
+  "startedUtc": "2026-10-17T06:11:17.762742+00:00",
   "status": "Finished",
-  "endedUtc": "2026-10-16T18:45:51.022290+00:00",
+  "endedUtc": "2026-10-17T06:12:44.503028+00:00",
   "exitCode": 0
 }

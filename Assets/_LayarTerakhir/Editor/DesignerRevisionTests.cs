@@ -5,6 +5,7 @@ using System.Linq;
 using LayarTerakhir.Core;
 using LayarTerakhir.Player;
 using LayarTerakhir.Prolog;
+using LayarTerakhir.UI;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -61,7 +62,30 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(c.TryPayFamilyBill(true),Is.False);Assert.That(c.HasInventoryItem("EVENT_PAID_HOSPITAL"),Is.False);
             Assert.That(c.Data.wallet_bound,Is.EqualTo(1499999));
         }
+        [Test] public void PhoneFocusDoesNotBlockDoorsButMenusStillDo()
+        {
+            bool beforePhone=UiFocus.Phone,beforeMenu=UiFocus.Menu;
+            try
+            {
+                var door=new GameObject("DoorGuardTest").AddComponent<HingedDoor>();door.hinge=door.transform;
+                UiFocus.Phone=true;UiFocus.Menu=false;Assert.That(door.CanInteract(),Is.True);
+                UiFocus.Menu=true;Assert.That(door.CanInteract(),Is.False);
+            }
+            finally{UiFocus.Phone=beforePhone;UiFocus.Menu=beforeMenu;}
+        }
         [Test] public void KosHasSeparateFacilitiesColouredWindowsAndPairedGate()
+        {
+            CheckKosFacilities();
+        }
+        [Test] public void FullscreenPreferenceNeverOverridesTestsOrExplicitLaunchDimensions()
+        {
+            Assert.That(DisplayPreferences.ShouldRestore(false,new[]{"Game.exe"},false),Is.True);
+            Assert.That(DisplayPreferences.ShouldRestore(true,new[]{"Game.exe"},false),Is.False);
+            Assert.That(DisplayPreferences.ShouldRestore(false,new[]{"Game.exe"},true),Is.False);
+            foreach(string flag in new[]{"-screen-fullscreen","-screen-width","-screen-height","-reviewAudit","-nographics","-batchmode"})
+                Assert.That(DisplayPreferences.ShouldRestore(false,new[]{"Game.exe",flag},false),Is.False,flag);
+        }
+        private void CheckKosFacilities()
         {
             EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);
             foreach(string name in new[]{"SharedDiningDoor","BathroomWANITADoor","BathroomPRIADoor","KosCommunalDiningTable","Stove","KitchenSink"})Assert.That(GameObject.Find(name),Is.Not.Null,name);
@@ -77,9 +101,20 @@ namespace LayarTerakhir.Editor.Tests
             var note=Object.FindObjectsByType<AtmajaItem>(FindObjectsSortMode.None).Single(i=>i.action==AtmajaAction.Survey);
             Assert.That(d.LocalPosition(note.transform.position).y,Is.GreaterThan(0));
             Assert.That(GameObject.Find("DamarParkedScooter").GetComponent<AtmajaItem>(),Is.Null);
-            Assert.That(GameObject.Find("SeatedDollOnEndChair"),Is.Not.Null);Assert.That(GameObject.Find("AtmajaNameplate"),Is.Null);
+            var doll=GameObject.Find("SeatedDollOnEndChair");Assert.That(doll,Is.Not.Null);
+            Assert.That(doll.GetComponentsInChildren<Renderer>().Any(r=>r.sharedMaterial.name=="DesignerDollPorcelain"),Is.True);
+            Assert.That(doll.GetComponentsInChildren<Transform>().All(t=>t.gameObject.layer!=AtmajaPhoneView.ARLayer),Is.True);
+            Assert.That(GameObject.Find("AtmajaNameplate"),Is.Null);
             Assert.That(d.gateHinge.GetComponent<DoubleLeafGate>(),Is.Not.Null);
             Assert.That(Object.FindFirstObjectByType<GameInputConfig>().vaultKey,Is.EqualTo(KeyCode.Space));
+        }
+        [Test] public void BloodClueHasUnobstructedHeadHeightSightLineFromLounge()
+        {
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);var d=Object.FindFirstObjectByType<AtmajaDirector>();Physics.SyncTransforms();
+            Vector3 eye=d.P(-3.96f,4.6f,2.14f),delta=d.arClue.transform.position-eye;
+            var hits=Physics.RaycastAll(eye,delta.normalized,delta.magnitude-.03f,~0,QueryTriggerInteraction.Ignore)
+                .Where(h=>!h.transform.IsChildOf(d.player.transform)).OrderBy(h=>h.distance).ToArray();
+            Assert.That(hits.Length,Is.Zero,"Clue occluded by "+string.Join(", ",hits.Select(h=>h.collider.name+" at "+h.point)));
         }
     }
 }

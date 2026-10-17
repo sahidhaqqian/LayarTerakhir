@@ -1,21 +1,32 @@
-suara ketokan pintunya belum kedengeran jelas belum kedengeran aku expectnya ibu kost ngetok lumayan keras. terus raka yang lagi  lagi ngobrol sendiri denger ketokannya nengok ke pintu  terus tiba tiba muncul surat dibawah pintu.
+# Revisi playtest — 17 Oktober 2026
 
-suara alarm telepon dari hp juga belum ada aturan kalau ada telepon kan ada suara alarmnya juga 
+Pengguna adalah desainer; agen mengimplementasikan revisi berikut di main.
+Screenshot di Bugs adalah screenshot lama dan diabaikan. Naskah dialog untuk rekaman pengguna disiapkan tanpa sintesis suara baru.
 
-suara raka sama damar udah bagus tapi suaranya itu gak ada nada masih kayak suara robot aturan suaranya kayak ketakutan terus pas diakhir harusnya ada suara teriakan sebelum ditutup
+1. Cahaya kamera/flashlight HP harus cukup menerangi dunia, tidak memaksa pemain terus melihat feed HP.
+2. HP terlalu besar; kecilkan tanpa mengorbankan akses aplikasi.
+3. Ubah tampilan menjadi Third-Person Over-the-Shoulder.
+   Tambahan playtest: fullscreen harus bekerja melalui Settings dan Alt+Enter, dengan pilihan mode disimpan.
+4. Perbaiki dialog panjang ("kak Raka...") yang keluar dari kotak subtitle.
+5. Lantai bawah kos harus punya dapur, kamar mandi pria/wanita, dan ruang makan yang dapat dijelajahi.
+6. Siapkan dialog yang dibutuhkan dan arahan intonasinya untuk rekaman pengguna; jangan merender sintesis baru.
+7. Donasi Penonton_Terakhir: HP bergetar, banner muncul saat pemain membuka HP tanpa memaksa membuka Pesan. Setelah pesan dibaca, tunggu 10 detik sebelum reaksi Raka.
+8. Perbagus peta di HP.
+9. Telepon Ibu dan Bu Haji Ratna harus memiliki percakapan.
+10. Ibu sedang sakit. Raka mengabari bahwa ada biaya rumah sakit; kepada Bu Haji, Raka menjanjikan pelunasan agar tidak diusir besok. Tagihan masing-masing baru dapat dibayar lewat Bank setelah percakapannya.
+11. Pemain harus tetap bisa membuka pintu ketika memegang HP.
+12. Fasad kos harus berwarna dan punya jendela; langit malam memiliki bulan dan bintang.
+13. Gerbang besi membuka dari sambungan tengah sebagai dua daun, bukan satu panel pintu.
+14. Catatan Damar berada di dalam rumah, bukan ditinggalkan di motor.
+15. Ada adegan Raka mencoba membuka pintu depan, mendapati pintunya tidak bisa dibuka, kemudian mencari jalan lain.
+16. Hapus tulisan KELUARGA ATMAJA di depan rumah.
+17. Gunakan Spasi untuk memanjat jendela, bukan Alt.
+18. Tujuan hanya tampil sebentar, lalu tetap dapat dibaca di Jurnal; entri Jurnal dapat diklik untuk membuka detail.
+19. Tambahkan komentar saat memasuki ruangan baru agar eksplorasi tidak datar.
+20. Tujuan pencarian menyebut keberadaan/petunjuk tentang Damar, bukan langsung memberitahu "cari barang milik Damar di ruang makan".
+21. Kembalikan boneka yang duduk di kursi ujung.
+22. Perbaiki pohon tumbang agar posisi, tumpuan, akar, dan jalur merunduk masuk akal.
+23. Cari serta perbaiki bug lain yang ditemukan saat implementasi dan verifikasi.
 
-
-terus pesannya harusnya datang setelah beberapa detik kemudian ada pesan masuk gitu loh terus ada dialog anjirr damar dalam bahaya! Duit ini gak gratis... untuk sementara aku harus ikutin perintah dari pesan ini
-
-terus telepon harusnya ada nomer telepon lain weh jangan cuma damar doang 	
-
-terus ada bug crucial pas aku buka hp aku gak bisa gerak gimana aku mau ngejelajahi ruangannnya
-
-terus dilaci kayaknya jangan cuma powerbank doang deh harus ada diary juga sama dompet kalua gak kenapa harus di lock gitu 	
-
-
-
-pas aku nunduk dibawah meja seharusnya gak langsung bisa berdiri soalnya bikin langsung keatas meja
-
-pas ditangga kita bisa Masuk ke void nah biar gak kejadin gitu terus setiap kamar itu ada ruanganya kotak walaupun kosong terus dikotakin didalam rumah 
+Ketentuan pengiriman tetap mengikuti AGENTS.md: Graphify code-only sebelum commit/push; push ke main; setiap ZIP baru wajib diunggah dan diverifikasi di R2.
 

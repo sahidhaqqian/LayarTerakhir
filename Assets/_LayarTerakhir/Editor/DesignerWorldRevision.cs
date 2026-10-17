@@ -22,6 +22,22 @@ namespace LayarTerakhir.Editor
             AssetDatabase.SaveAssets();
             Debug.Log("DESIGNER_WORLD_BUILD complete: paired gates, facilities, inhabited facade, night sky, indoor note and seated doll");
         }
+        public static void ProbeTraversal()
+        {
+            var report=new System.Text.StringBuilder();
+            void At(string label,Vector3 feet,float height=1.75f)
+            {
+                Physics.SyncTransforms();report.AppendLine(label+" feet="+feet);
+                foreach(var c in Physics.OverlapCapsule(feet+Vector3.up*.34f,feet+Vector3.up*(height-.32f),.36f,~0,QueryTriggerInteraction.Ignore))
+                    report.AppendLine(c.name+" "+c.bounds);
+            }
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);var d=Object.FindFirstObjectByType<AtmajaDirector>();
+            At("Upper landing corridor approach",d.P(-3.3f,5.6f,3.9f));
+            At("Upper corridor eastward",d.P(-2.8f,5.6f,3.9f));
+            EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);
+            At("Kos bathroom foyer front",new Vector3(2.1f,.08f,3.31f));
+            System.IO.File.WriteAllText("Audit/designer-traversal-probe.txt",report.ToString());Debug.Log(report);
+        }
         private static GameObject Cube(Transform parent,string name,Vector3 position,Vector3 scale,Material material,bool solid=true)
         {
             var go=GameObject.CreatePrimitive(PrimitiveType.Cube);go.name=name;go.transform.SetParent(parent,false);
@@ -90,8 +106,14 @@ namespace LayarTerakhir.Editor
                 var rootPatch=GameObject.CreatePrimitive(PrimitiveType.Sphere);rootPatch.name="UprootedDampSoil";rootPatch.transform.SetParent(environment,false);
                 rootPatch.transform.position=d.P(6.5f,5.4f,.08f);rootPatch.transform.localScale=new Vector3(1.55f,.22f,1.4f);rootPatch.GetComponent<Renderer>().sharedMaterial=AtmajaSceneBuilder.Mat("stony_dirt_path");Object.DestroyImmediate(rootPatch.GetComponent<Collider>());
             }
-            var doll=AtmajaSceneBuilder.Model("ARSeatedAtmaja","SeatedDollOnEndChair",d.P(3.7f,2.15f,.80f));
-            doll.transform.rotation=Quaternion.LookRotation(d.north);doll.transform.localScale=Vector3.one*.43f;
+            var doll=AtmajaSceneBuilder.Model("ARSeatedAtmaja","SeatedDollOnEndChair",d.P(3.7f,2.15f,.752f));
+            doll.transform.rotation=Quaternion.LookRotation(d.north);doll.transform.localScale=Vector3.one*.60f;
+            // A readable, solid porcelain/rag doll in the ordinary world, not a tiny
+            // duplicate of the dark AR apparition disappearing below the chair back.
+            var dollSkin=Mat("DesignerDollPorcelain",new Color(.68f,.61f,.49f));
+            var dollDress=Mat("DesignerDollFadedDress",new Color(.30f,.13f,.12f));
+            foreach(var renderer in doll.GetComponentsInChildren<Renderer>())
+                renderer.sharedMaterials=renderer.sharedMaterials.Select(m=>m.name=="Detail_ARSkin"?dollSkin:m.name=="Detail_ARCloth"?dollDress:m).ToArray();
             foreach(var col in doll.GetComponentsInChildren<Collider>())Object.DestroyImmediate(col);
             Object.FindFirstObjectByType<GameInputConfig>().vaultKey=KeyCode.Space;
             NightSky(d.player.GetComponent<InteractionInteractor>().playerCamera);
@@ -120,19 +142,30 @@ namespace LayarTerakhir.Editor
                 var plate=GameObject.CreatePrimitive(PrimitiveType.Cylinder);plate.name="SharedDiningPlate";plate.transform.SetParent(root,false);plate.transform.position=new Vector3(-3.8f,.80f,7.0f+i*.48f);plate.transform.localScale=new Vector3(.23f,.008f,.23f);plate.GetComponent<Renderer>().sharedMaterial=dish;Object.DestroyImmediate(plate.GetComponent<Collider>());
             }
             // Separate enclosed toilet/shower cubicles, reached through the common washroom foyer.
-            Box("GenderBathroomPartition",new Vector3(3.85f,1.3f,4.25f),new Vector3(1.9f,2.6f,.10f),wall);
+            foreach(var partition in root.GetComponentsInChildren<Transform>().Where(t=>t.name=="RoomPartition"&&t.position.x>1&&t.position.y<3&&Mathf.Abs(t.position.z-3)<.01f).ToArray())
+                Object.DestroyImmediate(partition.gameObject);
+            foreach(string name in new[]{"KAMAR MANDIFloor","KAMAR MANDICeiling","KAMAR MANDISide"})
+            foreach(var t in root.GetComponentsInChildren<Transform>().Where(t=>t.name==name))
+            {var p=t.position;p.x=3.90f;t.position=p;var s=t.localScale;s.x=name.EndsWith("Floor")?4.7f:4.8f;t.localScale=s;}
+            var back=GameObject.Find("KAMAR MANDIBack");back.transform.position=new Vector3(6.25f,1.4f,4.25f);
+            var outerDoor=GameObject.Find("KAMAR MANDIDoor").GetComponent<HingedDoor>();outerDoor.slides=true;outerDoor.slideOffset=Vector3.forward*1.6f;
+            Box("BathPocketDoorTrack",new Vector3(1.40f,2.25f,5.0f),new Vector3(.06f,.055f,3.1f),metal);
+            GameObject.Find("BathroomWaterTank").transform.position=new Vector3(5.7f,.55f,5.5f);
+            GameObject.Find("SquatToiletBase").transform.position=new Vector3(4.8f,.09f,3.2f);
+            GameObject.Find("ToiletBowl").transform.position=new Vector3(4.8f,.19f,3.2f);
+            Box("GenderBathroomPartition",new Vector3(4.575f,1.3f,4.25f),new Vector3(3.35f,2.6f,.10f),wall);
             foreach(float z in new[]{3.30f,5.20f})
             {
                 bool women=z>4;string title=women?"WANITA":"PRIA";
                 var h=new GameObject("Bathroom"+title+"Hinge").transform;h.SetParent(root,false);h.position=new Vector3(2.82f,0,z-.46f);
                 var panel=Box("Bathroom"+title+"Door",new Vector3(2.82f,1.06f,z),new Vector3(.065f,2.12f,.9f),wood);panel.transform.SetParent(h,true);
-                var hd=panel.AddComponent<HingedDoor>();hd.hinge=h;hd.angle=-95;hd.label="Buka kamar mandi "+title.ToLowerInvariant();
+                var hd=panel.AddComponent<HingedDoor>();hd.hinge=h;hd.angle=95;hd.label="Buka kamar mandi "+title.ToLowerInvariant();
                 Label("Bathroom"+title+"Sign","KM/WC\n"+title,new Vector3(2.76f,1.78f,z),Vector3.left,.10f);
                 Box("CubicleDoorHeader",new Vector3(2.82f,2.43f,z),new Vector3(.10f,.5f,1.0f),wall);
-                if(women)Box("SecondSquatToilet",new Vector3(3.45f,.09f,5.25f),new Vector3(.52f,.18f,.65f),dish);
-                else Box("SecondWaterTank",new Vector3(4.15f,.50f,3.1f),new Vector3(.72f,1,.72f),floor);
-                Box("ShowerRiser",new Vector3(4.69f,1.55f,z),new Vector3(.025f,1.6f,.025f),metal);
-                Box("ShowerHead",new Vector3(4.56f,2.28f,z),new Vector3(.24f,.035f,.16f),metal);
+                if(women)Box("SecondSquatToilet",new Vector3(4.8f,.09f,5.2f),new Vector3(.52f,.18f,.65f),dish);
+                else Box("SecondWaterTank",new Vector3(5.7f,.50f,3.8f),new Vector3(.72f,1,.72f),floor);
+                Box("ShowerRiser",new Vector3(6.15f,1.55f,z),new Vector3(.025f,1.6f,.025f),metal);
+                Box("ShowerHead",new Vector3(6.02f,2.28f,z),new Vector3(.24f,.035f,.16f),metal);
             }
             foreach(var segment in new[]{new Vector2(2.5f,2.84f),new Vector2(3.76f,4.74f),new Vector2(5.66f,6f)})
                 Box("BathroomFrontPartition",new Vector3(2.82f,1.3f,(segment.x+segment.y)*.5f),new Vector3(.1f,2.6f,segment.y-segment.x),wall);

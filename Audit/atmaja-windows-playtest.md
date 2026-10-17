@@ -1,4 +1,4 @@
-# Playtest revisi Kos–Atmaja — 16 Oktober 2026
+# Playtest revisi desainer Kos–Atmaja — 17 Oktober 2026
 
 Jalankan LayarTerakhir.exe tanpa flag audit. Main menu: NEW GAME (save lama diarsipkan),
 CONTINUE (checkpoint terakhir), SETTINGS, EXIT. ESC saat bermain membuka pause menu.
@@ -6,28 +6,37 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
 
 1. NEW GAME: bangun dari kasur, monolog Raka, **tiga ketukan sungguhan lalu langkah menjauh**.
    Tidak ada caption SFX atau suara ibu kos. Baca surat bawah pintu, lalu ambil HP:
-   panggilan Damar langsung tersambung tanpa dokumen/tombol putar pesan. Setelahnya pesan kontrak
-   masuk di Pesan sesudah jeda 3,5 detik dan dana tercatat di Bank; Raka bereaksi terhadap ancaman.
+   panggilan Damar langsung tersambung tanpa dokumen/tombol putar pesan. Setelahnya HP bergetar,
+   dana tercatat di Bank; HP tidak dibuka paksa. Angkat HP untuk melihat banner notifikasi,
+   buka Pesan sendiri, lalu tunggu 10 detik waktu permainan sebelum reaksi Raka.
    Ketukan harus keras dan Raka menoleh; surat baru masuk setelah ketukan. Sebelum pickup ada ringtone;
    sebelum telepon putus ada teriakan Damar. HP boleh tetap dibuka sambil WASD; tahan RMB untuk menoleh.
    Cocokkan sticky note dan kalender untuk **empat roda tanggal/bulan**; petunjuk tidak mencetak jawaban.
    Ambil kunci yang terlihat di meja, powerbank/dompet/buku harian dari laci dan jaket di gantungan. Baca buku harian melalui Jurnal/Tas. Setelah menutup
    gembok/modal, WASD/E harus tetap bekerja; daftar persiapan menunjukkan barang yang belum diambil.
 2. Pintu kamar harus menuju **lorong lantai 2**, dengan kamar penghuni lain tertutup.
-   Turuni dua flight tangga, coba pintu dapur bersama dan kamar mandi di bawah.
+   Turuni dua flight tangga, coba pintu dapur, ruang makan bersama dan dua bilik WC/kamar mandi
+   terpisah PRIA/WANITA di bawah. Pintu luar kamar mandi bergeser pada rel.
    Periksa guardrail sisi dalam tangga; jangan sampai jatuh ke void. Buka pintu utama bangunan secara
    fisik, lalu berjalan ke teras, halaman dan motor/gerbang. Lihat kembali fasad/atap kos.
    Tidak boleh langsung pindah ke Atmaja. Kamar tertutup mempunyai lantai/dinding/plafon di belakangnya.
 3. TAB angkat HP. Z beralih aplikasi/kamera; M membuka peta jalan dari mana saja.
    Kamera, Peta dengan pin Kos/Atmaja, Pesan, Jurnal, Tas, Bank, Telepon dan Setelan dapat diperiksa.
    Tas hanya barang, bukan saldo. Status HUD lama tidak boleh menumpuk di bezel/status bar HP.
-   Telepon mempunyai Damar, Ibu dan Bu Haji Ratna; panggilan keluar lokal berbunyi lalu gagal tersambung,
-   bukan jaringan telepon sungguhan. Nomor fiktif disamarkan, tidak menelepon orang di dunia nyata.
+   Telepon mempunyai Damar, Ibu dan Bu Haji Ratna. Sesudah donasi, hubungi Ibu dan Ratna:
+   ada percakapan tentang biaya rumah sakit dan janji membayar kos. Setelah masing-masing panggilan,
+   tagihan terkait terbuka di Bank (rumah sakit Rp1.500.000, kos Rp3.500.000).
+   Pembayaran memakai konfirmasi, tersimpan, dan tidak bisa ditagih dua kali.
+   Ini percakapan game lokal, bukan panggilan ke nomor dunia nyata.
    Tujuan lain masih terkunci. Berangkat ke Atmaja **hanya dekat motor/gerbang**, bukan dari kamar.
    Setelah pilih tujuan, lihat animasi mendekat/naik motor, tangan di setang, gerbang membuka,
    lampu depan menyorot jalan dari lensa motor, dan motor melaju melewati gerbang sebelum
-   transisi lokasi. Animasi ini prototipe first-person.
-4. Di Atmaja: E gerbang; periksa motor Damar dan tutup catatan survei.
+   transisi lokasi. Kamera eksplorasi third-person over-the-shoulder; badan Raka masih model
+   prosedural sederhana, bukan karakter rigged final. Coba E pintu sambil aplikasi HP terbuka.
+   Saat kamera terdesak dinding hingga terlalu dekat, tubuh disembunyikan sementara
+   agar kepala/punggung tidak menutup pandangan; kembali terlihat ketika ada ruang.
+4. Di Atmaja: E kedua daun gerbang; coba pintu depan yang macet dan lihat gerakan percobaannya.
+   Catatan Damar ditemukan di dalam rumah, bukan di motor. Tidak perlu catatan untuk mulai live.
    TAB → Kamera → MULAI LIVE. Awalnya 14 penonton; TAB/F tidak memutus siaran.
    Lewat sisi kanan/timur; sisi kiri diblokir reruntuhan. Tahan CTRL melewati batang kamboja.
    Dekati jendela dapur dan hadap ke dalam, SPACE untuk vault kontekstual.
@@ -36,7 +45,8 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
    opsional memberi bonus sah 150k sekali. Buka pintu dapur, lewati **samping** meja,
    bukan di atas meja. Kursi kayu harus menghadap meja dan tidak ditembus akar.
 6. Merunduk di samping ransel bawah meja; arahkan ke layar retak, E ambil chip HP Damar.
-   Kamera → Q untuk AR. Sosok ujung meja dan tulisan darah hanya di feed HP,
+   Kamera → Q untuk AR. Boneka duduk di kursi ujung meja terlihat di dunia biasa;
+   sosok gaib dan tulisan darah hanya di feed HP,
    bukan kamera dunia. Tulisan harus tampak merah dan menempel dinding, bukan teks putih melayang.
    F mematikan layar/kamera tambahan; broadcast tetap berjalan.
 7. Buka ruang tamu depan. Ambil jarum kuningan di meja kecil pojok; telusuri lounge/gudang.
@@ -68,9 +78,14 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
     yang sama dan tanpa donasi ulang. Restart build baru wajib memakai NEW GAME.
 
 SETTINGS: volume, sensitivitas, subtitle, reduksi glitch, remap delapan aksi utama.
-M/Z/ESC adalah shortcut UI tetap. Tombol J dan modul cerita lanjutan belum diimplementasikan.
-Suara memakai lima identitas neural sintetis (Raka, Damar, rekaman Damar, Bisikan, Nyonya);
-intonasi/kejelasan tetap perlu penilaian pendengar, bukan dianggap final voice acting.
+Mode layar: fullscreen borderless/windowed lewat Settings atau Alt+Enter, juga saat pause.
+Pilihan tersimpan antar-launch; windowed dapat di-resize/maximize. Peluncuran normal pertama
+memakai fullscreen pada resolusi monitor. Flag `-screen-*` untuk audit tetap dihormati.
+M/Z/ESC adalah shortcut UI tetap. J membuka Jurnal dengan entri yang bisa diklik untuk detail.
+Tujuan HUD hilang setelah 7 detik dan tetap tersedia di Jurnal.
+Suara sintetis lama masih placeholder; tidak ada sintesis baru. Dialog Ibu/Ratna dan komentar baru
+berupa subtitle sampai rekaman manusia tersedia. Dialogue-For-Recording.csv berisi naskah dan
+arahan intonasi. Jangan menganggap kualitas voice acting sudah final.
 Tiga adegan lantai dua, basement stealth, chase rail + QTE Blitz, dan ending sudah tersedia;
 kesulitan/tensi tetap perlu review manusia dan pengukuran FPS Windows.
 

@@ -4,7 +4,7 @@
     "speaker": "Bisikan",
     "text": "Haus... bukakan...",
     "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaDirector.cs",
-    "direction": "Ikuti konteks adegan; hindari intonasi datar.",
+    "direction": "Bisikan dekat yang lemah dan kehausan; rekam tanpa reverb. Beri jeda napas, jangan memaksakan suara serak.",
     "estimated_seconds": 2.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"
   },
@@ -49,7 +49,7 @@
     "speaker": "Damar (rekaman)",
     "text": "Kacanya... kacanya bukan mantulin ruangan ini, Ka! Di dalem kaca itu ada pasar malam... mereka narik kaki gue—RAKA TOLONGIN GUE!",
     "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaChaseSequence.cs",
-    "direction": "Ikuti konteks adegan; hindari intonasi datar.",
+    "direction": "Aktor yang sama dengan Damar; rekaman handycam, panik sampai berteriak. Rekam bersih; efek radio/glitch ditambahkan di game.",
     "estimated_seconds": 7.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"
   },
@@ -76,7 +76,7 @@
     "speaker": "Nyonya Sri Atmaja",
     "text": "AAAAAARGH!!!",
     "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaChaseSequence.cs",
-    "direction": "Ikuti konteks adegan; hindari intonasi datar.",
+    "direction": "Perempuan dewasa; teriakan marah dan getir, pendek, aman untuk pita suara. Jangan dipaksa sampai sakit.",
     "estimated_seconds": 2.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"
   },
@@ -177,6 +177,15 @@
     "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaBasementHorror.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 2.5,
+    "recording_status": "WAITING_FOR_USER_RECORDING"
+  },
+  {
+    "id": "2c909749f66d",
+    "speaker": "Raka",
+    "text": "Udah terkirim, Bu. Semoga besok Ibu bisa ditangani.",
+    "trigger": "Assets/_LayarTerakhir/Scripts/UI/PhoneDesktop.cs",
+    "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
+    "estimated_seconds": 3.0,
     "recording_status": "WAITING_FOR_USER_RECORDING"
   },
   {
@@ -405,12 +414,30 @@
     "recording_status": "WAITING_FOR_USER_RECORDING"
   },
   {
+    "id": "b385a3db5606",
+    "speaker": "Raka",
+    "text": "Dia... tergantung di sana...",
+    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaUpperDirector.cs",
+    "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
+    "estimated_seconds": 2.5,
+    "recording_status": "WAITING_FOR_USER_RECORDING"
+  },
+  {
     "id": "b4a4b29dadeb",
     "speaker": "Raka",
     "text": "Mainan sama bukunya masih ditinggal begitu aja. Anak ini waktu itu sempat minta tolong?",
     "trigger": "Masuk ruangan: ATMAJA_CHILD",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 5.1,
+    "recording_status": "WAITING_FOR_USER_RECORDING"
+  },
+  {
+    "id": "b5a674212b51",
+    "speaker": "Raka",
+    "text": "Lunas, Bu Haji. Setidaknya besok barang gue nggak dikeluarin.",
+    "trigger": "Assets/_LayarTerakhir/Scripts/UI/PhoneDesktop.cs",
+    "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
+    "estimated_seconds": 3.6,
     "recording_status": "WAITING_FOR_USER_RECORDING"
   },
   {
@@ -501,6 +528,15 @@
     "trigger": "KosDialogue.RakaMotherGoodbye",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 4.4,
+    "recording_status": "WAITING_FOR_USER_RECORDING"
+  },
+  {
+    "id": "e7091db85cde",
+    "speaker": "Raka",
+    "text": "Di... di belakang gue... Nggak ada siapa-siapa?!",
+    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaUpperDirector.cs",
+    "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
+    "estimated_seconds": 2.8,
     "recording_status": "WAITING_FOR_USER_RECORDING"
   }
 ]
