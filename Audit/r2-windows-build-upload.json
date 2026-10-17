@@ -1,10 +1,11 @@
 {
-  "startedUtc": "2026-10-17T01:05:20.095869+00:00",
-  "verifiedUtc": "2026-10-17T01:05:35.570909+00:00",
-  "remote": "r2:layarterakhir/Layarterakhir/LayarTerakhir-Windows-x86_64-Development.zip",
-  "sizeBytes": 175322182,
-  "sha256": "b7fcd5880debdc09517915c97d7c51473b1fa16f2cf965bf283548fc36807b24",
-  "uploadSucceeded": true,
-  "verification": "Full remote object readback SHA-256 equals local archive",
-  "credentialsExposed": false
+  "verifiedUtc": "2026-10-17T06:06:22.387274+00:00",
+  "bucketPath": "r2:layarterakhir/Layarterakhir/LayarTerakhir-Windows-x86_64-Development.zip",
+  "localArchive": "Builds/LayarTerakhir-Windows-x86_64-Development.zip",
+  "sizeBytes": 175325776,
+  "sha256": "581bef6cc2e8e860b0b85e8f6078afdbb84911203224e70dcdac4ba8b6ceef23",
+  "readBackBytes": 175325776,
+  "readBackSha256": "581bef6cc2e8e860b0b85e8f6078afdbb84911203224e70dcdac4ba8b6ceef23",
+  "match": true,
+  "method": "rclone copy/copyto + rclone cat | sha256sum"
 }
