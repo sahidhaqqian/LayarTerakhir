@@ -15,7 +15,7 @@ namespace LayarTerakhir.UI
         {var go=Rect(name,parent,min,max);go.AddComponent<Image>().color=color;return go;}
         public static Text Text(string name,Transform parent,string words,Vector2 min,Vector2 max,int size=24,TextAnchor anchor=TextAnchor.MiddleLeft)
         {
-            var go=Rect(name,parent,min,max);var t=go.AddComponent<Text>();t.font=Font?Font:Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");t.fontSize=size;t.text=words;t.color=new Color(.88f,.86f,.80f);t.alignment=anchor;t.raycastTarget=false;t.verticalOverflow=VerticalWrapMode.Truncate;return t;
+            var go=Rect(name,parent,min,max);var t=go.AddComponent<Text>();t.font=Font?Font:Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");t.fontSize=size;t.text=words;t.color=new Color(.88f,.86f,.80f);t.alignment=anchor;t.raycastTarget=false;t.horizontalOverflow=HorizontalWrapMode.Wrap;t.verticalOverflow=VerticalWrapMode.Truncate;t.resizeTextForBestFit=true;t.resizeTextMinSize=12;t.resizeTextMaxSize=size;return t;
         }
         public static Button Button(string name,Transform parent,string words,Vector2 min,Vector2 max,UnityAction action)
         {
@@ -27,6 +27,7 @@ namespace LayarTerakhir.UI
             var host=Panel(name+"Scroll",parent,min,max,new Color(0,0,0,.01f));var scroll=host.AddComponent<ScrollRect>();scroll.horizontal=false;scroll.vertical=true;scroll.scrollSensitivity=30;scroll.movementType=ScrollRect.MovementType.Clamped;
             var viewport=Rect("Viewport",host.transform,Vector2.zero,Vector2.one);viewport.AddComponent<RectMask2D>();
             var label=Text(name,viewport.transform,words,new Vector2(0,1),Vector2.one,size,TextAnchor.UpperLeft);var content=label.rectTransform;content.pivot=new Vector2(.5f,1);
+            label.resizeTextForBestFit=false;
             var fit=label.gameObject.AddComponent<ContentSizeFitter>();fit.verticalFit=ContentSizeFitter.FitMode.PreferredSize;
             scroll.viewport=viewport.GetComponent<RectTransform>();scroll.content=content;return label;
         }

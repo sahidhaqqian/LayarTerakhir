@@ -77,6 +77,7 @@ namespace LayarTerakhir.Editor
             if(!view.feedMaterial){view.feedMaterial=new Material(Shader.Find("LayarTerakhir/AtmajaPhoneFeed"));AssetDatabase.CreateAsset(view.feedMaterial,feedPath);}
             var vault=player.AddComponent<AtmajaVault>();vault.director=director;
             var volume=new GameObject("AtmajaPostProcessing",typeof(Volume)).GetComponent<Volume>();volume.isGlobal=true;volume.sharedProfile=profile;
+            DesignerWorldRevision.Atmaja(director,environment);
             EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene,ScenePath);AssetDatabase.SaveAssets();
             EditorBuildSettings.scenes=new[]{new EditorBuildSettingsScene(PrologKosSceneBuilder.ScenePath,true),new EditorBuildSettingsScene(ScenePath,true)};
             Debug.Log("ATMAJA_BUILD Saved exterior + ground floor; approved Golden scene not written.");

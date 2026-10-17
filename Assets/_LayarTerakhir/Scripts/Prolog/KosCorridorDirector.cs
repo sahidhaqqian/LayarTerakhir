@@ -66,8 +66,9 @@ namespace LayarTerakhir.Prolog
             {camera.position=Vector3.Lerp(mountStart,mountEnd,Mathf.SmoothStep(0,1,t))+Vector3.up*Mathf.Sin(t*Mathf.PI)*.18f;camera.rotation=motor.rotation*Quaternion.Euler(14,0,Mathf.Sin(t*Mathf.PI)*-12);yield return null;}
             player.transform.SetParent(motor,true);player.transform.localRotation=Quaternion.identity;camera.SetPositionAndRotation(rideAnchor.position,motor.rotation*Quaternion.Euler(5,0,0));
             AddRiderArms(camera);if(motorHeadlight)motorHeadlight.enabled=true;if(engine){engine.transform.SetParent(motor,true);engine.transform.position=motor.position;engine.clip=audioProfile.departureEngine;engine.loop=true;engine.pitch=.8f;engine.Play();}
-            var from=gateHinge.localRotation;
-            for(float t=0;t<1;t+=Time.deltaTime/1.3f){gateHinge.localRotation=Quaternion.Slerp(from,Quaternion.Euler(0,100,0),t);yield return null;}
+            var pairedGate=gateHinge.GetComponent<DoubleLeafGate>();
+            if(pairedGate)yield return pairedGate.Open();
+            else{var from=gateHinge.localRotation;for(float t=0;t<1;t+=Time.deltaTime/1.3f){gateHinge.localRotation=Quaternion.Slerp(from,Quaternion.Euler(0,100,0),t);yield return null;}}
             var motorStart=motor.position;var end=rideExit.position;
             for(float t=0;t<1;t+=Time.deltaTime/6)
             {

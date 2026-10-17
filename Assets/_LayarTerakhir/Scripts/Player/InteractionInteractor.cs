@@ -18,10 +18,10 @@ namespace LayarTerakhir.Player
 
         private void Update()
         {
-            if (UiFocus.BlocksWorld || (HudController.Instance != null && HudController.Instance.IsModalOpen))
+            if (UiFocus.HardModal || UiFocus.Cinematic || (HudController.Instance != null && HudController.Instance.IsModalOpen))
             {
                 CurrentTarget = null;
-                HudController.Instance.SetInteractionPrompt(string.Empty);
+                if (HudController.Instance) HudController.Instance.SetInteractionPrompt(string.Empty);
                 return;
             }
 
@@ -41,11 +41,13 @@ namespace LayarTerakhir.Player
                 return;
 
             Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-            int hitCount = Physics.RaycastNonAlloc(ray, _hits, interactionDistance, interactableMask, QueryTriggerInteraction.Collide);
+            float cameraOffset = Vector3.Distance(playerCamera.transform.position, transform.position + Vector3.up * 1.3f);
+            float rayLength = interactionDistance + cameraOffset;
+            int hitCount = Physics.RaycastNonAlloc(ray, _hits, rayLength, interactableMask, QueryTriggerInteraction.Collide);
             RaycastHit[] hits = _hits;
             if (hitCount == _hits.Length)
             {
-                hits = Physics.RaycastAll(ray, interactionDistance, interactableMask, QueryTriggerInteraction.Collide);
+                hits = Physics.RaycastAll(ray, rayLength, interactableMask, QueryTriggerInteraction.Collide);
                 hitCount = hits.Length;
             }
             RaycastHit hit = default;
@@ -62,7 +64,8 @@ namespace LayarTerakhir.Player
             if (found)
             {
                 IInteractable interactable = hit.collider.GetComponentInParent<IInteractable>();
-                if (interactable != null && interactable.CanInteract())
+                if (interactable != null && interactable.CanInteract() &&
+                    Vector3.Distance(transform.position + Vector3.up, hit.point) <= interactionDistance)
                 {
                     CurrentTarget = interactable;
                     if (HudController.Instance != null)

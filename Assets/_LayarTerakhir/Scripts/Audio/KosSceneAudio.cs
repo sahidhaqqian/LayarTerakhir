@@ -125,7 +125,7 @@ namespace LayarTerakhir.Audio
             var glass=Authored("CallGlassCutoff");if(glass)uiSource.PlayOneShot(glass,.65f);
             yield return new WaitForSeconds(.65f);
         }
-        public void NotifyDonation() { if(uiSource)uiSource.PlayOneShot(profile.notification,.7f); }
+        public void NotifyDonation() { if(uiSource){uiSource.PlayOneShot(profile.phoneVibration,.8f);uiSource.PlayOneShot(profile.notification,.35f);} }
         public void Depart()
         {
             if(departing)return;departing=true;

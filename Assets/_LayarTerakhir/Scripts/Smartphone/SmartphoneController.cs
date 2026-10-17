@@ -43,6 +43,7 @@ namespace LayarTerakhir.Smartphone
         public Light phoneFlashlight;
 
         private float _blitzCooldownTimer;
+        private Light spillLight;
 
         private void Awake()
         {
@@ -201,12 +202,36 @@ namespace LayarTerakhir.Smartphone
             if (phoneFlashlight != null)
             {
                 phoneFlashlight.enabled = hasSmartphoneInInventory && isPhoneRaised && isScreenOn && batteryPercent > 0f;
+                phoneFlashlight.intensity = 8f;
+                phoneFlashlight.range = 16f;
+                phoneFlashlight.spotAngle = 88f;
+                phoneFlashlight.innerSpotAngle = 54f;
+                phoneFlashlight.shadows = LightShadows.Soft;
+                if (!spillLight)
+                {
+                    var spill = new GameObject("PhoneNearSpill", typeof(Light));
+                    spill.transform.SetParent(phoneFlashlight.transform, false);
+                    spillLight = spill.GetComponent<Light>(); spillLight.type = LightType.Point;
+                    spillLight.range = 3.8f; spillLight.intensity = .65f;
+                    spillLight.color = new Color(.76f, .83f, 1f); spillLight.shadows = LightShadows.None;
+                }
+                spillLight.enabled = phoneFlashlight.enabled;
             }
 
             if (HudController.Instance != null)
             {
                 HudController.Instance.UpdatePhoneStatusUI(this);
             }
+        }
+
+        private void LateUpdate()
+        {
+            if (!phoneFlashlight) return;
+            var player = FindFirstObjectByType<LayarTerakhir.Player.FirstPersonController>();
+            if (!player || !player.cameraPivot) return;
+            phoneFlashlight.transform.SetPositionAndRotation(
+                player.cameraPivot.position + player.transform.right * .24f + player.transform.forward * .28f,
+                player.cameraPivot.rotation);
         }
     }
 }

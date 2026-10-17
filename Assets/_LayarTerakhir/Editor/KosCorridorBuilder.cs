@@ -98,6 +98,7 @@ namespace LayarTerakhir.Editor
             foreach(var renderer in root.GetComponentsInChildren<MeshRenderer>())
                 if(!renderer.GetComponentInParent<HingedDoor>()&&!renderer.GetComponentInParent<KosTravelItem>())
                     GameObjectUtility.SetStaticEditorFlags(renderer.gameObject,StaticEditorFlags.BatchingStatic);
+            DesignerFacilities();
             EditorSceneManager.SaveScene(scene,ScenePath);AssetDatabase.SaveAssets();
             EditorBuildSettings.scenes=new[]{new EditorBuildSettingsScene(PrologKosSceneBuilder.ScenePath,true),new EditorBuildSettingsScene(AtmajaSceneBuilder.ScenePath,true),new EditorBuildSettingsScene(ScenePath,true)};
             Debug.Log("KOS_CORRIDOR_BUILD two floors, U stairs, closed rooms, shared kitchen/bath, gate and ride");

@@ -51,11 +51,13 @@ namespace LayarTerakhir.Player
             _standingStepOffset = _controller.stepOffset;
             _controller.height = standingHeight;
             _controller.center = new Vector3(0f, standingHeight * 0.5f, 0f);
+            if (!GetComponent<ShoulderCameraRig>()) gameObject.AddComponent<ShoulderCameraRig>();
         }
 
         private void Start()
         {
             SetCursorLock(!UiFocus.BlocksWorld);
+            if (!GetComponent<LayarTerakhir.Prolog.ExplorationCommentary>()) gameObject.AddComponent<LayarTerakhir.Prolog.ExplorationCommentary>();
         }
 
         private void Update()

@@ -83,16 +83,17 @@ namespace LayarTerakhir.Prolog
         private bool TryRestoreKosCheckpoint()
         {
             var campaign = CampaignState.Instance;
-            if (campaign.Data.chapter_id != 0 || campaign.Data.checkpoint_id != "PROLOG_KOS_COMPLETE" ||
-                !campaign.HasInventoryItem("SMARTPHONE_RAKA") || !campaign.HasInventoryItem("KUNCI_MOTOR") ||
-                !campaign.HasInventoryItem("JAKET_RAKA")) return false;
+            bool complete=campaign.Data.checkpoint_id=="PROLOG_KOS_COMPLETE";
+            if (campaign.Data.chapter_id != 0 || (!complete&&campaign.Data.checkpoint_id!="PROLOG_KOS_PREPARATION") ||
+                !campaign.HasInventoryItem("SMARTPHONE_RAKA")) return false;
 
-            hasJacket = hasMotorKey = hasSpareBattery = isDrawerUnlocked = true;
+            hasJacket=campaign.HasInventoryItem("JAKET_RAKA");hasMotorKey=campaign.HasInventoryItem("KUNCI_MOTOR");
+            hasSpareBattery=isDrawerUnlocked=complete||campaign.HasInventoryItem("DIARY_RAKA");preparationStarted=true;
             suratKosItem.gameObject.SetActive(false);
             smartphoneBedItem.gameObject.SetActive(false);
-            jacketItem.gameObject.SetActive(false);
-            if(motorKeyItem)motorKeyItem.gameObject.SetActive(false);
-            lockedDrawerItem.isInteractable = false;
+            jacketItem.gameObject.SetActive(!hasJacket);
+            if(motorKeyItem)motorKeyItem.gameObject.SetActive(!hasMotorKey);
+            lockedDrawerItem.isInteractable = !isDrawerUnlocked;
             phoneBedRedLed.enabled = false;
             var phone = SmartphoneController.Instance;
             phone.hasSmartphoneInInventory = true;
@@ -100,9 +101,9 @@ namespace LayarTerakhir.Prolog
             phone.isPhoneRaised = false;
             phone.isScreenOn = phone.batteryPercent > 0f;
             phone.SyncVisualState();
-            currentStage = KosPrologStage.ReadyToDepart;
+            currentStage = KosPrologStage.PreparationAndDrawerPuzzle;
             HudController.Instance.SetFadeAlpha(0f);
-            HudController.Instance.SetObjective("Keluar dari Kamar Kos dan berangkat ke Rumah Keluarga Atmaja.");
+            CheckPreparationComplete();
             return true;
         }
 
@@ -322,8 +323,15 @@ namespace LayarTerakhir.Prolog
             }
 
             currentStage=KosPrologStage.PreparationAndDrawerPuzzle;
+            SmartphoneController.Instance.isPhoneRaised=false;
+            SmartphoneController.Instance.SyncVisualState();
             view.Apps.ReceiveContract();
+            HudController.Instance.SetObjective("Periksa pesan masuk di HP.");
+            while(!CampaignState.Instance.HasInventoryItem("EVENT_P0_CONTRACT_READ"))yield return null;
+            yield return new WaitForSeconds(10f);
+            while(view.Apps.IsCalling)yield return null;
             HudController.Instance.PlayPriorityDialogue("Raka",KosDialogue.ContractReaction,5);
+            CampaignState.Instance.AddInventoryItem("EVENT_P0_CONTRACT_REACTION");
             preparationStarted=true;CheckPreparationComplete();
         }
 

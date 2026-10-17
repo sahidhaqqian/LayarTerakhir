@@ -95,6 +95,25 @@ namespace LayarTerakhir.Core
             }
         }
 
+        public bool TryPayFamilyBill(bool hospital)
+        {
+            string call = hospital ? "EVENT_CALLED_IBU" : "EVENT_CALLED_RATNA";
+            string paid = hospital ? "EVENT_PAID_HOSPITAL" : "EVENT_PAID_RENT";
+            long amount = hospital ? 1500000 : 3500000;
+            if (!HasInventoryItem(call) || HasInventoryItem(paid) || Data.wallet_bound + Data.wallet_legitimate < amount) return false;
+            string before = JsonUtility.ToJson(Data);
+            long fromBound = Math.Min(amount, Data.wallet_bound);
+            Data.wallet_bound -= fromBound;
+            Data.wallet_legitimate -= amount - fromBound;
+            Data.spent += amount;
+            AddInventoryItem(paid);
+            string checkpoint = Data.checkpoint_id;
+            if (checkpoint == "PROLOG_KOS_START") checkpoint = "PROLOG_KOS_PREPARATION";
+            if (SaveCheckpointAtomic(checkpoint)) return true;
+            JsonUtility.FromJsonOverwrite(before, Data);
+            return false;
+        }
+
         public bool SaveCheckpointAtomic(string checkpointId)
         {
             string previousCheckpoint = Data.checkpoint_id;

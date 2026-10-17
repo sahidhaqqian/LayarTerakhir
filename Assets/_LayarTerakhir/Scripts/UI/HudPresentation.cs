@@ -23,8 +23,9 @@ namespace LayarTerakhir.UI
         private int battery=-1;
         private string digits;
         private KosSceneAudio audioRig;
-        private Vector2 subtitleMin,subtitleMax,subtitleOffsetMin,subtitleOffsetMax,subtitlePivot;
-        private bool narrowSubtitle;
+        private string lastSubtitle;
+        private bool lastNarrow;
+        private int lastScreenWidth;
         private void Start()
         {
             audioRig=FindFirstObjectByType<KosSceneAudio>();
@@ -37,7 +38,6 @@ namespace LayarTerakhir.UI
                 foreach(string name in new[]{"MessageBacking","MessageAccent"}){var child=toastGroup.transform.Find(name) as RectTransform;if(child)child.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,112);}
                 hud.broadcastToastText.rectTransform.anchoredPosition=new Vector2(24,-14);hud.broadcastToastText.rectTransform.sizeDelta=new Vector2(850,88);
             }
-            var rect=hud.subtitleText.rectTransform;subtitleMin=rect.anchorMin;subtitleMax=rect.anchorMax;subtitleOffsetMin=rect.offsetMin;subtitleOffsetMax=rect.offsetMax;subtitlePivot=rect.pivot;
             foreach(var button in GetComponentsInChildren<Button>(true))button.onClick.AddListener(Click);
         }
         private void Click(){if(audioRig)audioRig.PlayUI();}
@@ -46,22 +46,31 @@ namespace LayarTerakhir.UI
             if(!hud||!style)return;
             bool modal=hud.IsModalOpen;
             if(objective!=hud.objectiveText.text){objective=hud.objectiveText.text;changedAt=Time.unscaledTime;}
-            Fade(objectiveGroup,!modal&&!string.IsNullOrEmpty(objective) ? (Time.unscaledTime-changedAt>12 ? .65f : 1) : 0);
+            Fade(objectiveGroup,!modal&&!string.IsNullOrEmpty(objective)&&Time.unscaledTime-changedAt<7 ? 1 : 0);
             Fade(interactionGroup,!modal&&!string.IsNullOrEmpty(hud.interactionPromptText.text)?1:0);
             Fade(subtitleGroup,!string.IsNullOrEmpty(hud.subtitleText.text)?1:0);
             Fade(toastGroup,!modal&&!hud.IsHandsetNotification&&!string.IsNullOrEmpty(hud.broadcastToastText.text)?1:0);
             var phone=SmartphoneController.Instance;
             bool narrow=phone&&phone.isPhoneRaised&&!modal;
-            if(narrow!=narrowSubtitle)
+            if(subtitleGroup&&(lastSubtitle!=hud.subtitleText.text||lastNarrow!=narrow||lastScreenWidth!=Screen.width))
             {
-                narrowSubtitle=narrow;var rect=hud.subtitleText.rectTransform;
-                if(narrow){rect.anchorMin=new Vector2(.035f,0);rect.anchorMax=new Vector2(.66f,0);rect.pivot=new Vector2(.5f,0);rect.offsetMin=new Vector2(0,45);rect.offsetMax=new Vector2(0,210);}
-                else{rect.anchorMin=subtitleMin;rect.anchorMax=subtitleMax;rect.pivot=subtitlePivot;rect.offsetMin=subtitleOffsetMin;rect.offsetMax=subtitleOffsetMax;}
+                lastSubtitle=hud.subtitleText.text;lastNarrow=narrow;lastScreenWidth=Screen.width;
+                var group=subtitleGroup.GetComponent<RectTransform>();
+                group.anchorMin=new Vector2(.045f,0);group.anchorMax=new Vector2(narrow?.735f:.955f,0);
+                group.pivot=new Vector2(.5f,0);group.offsetMin=new Vector2(0,42);
+                var text=hud.subtitleText;text.horizontalOverflow=HorizontalWrapMode.Wrap;text.verticalOverflow=VerticalWrapMode.Truncate;
+                text.resizeTextForBestFit=false;text.fontSize=Mathf.Min(style.subtitleSize,28);
+                var rect=text.rectTransform;rect.anchorMin=Vector2.zero;rect.anchorMax=Vector2.one;rect.offsetMin=new Vector2(22,12);rect.offsetMax=new Vector2(-22,-12);
+                Canvas.ForceUpdateCanvases();
+                float height=Mathf.Clamp(text.preferredHeight+28,82,265);
+                group.offsetMax=new Vector2(0,42+height);
+                var backing=subtitleGroup.transform.Find("SubtitleBacking") as RectTransform;
+                if(backing){backing.anchorMin=Vector2.zero;backing.anchorMax=Vector2.one;backing.offsetMin=backing.offsetMax=Vector2.zero;}
             }
             // Handset status lives inside its bezel. External status is only for a stowed phone.
             Fade(phoneGroup,!modal&&phone&&phone.hasSmartphoneInInventory&&!phone.isPhoneRaised?1:0);
             if(modalBackdrop && modalBackdrop.activeSelf!=modal)modalBackdrop.SetActive(modal);
-            if(reticle)reticle.enabled=!modal&&!UiFocus.Cinematic&&!UiFocus.Phone&&hud.blackFadeImage.color.a<.01f;
+            if(reticle)reticle.enabled=!modal&&!UiFocus.Cinematic&&hud.blackFadeImage.color.a<.01f;
             if(hud.padlockDigitsText && digits!=hud.padlockDigitsText.text)
             {
                 digits=hud.padlockDigitsText.text;int slot=0;

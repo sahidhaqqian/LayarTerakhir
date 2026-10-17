@@ -53,6 +53,7 @@ namespace LayarTerakhir.UI
         private int _lastPhoneState=-1, _lastPhoneBattery=-1;
         private KeyCode _lastPhoneKey, _lastScreenKey;
         private PresentationProfile _profile;
+        public string CurrentObjective { get; private set; } = string.Empty;
         private AudioSource _voice;
         public string CurrentDialogueSpeaker { get; private set; }
         public bool IsDialoguePlaying => _voice && _voice.isPlaying;
@@ -243,9 +244,10 @@ namespace LayarTerakhir.UI
 
         public void SetObjective(string objective)
         {
+            CurrentObjective = objective ?? string.Empty;
             if (objectiveText != null)
             {
-                objectiveText.text = objective ?? string.Empty;
+                objectiveText.text = CurrentObjective;
             }
         }
 

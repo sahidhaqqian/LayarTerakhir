@@ -13,7 +13,7 @@ namespace LayarTerakhir.Prolog
     public sealed class AtmajaDirector:MonoBehaviour
     {
         public const string SurveyId="DOC_PROLOG_02_SURVEI_DAMAR";
-        public const string SurveyText="Lokasi: Eks Kediaman Keluarga Atmaja (Kosong sejak tragedi 1998).\n\n1. Pintu depan digembok rantai dari dalam, jangan buang tenaga lewat depan.\n\n2. Gue nemu jalan masuk lewat jendela dapur di lorong samping timur, tapi harus merunduk lewat bawah pohon tumbang.\n\n3. Catatan tambahan: Ada yang nggak beres sama aplikasi MataBatin.apk di HP gue. Setiap gue arahin ke jendela lantai 2, indikator sensornya mentok merah.";
+        public const string SurveyText="Catatan Damar, terlipat di dekat tasnya.\n\n23:17 — Gue sudah masuk. Kayu jendela tua itu ternyata masih bisa digeser.\n\n23:24 — Dari dapur kedengaran kursi diseret. Gue panggil, nggak ada jawaban.\n\n23:31 — Aplikasi MataBatin.apk bereaksi ke sesuatu yang nggak kelihatan oleh mata. Kalau Raka baca ini, jangan percaya semua yang kelihatan kosong.";
         public const string LiveIntro="Oke... tes, satu dua. Malam semuanya, balik lagi di Malam Keramat. Malam ini gue nggak sendirian... maksudnya, gue lagi nyusulin Damar yang hilang kontak di Rumah Tua Atmaja. Buat yang baru gabung, bantu pantau layar ya.";
         public FirstPersonController player;
         public Transform gateHinge,kitchenDoor,spawnCourtyard,spawnKitchen,spawnDining,spawnStairs,vaultOutside,vaultInside;
@@ -29,6 +29,7 @@ namespace LayarTerakhir.Prolog
         public bool Busy {get;private set;}
         public bool TreeCleared=>Has("EVENT_P0_TREE_CROUCHED");
         public bool HasSurvey=>Has(SurveyId);
+        public bool CanBeginLive=>Has("EVENT_P0_FRONT_DOOR_TRIED")||HasSurvey;
         public bool LiveConnected=>Has("EVENT_P0_LIVE_STARTED");
         public int Viewers=>Has("EVENT_P0_AR_REVEALED")?1420:Has("EVENT_P0_KITCHEN_ENTERED")?250:14;
         private bool underTree,wellHeard;
@@ -64,7 +65,9 @@ namespace LayarTerakhir.Prolog
         public Vector2 LocalPosition(Vector3 p)=>new Vector2(Vector3.Dot(p-origin,east),Vector3.Dot(p-origin,north));
         public void RestoreWorld()
         {
-            gateHinge.localRotation=Quaternion.Euler(0,Has("EVENT_P0_GATE_OPEN")?-95:0,0);
+            var doubleGate=gateHinge.GetComponent<DoubleLeafGate>();
+            if(doubleGate)doubleGate.SetImmediate(Has("EVENT_P0_GATE_OPEN"));
+            else gateHinge.localRotation=Quaternion.Euler(0,Has("EVENT_P0_GATE_OPEN")?-95:0,0);
             bool inside=Has("EVENT_P0_KITCHEN_ENTERED");kitchenShutter.SetActive(inside);
             if(kitchenDoor)kitchenDoor.localRotation=Quaternion.Euler(0,Has("EVENT_P0_DINING_OPEN")?-95:0,0);
             if(damarPhone)damarPhone.SetActive(!Has("MATABATIN_APK"));
@@ -92,7 +95,7 @@ namespace LayarTerakhir.Prolog
             bool modal=Hud.IsModalOpen;float duck=modal ? .45f : 1;
             if(rainSource)rainSource.GetComponent<AmbientAudioLoop>().LevelMultiplier=duck;
             var local=LocalPosition(player.transform.position);
-            if(LiveConnected&&HasSurvey&&!Has("EVENT_P0_KITCHEN_ENTERED"))
+            if(LiveConnected&&!Has("EVENT_P0_KITCHEN_ENTERED"))
             {
                 if(local.x>6.4f&&local.y>-.8f&&!Has("EVENT_P0_SIDE_CHAT"))SideChat();
                 if(local.x>7.0f&&local.y>4.9f&&local.y<6.2f&&player.IsCrouching&&player.GetComponent<CharacterController>().height<1.10f)underTree=true;
@@ -123,10 +126,10 @@ namespace LayarTerakhir.Prolog
                 case AtmajaAction.Gate:
                     if(!Has("EVENT_P0_GATE_OPEN")){Campaign.AddInventoryItem("EVENT_P0_GATE_OPEN");StartCoroutine(Swing(gateHinge,-95));Sfx(audioProfile.latch,item.transform.position,.65f);}break;
                 case AtmajaAction.Survey:
-                    Hud.EnqueueSubtitle("Raka","Itu motornya Damar... Mesinnya udah dingin, berarti dia udah di dalem sejak jam sembilan tadi.",5);
+                    Hud.EnqueueSubtitle("Raka","Tulisan Damar... Dia benar-benar udah masuk ke sini.",4);
                     Sfx(audioProfile.cloth,item.transform.position,.4f);
                     Hud.OpenDocumentModal("CATATAN SURVEI DAMAR • DOKUMEN #2",SurveyText,()=>{if(Commit(SurveyId,"PROLOG_ATMAJA_COURTYARD")){Stage=LiveConnected?AtmajaStage.Live:AtmajaStage.SurveyRead;Objective();}});break;
-                case AtmajaAction.FrontDoor:Hud.ShowBroadcastNotification("Pintu depan digembok rantai dari dalam.\nCatatan Damar: masuk lewat jendela dapur di lorong samping timur.",6);break;
+                case AtmajaAction.FrontDoor:StartCoroutine(TryFrontDoor(item.transform));break;
                 case AtmajaAction.KitchenDoor:
                     if(Commit("EVENT_P0_DINING_OPEN","PROLOG_ATMAJA_KITCHEN")){StartCoroutine(Swing(kitchenDoor,-95));Objective();}break;
                 case AtmajaAction.DamarPhone:TakeDamarPhone();break;
@@ -143,7 +146,7 @@ namespace LayarTerakhir.Prolog
         }
         public bool StartLive()
         {
-            if(!HasSurvey||!Phone.isPhoneRaised||!Phone.isScreenOn||Busy)return false;
+            if(!CanBeginLive||!Phone.isPhoneRaised||!Phone.isScreenOn||Busy)return false;
             if(!Commit("EVENT_P0_LIVE_STARTED","PROLOG_ATMAJA_COURTYARD"))return false;
             Phone.isBroadcastConnected=true;Phone.SyncVisualState();Stage=AtmajaStage.Live;
             Hud.EnqueueSubtitle("Raka",LiveIntro,10);Objective();return true;
@@ -154,10 +157,10 @@ namespace LayarTerakhir.Prolog
             phoneView.AddChat("@kopi_susu99","Woi akhirnya live juga bang Raka! Kirain udah pensiun gara-gara sepi penonton wkwk");
             phoneView.AddChat("@dinda_ayu","Kok mukanya tegang banget bang? Itu beneran bang Damar ilang?");
             phoneView.AddChat("@setan_lokal","Eh bentar, itu motornya bang Damar kan di depan? Kok orangnya gak ada?");
-            Hud.ShowBroadcastNotification("Penonton_Terakhir • SAWER Rp500.000\nJangan buang waktu di teras. Tas sahabatmu ada di dekat meja makan. Ambil HP-nya.",10);
+            Hud.ShowBroadcastNotification("Penonton_Terakhir • SAWER Rp500.000\nJangan buang waktu. Cari tahu apa yang terjadi pada sahabatmu di dalam rumah itu.",10);
             notificationSource.PlayOneShot(audioProfile.notification,.55f);
         }
-        public bool CanVault()=>!Busy&&TreeCleared&&LiveConnected&&HasSurvey&&!Has("EVENT_P0_KITCHEN_ENTERED");
+        public bool CanVault()=>!Busy&&TreeCleared&&LiveConnected&&!Has("EVENT_P0_KITCHEN_ENTERED");
         public IEnumerator Vault()
         {
             if(!CanVault())yield break;Busy=true;
@@ -173,7 +176,22 @@ namespace LayarTerakhir.Prolog
             Hud.EnqueueSubtitle("Raka",KosDialogue.Trapped,4);
         }
         private IEnumerator Swing(Transform hinge,float angle)
-        {var from=hinge.localRotation;var to=Quaternion.Euler(0,angle,0);float t=0;while(t<1){t+=Time.deltaTime;hinge.localRotation=Quaternion.Slerp(from,to,Mathf.SmoothStep(0,1,t));yield return null;}}
+        {var gate=hinge.GetComponent<DoubleLeafGate>();if(gate){yield return gate.Open();yield break;}var from=hinge.localRotation;var to=Quaternion.Euler(0,angle,0);float t=0;while(t<1){t+=Time.deltaTime;hinge.localRotation=Quaternion.Slerp(from,to,Mathf.SmoothStep(0,1,t));yield return null;}}
+        private IEnumerator TryFrontDoor(Transform door)
+        {
+            if(Busy)yield break;Busy=true;player.MovementLocked=true;
+            var original=door.localRotation;
+            for(float t=0;t<1.6f;t+=Time.deltaTime)
+            {
+                door.localRotation=original*Quaternion.Euler(0,Mathf.Sin(t*25)*1.4f*Mathf.Sin(t/1.6f*Mathf.PI),0);
+                if(t<Time.deltaTime)Sfx(audioProfile.latch,door.position,.85f);
+                yield return null;
+            }
+            door.localRotation=original;
+            Campaign.AddInventoryItem("EVENT_P0_FRONT_DOOR_TRIED");
+            Hud.EnqueueSubtitle("Raka","Nggak bisa... ada rantai dari dalam. Dam? Damar! Gue harus cari jalan masuk lain.",5);
+            player.MovementLocked=false;Busy=false;Objective();
+        }
         private IEnumerator Charge()
         {
             Busy=true;player.MovementLocked=true;float start=Phone.batteryPercent;
@@ -209,7 +227,7 @@ namespace LayarTerakhir.Prolog
         public bool TryPhotographWell()
         {
             if(Has("EVENT_P0_WELL_BONUS")||!Has("EVENT_P0_KITCHEN_ENTERED")||Phone.batteryPercent<1)return false;
-            var camera=player.GetComponent<InteractionInteractor>().playerCamera;var target=P(2.7f,11.2f,.75f);var delta=target-camera.transform.position;
+            var camera=phoneView&&phoneView.FeedCamera?phoneView.FeedCamera:player.GetComponent<InteractionInteractor>().playerCamera;var target=P(2.7f,11.2f,.75f);var delta=target-camera.transform.position;
             if(delta.magnitude>3||Vector3.Dot(camera.transform.forward,delta.normalized)<.92f)return false;
             var hits=Physics.RaycastAll(camera.transform.position,delta.normalized,delta.magnitude,~0,QueryTriggerInteraction.Ignore);
             Array.Sort(hits,(a,b)=>a.distance.CompareTo(b.distance));
@@ -235,7 +253,7 @@ namespace LayarTerakhir.Prolog
         }
         private void ObserveClue()
         {
-            var camera=player.GetComponent<InteractionInteractor>().playerCamera;var delta=arClue.transform.position-camera.transform.position;
+            var camera=phoneView&&phoneView.FeedCamera?phoneView.FeedCamera:player.GetComponent<InteractionInteractor>().playerCamera;var delta=arClue.transform.position-camera.transform.position;
             if(delta.magnitude>3.4f||Vector3.Dot(camera.transform.forward,delta.normalized)<.86f)return;
             if(Physics.Raycast(camera.transform.position,delta.normalized,Mathf.Max(0,delta.magnitude-.03f),~0,QueryTriggerInteraction.Ignore))return;
             if(Commit("EVENT_P0_AR_CLUE_READ","PROLOG_MATABATIN_ACQUIRED"))Hud.ShowBroadcastNotification("Petunjuk dinding dicatat di Jurnal HP.",3);
@@ -250,7 +268,7 @@ namespace LayarTerakhir.Prolog
         }
         public void Objective()
         {
-            string text=Stage==AtmajaStage.StairCheckpoint?"Checkpoint Lantai 1 • Kelanjutan Lantai 2 belum tersedia dalam build ini.":Has("EVENT_P0_CLOCK_UNLOCKED")?"Gunakan Kunci Pintu Tangga Tengah.":Has("EVENT_P0_AR_CLUE_READ")?"Cari komponen yang hilang, lalu cocokkan mekanisme jam dengan petunjuk.":Has("EVENT_P0_AR_REVEALED")?"Jelajahi ruang tamu dan ruangan depan. Cari petunjuk lewat kamera.":Has("MATABATIN_APK")?"Buka aplikasi Kamera, lalu aktifkan MataBatin AR.":Has("EVENT_P0_DINING_OPEN")?"Periksa ruang makan. Cari barang milik Damar.":Has("EVENT_P0_KITCHEN_ENTERED")?"Jendela terkunci. Cari jalan ke ruangan lain.":TreeCleared?"Dekati jendela dapur yang pecah. Gunakan tombol Vault.":LiveConnected?"Cari jalan masuk di sisi timur rumah.":HasSurvey?"Buka Kamera di aplikasi HP, lalu mulai live.":"23:52 WIB • Cari jejak Damar di halaman rumah.";
+            string text=Stage==AtmajaStage.StairCheckpoint?"Cari keberadaan Damar di bagian rumah berikutnya.":Has("EVENT_P0_CLOCK_UNLOCKED")?"Lanjutkan pencarian Damar.":Has("EVENT_P0_AR_CLUE_READ")?"Pahami hubungan petunjuk dengan benda-benda di rumah.":Has("EVENT_P0_AR_REVEALED")?"Cari tahu apa yang disembunyikan rumah ini.":Has("MATABATIN_APK")?"Coba aplikasi yang ditinggalkan Damar.":Has("EVENT_P0_KITCHEN_ENTERED")?"Cari keberadaan atau petunjuk tentang Damar.":TreeCleared?"Cari celah untuk masuk. [SPASI] untuk memanjat.":LiveConnected?"Temukan jalan masuk lain.":CanBeginLive?"Nyalakan siaran sebelum melanjutkan pencarian.":"23:52 WIB • Cari jejak Damar di sekitar rumah.";
             Hud.SetObjective(text);
         }
         private void Sfx(AudioClip clip,Vector3 where,float gain)

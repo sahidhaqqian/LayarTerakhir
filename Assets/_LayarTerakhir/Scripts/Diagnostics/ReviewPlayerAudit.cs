@@ -103,13 +103,28 @@ namespace LayarTerakhir.Diagnostics
             yield return Shot("06a-automatic-damar-call");
             yield return Wait(()=>kos.currentStage==KosPrologStage.PreparationAndDrawerPuzzle,90,"Damar call finishes and contract arrives on handset");
             Check(kos.environmentAudio.CallPanicEvents==1,"Damar distress cry/metal/glass plays before call ends");
-            yield return Shot("07-phone-messages");
+            Check(!Phone.isPhoneRaised&&!CampaignState.Instance.HasInventoryItem("EVENT_P0_CONTRACT_READ"),"Contract vibrates without forcing the handset/messages open");
+            Phone.isPhoneRaised=true;Phone.SyncVisualState();View.Apps.Open(PhoneApp.Home);yield return null;yield return null;
+            Check(GameObject.Find("PhoneNotification"),"Pending heads-up notification appears when handset is opened");yield return Shot("07-notification-before-messages");
+            View.Apps.Open(PhoneApp.Messages);float readAt=Time.time;yield return new WaitForSeconds(9);
+            Check(!CampaignState.Instance.HasInventoryItem("EVENT_P0_CONTRACT_REACTION"),"Raka does not react before ten seconds after reading the message");
+            yield return Wait(()=>CampaignState.Instance.HasInventoryItem("EVENT_P0_CONTRACT_REACTION"),20,"Reading contract triggers delayed reaction");
+            Check(Time.time-readAt>=10,"Contract reaction respects ten-second reading delay");yield return Shot("07-phone-messages");
             View.Apps.Open(PhoneApp.Call);yield return Shot("06b-phone-contacts");Check(PhoneDesktop.Contacts.Length>=3,"Telephone includes Damar, Ibu and Ratna contacts");
             Phone.isPhoneRaised=true;Phone.SyncVisualState();View.Apps.Open(PhoneApp.Home);yield return Shot("06-phone-apps");
             Check(UiFocus.Phone&&!UiFocus.BlocksMovement,"Handset apps own pointer but leave walking enabled");
             View.Apps.Open(PhoneApp.Bank);yield return null;Check(GameObject.Find("BankBalance").GetComponent<Text>().text.Contains("5.000.000"),"Bank app reads real contract funds");yield return Shot("07b-phone-bank");
             View.Apps.Open(PhoneApp.Inventory);yield return null;var inventory=GameObject.Find("InventoryEntries").GetComponent<Text>().text;Check(inventory.Contains("Smartphone Raka")&&!inventory.Contains("Rp"),"Phone inventory contains items, not donation balances");yield return Shot("07c-phone-inventory");
-            View.Apps.Open(PhoneApp.Journal);yield return null;Check(GameObject.Find("JournalEntries").GetComponent<Text>().text.Contains("Surat peringatan kos"),"Phone journal app reads the actual discovered letter");
+            View.Apps.Open(PhoneApp.Journal);yield return null;Click("JournalEntry_1");yield return null;
+            Check(GameObject.Find("EntryTitle").GetComponent<Text>().text.Contains("Surat peringatan kos"),"Clickable journal opens the actual discovered letter detail");Click("BackToJournal");
+            View.Apps.Open(PhoneApp.Call);Click("Contact_1");yield return Shot("07h-call-ibu");
+            yield return Wait(()=>CampaignState.Instance.HasInventoryItem("EVENT_CALLED_IBU"),70,"Ibu telephone dialogue finishes");
+            View.Apps.Open(PhoneApp.Bank);Click("Pay_Hospital");Click("Confirm");yield return null;
+            Check(CampaignState.Instance.Data.wallet_bound==3500000&&CampaignState.Instance.HasInventoryItem("EVENT_PAID_HOSPITAL"),"Bank deducts hospital transfer once after actual Ibu call");
+            View.Apps.Open(PhoneApp.Call);Click("Contact_2");yield return Shot("07i-call-ratna");
+            yield return Wait(()=>CampaignState.Instance.HasInventoryItem("EVENT_CALLED_RATNA"),70,"Ratna telephone dialogue finishes");
+            View.Apps.Open(PhoneApp.Bank);Click("Pay_Rent");Click("Confirm");yield return null;
+            Check(CampaignState.Instance.Data.wallet_bound==0&&CampaignState.Instance.Data.spent==5000000,"Both family payments account for five million, without double charge");yield return Shot("07j-bank-paid-receipts");
             Stow();
             yield return KosUse(kos.stickyNoteItem,new Vector3(.85f,.05f,-.05f));Check(!Hud.documentBodyText.text.Contains("1408"),"Sticky-note clue does not print the answer");Hud.documentCloseButton.onClick.Invoke();
             yield return KosUse(kos.wallCalendarItem,new Vector3(.85f,.05f,.5f));Check(!Hud.documentBodyText.text.Contains("14 - 08"),"Calendar requires deduction instead of printing padlock code");Hud.documentCloseButton.onClick.Invoke();
@@ -124,7 +139,7 @@ namespace LayarTerakhir.Diagnostics
             yield return Walk(new Vector3(.4f,.05f,-.15f));yield return Use(kos.motorKeyItem,kos.motorKeyItem.GetComponent<Collider>().bounds.center);
             yield return Walk(new Vector3(1.05f,.05f,-.4f));Aim(kos.jacketItem.GetComponent<Collider>().bounds.center);yield return Shot("07f-visible-jacket");
             yield return Use(kos.jacketItem,kos.jacketItem.GetComponent<Collider>().bounds.center);
-            Check(kos.currentStage==KosPrologStage.ReadyToDepart&&CampaignState.Instance.Data.wallet_bound==5000000,"Preparation grants real motor items and donation only once");
+            Check(kos.currentStage==KosPrologStage.ReadyToDepart&&CampaignState.Instance.Data.wallet_bound==0,"Preparation respects the spent donation rather than granting it again");
             yield return Walk(new Vector3(.9f,.05f,-.6f));yield return Use(kos.kosDoorItem,kos.kosDoorItem.GetComponent<Collider>().bounds.center);
             yield return Wait(()=>SceneManager.GetActiveScene().name==PrologSceneFlow.CorridorScene,120,"Room door leads to second-floor corridor");
             yield return new WaitForSeconds(.8f);BindPlayer();player.enabled=false;
@@ -148,7 +163,9 @@ namespace LayarTerakhir.Diagnostics
             yield return Walk(new Vector3(0,0,4.25f));yield return Walk(new Vector3(0,0,.8f));
             Aim(corridor.entranceDoor.GetComponent<Collider>().bounds.center);yield return Shot("11a-main-building-door");
             yield return Walk(new Vector3(0,0,-2.0f),true);Check(!corridor.entranceDoor.IsOpen&&player.transform.position.z>-.9f,"Closed main entrance physically blocks the exit");
+            Phone.isPhoneRaised=true;Phone.SyncVisualState();View.Apps.Open(PhoneApp.Home);yield return null;
             yield return Use(corridor.entranceDoor,corridor.entranceDoor.GetComponent<Collider>().bounds.center);yield return new WaitForSeconds(1.2f);
+            Check(Phone.isPhoneRaised&&corridor.entranceDoor.IsOpen,"Real E interaction opens building door while browsing phone");Stow();
             yield return Walk(new Vector3(0,0,-4.7f));Check(corridor.entranceDoor.IsOpen,"Main entrance must be opened before walking into yard");
             Aim(new Vector3(0,3,-1));yield return Shot("11b-kos-facade-and-porch");Aim(corridor.motor.position+Vector3.up*.2f);
             yield return Use(corridor.motor.GetComponent<KosTravelItem>(),corridor.motor.GetComponent<Collider>().bounds.center);
@@ -165,11 +182,13 @@ namespace LayarTerakhir.Diagnostics
             Aim(d.P(0,-7.0f,1.2f));yield return Shot("15-atmaja-arrival");
             yield return Walk(d.P(0,-11.4f,.06f));yield return Use(Item(AtmajaAction.Gate),Item(AtmajaAction.Gate).GetComponent<Collider>().bounds.center);
             yield return new WaitForSeconds(1.2f);yield return Walk(d.P(0,-6.2f,.06f));yield return Walk(d.P(4.8f,-6.4f,.06f));
-            yield return Use(Item(AtmajaAction.Survey),Item(AtmajaAction.Survey).GetComponent<Collider>().bounds.center);yield return Shot("16-damar-survey");Hud.documentCloseButton.onClick.Invoke();
+            yield return Walk(d.P(0,-1.4f,.06f));yield return Use(Item(AtmajaAction.FrontDoor),Item(AtmajaAction.FrontDoor).GetComponent<Collider>().bounds.center);
+            yield return Wait(()=>!d.Busy,15,"Front door handle/rattle attempt finishes");
+            Check(CampaignState.Instance.HasInventoryItem("EVENT_P0_FRONT_DOOR_TRIED")&&!d.HasSurvey,"Player discovers locked front door before finding indoor Damar note");yield return Shot("16-front-door-attempt");
             Phone.isPhoneRaised=true;Phone.isScreenOn=true;Phone.SyncVisualState();View.Apps.Open(PhoneApp.Camera);yield return null;
             View.LiveButton.onClick.Invoke();yield return null;Check(Phone.isBroadcastConnected&&d.Viewers==14,"Camera app starts the real 14-viewer live broadcast");Stow();
             yield return Walk(d.P(8.2f,-6.4f,.06f));yield return Walk(d.P(8.2f,4.15f,.06f));Phone.isPhoneRaised=true;Phone.isScreenOn=true;View.Apps.Open(PhoneApp.Camera);Phone.SyncVisualState();Aim(d.P(8.2f,5.5f,1.2f));yield return Shot("17-natural-kamboja-right-route");
-            Check(CampaignState.Instance.Data.wallet_bound==5500000,"Side-passage donation is applied once during a real walk");
+            Check(CampaignState.Instance.Data.wallet_bound==500000,"Side-passage donation is applied once without restoring already spent funds");
             yield return Walk(d.P(8.2f,6.8f,.06f),true);
             Check(d.LocalPosition(player.transform.position).y<5.1f,"Standing capsule is stopped by tree limb");
             yield return Crouch(true);yield return Walk(d.P(8.2f,6.9f,.06f));
@@ -220,19 +239,25 @@ namespace LayarTerakhir.Diagnostics
             yield return Press(Key.Escape);Check(UiFocus.Menu&&Time.timeScale==0,"ESC opens an actual pause menu and stops game time");yield return Shot("29-pause-menu");
             Click("MainMenu");yield return Wait(()=>!GameShell.MenuSceneLoading&&GameShell.AwaitingStart,120,"Pause menu returns to main menu");yield return null;Click("Continue");
             yield return Wait(()=>SceneManager.GetActiveScene().name==PrologSceneFlow.AtmajaScene,150,"Continue routes saved Atmaja checkpoint through startup");yield return new WaitForSeconds(1);
-            Check(FindFirstObjectByType<AtmajaDirector>().Stage==AtmajaStage.StairCheckpoint&&CampaignState.Instance.Data.wallet_bound==5500000,"Continue restores reached stage and exact wallet");
+            Check(FindFirstObjectByType<AtmajaDirector>().Stage==AtmajaStage.StairCheckpoint&&CampaignState.Instance.Data.wallet_bound==500000&&CampaignState.Instance.Data.spent==5000000,"Continue restores reached stage and both paid family bills without repayment");
             Finish(!failed);
         }
         private void Stow(){Phone.isPhoneRaised=false;Phone.SyncVisualState();UiFocus.Phone=false;}
         private AtmajaItem Item(AtmajaAction action)=>FindObjectsByType<AtmajaItem>(FindObjectsSortMode.None).First(x=>x.action==action);
         private Button Button(string name)=>FindObjectsByType<Button>(FindObjectsSortMode.None).First(b=>b.name==name&&b.gameObject.activeInHierarchy);
         private void Click(string name){var b=Button(name);Check(b.interactable,"UI button: "+name);b.onClick.Invoke();}
-        private void Aim(Vector3 target){eye.transform.LookAt(target);Physics.SyncTransforms();}
+        private void Aim(Vector3 target)
+        {
+            var direction=target-player.cameraPivot.position;
+            if(direction.sqrMagnitude>.001f)player.cameraPivot.rotation=Quaternion.LookRotation(direction);
+            var rig=player.GetComponent<ShoulderCameraRig>();if(rig)rig.RefreshCameraPose();
+            eye.transform.LookAt(target);Physics.SyncTransforms();
+        }
         private IEnumerator Press(params Key[] keys)
         {InputSystem.QueueStateEvent(keyboard,new KeyboardState(keys));yield return null;yield return null;InputSystem.QueueStateEvent(keyboard,new KeyboardState());yield return null;}
         private IEnumerator Use(IInteractable item,Vector3 target)
         {
-            UiFocus.Phone=false;Aim(target);yield return null;yield return null;
+            Aim(target);yield return null;yield return null;
             var interactor=player.GetComponent<InteractionInteractor>();
             Check(ReferenceEquals(interactor.CurrentTarget,item),"First-hit reachable: "+item.InteractableId);
             if(!ReferenceEquals(interactor.CurrentTarget,item))

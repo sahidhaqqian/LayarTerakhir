@@ -19,7 +19,9 @@ namespace LayarTerakhir.UI
         public string DialedContact {get;private set;}
         public static readonly string[] Contacts={"Damar", "Ibu", "Bu Haji Ratna"};
         private static readonly string[] ContactNumbers={"08•• •••• 2140", "08•• •••• 5729", "08•• •••• 0800"};
-        private bool dialing;
+        private bool dialing,pendingNotification;
+        public bool IsCalling=>dialing||CallActive;
+        private bool ContractReceived=>CampaignState.Instance&&(CampaignState.Instance.HasInventoryItem("EVENT_P0_CONTRACT_RECEIVED")||CampaignState.Instance.Data.wallet_bound>0||CampaignState.Instance.Data.spent>0);
         private SmartphoneController Phone=>SmartphoneController.Instance;
         private static string Money(long amount)=>"Rp"+amount.ToString("N0",CultureInfo.GetCultureInfo("id-ID"));
         public void Initialize(AtmajaPhoneView owner){view=owner;root=UiWidgets.Rect("PhoneApps",view.Panel.transform,new Vector2(.045f,.09f),new Vector2(.955f,.91f));Open(PhoneApp.Home);}
@@ -34,8 +36,9 @@ namespace LayarTerakhir.UI
                 if(Keyboard.current.mKey.wasPressedThisFrame){Phone.isPhoneRaised=true;Open(PhoneApp.Map);Phone.SyncVisualState();}
             }
             bool ar=Phone.currentScanMode==ScanVisualMode.AR;if(ar&&!lastAR&&Phone.isPhoneRaised)Open(PhoneApp.Camera);lastAR=ar;
+            if(GameInputConfig.Instance&&GameInputConfig.Instance.GetActionDown(GameAction.OpenJournal)){Phone.isPhoneRaised=true;Phone.SyncVisualState();Open(PhoneApp.Journal);}
         }
-        public void SetScreenVisible(bool on){if(root)root.SetActive(on&&CurrentApp!=PhoneApp.Camera);if(banner)banner.SetActive(on);}
+        public void SetScreenVisible(bool on){if(root)root.SetActive(on&&CurrentApp!=PhoneApp.Camera);if(banner)banner.SetActive(on);if(on&&pendingNotification){pendingNotification=false;ShowNotification();}}
         public void Stow(){Phone.isPhoneRaised=false;Phone.SyncVisualState();UiFocus.Phone=false;}
         public void Open(PhoneApp app)
         {
@@ -65,14 +68,18 @@ namespace LayarTerakhir.UI
         }
         private void Map()
         {
-            var map=PhoneSkin.Card("CityMap",page.transform,new Vector2(.035f,.34f),new Vector2(.965f,.90f),new Color(.75f,.81f,.79f));map.AddComponent<Mask>().showMaskGraphic=true;
-            var image=UiWidgets.Rect("JakartaMapImage",map.transform,Vector2.zero,Vector2.one).AddComponent<RawImage>();image.texture=Resources.Load<Texture2D>("Phone/JakartaStreetMap");image.raycastTarget=false;
-            Canvas.ForceUpdateCanvases();var rect=map.GetComponent<RectTransform>().rect;
-            float uvWidth=image.texture?rect.width/rect.height*image.texture.height/image.texture.width*.38f:.38f;image.uvRect=new Rect(.30f,.40f,uvWidth,.38f);
-            Vector2[] route={new Vector2(.20f,.23f),new Vector2(.20f,.36f),new Vector2(.39f,.36f),new Vector2(.39f,.55f),new Vector2(.68f,.55f),new Vector2(.68f,.76f)};
-            for(int i=1;i<route.Length;i++){var a=Vector2.Scale(route[i-1]-Vector2.one*.5f,rect.size);var b=Vector2.Scale(route[i]-Vector2.one*.5f,rect.size);UiWidgets.Line("RouteCasing",map.transform,a,b,Color.white,11);UiWidgets.Line("Route",map.transform,a,b,PhoneSkin.Blue,6);}
-            Marker(map.transform,"KosMarker","Kos Raka",new Vector2(.20f,.23f),new Color(.12f,.40f,.67f));Marker(map.transform,"AtmajaMarker","Rumah Atmaja",new Vector2(.68f,.76f),new Color(.64f,.20f,.16f));
-            UiWidgets.Text("MapCredit",map.transform,"Jakarta • Kirill Shrayber / CC0\nLokasi cerita & rute ilustratif",new Vector2(.025f,.005f),new Vector2(.97f,.10f),14).color=PhoneSkin.Ink;
+            var map=PhoneSkin.Card("CityMap",page.transform,new Vector2(.035f,.34f),new Vector2(.965f,.90f),new Color(.89f,.88f,.83f));map.AddComponent<RectMask2D>();
+            var scroll=map.AddComponent<ScrollRect>();scroll.horizontal=scroll.vertical=true;scroll.scrollSensitivity=18;scroll.movementType=ScrollRect.MovementType.Clamped;
+            var content=UiWidgets.Rect("NeighbourhoodMap",map.transform,Vector2.zero,Vector2.one).GetComponent<RectTransform>();
+            content.gameObject.AddComponent<StoryMapGraphic>();scroll.viewport=map.GetComponent<RectTransform>();scroll.content=content;
+            Canvas.ForceUpdateCanvases();content.sizeDelta=scroll.viewport.rect.size*.25f;
+            Marker(content,"KosMarker",view.director?"Kos Raka":"Kos Raka • Kamu",new Vector2(.24f,.23f),new Color(.12f,.40f,.67f));Marker(content,"AtmajaMarker",view.director?"Atmaja • Kamu":"Rumah Atmaja",new Vector2(.68f,.76f),new Color(.64f,.20f,.16f));
+            UiWidgets.Text("StreetName",content,"JL. MELATI",new Vector2(.02f,.46f),new Vector2(.40f,.51f),14).color=PhoneSkin.Ink;
+            UiWidgets.Text("DistrictName",content,"KAMPUNG\nMELATI",new Vector2(.08f,.69f),new Vector2(.35f,.81f),18,TextAnchor.MiddleCenter).color=new Color(.35f,.38f,.34f);
+            UiWidgets.Text("RiverName",content,"KALI\nCILIWUNG",new Vector2(.76f,.13f),new Vector2(.98f,.23f),13,TextAnchor.MiddleCenter).color=new Color(.23f,.46f,.53f);
+            PhoneSkin.Button("MapZoomIn",map.transform,"+",new Vector2(.81f,.12f),new Vector2(.97f,.24f),()=>content.sizeDelta=Vector2.Min(scroll.viewport.rect.size*1.2f,content.sizeDelta+scroll.viewport.rect.size*.2f));
+            PhoneSkin.Button("MapZoomOut",map.transform,"−",new Vector2(.81f,.005f),new Vector2(.97f,.12f),()=>content.sizeDelta=Vector2.Max(Vector2.zero,content.sizeDelta-scroll.viewport.rect.size*.2f));
+            UiWidgets.Text("MapCredit",map.transform,"Peta cerita • luring • geser untuk menjelajah",new Vector2(.025f,.005f),new Vector2(.78f,.08f),12).color=PhoneSkin.Ink;
             var corridor=FindFirstObjectByType<KosCorridorDirector>();bool ready=corridor&&corridor.CanDepart;
             UiWidgets.Text("DestinationLabel",page.transform,"RUMAH KELUARGA ATMAJA\n"+(ready?"Motor siap di gerbang kos":"Pilih keberangkatan di gerbang kos"),new Vector2(.07f,.24f),new Vector2(.93f,.33f),22);
             var button=PhoneSkin.Button("AtmajaDestination",page.transform,ready?"Berangkat ke Atmaja  →":"Pergi ke gerbang untuk berangkat",new Vector2(.06f,.145f),new Vector2(.94f,.23f),()=>{if(corridor&&corridor.CanDepart)corridor.RequestDeparture();},PhoneSkin.Blue);button.interactable=ready;
@@ -120,23 +127,44 @@ namespace LayarTerakhir.UI
         {
             if(dialing||CallActive)yield break;dialing=true;
             DialedContact=contact;Open(PhoneApp.Call);
-            var result=GameObject.Find("DialResult").GetComponent<Text>();result.text=contact+"\nMemanggil…";
+            var result=page.transform.Find("DialResult")?.GetComponent<Text>();if(result)result.text=contact+"\nMemanggil…";
             var source=gameObject.AddComponent<AudioSource>();source.outputAudioMixerGroup=PresentationProfile.Load().audio.uiBus;
             source.clip=Resources.Load<AudioClip>("KosAudio/OutgoingCall");source.volume=.45f;if(source.clip)source.Play();
             yield return new WaitForSeconds(3.2f);if(source){source.Stop();Destroy(source);}
+            if(contact!="Damar"&&ContractReceived)
+            {
+                if(result)result.text=contact+"\nTersambung";
+                string[] speakers=contact=="Ibu"?new[]{"Ibu","Raka","Ibu","Raka"}:new[]{"Bu Haji Ratna","Raka","Bu Haji Ratna","Raka"};
+                string[] lines=contact=="Ibu"?new[]{KosDialogue.MotherHello,KosDialogue.RakaMother,KosDialogue.MotherReply,KosDialogue.RakaMotherGoodbye}:new[]{KosDialogue.RatnaHello,KosDialogue.RakaRatna,KosDialogue.RatnaReply,KosDialogue.RakaRatnaGoodbye};
+                for(int i=0;i<lines.Length;i++)
+                {
+                    float duration=HudController.Instance.PlayPriorityDialogue(speakers[i],lines[i],Mathf.Clamp(lines[i].Length/17f,3,8));
+                    yield return new WaitForSeconds(duration+.2f);
+                }
+                CampaignState.Instance.AddInventoryItem(contact=="Ibu"?"EVENT_CALLED_IBU":"EVENT_CALLED_RATNA");
+                string checkpoint=CampaignState.Instance.Data.checkpoint_id;
+                CampaignState.Instance.SaveCheckpointAtomic(checkpoint=="PROLOG_KOS_START"?"PROLOG_KOS_PREPARATION":checkpoint);
+                if(result)result.text=contact+"\nPanggilan selesai • tagihan tersedia di Bank";
+            }
+            else if(result)result.text=contact+"\nTidak dapat dihubungi";
             dialing=false;
-            if(CurrentApp==PhoneApp.Call&&!CallActive)Open(PhoneApp.Call);
         }
-        public void ReceiveContract(){Phone.isPhoneRaised=Phone.isScreenOn=true;Phone.SyncVisualState();Open(PhoneApp.Messages);Notify("Rp5.000.000 diterima");}
+        public void ReceiveContract(){CampaignState.Instance.AddInventoryItem("EVENT_P0_CONTRACT_RECEIVED");Open(PhoneApp.Home);Notify("Rp5.000.000 diterima");}
         public void Notify(string message)
         {
-            latestMessage=message;if(banner)Destroy(banner);bannerUntil=Time.unscaledTime+9;banner=PhoneSkin.Card("PhoneNotification",view.Panel.transform,new Vector2(.07f,.77f),new Vector2(.93f,.91f),new Color(.13f,.20f,.27f,.99f));
+            latestMessage=message;pendingNotification=true;
+            if(Phone.isPhoneRaised&&Phone.isScreenOn){pendingNotification=false;ShowNotification();}
+        }
+        private void ShowNotification()
+        {
+            if(banner)Destroy(banner);bannerUntil=Time.unscaledTime+6;banner=PhoneSkin.Card("PhoneNotification",view.Panel.transform,new Vector2(.055f,.765f),new Vector2(.945f,.915f),new Color(.13f,.20f,.27f,.99f));
             var button=banner.AddComponent<Button>();button.targetGraphic=banner.GetComponent<Image>();button.onClick.AddListener(()=>{Destroy(banner);Open(PhoneApp.Messages);});UiWidgets.Text("Preview",banner.transform,"PESAN MASUK\nPenonton_Terakhir",new Vector2(.06f,.10f),new Vector2(.94f,.93f),22);
         }
         private void Messages()
         {
             UiWidgets.Text("ThreadName",page.transform,"Penonton_Terakhir",new Vector2(.075f,.80f),new Vector2(.93f,.89f),27);UiWidgets.Text("MessageTime",page.transform,"Malam ini  •  23:46",new Vector2(.075f,.75f),new Vector2(.93f,.80f),17);
-            var card=PhoneSkin.Card("ContractBubble",page.transform,new Vector2(.06f,.22f),new Vector2(.94f,.74f),new Color(.10f,.18f,.25f));bool received=CampaignState.Instance&&CampaignState.Instance.Data.wallet_bound>0;
+            var card=PhoneSkin.Card("ContractBubble",page.transform,new Vector2(.06f,.22f),new Vector2(.94f,.74f),new Color(.10f,.18f,.25f));bool received=ContractReceived;
+            if(received&&Phone.isPhoneRaised&&Phone.isScreenOn)CampaignState.Instance.AddInventoryItem("EVENT_P0_CONTRACT_READ");
             string text=received?"Rp5.000.000 diterima\n\n"+KosDialogue.Contract:"Belum ada pesan.";if(!string.IsNullOrEmpty(latestMessage))text+="\n\n"+latestMessage;
             UiWidgets.ScrollText("Contract",card.transform,text,new Vector2(.06f,.03f),new Vector2(.94f,.97f),23);PhoneSkin.Button("OpenBank",page.transform,"Lihat mutasi di Bank  →",new Vector2(.06f,.115f),new Vector2(.94f,.20f),()=>Open(PhoneApp.Bank));
         }
@@ -144,11 +172,59 @@ namespace LayarTerakhir.UI
         {
             var c=CampaignState.Instance;var card=PhoneSkin.Card("BalanceCard",page.transform,new Vector2(.06f,.58f),new Vector2(.94f,.87f),new Color(.12f,.24f,.43f));
             UiWidgets.Text("AccountHolder",card.transform,"RAKA WIJAYA\nTotal dana tercatat",new Vector2(.07f,.63f),new Vector2(.93f,.94f),22);UiWidgets.Text("BankBalance",card.transform,Money(c.Data.wallet_legitimate+c.Data.wallet_bound),new Vector2(.07f,.29f),new Vector2(.93f,.65f),40);UiWidgets.Text("BalanceDetails",card.transform,$"Sah {Money(c.Data.wallet_legitimate)}\nKontrak {Money(c.Data.wallet_bound)}",new Vector2(.07f,.04f),new Vector2(.93f,.29f),18);
-            var t=new StringBuilder("RINCIAN DANA\n\n");if(c.Data.wallet_bound>0)t.AppendLine($"↓ Penonton_Terakhir\n  {Money(c.Data.wallet_bound)}\n  Total dana terikat kontrak\n");if(c.Data.wallet_legitimate>0)t.AppendLine($"Dana sah\n{Money(c.Data.wallet_legitimate)}\n");t.Append($"Total pengeluaran: {Money(c.Data.spent)}");UiWidgets.ScrollText("BankTransactions",page.transform,t.ToString(),new Vector2(.075f,.12f),new Vector2(.93f,.54f),22);
+            UiWidgets.Text("BillHeading",page.transform,"TAGIHAN KELUARGA",new Vector2(.07f,.51f),new Vector2(.93f,.57f),20);
+            BillButton(true,.37f);BillButton(false,.23f);
+            string history="Pengeluaran tercatat: "+Money(c.Data.spent);
+            if(c.HasInventoryItem("EVENT_PAID_HOSPITAL"))history+="\n✓ RS Ibu: Rp1.500.000";
+            if(c.HasInventoryItem("EVENT_PAID_RENT"))history+="\n✓ Kos: Rp3.500.000";
+            UiWidgets.Text("BankTransactions",page.transform,history,new Vector2(.07f,.095f),new Vector2(.93f,.225f),18);
+        }
+        private void BillButton(bool hospital,float y)
+        {
+            var c=CampaignState.Instance;bool called=c.HasInventoryItem(hospital?"EVENT_CALLED_IBU":"EVENT_CALLED_RATNA");
+            bool paid=c.HasInventoryItem(hospital?"EVENT_PAID_HOSPITAL":"EVENT_PAID_RENT");
+            string label=hospital?"RS Ibu • Rp1.500.000":"Tunggakan kos • Rp3.500.000";
+            var button=PhoneSkin.Button("Pay_"+(hospital?"Hospital":"Rent"),page.transform,label+"\n"+(paid?"LUNAS":called?"Bayar tagihan  →":"Telepon "+(hospital?"Ibu":"Bu Haji Ratna")+" dulu"),new Vector2(.06f,y),new Vector2(.94f,y+.125f),()=>ConfirmBill(hospital),PhoneSkin.Blue);
+            button.interactable=called&&!paid;
+        }
+        private void ConfirmBill(bool hospital)
+        {
+            var confirm=PhoneSkin.Card("TransferConfirmation",page.transform,new Vector2(.035f,.12f),new Vector2(.965f,.88f),PhoneSkin.Ink);
+            UiWidgets.Text("Details",confirm.transform,"KONFIRMASI PEMBAYARAN\n\n"+(hospital?"Biaya perawatan Ibu\nRp1.500.000":"Bu Haji Ratna • Tunggakan kos\nRp3.500.000")+"\n\nDana akan dikurangi satu kali. Simpan bukti transfer di aplikasi Bank.",new Vector2(.07f,.29f),new Vector2(.93f,.96f),25);
+            PhoneSkin.Button("Confirm",confirm.transform,"Konfirmasi bayar",new Vector2(.06f,.16f),new Vector2(.94f,.28f),()=>
+            {
+                bool paid=CampaignState.Instance.TryPayFamilyBill(hospital);Open(PhoneApp.Bank);
+                if(!paid)HudController.Instance.ShowBroadcastNotification("Transfer belum berhasil. Periksa saldo dan penyimpanan.",4);
+                else HudController.Instance.EnqueueSubtitle("Raka",hospital?"Udah terkirim, Bu. Semoga besok Ibu bisa ditangani.":"Lunas, Bu Haji. Setidaknya besok barang gue nggak dikeluarin.",4);
+            },PhoneSkin.Blue);
+            PhoneSkin.Button("Cancel",confirm.transform,"Batal",new Vector2(.06f,.02f),new Vector2(.94f,.13f),()=>Destroy(confirm));
         }
         private void Journal()
         {
-            var c=CampaignState.Instance;var t=new StringBuilder("DOKUMEN DITEMUKAN\n\n");if(c.HasInventoryItem("DOC_PROLOG_01_SURAT_KOS"))t.AppendLine("01 • Surat peringatan kos\nTunggakan Rp3.500.000; besok 08:00.\n");if(c.HasInventoryItem("DIARY_RAKA"))t.AppendLine("Buku harian Raka\nCatatan pribadi dari laci meja.\n"+KosDialogue.Diary+"\n");if(c.HasInventoryItem(AtmajaDirector.SurveyId))t.AppendLine("02 • Survei Damar\nPintu depan dirantai. Lorong timur menuju jendela dapur.\n");if(c.HasInventoryItem("DOC_PROLOG_03_KORAN_1998"))t.AppendLine("03 • Koran tragedi Atmaja, 1998\n");if(c.HasInventoryItem("EVENT_P0_AR_CLUE_READ"))t.AppendLine("Petunjuk AR: III : XLV\n");if(t.Length<30)t.Append("Belum ada dokumen. Periksa benda di sekitar.");UiWidgets.ScrollText("JournalEntries",page.transform,t.ToString(),new Vector2(.075f,.12f),new Vector2(.93f,.87f));
+            var c=CampaignState.Instance;var entries=new System.Collections.Generic.List<(string title,string body)>();
+            entries.Add(("Tujuan saat ini",HudController.Instance.CurrentObjective));
+            if(c.HasInventoryItem("DOC_PROLOG_01_SURAT_KOS"))entries.Add(("Surat peringatan kos","Tunggakan Rp3.500.000. Bu Haji Ratna meminta kepastian sebelum besok pukul 08:00."));
+            if(ContractReceived)entries.Add(("Pesan Penonton_Terakhir",KosDialogue.Contract));
+            if(c.HasInventoryItem("DIARY_RAKA"))entries.Add(("Buku harian Raka",KosDialogue.Diary));
+            if(c.HasInventoryItem(AtmajaDirector.SurveyId))entries.Add(("Catatan survei Damar",AtmajaDirector.SurveyText));
+            if(c.HasInventoryItem("DOC_PROLOG_03_KORAN_1998"))entries.Add(("Koran tragedi 1998","Satu keluarga ditemukan tewas. Polisi menduga peristiwa bermula di lantai dua menjelang tengah malam. Ada sesuatu yang sengaja tidak ditulis di koran ini."));
+            if(c.HasInventoryItem("EVENT_P0_AR_CLUE_READ"))entries.Add(("Tulisan di dinding","WAKTU KEMATIAN KAMI ADALAH KUNCI.\nIII : XLV"));
+            var host=UiWidgets.Panel("JournalList",page.transform,new Vector2(.05f,.12f),new Vector2(.95f,.88f),new Color(0,0,0,.01f));
+            var scroll=host.AddComponent<ScrollRect>();scroll.horizontal=false;scroll.scrollSensitivity=30;scroll.movementType=ScrollRect.MovementType.Clamped;
+            var viewport=UiWidgets.Rect("Viewport",host.transform,Vector2.zero,Vector2.one).GetComponent<RectTransform>();viewport.gameObject.AddComponent<RectMask2D>();
+            var content=UiWidgets.Rect("Entries",viewport, new Vector2(0,1),Vector2.one).GetComponent<RectTransform>();content.pivot=new Vector2(.5f,1);content.sizeDelta=new Vector2(0,entries.Count*98);scroll.viewport=viewport;scroll.content=content;
+            for(int i=0;i<entries.Count;i++)
+            {
+                var entry=entries[i];float top=1-i/(float)entries.Count,bottom=1-(i+1)/(float)entries.Count;
+                PhoneSkin.Button("JournalEntry_"+i,content,entry.title+"   ›",new Vector2(.015f,bottom+.012f),new Vector2(.985f,top-.012f),()=>JournalDetail(entry.title,entry.body));
+            }
+        }
+        private void JournalDetail(string title,string body)
+        {
+            var sheet=PhoneSkin.Card("JournalDetail",page.transform,new Vector2(.025f,.095f),new Vector2(.975f,.90f),PhoneSkin.Ink);
+            UiWidgets.Text("EntryTitle",sheet.transform,title,new Vector2(.06f,.84f),new Vector2(.94f,.98f),29);
+            UiWidgets.ScrollText("EntryBody",sheet.transform,body,new Vector2(.06f,.14f),new Vector2(.94f,.82f),23);
+            PhoneSkin.Button("BackToJournal",sheet.transform,"‹  Semua catatan",new Vector2(.05f,.015f),new Vector2(.95f,.115f),()=>Destroy(sheet));
         }
         private void Inventory()
         {
@@ -159,6 +235,14 @@ namespace LayarTerakhir.UI
     }
     public static class KosDialogue
     {
+        public const string MotherHello="Nak... ada apa nelepon Ibu malam-malam? Ibu belum tidur, tadi batuknya kambuh lagi.";
+        public const string RakaMother="Bu! Raka dapet uang buat biaya rumah sakit Ibu! Besok Ibu bisa lanjut diperiksa. Raka transfer malam ini, ya.";
+        public const string MotherReply="Alhamdulillah... makasih, Nak. Tapi kamu jangan memaksakan diri. Kerjanya yang aman, Ibu cuma pengin kamu pulang sehat.";
+        public const string RakaMotherGoodbye="Iya, Bu. Doain Raka. Sekarang Ibu istirahat dulu, nanti Raka kabarin lagi.";
+        public const string RatnaHello="Halo, Raka? Ada apa malam-malam? Soal kamar itu besok pagi Ibu sudah harus kasih kepastian.";
+        public const string RakaRatna="Iya, Bu Haji. Maaf ganggu. Uangnya sudah ada, tiga setengah juta. Saya bayar lewat transfer malam ini. Tolong jangan keluarin barang saya besok.";
+        public const string RatnaReply="Ya sudah, Raka. Kalau masuk malam ini, kamarmu tetap aman. Habis transfer simpan buktinya. Lain kali jangan menunggu sampai ditegur, ya.";
+        public const string RakaRatnaGoodbye="Iya, Bu. Terima kasih sudah ngasih waktu. Saya transfer sekarang.";
         public const string DamarVoiceNote="Ka... Raka, jangan ke Rumah Atmaja sendirian. Tolong dengerin gue. Aplikasi kamera yang gue oprek dari forum kemarin... itu bukan filter AR biasa, Ka. Rumah ini nggak kosong. Di lantai dua ada suara perempuan nyanyi tembang Jawa, tapi pas gue sorot pakai kamera HP, dia udah berdiri tepat di depan muka gue—";
         public const string DamarScream="Raka! Tolong! Aaaah!";
         public const string ContractReaction="Anjir, Damar dalam bahaya! Duit ini nggak gratis... Untuk sementara gue harus ikutin perintah dari pesan ini.";

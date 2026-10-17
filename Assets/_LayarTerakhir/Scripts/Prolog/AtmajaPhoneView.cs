@@ -31,7 +31,7 @@ namespace LayarTerakhir.Prolog
             if(!feedMaterial){var profile=PresentationProfile.Load();if(profile)feedMaterial=profile.phoneFeedMaterial;}
             UiWidgets.Font=Hud.GetComponent<HudPresentation>().style.bodyFont;
             var canvas=Hud.GetComponentInChildren<Canvas>().transform;
-            Panel=PhoneSkin.Card("RakaSmartphone",canvas,new Vector2(.735f,.045f),new Vector2(.973f,.94f),new Color(.16f,.18f,.20f));
+            Panel=PhoneSkin.Card("RakaSmartphone",canvas,new Vector2(.772f,.045f),new Vector2(.973f,.758f),new Color(.16f,.18f,.20f));
             PhoneSkin.Card("GlassScreen",Panel.transform,new Vector2(.018f,.012f),new Vector2(.982f,.988f),new Color(.008f,.012f,.019f));
             PhoneSkin.Card("Earpiece",Panel.transform,new Vector2(.38f,.978f),new Vector2(.62f,.984f),new Color(.23f,.25f,.27f));
             PhoneSkin.Card("FrontLens",Panel.transform,new Vector2(.66f,.970f),new Vector2(.69f,.985f),new Color(.06f,.13f,.18f));
@@ -41,7 +41,7 @@ namespace LayarTerakhir.Prolog
             cameraRoot=UiWidgets.Rect("CameraApp",Panel.transform,new Vector2(.045f,.16f),new Vector2(.955f,.91f));cameraImage=cameraRoot.AddComponent<RawImage>();cameraImage.raycastTarget=false;
             runtimeFeedMaterial=new Material(feedMaterial);cameraImage.material=runtimeFeedMaterial;
             feed=new RenderTexture(256,448,16,RenderTextureFormat.ARGB32){name="RakaPhoneFeed",antiAliasing=1};if(HasGraphicsDevice)feed.Create();cameraImage.texture=feed;
-            var cam=new GameObject("RakaPhoneCamera",typeof(Camera));cam.transform.SetParent(playerCamera.transform,false);FeedCamera=cam.GetComponent<Camera>();FeedCamera.CopyFrom(playerCamera);FeedCamera.targetTexture=feed;
+            var cam=new GameObject("RakaPhoneCamera",typeof(Camera));cam.transform.SetParent(playerCamera.transform.root,false);FeedCamera=cam.GetComponent<Camera>();FeedCamera.CopyFrom(playerCamera);FeedCamera.targetTexture=feed;
             FeedCamera.depth=playerCamera.depth-1;FeedCamera.fieldOfView=70;FeedCamera.aspect=256f/448;FeedCamera.GetUniversalAdditionalCameraData().renderPostProcessing=false;FeedCamera.GetUniversalAdditionalCameraData().renderShadows=false;cam.tag="Untagged";
             playerCamera.cullingMask&=~(1<<ARLayer);FeedCamera.enabled=false;
             LiveButton=UiWidgets.Button("MulaiLiveButton",cameraRoot.transform,"MULAI LIVE",new Vector2(.10f,.36f),new Vector2(.90f,.51f),()=>{if(director)director.StartLive();});
@@ -65,10 +65,12 @@ namespace LayarTerakhir.Prolog
             var stowBinding=GameInputConfig.Instance?GameInputConfig.Instance.togglePhoneKey:KeyCode.Tab;
             if(stowBinding!=lastStowBinding){lastStowBinding=stowBinding;stowLabel.text="SIMPAN  ["+stowBinding.ToString().ToUpperInvariant()+"]";}
             FeedCamera.cullingMask=playerCamera.cullingMask|((Phone.currentScanMode==ScanVisualMode.AR)?1<<ARLayer:0);
+            var owner=FindFirstObjectByType<FirstPersonController>();
+            if(owner&&owner.cameraPivot)FeedCamera.transform.SetPositionAndRotation(owner.cameraPivot.position+owner.transform.forward*.26f,owner.cameraPivot.rotation);
             runtimeFeedMaterial.SetFloat("_ARGain",Phone.currentScanMode==ScanVisualMode.AR?2:1);runtimeFeedMaterial.SetFloat("_ReducedGlitch",GameShell.ReducedGlitch?1:0);
             header.text=!screen?"":Phone.isBroadcastConnected?$"LIVE • {(director?director.Viewers:14):N0}   |   {Phone.batteryPercent:0}%":(director?"23:52":"23:46")+$"    LTE    {Phone.batteryPercent:0}%";
             mode.text=screen&&IsCameraApp?(Phone.currentScanMode==ScanVisualMode.AR?"MATA BATIN / AR":"KAMERA")+$" • {Phone.batteryPercent:0}%\n[Z] Aplikasi   [M] Peta":"";
-            LiveButton.gameObject.SetActive(screen&&IsCameraApp&&director&&!Phone.isBroadcastConnected);LiveButton.interactable=director&&director.HasSurvey&&!director.Busy;
+            LiveButton.gameObject.SetActive(screen&&IsCameraApp&&director&&!Phone.isBroadcastConnected);LiveButton.interactable=director&&director.CanBeginLive&&!director.Busy;
             UiFocus.Phone=active&&screen&&(!IsCameraApp||(director&&!Phone.isBroadcastConnected));
             var player=FindFirstObjectByType<FirstPersonController>();if(player&&!UiFocus.HardModal&&!Hud.IsModalOpen&&!UiFocus.Cinematic)player.SetCursorLock(!UiFocus.Phone||FirstPersonController.PhoneLookHeld);
             walkHint.enabled=UiFocus.Phone&&!UiFocus.Cinematic&&!Hud.IsModalOpen;
