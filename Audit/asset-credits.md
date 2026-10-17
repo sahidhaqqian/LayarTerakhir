@@ -1,5 +1,26 @@
 Asset provenance for Kamar Kos and the Atmaja continuation, with the 2026-10-16 playtest revision.
 
+## Prolog completion — 17 October 2026
+
+The handycam market/mirror set, reaching-hand geometry, low-poly round mesh, wardrobe slats,
+AR scratch strokes, escape staging and smoke sprite are original project-authored work in
+`PrologCompletionBuilder.cs`. They reuse the previously credited local materials and props.
+No new third-party asset pack or synthesized voice was obtained in this pass.
+
+`SriAtmajaCharacter.fbx` is original Blender geometry authored by
+`Tools/author_atmaja_character.py`: 7,648 triangles with an articulated rigid hierarchy,
+modeled face, wet hair, fingers, ivory kebaya, long skirt and garden shears. It replaces
+the standing hunter, bathroom reflection and final street figure. Clothing reuses the
+previously credited jacquard weave normal/pattern. Motion is procedural, not motion
+capture. The authoring receipt is `Audit/atmaja-character-authoring.json`.
+
+`Assets/_LayarTerakhir/Art/Atmaja/Textures/AtmajaFamilyScratched-v1.png` is an original
+AI-generated fictional family photograph, made with the built-in image_gen tool using
+the imagegen skill. Its exact prompt, SHA-256 and destination are recorded in
+`Audit/prolog-generated-art.json`. All faces are fictional; the scratches depict paper
+damage. Unity imports it at a maximum of 1024 pixels with mipmaps. No game screenshot,
+actor likeness or DreadOut artwork was supplied or extracted.
+
 ## Kos immersion follow-up — 16 October 2026
 
 `KosCorridorBuilding.cs` is original Unity-native architectural/dressing geometry (room shells,
@@ -234,7 +255,8 @@ Nyonya figure, hanged Nyonya figure, rusted shears, sewing machine, sewing bench
 trapdoor slab. They use project materials (enamel, mirror glass, old rope, black iron, rust, dirty
 kebaya) following the original project license — not downloads and not extracted game art. Basement
 audio is runtime-synthesized original waveforms; the Nyonya hum is generated `AtmajaSynth` tones,
-not a vocal recording. The handycam "playback" is a synthetic static clip, not real footage.
+not a vocal recording. The original static handycam placeholder is replaced by the
+in-engine mirror/market recording described in the completion section above.
 
 The original backdrop's new folded storage mesh is authored by
 `Tools/author_compact_kos.py --stored-only`; it retains the green cloth and collapsed frame,

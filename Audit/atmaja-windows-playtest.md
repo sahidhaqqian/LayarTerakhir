@@ -59,23 +59,34 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
    lalu potret cangkir susu yang retak dengan Kamera AR (rantai 1) — pintu kamar anak terbuka.
    Kamar mandi: buka tirai bak, potret cakaran jari kecil (rantai 2). Balkon dalam:
    baca surat wasiat Nyonya, lalu potret tali tambang yang berayun (rantai 3).
-   Cermin di kamar mandi dapat memunculkan jump-scare sekali; layar HP/AR tetap satu-satunya
-   tempat sosok tampak. Pintu Kamar Tidur Utama terbuka setelah tiga rantai.
+   Cermin kamar mandi menampilkan refleksi dan dapat memperlihatkan sosok di belakang Raka
+   sekali; sosok itu tidak tampil ketika pemain menoleh ke dunia biasa. Pintu Kamar Tidur Utama terbuka setelah tiga rantai.
 9. Kamar utama: angkat karpet merah, buka pintu jebakan kayu, turun ke ruang bawah tanah.
-   Daya HP jatuh ke 12%: ambil **Powerbank Besar** di meja jahit sisi kiri (baterai 80%).
+   Daya HP jatuh ke 12% sekali: ambil **Powerbank Besar** di meja jahit (minimal 80%;
+   daya lama di atas 80 dipulihkan). Powerbank kecil bawaan tidak dihapus. Kabel di meja
+   tetap bisa dipakai untuk pemulihan darurat ke 35% setelah daya habis.
    Nyonya Sri Atmaja bangun dan berpatroli — hindari garis pandang, jangan berlari,
-   sembunyi di lemari [E] bila dikejar dan **matikan layar HP [F]** saat dia memeriksa celah.
+   sembunyi di lemari [E] dan **matikan layar HP [F]** saat dia memeriksa celah. Warning
+   memberi 1,25 detik untuk merespons, lalu layar harus gelap selama empat detik.
+   Setelah dia menjauh, tekan E sendiri untuk keluar; patroli harus tetap bergerak saat bersembunyi.
    Tertangkap = kembali ke checkpoint basement tanpa kehilangan progres. Ambil **Handycam**
-   di depan cermin besar (merangkak lewat kolong meja) dan putar rekaman terakhir Damar.
-10. Chase: lari mengikuti rute — meluncur [CTRL] lewat pintu jebakan yang menutup,
-    naik keluar dari tangga batu (otomatis), lompati meja makan yang roboh [V],
+   di depan cermin besar (merangkak lewat kolong meja) dan putar rekaman terakhir Damar: pasar malam terlihat di balik cermin, tangan meraih
+   lalu kamera ditarik masuk. Keluar game saat rekaman berlangsung harus tetap memungkinkan replay.
+10. Chase: lari mengikuti rute — kembali ke tangga batu sudut basement, tahan SHIFT
+    (atau E) untuk menaikinya. Di atas, merunduk/meluncur [CTRL] lewat pintu jebakan yang menutup.
+    Turuni tangga tengah; lompati meja makan yang roboh dengan SPACE,
     lewati lampu yang pecah, lalu berhenti di jendela dapur. Slow-motion: **klik kiri**
     untuk menembakkan Blitz flash tepat waktu (3 detik; butuh baterai). Gagal = ulang chase.
-11. Setelah Blitz, berguling keluar jendela dan lari menembus gerbang besi ke jalan raya.
-    Ending: siluet di jendela lantai 2 saat kilat, kartu judul **LAYAR TERAKHIR**,
-    surat Penonton_Terakhir, lalu **Prolog selesai** (54.820 penonton / sawer Rp25.450.000).
+11. Setelah Blitz, tekan SPACE dalam empat detik untuk menerobos jendela. Lari lewat halaman
+    samping, merunduk di bawah kamboja, kemudian ke gerbang dan jalan raya.
+    Ending: siluet di jendela lantai 2 saat kilat, 54.820 penonton, chat cepat yang berhenti,
+    dan kontrak Penonton_Terakhir di HP. Pesannya bisa di-scroll; klik SIMPAN PESAN.
+    Shutter → title **LAYAR TERAKHIR** → PROLOG SELESAI → MENU UTAMA. Total sawer
+    Rp25.450.000 mencakup bonus sumur dan dana yang telah dipakai untuk tagihan, tanpa memberikan ulang pembayaran.
 12. ESC → Menu Utama → Continue: harus kembali di checkpoint Atmaja dengan uang/item/baterai
-    yang sama dan tanpa donasi ulang. Restart build baru wajib memakai NEW GAME.
+    yang sama dan tanpa donasi ulang. Setelah tamat, Continue memulihkan layar PROLOG SELESAI.
+    Coba pause/Settings saat kontrak akhir dan title; sesudah Resume pointer tombol harus tetap dapat dipakai.
+    Save lama boleh dilanjutkan; gunakan NEW GAME untuk menguji pembuka dari awal.
 
 SETTINGS: volume, sensitivitas, subtitle, reduksi glitch, remap delapan aksi utama.
 Mode layar: fullscreen borderless/windowed lewat Settings atau Alt+Enter, juga saat pause.

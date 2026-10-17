@@ -171,6 +171,7 @@ namespace LayarTerakhir.UI
             var card=PhoneSkin.Card("ContractBubble",page.transform,new Vector2(.06f,.22f),new Vector2(.94f,.74f),new Color(.10f,.18f,.25f));bool received=ContractReceived;
             if(received&&Phone.isPhoneRaised&&Phone.isScreenOn)CampaignState.Instance.AddInventoryItem("EVENT_P0_CONTRACT_READ");
             string text=received?"Rp5.000.000 diterima\n\n"+KosDialogue.Contract:"Belum ada pesan.";if(!string.IsNullOrEmpty(latestMessage))text+="\n\n"+latestMessage;
+            if(CampaignState.Instance.HasInventoryItem("EVENT_P0_FINAL_CONTRACT"))text="00:07 • SATU MALAM SELESAI\n\n"+PrologFinaleView.FinalContract+"\n\n—— Pesan sebelumnya ——\n\n"+text;
             UiWidgets.ScrollText("Contract",card.transform,text,new Vector2(.06f,.03f),new Vector2(.94f,.97f),23);PhoneSkin.Button("OpenBank",page.transform,"Lihat mutasi di Bank  →",new Vector2(.06f,.115f),new Vector2(.94f,.20f),()=>Open(PhoneApp.Bank));
         }
         private void Bank()
@@ -219,6 +220,8 @@ namespace LayarTerakhir.UI
             if(c.HasInventoryItem("EVENT_P0_CHAIN1_BROKEN"))entries.Add(("Foto cangkir retak","Bukti pertama: cangkir susu yang ditinggalkan di kamar anak. Ada aura yang tidak terlihat tanpa kamera."));
             if(c.HasInventoryItem("EVENT_P0_CHAIN2_BROKEN"))entries.Add(("Foto cakaran","Bukti kedua: jejak jari kecil di balik kamar mandi."));
             if(c.HasInventoryItem("EVENT_P0_CHAIN3_BROKEN"))entries.Add(("Foto tali","Bukti ketiga: tali di atas balkon. Tiga bukti terhubung dengan tragedi keluarga ini."));
+            if(c.HasInventoryItem(AtmajaBasementHorror.HandycamId))entries.Add(("Rekaman terakhir Damar",AtmajaHandycamPlayback.DamarLine));
+            if(c.HasInventoryItem("EVENT_P0_FINAL_CONTRACT"))entries.Add(("Satu malam selesai",PrologFinaleView.FinalContract));
             var host=UiWidgets.Panel("JournalList",page.transform,new Vector2(.05f,.12f),new Vector2(.95f,.88f),new Color(0,0,0,.01f));
             var scroll=host.AddComponent<ScrollRect>();scroll.horizontal=false;scroll.scrollSensitivity=30;scroll.movementType=ScrollRect.MovementType.Clamped;
             var viewport=UiWidgets.Rect("Viewport",host.transform,Vector2.zero,Vector2.one).GetComponent<RectTransform>();viewport.gameObject.AddComponent<RectMask2D>();
@@ -239,7 +242,7 @@ namespace LayarTerakhir.UI
         }
         private void Inventory()
         {
-            var c=CampaignState.Instance;var t=new StringBuilder("BARANG BAWAAN\n\n");foreach(var item in new[]{("SMARTPHONE_RAKA","Smartphone Raka"),("KUNCI_MOTOR","Kunci motor"),("JAKET_RAKA","Jaket"),("POWERBANK_KECIL_KOS","Powerbank kecil"),("DOMPET_RAKA","Dompet Raka"),("DIARY_RAKA","Buku harian Raka"),("MATABATIN_APK","Modul MataBatin"),("ITEM_P0_CLOCK_HANDS","Jarum kuningan"),("KUNCI_TANGGA_TENGAH","Kunci tangga")})if(c.HasInventoryItem(item.Item1))t.AppendLine("• "+item.Item2+"\n");UiWidgets.ScrollText("InventoryEntries",page.transform,t.ToString(),new Vector2(.075f,.12f),new Vector2(.93f,.87f));
+            var c=CampaignState.Instance;var t=new StringBuilder("BARANG BAWAAN\n\n");foreach(var item in new[]{("SMARTPHONE_RAKA","Smartphone Raka"),("KUNCI_MOTOR","Kunci motor"),("JAKET_RAKA","Jaket"),("POWERBANK_KECIL_KOS","Powerbank kecil"),("DOMPET_RAKA","Dompet Raka"),("DIARY_RAKA","Buku harian Raka"),("MATABATIN_APK","Modul MataBatin"),("ITEM_P0_CLOCK_HANDS","Jarum kuningan"),("KUNCI_TANGGA_TENGAH","Kunci tangga"),(AtmajaBasementHorror.HandycamId,"Handycam Damar")})if(c.HasInventoryItem(item.Item1))t.AppendLine("• "+item.Item2+"\n");UiWidgets.ScrollText("InventoryEntries",page.transform,t.ToString(),new Vector2(.075f,.12f),new Vector2(.93f,.87f));
             if(c.HasInventoryItem("DIARY_RAKA"))PhoneSkin.Button("ReadDiary",page.transform,"Baca buku harian  →",new Vector2(.06f,.13f),new Vector2(.94f,.22f),()=>Open(PhoneApp.Journal));
         }
         private void OnDestroy(){UiFocus.Phone=false;if(root)Destroy(root);}

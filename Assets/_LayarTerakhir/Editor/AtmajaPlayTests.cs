@@ -55,6 +55,150 @@ namespace LayarTerakhir.Editor.Tests
         [UnityTest] public IEnumerator DiningSidesBackpackAndCornerRoomAreContinuouslyWalkable()=>Run(DiningNavigation());
         [UnityTest] public IEnumerator UpperEvidenceUsesPhoneLensAndAcceptsTargetSurface()=>Run(UpperPhonePhotos());
         [UnityTest] public IEnumerator AtmajaStairsReachUpperCorridorWithoutTeleport()=>Run(UpperStairNavigation());
+        [UnityTest] public IEnumerator BasementPowerAndDonationSurviveContinueWithoutDuplication()=>Run(BasementPower());
+        [UnityTest] public IEnumerator HunterSeesThePlayerButNeverThroughArchiveShelves()=>Run(HunterSight());
+        [UnityTest] public IEnumerator LockerWarningAllowsScreenInputAndSafeManualExit()=>Run(LockerInput());
+        [UnityTest] public IEnumerator InterruptedHandycamCanBePlayedAgainAfterContinue()=>Run(InterruptedRecording());
+        [UnityTest] public IEnumerator FinishedPrologRestoresTheTitleWithoutAnotherDonation()=>Run(FinishedProlog());
+        [UnityTest] public IEnumerator MissedEmergencyBlitzRestoresChaseMusicBatteryAndInput()=>Run(BlitzRetry());
+        [UnityTest] public IEnumerator MasterCellarAndClosingTrapdoorHaveConnectedCapsuleRoutes()=>Run(FinaleGeometry());
+        private IEnumerator FinaleGeometry()
+        {
+            yield return new WaitForSeconds(2);var d=SeedBasement();var p=d.player;var cc=p.GetComponent<CharacterController>();
+            d.PlacePlayer(d.P(1.3f,5.75f,3.83f),Quaternion.identity);
+            foreach(var point in new[]{d.P(1.1f,4.25f,3.83f),d.P(.8f,4.25f,3.83f),d.P(.8f,2.6f,3.83f)})yield return WalkCapsule(p,point);
+            d.PlacePlayer(d.basement.spawnBasement.position,d.basement.spawnBasement.rotation);yield return null;yield return null;
+            // This test isolates physical clearance. Other tests exercise the live hunter/locker.
+            d.basement.StopAllCoroutines();d.basement.enabled=false;d.basement.nyonya.SetActive(false);
+            foreach(var point in new[]{d.basement.exitAnchor1.position,d.P(1.45f,4,-2.79f),d.P(1.45f,5.4f,-2.79f),d.P(2.1f,5.45f,-2.79f)})yield return WalkCapsule(p,point);
+            var item=Item(AtmajaAction.Powerbank);var eye=p.GetComponent<InteractionInteractor>().playerCamera;
+            p.GetComponent<ShoulderCameraRig>().RefreshCameraPose();
+            eye.transform.LookAt(item.GetComponent<Collider>().bounds.center);yield return null;yield return null;
+            Assert.That(p.GetComponent<InteractionInteractor>().CurrentTarget,Is.SameAs(item),"Bench powerbank is visible and reachable from its front");
+            d.SetStage(AtmajaStage.Chase);d.chase.cellarEgressFloor.SetActive(true);d.chase.slideGate.SetActive(true);
+            d.PlacePlayer(d.upper.trapdoorTop.position,d.upper.trapdoorTop.rotation);
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftCtrl));p.enabled=true;yield return new WaitForSeconds(.5f);p.enabled=false;
+            Assert.That(p.IsCrouching,Is.True);
+            yield return WalkCapsule(p,d.P(1,2.5f,3.83f));yield return WalkCapsule(p,d.P(.8f,2.7f,3.83f));
+            Assert.That(p.transform.position.y,Is.GreaterThan(3.75f),"Closing trapdoor landing must not drop the player back into the shaft");
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());p.enabled=true;yield return new WaitForSeconds(.5f);p.enabled=false;
+            Assert.That(p.IsCrouching,Is.False);
+            d.upper.bathDoor.SetOpenImmediate(true);d.upper.childDoor.SetOpenImmediate(true);
+            foreach(var point in new[]{d.P(.8f,4.25f,3.83f),d.P(1.1f,4.7f,3.83f),d.P(1.3f,5.75f,3.83f),d.P(-3.3f,5.75f,3.83f)})yield return WalkCapsule(p,point);
+        }
+        private IEnumerator BlitzRetry()
+        {
+            yield return new WaitForSeconds(2);Time.timeScale=1;var d=SeedBasement();var c=CampaignState.Instance;
+            foreach(var id in new[]{"EVENT_P0_BASEMENT_ENTERED","EVENT_P0_CHASE_STARTED","EVENT_P0_HANDYCAM_PLAYED","EVENT_P0_POWERBANK_TAKEN",AtmajaBasementHorror.HandycamId})c.AddInventoryItem(id);
+            c.Data.battery=80;Assert.That(c.SaveCheckpointAtomic(AtmajaChaseSequence.ChaseCheckpoint),Is.True);d.RestoreWorld();
+            SmartphoneController.Instance.batteryPercent=80;yield return new WaitForSeconds(1.8f);
+            d.PlacePlayer(d.chase.cellarExitApproach.position,Quaternion.identity);
+            d.player.enabled=true;
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftShift));yield return null;yield return new WaitForSeconds(2.6f);
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());Assert.That(d.chase.Traversing,Is.False);
+            d.PlacePlayer(d.chase.diningVaultStart.position,Quaternion.identity);yield return Press(Key.Space);yield return new WaitForSeconds(1);
+            d.PlacePlayer(d.vaultInside.position,d.vaultInside.rotation);yield return null;yield return null;
+            Assert.That(d.chase.AwaitingBlitz,Is.True);Assert.That(Time.timeScale,Is.EqualTo(.15f));
+            GameShell.Instance.Pause();yield return new WaitForSecondsRealtime(3.2f);
+            Assert.That(d.chase.AwaitingBlitz,Is.True,"Pause must freeze the real-time QTE deadline");GameShell.Instance.Resume();
+            yield return new WaitForSecondsRealtime(3.3f);
+            Assert.That(d.Stage,Is.EqualTo(AtmajaStage.Chase));Assert.That(Time.timeScale,Is.EqualTo(1));
+            Assert.That(SmartphoneController.Instance.batteryPercent,Is.InRange(79.5f,80));
+            Assert.That(d.Busy||d.player.MovementLocked||UiFocus.Cinematic,Is.False);
+            Assert.That(d.GetComponents<AudioSource>().Any(a=>a.clip&&a.clip.name=="AtmajaSynth_ChaseLoop"&&a.isPlaying),Is.True,"Retry must restart the existing chase source");
+            Assert.That(Vector3.Distance(d.player.transform.position,d.chase.spawnChase.position),Is.LessThan(.3f));
+            // A successful retry must retain the four-second stun through the
+            // window traverse instead of immediately restarting the outdoor hunter.
+            yield return new WaitForSeconds(1.8f);d.PlacePlayer(d.chase.cellarExitApproach.position,Quaternion.identity);
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftShift));yield return null;yield return new WaitForSeconds(2.6f);
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());d.PlacePlayer(d.chase.diningVaultStart.position,Quaternion.identity);
+            yield return Press(Key.Space);yield return new WaitForSeconds(1);d.PlacePlayer(d.vaultInside.position,d.vaultInside.rotation);yield return null;yield return null;
+            Assert.That(d.chase.TryEmergencyBlitz(),Is.True);yield return Press(Key.Space);yield return new WaitForSeconds(1.2f);
+            Assert.That(d.chase.IsGateRun&&d.chase.IsStunned,Is.True,"Leaving the window must not cancel the remaining Blitz stun");
+            var stopped=d.chase.chaserFigure.transform.position;yield return new WaitForSeconds(.6f);
+            Assert.That(d.chase.chaserFigure.transform.position,Is.EqualTo(stopped),"The outdoor hunter must stay still until recovery");
+            yield return new WaitForSeconds(2.3f);Assert.That(d.chase.IsStunned,Is.False,"Recovery must finish four game seconds after firing");
+        }
+        private AtmajaDirector SeedBasement()
+        {
+            var d=Find<AtmajaDirector>();var c=CampaignState.Instance;
+            foreach(var id in new[]{"SMARTPHONE_RAKA","MATABATIN_APK","EVENT_P0_GATE_OPEN","EVENT_P0_LIVE_STARTED","EVENT_P0_KITCHEN_ENTERED","EVENT_P0_DINING_OPEN","EVENT_P0_STAIRS_UNLOCKED","EVENT_P0_UPPER_REACHED","EVENT_P0_CHAIN1_BROKEN","EVENT_P0_CHAIN2_BROKEN","EVENT_P0_CHAIN3_BROKEN","EVENT_P0_MASTER_OPEN","EVENT_P0_CARPET_LIFTED","EVENT_P0_TRAPDOOR_OPEN"})c.AddInventoryItem(id);
+            d.RestoreWorld();d.player.enabled=false;return d;
+        }
+        private IEnumerator BasementPower()
+        {
+            yield return new WaitForSeconds(2);var d=SeedBasement();var c=CampaignState.Instance;var phone=SmartphoneController.Instance;
+            phone.batteryPercent=c.Data.battery=63;long money=c.Data.wallet_bound;
+            d.PlacePlayer(d.basement.spawnBasement.position,d.basement.spawnBasement.rotation);yield return null;yield return null;
+            Assert.That(c.HasInventoryItem("EVENT_P0_POWER_GLITCH"),Is.True);Assert.That(phone.batteryPercent,Is.InRange(11.9f,12f));
+            Assert.That(c.Data.wallet_bound,Is.EqualTo(money+2000000));
+            var before=d.basement.nyonya.transform.position;Item(AtmajaAction.Powerbank).Interact();
+            Assert.That(phone.batteryPercent,Is.InRange(79.9f,80f));Assert.That(d.basement.nyonya.transform.position,Is.EqualTo(before));
+            Assert.That(c.HasInventoryItem(AtmajaBasementHorror.PowerbankId),Is.False,"Tutorial pack consumption must be persisted atomically");
+            Assert.That(c.LoadCheckpoint(),Is.True);Assert.That(c.Data.battery,Is.EqualTo(80));
+            Assert.That(c.Data.inventory.Any(id=>id.StartsWith("RESERVE_BATTERY_",StringComparison.Ordinal)),Is.False);
+            d.RestoreWorld();Assert.That(c.Data.wallet_bound,Is.EqualTo(money+2000000));
+            Assert.That(d.basement.powerbankObj.activeSelf,Is.True,"Used pack must still allow emergency USB recharging");
+            phone.batteryPercent=0;Item(AtmajaAction.Powerbank).Interact();yield return new WaitForSeconds(3);
+            Assert.That(phone.batteryPercent,Is.InRange(34.5f,35f));Assert.That(phone.isScreenOn,Is.True);
+            Assert.That(c.LoadCheckpoint(),Is.True);Assert.That(c.Data.battery,Is.EqualTo(35));
+        }
+        private IEnumerator HunterSight()
+        {
+            yield return new WaitForSeconds(2);var d=SeedBasement();var b=d.basement;var c=CampaignState.Instance;
+            c.AddInventoryItem("EVENT_P0_BASEMENT_ENTERED");d.RestoreWorld();b.enabled=false;
+            b.nyonya.transform.SetPositionAndRotation(d.P(1.4f,4.3f,-2.79f),Quaternion.LookRotation(d.north));
+            d.PlacePlayer(d.P(1.4f,5.1f,-2.79f),Quaternion.identity);Physics.SyncTransforms();
+            Assert.That(b.CanSeePlayer(8),Is.True,"Own/player hulls must not blind the hunter");
+            Assert.That(d.chase.CanCatchPlayer(),Is.True,"A close unobstructed hunter can catch Raka");
+            var blocker=GameObject.CreatePrimitive(PrimitiveType.Cube);blocker.name="TestCatchOccluder";
+            blocker.transform.SetPositionAndRotation(d.P(1.4f,4.7f,-1.65f),Quaternion.LookRotation(d.north));blocker.transform.localScale=new Vector3(.5f,2.4f,.08f);Physics.SyncTransforms();
+            Assert.That(d.chase.CanCatchPlayer(),Is.False,"Nearby stairs or furniture must block a chase capture");Object.DestroyImmediate(blocker);
+            b.nyonya.transform.SetPositionAndRotation(d.P(1.4f,3.2f,-2.79f),Quaternion.LookRotation(d.east));
+            d.PlacePlayer(d.P(4.3f,3.2f,-2.79f),Quaternion.identity);Physics.SyncTransforms();
+            Assert.That(b.CanSeePlayer(8),Is.False,"Opaque archive shelf must actually break line of sight");
+        }
+        private IEnumerator LockerInput()
+        {
+            yield return new WaitForSeconds(2);var d=SeedBasement();var b=d.basement;var c=CampaignState.Instance;var phone=SmartphoneController.Instance;
+            c.AddInventoryItem("EVENT_P0_BASEMENT_ENTERED");c.AddInventoryItem("EVENT_P0_POWER_GLITCH");c.Data.battery=12;
+            Assert.That(c.SaveCheckpointAtomic("PROLOG_BASEMENT_ENTRY"),Is.True);d.RestoreWorld();
+            phone.batteryPercent=12;phone.isPhoneRaised=phone.isScreenOn=true;phone.SyncVisualState();
+            b.nyonya.transform.position=b.exitAnchor1.position;Physics.SyncTransforms();
+            var item=b.wardrobeCol1.GetComponent<AtmajaItem>();item.Interact();yield return null;
+            Time.timeScale=1;Assert.That(b.IsHidden&&d.player.MovementLocked,Is.True);
+            yield return new WaitForSeconds(.4f);Assert.That(b.InspectingLocker,Is.True,"Warning must start before the screen can expose Raka");
+            yield return Press(Key.F);Assert.That(phone.isScreenOn,Is.False,"The real screen binding remains live while hidden");
+            yield return new WaitForSeconds(5.4f);Assert.That(b.IsHidden,Is.True);Assert.That(b.InspectingLocker,Is.False);
+            var at=b.nyonya.transform.position;yield return new WaitForSeconds(.7f);Assert.That(Vector3.Distance(at,b.nyonya.transform.position),Is.GreaterThan(.05f),"Patrol must continue while the player remains hidden");
+            yield return Press(Key.E);Assert.That(b.IsHidden,Is.False);Assert.That(d.player.MovementLocked,Is.False);
+            Assert.That(Vector3.Distance(d.player.transform.position,b.exitAnchor1.position),Is.LessThan(.2f));
+        }
+        private IEnumerator InterruptedRecording()
+        {
+            yield return new WaitForSeconds(2);var d=SeedBasement();var c=CampaignState.Instance;
+            foreach(var id in new[]{"EVENT_P0_BASEMENT_ENTERED","EVENT_P0_POWERBANK_TAKEN","EVENT_P0_HANDYCAM_PLAYED",AtmajaBasementHorror.HandycamId})c.AddInventoryItem(id);
+            c.Data.battery=80;Assert.That(c.SaveCheckpointAtomic("PROLOG_BASEMENT_ENTRY"),Is.True);d.RestoreWorld();
+            Assert.That(d.Stage,Is.EqualTo(AtmajaStage.BasementStealth),"Legacy saves marked video played before it finished; offer replay instead of a dead chase objective");
+            SmartphoneController.Instance.batteryPercent=80;Item(AtmajaAction.Handycam).Interact();yield return null;
+            Assert.That(d.chase.recording.IsPlaying&&d.Busy&&UiFocus.Cinematic,Is.True);Assert.That(c.HasInventoryItem("EVENT_P0_CHASE_STARTED"),Is.False);
+            d.FailToCheckpoint("PROLOG_BASEMENT_ENTRY","Simulated interrupted recording");yield return null;
+            Assert.That(d.Busy||UiFocus.Cinematic||d.chase.recording.IsPlaying,Is.False);Assert.That(d.basement.handycamObj.activeSelf,Is.True);
+            Assert.That(c.HasInventoryItem(AtmajaBasementHorror.HandycamId),Is.True);Item(AtmajaAction.Handycam).Interact();yield return null;
+            Assert.That(d.chase.recording.IsPlaying,Is.True,"An already acquired handycam remains replayable after Continue");
+        }
+        private IEnumerator FinishedProlog()
+        {
+            yield return new WaitForSeconds(2);var d=SeedBasement();var c=CampaignState.Instance;
+            foreach(var id in new[]{"EVENT_P0_CHASE_STARTED","EVENT_P0_ENDING_STARTED","EVENT_P0_FINAL_SAWER","PROLOG_COMPLETE"})c.AddInventoryItem(id);
+            c.Data.wallet_bound=20450000;c.Data.spent=5000000;
+            Assert.That(c.SaveCheckpointAtomic("PROLOG_COMPLETE"),Is.True);d.RestoreWorld();yield return null;
+            Assert.That(d.chase.finale.IsCompletionVisible&&UiFocus.Cinematic,Is.True);
+            Assert.That(GameObject.Find("TitleDrop").GetComponent<UnityEngine.UI.Text>().text,Is.EqualTo("LAYAR TERAKHIR"));
+            Assert.That(GameObject.Find("PrologMainMenu").GetComponent<UnityEngine.UI.Button>().interactable,Is.True);
+            Assert.That(c.Data.wallet_bound,Is.EqualTo(20450000));Assert.That(c.Data.location_seals.Count,Is.Zero);
+            d.RestoreWorld();yield return null;Assert.That(c.Data.wallet_bound,Is.EqualTo(20450000));
+        }
         private IEnumerator UpperStairNavigation()
         {
             yield return new WaitForSeconds(1);var d=Find<AtmajaDirector>();var c=CampaignState.Instance;
@@ -73,7 +217,7 @@ namespace LayarTerakhir.Editor.Tests
         {
             yield return new WaitForSeconds(1);
             var d=Find<AtmajaDirector>();var c=CampaignState.Instance;var phone=SmartphoneController.Instance;
-            foreach(var id in new[]{"EVENT_P0_GATE_OPEN","EVENT_P0_LIVE_STARTED","EVENT_P0_KITCHEN_ENTERED","EVENT_P0_DINING_OPEN","MATABATIN_APK","EVENT_P0_STAIRS_UNLOCKED","EVENT_P0_UPPER_REACHED",AtmajaUpperDirector.DiaryId})c.AddInventoryItem(id);
+            foreach(var id in new[]{"EVENT_P0_GATE_OPEN","EVENT_P0_LIVE_STARTED","EVENT_P0_KITCHEN_ENTERED","EVENT_P0_DINING_OPEN","MATABATIN_APK","EVENT_P0_STAIRS_UNLOCKED","EVENT_P0_UPPER_REACHED","EVENT_P0_CURTAIN_OPEN",AtmajaUpperDirector.DiaryId})c.AddInventoryItem(id);
             d.RestoreWorld();d.SetStage(AtmajaStage.EvidenceHunt);d.player.enabled=false;
             phone.arModuleUnlocked=true;phone.currentScanMode=ScanVisualMode.AR;phone.isPhoneRaised=phone.isScreenOn=true;phone.batteryPercent=100;
             d.phoneView.Apps.Open(PhoneApp.Camera);phone.SyncVisualState();yield return null;

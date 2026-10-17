@@ -1,6 +1,6 @@
 # Arsitektur LayarTerakhir
 
-Dokumen ini menjelaskan fondasi `Prolog_KamarKos` yang sudah approved serta kelanjutan `Prolog_RumahAtmaja` (Adegan 2–3, sampai pintu tangga), Unity 6000.3.26f1 + URP 17.3.0, Windows x86_64 Mono. Dokumen cerita/gameplay tetap menjadi acuan: `Rancangan.MD`, `Prolog.MD`, `Phase1.MD`–`Phase5.MD`, dan `Checklist.MD`.
+Dokumen ini menjelaskan fondasi `Prolog_KamarKos` yang sudah approved serta kelanjutan `Prolog_RumahAtmaja` (Adegan 2–7, sampai penutup prolog), Unity 6000.3.26f1 + URP 17.3.0, Windows x86_64 Mono. Dokumen cerita/gameplay tetap menjadi acuan: `Rancangan.MD`, `Prolog.MD`, `Phase1.MD`–`Phase5.MD`, dan `Checklist.MD`.
 
 Revisi playtest 16 Oktober 2026: scene/aset kamar Golden tetap byte-identical, tetapi runtime pembuka/keluar diperluas sesuai arahan pengguna. Lihat `Audit/playtest-fixes-2026-10-16.md` untuk batasan dan bukti terbaru. Bagian fondasi di bawah menjelaskan sistem asal; tambahan revisi berikut menggantikan alur keluar/HP lama.
 
@@ -11,6 +11,29 @@ Revisi playtest 16 Oktober 2026: scene/aset kamar Golden tetap byte-identical, t
 `AtmajaPhoneView` dipasang pada HUD semua scene, dengan `PhoneDesktop` (Kamera/Peta/Pesan/Jurnal/Tas/Bank/Setelan/Telepon), `PhoneSkin` dan ikon vektor `PhoneGlyph`. RT portrait 256×448 hanya aktif saat aplikasi Kamera dan layar HP hidup; layer 29 hanya kamera HP, bukan kamera dunia. Status HUD eksternal disembunyikan ketika handset diangkat agar tidak bertumpuk dengan status bar. Pesan donasi tampil di HP; feedback dunia/save tetap berupa toast ringkas yang terlihat meski HP mati. Jurnal/inventori memakai scroll; saldo hanya di Bank. Peta memakai PNG jalan Jakarta CC0 dengan UV crop/pin/rute cerita fiktif. `PresentationProfile` di Resources mengikat font, shader-feed, mixer dan 15 WAV VO neural; `HudController` menyatukan antrean subtitle/audio serta priority call agar panggilan tidak tertunda komentar opsional. `ClockAmbience` menyediakan tik-tok spasial, `HingedDoor` pintu eksplorasi, `ClockPuzzleView` kontrol jam/menit. Tulisan AR adalah mesh guratan merah pada plane dinding; shader-feed mempertahankan warna merahnya. `AtmajaDirector` mensyaratkan petunjuk benar-benar dibidik melalui AR sebelum puzzle jam terbuka; event tetap idempotent dan rollback bila save gagal.
 
 `PlaytestRevisionBuilder` meregenerasi scene Atmaja, bank presentasi dan koridor tanpa menyimpan ulang scene kamar. `PlaytestReviewValidation` memeriksa serialisasi komponen, geometri, kapsul jalur meja, dua lantai dan VO. `ReviewPlayerAudit` adalah opt-in development-only dengan save terisolasi, menu aktual, perjalanan motor, jalan CharacterController kontinu dan capture aktual; timer dipercepat/capture freeze dicatat, bukan bukti performa/pacing manual.
+
+Kelanjutan 17 Oktober menggunakan `PrologCompletionBuilder.Apply`, pass inkremental yang
+memeriksa hash kedua scene kos sebelum/sesudah authoring. `AtmajaUpperDirector`
+mengendalikan urutan tiga bukti dan kamar utama; `AtmajaBasementHorror` memisahkan
+restore checkpoint dari pickup, menyimpan gangguan daya/donasi/powerbank atomik,
+mengabaikan collider sendiri/pemain dalam sensor dan merutekan gerak mengitari rak.
+Lemari tidak membekukan patroli; warning 1,25 detik mendahului pemeriksaan empat detik.
+`ShoulderCameraRig.FirstPersonOverride` memberi pandangan melalui kisi selama bersembunyi.
+
+`AtmajaHandycamPlayback` merender set original di layer 28 ke RT 640×360 hanya ketika
+rekaman aktif. Gameplay dan HP mengecualikan layer ini. `AtmajaMirrorReflection` memakai
+RT 256×384 yang hanya aktif dekat kamar mandi, tanpa shadow/post tambahan; layer 27
+mengisolasi aparisi refleksi. `AtmajaEvidenceAtmosphere` mengatur emitter rantai dan aura.
+`AtmajaChaseSequence` menggunakan jalur 3D, traversal tangga/meja/jendela, Blitz sekali
+per standoff dan checkpoint chase yang dapat diulang. `EVENT_P0_HANDYCAM_PLAYED` disimpan
+bersama awal chase setelah video selesai, sehingga putus saat video tidak mengunci alur.
+
+`PrologFinaleView` menempatkan kontrak akhir di handset yang sama, lalu title card UI
+di atas fade hitam dengan tombol menu. `PROLOG_ATMAJA_ENDING` mengulang penutup yang
+terputus; `PROLOG_COMPLETE` memulihkan layar tamat. Donasi akhir menghitung seluruh
+saldo dan pembayaran sebelumnya satu kali; prolog tidak memberikan segel lokasi.
+`PrologCompletionAudit` memverifikasi kelanjutan dari fixture pintu tangga dengan
+navigasi kapsul dan input aktual; hasilnya tidak membuktikan pacing/FPS atau kesetaraan DreadOut.
 
 Standar produksi visual/audio/UI ringkas ada di `Docs/GOLDEN_SCENE_STANDARD.md`. Dokumen ini berfokus pada struktur kode, kepemilikan tanggung jawab, aliran data, dan pipeline produksi.
 

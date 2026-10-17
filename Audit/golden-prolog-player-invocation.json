@@ -1,0 +1,28 @@
+{
+  "stage": "prolog-player",
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Projects/LayarTerakhir-main/Builds/LinuxAudit/LayarTerakhir.x86_64",
+    "-force-glcore",
+    "-screen-fullscreen",
+    "0",
+    "-screen-width",
+    "640",
+    "-screen-height",
+    "360",
+    "-prologAudit",
+    "/root/Projects/LayarTerakhir-main/Audit/Visuals/Prolog-Completion-Final",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Audit/golden-prolog-player.log"
+  ],
+  "startedUtc": "2026-10-17T16:16:14.039116+00:00",
+  "audioBackend": "Private clocked PulseAudio null sink; real listener tap, no physical audio hardware",
+  "status": "Finished",
+  "endedUtc": "2026-10-17T16:19:03.566595+00:00",
+  "exitCode": 0,
+  "screenCapturesVerified": 25,
+  "completedSmokeReceiptVerified": true
+}

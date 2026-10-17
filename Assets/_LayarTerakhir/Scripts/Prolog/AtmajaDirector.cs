@@ -28,6 +28,7 @@ namespace LayarTerakhir.Prolog
         public Vector3 origin,east=Vector3.right,north=Vector3.forward;
         public AtmajaStage Stage {get;private set;}
         public bool Busy {get;private set;}
+        public int CheckpointRestores {get;private set;}
         public bool TreeCleared=>Has("EVENT_P0_TREE_CROUCHED");
         public bool HasSurvey=>Has(SurveyId);
         public bool CanBeginLive=>Has("EVENT_P0_FRONT_DOOR_TRIED")||HasSurvey;
@@ -76,6 +77,8 @@ namespace LayarTerakhir.Prolog
         public Vector2 LocalPosition(Vector3 p)=>new Vector2(Vector3.Dot(p-origin,east),Vector3.Dot(p-origin,north));
         public void RestoreWorld()
         {
+            Busy=false;UiFocus.Cinematic=false;
+            var rig=player.GetComponent<ShoulderCameraRig>();if(rig)rig.FirstPersonOverride=false;
             var doubleGate=gateHinge.GetComponent<DoubleLeafGate>();
             if(doubleGate)doubleGate.SetImmediate(Has("EVENT_P0_GATE_OPEN"));
             else gateHinge.localRotation=Quaternion.Euler(0,Has("EVENT_P0_GATE_OPEN")?-95:0,0);
@@ -94,7 +97,7 @@ namespace LayarTerakhir.Prolog
             if(Has("EVENT_P0_CLOCK_UNLOCKED"))ShowClockTime();
             var spawn=Has("PROLOG_COMPLETE")&&chase&&chase.spawnStreet?chase.spawnStreet:Has("EVENT_P0_CHASE_STARTED")&&chase&&chase.spawnChase?chase.spawnChase:Has("EVENT_P0_BASEMENT_ENTERED")&&basement&&basement.spawnBasement?basement.spawnBasement:Has("EVENT_P0_UPPER_REACHED")&&upper&&upper.spawnUpper?upper.spawnUpper:Has("EVENT_P0_STAIRS_UNLOCKED")?spawnStairs:Has("MATABATIN_APK")?spawnDining:inside?spawnKitchen:spawnCourtyard;
             PlacePlayer(spawn.position,spawn.rotation);
-            Stage=Has("PROLOG_COMPLETE")?AtmajaStage.EndingVista:Has("EVENT_P0_CHASE_STARTED")?AtmajaStage.Chase:Has("EVENT_P0_HANDYCAM_PLAYED")?AtmajaStage.HandycamPlayed:Has("EVENT_P0_BASEMENT_ENTERED")?AtmajaStage.BasementStealth:Has("EVENT_P0_UPPER_REACHED")?(upper&&upper.ChainsBroken>=3?AtmajaStage.MasterOpen:AtmajaStage.EvidenceHunt):Has("EVENT_P0_STAIRS_UNLOCKED")?AtmajaStage.StairCheckpoint:Has("EVENT_P0_CLOCK_UNLOCKED")?AtmajaStage.ClockUnlocked:Has("EVENT_P0_AR_REVEALED")?AtmajaStage.ARRevealed:Has("MATABATIN_APK")?AtmajaStage.DamarPhone:inside?AtmajaStage.Kitchen:TreeCleared?AtmajaStage.SidePassage:LiveConnected?AtmajaStage.Live:HasSurvey?AtmajaStage.SurveyRead:AtmajaStage.Courtyard;
+            Stage=Has("PROLOG_COMPLETE")?AtmajaStage.EndingVista:Has("EVENT_P0_CHASE_STARTED")?AtmajaStage.Chase:Has("EVENT_P0_BASEMENT_ENTERED")?AtmajaStage.BasementStealth:Has("EVENT_P0_UPPER_REACHED")?(upper&&upper.ChainsBroken>=3?AtmajaStage.MasterOpen:AtmajaStage.EvidenceHunt):Has("EVENT_P0_STAIRS_UNLOCKED")?AtmajaStage.StairCheckpoint:Has("EVENT_P0_CLOCK_UNLOCKED")?AtmajaStage.ClockUnlocked:Has("EVENT_P0_AR_REVEALED")?AtmajaStage.ARRevealed:Has("MATABATIN_APK")?AtmajaStage.DamarPhone:inside?AtmajaStage.Kitchen:TreeCleared?AtmajaStage.SidePassage:LiveConnected?AtmajaStage.Live:HasSurvey?AtmajaStage.SurveyRead:AtmajaStage.Courtyard;
             if(upper)upper.RestoreWorld();if(basement)basement.RestoreWorld();if(chase)chase.RestoreWorld();
         }
         public void PlacePlayer(Vector3 position,Quaternion rotation)
@@ -128,7 +131,7 @@ namespace LayarTerakhir.Prolog
                 if(ar&&!Has("EVENT_P0_AR_REVEALED"))RevealAR();
                 if(ar&&!Has("EVENT_P0_AR_CLUE_READ"))ObserveClue();
             }
-            if(Has("EVENT_P0_KITCHEN_ENTERED")&&!wellHeard&&Vector3.Distance(player.transform.position,P(2.7f,11.2f,.35f))<2)
+            if(Stage<AtmajaStage.Chase&&Has("EVENT_P0_KITCHEN_ENTERED")&&!wellHeard&&Vector3.Distance(player.transform.position,P(2.7f,11.2f,.35f))<2)
             {wellHeard=true;Hud.EnqueueSubtitle("SFX","[KLOTAK... KLOTAK... Suara ember timba ditarik dari dasar sumur]",3);Hud.EnqueueSubtitle("Bisikan","Haus... bukakan...",3);Sfx(audioProfile.knock,P(2.7f,11.2f,.4f),.4f);}
             if(!modal&&Phone&&Phone.isPhoneRaised&&Phone.isScreenOn&&phoneView&&phoneView.IsCameraApp&&GameInputConfig.Instance.GetActionDown(GameAction.CaptureOrBlitz))TryPhotographWell();
             var delta=player.transform.position-previousPosition;previousPosition=player.transform.position;delta.y=0;
@@ -279,7 +282,7 @@ namespace LayarTerakhir.Prolog
         }
         public bool TryPhotographWell()
         {
-            if(Has("EVENT_P0_WELL_BONUS")||!Has("EVENT_P0_KITCHEN_ENTERED")||Phone.batteryPercent<1)return false;
+            if(Stage>=AtmajaStage.Chase||Has("EVENT_P0_WELL_BONUS")||!Has("EVENT_P0_KITCHEN_ENTERED")||Phone.batteryPercent<1)return false;
             var camera=phoneView&&phoneView.FeedCamera?phoneView.FeedCamera:player.GetComponent<InteractionInteractor>().playerCamera;var target=P(2.7f,11.2f,.75f);var delta=target-camera.transform.position;
             if(delta.magnitude>3||Vector3.Dot(camera.transform.forward,delta.normalized)<.92f)return false;
             var hits=Physics.RaycastAll(camera.transform.position,delta.normalized,delta.magnitude,~0,QueryTriggerInteraction.Ignore);
@@ -345,14 +348,20 @@ namespace LayarTerakhir.Prolog
         public void SetStage(AtmajaStage stage)=>Stage=stage;
         public void FailToCheckpoint(string checkpoint,string reason)
         {
+            CheckpointRestores++;
+            Debug.Log("ATMAJA_CHECKPOINT_RESTORE "+reason);
             Time.timeScale=1;
             try{if(upper)upper.StopAllCoroutines();}catch{}
             try{if(basement)basement.StopAllCoroutines();}catch{}
             try{if(chase)chase.StopAllCoroutines();}catch{}
             try{StopAllCoroutines();}catch{}
             Campaign.LoadCheckpoint();
+            Busy=false;UiFocus.Cinematic=false;
+            player.enabled=true;player.MovementLocked=false;
+            player.GetComponent<CharacterController>().enabled=true;
+            Hud.PlayPriorityDialogue("","",.01f);Hud.SetFadeAlpha(0);
             var phone=SmartphoneController.Instance;
-            if(phone){phone.batteryPercent=Campaign.Data.battery;phone.isScreenOn=phone.batteryPercent>0;phone.currentScanMode=Smartphone.ScanVisualMode.Normal;phone.SyncVisualState();}
+            if(phone){phone.batteryPercent=Campaign.Data.battery;phone.isPhoneRaised=false;phone.isScreenOn=phone.batteryPercent>0;phone.currentScanMode=Smartphone.ScanVisualMode.Normal;phone.SyncVisualState();}
             RestoreWorld();Objective();Hud.ShowBroadcastNotification(reason+" Checkpoint dipulihkan.",6);
         }
         private void Sfx(AudioClip clip,Vector3 where,float gain)

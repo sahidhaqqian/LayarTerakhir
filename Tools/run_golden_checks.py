@@ -9,7 +9,9 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 UNITY='/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity'
 parser=argparse.ArgumentParser()
-parser.add_argument('--stage',required=True,choices=['apply','polish','validate','test','linux','windows','player','atmaja-build','atmaja-validate','atmaja-player','review-build','review-validate','review-player','kos-refine'])
+parser.add_argument('--stage',required=True,choices=['apply','polish','validate','test','linux','windows','player','atmaja-build','atmaja-validate','atmaja-player','review-build','review-validate','review-player','kos-refine','prolog-complete','prolog-player'])
+parser.add_argument('--test-filter',default='LayarTerakhir.Editor.Tests')
+parser.add_argument('--chase-only',action='store_true',help='Diagnostic prolog chase checkpoint fixture; final delivery must also run the full continuation')
 parser.add_argument('--width',type=int,default=1280)
 parser.add_argument('--height',type=int,default=720)
 parser.add_argument('--graphics',choices=['glcore','vulkan'],default='glcore')
@@ -24,18 +26,21 @@ if stage in ('atmaja-player','player'):
 command=[UNITY,'-batchmode','-nographics','-projectPath',str(ROOT)]
 record_path=ROOT/('Audit/golden-'+stage+'-invocation.json')
 log=ROOT/('Audit/golden-'+stage+'.log')
-is_player=stage in ['player','atmaja-player','review-player']
+is_player=stage in ['player','atmaja-player','review-player','prolog-player']
 if stage.startswith(('atmaja-','review-')):
     record_path=ROOT/('Audit/'+stage+'-invocation.json');log=ROOT/('Audit/'+stage+'.log')
 if stage=='test':
-    command+=['-runTests','-testPlatform','EditMode','-testFilter','LayarTerakhir.Editor.Tests','-testResults',str(ROOT/'Audit/golden-tests.xml')]
+    command+=['-runTests','-testPlatform','EditMode','-testFilter',args.test_filter,'-testResults',str(ROOT/'Audit/golden-tests.xml')]
 elif is_player:
     command=['xvfb-run','-a','-s','-screen 0 1280x720x24',str(ROOT/'Builds/LinuxAudit/LayarTerakhir.x86_64'),
              '-force-'+args.graphics,'-screen-fullscreen','0','-screen-width',str(args.width),'-screen-height',str(args.height),
-             '-reviewAudit' if stage=='review-player' else '-atmajaAudit' if stage=='atmaja-player' else '-goldenAudit',str(review_output if stage=='review-player' else ROOT/('Audit/Visuals/Atmaja-Linux' if stage=='atmaja-player' else 'Audit/Visuals/Golden-Linux')),'-logFile',str(log)]
+             '-prologAudit' if stage=='prolog-player' else '-reviewAudit' if stage=='review-player' else '-atmajaAudit' if stage=='atmaja-player' else '-goldenAudit',str(review_output if stage in ('review-player','prolog-player') else ROOT/('Audit/Visuals/Atmaja-Linux' if stage=='atmaja-player' else 'Audit/Visuals/Golden-Linux')),'-logFile',str(log)]
     if args.fast and stage=='player':command+=['-goldenAuditFast']
+    if args.chase_only:
+        assert stage=='prolog-player'
+        command+=['-prologChaseOnly']
 else:
-    methods={'apply':'GoldenSceneProduction.Apply','polish':'CompactKosPolish.Apply','validate':'GoldenSceneValidation.Run','linux':'GoldenLinuxBuild.Build','windows':'WindowsDevelopmentBuild.Build','atmaja-build':'PlaytestRevisionBuilder.Build','atmaja-validate':'AtmajaSceneValidation.Run','review-build':'PlaytestRevisionBuilder.Build','review-validate':'PlaytestReviewValidation.Run','kos-refine':'PlaytestRevisionBuilder.RefineKos'}
+    methods={'apply':'GoldenSceneProduction.Apply','polish':'CompactKosPolish.Apply','validate':'GoldenSceneValidation.Run','linux':'GoldenLinuxBuild.Build','windows':'WindowsDevelopmentBuild.Build','atmaja-build':'PlaytestRevisionBuilder.Build','atmaja-validate':'AtmajaSceneValidation.Run','review-build':'PlaytestRevisionBuilder.Build','review-validate':'PlaytestReviewValidation.Run','kos-refine':'PlaytestRevisionBuilder.RefineKos','prolog-complete':'PrologCompletionBuilder.Apply'}
     if stage in ['linux','windows']:command+=['-buildTarget','Linux64' if stage=='linux' else 'Win64']
     if stage=='windows':
         prior=ROOT/'Builds/Previous'/('before-golden-'+datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S'))
@@ -96,20 +101,26 @@ if stage=='test' and result.returncode==0:
         tests=ROOT/'Audit/golden-tests.xml'
         assert tests.stat().st_mtime>=datetime.fromisoformat(record['startedUtc']).timestamp(),'Stale test XML'
         summary=ET.parse(tests).getroot()
-        assert summary.get('result')=='Passed' and int(summary.get('failed',1))==0 and int(summary.get('total',0))>=55,'Incomplete/failed Unity suite'
+        assert summary.get('result')=='Passed' and int(summary.get('failed',1))==0 and int(summary.get('total',0))>=(55 if args.test_filter=='LayarTerakhir.Editor.Tests' else 1),'Incomplete/failed Unity suite'
         record['testsVerified']={key:int(summary.get(key,0)) for key in ['total','passed','failed','skipped']}
     except (AssertionError,OSError,ET.ParseError) as error:
         record['exitCode']=1;record['validationError']=str(error)
 if is_player and result.returncode==0:
-    review=stage=='review-player';atmaja=stage=='atmaja-player'
-    expected_names=re.findall(r'\bShot\("([^"\n]+)"\)',(ROOT/'Assets/_LayarTerakhir/Scripts/Diagnostics/ReviewPlayerAudit.cs').read_text()) if review else []
-    expected=len(expected_names) if review else 12 if atmaja else 13
-    receipt=review_output/'player-audit.json' if review else ROOT/('Audit/Visuals/Atmaja-Linux/player-audit.json' if atmaja else 'Audit/Visuals/Golden-Linux/player-audit.json')
+    review=stage=='review-player';atmaja=stage=='atmaja-player';prolog=stage=='prolog-player'
+    source='PrologCompletionAudit.cs' if prolog else 'ReviewPlayerAudit.cs'
+    expected_names=re.findall(r'\bShot\("([^"\n]+)"\)',(ROOT/'Assets/_LayarTerakhir/Scripts/Diagnostics'/source).read_text()) if review or prolog else []
+    if prolog and args.chase_only:expected_names=[name for name in expected_names if int(re.match(r'\d+',name).group())>=16]
+    expected=len(expected_names) if review or prolog else 12 if atmaja else 13
+    receipt=review_output/'player-audit.json' if review or prolog else ROOT/('Audit/Visuals/Atmaja-Linux/player-audit.json' if atmaja else 'Audit/Visuals/Golden-Linux/player-audit.json')
     data=json.loads(receipt.read_text()) if receipt.exists() else {}
     try:
         assert data.get('completed') and data.get('actualStandalonePlayer') and len(data.get('screenshots',[]))==expected
         assert data.get('checkpointSaved')
-        if review:
+        if prolog:
+            assert set(data['screenshots'])=={name+'.png' for name in expected_names},'Missing declared prolog captures'
+            assert all(c.startswith('PASS ') for c in data['checks'])
+            assert data.get('walkedMeters',0)>(50 if args.chase_only else 90),'Incomplete continuous continuation/escape route'
+        elif review:
             assert set(data['screenshots'])=={name+'.png' for name in expected_names},'Missing declared review screenshots'
             assert data.get('transitionFromKos') and data.get('motorPassedGate') and data.get('previousSaveArchived')
             assert data.get('walkedMeters',0)>90 and data.get('maximumInteriorFootY',2)<.7

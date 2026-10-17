@@ -174,9 +174,9 @@ namespace LayarTerakhir.Prolog
         {
             bool c1=Has("EVENT_P0_CHAIN1_BROKEN"),c2=Has("EVENT_P0_CHAIN2_BROKEN"),c3=Has("EVENT_P0_CHAIN3_BROKEN");
             for(int i=0;i<chainLinks.Length;i++)if(chainLinks[i])chainLinks[i].SetActive(!(i==0?c1:i==1?c2:c3));
-            if(childCup)childCup.SetActive(!c1);
+            if(childCup)childCup.SetActive(true);
             if(childDoor)childDoor.locked=!c1;
-            if(masterDoor){masterDoor.locked=!c3;masterDoor.SetOpenImmediate(Has("EVENT_P0_MASTER_OPEN"));}
+            if(masterDoor){masterDoor.locked=!(c1&&c2&&c3);masterDoor.SetOpenImmediate(Has("EVENT_P0_MASTER_OPEN"));}
             if(bathCurtain)bathCurtain.SetActive(!Has("EVENT_P0_CURTAIN_OPEN"));
             if(bathWater)bathWater.SetActive(Has("EVENT_P0_CURTAIN_OPEN"));
             if(carpetRoll)carpetRoll.SetActive(!Has("EVENT_P0_CARPET_LIFTED"));
@@ -206,6 +206,7 @@ namespace LayarTerakhir.Prolog
             bool ar=ArActive;
             if(ventHoleAR)ventHoleAR.SetActive(ar&&!Has("EVENT_P0_CHAIN1_BROKEN"));
             if(bathScratchesAR)bathScratchesAR.SetActive(ar&&Has("EVENT_P0_CHAIN1_BROKEN")&&!Has("EVENT_P0_CHAIN2_BROKEN"));
+            if(ar)SyncScratchTarget();
             for(int i=0;i<portraitBloodAR.Length;i++)if(portraitBloodAR[i])portraitBloodAR[i].SetActive(ar);
             // Stair landing detection: the pocket door is open and the capsule climbs past the slab.
             if(director.Stage==AtmajaStage.StairCheckpoint&&director.player.transform.position.y>3.4f)
@@ -276,15 +277,29 @@ namespace LayarTerakhir.Prolog
         }
         public void TryPhotoTick()
         {
-            if(!ArActive||director.Stage<AtmajaStage.EvidenceHunt||director.Stage>AtmajaStage.MasterOpen)return;
+            if(!ArActive||director.Stage<AtmajaStage.EvidenceHunt||director.Stage>AtmajaStage.MasterOpen||Phone.batteryPercent<Phone.photoCostPercent)return;
+            SyncScratchTarget();
             if(!Has("EVENT_P0_CHAIN1_BROKEN")&&Has(DiaryId)&&Aimed(cupAim,3f,.9f))BreakChain(1,"Cangkir susu retak terpindai aura merah.","EVENT_P0_CHAIN1_BROKEN");
-            else if(Has("EVENT_P0_CHAIN1_BROKEN")&&!Has("EVENT_P0_CHAIN2_BROKEN")&&Aimed(scratchAim,2.6f,.88f))BreakChain(2,"Cakaran puluhan jari kecil terpindai jelas.","EVENT_P0_CHAIN2_BROKEN");
+            else if(Has("EVENT_P0_CHAIN1_BROKEN")&&Has("EVENT_P0_CURTAIN_OPEN")&&!Has("EVENT_P0_CHAIN2_BROKEN")&&Aimed(scratchAim,2.6f,.88f))BreakChain(2,"Cakaran puluhan jari kecil terpindai jelas.","EVENT_P0_CHAIN2_BROKEN");
             else if(Has("EVENT_P0_CHAIN2_BROKEN")&&!Has("EVENT_P0_CHAIN3_BROKEN")&&Aimed(ropeAim,4.5f,.88f))BreakChain(3,"Tali tambang berayun terpindai. Sesuatu tergantung di sana...","EVENT_P0_CHAIN3_BROKEN");
+        }
+        private void SyncScratchTarget()
+        {
+            if(!bathDoor||!bathScratchesAR||!scratchAim||!director.phoneView||!director.phoneView.FeedCamera)return;
+            // Project the AR trace onto the visible face of the door. Its own wood
+            // must not hide the clue/aim anchor when a right-hinged leaf swings inward.
+            Vector3 centre=bathDoor.transform.position-Vector3.up*.12f;
+            Vector3 normal=bathDoor.transform.forward;
+            if(Vector3.Dot(director.phoneView.FeedCamera.transform.position-centre,normal)<0)normal=-normal;
+            Vector3 surface=centre+normal*.061f;
+            bathScratchesAR.transform.SetPositionAndRotation(surface,Quaternion.LookRotation(normal));
+            scratchAim.position=surface;
         }
         private void BreakChain(int n,string toast,string flag)
         {
             if(!Commit(flag,"PROLOG_ATMAJA_UPPER",()=>{Campaign.Data.battery=Mathf.Max(0,Phone.batteryPercent-1);}))return;
             Phone.ConsumeBattery(1);RestoreWorld();Sfx(director.audioProfile.unlock,director.player.transform.position,.7f);
+            if(director.chase&&director.chase.finale)StartCoroutine(director.chase.finale.Flash());
             Ui(AtmajaSynth.Tone(1.2f,140,60,.5f),.6f);
             Hud.ShowBroadcastNotification($"Rantai {n} putus! {toast}",5);
             director.phoneView.AddChat("@horor_hunter","BARUSAN RANTAINYA PUTUS SENDIRI WOI");
@@ -324,6 +339,10 @@ namespace LayarTerakhir.Prolog
         }
         public void HandleMaster(AtmajaItem item)
         {
+            if(ChainsBroken<3){Hud.ShowBroadcastNotification("Tiga rantai masih menyegel kamar ini.",3);return;}
+            // Retry the door transaction if saving failed after the third photograph.
+            if(!Has("EVENT_P0_MASTER_OPEN")&&!Commit("EVENT_P0_MASTER_OPEN","PROLOG_ATMAJA_UPPER"))return;
+            director.SetStage(AtmajaStage.MasterOpen);
             if(item.action==AtmajaAction.CarpetLift)
             {
                 if(Commit("EVENT_P0_CARPET_LIFTED","PROLOG_ATMAJA_UPPER")){RestoreWorld();Hud.EnqueueSubtitle("Raka","Karpetnya digulung... ada pintu jebakan kayu di bawahnya.",4);Sfx(director.audioProfile.latch,item.transform.position,.5f);director.Objective();}

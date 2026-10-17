@@ -60,6 +60,10 @@ def export():
             match = re.search(r'public const string LiveIntro="((?:\\.|[^"\\])*)"', source)
             if match:
                 add("Raka", literal(match[1]), "Mulai live dari aplikasi Kamera")
+        if path.name == "AtmajaHandycamPlayback.cs":
+            match = re.search(r'public const string DamarLine\s*=\s*"((?:\\.|[^"\\])*)"', source)
+            if match:
+                add("Damar (rekaman)", literal(match[1]), "Rekaman handycam: pasar di balik cermin dan tangan yang menarik Damar")
         if path.name == "ExplorationCommentary.cs":
             for match in re.finditer(r'new Zone\("([^"]+)","((?:\\.|[^"\\])*)"', source):
                 add("Raka", literal(match[2]), "Masuk ruangan: " + match[1])

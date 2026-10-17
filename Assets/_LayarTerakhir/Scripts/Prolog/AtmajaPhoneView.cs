@@ -21,6 +21,8 @@ namespace LayarTerakhir.Prolog
         private Text stowLabel;private KeyCode lastStowBinding=(KeyCode)(-1);
         public bool HasGraphicsDevice=>SystemInfo.graphicsDeviceType!=GraphicsDeviceType.Null;
         public bool IsCameraApp=>Apps&&Apps.CurrentApp==PhoneApp.Camera;
+        public bool CinematicHandsetVisible {get;set;}
+        public bool ChatFrozen {get;set;}
         private Text header,mode,chat,walkHint;private GameObject cameraRoot;private RawImage cameraImage;private RenderTexture feed;private Material runtimeFeedMaterial;
         private readonly Queue<string> messages=new Queue<string>();
         private HudController Hud=>HudController.Instance;private SmartphoneController Phone=>SmartphoneController.Instance;
@@ -43,7 +45,7 @@ namespace LayarTerakhir.Prolog
             feed=new RenderTexture(256,448,16,RenderTextureFormat.ARGB32){name="RakaPhoneFeed",antiAliasing=1};if(HasGraphicsDevice)feed.Create();cameraImage.texture=feed;
             var cam=new GameObject("RakaPhoneCamera",typeof(Camera));cam.transform.SetParent(playerCamera.transform.root,false);FeedCamera=cam.GetComponent<Camera>();FeedCamera.CopyFrom(playerCamera);FeedCamera.targetTexture=feed;
             FeedCamera.depth=playerCamera.depth-1;FeedCamera.fieldOfView=70;FeedCamera.aspect=256f/448;FeedCamera.GetUniversalAdditionalCameraData().renderPostProcessing=false;FeedCamera.GetUniversalAdditionalCameraData().renderShadows=false;cam.tag="Untagged";
-            playerCamera.cullingMask&=~(1<<ARLayer);FeedCamera.enabled=false;
+            playerCamera.cullingMask&=~((1<<ARLayer)|(1<<AtmajaHandycamPlayback.RecordingLayer)|(1<<AtmajaMirrorReflection.ReflectionLayer));FeedCamera.enabled=false;
             LiveButton=UiWidgets.Button("MulaiLiveButton",cameraRoot.transform,"MULAI LIVE",new Vector2(.10f,.36f),new Vector2(.90f,.51f),()=>{if(director)director.StartLive();});
             mode=UiWidgets.Text("PhoneMode",Panel.transform,"",new Vector2(.06f,.09f),new Vector2(.94f,.16f),18);
             var home=PhoneSkin.Button("PhoneHome",Panel.transform,"APLIKASI  [Z]",new Vector2(.055f,.026f),new Vector2(.49f,.077f),()=>Apps.Open(PhoneApp.Home));home.GetComponentInChildren<Text>().fontSize=16;
@@ -59,9 +61,9 @@ namespace LayarTerakhir.Prolog
         private void LateUpdate()
         {
             if(!Panel||!Phone||!Apps)return;
-            bool active=Phone.isPhoneRaised&&!Hud.IsModalOpen;Panel.SetActive(active);bool screen=active&&Phone.isScreenOn&&Phone.batteryPercent>0;
+            bool active=Phone.isPhoneRaised&&!Hud.IsModalOpen&&(!UiFocus.Cinematic||CinematicHandsetVisible);Panel.SetActive(active);bool screen=active&&Phone.isScreenOn&&Phone.batteryPercent>0;
             cameraRoot.SetActive(screen&&IsCameraApp);Apps.SetScreenVisible(screen);FeedCamera.enabled=screen&&IsCameraApp&&HasGraphicsDevice;cameraImage.enabled=FeedCamera.enabled;
-            homeButton.gameObject.SetActive(screen);stowButton.gameObject.SetActive(screen);
+            homeButton.gameObject.SetActive(screen&&!UiFocus.Cinematic);stowButton.gameObject.SetActive(screen&&!UiFocus.Cinematic);
             var stowBinding=GameInputConfig.Instance?GameInputConfig.Instance.togglePhoneKey:KeyCode.Tab;
             if(stowBinding!=lastStowBinding){lastStowBinding=stowBinding;stowLabel.text="SIMPAN  ["+stowBinding.ToString().ToUpperInvariant()+"]";}
             FeedCamera.cullingMask=playerCamera.cullingMask|((Phone.currentScanMode==ScanVisualMode.AR)?1<<ARLayer:0);
@@ -74,9 +76,9 @@ namespace LayarTerakhir.Prolog
             UiFocus.Phone=active&&screen&&(!IsCameraApp||(director&&!Phone.isBroadcastConnected));
             var player=FindFirstObjectByType<FirstPersonController>();if(player&&!UiFocus.HardModal&&!Hud.IsModalOpen&&!UiFocus.Cinematic)player.SetCursorLock(!UiFocus.Phone||FirstPersonController.PhoneLookHeld);
             walkHint.enabled=UiFocus.Phone&&!UiFocus.Cinematic&&!Hud.IsModalOpen;
-            chat.enabled=director&&Phone.isBroadcastConnected&&!Hud.IsModalOpen;
+            chat.enabled=director&&Phone.isBroadcastConnected&&!Hud.IsModalOpen&&(!UiFocus.Cinematic||CinematicHandsetVisible);
         }
-        public void AddChat(string author,string text){messages.Enqueue($"<color=#C0AA7A>{author}</color> {text}");while(messages.Count>3)messages.Dequeue();if(chat)chat.text=string.Join("\n\n",messages);}
+        public void AddChat(string author,string text){if(ChatFrozen)return;messages.Enqueue($"<color=#C0AA7A>{author}</color> {text}");while(messages.Count>3)messages.Dequeue();if(chat)chat.text=string.Join("\n\n",messages);}
         public void LabelClockModal(){}
         private void OnDestroy(){UiFocus.Phone=false;if(feed){feed.Release();Destroy(feed);}if(runtimeFeedMaterial)Destroy(runtimeFeedMaterial);}
     }

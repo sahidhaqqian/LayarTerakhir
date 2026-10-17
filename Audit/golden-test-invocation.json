@@ -16,14 +16,14 @@
     "-logFile",
     "/root/Projects/LayarTerakhir-main/Audit/golden-test.log"
   ],
-  "startedUtc": "2026-10-17T06:13:15.877065+00:00",
+  "startedUtc": "2026-10-17T16:10:20.751129+00:00",
   "audioBackend": "Private clocked PulseAudio null sink; headless test audio device, no physical audio hardware",
   "status": "Finished",
-  "endedUtc": "2026-10-17T06:17:54.492598+00:00",
+  "endedUtc": "2026-10-17T16:15:16.547353+00:00",
   "exitCode": 0,
   "testsVerified": {
-    "total": 67,
-    "passed": 67,
+    "total": 74,
+    "passed": 74,
     "failed": 0,
     "skipped": 0
   }

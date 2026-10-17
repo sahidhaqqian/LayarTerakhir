@@ -62,6 +62,9 @@ namespace LayarTerakhir.Player
 
         private void Update()
         {
+            // Story vaults/climbs temporarily own the transform and disable the capsule.
+            // Gravity must not call Move on that inactive controller during a traverse.
+            if (_controller == null || !_controller.enabled) return;
             bool modalOpen = HudController.Instance != null && HudController.Instance.IsModalOpen;
             if (modalOpen || MovementLocked || UiFocus.BlocksMovement)
             {
@@ -77,6 +80,11 @@ namespace LayarTerakhir.Player
         {
             Cursor.lockState = locked ? CursorLockMode.Locked : CursorLockMode.None;
             Cursor.visible = !locked;
+        }
+        public void SetViewPitch(float pitch)
+        {
+            _pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+            if (cameraPivot) cameraPivot.localRotation = Quaternion.Euler(_pitch, 0, 0);
         }
 
         private void HandleMouseLook()

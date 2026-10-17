@@ -1,6 +1,6 @@
 # Layar Terakhir
 
-Game horor psikologis first-person Indonesia. Pemain berperan sebagai **Raka Wijaya**, livestreamer muda yang terjebak kontrak dengan entitas misterius **Penonton_Terakhir**: nyalakan siaran di Rumah Keluarga Atmaja sebelum tengah malam, atau nyawa kameramennya, Damar, taruhannya.
+Game horor psikologis Indonesia dengan kamera third-person over-the-shoulder. Pemain berperan sebagai **Raka Wijaya**, livestreamer muda yang terjebak kontrak dengan entitas misterius **Penonton_Terakhir**: nyalakan siaran di Rumah Keluarga Atmaja sebelum tengah malam, atau nyawa kameramennya, Damar, taruhannya.
 
 Permainan berjalan dalam enam babak bercerita (Babak 0–5) dengan mekanik eksorsisme berbasis kamera smartphone — AR, UV, Selfie, ThermoKlenik, EVP — serta empat ending: **Bad, Normal, True, dan Secret "Saksi Tanpa Layar"**. Acuan lengkap ada di [`Rancangan.MD`](Rancangan.MD).
 
@@ -8,23 +8,32 @@ Permainan berjalan dalam enam babak bercerita (Babak 0–5) dengan mekanik eksor
 
 ## Status saat ini
 
-**Milestone: revisi playtest Kos–Atmaja, Adegan 2–3 sampai checkpoint pintu tangga.**
+**Prolog: Kos → Rumah Atmaja → penutup Malam Pertama.**
 
-Scene/aset kamar kos approved 5 × 3,8 m dipertahankan. Revisi feedback terbaru memakai empat roda gembok dengan petunjuk deduksi, kunci motor di meja, jaket terlihat dan laci berisi powerbank. Ibu kos hanya meninggalkan surat; HP langsung menyambungkan panggilan Damar, tanpa dokumen/tombol putar pesan. Pintu kamar menuju `Prolog_KoridorKos`: lantai 2, kamar tertutup, tangga, dapur/kamar mandi bersama, halaman, peta dan animasi motor melewati gerbang. Baru kemudian ke `Prolog_RumahAtmaja`.
+Kos dan revisi desainer yang sudah diselesaikan dipertahankan. Kelanjutan mengikuti
+`Prolog.MD`: lantai dua dan tiga foto tragedi, kamar utama/pintu jebakan, ruang jahit
+bawah tanah, stealth Nyonya Sri Atmaja, rekaman handycam Damar, pelarian, Blitz di
+jendela dapur, pesan Penonton_Terakhir dan title drop. `CONTINUE` memulihkan checkpoint,
+termasuk layar penutup setelah prolog tamat. Babak 1–5 belum playable.
 
-Pass immersion berikutnya melengkapi kos dengan 14 ruang kamar bervolume, fondasi/guardrail tangga, pintu utama yang benar-benar dibuka, fasad/atap/teras, ventilasi, kelistrikan dan detail penghuni. Ketukan keras membuat Raka menoleh, surat baru diselipkan, HP berdering, Damar menjerit sebelum putus, kemudian pesan datang setelah jeda. Retake neural memakai kontrol emosi yang aktif; Telepon mempunyai tiga kontak lokal. WASD tetap berjalan saat aplikasi HP terbuka, tahan RMB untuk menoleh. Dompet dan buku harian ikut tersimpan di laci; buku harian terbaca di Jurnal. Laporan: [`Audit/kos-immersion-2026-10-16.md`](Audit/kos-immersion-2026-10-16.md).
+Pass penyelesaian memperbaiki deteksi ancaman/penghalang, pemeriksaan lemari dengan
+waktu respons, powerbank dan donasi atomik, rekaman terputus yang dapat diputar lagi,
+rute perabot/kamar utama dan transisi pelarian. Rekaman handycam sekarang menampilkan
+adegan visual original di engine: pasar malam di balik cermin, tangan yang meraih,
+dan kamera Damar ditarik masuk. Cermin kamar mandi memakai refleksi terbatas dan
+aparisi yang hanya terlihat di cermin; petunjuk AR menggunakan guratan fisik.
+Nyonya memakai model original baru dengan kebaya gading, wajah, rambut, tangan,
+sendi gerak dan gunting yang mengikuti tangan; animasinya masih prosedural.
 
-Atmaja memiliki kursi kayu berarah, jalur samping meja, ruang tamu depan/gudang, meja kecil pojok, jam menempel dinding dengan tik-tok dan kontrol jam/menit, tulisan darah merah lewat AR, serta interior gelap dengan cahaya HP. HP memiliki bezel/status bar, ikon vektor, Kamera, Peta jalan berlisensi CC0 dengan pin Kos/Atmaja, Pesan, Jurnal, Tas, Bank, Setelan dan Telepon. Dana tidak ditampilkan di Tas. Peta offline memakai gambar internet; pin/rute adalah lokasi cerita fiktif.
+Laporan dan bukti sesi penyelesaian ada di
+[`Audit/prolog-completion-2026-10-17.md`](Audit/prolog-completion-2026-10-17.md).
+Panduan bermain dan pemeriksaan Windows ada di
+[`Audit/atmaja-windows-playtest.md`](Audit/atmaja-windows-playtest.md).
 
-Yang **belum** dibangun: Adegan 4–7 (lantai dua Atmaja sampai akhir Prolog), UV/Selfie lanjutan, stealth/chase, ritual, dan ending. Tujuan peta berikutnya masih terkunci. VO neural sintetis tiga karakter telah menggantikan suara lama; kualitas akting/intonasi, animasi motor first-person dan kesulitan/tensi masih perlu review manusia. Uji visual/performa akhir wajib di Windows Iris Xe; Linux software-rendering tidak membuktikan target 30 FPS. Laporan revisi terbaru: [`Audit/kos-feedback-2026-10-16.md`](Audit/kos-feedback-2026-10-16.md); laporan sebelumnya: [`Audit/playtest-fixes-2026-10-16.md`](Audit/playtest-fixes-2026-10-16.md).
-
-| Item | Status |
-| --- | --- |
-| Scene startup | `Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity` |
-| Tes otomatis | 57/57 lulus; `Audit/golden-test-invocation.json` dan `Audit/golden-tests.xml` (EditMode + PlayMode) |
-| Validasi scene | 0 kegagalan; 167 pemeriksaan player + 41 capture aktual 640×360 di `Audit/Visuals/Review-Linux/`; 7 capture tambahan 960×540 di `Audit/Visuals/Kos-Immersion-960/` (bukan validasi Windows/Iris Xe) |
-| Build Windows | Development Mono x86_64, ZIP di `Builds/`; diupload ke R2 dan SHA-256 dibuktikan lewat unduh-balik (`Audit/r2-windows-build-upload.json`) |
-| Pengujian manual Windows | **Belum dilakukan** — menunggu pengembang |
+DreadOut menjadi acuan penyajian horor, bukan klaim kesetaraan hasil. Raka, sebagian
+aparisi, animasi karakter dan VO lama masih memerlukan penyelesaian artistik serta rekaman manusia.
+Durasi 90 menit, penerimaan artistik dan target 30 FPS Iris Xe belum dibuktikan
+oleh pengujian otomatis Linux.
 
 ---
 
@@ -94,17 +103,17 @@ python3 Tools/run_golden_checks.py --stage test
 | `F` | Matikan/nyalakan layar HP | `LMB` | Foto / Blitz |
 | `Q` / `R` | AR / UV | `V` | Kamera Selfie |
 
-Delapan aksi utama bisa di-remap lewat SETTINGS; binding lain tersedia di `GameInputConfig`. Prompt dunia mengikuti binding aktif. Shortcut UI tetap: `ESC` menu/jeda, `Z` aplikasi ↔ kamera HP, `M` peta HP. Jurnal saat ini dibuka dari aplikasi HP, bukan `J`. Baris modul cerita lanjutan di tabel adalah rancangan, belum semuanya playable. AR dan UV memakai satu slot pemindaian.
+Delapan aksi utama bisa di-remap lewat SETTINGS; binding lain tersedia di `GameInputConfig`. Prompt dunia mengikuti binding aktif. Shortcut UI tetap: `ESC` menu/jeda, `Z` aplikasi ↔ kamera HP, `M` peta HP. `J` membuka Jurnal; entri dapat diklik untuk detail. Baris modul cerita lanjutan di tabel adalah rancangan, belum semuanya playable. AR dan UV memakai satu slot pemindaian.
 
 ---
 
-## Alur Prolog Kamar Kos (milestone saat ini)
+## Alur awal prolog
 
 0. **Menu** — NEW GAME (mengarsipkan save lama), CONTINUE (checkpoint valid), SETTINGS, EXIT.
 1. **Bangun** — animasi dari kasur, monolog, hujan, ketukan dan suara Ratna.
 2. **Periksa bawah pintu** — ambil surat peringatan ibu kos (`DOC_PROLOG_01_SURAT_KOS`).
-3. **Ambil smartphone di kasur** — voice note Damar, lalu notifikasi donasi terikat Rp5.000.000 dari `Penonton_Terakhir`.
-4. **Persiapan berangkat** — baca sticky note + kalender, pecahkan gembok laci `148` (kunci motor + powerbank), ambil jaket.
+3. **Ambil smartphone di kasur** — panggilan Damar otomatis, lalu notifikasi donasi terikat Rp5.000.000 dari `Penonton_Terakhir`.
+4. **Persiapan berangkat** — baca sticky note + kalender, pecahkan gembok laci `1408` (powerbank, dompet dan buku harian); ambil kunci motor di meja dan jaket di gantungan.
 5. **Keluar kamar** — checkpoint `PROLOG_KOS_COMPLETE`, lalu lorong lantai 2, tangga, fasilitas bersama dan halaman kos. Checkpoint lorong/halaman memuat kembali scene koridor.
 6. **Berangkat** — dekat motor/gerbang pilih Atmaja lewat peta HP; animasi naik motor dan melaju keluar gerbang sebelum load Atmaja. Continue dengan prefiks `PROLOG_ATMAJA_` atau `PROLOG_MATABATIN_ACQUIRED` langsung ke Atmaja tanpa mengulang pembuka.
 
@@ -130,19 +139,21 @@ Bukti (log, XML tes, JSON validasi, screenshot, checksum) tersimpan di `Audit/`.
 
 `-reviewAudit <dir>` menguji alur revisi dengan save terisolasi dan screenshot framebuffer aktual. Interaksi kamar Golden diposisikan untuk regresi; koridor/tangga/Atmaja ditempuh lewat substep CharacterController, bukan teleport. Timer cerita dipercepat dan waktu dibekukan singkat saat capture; bukan pengujian pacing/VO natural atau FPS. `-goldenAudit` lama hanya untuk smoke Kos terisolasi; `-atmajaAudit` lama bukan bukti revisi ini. Stage `atmaja-player` kini alias `review-player`. Semua flag audit tidak aktif pada permainan normal.
 
-Regenerasi revisi (host authoring Linux dengan Blender, Python voice environment, FFmpeg, fonts-dejavu-core):
+Authoring kelanjutan terbaru bersifat inkremental dan mempertahankan kedua scene kos:
 
 ```sh
-blender -b --python Tools/repair_playtest_art.py
-python3 Tools/synth_prolog_voice.py
-python3 Tools/run_golden_checks.py --stage review-build
+python3 Tools/run_golden_checks.py --stage prolog-complete
+python3 Tools/run_golden_checks.py --stage atmaja-validate
+python3 Tools/run_golden_checks.py --stage linux
+python3 Tools/run_golden_checks.py --stage prolog-player --width 640 --height 360 --review-output Audit/Visuals/Prolog-Completion
 ```
 
-Untuk koridor/presentasi saja, gunakan `--stage kos-refine` agar scene Atmaja tidak ditulis ulang.
-`Tools/improve_kos_audio.py` membuat SFX original dan retake terarah melalui demo publik resmi OpenBMB;
-hanya naskah fiksi/referensi sintetis original yang dikirim, tidak ada audio pribadi atau save.
-
-Jalankan repair di atas setelah authoring Atmaja lama agar model revisi tidak tertimpa pass lama.
+Flag `-prologAudit` memakai save fixture terisolasi setelah puzzle jam lantai dasar,
+lalu menempuh lantai dua hingga tamat melalui substep CharacterController dan binding
+interaksi asli. Screenshot membekukan waktu sebentar. Ini pemeriksaan jalur terarah,
+bukan playthrough manual, validasi durasi, atau tolok ukur Windows.
+Jangan menjalankan builder greybox/produksi historis untuk melanjutkan prolog ini.
+Tidak ada sintesis VO baru; naskah rekaman manusia tetap tersedia di `Audit/Recording`.
 
 ---
 
@@ -162,7 +173,7 @@ Jalankan repair di atas setelah authoring Atmaja lama agar model revisi tidak te
 | [`Prolog.MD`](Prolog.MD) | Naskah lengkap Prolog Malam Pertama di Rumah Atmaja |
 | [`Phase1.MD`](Phase1.MD)–[`Phase5.MD`](Phase5.MD) | Naskah Babak 1–5 dan jalur secret |
 | [`Checklist.MD`](Checklist.MD) | Checklist produksi per babak |
-| [`goal.md`](goal.md) | Brief kelanjutan Prolog; Kos sudah approved |
+| [`goal.md`](goal.md) | Catatan revisi desainer yang sudah diselesaikan; bukan brief sesi kelanjutan |
 | [`Docs/GOLDEN_SCENE_STANDARD.md`](Docs/GOLDEN_SCENE_STANDARD.md) | Standar produksi scene berikutnya |
 | [`ARCHITECTURE.MD`](ARCHITECTURE.MD) | Arsitektur runtime, data, pipeline produksi |
 | [`Audit/REPORT.md`](Audit/REPORT.md) | Hasil audit fondasi dan batasan yang tersisa |

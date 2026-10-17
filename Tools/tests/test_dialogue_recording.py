@@ -40,6 +40,7 @@ class DialogueRecordingTests(unittest.TestCase):
         self.assertIn("Di... di belakang gue... Nggak ada siapa-siapa?!", texts)
         self.assertIn("Udah terkirim, Bu. Semoga besok Ibu bisa ditangani.", texts)
         self.assertIn("Lunas, Bu Haji. Setidaknya besok barang gue nggak dikeluarin.", texts)
+        self.assertTrue(any(row["speaker"] == "Damar (rekaman)" and "pasar malam" in row["text"] for row in rows))
 
 
 if __name__ == "__main__":

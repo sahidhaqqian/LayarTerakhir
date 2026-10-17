@@ -1,0 +1,19 @@
+{
+  "stage": "prolog-complete",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-main",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.PrologCompletionBuilder.Apply",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Audit/golden-prolog-complete.log"
+  ],
+  "startedUtc": "2026-10-17T15:48:08.773938+00:00",
+  "status": "Finished",
+  "endedUtc": "2026-10-17T15:48:33.801039+00:00",
+  "exitCode": 0
+}

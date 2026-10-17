@@ -46,8 +46,8 @@ namespace LayarTerakhir.UI
             if(!hud||!style)return;
             bool modal=hud.IsModalOpen;
             if(objective!=hud.objectiveText.text){objective=hud.objectiveText.text;changedAt=Time.unscaledTime;}
-            Fade(objectiveGroup,!modal&&!string.IsNullOrEmpty(objective)&&Time.unscaledTime-changedAt<7 ? 1 : 0);
-            Fade(interactionGroup,!modal&&!string.IsNullOrEmpty(hud.interactionPromptText.text)?1:0);
+            Fade(objectiveGroup,!modal&&!UiFocus.Cinematic&&!string.IsNullOrEmpty(objective)&&Time.unscaledTime-changedAt<7 ? 1 : 0);
+            Fade(interactionGroup,!modal&&!UiFocus.Cinematic&&!string.IsNullOrEmpty(hud.interactionPromptText.text)?1:0);
             Fade(subtitleGroup,!string.IsNullOrEmpty(hud.subtitleText.text)?1:0);
             Fade(toastGroup,!modal&&!hud.IsHandsetNotification&&!string.IsNullOrEmpty(hud.broadcastToastText.text)?1:0);
             var phone=SmartphoneController.Instance;
@@ -68,7 +68,7 @@ namespace LayarTerakhir.UI
                 if(backing){backing.anchorMin=Vector2.zero;backing.anchorMax=Vector2.one;backing.offsetMin=backing.offsetMax=Vector2.zero;}
             }
             // Handset status lives inside its bezel. External status is only for a stowed phone.
-            Fade(phoneGroup,!modal&&phone&&phone.hasSmartphoneInInventory&&!phone.isPhoneRaised?1:0);
+            Fade(phoneGroup,!modal&&!UiFocus.Cinematic&&phone&&phone.hasSmartphoneInInventory&&!phone.isPhoneRaised?1:0);
             if(modalBackdrop && modalBackdrop.activeSelf!=modal)modalBackdrop.SetActive(modal);
             if(reticle)reticle.enabled=!modal&&!UiFocus.Cinematic&&hud.blackFadeImage.color.a<.01f;
             if(hud.padlockDigitsText && digits!=hud.padlockDigitsText.text)

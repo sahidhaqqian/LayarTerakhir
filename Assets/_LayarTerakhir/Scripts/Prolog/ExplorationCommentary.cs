@@ -45,6 +45,7 @@ namespace LayarTerakhir.Prolog
         private void Update()
         {
             if(Time.time<nextComment||!CampaignState.Instance||!HudController.Instance||UiFocus.Cinematic||UiFocus.HardModal||HudController.Instance.IsModalOpen)return;
+            if(atmaja&&(atmaja.Busy||atmaja.Stage>=AtmajaStage.Chase||(atmaja.basement&&(atmaja.basement.IsHidden||atmaja.basement.IsHunting))))return;
             var view=FindFirstObjectByType<AtmajaPhoneView>();if(view&&view.Apps&&view.Apps.IsCalling)return;
             Vector3 p=transform.position;if(atmaja){var local=atmaja.LocalPosition(p);p=new Vector3(local.x,p.y-atmaja.origin.y,local.y);}
             foreach(var zone in zones)

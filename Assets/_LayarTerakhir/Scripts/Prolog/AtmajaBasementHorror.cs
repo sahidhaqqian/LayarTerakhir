@@ -8,285 +8,318 @@ using UnityEngine;
 
 namespace LayarTerakhir.Prolog
 {
-    public sealed class AtmajaBasementHorror:MonoBehaviour
+    public sealed class AtmajaBasementHorror : MonoBehaviour
     {
-        public const string PowerbankId="POWERBANK_BESAR";
-        public const string HandycamId="ITEM_P0_HANDYCAM";
-        private enum Mind { Dormant,Emerge,Patrol,Suspicion,Inspect,Pursue,Done }
+        public const string PowerbankId = "POWERBANK_BESAR", HandycamId = "ITEM_P0_HANDYCAM";
+        private enum Mind { Dormant, Emerge, Patrol, Suspicion, Pursue, Done }
         public AtmajaDirector director;
         public AtmajaUpperDirector upper;
         public AtmajaChaseSequence chase;
         public Transform spawnBasement;
-        public Transform[] waypoints=new Transform[0];
-        public Transform inspectAnchor1,inspectAnchor2;
-        public GameObject nyonya,shearsProp,ragOriginal,teplokFlame;
+        public Transform[] waypoints = new Transform[0];
+        public Transform inspectAnchor1, inspectAnchor2;
+        public GameObject nyonya, shearsProp, ragOriginal, teplokFlame;
         public Light teplokLight;
         public AudioSource humSource;
-        public Transform hideAnchor1,hideAnchor2;
-        public GameObject powerbankObj,handycamObj;
-        public Collider wardrobeCol1,wardrobeCol2;
-        public Transform powerbankSpot,handycamSpot;
-        private Mind mind=Mind.Dormant;
+        public Transform hideAnchor1, hideAnchor2, exitAnchor1, exitAnchor2;
+        public GameObject powerbankObj, handycamObj;
+        public Collider wardrobeCol1, wardrobeCol2;
+        public Transform powerbankSpot, handycamSpot;
+        public bool IsHidden => hiddenIn != null;
+        public bool InspectingLocker => lockerCheckRunning;
+        public float Detection => detect;
+        public bool IsHunting => mind == Mind.Pursue;
+        private Mind mind;
         private int waypointIndex;
-        private float waypointPause,detect,suspicionTimer,inspectTimer,giveUpTimer,dragTimer;
-        private Vector3 suspicionPoint,inspectPoint;
-        private bool lockerCheckRunning;
-        private Transform hiddenIn;
+        private float waypointPause, detect, suspicionTimer, giveUpTimer, dragTimer, hideEnteredAt, inspectElapsed;
+        private Vector3 suspicionPoint, lastPosition;
+        private bool lockerCheckRunning, lockerCleared, hiddenWasSeen;
+        private Transform hiddenIn, hiddenAnchor;
         private ParticleSystem breath;
         private AudioClip scrapeClip;
-        private CampaignState Campaign=>CampaignState.Instance;
-        private SmartphoneController Phone=>SmartphoneController.Instance;
-        private HudController Hud=>HudController.Instance;
-        private bool Has(string id)=>Campaign&&Campaign.HasInventoryItem(id);
-        private bool Commit(string id,string checkpoint,Action change=null)
+        private float[,] connections;
+        private CampaignState Campaign => CampaignState.Instance;
+        private SmartphoneController Phone => SmartphoneController.Instance;
+        private HudController Hud => HudController.Instance;
+        private bool Has(string id) => Campaign && Campaign.HasInventoryItem(id);
+        private string Key(GameAction action) => GameInputConfig.Instance.GetActionLabel(action);
+        private bool Commit(string id, Action change = null)
         {
-            if(Has(id))return true;
-            string before=JsonUtility.ToJson(Campaign.Data);
-            Campaign.AddInventoryItem(id);change?.Invoke();
-            if(Campaign.SaveCheckpointAtomic(checkpoint))return true;
-            JsonUtility.FromJsonOverwrite(before,Campaign.Data);Hud.ShowBroadcastNotification("Checkpoint gagal disimpan. Coba interaksi kembali.",4);return false;
+            if (Has(id)) return true;
+            string before = JsonUtility.ToJson(Campaign.Data);
+            Campaign.AddInventoryItem(id); change?.Invoke();
+            if (Campaign.SaveCheckpointAtomic("PROLOG_BASEMENT_ENTRY")) return true;
+            JsonUtility.FromJsonOverwrite(before, Campaign.Data);
+            Phone.batteryPercent = Campaign.Data.battery; Phone.SyncVisualState();
+            Hud.ShowBroadcastNotification("Checkpoint gagal disimpan. Coba interaksi kembali.", 4);
+            return false;
         }
-        private void Ui(AudioClip clip,float gain){if(director.notificationSource&&clip)director.notificationSource.PlayOneShot(clip,gain);}
-        private void Sfx(AudioClip clip,Vector3 where,float gain){if(!director.foleySource||!clip)return;director.foleySource.transform.position=where;director.foleySource.PlayOneShot(clip,gain);}
+        private void Ui(AudioClip clip, float gain) { if (director.notificationSource && clip) director.notificationSource.PlayOneShot(clip, gain); }
+        private void Sfx(AudioClip clip, Vector3 where, float gain)
+        { if (!director.foleySource || !clip) return; director.foleySource.transform.position = where; director.foleySource.PlayOneShot(clip, gain); }
+        // Only loading/retrying resets the hunter. Equipment pickups never teleport her.
         public void RestoreWorld()
         {
-            bool entered=Has("EVENT_P0_BASEMENT_ENTERED");
-            bool played=Has("EVENT_P0_HANDYCAM_PLAYED");
-            bool chased=Has("EVENT_P0_CHASE_STARTED");
-            if(nyonya)nyonya.SetActive(entered&&!played);
-            if(ragOriginal)ragOriginal.SetActive(entered&&!chased);
-            if(teplokFlame)teplokFlame.SetActive(!played);
-            if(teplokLight)teplokLight.enabled=!played;
-            if(powerbankObj)powerbankObj.SetActive(entered&&!Has(PowerbankId)&&!Has("EVENT_P0_POWERBANK_TAKEN"));
-            if(handycamObj)handycamObj.SetActive(entered&&!Has(HandycamId));
-            if(humSource)humSource.enabled=entered&&!played;
-            hiddenIn=null;mind=!entered?Mind.Dormant:played||chased?Mind.Done:Mind.Patrol;
-            if(wardrobeCol1)wardrobeCol1.enabled=true;
-            if(wardrobeCol2)wardrobeCol2.enabled=true;
-            detect=0;suspicionTimer=0;lockerCheckRunning=false;
-            if(director.player)director.player.MovementLocked=false;
-            if(breath)Breath(false);
-            if(nyonya&&waypoints.Length>0){nyonya.transform.position=waypoints[0].position;}
+            StopAllCoroutines();
+            bool entered = Has("EVENT_P0_BASEMENT_ENTERED"), chased = Has("EVENT_P0_CHASE_STARTED");
+            hiddenIn = hiddenAnchor = null; lockerCheckRunning = lockerCleared = false;
+            mind = !entered ? Mind.Dormant : chased ? Mind.Done : Mind.Patrol;
+            waypointIndex = 0; detect = 0; waypointPause = 1.4f; connections = null;
+            if (nyonya) nyonya.SetActive(entered && !chased);
+            if (ragOriginal) ragOriginal.SetActive(!chased);
+            if (teplokFlame) teplokFlame.SetActive(!entered);
+            if (teplokLight) teplokLight.enabled = !entered;
+            if (powerbankObj) powerbankObj.SetActive(entered && !chased);
+            if (handycamObj) handycamObj.SetActive(entered && !chased);
+            if (humSource) { humSource.enabled = entered && !chased; if (humSource.enabled) humSource.Play(); }
+            if (wardrobeCol1) wardrobeCol1.enabled = true;
+            if (wardrobeCol2) wardrobeCol2.enabled = true;
+            var rig = director.player.GetComponent<ShoulderCameraRig>(); if (rig) rig.FirstPersonOverride = false;
+            director.player.MovementLocked = false; lastPosition = director.player.transform.position; Breath(false);
+            if (nyonya && waypoints.Length > 0) nyonya.transform.SetPositionAndRotation(waypoints[0].position, waypoints[0].rotation);
         }
         public string Objective()
         {
-            if(hiddenIn)return "Tetap diam di dalam lemari. Matikan layar HP!";
-            if(!Has("EVENT_P0_POWERBANK_TAKEN"))return "Ambil Powerbank Besar Damar di meja jahit sisi kiri. Jangan tertangkap.";
-            if(!Has(HandycamId))return "Ambil Handycam Damar di depan cermin besar. Merangkaklah lewat kolong meja.";
-            return "Putar rekaman terakhir di handycam.";
+            if (IsHidden) return lockerCheckRunning ? $"Matikan layar [{Key(GameAction.ToggleScreen)}]. Jangan bergerak." : $"Dengarkan langkahnya. [{Key(GameAction.Interact)}] keluar lemari.";
+            if (!Has("EVENT_P0_POWERBANK_TAKEN")) return "Temukan powerbank Damar di ruang jahit. Gunakan rak dan lemari untuk bersembunyi.";
+            if (!Has(HandycamId)) return "Cari jejak Damar di dekat cermin. Merunduk di balik meja saat dia berpatroli.";
+            return "Putar rekaman terakhir di handycam Damar.";
         }
         public void Handle(AtmajaItem item)
         {
-            if(item.action==AtmajaAction.Powerbank)
+            if (director.Stage < AtmajaStage.BasementEntry || director.Stage >= AtmajaStage.Chase) return;
+            if (item.action == AtmajaAction.Powerbank)
             {
-                if(Has("EVENT_P0_POWERBANK_TAKEN"))return;
-                if(Commit("EVENT_P0_POWERBANK_TAKEN","PROLOG_BASEMENT_ENTRY",()=>{Campaign.AddInventoryItem(PowerbankId);}))
+                if (Has("EVENT_P0_POWERBANK_TAKEN"))
                 {
-                    // Scripted tutorial refill lands exactly on 80%, consuming the big pack.
-                    Campaign.Data.inventory.Remove(PowerbankId);
-                    Phone.batteryPercent=80;Campaign.Data.battery=80;Phone.isScreenOn=true;Phone.SyncVisualState();
-                    RestoreWorld();Sfx(director.audioProfile.unlock,item.transform.position,.6f);
-                    Hud.ShowBroadcastNotification("Powerbank Besar Damar diambil. Baterai 80%. Cadangan daya dipulihkan.",5);
-                    Hud.EnqueueSubtitle("Raka","80 persen... Oke, masih bisa lanjut.",3);
-                    director.phoneView.AddChat("@rudi_tabuti","ALHAMDULILLAH IDUP LAGI BANG");
-                    director.Objective();
+                    if (Phone.batteryPercent < 35) StartCoroutine(Recharge());
+                    else Hud.ShowBroadcastNotification("Powerbank Damar masih tersambung. Daya HP cukup untuk melanjutkan.", 3);
+                    return;
                 }
+                if (!Commit("EVENT_P0_POWERBANK_TAKEN", () => {
+                    float reserve = 0;
+                    foreach (string id in Campaign.Data.inventory)
+                        if (id.StartsWith("RESERVE_BATTERY_", StringComparison.Ordinal) && float.TryParse(id.Substring(16), out float saved)) reserve = Mathf.Max(reserve, saved);
+                    Campaign.Data.battery = Mathf.Max(80, reserve);
+                    Campaign.Data.inventory.RemoveAll(id => id.StartsWith("RESERVE_BATTERY_", StringComparison.Ordinal));
+                })) return;
+                Phone.batteryPercent = Campaign.Data.battery; Phone.isScreenOn = true; Phone.SyncVisualState();
+                Sfx(director.audioProfile.unlock, item.transform.position, .5f);
+                Hud.ShowBroadcastNotification($"Powerbank Damar tersambung • Baterai {Phone.batteryPercent:0}% • Cadangan dipulihkan.", 5);
+                Hud.EnqueueSubtitle("Raka", "80 persen... Oke, masih bisa lanjut.", 3);
+                director.phoneView.AddChat("@rudi_tabuti", "ALHAMDULILLAH IDUP LAGI BANG"); director.Objective();
             }
-            else if(item.action==AtmajaAction.Handycam)
+            else if (item.action == AtmajaAction.Handycam)
             {
-                if(!Has("EVENT_P0_POWERBANK_TAKEN")){Hud.ShowBroadcastNotification("Ambil powerbank di meja jahit dulu. Baterai 12% tidak cukup memutar video.",5);return;}
-                if(Has(HandycamId))return;
-                if(Commit(HandycamId,"PROLOG_BASEMENT_ENTRY")){RestoreWorld();chase.PlayHandycamVideo();}
+                if (!Has("EVENT_P0_POWERBANK_TAKEN")) { Hud.ShowBroadcastNotification("HP-nya hampir mati. Cari daya cadangan Damar dulu.", 4); return; }
+                if (Phone.batteryPercent < Phone.blitzCostPercent + 3)
+                { Hud.ShowBroadcastNotification("Daya terlalu rendah. Sambungkan lagi ke powerbank di meja jahit.", 4); return; }
+                // The physical interaction remains available if the game closed during playback.
+                if (Commit(HandycamId)) chase.PlayHandycamVideo();
             }
-            else if(item.action==AtmajaAction.WardrobeHide)
-            {
-                if(hiddenIn==null)EnterWardrobe(item.transform);
-                else ExitWardrobe();
-            }
+            else if (item.action == AtmajaAction.WardrobeHide && !IsHidden) EnterWardrobe(item.transform);
+        }
+        private IEnumerator Recharge()
+        {
+            director.SetBusy(true); director.player.MovementLocked = true;
+            float start = Phone.batteryPercent; Hud.ShowBroadcastNotification("Mengisi daya dari kabel powerbank Damar...", 3);
+            for (float t = 0; t < 2.5f; t += Time.deltaTime) { Phone.batteryPercent = Mathf.Lerp(start, 35, t / 2.5f); yield return null; }
+            Phone.batteryPercent = Campaign.Data.battery = 35; Phone.isScreenOn = true; Phone.SyncVisualState();
+            Campaign.SaveCheckpointAtomic("PROLOG_BASEMENT_ENTRY"); director.player.MovementLocked = false; director.SetBusy(false);
         }
         private void Breath(bool on)
         {
-            if(on&&!breath)
+            if (on && !breath)
             {
-                var cam=director.player.GetComponent<InteractionInteractor>().playerCamera;
-                var shader=Shader.Find("Universal Render Pipeline/Particles/Unlit")??Shader.Find("Particles/Standard Unlit");
-                if(!cam||!shader)return;
-                var go=new GameObject("BreathVapor",typeof(ParticleSystem));go.transform.SetParent(cam.transform,false);
-                breath=go.GetComponent<ParticleSystem>();var main=breath.main;
-                main.loop=true;main.startLifetime=1.1f;main.startSpeed=.10f;main.startSize=new ParticleSystem.MinMaxCurve(.02f,.045f);
-                main.startColor=new Color(1,1,1,.10f);main.simulationSpace=ParticleSystemSimulationSpace.Local;main.maxParticles=24;main.gravityModifier=-.012f;
-                var emission=breath.emission;emission.rateOverTime=2.4f;
-                var shape=breath.shape;shape.shapeType=ParticleSystemShapeType.Cone;shape.angle=16;shape.radius=.02f;shape.rotation=new Vector3(118,0,0);
-                var renderer=go.GetComponent<ParticleSystemRenderer>();renderer.material=new Material(shader);renderer.material.SetColor("_BaseColor",new Color(1,1,1,.10f));
-                renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;renderer.receiveShadows=false;
+                var cam = director.player.GetComponent<InteractionInteractor>().playerCamera;
+                var shader = Shader.Find("Universal Render Pipeline/Particles/Unlit"); if (!cam || !shader) return;
+                var go = new GameObject("BreathVapor", typeof(ParticleSystem)); go.transform.SetParent(cam.transform, false);
+                breath = go.GetComponent<ParticleSystem>(); breath.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                var main = breath.main; main.loop = true; main.startLifetime = 1.1f; main.startSpeed = .1f;
+                main.startSize = new ParticleSystem.MinMaxCurve(.02f, .045f); main.startColor = new Color(1, 1, 1, .1f);
+                main.simulationSpace = ParticleSystemSimulationSpace.Local; main.maxParticles = 24; main.gravityModifier = -.012f;
+                var emission = breath.emission; emission.rateOverTime = 2.4f;
+                var shape = breath.shape; shape.shapeType = ParticleSystemShapeType.Cone; shape.angle = 16; shape.radius = .02f; shape.rotation = new Vector3(118, 0, 0);
+                var renderer = go.GetComponent<ParticleSystemRenderer>(); renderer.material = new Material(shader);
+                renderer.material.SetColor("_BaseColor", new Color(1, 1, 1, .1f)); renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; renderer.receiveShadows = false;
                 breath.Play();
             }
-            if(breath){var emission=breath.emission;emission.enabled=on;}
+            if (breath) { var emission = breath.emission; emission.enabled = on; }
         }
         private void EnterWardrobe(Transform wardrobe)
         {
-            var anchor=Vector3.Distance(director.player.transform.position,hideAnchor1.position)<Vector3.Distance(director.player.transform.position,hideAnchor2.position)?hideAnchor1:hideAnchor2;
-            hiddenIn=wardrobe;director.PlacePlayer(anchor.position,anchor.rotation);director.player.MovementLocked=true;
-            var col=anchor==hideAnchor1?wardrobeCol1:wardrobeCol2;if(col)col.enabled=false;
-            Hud.ShowBroadcastNotification("Bersembunyi di lemari. Tetap diam...",3);
+            hiddenAnchor = Vector3.Distance(wardrobe.position, hideAnchor1.position) < Vector3.Distance(wardrobe.position, hideAnchor2.position) ? hideAnchor1 : hideAnchor2;
+            hiddenWasSeen = mind == Mind.Pursue && CanSeePlayer(12);
+            hiddenIn = wardrobe; hideEnteredAt = Time.time; lockerCleared = false; inspectElapsed = 0;
+            var col = hiddenAnchor == hideAnchor1 ? wardrobeCol1 : wardrobeCol2; if (col) col.enabled = false;
+            director.PlacePlayer(hiddenAnchor.position, hiddenAnchor.rotation); director.player.MovementLocked = true;
+            director.player.cameraPivot.localRotation = Quaternion.identity;
+            var rig = director.player.GetComponent<ShoulderCameraRig>(); if (rig) rig.FirstPersonOverride = true;
+            Hud.SetInteractionPrompt(""); director.Objective();
         }
-        private void ExitWardrobe()
+        public void ExitWardrobe()
         {
-            var wardrobe=hiddenIn;
-            if(wardrobeCol1)wardrobeCol1.enabled=true;
-            if(wardrobeCol2)wardrobeCol2.enabled=true;
-            hiddenIn=null;director.player.MovementLocked=false;
-            var exit=(wardrobe?wardrobe.position:director.player.transform.position)+director.north*1.1f;exit.y=spawnBasement.position.y;
-            director.PlacePlayer(exit,Quaternion.LookRotation(-director.north));
+            if (!IsHidden || lockerCheckRunning) return;
+            Transform exit = hiddenAnchor == hideAnchor1 ? exitAnchor1 : exitAnchor2; if (!exit) return;
+            director.PlacePlayer(exit.position, exit.rotation);
+            if (wardrobeCol1) wardrobeCol1.enabled = true; if (wardrobeCol2) wardrobeCol2.enabled = true;
+            hiddenIn = hiddenAnchor = null; director.player.MovementLocked = false;
+            var rig = director.player.GetComponent<ShoulderCameraRig>(); if (rig) rig.FirstPersonOverride = false;
+            lastPosition = director.player.transform.position; director.Objective();
         }
         private void Update()
         {
-            if(!director||!director.player||!Campaign||!Hud||director.Busy||UiFocus.HardModal)return;
-            // Basement entry detection: capsule drops below the slab through the open trapdoor.
-            if(director.Stage==AtmajaStage.MasterOpen&&director.player.transform.position.y<.2f)
+            if (!director || !director.player || !Campaign || !Hud || director.Busy || UiFocus.HardModal || Hud.IsModalOpen) return;
+            if (director.Stage == AtmajaStage.MasterOpen && director.player.transform.position.y < -.5f)
             {
-                if(!Commit("EVENT_P0_BASEMENT_ENTERED","PROLOG_BASEMENT_ENTRY"))return;
-                // Scripted one-time power glitch: previous charge kept as reserve, indicator locked to 12%.
-                if(!Has("EVENT_P0_POWER_GLITCH"))
-                    Commit("EVENT_P0_POWER_GLITCH","PROLOG_BASEMENT_ENTRY",()=>{Campaign.AddInventoryItem("RESERVE_BATTERY_"+Mathf.RoundToInt(Phone.batteryPercent));Phone.batteryPercent=12;Campaign.Data.battery=12;});
-                Phone.SyncVisualState();RestoreWorld();EnterBasementBeats();return;
+                if (!Commit("EVENT_P0_BASEMENT_ENTERED", () => {
+                    if (!Has("EVENT_P0_POWER_GLITCH"))
+                    {
+                        Campaign.AddInventoryItem("EVENT_P0_POWER_GLITCH"); Campaign.AddInventoryItem("RESERVE_BATTERY_" + Mathf.RoundToInt(Phone.batteryPercent)); Campaign.Data.battery = 12;
+                    }
+                    if (Campaign.AddInventoryItem("EVENT_P0_BASEMENT_SAWER")) Campaign.AddBoundDonation(2000000);
+                })) return;
+                Phone.batteryPercent = Campaign.Data.battery; Phone.SyncVisualState(); RestoreWorld(); EnterBasementBeats(); return;
             }
-            // Cold cellar breath vapor while the stealth beat is live.
-            Breath(director.Stage==AtmajaStage.BasementEntry||director.Stage==AtmajaStage.BasementStealth);
-            if(mind==Mind.Dormant||mind==Mind.Done||!nyonya||!nyonya.activeSelf)return;
-            if(hiddenIn==null&&director.player.MovementLocked)return;
-            float dt=Mathf.Min(Time.deltaTime,.05f);
-            dragTimer-=dt;
-            if(dragTimer<=0){dragTimer=.62f;if(!scrapeClip)scrapeClip=AtmajaSynth.Scrape(.42f);Sfx(scrapeClip,nyonya.transform.position,.30f);}
-            if(teplokLight&&teplokLight.enabled)teplokLight.intensity=1.35f+Mathf.Sin(Time.time*13)*.18f+Mathf.Sin(Time.time*47)*.07f;
-            if(humSource)humSource.volume=Mathf.Clamp01(1.4f-Vector3.Distance(nyonya.transform.position,director.player.transform.position)/9f)*.5f;
-            if(hiddenIn!=null){HiddenTick(dt);return;}
-            SenseTick(dt);
-            switch(mind)
+            Breath(director.Stage == AtmajaStage.BasementEntry || director.Stage == AtmajaStage.BasementStealth);
+            if(director.Stage>=AtmajaStage.Chase)return;
+            if (mind == Mind.Dormant || mind == Mind.Done || mind == Mind.Emerge || !nyonya || !nyonya.activeSelf) return;
+            float dt = Time.deltaTime; dragTimer -= dt;
+            if (dragTimer <= 0) { dragTimer = mind == Mind.Pursue ? .35f : .95f; if (!scrapeClip) scrapeClip = AtmajaSynth.Scrape(.42f); Sfx(scrapeClip, nyonya.transform.position, .3f); }
+            if (humSource) humSource.volume = Mathf.Clamp01(1.2f - Vector3.Distance(nyonya.transform.position, director.player.transform.position) / 9) * .35f;
+            if (IsHidden) HiddenTick(dt);
+            else { if (director.player.MovementLocked) return; SenseTick(dt); }
+            if (!lockerCheckRunning)
             {
-                case Mind.Patrol:PatrolTick(dt);break;
-                case Mind.Suspicion:SuspicionTick(dt);break;
-                case Mind.Inspect:InspectTick(dt);break;
-                case Mind.Pursue:PursueTick(dt);break;
+                switch (mind)
+                {
+                    case Mind.Patrol: PatrolTick(dt); break;
+                    case Mind.Suspicion: StepToward(suspicionPoint, 1.35f, dt); suspicionTimer -= dt; if (suspicionTimer <= 0) ReturnToPatrol(); break;
+                    case Mind.Pursue:
+                        StepToward(IsHidden ? (hiddenAnchor == hideAnchor1 ? exitAnchor1 : exitAnchor2).position : director.player.transform.position, 2.8f, dt);
+                        giveUpTimer -= dt; if (!IsHidden && !CanSeePlayer(12) && giveUpTimer <= 0) ReturnToPatrol(); break;
+                }
             }
-            float dist=Vector3.Distance(nyonya.transform.position,director.player.transform.position);
-            if(dist<1.15f){director.FailToCheckpoint("PROLOG_BASEMENT_ENTRY","Tertangkap! Nyonya Sri Atmaja menyeretmu ke dalam kegelapan.");}
+            if (!IsHidden && Vector3.Distance(nyonya.transform.position, director.player.transform.position) < .85f && CanSeePlayer(2))
+                director.FailToCheckpoint("PROLOG_BASEMENT_ENTRY", "Nyonya Sri Atmaja menemukanmu. Gunakan rak untuk memutus pandangannya.");
         }
         private void EnterBasementBeats()
         {
-            director.SetStage(AtmajaStage.BasementEntry);director.Objective();
-            Hud.EnqueueSubtitle("Raka","Sial, ada gangguan daya! Gue harus cari powerbank cadangan di tas peralatan Damar atau HP ini mati total!",5);
-            director.phoneView.AddChat("@rudi_tabuti","BANG BATERAINYA TINGGAL 12 PERSEN BANG!");
-            director.phoneView.AddChat("@maya_sari","Jangan mati dulu bang kameranya plis gue takut banget liat ruangan bawahnya!");
-            Hud.ShowBroadcastNotification("Penonton_Terakhir • SAWER Rp2.000.000\nDia sudah bangun. Jangan berani-berani memotret wajahnya kalau kau belum punya segel, atau lehermu yang akan menggantikan posisinya.",10);
-            Campaign.AddBoundDonation(2000000);Ui(director.audioProfile.notification,.55f);
-            StartCoroutine(Emerge());
+            director.SetStage(AtmajaStage.BasementEntry); director.Objective();
+            Hud.PlayPriorityDialogue("Raka", "Sial, ada gangguan daya! Gue harus cari powerbank cadangan di tas peralatan Damar atau HP ini mati total!", 6);
+            director.phoneView.AddChat("@rudi_tabuti", "BANG BATERAINYA TINGGAL 12 PERSEN BANG!");
+            director.phoneView.AddChat("@maya_sari", "Jangan mati dulu bang kameranya plis gue takut banget liat ruangan bawahnya!");
+            Hud.ShowBroadcastNotification("Penonton_Terakhir • SAWER Rp2.000.000\nDia sudah bangun. Jangan berani-berani memotret wajahnya kalau kau belum punya segel.", 10);
+            Ui(director.audioProfile.notification, .45f); StartCoroutine(Emerge());
         }
         private IEnumerator Emerge()
         {
-            mind=Mind.Emerge;yield return new WaitForSeconds(1.2f);
-            // The teplok lamp gutters out before she appears; the cellar goes black.
-            if(teplokFlame)teplokFlame.SetActive(false);
-            if(teplokLight)teplokLight.enabled=false;
-            Ui(AtmajaSynth.Tone(.5f,240,90,.35f),.5f);
-            yield return new WaitForSeconds(.85f);
-            Hud.ShowBroadcastNotification("[BAHAYA KRITIS: ENTITAS BELUM TERIDENTIFIKASI — KEBAL TERHADAP SERANGAN KAMERA! SEMBUNYI DAN MATIKAN CAHAYA LAYAR!]",7);
-            Ui(AtmajaSynth.Tone(1.4f,180,70,.5f),.6f);
-            yield return new WaitForSeconds(1f);
-            if(waypoints.Length>0)nyonya.transform.position=waypoints[0].position;
-            mind=Mind.Patrol;director.SetStage(AtmajaStage.BasementStealth);director.Objective();
+            mind = Mind.Emerge; if (nyonya) nyonya.SetActive(false); yield return new WaitForSeconds(1.5f);
+            if (teplokFlame) teplokFlame.SetActive(false); if (teplokLight) teplokLight.enabled = false;
+            Ui(AtmajaSynth.Tone(.5f, 240, 90, .35f), .4f); yield return new WaitForSeconds(.85f);
+            if (nyonya) nyonya.SetActive(true);
+            Hud.ShowBroadcastNotification($"MataBatin • Entitas belum teridentifikasi.\nKamera tidak bisa melukainya. Sembunyi dan matikan layar [{Key(GameAction.ToggleScreen)}].", 7);
+            yield return new WaitForSeconds(3); mind = Mind.Patrol; director.SetStage(AtmajaStage.BasementStealth); director.Objective();
         }
-        private float NoiseRadius()
+        private bool Ignored(Collider col) => col.transform.IsChildOf(nyonya.transform) || col.transform.IsChildOf(director.player.transform) || col == director.player.GetComponent<CharacterController>();
+        public bool CanSeePlayer(float range)
         {
-            var p=director.player;
-            bool moving=(p.transform.position-_lastPos).sqrMagnitude>1e-6f;_lastPos=p.transform.position;
-            if(!moving)return 0;
-            if(p.IsSprinting)return 9;if(p.IsCrouching)return 1.6f;return 3.5f;
-        }
-        private Vector3 _lastPos;
-        private bool CanSee(float range)
-        {
-            var from=nyonya.transform.position+Vector3.up*1.45f;
-            var to=director.player.transform.position+Vector3.up*(director.player.IsCrouching?.6f:1.2f);
-            float dist=Vector3.Distance(from,to);if(dist>range)return false;
-            var dir=(to-from).normalized;
-            if(Vector3.Dot(nyonya.transform.forward,dir)<.45f&&dist>1.6f)return false;
-            int mask=~((1<<29)|(1<<2));if(Physics.Linecast(from,to,mask,QueryTriggerInteraction.Ignore))return false;
+            var from = nyonya.transform.position + Vector3.up * 1.42f;
+            var to = director.player.transform.position + Vector3.up * (director.player.IsCrouching ? .5f : 1.1f);
+            var delta = to - from;
+            if (delta.magnitude > range || delta.magnitude > 1.5f && Vector3.Dot(nyonya.transform.forward, delta.normalized) < .42f) return false;
+            foreach (var hit in Physics.RaycastAll(from, delta.normalized, delta.magnitude, ~((1 << 29) | (1 << 2)), QueryTriggerInteraction.Ignore)) if (!Ignored(hit.collider)) return false;
             return true;
         }
         private void SenseTick(float dt)
         {
-            float dist=Vector3.Distance(nyonya.transform.position,director.player.transform.position);
-            float range=Phone.isPhoneRaised&&Phone.isScreenOn?9f:5f;
-            bool seen=CanSee(range);float noise=NoiseRadius();
-            bool heard=noise>0&&dist<noise&&!(director.player.IsCrouching&&dist>noise*.5f);
-            if(seen){detect+=dt*.9f;suspicionPoint=director.player.transform.position;}
-            else if(heard){detect+=dt*.45f;suspicionPoint=director.player.transform.position;}
-            else detect-=dt*.3f;
-            detect=Mathf.Clamp01(detect);
-            float flee=Vector3.Distance(suspicionPoint,director.player.transform.position);
-            if(detect>=1&&mind!=Mind.Pursue){mind=Mind.Pursue;giveUpTimer=6f;Ui(AtmajaSynth.Tone(.9f,300,900,.5f),.6f);Hud.ShowBroadcastNotification("DIA MELIHATMU. LARI DAN SEMBUNYI!",3);}
-            else if(detect>.35f&&mind==Mind.Patrol){mind=Mind.Suspicion;suspicionTimer=3f;}
-            if(flee>9)detect=Mathf.Min(detect,detect-dt*.5f);
+            float distance = Vector3.Distance(nyonya.transform.position, director.player.transform.position);
+            bool moving = (director.player.transform.position - lastPosition).sqrMagnitude > .00001f; lastPosition = director.player.transform.position;
+            float noise = !moving ? 0 : director.player.IsSprinting ? 8 : director.player.IsCrouching ? 1 : 3;
+            bool seen = CanSeePlayer(Phone.isPhoneRaised && Phone.isScreenOn ? 8 : director.player.IsCrouching ? 3.5f : 5.5f), heard = noise > 0 && distance < noise;
+            if (seen || heard) suspicionPoint = director.player.transform.position;
+            detect = Mathf.Clamp01(detect + dt * (seen ? .8f : heard ? .35f : -.28f));
+            if (seen && mind == Mind.Pursue) giveUpTimer = 5;
+            if (detect >= 1 && mind != Mind.Pursue)
+            { mind = Mind.Pursue; giveUpTimer = 5; Ui(AtmajaSynth.Tone(.6f, 250, 650, .3f), .45f); Hud.ShowBroadcastNotification("Dia melihatmu. Putus pandangannya, lalu sembunyi!", 3); }
+            else if (detect > .32f && mind == Mind.Patrol) { mind = Mind.Suspicion; suspicionTimer = 3; }
         }
-        private void StepToward(Vector3 target,float speed,float dt)
+        private bool ClearPath(Vector3 a, Vector3 b)
         {
-            var pos=nyonya.transform.position;var delta=target-pos;delta.y=0;
-            if(delta.magnitude<.05f)return;
-            nyonya.transform.rotation=Quaternion.Slerp(nyonya.transform.rotation,Quaternion.LookRotation(delta.normalized),dt*4);
-            nyonya.transform.position=pos+delta.normalized*Mathf.Min(speed*dt,delta.magnitude);
-            if(shearsProp)shearsProp.transform.rotation=Quaternion.Euler(Mathf.Sin(Time.time*4.2f)*14,0,0);
+            var delta = b - a; delta.y = 0; if (delta.magnitude < .03f) return true;
+            foreach (var hit in Physics.CapsuleCastAll(a + Vector3.up * .3f, a + Vector3.up * 1.4f, .23f, delta.normalized, delta.magnitude, ~((1 << 29) | (1 << 2)), QueryTriggerInteraction.Ignore)) if (!Ignored(hit.collider)) return false;
+            return true;
+        }
+        private Vector3 NextPathPoint(Vector3 goal)
+        {
+            Vector3 start = nyonya.transform.position; if (ClearPath(start, goal) || waypoints.Length == 0) return goal;
+            int n = waypoints.Length;
+            if (connections == null)
+            {
+                connections = new float[n, n];
+                for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) connections[i, j] = i != j && ClearPath(waypoints[i].position, waypoints[j].position) ? Vector3.Distance(waypoints[i].position, waypoints[j].position) : float.PositiveInfinity;
+            }
+            var cost = new float[n]; var first = new int[n]; var used = new bool[n];
+            for (int i = 0; i < n; i++) { cost[i] = ClearPath(start, waypoints[i].position) ? Vector3.Distance(start, waypoints[i].position) : float.PositiveInfinity; first[i] = i; }
+            for (int step = 0; step < n; step++)
+            {
+                int k = -1; float best = float.PositiveInfinity;
+                for (int i = 0; i < n; i++) if (!used[i] && cost[i] < best) { k = i; best = cost[i]; }
+                if (k < 0) break; used[k] = true;
+                for (int j = 0; j < n; j++) if (cost[k] + connections[k, j] < cost[j]) { cost[j] = cost[k] + connections[k, j]; first[j] = first[k]; }
+            }
+            int route = -1; float total = float.PositiveInfinity;
+            for (int i = 0; i < n; i++) if (ClearPath(waypoints[i].position, goal) && cost[i] + Vector3.Distance(waypoints[i].position, goal) < total)
+            { route = first[i]; total = cost[i] + Vector3.Distance(waypoints[i].position, goal); }
+            return route < 0 ? start : waypoints[route].position;
+        }
+        private void StepToward(Vector3 goal, float speed, float dt)
+        {
+            Vector3 position = nyonya.transform.position, target = NextPathPoint(goal), delta = target - position; delta.y = 0;
+            if (delta.magnitude < .03f) return;
+            var next = position + delta.normalized * Mathf.Min(speed * dt, delta.magnitude); if (ClearPath(position, next)) nyonya.transform.position = next;
+            nyonya.transform.rotation = Quaternion.Slerp(nyonya.transform.rotation, Quaternion.LookRotation(delta.normalized), dt * 4);
+            var pose=nyonya.GetComponent<AtmajaThreatPresentation>();
+            if (shearsProp&&(!pose||!pose.HasCharacterRig)) shearsProp.transform.localRotation = Quaternion.Euler(90 + Mathf.Sin(Time.time * 4.2f) * 8, 0, 20);
+        }
+        private void ReturnToPatrol()
+        {
+            mind = Mind.Patrol; detect = Mathf.Min(detect, .2f); float best = float.PositiveInfinity;
+            for (int i = 0; i < waypoints.Length; i++) if (Vector3.Distance(nyonya.transform.position, waypoints[i].position) < best) { best = Vector3.Distance(nyonya.transform.position, waypoints[i].position); waypointIndex = i; }
         }
         private void PatrolTick(float dt)
         {
-            if(waypoints.Length==0)return;
-            if(waypointPause>0){waypointPause-=dt;return;}
-            var target=waypoints[waypointIndex%waypoints.Length];
-            StepToward(target.position,1.05f,dt);
-            if(Vector3.Distance(nyonya.transform.position,target.position)<.3f)
-            {
-                // Locker inspections at the archive aisle ends keep the wardrobes meaningful.
-                if(target==inspectAnchor1||target==inspectAnchor2){mind=Mind.Inspect;inspectPoint=target.position;inspectTimer=4f;return;}
-                waypointPause=1.2f+waypointIndex%2;waypointIndex++;
-            }
-        }
-        private void SuspicionTick(float dt)
-        {
-            StepToward(suspicionPoint,1.5f,dt);suspicionTimer-=dt;
-            if(Vector3.Distance(nyonya.transform.position,suspicionPoint)<.5f||suspicionTimer<=0){mind=Mind.Patrol;detect=Mathf.Min(detect,.3f);}
-        }
-        private void InspectTick(float dt)
-        {
-            nyonya.transform.rotation=Quaternion.Slerp(nyonya.transform.rotation,Quaternion.LookRotation((inspectPoint-nyonya.transform.position).normalized),dt*2);
-            inspectTimer-=dt;if(inspectTimer<=0){mind=Mind.Patrol;waypointIndex++;}
-        }
-        private void PursueTick(float dt)
-        {
-            StepToward(director.player.transform.position,3.4f,dt);giveUpTimer-=dt;
-            if(!CanSee(12)&&giveUpTimer<=0){mind=Mind.Patrol;detect=.25f;}
+            if (waypoints.Length == 0) return; if (waypointPause > 0) { waypointPause -= dt; return; }
+            var target = waypoints[waypointIndex % waypoints.Length]; StepToward(target.position, .8f, dt);
+            if (Vector3.Distance(nyonya.transform.position, target.position) < .2f) { waypointPause = 1.5f; waypointIndex++; }
         }
         private void HiddenTick(float dt)
         {
-            // Locker check: she stops at the wardrobe and peers through the slats for 4 seconds.
-            float dist=Vector3.Distance(nyonya.transform.position,hiddenIn.position);
-            if(dist<2.2f&&!lockerCheckRunning)StartCoroutine(LockerCheck());
-            detect=Mathf.Max(0,detect-dt*.4f);
-        }
-        private IEnumerator LockerCheck()
-        {
-            lockerCheckRunning=true;
-            Hud.ShowBroadcastNotification("Tekan [F] untuk MEMATIKAN LAYAR HP sekarang agar cahaya tidak bocor!",4);
-            Ui(AtmajaSynth.Noise(4f,.12f),.5f);
-            float t=0;bool failed=false;
-            while(t<4f)
+            detect = Mathf.Max(0, detect - dt * .4f);
+            float distance = Vector3.Distance(nyonya.transform.position, hiddenAnchor.position);
+            if (!lockerCleared && !lockerCheckRunning && (distance < 1.8f || hiddenWasSeen && distance < 2.5f))
             {
-                if(Phone.isScreenOn){failed=true;break;}
-                t+=Time.deltaTime;yield return null;
+                lockerCheckRunning = true; inspectElapsed = 0;
+                Hud.ShowBroadcastNotification($"Dia mendekat ke lemari. Matikan layar [{Key(GameAction.ToggleScreen)}] sekarang!", 5); director.Objective();
             }
-            lockerCheckRunning=false;
-            if(failed){director.FailToCheckpoint("PROLOG_BASEMENT_ENTRY","Cahaya HP bocor dari celah lemari. Dia menemukanmu.");yield break;}
-            Ui(director.audioProfile.unlock,.4f);
-            if(hiddenIn!=null)ExitWardrobe();
+            if (lockerCheckRunning)
+            {
+                inspectElapsed += dt; Vector3 toward = hiddenAnchor.position - nyonya.transform.position; toward.y = 0;
+                if (toward.sqrMagnitude > .01f) nyonya.transform.rotation = Quaternion.Slerp(nyonya.transform.rotation, Quaternion.LookRotation(toward), dt * 3);
+                // Warning precedes the four-second inspection, leaving time for an actual F press.
+                if (inspectElapsed > 1.25f && Phone.isPhoneRaised && Phone.isScreenOn) { director.FailToCheckpoint("PROLOG_BASEMENT_ENTRY", "Cahaya HP terlihat melalui kisi-kisi lemari."); return; }
+                if (inspectElapsed >= 5.25f)
+                {
+                    lockerCheckRunning = false; lockerCleared = true; hiddenWasSeen = false; mind = Mind.Patrol;
+                    waypointPause = 0;
+                    // Leave the occupied wardrobe after checking it; never turn straight
+                    // back toward its door while telling the player the footsteps recede.
+                    int away=Array.IndexOf(waypoints,hiddenAnchor==hideAnchor1?inspectAnchor2:inspectAnchor1);
+                    waypointIndex=away>=0?away:(waypointIndex+1)%Mathf.Max(1,waypoints.Length);
+                    Hud.ShowBroadcastNotification("Langkahnya menjauh. Tunggu sampai aman untuk keluar.", 3); director.Objective();
+                }
+            }
+            else if (Time.time - hideEnteredAt > .3f && GameInputConfig.Instance.GetActionDown(GameAction.Interact)) ExitWardrobe();
         }
     }
 }

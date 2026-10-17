@@ -91,7 +91,7 @@ namespace LayarTerakhir.UI
             UiFocus.Menu=true;Time.timeScale=0;AudioListener.pause=true;Cursor.lockState=CursorLockMode.None;Cursor.visible=true;canvas.SetActive(true);Draw();
         }
         public void Resume()
-        {if(awaiting)return;UiFocus.Menu=false;settings=false;canvas.SetActive(false);Time.timeScale=previousScale>0?previousScale:1;AudioListener.pause=false;Cursor.lockState=UiFocus.Phone?CursorLockMode.None:CursorLockMode.Locked;Cursor.visible=UiFocus.Phone;}
+        {if(awaiting)return;UiFocus.Menu=false;settings=false;canvas.SetActive(false);Time.timeScale=previousScale>0?previousScale:1;AudioListener.pause=false;var finale=FindFirstObjectByType<PrologFinaleView>();bool pointer=UiFocus.Phone||(finale&&finale.WantsPointer);Cursor.lockState=pointer?CursorLockMode.None:CursorLockMode.Locked;Cursor.visible=pointer;}
         private void Draw()
         {
             if(page)Destroy(page);

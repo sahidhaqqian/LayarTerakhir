@@ -4,10 +4,13 @@ Requires a completed WindowsDevelopmentBuild invocation and its real BuildReport
 """
 from pathlib import Path
 from datetime import datetime,timezone
-import hashlib,json,struct,zipfile,zlib,shutil
+import argparse,hashlib,json,struct,zipfile,zlib,shutil
 from record_designer_sources import snapshot
 root=Path(__file__).resolve().parents[1];out=root/'Builds/Windows';logs=root/'Builds/Logs'
-source_record=json.loads((root/'Audit/designer-build-sources.json').read_text())
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--source-record',default='Audit/designer-build-sources.json')
+args=parser.parse_args()
+source_record=json.loads((root/args.source_record).read_text())
 assert source_record['sources']==snapshot(),'Source changed after the designer build snapshot'
 voices=json.loads((root/'Audit/prolog-voice-manifest.json').read_text())
 assert 'VoxCPM2' in voices['engine'] and len(voices['entries'])>=17,'Wrong/stale speech bank'
@@ -55,6 +58,9 @@ assert b'Prolog_KamarKos' in (out/'LayarTerakhir_Data/globalgamemanagers').read_
 atmaja_data=(out/'LayarTerakhir_Data/level1').read_bytes()
 for marker in ['Atmaja_Environment_Art','DamarParkedScooter','FallenKamboja','KitchenVaultOutside','LongDiningTable','GrandfatherClock','AR_SeatedSriAtmaja','ChildBedroomDoor','VentPassGate','DamarHandycam','Spawn_Basement','Spawn_Chase','DamarSurveyInsideDining','SeatedDollOnEndChair']:
  assert marker.encode() in atmaja_data,marker
+if 'prolog' in args.source_record.lower():
+ for marker in ['PrologCompletionArt','DamarRecordedMirrorSet','CompletionCellarExit','CompletionTableLanding','ScratchedFamilyPhotograph1']:
+  assert marker.encode() in atmaja_data,marker
 assert b'Prolog_RumahAtmaja' in (out/'LayarTerakhir_Data/globalgamemanagers').read_bytes()
 corridor_data=(out/'LayarTerakhir_Data/level2').read_bytes()
 for marker in ['Spawn_KosFloor2','StairA_9','StairB_9','DAPUR BERSAMA','KAMAR MANDI','RakaMotor','RakaMotorHeadlight','DoubleLeafIronGate','KosStreetDeparture','KosMainEntranceDoor','StairwellFoundation','UpperLandingGuard','StairInnerGuardA_9','RoomCell_F2_21','KosPitchedRoof','SharedDiningDoor','BathroomWANITADoor','BathroomPRIADoor','KosFrontWindowGlass']:
@@ -62,6 +68,9 @@ for marker in ['Spawn_KosFloor2','StairA_9','StairB_9','DAPUR BERSAMA','KAMAR MA
 runtime=(out/'LayarTerakhir_Data/Managed/Assembly-CSharp.dll').read_bytes()
 for marker in ['GameShell','PhoneDesktop','PhoneSkin','KosRoomCorrections','ClockPuzzleView','ClockAmbience','KosCorridorDirector','KosTravelItem','ReviewPlayerAudit','ShoulderCameraRig','ExplorationCommentary','StoryMapGraphic','DoubleLeafGate','TryPayFamilyBill','DisplayPreferences','AtmajaUpperDirector','AtmajaBasementHorror','AtmajaChaseSequence']:
  assert marker.encode() in runtime,marker
+if 'prolog' in args.source_record.lower():
+ for marker in ['PrologFinaleView','AtmajaHandycamPlayback','AtmajaMirrorReflection','AtmajaThreatPresentation','PrologCompletionAudit']:
+  assert marker.encode() in runtime,marker
 assert b'LayarPresentation' in (out/'LayarTerakhir_Data/resources.assets').read_bytes(),'Presentation/voice resource missing'
 shutil.copy2(root/'Audit/asset-credits.md',out/'Asset-Credits.txt')
 shutil.copy2(root/'Audit/windows-kos-capture.md',out/'Screenshot-Guide.txt')

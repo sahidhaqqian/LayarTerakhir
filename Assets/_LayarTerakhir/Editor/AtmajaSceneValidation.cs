@@ -64,6 +64,12 @@ namespace LayarTerakhir.Editor
             Check(d.upper&&d.basement&&d.chase&&d.upper.director==d&&d.basement.director==d&&d.chase.director==d,"Upper, basement and chase systems wired to the director");
             Check(d.upper&&d.upper.childDoor&&d.upper.masterDoor&&d.upper.chainLinks.Length==3,"Scene 4 upper-floor doors and three sin chains present");
             Check(d.basement&&d.basement.nyonya&&d.basement.waypoints.Length>=4&&d.chase&&d.chase.chaserFigure&&d.chase.rail.Length>=20,"Scene 5-7 hunter, patrol route and chase rail present");
+            var threat=d.basement.nyonya.GetComponent<AtmajaThreatPresentation>();
+            Check(threat&&threat.HasCharacterRig&&threat.head&&threat.weapon==d.basement.shearsProp.transform,"Articulated Sri Atmaja character, head and hand-held shears wired");
+            Check(d.chase.recording&&d.chase.recording.recordingSet&&d.chase.recording.recordingCamera&&d.chase.recording.reachingHands.Length==10,"Original handycam visual recording and ten reaching hands wired");
+            Check(d.chase.recording.recordingCamera.cullingMask==(1<<AtmajaHandycamPlayback.RecordingLayer)&&!d.chase.recording.recordingSet.activeSelf,"Recording set isolated from gameplay and inactive by default");
+            Check(d.chase.finale&&d.chase.cellarExitApproach&&d.chase.diningVaultStart&&d.chase.diningVaultEnd&&d.chase.cellarEgressFloor,"Complete cellar, table, window and title flow wired");
+            Check(d.basement.exitAnchor1&&Clear(d.basement.exitAnchor1.position,cc.height)&&d.basement.exitAnchor2&&Clear(d.basement.exitAnchor2.position,cc.height),"Both wardrobe exits have standing capsule clearance");
             Check(d.upper.spawnUpper&&Clear(d.upper.spawnUpper.position,cc.height),"Upper-floor landing standing capsule is clear");
             Check(d.basement.spawnBasement&&Clear(d.basement.spawnBasement.position,cc.height),"Basement spawn standing capsule is clear");
             Check(d.chase.windowExitSpot&&Clear(d.chase.windowExitSpot.position,cc.height),"Chase window-exit standing capsule is clear");

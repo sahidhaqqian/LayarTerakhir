@@ -16,6 +16,7 @@ namespace LayarTerakhir.Player
         public Transform Avatar { get; private set; }
         public bool CinematicVisible { get; set; }
         public bool Riding { get; set; }
+        public bool FirstPersonOverride { get; set; }
         private FirstPersonController player;
         private Camera eye;
         private Transform leftArm, rightArm, leftLeg, rightLeg, head, torso, handset;
@@ -56,6 +57,12 @@ namespace LayarTerakhir.Player
         {
             if (!eye || !player || !player.cameraPivot) return;
             var pivot = player.cameraPivot;
+            if (FirstPersonOverride)
+            {
+                eye.transform.SetPositionAndRotation(pivot.position, pivot.rotation);
+                foreach (var renderer in bodyRenderers) renderer.shadowCastingMode = ShadowCastingMode.ShadowsOnly;
+                return;
+            }
             Vector3 anchor = pivot.position;
             Vector3 desired = pivot.TransformPoint(shoulderOffset);
             Vector3 direction = desired - anchor;

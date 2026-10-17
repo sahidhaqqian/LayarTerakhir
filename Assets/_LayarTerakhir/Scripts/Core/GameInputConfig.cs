@@ -128,6 +128,15 @@ namespace LayarTerakhir.Core
         public bool GetActionDown(GameAction action) => ReadKeyDown(GetKeyForAction(action));
         public bool GetActionHeld(GameAction action) => ReadKeyHeld(GetKeyForAction(action));
         public bool GetActionUp(GameAction action) => ReadKeyUp(GetKeyForAction(action));
+        public string GetActionLabel(GameAction action) => GetKeyForAction(action) switch
+        {
+            KeyCode.Mouse0 => "KLIK KIRI",
+            KeyCode.Mouse1 => "KLIK KANAN",
+            KeyCode.LeftControl => "CTRL", KeyCode.RightControl => "CTRL KANAN",
+            KeyCode.LeftShift => "SHIFT", KeyCode.RightShift => "SHIFT KANAN",
+            KeyCode.Space => "SPASI",
+            _ => GetKeyForAction(action).ToString().ToUpperInvariant()
+        };
 
         public Vector2 GetMovementInput()
         {
