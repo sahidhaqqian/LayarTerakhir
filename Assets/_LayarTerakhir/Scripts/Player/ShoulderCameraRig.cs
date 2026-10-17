@@ -14,6 +14,8 @@ namespace LayarTerakhir.Player
         public float collisionRadius = .16f;
         public float CurrentDistance { get; private set; }
         public Transform Avatar { get; private set; }
+        public bool CinematicVisible { get; set; }
+        public bool Riding { get; set; }
         private FirstPersonController player;
         private Camera eye;
         private Transform leftArm, rightArm, leftLeg, rightLeg, head, torso, handset;
@@ -36,7 +38,9 @@ namespace LayarTerakhir.Player
         {
             if (!eye || !player.cameraPivot) return;
             // Wake-up and motorcycle shots temporarily own the camera.
-            if (UiFocus.Cinematic || !player.enabled) return;
+            foreach (var renderer in bodyRenderers) renderer.enabled = !UiFocus.Cinematic || CinematicVisible;
+            if (UiFocus.Cinematic) { if(CinematicVisible) AnimateRaka(); return; }
+            if (!player.enabled) return;
             RefreshCameraPose();
         }
 
@@ -73,6 +77,12 @@ namespace LayarTerakhir.Player
             if (speed < 9) stride += delta.magnitude * 7;
             float swing = Mathf.Sin(stride) * Mathf.Clamp01(speed / 1.5f) * (player.IsCrouching ? 19 : 30);
             bool phone = SmartphoneController.Instance && SmartphoneController.Instance.isPhoneRaised;
+            if(Riding)
+            {
+                leftLeg.localRotation=rightLeg.localRotation=Quaternion.Euler(-65,0,0);
+                leftArm.localRotation=rightArm.localRotation=Quaternion.Euler(-70,0,0);
+                torso.localRotation=Quaternion.Euler(12,0,0);handset.gameObject.SetActive(false);return;
+            }
             leftLeg.localRotation = Quaternion.Euler(swing, 0, 0);
             rightLeg.localRotation = Quaternion.Euler(-swing, 0, 0);
             leftArm.localRotation = Quaternion.Euler(-swing * .7f, 0, 7);

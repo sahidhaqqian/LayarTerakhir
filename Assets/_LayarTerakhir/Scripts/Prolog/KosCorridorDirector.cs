@@ -58,14 +58,16 @@ namespace LayarTerakhir.Prolog
         {
             Busy=true;UiFocus.Cinematic=true;var phone=SmartphoneController.Instance;phone.isPhoneRaised=false;phone.SyncVisualState();UiFocus.Phone=false;
             player.MovementLocked=true;player.enabled=false;var cc=player.GetComponent<CharacterController>();cc.enabled=false;
+            var shoulder=player.GetComponent<ShoulderCameraRig>();if(shoulder)shoulder.CinematicVisible=true;
             var start=player.transform.position;var target=motor.position+motor.right*-.55f;
             for(float t=0;t<1;t+=Time.deltaTime/.9f){player.transform.position=Vector3.Lerp(start,target,Mathf.SmoothStep(0,1,t));player.transform.rotation=Quaternion.Slerp(player.transform.rotation,motor.rotation,t);yield return null;}
             var camera=player.GetComponent<InteractionInteractor>().playerCamera.transform;
-            var mountStart=camera.position;var mountEnd=rideAnchor.position;
+            var mountStart=camera.position;var mountEnd=motor.TransformPoint(new Vector3(.65f,1.7f,-2.5f));
             for(float t=0;t<1;t+=Time.deltaTime/1.5f)
-            {camera.position=Vector3.Lerp(mountStart,mountEnd,Mathf.SmoothStep(0,1,t))+Vector3.up*Mathf.Sin(t*Mathf.PI)*.18f;camera.rotation=motor.rotation*Quaternion.Euler(14,0,Mathf.Sin(t*Mathf.PI)*-12);yield return null;}
-            player.transform.SetParent(motor,true);player.transform.localRotation=Quaternion.identity;camera.SetPositionAndRotation(rideAnchor.position,motor.rotation*Quaternion.Euler(5,0,0));
-            AddRiderArms(camera);if(motorHeadlight)motorHeadlight.enabled=true;if(engine){engine.transform.SetParent(motor,true);engine.transform.position=motor.position;engine.clip=audioProfile.departureEngine;engine.loop=true;engine.pitch=.8f;engine.Play();}
+            {camera.position=Vector3.Lerp(mountStart,mountEnd,Mathf.SmoothStep(0,1,t))+Vector3.up*Mathf.Sin(t*Mathf.PI)*.18f;camera.LookAt(motor.position+Vector3.up*.8f);yield return null;}
+            player.transform.SetParent(motor,true);player.transform.localRotation=Quaternion.identity;player.transform.localPosition=new Vector3(0,-.45f,0);if(shoulder)shoulder.Riding=true;
+            camera.position=mountEnd;camera.LookAt(motor.position+Vector3.up*.8f);
+            if(motorHeadlight)motorHeadlight.enabled=true;if(engine){engine.transform.SetParent(motor,true);engine.transform.position=motor.position;engine.clip=audioProfile.departureEngine;engine.loop=true;engine.pitch=.8f;engine.Play();}
             var pairedGate=gateHinge.GetComponent<DoubleLeafGate>();
             if(pairedGate)yield return pairedGate.Open();
             else{var from=gateHinge.localRotation;for(float t=0;t<1;t+=Time.deltaTime/1.3f){gateHinge.localRotation=Quaternion.Slerp(from,Quaternion.Euler(0,100,0),t);yield return null;}}
@@ -76,6 +78,7 @@ namespace LayarTerakhir.Prolog
                 var turn=Vector3.Lerp(motorStart,new Vector3(0,motorStart.y,-5.4f),Mathf.Clamp01(t*3));
                 motor.position=t<.33f?turn:Vector3.Lerp(new Vector3(0,motorStart.y,-5.4f),end,Mathf.SmoothStep(0,1,(t-.33f)/.67f));
                 motor.rotation=Quaternion.Slerp(motor.rotation,Quaternion.LookRotation(Vector3.back),Time.deltaTime*3);
+                camera.position=motor.TransformPoint(new Vector3(.65f,1.7f,-2.5f));camera.LookAt(motor.position+Vector3.up*.8f);
                 if(engine)engine.pitch=Mathf.Lerp(.8f,1.35f,t);yield return null;
             }
             CampaignState.Instance.SaveCheckpointAtomic("PROLOG_TRAVEL_ATMAJA");yield return HudController.Instance.FadeBlack(0,1,1.1f);yield return PrologSceneFlow.LoadAtmaja();

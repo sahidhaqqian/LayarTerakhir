@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace LayarTerakhir.Prolog
 {
-    public enum AtmajaAction { Gate,Survey,FrontDoor,KitchenDoor,DamarPhone,Well,ClockHands,Clock,StairDoor,Charge,Window }
+    public enum AtmajaAction { Gate,Survey,FrontDoor,KitchenDoor,DamarPhone,Well,ClockHands,Clock,StairDoor,Charge,Window,CupPhoto,Diary,BathCurtain,BathScratches,WillLetter,RopePhoto,CarpetLift,Trapdoor,Powerbank,Handycam,WardrobeHide }
     public sealed class AtmajaItem:MonoBehaviour,IInteractable
     {
         public AtmajaDirector director;

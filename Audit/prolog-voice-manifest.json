@@ -77,6 +77,17 @@
     },
     {
       "speaker": "Raka",
+      "text": "Kebuka. Powerbank, dompet, sama buku harian gue masih di sini.",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/cbcbf4f653f0.wav",
+      "duration": 4.032,
+      "peak": 0.63104248046875,
+      "rms": 0.12977987806273128,
+      "sha256": "3e6cf2650727cc4eb941a23c601bbd6abe8cf3e55debebd5aebd4ff4a7e1b886",
+      "delivery": "Quiet relieved natural Indonesian conversation, small pause after Kebuka.",
+      "renderBackend": "Official OpenBMB VoxCPM2 demo; reference-only controllable cloning, not neutral transcript continuation"
+    },
+    {
+      "speaker": "Raka",
       "text": "Bentar, gue belum mau keluar sebelum cek bawah pintu.",
       "path": "Assets/_LayarTerakhir/Audio/Dialogue/157f444a3173.wav",
       "duration": 3.384,
@@ -153,6 +164,105 @@
       "renderBackend": "Official OpenBMB VoxCPM2 demo (backend checkpoint revision not exposed)"
     },
     {
+      "speaker": "Raka",
+      "text": "Jejak tangan... berdarah semua. Ya Tuhan...",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/c41d7569ca3e.wav",
+      "duration": 4.032,
+      "peak": 0.707305908203125,
+      "rms": 0.13498492024733288,
+      "sha256": "98da32c48898f3c300036e9e56c702083b6660999c83469a6d9cdec5a0d282e8",
+      "delivery": "Natural conversational Indonesian, quietly worried",
+      "renderBackend": "Official OpenBMB VoxCPM2 demo (backend checkpoint revision not exposed)"
+    },
+    {
+      "speaker": "Raka",
+      "text": "Airnya... merah kecokelatan. Kayak karat... atau darah.",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/ed4d57a1fa70.wav",
+      "duration": 4.344,
+      "peak": 0.707977294921875,
+      "rms": 0.13788016609786105,
+      "sha256": "d0765ff397555e63504c853d66b336353a5b1952ff641cd21a20662f19acb80c",
+      "delivery": "Natural conversational Indonesian, quietly worried",
+      "renderBackend": "Official OpenBMB VoxCPM2 demo (backend checkpoint revision not exposed)"
+    },
+    {
+      "speaker": "Raka",
+      "text": "Karpetnya digulung... ada pintu jebakan kayu di bawahnya.",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/6ba6d09adae5.wav",
+      "duration": 4.992,
+      "peak": 0.707977294921875,
+      "rms": 0.15544436208175863,
+      "sha256": "cd1066ec2d6fa1021ea16fa142f6e9a8dfb209bbf4a2b3cffc1578e04493e2ee",
+      "delivery": "Natural conversational Indonesian, quietly worried",
+      "renderBackend": "Official OpenBMB VoxCPM2 demo (backend checkpoint revision not exposed)"
+    },
+    {
+      "speaker": "Raka",
+      "text": "Tangga batu... turun ke bawah tanah. Dingin banget hawanya.",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/1982ec618ce2.wav",
+      "duration": 4.344,
+      "peak": 0.6717529296875,
+      "rms": 0.14581224585576733,
+      "sha256": "fce7ccecb71ea728afb0ba1a10caeaf9d794e3da674833c21b5a86fe514136b0",
+      "delivery": "Natural conversational Indonesian, quietly worried",
+      "renderBackend": "Official OpenBMB VoxCPM2 demo (backend checkpoint revision not exposed)"
+    },
+    {
+      "speaker": "Raka",
+      "text": "80 persen... Oke, masih bisa lanjut.",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/8fd38af88f0d.wav",
+      "duration": 2.904,
+      "peak": 0.70562744140625,
+      "rms": 0.12165023839222198,
+      "sha256": "1b8d8e0b944d7aa255e8521bc9afcdc80197e32a5ba18e06fadad1435cd3cc31",
+      "delivery": "Natural conversational Indonesian, quietly worried",
+      "renderBackend": "Official OpenBMB VoxCPM2 demo (backend checkpoint revision not exposed)"
+    },
+    {
+      "speaker": "Raka",
+      "text": "Sial, ada gangguan daya! Gue harus cari powerbank cadangan di tas peralatan Damar atau HP ini mati total!",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/8ec5848dbb2f.wav",
+      "duration": 6.264,
+      "peak": 0.70379638671875,
+      "rms": 0.12378140017169205,
+      "sha256": "fe755a67d74a690e97987f9a5e99b291b38e52bcceedaff781ee9d1e1d313a5d",
+      "delivery": "Anxious and urgent, natural spoken Indonesian",
+      "renderBackend": "Official OpenBMB VoxCPM2 demo (backend checkpoint revision not exposed)"
+    },
+    {
+      "speaker": "Damar (rekaman)",
+      "text": "Kacanya... kacanya bukan mantulin ruangan ini, Ka! Di dalem kaca itu ada pasar malam... mereka narik kaki gue—RAKA TOLONGIN GUE!",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/6bcf0423d97a.wav",
+      "duration": 12.84,
+      "peak": 0.7091064453125,
+      "rms": 0.1414988750011369,
+      "sha256": "003ab2c292d5a9ce837e965fa3c413b2a4f77da1a74345b80df1c97c702b342b",
+      "delivery": "Frantic breathless young man speaking through a broken phone recording, terrified, pleading",
+      "renderBackend": "Official OpenBMB VoxCPM2 demo (backend checkpoint revision not exposed)"
+    },
+    {
+      "speaker": "Nyonya Sri Atmaja",
+      "text": "AAAAAARGH!!!",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/3a7bd1e30af5.wav",
+      "duration": 1.727,
+      "peak": 0.22491455078125,
+      "rms": 0.053655494506855826,
+      "sha256": "1e0ec76daea699a570f91d93c8799821f3aa1a10da8b0829b6ca2e499d122eec",
+      "delivery": "An elderly woman screaming in enraged supernatural pain, loud and raw",
+      "renderBackend": "Official OpenBMB VoxCPM2 demo (backend checkpoint revision not exposed)"
+    },
+    {
+      "speaker": "Raka",
+      "text": "*terengah-engah* ...Gue... selamat... Damar... gue bakal balik buat lo...",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/9c0932f98505.wav",
+      "duration": 4.512,
+      "peak": 0.707763671875,
+      "rms": 0.133047357746259,
+      "sha256": "bfe30446181806e09c24d50f1f537bc1e02696bc8baab9862cd49022e5f79c9a",
+      "delivery": "Natural conversational Indonesian, quietly worried",
+      "renderBackend": "Official OpenBMB VoxCPM2 demo (backend checkpoint revision not exposed)"
+    },
+    {
       "speaker": "Damar",
       "text": "Ka... Raka, jangan ke Rumah Atmaja sendirian. Tolong dengerin gue. Aplikasi kamera yang gue oprek dari forum kemarin... itu bukan filter AR biasa, Ka. Rumah ini nggak kosong. Di lantai dua ada suara perempuan nyanyi tembang Jawa, tapi pas gue sorot pakai kamera HP, dia udah berdiri tepat di depan muka gue—",
       "path": "Assets/_LayarTerakhir/Audio/Dialogue/7e2ea416cb0a.wav",
@@ -162,28 +272,6 @@
       "sha256": "618a5ab86a5149c410b547e085b3054820cbf3f3ff244856f8ad6dc651a39dab",
       "delivery": "Frightened young man, trembling breathless delivery, panicked urgent whisper rising to terror. Uneven pace, gasping pauses, increasingly alarmed. Speak Indonesian, not a neutral narrator.",
       "renderBackend": "Official OpenBMB VoxCPM2 demo; reference-only controllable cloning, not neutral transcript continuation"
-    },
-    {
-      "speaker": "Raka",
-      "text": "Hmm... kok tiba-tiba ketutup, ya? Kayaknya kita cuma bisa lanjut.",
-      "path": "Assets/_LayarTerakhir/Audio/Dialogue/386d8b5c32cb.wav",
-      "duration": 4.824,
-      "peak": 0.70660400390625,
-      "rms": 0.14373707435657984,
-      "sha256": "4e58b46975cfca9e581e1dcc4d671de06f50a6e8f2ccd18e201211c3263c15d5",
-      "delivery": "Anxious and urgent, natural spoken Indonesian",
-      "renderBackend": "Official OpenBMB VoxCPM2 demo (backend checkpoint revision not exposed)"
-    },
-    {
-      "speaker": "Raka",
-      "text": "Oke... tes, satu dua. Malam semuanya, balik lagi di Malam Keramat. Malam ini gue nggak sendirian... maksudnya, gue lagi nyusulin Damar yang hilang kontak di Rumah Tua Atmaja. Buat yang baru gabung, bantu pantau layar ya.",
-      "path": "Assets/_LayarTerakhir/Audio/Dialogue/4cbf88baa61e.wav",
-      "duration": 17.304,
-      "peak": 0.708038330078125,
-      "rms": 0.14240056245173463,
-      "sha256": "d97d8e1dca46c7d9b27bd2a1db35e0c79e201102212550caefacc31796780d90",
-      "delivery": "Natural conversational Indonesian, quietly worried",
-      "renderBackend": "Official OpenBMB VoxCPM2 demo (backend checkpoint revision not exposed)"
     },
     {
       "speaker": "Damar",
@@ -209,15 +297,25 @@
     },
     {
       "speaker": "Raka",
-      "text": "Kebuka. Powerbank, dompet, sama buku harian gue masih di sini.",
-      "path": "Assets/_LayarTerakhir/Audio/Dialogue/cbcbf4f653f0.wav",
-      "duration": 4.032,
-      "peak": 0.63104248046875,
-      "rms": 0.12977987806273128,
-      "sha256": "3e6cf2650727cc4eb941a23c601bbd6abe8cf3e55debebd5aebd4ff4a7e1b886",
-      "delivery": "Quiet relieved natural Indonesian conversation, small pause after Kebuka.",
-      "renderBackend": "Official OpenBMB VoxCPM2 demo; reference-only controllable cloning, not neutral transcript continuation"
+      "text": "Hmm... kok tiba-tiba ketutup, ya? Kayaknya kita cuma bisa lanjut.",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/386d8b5c32cb.wav",
+      "duration": 4.824,
+      "peak": 0.70660400390625,
+      "rms": 0.14373707435657984,
+      "sha256": "4e58b46975cfca9e581e1dcc4d671de06f50a6e8f2ccd18e201211c3263c15d5",
+      "delivery": "Anxious and urgent, natural spoken Indonesian",
+      "renderBackend": "Official OpenBMB VoxCPM2 demo (backend checkpoint revision not exposed)"
+    },
+    {
+      "speaker": "Raka",
+      "text": "Oke... tes, satu dua. Malam semuanya, balik lagi di Malam Keramat. Malam ini gue nggak sendirian... maksudnya, gue lagi nyusulin Damar yang hilang kontak di Rumah Tua Atmaja. Buat yang baru gabung, bantu pantau layar ya.",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/4cbf88baa61e.wav",
+      "duration": 17.304,
+      "peak": 0.708038330078125,
+      "rms": 0.14240056245173463,
+      "sha256": "d97d8e1dca46c7d9b27bd2a1db35e0c79e201102212550caefacc31796780d90",
+      "delivery": "Natural conversational Indonesian, quietly worried",
+      "renderBackend": "Official OpenBMB VoxCPM2 demo (backend checkpoint revision not exposed)"
     }
-  ],
-  "directedRevision": "Reference-only emotional retakes; separate Damar distress cry; user acting acceptance still pending"
+  ]
 }

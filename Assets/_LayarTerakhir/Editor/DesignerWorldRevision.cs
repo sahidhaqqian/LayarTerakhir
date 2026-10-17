@@ -17,8 +17,8 @@ namespace LayarTerakhir.Editor
             PlaytestRevisionBuilder.Build();
             // Only input defaults change in the original room; its approved furniture stays intact.
             var room=EditorSceneManager.OpenScene(PrologKosSceneBuilder.ScenePath);
-            Object.FindFirstObjectByType<GameInputConfig>().vaultKey=KeyCode.Space;
-            EditorSceneManager.MarkSceneDirty(room);EditorSceneManager.SaveScene(room);
+            var input=Object.FindFirstObjectByType<GameInputConfig>();
+            if(input.vaultKey!=KeyCode.Space){input.vaultKey=KeyCode.Space;EditorSceneManager.MarkSceneDirty(room);EditorSceneManager.SaveScene(room);}
             AssetDatabase.SaveAssets();
             Debug.Log("DESIGNER_WORLD_BUILD complete: paired gates, facilities, inhabited facade, night sky, indoor note and seated doll");
         }
@@ -79,7 +79,14 @@ namespace LayarTerakhir.Editor
             if(tree)
             {
                 tree.transform.rotation=Quaternion.LookRotation(d.north)*Quaternion.Euler(0,0,22);
+                var bounds=KosVisualV2.BoundsOf(tree);
+                float minimum=d.LocalPosition(bounds.center).x-Mathf.Abs(d.east.x)*bounds.extents.x-Mathf.Abs(d.east.z)*bounds.extents.z;
+                if(minimum<6.35f)tree.transform.position+=d.east*(6.35f-minimum);
                 AtmajaSceneBuilder.Ground(tree,-.12f);
+                var support=GameObject.CreatePrimitive(PrimitiveType.Cylinder);support.name="FallenKambojaSupportedLimb";support.transform.SetParent(environment,false);
+                Vector3 a=d.P(6.7f,5.5f,1.12f),b=d.P(9.7f,5.5f,1.62f);
+                support.transform.SetPositionAndRotation((a+b)*.5f,Quaternion.FromToRotation(Vector3.up,(b-a).normalized));support.transform.localScale=new Vector3(.36f,(b-a).magnitude*.5f,.36f);
+                support.GetComponent<Renderer>().sharedMaterial=AtmajaSceneBuilder.Mat("Tree_FRANG_Bark");Object.DestroyImmediate(support.GetComponent<Collider>());
                 var rootPatch=GameObject.CreatePrimitive(PrimitiveType.Sphere);rootPatch.name="UprootedDampSoil";rootPatch.transform.SetParent(environment,false);
                 rootPatch.transform.position=d.P(6.5f,5.4f,.08f);rootPatch.transform.localScale=new Vector3(1.55f,.22f,1.4f);rootPatch.GetComponent<Renderer>().sharedMaterial=AtmajaSceneBuilder.Mat("stony_dirt_path");Object.DestroyImmediate(rootPatch.GetComponent<Collider>());
             }

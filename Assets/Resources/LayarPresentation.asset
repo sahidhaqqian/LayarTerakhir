@@ -30,6 +30,9 @@ MonoBehaviour:
     text: Gue cek dulu apa yang diselipin di bawah pintu tadi.
     clip: {fileID: 8300000, guid: 497b90beed83d721cb2a9c68c1f42c58, type: 3}
   - speaker: Raka
+    text: Kebuka. Powerbank, dompet, sama buku harian gue masih di sini.
+    clip: {fileID: 8300000, guid: b7ea53967dbfe15ec97e46d9176cd537, type: 3}
+  - speaker: Raka
     text: Bentar, gue belum mau keluar sebelum cek bawah pintu.
     clip: {fileID: 8300000, guid: 72df1d32b4a8198d7ad0483142a19a48, type: 3}
   - speaker: Raka
@@ -52,20 +55,41 @@ MonoBehaviour:
     text: Ini HP-nya Damar... Layarnya pecah, tapi kartu memorinya masih kebaca.
       Gue pindahin dulu aplikasinya ke HP gue.
     clip: {fileID: 8300000, guid: 63854c79fc304e2f2956a696a8d3322a, type: 3}
+  - speaker: Raka
+    text: Jejak tangan... berdarah semua. Ya Tuhan...
+    clip: {fileID: 8300000, guid: 95ce49f22a4b31b10a5b58cc01f030bb, type: 3}
+  - speaker: Raka
+    text: Airnya... merah kecokelatan. Kayak karat... atau darah.
+    clip: {fileID: 8300000, guid: d0acd73346edd45b89756845799ae57f, type: 3}
+  - speaker: Raka
+    text: Karpetnya digulung... ada pintu jebakan kayu di bawahnya.
+    clip: {fileID: 8300000, guid: 4f2e24717b757db1d9f0f4fa6d0f1e19, type: 3}
+  - speaker: Raka
+    text: Tangga batu... turun ke bawah tanah. Dingin banget hawanya.
+    clip: {fileID: 8300000, guid: c74e207adf935cf6681ccbca3cee0729, type: 3}
+  - speaker: Raka
+    text: 80 persen... Oke, masih bisa lanjut.
+    clip: {fileID: 8300000, guid: 9d787b8fd08f77432861f3fe57f35fdd, type: 3}
+  - speaker: Raka
+    text: Sial, ada gangguan daya! Gue harus cari powerbank cadangan di tas peralatan
+      Damar atau HP ini mati total!
+    clip: {fileID: 8300000, guid: 7898c4f4eac19e48abbaace8c9c2c93d, type: 3}
+  - speaker: Damar (rekaman)
+    text: "Kacanya... kacanya bukan mantulin ruangan ini, Ka! Di dalem kaca itu ada
+      pasar malam... mereka narik kaki gue\u2014RAKA TOLONGIN GUE!"
+    clip: {fileID: 8300000, guid: c55f4b192326f703786bd97e2ed84697, type: 3}
+  - speaker: Nyonya Sri Atmaja
+    text: AAAAAARGH!!!
+    clip: {fileID: 8300000, guid: 5f9d1e225860da467af435e281ab04b3, type: 3}
+  - speaker: Raka
+    text: '*terengah-engah* ...Gue... selamat... Damar... gue bakal balik buat lo...'
+    clip: {fileID: 8300000, guid: d52e83997e6d40213ab5a950232c0e17, type: 3}
   - speaker: Damar
     text: "Ka... Raka, jangan ke Rumah Atmaja sendirian. Tolong dengerin gue. Aplikasi
       kamera yang gue oprek dari forum kemarin... itu bukan filter AR biasa, Ka.
       Rumah ini nggak kosong. Di lantai dua ada suara perempuan nyanyi tembang Jawa,
       tapi pas gue sorot pakai kamera HP, dia udah berdiri tepat di depan muka gue\u2014"
     clip: {fileID: 8300000, guid: b5ea98dcb41c712d394a4721d10059cc, type: 3}
-  - speaker: Raka
-    text: Hmm... kok tiba-tiba ketutup, ya? Kayaknya kita cuma bisa lanjut.
-    clip: {fileID: 8300000, guid: e31868448e6b91f63af3121b41d8c910, type: 3}
-  - speaker: Raka
-    text: Oke... tes, satu dua. Malam semuanya, balik lagi di Malam Keramat. Malam
-      ini gue nggak sendirian... maksudnya, gue lagi nyusulin Damar yang hilang kontak
-      di Rumah Tua Atmaja. Buat yang baru gabung, bantu pantau layar ya.
-    clip: {fileID: 8300000, guid: 338ca84ed04656e4cad0e7b62e7cdb52, type: 3}
   - speaker: Damar
     text: Raka! Tolong! Aaaah!
     clip: {fileID: 8300000, guid: 2c2de3795775c1e6aa25392e465ccf80, type: 3}
@@ -74,5 +98,10 @@ MonoBehaviour:
       harus ikutin perintah dari pesan ini.
     clip: {fileID: 8300000, guid: 0cedc67bc1cabb42793bf91721e95764, type: 3}
   - speaker: Raka
-    text: Kebuka. Powerbank, dompet, sama buku harian gue masih di sini.
-    clip: {fileID: 8300000, guid: b7ea53967dbfe15ec97e46d9176cd537, type: 3}
+    text: Hmm... kok tiba-tiba ketutup, ya? Kayaknya kita cuma bisa lanjut.
+    clip: {fileID: 8300000, guid: e31868448e6b91f63af3121b41d8c910, type: 3}
+  - speaker: Raka
+    text: Oke... tes, satu dua. Malam semuanya, balik lagi di Malam Keramat. Malam
+      ini gue nggak sendirian... maksudnya, gue lagi nyusulin Damar yang hilang kontak
+      di Rumah Tua Atmaja. Buat yang baru gabung, bantu pantau layar ya.
+    clip: {fileID: 8300000, guid: 338ca84ed04656e4cad0e7b62e7cdb52, type: 3}

@@ -715,6 +715,96 @@
       "albedo": "",
       "normal": "",
       "mask": ""
+    },
+    {
+      "name": "Upper_EnamelWhite",
+      "color": [
+        0.55,
+        0.56,
+        0.53,
+        1
+      ],
+      "roughness": 0.3,
+      "metallic": 0.1,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "mask": ""
+    },
+    {
+      "name": "Detail_MirrorGlass",
+      "color": [
+        0.3,
+        0.36,
+        0.42,
+        1
+      ],
+      "roughness": 0.04,
+      "metallic": 1,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "mask": ""
+    },
+    {
+      "name": "Upper_OldRope",
+      "color": [
+        0.36,
+        0.28,
+        0.17,
+        1
+      ],
+      "roughness": 1,
+      "metallic": 0,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "mask": ""
+    },
+    {
+      "name": "Upper_IronBlack",
+      "color": [
+        0.05,
+        0.05,
+        0.06,
+        1
+      ],
+      "roughness": 0.45,
+      "metallic": 0.7,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "mask": ""
+    },
+    {
+      "name": "Upper_RustShears",
+      "color": [
+        0.28,
+        0.1,
+        0.04,
+        1
+      ],
+      "roughness": 0.85,
+      "metallic": 0.35,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "mask": ""
+    },
+    {
+      "name": "Upper_KebayaDirty",
+      "color": [
+        0.55,
+        0.52,
+        0.44,
+        1
+      ],
+      "roughness": 0.95,
+      "metallic": 0,
+      "alphaClip": false,
+      "albedo": "",
+      "normal": "",
+      "mask": ""
     }
   ],
   "models": [

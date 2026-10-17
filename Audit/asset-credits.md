@@ -15,7 +15,8 @@ mode explicitly omitted style control in the service implementation; the correct
 the performance direction. The [official source](https://huggingface.co/spaces/openbmb/VoxCPM-Demo/raw/main/app.py)
 and [Apache-2.0 model card](https://huggingface.co/openbmb/VoxCPM2) were checked again. Added distress
 cry and contract reaction are synthetic; acting quality remains subject to human approval. The current
-17-entry manifest is authoritative; no synthesis service or model runs inside the shipped game.
+26-entry manifest covering both floors, the basement tape and the ending is authoritative; no synthesis
+service or model runs inside the shipped game.
 
 ## Playtest revision — 16 October 2026
 
@@ -33,8 +34,9 @@ and Windows build in `Audit/dejavu-font-license.txt` / `DejaVu-Font-License.txt`
 
 Current dialogue is **synthetic Indonesian neural speech**, allowed by the developer, from
 [OpenBMB VoxCPM2](https://huggingface.co/openbmb/VoxCPM2), whose released model is Apache-2.0.
-Original model-designed samples distinguish Raka, Damar and the well whisper; no real actor/person
-was cloned. The landlady has no spoken line. Reference samples were authored locally, then the
+Original model-designed samples distinguish Raka, Damar, the well whisper, Damar's broken-phone
+recording (same Damar reference, telephone-band processing) and Nyonya Sri Atmaja's enraged scream
+(Bisikan reference); no real actor/person was cloned. The landlady has no spoken line. Reference samples were authored locally, then the
 dialogue clips were rendered through the [official public demo](https://huggingface.co/spaces/openbmb/VoxCPM-Demo)
 and normalized with FFmpeg. Only fictional script/synthetic reference audio was sent, never saves
 or personal recordings. The game uses ordinary rendered WAV/Vorbis audio and remains offline;
@@ -179,6 +181,60 @@ Full source hashes and URLs: `Audit/kos-final-source-verification.json`; repeata
 Clipboard/stationery/crate would duplicate current desk/storage clutter; wall clock and broom were
 not needed for this composition. Rejected industrial container, multimeter and cassette player
 were not imported. No additional fonts/audio or gameplay dependencies.
+
+## Prolog Adegan 4–7 upper floor, basement, chase and ending — 16 October 2026
+
+New staging for the second floor, basement and chase. All 25 model sources and 7 PBR texture sets are
+Poly Haven **CC0-1.0** ([asset license](https://polyhaven.com/license)); attribution is voluntary.
+`Tools/download_atmaja_upper_sources.py` fetched exact 1K FBX/JPG variants via the public API with
+User-Agent `LayarTerakhir-UpperFloorStaging/1.0` and verified every file against the API-provided MD5.
+Exact URLs, authors, MD5, SHA-256 and sizes: [atmaja-upper-source-verification.json](atmaja-upper-source-verification.json).
+
+| Source asset | Creator | Use / changes |
+| --- | --- | --- |
+| [hanging_picture_frame_01](https://polyhaven.com/a/hanging_picture_frame_01), [hanging_picture_frame_03](https://polyhaven.com/a/hanging_picture_frame_03) | James Ray Cock | Corridor portrait frames + AR gouge overlays; capped, glass kept |
+| [fancy_picture_frame_01](https://polyhaven.com/a/fancy_picture_frame_01), [fancy_picture_frame_02](https://polyhaven.com/a/fancy_picture_frame_02) | Rob Tuytel, Rico Cilliers | Master bedroom portrait frames; capped |
+| [ornate_mirror_01](https://polyhaven.com/a/ornate_mirror_01) | James Ray Cock | Bathroom mirror (standing apparition flash); capped |
+| [painted_wooden_shelves](https://polyhaven.com/a/painted_wooden_shelves) | Kirill Sannikov | Child bedroom wall shelves |
+| [painted_wooden_nightstand](https://polyhaven.com/a/painted_wooden_nightstand) | Kirill Sannikov | Master nightstand with alarm clock |
+| [old_bed_frame](https://polyhaven.com/a/old_bed_frame) | Luca B | Child and master bed frames; capped |
+| [vintage_cabinet_01](https://polyhaven.com/a/vintage_cabinet_01) | Rico Cilliers | Corridor vent cabinet + basement wardrobe |
+| [Chandelier_01](https://polyhaven.com/a/Chandelier_01) | Kirill Sannikov | Balcony void chandelier over dining; capped |
+| [Lantern_01](https://polyhaven.com/a/Lantern_01) | Rajil Jose Macatangay | Corridor and stair lanterns; capped |
+| [pot_enamel_01](https://polyhaven.com/a/pot_enamel_01) | Kuutti Siitonen | Bathroom enamel bucket |
+| [alarm_clock_01](https://polyhaven.com/a/alarm_clock_01) | Yann Kervran, James Ray Cock | Master nightstand clock; hands disabled |
+| [vintage_wooden_drawer_01](https://polyhaven.com/a/vintage_wooden_drawer_01) | James Ray Cock | Master dresser; capped |
+| [wooden_stool_01](https://polyhaven.com/a/wooden_stool_01) | Kuutti Siitonen | Basement sewing stool |
+| [Rockingchair_01](https://polyhaven.com/a/Rockingchair_01) | Jorge Camacho | Balcony and master rocking chairs; capped |
+| [throw_pillows_01](https://polyhaven.com/a/throw_pillows_01) | Serhii Khromov | Bed pillows; capped |
+| [wooden_crate_01](https://polyhaven.com/a/wooden_crate_01), [wooden_crate_02](https://polyhaven.com/a/wooden_crate_02) | James Ray Cock, Jurita Burger | Basement storage; capped |
+| [steel_frame_shelves_02](https://polyhaven.com/a/steel_frame_shelves_02) | James Ray Cock | Basement racks; capped |
+| [book_encyclopedia_set_01](https://polyhaven.com/a/book_encyclopedia_set_01) | John Malcolm | Shelf/rack books, 20 volumes; capped to 120 tris per volume |
+| [vintage_video_camera](https://polyhaven.com/a/vintage_video_camera) | James Ray Cock, Jenelle van Heerden | Basement handycam prop (played clip, not a real recording); capped |
+| [wooden_candlestick](https://polyhaven.com/a/wooden_candlestick) | Josh Dean | Dresser candle; capped |
+| [metal_tool_chest](https://polyhaven.com/a/metal_tool_chest) | Yann Kervran, John Hutcheson | Master tool chest; capped |
+| [vintage_oil_lamp](https://polyhaven.com/a/vintage_oil_lamp) | Monsta3D | Basement teplok oil lamp + flame planes; capped |
+| [decrepit_wallpaper](https://polyhaven.com/a/decrepit_wallpaper) | Rob Tuytel | Child room wallpaper PBR |
+| [old_wood_floor](https://polyhaven.com/a/old_wood_floor) | Guillaume Monsergent | Second-floor boards PBR |
+| [dirty_tiles](https://polyhaven.com/a/dirty_tiles) | Matterfield, Jenelle van Heerden | Bathroom tile PBR |
+| [quatrefoil_jacquard_fabric](https://polyhaven.com/a/quatrefoil_jacquard_fabric) | colormass, Rico Cilliers | Master quilt/curtain fabric PBR |
+| [stained_pine](https://polyhaven.com/a/stained_pine) | Dario Barresi, Jenelle van Heerden | Stair/basement timber PBR |
+| [ceiling_interior](https://polyhaven.com/a/ceiling_interior) | Dimitrios Savva | Second-floor ceiling PBR |
+| [painted_concrete](https://polyhaven.com/a/painted_concrete) | Dario Barresi, Dimitrios Savva | Basement walls/floor PBR |
+
+Source FBX files are imported under `Assets/_LayarTerakhir/Art/Imported/PolyHaven/`; 1K maps under
+`Assets/_LayarTerakhir/Art/Atmaja/Textures/`. `Tools/prepare_upper_decimate.py` applies absolute
+per-mesh polygon caps (e.g. encyclopedia volumes 120, tool chest 400, picture frames 600) so the
+two-story scene keeps an integrated-GPU static budget; caps are recorded in that tool and are
+idempotent. No source mesh is relicensed; only CC0 terms apply.
+
+Ten original Blender props authored with `Tools/author_atmaja_upper.py`
+(`Assets/_LayarTerakhir/Art/Original/Models/`): bathtub, sink pedestal, standing mirror, standing
+Nyonya figure, hanged Nyonya figure, rusted shears, sewing machine, sewing bench, hanging rag, and
+trapdoor slab. They use project materials (enamel, mirror glass, old rope, black iron, rust, dirty
+kebaya) following the original project license — not downloads and not extracted game art. Basement
+audio is runtime-synthesized original waveforms; the Nyonya hum is generated `AtmajaSynth` tones,
+not a vocal recording. The handycam "playback" is a synthetic static clip, not real footage.
 
 The original backdrop's new folded storage mesh is authored by
 `Tools/author_compact_kos.py --stored-only`; it retains the green cloth and collapsed frame,

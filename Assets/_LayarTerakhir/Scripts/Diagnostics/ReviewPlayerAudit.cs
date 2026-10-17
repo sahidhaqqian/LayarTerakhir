@@ -248,6 +248,8 @@ namespace LayarTerakhir.Diagnostics
         private void Click(string name){var b=Button(name);Check(b.interactable,"UI button: "+name);b.onClick.Invoke();}
         private void Aim(Vector3 target)
         {
+            var flat=target-player.transform.position;flat.y=0;
+            if(flat.sqrMagnitude>.001f)player.transform.rotation=Quaternion.LookRotation(flat);
             var direction=target-player.cameraPivot.position;
             if(direction.sqrMagnitude>.001f)player.cameraPivot.rotation=Quaternion.LookRotation(direction);
             var rig=player.GetComponent<ShoulderCameraRig>();if(rig)rig.RefreshCameraPose();

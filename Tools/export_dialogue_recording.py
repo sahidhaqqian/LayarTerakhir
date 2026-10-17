@@ -46,7 +46,7 @@ def export():
     OUT.mkdir(parents=True, exist_ok=True)
     rows = sorted(lines.values(), key=lambda row: (row["speaker"], row["id"]))
     with (OUT / "dialogue-recording.csv").open("w", newline="", encoding="utf-8-sig") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
+        writer = csv.DictWriter(handle, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
     (OUT / "dialogue-recording.json").write_text(json.dumps(rows, indent=2, ensure_ascii=False) + "\n")

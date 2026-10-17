@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace LayarTerakhir.Prolog
 {
-    public enum AtmajaStage { Courtyard,SurveyRead,Live,SidePassage,Kitchen,DamarPhone,ARRevealed,ClockUnlocked,StairCheckpoint }
+    public enum AtmajaStage { Courtyard,SurveyRead,Live,SidePassage,Kitchen,DamarPhone,ARRevealed,ClockUnlocked,StairCheckpoint,StairLanding,EvidenceHunt,MasterOpen,BasementEntry,BasementStealth,HandycamPlayed,Chase,EndingVista }
     public sealed class AtmajaDirector:MonoBehaviour
     {
         public const string SurveyId="DOC_PROLOG_02_SURVEI_DAMAR";
@@ -17,7 +17,8 @@ namespace LayarTerakhir.Prolog
         public const string LiveIntro="Oke... tes, satu dua. Malam semuanya, balik lagi di Malam Keramat. Malam ini gue nggak sendirian... maksudnya, gue lagi nyusulin Damar yang hilang kontak di Rumah Tua Atmaja. Buat yang baru gabung, bantu pantau layar ya.";
         public FirstPersonController player;
         public Transform gateHinge,kitchenDoor,spawnCourtyard,spawnKitchen,spawnDining,spawnStairs,vaultOutside,vaultInside;
-        public GameObject kitchenShutter,damarPhone,clockHands,arFigure,arClue;
+        public GameObject kitchenShutter,damarPhone,clockHands,arFigure,arClue,stairDoorLeaf;
+        public AtmajaUpperDirector upper;public AtmajaBasementHorror basement;public AtmajaChaseSequence chase;
         public Transform clockHour,clockMinute,clockDrawer;
         public Vector3 clockDialCentre;
         public Vector3 clockFaceNormal=Vector3.forward;
@@ -31,7 +32,17 @@ namespace LayarTerakhir.Prolog
         public bool HasSurvey=>Has(SurveyId);
         public bool CanBeginLive=>Has("EVENT_P0_FRONT_DOOR_TRIED")||HasSurvey;
         public bool LiveConnected=>Has("EVENT_P0_LIVE_STARTED");
-        public int Viewers=>Has("EVENT_P0_AR_REVEALED")?1420:Has("EVENT_P0_KITCHEN_ENTERED")?250:14;
+        public int Viewers
+        {
+            get
+            {
+                if(Has("PROLOG_COMPLETE")||Stage==AtmajaStage.EndingVista)return 54820;
+                if(Has("EVENT_P0_CHASE_STARTED")||Stage==AtmajaStage.Chase)return 31200;
+                if(Has("EVENT_P0_BASEMENT_ENTERED"))return 12400;
+                if(upper&&upper.ViewersBump()>0)return upper.ViewersBump();
+                return Has("EVENT_P0_AR_REVEALED")?1420:Has("EVENT_P0_KITCHEN_ENTERED")?250:14;
+            }
+        }
         private bool underTree,wellHeard;
         private bool clockTimeShown;
         private AudioClip arStatic;
@@ -71,13 +82,20 @@ namespace LayarTerakhir.Prolog
             bool inside=Has("EVENT_P0_KITCHEN_ENTERED");kitchenShutter.SetActive(inside);
             if(kitchenDoor)kitchenDoor.localRotation=Quaternion.Euler(0,Has("EVENT_P0_DINING_OPEN")?-95:0,0);
             if(damarPhone)damarPhone.SetActive(!Has("MATABATIN_APK"));
+            if(stairDoorLeaf)
+            {
+                bool stairsOpen=Has("EVENT_P0_STAIRS_UNLOCKED");
+                stairDoorLeaf.transform.position=P(-3.55f,7.7f,stairsOpen?-0.85f:1.8f);
+                var leafCollider=stairDoorLeaf.GetComponent<Collider>();if(leafCollider)leafCollider.enabled=!stairsOpen;
+            }
             if(clockHands)clockHands.SetActive(!Has("ITEM_P0_CLOCK_HANDS"));
             if(clockHour)clockHour.gameObject.SetActive(Has("EVENT_P0_CLOCK_UNLOCKED"));
             if(clockMinute)clockMinute.gameObject.SetActive(Has("EVENT_P0_CLOCK_UNLOCKED"));
             if(Has("EVENT_P0_CLOCK_UNLOCKED"))ShowClockTime();
-            var spawn=Has("EVENT_P0_STAIRS_UNLOCKED")?spawnStairs:Has("MATABATIN_APK")?spawnDining:inside?spawnKitchen:spawnCourtyard;
+            var spawn=Has("PROLOG_COMPLETE")&&chase&&chase.spawnStreet?chase.spawnStreet:Has("EVENT_P0_CHASE_STARTED")&&chase&&chase.spawnChase?chase.spawnChase:Has("EVENT_P0_BASEMENT_ENTERED")&&basement&&basement.spawnBasement?basement.spawnBasement:Has("EVENT_P0_UPPER_REACHED")&&upper&&upper.spawnUpper?upper.spawnUpper:Has("EVENT_P0_STAIRS_UNLOCKED")?spawnStairs:Has("MATABATIN_APK")?spawnDining:inside?spawnKitchen:spawnCourtyard;
             PlacePlayer(spawn.position,spawn.rotation);
-            Stage=Has("EVENT_P0_STAIRS_UNLOCKED")?AtmajaStage.StairCheckpoint:Has("EVENT_P0_CLOCK_UNLOCKED")?AtmajaStage.ClockUnlocked:Has("EVENT_P0_AR_REVEALED")?AtmajaStage.ARRevealed:Has("MATABATIN_APK")?AtmajaStage.DamarPhone:inside?AtmajaStage.Kitchen:TreeCleared?AtmajaStage.SidePassage:LiveConnected?AtmajaStage.Live:HasSurvey?AtmajaStage.SurveyRead:AtmajaStage.Courtyard;
+            Stage=Has("PROLOG_COMPLETE")?AtmajaStage.EndingVista:Has("EVENT_P0_CHASE_STARTED")?AtmajaStage.Chase:Has("EVENT_P0_HANDYCAM_PLAYED")?AtmajaStage.HandycamPlayed:Has("EVENT_P0_BASEMENT_ENTERED")?AtmajaStage.BasementStealth:Has("EVENT_P0_UPPER_REACHED")?(upper&&upper.ChainsBroken>=3?AtmajaStage.MasterOpen:AtmajaStage.EvidenceHunt):Has("EVENT_P0_STAIRS_UNLOCKED")?AtmajaStage.StairCheckpoint:Has("EVENT_P0_CLOCK_UNLOCKED")?AtmajaStage.ClockUnlocked:Has("EVENT_P0_AR_REVEALED")?AtmajaStage.ARRevealed:Has("MATABATIN_APK")?AtmajaStage.DamarPhone:inside?AtmajaStage.Kitchen:TreeCleared?AtmajaStage.SidePassage:LiveConnected?AtmajaStage.Live:HasSurvey?AtmajaStage.SurveyRead:AtmajaStage.Courtyard;
+            if(upper)upper.RestoreWorld();if(basement)basement.RestoreWorld();if(chase)chase.RestoreWorld();
         }
         public void PlacePlayer(Vector3 position,Quaternion rotation)
         {var cc=player.GetComponent<CharacterController>();cc.enabled=false;player.transform.SetPositionAndRotation(position,rotation);cc.enabled=true;Physics.SyncTransforms();}
@@ -112,7 +130,7 @@ namespace LayarTerakhir.Prolog
             }
             if(Has("EVENT_P0_KITCHEN_ENTERED")&&!wellHeard&&Vector3.Distance(player.transform.position,P(2.7f,11.2f,.35f))<2)
             {wellHeard=true;Hud.EnqueueSubtitle("SFX","[KLOTAK... KLOTAK... Suara ember timba ditarik dari dasar sumur]",3);Hud.EnqueueSubtitle("Bisikan","Haus... bukakan...",3);Sfx(audioProfile.knock,P(2.7f,11.2f,.4f),.4f);}
-            if(!modal&&Phone&&Phone.isPhoneRaised&&Phone.isScreenOn&&GameInputConfig.Instance.GetActionDown(GameAction.CaptureOrBlitz))TryPhotographWell();
+            if(!modal&&Phone&&Phone.isPhoneRaised&&Phone.isScreenOn&&phoneView&&phoneView.IsCameraApp&&GameInputConfig.Instance.GetActionDown(GameAction.CaptureOrBlitz))TryPhotographWell();
             var delta=player.transform.position-previousPosition;previousPosition=player.transform.position;delta.y=0;
             if(delta.sqrMagnitude>1||modal||player.MovementLocked)return;
             walked+=delta.magnitude;
@@ -139,7 +157,10 @@ namespace LayarTerakhir.Prolog
                 case AtmajaAction.Clock:ClockPuzzle();break;
                 case AtmajaAction.StairDoor:
                     if(!Has("EVENT_P0_CLOCK_UNLOCKED")){Hud.ShowBroadcastNotification("Pintu tangga terkunci. Periksa jam bandul dan dinding di sampingnya dengan AR.",5);break;}
-                    if(Commit("EVENT_P0_STAIRS_UNLOCKED","PROLOG_ATMAJA_STAIRS_UNLOCKED")){Stage=AtmajaStage.StairCheckpoint;Objective();Hud.ShowBroadcastNotification("Checkpoint tersimpan • Lantai 1 selesai.\nLantai 2 belum termasuk build playtest ini.",8);}break;
+                    if(Commit("EVENT_P0_STAIRS_UNLOCKED","PROLOG_ATMAJA_STAIRS_UNLOCKED")){Stage=AtmajaStage.StairCheckpoint;RestoreWorld();Objective();Hud.ShowBroadcastNotification("Pintu tangga terbuka. Naik ke lantai 2, ikuti jejak tangan berdarah.",8);}break;
+                case AtmajaAction.CupPhoto:case AtmajaAction.Diary:case AtmajaAction.BathCurtain:case AtmajaAction.BathScratches:case AtmajaAction.WillLetter:case AtmajaAction.RopePhoto:if(upper)upper.HandleEvidence(item);break;
+                case AtmajaAction.CarpetLift:case AtmajaAction.Trapdoor:if(upper)upper.HandleMaster(item);break;
+                case AtmajaAction.Powerbank:case AtmajaAction.Handycam:case AtmajaAction.WardrobeHide:if(basement)basement.Handle(item);break;
                 case AtmajaAction.Charge:if(Phone.batteryPercent<35)StartCoroutine(Charge());break;
                 case AtmajaAction.Window:Hud.ShowBroadcastNotification($"[{GameInputConfig.Instance.vaultKey}] Panjat jendela dapur\n"+(TreeCleared?"Dekati jendela dan hadap ke dalam.":"Baca catatan, mulai live, dan lewati kamboja sambil merunduk."),4);break;
             }
@@ -205,8 +226,36 @@ namespace LayarTerakhir.Prolog
         {
             if(!player.IsCrouching){Hud.ShowBroadcastNotification("Merunduk untuk meraih HP Damar di kolong meja.",4);return;}
             if(!Commit("MATABATIN_APK","PROLOG_MATABATIN_ACQUIRED",()=>Campaign.Data.upgrades.Add("MATABATIN_AR")))return;
-            damarPhone.SetActive(false);Phone.arModuleUnlocked=true;Stage=AtmajaStage.DamarPhone;
-            Hud.EnqueueSubtitle("Raka","Ini HP-nya Damar... Layarnya pecah, tapi kartu memorinya masih kebaca. Gue pindahin dulu aplikasinya ke HP gue.",7);Objective();
+            Phone.arModuleUnlocked=true;Stage=AtmajaStage.DamarPhone;
+            Hud.EnqueueSubtitle("Raka","Ini HP-nya Damar... Layarnya pecah, tapi kartu memorinya masih kebaca. Gue pindahin dulu aplikasinya ke HP gue.",7);
+            StartCoroutine(ChipTransferSequence());Objective();
+        }
+        private IEnumerator ChipTransferSequence()
+        {
+            // First-person hand transfer: Raka lifts the cracked phone into the raised handset,
+            // tilts it screen-first toward the camera, then the extracted module vanishes into the phone.
+            if(!damarPhone)yield break;
+            var cam=player.GetComponent<InteractionInteractor>().playerCamera.transform;
+            var hand=Phone.handPhoneMeshRoot?Phone.handPhoneMeshRoot.transform:null;
+            Quaternion handBase=hand?hand.localRotation:Quaternion.identity;
+            var startPos=damarPhone.transform.position;var startRot=damarPhone.transform.rotation;
+            var holdPos=cam.TransformPoint(new Vector3(.13f,-.19f,.30f));
+            var holdRot=Quaternion.LookRotation(-cam.forward,cam.up)*Quaternion.Euler(90,0,0);
+            notificationSource.PlayOneShot(audioProfile.unlock,.4f);
+            float t=0;const float reach=1.25f;
+            while(t<reach)
+            {
+                t+=Time.deltaTime;float e=Mathf.SmoothStep(0,1,Mathf.Clamp01(t/reach));
+                damarPhone.transform.position=Vector3.Lerp(startPos,holdPos,e)+Vector3.up*Mathf.Sin(e*Mathf.PI)*.045f;
+                damarPhone.transform.rotation=Quaternion.Slerp(startRot,holdRot,e);
+                if(hand&&Phone.handPhoneMeshRoot.activeInHierarchy)hand.localRotation=handBase*Quaternion.Euler(0,Mathf.Sin(t*11f)*3.2f,Mathf.Sin(t*7f)*1.4f);
+                yield return null;
+            }
+            Hud.ShowBroadcastNotification("Kartu memori terbaca • Modul MataBatin.apk dipindahkan ke HP Raka.",4.5f);
+            notificationSource.PlayOneShot(audioProfile.notification,.5f);
+            yield return new WaitForSeconds(.9f);
+            if(hand)hand.localRotation=handBase;
+            damarPhone.SetActive(false);
         }
         private void RevealAR()
         {
@@ -268,8 +317,38 @@ namespace LayarTerakhir.Prolog
         }
         public void Objective()
         {
-            string text=Stage==AtmajaStage.StairCheckpoint?"Cari keberadaan Damar di bagian rumah berikutnya.":Has("EVENT_P0_CLOCK_UNLOCKED")?"Lanjutkan pencarian Damar.":Has("EVENT_P0_AR_CLUE_READ")?"Pahami hubungan petunjuk dengan benda-benda di rumah.":Has("EVENT_P0_AR_REVEALED")?"Cari tahu apa yang disembunyikan rumah ini.":Has("MATABATIN_APK")?"Coba aplikasi yang ditinggalkan Damar.":Has("EVENT_P0_KITCHEN_ENTERED")?"Cari keberadaan atau petunjuk tentang Damar.":TreeCleared?"Cari celah untuk masuk. [SPASI] untuk memanjat.":LiveConnected?"Temukan jalan masuk lain.":CanBeginLive?"Nyalakan siaran sebelum melanjutkan pencarian.":"23:52 WIB • Cari jejak Damar di sekitar rumah.";
+            string text=Stage>=AtmajaStage.StairLanding?UpperObjective():Stage==AtmajaStage.StairCheckpoint?"Cari keberadaan Damar di bagian rumah berikutnya.":Has("EVENT_P0_CLOCK_UNLOCKED")?"Lanjutkan pencarian Damar.":Has("EVENT_P0_AR_CLUE_READ")?"Pahami hubungan petunjuk dengan benda-benda di rumah.":Has("EVENT_P0_AR_REVEALED")?"Cari tahu apa yang disembunyikan rumah ini.":Has("MATABATIN_APK")?"Coba aplikasi yang ditinggalkan Damar.":Has("EVENT_P0_KITCHEN_ENTERED")?"Cari keberadaan atau petunjuk tentang Damar.":TreeCleared?"Cari celah untuk masuk. [SPASI] untuk memanjat.":LiveConnected?"Temukan jalan masuk lain.":CanBeginLive?"Nyalakan siaran sebelum melanjutkan pencarian.":"23:52 WIB • Cari jejak Damar di sekitar rumah.";
             Hud.SetObjective(text);
+        }
+        private string UpperObjective()
+        {
+            if(!upper||!basement||!chase)return "Lantai 2.";
+            return Stage switch
+            {
+                AtmajaStage.StairLanding=>upper.Objective(),
+                AtmajaStage.EvidenceHunt=>upper.Objective(),
+                AtmajaStage.MasterOpen=>upper.Objective(),
+                AtmajaStage.BasementEntry=>basement.Objective(),
+                AtmajaStage.BasementStealth=>basement.Objective(),
+                AtmajaStage.HandycamPlayed=>chase.Objective(),
+                AtmajaStage.Chase=>chase.Objective(),
+                AtmajaStage.EndingVista=>"Prolog Layar Terakhir selesai. Istirahatlah di kosmu...",
+                _=>"Lantai 2.",
+            };
+        }
+        public void SetBusy(bool value)=>Busy=value;
+        public void SetStage(AtmajaStage stage)=>Stage=stage;
+        public void FailToCheckpoint(string checkpoint,string reason)
+        {
+            Time.timeScale=1;
+            try{if(upper)upper.StopAllCoroutines();}catch{}
+            try{if(basement)basement.StopAllCoroutines();}catch{}
+            try{if(chase)chase.StopAllCoroutines();}catch{}
+            try{StopAllCoroutines();}catch{}
+            Campaign.LoadCheckpoint();
+            var phone=SmartphoneController.Instance;
+            if(phone){phone.batteryPercent=Campaign.Data.battery;phone.isScreenOn=phone.batteryPercent>0;phone.currentScanMode=Smartphone.ScanVisualMode.Normal;phone.SyncVisualState();}
+            RestoreWorld();Objective();Hud.ShowBroadcastNotification(reason+" Checkpoint dipulihkan.",6);
         }
         private void Sfx(AudioClip clip,Vector3 where,float gain)
         {if(!foleySource||!clip)return;foleySource.transform.position=where;foleySource.PlayOneShot(clip,gain);}
