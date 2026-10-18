@@ -15,8 +15,17 @@
 /[Uu]ser[Ss]ettings/
 *.log
 
-# Local production-tool syntax-check bytecode
-/Tools/__pycache__/
+# Project content after migration stays versioned:
+# Assets/_LayarTerakhir/src/, Assets/_LayarTerakhir/assets/, Resources and .meta.
+# Do not ignore assets/ or src/ globally; .graphifyignore controls graph inputs only.
+
+# Local editor/OS state and Unity MCP scan cache
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+/.unity-mcp-cache.json
+
 /Audit/Visuals/**/IsolatedSave-*/
 
 # By default unity supports Blender asset imports, *.blend1 blender files do not need to be commited to version control.
@@ -121,8 +130,9 @@ InitTestScene*.unity*
 /Scene2_Atmaja_Assets/*.zip
 /Scene2_Atmaja_Assets/*.zip.sha256
 
-# Python bytecode
+# Python bytecode (Tools and research/authoring scripts)
 __pycache__/
+*.py[cod]
 /Scene2_Atmaja_Recovery/*.zip
 /Scene2_Atmaja_Recovery/*.zip.sha256
 
