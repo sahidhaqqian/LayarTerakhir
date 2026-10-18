@@ -44,7 +44,7 @@ the standing hunter, bathroom reflection and final street figure. Clothing reuse
 previously credited jacquard weave normal/pattern. Motion is procedural, not motion
 capture. The authoring receipt is `Audit/atmaja-character-authoring.json`.
 
-`Assets/_LayarTerakhir/Art/Atmaja/Textures/AtmajaFamilyScratched-v1.png` is an original
+`Assets/_LayarTerakhir/assets/Art/Atmaja/Textures/AtmajaFamilyScratched-v1.png` is an original
 AI-generated fictional family photograph, made with the built-in image_gen tool using
 the imagegen skill. Its exact prompt, SHA-256 and destination are recorded in
 `Audit/prolog-generated-art.json`. All faces are fictional; the scratches depict paper
@@ -132,7 +132,7 @@ Other selected staged artwork is CC0-1.0, under the [Poly Haven asset license](h
 
 The procedural recovery scooter/house details/frangipani leaves and flowers are project-authored; derivative repairs correct scooter wheel axes/seat and physical window openings. Original added meshes: banquet table, grandfather clock/hands/drawer, seated bent-neck AR figure, linked chains, well boards, cracked phone details and kitchen fittings. The backpack reuses the original Kos FBX without changing that source asset. These original works follow the project license. No branded motorcycle model, ripped game art, or new download is used.
 
-`Audit/atmaja-art-manifest.json` records hashes of consumed staged sources, derivative model counts and material paths; `Tools/prepare_atmaja_art.py`, `Tools/pack_atmaja_masks.py`, `Tools/author_atmaja_details.py` preserve the workflow. Selected model/material imports are at `Assets/_LayarTerakhir/Art/Atmaja`. Existing Kos audio clips, Barlow OFL, and CC0 art remain credited below. The later synthetic dialogue revision is described above.
+`Audit/atmaja-art-manifest.json` records hashes of consumed staged sources, derivative model counts and material paths; `Tools/prepare_atmaja_art.py`, `Tools/pack_atmaja_masks.py`, `Tools/author_atmaja_details.py` preserve the workflow. Selected model/material imports are at `Assets/_LayarTerakhir/assets/Art/Atmaja`. Existing Kos audio clips, Barlow OFL, and CC0 art remain credited below. The later synthetic dialogue revision is described above.
 
 ## Kamar Kos (earlier passes, preserved)
 
@@ -157,7 +157,7 @@ All downloaded artwork used in this pass is **CC0 1.0 Universal**. Poly Haven ex
 
 Kenney Furniture Kit 2.0 — Kenney / Kenney.nl. Imported parts: computerScreen, computerKeyboard, computerMouse, speakerSmall, bookcaseClosedDoors, cabinetBedDrawer, doorwayFront, wallWindow, books, cardboardBoxOpen, trashcan, ceilingFan and coatRack. The last two are available in the project but not placed in the scene. All are CC0-1.0. The simple props were assigned new URP PBR materials in this project. The wardrobe, drawer, door and window meshes were converted from the same kit's OBJ variants and re-unwrapped for wood grain instead of their original palette UVs; see `Tools/retexture_kenney_wood.py`.
 
-Verified original ZIP download: [kenney_furniture-kit.zip](https://kenney.nl/media/pages/assets/furniture-kit/440e0608a4-1677580847/kenney_furniture-kit.zip). Downloaded 5,130,729 bytes; SHA-256 `e67652d0932cee41683f74711c03d3e192a2af9979ef8e6b237711f5482d46b0`. The source archive was opened and its included License.txt inspected. A copy is retained at `Assets/_LayarTerakhir/Art/Imported/Kenney/License.txt`.
+Verified original ZIP download: [kenney_furniture-kit.zip](https://kenney.nl/media/pages/assets/furniture-kit/440e0608a4-1677580847/kenney_furniture-kit.zip). Downloaded 5,130,729 bytes; SHA-256 `e67652d0932cee41683f74711c03d3e192a2af9979ef8e6b237711f5482d46b0`. The source archive was opened and its included License.txt inspected. A copy is retained at `Assets/_LayarTerakhir/assets/Art/Imported/Kenney/License.txt`.
 
 The exact Poly Haven model and texture download URLs, source MD5 values, SHA-256 digests, file sizes, authors, and imported paths are recorded in [asset-download-manifest.json](asset-download-manifest.json). All downloads were checked against the API-supplied MD5. The live API was used only by the production downloader with the User-Agent `LayarTerakhir-EnvironmentProduction/1.0`; the game makes no Poly Haven API requests. [Current API terms](https://github.com/Poly-Haven/Public-API/blob/master/ToS.md) permit commercial API access and distinguish it from the unconditional CC0 asset license.
 
@@ -273,14 +273,14 @@ Exact URLs, authors, MD5, SHA-256 and sizes: [atmaja-upper-source-verification.j
 | [ceiling_interior](https://polyhaven.com/a/ceiling_interior) | Dimitrios Savva | Second-floor ceiling PBR |
 | [painted_concrete](https://polyhaven.com/a/painted_concrete) | Dario Barresi, Dimitrios Savva | Basement walls/floor PBR |
 
-Source FBX files are imported under `Assets/_LayarTerakhir/Art/Imported/PolyHaven/`; 1K maps under
-`Assets/_LayarTerakhir/Art/Atmaja/Textures/`. `Tools/prepare_upper_decimate.py` applies absolute
+Source FBX files are imported under `Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/`; 1K maps under
+`Assets/_LayarTerakhir/assets/Art/Atmaja/Textures/`. `Tools/prepare_upper_decimate.py` applies absolute
 per-mesh polygon caps (e.g. encyclopedia volumes 120, tool chest 400, picture frames 600) so the
 two-story scene keeps an integrated-GPU static budget; caps are recorded in that tool and are
 idempotent. No source mesh is relicensed; only CC0 terms apply.
 
 Ten original Blender props authored with `Tools/author_atmaja_upper.py`
-(`Assets/_LayarTerakhir/Art/Original/Models/`): bathtub, sink pedestal, standing mirror, standing
+(`Assets/_LayarTerakhir/assets/Art/Original/Models/`): bathtub, sink pedestal, standing mirror, standing
 Nyonya figure, hanged Nyonya figure, rusted shears, sewing machine, sewing bench, hanging rag, and
 trapdoor slab. They use project materials (enamel, mirror glass, old rope, black iron, rust, dirty
 kebaya) following the original project license — not downloads and not extracted game art. Basement

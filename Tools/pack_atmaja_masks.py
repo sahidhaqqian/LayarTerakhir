@@ -11,7 +11,7 @@ for m in data['materials']:
     if 'Roughness' in p.name:
         rough=im.getchannel('R');ao=Image.new('L',im.size,255);metal=Image.new('L',im.size,0)
     else:ao,rough,metal=im.split()
-    target=ROOT/'Assets/_LayarTerakhir/Art/Atmaja/Textures'/(m['name']+'_mask.png')
+    target=ROOT/'Assets/_LayarTerakhir/assets/Art/Atmaja/Textures'/(m['name']+'_mask.png')
     Image.merge('RGBA',(metal,ao,Image.new('L',im.size,0),ImageChops.invert(rough))).save(target)
     m['mask']=str(target.relative_to(ROOT))
 (ROOT/'Audit/atmaja-art-manifest.json').write_text(json.dumps(data,indent=2)+'\n')

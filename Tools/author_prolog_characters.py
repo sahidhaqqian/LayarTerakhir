@@ -16,7 +16,7 @@ from mathutils.kdtree import KDTree
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'Builds/ArtSources/MakeHuman'
-DEST = ROOT / 'Assets/_LayarTerakhir/Art/Characters'
+DEST = ROOT / 'Assets/_LayarTerakhir/assets/Art/Characters'
 MODEL = DEST / 'Models'
 TEXTURE = DEST / 'Textures'
 sys.path.insert(0,str(ROOT/'Tools'))
@@ -405,7 +405,7 @@ def make_character(female):
     if female:
         cloth_path=TEXTURE/'SriKebayaLace-v1.png'
         assert cloth_path.exists(),'Generate/copy the recorded original lace texture before authoring'
-        skirt_path=copy_texture(ROOT/'Assets/_LayarTerakhir/Art/Imported/PolyHaven/quatrefoil_jacquard_fabric/quatrefoil_jacquard_fabric_Diffuse_1k.jpg','SriSkirtJacquard')
+        skirt_path=copy_texture(ROOT/'Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/quatrefoil_jacquard_fabric/quatrefoil_jacquard_fabric_Diffuse_1k.jpg','SriSkirtJacquard')
         cloth=material('Sri_Cloth',(.83,.81,.75),cloth_path);batik=material('Sri_Batik',(.16,.095,.055),skirt_path)
         garment=[]
         for face,group in zip(BASE_FACES,BASE_GROUPS):

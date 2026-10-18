@@ -4,15 +4,9 @@
 
 !Assets/
 !Assets/_LayarTerakhir/
-!Assets/_LayarTerakhir/Scripts/
-!Assets/_LayarTerakhir/Scripts/**/
-!Assets/_LayarTerakhir/Scripts/**/*.cs
-!Assets/_LayarTerakhir/Editor/
-!Assets/_LayarTerakhir/Editor/**/
-!Assets/_LayarTerakhir/Editor/**/*.cs
-!Assets/_LayarTerakhir/Tests/
-!Assets/_LayarTerakhir/Tests/**/
-!Assets/_LayarTerakhir/Tests/**/*.cs
+!Assets/_LayarTerakhir/src/
+!Assets/_LayarTerakhir/src/**/
+!Assets/_LayarTerakhir/src/**/*.cs
 
 !Tools/
 !Tools/**/

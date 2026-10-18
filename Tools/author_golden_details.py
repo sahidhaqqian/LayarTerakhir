@@ -4,7 +4,7 @@ blender -b --python Tools/author_golden_details.py
 import bpy, math
 from pathlib import Path
 
-OUT = Path(__file__).resolve().parents[1] / 'Assets/_LayarTerakhir/Art/Original/Models'
+OUT = Path(__file__).resolve().parents[1] / 'Assets/_LayarTerakhir/assets/Art/Original/Models'
 
 def clear():
     bpy.ops.object.select_all(action='SELECT')

@@ -45,7 +45,7 @@ def export():
                                    estimated_seconds=round(max(2.5, len(text) / 17), 1), recording_status="WAITING_FOR_USER_RECORDING"))
     def literal(value):
         return json.loads('"' + value + '"')
-    for path in sorted((ROOT / "Assets/_LayarTerakhir/Scripts").rglob("*.cs")):
+    for path in sorted((ROOT / "Assets/_LayarTerakhir/src").rglob("*.cs")):
         source = path.read_text()
         for speaker, text in dialogue_literals(source):
             add(speaker, text, path.relative_to(ROOT).as_posix())

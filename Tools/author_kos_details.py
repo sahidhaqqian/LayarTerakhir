@@ -4,7 +4,7 @@ Exports static FBX meshes; no gameplay or animations. Dimensions are in metres.
 import bpy,math
 from pathlib import Path
 from mathutils import Vector,Matrix
-OUT=Path(__file__).resolve().parents[1]/'Assets/_LayarTerakhir/Art/Original/Models'
+OUT=Path(__file__).resolve().parents[1]/'Assets/_LayarTerakhir/assets/Art/Original/Models'
 OUT.mkdir(parents=True,exist_ok=True)
 def clear():
  bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)

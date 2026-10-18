@@ -108,7 +108,7 @@ if stage=='test' and result.returncode==0:
 if is_player and result.returncode==0:
     review=stage=='review-player';atmaja=stage=='atmaja-player';prolog=stage=='prolog-player';rider=stage=='rider-player';designer=stage=='designer-player'
     source='DesignerReviewPlayerAudit.cs' if designer else 'RiderPresentationAudit.cs' if rider else 'PrologCompletionAudit.cs' if prolog else 'ReviewPlayerAudit.cs'
-    expected_names=re.findall(r'\bShot\("([^"\n]+)"\)',(ROOT/'Assets/_LayarTerakhir/Scripts/Diagnostics'/source).read_text()) if review or prolog or rider or designer else []
+    expected_names=re.findall(r'\bShot\("([^"\n]+)"\)',(ROOT/'Assets/_LayarTerakhir/src/Diagnostics'/source).read_text()) if review or prolog or rider or designer else []
     if prolog and args.chase_only:expected_names=[name for name in expected_names if int(re.match(r'\d+',name).group())>=16]
     expected=len(expected_names) if review or prolog or rider or designer else 12 if atmaja else 13
     receipt=review_output/'player-audit.json' if review or prolog or rider or designer else ROOT/('Audit/Visuals/Atmaja-Linux/player-audit.json' if atmaja else 'Audit/Visuals/Golden-Linux/player-audit.json')

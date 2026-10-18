@@ -4,7 +4,7 @@ Static meshes only; no cloth simulation or new gameplay dependencies.
 import bpy, math, sys
 from pathlib import Path
 
-OUT=Path(__file__).resolve().parents[1]/'Assets/_LayarTerakhir/Art/Original/Models'
+OUT=Path(__file__).resolve().parents[1]/'Assets/_LayarTerakhir/assets/Art/Original/Models'
 
 def clear():
     bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)

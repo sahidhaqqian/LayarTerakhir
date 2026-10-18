@@ -45,7 +45,7 @@ def render():
     from gradio_client import Client, handle_file
     manifest_path = ROOT/'Audit/prolog-voice-manifest.json'
     manifest = json.loads(manifest_path.read_text())
-    desktop = (ROOT/'Assets/_LayarTerakhir/Scripts/UI/PhoneDesktop.cs').read_text()
+    desktop = (ROOT/'Assets/_LayarTerakhir/src/UI/PhoneDesktop.cs').read_text()
     def constant(name): return re.search(r'const string '+name+r'="([^"]+)"', desktop)[1]
     damar = constant('DamarVoiceNote')
     direction = {
@@ -61,7 +61,7 @@ def render():
     cached={(x['speaker'],x['text']):x for x in cache}; records=[]
     client=Client('openbmb/VoxCPM-Demo')
     for (speaker,text),delivery in direction.items():
-        path=ROOT/'Assets/_LayarTerakhir/Audio/Dialogue'/(hashlib.sha256((speaker+'|'+text).encode()).hexdigest()[:12]+'.wav')
+        path=ROOT/'Assets/_LayarTerakhir/assets/Audio/Dialogue'/(hashlib.sha256((speaker+'|'+text).encode()).hexdigest()[:12]+'.wav')
         old=cached.get((speaker,text))
         if old and path.exists() and hashlib.sha256(path.read_bytes()).hexdigest()==old['sha256']:
             records.append(old);continue

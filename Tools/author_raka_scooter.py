@@ -12,9 +12,9 @@ from mathutils import Vector, Matrix
 from mathutils.bvhtree import BVHTree
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT/'Assets/_LayarTerakhir/Art/Atmaja/Models/DamarScooter.fbx'
+SOURCE = ROOT/'Assets/_LayarTerakhir/assets/Art/Atmaja/Models/DamarScooter.fbx'
 RECOVERY = ROOT/'Scene2_Atmaja_Recovery/02_Motorcycle/Blender/DamarScooter.blend'
-OUTPUT = ROOT/'Assets/_LayarTerakhir/Art/Review/Models/RakaScooter.fbx'
+OUTPUT = ROOT/'Assets/_LayarTerakhir/assets/Art/Review/Models/RakaScooter.fbx'
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.fbx(filepath=str(SOURCE))

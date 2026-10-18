@@ -6,7 +6,7 @@ import ctypes as C, json, zipfile, wave, hashlib
 import numpy as np
 
 ROOT=Path(__file__).resolve().parents[1];TMP=Path('/tmp/layar-golden-sources')
-IMPORTED=ROOT/'Assets/_LayarTerakhir/Audio/Imported';OUT=ROOT/'Assets/_LayarTerakhir/Audio/Prepared';OUT.mkdir(parents=True,exist_ok=True)
+IMPORTED=ROOT/'Assets/_LayarTerakhir/assets/Audio/Imported';OUT=ROOT/'Assets/_LayarTerakhir/assets/Audio/Prepared';OUT.mkdir(parents=True,exist_ok=True)
 class Info(C.Structure):
     _fields_=[('frames',C.c_int64),('samplerate',C.c_int),('channels',C.c_int),('format',C.c_int),('sections',C.c_int),('seekable',C.c_int)]
 sf=C.CDLL('libsndfile.so.1');sf.sf_open.argtypes=[C.c_char_p,C.c_int,C.POINTER(Info)];sf.sf_open.restype=C.c_void_p

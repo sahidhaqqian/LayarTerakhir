@@ -7,7 +7,7 @@ from pathlib import Path
 import hashlib,json,math,re,struct,subprocess,time,wave
 from gradio_client import Client,handle_file
 
-ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'Assets/_LayarTerakhir/Audio/Dialogue';SAMPLES=ROOT/'Audit/VoiceSamples'
+ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'Assets/_LayarTerakhir/assets/Audio/Dialogue';SAMPLES=ROOT/'Audit/VoiceSamples'
 casting={
  'Raka':('Young adult man, warm conversational mid-range','Malam ini gue harus cari Damar. Semoga dia baik-baik aja.'),
  'Damar':('Young adult man, low rough and urgent hushed voice','Raka, tolong dengerin gue. Rumah ini nggak kosong.'),
@@ -16,13 +16,13 @@ casting={
 cast_voice={'Damar (rekaman)':'Damar','Nyonya Sri Atmaja':'Bisikan','Damar • dari lantai atas':'Damar'}
 lines=[]
 for name in ['Prolog/KamarKosPrologDirector.cs','Prolog/AtmajaDirector.cs','Prolog/AtmajaUpperDirector.cs','Prolog/AtmajaBasementHorror.cs','Prolog/AtmajaChaseSequence.cs','Prolog/AtmajaReviewMoments.cs','Prolog/MelatiNeighborhood.cs']:
-    source=(ROOT/'Assets/_LayarTerakhir/Scripts'/name).read_text()
+    source=(ROOT/'Assets/_LayarTerakhir/src'/name).read_text()
     for speaker,line in re.findall(r'(?:EnqueueSubtitle|PlayPriorityDialogue|PlayPriorityWorldDialogue)\(\s*"([^"]+)"\s*,\s*"((?:[^"\\]|\\.)*)"',source):
         if speaker in casting or speaker in cast_voice:lines.append((speaker,json.loads('"'+line+'"')))
-source=(ROOT/'Assets/_LayarTerakhir/Scripts/UI/PhoneDesktop.cs').read_text()
+source=(ROOT/'Assets/_LayarTerakhir/src/UI/PhoneDesktop.cs').read_text()
 for key,speaker in [('DamarVoiceNote','Damar'),('DamarScream','Damar'),('ContractReaction','Raka'),('Trapped','Raka')]:
     m=re.search(r'const string '+key+r'="((?:[^"\\]|\\.)*)"',source);lines.append((speaker,json.loads('"'+m[1]+'"')))
-source=(ROOT/'Assets/_LayarTerakhir/Scripts/Prolog/AtmajaDirector.cs').read_text();m=re.search(r'const string LiveIntro="((?:[^"\\]|\\.)*)"',source);lines.append(('Raka',json.loads('"'+m[1]+'"')))
+source=(ROOT/'Assets/_LayarTerakhir/src/Prolog/AtmajaDirector.cs').read_text();m=re.search(r'const string LiveIntro="((?:[^"\\]|\\.)*)"',source);lines.append(('Raka',json.loads('"'+m[1]+'"')))
 lines.append(("Raka","Sial pintunya dikunci, aku harus cari jalan lain."))
 progress=ROOT/'Audit/official-voice-progress.json';previous=json.loads(progress.read_text()).get('entries',[]) if progress.exists() else []
 cached={(e['speaker'],e['text']):e for e in previous};records=[]

@@ -7,7 +7,7 @@ import hashlib, json, requests
 from PIL import Image, ImageChops
 
 ROOT = Path(__file__).resolve().parents[1]
-ART = ROOT / 'Assets/_LayarTerakhir/Art/Imported/PolyHaven'
+ART = ROOT / 'Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven'
 SOURCE = Path('/tmp/kos-v2-sources')
 SOURCE.mkdir(exist_ok=True)
 session = requests.Session()

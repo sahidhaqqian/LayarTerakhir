@@ -7,8 +7,8 @@ blender -b --python Tools/prepare_upper_decimate.py
 import bpy
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
-POLYHAVEN = ROOT / 'Assets/_LayarTerakhir/Art/Imported/PolyHaven'
-ORIGINALS = ROOT / 'Assets/_LayarTerakhir/Art/Original/Models'
+POLYHAVEN = ROOT / 'Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven'
+ORIGINALS = ROOT / 'Assets/_LayarTerakhir/assets/Art/Original/Models'
 CAPS = {
     'book_encyclopedia_set_01': 120,
     'wooden_candlestick': 2500,

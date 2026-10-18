@@ -8,20 +8,20 @@ if [ ! -d "$PROJECT_ROOT/Assets" ]; then
     exit 1
 fi
 
-if [ -d "$PROJECT_ROOT/Assets/_LayarTerakhir/Scripts" ]; then
+if [ -d "$PROJECT_ROOT/Assets/_LayarTerakhir/src" ]; then
     echo "[ERROR] Foundation sources already exist. This legacy installer would overwrite audited fixes."
     exit 1
 fi
 
-mkdir -p "$PROJECT_ROOT/Assets/_LayarTerakhir/Scenes"
-mkdir -p "$PROJECT_ROOT/Assets/_LayarTerakhir/Scripts/Core"
-mkdir -p "$PROJECT_ROOT/Assets/_LayarTerakhir/Scripts/Player"
-mkdir -p "$PROJECT_ROOT/Assets/_LayarTerakhir/Scripts/Smartphone"
-mkdir -p "$PROJECT_ROOT/Assets/_LayarTerakhir/Scripts/UI"
-mkdir -p "$PROJECT_ROOT/Assets/_LayarTerakhir/Scripts/Prolog"
-mkdir -p "$PROJECT_ROOT/Assets/_LayarTerakhir/Editor"
+mkdir -p "$PROJECT_ROOT/Assets/_LayarTerakhir/assets/Scenes"
+mkdir -p "$PROJECT_ROOT/Assets/_LayarTerakhir/src/Core"
+mkdir -p "$PROJECT_ROOT/Assets/_LayarTerakhir/src/Player"
+mkdir -p "$PROJECT_ROOT/Assets/_LayarTerakhir/src/Smartphone"
+mkdir -p "$PROJECT_ROOT/Assets/_LayarTerakhir/src/UI"
+mkdir -p "$PROJECT_ROOT/Assets/_LayarTerakhir/src/Prolog"
+mkdir -p "$PROJECT_ROOT/Assets/_LayarTerakhir/src/Editor"
 
-cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/Scripts/Core/GameInputConfig.cs"
+cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/src/Core/GameInputConfig.cs"
 using System;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
@@ -279,7 +279,7 @@ namespace LayarTerakhir.Core
 }
 CS_EOF
 
-cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/Scripts/Core/CampaignState.cs"
+cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/src/Core/CampaignState.cs"
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -411,7 +411,7 @@ namespace LayarTerakhir.Core
 }
 CS_EOF
 
-cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/Scripts/Player/IInteractable.cs"
+cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/src/Player/IInteractable.cs"
 namespace LayarTerakhir.Player
 {
     public interface IInteractable
@@ -424,7 +424,7 @@ namespace LayarTerakhir.Player
 }
 CS_EOF
 
-cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/Scripts/Player/InteractionInteractor.cs"
+cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/src/Player/InteractionInteractor.cs"
 using LayarTerakhir.Core;
 using LayarTerakhir.UI;
 using UnityEngine;
@@ -488,7 +488,7 @@ namespace LayarTerakhir.Player
 }
 CS_EOF
 
-cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/Scripts/Player/FirstPersonController.cs"
+cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/src/Player/FirstPersonController.cs"
 using LayarTerakhir.Core;
 using LayarTerakhir.UI;
 using UnityEngine;
@@ -664,7 +664,7 @@ namespace LayarTerakhir.Player
 }
 CS_EOF
 
-cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/Scripts/Smartphone/SmartphoneController.cs"
+cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/src/Smartphone/SmartphoneController.cs"
 using LayarTerakhir.Core;
 using LayarTerakhir.UI;
 using UnityEngine;
@@ -877,7 +877,7 @@ namespace LayarTerakhir.Smartphone
 }
 CS_EOF
 
-cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/Scripts/UI/HudController.cs"
+cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/src/UI/HudController.cs"
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -1324,7 +1324,7 @@ namespace LayarTerakhir.UI
 }
 CS_EOF
 
-cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/Scripts/Prolog/KosInteractableItem.cs"
+cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/src/Prolog/KosInteractableItem.cs"
 using LayarTerakhir.Player;
 using UnityEngine;
 
@@ -1360,7 +1360,7 @@ namespace LayarTerakhir.Prolog
 }
 CS_EOF
 
-cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/Scripts/Prolog/KamarKosPrologDirector.cs"
+cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/src/Prolog/KamarKosPrologDirector.cs"
 using System.Collections;
 using LayarTerakhir.Core;
 using LayarTerakhir.Smartphone;
@@ -1743,7 +1743,7 @@ namespace LayarTerakhir.Prolog
 }
 CS_EOF
 
-cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/Editor/PrologKosSceneBuilder.cs"
+cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/src/Editor/PrologKosSceneBuilder.cs"
 #if UNITY_EDITOR
 using System.IO;
 using LayarTerakhir.Core;
@@ -1760,8 +1760,8 @@ namespace LayarTerakhir.Editor
 {
     public static class PrologKosSceneBuilder
     {
-        public const string SceneDirectory = "Assets/_LayarTerakhir/Scenes";
-        public const string ScenePath = "Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity";
+        public const string SceneDirectory = "Assets/_LayarTerakhir/assets/Scenes";
+        public const string ScenePath = "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity";
 
         [MenuItem("LayarTerakhir/Build Prolog Kamar Kos Scene")]
         public static void BuildSceneMenu()
@@ -2052,7 +2052,7 @@ namespace LayarTerakhir.Editor
 #endif
 CS_EOF
 
-cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/Editor/PrologMilestoneValidator.cs"
+cat << 'CS_EOF' > "$PROJECT_ROOT/Assets/_LayarTerakhir/src/Editor/PrologMilestoneValidator.cs"
 #if UNITY_EDITOR
 using System;
 using System.Collections.Generic;

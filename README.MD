@@ -68,13 +68,16 @@ oleh pengujian otomatis Linux.
 
 ```
 Assets/_LayarTerakhir/
-  Scenes/      Prolog_KamarKos (approved), Prolog_KoridorKos, Prolog_RumahAtmaja
-  Scripts/     Core, Player, Prolog, Smartphone, UI, Audio, Diagnostics
-  Editor/      alat produksi: builder scene, pass visual, validasi, build
-  Art/         model & tekstur (Imported / Original / Generated)
-  Audio/       WAV siap pakai, mixer, SceneAudioProfile
-  UI/          font Barlow (OFL), prefab GoldenHUD
-  Production/  prefab & preset impor yang dapat dipakai ulang
+  assets/
+    Scenes/      Prolog_KamarKos, Prolog_KoridorKos, Prolog_RumahAtmaja
+    Art/         model, tekstur, material, animasi (struktur impor dipertahankan)
+    Audio/       WAV, mixer, SceneAudioProfile
+    UI/          font Barlow (OFL), prefab GoldenHUD
+    Production/  prefab dan preset impor
+  src/
+    Core/, Player/, Prolog/, Smartphone/, UI/, Audio/, Diagnostics/
+    Editor/      builder scene, validasi, build, tes editor yang sudah ada
+Assets/Resources/  lokasi Resources.Load tetap sama
 Docs/          GOLDEN_SCENE_STANDARD.md (standar produksi)
 Tools/         skrip Python: aset, validasi, build, packaging
 Audit/         bukti tes/build, kredit aset, laporan
@@ -89,7 +92,7 @@ Dokumentasi lengkap arsitektur kode ada di [`ARCHITECTURE.MD`](ARCHITECTURE.MD).
 
 **Unity Editor**
 1. Buka folder proyek ini dengan Unity `6000.3.26f1` (URP; Windows Build Support Mono diperlukan untuk build).
-2. Buka `Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity`.
+2. Buka `Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity`.
 3. Tekan Play. Editor melewati menu untuk iterasi scene; standalone selalu mulai dari menu.
    Untuk memeriksa menu di Editor panggil `GameShell.Instance.OpenMain()` saat Play.
 

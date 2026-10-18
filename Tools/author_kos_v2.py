@@ -5,7 +5,7 @@ import bpy, math, sys
 from pathlib import Path
 from mathutils import Vector
 
-OUT = Path(__file__).resolve().parents[1] / 'Assets/_LayarTerakhir/Art/Original/Models'
+OUT = Path(__file__).resolve().parents[1] / 'Assets/_LayarTerakhir/assets/Art/Original/Models'
 
 def clear():
     bpy.ops.object.select_all(action='SELECT')

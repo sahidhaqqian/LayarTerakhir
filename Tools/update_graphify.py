@@ -12,9 +12,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 CODE_ROOTS = {
-    "Assets/_LayarTerakhir/Scripts": {".cs"},
-    "Assets/_LayarTerakhir/Editor": {".cs"},
-    "Assets/_LayarTerakhir/Tests": {".cs"},
+    "Assets/_LayarTerakhir/src": {".cs"},
     "Tools": {".py", ".sh"},
 }
 ARTIFACTS = ("graph.json", "GRAPH_REPORT.md", "graph.html")

@@ -14,7 +14,7 @@ from mathutils import Vector
 
 ROOT = Path(__file__).resolve().parents[1]
 CACHE = ROOT / 'Builds/ArtSources/Review'
-DEST = ROOT / 'Assets/_LayarTerakhir/Art/Review/Models'
+DEST = ROOT / 'Assets/_LayarTerakhir/assets/Art/Review/Models'
 DEST.mkdir(parents=True, exist_ok=True)
 records = []
 
@@ -64,9 +64,9 @@ records.append(runpy.run_path(str(ROOT/'Tools/author_raka_scooter.py'))['record'
 
 # Scene-only LOD variants leave every imported original and approved Kos scene intact.
 for source,name,ratio in [
-    (ROOT/'Assets/_LayarTerakhir/Art/Imported/PolyHaven/desk_lamp_arm_01/desk_lamp_arm_01.fbx','LodDeskLamp',.25),
-    (ROOT/'Assets/_LayarTerakhir/Art/Imported/PolyHaven/wooden_bookshelf_worn/wooden_bookshelf_worn.fbx','LodBookshelf',.40),
-    (ROOT/'Assets/_LayarTerakhir/Art/Atmaja/Models/shrub_03.fbx','LodShrub',.60)]:
+    (ROOT/'Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/desk_lamp_arm_01/desk_lamp_arm_01.fbx','LodDeskLamp',.25),
+    (ROOT/'Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/wooden_bookshelf_worn/wooden_bookshelf_worn.fbx','LodBookshelf',.40),
+    (ROOT/'Assets/_LayarTerakhir/assets/Art/Atmaja/Models/shrub_03.fbx','LodShrub',.60)]:
     clean();bpy.ops.import_scene.fbx(filepath=str(source))
     for obj in meshes():
         bpy.context.view_layer.objects.active=obj

@@ -9,9 +9,9 @@ from PIL import Image, ImageChops
 
 ROOT=Path(__file__).resolve().parents[1]
 TMP=Path('/tmp/layar-golden-sources');TMP.mkdir(exist_ok=True)
-ART=ROOT/'Assets/_LayarTerakhir/Art'
-AUDIO=ROOT/'Assets/_LayarTerakhir/Audio/Imported';AUDIO.mkdir(parents=True,exist_ok=True)
-FONT=ROOT/'Assets/_LayarTerakhir/UI/Fonts';FONT.mkdir(parents=True,exist_ok=True)
+ART=ROOT/'Assets/_LayarTerakhir/assets/Art'
+AUDIO=ROOT/'Assets/_LayarTerakhir/assets/Audio/Imported';AUDIO.mkdir(parents=True,exist_ok=True)
+FONT=ROOT/'Assets/_LayarTerakhir/assets/UI/Fonts';FONT.mkdir(parents=True,exist_ok=True)
 SESSION=requests.Session();SESSION.headers['User-Agent']='LayarTerakhir-GoldenProduction/1.0'
 records=[]
 def fetch(url):

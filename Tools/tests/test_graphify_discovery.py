@@ -24,15 +24,15 @@ class GraphifyDiscoveryTests(unittest.TestCase):
             self.assertTrue(
                 path.is_relative_to("Tools") or any(
                     path.is_relative_to("Assets/_LayarTerakhir/" + directory)
-                    for directory in ("Scripts", "Editor", "Tests")
+                    for directory in ("src",)
                 ), str(path)
             )
 
     def test_real_ignore_rejects_media_even_inside_code_roots(self):
         ignored = ignored_predicate(ROOT)
         for directory in (
-            "Tools", "Tools/tests", "Assets/_LayarTerakhir/Scripts/Prolog",
-            "Assets/_LayarTerakhir/Editor", "Assets/_LayarTerakhir/Tests",
+            "Tools", "Tools/tests", "Assets/_LayarTerakhir/src/Prolog",
+            "Assets/_LayarTerakhir/src/Editor", "Assets/_LayarTerakhir/src/Tests",
         ):
             for suffix in (
                 ".png", ".jpg", ".svg", ".wav", ".ogg", ".mp4", ".fbx",

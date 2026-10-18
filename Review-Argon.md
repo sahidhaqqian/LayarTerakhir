@@ -38,9 +38,9 @@ Berikut adalah perombakan menyeluruh untuk **memperlebar ukuran Kamar Kos** seka
 
 ---
 
-### 2. Perbarui `Assets/_LayarTerakhir/Editor/PrologKosSceneBuilder.cs`
+### 2. Perbarui `Assets/_LayarTerakhir/src/Editor/PrologKosSceneBuilder.cs`
 
-Ganti isi berkas `Assets/_LayarTerakhir/Editor/PrologKosSceneBuilder.cs` dengan kode berikut untuk membangun struktur fisik (*collider* dinding, lantai, plafon, perabot, dan titik interaksi) pada ruangan **6.0m x 4.5m x 3.1m** (nama objek `Floor_4x3m` dan lainnya tetap dipertahankan agar kompatibel dengan sistem yang sudah ada):
+Ganti isi berkas `Assets/_LayarTerakhir/src/Editor/PrologKosSceneBuilder.cs` dengan kode berikut untuk membangun struktur fisik (*collider* dinding, lantai, plafon, perabot, dan titik interaksi) pada ruangan **6.0m x 4.5m x 3.1m** (nama objek `Floor_4x3m` dan lainnya tetap dipertahankan agar kompatibel dengan sistem yang sudah ada):
 
 ```csharp
 #if UNITY_EDITOR
@@ -60,8 +60,8 @@ namespace LayarTerakhir.Editor
 {
     public static class PrologKosSceneBuilder
     {
-        public const string SceneDirectory = "Assets/_LayarTerakhir/Scenes";
-        public const string ScenePath = "Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity";
+        public const string SceneDirectory = "Assets/_LayarTerakhir/assets/Scenes";
+        public const string ScenePath = "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity";
 
         // Dimensi baru kamar kos yang lebih lega (6.0m x 4.5m, tinggi 3.1m)
         public const float RoomWidth = 6.0f;
@@ -369,9 +369,9 @@ namespace LayarTerakhir.Editor
 
 ---
 
-### 3. Perbarui `Assets/_LayarTerakhir/Editor/KosVisualUpgrade.cs`
+### 3. Perbarui `Assets/_LayarTerakhir/src/Editor/KosVisualUpgrade.cs`
 
-Ganti isi berkas `Assets/_LayarTerakhir/Editor/KosVisualUpgrade.cs` dengan kode di bawah ini. Skrip ini menambahkan menu **`LayarTerakhir/Rebuild & Upgrade Kamar Kos (DreadOut Edition)`** di Unity Editor agar Anda bisa membangun ulang ruangan 6.0x4.5m sekaligus menerapkan peningkatan kualitas visual, *lighting*, dan *post-processing* dalam satu klik:
+Ganti isi berkas `Assets/_LayarTerakhir/src/Editor/KosVisualUpgrade.cs` dengan kode di bawah ini. Skrip ini menambahkan menu **`LayarTerakhir/Rebuild & Upgrade Kamar Kos (DreadOut Edition)`** di Unity Editor agar Anda bisa membangun ulang ruangan 6.0x4.5m sekaligus menerapkan peningkatan kualitas visual, *lighting*, dan *post-processing* dalam satu klik:
 
 ```csharp
 #if UNITY_EDITOR
@@ -393,7 +393,7 @@ namespace LayarTerakhir.Editor
     // Editor-only dressing pass: DreadOut-level visual atmosphere & expanded 6.0m x 4.5m kos layout.
     public static class KosVisualUpgrade
     {
-        private const string Art = "Assets/_LayarTerakhir/Art";
+        private const string Art = "Assets/_LayarTerakhir/assets/Art";
         private const string Generated = Art + "/Generated";
         private static Transform root;
         private static Material wood, metal, plastic, cream, lowerWall, paper, fabric, brass;
@@ -1090,7 +1090,7 @@ namespace LayarTerakhir.Editor
 
 ### 4. Penyesuaian `PrologMilestoneValidator.cs` (Opsional untuk Validasi Ukuran Lantai)
 
-Karena di `Assets/_LayarTerakhir/Editor/PrologMilestoneValidator.cs` terdapat pengecekan ukuran `Floor_4x3m` yang sebelumnya dikunci pada angka `4.0f` dan `3.0f`, ubah blok pengecekan lantai di `PrologMilestoneValidator.cs` menjadi seperti ini agar validasi otomatis tetap lulus:
+Karena di `Assets/_LayarTerakhir/src/Editor/PrologMilestoneValidator.cs` terdapat pengecekan ukuran `Floor_4x3m` yang sebelumnya dikunci pada angka `4.0f` dan `3.0f`, ubah blok pengecekan lantai di `PrologMilestoneValidator.cs` menjadi seperti ini agar validasi otomatis tetap lulus:
 
 ```csharp
 GameObject floor = GameObject.Find("Floor_4x3m");

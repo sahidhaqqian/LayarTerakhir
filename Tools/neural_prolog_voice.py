@@ -10,7 +10,7 @@ import torch
 from voxcpm import VoxCPM
 
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'Assets/_LayarTerakhir/Audio/Dialogue'
+OUT=ROOT/'Assets/_LayarTerakhir/assets/Audio/Dialogue'
 SAMPLES=ROOT/'Audit/VoiceSamples'
 parser=argparse.ArgumentParser();parser.add_argument('--samples-only',action='store_true');parser.add_argument('--review-only',action='store_true');args=parser.parse_args()
 OUT.mkdir(parents=True,exist_ok=True);SAMPLES.mkdir(parents=True,exist_ok=True)
@@ -62,21 +62,21 @@ for speaker,(design,seed,spoken,speed) in casting.items():
 if args.samples_only:raise SystemExit(0)
 lines=[]
 for name in ['Prolog/KamarKosPrologDirector.cs','Prolog/AtmajaDirector.cs']:
-    source=(ROOT/'Assets/_LayarTerakhir/Scripts'/name).read_text()
+    source=(ROOT/'Assets/_LayarTerakhir/src'/name).read_text()
     for speaker,line in re.findall(r'(?:EnqueueSubtitle|PlayPriorityDialogue)\(\s*"(Raka|Bisikan|Damar)"\s*,\s*"((?:[^"\\]|\\.)*)"',source):lines.append((speaker,json.loads('"'+line+'"')))
-source=(ROOT/'Assets/_LayarTerakhir/Scripts/UI/PhoneDesktop.cs').read_text()
+source=(ROOT/'Assets/_LayarTerakhir/src/UI/PhoneDesktop.cs').read_text()
 for key,speaker in [('DamarVoiceNote','Damar'),('DamarScream','Damar'),('ContractReaction','Raka'),('Trapped','Raka')]:
     m=re.search(r'const string '+key+r'="((?:[^"\\]|\\.)*)"',source);lines.append((speaker,json.loads('"'+m[1]+'"')))
-source=(ROOT/'Assets/_LayarTerakhir/Scripts/Prolog/AtmajaDirector.cs').read_text();m=re.search(r'const string LiveIntro="((?:[^"\\]|\\.)*)"',source);lines.append(('Raka',json.loads('"'+m[1]+'"')))
+source=(ROOT/'Assets/_LayarTerakhir/src/Prolog/AtmajaDirector.cs').read_text();m=re.search(r'const string LiveIntro="((?:[^"\\]|\\.)*)"',source);lines.append(('Raka',json.loads('"'+m[1]+'"')))
 prior_bank=json.loads((ROOT/'Audit/prolog-voice-manifest.json').read_text()) if args.review_only else {}
 cast_voice={'Damar • dari lantai atas':'Damar'}
 if args.review_only:
     lines=[]
     for filename in ['Prolog/AtmajaReviewMoments.cs','Prolog/MelatiNeighborhood.cs']:
-        source=(ROOT/'Assets/_LayarTerakhir/Scripts'/filename).read_text()
+        source=(ROOT/'Assets/_LayarTerakhir/src'/filename).read_text()
         for speaker,text in re.findall(r'(?:EnqueueSubtitle|PlayPriorityDialogue|PlayPriorityWorldDialogue)\(\s*"([^"]+)"\s*,\s*"((?:[^"\\]|\\.)*)"',source):
             if speaker in casting or speaker in cast_voice:lines.append((speaker,json.loads('"'+text+'"')))
-    source=(ROOT/'Assets/_LayarTerakhir/Scripts/UI/PhoneDesktop.cs').read_text()
+    source=(ROOT/'Assets/_LayarTerakhir/src/UI/PhoneDesktop.cs').read_text()
     text=re.search(r'const string DamarVoiceNote="((?:[^"\\]|\\.)*)"',source)[1]
     lines.append(('Damar',json.loads('"'+text+'"')))
     lines.append(('Raka','Sial pintunya dikunci, aku harus cari jalan lain.'))

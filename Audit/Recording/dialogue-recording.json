@@ -3,7 +3,7 @@
     "id": "eb6caaf03e0d",
     "speaker": "Bisikan",
     "text": "Haus... bukakan...",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaDirector.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaDirector.cs",
     "direction": "Bisikan dekat yang lemah dan kehausan; rekam tanpa reverb. Beri jeda napas, jangan memaksakan suara serak.",
     "estimated_seconds": 2.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -30,7 +30,7 @@
     "id": "1551325d86f5",
     "speaker": "Bu Sri",
     "text": "Lurus sampai ujung jalan, lalu belok kanan. Kalau dengar orang manggil dari dalam, jangan jawab sembarangan, Mas.",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/MelatiShop.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/MelatiShop.cs",
     "direction": "Ikuti konteks adegan; hindari intonasi datar.",
     "estimated_seconds": 6.6,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -39,7 +39,7 @@
     "id": "2c7570216df1",
     "speaker": "Bu Sri",
     "text": "Malam, Mas Raka. Hujan begini masih mau keluar?",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/MelatiShop.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/MelatiShop.cs",
     "direction": "Ikuti konteks adegan; hindari intonasi datar.",
     "estimated_seconds": 2.8,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -48,7 +48,7 @@
     "id": "e5f037768730",
     "speaker": "Bu Sri",
     "text": "Yang bawa kamera? Sore tadi lewat sini. Saya sudah bilang, rumah itu lama kosong.",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/MelatiShop.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/MelatiShop.cs",
     "direction": "Ikuti konteks adegan; hindari intonasi datar.",
     "estimated_seconds": 4.8,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -84,7 +84,7 @@
     "id": "5e1e698496f4",
     "speaker": "Damar • dari lantai atas",
     "text": "AAARGH! Raka...!",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaReviewMoments.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaReviewMoments.cs",
     "direction": "Ikuti konteks adegan; hindari intonasi datar.",
     "estimated_seconds": 2.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -111,7 +111,7 @@
     "id": "98f21140f36e",
     "speaker": "Nyonya Sri Atmaja",
     "text": "AAAAAARGH!!!",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaChaseSequence.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaChaseSequence.cs",
     "direction": "Perempuan dewasa; teriakan marah dan getir, pendek, aman untuk pita suara. Jangan dipaksa sampai sakit.",
     "estimated_seconds": 2.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -120,7 +120,7 @@
     "id": "0513b9f29bd5",
     "speaker": "Raka",
     "text": "Nggak bisa... ada rantai dari dalam. Dam? Damar! Gue harus cari jalan masuk lain.",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaDirector.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 4.8,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -129,7 +129,7 @@
     "id": "08389c386cd1",
     "speaker": "Raka",
     "text": "Karpetnya digulung... ada pintu jebakan kayu di bawahnya.",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaUpperDirector.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaUpperDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 3.4,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -165,7 +165,7 @@
     "id": "1170c63f2d8f",
     "speaker": "Raka",
     "text": "Sial, ada gangguan daya! Gue harus cari powerbank cadangan di tas peralatan Damar atau HP ini mati total!",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaBasementHorror.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaBasementHorror.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 6.2,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -192,7 +192,7 @@
     "id": "25e07cb143e2",
     "speaker": "Raka",
     "text": "Apa...?! Lepas!",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaReviewMoments.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaReviewMoments.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 2.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -219,7 +219,7 @@
     "id": "285e455ab35c",
     "speaker": "Raka",
     "text": "80 persen... Oke, masih bisa lanjut.",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaBasementHorror.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaBasementHorror.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 2.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -228,7 +228,7 @@
     "id": "2c909749f66d",
     "speaker": "Raka",
     "text": "Udah terkirim, Bu. Semoga besok Ibu bisa ditangani.",
-    "trigger": "Assets/_LayarTerakhir/Scripts/UI/PhoneDesktop.cs",
+    "trigger": "Assets/_LayarTerakhir/src/UI/PhoneDesktop.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 3.0,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -246,7 +246,7 @@
     "id": "2db94540f6b9",
     "speaker": "Raka",
     "text": "Anjir! Anginnya kenceng banget... Eh bentar, ini jendelanya kok nyangkut?!",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaDirector.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 4.4,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -264,7 +264,7 @@
     "id": "3ab85f0b17d4",
     "speaker": "Raka",
     "text": "Tiga puluh dua penonton... Itu pun paling setengahnya akun bot. Kalau malam ini nggak ada konten yang meledak, tamat riwayat gue di Jakarta.",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/KamarKosPrologDirector.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/KamarKosPrologDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 8.2,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -273,7 +273,7 @@
     "id": "45af2fbb922b",
     "speaker": "Raka",
     "text": "Damar! Damar!",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaReviewMoments.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaReviewMoments.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 2.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -309,7 +309,7 @@
     "id": "6176c760a229",
     "speaker": "Raka",
     "text": "Bentar, gue belum mau keluar sebelum cek bawah pintu.",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/KamarKosPrologDirector.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/KamarKosPrologDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 3.1,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -318,7 +318,7 @@
     "id": "6572bc949fde",
     "speaker": "Raka",
     "text": "Tiga setengah juta besok pagi... Gue cari ke mana jam segini?!",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/KamarKosPrologDirector.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/KamarKosPrologDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 3.6,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -327,7 +327,7 @@
     "id": "6a84521fd6b2",
     "speaker": "Raka",
     "text": "Dam?! Halo, Damar?! Sial, nomornya nggak aktif!",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/KamarKosPrologDirector.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/KamarKosPrologDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 2.8,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -336,7 +336,7 @@
     "id": "701f977f2966",
     "speaker": "Raka",
     "text": "*terengah-engah* ...Gue... selamat... Damar... gue bakal balik buat lo...",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaChaseSequence.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaChaseSequence.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 4.3,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -354,7 +354,7 @@
     "id": "73a707960b7b",
     "speaker": "Raka",
     "text": "Gue belum siap berangkat.",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/KamarKosPrologDirector.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/KamarKosPrologDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 2.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -363,7 +363,7 @@
     "id": "77c0362bd601",
     "speaker": "Raka",
     "text": "Airnya... merah kecokelatan. Kayak karat... atau darah.",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaUpperDirector.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaUpperDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 3.2,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -372,7 +372,7 @@
     "id": "7c592ff0be20",
     "speaker": "Raka",
     "text": "Siapa... yang duduk di situ?",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaReviewMoments.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaReviewMoments.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 2.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -381,7 +381,7 @@
     "id": "7d9ac5dd3ee9",
     "speaker": "Raka",
     "text": "Kebuka. Powerbank, dompet, sama buku harian gue masih di sini.",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/KamarKosPrologDirector.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/KamarKosPrologDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 3.6,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -417,7 +417,7 @@
     "id": "8ce98c6436a0",
     "speaker": "Raka",
     "text": "Tangga batu... turun ke bawah tanah. Dingin banget hawanya.",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaUpperDirector.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaUpperDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 3.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -462,7 +462,7 @@
     "id": "afdb5dcbcb2a",
     "speaker": "Raka",
     "text": "Jaket udah dipakai. Hujan di luar makin deres.",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/KamarKosPrologDirector.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/KamarKosPrologDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 2.7,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -480,7 +480,7 @@
     "id": "b385a3db5606",
     "speaker": "Raka",
     "text": "Dia... tergantung di sana...",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaUpperDirector.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaUpperDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 2.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -498,7 +498,7 @@
     "id": "b5a674212b51",
     "speaker": "Raka",
     "text": "Lunas, Bu Haji. Setidaknya besok barang gue nggak dikeluarin.",
-    "trigger": "Assets/_LayarTerakhir/Scripts/UI/PhoneDesktop.cs",
+    "trigger": "Assets/_LayarTerakhir/src/UI/PhoneDesktop.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 3.6,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -507,7 +507,7 @@
     "id": "c1df48558932",
     "speaker": "Raka",
     "text": "Tulisan Damar... Dia benar-benar udah masuk ke sini.",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaDirector.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 3.1,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -525,7 +525,7 @@
     "id": "c7e0840e0bfc",
     "speaker": "Raka",
     "text": "Gue cek dulu apa yang diselipin di bawah pintu tadi.",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/KamarKosPrologDirector.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/KamarKosPrologDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 3.1,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -552,7 +552,7 @@
     "id": "d62518296491",
     "speaker": "Raka",
     "text": "Jejak tangan... berdarah semua. Ya Tuhan...",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaUpperDirector.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaUpperDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 2.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -579,7 +579,7 @@
     "id": "d968832a3ecf",
     "speaker": "Raka",
     "text": "Bu, teman saya belum pulang dari rumah Atmaja. Ibu lihat dia lewat?",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/MelatiShop.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/MelatiShop.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 3.9,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -588,7 +588,7 @@
     "id": "ddccbede0078",
     "speaker": "Raka",
     "text": "Ini HP-nya Damar... Layarnya pecah, tapi kartu memorinya masih kebaca. Gue pindahin dulu aplikasinya ke HP gue.",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaDirector.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 6.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -606,7 +606,7 @@
     "id": "e7091db85cde",
     "speaker": "Raka",
     "text": "Di... di belakang gue... Nggak ada siapa-siapa?!",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaUpperDirector.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaUpperDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 2.8,
     "recording_status": "WAITING_FOR_USER_RECORDING"
@@ -615,7 +615,7 @@
     "id": "f74a9e8171b4",
     "speaker": "Raka",
     "text": "Dam?! Suaranya dari atas...",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaReviewMoments.cs",
+    "trigger": "Assets/_LayarTerakhir/src/Prolog/AtmajaReviewMoments.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 2.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"

@@ -15,7 +15,7 @@ The green screen is now folded/stored beside the workstation, never a divider ac
 Only three reviewed staging assets are integrated (notepad stack, thermos, gamepad); source hashes
 and licenses are recorded in `Audit/kos-final-source-verification.json`. Do not import the full research drop.
 
-Folders below `Assets/_LayarTerakhir`: `Art/Imported/<provider>/<source-id>` for legal source models;
+Folders below `Assets/_LayarTerakhir/assets`: `Art/Imported/<provider>/<source-id>` for legal source models;
 `Art/Original/Models` for project-authored FBXs; `Art/Generated/Materials` for shared URP materials;
 `Production/Prefabs` and `Production/Presets` for reusable production assets. Record actual URL,
 author, license and changes in `Audit/asset-credits.md`. Do not import complete asset packs.

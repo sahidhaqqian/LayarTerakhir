@@ -8,7 +8,7 @@ import bpy
 from mathutils import Vector
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'Assets/_LayarTerakhir/Art/Original/Models/SriAtmajaCharacter.fbx'
+OUT = ROOT / 'Assets/_LayarTerakhir/assets/Art/Original/Models/SriAtmajaCharacter.fbx'
 bpy.ops.wm.read_factory_settings(use_empty=True)
 random.seed(1998)
 materials = {}

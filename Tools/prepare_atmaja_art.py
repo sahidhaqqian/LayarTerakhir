@@ -8,7 +8,7 @@ from mathutils import Vector, Matrix
 
 ROOT=Path(__file__).resolve().parents[1]
 REC=ROOT/'Scene2_Atmaja_Recovery';STAGE=ROOT/'Scene2_Atmaja_Assets'
-OUT=ROOT/'Assets/_LayarTerakhir/Art/Atmaja';OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/'Assets/_LayarTerakhir/assets/Art/Atmaja';OUT.mkdir(parents=True,exist_ok=True)
 (OUT/'Models').mkdir(exist_ok=True);(OUT/'Textures').mkdir(exist_ok=True)
 materials=[];models=[];sources=[]
 
@@ -172,6 +172,6 @@ for asset_id in ['brown_mud_03','stony_dirt_path','mossy_cobblestone','dirty_con
     maps={key:source_texture(next(folder.glob('*'+suffix+'*'),None)) for key,suffix in [('albedo','_diff_'),('normal','_nor_gl_'),('arm','_arm_')]}
     materials.append(dict(name=asset_id,color=[1,1,1,1],roughness=.8,metallic=0,alphaClip=False,**maps))
 receipt=dict(materials=materials,models=models,sources=sources,
-    protectedGoldenSceneSha256=hashlib.sha256((ROOT/'Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity').read_bytes()).hexdigest())
+    protectedGoldenSceneSha256=hashlib.sha256((ROOT/'Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity').read_bytes()).hexdigest())
 (ROOT/'Audit/atmaja-art-manifest.json').write_text(json.dumps(receipt,indent=2)+'\n')
 print('ATMAJA_PREPARED',[(m['name'],m['triangles'],m['renderers']) for m in models])

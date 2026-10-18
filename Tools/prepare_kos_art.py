@@ -5,7 +5,7 @@ from pathlib import Path
 from PIL import Image,ImageDraw,ImageFont,ImageFilter,ImageChops
 import json,shutil,random,math,argparse
 args=argparse.ArgumentParser();args.add_argument('--source',default='/tmp/kos-asset-sources');opt=args.parse_args()
-ROOT=Path(__file__).resolve().parents[1];SRC=Path(opt.source);ART=ROOT/'Assets/_LayarTerakhir/Art'
+ROOT=Path(__file__).resolve().parents[1];SRC=Path(opt.source);ART=ROOT/'Assets/_LayarTerakhir/assets/Art'
 manifest=json.loads((SRC/'download-manifest.json').read_text())
 for record in manifest:
  i=record['id'];folder=ART/'Imported/PolyHaven'/i;folder.mkdir(parents=True,exist_ok=True)

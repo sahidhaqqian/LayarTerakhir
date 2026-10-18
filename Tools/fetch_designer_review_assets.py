@@ -13,7 +13,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 ROOT = Path(__file__).resolve().parents[1]
 CACHE = ROOT / 'Builds/ArtSources/Review'
-DEST = ROOT / 'Assets/_LayarTerakhir/Art/Review'
+DEST = ROOT / 'Assets/_LayarTerakhir/assets/Art/Review'
 HEADERS = {'User-Agent': 'LayarTerakhirAssetTool/1.0 (selected CC0 game asset import)'}
 MODELS = ('painted_wooden_sofa', 'street_rat', 'food_apple_01', 'hamburger_buns')
 

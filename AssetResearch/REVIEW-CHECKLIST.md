@@ -3,7 +3,7 @@
 Required by `deepseek.md`: *"Every asset must be independently reviewed before Unity integration."*
 This drop deliberately does **not** touch `Assets/`, `ProjectSettings/` or `Packages/`.
 Tick every box per asset and record the reviewer name/date; only approved assets may be copied
-into `Assets/_LayarTerakhir/Art/Imported/PolyHaven/<id>/`.
+into `Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/<id>/`.
 
 ## Per-asset gate
 

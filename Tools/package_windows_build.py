@@ -26,9 +26,9 @@ assert datetime.fromisoformat(invocation['startedUtc'])<=datetime.fromisoformat(
 assert report['result']=='Succeeded' and report['totalErrors']==0,'Unity build failed'
 assert report['target']=='StandaloneWindows64' and report['scriptingBackend']=='Mono2x'
 assert 'Development' in report['options']
-assert report['scenes'][0]=='Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity'
-assert 'Assets/_LayarTerakhir/Scenes/Prolog_RumahAtmaja.unity' in report['scenes'],'Atmaja continuation missing from build'
-assert report['scenes'][2]=='Assets/_LayarTerakhir/Scenes/Prolog_KoridorKos.unity','Two-floor kos corridor missing from build'
+assert report['scenes'][0]=='Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity'
+assert 'Assets/_LayarTerakhir/assets/Scenes/Prolog_RumahAtmaja.unity' in report['scenes'],'Atmaja continuation missing from build'
+assert report['scenes'][2]=='Assets/_LayarTerakhir/assets/Scenes/Prolog_KoridorKos.unity','Two-floor kos corridor missing from build'
 required=['LayarTerakhir.exe','UnityPlayer.dll','UnityCrashHandler64.exe',
  'MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll','MonoBleedingEdge/EmbedRuntime/MonoPosixHelper.dll',
  'MonoBleedingEdge/etc/mono/config','LayarTerakhir_Data/globalgamemanagers',
@@ -81,7 +81,7 @@ if 'prolog' in args.source_record.lower():
 assert b'LayarPresentation' in (out/'LayarTerakhir_Data/resources.assets').read_bytes(),'Presentation/voice resource missing'
 shutil.copy2(root/'Audit/asset-credits.md',out/'Asset-Credits.txt')
 shutil.copy2(root/'Audit/windows-kos-capture.md',out/'Screenshot-Guide.txt')
-shutil.copy2(root/'Assets/_LayarTerakhir/UI/Fonts/OFL.txt',out/'Barlow-OFL.txt')
+shutil.copy2(root/'Assets/_LayarTerakhir/assets/UI/Fonts/OFL.txt',out/'Barlow-OFL.txt')
 shutil.copy2(root/'Audit/golden-windows-review.md',out/'Golden-Review-Guide.txt')
 shutil.copy2(root/'Audit/atmaja-windows-playtest.md',out/'Atmaja-Playtest-Guide.txt')
 shutil.copy2(root/'Audit/Recording/dialogue-recording.csv',out/'Dialogue-For-Recording.csv')
@@ -116,8 +116,8 @@ verification={'verifiedUtc':datetime.now(timezone.utc).isoformat(),'unityExitCod
  'totalBuildSizeBytes':sum(f['sizeBytes'] for f in manifest),'archivePath':str(archive),
  'archiveSizeBytes':archive.stat().st_size,'archiveSha256':archive_sha,'zipCrcVerified':True,'zipContainsAllBuildFiles':True,
  'windowsRuntimeTested':False,'files':manifest}
-verification['sourceSceneSha256']=hashlib.sha256((root/'Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity').read_bytes()).hexdigest()
-verification['atmajaSceneSha256']=hashlib.sha256((root/'Assets/_LayarTerakhir/Scenes/Prolog_RumahAtmaja.unity').read_bytes()).hexdigest()
+verification['sourceSceneSha256']=hashlib.sha256((root/'Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity').read_bytes()).hexdigest()
+verification['atmajaSceneSha256']=hashlib.sha256((root/'Assets/_LayarTerakhir/assets/Scenes/Prolog_RumahAtmaja.unity').read_bytes()).hexdigest()
 assert verification['sourceSceneSha256']==json.loads((root/'Audit/atmaja-art-manifest.json').read_text())['protectedGoldenSceneSha256'],'Golden source scene changed'
 verification['developmentScreenshotUtilityIncluded']=True
 verification['includedScenes']=report['scenes']

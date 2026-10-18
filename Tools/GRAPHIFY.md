@@ -31,10 +31,10 @@ kode yang berubah dan menghapus sumber yang tidak lagi ada; pelabelan komunitas
 tidak menggunakan LLM. Jangan mengganti dengan ekstraksi semantic.
 
 Allowlist `.graphifyignore` hanya menerima `.cs` di direktori first-party
-`Assets/_LayarTerakhir/{Scripts,Editor,Tests}` serta `.py`/`.sh` di `Tools`.
+`Assets/_LayarTerakhir/src` serta `.py`/`.sh` di `Tools`.
 Seluruh direktori lain ditolak secara default. Media, scene/prefab, `.meta`,
 material, asset Unity, screenshot, Bugs, paket/vendor dan build tidak termasuk.
-Scripts memang berada di bawah `Assets/`, tetapi file aset gamenya tidak dibaca.
+Source memang berada di bawah `Assets/`, tetapi file aset gamenya tidak dibaca.
 Pipeline menolak graph non-kode, referensi file di luar allowlist, hash AST
 yang gagal/stale, dan daftar input yang tidak sesuai. Nama/path aset yang muncul
 sebagai string dalam source bukan file aset yang diindeks.

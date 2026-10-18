@@ -69,7 +69,7 @@ Pembuka kini menyembunyikan surat hingga tiga ketukan keras, mengarahkan pandang
 | Input | Input System `1.20.0` (dengan fallback legacy di kode) |
 | Testing | Unity Test Framework `1.6.0` (EditMode + PlayMode) |
 | Target rilis | `StandaloneWindows64`, backend `Mono2x`, opsi `Development` |
-| Scene startup | `Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity` (index 0) |
+| Scene startup | `Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity` (index 0) |
 | Scene kelanjutan | `Prolog_RumahAtmaja.unity` (index 1), `Prolog_KoridorKos.unity` (index 2); SampleScene tidak dipakai |
 | Host pengembangan | Ubuntu 24.04 headless, `-batchmode -nographics`, tanpa GPU diskrit |
 | Hardware target pemain | Intel i5-1155G7, Intel Iris Xe, 8 GB RAM, Windows 11 |
@@ -85,21 +85,17 @@ Namespace runtime memakai prefiks `LayarTerakhir.*` (`Core`, `Player`, `Prolog`,
 Assets/
   Scenes/                         SampleScene (template, tidak dipakai)
   Readme.asset                    aset Readme bawaan template Unity
-  _LayarTerakhir/                 seluruh konten proyek
-    Scenes/Prolog_KamarKos.unity  scene Golden (startup build)
-    Scripts/                      kode runtime (lihat §4)
-    Editor/                       alat produksi & validasi (lihat §7)
-    Art/
-      Imported/<provider>/<id>/   model & tekstur pihak ketiga (PolyHaven, Kenney)
-      Original/Models|Textures    FBX/tekstur buatan proyek
-      Generated/Materials|Meshes  material/mesh hasil authoring editor
-    Audio/
-      Imported/                   sumber audio mentah
-      Prepared/                   15 WAV mono 32 kHz siap pakai
-      GoldenScene.mixer           bus Ambience / Effects / UI
-      KosAudioProfile.asset       SceneAudioProfile scene kos
-    UI/Fonts|Prefabs              Barlow (OFL) + GoldenHUD.prefab
-    Production/Prefabs|Presets    prefab & preset impor yang dapat dipakai ulang
+  Resources/                     resource runtime (lokasi tetap)
+  _LayarTerakhir/
+    assets/
+      Scenes/                     ketiga scene prolog, urutan build tetap
+      Art/                        Imported, Original, Generated, Atmaja, Characters, Review
+      Audio/                      Imported, Prepared, Dialogue, mixer, profile
+      UI/Fonts|Prefabs            Barlow (OFL) + GoldenHUD.prefab
+      Production/Prefabs|Presets  prefab & preset impor
+    src/
+      Core/, Player/, Prolog/, Smartphone/, UI/, Audio/, Diagnostics/
+      Editor/                     produksi, validasi, build dan tes editor yang sudah ada
 Docs/GOLDEN_SCENE_STANDARD.md     standar produksi scene emas
 Tools/*.py                        orkestrasi download, authoring, validasi, build, packaging
 Audit/*.md, *.json, visual        bukti validasi, kredit aset, log build
@@ -146,12 +142,12 @@ Prinsip penting: **collider fisik, root interaksi, dan state cerita tidak dihapu
 
 ### 4.1 Core
 
-**`LayarTerakhir.Core.GameInputConfig`** (`Scripts/Core/GameInputConfig.cs`)
+**`LayarTerakhir.Core.GameInputConfig`** (`src/Core/GameInputConfig.cs`)
 - Singleton pada `GameSystems`; memegang 21 `KeyCode` untuk `GameAction` (gerak, sprint, crouch, vault, interaksi, HP, mode pemindaian, jurnal, powerbank, flare, kemenyan, tangkap/Blitz).
 - `RemapAction`, `GetKeyForAction`, `GetActionDown/Held/Up`, `GetMovementInput`, `GetLookDelta`.
 - Membaca Input System (`Keyboard`/`Mouse`) dengan pemetaan numerik/keypad/modifier, dan fallback ke legacy `Input` bila `ENABLE_LEGACY_INPUT_MANAGER` aktif. Label prompt HUD selalu mengikuti binding aktif.
 
-**`LayarTerakhir.Core.CampaignState`** (`Scripts/Core/CampaignState.cs`)
+**`LayarTerakhir.Core.CampaignState`** (`src/Core/CampaignState.cs`)
 - Singleton state campaign; `CampaignData` adalah kontrak data resmi (`chapter_id`, `checkpoint_id`, `evidence_ids`, `relic_ids`, `location_seals`, `upgrades`, `inventory`, `battery`, `sanity`, `wallet_legitimate`, `wallet_bound`, `spent`, `secret_items`, `secret_notes_read`, `archive_prepared`, `ending`, `schema_version`).
 - `SaveCheckpointAtomic(id)`: validasi dulu, tulis `layar_terakhir_save.json.tmp` + flush, lalu `File.Replace` ke `layar_terakhir_save.json` sambil menyimpan `.bak`; kegagalan mengembalikan `checkpoint_id` lama.
 - `LoadCheckpoint()` / `LoadBackupCheckpoint()` memvalidasi schema, rentang nilai (`battery`/`sanity` 0–100, wallet ≥ 0), enum ending, dan ID unik sebelum menimpa data hidup.
@@ -159,37 +155,37 @@ Prinsip penting: **collider fisik, root interaksi, dan state cerita tidak dihapu
 
 ### 4.2 Player
 
-**`FirstPersonController`** (`Scripts/Player/FirstPersonController.cs`)
+**`FirstPersonController`** (`src/Player/FirstPersonController.cs`)
 - Berbasis `CharacterController`. Kecepatan: walk 2,8 / sprint 4,6 / crouch 1,6 / slide 5,5; tinggi berdiri 1,75, crouch 1,0; gravitasi −19,62.
 - Slide dipicu crouch saat sprint dengan input maju; Space adalah impuls vertikal umum, tetapi `AtmajaVault` mengonsumsi lebih dahulu saat konteks jendela valid. Atmaja memakai crouch height .78 m untuk akses kolong meja.
 - `MovementLocked` dan modal HUD membekukan input; saat terkunci hanya gravitasi yang berjalan. Browsing HP tetap mengizinkan gerak. `CanStandUp()` memeriksa overlap kapsul berdiri agar kepala tidak menembus meja/langit-langit rendah.
 - Mouse look memakai `GameInputConfig.GetLookDelta()`; pitch dibatasi ±80°.
 
-**`InteractionInteractor`** (`Scripts/Player/InteractionInteractor.cs`)
+**`InteractionInteractor`** (`src/Player/InteractionInteractor.cs`)
 - Raycast dari kamera, jarak 2,6 m, buffer `RaycastNonAlloc` 16 dengan fallback `RaycastAll`.
 - Menyaring collider milik pemain sendiri, memilih hit terdekat, mengambil `IInteractable` via `GetComponentInParent`, lalu menampilkan prompt `[KEY] label`.
 - Tombol `Interact` memanggil `IInteractable.Interact()`.
 
-**`IInteractable`** (`Scripts/Player/IInteractable.cs`)
+**`IInteractable`** (`src/Player/IInteractable.cs`)
 - Kontrak: `InteractableId`, `GetInteractionPrompt()`, `CanInteract()`, `Interact()`.
 
 ### 4.3 Prolog
 
-**`KamarKosPrologDirector`** (`Scripts/Prolog/KamarKosPrologDirector.cs`)
+**`KamarKosPrologDirector`** (`src/Prolog/KamarKosPrologDirector.cs`)
 - State machine `KosPrologStage`: `WakeUpAndKnocks → WaitReadSuratIbuKos → WaitPickupSmartphone → PreparationAndDrawerPuzzle → ReadyToDepart → Completed`.
 - `Start()` memuat checkpoint; jika `PROLOG_KOS_COMPLETE` valid dan inventori berisi `SMARTPHONE_RAKA` + `KUNCI_MOTOR` + `JAKET_RAKA`, scene dipulihkan langsung ke `ReadyToDepart` (objek yang sudah diambil dinonaktifkan, baterai HP dipulihkan).
 - Merangkai bangun, tiga ketukan lalu langkah menjauh (bukan caption), surat tanpa VO ibu kos, panggilan Damar otomatis, pesan/dana Rp5.000.000, puzzle `1408`, kunci di meja, jaket dan powerbank, lalu checkpoint pintu keluar ke koridor.
 - ID inventori: `DOC_PROLOG_01_SURAT_KOS`, `SMARTPHONE_RAKA`, `KUNCI_MOTOR`, `POWERBANK_KECIL_KOS`, `JAKET_RAKA`. Checkpoint: `PROLOG_KOS_COMPLETE`.
 - `OnObjectInteracted(item)` adalah satu-satunya pintu masuk aksi interaksi; semua efek cerita (audio, subtitle, HUD, save) dikelola di sini agar tidak ada script lain yang menduplikasi logika.
 
-**`KosInteractableItem`** (`Scripts/Prolog/KosInteractableItem.cs`)
+**`KosInteractableItem`** (`src/Prolog/KosInteractableItem.cs`)
 - Implementasi `IInteractable` yang meneruskan `Interact()` ke director. Field: `itemId`, `promptLabel`, `isInteractable`, `director`.
 
 ID interaksi scene kos: `PC_MONITOR`, `STICKY_NOTE`, `LACI_MEJA`, `KALENDER_DINDING`, `SURAT_KOS`, `SMARTPHONE_BED`, `PINTU_KOS`, `JAKET_PINTU`.
 
 ### 4.4 Smartphone
 
-**`SmartphoneController`** (`Scripts/Smartphone/SmartphoneController.cs`)
+**`SmartphoneController`** (`src/Smartphone/SmartphoneController.cs`)
 - State perangkat: dimiliki/tidak, diangkat, layar hidup, live broadcast, kamera selfie, `ScanVisualMode.Normal|AR|UV`, serta unlock modul (`arModuleUnlocked`, `uvModuleUnlocked`, `selfieModuleUnlocked`).
 - Parameter baterai mengikuti `Rancangan.MD`: normal 1%/20 dtk, AR/UV 1%/10 dtk, foto 1%, Blitz 15% dengan cooldown 6 dtk; powerbank besar +80, kecil +35.
 - Baterai 0 otomatis mematikan layar dan mengembalikan mode ke Normal. `TryUsePowerbank()` menangani recharge walau HP tersimpan atau layar mati (perbaikan audit).
@@ -197,31 +193,31 @@ ID interaksi scene kos: `PC_MONITOR`, `STICKY_NOTE`, `LACI_MEJA`, `KALENDER_DIND
 
 ### 4.5 UI
 
-**`HudController`** (`Scripts/UI/HudController.cs`) — logika & state
+**`HudController`** (`src/UI/HudController.cs`) — logika & state
 - Singleton; `Awake()` memastikan UI runtime dibangun (`EnsureRuntimeUIBuilt`) atau memakai UI tersimpan, lalu selalu mengikat ulang callback button (`Scene serialization does not retain AddListener delegates`).
 - Elemen: objective, subtitle, interaction prompt, status HP, toast donasi, `BlackFadeOverlay`, crosshair.
 - Modal: `DocumentModalPanel` (judul + body + tombol `CloseDocumentButton`, scroll) dan `PadlockModalPanel` (empat digit Kos; panjang dinamis tetap mendukung tes kompatibilitas tiga digit; button `DigitUp_i`/`DigitDown_i`, `UnlockPadlockBtn`, `CancelPadlockBtn`).
 - API publik: `SetObjective`, `SetInteractionPrompt`, `EnqueueSubtitle` (antrean dengan durasi, format speaker/SFX), `ShowBroadcastNotification`, `OpenDocumentModal(title, body, onClosed)`, `OpenPadlockModal(code, onSolved)`, `SetFadeAlpha`, `FadeBlack`, `UpdatePhoneStatusUI`.
 - `IsModalOpen` dipakai bersama oleh controller pemain, smartphone, dan audio untuk membekukan/menduck input dan suara.
 
-**`HudPresentation`** (`Scripts/UI/HudPresentation.cs`) — presentasi murni
+**`HudPresentation`** (`src/UI/HudPresentation.cs`) — presentasi murni
 - Menghidupkan/memudarkan `CanvasGroup` (objective, interaction, phone, subtitle, toast), mengatur reticle, battery fill, 3 digit display, dokument scroll, modal backdrop, dan suara klik UI.
 - Objective diredupkan setelah 12 detik tanpa perubahan; semua fade memakai `Time.unscaledDeltaTime` agar tetap bekerja saat modal pause.
 
-**`HudStyle`** (`Scripts/UI/HudStyle.cs`) — aset ScriptableObject font Barlow + warna aksen (brass) + `fadeDuration`.
+**`HudStyle`** (`src/UI/HudStyle.cs`) — aset ScriptableObject font Barlow + warna aksen (brass) + `fadeDuration`.
 
 **`GoldenHudBuilder`** (editor) membangun `UI/Prefabs/GoldenHUD.prefab` dan `GoldenHudStyle.asset`, lalu memasang instance ke `GameSystems`. Prefab dipakai sebagai satu-satunya sumber HUD runtime scene.
 
 ### 4.6 Audio
 
-- **`SceneAudioProfile`** (`Scripts/Audio/SceneAudioProfile.cs`): ScriptableObject berisi bus mixer (`Ambience`, `Effects`, `UI`), 12 clip pendek, 3 clip loop, array footstep, gain dan durasi fade.
+- **`SceneAudioProfile`** (`src/Audio/SceneAudioProfile.cs`): ScriptableObject berisi bus mixer (`Ambience`, `Effects`, `UI`), 12 clip pendek, 3 clip loop, array footstep, gain dan durasi fade.
 - **`AmbientAudioLoop`**: loop dengan `gain`, `fadeSeconds`, dan `LevelMultiplier` (dipakai untuk ducking modal dan fade keberangkatan).
 - **`KosSceneAudio`**: playback yang menempel pada event cerita yang sudah ada. Menangani footstep berbasis jarak (menolak teleport/load), suara jaket/kertas/unlock, ketukan pintu, getaran HP, notifikasi donasi, UI click, dan `Depart()` (latch + motor + fade loop). Tidak ada timer horor acak atau trigger cerita baru.
 - **Mixer** `Audio/GoldenScene.mixer` dengan bus `Ambience / Effects / UI`; 9 `AudioSource` pada `GoldenAudioRig` (3 loop + 6 source efek), semuanya di-route, tanpa autoplay, Doppler 0. 15 clip WAV mono 32 kHz (Vorbis untuk ambience, ADPCM untuk SFX pendek).
 
 ### 4.7 Diagnostics & development
 
-- **`GoldenPlayerAudit`** (`Scripts/Diagnostics/GoldenPlayerAudit.cs`, hanya Editor/Development): aktif hanya dengan flag `-goldenAudit <dir>`. Menjalankan smoke test terarah dengan save terisolasi (`IsolatedSave-<GUID>`), 13 screenshot `ScreenCapture`, tap audio listener nyata ke `actual-opening-mix.wav`, dan menulis `player-audit.json`. `-goldenAuditFast` mempercepat timer cerita untuk renderer software (dicatat di receipt).
+- **`GoldenPlayerAudit`** (`src/Diagnostics/GoldenPlayerAudit.cs`, hanya Editor/Development): aktif hanya dengan flag `-goldenAudit <dir>`. Menjalankan smoke test terarah dengan save terisolasi (`IsolatedSave-<GUID>`), 13 screenshot `ScreenCapture`, tap audio listener nyata ke `actual-opening-mix.wav`, dan menulis `player-audit.json`. `-goldenAuditFast` mempercepat timer cerita untuk renderer software (dicatat di receipt).
 - **`DevelopmentScreenshotCapture`**: F12 menyimpan screenshot frame final (termasuk HUD/post-processing) ke `persistentDataPath/Screenshots`; `-kosCapture` mengambil screenshot otomatis saat startup. Hanya aktif di Editor/Development build.
 
 ---
@@ -264,7 +260,7 @@ Objek pendukung opsional: `PC_MONITOR` (dashboard kanal), `STICKY_NOTE` (petunju
 
 ## 7. Pipeline produksi Editor-only
 
-Semua skrip di `Assets/_LayarTerakhir/Editor/` dibungkus `#if UNITY_EDITOR` dan dipakai lewat CLI/`-executeMethod` atau menu `LayarTerakhir/*`.
+Semua skrip di `Assets/_LayarTerakhir/src/Editor/` dibungkus `#if UNITY_EDITOR` dan dipakai lewat CLI/`-executeMethod` atau menu `LayarTerakhir/*`.
 
 | Skrip | Peran | Aturan pemakaian |
 | --- | --- | --- |
@@ -333,7 +329,7 @@ python3 Tools/package_windows_build.py                # verifikasi report lalu Z
 
 ## 11. Pola ekstensi untuk scene berikutnya (Rumah Atmaja dan seterusnya)
 
-1. Buat scene baru dengan root `GameSystems` (input, campaign, HUD) dan direktori babak baru di `Scripts/` (mis. `Scripts/Atmaja/`) berisi director dengan enum stage sendiri — jangan menambah logika babak baru ke `KamarKosPrologDirector`.
+1. Buat scene baru dengan root `GameSystems` (input, campaign, HUD) dan direktori babak baru di `src/` (mis. `src/Atmaja/`) berisi director dengan enum stage sendiri — jangan menambah logika babak baru ke `KamarKosPrologDirector`.
 2. Pakai ulang `GoldenHUD.prefab`, `HudController`/`HudPresentation`, dan bus mixer audio; ikat audio ke event director seperti `KosSceneAudio`, bukan timer acak.
 3. Pakai ulang prefab/preset di `Production/`; tambahan aset baru tetap melalui `Art/Imported/<provider>` + kredit di `Audit/asset-credits.md`.
 4. Semua interaksi lewat `IInteractable` + director agar prompt, lock modal, dan callback tetap konsisten.
@@ -347,22 +343,22 @@ python3 Tools/package_windows_build.py                # verifikasi report lalu Z
 
 | File | Peran |
 | --- | --- |
-| `Scripts/Core/CampaignState.cs` | Kontrak data + save/load atomik |
-| `Scripts/Core/GameInputConfig.cs` | Binding input & remap |
-| `Scripts/Player/FirstPersonController.cs` | Gerak, postur, mouse look |
-| `Scripts/Player/InteractionInteractor.cs` | Raycast & prompt interaksi |
-| `Scripts/Prolog/KamarKosPrologDirector.cs` | State machine cerita kos |
-| `Scripts/Prolog/KosInteractableItem.cs` | Jembatan objek → director |
-| `Scripts/Smartphone/SmartphoneController.cs` | HP, mode, baterai |
-| `Scripts/UI/HudController.cs` | Logika HUD, modal, subtitle, fade |
-| `Scripts/UI/HudPresentation.cs` | Presentasi HUD |
-| `Scripts/Audio/KosSceneAudio.cs` | Audio terikat event cerita |
-| `Scripts/Diagnostics/GoldenPlayerAudit.cs` | Smoke test player stand-alone |
-| `Editor/PrologKosSceneBuilder.cs` | Greybox builder (sekali pakai) |
-| `Editor/KosVisualV2.cs` | Pass koreksi V2 |
-| `Editor/GoldenSceneProduction.cs` | Pass produksi inkremental final |
-| `Editor/GoldenHudBuilder.cs` | Prefab HUD bersama |
-| `Editor/KosSceneValidation.cs` / `GoldenSceneValidation.cs` | Validasi geometri & produksi |
-| `Editor/WindowsDevelopmentBuild.cs` | Build Windows Development |
+| `src/Core/CampaignState.cs` | Kontrak data + save/load atomik |
+| `src/Core/GameInputConfig.cs` | Binding input & remap |
+| `src/Player/FirstPersonController.cs` | Gerak, postur, mouse look |
+| `src/Player/InteractionInteractor.cs` | Raycast & prompt interaksi |
+| `src/Prolog/KamarKosPrologDirector.cs` | State machine cerita kos |
+| `src/Prolog/KosInteractableItem.cs` | Jembatan objek → director |
+| `src/Smartphone/SmartphoneController.cs` | HP, mode, baterai |
+| `src/UI/HudController.cs` | Logika HUD, modal, subtitle, fade |
+| `src/UI/HudPresentation.cs` | Presentasi HUD |
+| `src/Audio/KosSceneAudio.cs` | Audio terikat event cerita |
+| `src/Diagnostics/GoldenPlayerAudit.cs` | Smoke test player stand-alone |
+| `src/Editor/PrologKosSceneBuilder.cs` | Greybox builder (sekali pakai) |
+| `src/Editor/KosVisualV2.cs` | Pass koreksi V2 |
+| `src/Editor/GoldenSceneProduction.cs` | Pass produksi inkremental final |
+| `src/Editor/GoldenHudBuilder.cs` | Prefab HUD bersama |
+| `src/Editor/KosSceneValidation.cs` / `GoldenSceneValidation.cs` | Validasi geometri & produksi |
+| `src/Editor/WindowsDevelopmentBuild.cs` | Build Windows Development |
 | `Tools/run_golden_checks.py` | Runner validasi/build serial |
 | `Tools/package_windows_build.py` | Verifikasi & ZIP build Windows |

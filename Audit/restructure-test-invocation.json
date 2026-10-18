@@ -1,0 +1,30 @@
+{
+  "stage": "test",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-main",
+    "-runTests",
+    "-testPlatform",
+    "EditMode",
+    "-testFilter",
+    "LayarTerakhir.Editor.Tests",
+    "-testResults",
+    "/root/Projects/LayarTerakhir-main/Audit/golden-tests.xml",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Audit/golden-test.log"
+  ],
+  "startedUtc": "2026-10-18T12:16:57.946837+00:00",
+  "audioBackend": "Private clocked PulseAudio null sink; headless test audio device, no physical audio hardware",
+  "status": "Finished",
+  "endedUtc": "2026-10-18T12:24:23.545578+00:00",
+  "exitCode": 0,
+  "testsVerified": {
+    "total": 86,
+    "passed": 86,
+    "failed": 0,
+    "skipped": 0
+  }
+}

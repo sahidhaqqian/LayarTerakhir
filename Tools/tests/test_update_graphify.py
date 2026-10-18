@@ -19,9 +19,9 @@ class GraphifySafetyTests(unittest.TestCase):
 
     def test_first_party_code_allowed(self):
         for path in (
-            "Assets/_LayarTerakhir/Scripts/Player/Player.cs",
-            "Assets/_LayarTerakhir/Editor/Build.cs",
-            "Assets/_LayarTerakhir/Tests/Check.cs",
+            "Assets/_LayarTerakhir/src/Player/Player.cs",
+            "Assets/_LayarTerakhir/src/Editor/Build.cs",
+            "Assets/_LayarTerakhir/src/Tests/Check.cs",
             "Tools/update_graphify.py", "Tools/tests/test_update_graphify.py", "Tools/run.sh",
         ):
             with self.subTest(path=path):
@@ -29,8 +29,8 @@ class GraphifySafetyTests(unittest.TestCase):
 
     def test_assets_and_vendor_rejected(self):
         for path in (
-            "Assets/_LayarTerakhir/Art/mesh.fbx", "Assets/_LayarTerakhir/Scenes/Room.unity",
-            "Assets/_LayarTerakhir/Scripts/trap.png", "Tools/trap.wav", "Tools/map.jpg",
+            "Assets/_LayarTerakhir/assets/Art/mesh.fbx", "Assets/_LayarTerakhir/assets/Scenes/Room.unity",
+            "Assets/_LayarTerakhir/src/trap.png", "Tools/trap.wav", "Tools/map.jpg",
             "Tools/prefab.prefab", "Tools/settings.asset", "Tools/script.cs.meta",
             "Assets/Resources/App.asset", "Assets/TutorialInfo/Scripts/Readme.cs",
             "Packages/vendor.cs", "Builds/Game.zip", "Bugs/image.png", "Library/generated.cs",

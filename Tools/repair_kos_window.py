@@ -25,6 +25,6 @@ for obj in list(bpy.context.scene.objects):
     bpy.ops.object.mode_set(mode='EDIT');bpy.ops.mesh.select_all(action='SELECT')
     bpy.ops.uv.smart_project(angle_limit=1.1,island_margin=.02);bpy.ops.object.mode_set(mode='OBJECT')
 bpy.ops.object.select_all(action='SELECT')
-bpy.ops.export_scene.fbx(filepath=str(ROOT/'Assets/_LayarTerakhir/Art/Imported/Kenney/wallWindow.fbx'),
+bpy.ops.export_scene.fbx(filepath=str(ROOT/'Assets/_LayarTerakhir/assets/Art/Imported/Kenney/wallWindow.fbx'),
     object_types={'MESH'},bake_anim=False,axis_forward='-Z',axis_up='Y',add_leaf_bones=False)
 print('WINDOW_REPAIRED',[(o.name,len(o.data.polygons)) for o in bpy.context.scene.objects if o.type=='MESH'])

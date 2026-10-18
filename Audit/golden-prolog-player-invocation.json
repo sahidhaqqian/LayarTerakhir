@@ -14,17 +14,15 @@
     "-screen-height",
     "360",
     "-prologAudit",
-    "/root/Projects/LayarTerakhir-main/Audit/Visuals/Playtest-Repair-Prolog-Repeat",
+    "/root/Projects/LayarTerakhir-main/Audit/Visuals/Restructure-Prolog",
     "-logFile",
     "/root/Projects/LayarTerakhir-main/Audit/golden-prolog-player.log"
   ],
-  "startedUtc": "2026-10-18T12:03:21.981147+00:00",
+  "startedUtc": "2026-10-18T12:36:02.538423+00:00",
   "audioBackend": "Private clocked PulseAudio null sink; virtual audio device; this fixture does not measure listener audio, no physical audio hardware",
-  "status": "Completed; launcher interrupted before collecting process exit",
-  "observedCompletionUtc": "2026-10-18T12:08:35.180786+00:00",
-  "launcherExitCode": 143,
-  "exitCode": null,
+  "status": "Finished",
+  "endedUtc": "2026-10-18T12:39:02.305153+00:00",
+  "exitCode": 0,
   "screenCapturesVerified": 30,
-  "completedSmokeReceiptVerified": true,
-  "completionEvidence": "Actual native player receipt and 30 fresh PNGs; original process exit status unavailable after launcher interruption"
+  "completedSmokeReceiptVerified": true
 }

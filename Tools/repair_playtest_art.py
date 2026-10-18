@@ -5,7 +5,7 @@ from pathlib import Path
 import bpy, bmesh, math, json
 from mathutils import Vector
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'Assets/_LayarTerakhir/Art/Atmaja/Models'
+OUT=ROOT/'Assets/_LayarTerakhir/assets/Art/Atmaja/Models'
 MANIFEST=ROOT/'Audit/atmaja-art-manifest.json'
 data=json.loads(MANIFEST.read_text())
 WOOD='House_MAT_WoodDoor';BRASS='Detail_AgedBrass';INK='Detail_ClockInk'

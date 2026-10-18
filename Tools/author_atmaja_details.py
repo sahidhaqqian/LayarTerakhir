@@ -3,7 +3,7 @@ Run after prepare_atmaja_art.py / pack_atmaja_masks.py. No staging or Golden ass
 """
 from pathlib import Path
 import bpy,json,math
-ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'Assets/_LayarTerakhir/Art/Atmaja/Models'
+ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'Assets/_LayarTerakhir/assets/Art/Atmaja/Models'
 manifest=json.loads((ROOT/'Audit/atmaja-art-manifest.json').read_text())
 
 def clear():bpy.ops.wm.read_factory_settings(use_empty=True)

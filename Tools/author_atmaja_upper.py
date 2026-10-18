@@ -8,7 +8,7 @@ import random
 from mathutils import Vector
 random.seed(7)
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'Assets/_LayarTerakhir/Art/Original/Models'
+OUT = ROOT / 'Assets/_LayarTerakhir/assets/Art/Original/Models'
 OUT.mkdir(parents=True, exist_ok=True)
 manifest = json.loads((ROOT / 'Audit/atmaja-art-manifest.json').read_text())
 

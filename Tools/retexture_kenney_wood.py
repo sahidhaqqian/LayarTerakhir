@@ -1,7 +1,7 @@
 """Re-unwrap CC0 Kenney wood pieces for tiling PBR rather than palette colours."""
 import bpy,json
 from pathlib import Path
-root=Path(__file__).resolve().parents[1];source=Path('/tmp/kos-asset-sources/Kenney/Models/OBJ format');dest=root/'Assets/_LayarTerakhir/Art/Imported/Kenney'
+root=Path(__file__).resolve().parents[1];source=Path('/tmp/kos-asset-sources/Kenney/Models/OBJ format');dest=root/'Assets/_LayarTerakhir/assets/Art/Imported/Kenney'
 for name in ['bookcaseClosedDoors','cabinetBedDrawer','doorwayFront','wallWindow']:
  bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)
  bpy.ops.wm.obj_import(filepath=str(source/(name+'.obj')),forward_axis='NEGATIVE_Z',up_axis='Y')

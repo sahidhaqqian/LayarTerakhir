@@ -11,7 +11,7 @@ from PIL import Image, ImageChops
 
 ROOT=Path(__file__).resolve().parents[1]
 STAGE=ROOT/'AssetResearch'
-DEST=ROOT/'Assets/_LayarTerakhir/Art/Imported/PolyHaven'
+DEST=ROOT/'Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven'
 SELECTED=('office_notepads','plastic_thermos','gamepad')
 records=json.loads((STAGE/'manifest/source-manifest.json').read_text())
 

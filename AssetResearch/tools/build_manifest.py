@@ -151,7 +151,7 @@ def main() -> None:
             'suggestedUse': curation.get('use'),
             'suggestedPlacement': curation.get('placement'),
             'recommendedTextureSize': 512,
-            'recommendedImportTarget': 'Assets/_LayarTerakhir/Art/Imported/PolyHaven/' + asset_id,
+            'recommendedImportTarget': 'Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/' + asset_id,
             'verifiedAgainstSource': verified.get(asset_id, False),
             'previewLocal': 'assets/' + asset_id + '/preview.png',
             'previewSourceRender': 'assets/' + asset_id + '/source-preview.png',
