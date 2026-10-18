@@ -85,6 +85,11 @@ namespace LayarTerakhir.Editor.Tests
             foreach(string flag in new[]{"-screen-fullscreen","-screen-width","-screen-height","-reviewAudit","-nographics","-batchmode"})
                 Assert.That(DisplayPreferences.ShouldRestore(false,new[]{"Game.exe",flag},false),Is.False,flag);
         }
+        [Test] public void ResidentialStreetAndKosMasonryRemainTraversable()
+        {
+            EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);
+            MelatiStreetRevision.Validate();
+        }
         private void CheckKosFacilities()
         {
             EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);

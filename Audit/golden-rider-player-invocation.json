@@ -14,14 +14,14 @@
     "-screen-height",
     "540",
     "-riderAudit",
-    "/root/Projects/LayarTerakhir-main/Audit/Visuals/Playtest-Repair-Rider",
+    "/root/Projects/LayarTerakhir-main/Audit/Visuals/Melati-Street-Rider",
     "-logFile",
     "/root/Projects/LayarTerakhir-main/Audit/golden-rider-player.log"
   ],
-  "startedUtc": "2026-10-18T10:13:19.185514+00:00",
+  "startedUtc": "2026-10-18T15:07:49.653998+00:00",
   "audioBackend": "Private clocked PulseAudio null sink; virtual audio device; this fixture does not measure listener audio, no physical audio hardware",
   "status": "Finished",
-  "endedUtc": "2026-10-18T10:14:11.905574+00:00",
+  "endedUtc": "2026-10-18T15:08:55.514805+00:00",
   "exitCode": 0,
   "screenCapturesVerified": 4,
   "completedSmokeReceiptVerified": true

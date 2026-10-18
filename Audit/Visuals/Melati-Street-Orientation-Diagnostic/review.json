@@ -1,0 +1,7 @@
+{
+  "accepted": false,
+  "reason": "Visual review found imported FBX axis correction overwritten by house placement yaw. Corrected before Windows packaging/upload; final accepted evidence is Melati-Street-Opening-Final.",
+  "beforeScreenshot": "before-axis-correction.png",
+  "afterScreenshot": "after-axis-correction.png",
+  "correctionVisuallyVerified": true
+}

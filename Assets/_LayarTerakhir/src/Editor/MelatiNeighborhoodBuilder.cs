@@ -46,7 +46,7 @@ namespace LayarTerakhir.Editor
             var old=GameObject.Find("KampungMelati");if(old)Object.DestroyImmediate(old);
             foreach(var t in Object.FindObjectsByType<Transform>(FindObjectsInactive.Include,FindObjectsSortMode.None).Where(t=>new[]{"NeighbourBoundary","StreetEndBoundary","YardBoundary","KosGateBoundary"}.Contains(t.name)).ToArray())Object.DestroyImmediate(t.gameObject);
             corridor.gateHinge.GetComponent<DoubleLeafGate>()?.SetImmediate(true);
-            root=new GameObject("KampungMelati").transform;
+            root=new GameObject("KampungMelati").transform;MelatiResidenceFactory.Reset();
             concrete=Mat("House_MAT_Concrete");wood=Mat("House_MAT_WoodDoor");metal=Mat("Upper_SteelRust");roof=Mat("House_MAT_RoofTiles");
             var street=root.gameObject.AddComponent<MelatiNeighborhood>();street.corridor=corridor;
             street.streetSpawn=Anchor("MelatiStreetSpawn",new Vector3(1.15f,.04f,-18.2f),Vector3.back);
@@ -55,7 +55,9 @@ namespace LayarTerakhir.Editor
             var roadTemplate=Mat("dirty_concrete");var road=new Material(roadTemplate?roadTemplate:concrete){name="MelatiWetRoad"};
             road.SetColor("_BaseColor",new Color(.24f,.27f,.29f));road.SetFloat("_Smoothness",.58f);
             string roadPath="Assets/_LayarTerakhir/assets/Art/Review/Materials/MelatiWetRoad.mat";var saved=AssetDatabase.LoadAssetAtPath<Material>(roadPath);if(saved){EditorUtility.CopySerialized(road,saved);Object.DestroyImmediate(road);road=saved;}else AssetDatabase.CreateAsset(road,roadPath);
-            float kosStreetEnd=GameObject.Find("KosStreet").GetComponent<Renderer>().bounds.min.z;
+            float kosStreetEnd=-16;
+            RoadRange(-16,25,road);RoadRange(31,100,road);
+            Box("KosSideAccessLane",new Vector3(-6.8f,-.085f,-12),new Vector3(6.4f,.17f,4),road);
             for(int i=0;i<24;i++)
             {
                 float min=-14-i*4,max=Mathf.Min(min+4,kosStreetEnd);if(min>=max)continue;
@@ -63,7 +65,7 @@ namespace LayarTerakhir.Editor
                 else {if(min< -53.6f)RoadRange(min,-53.6f,road);if(max> -46.4f)RoadRange(-46.4f,max,road);}
             }
             Box("MelatiCrossStreet",new Vector3(0,-.085f,-50),new Vector3(58,.17f,7.2f),road);
-            Box("MelatiNeighborhoodGround",new Vector3(0,-.16f,-54),new Vector3(188,.16f,260),concrete);
+            Box("MelatiNeighborhoodGround",new Vector3(0,-.16f,-10),new Vector3(188,.16f,280),concrete);
             for(int side=-1;side<=1;side+=2)
             {
                 for(int i=0;i<22;i++)
@@ -76,12 +78,13 @@ namespace LayarTerakhir.Editor
                 int index=0;
                 foreach(float z in new[]{19f,6f,-11f,-24f,-37f,-64f,-77f,-90f,-103f})
                 {
-                    if(side==1&&z== -24)continue;
+                    if((side==1&&z== -24)||(side== -1&&z>= -11))continue;
                     BuildHouse(new Vector3(side*11.5f,0,z),side,index++,false);
                 }
-                for(int i=0;i<9;i++)if(i!=5)BuildHouse(new Vector3(side*23.5f,0,18-i*14),side,i,true);
+                for(int i=0;i<9;i++)if(i!=5&&!(side== -1&&i<3))BuildHouse(new Vector3(side*23.5f,0,18-i*14),side,i,true);
                 for(int i=0;i<4;i++)StreetLamp(new Vector3(side*4.9f,0,-18-i*22));
             }
+            foreach(int side in new[]{-1,1})foreach(float z in new[]{48f,61f,74f,87f})BuildHouse(new Vector3(side*11.5f,0,z),side,(int)z,false);
             ReplaceRakaScooter(corridor);BuildShop();
             Box("MelatiRearLane",new Vector3(0,-.085f,28),new Vector3(62,.17f,6),road);
             foreach(int side in new[]{-1,1})for(int i=0;i<5;i++)BuildHouse(new Vector3(side*(11+i*10),0,37),-1,i,true);
@@ -96,43 +99,13 @@ namespace LayarTerakhir.Editor
             RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Trilight;RenderSettings.ambientSkyColor=new Color(.22f,.27f,.34f);RenderSettings.ambientEquatorColor=new Color(.13f,.15f,.19f);RenderSettings.ambientGroundColor=new Color(.055f,.06f,.07f);
             RenderSettings.fog=true;RenderSettings.fogMode=FogMode.ExponentialSquared;RenderSettings.fogColor=new Color(.035f,.045f,.065f);RenderSettings.fogDensity=.012f;
             foreach(var renderer in root.GetComponentsInChildren<MeshRenderer>())GameObjectUtility.SetStaticEditorFlags(renderer.gameObject,StaticEditorFlags.BatchingStatic);
-            EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene);AssetDatabase.SaveAssets();Debug.Log("MELATI_NEIGHBORHOOD_AUTHORED 43 detailed houses, open pedestrian lanes, staffed shop, rain");
+            EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene);AssetDatabase.SaveAssets();Debug.Log("MELATI_NEIGHBORHOOD_AUTHORED 45 varied downloaded houses, continuous road, open pedestrian lanes, staffed shop, rain");
         }
         private static void RoadRange(float min,float max,Material road)
         {if(max-min>.001f)Box("MelatiRoadSection",new Vector3(0,-.085f,(min+max)*.5f),new Vector3(7.2f,.17f,max-min),road);}
         private static void BuildHouse(Vector3 p,int side,int index,bool rear)
         {
-            string prefix="MelatiResidence_"+p.x+"_"+p.z;
-            var parent=root;var house=new GameObject(prefix).transform;house.SetParent(root,false);root=house;
-            var plaster=Mat(index%3==0?"House_MAT_PlasterDamaged":"House_MAT_Concrete");
-            float width=rear?7.4f:7.6f,depth=rear?9:9.6f,height=3.1f+(index%3)*.24f;
-            Box("Foundation",p+Vector3.up*.13f,new Vector3(width+.15f,.26f,depth+.15f),concrete);
-            Box("RenderedHouseBody",p+Vector3.up*(height*.5f+.2f),new Vector3(width,height,depth),plaster);
-            float face=p.x-side*(width*.5f+.015f);
-            Box("HouseSkirting",new Vector3(face,.42f,p.z),new Vector3(.08f,.35f,depth),concrete,false);
-            Box("TimberFrontDoor",new Vector3(face-side*.035f,1.25f,p.z-.9f),new Vector3(.10f,2.12f,.94f),wood);
-            foreach(float z in new[]{-3.0f,1.4f,3.25f})
-            {
-                Vector3 w=new Vector3(face-side*.065f,1.85f,p.z+z);
-                Box("WindowRecess",w,new Vector3(.12f,1.22f,1.1f),metal,false);
-                Box("WindowGlass",w-new Vector3(side*.075f,0,0),new Vector3(.025f,1.05f,.93f),AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/assets/Art/Review/Materials/Review_HouseGlass.mat"),false);
-                foreach(float y in new[]{-.6f,.6f})Box("WindowLintel",w+new Vector3(-side*.10f,y,0),new Vector3(.15f,.08f,1.22f),wood,false);
-                foreach(float dz in new[]{-.56f,0f,.56f})Box("WindowMullion",w+new Vector3(-side*.11f,0,dz),new Vector3(.13f,1.2f,.05f),wood,false);
-            }
-            foreach(int slope in new[]{-1,1})
-            {
-                var tile=Box("PitchedTileRoof",p+new Vector3(slope*width*.25f,height+.65f,0),new Vector3(width*.58f,.13f,depth+.8f),roof,false);tile.transform.rotation=Quaternion.Euler(0,0,slope* -19);
-            }
-            Box("RoofRidge",p+new Vector3(0,height+1.3f,0),new Vector3(.22f,.15f,depth+.9f),roof,false);
-            Box("Porch",new Vector3(face-side*.9f,.12f,p.z),new Vector3(1.8f,.24f,depth),concrete);
-            Box("PorchCanopy",new Vector3(face-side*1.0f,2.85f,p.z),new Vector3(2.3f,.10f,depth+.1f),roof,false);
-            foreach(float z in new[]{-depth*.46f,depth*.46f})Box("PorchSupport",new Vector3(face-side*1.8f,1.5f,p.z+z),new Vector3(.10f,2.8f,.10f),wood);
-            if(!rear)
-            {
-                Label("ResidenceNumber","MELATI  /  "+(index+12),new Vector3(face-side*.1f,2.55f,p.z-.9f),side>0?Vector3.left:Vector3.right,.11f);
-                var lamp=new GameObject("PorchPractical",typeof(Light));lamp.transform.SetParent(root,false);lamp.transform.position=new Vector3(face-side*.8f,2.55f,p.z-.8f);var light=lamp.GetComponent<Light>();light.type=LightType.Point;light.color=new Color(1,.77f,.49f);light.intensity=2.8f;light.range=5;
-            }
-            root=parent;
+            MelatiResidenceFactory.Build(root,p,side,index,rear);
         }
         private static void ReplaceRakaScooter(KosCorridorDirector corridor)
         {

@@ -1,0 +1,19 @@
+{
+  "stage": "melati-street",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-main",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.MelatiStreetRevision.Apply",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Audit/golden-melati-street.log"
+  ],
+  "startedUtc": "2026-10-18T14:56:11.909388+00:00",
+  "status": "Finished",
+  "endedUtc": "2026-10-18T14:56:37.465900+00:00",
+  "exitCode": 0
+}

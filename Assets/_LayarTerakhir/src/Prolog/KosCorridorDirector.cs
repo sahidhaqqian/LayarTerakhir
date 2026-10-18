@@ -12,11 +12,13 @@ namespace LayarTerakhir.Prolog
         public FirstPersonController player;public Transform spawnLanding,spawnGround,motor,gateHinge,rideAnchor,rideExit;
         public AudioSource engine,rain;public SceneAudioProfile audioProfile;
         public Light motorHeadlight;
+        public Transform buildingRoot;
+        public Vector3 BuildingPoint(Vector3 local)=>buildingRoot?buildingRoot.TransformPoint(local):local;
         public HingedDoor entranceDoor;
         public bool Busy {get;private set;}
         private bool savedGround;
         public bool CanDepart=>!Busy&&player&&player.transform.position.y<.8f&&
-            (Vector3.Distance(player.transform.position,motor.position)<3.2f||Vector3.Distance(player.transform.position,new Vector3(0,0,-7))<3.2f)&&
+            (Vector3.Distance(player.transform.position,motor.position)<3.2f||Vector3.Distance(player.transform.position,BuildingPoint(new Vector3(0,0,-7)))<3.2f)&&
             CampaignState.Instance.HasInventoryItem("KUNCI_MOTOR")&&CampaignState.Instance.HasInventoryItem("JAKET_RAKA");
         private IEnumerator Start()
         {
@@ -72,13 +74,14 @@ namespace LayarTerakhir.Prolog
             var pairedGate=gateHinge.GetComponent<DoubleLeafGate>();
             if(pairedGate)yield return pairedGate.Open();
             else{var from=gateHinge.localRotation;for(float t=0;t<1;t+=Time.deltaTime/1.3f){gateHinge.localRotation=Quaternion.Slerp(from,Quaternion.Euler(0,100,0),t);yield return null;}}
-            var motorStart=motor.position;var end=rideExit.position;
-            for(float t=0;t<1;t+=Time.deltaTime/6)
+            Vector3[] route={motor.position,BuildingPoint(new Vector3(0,motor.position.y,-5.4f)),BuildingPoint(new Vector3(0,motor.position.y,-12)),new Vector3(0,motor.position.y,-12),rideExit.position};
+            float total=0;for(int i=1;i<route.Length;i++)total+=Vector3.Distance(route[i-1],route[i]);
+            for(float t=0;t<1;t+=Time.deltaTime/8)
             {
-                // A visible moving motorcycle actually passes the kos gate before the scene changes.
-                var turn=Vector3.Lerp(motorStart,new Vector3(0,motorStart.y,-5.4f),Mathf.Clamp01(t*3));
-                motor.position=t<.33f?turn:Vector3.Lerp(new Vector3(0,motorStart.y,-5.4f),end,Mathf.SmoothStep(0,1,(t-.33f)/.67f));
-                motor.rotation=Quaternion.Slerp(motor.rotation,Quaternion.LookRotation(Vector3.back),Time.deltaTime*3);
+                float distance=Mathf.SmoothStep(0,1,t)*total;int segment=1;
+                while(segment<route.Length-1&&distance>Vector3.Distance(route[segment-1],route[segment])){distance-=Vector3.Distance(route[segment-1],route[segment]);segment++;}
+                Vector3 direction=route[segment]-route[segment-1];motor.position=Vector3.Lerp(route[segment-1],route[segment],distance/Mathf.Max(.001f,direction.magnitude));
+                motor.rotation=Quaternion.Slerp(motor.rotation,Quaternion.LookRotation(direction.normalized),Time.deltaTime*4);
                 camera.position=motor.TransformPoint(new Vector3(-1.1f,1.7f,-2.35f));camera.LookAt(motor.position+Vector3.up*.8f);
                 if(engine)engine.pitch=Mathf.Lerp(.8f,1.35f,t);yield return null;
             }

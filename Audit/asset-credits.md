@@ -332,3 +332,7 @@ model motor Damar tetap utuh.
 
 
 Revisi playtest 18 Oktober 2026: Bu Sri memakai adaptasi baru data grafis MakeHuman CC0 yang sudah dipin dalam `character-source-manifest.json`; karakter sehat, pakaian penuh, tanpa senjata. Rumah-rumah Melati memakai geometri arsitektur buatan proyek dengan material PBR yang sudah tercatat. Kaus Raka dan pemisahan celana/jaket dibenahi dari sumber MakeHuman yang sama. Tidak memakai aset Outlast.
+
+## Melati house variety — 18 October 2026
+
+Kenney, **City Kit (Suburban) 2.0**, CC0-1.0. Official source: https://kenney.nl/assets/city-kit-suburban . Download and archive hash: `Audit/melati-house-kit-source.json`; original archive license: `Audit/melati-house-kit-CC0.txt`. Twelve distinct house geometries a/b/d/f/h/k/m/p/i/l/n/q are used across 45 residential lots. Eight existing adapted models retained; four additional models downloaded from the official archive and adapted with meter UVs and material regions by `Tools/author_melati_houses.py`. Reuses the already credited plaster, tile, wood and concrete PBR maps. Raw archive/source GLBs remain under ignored `Builds/ArtSources/MelatiHouses`; only the four selected additional FBXs are imported. No implication of interior access for background homes.

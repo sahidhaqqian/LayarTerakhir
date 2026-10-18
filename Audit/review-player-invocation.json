@@ -14,15 +14,15 @@
     "-screen-height",
     "360",
     "-reviewAudit",
-    "/root/Projects/LayarTerakhir-main/Audit/Visuals/Restructure-Opening",
+    "/root/Projects/LayarTerakhir-main/Audit/Visuals/Melati-Street-Opening-Final",
     "-logFile",
     "/root/Projects/LayarTerakhir-main/Audit/review-player.log"
   ],
-  "startedUtc": "2026-10-18T12:26:09.165912+00:00",
+  "startedUtc": "2026-10-18T14:57:37.987588+00:00",
   "audioBackend": "Private clocked PulseAudio null sink; real listener tap, no physical audio hardware",
   "status": "Finished",
-  "endedUtc": "2026-10-18T12:36:02.415771+00:00",
+  "endedUtc": "2026-10-18T15:07:49.520441+00:00",
   "exitCode": 0,
-  "screenCapturesVerified": 57,
+  "screenCapturesVerified": 59,
   "completedSmokeReceiptVerified": true
 }
