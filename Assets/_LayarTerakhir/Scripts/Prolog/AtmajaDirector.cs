@@ -18,6 +18,7 @@ namespace LayarTerakhir.Prolog
         public FirstPersonController player;
         public Transform gateHinge,kitchenDoor,spawnCourtyard,spawnKitchen,spawnDining,spawnStairs,vaultOutside,vaultInside;
         public GameObject kitchenShutter,damarPhone,clockHands,arFigure,arClue,stairDoorLeaf;
+        public HingedDoor stairDoorMotion;
         public AtmajaUpperDirector upper;public AtmajaBasementHorror basement;public AtmajaChaseSequence chase;
         public Transform clockHour,clockMinute,clockDrawer;
         public Vector3 clockDialCentre;
@@ -85,12 +86,7 @@ namespace LayarTerakhir.Prolog
             bool inside=Has("EVENT_P0_KITCHEN_ENTERED");kitchenShutter.SetActive(inside);
             if(kitchenDoor)kitchenDoor.localRotation=Quaternion.Euler(0,Has("EVENT_P0_DINING_OPEN")?-95:0,0);
             if(damarPhone)damarPhone.SetActive(!Has("MATABATIN_APK"));
-            if(stairDoorLeaf)
-            {
-                bool stairsOpen=Has("EVENT_P0_STAIRS_UNLOCKED");
-                stairDoorLeaf.transform.position=P(-3.55f,7.7f,stairsOpen?-0.85f:1.8f);
-                var leafCollider=stairDoorLeaf.GetComponent<Collider>();if(leafCollider)leafCollider.enabled=!stairsOpen;
-            }
+            if(stairDoorMotion)stairDoorMotion.SetOpenImmediate(Has("EVENT_P0_STAIRS_UNLOCKED"));
             if(clockHands)clockHands.SetActive(!Has("ITEM_P0_CLOCK_HANDS"));
             if(clockHour)clockHour.gameObject.SetActive(Has("EVENT_P0_CLOCK_UNLOCKED"));
             if(clockMinute)clockMinute.gameObject.SetActive(Has("EVENT_P0_CLOCK_UNLOCKED"));
@@ -164,7 +160,7 @@ namespace LayarTerakhir.Prolog
                 case AtmajaAction.Clock:ClockPuzzle();break;
                 case AtmajaAction.StairDoor:
                     if(!Has("EVENT_P0_CLOCK_UNLOCKED")){Hud.ShowBroadcastNotification("Pintu tangga terkunci. Periksa jam bandul dan dinding di sampingnya dengan AR.",5);break;}
-                    if(Commit("EVENT_P0_STAIRS_UNLOCKED","PROLOG_ATMAJA_STAIRS_UNLOCKED")){Stage=AtmajaStage.StairCheckpoint;if(stairDoorLeaf){stairDoorLeaf.transform.position=P(-3.55f,7.7f,-.85f);stairDoorLeaf.GetComponent<Collider>().enabled=false;}Objective();Hud.ShowBroadcastNotification("Kunci berputar. Jalan ke lantai atas sudah terbuka.",5);}break;
+                    if(Commit("EVENT_P0_STAIRS_UNLOCKED","PROLOG_ATMAJA_STAIRS_UNLOCKED")){Stage=AtmajaStage.StairCheckpoint;if(stairDoorMotion&&!stairDoorMotion.IsOpen)stairDoorMotion.Interact();Objective();Hud.ShowBroadcastNotification("Kunci berputar. Jalan ke lantai atas sudah terbuka.",5);}break;
                 case AtmajaAction.CupPhoto:case AtmajaAction.Diary:case AtmajaAction.BathCurtain:case AtmajaAction.BathScratches:case AtmajaAction.WillLetter:case AtmajaAction.RopePhoto:if(upper)upper.HandleEvidence(item);break;
                 case AtmajaAction.CarpetLift:case AtmajaAction.Trapdoor:if(upper)upper.HandleMaster(item);break;
                 case AtmajaAction.Powerbank:case AtmajaAction.Handycam:case AtmajaAction.WardrobeHide:if(basement)basement.Handle(item);break;

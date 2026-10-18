@@ -250,6 +250,52 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(c.Data.wallet_bound,Is.EqualTo(20450000));Assert.That(c.Data.location_seals.Count,Is.Zero);
             d.RestoreWorld();yield return null;Assert.That(c.Data.wallet_bound,Is.EqualTo(20450000));
         }
+        [UnityTest] public IEnumerator EnclosedStairsHideBehindARealDoorAndKeepGuards()=>Run(StairEnclosure());
+        private IEnumerator StairEnclosure()
+        {
+            yield return new WaitForSeconds(1);var d=Find<AtmajaDirector>();var c=CampaignState.Instance;
+            d.player.enabled=false;
+            Assert.That(d.stairDoorMotion&&d.stairDoorLeaf,Is.True);
+            Assert.That(Object.FindObjectsByType<HingedDoor>(FindObjectsSortMode.None).Any(door=>door.name.Contains("Storage")),Is.False);
+            Assert.That(GameObject.Find("StorageDoor"),Is.Null);
+            foreach(float x in new[]{-5f,-3.55f,-1f,1f})
+            {
+                var from=d.P(x,4.8f,2.1f);var to=d.P(-1.2f,8.15f,1.35f);
+                Assert.That(Physics.Linecast(from,to,out var hit,~0,QueryTriggerInteraction.Ignore),Is.True);
+                Assert.That(hit.collider.name.StartsWith("StairFlight"),Is.False,"Front view must hit an opaque occluder before the steps");
+                var ray=to-from;Assert.That(Physics.RaycastAll(from,ray.normalized,ray.magnitude,~0,QueryTriggerInteraction.Ignore).Any(h=>h.collider.name.StartsWith("StairEnclosure")||h.collider.name=="LockedCentralStairDoor"),Is.True,"The enclosure must physically close every front sightline");
+            }
+            c.AddInventoryItem("EVENT_P0_STAIRS_UNLOCKED");d.RestoreWorld();Physics.SyncTransforms();
+            Assert.That(d.stairDoorMotion.IsOpen,Is.True);Assert.That(d.stairDoorLeaf.GetComponent<Collider>().enabled,Is.True,"Opened door remains physically hinged beside the jamb");
+            d.SetStage(AtmajaStage.EvidenceHunt);Assert.That(Item(AtmajaAction.StairDoor).CanInteract(),Is.False);
+            Item(AtmajaAction.StairDoor).Interact();Assert.That(d.Stage,Is.EqualTo(AtmajaStage.EvidenceHunt),"An already open stair door cannot rewind the upper-floor checkpoint");
+            Assert.That(d.stairDoorLeaf.transform.position.y,Is.GreaterThan(1),"Door must not be buried below the house");
+            foreach(var point in new[]{d.P(-3.55f,5.1f,.54f),d.P(-3.55f,8.2f,.54f),d.P(-1.2f,8.2f,1.4f)})yield return WalkCapsule(d.player,point);
+            var cc=d.player.GetComponent<CharacterController>();
+            for(int n=0;n<14;n++){cc.Move(-d.north*.1f+Vector3.down*.12f);yield return null;}
+            Assert.That(d.LocalPosition(d.player.transform.position).y,Is.GreaterThan(7.65f),"Continuous stair guard blocks walking through the inner railing");
+            Assert.That(GameObject.Find("StairFlightLower").GetComponent<MeshCollider>().sharedMesh,Is.Not.Null);
+            Assert.That(GameObject.Find("StairFlightUpper").GetComponent<MeshCollider>().sharedMesh,Is.Not.Null);
+        }
+        [UnityTest] public IEnumerator ReadingNotesPreservesHeldPhoneCameraAndLocksMovement()=>Run(DocumentPhone());
+        private IEnumerator DocumentPhone()
+        {
+            yield return new WaitForSeconds(2);var d=Find<AtmajaDirector>();var phone=SmartphoneController.Instance;var hud=HudController.Instance;
+            var p=d.player;d.PlacePlayer(d.P(-3.55f,5.1f,.54f),Quaternion.LookRotation(d.north));
+            CampaignState.Instance.AddInventoryItem("SMARTPHONE_RAKA");phone.hasSmartphoneInInventory=true;
+            phone.isPhoneRaised=phone.isScreenOn=phone.isBroadcastConnected=true;phone.SyncVisualState();d.phoneView.Apps.Open(PhoneApp.Camera);
+            var start=p.transform.position;hud.OpenDocumentModal("Catatan uji","HP tetap di tangan saat catatan dibaca.");yield return null;yield return null;
+            Assert.That(phone.isPhoneRaised&&phone.isScreenOn&&phone.isBroadcastConnected,Is.True);
+            Assert.That(d.phoneView.Panel.activeSelf,Is.True);Assert.That(d.phoneView.FeedCamera.enabled,Is.EqualTo(d.phoneView.HasGraphicsDevice));
+            Assert.That(UiFocus.Phone,Is.False);Assert.That(d.phoneView.Panel.GetComponent<CanvasGroup>().interactable,Is.False);
+            Assert.That(((RectTransform)hud.documentPanel.transform).anchorMax.x,Is.LessThan(((RectTransform)d.phoneView.Panel.transform).anchorMin.x),"Note and handset occupy separate readable columns");
+            p.enabled=true;InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.W));yield return new WaitForSeconds(.4f);
+            Assert.That(Vector3.Distance(start,p.transform.position),Is.LessThan(.04f),"Reading blocks world movement while keeping the camera feed active");
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());hud.CloseDocumentModal();yield return null;
+            Assert.That(phone.isPhoneRaised&&phone.isScreenOn,Is.True);Assert.That(d.phoneView.Panel.GetComponent<CanvasGroup>().interactable,Is.True);
+            phone.isPhoneRaised=false;phone.isScreenOn=false;phone.SyncVisualState();hud.OpenDocumentModal("Catatan kedua","Tidak memaksa menyalakan HP.");yield return null;
+            Assert.That(phone.isPhoneRaised||phone.isScreenOn,Is.False);hud.CloseDocumentModal();
+        }
         private IEnumerator UpperStairNavigation()
         {
             yield return new WaitForSeconds(1);var d=Find<AtmajaDirector>();var c=CampaignState.Instance;

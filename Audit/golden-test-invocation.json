@@ -10,20 +10,20 @@
     "-testPlatform",
     "EditMode",
     "-testFilter",
-    "LayarTerakhir.Editor.Tests",
+    "LayarTerakhir.Editor.Tests.AtmajaPlayTests.EnclosedStairsHideBehindARealDoorAndKeepGuards;LayarTerakhir.Editor.Tests.AtmajaPlayTests.ReadingNotesPreservesHeldPhoneCameraAndLocksMovement;LayarTerakhir.Editor.Tests.AtmajaPlayTests.AtmajaStairsReachUpperCorridorWithoutTeleport",
     "-testResults",
     "/root/Projects/LayarTerakhir-main/Audit/golden-tests.xml",
     "-logFile",
     "/root/Projects/LayarTerakhir-main/Audit/golden-test.log"
   ],
-  "startedUtc": "2026-10-17T21:48:05.737745+00:00",
+  "startedUtc": "2026-10-18T02:15:11.670432+00:00",
   "audioBackend": "Private clocked PulseAudio null sink; headless test audio device, no physical audio hardware",
   "status": "Finished",
-  "endedUtc": "2026-10-17T21:53:29.457180+00:00",
+  "endedUtc": "2026-10-18T02:15:56.553313+00:00",
   "exitCode": 0,
   "testsVerified": {
-    "total": 75,
-    "passed": 75,
+    "total": 3,
+    "passed": 3,
     "failed": 0,
     "skipped": 0
   }

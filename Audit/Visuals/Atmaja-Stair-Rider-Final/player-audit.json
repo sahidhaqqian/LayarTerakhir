@@ -1,0 +1,50 @@
+{
+    "utc": "2026-10-18T02:10:55.6900100Z",
+    "platform": "LinuxPlayer",
+    "gpu": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "navigationMethod": "Isolated completed-kos-yard save; pose player beside motor, invoke the existing contextual departure, capture the real mount/ride and arrival. Max delta time .5s for the software-rendering host. Targeted rider presentation fixture, not a manual/full opening playthrough.",
+    "actualStandalonePlayer": true,
+    "completed": true,
+    "checkpointSaved": true,
+    "width": 960,
+    "height": 540,
+    "checks": [
+        "PASS Yard checkpoint routes into the kos corridor",
+        "PASS Contextual travel accepts the player beside the motor",
+        "PASS The real mount enters the authored rider pose",
+        "PASS Motor cinematic owns the camera while showing Raka",
+        "PASS The seated head clears the motor instead of sinking into the saddle",
+        "PASS Rider head is inside the actual shot",
+        "PASS Porch columns and walls do not obstruct the mounted rider shot",
+        "PASS Rider renderers are visible during the cinematic",
+        "PASS The rider and motorcycle pass through the kos gate",
+        "PASS Travel arrives in Atmaja",
+        "PASS Arrival restores the normal walking model origin",
+        "PASS Arrival saves the real Atmaja courtyard checkpoint"
+    ],
+    "screenshots": [
+        "01-mounted-rider.png",
+        "02-rider-through-gate.png",
+        "03-arrival-standing.png"
+    ],
+    "playerFeet": {
+        "x": 1.6875,
+        "y": -0.4591051936149597,
+        "z": -4.78736686706543
+    },
+    "motorOrigin": {
+        "x": 1.6875,
+        "y": -0.009105205535888672,
+        "z": -4.78736686706543
+    },
+    "avatarOrigin": {
+        "x": 1.6875,
+        "y": -0.05910518765449524,
+        "z": -4.78736686706543
+    },
+    "headPosition": {
+        "x": 1.6875,
+        "y": 1.0987653732299805,
+        "z": -4.915743350982666
+    }
+}

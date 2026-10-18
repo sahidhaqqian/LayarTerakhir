@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Failed(Child)" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-17 22:42:46Z" end-time="2026-10-17 22:42:47Z" duration="1.2695444">
+  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="77" result="Failed" site="Child" start-time="2026-10-17 22:42:46Z" end-time="2026-10-17 22:42:47Z" duration="1.269544" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1093" name="Assembly-CSharp-Editor.dll" fullname="/root/Projects/LayarTerakhir-main/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="77" result="Failed" site="Child" start-time="2026-10-17 22:42:46Z" end-time="2026-10-17 22:42:47Z" duration="1.177927" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="385152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1094" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="77" result="Failed" site="Child" start-time="2026-10-17 22:42:46Z" end-time="2026-10-17 22:42:47Z" duration="1.175538" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1095" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="77" result="Failed" site="Child" start-time="2026-10-17 22:42:46Z" end-time="2026-10-17 22:42:47Z" duration="1.174441" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestSuite" id="1096" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="77" result="Failed" site="Child" start-time="2026-10-17 22:42:46Z" end-time="2026-10-17 22:42:47Z" duration="1.173293" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestFixture" id="1001" name="AtmajaPlayTests" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" testcasecount="17" result="Failed" site="Child" start-time="2026-10-17 22:42:46Z" end-time="2026-10-17 22:42:47Z" duration="1.166704" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1008" name="AtmajaStairsReachUpperCorridorWithoutTeleport" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.AtmajaStairsReachUpperCorridorWithoutTeleport" methodname="AtmajaStairsReachUpperCorridorWithoutTeleport" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1700603474" result="Failed" start-time="2026-10-17 22:42:28Z" end-time="2026-10-17 22:42:34Z" duration="6.445723" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Continuous CC route blocked at (-1.05, 2.28, -7.96) on way to (-1.05, 2.40, -6.93)
+  Expected: less than 0.159999996f
+  But was:  1.02999973f
+]]></message>
+                  <stack-trace><![CDATA[at LayarTerakhir.Editor.Tests.AtmajaPlayTests+<Run>d__44.MoveNext () [0x0010c] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/Editor/AtmajaPlayTests.cs:500
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@0bd5c5194236/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1017" name="EnclosedStairsHideBehindARealDoorAndKeepGuards" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.EnclosedStairsHideBehindARealDoorAndKeepGuards" methodname="EnclosedStairsHideBehindARealDoorAndKeepGuards" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1913099503" result="Failed" start-time="2026-10-17 22:42:34Z" end-time="2026-10-17 22:42:40Z" duration="6.202703" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Closed stairwell must occlude the steps from the lounge: LoungeStorage
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at LayarTerakhir.Editor.Tests.AtmajaPlayTests+<Run>d__44.MoveNext () [0x0010c] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/Editor/AtmajaPlayTests.cs:500
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@0bd5c5194236/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1018" name="ReadingNotesPreservesHeldPhoneCameraAndLocksMovement" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.ReadingNotesPreservesHeldPhoneCameraAndLocksMovement" methodname="ReadingNotesPreservesHeldPhoneCameraAndLocksMovement" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1834900970" result="Passed" start-time="2026-10-17 22:42:40Z" end-time="2026-10-17 22:42:47Z" duration="6.604671" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: /root/.config/unity3d/DefaultCompany/LayarTerakhir/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -282,3 +282,14 @@ built-in imagegen tool. Its exact prompt and SHA-256 are retained in
 Poly Haven CC0 `quatrefoil_jacquard_fabric` diffuse map. Portrait previews in
 `Visuals/Character-Authoring` are Blender previews; standalone screenshots provide
 the game-rendering evidence. Joint animations are authored/baked, not motion capture.
+
+The enclosed Atmaja stair revision uses project-authored closed-riser meshes,
+soffits, nosings, supporting landings, guardrails and panelled door geometry.
+It reuses the already credited wall/wood materials; no additional external stair
+asset is shipped. Raka's palm orientation, per-joint finger flexion, thumb opposition,
+visible handset and screen geometry are authored in `Tools/author_prolog_characters.py`.
+
+Upper-floor ARM texture channels are repacked into linear URP metallic/AO/smoothness
+native texture assets, area-downsampled to at most 1024px and compressed DXT5 by the
+Unity editor pass. These are technical derivatives of the already credited CC0
+Poly Haven maps; the source colour and normal artwork is retained.

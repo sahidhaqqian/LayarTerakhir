@@ -16,6 +16,13 @@ bawah tanah, stealth Nyonya Sri Atmaja, rekaman handycam Damar, pelarian, Blitz 
 jendela dapur, pesan Penonton_Terakhir dan title drop. `CONTINUE` memulihkan checkpoint,
 termasuk layar penutup setelah prolog tamat. Babak 1–5 belum playable.
 
+Revisi tangga Atmaja memakai ruang tangga tertutup di balik pintu kayu berengsel,
+12 anak tangga per flight, bordes bertumpu dan pegangan bertabrakan. Bidang lis fasad
+yang keliru menutup interior pada ketinggian 4,2 m dipotong agar tubuh pemain tidak
+terlihat masuk lantai saat naik tangga. Pintu gudang
+opsional dihapus. Kanal material lantai atas dibetulkan agar kayu tidak terbaca sebagai logam. Membaca catatan mempertahankan HP dan feed kamera yang sedang aktif;
+pose pergelangan, ibu jari dan genggaman HP Raka dibenahi.
+
 Pass penyelesaian memperbaiki deteksi ancaman/penghalang, pemeriksaan lemari dengan
 waktu respons, powerbank dan donasi atomik, rekaman terputus yang dapat diputar lagi,
 rute perabot/kamar utama dan transisi pelarian. Rekaman handycam sekarang menampilkan

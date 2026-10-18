@@ -33,6 +33,8 @@ namespace LayarTerakhir.UI
 
         public Image blackFadeImage;
 
+        public bool IsDocumentOpen => documentPanel != null && documentPanel.activeSelf;
+
         public bool IsModalOpen =>
             UiFocus.HardModal ||
             (documentPanel != null && documentPanel.activeSelf) ||
@@ -318,11 +320,18 @@ namespace LayarTerakhir.UI
         public void OpenDocumentModal(string title, string body, Action onClosed = null)
         {
             if (documentPanel == null) return;
-            LowerPhoneForWorldObject();
+            // Reading preserves the handset, screen, camera app and live connection.
+            UiFocus.Phone=false;
             _onDocumentClosed = onClosed;
             documentTitleText.text = title;
             documentBodyText.text = body;
             var closeLabel=documentCloseButton.GetComponentInChildren<Text>();if(closeLabel)closeLabel.text="TUTUP DOKUMEN";
+            var documentRect=(RectTransform)documentPanel.transform;
+            bool holdingPhone=SmartphoneController.Instance&&SmartphoneController.Instance.isPhoneRaised;
+            documentRect.anchorMin=holdingPhone?new Vector2(.055f,.14f):new Vector2(.5f,.5f);
+            documentRect.anchorMax=holdingPhone?new Vector2(.68f,.86f):new Vector2(.5f,.5f);
+            documentRect.anchoredPosition=Vector2.zero;
+            documentRect.sizeDelta=holdingPhone?Vector2.zero:new Vector2(880,520);
             documentPanel.SetActive(true);
             var presentation=GetComponent<HudPresentation>();
             if(presentation&&presentation.documentScroll)

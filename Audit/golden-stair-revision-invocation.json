@@ -1,0 +1,19 @@
+{
+  "stage": "stair-revision",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-main",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.AtmajaStairRevisionBuilder.Apply",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Audit/golden-stair-revision.log"
+  ],
+  "startedUtc": "2026-10-18T02:02:21.664275+00:00",
+  "status": "Finished",
+  "endedUtc": "2026-10-18T02:03:06.223189+00:00",
+  "exitCode": 0
+}

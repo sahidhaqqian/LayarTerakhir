@@ -8,9 +8,10 @@ from pathlib import Path
 import json
 import math
 import random
+import sys
 import bpy
 import bmesh
-from mathutils import Vector, Matrix
+from mathutils import Vector, Matrix, Quaternion
 from mathutils.kdtree import KDTree
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -217,6 +218,14 @@ def tube(name, points, widths, mat, bone, rig, sides=8):
     return geometry(name,verts,faces,mat,bone,rig)
 
 
+def hand_frame(defs,side):
+    longitudinal=(defs['Hand_'+side][1]-defs['Hand_'+side][0]).normalized()
+    across=defs['Finger2_1_'+side][0]-defs['Finger5_1_'+side][0]
+    palm=across.cross(longitudinal).normalized()
+    if palm.y>0:palm=-palm
+    return longitudinal,palm,longitudinal.cross(palm).normalized()
+
+
 def set_pose(rig,defs,kind,phase,female):
     for bone in rig.pose.bones:bone.matrix_basis=Matrix.Identity(4)
     crouch='Crouch' in kind;walk='Walk' in kind;run='Run' in kind;phone='Phone' in kind;riding=kind=='Riding';seated=kind=='Seated'
@@ -254,7 +263,17 @@ def set_pose(rig,defs,kind,phase,female):
         if end.startswith('Foot'):
             rest=rig.data.bones[end];matrix_pose(end,target,rest.tail_local-rest.head_local)
         else:
-            rest=rig.data.bones[end];matrix_pose(end,target,(Vector((0,-.03,.08)) if phone else Vector((0,-.02,-.09))))
+            rest=rig.data.bones[end]
+            if phone and end=='Hand_R':
+                # Solve palm roll as well as wrist direction: the screen faces Raka,
+                # with fingers upright and no hyperextended, downward-facing wrist.
+                longitudinal,normal,sideways=hand_frame(defs,'R')
+                up=Vector((0,-.08,1)).normalized();palm=Vector((0,1,.08)).normalized()
+                source=Matrix((sideways,longitudinal,normal)).transposed()
+                destination=Matrix((up.cross(palm),up,palm)).transposed()
+                rotation=destination@source.transposed()
+                rig.pose.bones[end].matrix=Matrix.Translation(target)@rotation.to_4x4()@rest.matrix_local.to_quaternion().to_matrix().to_4x4()
+            else:matrix_pose(end,target,Vector((0,-.02,-.09)))
 
     for side,sign in [('L',1),('R',-1)]:
         angle=gait+(0 if side=='L' else math.pi)
@@ -276,11 +295,25 @@ def set_pose(rig,defs,kind,phase,female):
         if female and kind=='Stun':hand=Vector((.19,-.13,1.48)) if side=='L' else Vector((-.29,-.06,.89))
         limb('UpperArm_'+side,'Forearm_'+side,'Hand_'+side,hand,Vector((sign*.60,-.01,1.05-sink*.5)))
         grip=(phone and side=='R') or (female and side=='R') or riding
+        longitudinal,palm,sideways=hand_frame(defs,side)
         for finger in range(1,6):
             for segment in range(1,4):
                 bone=rig.pose.bones.get(f'Finger{finger}_{segment}_{side}')
                 if bone:
-                    bone.rotation_mode='XYZ';bone.rotation_euler.x=math.radians((22 if finger==1 else 48) if grip else 8)
+                    # MakeHuman finger rolls differ. Flex around each joint's own
+                    # knuckle axis towards the palm, never an arbitrary Euler X.
+                    direction=bone.bone.tail_local-bone.bone.head_local
+                    axis=direction.normalized().cross(palm).normalized()
+                    local_axis=bone.bone.matrix_local.to_quaternion().inverted()@axis
+                    degrees=([14,26,16] if finger==1 else [10,25,12] if phone else [18,48,22])[segment-1] if grip else [5,9,5][segment-1]
+                    bone.rotation_mode='QUATERNION';bone.rotation_quaternion=Quaternion(local_axis,math.radians(degrees))
+                    if phone and side=='R' and finger==1 and segment==1:
+                        # Oppose the thumb along the handset edge instead of leaving
+                        # the rest-pose thumb splayed out beside an otherwise closed grip.
+                        thumb_side=1 if (bone.bone.head_local-defs['Hand_R'][0]).dot(sideways)>0 else -1
+                        desired=(longitudinal*.8+palm*.5-sideways*thumb_side*.25).normalized()
+                        rest=bone.bone.matrix_local.to_quaternion()
+                        bone.rotation_quaternion=rest.inverted()@direction.normalized().rotation_difference(desired)@rest
     bpy.context.view_layer.update()
 
 
@@ -323,7 +356,7 @@ def make_character(female):
         center=sum((vertices[i] for i,_ in face),Vector())/len(face)
         influences={n:sum(weights[i].get(n,0) for i,_ in face)/len(face) for n in exposed_bones}
         if sum(influences.values())>.26 or female and center.z<.20:visible.append(face)
-    body=create_mesh('VisibleSkin',vertices,visible,BASE_UV,mats['Skin'],weights);decimate(body,.50);skin(body,rig)
+    body=create_mesh('VisibleSkin',vertices,visible,BASE_UV,mats['Skin'],weights);decimate(body,.50 if female else .70);skin(body,rig)
     eyes=asset_mesh(SOURCE/'system/eyes/low-poly','low-poly',raw,convert,mats['Eyes'],weights,tree);skin(eyes,rig)
     hair=asset_mesh(SOURCE/'system/hair'/hair_name,hair_name,raw,convert,mats['Hair'],weights,tree)
     decimate(hair,.80)
@@ -394,9 +427,13 @@ def make_character(female):
         shoes=asset_mesh(SOURCE/'system/clothes/shoes01','shoes01',raw,convert,material('Raka_Shoes',(1,1,1),shoes_path),weights,tree);decimate(shoes,.45);skin(shoes,rig)
         # World handset is visible only in phone poses, managed by AnimatedRakaAvatar.
         phone=material('Raka_Phone',(.018,.02,.023));hand=defs['Hand_R'][0]
-        basis=rig.data.bones['Hand_R'].matrix_local.to_3x3()
-        points=[hand+basis@Vector((dx,dy,dz)) for dy in [-.02,.12] for dz in [-.008,.008] for dx in [-.035,.035]]
-        geometry('HandheldPhone',points,[(0,1,3,2),(4,6,7,5),(0,4,5,1),(2,3,7,6),(0,2,6,4),(1,5,7,3)],phone,'Hand_R',rig)
+        longitudinal,palm,sideways=hand_frame(defs,'R')
+        def phone_point(x,y,z):return hand+sideways*x+longitudinal*y+palm*z
+        points=[phone_point(dx,dy,dz) for dy in [.030,.195] for dz in [.044,.058] for dx in [-.039,.039]]
+        handset=geometry('HandheldPhone',points,[(0,1,3,2),(4,6,7,5),(0,4,5,1),(2,3,7,6),(0,2,6,4),(1,5,7,3)],phone,'Hand_R',rig)
+        display=material('Raka_PhoneScreen',(.07,.13,.15))
+        screen=geometry('HandsetScreen',[phone_point(x,y,.059) for x,y in [(-.034,.037),(.034,.037),(.034,.187),(-.034,.187)]],[(0,1,2,3)],display,'Hand_R',rig)
+        screen.parent=handset
     clips=actions(rig,defs,female)
     meshes=[o for o in bpy.context.scene.objects if o.type=='MESH']
     triangles=sum(sum(len(p.vertices)-2 for p in o.data.polygons) for o in meshes)
@@ -443,8 +480,14 @@ def make_character(female):
     scene=bpy.context.scene;scene.camera=camera;scene.render.resolution_x=768;scene.render.resolution_y=1024;scene.render.resolution_percentage=100
     review=ROOT/'Audit/Visuals/Character-Authoring';review.mkdir(parents=True,exist_ok=True)
     scene.render.image_settings.file_format='PNG';scene.render.filepath=str(review/(name+'.png'));bpy.ops.render.render(write_still=True)
+    if not female:
+        bpy.data.objects['HandheldPhone'].hide_render=False
+        rig.animation_data.action=None;set_pose(rig,defs,'PhoneIdle',0,False)
+        camera.location=(-.65,-1.18,1.53);camera.rotation_euler=(Vector((-.19,-.34,1.38))-camera.location).to_track_quat('-Z','Y').to_euler();camera_data.lens=70
+        scene.render.resolution_x=768;scene.render.resolution_y=768;scene.render.filepath=str(review/'RakaPhoneGrip.png');bpy.ops.render.render(write_still=True)
+
     return records
 
 
-report=[make_character(True),make_character(False)]
+report=([json.loads((ROOT/'Audit/rigged-character-authoring.json').read_text())['characters'][0]] if '--male-only' in sys.argv else [make_character(True)])+[make_character(False)]
 (ROOT/'Audit/rigged-character-authoring.json').write_text(json.dumps(dict(sourceManifest='Audit/character-source-manifest.json',generatedCloth='Audit/character-generated-cloth.json',method='CC0 MakeHuman graphical data adapted into clothed, budgeted skinned meshes; original baked joint animation and garment/tool geometry; generated opaque ivory lace and CC0 PolyHaven jacquard',characters=report),indent=2)+'\n')

@@ -256,7 +256,10 @@ namespace LayarTerakhir.Diagnostics
             Check(!CampaignState.Instance.HasInventoryItem("KUNCI_TANGGA_TENGAH"),"Clock controls reject an incorrect time");
             for(int n=0;n<3;n++)Click("HourPlus");for(int n=0;n<9;n++)Click("MinutePlus");yield return Shot("26-clock-time-controls");Click("SetClockTime");yield return null;
             Check(Hud.documentPanel.activeSelf,"03:45 opens clock drawer and original newspaper");yield return Shot("27-newspaper");Hud.documentCloseButton.onClick.Invoke();
-            yield return Walk(d.P(-3.55f,6.3f,.54f));yield return Use(Item(AtmajaAction.StairDoor),Item(AtmajaAction.StairDoor).GetComponent<Collider>().bounds.center);
+            yield return Walk(d.P(-3.55f,5.35f,.54f));Aim(Item(AtmajaAction.StairDoor).GetComponent<Collider>().bounds.center);
+            Check(!d.stairDoorMotion.IsOpen&&GameObject.Find("StorageDoor")==null,"Stairs stay behind a closed, opaque door; redundant storage door is absent");
+            yield return Shot("27a-hidden-stair-door");yield return Use(Item(AtmajaAction.StairDoor),Item(AtmajaAction.StairDoor).GetComponent<Collider>().bounds.center);
+            yield return new WaitForSeconds(1.1f);Check(d.stairDoorMotion.IsOpen&&d.stairDoorLeaf.GetComponent<Collider>().enabled,"Unlock swings a real colliding door beside its jamb");
             yield return Shot("28-stair-checkpoint");receipt.checkpointSaved=CampaignState.Instance.Data.checkpoint_id=="PROLOG_ATMAJA_STAIRS_UNLOCKED"&&CampaignState.Instance.LoadCheckpoint();
             Check(receipt.checkpointSaved,"End-of-scope checkpoint reloads without repaying donations");
             yield return Press(Key.Escape);Check(UiFocus.Menu&&Time.timeScale==0,"ESC opens an actual pause menu and stops game time");yield return Shot("29-pause-menu");

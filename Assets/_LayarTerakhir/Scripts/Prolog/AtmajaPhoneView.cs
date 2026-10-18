@@ -17,7 +17,7 @@ namespace LayarTerakhir.Prolog
         public Button LiveButton {get;private set;}
         public GameObject Panel {get;private set;}
         public PhoneDesktop Apps {get;private set;}
-        private Button homeButton,stowButton;
+        private Button homeButton,stowButton;private CanvasGroup handsetInput;
         private Text stowLabel;private KeyCode lastStowBinding=(KeyCode)(-1);
         public bool HasGraphicsDevice=>SystemInfo.graphicsDeviceType!=GraphicsDeviceType.Null;
         public bool IsCameraApp=>Apps&&Apps.CurrentApp==PhoneApp.Camera;
@@ -34,6 +34,7 @@ namespace LayarTerakhir.Prolog
             UiWidgets.Font=Hud.GetComponent<HudPresentation>().style.bodyFont;
             var canvas=Hud.GetComponentInChildren<Canvas>().transform;
             Panel=PhoneSkin.Card("RakaSmartphone",canvas,new Vector2(.772f,.045f),new Vector2(.973f,.758f),new Color(.16f,.18f,.20f));
+            handsetInput=Panel.AddComponent<CanvasGroup>();
             PhoneSkin.Card("GlassScreen",Panel.transform,new Vector2(.018f,.012f),new Vector2(.982f,.988f),new Color(.008f,.012f,.019f));
             PhoneSkin.Card("Earpiece",Panel.transform,new Vector2(.38f,.978f),new Vector2(.62f,.984f),new Color(.23f,.25f,.27f));
             PhoneSkin.Card("FrontLens",Panel.transform,new Vector2(.66f,.970f),new Vector2(.69f,.985f),new Color(.06f,.13f,.18f));
@@ -61,9 +62,10 @@ namespace LayarTerakhir.Prolog
         private void LateUpdate()
         {
             if(!Panel||!Phone||!Apps)return;
-            bool active=Phone.isPhoneRaised&&!Hud.IsModalOpen&&(!UiFocus.Cinematic||CinematicHandsetVisible);Panel.SetActive(active);bool screen=active&&Phone.isScreenOn&&Phone.batteryPercent>0;
+            bool active=Phone.isPhoneRaised&&(!Hud.IsModalOpen||(Hud.IsDocumentOpen&&!UiFocus.HardModal))&&(!UiFocus.Cinematic||CinematicHandsetVisible);Panel.SetActive(active);bool screen=active&&Phone.isScreenOn&&Phone.batteryPercent>0;
+            handsetInput.interactable=!Hud.IsModalOpen;handsetInput.blocksRaycasts=!Hud.IsModalOpen;
             cameraRoot.SetActive(screen&&IsCameraApp);Apps.SetScreenVisible(screen);FeedCamera.enabled=screen&&IsCameraApp&&HasGraphicsDevice;cameraImage.enabled=FeedCamera.enabled;
-            homeButton.gameObject.SetActive(screen&&!UiFocus.Cinematic);stowButton.gameObject.SetActive(screen&&!UiFocus.Cinematic);
+            homeButton.gameObject.SetActive(screen&&!UiFocus.Cinematic&&!Hud.IsModalOpen);stowButton.gameObject.SetActive(screen&&!UiFocus.Cinematic&&!Hud.IsModalOpen);
             var stowBinding=GameInputConfig.Instance?GameInputConfig.Instance.togglePhoneKey:KeyCode.Tab;
             if(stowBinding!=lastStowBinding){lastStowBinding=stowBinding;stowLabel.text="SIMPAN  ["+stowBinding.ToString().ToUpperInvariant()+"]";}
             FeedCamera.cullingMask=(playerCamera.cullingMask|((Phone.currentScanMode==ScanVisualMode.AR)?1<<ARLayer:0))&~(1<<ShoulderCameraRig.AvatarLayer);
@@ -72,8 +74,8 @@ namespace LayarTerakhir.Prolog
             runtimeFeedMaterial.SetFloat("_ARGain",Phone.currentScanMode==ScanVisualMode.AR?2:1);runtimeFeedMaterial.SetFloat("_ReducedGlitch",GameShell.ReducedGlitch?1:0);
             header.text=!screen?"":Phone.isBroadcastConnected?$"LIVE • {(director?director.Viewers:14):N0}   |   {Phone.batteryPercent:0}%":(director?"23:52":"23:46")+$"    LTE    {Phone.batteryPercent:0}%";
             mode.text=screen&&IsCameraApp?(Phone.currentScanMode==ScanVisualMode.AR?"MATA BATIN / AR":"KAMERA")+$" • {Phone.batteryPercent:0}%\n[Z] Aplikasi   [M] Peta":"";
-            LiveButton.gameObject.SetActive(screen&&IsCameraApp&&director&&!Phone.isBroadcastConnected);LiveButton.interactable=director&&director.CanBeginLive&&!director.Busy;
-            UiFocus.Phone=active&&screen&&(!IsCameraApp||(director&&!Phone.isBroadcastConnected));
+            LiveButton.gameObject.SetActive(screen&&IsCameraApp&&director&&!Phone.isBroadcastConnected);LiveButton.interactable=director&&director.CanBeginLive&&!director.Busy&&!Hud.IsModalOpen;
+            UiFocus.Phone=active&&screen&&!Hud.IsModalOpen&&(!IsCameraApp||(director&&!Phone.isBroadcastConnected));
             var player=FindFirstObjectByType<FirstPersonController>();if(player&&!UiFocus.HardModal&&!Hud.IsModalOpen&&!UiFocus.Cinematic)player.SetCursorLock(!UiFocus.Phone||FirstPersonController.PhoneLookHeld);
             walkHint.enabled=UiFocus.Phone&&!UiFocus.Cinematic&&!Hud.IsModalOpen;
             chat.enabled=director&&Phone.isBroadcastConnected&&!Hud.IsModalOpen&&(!UiFocus.Cinematic||CinematicHandsetVisible);

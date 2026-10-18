@@ -38,6 +38,7 @@ namespace LayarTerakhir.Editor
             Surface("Sri_Batik","SriSkirtJacquard",new Color(.16f,.095f,.055f));Surface("Sri_Rust",null,new Color(.17f,.075f,.035f));Surface("Sri_Seam",null,new Color(.24f,.20f,.15f));
             Surface("Raka_Skin","RakaSkin",Color.white);Surface("Raka_Hair","RakaHair",new Color(.28f,.25f,.23f),true);
             Surface("Raka_Eye","BrownEyes",Color.white);Surface("Raka_Clothes","RakaClothes",new Color(.85f,.92f,.85f));
+            Surface("Raka_PhoneScreen",null,new Color(.07f,.13f,.15f));
             Surface("Raka_Shoes","RakaShoes",new Color(.60f,.60f,.57f));Surface("Raka_Phone",null,new Color(.018f,.02f,.023f));
             materials["Raka_Clothes"].SetTexture("_BumpMap",Texture("RakaClothesNormal"));materials["Raka_Clothes"].EnableKeyword("_NORMALMAP");
             foreach(string name in new[]{"SriAtmajaRigged","RakaRigged"})ImportModel(name,true);

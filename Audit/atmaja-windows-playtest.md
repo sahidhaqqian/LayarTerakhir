@@ -51,12 +51,17 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
    sosok gaib dan tulisan darah hanya di feed HP,
    bukan kamera dunia. Tulisan harus tampak merah dan menempel dinding, bukan teks putih melayang.
    F mematikan layar/kamera tambahan; broadcast tetap berjalan.
-7. Buka ruang tamu depan. Ambil jarum kuningan di meja kecil pojok; telusuri lounge/gudang.
+7. Buka ruang tamu depan. Ambil jarum kuningan di meja kecil pojok; telusuri lounge dan ceruk lemari terbuka.
    Arahkan AR ke tulisan dinding sampai tercatat di Jurnal. Jam menghadap ke ruang dan
    punggungnya menempel dinding; cek angka Romawi dan bunyi tik-tok saat mendekat.
    E jam; kontrol **jam/menit** (bukan gembok 3 digit). Waktu salah tidak membuka.
-   Atur 03:45, pasang; baca koran 1998. Gunakan kunci di pintu tangga.
-8. Naiki tangga ke lantai 2. Ikuti jejak tangan berdarah. Kamar anak terkunci: nyalakan
+   Atur 03:45, pasang; baca koran 1998. HP yang sedang dipegang tetap terlihat dan
+   kameranya tetap hidup ketika membaca catatan. Panel bacaan dan HP tidak bertumpuk.
+   Dari lounge tangga harus tersembunyi oleh dinding dan pintu kayu tertutup; tidak ada
+   pintu ruang penyimpanan. Gunakan kunci: pintu berayun ke dalam, bukan menghilang ke lantai.
+8. Naiki dua flight tangga berbidang utuh ke lantai 2, lalu coba turun kembali.
+   Periksa anak tangga, bordes, penopang, pegangan dan benturan samping: tidak melayang,
+   tidak tembus, tidak jatuh dari celah railing. Ikuti jejak tangan berdarah. Kamar anak terkunci: nyalakan
    AR dan merunduklah menembus celah ventilasi di balik lemari. Baca **buku harian Bima**,
    lalu potret cangkir susu yang retak dengan Kamera AR (rantai 1) — pintu kamar anak terbuka.
    Kamar mandi: buka tirai bak, potret cakaran jari kecil (rantai 2). Balkon dalam:

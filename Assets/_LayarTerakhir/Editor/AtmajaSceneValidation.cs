@@ -67,6 +67,23 @@ namespace LayarTerakhir.Editor
                 Check(GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(t.gameObject)==0,"No missing scripts: "+t.name);
             Check(tris<300000,"Scene, skinned hunter and runtime Raka together remain under 300k authored triangles");
             Check(texture<=1024,"Bound artwork textures at most 1024px");
+            var concreteCut=AssetDatabase.LoadAssetAtPath<Mesh>("Assets/_LayarTerakhir/Art/Atmaja/Models/AtmajaConcreteFacadeCutout.asset");
+            Check(concreteCut&&root.GetComponentsInChildren<MeshFilter>(true).Any(f=>f.sharedMesh==concreteCut),"Facade band preserves the exterior while opening its phantom interior floor at y=4.2");
+            if(concreteCut)
+            {
+                var concreteFilter=root.GetComponentsInChildren<MeshFilter>(true).First(f=>f.sharedMesh==concreteCut);var positions=concreteCut.vertices;var indices=concreteCut.triangles;bool interiorCap=false;
+                for(int n=0;n<indices.Length;n+=3)
+                {
+                    var a=concreteFilter.transform.TransformPoint(positions[indices[n]]);var b=concreteFilter.transform.TransformPoint(positions[indices[n+1]]);var c=concreteFilter.transform.TransformPoint(positions[indices[n+2]]);
+                    var center=(a+b+c)/3;var local=d.LocalPosition(center);
+                    if(Mathf.Abs(a.y-b.y)<.001f&&Mathf.Abs(a.y-c.y)<.001f&&center.y>4.03f&&center.y<4.21f&&local.x>-5.849f&&local.x<5.849f&&local.y>.051f&&local.y<8.949f)interiorCap=true;
+                }
+                Check(!interiorCap,"No non-colliding facade cap can visually cut through the upper-floor rooms or stair avatar");
+            }
+            var upperWood=AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/Art/Atmaja/Materials/Upper_WoodFloor.mat");
+            var woodMask=upperWood.GetTexture("_MetallicGlossMap") as Texture2D;
+            Check(woodMask&&AssetDatabase.GetAssetPath(woodMask).EndsWith("_URPMask.asset")&&!woodMask.isDataSRGB&&woodMask.format==TextureFormat.DXT5,"Upper wood uses a compressed linear URP mask, never raw ARM channels ("+(woodMask?woodMask.format+", sRGB="+woodMask.isDataSRGB:"missing")+")");
+            Check(upperWood.GetTexture("_OcclusionMap")==woodMask&&Mathf.Approximately(upperWood.GetFloat("_Smoothness"),1),"Upper wood reads AO and roughness from the converted mask channels");
             Check(d.arFigure.layer==AtmajaPhoneView.ARLayer&&d.arClue.layer==AtmajaPhoneView.ARLayer&&!d.arFigure.activeSelf&&!d.arClue.activeSelf,"AR apparition/clue are isolated and start hidden");
             Check(d.upper&&d.basement&&d.chase&&d.upper.director==d&&d.basement.director==d&&d.chase.director==d,"Upper, basement and chase systems wired to the director");
             Check(d.upper&&d.upper.childDoor&&d.upper.masterDoor&&d.upper.chainLinks.Length==3,"Scene 4 upper-floor doors and three sin chains present");

@@ -32,7 +32,7 @@ namespace LayarTerakhir.Editor
             var nor=AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/_LayarTerakhir/Art/Atmaja/Textures/"+tex+"_nor_gl_1k.jpg");
             if(nor){m.SetTexture("_BumpMap",nor);m.SetFloat("_BumpScale",.55f);m.EnableKeyword("_NORMALMAP");}
             var arm=AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/_LayarTerakhir/Art/Atmaja/Textures/"+tex+"_arm_1k.jpg");
-            if(arm){m.SetTexture("_MetallicGlossMap",arm);m.SetTexture("_OcclusionMap",arm);m.SetFloat("_Smoothness",.65f);m.SetFloat("_OcclusionStrength",.7f);m.EnableKeyword("_METALLICSPECGLOSSMAP");m.EnableKeyword("_OCCLUSIONMAP");}
+            if(arm){var mask=AtmajaStairRevisionBuilder.UpperMask(arm);m.SetTexture("_MetallicGlossMap",mask);m.SetTexture("_OcclusionMap",mask);m.SetFloat("_Smoothness",1);m.SetFloat("_OcclusionStrength",.7f);m.EnableKeyword("_METALLICSPECGLOSSMAP");m.EnableKeyword("_OCCLUSIONMAP");}
             EditorUtility.SetDirty(m);return m;
         }
         private static Material Glow(string name,Color color,float intensity)

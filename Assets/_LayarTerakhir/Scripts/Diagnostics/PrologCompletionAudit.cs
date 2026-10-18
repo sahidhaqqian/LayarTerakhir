@@ -90,7 +90,16 @@ namespace LayarTerakhir.Diagnostics
             var hybrid=player.GetComponent<ShoulderCameraRig>();
             Check(hybrid.SelectedPerspective==PlayerPerspective.OverShoulder,"Exploration defaults to over-the-shoulder third person");
             Check(hybrid.Avatar.GetComponent<AnimatedRakaAvatar>()&&hybrid.Avatar.GetComponent<Animation>().GetClipCount()==11,"Standalone loads the skinned Raka resource and eleven motion clips");
-            foreach (var p in new[] { d.P(-3.55f,5.1f,.54f),d.P(-3.55f,8.2f,.54f),d.P(1.05f,8.2f,2.2f),d.P(1.05f,6.925f,2.2f),d.P(-3.3f,6.925f,3.82f),d.P(-3.3f,5.75f,3.82f) }) yield return Walk(p);
+            // Controlled closed-leaf inspection inside the unlocked continuation fixture.
+            // This checks presentation without replaying/re-paying the completed ground floor.
+            yield return Walk(d.P(-3.55f,5.1f,.54f));d.stairDoorMotion.SetOpenImmediate(false);Physics.SyncTransforms();
+            Aim(d.stairDoorLeaf.GetComponent<Collider>().bounds.center);yield return Shot("00-opaque-door-conceals-stairwell");
+            d.stairDoorMotion.SetOpenImmediate(true);Physics.SyncTransforms();
+            foreach(var p in new[]{d.P(-3.55f,5.1f,.54f),d.P(-3.55f,8.2f,.54f),d.P(-1.2f,8.2f,1.4f)})yield return Walk(p);
+            Aim(d.P(.8f,8.2f,2.7f));yield return Shot("00a-rebuilt-lower-stair-flight");
+            foreach(var p in new[]{d.P(1.05f,8.2f,2.2f),d.P(1.05f,6.925f,2.2f),d.P(-.8f,6.925f,3.1f)})yield return Walk(p);
+            Aim(d.P(-3.3f,6.925f,4.55f));yield return Shot("00b-supported-return-stair-flight");
+            foreach(var p in new[]{d.P(-3.3f,6.925f,3.82f),d.P(-3.3f,5.75f,3.82f)})yield return Walk(p);
             Check(Campaign.HasInventoryItem("EVENT_P0_UPPER_REACHED"), "Walking both flights triggers the upper-floor checkpoint");
             Aim(d.P(1.1f,5.1f,5.35f)); yield return Shot("01-upper-corridor-and-seals");
             var standingPosition=player.transform.position;long cameraWallet=Campaign.Data.wallet_bound;
@@ -104,7 +113,9 @@ namespace LayarTerakhir.Diagnostics
             yield return Walk(d.P(-3.0f,5.75f,3.83f)); RaiseAR(); yield return Crouch(true); Aim(d.upper.ventMouth.position); yield return Shot("02-ar-broken-vent");
             yield return Walk(d.P(-3.0f,4.45f,3.83f)); yield return Crouch(false);
             foreach (var p in new[] { d.P(-4.8f,4.45f,3.83f),d.P(-5.1f,3.6f,3.83f),d.P(-4.65f,2.0f,3.83f),d.P(-4.65f,1.65f,3.83f) }) yield return Walk(p);
-            yield return Use(Item(AtmajaAction.Diary)); yield return Shot("03-bima-diary"); Hud.CloseDocumentModal();
+            yield return Use(Item(AtmajaAction.Diary));
+            Check(Phone.isPhoneRaised&&Phone.isScreenOn&&d.phoneView.Panel.activeSelf&&d.phoneView.FeedCamera.enabled,"Reading Bima's diary keeps the held handset and live camera feed visible");
+            yield return Shot("03-bima-diary"); Hud.CloseDocumentModal();
             RaiseAR(); Aim(d.upper.cupAim.position); yield return null; yield return null; yield return ClickMouse();
             Check(d.upper.ChainsBroken == 1, "Actual phone lens photographs the milk cup and breaks chain one"); yield return Shot("04-first-evidence");
             foreach (var p in new[] { d.P(-5.1f,3.6f,3.83f),d.P(-4.8f,4.45f,3.83f),d.P(-4.4f,4.45f,3.83f) }) yield return Walk(p);

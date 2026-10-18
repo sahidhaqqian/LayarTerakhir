@@ -1,6 +1,6 @@
 {
     "scene": "Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity",
-    "utc": "2026-10-17T21:53:19.4893850Z",
+    "utc": "2026-10-18T02:14:10.5581090Z",
     "failures": 0,
     "triangles": 114455,
     "renderers": 208,
@@ -7846,27 +7846,6 @@
             "measured": 95.0
         },
         {
-            "subject": "PINTU_KOS",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PINTU_KOS",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 0.009999990463256836
-        },
-        {
-            "subject": "PINTU_KOS",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.8480633",
-            "passed": true,
-            "measured": 78.0
-        },
-        {
             "subject": "KALENDER_DINDING",
             "kind": "interaction-references",
             "detail": "Existing item ID, collider and director binding",
@@ -7930,6 +7909,48 @@
             "measured": 67.0
         },
         {
+            "subject": "PINTU_KOS",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PINTU_KOS",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 0.009999990463256836
+        },
+        {
+            "subject": "PINTU_KOS",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.8480633",
+            "passed": true,
+            "measured": 78.0
+        },
+        {
+            "subject": "JAKET_PINTU",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "JAKET_PINTU",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 2.384185791015625e-7
+        },
+        {
+            "subject": "JAKET_PINTU",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.7637089",
+            "passed": true,
+            "measured": 54.0
+        },
+        {
             "subject": "SMARTPHONE_BED",
             "kind": "interaction-references",
             "detail": "Existing item ID, collider and director binding",
@@ -7991,27 +8012,6 @@
             "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.720983",
             "passed": true,
             "measured": 38.0
-        },
-        {
-            "subject": "JAKET_PINTU",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "JAKET_PINTU",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 2.384185791015625e-7
-        },
-        {
-            "subject": "JAKET_PINTU",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.7637089",
-            "passed": true,
-            "measured": 54.0
         },
         {
             "subject": "KosDoor",

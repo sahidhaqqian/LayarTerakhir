@@ -80,7 +80,8 @@ namespace LayarTerakhir.Editor
             DesignerWorldRevision.Atmaja(director,environment);
             EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene,ScenePath);AssetDatabase.SaveAssets();
             EditorBuildSettings.scenes=new[]{new EditorBuildSettingsScene(PrologKosSceneBuilder.ScenePath,true),new EditorBuildSettingsScene(ScenePath,true),new EditorBuildSettingsScene(KosCorridorBuilder.ScenePath,true)};
-            Debug.Log("ATMAJA_BUILD Saved exterior + ground floor; approved Golden scene not written.");
+            AtmajaStairRevisionBuilder.Apply();
+            Debug.Log("ATMAJA_BUILD Saved exterior + ground floor with enclosed stair revision; approved Golden scene not written.");
         }
         private static void Imports()
         {

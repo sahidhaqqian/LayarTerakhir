@@ -1,0 +1,6 @@
+{
+  "reason": "Unity Editor native unused-asset unloading stalled before the first test; log stopped at 01:55:42 for over five minutes; captured native stack before terminating this own editor process",
+  "stalledEditorPid": 399213,
+  "notCountedAsPassingTests": true,
+  "retry": "Fresh Editor after facade-band visual correction"
+}

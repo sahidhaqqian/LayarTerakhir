@@ -18,7 +18,14 @@ namespace LayarTerakhir.Prolog
             if(action==AtmajaAction.Handycam&&campaign&&campaign.HasInventoryItem(AtmajaBasementHorror.HandycamId))return "Putar rekaman terakhir Damar";
             return label;
         }
-        public bool CanInteract()=>enabled&&director&&!director.Busy&&(!director.basement||!director.basement.IsHidden)&&director.Stage<AtmajaStage.Chase&&!(HudController.Instance&&HudController.Instance.IsModalOpen);
+        public bool CanInteract()
+        {
+            var campaign=LayarTerakhir.Core.CampaignState.Instance;
+            // The colliding leaf stays in the world after unlock; it must not reset
+            // upper-floor progress when approached again from either side.
+            if(action==AtmajaAction.StairDoor&&campaign&&campaign.HasInventoryItem("EVENT_P0_STAIRS_UNLOCKED"))return false;
+            return enabled&&director&&!director.Busy&&(!director.basement||!director.basement.IsHidden)&&director.Stage<AtmajaStage.Chase&&!(HudController.Instance&&HudController.Instance.IsModalOpen);
+        }
         public void Interact(){if(CanInteract())director.Interact(this);}
     }
 }

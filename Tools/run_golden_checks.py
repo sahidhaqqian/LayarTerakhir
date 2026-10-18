@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 UNITY='/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity'
 parser=argparse.ArgumentParser()
-parser.add_argument('--stage',required=True,choices=['apply','polish','validate','test','linux','windows','player','atmaja-build','atmaja-validate','atmaja-player','review-build','review-validate','review-player','kos-refine','prolog-complete','prolog-presentation','prolog-player','rider-player'])
+parser.add_argument('--stage',required=True,choices=['apply','polish','validate','test','linux','windows','player','atmaja-build','atmaja-validate','atmaja-player','review-build','review-validate','review-player','kos-refine','prolog-complete','prolog-presentation','stair-revision','prolog-player','rider-player'])
 parser.add_argument('--test-filter',default='LayarTerakhir.Editor.Tests')
 parser.add_argument('--chase-only',action='store_true',help='Diagnostic prolog chase checkpoint fixture; final delivery must also run the full continuation')
 parser.add_argument('--width',type=int,default=1280)
@@ -40,7 +40,7 @@ elif is_player:
         assert stage=='prolog-player'
         command+=['-prologChaseOnly']
 else:
-    methods={'apply':'GoldenSceneProduction.Apply','polish':'CompactKosPolish.Apply','validate':'GoldenSceneValidation.Run','linux':'GoldenLinuxBuild.Build','windows':'WindowsDevelopmentBuild.Build','atmaja-build':'PlaytestRevisionBuilder.Build','atmaja-validate':'AtmajaSceneValidation.Run','review-build':'PlaytestRevisionBuilder.Build','review-validate':'PlaytestReviewValidation.Run','kos-refine':'PlaytestRevisionBuilder.RefineKos','prolog-complete':'PrologCompletionBuilder.Apply','prolog-presentation':'PrologPresentationBuilder.Apply'}
+    methods={'apply':'GoldenSceneProduction.Apply','polish':'CompactKosPolish.Apply','validate':'GoldenSceneValidation.Run','linux':'GoldenLinuxBuild.Build','windows':'WindowsDevelopmentBuild.Build','atmaja-build':'PlaytestRevisionBuilder.Build','atmaja-validate':'AtmajaSceneValidation.Run','review-build':'PlaytestRevisionBuilder.Build','review-validate':'PlaytestReviewValidation.Run','kos-refine':'PlaytestRevisionBuilder.RefineKos','prolog-complete':'PrologCompletionBuilder.Apply','prolog-presentation':'PrologPresentationBuilder.Apply','stair-revision':'AtmajaStairRevisionBuilder.Apply'}
     if stage in ['linux','windows']:command+=['-buildTarget','Linux64' if stage=='linux' else 'Win64']
     if stage=='windows':
         prior=ROOT/'Builds/Previous'/('before-golden-'+datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S'))

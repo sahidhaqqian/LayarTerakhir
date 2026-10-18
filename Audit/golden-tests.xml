@@ -1,398 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<test-run id="2" testcasecount="75" result="Passed" total="75" passed="75" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-17 21:53:16Z" end-time="2026-10-17 21:53:20Z" duration="3.9179019">
-  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="75" result="Passed" start-time="2026-10-17 21:53:16Z" end-time="2026-10-17 21:53:20Z" duration="3.917902" total="75" passed="75" failed="0" inconclusive="0" skipped="0" asserts="0">
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-18 02:15:48Z" end-time="2026-10-18 02:15:49Z" duration="1.3687348">
+  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="77" result="Passed" start-time="2026-10-18 02:15:48Z" end-time="2026-10-18 02:15:49Z" duration="1.368735" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
     <properties>
       <property name="platform" value="EditMode" />
     </properties>
-    <test-suite type="Assembly" id="1091" name="Assembly-CSharp-Editor.dll" fullname="/root/Projects/LayarTerakhir-main/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="75" result="Passed" start-time="2026-10-17 21:53:16Z" end-time="2026-10-17 21:53:20Z" duration="3.824106" total="75" passed="75" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <test-suite type="Assembly" id="1093" name="Assembly-CSharp-Editor.dll" fullname="/root/Projects/LayarTerakhir-main/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="77" result="Passed" start-time="2026-10-18 02:15:48Z" end-time="2026-10-18 02:15:49Z" duration="1.260647" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
       <properties>
-        <property name="_PID" value="379467" />
+        <property name="_PID" value="404175" />
         <property name="_APPDOMAIN" value="Unity Child Domain" />
         <property name="platform" value="EditMode" />
         <property name="EditorOnly" value="True" />
       </properties>
-      <test-suite type="TestSuite" id="1092" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="75" result="Passed" start-time="2026-10-17 21:53:16Z" end-time="2026-10-17 21:53:20Z" duration="3.822939" total="75" passed="75" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <test-suite type="TestSuite" id="1094" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="77" result="Passed" start-time="2026-10-18 02:15:48Z" end-time="2026-10-18 02:15:49Z" duration="1.258585" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
         <properties />
-        <test-suite type="TestSuite" id="1093" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="75" result="Passed" start-time="2026-10-17 21:53:16Z" end-time="2026-10-17 21:53:20Z" duration="3.822089" total="75" passed="75" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <test-suite type="TestSuite" id="1095" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="77" result="Passed" start-time="2026-10-18 02:15:48Z" end-time="2026-10-18 02:15:49Z" duration="1.257377" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
           <properties />
-          <test-suite type="TestSuite" id="1094" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="75" result="Passed" start-time="2026-10-17 21:53:16Z" end-time="2026-10-17 21:53:20Z" duration="3.819440" total="75" passed="75" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestSuite" id="1096" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="77" result="Passed" start-time="2026-10-18 02:15:48Z" end-time="2026-10-18 02:15:49Z" duration="1.256395" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-suite type="TestFixture" id="1001" name="AtmajaPlayTests" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-17 21:51:11Z" end-time="2026-10-17 21:51:12Z" duration="0.812981" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-suite type="TestFixture" id="1001" name="AtmajaPlayTests" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-10-18 02:15:48Z" end-time="2026-10-18 02:15:49Z" duration="1.249158" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-case id="1008" name="AtmajaStairsReachUpperCorridorWithoutTeleport" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.AtmajaStairsReachUpperCorridorWithoutTeleport" methodname="AtmajaStairsReachUpperCorridorWithoutTeleport" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1776129105" result="Passed" start-time="2026-10-17 21:48:40Z" end-time="2026-10-17 21:48:51Z" duration="10.286638" asserts="0">
+              <test-case id="1008" name="AtmajaStairsReachUpperCorridorWithoutTeleport" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.AtmajaStairsReachUpperCorridorWithoutTeleport" methodname="AtmajaStairsReachUpperCorridorWithoutTeleport" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="561095872" result="Passed" start-time="2026-10-18 02:15:26Z" end-time="2026-10-18 02:15:34Z" duration="7.956648" asserts="0">
                 <properties>
                   <property name="_JOINTYPE" value="UnityCombinatorial" />
                 </properties>
               </test-case>
-              <test-case id="1009" name="BasementPowerAndDonationSurviveContinueWithoutDuplication" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.BasementPowerAndDonationSurviveContinueWithoutDuplication" methodname="BasementPowerAndDonationSurviveContinueWithoutDuplication" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1042387192" result="Passed" start-time="2026-10-17 21:48:51Z" end-time="2026-10-17 21:49:02Z" duration="11.620988" asserts="0">
+              <test-case id="1017" name="EnclosedStairsHideBehindARealDoorAndKeepGuards" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.EnclosedStairsHideBehindARealDoorAndKeepGuards" methodname="EnclosedStairsHideBehindARealDoorAndKeepGuards" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1528230478" result="Passed" start-time="2026-10-18 02:15:34Z" end-time="2026-10-18 02:15:42Z" duration="7.393093" asserts="0">
                 <properties>
                   <property name="_JOINTYPE" value="UnityCombinatorial" />
                 </properties>
               </test-case>
-              <test-case id="1006" name="DiningSidesBackpackAndCornerRoomAreContinuouslyWalkable" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.DiningSidesBackpackAndCornerRoomAreContinuouslyWalkable" methodname="DiningSidesBackpackAndCornerRoomAreContinuouslyWalkable" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="602588200" result="Passed" start-time="2026-10-17 21:49:02Z" end-time="2026-10-17 21:49:10Z" duration="8.073562" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1013" name="FinishedPrologRestoresTheTitleWithoutAnotherDonation" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.FinishedPrologRestoresTheTitleWithoutAnotherDonation" methodname="FinishedPrologRestoresTheTitleWithoutAnotherDonation" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1317074489" result="Passed" start-time="2026-10-17 21:49:10Z" end-time="2026-10-17 21:49:17Z" duration="6.278370" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1010" name="HunterSeesThePlayerButNeverThroughArchiveShelves" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.HunterSeesThePlayerButNeverThroughArchiveShelves" methodname="HunterSeesThePlayerButNeverThroughArchiveShelves" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1128031699" result="Passed" start-time="2026-10-17 21:49:17Z" end-time="2026-10-17 21:49:23Z" duration="6.219907" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1016" name="HybridCameraUsesRemappedInputAndPreservesChoiceDuringForcedCloseups" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.HybridCameraUsesRemappedInputAndPreservesChoiceDuringForcedCloseups" methodname="HybridCameraUsesRemappedInputAndPreservesChoiceDuringForcedCloseups" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1077302763" result="Passed" start-time="2026-10-17 21:49:23Z" end-time="2026-10-17 21:49:29Z" duration="6.574572" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1012" name="InterruptedHandycamCanBePlayedAgainAfterContinue" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.InterruptedHandycamCanBePlayedAgainAfterContinue" methodname="InterruptedHandycamCanBePlayedAgainAfterContinue" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="627336354" result="Passed" start-time="2026-10-17 21:49:29Z" end-time="2026-10-17 21:49:36Z" duration="6.279377" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-                <output><![CDATA[ATMAJA_CHECKPOINT_RESTORE Simulated interrupted recording
-]]></output>
-              </test-case>
-              <test-case id="1005" name="KosBothStairFlightsAndSharedRoomsAreContinuouslyWalkable" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.KosBothStairFlightsAndSharedRoomsAreContinuouslyWalkable" methodname="KosBothStairFlightsAndSharedRoomsAreContinuouslyWalkable" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1863896819" result="Passed" start-time="2026-10-17 21:49:36Z" end-time="2026-10-17 21:49:44Z" duration="8.178916" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1011" name="LockerWarningAllowsScreenInputAndSafeManualExit" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.LockerWarningAllowsScreenInputAndSafeManualExit" methodname="LockerWarningAllowsScreenInputAndSafeManualExit" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="562465303" result="Passed" start-time="2026-10-17 21:49:44Z" end-time="2026-10-17 21:49:57Z" duration="13.384327" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1015" name="MasterCellarAndClosingTrapdoorHaveConnectedCapsuleRoutes" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.MasterCellarAndClosingTrapdoorHaveConnectedCapsuleRoutes" methodname="MasterCellarAndClosingTrapdoorHaveConnectedCapsuleRoutes" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1923395174" result="Passed" start-time="2026-10-17 21:49:57Z" end-time="2026-10-17 21:50:05Z" duration="7.704035" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1014" name="MissedEmergencyBlitzRestoresChaseMusicBatteryAndInput" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.MissedEmergencyBlitzRestoresChaseMusicBatteryAndInput" methodname="MissedEmergencyBlitzRestoresChaseMusicBatteryAndInput" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="2058357908" result="Passed" start-time="2026-10-17 21:50:05Z" end-time="2026-10-17 21:50:33Z" duration="27.968708" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-                <output><![CDATA[ATMAJA_CHECKPOINT_RESTORE Blitz terlambat. Saat dia menghadang jendela, tembakkan Flash kamera.
-]]></output>
-              </test-case>
-              <test-case id="1003" name="OnePhoneARClockZeroBatteryAndCheckpointResume" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.OnePhoneARClockZeroBatteryAndCheckpointResume" methodname="OnePhoneARClockZeroBatteryAndCheckpointResume" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="194300952" result="Passed" start-time="2026-10-17 21:50:33Z" end-time="2026-10-17 21:50:50Z" duration="17.413634" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1004" name="PhoneAppsExposeCampaignAndAllowStowing" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.PhoneAppsExposeCampaignAndAllowStowing" methodname="PhoneAppsExposeCampaignAndAllowStowing" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1855741520" result="Passed" start-time="2026-10-17 21:50:50Z" end-time="2026-10-17 21:50:58Z" duration="7.270917" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1002" name="SurveyLiveDonationCrouchAndRemappedVault" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.SurveyLiveDonationCrouchAndRemappedVault" methodname="SurveyLiveDonationCrouchAndRemappedVault" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="526565364" result="Passed" start-time="2026-10-17 21:50:58Z" end-time="2026-10-17 21:51:05Z" duration="7.175178" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1007" name="UpperEvidenceUsesPhoneLensAndAcceptsTargetSurface" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.UpperEvidenceUsesPhoneLensAndAcceptsTargetSurface" methodname="UpperEvidenceUsesPhoneLensAndAcceptsTargetSurface" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="10262304" result="Passed" start-time="2026-10-17 21:51:05Z" end-time="2026-10-17 21:51:12Z" duration="6.651511" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-            </test-suite>
-            <test-suite type="TestFixture" id="1017" name="AtmajaSceneTests" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-17 21:51:12Z" end-time="2026-10-17 21:51:12Z" duration="0.747778" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
-              <properties />
-              <test-case id="1018" name="AtmajaSceneKeepsGoldenAndHasPhysicalTraversalAndCompleteMaterials" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.AtmajaSceneKeepsGoldenAndHasPhysicalTraversalAndCompleteMaterials" methodname="AtmajaSceneKeepsGoldenAndHasPhysicalTraversalAndCompleteMaterials" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" seed="1066045788" result="Passed" start-time="2026-10-17 21:51:12Z" end-time="2026-10-17 21:51:12Z" duration="0.740870" asserts="0">
-                <properties />
-                <output><![CDATA[ATMAJA_CAPSULE_BLOCKED (-8.20, 0.06, -5.50) h=1.75 by KambojaCrouchLimb Center: (-8.20, 1.41, -5.50), Extents: (2.10, 0.18, 0.18)
-ATMAJA_AR_BOUNDS figure=Center: (-3.70, 0.61, -4.26), Extents: (0.37, 0.65, 0.33) clue=Center: (5.76, 2.21, -4.58), Extents: (0.00, 0.31, 0.73)
-ATMAJA_VALIDATION checks=4042 failures=0 tris=291968 renderers=1120
-]]></output>
-              </test-case>
-              <test-suite type="ParameterizedMethod" id="1022" name="ContinuationCheckpointRoutingIsExplicit" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.ContinuationCheckpointRoutingIsExplicit" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-17 21:51:12Z" end-time="2026-10-17 21:51:12Z" duration="0.004439" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
-                <properties />
-                <test-case id="1019" name="ContinuationCheckpointRoutingIsExplicit(&quot;PROLOG_ATMAJA_COURTYARD&quot;)" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.ContinuationCheckpointRoutingIsExplicit(&quot;PROLOG_ATMAJA_COURTYARD&quot;)" methodname="ContinuationCheckpointRoutingIsExplicit" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" seed="727738962" result="Passed" start-time="2026-10-17 21:51:12Z" end-time="2026-10-17 21:51:12Z" duration="0.000732" asserts="0">
-                  <properties />
-                </test-case>
-                <test-case id="1020" name="ContinuationCheckpointRoutingIsExplicit(&quot;PROLOG_ATMAJA_KITCHEN&quot;)" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.ContinuationCheckpointRoutingIsExplicit(&quot;PROLOG_ATMAJA_KITCHEN&quot;)" methodname="ContinuationCheckpointRoutingIsExplicit" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" seed="808915035" result="Passed" start-time="2026-10-17 21:51:12Z" end-time="2026-10-17 21:51:12Z" duration="0.000162" asserts="0">
-                  <properties />
-                </test-case>
-                <test-case id="1021" name="ContinuationCheckpointRoutingIsExplicit(&quot;PROLOG_MATABATIN_ACQUIRED&quot;)" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.ContinuationCheckpointRoutingIsExplicit(&quot;PROLOG_MATABATIN_ACQUIRED&quot;)" methodname="ContinuationCheckpointRoutingIsExplicit" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" seed="1105701950" result="Passed" start-time="2026-10-17 21:51:12Z" end-time="2026-10-17 21:51:12Z" duration="0.000090" asserts="0">
-                  <properties />
-                </test-case>
-              </test-suite>
-              <test-case id="1023" name="KosCheckpointNeverSkipsApprovedOpening" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.KosCheckpointNeverSkipsApprovedOpening" methodname="KosCheckpointNeverSkipsApprovedOpening" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" seed="1442640949" result="Passed" start-time="2026-10-17 21:51:12Z" end-time="2026-10-17 21:51:12Z" duration="0.000488" asserts="0">
-                <properties />
-              </test-case>
-            </test-suite>
-            <test-suite type="TestFixture" id="1024" name="DesignerRevisionTests" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-17 21:51:12Z" end-time="2026-10-17 21:51:14Z" duration="1.967046" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
-              <properties />
-              <test-case id="1031" name="AtmajaNoteIsInsideDollReturnsAndHouseNameplateIsGone" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.AtmajaNoteIsInsideDollReturnsAndHouseNameplateIsGone" methodname="AtmajaNoteIsInsideDollReturnsAndHouseNameplateIsGone" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="665837320" result="Passed" start-time="2026-10-17 21:51:12Z" end-time="2026-10-17 21:51:13Z" duration="0.582479" asserts="0">
-                <properties />
-              </test-case>
-              <test-case id="1032" name="BloodClueHasUnobstructedHeadHeightSightLineFromLounge" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.BloodClueHasUnobstructedHeadHeightSightLineFromLounge" methodname="BloodClueHasUnobstructedHeadHeightSightLineFromLounge" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="229805123" result="Passed" start-time="2026-10-17 21:51:13Z" end-time="2026-10-17 21:51:14Z" duration="0.539371" asserts="0">
-                <properties />
-              </test-case>
-              <test-case id="1026" name="FailedPaymentSaveRollsBackEveryWalletAndReceiptChange" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.FailedPaymentSaveRollsBackEveryWalletAndReceiptChange" methodname="FailedPaymentSaveRollsBackEveryWalletAndReceiptChange" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="292234415" result="Passed" start-time="2026-10-17 21:51:14Z" end-time="2026-10-17 21:51:14Z" duration="0.071358" asserts="0">
-                <properties />
-                <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: The file '/tmp/LayarDesignerTest-1e1881e5e5d940ec863488d52f3621f3' already exists.
-]]></output>
-              </test-case>
-              <test-case id="1025" name="FamilyPaymentsRequireCallsPersistAndNeverDoubleCharge" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.FamilyPaymentsRequireCallsPersistAndNeverDoubleCharge" methodname="FamilyPaymentsRequireCallsPersistAndNeverDoubleCharge" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="793002617" result="Passed" start-time="2026-10-17 21:51:14Z" end-time="2026-10-17 21:51:14Z" duration="0.109895" asserts="0">
-                <properties />
-              </test-case>
-              <test-case id="1030" name="FullscreenPreferenceNeverOverridesTestsOrExplicitLaunchDimensions" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.FullscreenPreferenceNeverOverridesTestsOrExplicitLaunchDimensions" methodname="FullscreenPreferenceNeverOverridesTestsOrExplicitLaunchDimensions" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="1218086497" result="Passed" start-time="2026-10-17 21:51:14Z" end-time="2026-10-17 21:51:14Z" duration="0.072380" asserts="0">
-                <properties />
-              </test-case>
-              <test-case id="1027" name="InsufficientFundsDoNotCreateFakePaymentReceipt" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.InsufficientFundsDoNotCreateFakePaymentReceipt" methodname="InsufficientFundsDoNotCreateFakePaymentReceipt" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="882568553" result="Passed" start-time="2026-10-17 21:51:14Z" end-time="2026-10-17 21:51:14Z" duration="0.075696" asserts="0">
-                <properties />
-              </test-case>
-              <test-case id="1029" name="KosHasSeparateFacilitiesColouredWindowsAndPairedGate" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.KosHasSeparateFacilitiesColouredWindowsAndPairedGate" methodname="KosHasSeparateFacilitiesColouredWindowsAndPairedGate" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="850075616" result="Passed" start-time="2026-10-17 21:51:14Z" end-time="2026-10-17 21:51:14Z" duration="0.442259" asserts="0">
-                <properties />
-              </test-case>
-              <test-case id="1028" name="PhoneFocusDoesNotBlockDoorsButMenusStillDo" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.PhoneFocusDoesNotBlockDoorsButMenusStillDo" methodname="PhoneFocusDoesNotBlockDoorsButMenusStillDo" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="1673450554" result="Passed" start-time="2026-10-17 21:51:14Z" end-time="2026-10-17 21:51:14Z" duration="0.070188" asserts="0">
-                <properties />
-              </test-case>
-            </test-suite>
-            <test-suite type="TestFixture" id="1033" name="FoundationAuditTests" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" testcasecount="28" result="Passed" start-time="2026-10-17 21:51:14Z" end-time="2026-10-17 21:51:27Z" duration="12.338538" total="28" passed="28" failed="0" inconclusive="0" skipped="0" asserts="0">
-              <properties />
-              <test-case id="1043" name="BuildStartsInKos" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.BuildStartsInKos" methodname="BuildStartsInKos" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="737359767" result="Passed" start-time="2026-10-17 21:51:14Z" end-time="2026-10-17 21:51:15Z" duration="0.395891" asserts="0">
-                <properties />
-              </test-case>
-              <test-suite type="ParameterizedMethod" id="1061" name="CorruptSaveDoesNotReplaceLiveData" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.CorruptSaveDoesNotReplaceLiveData" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-17 21:51:15Z" end-time="2026-10-17 21:51:18Z" duration="3.232672" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
-                <properties />
-                <test-case id="1053" name="CorruptSaveDoesNotReplaceLiveData(&quot;{bad json&quot;)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.CorruptSaveDoesNotReplaceLiveData(&quot;{bad json&quot;)" methodname="CorruptSaveDoesNotReplaceLiveData" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="2001138962" result="Passed" start-time="2026-10-17 21:51:15Z" end-time="2026-10-17 21:51:15Z" duration="0.434041" asserts="0">
-                  <properties />
-                  <output><![CDATA[[CampaignState] File simpan rusak atau gagal dimuat: JSON parse error: Missing a name for object member.
-]]></output>
-                </test-case>
-                <test-case id="1054" name="CorruptSaveDoesNotReplaceLiveData(&quot;{}&quot;)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.CorruptSaveDoesNotReplaceLiveData(&quot;{}&quot;)" methodname="CorruptSaveDoesNotReplaceLiveData" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1715901055" result="Passed" start-time="2026-10-17 21:51:15Z" end-time="2026-10-17 21:51:16Z" duration="0.425142" asserts="0">
-                  <properties />
-                </test-case>
-                <test-case id="1055" name="CorruptSaveDoesNotReplaceLiveData(&quot;{\&quot;schema_version\&quot;:99}&quot;)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.CorruptSaveDoesNotReplaceLiveData(&quot;{\&quot;schema_version\&quot;:99}&quot;)" methodname="CorruptSaveDoesNotReplaceLiveData" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="186877628" result="Passed" start-time="2026-10-17 21:51:16Z" end-time="2026-10-17 21:51:16Z" duration="0.400689" asserts="0">
-                  <properties />
-                </test-case>
-                <test-case id="1056" name="CorruptSaveDoesNotReplaceLiveData(&quot;{\&quot;schema_version\&quot;:1,\&quot;battery\&quot;:-1}&quot;)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.CorruptSaveDoesNotReplaceLiveData(&quot;{\&quot;schema_version\&quot;:1,\&quot;battery\&quot;:-1}&quot;)" methodname="CorruptSaveDoesNotReplaceLiveData" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1616426019" result="Passed" start-time="2026-10-17 21:51:16Z" end-time="2026-10-17 21:51:16Z" duration="0.371819" asserts="0">
-                  <properties />
-                </test-case>
-                <test-case id="1057" name="CorruptSaveDoesNotReplaceLiveData(&quot;{\&quot;schema_version\&quot;:1,\&quot;sanity\&quot;:101}&quot;)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.CorruptSaveDoesNotReplaceLiveData(&quot;{\&quot;schema_version\&quot;:1,\&quot;sanity\&quot;:101}&quot;)" methodname="CorruptSaveDoesNotReplaceLiveData" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="327801685" result="Passed" start-time="2026-10-17 21:51:16Z" end-time="2026-10-17 21:51:17Z" duration="0.381948" asserts="0">
-                  <properties />
-                </test-case>
-                <test-case id="1058" name="CorruptSaveDoesNotReplaceLiveData(&quot;{\&quot;schema_version\&quot;:1,\&quot;inventory\&quot;:[\&quot;KEY\&quot;,\&quot;KEY\&quot;]}&quot;)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.CorruptSaveDoesNotReplaceLiveData(&quot;{\&quot;schema_version\&quot;:1,\&quot;inventory\&quot;:[\&quot;KEY\&quot;,\&quot;KEY\&quot;]}&quot;)" methodname="CorruptSaveDoesNotReplaceLiveData" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="489276387" result="Passed" start-time="2026-10-17 21:51:17Z" end-time="2026-10-17 21:51:17Z" duration="0.413692" asserts="0">
-                  <properties />
-                </test-case>
-                <test-case id="1059" name="CorruptSaveDoesNotReplaceLiveData(&quot;{\&quot;schema_version\&quot;:1,\&quot;wallet_bound\&quot;:-1}&quot;)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.CorruptSaveDoesNotReplaceLiveData(&quot;{\&quot;schema_version\&quot;:1,\&quot;wallet_bound\&quot;:-1}&quot;)" methodname="CorruptSaveDoesNotReplaceLiveData" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1497285541" result="Passed" start-time="2026-10-17 21:51:17Z" end-time="2026-10-17 21:51:18Z" duration="0.397048" asserts="0">
-                  <properties />
-                </test-case>
-                <test-case id="1060" name="CorruptSaveDoesNotReplaceLiveData(&quot;{\&quot;schema_version\&quot;:1,\&quot;ending\&quot;:99}&quot;)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.CorruptSaveDoesNotReplaceLiveData(&quot;{\&quot;schema_version\&quot;:1,\&quot;ending\&quot;:99}&quot;)" methodname="CorruptSaveDoesNotReplaceLiveData" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1048182256" result="Passed" start-time="2026-10-17 21:51:18Z" end-time="2026-10-17 21:51:18Z" duration="0.404236" asserts="0">
-                  <properties />
-                </test-case>
-              </test-suite>
-              <test-case id="1052" name="FailedSavePreservesPreviousFileAndInMemoryCheckpoint" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.FailedSavePreservesPreviousFileAndInMemoryCheckpoint" methodname="FailedSavePreservesPreviousFileAndInMemoryCheckpoint" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1823416956" result="Passed" start-time="2026-10-17 21:51:18Z" end-time="2026-10-17 21:51:18Z" duration="0.392292" asserts="0">
-                <properties />
-                <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: Access to the path '/tmp/LayarTerakhir-Test-d9f41bc2-e810-4be3-8c1a-ba5abbdf994e/layar_terakhir_save.json.tmp' is denied.
-]]></output>
-              </test-case>
-              <test-case id="1044" name="InitialPlayerCapsuleDoesNotOverlapFurniture" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.InitialPlayerCapsuleDoesNotOverlapFurniture" methodname="InitialPlayerCapsuleDoesNotOverlapFurniture" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="202891039" result="Passed" start-time="2026-10-17 21:51:18Z" end-time="2026-10-17 21:51:19Z" duration="0.399082" asserts="0">
-                <properties />
-              </test-case>
-              <test-case id="1035" name="MonitorDashboardFollowsMeasuredGlassPlaneWithinTwoMillimeters" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.MonitorDashboardFollowsMeasuredGlassPlaneWithinTwoMillimeters" methodname="MonitorDashboardFollowsMeasuredGlassPlaneWithinTwoMillimeters" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1131338790" result="Passed" start-time="2026-10-17 21:51:19Z" end-time="2026-10-17 21:51:19Z" duration="0.390595" asserts="0">
-                <properties />
-              </test-case>
-              <test-suite type="ParameterizedMethod" id="1050" name="NewGameArchivesPreviousSlotByteForByte" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.NewGameArchivesPreviousSlotByteForByte" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-17 21:51:19Z" end-time="2026-10-17 21:51:20Z" duration="0.847999" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
-                <properties />
-                <test-case id="1048" name="NewGameArchivesPreviousSlotByteForByte(False)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.NewGameArchivesPreviousSlotByteForByte(False)" methodname="NewGameArchivesPreviousSlotByteForByte" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1491031211" result="Passed" start-time="2026-10-17 21:51:19Z" end-time="2026-10-17 21:51:20Z" duration="0.427194" asserts="0">
-                  <properties />
-                </test-case>
-                <test-case id="1049" name="NewGameArchivesPreviousSlotByteForByte(True)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.NewGameArchivesPreviousSlotByteForByte(True)" methodname="NewGameArchivesPreviousSlotByteForByte" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1776131878" result="Passed" start-time="2026-10-17 21:51:20Z" end-time="2026-10-17 21:51:20Z" duration="0.418423" asserts="0">
-                  <properties />
-                </test-case>
-              </test-suite>
-              <test-case id="1062" name="NewGameResetsInventoryAndWallet" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.NewGameResetsInventoryAndWallet" methodname="NewGameResetsInventoryAndWallet" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1048134777" result="Passed" start-time="2026-10-17 21:51:20Z" end-time="2026-10-17 21:51:21Z" duration="0.723624" asserts="0">
-                <properties />
-              </test-case>
-              <test-case id="1041" name="PadlockCallbackCannotRepeatAfterSuccessfulSubmission" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.PadlockCallbackCannotRepeatAfterSuccessfulSubmission" methodname="PadlockCallbackCannotRepeatAfterSuccessfulSubmission" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1417357242" result="Passed" start-time="2026-10-17 21:51:21Z" end-time="2026-10-17 21:51:21Z" duration="0.396911" asserts="0">
-                <properties />
-              </test-case>
-              <test-case id="1042" name="PhoneRigUsesCameraLocalOffset" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.PhoneRigUsesCameraLocalOffset" methodname="PhoneRigUsesCameraLocalOffset" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1901110526" result="Passed" start-time="2026-10-17 21:51:21Z" end-time="2026-10-17 21:51:22Z" duration="0.420067" asserts="0">
-                <properties />
-              </test-case>
-              <test-case id="1036" name="PhysicalDrawerLowersPhoneAndReleasesItsFocusWithoutRemovingOtherLocks" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.PhysicalDrawerLowersPhoneAndReleasesItsFocusWithoutRemovingOtherLocks" methodname="PhysicalDrawerLowersPhoneAndReleasesItsFocusWithoutRemovingOtherLocks" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1517646085" result="Passed" start-time="2026-10-17 21:51:22Z" end-time="2026-10-17 21:51:22Z" duration="0.441081" asserts="0">
-                <properties />
-              </test-case>
-              <test-suite type="ParameterizedMethod" id="1066" name="RemappedMovementReadsNonDefaultKeys" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.RemappedMovementReadsNonDefaultKeys" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-17 21:51:22Z" end-time="2026-10-17 21:51:23Z" duration="1.203953" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
-                <properties />
-                <test-case id="1063" name="RemappedMovementReadsNonDefaultKeys(UpArrow,UpArrow)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.RemappedMovementReadsNonDefaultKeys(UpArrow,UpArrow)" methodname="RemappedMovementReadsNonDefaultKeys" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="743109542" result="Passed" start-time="2026-10-17 21:51:22Z" end-time="2026-10-17 21:51:22Z" duration="0.389964" asserts="0">
-                  <properties />
-                </test-case>
-                <test-case id="1064" name="RemappedMovementReadsNonDefaultKeys(Alpha1,Digit1)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.RemappedMovementReadsNonDefaultKeys(Alpha1,Digit1)" methodname="RemappedMovementReadsNonDefaultKeys" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="378988456" result="Passed" start-time="2026-10-17 21:51:22Z" end-time="2026-10-17 21:51:23Z" duration="0.421720" asserts="0">
-                  <properties />
-                </test-case>
-                <test-case id="1065" name="RemappedMovementReadsNonDefaultKeys(RightControl,RightCtrl)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.RemappedMovementReadsNonDefaultKeys(RightControl,RightCtrl)" methodname="RemappedMovementReadsNonDefaultKeys" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1188720661" result="Passed" start-time="2026-10-17 21:51:23Z" end-time="2026-10-17 21:51:23Z" duration="0.389282" asserts="0">
-                  <properties />
-                </test-case>
-              </test-suite>
-              <test-case id="1034" name="SavedDocumentCloseButtonClosesAndCallsBackOnce" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.SavedDocumentCloseButtonClosesAndCallsBackOnce" methodname="SavedDocumentCloseButtonClosesAndCallsBackOnce" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1203509981" result="Passed" start-time="2026-10-17 21:51:23Z" end-time="2026-10-17 21:51:24Z" duration="0.408446" asserts="0">
-                <properties />
-              </test-case>
-              <test-suite type="ParameterizedMethod" id="1039" name="SavedPadlockButtonsSolveOnce" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.SavedPadlockButtonsSolveOnce" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-17 21:51:24Z" end-time="2026-10-17 21:51:24Z" duration="0.786498" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
-                <properties />
-                <test-case id="1037" name="SavedPadlockButtonsSolveOnce(&quot;148&quot;)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.SavedPadlockButtonsSolveOnce(&quot;148&quot;)" methodname="SavedPadlockButtonsSolveOnce" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1116990135" result="Passed" start-time="2026-10-17 21:51:24Z" end-time="2026-10-17 21:51:24Z" duration="0.390625" asserts="0">
-                  <properties />
-                </test-case>
-                <test-case id="1038" name="SavedPadlockButtonsSolveOnce(&quot;1408&quot;)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.SavedPadlockButtonsSolveOnce(&quot;1408&quot;)" methodname="SavedPadlockButtonsSolveOnce" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="457759241" result="Passed" start-time="2026-10-17 21:51:24Z" end-time="2026-10-17 21:51:24Z" duration="0.393332" asserts="0">
-                  <properties />
-                </test-case>
-              </test-suite>
-              <test-case id="1040" name="SavedPadlockRejectsWrongCodeAndCancelCloses" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.SavedPadlockRejectsWrongCodeAndCancelCloses" methodname="SavedPadlockRejectsWrongCodeAndCancelCloses" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1675676739" result="Passed" start-time="2026-10-17 21:51:24Z" end-time="2026-10-17 21:51:25Z" duration="0.370679" asserts="0">
-                <properties />
-              </test-case>
-              <test-case id="1051" name="SaveReplacementKeepsBackupAndRestoresFullSnapshot" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.SaveReplacementKeepsBackupAndRestoresFullSnapshot" methodname="SaveReplacementKeepsBackupAndRestoresFullSnapshot" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1947117537" result="Passed" start-time="2026-10-17 21:51:25Z" end-time="2026-10-17 21:51:25Z" duration="0.385561" asserts="0">
-                <properties />
-              </test-case>
-              <test-suite type="ParameterizedMethod" id="1047" name="SceneHasNoMissingScriptsOrSerializedObjectReferences" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.SceneHasNoMissingScriptsOrSerializedObjectReferences" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-17 21:51:25Z" end-time="2026-10-17 21:51:27Z" duration="1.535845" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
-                <properties />
-                <test-case id="1045" name="SceneHasNoMissingScriptsOrSerializedObjectReferences(&quot;Assets/Scenes/SampleScene.unity&quot;)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.SceneHasNoMissingScriptsOrSerializedObjectReferences(&quot;Assets/Scenes/SampleScene.unity&quot;)" methodname="SceneHasNoMissingScriptsOrSerializedObjectReferences" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1936590707" result="Passed" start-time="2026-10-17 21:51:25Z" end-time="2026-10-17 21:51:26Z" duration="0.674874" asserts="0">
-                  <properties />
-                </test-case>
-                <test-case id="1046" name="SceneHasNoMissingScriptsOrSerializedObjectReferences(&quot;Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity&quot;)" fullname="LayarTerakhir.Editor.Tests.FoundationAuditTests.SceneHasNoMissingScriptsOrSerializedObjectReferences(&quot;Assets/_LayarTerakhir/Scenes/Prolog_KamarKos.unity&quot;)" methodname="SceneHasNoMissingScriptsOrSerializedObjectReferences" classname="LayarTerakhir.Editor.Tests.FoundationAuditTests" runstate="Runnable" seed="1652840273" result="Passed" start-time="2026-10-17 21:51:26Z" end-time="2026-10-17 21:51:27Z" duration="0.858251" asserts="0">
-                  <properties />
-                </test-case>
-              </test-suite>
-            </test-suite>
-            <test-suite type="TestFixture" id="1067" name="FoundationPlayAuditTests" fullname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests" classname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-17 21:53:16Z" end-time="2026-10-17 21:53:17Z" duration="0.951785" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
-              <properties />
-              <test-case id="1072" name="DepartureCanRetryAfterSaveFailure" fullname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests.DepartureCanRetryAfterSaveFailure" methodname="DepartureCanRetryAfterSaveFailure" classname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests" runstate="Runnable" seed="1325041483" result="Passed" start-time="2026-10-17 21:51:27Z" end-time="2026-10-17 21:51:35Z" duration="7.824488" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-                <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: Access to the path '/tmp/LayarTerakhir-PlayTest-72b1aeeb-b661-4fd9-82a1-9998a44b8562/layar_terakhir_save.json.tmp' is denied.
-]]></output>
-              </test-case>
-              <test-case id="1070" name="KosSequenceWithDrawerFirst" fullname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests.KosSequenceWithDrawerFirst" methodname="KosSequenceWithDrawerFirst" classname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests" runstate="Runnable" seed="190273674" result="Passed" start-time="2026-10-17 21:51:35Z" end-time="2026-10-17 21:51:48Z" duration="13.896018" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1068" name="KosSequenceWithJacketFirst" fullname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests.KosSequenceWithJacketFirst" methodname="KosSequenceWithJacketFirst" classname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests" runstate="Runnable" seed="1999478456" result="Passed" start-time="2026-10-17 21:51:48Z" end-time="2026-10-17 21:52:02Z" duration="13.829237" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1077" name="MovementCollisionAndCrouchHeadroomUseRuntimePhysics" fullname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests.MovementCollisionAndCrouchHeadroomUseRuntimePhysics" methodname="MovementCollisionAndCrouchHeadroomUseRuntimePhysics" classname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests" runstate="Runnable" seed="1357235396" result="Passed" start-time="2026-10-17 21:52:02Z" end-time="2026-10-17 21:52:14Z" duration="11.803190" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1074" name="NewBroadcastNotificationKeepsItsOwnDuration" fullname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests.NewBroadcastNotificationKeepsItsOwnDuration" methodname="NewBroadcastNotificationKeepsItsOwnDuration" classname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests" runstate="Runnable" seed="2048250317" result="Passed" start-time="2026-10-17 21:52:14Z" end-time="2026-10-17 21:52:20Z" duration="5.960376" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1076" name="OverlappingTabletopPreventsStandingAndStepPop" fullname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests.OverlappingTabletopPreventsStandingAndStepPop" methodname="OverlappingTabletopPreventsStandingAndStepPop" classname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests" runstate="Runnable" seed="1672293621" result="Passed" start-time="2026-10-17 21:52:20Z" end-time="2026-10-17 21:52:30Z" duration="9.442386" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1069" name="PauseSettingsAndResumeOwnInputAndTime" fullname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests.PauseSettingsAndResumeOwnInputAndTime" methodname="PauseSettingsAndResumeOwnInputAndTime" classname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests" runstate="Runnable" seed="1879674664" result="Passed" start-time="2026-10-17 21:52:30Z" end-time="2026-10-17 21:52:38Z" duration="8.648958" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1075" name="PhoneAppsAllowActualWasdMovement" fullname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests.PhoneAppsAllowActualWasdMovement" methodname="PhoneAppsAllowActualWasdMovement" classname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests" runstate="Runnable" seed="325240166" result="Passed" start-time="2026-10-17 21:52:38Z" end-time="2026-10-17 21:52:46Z" duration="8.164306" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1073" name="PhoneDrainModesDarkBroadcastAndZeroBatteryRecharge" fullname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests.PhoneDrainModesDarkBroadcastAndZeroBatteryRecharge" methodname="PhoneDrainModesDarkBroadcastAndZeroBatteryRecharge" classname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests" runstate="Runnable" seed="1210115310" result="Passed" start-time="2026-10-17 21:52:46Z" end-time="2026-10-17 21:52:55Z" duration="8.732540" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1079" name="PowerbankKeyWorksWithDeadPhone" fullname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests.PowerbankKeyWorksWithDeadPhone" methodname="PowerbankKeyWorksWithDeadPhone" classname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests" runstate="Runnable" seed="896884664" result="Passed" start-time="2026-10-17 21:52:55Z" end-time="2026-10-17 21:53:03Z" duration="7.681785" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1078" name="PowerbankKeyWorksWithStoredPhone" fullname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests.PowerbankKeyWorksWithStoredPhone" methodname="PowerbankKeyWorksWithStoredPhone" classname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests" runstate="Runnable" seed="1180542468" result="Passed" start-time="2026-10-17 21:53:03Z" end-time="2026-10-17 21:53:10Z" duration="7.635467" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1071" name="ReloadRestoresKosObjectsBatteryAndWalletWithoutRegrantingConsumables" fullname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests.ReloadRestoresKosObjectsBatteryAndWalletWithoutRegrantingConsumables" methodname="ReloadRestoresKosObjectsBatteryAndWalletWithoutRegrantingConsumables" classname="LayarTerakhir.Editor.Tests.FoundationPlayAuditTests" runstate="Runnable" seed="888054110" result="Passed" start-time="2026-10-17 21:53:10Z" end-time="2026-10-17 21:53:17Z" duration="6.698970" asserts="0">
+              <test-case id="1018" name="ReadingNotesPreservesHeldPhoneCameraAndLocksMovement" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.ReadingNotesPreservesHeldPhoneCameraAndLocksMovement" methodname="ReadingNotesPreservesHeldPhoneCameraAndLocksMovement" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="937113695" result="Passed" start-time="2026-10-18 02:15:42Z" end-time="2026-10-18 02:15:49Z" duration="7.600796" asserts="0">
                 <properties>
                   <property name="_JOINTYPE" value="UnityCombinatorial" />
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
-              </test-case>
-            </test-suite>
-            <test-suite type="TestFixture" id="1080" name="GoldenSceneTests" fullname="LayarTerakhir.Editor.Tests.GoldenSceneTests" classname="LayarTerakhir.Editor.Tests.GoldenSceneTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-17 21:53:17Z" end-time="2026-10-17 21:53:18Z" duration="0.648332" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
-              <properties />
-              <test-case id="1081" name="GoldenSceneKeepsReachableGameplayAndWiredProductionAssets" fullname="LayarTerakhir.Editor.Tests.GoldenSceneTests.GoldenSceneKeepsReachableGameplayAndWiredProductionAssets" methodname="GoldenSceneKeepsReachableGameplayAndWiredProductionAssets" classname="LayarTerakhir.Editor.Tests.GoldenSceneTests" runstate="Runnable" seed="1343080718" result="Passed" start-time="2026-10-17 21:53:17Z" end-time="2026-10-17 21:53:18Z" duration="0.646449" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-                <output><![CDATA[KOS_V2_VALIDATION checks=1151 failures=0 triangles=114455 renderers=208
-GOLDEN_VALIDATION PASS extraChecks=31 baseChecks=1151
-]]></output>
-              </test-case>
-            </test-suite>
-            <test-suite type="TestFixture" id="1082" name="KosVisualV2Tests" fullname="LayarTerakhir.Editor.Tests.KosVisualV2Tests" classname="LayarTerakhir.Editor.Tests.KosVisualV2Tests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-17 21:53:18Z" end-time="2026-10-17 21:53:19Z" duration="1.173150" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
-              <properties />
-              <test-case id="1083" name="FurnishedSceneHasGroundContactClearRoutesAndReachableInteractions" fullname="LayarTerakhir.Editor.Tests.KosVisualV2Tests.FurnishedSceneHasGroundContactClearRoutesAndReachableInteractions" methodname="FurnishedSceneHasGroundContactClearRoutesAndReachableInteractions" classname="LayarTerakhir.Editor.Tests.KosVisualV2Tests" runstate="Runnable" seed="420428767" result="Passed" start-time="2026-10-17 21:53:18Z" end-time="2026-10-17 21:53:18Z" duration="0.367166" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-                <output><![CDATA[KOS_V2_VALIDATION checks=1151 failures=0 triangles=114455 renderers=208
-]]></output>
-              </test-case>
-              <test-case id="1084" name="PlacementValidationDetectsActualFloatingFurniture" fullname="LayarTerakhir.Editor.Tests.KosVisualV2Tests.PlacementValidationDetectsActualFloatingFurniture" methodname="PlacementValidationDetectsActualFloatingFurniture" classname="LayarTerakhir.Editor.Tests.KosVisualV2Tests" runstate="Runnable" seed="2057180145" result="Passed" start-time="2026-10-17 21:53:18Z" end-time="2026-10-17 21:53:19Z" duration="0.802127" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-                <output><![CDATA[KOS_V2_VALIDATION {"subject":"painted_wooden_chair_01","kind":"floor-contact","detail":"Transformed renderer minimum minus actual tile surface (metres)","passed":false,"measured":0.1510000228881836}
-KOS_V2_VALIDATION {"subject":"DeskChair","kind":"seat-height","detail":"Actual mesh surface at the seat centre; detects toppled/stretched chair orientation","passed":false,"measured":0.5530717968940735}
-KOS_V2_VALIDATION checks=1151 failures=2 triangles=114455 renderers=208
-KOS_V2_VALIDATION checks=1151 failures=0 triangles=114455 renderers=208
-]]></output>
-              </test-case>
-            </test-suite>
-            <test-suite type="TestFixture" id="1085" name="PlaytestReviewTests" fullname="LayarTerakhir.Editor.Tests.PlaytestReviewTests" classname="LayarTerakhir.Editor.Tests.PlaytestReviewTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-17 21:53:19Z" end-time="2026-10-17 21:53:20Z" duration="1.020320" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
-              <properties />
-              <test-suite type="ParameterizedMethod" id="1090" name="CorridorSavesResumeTheBoardingHouse" fullname="LayarTerakhir.Editor.Tests.PlaytestReviewTests.CorridorSavesResumeTheBoardingHouse" classname="LayarTerakhir.Editor.Tests.PlaytestReviewTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-17 21:53:19Z" end-time="2026-10-17 21:53:19Z" duration="0.001928" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
-                <properties />
-                <test-case id="1087" name="CorridorSavesResumeTheBoardingHouse(&quot;PROLOG_KOS_CORRIDOR&quot;)" fullname="LayarTerakhir.Editor.Tests.PlaytestReviewTests.CorridorSavesResumeTheBoardingHouse(&quot;PROLOG_KOS_CORRIDOR&quot;)" methodname="CorridorSavesResumeTheBoardingHouse" classname="LayarTerakhir.Editor.Tests.PlaytestReviewTests" runstate="Runnable" seed="739492642" result="Passed" start-time="2026-10-17 21:53:19Z" end-time="2026-10-17 21:53:19Z" duration="0.000710" asserts="0">
-                  <properties>
-                    <property name="retryIteration" value="0" />
-                    <property name="repeatIteration" value="0" />
-                  </properties>
-                </test-case>
-                <test-case id="1088" name="CorridorSavesResumeTheBoardingHouse(&quot;PROLOG_KOS_YARD&quot;)" fullname="LayarTerakhir.Editor.Tests.PlaytestReviewTests.CorridorSavesResumeTheBoardingHouse(&quot;PROLOG_KOS_YARD&quot;)" methodname="CorridorSavesResumeTheBoardingHouse" classname="LayarTerakhir.Editor.Tests.PlaytestReviewTests" runstate="Runnable" seed="1292592286" result="Passed" start-time="2026-10-17 21:53:19Z" end-time="2026-10-17 21:53:19Z" duration="0.000111" asserts="0">
-                  <properties>
-                    <property name="retryIteration" value="0" />
-                    <property name="repeatIteration" value="0" />
-                  </properties>
-                </test-case>
-                <test-case id="1089" name="CorridorSavesResumeTheBoardingHouse(&quot;PROLOG_TRAVEL_ATMAJA&quot;)" fullname="LayarTerakhir.Editor.Tests.PlaytestReviewTests.CorridorSavesResumeTheBoardingHouse(&quot;PROLOG_TRAVEL_ATMAJA&quot;)" methodname="CorridorSavesResumeTheBoardingHouse" classname="LayarTerakhir.Editor.Tests.PlaytestReviewTests" runstate="Runnable" seed="134581864" result="Passed" start-time="2026-10-17 21:53:19Z" end-time="2026-10-17 21:53:19Z" duration="0.000072" asserts="0">
-                  <properties>
-                    <property name="retryIteration" value="0" />
-                    <property name="repeatIteration" value="0" />
-                  </properties>
-                </test-case>
-              </test-suite>
-              <test-case id="1086" name="ReviewedGeometryAndBothFloorKosBindings" fullname="LayarTerakhir.Editor.Tests.PlaytestReviewTests.ReviewedGeometryAndBothFloorKosBindings" methodname="ReviewedGeometryAndBothFloorKosBindings" classname="LayarTerakhir.Editor.Tests.PlaytestReviewTests" runstate="Runnable" seed="860589299" result="Passed" start-time="2026-10-17 21:53:19Z" end-time="2026-10-17 21:53:20Z" duration="1.015256" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-                <output><![CDATA[REVIEW_TREE_BOUNDS Center: (-8.36, 1.30, -5.39), Extents: (2.01, 1.41, 2.13) minEast=6.35
-REVIEW_TREE_PART Static__Tree_FRANG_Bark Center: (-8.50, 1.26, -5.39), Extents: (1.86, 1.38, 1.86)
-REVIEW_TREE_PART Static__Tree_FRANG_Flower Center: (-8.18, 1.64, -5.47), Extents: (1.46, 0.78, 1.58)
-REVIEW_TREE_PART Static__Tree_FRANG_Leaf Center: (-8.12, 1.65, -5.39), Extents: (1.77, 1.06, 2.13)
-Saving results to: /root/.config/unity3d/DefaultCompany/LayarTerakhir/TestResults.xml
+                <output><![CDATA[Saving results to: /root/.config/unity3d/DefaultCompany/LayarTerakhir/TestResults.xml
 ]]></output>
               </test-case>
             </test-suite>

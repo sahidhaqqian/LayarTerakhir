@@ -18,7 +18,7 @@
       "poseBoundsMetres": {
         "Idle": {
           "min": [
-            -0.2363,
+            -0.2529,
             -0.2451,
             -0.0
           ],
@@ -30,7 +30,7 @@
         },
         "Run": {
           "min": [
-            -0.2354,
+            -0.2529,
             -0.707,
             0.0
           ],
@@ -54,12 +54,12 @@
         }
       },
       "SriAtmajaEchoTriangles": 2382,
-      "SriAtmajaSeatedTriangles": 2382
+      "SriAtmajaSeatedTriangles": 2381
     },
     {
       "character": "RakaRigged",
-      "triangles": 14336,
-      "renderers": 6,
+      "triangles": 17386,
+      "renderers": 7,
       "bones": 48,
       "clips": [
         "Idle",
@@ -132,13 +132,13 @@
           "max": [
             0.4371,
             0.1347,
-            0.9818
+            0.9905
           ]
         },
         "Riding": {
           "min": [
             -0.3553,
-            -0.6737,
+            -0.6602,
             0.2261
           ],
           "max": [
