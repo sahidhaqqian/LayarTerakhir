@@ -1,6 +1,6 @@
 Shader "LayarTerakhir/AtmajaPhoneFeed"
 {
-    Properties { [PerRendererData] _MainTex("Feed",2D)="white" {} _ARGain("AR gain",Float)=1 _ReducedGlitch("Reduced glitch",Float)=0 }
+    Properties { [PerRendererData] _MainTex("Feed",2D)="white" {} _ARGain("AR gain",Float)=1 _ReducedGlitch("Reduced glitch",Float)=0 _Glitch("Signal disturbance",Float)=0 }
     SubShader
     {
         Tags { "Queue"="Transparent" "RenderType"="Transparent" "RenderPipeline"="UniversalPipeline" }
@@ -13,11 +13,18 @@ Shader "LayarTerakhir/AtmajaPhoneFeed"
             #include "UnityCG.cginc"
             struct appdata { float4 vertex:POSITION; float2 uv:TEXCOORD0; float4 color:COLOR; };
             struct v2f { float4 vertex:SV_POSITION; float2 uv:TEXCOORD0; float4 color:COLOR; };
-            sampler2D _MainTex; float _ARGain,_ReducedGlitch;
+            sampler2D _MainTex; float _ARGain,_ReducedGlitch,_Glitch;
             v2f vert(appdata v){v2f o;o.vertex=UnityObjectToClipPos(v.vertex);o.uv=v.uv;o.color=v.color;return o;}
             fixed4 frag(v2f i):SV_Target
             {
-                fixed4 c=tex2D(_MainTex,i.uv);c.rgb=saturate(c.rgb*_ARGain);
+                float signal=_Glitch*(1-_ReducedGlitch*.85);
+                float band=floor(i.uv.y*38),tick=floor(_Time.y*14);
+                float tear=step(.87,frac(sin(band*17.13+tick*7.37)*43758.54));
+                float2 uv=i.uv;uv.x=frac(uv.x+(tear-.03)*signal*.09*sin(tick+band));
+                fixed4 c=tex2D(_MainTex,uv);c.r=lerp(c.r,tex2D(_MainTex,uv+float2(.009*signal,0)).r,signal);
+                c.b=lerp(c.b,tex2D(_MainTex,uv-float2(.009*signal,0)).b,signal);
+                c.rgb=(c.rgb*_ARGain)/(1+c.rgb*max(0,_ARGain-1));
+                c.rgb*=1-tear*signal*.35;
                 if(_ARGain>1.5)
                 {
                     float l=dot(c.rgb,float3(.25,.60,.15));

@@ -124,7 +124,7 @@ namespace LayarTerakhir.Prolog
             if (on && !music)
             {
                 music = gameObject.AddComponent<AudioSource>(); music.playOnAwake = false; music.loop = true; music.spatialBlend = 0;
-                music.volume = .24f; music.clip = AtmajaSynth.ChaseLoop(); music.outputAudioMixerGroup = director.audioProfile.effectsBus;
+                music.volume = .42f; music.clip = AtmajaSynth.ChaseLoop(); music.outputAudioMixerGroup = director.audioProfile.effectsBus;
             }
             if (music) { if (on && !music.isPlaying) music.Play(); else if (!on) music.Stop(); }
         }
@@ -272,7 +272,7 @@ namespace LayarTerakhir.Prolog
             director.player.MovementLocked = false;
             var rig=director.player.GetComponent<ShoulderCameraRig>();if(rig)rig.FirstPersonOverride=false;
             StartCoroutine(finale.Flash());
-            Sfx(AtmajaSynth.Shutter(), director.player.transform.position, .8f);
+            director.phoneView.CaptureFlash();
             Hud.PlayPriorityDialogue("Nyonya Sri Atmaja", "AAAAAARGH!!!", 2);
             finale.Prompt($"[{Key(GameAction.Vault)}] TEROBOS JENDELA!"); director.Objective(); return true;
         }

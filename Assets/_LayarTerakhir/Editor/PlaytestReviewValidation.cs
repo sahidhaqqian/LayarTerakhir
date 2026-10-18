@@ -82,8 +82,10 @@ namespace LayarTerakhir.Editor
         public sealed class PlaytestReviewTests
         {
             [Test]public void ReviewedGeometryAndBothFloorKosBindings()=>PlaytestReviewValidation.Run();
-            [TestCase("PROLOG_KOS_CORRIDOR")][TestCase("PROLOG_KOS_YARD")][TestCase("PROLOG_TRAVEL_ATMAJA")]
+            [TestCase("PROLOG_KOS_CORRIDOR")][TestCase("PROLOG_KOS_YARD")][TestCase(MelatiNeighborhood.Checkpoint)]
             public void CorridorSavesResumeTheBoardingHouse(string id)=>Assert.That(PrologSceneFlow.IsCorridorCheckpoint(id),Is.True);
+            [Test] public void CompletedRoadTravelResumesAtmaja()
+            {Assert.That(PrologSceneFlow.IsAtmajaCheckpoint("PROLOG_TRAVEL_ATMAJA"),Is.True);Assert.That(PrologSceneFlow.IsCorridorCheckpoint("PROLOG_TRAVEL_ATMAJA"),Is.False);}
         }
     }
 }

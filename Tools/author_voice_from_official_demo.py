@@ -13,16 +13,17 @@ casting={
  'Damar':('Young adult man, low rough and urgent hushed voice','Raka, tolong dengerin gue. Rumah ini nggak kosong.'),
  'Bisikan':('Elderly woman, low raspy whisper','Haus... bukakan...'),
 }
-cast_voice={'Damar (rekaman)':'Damar','Nyonya Sri Atmaja':'Bisikan'}
+cast_voice={'Damar (rekaman)':'Damar','Nyonya Sri Atmaja':'Bisikan','Damar • dari lantai atas':'Damar'}
 lines=[]
-for name in ['Prolog/KamarKosPrologDirector.cs','Prolog/AtmajaDirector.cs','Prolog/AtmajaUpperDirector.cs','Prolog/AtmajaBasementHorror.cs','Prolog/AtmajaChaseSequence.cs']:
+for name in ['Prolog/KamarKosPrologDirector.cs','Prolog/AtmajaDirector.cs','Prolog/AtmajaUpperDirector.cs','Prolog/AtmajaBasementHorror.cs','Prolog/AtmajaChaseSequence.cs','Prolog/AtmajaReviewMoments.cs','Prolog/MelatiNeighborhood.cs']:
     source=(ROOT/'Assets/_LayarTerakhir/Scripts'/name).read_text()
-    for speaker,line in re.findall(r'(?:EnqueueSubtitle|PlayPriorityDialogue)\(\s*"([^"]+)"\s*,\s*"((?:[^"\\]|\\.)*)"',source):
+    for speaker,line in re.findall(r'(?:EnqueueSubtitle|PlayPriorityDialogue|PlayPriorityWorldDialogue)\(\s*"([^"]+)"\s*,\s*"((?:[^"\\]|\\.)*)"',source):
         if speaker in casting or speaker in cast_voice:lines.append((speaker,json.loads('"'+line+'"')))
 source=(ROOT/'Assets/_LayarTerakhir/Scripts/UI/PhoneDesktop.cs').read_text()
 for key,speaker in [('DamarVoiceNote','Damar'),('DamarScream','Damar'),('ContractReaction','Raka'),('Trapped','Raka')]:
     m=re.search(r'const string '+key+r'="((?:[^"\\]|\\.)*)"',source);lines.append((speaker,json.loads('"'+m[1]+'"')))
 source=(ROOT/'Assets/_LayarTerakhir/Scripts/Prolog/AtmajaDirector.cs').read_text();m=re.search(r'const string LiveIntro="((?:[^"\\]|\\.)*)"',source);lines.append(('Raka',json.loads('"'+m[1]+'"')))
+lines.append(("Raka","Sial pintunya dikunci, aku harus cari jalan lain."))
 progress=ROOT/'Audit/official-voice-progress.json';previous=json.loads(progress.read_text()).get('entries',[]) if progress.exists() else []
 cached={(e['speaker'],e['text']):e for e in previous};records=[]
 client=Client('openbmb/VoxCPM-Demo')
@@ -37,9 +38,18 @@ for index,(speaker,text) in enumerate(dict.fromkeys(lines)):
     if voice=='Damar':delivery='Breathless and frightened, urgently warning a close friend, hushed voice'
     elif voice=='Bisikan':delivery='Slow, ominous, raspy whisper'
     elif '?' in text or '!' in text:delivery='Anxious and urgent, natural spoken Indonesian'
+    if speaker=='Damar • dari lantai atas':delivery='A man screaming in sharp pain from upstairs, frightened, raw and loud, then desperately calling Raka'
     if speaker=='Damar (rekaman)':delivery='Frantic breathless young man speaking through a broken phone recording, terrified, pleading'
     if speaker=='Nyonya Sri Atmaja':delivery='An elderly woman screaming in enraged supernatural pain, loud and raw'
-    source_file=client.predict(text_input=spoken,control_instruction=delivery,reference_wav_path_input=handle_file(str(SAMPLES/(voice+'.wav'))),use_prompt_text=False,prompt_text_input='',cfg_value_input=2.0,do_normalize=False,denoise=False,api_name='/generate')
+    for attempt in range(5):
+        try:
+            source_file=client.predict(text_input=spoken,control_instruction=delivery,reference_wav_path_input=handle_file(str(SAMPLES/(voice+'.wav'))),use_prompt_text=False,prompt_text_input='',cfg_value_input=2.0,do_normalize=False,denoise=False,api_name='/generate')
+            break
+        except Exception as exc:
+            if attempt==4:raise
+            print('VOICE_RETRY',index,attempt+1,type(exc).__name__,flush=True)
+            time.sleep(10*(attempt+1))
+
     filters='highpass=f=70,lowpass=f=8500,loudnorm=I=-18:TP=-3:LRA=9'
     if voice=='Damar':filters='highpass=f=220,lowpass=f=4400,loudnorm=I=-17:TP=-3:LRA=9'
     if voice=='Bisikan':filters='highpass=f=180,lowpass=f=4500,aecho=0.6:0.4:95:0.16,loudnorm=I=-23:TP=-5:LRA=9'

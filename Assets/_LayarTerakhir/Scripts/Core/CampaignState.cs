@@ -5,6 +5,12 @@ using UnityEngine;
 
 namespace LayarTerakhir.Core
 {
+    [Serializable]
+    public sealed class PhoneDocument
+    {
+        public string title, body;
+        public PhoneDocument(string title, string body) { this.title = title; this.body = body; }
+    }
     public enum EndingType
     {
         None = 0,
@@ -31,6 +37,7 @@ namespace LayarTerakhir.Core
         public long spent = 0;
         public List<string> secret_items = new List<string>();
         public List<string> secret_notes_read = new List<string>();
+        public List<PhoneDocument> documents = new List<PhoneDocument>();
         public bool archive_prepared = false;
         public EndingType ending = EndingType.None;
         public int schema_version = 1;
@@ -93,6 +100,22 @@ namespace LayarTerakhir.Core
             {
                 Data.wallet_bound += amount;
             }
+        }
+
+        public bool ArchiveDocument(string title, string body, string documentId = null)
+        {
+            if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(body)) return false;
+            if (Data.documents == null) Data.documents = new List<PhoneDocument>();
+            bool archived = Data.documents.Exists(d => d.title == title && d.body == body);
+            bool receipt = string.IsNullOrEmpty(documentId) || HasInventoryItem(documentId);
+            if (archived && receipt) return true;
+            var document = new PhoneDocument(title, body);
+            if (!archived) Data.documents.Add(document);
+            if (!receipt) AddInventoryItem(documentId);
+            if (SaveCheckpointAtomic(Data.checkpoint_id)) return true;
+            if (!archived) Data.documents.Remove(document);
+            if (!receipt) Data.inventory.Remove(documentId);
+            return false;
         }
 
         public bool TryPayFamilyBill(bool hospital)

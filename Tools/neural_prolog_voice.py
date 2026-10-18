@@ -12,7 +12,7 @@ from voxcpm import VoxCPM
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'Assets/_LayarTerakhir/Audio/Dialogue'
 SAMPLES=ROOT/'Audit/VoiceSamples'
-parser=argparse.ArgumentParser();parser.add_argument('--samples-only',action='store_true');args=parser.parse_args()
+parser=argparse.ArgumentParser();parser.add_argument('--samples-only',action='store_true');parser.add_argument('--review-only',action='store_true');args=parser.parse_args()
 OUT.mkdir(parents=True,exist_ok=True);SAMPLES.mkdir(parents=True,exist_ok=True)
 torch.set_num_threads(3)
 print('Loading neural voice model on CPU',flush=True)
@@ -52,6 +52,7 @@ for speaker,(design,seed,spoken,speed) in casting.items():
     path=SAMPLES/(speaker+'.wav')
     if not path.exists():
         torch.manual_seed(seed)
+        if speaker=='Damar • dari lantai atas':emotion='A man screaming in sharp pain, then urgently calling Raka, raw and frightened'
         wav=synthesize('('+design+')'+spoken,seed)
         sf.write(path,wav,model.tts_model.sample_rate)
         assert 1<len(wav)/model.tts_model.sample_rate<16,(speaker,'Unstable design sample; audition/retry instead of shipping',len(wav)/model.tts_model.sample_rate)
@@ -67,7 +68,21 @@ source=(ROOT/'Assets/_LayarTerakhir/Scripts/UI/PhoneDesktop.cs').read_text()
 for key,speaker in [('DamarVoiceNote','Damar'),('DamarScream','Damar'),('ContractReaction','Raka'),('Trapped','Raka')]:
     m=re.search(r'const string '+key+r'="((?:[^"\\]|\\.)*)"',source);lines.append((speaker,json.loads('"'+m[1]+'"')))
 source=(ROOT/'Assets/_LayarTerakhir/Scripts/Prolog/AtmajaDirector.cs').read_text();m=re.search(r'const string LiveIntro="((?:[^"\\]|\\.)*)"',source);lines.append(('Raka',json.loads('"'+m[1]+'"')))
-progress_path=ROOT/'Audit/neural-voice-progress.json'
+prior_bank=json.loads((ROOT/'Audit/prolog-voice-manifest.json').read_text()) if args.review_only else {}
+cast_voice={'Damar • dari lantai atas':'Damar'}
+if args.review_only:
+    lines=[]
+    for filename in ['Prolog/AtmajaReviewMoments.cs','Prolog/MelatiNeighborhood.cs']:
+        source=(ROOT/'Assets/_LayarTerakhir/Scripts'/filename).read_text()
+        for speaker,text in re.findall(r'(?:EnqueueSubtitle|PlayPriorityDialogue|PlayPriorityWorldDialogue)\(\s*"([^"]+)"\s*,\s*"((?:[^"\\]|\\.)*)"',source):
+            if speaker in casting or speaker in cast_voice:lines.append((speaker,json.loads('"'+text+'"')))
+    source=(ROOT/'Assets/_LayarTerakhir/Scripts/UI/PhoneDesktop.cs').read_text()
+    text=re.search(r'const string DamarVoiceNote="((?:[^"\\]|\\.)*)"',source)[1]
+    lines.append(('Damar',json.loads('"'+text+'"')))
+    lines.append(('Raka','Sial pintunya dikunci, aku harus cari jalan lain.'))
+    old_keys={(e['speaker'],e['text']) for e in prior_bank.get('entries',[])}
+    lines=[key for key in lines if key not in old_keys]
+progress_path=ROOT/('Audit/review-neural-voice-progress.json' if args.review_only else 'Audit/neural-voice-progress.json')
 previous=json.loads(progress_path.read_text()) if progress_path.exists() else {}
 previous_entries={(e['speaker'],e['text']):e for e in previous.get('entries',[])} if previous.get('engine')=='VoxCPM2' else {}
 records=[]
@@ -77,17 +92,19 @@ with tempfile.TemporaryDirectory(prefix='layar-neural-audio-') as temporary:
         cached=previous_entries.get((speaker,text))
         if cached and output.exists() and hashlib.sha256(output.read_bytes()).hexdigest()==cached['sha256']:
             records.append(cached);print('VO_CACHED',index,speaker,flush=True);continue
+        voice=cast_voice.get(speaker,speaker)
         spoken=text.replace('MataBatin.apk','Mata Batin').replace('filter AR','filter A R').replace('HP','hape')
-        torch.manual_seed(casting[speaker][1]+index)
+        torch.manual_seed(casting[voice][1]+index)
         emotion='Conversational, quietly worried'
-        if speaker=='Damar':emotion='Breathless, frightened, urgently warning a close friend in a hushed voice'
-        elif speaker=='Bisikan':emotion='A slow raspy whisper, ominous'
+        if voice=='Damar':emotion='Breathless, frightened, urgently warning a close friend in a hushed voice'
+        elif voice=='Bisikan':emotion='A slow raspy whisper, ominous'
         elif '?' in text or '!' in text:emotion='Anxious and urgent, natural spoken Indonesian'
-        wav=synthesize('('+emotion+')'+spoken,casting[speaker][1]+index,reference_wav_path=prompts[speaker],prompt_wav_path=prompts[speaker],prompt_text=casting[speaker][2])
+        if speaker=='Damar • dari lantai atas':emotion='A man screaming in sharp pain, then urgently calling Raka, raw and frightened'
+        wav=synthesize('('+emotion+')'+spoken,casting[voice][1]+index,reference_wav_path=prompts[voice],prompt_wav_path=prompts[voice],prompt_text=casting[voice][2])
         sf.write(raw,wav,model.tts_model.sample_rate)
         filters='highpass=f=70,lowpass=f=8500,loudnorm=I=-18:TP=-3:LRA=9'
-        if speaker=='Damar':filters='highpass=f=220,lowpass=f=4400,loudnorm=I=-17:TP=-3:LRA=9'
-        if speaker=='Bisikan':filters='highpass=f=180,lowpass=f=4500,aecho=0.6:0.4:95:0.16,loudnorm=I=-23:TP=-5:LRA=9'
+        if voice=='Damar':filters='highpass=f=220,lowpass=f=4400,loudnorm=I=-17:TP=-3:LRA=9'
+        if voice=='Bisikan':filters='highpass=f=180,lowpass=f=4500,aecho=0.6:0.4:95:0.16,loudnorm=I=-23:TP=-5:LRA=9'
         subprocess.run(['ffmpeg','-loglevel','error','-y','-i',str(raw),'-af',filters,'-ac','1','-ar','24000','-c:a','pcm_s16le',str(output)],check=True)
         audio,rate=sf.read(output);peak=float(np.max(np.abs(audio)));rms=float(np.sqrt(np.mean(audio**2)))
         assert peak<.85 and rms>.005 and len(audio)/rate>.3,(speaker,peak,rms)
@@ -95,5 +112,9 @@ with tempfile.TemporaryDirectory(prefix='layar-neural-audio-') as temporary:
         progress_path.write_text(json.dumps(dict(engine='VoxCPM2',entries=records),ensure_ascii=False,indent=2)+'\n')
         print('VO',index,speaker,round(len(audio)/rate,2),'sec; render',round(time.monotonic()-start,1),'sec',flush=True)
 report=dict(engine='VoxCPM2 / openbmb/VoxCPM2, Indonesian neural TTS, CPU offline',source='https://huggingface.co/openbmb/VoxCPM2',engineLicense='Apache-2.0',voiceCloning='Only self-generated fictional character reference samples; no human identity cloned',userApproved=True,casting=sample_records,entries=records)
+if args.review_only:
+    keys={(e['speaker'],e['text']) for e in records}
+    combined=[e for e in prior_bank['entries'] if (e['speaker'],e['text']) not in keys and not (e['speaker']=='Damar' and 'dari forum kemarin' in e['text'])]+records
+    local_report=report;report=prior_bank;report['entries']=combined;report['designerReviewVoices']=local_report
 (ROOT/'Audit/prolog-voice-manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
 print('NEURAL_VOICE_BANK_COMPLETE',len(records),flush=True)

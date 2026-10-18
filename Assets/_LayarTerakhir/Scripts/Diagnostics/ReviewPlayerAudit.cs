@@ -27,6 +27,7 @@ namespace LayarTerakhir.Diagnostics
             public bool actualStandalonePlayer,completed,checkpointSaved,transitionFromKos,motorPassedGate,previousSaveArchived;
             public bool acceleratedStoryTimers;
             public int width,height;public float walkedMeters,maximumInteriorFootY,mixRms,mixPeak;
+            public Vector3 maximumInteriorFootPosition;
             public string[] screenshots,checks;
         }
         private static string output,priorSlot;
@@ -192,6 +193,17 @@ namespace LayarTerakhir.Diagnostics
             Check(corridor.motorHeadlight&&corridor.motorHeadlight.enabled,"Motor engine sequence turns on the real lens-mounted headlight");
             yield return Wait(()=>receipt.motorPassedGate,150,"Motorcycle actually crosses kos gate");
             yield return Shot("14-riding-through-gate");
+            var neighborhood=FindFirstObjectByType<MelatiNeighborhood>();
+            yield return Wait(()=>neighborhood&&neighborhood.Reached&&!corridor.Busy,150,"Motor stops in the explorable Melati neighborhood");
+            BindPlayer();player.enabled=false;Time.timeScale=3;
+            Aim(new Vector3(8,1.5f,-25));yield return Shot("14a-melati-houses-and-rain");
+            yield return Walk(new Vector3(1.15f,.04f,-24));yield return Walk(new Vector3(4.9f,.04f,-24));
+            var shop=FindFirstObjectByType<MelatiShop>();Aim(shop.GetComponent<Collider>().bounds.center);yield return Use(shop,shop.GetComponent<Collider>().bounds.center);
+            Check(shop.IsOpen,"World counter opens the actual warung shop");yield return Shot("14b-warung-shop");
+            long beforeShop=CampaignState.Instance.Data.wallet_bound+CampaignState.Instance.Data.wallet_legitimate;
+            Click("ShopBuy_AIR_MINERAL");Check(beforeShop==0&&!CampaignState.Instance.HasInventoryItem("AIR_MINERAL")&&CampaignState.Instance.Data.wallet_bound+CampaignState.Instance.Data.wallet_legitimate==0,"After paying both family bills, the shop refuses an unaffordable purchase without changing funds");
+            Click("ShopClose");yield return Walk(new Vector3(1.15f,.04f,-24));yield return Walk(new Vector3(1.15f,.04f,-18.2f));
+            Time.timeScale=1;corridor.RequestDeparture();
             yield return Wait(()=>SceneManager.GetActiveScene().name==PrologSceneFlow.AtmajaScene,150,"Road departure transitions to Atmaja");
             receipt.transitionFromKos=true;yield return new WaitForSeconds(1.1f);BindPlayer();player.enabled=false;d=FindFirstObjectByType<AtmajaDirector>();
             // Faster remaining narration waits only. CC walking is frame-stepped and never uses this scale.
@@ -225,16 +237,19 @@ namespace LayarTerakhir.Diagnostics
             var rig=player.GetComponent<ShoulderCameraRig>();
             Check(rig.CurrentDistance>=.9f||rig.Avatar.GetComponentsInChildren<Renderer>(true).All(r=>r.shadowCastingMode==UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly),"Compressed shoulder camera hides the body instead of blocking the table view");
             yield return Crouch(true);yield return Walk(d.P(4.6f,6.2f,.54f));
-            yield return Use(Item(AtmajaAction.DamarPhone),d.damarPhone.GetComponent<Collider>().bounds.center);yield return Shot("21-crouched-backpack-access");
-            Check(Phone.arModuleUnlocked&&CampaignState.Instance.HasInventoryItem("MATABATIN_APK"),"Damar phone reached from the side, below table, using crouch and real first-hit interaction");
             InputSystem.QueueStateEvent(keyboard,new KeyboardState());player.enabled=true;float crawlFoot=player.transform.position.y;
             yield return new WaitForSeconds(.5f);player.enabled=false;
             Check(player.IsCrouching&&player.transform.position.y<crawlFoot+.06f,"Releasing CTRL under actual dining table cannot stand or pop onto tabletop");
+            Aim(d.damarPhone.GetComponent<Collider>().bounds.center);yield return Shot("21-crouched-backpack-access");
+            yield return Crouch(true);yield return Use(Item(AtmajaAction.DamarPhone),d.damarPhone.GetComponent<Collider>().bounds.center);
+            yield return Wait(()=>!d.Busy&&Phone.arModuleUnlocked,60,"Memory card cutscene installs and connects MataBatin");
+            Check(Phone.arModuleUnlocked&&CampaignState.Instance.HasInventoryItem("MATABATIN_APK"),"Damar phone reached from the side, below table, using crouch and real first-hit interaction");
+            Check(player.CanStandUp(),"The installation ends in the clear aisle with room to stand");
             yield return Walk(d.P(5.35f,6.2f,.54f));yield return Crouch(false);
             yield return Walk(d.P(5.35f,1.3f,.54f));yield return Walk(d.P(2.1f,1.3f,.54f));yield return Walk(d.P(2.1f,4.1f,.54f));
             Check(receipt.maximumInteriorFootY<.7f,"Dining route crossed both sides and end with feet on floor, never on tabletop");
-            Phone.isPhoneRaised=true;Phone.isScreenOn=true;View.Apps.Open(PhoneApp.Camera);Phone.currentScanMode=ScanVisualMode.Normal;Phone.SyncVisualState();Aim(d.P(3.7f,2.15f,1.4f));yield return Shot("22a-seated-doll-normal");
-            Check(GameObject.Find("SeatedDollOnEndChair").GetComponentsInChildren<Renderer>().All(r=>(eye.cullingMask&(1<<r.gameObject.layer))!=0),"Seated doll is visible to the ordinary world camera, not AR-only");
+            Phone.isPhoneRaised=true;Phone.isScreenOn=true;View.Apps.Open(PhoneApp.Camera);Phone.currentScanMode=ScanVisualMode.Normal;Phone.SyncVisualState();Aim(d.P(3.7f,2.15f,1.4f));yield return Shot("22a-empty-chair-normal");
+            Check(!GameObject.Find("SeatedDollOnEndChair")&&!d.arFigure.activeSelf,"The end chair is empty in ordinary sight");
             Phone.currentScanMode=ScanVisualMode.AR;Phone.SyncVisualState();yield return Shot("22-ar-figure");
             Check(d.arFigure.activeSelf&&(eye.cullingMask&(1<<AtmajaPhoneView.ARLayer))==0&&View.FeedCamera.enabled,"AR apparition is phone-only, with the normal world camera excluding its layer");
             Phone.isScreenOn=false;Phone.SyncVisualState();yield return null;Check(Phone.isBroadcastConnected&&!View.FeedCamera.enabled,"Turning screen off preserves live but disables additional camera rendering");
@@ -250,6 +265,7 @@ namespace LayarTerakhir.Diagnostics
             {var c=frame.GetPixel(x,y);if(c.r>.18f&&c.r>c.g*1.8f&&c.r>c.b*1.8f)redPixels++;}
             Destroy(frame);Check(redPixels>20,"Actual phone framebuffer contains blood-red clue strokes (pixels="+redPixels+")");
             Phone.currentScanMode=ScanVisualMode.Normal;Phone.SyncVisualState();
+            Aim(d.P(-3.4f,3.0f,1.07f));yield return Shot("24a-family-living-room");
             yield return Walk(d.P(-4.7f,5.8f,.54f));Aim(d.clockDialCentre);yield return Shot("25-wall-clock-radial-numerals");
             var tick=d.clockHour.GetComponentInParent<ClockAmbience>();Check(tick&&tick.source&&tick.source.outputAudioMixerGroup,"Wall clock's positional tick source survives standalone scene loading");
             yield return Use(Item(AtmajaAction.Clock),d.clockDialCentre);Click("SetClockTime");
@@ -318,7 +334,12 @@ namespace LayarTerakhir.Diagnostics
                     delta=target-player.transform.position;delta.y=0;if(delta.magnitude<.10f)break;var before=player.transform.position;
                     capsule.Move(Vector3.ClampMagnitude(delta,.16f)+Vector3.down*.18f);
                     float distance=Vector3.Distance(new Vector3(before.x,0,before.z),new Vector3(player.transform.position.x,0,player.transform.position.z));
-                    receipt.walkedMeters+=distance;if(insideAtmaja)receipt.maximumInteriorFootY=Mathf.Max(receipt.maximumInteriorFootY,player.transform.position.y);
+                    receipt.walkedMeters+=distance;
+                    if(insideAtmaja&&player.transform.position.y>receipt.maximumInteriorFootY)
+                    {
+                        receipt.maximumInteriorFootY=player.transform.position.y;receipt.maximumInteriorFootPosition=player.transform.position;
+                        if(player.transform.position.y>.7f)Debug.Log("REVIEW_FOOT_HEIGHT "+player.transform.position+" target="+target);
+                    }
                     if(distance<.003f)stalled++;else stalled=0;
                 }
                 if(stalled>18)break;yield return null;

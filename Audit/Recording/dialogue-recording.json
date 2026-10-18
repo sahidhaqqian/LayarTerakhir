@@ -36,12 +36,12 @@
     "recording_status": "WAITING_FOR_USER_RECORDING"
   },
   {
-    "id": "bf2ed1a21917",
+    "id": "879097b81a2b",
     "speaker": "Damar",
-    "text": "Ka... Raka, jangan ke Rumah Atmaja sendirian. Tolong dengerin gue. Aplikasi kamera yang gue oprek dari forum kemarin... itu bukan filter AR biasa, Ka. Rumah ini nggak kosong. Di lantai dua ada suara perempuan nyanyi tembang Jawa, tapi pas gue sorot pakai kamera HP, dia udah berdiri tepat di depan muka gue—",
+    "text": "Ka... Raka, jangan ke Rumah Atmaja sendirian. Tolong dengerin gue. Aplikasi kamera yang gue oprek dari darkweb kemarin... itu bukan filter AR biasa, Ka. Rumah ini nggak kosong. Di lantai dua ada suara perempuan nyanyi tembang Jawa, tapi pas gue sorot pakai kamera HP, dia udah berdiri tepat di depan muka gue—",
     "trigger": "KosDialogue.DamarVoiceNote",
     "direction": "Pria muda berbeda warna suara dari Raka; berbisik panik, napas terputus; teriakan di akhir panggilan.",
-    "estimated_seconds": 18.1,
+    "estimated_seconds": 18.2,
     "recording_status": "WAITING_FOR_USER_RECORDING"
   },
   {
@@ -51,6 +51,15 @@
     "trigger": "Rekaman handycam: pasar di balik cermin dan tangan yang menarik Damar",
     "direction": "Aktor yang sama dengan Damar; rekaman handycam, panik sampai berteriak. Rekam bersih; efek radio/glitch ditambahkan di game.",
     "estimated_seconds": 7.5,
+    "recording_status": "WAITING_FOR_USER_RECORDING"
+  },
+  {
+    "id": "5e1e698496f4",
+    "speaker": "Damar • dari lantai atas",
+    "text": "AAARGH! Raka...!",
+    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaReviewMoments.cs",
+    "direction": "Ikuti konteks adegan; hindari intonasi datar.",
+    "estimated_seconds": 2.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"
   },
   {
@@ -153,6 +162,15 @@
     "recording_status": "WAITING_FOR_USER_RECORDING"
   },
   {
+    "id": "25e07cb143e2",
+    "speaker": "Raka",
+    "text": "Apa...?! Lepas!",
+    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaReviewMoments.cs",
+    "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
+    "estimated_seconds": 2.5,
+    "recording_status": "WAITING_FOR_USER_RECORDING"
+  },
+  {
     "id": "276fbd266957",
     "speaker": "Raka",
     "text": "Motornya Damar. Tapi kok rumahnya sepi banget?",
@@ -222,6 +240,15 @@
     "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/KamarKosPrologDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 8.2,
+    "recording_status": "WAITING_FOR_USER_RECORDING"
+  },
+  {
+    "id": "45af2fbb922b",
+    "speaker": "Raka",
+    "text": "Damar! Damar!",
+    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaReviewMoments.cs",
+    "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
+    "estimated_seconds": 2.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"
   },
   {
@@ -312,6 +339,15 @@
     "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaUpperDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 3.2,
+    "recording_status": "WAITING_FOR_USER_RECORDING"
+  },
+  {
+    "id": "7c592ff0be20",
+    "speaker": "Raka",
+    "text": "Siapa... yang duduk di situ?",
+    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaReviewMoments.cs",
+    "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
+    "estimated_seconds": 2.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"
   },
   {
@@ -537,6 +573,24 @@
     "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaUpperDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 2.8,
+    "recording_status": "WAITING_FOR_USER_RECORDING"
+  },
+  {
+    "id": "ea12014f592a",
+    "speaker": "Raka",
+    "text": "Warung Bu Sari masih buka. Jalan ke Atmaja lewat ujung kompleks ini...",
+    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/MelatiNeighborhood.cs",
+    "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
+    "estimated_seconds": 4.1,
+    "recording_status": "WAITING_FOR_USER_RECORDING"
+  },
+  {
+    "id": "f74a9e8171b4",
+    "speaker": "Raka",
+    "text": "Dam?! Suaranya dari atas...",
+    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaReviewMoments.cs",
+    "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
+    "estimated_seconds": 2.5,
     "recording_status": "WAITING_FOR_USER_RECORDING"
   }
 ]

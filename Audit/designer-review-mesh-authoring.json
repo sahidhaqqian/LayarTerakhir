@@ -1,0 +1,107 @@
+{
+  "meshes": [
+    {
+      "name": "AtmajaFamilySofa",
+      "source": "https://polyhaven.com/a/painted_wooden_sofa",
+      "triangles": 4000,
+      "sha256": "933e7366a0f3801126c72b0b48ecb77cde36afa6a76722acd7a1762eaf54120d"
+    },
+    {
+      "name": "DeadStreetRat",
+      "source": "https://polyhaven.com/a/street_rat",
+      "triangles": 899,
+      "sha256": "385a9e396891130004f170128eb3e5e0e7ddefebcaab2e4ec410c33f3dc5b644"
+    },
+    {
+      "name": "RottenApple",
+      "source": "https://polyhaven.com/a/food_apple_01",
+      "triangles": 448,
+      "sha256": "7a88aa7a8b52cd6b64e6989a976d2c7dd33421ddf6a3cefa3349d4571d5cb450"
+    },
+    {
+      "name": "MoldyBread",
+      "source": "https://polyhaven.com/a/hamburger_buns",
+      "triangles": 648,
+      "sha256": "f6cfd79e06f1bf6ba3e86293cd43f9d2fd49935a6c8f4537b9197faf325866b5"
+    },
+    {
+      "name": "RakaScooter",
+      "source": "Existing optimized Damar scooter; original closed recovery saddle and geometry-authored contacts",
+      "triangles": 18424,
+      "sha256": "76fc92f42c1251e67a58f3167325c490130d095a715dc061985d0f2017cc3ffd"
+    },
+    {
+      "name": "LodDeskLamp",
+      "source": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/desk_lamp_arm_01/desk_lamp_arm_01.fbx",
+      "triangles": 4718,
+      "sha256": "6917126f3eadbfb0b4c392dd18482f8dae53828aa747ea911edc78ffdd846926"
+    },
+    {
+      "name": "LodBookshelf",
+      "source": "Assets/_LayarTerakhir/Art/Imported/PolyHaven/wooden_bookshelf_worn/wooden_bookshelf_worn.fbx",
+      "triangles": 4042,
+      "sha256": "266c5755957de3598fac7c48fbdc089113cf1d7bcd8464bf9fece543bd770478"
+    },
+    {
+      "name": "LodShrub",
+      "source": "Assets/_LayarTerakhir/Art/Atmaja/Models/shrub_03.fbx",
+      "triangles": 2235,
+      "sha256": "9fe456b77d607f8f4ac13f261d0547d04cdc7a565351d7ce8a15b46da419f1d3"
+    },
+    {
+      "name": "MoldyCeramicPlate",
+      "source": "Original revolved ceramic profile, cracks and mold geometry",
+      "triangles": 912,
+      "sha256": "f9b937a57cfd312306e6abb92bd435d7699b2a3e7953effa7b47787e469be15b"
+    },
+    {
+      "name": "MelatiHouse_a",
+      "source": "https://kenney.nl/assets/city-kit-suburban#building-type-a",
+      "triangles": 1174,
+      "sha256": "3c2649e8f8b3f476fafc00fe8d896dbacc12a91f7c9d8164ad1db484539bbf4a"
+    },
+    {
+      "name": "MelatiHouse_b",
+      "source": "https://kenney.nl/assets/city-kit-suburban#building-type-b",
+      "triangles": 1748,
+      "sha256": "2a9dc12446ba1a8c1de1547fce6786f04161b17f7a930dfda20408729c324540"
+    },
+    {
+      "name": "MelatiHouse_d",
+      "source": "https://kenney.nl/assets/city-kit-suburban#building-type-d",
+      "triangles": 1757,
+      "sha256": "045da699882016d95efd7c8ca3e18adcf50e8d73975897fdff7a1701d668a9bc"
+    },
+    {
+      "name": "MelatiHouse_f",
+      "source": "https://kenney.nl/assets/city-kit-suburban#building-type-f",
+      "triangles": 1616,
+      "sha256": "eed9c5be8d1331107a9dc54d6ce7c2ca8fa1d34321ca279ce1b2572b2f0f52f0"
+    },
+    {
+      "name": "MelatiHouse_h",
+      "source": "https://kenney.nl/assets/city-kit-suburban#building-type-h",
+      "triangles": 770,
+      "sha256": "071f172b03ef2253615eceab5b423c57434e472456c1cd4000d7a64a4986a378"
+    },
+    {
+      "name": "MelatiHouse_k",
+      "source": "https://kenney.nl/assets/city-kit-suburban#building-type-k",
+      "triangles": 1024,
+      "sha256": "19944e4cba845fe699c494c47ce4e6417def0f7980d31b67db2402b9b4eb645f"
+    },
+    {
+      "name": "MelatiHouse_m",
+      "source": "https://kenney.nl/assets/city-kit-suburban#building-type-m",
+      "triangles": 1112,
+      "sha256": "6c8c2263bbc20ff46160f316363e14c17b9f1a45ef1136b073b1fc7d10aaabb1"
+    },
+    {
+      "name": "MelatiHouse_p",
+      "source": "https://kenney.nl/assets/city-kit-suburban#building-type-p",
+      "triangles": 1282,
+      "sha256": "62e465714cda5d9d54f2ec5385ab0b2d321374690ce27efcb3c81ee2ca63a92c"
+    }
+  ],
+  "houseAdaptation": "Kenney CC0 geometry; tropical muted PBR regions with meter-based UVs, no original palette texture"
+}

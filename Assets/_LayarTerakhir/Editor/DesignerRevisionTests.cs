@@ -95,15 +95,15 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(gate.leftLeaf.localPosition.x,Is.LessThan(0));Assert.That(gate.rightLeaf.localPosition.x,Is.GreaterThan(0));
             gate.SetImmediate(true);Assert.That(Quaternion.Angle(gate.leftLeaf.localRotation,gate.rightLeaf.localRotation),Is.GreaterThan(100));
         }
-        [Test] public void AtmajaNoteIsInsideDollReturnsAndHouseNameplateIsGone()
+        [Test] public void AtmajaNoteIsInsideAndTheOrdinaryChairStaysEmpty()
         {
             EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);var d=Object.FindFirstObjectByType<AtmajaDirector>();
             var note=Object.FindObjectsByType<AtmajaItem>(FindObjectsSortMode.None).Single(i=>i.action==AtmajaAction.Survey);
             Assert.That(d.LocalPosition(note.transform.position).y,Is.GreaterThan(0));
             Assert.That(GameObject.Find("DamarParkedScooter").GetComponent<AtmajaItem>(),Is.Null);
-            var doll=GameObject.Find("SeatedDollOnEndChair");Assert.That(doll,Is.Not.Null);
-            Assert.That(doll.GetComponentsInChildren<Renderer>().Any(r=>r.sharedMaterial.name=="DesignerDollPorcelain"),Is.True);
-            Assert.That(doll.GetComponentsInChildren<Transform>().All(t=>t.gameObject.layer!=AtmajaPhoneView.ARLayer),Is.True);
+            Assert.That(GameObject.Find("SeatedDollOnEndChair"),Is.Null);
+            Assert.That(GameObject.Find("EmptyARScareChair"),Is.Not.Null);
+            Assert.That(d.arFigure.GetComponentsInChildren<Transform>(true).All(t=>t.gameObject.layer==AtmajaPhoneView.ARLayer),Is.True);
             Assert.That(GameObject.Find("AtmajaNameplate"),Is.Null);
             Assert.That(d.gateHinge.GetComponent<DoubleLeafGate>(),Is.Not.Null);
             Assert.That(Object.FindFirstObjectByType<GameInputConfig>().vaultKey,Is.EqualTo(KeyCode.Space));

@@ -14,15 +14,15 @@
     "-screen-height",
     "540",
     "-riderAudit",
-    "/root/Projects/LayarTerakhir-main/Audit/Visuals/Atmaja-Stair-Rider-Final",
+    "/root/Projects/LayarTerakhir-main/Audit/Visuals/Rider-Review-Final",
     "-logFile",
     "/root/Projects/LayarTerakhir-main/Audit/golden-rider-player.log"
   ],
-  "startedUtc": "2026-10-18T02:10:51.351971+00:00",
+  "startedUtc": "2026-10-18T07:26:29.611617+00:00",
   "audioBackend": "Private clocked PulseAudio null sink; virtual audio device; this fixture does not measure listener audio, no physical audio hardware",
   "status": "Finished",
-  "endedUtc": "2026-10-18T02:12:37.470018+00:00",
+  "endedUtc": "2026-10-18T07:28:06.630400+00:00",
   "exitCode": 0,
-  "screenCapturesVerified": 3,
+  "screenCapturesVerified": 4,
   "completedSmokeReceiptVerified": true
 }

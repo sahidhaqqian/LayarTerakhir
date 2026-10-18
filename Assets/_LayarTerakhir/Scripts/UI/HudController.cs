@@ -40,8 +40,8 @@ namespace LayarTerakhir.UI
             (documentPanel != null && documentPanel.activeSelf) ||
             (padlockPanel != null && padlockPanel.activeSelf);
 
-        private readonly Queue<(string speaker, string line, float duration)> _subtitleQueue =
-            new Queue<(string, string, float)>();
+        private readonly Queue<(string speaker, string line, float duration, Vector3? position)> _subtitleQueue =
+            new Queue<(string, string, float, Vector3?)>();
         private Coroutine _subtitleRoutine;
         private Coroutine _broadcastRoutine;
         private readonly Dictionary<Button, UnityEngine.Events.UnityAction> _buttonCallbacks =
@@ -75,7 +75,8 @@ namespace LayarTerakhir.UI
             _profile=PresentationProfile.Load();
             if(_profile&&_profile.audio)
             {
-                _voice=gameObject.AddComponent<AudioSource>();_voice.playOnAwake=false;_voice.dopplerLevel=0;
+                var voiceObject=new GameObject("DialogueVoice");voiceObject.transform.SetParent(transform,false);
+                _voice=voiceObject.AddComponent<AudioSource>();_voice.playOnAwake=false;_voice.dopplerLevel=0;
                 _voice.outputAudioMixerGroup=_profile.audio.uiBus;_voice.volume=.85f;
             }
         }
@@ -246,10 +247,12 @@ namespace LayarTerakhir.UI
 
         public void SetObjective(string objective)
         {
-            CurrentObjective = objective ?? string.Empty;
+            // Exploration is guided by the world, dialogue and the player's own notes.
+            CurrentObjective = string.Empty;
             if (objectiveText != null)
             {
-                objectiveText.text = CurrentObjective;
+                objectiveText.text = string.Empty;
+                objectiveText.gameObject.SetActive(false);
             }
         }
 
@@ -265,7 +268,7 @@ namespace LayarTerakhir.UI
         {
             var clip=_profile?_profile.Voice(speaker,text):null;
             if(clip)duration=Mathf.Max(duration,clip.length+.25f);
-            _subtitleQueue.Enqueue((speaker, text, duration));
+            _subtitleQueue.Enqueue((speaker, text, duration, null));
             if (_subtitleRoutine == null)
             {
                 _subtitleRoutine = StartCoroutine(ProcessSubtitlesRoutine());
@@ -277,6 +280,14 @@ namespace LayarTerakhir.UI
             // A phone call must connect now, not wait behind repeated optional item remarks.
             _subtitleQueue.Clear();if(_subtitleRoutine!=null){StopCoroutine(_subtitleRoutine);_subtitleRoutine=null;}
             if(_voice)_voice.Stop();return EnqueueSubtitle(speaker,text,duration);
+        }
+
+        public float PlayPriorityWorldDialogue(string speaker,string text,float duration,Vector3 position)
+        {
+            _subtitleQueue.Clear();if(_subtitleRoutine!=null){StopCoroutine(_subtitleRoutine);_subtitleRoutine=null;}
+            if(_voice)_voice.Stop();var clip=_profile?_profile.Voice(speaker,text):null;
+            if(clip)duration=Mathf.Max(duration,clip.length+.25f);
+            _subtitleQueue.Enqueue((speaker,text,duration,position));_subtitleRoutine=StartCoroutine(ProcessSubtitlesRoutine());return duration;
         }
 
         public void ShowBroadcastNotification(string message, float duration = 8f)
@@ -317,9 +328,12 @@ namespace LayarTerakhir.UI
                 presentation.phoneHints.text=$"{phoneKey.ToString().ToUpperInvariant()}  {(phone.isPhoneRaised?"Simpan":"Angkat")}   ·   {screenKey.ToString().ToUpperInvariant()}  {(phone.isScreenOn?"Matikan layar":"Nyalakan layar")}";
         }
 
-        public void OpenDocumentModal(string title, string body, Action onClosed = null)
+        public void OpenDocumentModal(string title, string body, Action onClosed = null, string documentId = null)
         {
             if (documentPanel == null) return;
+            var campaign = CampaignState.Instance;
+            if (campaign && !campaign.ArchiveDocument(title, body, documentId))
+                ShowBroadcastNotification("Catatan belum tersimpan di HP. Penyimpanan tidak tersedia.", 4);
             // Reading preserves the handset, screen, camera app and live connection.
             UiFocus.Phone=false;
             _onDocumentClosed = onClosed;
@@ -473,10 +487,10 @@ namespace LayarTerakhir.UI
         {
             while (_subtitleQueue.Count > 0)
             {
-                var (speaker, line, duration) = _subtitleQueue.Dequeue();
+                var (speaker, line, duration, position) = _subtitleQueue.Dequeue();
                 CurrentDialogueSpeaker=speaker;
                 var clip=_profile?_profile.Voice(speaker,line):null;
-                if(clip&&_voice){_voice.clip=clip;_voice.Play();_voicedSpeakers.Add(speaker);}
+                if(clip&&_voice){_voice.spatialBlend=position.HasValue?1:0;if(position.HasValue){_voice.transform.position=position.Value;_voice.minDistance=2;_voice.maxDistance=24;}_voice.clip=clip;_voice.Play();_voicedSpeakers.Add(speaker);}
                 if (subtitleText != null)
                 {
                     subtitleText.text = !GameShell.Subtitles?string.Empty:speaker=="SFX" ? $"<i>{line.Trim('[',']')}</i>" :

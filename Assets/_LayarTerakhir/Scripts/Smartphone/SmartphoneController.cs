@@ -44,6 +44,7 @@ namespace LayarTerakhir.Smartphone
 
         private float _blitzCooldownTimer;
         private Light spillLight;
+        private float shutterUntil;
 
         private void Awake()
         {
@@ -224,9 +225,19 @@ namespace LayarTerakhir.Smartphone
             }
         }
 
+        public void PulseShutter()
+        {
+            if (!isPhoneRaised || !isScreenOn || batteryPercent <= 0) return;
+            shutterUntil = Time.unscaledTime + .16f;
+        }
+
         private void LateUpdate()
         {
             if (!phoneFlashlight) return;
+            bool pulse = Time.unscaledTime < shutterUntil && isPhoneRaised && isScreenOn;
+            phoneFlashlight.intensity = pulse ? 65 : 8;
+            if (pulse) phoneFlashlight.enabled = true;
+            if (spillLight) spillLight.intensity = pulse ? 3.5f : .65f;
             var player = FindFirstObjectByType<LayarTerakhir.Player.FirstPersonController>();
             if (!player || !player.cameraPivot) return;
             phoneFlashlight.transform.SetPositionAndRotation(

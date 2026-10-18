@@ -23,3 +23,19 @@
 - Commit `graphify-out/graph.json`, `graphify-out/GRAPH_REPORT.md`, `graphify-out/graph.html`, dan `graphify-out/source-manifest.json` bersama perubahan kode terkait. Cache, log, path interpreter lokal, dan sidecar mesin tidak perlu di-commit. Graph hanya peta struktur kode, bukan bukti gameplay/build lulus.
 - Saat worktree berisi pekerjaan agen lain, gunakan worktree terpisah untuk branch target agar graph dan commit tidak mengambil WIP mereka. Stage hanya file milik tugas ini; jangan `git add .`. Push ke `main` kecuali pengguna meminta branch lain, tanpa force-push.
 - Untuk pertanyaan arsitektur gunakan `graphify query "<pertanyaan>"` / `graphify explain "<simbol>"` dari worktree yang graph-nya sudah diperbarui; tetap cek source untuk memastikan detail.
+
+## Graphify — navigasi wajib dan efisiensi token
+
+- Sebelum menelusuri atau mengubah kode, gunakan `graphify query "<topik>" --budget 900` untuk menemukan file dan dependensi relevan. Gunakan `graphify explain "<simbol>"` bila diperlukan.
+- Jangan membaca seluruh graph.json atau melakukan pencarian repository luas jika informasi sudah tersedia melalui Graphify. Baca hanya bagian source yang diperlukan.
+- Jangan mengulang query, membaca ulang file, atau menjalankan audit umum tanpa kebutuhan jelas. Gunakan hasil pencarian sebelumnya selama masih relevan.
+- Graphify hanya mencakup kode yang diizinkan; untuk scene, prefab, material, aset, dan referensi Unity gunakan pemeriksaan terarah pada file aslinya. Jangan rebuild graph jika tidak diperlukan, kecuali pembaruan wajib sebelum commit/push.
+
+## Efisiensi Agent — Graphify, Unity MCP, RTK
+- Gunakan Graphify untuk navigasi struktur kode sebelum membaca banyak file C#.
+- Gunakan MCP `unity-prefab-parser` untuk inspeksi scene/prefab Unity jika tersedia; jangan dump seluruh YAML kecuali diperlukan.
+- Gunakan RTK untuk output terminal: `rtk git status`, `rtk git diff`, `rtk ls`, dan subcommand RTK lain yang didukung.
+- Untuk log error, stack trace, dan debugging mendalam, gunakan command asli jika output RTK menyembunyikan informasi penting.
+- Jangan menjalankan `rtk gain` pada setiap task; itu hanya statistik penghematan token.
+- Hindari membaca seluruh repository, mengulang tool call yang sama, dan memasukkan log panjang ke konteks tanpa alasan.
+- Jangan mengganggu pekerjaan agent lain atau melakukan commit terhadap perubahan milik agent lain.

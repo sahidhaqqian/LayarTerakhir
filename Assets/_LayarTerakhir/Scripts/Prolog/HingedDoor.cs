@@ -8,6 +8,7 @@ namespace LayarTerakhir.Prolog
     public sealed class HingedDoor:MonoBehaviour,IInteractable
     {
         public Transform hinge;public string label="Buka pintu";public bool locked;public float angle=95;private bool opened,moving;
+        public string lockedDialogue;
         public bool slides;public Vector3 slideOffset=Vector3.forward*1.6f;
         private Vector3 closedPosition;private bool positionCaptured;
         public bool IsOpen=>opened;
@@ -19,7 +20,7 @@ namespace LayarTerakhir.Prolog
         {
             if(!CanInteract())return;
             CapturePosition();
-            if(locked){HudController.Instance.ShowBroadcastNotification("Kamar penghuni lain. Pintunya terkunci.",3);return;}
+            if(locked){if(!string.IsNullOrEmpty(lockedDialogue))HudController.Instance.EnqueueSubtitle("Raka",lockedDialogue,4);else HudController.Instance.ShowBroadcastNotification("Pintunya terkunci.",3);return;}
             opened=!opened;StartCoroutine(Swing());
         }
         private IEnumerator Swing()

@@ -16,7 +16,7 @@ def dialogue_literals(source):
     separately. This deliberately does not export UI labels or document prose.
     """
     quoted = r'"((?:\\.|[^"\\])*)"'
-    calls = r'(?:EnqueueSubtitle|PlayPriorityDialogue)\(\s*' + quoted + r'\s*,\s*'
+    calls = r'(?:EnqueueSubtitle|PlayPriorityDialogue|PlayPriorityWorldDialogue)\(\s*' + quoted + r'\s*,\s*'
     for match in re.finditer(calls + quoted, source):
         yield match[1], json.loads('"' + match[2] + '"')
     for match in re.finditer(calls + r'\w+\s*\?\s*' + quoted + r'\s*:\s*' + quoted, source):

@@ -56,13 +56,14 @@ namespace LayarTerakhir.UI
             UiWidgets.Text("Date",page.transform,"Kamis, 15 Oktober  •  Hujan",new Vector2(.08f,.72f),new Vector2(.92f,.78f),20,TextAnchor.MiddleCenter);
             var widget=PhoneSkin.Card("ChannelWidget",page.transform,new Vector2(.07f,.59f),new Vector2(.93f,.70f),new Color(.10f,.18f,.24f));
             UiWidgets.Text("ChannelWidgetText",widget.transform,"MALAM KERAMAT\n"+(Phone.isBroadcastConnected?"Siaran langsung berlangsung":"Kanal offline  •  32 penonton terakhir"),new Vector2(.07f,.06f),new Vector2(.93f,.94f),21);
-            string[] labels={"Kamera","Peta","Pesan","Jurnal","Tas","Bank","Setelan","Telepon"};string[] glyphs={"Camera","Map","Messages","Journal","Inventory","Bank","Settings","Call"};
-            Color[] colors={new Color(.28f,.33f,.42f),new Color(.16f,.43f,.41f),new Color(.18f,.46f,.68f),new Color(.61f,.43f,.27f),new Color(.34f,.38f,.29f),new Color(.24f,.37f,.65f),new Color(.35f,.38f,.44f),new Color(.24f,.51f,.36f)};
+            string[] labels={"Kamera","Peta","Pesan","Jurnal","Tas","Bank","Setelan","Telepon","MataBatin"};string[] glyphs={"Camera","Map","Messages","Journal","Inventory","Bank","Settings","Call","MataBatin"};
+            Color[] colors={new Color(.28f,.33f,.42f),new Color(.16f,.43f,.41f),new Color(.18f,.46f,.68f),new Color(.61f,.43f,.27f),new Color(.34f,.38f,.29f),new Color(.24f,.37f,.65f),new Color(.35f,.38f,.44f),new Color(.24f,.51f,.36f),new Color(.10f,.28f,.19f)};
             for(int i=0;i<labels.Length;i++)
             {
+                if(i==8&&!Phone.arModuleUnlocked)continue;
                 int index=i;float x=.065f+i%3*.315f,y=.40f-i/3*.17f;var slot=UiWidgets.Rect("AppSlot_"+i,page.transform,new Vector2(x,y),new Vector2(x+.245f,y+.16f));
                 var b=PhoneSkin.Button("AppButton_"+i,slot.transform,"",new Vector2(.12f,.33f),new Vector2(.88f,1),()=>
-                {if(index==6){GameShell.Instance?.ShowSettings();return;}Open(index==0?PhoneApp.Camera:index==1?PhoneApp.Map:index==2?PhoneApp.Messages:index==3?PhoneApp.Journal:index==4?PhoneApp.Inventory:index==5?PhoneApp.Bank:PhoneApp.Call);},colors[i]);
+                {if(index==8){Phone.currentScanMode=ScanVisualMode.AR;Phone.SyncVisualState();Open(PhoneApp.Camera);return;}if(index==6){GameShell.Instance?.ShowSettings();return;}Open(index==0?PhoneApp.Camera:index==1?PhoneApp.Map:index==2?PhoneApp.Messages:index==3?PhoneApp.Journal:index==4?PhoneApp.Inventory:index==5?PhoneApp.Bank:PhoneApp.Call);},colors[i]);
                 PhoneSkin.Icon(glyphs[i],b.transform,new Vector2(.19f,.16f),new Vector2(.81f,.84f));UiWidgets.Text("AppLabel",slot.transform,labels[i],Vector2.zero,new Vector2(1,.31f),20,TextAnchor.MiddleCenter);
                 if(index==2&&ContractReceived&&!CampaignState.Instance.HasInventoryItem("EVENT_P0_CONTRACT_READ"))
                 {var badge=PhoneSkin.Card("MessageUnreadBadge",b.transform,new Vector2(.72f,.70f),new Vector2(1.02f,1.02f),new Color(.77f,.15f,.16f));UiWidgets.Text("Count",badge.transform,"1",Vector2.zero,Vector2.one,18,TextAnchor.MiddleCenter);}
@@ -82,9 +83,9 @@ namespace LayarTerakhir.UI
             PhoneSkin.Button("MapZoomIn",map.transform,"+",new Vector2(.81f,.12f),new Vector2(.97f,.24f),()=>content.sizeDelta=Vector2.Min(scroll.viewport.rect.size*1.2f,content.sizeDelta+scroll.viewport.rect.size*.2f));
             PhoneSkin.Button("MapZoomOut",map.transform,"−",new Vector2(.81f,.005f),new Vector2(.97f,.12f),()=>content.sizeDelta=Vector2.Max(Vector2.zero,content.sizeDelta-scroll.viewport.rect.size*.2f));
             UiWidgets.Text("MapCredit",map.transform,"Peta cerita • luring • geser untuk menjelajah",new Vector2(.025f,.005f),new Vector2(.78f,.08f),12).color=PhoneSkin.Ink;
-            var corridor=FindFirstObjectByType<KosCorridorDirector>();bool ready=corridor&&corridor.CanDepart;
+            var corridor=FindFirstObjectByType<KosCorridorDirector>();var street=FindFirstObjectByType<MelatiNeighborhood>();bool ready=corridor&&(corridor.CanDepart||(street&&street.CanRide));
             UiWidgets.Text("DestinationLabel",page.transform,"RUMAH KELUARGA ATMAJA\n"+(ready?"Motor siap di gerbang kos":"Pilih keberangkatan di gerbang kos"),new Vector2(.07f,.24f),new Vector2(.93f,.33f),22);
-            var button=PhoneSkin.Button("AtmajaDestination",page.transform,ready?"Berangkat ke Atmaja  →":"Pergi ke gerbang untuk berangkat",new Vector2(.06f,.145f),new Vector2(.94f,.23f),()=>{if(corridor&&corridor.CanDepart)corridor.RequestDeparture();},PhoneSkin.Blue);button.interactable=ready;
+            var button=PhoneSkin.Button("AtmajaDestination",page.transform,ready?"Berangkat ke Atmaja  →":"Pergi ke gerbang untuk berangkat",new Vector2(.06f,.145f),new Vector2(.94f,.23f),()=>{if(corridor&&ready)corridor.RequestDeparture();},PhoneSkin.Blue);button.interactable=ready;
             var future=PhoneSkin.Button("LockedDestinations",page.transform,"5 tujuan berikutnya  ›",new Vector2(.06f,.09f),new Vector2(.94f,.14f),ShowFutureDestinations);future.GetComponentInChildren<Text>().fontSize=17;TravelSelection=ready;
         }
         private void ShowFutureDestinations()
@@ -208,12 +209,13 @@ namespace LayarTerakhir.UI
         private void Journal()
         {
             var c=CampaignState.Instance;var entries=new System.Collections.Generic.List<(string title,string body)>();
-            entries.Add(("Tujuan saat ini",HudController.Instance.CurrentObjective));
+            if(c.Data.documents!=null)foreach(var document in c.Data.documents)
+                entries.Add((document.title,document.body));
             if(c.HasInventoryItem("DOC_PROLOG_01_SURAT_KOS"))entries.Add(("Surat peringatan kos","Tunggakan Rp3.500.000. Bu Haji Ratna meminta kepastian sebelum besok pukul 08:00."));
             if(ContractReceived)entries.Add(("Pesan Penonton_Terakhir",KosDialogue.Contract));
             if(c.HasInventoryItem("DIARY_RAKA"))entries.Add(("Buku harian Raka",KosDialogue.Diary));
             if(c.HasInventoryItem(AtmajaDirector.SurveyId))entries.Add(("Catatan survei Damar",AtmajaDirector.SurveyText));
-            if(c.HasInventoryItem("DOC_PROLOG_03_KORAN_1998"))entries.Add(("Koran tragedi 1998","Satu keluarga ditemukan tewas. Polisi menduga peristiwa bermula di lantai dua menjelang tengah malam. Ada sesuatu yang sengaja tidak ditulis di koran ini."));
+            if(c.HasInventoryItem("DOC_PROLOG_03_KORAN_1998"))entries.Add(("Koran tragedi 1998",AtmajaDirector.NewspaperText));
             if(c.HasInventoryItem("EVENT_P0_AR_CLUE_READ"))entries.Add(("Tulisan di dinding","WAKTU KEMATIAN KAMI ADALAH KUNCI.\nIII : XLV"));
             if(c.HasInventoryItem(AtmajaUpperDirector.DiaryId))entries.Add(("Buku harian Bima",AtmajaUpperDirector.DiaryText));
             if(c.HasInventoryItem(AtmajaUpperDirector.WillId))entries.Add(("Surat wasiat Nyonya",AtmajaUpperDirector.WillText));
@@ -222,6 +224,10 @@ namespace LayarTerakhir.UI
             if(c.HasInventoryItem("EVENT_P0_CHAIN3_BROKEN"))entries.Add(("Foto tali","Bukti ketiga: tali di atas balkon. Tiga bukti terhubung dengan tragedi keluarga ini."));
             if(c.HasInventoryItem(AtmajaBasementHorror.HandycamId))entries.Add(("Rekaman terakhir Damar",AtmajaHandycamPlayback.DamarLine));
             if(c.HasInventoryItem("EVENT_P0_FINAL_CONTRACT"))entries.Add(("Satu malam selesai",PrologFinaleView.FinalContract));
+            // Old saves still expose their discovered documents; exact archived copies take precedence.
+            entries.RemoveAll(entry=>c.Data.documents!=null&&c.Data.documents.Exists(d=>
+                d.title!=entry.title&&(d.body==entry.body||d.title.IndexOf(entry.title,System.StringComparison.OrdinalIgnoreCase)>=0)));
+            if(entries.Count==0)UiWidgets.Text("EmptyJournal",page.transform,"Belum ada catatan.\nDokumen yang dibaca akan tersimpan di sini.",new Vector2(.08f,.40f),new Vector2(.92f,.72f),24);
             var host=UiWidgets.Panel("JournalList",page.transform,new Vector2(.05f,.12f),new Vector2(.95f,.88f),new Color(0,0,0,.01f));
             var scroll=host.AddComponent<ScrollRect>();scroll.horizontal=false;scroll.scrollSensitivity=30;scroll.movementType=ScrollRect.MovementType.Clamped;
             var viewport=UiWidgets.Rect("Viewport",host.transform,Vector2.zero,Vector2.one).GetComponent<RectTransform>();viewport.gameObject.AddComponent<RectMask2D>();
@@ -242,7 +248,7 @@ namespace LayarTerakhir.UI
         }
         private void Inventory()
         {
-            var c=CampaignState.Instance;var t=new StringBuilder("BARANG BAWAAN\n\n");foreach(var item in new[]{("SMARTPHONE_RAKA","Smartphone Raka"),("KUNCI_MOTOR","Kunci motor"),("JAKET_RAKA","Jaket"),("POWERBANK_KECIL_KOS","Powerbank kecil"),("DOMPET_RAKA","Dompet Raka"),("DIARY_RAKA","Buku harian Raka"),("MATABATIN_APK","Modul MataBatin"),("ITEM_P0_CLOCK_HANDS","Jarum kuningan"),("KUNCI_TANGGA_TENGAH","Kunci tangga"),(AtmajaBasementHorror.HandycamId,"Handycam Damar")})if(c.HasInventoryItem(item.Item1))t.AppendLine("• "+item.Item2+"\n");UiWidgets.ScrollText("InventoryEntries",page.transform,t.ToString(),new Vector2(.075f,.12f),new Vector2(.93f,.87f));
+            var c=CampaignState.Instance;var t=new StringBuilder("BARANG BAWAAN\n\n");foreach(var item in new[]{("SMARTPHONE_RAKA","Smartphone Raka"),("KUNCI_MOTOR","Kunci motor"),("JAKET_RAKA","Jaket"),("POWERBANK_KECIL_KOS","Powerbank kecil"),("DOMPET_RAKA","Dompet Raka"),("DIARY_RAKA","Buku harian Raka"),("AIR_MINERAL","Air mineral"),("BEKAL_MI","Mi instan"),("MATABATIN_APK","Modul MataBatin"),("ITEM_P0_CLOCK_HANDS","Jarum kuningan"),("KUNCI_TANGGA_TENGAH","Kunci tangga"),(AtmajaBasementHorror.HandycamId,"Handycam Damar")})if(c.HasInventoryItem(item.Item1))t.AppendLine("• "+item.Item2+"\n");UiWidgets.ScrollText("InventoryEntries",page.transform,t.ToString(),new Vector2(.075f,.12f),new Vector2(.93f,.87f));
             if(c.HasInventoryItem("DIARY_RAKA"))PhoneSkin.Button("ReadDiary",page.transform,"Baca buku harian  →",new Vector2(.06f,.13f),new Vector2(.94f,.22f),()=>Open(PhoneApp.Journal));
         }
         private void OnDestroy(){UiFocus.Phone=false;if(root)Destroy(root);}
@@ -257,7 +263,7 @@ namespace LayarTerakhir.UI
         public const string RakaRatna="Iya, Bu Haji. Maaf ganggu. Uangnya sudah ada, tiga setengah juta. Saya bayar lewat transfer malam ini. Tolong jangan keluarin barang saya besok.";
         public const string RatnaReply="Ya sudah, Raka. Kalau masuk malam ini, kamarmu tetap aman. Habis transfer simpan buktinya. Lain kali jangan menunggu sampai ditegur, ya.";
         public const string RakaRatnaGoodbye="Iya, Bu. Terima kasih sudah ngasih waktu. Saya transfer sekarang.";
-        public const string DamarVoiceNote="Ka... Raka, jangan ke Rumah Atmaja sendirian. Tolong dengerin gue. Aplikasi kamera yang gue oprek dari forum kemarin... itu bukan filter AR biasa, Ka. Rumah ini nggak kosong. Di lantai dua ada suara perempuan nyanyi tembang Jawa, tapi pas gue sorot pakai kamera HP, dia udah berdiri tepat di depan muka gue—";
+        public const string DamarVoiceNote="Ka... Raka, jangan ke Rumah Atmaja sendirian. Tolong dengerin gue. Aplikasi kamera yang gue oprek dari darkweb kemarin... itu bukan filter AR biasa, Ka. Rumah ini nggak kosong. Di lantai dua ada suara perempuan nyanyi tembang Jawa, tapi pas gue sorot pakai kamera HP, dia udah berdiri tepat di depan muka gue—";
         public const string DamarScream="Raka! Tolong! Aaaah!";
         public const string ContractReaction="Anjir, Damar dalam bahaya! Duit ini nggak gratis... Untuk sementara gue harus ikutin perintah dari pesan ini.";
         public const string Diary="32 penonton. Tunggakan kos tiga bulan. Besok harus cari cara buat biaya rumah sakit Ibu. Damar belum bisa dihubungi.";

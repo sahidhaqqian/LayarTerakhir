@@ -13,6 +13,7 @@ namespace LayarTerakhir.Prolog
     public sealed class AtmajaDirector:MonoBehaviour
     {
         public const string SurveyId="DOC_PROLOG_02_SURVEI_DAMAR";
+        public const string NewspaperText="TRAGEDI KELUARGA ATMAJA: Satu Keluarga Ditemukan Tewas Mengenaskan. Polisi menduga sang ibu, Nyonya Sri Atmaja (38), mengalami depresi berat dan gangguan jiwa akibat mengikuti aliran klenik sebelum meracuni anak-anaknya dan mengakhiri hidupnya sendiri di lantai dua pada tengah malam.";
         public const string SurveyText="Catatan Damar, terlipat di dekat tasnya.\n\n23:17 — Gue sudah masuk. Kayu jendela tua itu ternyata masih bisa digeser.\n\n23:24 — Dari dapur kedengaran kursi diseret. Gue panggil, nggak ada jawaban.\n\n23:31 — Aplikasi MataBatin.apk bereaksi ke sesuatu yang nggak kelihatan oleh mata. Kalau Raka baca ini, jangan percaya semua yang kelihatan kosong.";
         public const string LiveIntro="Oke... tes, satu dua. Malam semuanya, balik lagi di Malam Keramat. Malam ini gue nggak sendirian... maksudnya, gue lagi nyusulin Damar yang hilang kontak di Rumah Tua Atmaja. Buat yang baru gabung, bantu pantau layar ya.";
         public FirstPersonController player;
@@ -48,6 +49,7 @@ namespace LayarTerakhir.Prolog
         private bool underTree,wellHeard;
         private bool clockTimeShown;
         private AudioClip arStatic;
+        private AtmajaReviewMoments moments;
         private Vector3 previousPosition;
         private float walked;
         private int footstep;
@@ -57,6 +59,7 @@ namespace LayarTerakhir.Prolog
         private bool Has(string id)=>Campaign&&Campaign.HasInventoryItem(id);
         private IEnumerator Start()
         {
+            moments=GetComponent<AtmajaReviewMoments>();if(!moments)moments=gameObject.AddComponent<AtmajaReviewMoments>();
             PrologSceneFlow.RestoreBindings();
             Campaign.LoadCheckpoint();
             // Direct scene playtesting still uses the real preparation inventory, never a second active phone.
@@ -128,7 +131,7 @@ namespace LayarTerakhir.Prolog
                 if(ar&&!Has("EVENT_P0_AR_CLUE_READ"))ObserveClue();
             }
             if(Stage<AtmajaStage.Chase&&Has("EVENT_P0_KITCHEN_ENTERED")&&!wellHeard&&Vector3.Distance(player.transform.position,P(2.7f,11.2f,.35f))<2)
-            {wellHeard=true;Hud.EnqueueSubtitle("SFX","[KLOTAK... KLOTAK... Suara ember timba ditarik dari dasar sumur]",3);Hud.EnqueueSubtitle("Bisikan","Haus... bukakan...",3);Sfx(audioProfile.knock,P(2.7f,11.2f,.4f),.4f);}
+            {wellHeard=true;Hud.EnqueueSubtitle("SFX","[KLOTAK... KLOTAK... Suara ember timba ditarik dari dasar sumur]",3);Hud.EnqueueSubtitle("Bisikan","Haus... bukakan...",3);Sfx(audioProfile.knock,P(2.7f,11.2f,.4f),.4f);StartCoroutine(moments.HearWell());}
             if(!modal&&Phone&&Phone.isPhoneRaised&&Phone.isScreenOn&&phoneView&&phoneView.IsCameraApp&&GameInputConfig.Instance.GetActionDown(GameAction.CaptureOrBlitz))TryPhotographWell();
             var delta=player.transform.position-previousPosition;previousPosition=player.transform.position;delta.y=0;
             if(delta.sqrMagnitude>1||modal||player.MovementLocked)return;
@@ -149,17 +152,17 @@ namespace LayarTerakhir.Prolog
                     {
                         string checkpoint=Has("EVENT_P0_KITCHEN_ENTERED")?Campaign.Data.checkpoint_id:"PROLOG_ATMAJA_COURTYARD";
                         if(Commit(SurveyId,checkpoint)){if(!Has("EVENT_P0_KITCHEN_ENTERED"))Stage=LiveConnected?AtmajaStage.Live:AtmajaStage.SurveyRead;Objective();}
-                    });break;
+                    },SurveyId);break;
                 case AtmajaAction.FrontDoor:StartCoroutine(TryFrontDoor(item.transform));break;
                 case AtmajaAction.KitchenDoor:
                     if(Commit("EVENT_P0_DINING_OPEN","PROLOG_ATMAJA_KITCHEN")){StartCoroutine(Swing(kitchenDoor,-95));Objective();}break;
                 case AtmajaAction.DamarPhone:TakeDamarPhone();break;
-                case AtmajaAction.Well:Hud.ShowBroadcastNotification("Sumur tua ditutup papan lapuk dan dililit rantai.\nSorot celah papan dengan kamera HP.",5);break;
+                case AtmajaAction.Well:StartCoroutine(moments.OpenWell());break;
                 case AtmajaAction.ClockHands:
                     if(Commit("ITEM_P0_CLOCK_HANDS","PROLOG_MATABATIN_ACQUIRED")){clockHands.SetActive(false);Hud.ShowBroadcastNotification("Jarum Jam Kuningan diambil.",3);Objective();}break;
                 case AtmajaAction.Clock:ClockPuzzle();break;
                 case AtmajaAction.StairDoor:
-                    if(!Has("EVENT_P0_CLOCK_UNLOCKED")){Hud.ShowBroadcastNotification("Pintu tangga terkunci. Periksa jam bandul dan dinding di sampingnya dengan AR.",5);break;}
+                    if(!Has("EVENT_P0_CLOCK_UNLOCKED")){Hud.ShowBroadcastNotification("Pintunya terkunci. Ada lubang kunci tua di bawah gagangnya.",5);break;}
                     if(Commit("EVENT_P0_STAIRS_UNLOCKED","PROLOG_ATMAJA_STAIRS_UNLOCKED")){Stage=AtmajaStage.StairCheckpoint;if(stairDoorMotion&&!stairDoorMotion.IsOpen)stairDoorMotion.Interact();Objective();Hud.ShowBroadcastNotification("Kunci berputar. Jalan ke lantai atas sudah terbuka.",5);}break;
                 case AtmajaAction.CupPhoto:case AtmajaAction.Diary:case AtmajaAction.BathCurtain:case AtmajaAction.BathScratches:case AtmajaAction.WillLetter:case AtmajaAction.RopePhoto:if(upper)upper.HandleEvidence(item);break;
                 case AtmajaAction.CarpetLift:case AtmajaAction.Trapdoor:if(upper)upper.HandleMaster(item);break;
@@ -198,6 +201,7 @@ namespace LayarTerakhir.Prolog
             phoneView.AddChat("@bocil_kematian","Gimmick paling itu bang Damar ngumpet di atas.");
             Hud.EnqueueSubtitle("Raka","Anjir! Anginnya kenceng banget... Eh bentar, ini jendelanya kok nyangkut?!",5);Objective();
             Hud.EnqueueSubtitle("Raka",KosDialogue.Trapped,4);
+            yield return moments.CallDamar();
         }
         private IEnumerator Swing(Transform hinge,float angle)
         {var gate=hinge.GetComponent<DoubleLeafGate>();if(gate){yield return gate.Open();yield break;}var from=hinge.localRotation;var to=Quaternion.Euler(0,angle,0);float t=0;while(t<1){t+=Time.deltaTime;hinge.localRotation=Quaternion.Slerp(from,to,Mathf.SmoothStep(0,1,t));yield return null;}}
@@ -228,37 +232,23 @@ namespace LayarTerakhir.Prolog
         private void TakeDamarPhone()
         {
             if(!player.IsCrouching){Hud.ShowBroadcastNotification("Merunduk untuk meraih HP Damar di kolong meja.",4);return;}
-            if(!Commit("MATABATIN_APK","PROLOG_MATABATIN_ACQUIRED",()=>Campaign.Data.upgrades.Add("MATABATIN_AR")))return;
-            Phone.arModuleUnlocked=true;Stage=AtmajaStage.DamarPhone;
-            Hud.EnqueueSubtitle("Raka","Ini HP-nya Damar... Layarnya pecah, tapi kartu memorinya masih kebaca. Gue pindahin dulu aplikasinya ke HP gue.",7);
-            StartCoroutine(ChipTransferSequence());Objective();
+            if(Busy||Has("MATABATIN_APK"))return;
+            Hud.PlayPriorityDialogue("Raka","Ini HP-nya Damar... Layarnya pecah, tapi kartu memorinya masih kebaca. Gue pindahin dulu aplikasinya ke HP gue.",7);
+            StartCoroutine(ChipTransferSequence());
         }
         private IEnumerator ChipTransferSequence()
         {
-            // First-person hand transfer: Raka lifts the cracked phone into the raised handset,
-            // tilts it screen-first toward the camera, then the extracted module vanishes into the phone.
             if(!damarPhone)yield break;
-            var cam=player.GetComponent<InteractionInteractor>().playerCamera.transform;
-            var hand=Phone.handPhoneMeshRoot?Phone.handPhoneMeshRoot.transform:null;
-            Quaternion handBase=hand?hand.localRotation:Quaternion.identity;
-            var startPos=damarPhone.transform.position;var startRot=damarPhone.transform.rotation;
-            var holdPos=cam.TransformPoint(new Vector3(.13f,-.19f,.30f));
-            var holdRot=Quaternion.LookRotation(-cam.forward,cam.up)*Quaternion.Euler(90,0,0);
-            notificationSource.PlayOneShot(audioProfile.unlock,.4f);
-            float t=0;const float reach=1.25f;
-            while(t<reach)
+            var position=damarPhone.transform.position;var rotation=damarPhone.transform.rotation;
+            yield return moments.Install(damarPhone);
+            if(!Commit("MATABATIN_APK","PROLOG_MATABATIN_ACQUIRED",()=>Campaign.Data.upgrades.Add("MATABATIN_AR")))
+            {damarPhone.transform.SetPositionAndRotation(position,rotation);damarPhone.SetActive(true);yield break;}
+            Phone.arModuleUnlocked=true;Stage=AtmajaStage.DamarPhone;
+            if(!Has("EVENT_P0_AR_TUTORIAL"))
             {
-                t+=Time.deltaTime;float e=Mathf.SmoothStep(0,1,Mathf.Clamp01(t/reach));
-                damarPhone.transform.position=Vector3.Lerp(startPos,holdPos,e)+Vector3.up*Mathf.Sin(e*Mathf.PI)*.045f;
-                damarPhone.transform.rotation=Quaternion.Slerp(startRot,holdRot,e);
-                if(hand&&Phone.handPhoneMeshRoot.activeInHierarchy)hand.localRotation=handBase*Quaternion.Euler(0,Mathf.Sin(t*11f)*3.2f,Mathf.Sin(t*7f)*1.4f);
-                yield return null;
+                Campaign.AddInventoryItem("EVENT_P0_AR_TUTORIAL");Campaign.SaveCheckpointAtomic(Campaign.Data.checkpoint_id);
+                Hud.ShowBroadcastNotification("MataBatin terhubung • ["+GameInputConfig.Instance.GetActionLabel(GameAction.ModeAR)+"] Lensa AR • Daya terkuras lebih cepat",6);
             }
-            Hud.ShowBroadcastNotification("Kartu memori terbaca • Modul MataBatin.apk dipindahkan ke HP Raka.",4.5f);
-            notificationSource.PlayOneShot(audioProfile.notification,.5f);
-            yield return new WaitForSeconds(.9f);
-            if(hand)hand.localRotation=handBase;
-            damarPhone.SetActive(false);
         }
         private void RevealAR()
         {
@@ -272,6 +262,7 @@ namespace LayarTerakhir.Prolog
                 arStatic=AudioClip.Create("MataBatin_Static",samples.Length,1,rate,false);arStatic.SetData(samples,0);
             }
             notificationSource.PlayOneShot(arStatic,.65f);
+            StartCoroutine(moments.FirstARScare());
             phoneView.AddChat("@agung_gaming","ANJIR APAAN TUH DI UJUNG MEJA BARUSAN?!");
             phoneView.AddChat("@siti_nurhaliza","ITU BUKAN SETTINGAN WOI KEPALANYA MIRING!");
             phoneView.AddChat("@horor_hunter","Bang Raka lari bang! Itu filter kameranya nangkep penunggu situ!");Objective();
@@ -290,10 +281,10 @@ namespace LayarTerakhir.Prolog
         }
         private void ClockPuzzle()
         {
-            if(!Has("MATABATIN_APK")){Hud.ShowBroadcastNotification("Cari HP Damar dan pasang modul kameranya terlebih dahulu.",4);return;}
-            if(!Has("ITEM_P0_CLOCK_HANDS")){Hud.ShowBroadcastNotification("Jarum jam copot. Cari Jarum Jam Kuningan di meja tamu.",5);return;}
+            if(!Has("MATABATIN_APK")){Hud.ShowBroadcastNotification("Ada bagian yang hilang dari jam ini.",4);return;}
+            if(!Has("ITEM_P0_CLOCK_HANDS")){Hud.ShowBroadcastNotification("Dua jarumnya hilang dari porosnya.",5);return;}
             if(Has("EVENT_P0_CLOCK_UNLOCKED")){if(!Has("DOC_PROLOG_03_KORAN_1998"))OpenNewspaper();else Hud.ShowBroadcastNotification("Jam menunjukkan 03:45. Kunci Pintu Tangga Tengah sudah diambil.",4);return;}
-            if(!Has("EVENT_P0_AR_CLUE_READ")){Hud.ShowBroadcastNotification("Belum tahu waktu yang benar. Periksa dinding rumah melalui kamera AR.",4);return;}
+            if(!Has("EVENT_P0_AR_CLUE_READ")){Hud.ShowBroadcastNotification("Jam ini berhenti. Angka berapa yang seharusnya ditunjukkan?",4);return;}
             var puzzle=GetComponent<ClockPuzzleView>();if(!puzzle)puzzle=gameObject.AddComponent<ClockPuzzleView>();
             puzzle.Open(()=>
             {
@@ -311,7 +302,7 @@ namespace LayarTerakhir.Prolog
             if(Array.Exists(blockers,h=>!h.transform.IsChildOf(player.transform)))return;
             if(Commit("EVENT_P0_AR_CLUE_READ","PROLOG_MATABATIN_ACQUIRED"))Hud.ShowBroadcastNotification("Petunjuk dinding dicatat di Jurnal HP.",3);
         }
-        private void OpenNewspaper()=>Hud.OpenDocumentModal("KLIPING KORAN 1998 • DOKUMEN #3","TRAGEDI KELUARGA ATMAJA: Satu Keluarga Ditemukan Tewas Mengenaskan. Polisi menduga sang ibu, Nyonya Sri Atmaja (38), mengalami depresi berat dan gangguan jiwa akibat mengikuti aliran klenik sebelum meracuni anak-anaknya dan mengakhiri hidupnya sendiri di lantai dua pada tengah malam.",()=>{Commit("DOC_PROLOG_03_KORAN_1998","PROLOG_MATABATIN_ACQUIRED");Objective();});
+        private void OpenNewspaper()=>Hud.OpenDocumentModal("KLIPING KORAN 1998 • DOKUMEN #3",NewspaperText,()=>{Commit("DOC_PROLOG_03_KORAN_1998","PROLOG_MATABATIN_ACQUIRED");Objective();},"DOC_PROLOG_03_KORAN_1998");
         private void ShowClockTime()
         {
             if(clockTimeShown)return;clockTimeShown=true;
@@ -345,20 +336,22 @@ namespace LayarTerakhir.Prolog
         public void FailToCheckpoint(string checkpoint,string reason)
         {
             CheckpointRestores++;
-            Debug.Log("ATMAJA_CHECKPOINT_RESTORE "+reason);
+            Debug.Log("ATMAJA_DEATH_MENU "+reason);
             Time.timeScale=1;
             try{if(upper)upper.StopAllCoroutines();}catch{}
             try{if(basement)basement.StopAllCoroutines();}catch{}
             try{if(chase)chase.StopAllCoroutines();}catch{}
             try{StopAllCoroutines();}catch{}
-            Campaign.LoadCheckpoint();
-            Busy=false;UiFocus.Cinematic=false;
-            player.enabled=true;player.MovementLocked=false;
+            // Keep the old world inert while Continue asynchronously loads another scene.
+            // Otherwise the expired chase QTE can kill Raka again during that transition.
+            Busy=true;UiFocus.Cinematic=false;
+            player.enabled=true;player.MovementLocked=true;
             player.GetComponent<CharacterController>().enabled=true;
             Hud.PlayPriorityDialogue("","",.01f);Hud.SetFadeAlpha(0);
             var phone=SmartphoneController.Instance;
             if(phone){phone.batteryPercent=Campaign.Data.battery;phone.isPhoneRaised=false;phone.isScreenOn=phone.batteryPercent>0;phone.currentScanMode=Smartphone.ScanVisualMode.Normal;phone.SyncVisualState();}
-            RestoreWorld();Objective();Hud.ShowBroadcastNotification(reason+" Checkpoint dipulihkan.",6);
+            // Continue is an explicit menu choice. Death never resumes play by itself.
+            if(GameShell.Instance)GameShell.Instance.ReturnAfterDeath(reason);
         }
         private void Sfx(AudioClip clip,Vector3 where,float gain)
         {if(!foleySource||!clip)return;foleySource.transform.position=where;foleySource.PlayOneShot(clip,gain);}

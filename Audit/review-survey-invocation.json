@@ -1,0 +1,19 @@
+{
+  "stage": "review-survey",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-main",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.DesignerReviewBuilder.Survey",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Audit/review-survey.log"
+  ],
+  "startedUtc": "2026-10-18T03:59:13.559697+00:00",
+  "status": "Finished",
+  "endedUtc": "2026-10-18T03:59:44.027911+00:00",
+  "exitCode": 0
+}

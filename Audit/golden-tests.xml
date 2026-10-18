@@ -1,35 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-18 02:15:48Z" end-time="2026-10-18 02:15:49Z" duration="1.3687348">
-  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="77" result="Passed" start-time="2026-10-18 02:15:48Z" end-time="2026-10-18 02:15:49Z" duration="1.368735" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-18 07:55:18Z" end-time="2026-10-18 07:55:30Z" duration="11.6063633">
+  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="85" result="Passed" start-time="2026-10-18 07:55:18Z" end-time="2026-10-18 07:55:30Z" duration="11.606363" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
     <properties>
       <property name="platform" value="EditMode" />
     </properties>
-    <test-suite type="Assembly" id="1093" name="Assembly-CSharp-Editor.dll" fullname="/root/Projects/LayarTerakhir-main/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="77" result="Passed" start-time="2026-10-18 02:15:48Z" end-time="2026-10-18 02:15:49Z" duration="1.260647" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <test-suite type="Assembly" id="1101" name="Assembly-CSharp-Editor.dll" fullname="/root/Projects/LayarTerakhir-main/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="85" result="Passed" start-time="2026-10-18 07:55:18Z" end-time="2026-10-18 07:55:30Z" duration="11.516708" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
       <properties>
-        <property name="_PID" value="404175" />
+        <property name="_PID" value="439157" />
         <property name="_APPDOMAIN" value="Unity Child Domain" />
         <property name="platform" value="EditMode" />
         <property name="EditorOnly" value="True" />
       </properties>
-      <test-suite type="TestSuite" id="1094" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="77" result="Passed" start-time="2026-10-18 02:15:48Z" end-time="2026-10-18 02:15:49Z" duration="1.258585" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <test-suite type="TestSuite" id="1102" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="85" result="Passed" start-time="2026-10-18 07:55:18Z" end-time="2026-10-18 07:55:30Z" duration="11.514857" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
         <properties />
-        <test-suite type="TestSuite" id="1095" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="77" result="Passed" start-time="2026-10-18 02:15:48Z" end-time="2026-10-18 02:15:49Z" duration="1.257377" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <test-suite type="TestSuite" id="1103" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="85" result="Passed" start-time="2026-10-18 07:55:18Z" end-time="2026-10-18 07:55:30Z" duration="11.513666" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
           <properties />
-          <test-suite type="TestSuite" id="1096" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="77" result="Passed" start-time="2026-10-18 02:15:48Z" end-time="2026-10-18 02:15:49Z" duration="1.256395" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestSuite" id="1104" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="85" result="Passed" start-time="2026-10-18 07:55:18Z" end-time="2026-10-18 07:55:30Z" duration="11.512489" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-suite type="TestFixture" id="1001" name="AtmajaPlayTests" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-10-18 02:15:48Z" end-time="2026-10-18 02:15:49Z" duration="1.249158" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-suite type="TestFixture" id="1001" name="AtmajaPlayTests" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-10-18 07:55:18Z" end-time="2026-10-18 07:55:30Z" duration="11.508257" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-case id="1008" name="AtmajaStairsReachUpperCorridorWithoutTeleport" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.AtmajaStairsReachUpperCorridorWithoutTeleport" methodname="AtmajaStairsReachUpperCorridorWithoutTeleport" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="561095872" result="Passed" start-time="2026-10-18 02:15:26Z" end-time="2026-10-18 02:15:34Z" duration="7.956648" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1017" name="EnclosedStairsHideBehindARealDoorAndKeepGuards" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.EnclosedStairsHideBehindARealDoorAndKeepGuards" methodname="EnclosedStairsHideBehindARealDoorAndKeepGuards" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1528230478" result="Passed" start-time="2026-10-18 02:15:34Z" end-time="2026-10-18 02:15:42Z" duration="7.393093" asserts="0">
-                <properties>
-                  <property name="_JOINTYPE" value="UnityCombinatorial" />
-                </properties>
-              </test-case>
-              <test-case id="1018" name="ReadingNotesPreservesHeldPhoneCameraAndLocksMovement" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.ReadingNotesPreservesHeldPhoneCameraAndLocksMovement" methodname="ReadingNotesPreservesHeldPhoneCameraAndLocksMovement" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="937113695" result="Passed" start-time="2026-10-18 02:15:42Z" end-time="2026-10-18 02:15:49Z" duration="7.600796" asserts="0">
+              <test-case id="1006" name="DiningSidesBackpackAndCornerRoomAreContinuouslyWalkable" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.DiningSidesBackpackAndCornerRoomAreContinuouslyWalkable" methodname="DiningSidesBackpackAndCornerRoomAreContinuouslyWalkable" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="98625158" result="Passed" start-time="2026-10-18 07:55:12Z" end-time="2026-10-18 07:55:30Z" duration="17.414799" asserts="0">
                 <properties>
                   <property name="_JOINTYPE" value="UnityCombinatorial" />
                   <property name="retryIteration" value="0" />

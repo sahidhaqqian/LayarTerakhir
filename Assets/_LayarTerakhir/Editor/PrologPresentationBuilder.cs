@@ -18,6 +18,18 @@ namespace LayarTerakhir.Editor
     public static class PrologPresentationBuilder
     {
         private const string Root="Assets/_LayarTerakhir/Art/Characters/";
+        public static void RebuildRakaOnly()
+        {
+            materials.Clear();
+            foreach(var guid in AssetDatabase.FindAssets("t:Material",new[]{Root+"Materials"}))
+            {var material=AssetDatabase.LoadAssetAtPath<Material>(AssetDatabase.GUIDToAssetPath(guid));materials[material.name]=material;}
+            Surface("Raka_TShirt",null,new Color(.14f,.17f,.2f));ImportModel("RakaRigged",true);
+            var model=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(Root+"Models/RakaRigged.fbx"));
+            ApplyMaterials(model);model.name="RakaCharacter";
+            var avatar=model.AddComponent<AnimatedRakaAvatar>();avatar.motion=BindMotion(model,"RakaRigged");
+            avatar.handset=model.GetComponentsInChildren<Transform>(true).First(t=>t.name=="HandheldPhone").gameObject;
+            PrefabUtility.SaveAsPrefabAsset(model,"Assets/Resources/RakaCharacter.prefab");Object.DestroyImmediate(model);AssetDatabase.SaveAssets();
+        }
         private static readonly Dictionary<string,Material> materials=new Dictionary<string,Material>();
         private static string Hash(string path){using var sha=SHA256.Create();return BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(path))).Replace("-","").ToLowerInvariant();}
         [MenuItem("LayarTerakhir/Prolog/Apply skinned character presentation")]
@@ -86,7 +98,7 @@ namespace LayarTerakhir.Editor
             importer.importCameras=false;importer.importLights=false;importer.addCollider=false;importer.importAnimation=animate;importer.animationType=animate?ModelImporterAnimationType.Legacy:ModelImporterAnimationType.None;importer.SaveAndReimport();
             if(!animate)return;
             var clips=importer.defaultClipAnimations;
-            foreach(var clip in clips){clip.name=ClipName(clip.name);clip.loopTime=clip.name!="Windup"&&clip.name!="Stun";clip.wrapMode=clip.loopTime?WrapMode.Loop:WrapMode.ClampForever;}
+            foreach(var clip in clips){clip.name=ClipName(clip.name);clip.loopTime=clip.name!="Windup"&&clip.name!="Stun"&&clip.name!="InstallCard";clip.wrapMode=clip.loopTime?WrapMode.Loop:WrapMode.ClampForever;}
             importer.clipAnimations=clips;importer.SaveAndReimport();
         }
         private static Animation BindMotion(GameObject model,string asset)

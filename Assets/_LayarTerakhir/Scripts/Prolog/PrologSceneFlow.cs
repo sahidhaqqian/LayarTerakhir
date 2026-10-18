@@ -14,9 +14,9 @@ namespace LayarTerakhir.Prolog
         private static string pendingBindings;
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void Reset(){AutomaticTransitions=true;pendingBindings=null;}
-        public static bool IsAtmajaCheckpoint(string id)=>id!=null&&(id.StartsWith("PROLOG_ATMAJA_",StringComparison.Ordinal)||id.StartsWith("PROLOG_BASEMENT",StringComparison.Ordinal)||id.StartsWith("PROLOG_CHASE",StringComparison.Ordinal)||id=="PROLOG_MATABATIN_ACQUIRED"||id=="PROLOG_COMPLETE");
+        public static bool IsAtmajaCheckpoint(string id)=>id!=null&&(id.StartsWith("PROLOG_ATMAJA_",StringComparison.Ordinal)||id.StartsWith("PROLOG_BASEMENT",StringComparison.Ordinal)||id.StartsWith("PROLOG_CHASE",StringComparison.Ordinal)||id=="PROLOG_MATABATIN_ACQUIRED"||id=="PROLOG_COMPLETE"||id=="PROLOG_TRAVEL_ATMAJA");
         public static bool CanContinue=>AutomaticTransitions&&Application.CanStreamedLevelBeLoaded(AtmajaScene);
-        public static bool IsCorridorCheckpoint(string id)=>id=="PROLOG_KOS_CORRIDOR"||id=="PROLOG_KOS_YARD"||id=="PROLOG_TRAVEL_ATMAJA";
+        public static bool IsCorridorCheckpoint(string id)=>id=="PROLOG_KOS_CORRIDOR"||id=="PROLOG_KOS_YARD"||id==MelatiNeighborhood.Checkpoint;
         public static IEnumerator LoadCorridor()
         {
             if(!AutomaticTransitions||!Application.CanStreamedLevelBeLoaded(CorridorScene))yield break;

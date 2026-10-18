@@ -89,7 +89,7 @@ namespace LayarTerakhir.Diagnostics
             Check(d.Stage == AtmajaStage.StairCheckpoint, "Continuation starts at the real stair checkpoint");
             var hybrid=player.GetComponent<ShoulderCameraRig>();
             Check(hybrid.SelectedPerspective==PlayerPerspective.OverShoulder,"Exploration defaults to over-the-shoulder third person");
-            Check(hybrid.Avatar.GetComponent<AnimatedRakaAvatar>()&&hybrid.Avatar.GetComponent<Animation>().GetClipCount()==11,"Standalone loads the skinned Raka resource and eleven motion clips");
+            Check(hybrid.Avatar.GetComponent<AnimatedRakaAvatar>()&&hybrid.Avatar.GetComponent<Animation>().GetClipCount()==12,"Standalone loads the skinned Raka resource and twelve motion clips including memory-card interaction");
             // Controlled closed-leaf inspection inside the unlocked continuation fixture.
             // This checks presentation without replaying/re-paying the completed ground floor.
             yield return Walk(d.P(-3.55f,5.1f,.54f));d.stairDoorMotion.SetOpenImmediate(false);Physics.SyncTransforms();

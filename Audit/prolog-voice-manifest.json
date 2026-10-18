@@ -264,17 +264,6 @@
     },
     {
       "speaker": "Damar",
-      "text": "Ka... Raka, jangan ke Rumah Atmaja sendirian. Tolong dengerin gue. Aplikasi kamera yang gue oprek dari forum kemarin... itu bukan filter AR biasa, Ka. Rumah ini nggak kosong. Di lantai dua ada suara perempuan nyanyi tembang Jawa, tapi pas gue sorot pakai kamera HP, dia udah berdiri tepat di depan muka gue—",
-      "path": "Assets/_LayarTerakhir/Audio/Dialogue/7e2ea416cb0a.wav",
-      "duration": 22.44,
-      "peak": 0.631378173828125,
-      "rms": 0.15557298619541476,
-      "sha256": "618a5ab86a5149c410b547e085b3054820cbf3f3ff244856f8ad6dc651a39dab",
-      "delivery": "Frightened young man, trembling breathless delivery, panicked urgent whisper rising to terror. Uneven pace, gasping pauses, increasingly alarmed. Speak Indonesian, not a neutral narrator.",
-      "renderBackend": "Official OpenBMB VoxCPM2 demo; reference-only controllable cloning, not neutral transcript continuation"
-    },
-    {
-      "speaker": "Damar",
       "text": "Raka! Tolong! Aaaah!",
       "path": "Assets/_LayarTerakhir/Audio/Dialogue/a8b7da758ce3.wav",
       "duration": 3.24,
@@ -316,6 +305,185 @@
       "sha256": "d97d8e1dca46c7d9b27bd2a1db35e0c79e201102212550caefacc31796780d90",
       "delivery": "Natural conversational Indonesian, quietly worried",
       "renderBackend": "Official OpenBMB VoxCPM2 demo (backend checkpoint revision not exposed)"
+    },
+    {
+      "speaker": "Raka",
+      "text": "Damar! Damar!",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/c6d62e8ec27e.wav",
+      "duration": 4.48,
+      "peak": 0.7076416015625,
+      "rms": 0.1453694837870004,
+      "sha256": "d57dfad17088dc77c61c64cee46e0c6656cfb430d1263ec5c9719f584d157ee1"
+    },
+    {
+      "speaker": "Damar • dari lantai atas",
+      "text": "AAARGH! Raka...!",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/9527ac05194e.wav",
+      "duration": 8.96,
+      "peak": 0.7081298828125,
+      "rms": 0.13782412635106564,
+      "sha256": "2cd888bb43dd88efa4f35b150c024a26dad44ae1486ac73f3fb6d30884b817ba"
+    },
+    {
+      "speaker": "Raka",
+      "text": "Dam?! Suaranya dari atas...",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/549f328fb502.wav",
+      "duration": 6.4,
+      "peak": 0.70794677734375,
+      "rms": 0.14793028561397895,
+      "sha256": "e98dfdcabb5d03c11ea92511e259dddc07a36f774447d76e986e0de7199cdcdd"
+    },
+    {
+      "speaker": "Raka",
+      "text": "Siapa... yang duduk di situ?",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/a702b8257849.wav",
+      "duration": 5.6,
+      "peak": 0.676361083984375,
+      "rms": 0.12873349575891502,
+      "sha256": "66e5f5fa1fd984d0e77836a548d480a7cdeb4bfd1084067c10c10898ad481976"
+    },
+    {
+      "speaker": "Raka",
+      "text": "Apa...?! Lepas!",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/49e8883812d9.wav",
+      "duration": 5.28,
+      "peak": 0.70770263671875,
+      "rms": 0.12786789249197983,
+      "sha256": "53c0f46cb55955ae5af31ac15cdc7284b92c558ed5d84cc0eec944b4b61df9dd"
+    },
+    {
+      "speaker": "Raka",
+      "text": "Warung Bu Sari masih buka. Jalan ke Atmaja lewat ujung kompleks ini...",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/4e82803b5d64.wav",
+      "duration": 6.4,
+      "peak": 0.70684814453125,
+      "rms": 0.1462135587673931,
+      "sha256": "436ed86432641711b4103d1d92ad0f3d4810690ecc37453eb74415cc9aa54f09"
+    },
+    {
+      "speaker": "Damar",
+      "text": "Ka... Raka, jangan ke Rumah Atmaja sendirian. Tolong dengerin gue. Aplikasi kamera yang gue oprek dari darkweb kemarin... itu bukan filter AR biasa, Ka. Rumah ini nggak kosong. Di lantai dua ada suara perempuan nyanyi tembang Jawa, tapi pas gue sorot pakai kamera HP, dia udah berdiri tepat di depan muka gue—",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/00bc8f7547b9.wav",
+      "duration": 23.2,
+      "peak": 0.709259033203125,
+      "rms": 0.1970661156122723,
+      "sha256": "f3ce5736d9004776eb1e55ed396373c5b37e66432825e9378c491180ef24f8d7"
+    },
+    {
+      "speaker": "Raka",
+      "text": "Sial pintunya dikunci, aku harus cari jalan lain.",
+      "path": "Assets/_LayarTerakhir/Audio/Dialogue/575ce4f38f7e.wav",
+      "duration": 5.76,
+      "peak": 0.70782470703125,
+      "rms": 0.146784231166448,
+      "sha256": "07fad2f0f6a6ca04c039a82b142f7667815cff5a2efafa40b8c464da887a6017"
     }
-  ]
+  ],
+  "designerReviewVoices": {
+    "engine": "VoxCPM2 / openbmb/VoxCPM2, Indonesian neural TTS, CPU offline",
+    "source": "https://huggingface.co/openbmb/VoxCPM2",
+    "engineLicense": "Apache-2.0",
+    "voiceCloning": "Only self-generated fictional character reference samples; no human identity cloned",
+    "userApproved": true,
+    "casting": [
+      {
+        "character": "Raka",
+        "design": "A young adult Indonesian man, warm mid-range voice, conversational and slightly worried",
+        "seed": 701,
+        "transcript": "Malam ini gue harus cari Damar. Semoga dia baik-baik aja.",
+        "path": "Audit/VoiceSamples/Raka.wav",
+        "source": "Original synthetic voice design; not a real person reference"
+      },
+      {
+        "character": "Damar",
+        "design": "A young adult Indonesian man, deep rough voice, breathless and frightened, urgent hushed speech",
+        "seed": 1703,
+        "transcript": "Raka, tolong dengerin gue. Rumah ini nggak kosong.",
+        "path": "Audit/VoiceSamples/Damar.wav",
+        "source": "Original synthetic voice design; not a real person reference"
+      },
+      {
+        "character": "Bisikan",
+        "design": "An elderly Indonesian woman, a low raspy whisper, slow and ominous",
+        "seed": 3907,
+        "transcript": "Haus... bukakan...",
+        "path": "Audit/VoiceSamples/Bisikan.wav",
+        "source": "Original synthetic voice design; not a real person reference"
+      }
+    ],
+    "entries": [
+      {
+        "speaker": "Raka",
+        "text": "Damar! Damar!",
+        "path": "Assets/_LayarTerakhir/Audio/Dialogue/c6d62e8ec27e.wav",
+        "duration": 4.48,
+        "peak": 0.7076416015625,
+        "rms": 0.1453694837870004,
+        "sha256": "d57dfad17088dc77c61c64cee46e0c6656cfb430d1263ec5c9719f584d157ee1"
+      },
+      {
+        "speaker": "Damar • dari lantai atas",
+        "text": "AAARGH! Raka...!",
+        "path": "Assets/_LayarTerakhir/Audio/Dialogue/9527ac05194e.wav",
+        "duration": 8.96,
+        "peak": 0.7081298828125,
+        "rms": 0.13782412635106564,
+        "sha256": "2cd888bb43dd88efa4f35b150c024a26dad44ae1486ac73f3fb6d30884b817ba"
+      },
+      {
+        "speaker": "Raka",
+        "text": "Dam?! Suaranya dari atas...",
+        "path": "Assets/_LayarTerakhir/Audio/Dialogue/549f328fb502.wav",
+        "duration": 6.4,
+        "peak": 0.70794677734375,
+        "rms": 0.14793028561397895,
+        "sha256": "e98dfdcabb5d03c11ea92511e259dddc07a36f774447d76e986e0de7199cdcdd"
+      },
+      {
+        "speaker": "Raka",
+        "text": "Siapa... yang duduk di situ?",
+        "path": "Assets/_LayarTerakhir/Audio/Dialogue/a702b8257849.wav",
+        "duration": 5.6,
+        "peak": 0.676361083984375,
+        "rms": 0.12873349575891502,
+        "sha256": "66e5f5fa1fd984d0e77836a548d480a7cdeb4bfd1084067c10c10898ad481976"
+      },
+      {
+        "speaker": "Raka",
+        "text": "Apa...?! Lepas!",
+        "path": "Assets/_LayarTerakhir/Audio/Dialogue/49e8883812d9.wav",
+        "duration": 5.28,
+        "peak": 0.70770263671875,
+        "rms": 0.12786789249197983,
+        "sha256": "53c0f46cb55955ae5af31ac15cdc7284b92c558ed5d84cc0eec944b4b61df9dd"
+      },
+      {
+        "speaker": "Raka",
+        "text": "Warung Bu Sari masih buka. Jalan ke Atmaja lewat ujung kompleks ini...",
+        "path": "Assets/_LayarTerakhir/Audio/Dialogue/4e82803b5d64.wav",
+        "duration": 6.4,
+        "peak": 0.70684814453125,
+        "rms": 0.1462135587673931,
+        "sha256": "436ed86432641711b4103d1d92ad0f3d4810690ecc37453eb74415cc9aa54f09"
+      },
+      {
+        "speaker": "Damar",
+        "text": "Ka... Raka, jangan ke Rumah Atmaja sendirian. Tolong dengerin gue. Aplikasi kamera yang gue oprek dari darkweb kemarin... itu bukan filter AR biasa, Ka. Rumah ini nggak kosong. Di lantai dua ada suara perempuan nyanyi tembang Jawa, tapi pas gue sorot pakai kamera HP, dia udah berdiri tepat di depan muka gue—",
+        "path": "Assets/_LayarTerakhir/Audio/Dialogue/00bc8f7547b9.wav",
+        "duration": 23.2,
+        "peak": 0.709259033203125,
+        "rms": 0.1970661156122723,
+        "sha256": "f3ce5736d9004776eb1e55ed396373c5b37e66432825e9378c491180ef24f8d7"
+      },
+      {
+        "speaker": "Raka",
+        "text": "Sial pintunya dikunci, aku harus cari jalan lain.",
+        "path": "Assets/_LayarTerakhir/Audio/Dialogue/575ce4f38f7e.wav",
+        "duration": 5.76,
+        "peak": 0.70782470703125,
+        "rms": 0.146784231166448,
+        "sha256": "07fad2f0f6a6ca04c039a82b142f7667815cff5a2efafa40b8c464da887a6017"
+      }
+    ]
+  }
 }

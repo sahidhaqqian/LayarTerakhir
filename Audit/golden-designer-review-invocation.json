@@ -1,0 +1,19 @@
+{
+  "stage": "designer-review",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-main",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.DesignerReviewBuilder.Apply",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Audit/golden-designer-review.log"
+  ],
+  "startedUtc": "2026-10-18T04:51:50.448664+00:00",
+  "status": "Finished",
+  "endedUtc": "2026-10-18T04:52:25.681507+00:00",
+  "exitCode": 0
+}

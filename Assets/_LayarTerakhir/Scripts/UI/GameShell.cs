@@ -76,7 +76,7 @@ namespace LayarTerakhir.UI
             {
                 if(remapping.HasValue){remapping=null;Draw();return;}
                 if(settings){settings=false;Draw();return;}
-                if(UiFocus.Clock){FindFirstObjectByType<ClockPuzzleView>()?.Close();return;}
+                if(UiFocus.Clock){var shop=FindFirstObjectByType<MelatiShop>();if(shop&&shop.IsOpen)shop.Close();else FindFirstObjectByType<ClockPuzzleView>()?.Close();return;}
                 var hud=HudController.Instance;
                 if(hud&&hud.documentPanel.activeSelf){hud.CloseDocumentModal();return;}
                 if(hud&&hud.padlockPanel.activeSelf){hud.ClosePadlockModal();return;}
@@ -85,6 +85,11 @@ namespace LayarTerakhir.UI
         }
         public void OpenMain()
         {awaiting=true;settings=false;confirmNew=false;Open();}
+        public void ReturnAfterDeath(string reason)
+        {
+            error=reason;UiFocus.Cinematic=UiFocus.Phone=UiFocus.Clock=false;
+            OpenMain();
+        }
         public void Pause(){if(awaiting)return;settings=false;Open();}
         private void Open()
         {
@@ -125,13 +130,13 @@ namespace LayarTerakhir.UI
         {
             if(loading)return;
             if(!CampaignState.Instance||!CampaignState.Instance.BeginNewCampaignPreservingPrevious()){error="Save tidak dapat diarsipkan. Cerita lama tidak ditimpa.";Draw();return;}
-            loading=true;awaiting=false;confirmNew=false;Resume();StartCoroutine(LoadKos(false));
+            error="";loading=true;awaiting=false;confirmNew=false;Resume();StartCoroutine(LoadKos(false));
         }
         public void Continue()
         {
             if(loading)return;
             if(!CampaignState.Instance||!CampaignState.Instance.LoadCheckpoint()){error="Checkpoint tidak tersedia atau rusak.";Draw();return;}
-            loading=true;awaiting=false;Resume();StartCoroutine(LoadKos(false));
+            error="";loading=true;awaiting=false;Resume();StartCoroutine(LoadKos(false));
         }
         private IEnumerator LoadKos(bool keepMenu)
         {loading=true;var op=SceneManager.LoadSceneAsync(KosScene);while(!op.isDone)yield return null;loading=false;if(keepMenu)OpenMain();}

@@ -1,5 +1,35 @@
 Asset provenance for Kamar Kos and the Atmaja continuation, with the 2026-10-16 playtest revision.
 
+## Designer review — 18 October 2026
+
+Selected new [Poly Haven](https://polyhaven.com/license) CC0 models:
+[Painted Wooden Sofa](https://polyhaven.com/a/painted_wooden_sofa),
+[Street Rat](https://polyhaven.com/a/street_rat),
+[Food Apple 01](https://polyhaven.com/a/food_apple_01) and
+[Hamburger Buns](https://polyhaven.com/a/hamburger_buns).
+The game uses reduced meshes, original 1K maps, converted linear URP masks and
+project-authored rotten-food color treatment. Ceramic plates, glaze fractures,
+fungal colonies, the hollow well/cover staging and neighborhood/shop dressing
+are original geometry. The source download URLs, publisher checksums and SHA-256
+are in `designer-review-asset-sources.json`; derived mesh counts/hashes are in
+`designer-review-mesh-authoring.json`.
+
+Eight building variants come from [Kenney City Kit Suburban 2.0](https://kenney.nl/assets/city-kit-suburban),
+CC0; its unchanged license is `kenney-suburban-CC0.txt`. Derived buildings receive
+meter-based UVs and the existing credited plaster, wood and roof PBR materials.
+The palette texture and unselected pack contents are not shipped. Existing desk-lamp,
+bookshelf and shrub sources have separate scene-only LOD variants; originals are retained.
+
+Raka's first-party authoring uses the designer's local Nera converter's measured
+finger fitting and exclusive hand skin regions. Its two source module hashes and
+bone mapping are in `nera-raka-hand-adaptation.json`. Authored thumb joints/weights
+are retained after visual diagnosis, and the game has 55 joints, independent T-shirt/
+jacket meshes and twelve baked motion/interaction clips. This is local authoring;
+no Nera runtime, detector, face/blink work or cloud rigging dependency is shipped.
+Eight additional lines use the existing fictional synthetic references with local
+VoxCPM2 CPU authoring, recorded in `prolog-voice-manifest.json`. No real voice is cloned.
+MataBatin's eye/lens mark is original code-native vector UI in `PhoneGlyph`.
+
 ## Prolog completion — 17 October 2026
 
 The handycam market/mirror set, reaching-hand geometry, low-poly round mesh, wardrobe slats,
@@ -293,3 +323,9 @@ Upper-floor ARM texture channels are repacked into linear URP metallic/AO/smooth
 native texture assets, area-downsampled to at most 1024px and compressed DXT5 by the
 Unity editor pass. These are technical derivatives of the already credited CC0
 Poly Haven maps; the source colour and normal artwork is retained.
+
+Kontak berkendara Raka memakai lima marker geometri pada FBX khusus Raka.
+Jok tertutup diambil dari geometri sumber recovery asli, bukan nama mesh
+yang hilang setelah penggabungan material. `Tools/author_raka_scooter.py`
+dan `Audit/raka-scooter-contact-authoring.json` mencatat sumber serta hash-nya;
+model motor Damar tetap utuh.

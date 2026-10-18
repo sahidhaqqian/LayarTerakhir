@@ -35,6 +35,12 @@ namespace LayarTerakhir.UI
         {
             vh.Clear();vertices=vh;
             if(kind=="Camera"){Box(.12f,.23f,.88f,.77f);Circle(.5f,.5f,.19f);Line(.23f,.77f,.34f,.88f);Line(.34f,.88f,.58f,.88f);Line(.58f,.88f,.68f,.77f);}
+            else if(kind=="MataBatin")
+            {
+                // An open lens inside an incomplete eye: the installed application's own mark.
+                for(int i=0;i<20;i++){float x=.08f+i*.042f,x2=x+.042f;Line(x,.5f+Mathf.Sin(i*Mathf.PI/20)*.28f,x2,.5f+Mathf.Sin((i+1)*Mathf.PI/20)*.28f);Line(x,.5f-Mathf.Sin(i*Mathf.PI/20)*.28f,x2,.5f-Mathf.Sin((i+1)*Mathf.PI/20)*.28f);}
+                Circle(.5f,.5f,.16f);Circle(.5f,.5f,.055f);Line(.5f,.86f,.5f,.97f);Line(.24f,.81f,.18f,.91f);Line(.76f,.81f,.82f,.91f);
+            }
             else if(kind=="Map"){Line(.12f,.18f,.36f,.29f);Line(.36f,.29f,.63f,.16f);Line(.63f,.16f,.88f,.28f);Line(.88f,.28f,.88f,.85f);Line(.88f,.85f,.63f,.73f);Line(.63f,.73f,.36f,.85f);Line(.36f,.85f,.12f,.73f);Line(.12f,.73f,.12f,.18f);Line(.36f,.29f,.36f,.85f);Line(.63f,.16f,.63f,.73f);}
             else if(kind=="Messages"){Box(.1f,.28f,.9f,.84f);Line(.1f,.28f,.1f,.1f);Line(.1f,.1f,.3f,.28f);Line(.27f,.65f,.73f,.65f);Line(.27f,.47f,.6f,.47f);}
             else if(kind=="Bank"){Line(.1f,.74f,.5f,.94f);Line(.5f,.94f,.9f,.74f);Line(.1f,.74f,.9f,.74f);Line(.1f,.14f,.9f,.14f);for(int i=0;i<3;i++)Line(.25f+i*.25f,.25f,.25f+i*.25f,.63f);}

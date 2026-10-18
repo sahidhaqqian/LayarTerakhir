@@ -67,16 +67,32 @@ namespace LayarTerakhir.Diagnostics
             var view=eye.WorldToViewportPoint(head.position);Check(view.z>eye.nearClipPlane&&view.x>0&&view.x<1&&view.y>0&&view.y<1,"Rider head is inside the actual shot");
             var toHead=head.position-eye.transform.position;
             Check(Physics.RaycastAll(eye.transform.position,toHead.normalized,toHead.magnitude,~(1<<ShoulderCameraRig.AvatarLayer),QueryTriggerInteraction.Ignore).All(h=>h.transform.IsChildOf(d.motor)||h.transform.IsChildOf(p.transform)),"Porch columns and walls do not obstruct the mounted rider shot");
-            Check(rig.Avatar.GetComponentsInChildren<Renderer>().All(r=>r.enabled&&r.shadowCastingMode==UnityEngine.Rendering.ShadowCastingMode.On),"Rider renderers are visible during the cinematic");
+            Check(rig.Avatar.GetComponentsInChildren<Renderer>().Where(r=>r.name!="RakaTShirt").All(r=>r.enabled&&r.shadowCastingMode==UnityEngine.Rendering.ShadowCastingMode.On),"Rider renderers are visible during the cinematic");
+            var bones=rig.Avatar.GetComponentsInChildren<Transform>(true);
+            var hips=bones.First(t=>t.name=="Hips");var seat=d.motor.GetComponentsInChildren<Renderer>().First(r=>r.name.Contains("SeatVinyl"));
+            Check(Mathf.Abs(hips.position.y-seat.bounds.max.y-.075f)<.04f,"The pelvis sits on the actual closed saddle");
+            foreach(string side in new[]{"L","R"})
+            {
+                var wrist=bones.First(t=>t.name=="Hand_"+side);var grips=d.motor.GetComponentsInChildren<Transform>().Where(t=>t.name.StartsWith("RiderGrip")).ToArray();
+                var body=d.motor.GetComponentsInChildren<MeshFilter>().First(f=>f.name.Contains("DarkPlastic"));
+                // The Blender receipt verifies triangle-surface distances. Player mesh CPU data stays disabled.
+                Check(grips.Length==2&&Vector3.Distance(grips[0].position,grips[1].position)>.35f&&grips.All(g=>body.GetComponent<Renderer>().bounds.Contains(g.position)),"Two authored grip contacts remain inside the visible control assembly");
+                Check(grips.Min(g=>Vector3.Distance(wrist.position,g.position))<.14f,"Riding "+side+" hand reaches a physical handlebar grip");
+            }
             yield return Shot("01-mounted-rider");
             yield return Wait(()=>d&&d.motor.position.z<-7.5f,30,"The rider and motorcycle pass through the kos gate");if(done)yield break;
             yield return Shot("02-rider-through-gate");
+            var street=FindFirstObjectByType<MelatiNeighborhood>();
+            yield return Wait(()=>street&&street.Reached&&!d.Busy,120,"The first ride stops for free exploration in Melati");if(done)yield break;
+            Check(CampaignState.Instance.Data.checkpoint_id==MelatiNeighborhood.Checkpoint,"The neighborhood stop has its own saved checkpoint");
+            yield return Shot("03-neighborhood-stop");
+            Check(street.CanRide,"Raka can remount after exploring and shopping");d.RequestDeparture();
             yield return Wait(()=>SceneManager.GetActiveScene().name==PrologSceneFlow.AtmajaScene,120,"Travel arrives in Atmaja");if(done)yield break;
             yield return new WaitForSeconds(1.7f);
             var arrival=FindFirstObjectByType<FirstPersonController>().GetComponent<ShoulderCameraRig>();
             Check(!arrival.Riding&&arrival.Avatar.localPosition==Vector3.zero,"Arrival restores the normal walking model origin");
             receipt.checkpointSaved=CampaignState.Instance.Data.checkpoint_id=="PROLOG_ATMAJA_COURTYARD";
-            Check(receipt.checkpointSaved,"Arrival saves the real Atmaja courtyard checkpoint");yield return Shot("03-arrival-standing");Finish(true);
+            Check(receipt.checkpointSaved,"Arrival saves the real Atmaja courtyard checkpoint");yield return Shot("04-arrival-standing");Finish(true);
         }
         private IEnumerator Wait(Func<bool> condition,float seconds,string label)
         {float until=Time.realtimeSinceStartup+seconds;while(!done&&!condition()&&Time.realtimeSinceStartup<until)yield return null;if(!done)Check(condition(),label);}

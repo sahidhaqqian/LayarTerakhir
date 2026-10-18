@@ -56,17 +56,18 @@ scene_data=(out/'LayarTerakhir_Data/level0').read_bytes()
 for marker in ['Kos_Environment_Art','Kos_V2_Details','KosDeskFan','KosCurtains','CeramicTileFloor','WeakTungstenCeiling','CalendarAugust','vintage_day_bed','GoldenHUD','GoldenAudioRig','Golden_Dressing','BedsideWornStool','Compact_Kos_Details','StreamerGreenScreen','BudgetStreamingWebcam','ReadingPadOnStool','BedsidePlasticThermos','WiredGamepadOnBed']:assert marker.encode() in scene_data,marker
 assert b'Prolog_KamarKos' in (out/'LayarTerakhir_Data/globalgamemanagers').read_bytes()
 atmaja_data=(out/'LayarTerakhir_Data/level1').read_bytes()
-for marker in ['Atmaja_Environment_Art','DamarParkedScooter','FallenKamboja','KitchenVaultOutside','LongDiningTable','GrandfatherClock','AR_SeatedSriAtmaja','ChildBedroomDoor','VentPassGate','DamarHandycam','Spawn_Basement','Spawn_Chase','DamarSurveyInsideDining','SeatedDollOnEndChair']:
+for marker in ['Atmaja_Environment_Art','DamarParkedScooter','FallenKamboja','KitchenVaultOutside','LongDiningTable','GrandfatherClock','AR_SeatedSriAtmaja','ChildBedroomDoor','VentPassGate','DamarHandycam','Spawn_Basement','Spawn_Chase','DamarSurveyInsideDining','EmptyARScareChair','DesignerReviewEnvironment','WellCover','ExpandedCellarEastWall']:
  assert marker.encode() in atmaja_data,marker
 if 'prolog' in args.source_record.lower():
  for marker in ['PrologCompletionArt','DamarRecordedMirrorSet','CompletionCellarExit','CompletionTableLanding','ScratchedFamilyPhotograph1']:
   assert marker.encode() in atmaja_data,marker
+assert b'SeatedDollOnEndChair' not in atmaja_data,'The AR scare chair must be empty in normal sight'
 assert b'Prolog_RumahAtmaja' in (out/'LayarTerakhir_Data/globalgamemanagers').read_bytes()
 corridor_data=(out/'LayarTerakhir_Data/level2').read_bytes()
-for marker in ['Spawn_KosFloor2','StairA_9','StairB_9','DAPUR BERSAMA','KAMAR MANDI','RakaMotor','RakaMotorHeadlight','DoubleLeafIronGate','KosStreetDeparture','KosMainEntranceDoor','StairwellFoundation','UpperLandingGuard','StairInnerGuardA_9','RoomCell_F2_21','KosPitchedRoof','SharedDiningDoor','BathroomWANITADoor','BathroomPRIADoor','KosFrontWindowGlass']:
+for marker in ['Spawn_KosFloor2','StairA_9','StairB_9','DAPUR BERSAMA','KAMAR MANDI','RakaMotor','RakaMotorHeadlight','DoubleLeafIronGate','KosStreetDeparture','KosMainEntranceDoor','StairwellFoundation','UpperLandingGuard','StairInnerGuardA_9','RoomCell_F2_21','KosPitchedRoof','SharedDiningDoor','BathroomWANITADoor','BathroomPRIADoor','KosFrontWindowGlass','KampungMelati','WarungSalesCounter','MelatiContinuousRain','MelatiAtmajaSign']:
  assert marker.encode() in corridor_data,marker
 runtime=(out/'LayarTerakhir_Data/Managed/Assembly-CSharp.dll').read_bytes()
-for marker in ['GameShell','PhoneDesktop','PhoneSkin','KosRoomCorrections','ClockPuzzleView','ClockAmbience','KosCorridorDirector','KosTravelItem','ReviewPlayerAudit','ShoulderCameraRig','ExplorationCommentary','StoryMapGraphic','DoubleLeafGate','TryPayFamilyBill','DisplayPreferences','AtmajaUpperDirector','AtmajaBasementHorror','AtmajaChaseSequence']:
+for marker in ['GameShell','PhoneDesktop','PhoneSkin','KosRoomCorrections','ClockPuzzleView','ClockAmbience','KosCorridorDirector','KosTravelItem','ReviewPlayerAudit','ShoulderCameraRig','ExplorationCommentary','StoryMapGraphic','DoubleLeafGate','TryPayFamilyBill','DisplayPreferences','AtmajaUpperDirector','AtmajaBasementHorror','AtmajaChaseSequence','AtmajaReviewMoments','ARPhotoGlimmer','MelatiNeighborhood','MelatiShop','NeighborhoodRain','MotorcycleRiderAlignment','ArchiveDocument']:
  assert marker.encode() in runtime,marker
 if 'presentation' in args.source_record.lower():
  for marker in ['PlayerPerspective','TogglePerspective','AnimatedRakaAvatar']:
@@ -85,6 +86,7 @@ shutil.copy2(root/'Audit/Recording/dialogue-recording.csv',out/'Dialogue-For-Rec
 shutil.copy2(root/'Audit/Recording/README.md',out/'Dialogue-Recording-Readme.txt')
 shutil.copy2(root/'Audit/dejavu-font-license.txt',out/'DejaVu-Font-License.txt')
 if (root/'Audit/makehuman-assets-CC0.txt').exists():shutil.copy2(root/'Audit/makehuman-assets-CC0.txt',out/'MakeHuman-Graphical-Assets-CC0.txt')
+shutil.copy2(root/'Audit/kenney-suburban-CC0.txt',out/'Kenney-Suburban-CC0.txt')
 files=sorted(p for p in out.rglob('*') if p.is_file());manifest=[]
 for p in files:
  digest=hashlib.sha256();crc=0

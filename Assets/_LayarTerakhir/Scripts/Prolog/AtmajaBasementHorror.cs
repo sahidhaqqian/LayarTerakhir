@@ -34,6 +34,7 @@ namespace LayarTerakhir.Prolog
         private float waypointPause, detect, suspicionTimer, giveUpTimer, dragTimer, hideEnteredAt, inspectElapsed;
         private Vector3 suspicionPoint, lastPosition;
         private bool lockerCheckRunning, lockerCleared, hiddenWasSeen;
+        private float nextHideTime;
         private Transform hiddenIn, hiddenAnchor;
         private ParticleSystem breath;
         private AudioClip scrapeClip;
@@ -117,7 +118,7 @@ namespace LayarTerakhir.Prolog
                 // The physical interaction remains available if the game closed during playback.
                 if (Commit(HandycamId)) chase.PlayHandycamVideo();
             }
-            else if (item.action == AtmajaAction.WardrobeHide && !IsHidden) EnterWardrobe(item.transform);
+            else if (item.action == AtmajaAction.WardrobeHide && !IsHidden && Time.time >= nextHideTime) EnterWardrobe(item.transform);
         }
         private IEnumerator Recharge()
         {
@@ -159,17 +160,23 @@ namespace LayarTerakhir.Prolog
         }
         public void ExitWardrobe()
         {
-            if (!IsHidden || lockerCheckRunning) return;
+            if (!IsHidden) return;
             Transform exit = hiddenAnchor == hideAnchor1 ? exitAnchor1 : exitAnchor2; if (!exit) return;
             director.PlacePlayer(exit.position, exit.rotation);
             if (wardrobeCol1) wardrobeCol1.enabled = true; if (wardrobeCol2) wardrobeCol2.enabled = true;
             hiddenIn = hiddenAnchor = null; director.player.MovementLocked = false;
+            lockerCheckRunning = false; hiddenWasSeen = false;
+            // The interactor also sees this E press. Do not immediately enter again
+            // when its Update runs after the wardrobe's exit handler.
+            nextHideTime = Time.time + .75f;
             var rig = director.player.GetComponent<ShoulderCameraRig>(); if (rig) rig.FirstPersonOverride = false;
             lastPosition = director.player.transform.position; director.Objective();
         }
         private void Update()
         {
             if (!director || !director.player || !Campaign || !Hud || director.Busy || UiFocus.HardModal || Hud.IsModalOpen) return;
+            if (IsHidden && Time.time - hideEnteredAt > .3f && GameInputConfig.Instance.GetActionDown(GameAction.Interact))
+            { ExitWardrobe(); return; }
             if (director.Stage == AtmajaStage.MasterOpen && director.player.transform.position.y < -.5f)
             {
                 if (!Commit("EVENT_P0_BASEMENT_ENTERED", () => {
@@ -319,7 +326,11 @@ namespace LayarTerakhir.Prolog
                     Hud.ShowBroadcastNotification("Langkahnya menjauh. Tunggu sampai aman untuk keluar.", 3); director.Objective();
                 }
             }
-            else if (Time.time - hideEnteredAt > .3f && GameInputConfig.Instance.GetActionDown(GameAction.Interact)) ExitWardrobe();
+        }
+        private void LateUpdate()
+        {
+            if (IsHidden && Hud && !UiFocus.HardModal && !Hud.IsModalOpen)
+                Hud.SetInteractionPrompt("[" + Key(GameAction.Interact) + "] Keluar lemari");
         }
     }
 }

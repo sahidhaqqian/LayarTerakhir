@@ -85,12 +85,6 @@ MonoBehaviour:
     text: '*terengah-engah* ...Gue... selamat... Damar... gue bakal balik buat lo...'
     clip: {fileID: 8300000, guid: d52e83997e6d40213ab5a950232c0e17, type: 3}
   - speaker: Damar
-    text: "Ka... Raka, jangan ke Rumah Atmaja sendirian. Tolong dengerin gue. Aplikasi
-      kamera yang gue oprek dari forum kemarin... itu bukan filter AR biasa, Ka.
-      Rumah ini nggak kosong. Di lantai dua ada suara perempuan nyanyi tembang Jawa,
-      tapi pas gue sorot pakai kamera HP, dia udah berdiri tepat di depan muka gue\u2014"
-    clip: {fileID: 8300000, guid: b5ea98dcb41c712d394a4721d10059cc, type: 3}
-  - speaker: Damar
     text: Raka! Tolong! Aaaah!
     clip: {fileID: 8300000, guid: 2c2de3795775c1e6aa25392e465ccf80, type: 3}
   - speaker: Raka
@@ -105,3 +99,30 @@ MonoBehaviour:
       ini gue nggak sendirian... maksudnya, gue lagi nyusulin Damar yang hilang kontak
       di Rumah Tua Atmaja. Buat yang baru gabung, bantu pantau layar ya.
     clip: {fileID: 8300000, guid: 338ca84ed04656e4cad0e7b62e7cdb52, type: 3}
+  - speaker: Raka
+    text: Damar! Damar!
+    clip: {fileID: 8300000, guid: fdd2c8cb60c0b276e977fec9405980ab, type: 3}
+  - speaker: "Damar \u2022 dari lantai atas"
+    text: AAARGH! Raka...!
+    clip: {fileID: 8300000, guid: 2659131cb65c17e32a5be7193a56f172, type: 3}
+  - speaker: Raka
+    text: Dam?! Suaranya dari atas...
+    clip: {fileID: 8300000, guid: 04e4e63e8d73106f0975c1d4b7dccb05, type: 3}
+  - speaker: Raka
+    text: Siapa... yang duduk di situ?
+    clip: {fileID: 8300000, guid: 7ae78ca6804b22adb8bd79eb70389726, type: 3}
+  - speaker: Raka
+    text: Apa...?! Lepas!
+    clip: {fileID: 8300000, guid: fe0faf0f6407beff9a2c61912e535363, type: 3}
+  - speaker: Raka
+    text: Warung Bu Sari masih buka. Jalan ke Atmaja lewat ujung kompleks ini...
+    clip: {fileID: 8300000, guid: 346cf61186de2a5bfb07c0a193cc9058, type: 3}
+  - speaker: Damar
+    text: "Ka... Raka, jangan ke Rumah Atmaja sendirian. Tolong dengerin gue. Aplikasi
+      kamera yang gue oprek dari darkweb kemarin... itu bukan filter AR biasa, Ka.
+      Rumah ini nggak kosong. Di lantai dua ada suara perempuan nyanyi tembang Jawa,
+      tapi pas gue sorot pakai kamera HP, dia udah berdiri tepat di depan muka gue\u2014"
+    clip: {fileID: 8300000, guid: 24b2725133d4ce35e87f5fc33a8d428d, type: 3}
+  - speaker: Raka
+    text: Sial pintunya dikunci, aku harus cari jalan lain.
+    clip: {fileID: 8300000, guid: ed58574f6bbc1c5c7891f1657223008a, type: 3}

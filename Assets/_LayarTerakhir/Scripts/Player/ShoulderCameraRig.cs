@@ -35,6 +35,7 @@ namespace LayarTerakhir.Player
         private Material skin, hair, jacket, jeans, shoes, shirt;
         private AnimatedRakaAvatar authoredAvatar;
         private Light avatarBounce;
+        private MotorcycleRiderAlignment riderAlignment;
 
         private void Start()
         {
@@ -73,6 +74,7 @@ namespace LayarTerakhir.Player
                 TogglePerspective();
             // Wake-up and motorcycle shots temporarily own the camera.
             foreach (var renderer in bodyRenderers) renderer.enabled = !UiFocus.Cinematic || CinematicVisible;
+            if(authoredAvatar)authoredAvatar.RefreshOutfit(!UiFocus.Cinematic||CinematicVisible);
             if (UiFocus.Cinematic)
             {
                 avatarBounce.enabled=CinematicVisible;
@@ -136,6 +138,7 @@ namespace LayarTerakhir.Player
                 // mount was authored against the standing avatar's pelvis height.
                 Avatar.localPosition=Riding?Vector3.up*.4f:Vector3.zero;
                 authoredAvatar.Present(speed,player.IsCrouching,phone,Riding);
+                if(Riding&&transform.parent){if(!riderAlignment)riderAlignment=Avatar.gameObject.AddComponent<MotorcycleRiderAlignment>();riderAlignment.Fit(transform.parent);}
                 return;
             }
             if(Riding)

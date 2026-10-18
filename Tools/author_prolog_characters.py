@@ -19,11 +19,13 @@ SOURCE = ROOT / 'Builds/ArtSources/MakeHuman'
 DEST = ROOT / 'Assets/_LayarTerakhir/Art/Characters'
 MODEL = DEST / 'Models'
 TEXTURE = DEST / 'Textures'
+sys.path.insert(0,str(ROOT/'Tools'))
 MODEL.mkdir(parents=True, exist_ok=True)
 TEXTURE.mkdir(parents=True, exist_ok=True)
 SPEC = json.loads((SOURCE / 'default.mhskel').read_text())
 SOURCE_WEIGHTS = json.loads((SOURCE / 'default_weights.mhw').read_text())['weights']
 random.seed(1998)
+NERA_PALMS={}
 
 
 def obj_data(path):
@@ -142,7 +144,7 @@ def asset_mesh(folder, stem, raw, convert, mat, rig_weights, tree):
     return create_mesh(stem,result,faces,uv,mat,weights)
 
 
-def add_armature(verts):
+def add_armature(verts,female=False):
     def joint(key):return sum((verts[i] for i in SPEC['joints'][key]),Vector())/len(SPEC['joints'][key])
     def at(bone,end='head'):return joint(SPEC['bones'][bone][end])
     defs={
@@ -186,11 +188,25 @@ def add_armature(verts):
             if index<len(weights):weights[index][dest]=weights[index].get(dest,0)+weight
     for row in weights:
         if not row:row['Hips']=1
+    if not female:
+        # Add the optional humanoid joints used by the designer's VRM/VRMA convention.
+        defs['UpperChest']=(at('spine01'),at('neck01'),'Chest')
+        defs['Neck']=(defs['Neck'][0],defs['Neck'][1],'UpperChest')
+        for side in ['L','R']:
+            defs['Shoulder_'+side]=(at('clavicle.'+side),at('upperarm01.'+side),'UpperChest')
+            a,b,_=defs['UpperArm_'+side];defs['UpperArm_'+side]=(a,b,'Shoulder_'+side)
+            defs['Toes_'+side]=(at('toe3-1.'+side),at('toe3-1.'+side,'tail'),'Foot_'+side)
+            eye=at('eye.'+side) if 'eye.'+side in SPEC['bones'] else defs['Head'][0]+Vector((.03 if side=='L' else -.03,-.075,.07))
+            defs['Eye_'+side]=(eye,eye+Vector((0,-.02,0)),'Head')
+        from nera_character_adapter import adapt
+        hand_report=adapt(verts,[f for f,g in zip(BASE_FACES,BASE_GROUPS) if g=='body'],defs,weights,ROOT/'Audit/nera-raka-hand-adaptation.json')
+        for side,suffix in [('left','L'),('right','R')]:NERA_PALMS[suffix]=Vector(hand_report['sides'][side]['gamePalmNormalBlender'])
     data=bpy.data.armatures.new('CharacterSkeleton');rig=bpy.data.objects.new('CharacterRig',data);bpy.context.collection.objects.link(rig)
     bpy.context.view_layer.objects.active=rig;rig.select_set(True);bpy.ops.object.mode_set(mode='EDIT')
     for name,(head,tail,parent) in defs.items():
         bone=data.edit_bones.new(name);bone.head=head;bone.tail=tail if (tail-head).length>.005 else head+Vector((0,0,.03))
-        if parent:bone.parent=data.edit_bones[parent]
+    for name,(_,_,parent) in defs.items():
+        if parent:data.edit_bones[name].parent=data.edit_bones[parent]
     bpy.ops.object.mode_set(mode='OBJECT')
     return rig,weights,defs
 
@@ -221,22 +237,28 @@ def tube(name, points, widths, mat, bone, rig, sides=8):
 def hand_frame(defs,side):
     longitudinal=(defs['Hand_'+side][1]-defs['Hand_'+side][0]).normalized()
     across=defs['Finger2_1_'+side][0]-defs['Finger5_1_'+side][0]
-    palm=across.cross(longitudinal).normalized()
-    if palm.y>0:palm=-palm
+    palm=NERA_PALMS.get(side,across.cross(longitudinal).normalized())
+    palm=(palm-longitudinal*palm.dot(longitudinal)).normalized()
+    if side not in NERA_PALMS and palm.y>0:palm=-palm
     return longitudinal,palm,longitudinal.cross(palm).normalized()
 
 
 def set_pose(rig,defs,kind,phase,female):
     for bone in rig.pose.bones:bone.matrix_basis=Matrix.Identity(4)
-    crouch='Crouch' in kind;walk='Walk' in kind;run='Run' in kind;phone='Phone' in kind;riding=kind=='Riding';seated=kind=='Seated'
+    installing=kind=='InstallCard'
+    crouch='Crouch' in kind or installing;walk='Walk' in kind;run='Run' in kind;phone='Phone' in kind or installing;riding=kind=='Riding';seated=kind=='Seated'
     gait=phase*math.tau
     sink=.61 if crouch else .40 if riding or seated else 0
     bob=(math.cos(gait*2)*(.012 if run else .006) if walk or run else math.sin(gait)*.002)
     hips_offset=Vector((0,0,-sink+bob))
     hips=rig.pose.bones['Hips'];hips.location=hips.bone.matrix_local.to_3x3().inverted()@hips_offset
-    lean=math.radians(38 if crouch else 16 if run else 9 if riding else -9 if kind=='Stun' else 3 if female else 1)
+    lean=math.radians(38 if crouch else 16 if run else 17 if riding else -9 if kind=='Stun' else 3 if female else 1)
     rig.pose.bones['Spine'].rotation_mode='XYZ';rig.pose.bones['Spine'].rotation_euler.x=lean*.5
     rig.pose.bones['Chest'].rotation_mode='XYZ';rig.pose.bones['Chest'].rotation_euler.x=lean*.5
+    if not female and (walk or run):
+        sway=math.sin(gait)*(.035 if run else .024)
+        rig.pose.bones['Hips'].rotation_mode='XYZ';rig.pose.bones['Hips'].rotation_euler.z=sway
+        rig.pose.bones['Chest'].rotation_euler.z=-sway*.8
     bpy.context.view_layer.update()
     head=rig.pose.bones['Head'];head.rotation_mode='QUATERNION'
     world_axis=head.bone.matrix_local.to_3x3().inverted()@Vector((0,1,0))
@@ -273,23 +295,34 @@ def set_pose(rig,defs,kind,phase,female):
                 destination=Matrix((up.cross(palm),up,palm)).transposed()
                 rotation=destination@source.transposed()
                 rig.pose.bones[end].matrix=Matrix.Translation(target)@rotation.to_4x4()@rest.matrix_local.to_quaternion().to_matrix().to_4x4()
+            elif riding:matrix_pose(end,target,Vector((0,-.09,0)))
             else:matrix_pose(end,target,Vector((0,-.02,-.09)))
 
     for side,sign in [('L',1),('R',-1)]:
         angle=gait+(0 if side=='L' else math.pi)
         foot=defs['Foot_'+side][0].copy()
         if walk or run:
-            amplitude=.16 if crouch else .50 if run else .28
-            foot.y+=math.cos(angle)*amplitude;foot.z+=max(0,math.sin(angle))*(.12 if run else .04 if crouch else .07)
+            amplitude=.18 if crouch else .57 if run else .35
+            cycle=(phase+(0 if side=='L' else .5))%1
+            stance=.58 if not run else .46
+            if cycle<stance:
+                foot.y+=amplitude*(1-2*cycle/stance)
+            else:
+                swing=(cycle-stance)/(1-stance)
+                foot.y+=amplitude*(-1+2*(swing*swing*(3-2*swing)))
+                foot.z+=math.sin(swing*math.pi)*(.14 if run else .045 if crouch else .085)
         if crouch:foot.x=sign*.15;foot.y-=.06
-        if riding or seated:foot=Vector((sign*.17,-.36,.30 if riding else .08))
+        if riding or seated:foot=Vector((sign*.23,-.20,.27 if riding else .08))
         limb('Thigh_'+side,'Shin_'+side,'Foot_'+side,foot,Vector((sign*.18,-1.2,.65-sink*.2)))
         bpy.context.view_layer.update();shoulder=rig.pose.bones['UpperArm_'+side].head.copy()
         hand=Vector((shoulder.x+sign*.045,shoulder.y-.035,.83-sink))
         if walk or run:hand.y+=math.cos(angle)*(.22 if run else .11);hand.z+=.04
         if phone and side=='R':hand=Vector((-.19,-.34,1.31-sink*.85))
         if crouch and side=='L':hand=Vector((.29,-.28,.64))
-        if riding:hand=Vector((sign*.30,-.60,1.02))
+        if installing and side=='L':
+            reach=math.sin(min(1,phase*2.8)*math.pi*.5)
+            hand=Vector((.29,-.28,.64)).lerp(Vector((-.045,-.40,.88)),reach)
+        if riding:hand=Vector((sign*.245,-.49,1.05))
         if seated:hand=Vector((sign*.18,-.27,.75))
         if female and kind=='Windup':hand=Vector((-.22,-.38,1.69)) if side=='R' else Vector((.32,-.34,1.17))
         if female and kind=='Stun':hand=Vector((.19,-.13,1.48)) if side=='L' else Vector((-.29,-.06,.89))
@@ -305,7 +338,7 @@ def set_pose(rig,defs,kind,phase,female):
                     direction=bone.bone.tail_local-bone.bone.head_local
                     axis=direction.normalized().cross(palm).normalized()
                     local_axis=bone.bone.matrix_local.to_quaternion().inverted()@axis
-                    degrees=([14,26,16] if finger==1 else [10,25,12] if phone else [18,48,22])[segment-1] if grip else [5,9,5][segment-1]
+                    degrees=([14,26,16] if finger==1 else [8,18,12] if phone else [18,48,22])[segment-1] if grip else [5,9,5][segment-1]
                     bone.rotation_mode='QUATERNION';bone.rotation_quaternion=Quaternion(local_axis,math.radians(degrees))
                     if phone and side=='R' and finger==1 and segment==1:
                         # Oppose the thumb along the handset edge instead of leaving
@@ -320,7 +353,7 @@ def set_pose(rig,defs,kind,phase,female):
 def actions(rig,defs,female):
     specifications=[('Idle',2.8),('Walk',1.2 if female else .85),('Run',.65),('Windup',.8),('Stun',1.2)] if female else [
         ('Idle',2.8),('Walk',.85),('Run',.65),('Crouch',2.0),('CrouchWalk',.85),
-        ('PhoneIdle',2.8),('PhoneWalk',.85),('PhoneRun',.65),('PhoneCrouch',2.0),('PhoneCrouchWalk',.85),('Riding',2.0)]
+        ('PhoneIdle',2.8),('PhoneWalk',.85),('PhoneRun',.65),('PhoneCrouch',2.0),('PhoneCrouchWalk',.85),('Riding',2.0),('InstallCard',6.8)]
     for name,duration in specifications:
         action=bpy.data.actions.new(name);action.use_fake_user=True;rig.animation_data_create();rig.animation_data.action=action
         count=round(duration*24)
@@ -337,7 +370,7 @@ def actions(rig,defs,female):
 
 def make_character(female):
     bpy.ops.wm.read_factory_settings(use_empty=True);bpy.context.scene.render.fps=24
-    raw,vertices,convert=morph(female);rig,weights,defs=add_armature(vertices)
+    raw,vertices,convert=morph(female);rig,weights,defs=add_armature(vertices,female)
     tree=KDTree(len(vertices))
     for i,v in enumerate(vertices):tree.insert(v,i)
     tree.balance()
@@ -355,8 +388,8 @@ def make_character(female):
         if group!='body':continue
         center=sum((vertices[i] for i,_ in face),Vector())/len(face)
         influences={n:sum(weights[i].get(n,0) for i,_ in face)/len(face) for n in exposed_bones}
-        if sum(influences.values())>.26 or female and center.z<.20:visible.append(face)
-    body=create_mesh('VisibleSkin',vertices,visible,BASE_UV,mats['Skin'],weights);decimate(body,.50 if female else .70);skin(body,rig)
+        if sum(influences.values())>.26 or female and center.z<.20 or not female and sum(sum(weights[i].get(n,0) for n in ['UpperArm_L','UpperArm_R','Forearm_L','Forearm_R']) for i,_ in face)/len(face)>.35:visible.append(face)
+    body=create_mesh('VisibleSkin',vertices,visible,BASE_UV,mats['Skin'],weights);decimate(body,.50 if female else 1.0);skin(body,rig)
     eyes=asset_mesh(SOURCE/'system/eyes/low-poly','low-poly',raw,convert,mats['Eyes'],weights,tree);skin(eyes,rig)
     hair=asset_mesh(SOURCE/'system/hair'/hair_name,hair_name,raw,convert,mats['Hair'],weights,tree)
     decimate(hair,.80)
@@ -423,16 +456,30 @@ def make_character(female):
         clothes_path=copy_texture(SOURCE/'system/clothes/male_casualsuit05/male_casualsuit05_diffuse.png','RakaClothes')
         normal_path=copy_texture(SOURCE/'system/clothes/male_casualsuit05/male_casualsuit05_normal.png','RakaClothesNormal')
         outfit=asset_mesh(SOURCE/'system/clothes/male_casualsuit05','male_casualsuit05',raw,convert,material('Raka_Clothes',(1,1,1),clothes_path),weights,tree);decimate(outfit,.7);skin(outfit,rig)
+        outfit.name='RakaJacketOutfit'
+        bm=bmesh.new();bm.from_mesh(outfit.data)
+        bmesh.ops.delete(bm,geom=[f for f in bm.faces if sum(v.co.z for v in f.verts)/len(f.verts)<.91],context='FACES');bm.to_mesh(outfit.data);bm.free()
+        trousers=asset_mesh(SOURCE/'system/clothes/male_casualsuit05','male_casualsuit05',raw,convert,bpy.data.materials['Raka_Clothes'],weights,tree);trousers.name='RakaTrousers'
+        bm=bmesh.new();bm.from_mesh(trousers.data);bmesh.ops.delete(bm,geom=[f for f in bm.faces if sum(v.co.z for v in f.verts)/len(f.verts)>=.91],context='FACES');bm.to_mesh(trousers.data);bm.free();decimate(trousers,.7);skin(trousers,rig)
+        shirt_faces=[]
+        for face,group in zip(BASE_FACES,BASE_GROUPS):
+            if group!='body':continue
+            c=sum((vertices[i] for i,_ in face),Vector())/len(face)
+            arm=sum(sum(weights[i].get(n,0) for n in ['UpperArm_L','UpperArm_R']) for i,_ in face)/len(face)
+            if .9<c.z<1.43 and abs(c.x)<.25 or arm>.6 and c.z>1.25:shirt_faces.append(face)
+        tshirt=create_mesh('RakaTShirt',vertices,shirt_faces,BASE_UV,material('Raka_TShirt',(.09,.12,.15)),weights)
+        for v in tshirt.data.vertices:v.co+=v.normal*.008
+        skin(tshirt,rig)
         shoes_path=copy_texture(SOURCE/'system/clothes/shoes01/shoes01_diffuse.png','RakaShoes')
         shoes=asset_mesh(SOURCE/'system/clothes/shoes01','shoes01',raw,convert,material('Raka_Shoes',(1,1,1),shoes_path),weights,tree);decimate(shoes,.45);skin(shoes,rig)
         # World handset is visible only in phone poses, managed by AnimatedRakaAvatar.
         phone=material('Raka_Phone',(.018,.02,.023));hand=defs['Hand_R'][0]
         longitudinal,palm,sideways=hand_frame(defs,'R')
         def phone_point(x,y,z):return hand+sideways*x+longitudinal*y+palm*z
-        points=[phone_point(dx,dy,dz) for dy in [.030,.195] for dz in [.044,.058] for dx in [-.039,.039]]
+        points=[phone_point(dx,dy,dz) for dy in [.030,.195] for dz in [.018,.032] for dx in [-.039,.039]]
         handset=geometry('HandheldPhone',points,[(0,1,3,2),(4,6,7,5),(0,4,5,1),(2,3,7,6),(0,2,6,4),(1,5,7,3)],phone,'Hand_R',rig)
         display=material('Raka_PhoneScreen',(.07,.13,.15))
-        screen=geometry('HandsetScreen',[phone_point(x,y,.059) for x,y in [(-.034,.037),(.034,.037),(.034,.187),(-.034,.187)]],[(0,1,2,3)],display,'Hand_R',rig)
+        screen=geometry('HandsetScreen',[phone_point(x,y,.033) for x,y in [(-.034,.037),(.034,.037),(.034,.187),(-.034,.187)]],[(0,1,2,3)],display,'Hand_R',rig)
         screen.parent=handset
     clips=actions(rig,defs,female)
     meshes=[o for o in bpy.context.scene.objects if o.type=='MESH']

@@ -1,32 +1,92 @@
-# Revisi playtest — 17 Oktober 2026
+Review game dariku
 
-Pengguna adalah desainer; agen mengimplementasikan revisi berikut di main.
-Screenshot di Bugs adalah screenshot lama dan diabaikan. Naskah dialog untuk rekaman pengguna disiapkan tanpa sintesis suara baru.
 
-1. Cahaya kamera/flashlight HP harus cukup menerangi dunia, tidak memaksa pemain terus melihat feed HP.
-2. HP terlalu besar; kecilkan tanpa mengorbankan akses aplikasi.
-3. Ubah tampilan menjadi Third-Person Over-the-Shoulder.
-   Tambahan playtest: fullscreen harus bekerja melalui Settings dan Alt+Enter, dengan pilihan mode disimpan.
-4. Perbaiki dialog panjang ("kak Raka...") yang keluar dari kotak subtitle.
-5. Lantai bawah kos harus punya dapur, kamar mandi pria/wanita, dan ruang makan yang dapat dijelajahi.
-6. Siapkan dialog yang dibutuhkan dan arahan intonasinya untuk rekaman pengguna; jangan merender sintesis baru.
-7. Donasi Penonton_Terakhir: HP bergetar, banner muncul saat pemain membuka HP tanpa memaksa membuka Pesan. Setelah pesan dibaca, tunggu 10 detik sebelum reaksi Raka.
-8. Perbagus peta di HP.
-9. Telepon Ibu dan Bu Haji Ratna harus memiliki percakapan.
-10. Ibu sedang sakit. Raka mengabari bahwa ada biaya rumah sakit; kepada Bu Haji, Raka menjanjikan pelunasan agar tidak diusir besok. Tagihan masing-masing baru dapat dibayar lewat Bank setelah percakapannya.
-11. Pemain harus tetap bisa membuka pintu ketika memegang HP.
-12. Fasad kos harus berwarna dan punya jendela; langit malam memiliki bulan dan bintang.
-13. Gerbang besi membuka dari sambungan tengah sebagai dua daun, bukan satu panel pintu.
-14. Catatan Damar berada di dalam rumah, bukan ditinggalkan di motor.
-15. Ada adegan Raka mencoba membuka pintu depan, mendapati pintunya tidak bisa dibuka, kemudian mencari jalan lain.
-16. Hapus tulisan KELUARGA ATMAJA di depan rumah.
-17. Gunakan Spasi untuk memanjat jendela, bukan Alt.
-18. Tujuan hanya tampil sebentar, lalu tetap dapat dibaca di Jurnal; entri Jurnal dapat diklik untuk membuka detail.
-19. Tambahkan komentar saat memasuki ruangan baru agar eksplorasi tidak datar.
-20. Tujuan pencarian menyebut keberadaan/petunjuk tentang Damar, bukan langsung memberitahu "cari barang milik Damar di ruang makan".
-21. Kembalikan boneka yang duduk di kursi ujung.
-22. Perbaiki pohon tumbang agar posisi, tumpuan, akar, dan jalur merunduk masuk akal.
-23. Cari serta perbaiki bug lain yang ditemukan saat implementasi dan verifikasi.
 
-Ketentuan pengiriman tetap mengikuti AGENTS.md: Graphify code-only sebelum commit/push; push ke main; setiap ZIP baru wajib diunggah dan diverifikasi di R2.
+disetiap piring gak ada tikus atau makanan busuk harusnya kan di prolog dipenuhi piring beling berjamur dan bangkai tikus.
+
+
+terus aku mau pemain sendiri menemukan sendiri gitu teka tekinya jangan dikasih tahu kalau harus pakai matabatin apk
+
+terus pas chip dimasukin di hp harusnya ada animasi penginstalan matabatin.apk lalu connect ke kamera
+
+soalnya secara konsep matabatin.apk tapi gak ada logo apknya ???
+
+aku juga bingung rumahnya kok kosong banget masa gak ada sofa gitu cuma jam doang. aku gak ngerasa itu rumah.
+
+aku juga ngerasa rumahnya terlalu sempit buat keluarga.
+
+tolong bikin rumah yang proper dong. asset yang kau punya kurang 
+
+terus jujur jalannya kaku bet kayak robot jari jarinya  hancur gak jelas... gini aku Punya project ringing VRMA kau pakai itu buat adaptasi karakternya biar punya skeleton. 
+/root/Projects/convertervrm itu path nya yah udah aku git clone
+
+
+terus kalau buka document masuk ke catatan handphone dong jadi sewaktu Waktu pemain bisa liat gitu tanpa ke catatan itu lagi
+
+
+system flashnya juga salah harusnya itu ada suara ceklek terus lampu senter berkedip sama layer handphone berkedip juga jadi kayak beneran kena flash
+
+
+anyways yang dialog aplikasinya nemu dari forum diganti jadi nemu dari darkweb
+
+terus kau cek yah di ruang makan aku nemu dinding yang kelewatan aku jadi gak bisa lewat kanan gitu harus dari kiri
+
+
+so far tangga udah bagus itu pertahankan jangan diotak atik lagi
+
+
+aku mau kau improve kamar anak nya lagi soalnya berantakan asset assetnya
+
+also aku mau kalau  tempat yang harus difoto kasih pemain petunjuk Waktu di Mode AR akan ada blink blink kecil buat suruh pemainnya foto jangan tertulis dipojok atas buat foto itu mah ngasih tahu pemain dan bikin pemain gak explore
+
+
+malah menurutku dihapus aja system to Do nya jadi biarin pemain nebak sendiri apa yang harus dilakukan tanpa dikasih clue yang jelas
+
+
+oh iya aku mau pemain bisa buka sumur terus bakal micu cutscene pemain ditarik masuk ke dalam sumur
+
+
+aku juga mau pas pemain denger haus bukakan pemain arah pandangannya ke sumur biar tahu asalnya
+
+
+terus Intruksi Toturial Lensa AR sekali aja dong jangan dikasih tahu terus kalau mau pakai AR harus pencet Q hapus aja itu 
+
+
+also kau lupa bagian ini weh * **Scripted Scare #1:** Tepat saat filter AR menyala, di ujung meja makan (yang di pandangan mata biasa kosong melompong), **tampak sosok bayangan perempuan berambut panjang dengan leher patah sedang duduk menatap lurus ke arah Raka**.
+
+aku mau kau bikin cutscene gitu pas adengan dia pasang Simcardnya 
+
+
+terus  pas mau buka pintu 
+* Pemain mencoba membuka pintu **Kamar Anak**, namun gagang pintunya rusak dari dalam.aturan dikasih dialog Sial Pintunya dikunci aku harus cari jalan lain
+
+
+aku tahu ruanganya berbentuk huruf U di ruang Bawah tanah tapi aku mau bisa lari lari juga soalnya jujur ruanganya sempit yang sekarang jadi tambahin Lorong Lorong 
+
+
+also aku lupa mention kalau aku Ketika bersembunyi dalam lemari aku gak bisa keluar jadi aku stuck di lemari fix bugnya
+
+terus kalau aku mati Aturan jangan langsung Ke CHECKPOINT tapi ke menu weh
+
+
+
+* **Musik Latar:** Tabuhan kendang dan saron Bali/Jawa bertempo sangat cepat berpadu dengan sirine *glitch* aplikasi.
+
+
+aku mau kau bbikin layer hpnya ngeglitch gitu sesuai intruksi yang diberikan prolog juga 
+
+also aku notice juga saat naik motor duduknya posisinya aneh gak sesuai Waktu ke rumah tujuan
+
+
+also aku juga notice ternyata masa cuma satu rumah doang sih ruangan kost terus kan Waktu itu kan hujan yah tapi pas aku keluar aku notice gak hujan. also aku juga notice inconsistent kalau karakternya itu pakai jaket terus pake jaket gak ngerubah apapun wkwkwk. harusnya awalnya pakai kaos terus pas ambil jaket dia make jaket ke orangnya lah
+
+
+aku mau kau download beragam model rumah gitu terus bikin jalanan pokoknya kayak jalanan kompleks terus ada juga warung jadi pemain bisa menjelajah gak langsung ke rumah admaja. terus disono diwarung atau toko bisa beli beli juga yah.
+
+ohh iya aku inget harusnya pas pertama kali masuk lewat jendela harusnya ada scene dimanaa sih raka manggilin damar damar terus jawabannya malah ada suara damar teriak kesakitan diatas ini penambahan dariku. 
+
+ohh iya did i mention about  kalau beda ruangan ganti ganti komentar ? iya jadi biar keliatan live beneran setiap pindah ruangan ada komentar komentar gitu jadi atau enggak komentar acak biar kayak live beneran terus sekarang kan kalau komentar munculnya serentak aku mau bertahap gitu per 2-3 detik 
+
+
+
 

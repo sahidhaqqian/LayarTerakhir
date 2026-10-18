@@ -84,10 +84,10 @@ namespace LayarTerakhir.Prolog
             Click(0,.06f,.85f);Click(.09f,.09f,.6f);
             var clip=AudioClip.Create("AtmajaSynth_Shutter",n,1,rate,false);clip.SetData(samples,0);return clip;
         }
-        public static AudioClip ChaseLoop(int rate=22050,float bpm=150)
+        public static AudioClip ChaseLoop(int rate=22050,float bpm=186)
         {
             // Original kendang + saron chase bed with a glitch-siren wail. Two 16-step bars.
-            float step=60f/bpm/4f;const int steps=32;int n=(int)(steps*step*rate)+rate/2;
+            float step=60f/bpm/4f;const int steps=32;int n=(int)(steps*step*rate);
             var data=new float[n];var random=new System.Random(1506);
             void Add(float at,float freq,float dur,float gain,float noise,float drop)
             {
@@ -158,6 +158,13 @@ namespace LayarTerakhir.Prolog
         private SmartphoneController Phone=>SmartphoneController.Instance;
         private HudController Hud=>HudController.Instance;
         private bool Has(string id)=>Campaign&&Campaign.HasInventoryItem(id);
+        private void Start()
+        {
+            ARPhotoGlimmer.Attach(cupAim,this,"EVENT_P0_CHAIN1_BROKEN");
+            ARPhotoGlimmer.Attach(scratchAim,this,"EVENT_P0_CHAIN2_BROKEN");
+            ARPhotoGlimmer.Attach(ropeAim,this,"EVENT_P0_CHAIN3_BROKEN");
+            if(childDoor)childDoor.lockedDialogue="Sial pintunya dikunci, aku harus cari jalan lain.";
+        }
         private bool ArActive=>Phone&&Phone.arModuleUnlocked&&Phone.isPhoneRaised&&Phone.isScreenOn&&Phone.currentScanMode==ScanVisualMode.AR&&director.phoneView&&director.phoneView.IsCameraApp;
         public int ChainsBroken=>(Has("EVENT_P0_CHAIN1_BROKEN")?1:0)+(Has("EVENT_P0_CHAIN2_BROKEN")?1:0)+(Has("EVENT_P0_CHAIN3_BROKEN")?1:0);
         private bool Commit(string id,string checkpoint,Action change=null)
@@ -299,7 +306,6 @@ namespace LayarTerakhir.Prolog
         {
             if(!Commit(flag,"PROLOG_ATMAJA_UPPER",()=>{Campaign.Data.battery=Mathf.Max(0,Phone.batteryPercent-1);}))return;
             Phone.ConsumeBattery(1);RestoreWorld();Sfx(director.audioProfile.unlock,director.player.transform.position,.7f);
-            if(director.chase&&director.chase.finale)StartCoroutine(director.chase.finale.Flash());
             Ui(AtmajaSynth.Tone(1.2f,140,60,.5f),.6f);
             Hud.ShowBroadcastNotification($"Rantai {n} putus! {toast}",5);
             director.phoneView.AddChat("@horor_hunter","BARUSAN RANTAINYA PUTUS SENDIRI WOI");
@@ -328,13 +334,13 @@ namespace LayarTerakhir.Prolog
         {
             switch(item.action)
             {
-                case AtmajaAction.CupPhoto:Hud.ShowBroadcastNotification("Cangkir susu retak. Auranya merah di mode AR.\nBaca buku harian dulu, lalu potret dengan Kamera AR.",5);break;
-                case AtmajaAction.Diary:Hud.OpenDocumentModal("BUKU HARIAN BIMA • DOKUMEN #4",DiaryText,()=>{if(Commit(DiaryId,"PROLOG_ATMAJA_UPPER")){Hud.ShowBroadcastNotification("Buku harian dibaca. Potret cangkir susu dengan Kamera AR.",4);director.Objective();}});break;
+                case AtmajaAction.CupPhoto:Hud.ShowBroadcastNotification("Sisa susu mengering di retakan cangkir.",5);break;
+                case AtmajaAction.Diary:Hud.OpenDocumentModal("BUKU HARIAN BIMA • DOKUMEN #4",DiaryText,()=>{if(Commit(DiaryId,"PROLOG_ATMAJA_UPPER")){Hud.ShowBroadcastNotification("Buku harian tersimpan di catatan HP.",4);director.Objective();}},DiaryId);break;
                 case AtmajaAction.BathCurtain:
                     if(Commit("EVENT_P0_CURTAIN_OPEN","PROLOG_ATMAJA_UPPER")){RestoreWorld();Hud.EnqueueSubtitle("Raka","Airnya... merah kecokelatan. Kayak karat... atau darah.",4);Sfx(director.audioProfile.cloth,item.transform.position,.4f);}break;
-                case AtmajaAction.BathScratches:Hud.ShowBroadcastNotification("Bekas cakaran puluhan jari kecil. Potret dengan Flash Kamera AR.",4);break;
-                case AtmajaAction.WillLetter:Hud.OpenDocumentModal("SURAT WASIAT NYONYA • DOKUMEN #5",WillText,()=>{if(Commit(WillId,"PROLOG_ATMAJA_UPPER")){Hud.ShowBroadcastNotification("Surat dibaca. Arahkan kamera AR ke tali tambang di atas.",4);director.Objective();}});break;
-                case AtmajaAction.RopePhoto:Hud.ShowBroadcastNotification("Seutas tali tambang menjuntai dan berayun sendiri.\nPotret dengan Kamera AR.",4);break;
+                case AtmajaAction.BathScratches:Hud.ShowBroadcastNotification("Bekas cakaran puluhan jari kecil di kayu yang lembap.",4);break;
+                case AtmajaAction.WillLetter:Hud.OpenDocumentModal("SURAT WASIAT NYONYA • DOKUMEN #5",WillText,()=>{if(Commit(WillId,"PROLOG_ATMAJA_UPPER")){Hud.ShowBroadcastNotification("Surat tersimpan di catatan HP.",4);director.Objective();}},WillId);break;
+                case AtmajaAction.RopePhoto:Hud.ShowBroadcastNotification("Seutas tali tambang menjuntai. Tidak ada angin di sini.",4);break;
             }
         }
         public void HandleMaster(AtmajaItem item)

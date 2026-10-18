@@ -1,0 +1,39 @@
+{
+  "name": "RakaScooter",
+  "source": "Existing optimized Damar scooter; original closed recovery saddle and geometry-authored contacts",
+  "triangles": 18424,
+  "sha256": "76fc92f42c1251e67a58f3167325c490130d095a715dc061985d0f2017cc3ffd",
+  "contactsBlenderMetres": {
+    "RiderSeatSurface": [
+      0,
+      0.14,
+      0.7625
+    ],
+    "RiderGripLeft": [
+      -0.255,
+      -0.455,
+      0.92
+    ],
+    "RiderGripRight": [
+      0.255,
+      -0.455,
+      0.92
+    ],
+    "RiderFootLeft": [
+      -0.115,
+      -0.06,
+      0.2975
+    ],
+    "RiderFootRight": [
+      0.115,
+      -0.06,
+      0.2975
+    ]
+  },
+  "gripSurfaceDistanceMetres": {
+    "RiderGripLeft": 0.021448365206439033,
+    "RiderGripRight": 0.021448365206439033
+  },
+  "preparedSourceSha256": "a96399cc2d7198516b3c3ace15b9c1d5f788c895ba4a07222f239cf3d6ae336e",
+  "recoverySourceSha256": "5ee4af132e8e1bc4c86ae8cfd8bf5ed9b9c22bd22100ccad5e3aaeb445b7e416"
+}
