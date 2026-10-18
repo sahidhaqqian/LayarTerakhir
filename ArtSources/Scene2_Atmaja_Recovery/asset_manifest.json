@@ -1,0 +1,637 @@
+{
+  "generated": "2026-10-15T12:29:45Z",
+  "package": "Scene2_Atmaja_Recovery",
+  "target": "Prolog Adegan 2 - exterior Rumah Keluarga Atmaja (23:52 WIB)",
+  "assets": [
+    {
+      "id": "rumah_atmaja_house",
+      "name": "Rumah Atmaja - two-story Javanese-Dutch house exterior",
+      "category": "House",
+      "creationMethod": "KITBASHED + PROCEDURAL",
+      "description": "Configurable exterior shell of the old colonial house: main two-story block (12 x 9 m, eave 7.4 m, hipped clay-tile roof rising to ~10.0 m), front veranda (stoep) with four wooden columns and a roofed awning, main double door with transom, fifteen shuttered windows, one partially broken kitchen window with missing panes and a hanging shutter, a single-story kitchen annex (4 x 3.2 m) with pent roof, brick plinth, mid-floor band, gutter and downpipes, weathered tile and damp plaster materials.",
+      "components": [
+        {
+          "source": "TowerOverhangKit (OpenGameArt)",
+          "usedFor": "veranda columns, louvered shutters, top trim, joists (rescaled/placed)"
+        },
+        {
+          "source": "Scene2_Atmaja_Assets approved textures (Poly Haven CC0)",
+          "usedFor": "mossy/damaged/grey plaster, mossy brick, concrete, weathered roof tiles, grey planks, peeling white wood, rusty metal sheet"
+        },
+        {
+          "source": "authored in Blender (build_house.py)",
+          "usedFor": "walls with openings, main/veranda/annex roofs and ridges, veranda deck and steps, doors, window frames and glass, gutter run, damaged patches"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Wooden Overhang Modular Kit (TowerOverhangKit)",
+          "creator": "Trey Ramm (minime453)",
+          "url": "https://opengameart.org/content/wooden-overhang-modular-kit",
+          "license": "CC-BY 4.0",
+          "attributionRequired": true,
+          "attributionNote": "Credit \"Trey Ramm / minime453\" (OpenGameArt). Changes: pieces rescaled/repositioned; trim-sheet base color darkened (teak); delivered inside a larger authored house model."
+        },
+        {
+          "title": "Poly Haven PBR materials (10 texture sets, listed in Licenses/polyhaven-credits.md)",
+          "creator": "Rob Tuytel, Amal Kumar, Dimitrios Savva, Rico Cilliers, Charlotte Baglioni",
+          "url": "https://polyhaven.com",
+          "license": "CC0-1.0",
+          "attributionRequired": false
+        }
+      ],
+      "origin": "front-centre at ground level (0,0,0); facade faces -Y; +X is the east side where the side path and broken kitchen window sit; house body 12 x 9 m; annex extends to +Y (rear)",
+      "notes": [
+        "Modular: five module FBXs isolate walls / openings / veranda / roof / annex; the full FBX/GLB keeps every part as a separate named object.",
+        "Openings are real holes; doors/windows are plug-in objects so the developer can move or swap them for level layout.",
+        "Kitchen window sill 0.95 m matches the scripted vault (SPACE); veranda steps lead in from the front gate."
+      ],
+      "measured": {
+        "triangles": 7930,
+        "boundsM": [
+          14.67,
+          16.3,
+          10.22
+        ],
+        "materialSlots": 12,
+        "objects": 357
+      },
+      "files": [
+        {
+          "path": "01_House/Export/Modules/Module_Annex.fbx",
+          "bytes": 6020924,
+          "sha256": "fbf1693b067afbf591b21b7795ffc16dad08eadc59839eeb82755ca446b18669"
+        },
+        {
+          "path": "01_House/Export/Modules/Module_Openings.fbx",
+          "bytes": 4920844,
+          "sha256": "afa365611163cbe48493321465c8f6f657d5353299c75978ae78b4f7c5657911"
+        },
+        {
+          "path": "01_House/Export/Modules/Module_Roof.fbx",
+          "bytes": 4883980,
+          "sha256": "84c2d10b8179b19081ebd5b3b55cdc6b375f4b1492f6f4cec0bde96af6d897f8"
+        },
+        {
+          "path": "01_House/Export/Modules/Module_Veranda.fbx",
+          "bytes": 5000652,
+          "sha256": "97faa7bf7fb48b893c94579b27192dda56a53a0d56fbb8bf518383aa0e2c0992"
+        },
+        {
+          "path": "01_House/Export/Modules/Module_Walls.fbx",
+          "bytes": 5947724,
+          "sha256": "76d359ced9a7de0ace537f959c7f41b91a867304cbd456553ac8ca214d0f1560"
+        },
+        {
+          "path": "01_House/Export/RumahAtmaja_House.fbx",
+          "bytes": 15557852,
+          "sha256": "efef4f77aa32ef089378bec7222b5686029418736771e3ffca17901ccd4ea8cc"
+        },
+        {
+          "path": "01_House/Export/RumahAtmaja_House.glb",
+          "bytes": 20150024,
+          "sha256": "b3aa8528d7a57168012db3e76ee91f5307cd067e3224186e8b87374517c01526"
+        },
+        {
+          "path": "01_House/Blender/RumahAtmaja_House.blend",
+          "bytes": 3472386,
+          "sha256": "c4eb3497c84bb73d38c2670f9abc348bd96de1b946deaf20f7e6f8220aceb6b3"
+        },
+        {
+          "path": "01_House/Blender/RumahAtmaja_House.blend1",
+          "bytes": 3472386,
+          "sha256": "d64241033f42ff80af641bab3f4c2a02adc3cd509835963f2776c471c3c3faba"
+        },
+        {
+          "path": "01_House/Blender/__pycache__/build_house.cpython-312.pyc",
+          "bytes": 45238,
+          "sha256": "bc59ec73447f3c26b2e69e870b85c7d6764733ad6d6c23915028a5e42547241a"
+        },
+        {
+          "path": "01_House/Blender/build_house.py",
+          "bytes": 36652,
+          "sha256": "5a66e5d6827d57143077d2c3b4e52cdaead433877e42c6a6a5d61d52681310a7"
+        },
+        {
+          "path": "01_House/Blender/house_build_stats.json",
+          "bytes": 34482,
+          "sha256": "7a808aedfbd7d284846a78428761c0d3a8baf5578556abb1c4c7c82899f16f57"
+        },
+        {
+          "path": "01_House/Sources/TowerOverhangKit/README.txt",
+          "bytes": 681,
+          "sha256": "6cca159f8437ffdedbeb174bacb0f419f3f6c218c76b6fbf3bcb52f7d9a089b0"
+        },
+        {
+          "path": "01_House/Sources/TowerOverhangKit/Textures/WoodTrimSheet_BaseColor.png",
+          "bytes": 1240884,
+          "sha256": "408ef52d38a2cd608e44cce6d07f96c1f131416cb9df999e69c6e6836979b4e8"
+        },
+        {
+          "path": "01_House/Sources/TowerOverhangKit/Textures/WoodTrimSheet_Metallic.png",
+          "bytes": 1118,
+          "sha256": "60041773ef2d493f3547aa1b0fbdf5b1bb548a3da39164384293ef5292b2c5b3"
+        },
+        {
+          "path": "01_House/Sources/TowerOverhangKit/Textures/WoodTrimSheet_Normal.png",
+          "bytes": 1191721,
+          "sha256": "d293b8c5e0002c4623bf647241cb4021858d39c312ee48338635d49d9042491b"
+        },
+        {
+          "path": "01_House/Sources/TowerOverhangKit/Textures/WoodTrimSheet_Roughness.png",
+          "bytes": 709156,
+          "sha256": "f7f7c56aef21cab969e8ea8364d8cf2026efe72a1783b1d1af5fc4b436e3481e"
+        },
+        {
+          "path": "01_House/Sources/TowerOverhangKit/TowerOverhang_BottomTrimCorner.fbx",
+          "bytes": 31168,
+          "sha256": "4013feab086a660f2873fb7674b2a99c97d77fc40001ca2593b505bb30d8794b"
+        },
+        {
+          "path": "01_House/Sources/TowerOverhangKit/TowerOverhang_Column.fbx",
+          "bytes": 40656,
+          "sha256": "d1bd647d967797135d173e74fb2f9670e619c4b117f47bc2cddc6ac38afc9b06"
+        },
+        {
+          "path": "01_House/Sources/TowerOverhangKit/TowerOverhang_Floor1x1.fbx",
+          "bytes": 30288,
+          "sha256": "e5a0b9a73a513b6050d6cce1a309580dde61af9591036100b28336b6663ff1a0"
+        },
+        {
+          "path": "01_House/Sources/TowerOverhangKit/TowerOverhang_Floor2x1.fbx",
+          "bytes": 30288,
+          "sha256": "60e2bd5f35ff6bf244f2759935159897e6d0d756e834d7c90baee1ad41178d31"
+        },
+        {
+          "path": "01_House/Sources/TowerOverhangKit/TowerOverhang_Shutter01.fbx",
+          "bytes": 33056,
+          "sha256": "bc999b25274186a9e6a59c82d8166b27ed624b4fbf3c6a5d65187fcbebabe9a2"
+        },
+        {
+          "path": "01_House/Sources/TowerOverhangKit/TowerOverhang_Shutter02.fbx",
+          "bytes": 33024,
+          "sha256": "a8d6d5d413b12b616cd4179d5b4148d885ae8d58363974bbffc8e7add97ed5ae"
+        },
+        {
+          "path": "01_House/Sources/TowerOverhangKit/TowerOverhang_TopTrimCorner.fbx",
+          "bytes": 31680,
+          "sha256": "9b3067f05b32ae4536bffef85959d50628ed4f174d819758ce630eb68ee22cf8"
+        },
+        {
+          "path": "01_House/Sources/TowerOverhangKit/TowerOverhang_TopTrim_1x1.fbx",
+          "bytes": 31504,
+          "sha256": "2d9d1404ffd6aea55555a61702beb740964123c5172404bb92c66f5dcea50ace"
+        },
+        {
+          "path": "01_House/Sources/TowerOverhangKit/TowerOverhang_TopTrim_2x1.fbx",
+          "bytes": 31504,
+          "sha256": "a83eca824680a9f9b5be7043400600da991647bd87334df3cf3f4f90ac9cac99"
+        },
+        {
+          "path": "01_House/Sources/TowerOverhangKit/TowerOverhang_Wall.fbx",
+          "bytes": 32720,
+          "sha256": "6703d0a7de0cab9146838afa4f80f62cf4447bace92ababb365b9abf1ff432a8"
+        },
+        {
+          "path": "01_House/Sources/TowerOverhangKit/TowerOverhang_WoodenSupport45Degrees.fbx",
+          "bytes": 31824,
+          "sha256": "4ab9341a8f083d832131359c4bfd39e5acd468465d90a6e087b055ca8d9c0599"
+        },
+        {
+          "path": "01_House/Sources/TowerOverhangKit/TowerOverhang_WoodenSupportStraight.fbx",
+          "bytes": 33008,
+          "sha256": "4efa543a4e57946236ffd101662cbdc5cdfa12786c20a5c41bd78c544cd425c5"
+        },
+        {
+          "path": "01_House/Sources/TowerOverhangKit-source.zip",
+          "bytes": 3234719,
+          "sha256": "a2e71fa83460ab7e981b6f3abb4a38b656931da5f21be063262b33ab08d216dc"
+        },
+        {
+          "path": "01_House/Sources/texture_tile_sizes.json",
+          "bytes": 398,
+          "sha256": "7f652ec7313a4258169fe9c187511d455cd25a0bbf914893ebd6964297c36457"
+        },
+        {
+          "path": "01_House/Textures/WoodTrimSheet_BaseColor.png",
+          "bytes": 1182678,
+          "sha256": "15d84342c2582333a89b7c69331a1959050525c55b05170e2307dffe4f960b9d"
+        },
+        {
+          "path": "01_House/Textures/WoodTrimSheet_BaseColor_Teak.png",
+          "bytes": 875495,
+          "sha256": "2a305543a4ab0d1a0c61acd1ed231cc511c57607df8591a3c9c9cdf38b1a1375"
+        },
+        {
+          "path": "01_House/Textures/brick_moss_001_arm_1k.jpg",
+          "bytes": 169543,
+          "sha256": "f6e70e3b1471b272d611f3252006aad6d1cf36fec911c4103595b8220086e4df"
+        },
+        {
+          "path": "01_House/Textures/brick_moss_001_diff_1k.jpg",
+          "bytes": 248015,
+          "sha256": "c1f631043c4fd72851f3ede3894904371028c894bfcc80de991e6621a6660337"
+        },
+        {
+          "path": "01_House/Textures/brick_moss_001_nor_gl_1k.jpg",
+          "bytes": 267457,
+          "sha256": "0133893b9dda4912d82322543804a9fa9eb1663c9ba41edaee59b79b11277c53"
+        },
+        {
+          "path": "01_House/Textures/clay_roof_tiles_02_arm_1k.jpg",
+          "bytes": 564611,
+          "sha256": "da94d4ce78607c4cb0450c669e8ca5d18852eb284def75445663f959cc1af63b"
+        },
+        {
+          "path": "01_House/Textures/clay_roof_tiles_02_diff_1k.jpg",
+          "bytes": 903929,
+          "sha256": "227a062b38b170e02c27eaa513dae45dc8bc893a62cbd8d0c08e2c32b381fc25"
+        },
+        {
+          "path": "01_House/Textures/clay_roof_tiles_02_diff_1k_weathered.jpg",
+          "bytes": 237642,
+          "sha256": "545adce712103edbb9bcfb5522f37bf289d7833b723d5efdc48d8f49651f3225"
+        },
+        {
+          "path": "01_House/Textures/clay_roof_tiles_02_nor_gl_1k.jpg",
+          "bytes": 990101,
+          "sha256": "1548d3ebce335a4590d9e421556c4189a7b63852c793a568c71b9e533f8b62d5"
+        },
+        {
+          "path": "01_House/Textures/clay_roof_tiles_03_arm_1k.jpg",
+          "bytes": 620705,
+          "sha256": "0553be64eb6f3338da2b3d68bc5eb0a867d016d2dcd10a3fb9fd8d349fb7382d"
+        },
+        {
+          "path": "01_House/Textures/clay_roof_tiles_03_diff_1k.jpg",
+          "bytes": 970368,
+          "sha256": "6719293429932a27c8ed3526b22cd65d1cd1d43194ce30fa5f4590bb3c513844"
+        },
+        {
+          "path": "01_House/Textures/clay_roof_tiles_03_nor_gl_1k.jpg",
+          "bytes": 974757,
+          "sha256": "7db087939613b6b0ef1d0c21a3956eafcf7e9d0f146267290e409448f1adc17b"
+        },
+        {
+          "path": "01_House/Textures/concrete_moss_arm_1k.jpg",
+          "bytes": 367316,
+          "sha256": "db5c64065bdec04820743c1285316bbedab6f0f318103e7c4b74ec12c4df96f7"
+        },
+        {
+          "path": "01_House/Textures/concrete_moss_diff_1k.jpg",
+          "bytes": 697265,
+          "sha256": "7a3f88bcdf20c2b6b1851549594611c0c24677d4f42c669a21d4367b8f5aeacc"
+        },
+        {
+          "path": "01_House/Textures/concrete_moss_nor_gl_1k.jpg",
+          "bytes": 898376,
+          "sha256": "ead99715fadfd3b1b037b6219a9ed97342701732bffee5b05084da4c99b7467b"
+        },
+        {
+          "path": "01_House/Textures/damaged_plaster_arm_1k.jpg",
+          "bytes": 575588,
+          "sha256": "78f228161cc3c37cf4a335d8ea0f2a6b4dd5ff7bef50a8aa9fa0397d7ff4de13"
+        },
+        {
+          "path": "01_House/Textures/damaged_plaster_diff_1k.jpg",
+          "bytes": 850524,
+          "sha256": "391649dbb391c978b0d95cdd2351617fe3b7a577e432b94171208e576c9b2c63"
+        },
+        {
+          "path": "01_House/Textures/damaged_plaster_nor_gl_1k.jpg",
+          "bytes": 959148,
+          "sha256": "9d2e4c261211c951fc424fe695483596e821f86b13d1d05485551ef0240d6b67"
+        },
+        {
+          "path": "01_House/Textures/grey_plaster_03_arm_1k.jpg",
+          "bytes": 182473,
+          "sha256": "6a474794dc56b1906e993d550338c48864279bcc60ea3be35fd2373b64333ba9"
+        },
+        {
+          "path": "01_House/Textures/grey_plaster_03_diff_1k.jpg",
+          "bytes": 486612,
+          "sha256": "b0952ccabee3f68a1962684a8bc2fe64101b92e569cfd13cf1d8c11b65f395d9"
+        },
+        {
+          "path": "01_House/Textures/grey_plaster_03_nor_gl_1k.jpg",
+          "bytes": 467515,
+          "sha256": "801b002ad7a8872cc998080f9a0345b68e49708c09570050e09e1e0fb3af161d"
+        },
+        {
+          "path": "01_House/Textures/rusty_metal_sheet_arm_1k.jpg",
+          "bytes": 732574,
+          "sha256": "c69fdd31b70e24e394d80b580c0b62ebea54576d839ee3644badfacb558ea6e6"
+        },
+        {
+          "path": "01_House/Textures/rusty_metal_sheet_diff_1k.jpg",
+          "bytes": 793031,
+          "sha256": "ecfacdea466b43162b63867b419576b7d35d34ea37c96969cf05e5a07faeb705"
+        },
+        {
+          "path": "01_House/Textures/rusty_metal_sheet_nor_gl_1k.jpg",
+          "bytes": 409291,
+          "sha256": "473e8ec4079a8be8c9bef59df8d95f61fd43f9961f4ec42421f21dee07713a5d"
+        },
+        {
+          "path": "01_House/Textures/wood_peeling_paint_weathered_arm_1k.jpg",
+          "bytes": 484940,
+          "sha256": "b87ce5d06c5df2986c95e4da1b702de139eb8aee6faadb784d371d551967fa32"
+        },
+        {
+          "path": "01_House/Textures/wood_peeling_paint_weathered_diff_1k.jpg",
+          "bytes": 890162,
+          "sha256": "7311e60ec0ca3de10383dd5f2d398819e2198ea78244cf4f6627d1cb26cf4b53"
+        },
+        {
+          "path": "01_House/Textures/wood_peeling_paint_weathered_nor_gl_1k.jpg",
+          "bytes": 892366,
+          "sha256": "5828f259fc99aa2bde31f778a0084ce8d0c83faa60306f6b998ac82c120ccffa"
+        },
+        {
+          "path": "01_House/Textures/wood_planks_grey_arm_1k.jpg",
+          "bytes": 155198,
+          "sha256": "0464853147811dd6dcf9f286ca3753fb63fa654d081ae708070fbf0fd4614d97"
+        },
+        {
+          "path": "01_House/Textures/wood_planks_grey_diff_1k.jpg",
+          "bytes": 228279,
+          "sha256": "d758be23e8fe7bfbd73bc4ab257cfd59406e1835f6557c12a67cd4fdb15de0d8"
+        },
+        {
+          "path": "01_House/Textures/wood_planks_grey_nor_gl_1k.jpg",
+          "bytes": 157419,
+          "sha256": "5e570e57d688b016b217b9e8e0592f9a8b3364406e22bf6cd775da990452bdb6"
+        },
+        {
+          "path": "01_House/Textures/worn_mossy_plasterwall_arm_1k.jpg",
+          "bytes": 719996,
+          "sha256": "9c4f1395513d57663222bbbdbbda78e28f924a924bc8f813312e539f9816f4c7"
+        },
+        {
+          "path": "01_House/Textures/worn_mossy_plasterwall_diff_1k.jpg",
+          "bytes": 964249,
+          "sha256": "415cbcbe8f70269569aa4f2f1efc13ca1bd5f2fabc791dff428ef0fa243e1e9e"
+        },
+        {
+          "path": "01_House/Textures/worn_mossy_plasterwall_nor_gl_1k.jpg",
+          "bytes": 870753,
+          "sha256": "0fdf1e22066c4f6fc2c820ae9b11aa5f9ea6ea131ccf3abb65f37251ab9f6a5d"
+        }
+      ],
+      "previews": [
+        "Previews/house_front.png",
+        "Previews/house_kitchen_window.png",
+        "Previews/house_material_closeup.png",
+        "Previews/house_side.png",
+        "Previews/house_three_quarter.png"
+      ]
+    },
+    {
+      "id": "damar_scooter",
+      "name": "Damar's automatic scooter (generic matic, no brand marks)",
+      "category": "Motorcycle",
+      "creationMethod": "PROCEDURAL",
+      "description": "Generic Indonesian commuter scooter authored in Blender: 1.93 m long, ~1.25 m wheelbase, 14-inch wheels with front disc brake, step-through floorboard, front apron and leg shield, handlebar cowl with headlight and indicators, mirrors, long bench seat, rear body with tail light and grab rails, CVT cover, engine block, exhaust with heat shield, rear fender, mudflap and a deployed side stand. PBR factors only (no textures, nothing missing on import); functional groups are separate named objects.",
+      "components": [
+        {
+          "source": "authored in Blender (build_scooter.py)",
+          "usedFor": "all geometry and all materials"
+        }
+      ],
+      "sources": [
+        {
+          "title": "No third-party model or texture used",
+          "creator": "project (authored)",
+          "url": "",
+          "license": "project-owned original work",
+          "attributionRequired": false
+        }
+      ],
+      "origin": "ground level between the wheels (0,0,0); front faces -Y (matches the house facade); tyre contact patch at z=0",
+      "notes": [
+        "Parked pose: tilt ~8-10 degrees toward the side stand, turn the bar toward the wall and light the headlight dimly against the wall as scripted.",
+        "Every functional group (wheels, handlebar, seat, exhaust, stand) is a separate object for animation or swapping.",
+        "No Honda/Yamaha trade dress or logos reproduced."
+      ],
+      "measured": {
+        "triangles": 21012,
+        "boundsM": [
+          0.62,
+          1.93,
+          1.1
+        ],
+        "materialSlots": 11,
+        "objects": 67
+      },
+      "files": [
+        {
+          "path": "02_Motorcycle/Export/DamarScooter.fbx",
+          "bytes": 532732,
+          "sha256": "bee7fdc4b2d868a7c723ee985a8279c55cd48d4e31302a52029fed9e7c2f8d7b"
+        },
+        {
+          "path": "02_Motorcycle/Export/DamarScooter.glb",
+          "bytes": 377800,
+          "sha256": "b2cb9b18538d7f8d1ac12d80e1491c46cba2750d799a6a8606dccffd6e36fb2f"
+        },
+        {
+          "path": "02_Motorcycle/Blender/DamarScooter.blend",
+          "bytes": 1569324,
+          "sha256": "5ee4af132e8e1bc4c86ae8cfd8bf5ed9b9c22bd22100ccad5e3aaeb445b7e416"
+        },
+        {
+          "path": "02_Motorcycle/Blender/__pycache__/build_scooter.cpython-312.pyc",
+          "bytes": 28861,
+          "sha256": "4015ddd9ec5576d47c00367370b4661e19017a0176ef743f0fbd48640eea4dee"
+        },
+        {
+          "path": "02_Motorcycle/Blender/build_scooter.py",
+          "bytes": 20274,
+          "sha256": "00ce55961d7f4fb4bc5ed6cdead5fc8684ee4bd528ec3ed84bb2af5c0f4fb89e"
+        },
+        {
+          "path": "02_Motorcycle/Blender/scooter_build_stats.json",
+          "bytes": 1796,
+          "sha256": "449c79eeb562808049bb406ca9bc87eee8f2e9be3b676e5065ac072e21f72c4d"
+        }
+      ],
+      "previews": [
+        "Previews/motorcycle_front.png",
+        "Previews/motorcycle_side.png",
+        "Previews/motorcycle_three_quarter.png"
+      ]
+    },
+    {
+      "id": "fallen_frangipani",
+      "name": "Fallen frangipani (pohon kamboja) - uprooted obstacle",
+      "category": "Fallen tree",
+      "creationMethod": "ADAPTED + PROCEDURAL",
+      "description": "Uprooted frangipani ~5.7 m long: gnarled pale-bark trunk (adapted decimated scan), standing root plate, five thick blunt Plumeria branches with fork tips, eight leaf rosettes and white pinwheel flowers (leaf/flower alpha textures authored in this drop). Ground contact at z=0.01.",
+      "components": [
+        {
+          "source": "dead_tree_trunk_02 (Poly Haven)",
+          "usedFor": "trunk base geometry, re-materialed; decimated to 45% for the export"
+        },
+        {
+          "source": "root_cluster_01 (approved Scene 2 asset, Poly Haven CC0)",
+          "usedFor": "root plate; decimated to 25%; original bark material kept"
+        },
+        {
+          "source": "authored in Blender (build_frangipani.py)",
+          "usedFor": "Plumeria canes and forks, leaf rosettes (authored leaf.png), flowers (authored flower.png)"
+        }
+      ],
+      "sources": [
+        {
+          "title": "dead_tree_trunk_02",
+          "creator": "Rob Tuytel",
+          "url": "https://polyhaven.com/a/dead_tree_trunk_02",
+          "license": "CC0-1.0",
+          "attributionRequired": false
+        },
+        {
+          "title": "root_cluster_01",
+          "creator": "Kless Gyzen",
+          "url": "https://polyhaven.com/a/root_cluster_01",
+          "license": "CC0-1.0",
+          "attributionRequired": false
+        }
+      ],
+      "origin": "root base centre at ground level; the trunk falls along +X",
+      "notes": [
+        "Species note: this is not a botanical Plumeria scan - the closest CC0 dead trunk adapted with Plumeria features (thick blunt branching, tip rosettes, white flowers, pale weathered bark).",
+        "127k tris: decimate further or split the crown if the scene budget requires.",
+        "Place so the trunk crosses the side path with >= 1.1 m clearance under the highest point for the scripted crouch (CTRL)."
+      ],
+      "measured": {
+        "triangles": 127457,
+        "boundsM": [
+          5.73,
+          4.52,
+          2.2
+        ],
+        "materialSlots": 4,
+        "objects": 155
+      },
+      "files": [
+        {
+          "path": "03_Frangipani_Tree/Export/FallenFrangipani.fbx",
+          "bytes": 9093452,
+          "sha256": "16a4e30d3eda2a26e32c491f3dac9fc785f1a848d38462679399312f9ea03b19"
+        },
+        {
+          "path": "03_Frangipani_Tree/Export/FallenFrangipani.glb",
+          "bytes": 7049220,
+          "sha256": "b5bacdad2f1d7c4923ebffbb562bb40ebe9d28fe7fa36f51e2525d870cfda2ba"
+        },
+        {
+          "path": "03_Frangipani_Tree/Blender/FallenFrangipani.blend",
+          "bytes": 13108921,
+          "sha256": "af2245769200f056a676ce44ea5c44cd3055be6023108a915f92313f24b14b4f"
+        },
+        {
+          "path": "03_Frangipani_Tree/Blender/__pycache__/build_frangipani.cpython-312.pyc",
+          "bytes": 24848,
+          "sha256": "7695e8a1abd85b0f7d45f59c5fcdc3de1b9dc54a0e193fe23e99e2ee3dd59f9f"
+        },
+        {
+          "path": "03_Frangipani_Tree/Blender/build_frangipani.py",
+          "bytes": 15353,
+          "sha256": "64a9433b485f67cd4806c78e3ab44cf4ce08c0c77c846bda6b56e5c7c23f8ab6"
+        },
+        {
+          "path": "03_Frangipani_Tree/Blender/frangipani_build_stats.json",
+          "bytes": 3058,
+          "sha256": "9bf08b60a5585fe8affd9d2c6d61ca0c0af3324b7e2fc65157f99d9ac561f8bc"
+        },
+        {
+          "path": "03_Frangipani_Tree/Sources/dead_tree_trunk_02.source.json",
+          "bytes": 1815,
+          "sha256": "0b5a34def54806079ddceb94c9f0bcc2b6d04cbc8b01554296a02b970de2e913"
+        },
+        {
+          "path": "03_Frangipani_Tree/Sources/dead_tree_trunk_02_1k.fbx",
+          "bytes": 6606028,
+          "sha256": "832d469ac7e365ccd982af637b97188275b7d78b2d860ed0e18deb22e0b0ffc7"
+        },
+        {
+          "path": "03_Frangipani_Tree/Sources/source-preview.png",
+          "bytes": 14924,
+          "sha256": "f4ff9d878a35a46f0719211f3a001f367ef1df9042e1961f9cc886a3997d3ac2"
+        },
+        {
+          "path": "03_Frangipani_Tree/Sources/textures/dead_tree_trunk_02_arm_1k.jpg",
+          "bytes": 805609,
+          "sha256": "ea15561ce36572ebd0db3c997f70d68a76d4bcbfef7efb4f91c8fd3b5f766e62"
+        },
+        {
+          "path": "03_Frangipani_Tree/Sources/textures/dead_tree_trunk_02_diff_1k.jpg",
+          "bytes": 932059,
+          "sha256": "fac23e81ab5639dcde93db605e5dd94c65e0aa2b1fb4a303f37de9afbb9af5b4"
+        },
+        {
+          "path": "03_Frangipani_Tree/Sources/textures/dead_tree_trunk_02_nor_gl_1k.jpg",
+          "bytes": 1192056,
+          "sha256": "9b26c29b89afced0ddb91dbe6f917e59038bed5ba6076dfceb8d1b4b00ca04f7"
+        },
+        {
+          "path": "03_Frangipani_Tree/Textures/flower.png",
+          "bytes": 9902,
+          "sha256": "0460765fc2f9d842065d2a070af535391050199b5c1501ca4536f95b11708ef8"
+        },
+        {
+          "path": "03_Frangipani_Tree/Textures/leaf.png",
+          "bytes": 2960,
+          "sha256": "63301349addfb1eb7b30cfa44ef9c4e261284edb0bfad0a94841f867575266c7"
+        }
+      ],
+      "previews": [
+        "Previews/frangipani_silhouette.png",
+        "Previews/frangipani_three_quarter.png",
+        "Previews/frangipani_trunk_roots_closeup.png"
+      ]
+    }
+  ],
+  "reusedApprovedAssets": [
+    {
+      "id": "root_cluster_01",
+      "packagePath": "ArtSources/Scene2_Atmaja_Assets/Vegetation/root_cluster_01",
+      "license": "CC0-1.0",
+      "usedIn": "fallen_frangipani"
+    },
+    {
+      "id": "Poly Haven texture sets (10)",
+      "packagePath": "ArtSources/Scene2_Atmaja_Assets/Architecture + Vegetation",
+      "license": "CC0-1.0",
+      "usedIn": "rumah_atmaja_house"
+    }
+  ],
+  "validation": {
+    "allExpectedFilesExist": true,
+    "missingFiles": [],
+    "duplicateFilesByHash": [],
+    "importTest": {
+      "tool": "blender -b -P tools/render_recovery_previews.py",
+      "result": "all three GLBs imported (577 objects total) and all 11 previews rendered from the exported files",
+      "passed": true
+    },
+    "checksPassed": 91,
+    "checksTotal": 91
+  },
+  "previews": [
+    "Previews/frangipani_silhouette.png",
+    "Previews/frangipani_three_quarter.png",
+    "Previews/frangipani_trunk_roots_closeup.png",
+    "Previews/house_front.png",
+    "Previews/house_kitchen_window.png",
+    "Previews/house_material_closeup.png",
+    "Previews/house_side.png",
+    "Previews/house_three_quarter.png",
+    "Previews/motorcycle_front.png",
+    "Previews/motorcycle_side.png",
+    "Previews/motorcycle_three_quarter.png"
+  ],
+  "zip": {
+    "name": "Scene2_Atmaja_Recovery.zip"
+  }
+}

@@ -9,7 +9,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `30d9e7e9`
+- Built from commit: `b342cb06`
 - Commit above is the pre-commit base, not a freshness check. Verify source/artifact hashes with `python3 Tools/update_graphify.py --check`.
 - Regenerate safely with `python3 Tools/update_graphify.py` before commit/push.
 
@@ -108,16 +108,16 @@
 10. `LayarTerakhir.Player` - 50 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `KosCorridorBuilder` --references--> `KosCorridorDirector`  [EXTRACTED]
+  Assets/_LayarTerakhir/src/Editor/DesignerWorldRevision.cs → Assets/_LayarTerakhir/src/Prolog/KosCorridorDirector.cs
 - `InteractionInteractor` --references--> `IInteractable`  [EXTRACTED]
   Assets/_LayarTerakhir/src/Player/InteractionInteractor.cs → Assets/_LayarTerakhir/src/Player/IInteractable.cs
 - `AtmajaItem` --implements--> `IInteractable`  [EXTRACTED]
   Assets/_LayarTerakhir/src/Prolog/AtmajaItem.cs → Assets/_LayarTerakhir/src/Player/IInteractable.cs
 - `KosInteractableItem` --implements--> `IInteractable`  [EXTRACTED]
   Assets/_LayarTerakhir/src/Prolog/KosInteractableItem.cs → Assets/_LayarTerakhir/src/Player/IInteractable.cs
-- `KosCorridorBuilder` --references--> `KosCorridorDirector`  [EXTRACTED]
-  Assets/_LayarTerakhir/src/Editor/DesignerWorldRevision.cs → Assets/_LayarTerakhir/src/Prolog/KosCorridorDirector.cs
-- `MelatiNeighborhood` --references--> `KosCorridorDirector`  [EXTRACTED]
-  Assets/_LayarTerakhir/src/Prolog/MelatiNeighborhood.cs → Assets/_LayarTerakhir/src/Prolog/KosCorridorDirector.cs
+- `AtmajaDirector` --references--> `HingedDoor`  [EXTRACTED]
+  Assets/_LayarTerakhir/src/Prolog/AtmajaDirector.cs → Assets/_LayarTerakhir/src/Prolog/HingedDoor.cs
 
 ## Import Cycles
 - None detected.
@@ -369,7 +369,7 @@ Cohesion: 0.60
 Nodes (3): BuildFileRecord, BuildRecord, WindowsDevelopmentBuild
 
 ## Knowledge Gaps
-- **233 isolated node(s):** `InteractableId`, `InteractableId`, `IsOpen`, `InteractableId`, `InteractableId` (+228 more)
+- **233 isolated node(s):** `InteractableId`, `IsOpen`, `InteractableId`, `IsOpen`, `InteractableId` (+228 more)
   These have ≤1 connection - possible missing edges. (Counts symbols only; 439 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **21 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -377,16 +377,16 @@ Nodes (3): BuildFileRecord, BuildRecord, WindowsDevelopmentBuild
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `AtmajaPhoneView` connect `Community 42` to `Community 0`, `Community 2`, `Community 3`, `Community 6`, `Community 10`, `Community 13`, `Community 16`, `Community 17`, `Community 18`, `Community 19`, `Community 24`, `Community 30`, `Community 32`, `Community 35`, `Community 38`, `Community 41`, `Community 47`, `Community 54`, `Community 55`, `Community 58`, `Community 60`, `Community 71`, `Community 80`?**
-  _High betweenness centrality (0.272) - this node is a cross-community bridge._
-- **What connects `InteractableId`, `InteractableId`, `IsOpen` to the rest of the system?**
+  _High betweenness centrality (0.270) - this node is a cross-community bridge._
+- **What connects `InteractableId`, `IsOpen`, `InteractableId` to the rest of the system?**
   _233 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.07205298013245033 - nodes in this community are weakly interconnected._
 - **Why does `AtmajaDirector` connect `Community 10` to `Community 0`, `Community 1`, `Community 2`, `Community 3`, `Community 5`, `Community 7`, `Community 8`, `Community 9`, `Community 13`, `Community 14`, `Community 18`, `Community 25`, `Community 27`, `Community 28`, `Community 33`, `Community 35`, `Community 38`, `Community 39`, `Community 41`, `Community 42`, `Community 43`, `Community 47`, `Community 49`, `Community 50`, `Community 53`, `Community 54`, `Community 55`, `Community 58`, `Community 60`, `Community 71`, `Community 80`?**
-  _High betweenness centrality (0.081) - this node is a cross-community bridge._
+  _High betweenness centrality (0.084) - this node is a cross-community bridge._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.05333333333333334 - nodes in this community are weakly interconnected._
-- **Why does `HudController` connect `Community 13` to `Community 0`, `Community 2`, `Community 3`, `Community 5`, `Community 6`, `Community 10`, `Community 14`, `Community 19`, `Community 22`, `Community 27`, `Community 35`, `Community 38`, `Community 40`, `Community 41`, `Community 42`, `Community 43`, `Community 47`, `Community 51`, `Community 54`, `Community 71`, `Community 72`, `Community 75`?**
+- **Why does `GameShell` connect `Community 17` to `Community 0`, `Community 2`, `Community 35`, `Community 37`, `Community 6`, `Community 47`, `Community 22`?**
   _High betweenness centrality (0.048) - this node is a cross-community bridge._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.11634056054997356 - nodes in this community are weakly interconnected._

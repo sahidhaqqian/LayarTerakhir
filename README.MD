@@ -78,6 +78,7 @@ Assets/_LayarTerakhir/
     Core/, Player/, Prolog/, Smartphone/, UI/, Audio/, Diagnostics/
     Editor/      builder scene, validasi, build, tes editor yang sudah ada
 Assets/Resources/  lokasi Resources.Load tetap sama
+ArtSources/    AssetResearch, Scene2_Atmaja_Assets, Scene2_Atmaja_Recovery
 Docs/          GOLDEN_SCENE_STANDARD.md (standar produksi)
 Tools/         skrip Python: aset, validasi, build, packaging
 Audit/         bukti tes/build, kredit aset, laporan
@@ -85,6 +86,8 @@ Builds/        hasil build (di-gitignore)
 ```
 
 Dokumentasi lengkap arsitektur kode ada di [`ARCHITECTURE.MD`](ARCHITECTURE.MD).
+Paket sumber riset/authoring dikumpulkan di [`ArtSources/`](ArtSources/README.md),
+di luar jalur impor Unity.
 
 ---
 

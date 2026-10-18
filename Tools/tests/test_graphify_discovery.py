@@ -43,7 +43,8 @@ class GraphifyDiscoveryTests(unittest.TestCase):
         for path in (
             "Assets/TutorialInfo/Scripts/Readme.cs", "Packages/vendor/Code.cs",
             "Library/generated.cs", "Builds/generated.cs", "Bugs/script.py",
-            "AssetResearch/tools/author.py", "Scene2_Atmaja_Assets/tools/fetch.py",
+            "ArtSources/AssetResearch/tools/author.py", "ArtSources/Scene2_Atmaja_Assets/tools/fetch.py",
+            "ArtSources/Scene2_Atmaja_Recovery/tools/rebuild.py",
         ):
             with self.subTest(path=path):
                 self.assertTrue(ignored(ROOT / path))

@@ -106,7 +106,7 @@ cylinder('Drawer knob',(0,-.185,.28),.020,.035,BRASS,(math.pi/2,0,0))
 export('GrandfatherClock')
 
 # Repair the actual culprit: the large root plate crossed the east wall into the dining room.
-bpy.ops.wm.open_mainfile(filepath=str(ROOT/'Scene2_Atmaja_Recovery/03_Frangipani_Tree/Blender/FallenFrangipani.blend'))
+bpy.ops.wm.open_mainfile(filepath=str(ROOT/'ArtSources/Scene2_Atmaja_Recovery/03_Frangipani_Tree/Blender/FallenFrangipani.blend'))
 for o in list(bpy.context.scene.objects):
     if o.type!='MESH':bpy.data.objects.remove(o,do_unlink=True);continue
     is_leaf=o.name.startswith('LEAF');is_flower=o.name.startswith('FLOWER')

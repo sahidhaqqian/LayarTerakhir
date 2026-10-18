@@ -112,7 +112,8 @@ Docs/GOLDEN_SCENE_STANDARD.md      standar produksi scene emas
 Tools/*.py                        orkestrasi download, authoring, validasi, build, packaging
 Audit/*.md, *.json, visual        bukti validasi, kredit aset, log build
 Builds/                           hasil build (di-gitignore), ZIP Windows, LinuxAudit
-AssetResearch/, Scene2_Atmaja_*/   riset/sumber/arsip authoring, tidak dimuat sebagai runtime
+ArtSources/                       AssetResearch, Scene2_Atmaja_Assets, Scene2_Atmaja_Recovery;
+                                  riset/sumber/arsip authoring di luar impor Unity
 .graphifyignore                   allowlist source untuk Graphify (bukan aturan Git)
 .gitignore                        cache/editor/build lokal, bukan konten first-party
 graphify-out/                     empat hasil graph portabel; sidecar/cache di-ignore

@@ -34,7 +34,8 @@ class GraphifySafetyTests(unittest.TestCase):
             "Tools/prefab.prefab", "Tools/settings.asset", "Tools/script.cs.meta",
             "Assets/Resources/App.asset", "Assets/TutorialInfo/Scripts/Readme.cs",
             "Packages/vendor.cs", "Builds/Game.zip", "Bugs/image.png", "Library/generated.cs",
-            "AssetResearch/tools/author.py", "Scene2_Atmaja_Assets/tools/fetch.py",
+            "ArtSources/AssetResearch/tools/author.py", "ArtSources/Scene2_Atmaja_Assets/tools/fetch.py",
+            "ArtSources/Scene2_Atmaja_Recovery/tools/rebuild.py",
             "Tools/../secret.py", "/tmp/Tools/secret.py", "Tools\\file.py", "",
         ):
             with self.subTest(path=path):

@@ -122,19 +122,19 @@ InitTestScene*.unity*
 /[Aa]ssets/[Ss]ceneDependencyCache*
 
 # Scene 2 asset research download cache (re-downloadable; see tools/fetch_scene2_assets.py)
-/Scene2_Atmaja_Assets/.cache/
+/ArtSources/Scene2_Atmaja_Assets/.cache/
 
 # Generated asset-package archives (reproducible via tools/package_*.py)
-/AssetResearch/*.zip
-/AssetResearch/*.zip.sha256
-/Scene2_Atmaja_Assets/*.zip
-/Scene2_Atmaja_Assets/*.zip.sha256
+/ArtSources/AssetResearch/*.zip
+/ArtSources/AssetResearch/*.zip.sha256
+/ArtSources/Scene2_Atmaja_Assets/*.zip
+/ArtSources/Scene2_Atmaja_Assets/*.zip.sha256
 
 # Python bytecode (Tools and research/authoring scripts)
 __pycache__/
 *.py[cod]
-/Scene2_Atmaja_Recovery/*.zip
-/Scene2_Atmaja_Recovery/*.zip.sha256
+/ArtSources/Scene2_Atmaja_Recovery/*.zip
+/ArtSources/Scene2_Atmaja_Recovery/*.zip.sha256
 
 # Keep only the portable, reviewed Graphify deliverables in git.
 /graphify-out/*

@@ -7,7 +7,7 @@ import bpy, json, math, hashlib, shutil
 from mathutils import Vector, Matrix
 
 ROOT=Path(__file__).resolve().parents[1]
-REC=ROOT/'Scene2_Atmaja_Recovery';STAGE=ROOT/'Scene2_Atmaja_Assets'
+REC=ROOT/'ArtSources/Scene2_Atmaja_Recovery';STAGE=ROOT/'ArtSources/Scene2_Atmaja_Assets'
 OUT=ROOT/'Assets/_LayarTerakhir/assets/Art/Atmaja';OUT.mkdir(parents=True,exist_ok=True)
 (OUT/'Models').mkdir(exist_ok=True);(OUT/'Textures').mkdir(exist_ok=True)
 materials=[];models=[];sources=[]

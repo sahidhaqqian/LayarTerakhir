@@ -13,7 +13,7 @@ from mathutils.bvhtree import BVHTree
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT/'Assets/_LayarTerakhir/assets/Art/Atmaja/Models/DamarScooter.fbx'
-RECOVERY = ROOT/'Scene2_Atmaja_Recovery/02_Motorcycle/Blender/DamarScooter.blend'
+RECOVERY = ROOT/'ArtSources/Scene2_Atmaja_Recovery/02_Motorcycle/Blender/DamarScooter.blend'
 OUTPUT = ROOT/'Assets/_LayarTerakhir/assets/Art/Review/Models/RakaScooter.fbx'
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
