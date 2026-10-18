@@ -1,0 +1,29 @@
+{
+  "reviewedUtc": "2026-10-18T17:13:42.911622+00:00",
+  "developerVisualReviewPassed": true,
+  "userCreativeApprovalRecorded": false,
+  "method": "Direct inspection of native 960x540 framebuffer captures against official DreadOut screenshot references and previous same-position game captures; subjective art-direction review, not a quantitative parity/FPS score.",
+  "findings": [
+    "No horizontal posterized sky bands",
+    "Night street retains visible asphalt detail with local warm pools; strong uniform blue reflections removed",
+    "Porch, window and shop practicals read as local sources",
+    "Atmaja exterior stays dark and derelict; phone-lit plaster, wood and furniture remain visible",
+    "First-person handset feed and third-person avatar present in the relevant posed shots"
+  ],
+  "limitations": [
+    "Whole-game visual parity with DreadOut is not established",
+    "No manual Windows or Iris Xe performance acceptance"
+  ],
+  "captures": {
+    "01-kos-room.png": "f78e73cf65def94029b2cdb2187e1caaa5f0b0a486f2de9701afeeb9a3a5f564",
+    "02-kos-corridor.png": "e73221f89cf247b41a28efa0da2eb1293cae73b77183d930960fc1b6fa23bcb9",
+    "03-melati-road.png": "a7dc9d0e18e78c5e4bae645691a7ac844c3a8ff2bc827b9fd6b260339c76055a",
+    "04-kos-exterior.png": "a03cf0862fc2d54c2bbae5c606b181494b0f5307f129f77248eb1c95a3977b0a",
+    "05-warung-phone.png": "bd4db21b2313c8b9c2b1857610edbdc21a2d8660ee18125abae8ce13f601af41",
+    "06-atmaja-exterior.png": "501bbf721d860c7359ccae51f20cc7702ccc397f21c8bd3a9888bdd49955d35a",
+    "07-atmaja-phone.png": "0491acb2331cf5ec5f026ac725becfc90e782fe50d6f48236694d444a3370885",
+    "08-atmaja-upper.png": "968e909ed6fbf2261d54b524317c274761003f859ad479532e2e7276a1f4b8c7"
+  },
+  "priorReviewedUtc": "2026-10-18T16:35:04.085837+00:00",
+  "finalBuildCheck": "Capture set regenerated after an opt-in prolog audit input-wait correction; presentation sources unchanged. Final road and handset interior sampled again."
+}

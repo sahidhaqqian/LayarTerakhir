@@ -203,17 +203,20 @@ namespace LayarTerakhir.Smartphone
             if (phoneFlashlight != null)
             {
                 phoneFlashlight.enabled = hasSmartphoneInInventory && isPhoneRaised && isScreenOn && batteryPercent > 0f;
-                phoneFlashlight.intensity = 8f;
+                phoneFlashlight.intensity = 22f;
                 phoneFlashlight.range = 16f;
-                phoneFlashlight.spotAngle = 88f;
-                phoneFlashlight.innerSpotAngle = 54f;
+                phoneFlashlight.spotAngle = 76f;
+                phoneFlashlight.innerSpotAngle = 34f;
+                phoneFlashlight.color = new Color(.88f, .94f, 1f);
+                phoneFlashlight.shadowBias = .025f;
+                phoneFlashlight.shadowNormalBias = .16f;
                 phoneFlashlight.shadows = LightShadows.Soft;
                 if (!spillLight)
                 {
                     var spill = new GameObject("PhoneNearSpill", typeof(Light));
                     spill.transform.SetParent(phoneFlashlight.transform, false);
                     spillLight = spill.GetComponent<Light>(); spillLight.type = LightType.Point;
-                    spillLight.range = 3.8f; spillLight.intensity = .65f;
+                    spillLight.range = 3.8f; spillLight.intensity = .38f;
                     spillLight.color = new Color(.76f, .83f, 1f); spillLight.shadows = LightShadows.None;
                 }
                 spillLight.enabled = phoneFlashlight.enabled;
@@ -235,9 +238,9 @@ namespace LayarTerakhir.Smartphone
         {
             if (!phoneFlashlight) return;
             bool pulse = Time.unscaledTime < shutterUntil && isPhoneRaised && isScreenOn;
-            phoneFlashlight.intensity = pulse ? 65 : 8;
+            phoneFlashlight.intensity = pulse ? 85 : 22;
             if (pulse) phoneFlashlight.enabled = true;
-            if (spillLight) spillLight.intensity = pulse ? 3.5f : .65f;
+            if (spillLight) spillLight.intensity = pulse ? 3.5f : .38f;
             var player = FindFirstObjectByType<LayarTerakhir.Player.FirstPersonController>();
             if (!player || !player.cameraPivot) return;
             phoneFlashlight.transform.SetPositionAndRotation(

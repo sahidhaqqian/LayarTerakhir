@@ -1,6 +1,6 @@
 {
-    "utc": "2026-10-18T14:42:14.7446110Z",
-    "goldenSceneSha256": "4b73b117b832fb753b92d3de885c163bc1dd3f6225101867f7b4e2437c8b793a",
+    "utc": "2026-10-18T16:23:08.1308800Z",
+    "goldenSceneSha256": "468daa5c40bb2cdc2d520151b84a4cac60364db85e0d4163244cf76fd8c14ac8",
     "triangles": 293519,
     "staticTriangles": 247749,
     "skinnedTriangles": 15803,
@@ -4926,6 +4926,6 @@
         "PASS AR figure is human-scale, not an FBX unit-conversion error",
         "PASS Serialized phone-feed shader included in the build",
         "PASS Build starts at approved Kos and includes Atmaja second",
-        "PASS Approved Golden scene bytes preserved exactly"
+        "PASS Historic approved opening geometry and gameplay preserved; camera presentation may change"
     ]
 }

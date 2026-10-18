@@ -1,0 +1,19 @@
+{
+  "originalRun": "failed-640x360-receipt.json",
+  "diagnosticNativeCompleted": true,
+  "diagnosticActualViewport": [
+    320,
+    360
+  ],
+  "diagnosticRequestedViewport": [
+    320,
+    180
+  ],
+  "wrapperAccepted": false,
+  "wrapperRejection": "Unity clamped height to 360; the requested 180px capture dimensions did not match. Diagnostic gameplay reached the ending and Continue with no checkpoint reset.",
+  "nextCheck": "Run the complete continuation at explicit 320x360; do not alter hunter speed, grace periods, capture range or Blitz deadlines.",
+  "secondFullRun": "failed-320x360-full-receipt.json",
+  "secondFullRunPassed": false,
+  "identifiedFixtureIssue": "Crouch helper inserted a fixed 0.45-second stationary wait for both crouching and standing, consuming chase lead independently of when the actual capsule transition had completed.",
+  "remediation": "Wait for the real crouch flag and capsule height with a bounded timeout, using the existing Ctrl input. Retest the complete path at 640x360. Hunter speed, grace, capture distance, pursuit code and Blitz deadline are unchanged."
+}

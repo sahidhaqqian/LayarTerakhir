@@ -1,0 +1,87 @@
+{
+  "verifiedUtc": "2026-10-18T17:18:43.928611+00:00",
+  "passed": true,
+  "unityTests": {
+    "full": {
+      "total": 88,
+      "passed": 88,
+      "failed": 0,
+      "skipped": 0
+    },
+    "finalFocused": {
+      "total": 9,
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "pythonTests": {
+    "passed": 19,
+    "failed": 0,
+    "method": "unittest discover -s Tools/tests -p test_*.py; actual terminal run after packaging guard update"
+  },
+  "native": {
+    "comparison": {
+      "path": "Audit/Visuals/Dreadout-Look-After/player-audit.json",
+      "captures": 8,
+      "completed": true,
+      "gpu": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "walkedMeters": null,
+      "checks": 0
+    },
+    "opening": {
+      "path": "Audit/Visuals/Dreadout-Look-Opening/player-audit.json",
+      "captures": 59,
+      "completed": true,
+      "gpu": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "walkedMeters": 230.2416229248047,
+      "checks": 233
+    },
+    "prolog": {
+      "path": "Audit/Visuals/Dreadout-Look-Prolog/player-audit.json",
+      "captures": 30,
+      "completed": true,
+      "gpu": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "walkedMeters": 129.8232421875,
+      "checks": 147
+    }
+  },
+  "openingProtection": {
+    "method": "Historic approved structure; camera presentation may change",
+    "sha256": "468daa5c40bb2cdc2d520151b84a4cac60364db85e0d4163244cf76fd8c14ac8",
+    "structureSha256": "8829d1989c6f093c76abcd9409fd3957be21affd87afe5c6f4701c0a8989302a",
+    "historicSha256": "4b73b117b832fb753b92d3de885c163bc1dd3f6225101867f7b4e2437c8b793a",
+    "baseCommit": "30d9e7e93b82870bec3f8f03f8465b5b0b8c9d63"
+  },
+  "collisionUnchanged": true,
+  "sourceRecord": "Audit/dreadout-look-prolog-presentation-build-sources.json",
+  "visualReview": "Audit/dreadout-look-visual-review.json",
+  "windowsBuild": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 1
+  },
+  "archive": {
+    "startedUtc": "2026-10-18T17:17:02.209073+00:00",
+    "verifiedUtc": "2026-10-18T17:17:35.899138+00:00",
+    "remote": "r2:layarterakhir/Layarterakhir/LayarTerakhir-Windows-x86_64-Development.zip",
+    "sizeBytes": 201488856,
+    "sha256": "29130471ac7619700a91176102e9f632812cc3bfacd6bf71136dbcadf152e0aa",
+    "uploadSucceeded": true,
+    "verification": "Full remote object readback SHA-256 equals local archive",
+    "credentialsExposed": false
+  },
+  "graphify": {
+    "codeFiles": 150,
+    "nodes": 2048,
+    "edges": 7246,
+    "assetFiles": 0
+  },
+  "limitations": [
+    "Full 88-test suite ran before the final reflection-intensity-only authoring adjustment; nine focused tests and all final native captures/flows ran afterwards. Runtime gameplay code did not change between these runs.",
+    "Native execution used Linux llvmpipe software rendering; Windows executable was built/packaged/verified but not manually played.",
+    "Art direction follows official DreadOut (2014) references; whole-game production parity and Windows/Iris Xe FPS are not established.",
+    "Opening review passed before the diagnostic-only input helper correction; presentation and normal gameplay code were unchanged by that correction. The final comparison captures and full prolog were rerun on the rebuilt player."
+  ],
+  "auditInputCorrection": "Removed the fixed 0.45-second stance pause from the opt-in prolog fixture; it now waits for actual Ctrl state and capsule height. Final complete run passed at 640x360 with unchanged pursuit AI, capture rules and chase timers."
+}

@@ -48,7 +48,7 @@ namespace LayarTerakhir.Player
             eye.cullingMask|=1<<AvatarLayer;
             var bounce=new GameObject("RakaSoftBounce",typeof(Light));bounce.transform.SetParent(transform,false);
             bounce.transform.localPosition=new Vector3(.55f,1.85f,-.9f);avatarBounce=bounce.GetComponent<Light>();
-            avatarBounce.type=LightType.Point;avatarBounce.range=2.8f;avatarBounce.intensity=6;
+            avatarBounce.type=LightType.Point;avatarBounce.range=2.8f;avatarBounce.intensity=2.5f;
             avatarBounce.color=new Color(.62f,.68f,.76f);avatarBounce.shadows=LightShadows.None;avatarBounce.cullingMask=1<<AvatarLayer;
             avatarBounce.renderMode=LightRenderMode.ForcePixel;
             avatarBounce.GetUniversalAdditionalLightData().renderingLayers=(RenderingLayerMask)AvatarRenderingLayer;

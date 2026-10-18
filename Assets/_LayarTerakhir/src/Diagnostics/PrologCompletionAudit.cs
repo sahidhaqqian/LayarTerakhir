@@ -261,8 +261,14 @@ namespace LayarTerakhir.Diagnostics
         private IEnumerator Crouch(bool on)
         {
             InputSystem.QueueStateEvent(keyboard,on?new KeyboardState(Key.LeftCtrl):new KeyboardState());player.enabled=true;
-            yield return new WaitForSeconds(.45f);player.enabled=false;
+            // Wait for the real stance transition instead of inserting a fixed stop
+            // on both sides of the trapdoor. That test-only pause spent the chase lead.
+            var capsule=player.GetComponent<CharacterController>();float target=on?player.crouchHeight:player.standingHeight;
+            float until=Time.realtimeSinceStartup+5;
+            do{yield return null;}while((player.IsCrouching!=on||Mathf.Abs(capsule.height-target)>.05f)&&Time.realtimeSinceStartup<until);
+            player.enabled=false;
             Check(player.IsCrouching==on,"Crouch binding sets "+on);
+            Check(Mathf.Abs(capsule.height-target)<=.05f,"Real capsule completes the requested stance");
         }
         private IEnumerator Press(Key key){InputSystem.QueueStateEvent(keyboard,new KeyboardState(key));yield return null;InputSystem.QueueStateEvent(keyboard,new KeyboardState());yield return null;}
         private IEnumerator ClickMouse(){InputSystem.QueueStateEvent(mouse,new MouseState{buttons=1});yield return null;InputSystem.QueueStateEvent(mouse,new MouseState());yield return null;}

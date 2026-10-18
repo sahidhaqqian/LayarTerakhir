@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
+using System.Text.RegularExpressions;
 using LayarTerakhir.Player;
 using LayarTerakhir.Prolog;
 using LayarTerakhir.UI;
@@ -17,6 +19,23 @@ namespace LayarTerakhir.Editor
 {
     public static class AtmajaSceneValidation
     {
+        [Serializable] private class OpeningBaseline {public string protectedGoldenSceneSha256,structureSha256;}
+        // The designer now authorizes grading/camera changes to the opening. Keep the
+        // historic geometry and gameplay identity instead of replacing its approved hash.
+        public static string OpeningStructureHash(string serialized)
+        {
+            string canonical=Regex.Replace(serialized,@"^  (?:sharedProfile|m_Antialiasing|m_AntialiasingQuality|m_StopNaN|m_Dithering):[^\n]*\n","",RegexOptions.Multiline);
+            // Unity may emit these previously implicit defaults when saving the same scene.
+            canonical=Regex.Replace(canonical,@"^  (?:motorKeyItem: \{fileID: 0\}|togglePerspectiveKey: 118)\n","",RegexOptions.Multiline);
+            using(var sha=SHA256.Create())return BitConverter.ToString(sha.ComputeHash(Encoding.UTF8.GetBytes(canonical))).Replace("-","").ToLowerInvariant();
+        }
+        private static bool OpeningIdentityPreserved(string fullHash,string legacyHash)
+        {
+            if(fullHash==legacyHash)return true;
+            const string path="Audit/opening-presentation-baseline.json";if(!File.Exists(path))return false;
+            var baseline=JsonUtility.FromJson<OpeningBaseline>(File.ReadAllText(path));
+            return baseline.protectedGoldenSceneSha256==legacyHash&&OpeningStructureHash(File.ReadAllText(PrologKosSceneBuilder.ScenePath))==baseline.structureSha256;
+        }
         [Serializable] public class Report {public string utc,goldenSceneSha256;public int triangles,staticTriangles,skinnedTriangles,runtimeRakaTriangles,renderers,textureMaximum,failures;public string[] checks;}
         public static void Run(){EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);Validate();}
         public static Report Validate(bool throwOnFailure=true)
@@ -107,7 +126,7 @@ namespace LayarTerakhir.Editor
             string hash;
             using(var sha=SHA256.Create())hash=BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(PrologKosSceneBuilder.ScenePath))).Replace("-","").ToLowerInvariant();
             var protectedData=JsonUtility.FromJson<AtmajaSceneBuilder.Manifest>(File.ReadAllText("Audit/atmaja-art-manifest.json"));
-            Check(hash==protectedData.protectedGoldenSceneSha256,"Approved Golden scene bytes preserved exactly");
+            Check(OpeningIdentityPreserved(hash,protectedData.protectedGoldenSceneSha256),"Historic approved opening geometry and gameplay preserved; camera presentation may change");
             var report=new Report{utc=DateTime.UtcNow.ToString("o"),triangles=tris,staticTriangles=staticTris,skinnedTriangles=skinnedTris,runtimeRakaTriangles=rakaTris,renderers=renderers.Length,textureMaximum=texture,failures=failures,goldenSceneSha256=hash,checks=checks.ToArray()};
             File.WriteAllText("Audit/atmaja-scene-validation.json",JsonUtility.ToJson(report,true)+"\n");
             Debug.Log("ATMAJA_VALIDATION checks="+checks.Count+" failures="+failures+" tris="+tris+" renderers="+renderers.Length);
@@ -119,6 +138,19 @@ namespace LayarTerakhir.Editor
         public sealed class AtmajaSceneTests
         {
             [Test] public void AtmajaSceneKeepsGoldenAndHasPhysicalTraversalAndCompleteMaterials()=>AtmajaSceneValidation.Run();
+            [Test] public void OpeningProtectionRejectsTransformColliderAndMovementChanges()
+            {
+                string source=File.ReadAllText(PrologKosSceneBuilder.ScenePath),expected=AtmajaSceneValidation.OpeningStructureHash(source);
+                foreach(string field in new[]{"m_LocalPosition","m_Size","walkSpeed"})
+                {
+                    var pattern=new Regex(@"(^  "+field+@": (?:\{x: )?)(-?[0-9.]+)",RegexOptions.Multiline);
+                    Assert.That(pattern.IsMatch(source),Is.True,"Real opening field must be covered: "+field);
+                    string changed=pattern.Replace(source,m=>m.Groups[1].Value+"999.25",1);
+                    Assert.That(AtmajaSceneValidation.OpeningStructureHash(changed),Is.Not.EqualTo(expected),field);
+                }
+                string cameraChange=Regex.Replace(source,@"^  m_Dithering: [01]$","  m_Dithering: 0",RegexOptions.Multiline);
+                Assert.That(AtmajaSceneValidation.OpeningStructureHash(cameraChange),Is.EqualTo(expected));
+            }
             [TestCase("PROLOG_ATMAJA_COURTYARD")][TestCase("PROLOG_ATMAJA_KITCHEN")][TestCase("PROLOG_MATABATIN_ACQUIRED")]
             public void ContinuationCheckpointRoutingIsExplicit(string id)=>Assert.That(PrologSceneFlow.IsAtmajaCheckpoint(id),Is.True);
             [Test] public void KosCheckpointNeverSkipsApprovedOpening()=>Assert.That(PrologSceneFlow.IsAtmajaCheckpoint("PROLOG_KOS_COMPLETE"),Is.False);

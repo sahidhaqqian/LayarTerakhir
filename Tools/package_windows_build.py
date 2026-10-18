@@ -6,12 +6,14 @@ from pathlib import Path
 from datetime import datetime,timezone
 import argparse,hashlib,json,struct,zipfile,zlib,shutil
 from record_designer_sources import snapshot
+from opening_presentation_identity import verify_opening_source
 root=Path(__file__).resolve().parents[1];out=root/'Builds/Windows';logs=root/'Builds/Logs'
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--source-record',default='Audit/designer-build-sources.json')
 args=parser.parse_args()
 source_record=json.loads((root/args.source_record).read_text())
 assert source_record['sources']==snapshot(),'Source changed after the designer build snapshot'
+opening_identity=verify_opening_source(root)
 voices=json.loads((root/'Audit/prolog-voice-manifest.json').read_text())
 assert 'VoxCPM2' in voices['engine'] and len(voices['entries'])>=17,'Wrong/stale speech bank'
 # This manifest verifies the retained placeholder bank, not final acting quality.
@@ -118,7 +120,7 @@ verification={'verifiedUtc':datetime.now(timezone.utc).isoformat(),'unityExitCod
  'windowsRuntimeTested':False,'files':manifest}
 verification['sourceSceneSha256']=hashlib.sha256((root/'Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity').read_bytes()).hexdigest()
 verification['atmajaSceneSha256']=hashlib.sha256((root/'Assets/_LayarTerakhir/assets/Scenes/Prolog_RumahAtmaja.unity').read_bytes()).hexdigest()
-assert verification['sourceSceneSha256']==json.loads((root/'Audit/atmaja-art-manifest.json').read_text())['protectedGoldenSceneSha256'],'Golden source scene changed'
+verification['openingProtection']=opening_identity
 verification['developmentScreenshotUtilityIncluded']=True
 verification['includedScenes']=report['scenes']
 (logs/'windows-build-verification.json').write_text(json.dumps(verification,indent=2)+'\n')

@@ -1,75 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<test-run id="2" testcasecount="9" result="Passed" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-18 14:56:52Z" end-time="2026-10-18 14:56:54Z" duration="2.3094906">
-  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="87" result="Passed" start-time="2026-10-18 14:56:52Z" end-time="2026-10-18 14:56:54Z" duration="2.309491" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+<test-run id="2" testcasecount="9" result="Passed" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-18 16:30:42Z" end-time="2026-10-18 16:30:45Z" duration="2.5700294">
+  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="88" result="Passed" start-time="2026-10-18 16:30:42Z" end-time="2026-10-18 16:30:45Z" duration="2.570029" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
     <properties>
       <property name="platform" value="EditMode" />
     </properties>
-    <test-suite type="Assembly" id="1103" name="Assembly-CSharp-Editor.dll" fullname="/root/Projects/LayarTerakhir-main/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="87" result="Passed" start-time="2026-10-18 14:56:52Z" end-time="2026-10-18 14:56:54Z" duration="2.300205" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <test-suite type="Assembly" id="1104" name="Assembly-CSharp-Editor.dll" fullname="/root/Projects/LayarTerakhir-main/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="88" result="Passed" start-time="2026-10-18 16:30:42Z" end-time="2026-10-18 16:30:45Z" duration="2.555064" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
       <properties>
-        <property name="_PID" value="472979" />
+        <property name="_PID" value="479945" />
         <property name="_APPDOMAIN" value="Unity Child Domain" />
         <property name="platform" value="EditMode" />
         <property name="EditorOnly" value="True" />
       </properties>
-      <test-suite type="TestSuite" id="1104" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="87" result="Passed" start-time="2026-10-18 14:56:52Z" end-time="2026-10-18 14:56:54Z" duration="2.299209" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <test-suite type="TestSuite" id="1105" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="88" result="Passed" start-time="2026-10-18 16:30:42Z" end-time="2026-10-18 16:30:45Z" duration="2.553750" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
         <properties />
-        <test-suite type="TestSuite" id="1105" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="87" result="Passed" start-time="2026-10-18 14:56:52Z" end-time="2026-10-18 14:56:54Z" duration="2.298485" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <test-suite type="TestSuite" id="1106" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="88" result="Passed" start-time="2026-10-18 16:30:42Z" end-time="2026-10-18 16:30:45Z" duration="2.552566" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
           <properties />
-          <test-suite type="TestSuite" id="1106" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="87" result="Passed" start-time="2026-10-18 14:56:52Z" end-time="2026-10-18 14:56:54Z" duration="2.297685" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestSuite" id="1107" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="88" result="Passed" start-time="2026-10-18 16:30:42Z" end-time="2026-10-18 16:30:45Z" duration="2.551343" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-suite type="TestFixture" id="1034" name="DesignerRevisionTests" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-18 14:56:52Z" end-time="2026-10-18 14:56:54Z" duration="2.294782" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-suite type="TestFixture" id="1035" name="DesignerRevisionTests" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-18 16:30:42Z" end-time="2026-10-18 16:30:45Z" duration="2.546942" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-case id="1042" name="AtmajaNoteIsInsideAndTheOrdinaryChairStaysEmpty" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.AtmajaNoteIsInsideAndTheOrdinaryChairStaysEmpty" methodname="AtmajaNoteIsInsideAndTheOrdinaryChairStaysEmpty" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="35066307" result="Passed" start-time="2026-10-18 14:56:52Z" end-time="2026-10-18 14:56:52Z" duration="0.638916" asserts="0">
+              <test-case id="1043" name="AtmajaNoteIsInsideAndTheOrdinaryChairStaysEmpty" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.AtmajaNoteIsInsideAndTheOrdinaryChairStaysEmpty" methodname="AtmajaNoteIsInsideAndTheOrdinaryChairStaysEmpty" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="883638527" result="Passed" start-time="2026-10-18 16:30:42Z" end-time="2026-10-18 16:30:43Z" duration="0.727839" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1043" name="BloodClueHasUnobstructedHeadHeightSightLineFromLounge" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.BloodClueHasUnobstructedHeadHeightSightLineFromLounge" methodname="BloodClueHasUnobstructedHeadHeightSightLineFromLounge" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="2137242548" result="Passed" start-time="2026-10-18 14:56:52Z" end-time="2026-10-18 14:56:53Z" duration="0.534083" asserts="0">
+              <test-case id="1044" name="BloodClueHasUnobstructedHeadHeightSightLineFromLounge" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.BloodClueHasUnobstructedHeadHeightSightLineFromLounge" methodname="BloodClueHasUnobstructedHeadHeightSightLineFromLounge" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="408258053" result="Passed" start-time="2026-10-18 16:30:43Z" end-time="2026-10-18 16:30:44Z" duration="0.554560" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1036" name="FailedPaymentSaveRollsBackEveryWalletAndReceiptChange" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.FailedPaymentSaveRollsBackEveryWalletAndReceiptChange" methodname="FailedPaymentSaveRollsBackEveryWalletAndReceiptChange" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="1813470761" result="Passed" start-time="2026-10-18 14:56:53Z" end-time="2026-10-18 14:56:53Z" duration="0.044054" asserts="0">
+              <test-case id="1037" name="FailedPaymentSaveRollsBackEveryWalletAndReceiptChange" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.FailedPaymentSaveRollsBackEveryWalletAndReceiptChange" methodname="FailedPaymentSaveRollsBackEveryWalletAndReceiptChange" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="1162179950" result="Passed" start-time="2026-10-18 16:30:44Z" end-time="2026-10-18 16:30:44Z" duration="0.041068" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
-                <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: The file '/tmp/LayarDesignerTest-7095de5e2fdc41819426fadebecc5395' already exists.
+                <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: The file '/tmp/LayarDesignerTest-2681c5538cb74d68b8d73c7c5c8182cd' already exists.
 ]]></output>
               </test-case>
-              <test-case id="1035" name="FamilyPaymentsRequireCallsPersistAndNeverDoubleCharge" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.FamilyPaymentsRequireCallsPersistAndNeverDoubleCharge" methodname="FamilyPaymentsRequireCallsPersistAndNeverDoubleCharge" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="429172310" result="Passed" start-time="2026-10-18 14:56:53Z" end-time="2026-10-18 14:56:53Z" duration="0.039744" asserts="0">
+              <test-case id="1036" name="FamilyPaymentsRequireCallsPersistAndNeverDoubleCharge" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.FamilyPaymentsRequireCallsPersistAndNeverDoubleCharge" methodname="FamilyPaymentsRequireCallsPersistAndNeverDoubleCharge" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="1766877649" result="Passed" start-time="2026-10-18 16:30:44Z" end-time="2026-10-18 16:30:44Z" duration="0.051995" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1040" name="FullscreenPreferenceNeverOverridesTestsOrExplicitLaunchDimensions" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.FullscreenPreferenceNeverOverridesTestsOrExplicitLaunchDimensions" methodname="FullscreenPreferenceNeverOverridesTestsOrExplicitLaunchDimensions" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="353088046" result="Passed" start-time="2026-10-18 14:56:53Z" end-time="2026-10-18 14:56:53Z" duration="0.029923" asserts="0">
+              <test-case id="1041" name="FullscreenPreferenceNeverOverridesTestsOrExplicitLaunchDimensions" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.FullscreenPreferenceNeverOverridesTestsOrExplicitLaunchDimensions" methodname="FullscreenPreferenceNeverOverridesTestsOrExplicitLaunchDimensions" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="1896045658" result="Passed" start-time="2026-10-18 16:30:44Z" end-time="2026-10-18 16:30:44Z" duration="0.033215" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1037" name="InsufficientFundsDoNotCreateFakePaymentReceipt" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.InsufficientFundsDoNotCreateFakePaymentReceipt" methodname="InsufficientFundsDoNotCreateFakePaymentReceipt" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="1679657944" result="Passed" start-time="2026-10-18 14:56:53Z" end-time="2026-10-18 14:56:53Z" duration="0.026819" asserts="0">
+              <test-case id="1038" name="InsufficientFundsDoNotCreateFakePaymentReceipt" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.InsufficientFundsDoNotCreateFakePaymentReceipt" methodname="InsufficientFundsDoNotCreateFakePaymentReceipt" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="1909181814" result="Passed" start-time="2026-10-18 16:30:44Z" end-time="2026-10-18 16:30:44Z" duration="0.039900" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1039" name="KosHasSeparateFacilitiesColouredWindowsAndPairedGate" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.KosHasSeparateFacilitiesColouredWindowsAndPairedGate" methodname="KosHasSeparateFacilitiesColouredWindowsAndPairedGate" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="1219066753" result="Passed" start-time="2026-10-18 14:56:53Z" end-time="2026-10-18 14:56:54Z" duration="0.446154" asserts="0">
+              <test-case id="1040" name="KosHasSeparateFacilitiesColouredWindowsAndPairedGate" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.KosHasSeparateFacilitiesColouredWindowsAndPairedGate" methodname="KosHasSeparateFacilitiesColouredWindowsAndPairedGate" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="1996394068" result="Passed" start-time="2026-10-18 16:30:44Z" end-time="2026-10-18 16:30:44Z" duration="0.463607" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1038" name="PhoneFocusDoesNotBlockDoorsButMenusStillDo" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.PhoneFocusDoesNotBlockDoorsButMenusStillDo" methodname="PhoneFocusDoesNotBlockDoorsButMenusStillDo" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="685305262" result="Passed" start-time="2026-10-18 14:56:54Z" end-time="2026-10-18 14:56:54Z" duration="0.032700" asserts="0">
+              <test-case id="1039" name="PhoneFocusDoesNotBlockDoorsButMenusStillDo" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.PhoneFocusDoesNotBlockDoorsButMenusStillDo" methodname="PhoneFocusDoesNotBlockDoorsButMenusStillDo" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="1007604498" result="Passed" start-time="2026-10-18 16:30:44Z" end-time="2026-10-18 16:30:44Z" duration="0.031058" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1041" name="ResidentialStreetAndKosMasonryRemainTraversable" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.ResidentialStreetAndKosMasonryRemainTraversable" methodname="ResidentialStreetAndKosMasonryRemainTraversable" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="692070685" result="Passed" start-time="2026-10-18 14:56:54Z" end-time="2026-10-18 14:56:54Z" duration="0.481262" asserts="0">
+              <test-case id="1042" name="ResidentialStreetAndKosMasonryRemainTraversable" fullname="LayarTerakhir.Editor.Tests.DesignerRevisionTests.ResidentialStreetAndKosMasonryRemainTraversable" methodname="ResidentialStreetAndKosMasonryRemainTraversable" classname="LayarTerakhir.Editor.Tests.DesignerRevisionTests" runstate="Runnable" seed="722386559" result="Passed" start-time="2026-10-18 16:30:44Z" end-time="2026-10-18 16:30:45Z" duration="0.575785" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />

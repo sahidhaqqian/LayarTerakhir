@@ -1,0 +1,32 @@
+{
+  "source": "https://polyhaven.com/a/asphalt_02",
+  "author": "Rob Tuytel",
+  "license": "CC0-1.0",
+  "maps": [
+    {
+      "map": "Diffuse",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_02/asphalt_02_diff_1k.jpg",
+      "md5": "fa19772d4817754c3efab708c651f5a8",
+      "bytes": 731707
+    },
+    {
+      "map": "nor_gl",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_02/asphalt_02_nor_gl_1k.jpg",
+      "md5": "338da8de636ea36133170578cac82e8e",
+      "bytes": 1240122
+    },
+    {
+      "map": "Rough",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_02/asphalt_02_rough_1k.jpg",
+      "md5": "ec80a2929797c1b3ffc121c4f665585a",
+      "bytes": 544032
+    },
+    {
+      "map": "AO",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_02/asphalt_02_ao_1k.jpg",
+      "md5": "db52e3eb4895bbf347246fe8d2d0ebe7",
+      "bytes": 533336
+    }
+  ],
+  "adaptation": "URP mask R=0 G=AO B=0 A=1-0.57*roughness; source JPG maps at 1K"
+}

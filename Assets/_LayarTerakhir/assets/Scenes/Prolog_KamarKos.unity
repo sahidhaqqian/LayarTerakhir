@@ -10575,7 +10575,7 @@ MonoBehaviour:
   priority: 10
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: d67a17ec42d619202a8b37991ce9ad7e, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 3f0b623feaca119239579b4a7fc855f4, type: 2}
 --- !u!1 &1097685704
 GameObject:
   m_ObjectHideFlags: 0
@@ -12069,10 +12069,10 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 1
+  m_Antialiasing: 2
   m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
+  m_StopNaN: 1
+  m_Dithering: 1
   m_ClearDepth: 1
   m_AllowXRRendering: 1
   m_AllowHDROutput: 1
@@ -22190,6 +22190,7 @@ MonoBehaviour:
   wallCalendarItem: {fileID: 1189619066}
   lockedDrawerItem: {fileID: 2031596014}
   jacketItem: {fileID: 1217799160}
+  motorKeyItem: {fileID: 0}
   kosDoorItem: {fileID: 1097685705}
   phoneBedRedLed: {fileID: 1331393560}
   environmentAudio: {fileID: 1850183699}
@@ -22230,6 +22231,7 @@ MonoBehaviour:
   modeARKey: 113
   modeUVKey: 114
   modeSelfieKey: 118
+  togglePerspectiveKey: 118
   modeThermoKey: 116
   modeEVPKey: 99
   openJournalKey: 106

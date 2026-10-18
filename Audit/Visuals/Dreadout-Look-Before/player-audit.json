@@ -1,0 +1,20 @@
+{
+    "utc": "2026-10-18T15:53:03.0300270Z",
+    "gpu": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "method": "Fixed player/camera poses, isolated save, frozen story; native framebuffer. No traversal/FPS claim.",
+    "actualStandalonePlayer": true,
+    "completed": true,
+    "width": 960,
+    "height": 540,
+    "screenshots": [
+        "01-kos-room.png",
+        "02-kos-corridor.png",
+        "03-melati-road.png",
+        "04-kos-exterior.png",
+        "05-warung-phone.png",
+        "06-atmaja-exterior.png",
+        "07-atmaja-phone.png",
+        "08-atmaja-upper.png"
+    ],
+    "errors": []
+}

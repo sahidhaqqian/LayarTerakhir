@@ -336,3 +336,16 @@ Revisi playtest 18 Oktober 2026: Bu Sri memakai adaptasi baru data grafis MakeHu
 ## Melati house variety — 18 October 2026
 
 Kenney, **City Kit (Suburban) 2.0**, CC0-1.0. Official source: https://kenney.nl/assets/city-kit-suburban . Download and archive hash: `Audit/melati-house-kit-source.json`; original archive license: `Audit/melati-house-kit-CC0.txt`. Twelve distinct house geometries a/b/d/f/h/k/m/p/i/l/n/q are used across 45 residential lots. Eight existing adapted models retained; four additional models downloaded from the official archive and adapted with meter UVs and material regions by `Tools/author_melati_houses.py`. Reuses the already credited plaster, tile, wood and concrete PBR maps. Raw archive/source GLBs remain under ignored `Builds/ArtSources/MelatiHouses`; only the four selected additional FBXs are imported. No implication of interior access for background homes.
+
+## DreadOut visual reference pass — 18 October 2026
+
+[Asphalt 02](https://polyhaven.com/a/asphalt_02), photographed by Rob Tuytel, is
+[CC0](https://polyhaven.com/license). The 1K diffuse and OpenGL normal are imported;
+the URP wet mask packs AO and adjusted inverse roughness. Checksum-verified sources
+and adaptations are recorded in `dreadout-look-asset-sources.json` and reproducible
+with `Tools/fetch_dreadout_look_assets.py`.
+
+Official DreadOut (2014) Steam screenshots were viewed as art-direction references
+only. The links and visual observations are in `dreadout-visual-reference.md`; no
+DreadOut artwork is included in the game or committed reference images. Cloud sky,
+lighting profiles and visible lamp diffusers are original Unity/shader authoring.

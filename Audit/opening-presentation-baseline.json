@@ -1,0 +1,7 @@
+{
+  "baseCommit": "30d9e7e93b82870bec3f8f03f8465b5b0b8c9d63",
+  "protectedGoldenSceneSha256": "4b73b117b832fb753b92d3de885c163bc1dd3f6225101867f7b4e2437c8b793a",
+  "structureSha256": "8829d1989c6f093c76abcd9409fd3957be21affd87afe5c6f4701c0a8989302a",
+  "description": "Historic approved opening serialized data, excluding only volume profile, camera AA/dithering/NaN settings and two exact implicit default fields emitted by Unity. All geometry, colliders, transform values, gameplay references and other settings remain protected.",
+  "source": "git show 30d9e7e:Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity"
+}

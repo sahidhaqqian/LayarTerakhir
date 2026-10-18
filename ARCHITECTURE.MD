@@ -4,6 +4,14 @@ Dokumen ini menjelaskan fondasi `Prolog_KamarKos` yang sudah approved serta kela
 
 Status 18 Oktober 2026: prolog sudah mencakup kos, Kampung Melati yang bisa dijelajahi jalan kaki, Atmaja lantai dasar/lantai dua/basement, pengejaran, penutup dan Continue. Restruktur direktori tidak mengubah implementasi game: kode first-party berada di `Assets/_LayarTerakhir/src/`, konten di `Assets/_LayarTerakhir/assets/`, dan `Assets/Resources/` tetap pada lokasi semula. Path `src/...` serta `assets/...` di dokumen ini relatif terhadap `Assets/_LayarTerakhir/`. Bukti migrasi dan validasi ada di `Audit/restructure-delivery.md`.
 
+Revisi grafis 18 Oktober 2026 mengubah profil Volume dan presentasi kamera kamar
+Golden sesuai permintaan baru. Layout serta data gameplay opening tetap sama;
+`AtmajaSceneValidation` membandingkan identitas struktur dengan commit historis
+`30d9e7e` melalui `Audit/opening-presentation-baseline.json`. Pemeriksaan penolakan
+mutasi transform, ukuran collider dan kecepatan gerak melindungi batas ini.
+Pernyataan byte-identical di catatan revisi 16 Oktober berikut adalah riwayat.
+
+
 Revisi playtest 16 Oktober 2026: scene/aset kamar Golden tetap byte-identical, tetapi runtime pembuka/keluar diperluas sesuai arahan pengguna. Lihat `Audit/playtest-fixes-2026-10-16.md` untuk batasan dan bukti terbaru. Bagian fondasi di bawah menjelaskan sistem asal; tambahan revisi berikut menggantikan alur keluar/HP lama.
 
 `GameShell` adalah satu UI persisten sebelum scene pertama: menu awal/jeda/pengaturan, pemuatan New Game/Continue, volume/sensitivitas/subtitle/reduksi glitch/remap. New Game mengarsipkan slot lama byte-for-byte sebelum membuat campaign baru. `UiFocus` memisahkan menu/jam (hard modal), browsing HP dan cutscene; TAB/F tetap dapat dipakai ketika browsing HP. `KamarKosPrologDirector` menunggu pilihan menu, memainkan bangun dari kasur, ketukan/langkah, surat dan panggilan Damar otomatis. Ratna tidak bersuara. Persiapan memakai gembok empat roda, kunci terpisah di meja, jaket terlihat dan powerbank di laci; pintu memuat koridor, bukan langsung Atmaja. `KosRoomCorrections` adalah pass runtime terarah yang tidak menyimpan ulang scene Golden. Gembok menyimpan HP; membaca dokumen mempertahankan posisi HP, layar, aplikasi dan siaran. Modal dokumen mengunci input dunia dan input aplikasi saja; `AtmajaPhoneView` mempertahankan feed dan menempatkan HP di sebelah panel bacaan.
@@ -398,3 +406,23 @@ Query dipakai sebelum menelusuri kode. Update wajib setelah perubahan kode terak
 | `Tools/package_windows_build.py` | Verifikasi & ZIP build Windows |
 | `Tools/upload_windows_build.py` | Upload R2 dan readback SHA-256 penuh |
 | `Tools/update_graphify.py` | Regenerasi graph kode lokal dan gate freshness |
+
+## Presentasi visual berdasarkan referensi DreadOut — 18 Oktober 2026
+
+`src/Editor/DreadoutVisualRevision.cs` adalah pass incremental untuk profil render,
+pencahayaan dan material ketiga scene. Jalankan `python3 Tools/run_golden_checks.py
+--stage graphics-look` setelah builder lingkungan yang meregenerasi scene; jangan
+menjalankan builder lingkungan lama hanya untuk mengubah grading. Pass ini memeriksa
+fingerprint collider sebelum/sesudah serta mengikat profil terpisah di
+`assets/Art/Review/Lighting/`. Pipeline `KosPipeline` memakai HDR 64 bit, grading HDR,
+Forward+, SMAA dan dithering pada kamera eksplorasi. `NightSky.shader` memakai awan
+noise kontinu. `SmartphoneController` tetap mengendalikan lampu dan pulse shutter;
+`ShoulderCameraRig` membatasi cahaya khusus avatar agar menyatu dengan lingkungan.
+
+`GraphicsReferenceAudit` (`-graphicsAudit`, `--stage graphics-player`) menangkap
+delapan pose kamera dari standalone dengan save terisolasi dan waktu dibekukan.
+Gunakan untuk perbandingan gambar, bukan pembuktian jalur atau FPS. Validasi statis
+tersedia lewat `--stage graphics-validate`; `review-player` dan `prolog-player` tetap
+memverifikasi perjalanan dan progres cerita. Acuan visual, kredit CC0 serta batas
+klaim ada di `Audit/dreadout-visual-reference.md`. Graphify tetap hanya mengindeks
+kode; tidak memindai gambar referensi, shader, aset, scene atau build.

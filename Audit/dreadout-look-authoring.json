@@ -1,0 +1,34 @@
+{
+    "utc": "2026-10-18T16:30:17.0257330Z",
+    "passed": true,
+    "scenes": [
+        {
+            "scene": "Prolog_KamarKos",
+            "collisionBefore": "b14b4ba308feab35879ae2e0134b8485cd1b50c21bfa1082d4c6bcb2f65e193f",
+            "collisionAfter": "b14b4ba308feab35879ae2e0134b8485cd1b50c21bfa1082d4c6bcb2f65e193f",
+            "profile": "Assets/_LayarTerakhir/assets/Art/Review/Lighting/KosReferenceLook.asset",
+            "lights": 8,
+            "cameras": 1,
+            "collisionUnchanged": true
+        },
+        {
+            "scene": "Prolog_KoridorKos",
+            "collisionBefore": "a383622dc74b0ff3170cce67f3943f4eaceba03d46acd5e399fe306bc5912418",
+            "collisionAfter": "a383622dc74b0ff3170cce67f3943f4eaceba03d46acd5e399fe306bc5912418",
+            "profile": "Assets/_LayarTerakhir/assets/Art/Review/Lighting/MelatiReferenceLook.asset",
+            "lights": 46,
+            "cameras": 1,
+            "collisionUnchanged": true
+        },
+        {
+            "scene": "Prolog_RumahAtmaja",
+            "collisionBefore": "7b1ec4a781f3a64efe7cb0e50629a275aa4f46a01d0cd3fafc1e6afc3e2f2438",
+            "collisionAfter": "7b1ec4a781f3a64efe7cb0e50629a275aa4f46a01d0cd3fafc1e6afc3e2f2438",
+            "profile": "Assets/_LayarTerakhir/assets/Art/Review/Lighting/AtmajaReferenceLook.asset",
+            "lights": 23,
+            "cameras": 2,
+            "collisionUnchanged": true
+        }
+    ],
+    "method": "Serialized authoring checks; visual quality requires native captures. Original collider geometry and bindings retained."
+}
