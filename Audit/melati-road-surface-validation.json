@@ -1,0 +1,347 @@
+{
+  "utc": "2026-10-18T09:55:18.228Z",
+  "scene": "Assets/_LayarTerakhir/Scenes/Prolog_KoridorKos.unity",
+  "method": "Unity prefab parser: serialized, unrotated road Transform and BoxCollider planes; dimensions match the procedural architectural mesh authoring. Visual verification is separate.",
+  "roads": 26,
+  "coplanarOverlappingRoadPairs": 0,
+  "rows": [
+    {
+      "name": "KampungMelati/MelatiRoadSection [1941729675]",
+      "center": [
+        0,
+        -0.085,
+        -17
+      ],
+      "size": [
+        7.2,
+        0.17,
+        2
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [1535920377]",
+      "center": [
+        0,
+        -0.085,
+        -20
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [1962510311]",
+      "center": [
+        0,
+        -0.085,
+        -24
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [629166870]",
+      "center": [
+        0,
+        -0.085,
+        -28
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [1200480937]",
+      "center": [
+        0,
+        -0.085,
+        -32
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [486955914]",
+      "center": [
+        0,
+        -0.085,
+        -36
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [1009623209]",
+      "center": [
+        0,
+        -0.085,
+        -40
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [1046185608]",
+      "center": [
+        0,
+        -0.085,
+        -44
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [789494776]",
+      "center": [
+        0,
+        -0.085,
+        -46.2
+      ],
+      "size": [
+        7.2,
+        0.17,
+        0.4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [1178400464]",
+      "center": [
+        0,
+        -0.085,
+        -53.8
+      ],
+      "size": [
+        7.2,
+        0.17,
+        0.4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [1864219951]",
+      "center": [
+        0,
+        -0.085,
+        -56
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [761762925]",
+      "center": [
+        0,
+        -0.085,
+        -60
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [233608945]",
+      "center": [
+        0,
+        -0.085,
+        -64
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [2147147346]",
+      "center": [
+        0,
+        -0.085,
+        -68
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [471585898]",
+      "center": [
+        0,
+        -0.085,
+        -72
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [2066440201]",
+      "center": [
+        0,
+        -0.085,
+        -76
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [750504943]",
+      "center": [
+        0,
+        -0.085,
+        -80
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [526355376]",
+      "center": [
+        0,
+        -0.085,
+        -84
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [1119136890]",
+      "center": [
+        0,
+        -0.085,
+        -88
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [235612568]",
+      "center": [
+        0,
+        -0.085,
+        -92
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [125211680]",
+      "center": [
+        0,
+        -0.085,
+        -96
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [675197189]",
+      "center": [
+        0,
+        -0.085,
+        -100
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "KampungMelati/MelatiRoadSection [575522756]",
+      "center": [
+        0,
+        -0.085,
+        -104
+      ],
+      "size": [
+        7.2,
+        0.17,
+        4
+      ]
+    },
+    {
+      "name": "MelatiCrossStreet",
+      "center": [
+        0,
+        -0.085,
+        -50
+      ],
+      "size": [
+        58,
+        0.17,
+        7.2
+      ]
+    },
+    {
+      "name": "MelatiRearLane",
+      "center": [
+        0,
+        -0.085,
+        28
+      ],
+      "size": [
+        62,
+        0.17,
+        6
+      ]
+    },
+    {
+      "name": "KosStreet",
+      "center": [
+        0,
+        -0.1,
+        -12
+      ],
+      "size": [
+        12,
+        0.2,
+        8
+      ]
+    }
+  ]
+}

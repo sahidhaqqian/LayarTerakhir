@@ -31,6 +31,7 @@ namespace LayarTerakhir.Prolog
         public bool IsGateRun => run == Run.GateRun;
         public bool Traversing { get; private set; }
         public bool IsPursuing => run == Run.Pursuit;
+        public bool FollowsPlayerInBasement => run == Run.Pursuit && !climbedOut;
         public bool CanCatchPlayer() => chaserFigure && director && director.player && basement
             && Vector3.Distance(chaserFigure.transform.position,director.player.transform.position)<.95f
             && basement.CanSeePlayer(2);
@@ -114,7 +115,7 @@ namespace LayarTerakhir.Prolog
         }
         private void ResumeChase()
         {
-            run = Run.Breaking; railDistance = -6; dangerGrace = 3; climbedOut = vaultedTable = false;
+            run = Run.Breaking; railDistance = -6; dangerGrace = 5; climbedOut = vaultedTable = false;
             director.SetStage(AtmajaStage.Chase); director.SetBusy(false);
             if (chaserFigure) { chaserFigure.SetActive(true); chaserFigure.transform.position = RailPoint(0); }
             Music(true); StartCoroutine(BreakBeat());
@@ -183,15 +184,27 @@ namespace LayarTerakhir.Prolog
             if (chaserFigure && rail.Length > 1 && !IsStunned)
             {
                 Vector3 before = chaserFigure.transform.position;
-                railDistance += 3.45f * dt;
-                // The hunter follows the authored 3D route, including stairs, rather than snapping to the player's floor.
-                chaserFigure.transform.position = RailPoint(Mathf.Max(0, railDistance));
+                if(FollowsPlayerInBasement)
+                    basement.PursueForChase(director.player.transform.position,3.45f,dt);
+                else
+                {
+                    // Above the cellar, follow the authored stairs behind Raka.
+                    float playerProgress=ClosestProgress(director.player.transform.position);
+                    railDistance=Mathf.MoveTowards(railDistance,Mathf.Max(0,playerProgress-.35f),3.45f*dt);
+                    chaserFigure.transform.position=RailPoint(Mathf.Max(0,railDistance));
+                }
                 Vector3 direction = chaserFigure.transform.position - before; direction.y = 0;
+                if(Vector3.Distance(chaserFigure.transform.position,director.player.transform.position)<2)
+                {direction=director.player.transform.position-chaserFigure.transform.position;direction.y=0;}
                 if (direction.sqrMagnitude > .00001f) chaserFigure.transform.rotation = Quaternion.Slerp(chaserFigure.transform.rotation, Quaternion.LookRotation(direction), dt * 6);
                 dragTimer -= dt; if (dragTimer <= 0) { dragTimer = .48f; if (!scrape) scrape = AtmajaSynth.Scrape(.3f); Sfx(scrape, chaserFigure.transform.position, .3f); }
                 // Adjacent stair flights/furniture must not cause a capture through
                 // solid geometry merely because their root positions are close.
-                if (dangerGrace <= 0 && CanCatchPlayer()) { Fail("Nyonya Atmaja menyusulmu. Terus bergerak menuju dapur."); return; }
+                if (dangerGrace <= 0 && CanCatchPlayer())
+                {
+                    Debug.Log($"ATMAJA_CHASE_CAPTURE player={director.player.transform.position} hunter={chaserFigure.transform.position} crouching={director.player.IsCrouching} basement={FollowsPlayerInBasement}");
+                    Fail("Nyonya Atmaja menyusulmu. Terus bergerak menuju dapur."); return;
+                }
             }
             if (run == Run.GateRun)
             {
@@ -268,7 +281,9 @@ namespace LayarTerakhir.Prolog
         public bool TryEmergencyBlitz()
         {
             if (run != Run.WindowStandoff || Phone.batteryPercent < Phone.blitzCostPercent) return false;
-            Phone.ConsumeBattery(Phone.blitzCostPercent); run = Run.Stunned; stunTimer = 4; stunEndsAt=Time.time+4; Time.timeScale = 1;
+            // The window action stays urgent; recovery also covers the mandatory
+            // crouch under the fallen branch at the player's authored pace.
+            Phone.ConsumeBattery(Phone.blitzCostPercent); run = Run.Stunned; stunTimer = 4; stunEndsAt=Time.time+10; Time.timeScale = 1;
             director.player.MovementLocked = false;
             var rig=director.player.GetComponent<ShoulderCameraRig>();if(rig)rig.FirstPersonOverride=false;
             StartCoroutine(finale.Flash());

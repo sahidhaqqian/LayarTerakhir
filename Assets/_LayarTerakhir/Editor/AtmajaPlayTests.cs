@@ -68,7 +68,20 @@ namespace LayarTerakhir.Editor.Tests
         [UnityTest] public IEnumerator LiveCommentsArriveIndividuallyAtTwoToThreeSecondIntervals()=>Run(StaggeredChat());
         [UnityTest] public IEnumerator WardrobeExitDoesNotReenterOnTheSameInteractPress()=>Run(WardrobeExitDebounce());
         [UnityTest] public IEnumerator ExpandedCellarHasRunnableConnectedCorridors()=>Run(ExpandedCellarNavigation());
-        [UnityTest] public IEnumerator NeighborhoodStopHasPhysicalShopAndPersistentPurchases()=>Run(NeighborhoodShop());
+        [UnityTest] public IEnumerator NeighborhoodIsWalkableBeforeTravelAndShopPurchasesPersist()=>Run(NeighborhoodShop());
+        [UnityTest] public IEnumerator HunterDoesNotAbandonStationaryRakaForTheWindow()=>Run(HunterTracksRaka());
+        private IEnumerator HunterTracksRaka()
+        {
+            yield return new WaitForSeconds(2);var d=SeedBasement();var c=CampaignState.Instance;
+            foreach(var id in new[]{"EVENT_P0_BASEMENT_ENTERED","EVENT_P0_CHASE_STARTED","EVENT_P0_HANDYCAM_PLAYED","EVENT_P0_POWERBANK_TAKEN",AtmajaBasementHorror.HandycamId})c.AddInventoryItem(id);
+            Assert.That(c.SaveCheckpointAtomic(AtmajaChaseSequence.ChaseCheckpoint),Is.True);d.RestoreWorld();
+            d.PlacePlayer(d.P(1.4f,5.45f,-2.79f),Quaternion.identity);
+            // Occlude sight, so this checks pursuit routing rather than death UI.
+            var wall=GameObject.CreatePrimitive(PrimitiveType.Cube);wall.transform.SetPositionAndRotation(d.P(1.4f,5.45f,-1.6f),Quaternion.LookRotation(d.north));wall.transform.localScale=new Vector3(2.5f,2.4f,2.5f);Physics.SyncTransforms();
+            yield return new WaitForSeconds(12);
+            Assert.That(d.chase.FollowsPlayerInBasement,Is.True,"The hunter keeps pursuing the sheltered basement player");
+            Assert.That(d.chase.chaserFigure.transform.position.y,Is.LessThan(-2),"The basement hunter must remain on the basement floor with Raka");Object.DestroyImmediate(wall);
+        }
         [UnityTest] public IEnumerator OpeningTheWellPullsRakaDownAndWaitsAtTheMainMenu()=>Run(WellDeath());
         private IEnumerator DocumentArchive()
         {
@@ -130,8 +143,10 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(c.SaveCheckpointAtomic("PROLOG_KOS_YARD"),Is.True);yield return SceneManager.LoadSceneAsync(PrologSceneFlow.CorridorScene);yield return new WaitForSeconds(2);
             var corridor=Find<KosCorridorDirector>();var street=Find<MelatiNeighborhood>();var p=corridor.player;
             var cc=p.GetComponent<CharacterController>();cc.enabled=false;p.transform.position=corridor.motor.position+corridor.motor.right*.9f;p.transform.position=new Vector3(p.transform.position.x,.08f,p.transform.position.z);cc.enabled=true;
-            Assert.That(corridor.CanDepart,Is.True);corridor.RequestDeparture();yield return new WaitUntil(()=>street.Reached&&!corridor.Busy);
-            Assert.That(SceneManager.GetActiveScene().name,Is.EqualTo(PrologSceneFlow.CorridorScene),"The first ride must stop in the explorable neighborhood");
+            Assert.That(corridor.CanDepart,Is.True);
+            foreach(var point in new[]{new Vector3(0,.04f,-5),new Vector3(0,.04f,-12)})yield return WalkCapsule(p,point);
+            yield return null;Assert.That(street.Reached,Is.True);
+            Assert.That(SceneManager.GetActiveScene().name,Is.EqualTo(PrologSceneFlow.CorridorScene),"The neighborhood is reached on foot without starting a ride");
             foreach(var point in new[]{new Vector3(1.15f,.04f,-24),new Vector3(4.9f,.04f,-24)})yield return WalkCapsule(p,point);
             var shop=Find<MelatiShop>();var eye=p.GetComponent<InteractionInteractor>().playerCamera;p.GetComponent<ShoulderCameraRig>().RefreshCameraPose();eye.transform.LookAt(shop.GetComponent<Collider>().bounds.center);yield return null;yield return null;
             Assert.That(p.GetComponent<InteractionInteractor>().CurrentTarget,Is.SameAs(shop));yield return Press(Key.E);Assert.That(shop.IsOpen,Is.True);
@@ -249,8 +264,8 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(SmartphoneController.Instance.batteryPercent,Is.InRange(79.5f,80));
             Assert.That(d.GetComponents<AudioSource>().Any(a=>a.clip&&a.clip.name=="AtmajaSynth_ChaseLoop"&&a.isPlaying),Is.True,"Explicit Continue restarts chase music");
             Assert.That(Vector3.Distance(d.player.transform.position,d.chase.spawnChase.position),Is.LessThan(.3f));
-            // A successful retry must retain the four-second stun through the
-            // window traverse instead of immediately restarting the outdoor hunter.
+            // Recovery covers the window traverse and the mandatory crouch under
+            // the branch, while the window action itself still has four seconds.
             yield return new WaitForSeconds(1.8f);d.PlacePlayer(d.chase.cellarExitApproach.position,Quaternion.identity);
             InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftShift));yield return null;yield return new WaitForSeconds(2.6f);
             InputSystem.QueueStateEvent(keyboard,new KeyboardState());d.PlacePlayer(d.chase.diningVaultStart.position,Quaternion.identity);
@@ -259,7 +274,8 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(d.chase.IsGateRun&&d.chase.IsStunned,Is.True,"Leaving the window must not cancel the remaining Blitz stun");
             var stopped=d.chase.chaserFigure.transform.position;yield return new WaitForSeconds(.6f);
             Assert.That(d.chase.chaserFigure.transform.position,Is.EqualTo(stopped),"The outdoor hunter must stay still until recovery");
-            yield return new WaitForSeconds(2.3f);Assert.That(d.chase.IsStunned,Is.False,"Recovery must finish four game seconds after firing");
+            yield return new WaitForSeconds(2.3f);Assert.That(d.chase.IsStunned,Is.True,"Recovery must cover the mandatory branch crawl");
+            yield return new WaitForSeconds(6);Assert.That(d.chase.IsStunned,Is.False,"Recovery must finish ten game seconds after firing");
         }
         private AtmajaDirector SeedBasement()
         {

@@ -112,6 +112,9 @@ namespace LayarTerakhir.Diagnostics
             Aim(d.P(-2.05f,5.365f,5.35f));yield return Shot("01b-scratched-family-photograph");
             yield return Walk(d.P(-3.0f,5.75f,3.83f)); RaiseAR(); yield return Crouch(true); Aim(d.upper.ventMouth.position); yield return Shot("02-ar-broken-vent");
             yield return Walk(d.P(-3.0f,4.45f,3.83f)); yield return Crouch(false);
+            Aim(d.P(-3.65f,2.6f,4.4f));yield return Shot("02a-child-bedroom-layout");
+            var mattress=GameObject.Find("ChildMattress").GetComponent<Renderer>().bounds;
+            Check(mattress.size.y<.20f&&mattress.min.y>4.3f&&mattress.max.y<4.7f,"Bima's mattress lies horizontally on the bed frame");
             foreach (var p in new[] { d.P(-4.8f,4.45f,3.83f),d.P(-5.1f,3.6f,3.83f),d.P(-4.65f,2.0f,3.83f),d.P(-4.65f,1.65f,3.83f) }) yield return Walk(p);
             yield return Use(Item(AtmajaAction.Diary));
             Check(Phone.isPhoneRaised&&Phone.isScreenOn&&d.phoneView.Panel.activeSelf&&d.phoneView.FeedCamera.enabled,"Reading Bima's diary keeps the held handset and live camera feed visible");
@@ -159,6 +162,8 @@ namespace LayarTerakhir.Diagnostics
             Escape:
             yield return Wait(()=>d.chase.IsPursuing,30,"Recording ends in an atomic chase checkpoint");
             Check(Campaign.Data.checkpoint_id==AtmajaChaseSequence.ChaseCheckpoint,"Escape can be retried without replaying the full prolog");
+            Check(d.chase.FollowsPlayerInBasement,"After the handycam, the hunter navigates toward Raka in the basement");
+            Check(Mathf.Abs(d.chase.chaserFigure.transform.position.y-player.transform.position.y)<.5f,"Handycam pursuit begins on the player's basement floor");
             yield return Walk(d.P(1.4f,4.3f,-2.79f));
             // The handycam is reached crouched. Release Ctrl in the clear aisle
             // before sprinting; keeping the disabled controller's crouch latch
@@ -210,10 +215,12 @@ namespace LayarTerakhir.Diagnostics
         }
         private IEnumerator Walk(Vector3 target)
         {
+            if(d.chase.IsPursuing)Debug.Log($"PROLOG_CHASE_WALK from={player.transform.position} target={target} crouch={player.IsCrouching} time={Time.time} speed={player.crouchSpeed}/{player.sprintSpeed}");
             var cc=player.GetComponent<CharacterController>();player.enabled=false;int stalled=0;aimed=false;int restores=d.CheckpointRestores;
             for(int frame=0;frame<700;frame++)
             {
                 if(d.Stage==AtmajaStage.EndingVista&&UiFocus.Cinematic){Check(true,"Gate approach hands control to the street ending");yield break;}
+                if(d.chase.AwaitingBlitz){Check(true,"The window standoff locks movement and hands control to the emergency Blitz");yield break;}
                 if(d.CheckpointRestores!=restores)Check(false,"Checkpoint reset while walking toward "+target);
                 var delta=target-player.transform.position;delta.y=0;if(delta.magnitude<.12f)break;
                 Vector3 before=player.transform.position;

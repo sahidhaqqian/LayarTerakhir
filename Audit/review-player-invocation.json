@@ -14,15 +14,15 @@
     "-screen-height",
     "360",
     "-reviewAudit",
-    "/root/Projects/LayarTerakhir-main/Audit/Visuals/Opening-Review-Final",
+    "/root/Projects/LayarTerakhir-main/Audit/Visuals/Playtest-Repair-Opening",
     "-logFile",
     "/root/Projects/LayarTerakhir-main/Audit/review-player.log"
   ],
-  "startedUtc": "2026-10-18T07:56:58.376943+00:00",
+  "startedUtc": "2026-10-18T10:01:53.461125+00:00",
   "audioBackend": "Private clocked PulseAudio null sink; real listener tap, no physical audio hardware",
   "status": "Finished",
-  "endedUtc": "2026-10-18T08:07:10.607684+00:00",
+  "endedUtc": "2026-10-18T10:13:19.038198+00:00",
   "exitCode": 0,
-  "screenCapturesVerified": 54,
+  "screenCapturesVerified": 57,
   "completedSmokeReceiptVerified": true
 }

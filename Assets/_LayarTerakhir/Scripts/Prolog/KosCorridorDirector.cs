@@ -15,7 +15,7 @@ namespace LayarTerakhir.Prolog
         public HingedDoor entranceDoor;
         public bool Busy {get;private set;}
         private bool savedGround;
-        public bool CanDepart=>!(CampaignState.Instance&&CampaignState.Instance.HasInventoryItem("EVENT_P0_NEIGHBORHOOD_REACHED"))&&!Busy&&player&&player.transform.position.y<.8f&&
+        public bool CanDepart=>!Busy&&player&&player.transform.position.y<.8f&&
             (Vector3.Distance(player.transform.position,motor.position)<3.2f||Vector3.Distance(player.transform.position,new Vector3(0,0,-7))<3.2f)&&
             CampaignState.Instance.HasInventoryItem("KUNCI_MOTOR")&&CampaignState.Instance.HasInventoryItem("JAKET_RAKA");
         private IEnumerator Start()
@@ -25,6 +25,7 @@ namespace LayarTerakhir.Prolog
             {c.StartNewGame();foreach(var id in new[]{"SMARTPHONE_RAKA","KUNCI_MOTOR","JAKET_RAKA","POWERBANK_KECIL_KOS"})c.AddInventoryItem(id);c.Data.wallet_bound=5000000;}
             var phone=SmartphoneController.Instance;phone.hasSmartphoneInInventory=true;phone.batteryPercent=c.Data.battery;phone.isPhoneRaised=false;phone.isScreenOn=phone.batteryPercent>0;phone.SyncVisualState();
             savedGround=c.Data.checkpoint_id=="PROLOG_KOS_YARD"||c.Data.checkpoint_id=="PROLOG_TRAVEL_ATMAJA"||c.Data.checkpoint_id==MelatiNeighborhood.Checkpoint;
+            gateHinge.GetComponent<DoubleLeafGate>()?.SetImmediate(true);
             var spawn=savedGround?spawnGround:spawnLanding;var cc=player.GetComponent<CharacterController>();cc.enabled=false;player.transform.SetPositionAndRotation(spawn.position,spawn.rotation);cc.enabled=true;
             if(c.Data.checkpoint_id!=MelatiNeighborhood.Checkpoint)c.SaveCheckpointAtomic(savedGround?"PROLOG_KOS_YARD":"PROLOG_KOS_CORRIDOR");
             HudController.Instance.SetFadeAlpha(1);yield return HudController.Instance.FadeBlack(1,0,.45f);
@@ -53,7 +54,7 @@ namespace LayarTerakhir.Prolog
             var view=FindFirstObjectByType<AtmajaPhoneView>();if(view&&view.Apps)view.Apps.OpenTravelMap();
         }
         public void RequestDeparture()
-        {var street=FindFirstObjectByType<MelatiNeighborhood>();if(street&&street.CanRide){street.RequestRide();return;}if(!CanDepart)return;StartCoroutine(RideToAtmaja());}
+        {if(!CanDepart)return;StartCoroutine(RideToAtmaja());}
         private IEnumerator RideToAtmaja()
         {
             Busy=true;UiFocus.Cinematic=true;var phone=SmartphoneController.Instance;phone.isPhoneRaised=false;phone.SyncVisualState();UiFocus.Phone=false;
@@ -81,9 +82,9 @@ namespace LayarTerakhir.Prolog
                 camera.position=motor.TransformPoint(new Vector3(-1.1f,1.7f,-2.35f));camera.LookAt(motor.position+Vector3.up*.8f);
                 if(engine)engine.pitch=Mathf.Lerp(.8f,1.35f,t);yield return null;
             }
-            var neighborhood=FindFirstObjectByType<MelatiNeighborhood>();
-            if(neighborhood){yield return neighborhood.Arrive();Busy=false;}
-            else{CampaignState.Instance.SaveCheckpointAtomic("PROLOG_TRAVEL_ATMAJA");yield return HudController.Instance.FadeBlack(0,1,1.1f);yield return PrologSceneFlow.LoadAtmaja();}
+            CampaignState.Instance.SaveCheckpointAtomic("PROLOG_TRAVEL_ATMAJA");
+            yield return HudController.Instance.FadeBlack(0,1,1.1f);
+            yield return PrologSceneFlow.LoadAtmaja();
         }
         private static void AddRiderArms(Transform camera)
         {

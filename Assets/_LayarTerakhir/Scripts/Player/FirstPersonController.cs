@@ -47,6 +47,10 @@ namespace LayarTerakhir.Player
 
         private void Awake()
         {
+            // Match human stride lengths in the authored third-person clips.
+            walkSpeed=Mathf.Min(walkSpeed,1.7f);
+            sprintSpeed=Mathf.Min(sprintSpeed,4.2f);
+            crouchSpeed=Mathf.Min(crouchSpeed,.8f);
             _controller = GetComponent<CharacterController>();
             _standingStepOffset = _controller.stepOffset;
             _controller.height = standingHeight;

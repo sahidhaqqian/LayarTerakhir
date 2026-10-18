@@ -67,7 +67,7 @@ namespace LayarTerakhir.Diagnostics
             var view=eye.WorldToViewportPoint(head.position);Check(view.z>eye.nearClipPlane&&view.x>0&&view.x<1&&view.y>0&&view.y<1,"Rider head is inside the actual shot");
             var toHead=head.position-eye.transform.position;
             Check(Physics.RaycastAll(eye.transform.position,toHead.normalized,toHead.magnitude,~(1<<ShoulderCameraRig.AvatarLayer),QueryTriggerInteraction.Ignore).All(h=>h.transform.IsChildOf(d.motor)||h.transform.IsChildOf(p.transform)),"Porch columns and walls do not obstruct the mounted rider shot");
-            Check(rig.Avatar.GetComponentsInChildren<Renderer>().Where(r=>r.name!="RakaTShirt").All(r=>r.enabled&&r.shadowCastingMode==UnityEngine.Rendering.ShadowCastingMode.On),"Rider renderers are visible during the cinematic");
+            Check(rig.Avatar.GetComponentsInChildren<Renderer>().Where(r=>!r.name.StartsWith("RakaTShirt")).All(r=>r.enabled&&r.shadowCastingMode==UnityEngine.Rendering.ShadowCastingMode.On),"Rider renderers are visible during the cinematic");
             var bones=rig.Avatar.GetComponentsInChildren<Transform>(true);
             var hips=bones.First(t=>t.name=="Hips");var seat=d.motor.GetComponentsInChildren<Renderer>().First(r=>r.name.Contains("SeatVinyl"));
             Check(Mathf.Abs(hips.position.y-seat.bounds.max.y-.075f)<.04f,"The pelvis sits on the actual closed saddle");
@@ -82,11 +82,8 @@ namespace LayarTerakhir.Diagnostics
             yield return Shot("01-mounted-rider");
             yield return Wait(()=>d&&d.motor.position.z<-7.5f,30,"The rider and motorcycle pass through the kos gate");if(done)yield break;
             yield return Shot("02-rider-through-gate");
-            var street=FindFirstObjectByType<MelatiNeighborhood>();
-            yield return Wait(()=>street&&street.Reached&&!d.Busy,120,"The first ride stops for free exploration in Melati");if(done)yield break;
-            Check(CampaignState.Instance.Data.checkpoint_id==MelatiNeighborhood.Checkpoint,"The neighborhood stop has its own saved checkpoint");
-            yield return Shot("03-neighborhood-stop");
-            Check(street.CanRide,"Raka can remount after exploring and shopping");d.RequestDeparture();
+            Check(d.Busy,"The same departure continues directly to Atmaja without dismounting in Melati");
+            yield return Shot("03-continuous-road-departure");
             yield return Wait(()=>SceneManager.GetActiveScene().name==PrologSceneFlow.AtmajaScene,120,"Travel arrives in Atmaja");if(done)yield break;
             yield return new WaitForSeconds(1.7f);
             var arrival=FindFirstObjectByType<FirstPersonController>().GetComponent<ShoulderCameraRig>();

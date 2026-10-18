@@ -11,23 +11,37 @@ namespace LayarTerakhir.Prolog
     {
         private GameObject menu;private Text balance,feedback;private bool raised;
         public bool IsOpen=>menu;
-        public string InteractableId=>"WARUNG_BU_SARI";
+        public Transform shopkeeper;
+        public string InteractableId=>"WARUNG_BU_SRI";
         public bool CanInteract()=>!UiFocus.BlocksWorld&&!IsOpen;
-        public string GetInteractionPrompt()=>"Belanja di Warung Bu Sari";
+        public string GetInteractionPrompt()=>"Bicara dengan Bu Sri / belanja";
         public void Interact()
         {
             if(!CanInteract())return;
             raised=SmartphoneController.Instance.isPhoneRaised;SmartphoneController.Instance.isPhoneRaised=false;SmartphoneController.Instance.SyncVisualState();
             UiFocus.Clock=true;
-            var hud=HudController.Instance;menu=PhoneSkin.Card("WarungBuSari",hud.GetComponentInChildren<Canvas>().transform,new Vector2(.16f,.15f),new Vector2(.77f,.85f),PhoneSkin.Ink);
-            UiWidgets.Text("ShopTitle",menu.transform,"WARUNG BU SARI",new Vector2(.06f,.83f),new Vector2(.94f,.96f),42);
+            var hud=HudController.Instance;menu=PhoneSkin.Card("WarungBuSri",hud.GetComponentInChildren<Canvas>().transform,new Vector2(.16f,.15f),new Vector2(.77f,.85f),PhoneSkin.Ink);
+            UiWidgets.Text("ShopTitle",menu.transform,"WARUNG BU SRI",new Vector2(.06f,.83f),new Vector2(.94f,.96f),42);
             balance=UiWidgets.Text("ShopBalance",menu.transform,"",new Vector2(.06f,.72f),new Vector2(.94f,.82f),26);
+            PhoneSkin.Button("ShopAskAtmaja",menu.transform,"TANYAKAN RUMAH ATMAJA",new Vector2(.06f,.645f),new Vector2(.94f,.715f),AskAtmaja);
             string[] names={"Powerbank kecil  •  Rp45.000","Air mineral  •  Rp6.000","Mi instan siap makan  •  Rp12.000"};
             string[] ids={"POWERBANK_KECIL_KOS","AIR_MINERAL","BEKAL_MI"};long[] prices={45000,6000,12000};
             for(int i=0;i<names.Length;i++){int index=i;float y=.54f-i*.14f;PhoneSkin.Button("ShopBuy_"+ids[i],menu.transform,names[i],new Vector2(.06f,y),new Vector2(.94f,y+.105f),()=>Buy(ids[index],prices[index]));}
             feedback=UiWidgets.Text("ShopFeedback",menu.transform,"Malam, Mas. Mau bekal apa?",new Vector2(.06f,.13f),new Vector2(.94f,.25f),23);
             PhoneSkin.Button("ShopClose",menu.transform,"SELESAI BELANJA",new Vector2(.06f,.025f),new Vector2(.94f,.115f),Close);
             UpdateBalance();Cursor.lockState=CursorLockMode.None;Cursor.visible=true;
+            hud.EnqueueSubtitle("Bu Sri","Malam, Mas Raka. Hujan begini masih mau keluar?",4);
+        }
+        public void AskAtmaja()
+        {
+            if(!IsOpen)return;
+            var hud=HudController.Instance;
+            hud.EnqueueSubtitle("Raka","Bu, teman saya belum pulang dari rumah Atmaja. Ibu lihat dia lewat?",5);
+            hud.EnqueueSubtitle("Bu Sri","Yang bawa kamera? Sore tadi lewat sini. Saya sudah bilang, rumah itu lama kosong.",6);
+            hud.EnqueueSubtitle("Bu Sri","Lurus sampai ujung jalan, lalu belok kanan. Kalau dengar orang manggil dari dalam, jangan jawab sembarangan, Mas.",7);
+            feedback.text="Bu Sri: Lurus, lalu kanan di ujung jalan. Temanmu tadi membawa kamera.";
+            CampaignState.Instance.AddInventoryItem("EVENT_P0_BU_SRI_ATMAJA_WARNING");
+            CampaignState.Instance.SaveCheckpointAtomic(CampaignState.Instance.Data.checkpoint_id);
         }
         public bool Buy(string id,long price)
         {

@@ -1,0 +1,19 @@
+{
+  "stage": "playtest-repair",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-main",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.PlaytestRepairBuilder.Apply",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Audit/golden-playtest-repair.log"
+  ],
+  "startedUtc": "2026-10-18T09:21:30.041013+00:00",
+  "status": "Finished",
+  "endedUtc": "2026-10-18T09:22:00.042841+00:00",
+  "exitCode": 0
+}

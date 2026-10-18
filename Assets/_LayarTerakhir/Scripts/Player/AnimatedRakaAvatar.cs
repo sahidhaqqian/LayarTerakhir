@@ -15,7 +15,7 @@ namespace LayarTerakhir.Player
         {
             var renderers=GetComponentsInChildren<Renderer>(true);
             jacket=System.Array.FindAll(renderers,r=>r.name=="RakaJacketOutfit");
-            shirt=System.Array.FindAll(renderers,r=>r.name=="RakaTShirt");
+            shirt=System.Array.FindAll(renderers,r=>r.name.StartsWith("RakaTShirt"));
         }
 
         public void Present(float speed, bool crouching, bool phone, bool riding)
@@ -27,7 +27,7 @@ namespace LayarTerakhir.Player
             string clip = Installing ? "InstallCard" : riding ? "Riding" : crouching ? (moving ? "CrouchWalk" : "Crouch") : moving ? (speed > 3.25f ? "Run" : "Walk") : "Idle";
             if (phone && !riding && !Installing) clip = "Phone" + clip;
             var state = motion[clip]; if (!state) return;
-            state.speed = !moving || riding || Installing ? 1 : Mathf.Clamp(speed / (crouching ? .73f : clip.EndsWith("Run") ? 3.8f : 1.4f), .65f, 2.2f);
+            state.speed = !moving || riding || Installing ? 1 : Mathf.Clamp(speed / (crouching ? 1.01f : clip.EndsWith("Run") ? 3.81f : 1.42f), .65f, 3.5f);
             if (clip == current && motion.IsPlaying(clip)) return;
             state.wrapMode = Installing ? WrapMode.ClampForever : WrapMode.Loop;
             motion.CrossFade(clip, .16f); current = clip;

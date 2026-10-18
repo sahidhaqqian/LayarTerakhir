@@ -29,9 +29,9 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
    Pembayaran memakai konfirmasi, tersimpan, dan tidak bisa ditagih dua kali.
    Ini percakapan game lokal, bukan panggilan ke nomor dunia nyata.
    Tujuan lain masih terkunci. Berangkat ke Atmaja **hanya dekat motor/gerbang**, bukan dari kamar.
-   Setelah pilih tujuan, lihat animasi mendekat/naik motor, tangan di setang, gerbang membuka,
+   Setelah pilih tujuan, lihat animasi mendekat/naik motor, tangan di setang, gerbang kos tetap terbuka,
    lampu depan menyorot jalan dari lensa motor, dan motor melaju melewati gerbang sebelum
-   berhenti di Kampung Melati. Jelajahi kompleks, warung dan persimpangan dalam hujan. Belanja memerlukan saldo yang cukup; membayar dua tagihan dahulu bisa menghabiskan dana. Barang yang dibeli masuk Tas dan tersimpan. Kembali ke motor atau ikuti jalan di ujung kompleks untuk melanjutkan ke Atmaja. Kamera eksplorasi dimulai dengan over-the-shoulder; tekan **V** untuk
+   langsung menuju rumah Atmaja. Sebelum naik motor, perumahan Kampung Melati dapat dijelajahi dengan jalan kaki dari gerbang kos yang terbuka. Temui Bu Sri di balik konter warung untuk berdialog tentang Damar atau membeli bekal. Belanja memerlukan saldo yang cukup; membayar dua tagihan dahulu bisa menghabiskan dana. Barang yang dibeli masuk Tas dan tersimpan. Kembali ke motor kos untuk berangkat langsung ke Atmaja, atau ikuti penunjuk jalan di ujung kompleks. Kamera eksplorasi dimulai dengan over-the-shoulder; tekan **V** untuk
    berpindah ke first-person dan kembali, atau pilih di Settings. Raka memakai model
    berkerangka dengan pose jalan/lari/jongkok/HP/motor. Coba E pintu dalam kedua pandangan
    sambil aplikasi HP terbuka. Pilihan kamera tersimpan antar-scene dan antar-launch.

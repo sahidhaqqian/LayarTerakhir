@@ -1,0 +1,19 @@
+{
+  "stage": "melati-repair",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-main",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.MelatiNeighborhoodBuilder.Apply",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Audit/golden-melati-repair.log"
+  ],
+  "startedUtc": "2026-10-18T09:53:33.988642+00:00",
+  "status": "Finished",
+  "endedUtc": "2026-10-18T09:54:04.507695+00:00",
+  "exitCode": 0
+}

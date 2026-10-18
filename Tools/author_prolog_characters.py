@@ -248,11 +248,11 @@ def set_pose(rig,defs,kind,phase,female):
     installing=kind=='InstallCard'
     crouch='Crouch' in kind or installing;walk='Walk' in kind;run='Run' in kind;phone='Phone' in kind or installing;riding=kind=='Riding';seated=kind=='Seated'
     gait=phase*math.tau
-    sink=.61 if crouch else .40 if riding or seated else 0
+    sink=.48 if crouch else .40 if riding or seated else .09 if run else .03 if walk else 0
     bob=(math.cos(gait*2)*(.012 if run else .006) if walk or run else math.sin(gait)*.002)
     hips_offset=Vector((0,0,-sink+bob))
     hips=rig.pose.bones['Hips'];hips.location=hips.bone.matrix_local.to_3x3().inverted()@hips_offset
-    lean=math.radians(38 if crouch else 16 if run else 17 if riding else -9 if kind=='Stun' else 3 if female else 1)
+    lean=math.radians(29 if crouch else 16 if run else 17 if riding else -9 if kind=='Stun' else 3 if female else 1)
     rig.pose.bones['Spine'].rotation_mode='XYZ';rig.pose.bones['Spine'].rotation_euler.x=lean*.5
     rig.pose.bones['Chest'].rotation_mode='XYZ';rig.pose.bones['Chest'].rotation_euler.x=lean*.5
     if not female and (walk or run):
@@ -277,6 +277,7 @@ def set_pose(rig,defs,kind,phase,female):
         bpy.context.view_layer.update();a=rig.pose.bones[upper].head.copy()
         l1=rig.data.bones[upper].length;l2=rig.data.bones[lower].length
         direction=target-a;distance=min(max(direction.length,.01),l1+l2-.001);axis=direction.normalized()
+        target=a+axis*distance
         projection=min(l1,max(-l1,(distance*distance+l1*l1-l2*l2)/(2*distance)))
         perpendicular=pole-a-axis*(pole-a).dot(axis)
         if perpendicular.length<.001:perpendicular=axis.cross(Vector((1,0,0)))
@@ -302,23 +303,23 @@ def set_pose(rig,defs,kind,phase,female):
         angle=gait+(0 if side=='L' else math.pi)
         foot=defs['Foot_'+side][0].copy()
         if walk or run:
-            amplitude=.18 if crouch else .57 if run else .35
+            amplitude=.25 if crouch else .57 if run else .35
             cycle=(phase+(0 if side=='L' else .5))%1
             stance=.58 if not run else .46
             if cycle<stance:
-                foot.y+=amplitude*(1-2*cycle/stance)
+                foot.y+=amplitude*(-1+2*cycle/stance)
             else:
                 swing=(cycle-stance)/(1-stance)
-                foot.y+=amplitude*(-1+2*(swing*swing*(3-2*swing)))
+                foot.y+=amplitude*(1-2*(swing*swing*(3-2*swing)))
                 foot.z+=math.sin(swing*math.pi)*(.14 if run else .045 if crouch else .085)
-        if crouch:foot.x=sign*.15;foot.y-=.06
+        if crouch:foot.x=sign*.13;foot.y-=.14
         if riding or seated:foot=Vector((sign*.23,-.20,.27 if riding else .08))
         limb('Thigh_'+side,'Shin_'+side,'Foot_'+side,foot,Vector((sign*.18,-1.2,.65-sink*.2)))
         bpy.context.view_layer.update();shoulder=rig.pose.bones['UpperArm_'+side].head.copy()
         hand=Vector((shoulder.x+sign*.045,shoulder.y-.035,.83-sink))
-        if walk or run:hand.y+=math.cos(angle)*(.22 if run else .11);hand.z+=.04
+        if walk or run:hand.y+=math.sin(angle)*(.22 if run else .13);hand.z+=.04
         if phone and side=='R':hand=Vector((-.19,-.34,1.31-sink*.85))
-        if crouch and side=='L':hand=Vector((.29,-.28,.64))
+        if crouch and side=='L':hand=Vector((.22,-.34,.63))
         if installing and side=='L':
             reach=math.sin(min(1,phase*2.8)*math.pi*.5)
             hand=Vector((.29,-.28,.64)).lerp(Vector((-.045,-.40,.88)),reach)
@@ -326,7 +327,7 @@ def set_pose(rig,defs,kind,phase,female):
         if seated:hand=Vector((sign*.18,-.27,.75))
         if female and kind=='Windup':hand=Vector((-.22,-.38,1.69)) if side=='R' else Vector((.32,-.34,1.17))
         if female and kind=='Stun':hand=Vector((.19,-.13,1.48)) if side=='L' else Vector((-.29,-.06,.89))
-        limb('UpperArm_'+side,'Forearm_'+side,'Hand_'+side,hand,Vector((sign*.60,-.01,1.05-sink*.5)))
+        limb('UpperArm_'+side,'Forearm_'+side,'Hand_'+side,hand,Vector((sign*.36,-.16,.94-sink*.35)))
         grip=(phone and side=='R') or (female and side=='R') or riding
         longitudinal,palm,sideways=hand_frame(defs,side)
         for finger in range(1,6):
@@ -388,7 +389,7 @@ def make_character(female):
         if group!='body':continue
         center=sum((vertices[i] for i,_ in face),Vector())/len(face)
         influences={n:sum(weights[i].get(n,0) for i,_ in face)/len(face) for n in exposed_bones}
-        if sum(influences.values())>.26 or female and center.z<.20 or not female and sum(sum(weights[i].get(n,0) for n in ['UpperArm_L','UpperArm_R','Forearm_L','Forearm_R']) for i,_ in face)/len(face)>.35:visible.append(face)
+        if (not female and center.z>1.20) or sum(influences.values())>.26 or female and center.z<.20 or not female and sum(sum(weights[i].get(n,0) for n in ['UpperArm_L','UpperArm_R','Forearm_L','Forearm_R']) for i,_ in face)/len(face)>.35:visible.append(face)
     body=create_mesh('VisibleSkin',vertices,visible,BASE_UV,mats['Skin'],weights);decimate(body,.50 if female else 1.0);skin(body,rig)
     eyes=asset_mesh(SOURCE/'system/eyes/low-poly','low-poly',raw,convert,mats['Eyes'],weights,tree);skin(eyes,rig)
     hair=asset_mesh(SOURCE/'system/hair'/hair_name,hair_name,raw,convert,mats['Hair'],weights,tree)
@@ -455,21 +456,77 @@ def make_character(female):
     else:
         clothes_path=copy_texture(SOURCE/'system/clothes/male_casualsuit05/male_casualsuit05_diffuse.png','RakaClothes')
         normal_path=copy_texture(SOURCE/'system/clothes/male_casualsuit05/male_casualsuit05_normal.png','RakaClothesNormal')
-        outfit=asset_mesh(SOURCE/'system/clothes/male_casualsuit05','male_casualsuit05',raw,convert,material('Raka_Clothes',(1,1,1),clothes_path),weights,tree);decimate(outfit,.7);skin(outfit,rig)
-        outfit.name='RakaJacketOutfit'
-        bm=bmesh.new();bm.from_mesh(outfit.data)
-        bmesh.ops.delete(bm,geom=[f for f in bm.faces if sum(v.co.z for v in f.verts)/len(f.verts)<.91],context='FACES');bm.to_mesh(outfit.data);bm.free()
-        trousers=asset_mesh(SOURCE/'system/clothes/male_casualsuit05','male_casualsuit05',raw,convert,bpy.data.materials['Raka_Clothes'],weights,tree);trousers.name='RakaTrousers'
-        bm=bmesh.new();bm.from_mesh(trousers.data);bmesh.ops.delete(bm,geom=[f for f in bm.faces if sum(v.co.z for v in f.verts)/len(f.verts)>=.91],context='FACES');bm.to_mesh(trousers.data);bm.free();decimate(trousers,.7);skin(trousers,rig)
+        outfit=asset_mesh(SOURCE/'system/clothes/male_casualsuit05','male_casualsuit05',raw,convert,material('Raka_Clothes',(1,1,1),clothes_path),weights,tree)
+        # The source contains four disconnected sewn garments. Split topology,
+        # not a horizontal plane through the waistband and jacket tails.
+        bm=bmesh.new();bm.from_mesh(outfit.data);bm.verts.ensure_lookup_table()
+        remaining=set(bm.verts);components=[]
+        while remaining:
+            seed=remaining.pop();component={seed};pending=[seed]
+            while pending:
+                current=pending.pop()
+                for edge in current.link_edges:
+                    other=edge.other_vert(current)
+                    if other in remaining:remaining.remove(other);component.add(other);pending.append(other)
+            components.append(component)
+        pants=min(components,key=lambda vs:min(v.co.z for v in vs))
+        pants_indices={v.index for v in pants}
+        bm.free()
+        trousers=outfit.copy();trousers.data=outfit.data.copy();bpy.context.collection.objects.link(trousers)
+        for obj,keep_pants in [(outfit,False),(trousers,True)]:
+            bm=bmesh.new();bm.from_mesh(obj.data);bm.verts.ensure_lookup_table()
+            bmesh.ops.delete(bm,geom=[v for v in bm.verts if (v.index in pants_indices)!=keep_pants],context='VERTS')
+            bm.to_mesh(obj.data);bm.free();decimate(obj,.85);skin(obj,rig)
+        outfit.name='RakaJacketOutfit';trousers.name='RakaTrousers'
         shirt_faces=[]
         for face,group in zip(BASE_FACES,BASE_GROUPS):
             if group!='body':continue
             c=sum((vertices[i] for i,_ in face),Vector())/len(face)
             arm=sum(sum(weights[i].get(n,0) for n in ['UpperArm_L','UpperArm_R']) for i,_ in face)/len(face)
-            if .9<c.z<1.43 and abs(c.x)<.25 or arm>.6 and c.z>1.25:shirt_faces.append(face)
+            if .90<c.z<1.48 and abs(c.x)<.25 or arm>.6 and c.z>1.25:shirt_faces.append(face)
         tshirt=create_mesh('RakaTShirt',vertices,shirt_faces,BASE_UV,material('Raka_TShirt',(.09,.12,.15)),weights)
-        for v in tshirt.data.vertices:v.co+=v.normal*.008
+        bm=bmesh.new();bm.from_mesh(tshirt.data)
+        bmesh.ops.bisect_plane(bm,geom=list(bm.verts)+list(bm.edges)+list(bm.faces),plane_co=Vector((0,0,.965)),plane_no=Vector((0,0,1)),clear_inner=True)
+        bmesh.ops.bisect_plane(bm,geom=list(bm.verts)+list(bm.edges)+list(bm.faces),plane_co=Vector((0,0,1.445)),plane_no=Vector((0,0,1)),clear_outer=True)
+        bm.to_mesh(tshirt.data);bm.free();tshirt.data.update()
+        pant_waist=[v.co.copy() for v in trousers.data.vertices if .84<v.co.z<1.10]
+        for v in tshirt.data.vertices:
+            v.co+=v.normal*.018
+            if v.co.z<1.12:
+                radial=Vector((v.co.x,v.co.y,0));direction=radial.normalized()
+                envelope=max(p.dot(direction) for p in pant_waist)+.018
+                blend=max(0,min(1,(1.12-v.co.z)/.08))
+                desired=radial.lerp(direction*max(envelope,radial.length),blend)
+                v.co.x=desired.x;v.co.y=desired.y
+
+        # The overlapping waistband is a single pelvis attachment in both
+        # garments, so a deep bend cannot expose skin between separate weights.
+        for obj in [tshirt,trousers]:
+            hips=obj.vertex_groups.get('Hips') or obj.vertex_groups.new(name='Hips')
+            for v in obj.data.vertices:
+                if (obj==tshirt and v.co.z<1.06) or (obj==trousers and v.co.z>.84):
+                    for group in obj.vertex_groups:group.remove([v.index])
+                    hips.add([v.index],1,'REPLACE')
         skin(tshirt,rig)
+        # Sew a straight, loose hem onto the shirt's real lower boundary.
+        # It overlaps the complete jeans waistband without following buttock
+        # topology or leaving a skin-coloured strip visible during a bend.
+        pant_waist=[v.co.copy() for v in trousers.data.vertices if .84<v.co.z<1.10]
+        points=[];faces=[];bm=bmesh.new();bm.from_mesh(tshirt.data)
+        for edge in bm.edges:
+            if not edge.is_boundary or max(v.co.z for v in edge.verts)>1.02:continue
+            a,b=[v.co.copy() for v in edge.verts];index=len(points)
+            low=[]
+            for point in [a,b]:
+                outward=Vector((point.x,point.y,0)).normalized()
+                lower=point+Vector((0,0,-.045));low.append(lower)
+            points.extend([a,b,low[1],low[0]])
+            normal=(b-a).cross(low[0]-a);outward=Vector((a.x+b.x,a.y+b.y,0))
+            faces.append(tuple(index+i for i in ([0,1,2,3] if normal.dot(outward)>0 else [3,2,1,0])))
+        bm.free()
+        hem=geometry('RakaTShirtHem',points,faces,bpy.data.materials['Raka_TShirt'],'Hips',rig)
+        bm=bmesh.new();bm.from_mesh(hem.data);bmesh.ops.remove_doubles(bm,verts=list(bm.verts),dist=.0001);bmesh.ops.recalc_face_normals(bm,faces=list(bm.faces));bm.to_mesh(hem.data);bm.free();hem.data.update()
+
         shoes_path=copy_texture(SOURCE/'system/clothes/shoes01/shoes01_diffuse.png','RakaShoes')
         shoes=asset_mesh(SOURCE/'system/clothes/shoes01','shoes01',raw,convert,material('Raka_Shoes',(1,1,1),shoes_path),weights,tree);decimate(shoes,.45);skin(shoes,rig)
         # World handset is visible only in phone poses, managed by AnimatedRakaAvatar.
@@ -491,6 +548,22 @@ def make_character(female):
     bpy.ops.export_scene.fbx(filepath=str(MODEL/(name+'.fbx')),use_selection=True,object_types={'MESH','ARMATURE'},axis_forward='-Z',axis_up='Y',bake_anim=True,bake_anim_use_all_actions=True,bake_anim_use_nla_strips=False,bake_anim_simplify_factor=.25,add_leaf_bones=False,path_mode='STRIP')
     records=dict(character=name,triangles=triangles,renderers=len(meshes),bones=len(rig.data.bones),clips=clips)
     records['poseBoundsMetres']={}
+    max_gap=0
+    for pose in (['Idle','Run'] if female else ['Idle','Walk','Run','Crouch','CrouchWalk','PhoneWalk','Riding']):
+        for phase in [0,.25,.5,.75]:
+            set_pose(rig,defs,pose,phase,female)
+            for side in ['L','R']:
+                for a,b in [('Thigh_','Shin_'),('Shin_','Foot_'),('UpperArm_','Forearm_'),('Forearm_','Hand_')]:
+                    max_gap=max(max_gap,(rig.pose.bones[a+side].tail-rig.pose.bones[b+side].head).length)
+    records['maxLimbJointGapMetres']=round(max_gap,6)
+    if not female:
+        bm=bmesh.new();bm.from_mesh(body.data)
+        neck_edges=[e for e in bm.edges if e.is_boundary and all(1.30<v.co.z<1.50 and abs(v.co.x)<.18 for v in e.verts)]
+        records['openNeckBoundaryEdges']=len(neck_edges);bm.free()
+        assert records['openNeckBoundaryEdges']==0,'An open seam remains in the visible neck'
+
+    assert max_gap<.003,('Disconnected limb during locomotion',max_gap)
+
     rig.animation_data.action=None
     for pose in (['Idle','Run','Seated'] if female else ['Idle','Run','Crouch','CrouchWalk','PhoneCrouch','Riding']):
         set_pose(rig,defs,pose,0,female);deps=bpy.context.evaluated_depsgraph_get()
@@ -516,7 +589,7 @@ def make_character(female):
     rig.animation_data.action=None;set_pose(rig,defs,'Idle',0,female)
     if not female:bpy.data.objects['HandheldPhone'].hide_render=True
     bpy.context.scene.render.engine='BLENDER_EEVEE';bpy.context.scene.eevee.use_gtao=True
-    bpy.context.scene.eevee.use_soft_shadows=True;bpy.context.scene.eevee.taa_render_samples=64
+    bpy.context.scene.eevee.use_soft_shadows=True;bpy.context.scene.eevee.taa_render_samples=16 if '--quick-preview' in sys.argv else 64
     bpy.context.scene.world=bpy.data.worlds.new('PreviewWorld');bpy.context.scene.world.color=(.055,.055,.055)
     bpy.ops.mesh.primitive_plane_add(size=200,location=(0,0,-.025));bpy.context.object.data.materials.append(material('PreviewGround',(.07,.075,.08)))
     for at,power,size in [((-2,-3,4),230,2.0),((2,-1,2.5),80,1.8),((0,2,3),160,1.2)]:
@@ -532,9 +605,20 @@ def make_character(female):
         rig.animation_data.action=None;set_pose(rig,defs,'PhoneIdle',0,False)
         camera.location=(-.65,-1.18,1.53);camera.rotation_euler=(Vector((-.19,-.34,1.38))-camera.location).to_track_quat('-Z','Y').to_euler();camera_data.lens=70
         scene.render.resolution_x=768;scene.render.resolution_y=768;scene.render.filepath=str(review/'RakaPhoneGrip.png');bpy.ops.render.render(write_still=True)
+        bpy.data.objects['HandheldPhone'].hide_render=True
+        for pose in ['Idle','Crouch','CrouchWalk','Riding']:
+            set_pose(rig,defs,pose,.25,False)
+            for jacket in [False,True]:
+                bpy.data.objects['RakaJacketOutfit'].hide_render=not jacket
+                bpy.data.objects['RakaTShirt'].hide_render=jacket
+                bpy.data.objects['RakaTShirtHem'].hide_render=jacket
+                camera.location=(1.2,3.2,1.5)
+                camera.rotation_euler=(Vector((0,0,.86))-camera.location).to_track_quat('-Z','Y').to_euler();camera_data.lens=62
+                scene.render.filepath=str(review/('RakaRear-'+pose+('-Jacket' if jacket else '-TShirt')+'.png'));bpy.ops.render.render(write_still=True)
 
     return records
 
 
-report=([json.loads((ROOT/'Audit/rigged-character-authoring.json').read_text())['characters'][0]] if '--male-only' in sys.argv else [make_character(True)])+[make_character(False)]
-(ROOT/'Audit/rigged-character-authoring.json').write_text(json.dumps(dict(sourceManifest='Audit/character-source-manifest.json',generatedCloth='Audit/character-generated-cloth.json',method='CC0 MakeHuman graphical data adapted into clothed, budgeted skinned meshes; original baked joint animation and garment/tool geometry; generated opaque ivory lace and CC0 PolyHaven jacquard',characters=report),indent=2)+'\n')
+if __name__ == '__main__':
+    report=([json.loads((ROOT/'Audit/rigged-character-authoring.json').read_text())['characters'][0]] if '--male-only' in sys.argv else [make_character(True)])+[make_character(False)]
+    (ROOT/'Audit/rigged-character-authoring.json').write_text(json.dumps(dict(sourceManifest='Audit/character-source-manifest.json',generatedCloth='Audit/character-generated-cloth.json',method='CC0 MakeHuman graphical data adapted into clothed, budgeted skinned meshes; original baked joint animation and garment/tool geometry; generated opaque ivory lace and CC0 PolyHaven jacquard',characters=report),indent=2)+'\n')

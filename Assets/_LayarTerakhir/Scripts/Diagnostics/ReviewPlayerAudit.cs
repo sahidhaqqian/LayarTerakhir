@@ -186,6 +186,27 @@ namespace LayarTerakhir.Diagnostics
             yield return Walk(new Vector3(0,0,-4.7f));Check(corridor.entranceDoor.IsOpen,"Main entrance must be opened before walking into yard");
             Aim(new Vector3(0,3,-1));yield return Shot("11b-kos-facade-and-porch");
             Aim(player.transform.position+new Vector3(.3f,.48f,-.82f)*70);yield return Shot("11e-kos-night-sky");Aim(corridor.motor.position+Vector3.up*.2f);
+            yield return Walk(new Vector3(0,.04f,-12));Check(!corridor.Busy,"Melati is accessible on foot before mounting the motorcycle");
+            float streetScale=Time.timeScale;Time.timeScale=1;player.enabled=true;
+            player.transform.rotation=Quaternion.LookRotation(Vector3.back);player.SetViewPitch(7);
+            Vector3 gaitStart=player.transform.position;
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.W));yield return new WaitForSeconds(1.2f);
+            float gaitDistance=Vector3.Distance(gaitStart,player.transform.position);
+            Check(gaitDistance>1.5f&&gaitDistance<3.3f,"Real walking input moves Raka at the authored human walking pace");
+            yield return Shot("14a0-real-walking-gait");
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.W,Key.LeftCtrl));yield return new WaitForSeconds(.7f);
+            Check(player.IsCrouching,"Real walking input blends into crouched locomotion");yield return Shot("14a1-real-crouched-gait");
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());yield return new WaitForSeconds(.5f);player.enabled=false;Time.timeScale=streetScale;
+            Aim(new Vector3(8,1.5f,-25));yield return Shot("14a-melati-houses-and-rain");
+            yield return Walk(new Vector3(1.15f,.04f,-24));yield return Walk(new Vector3(4.9f,.04f,-24));
+            var shop=FindFirstObjectByType<MelatiShop>();
+            Check(shop.shopkeeper&&shop.shopkeeper.GetComponent<MelatiShopkeeper>(),"Bu Sri is physically present behind the counter");
+            Aim(shop.shopkeeper.position+Vector3.up*1.35f);yield return Shot("14a2-warung-bu-sri");
+            yield return Use(shop.shopkeeper.GetComponent<MelatiShopkeeper>(),shop.shopkeeper.position+Vector3.up*1.35f);
+            Check(shop.IsOpen,"World counter opens the actual warung shop");yield return Shot("14b-warung-shop");
+            long beforeShop=CampaignState.Instance.Data.wallet_bound+CampaignState.Instance.Data.wallet_legitimate;
+            Click("ShopBuy_AIR_MINERAL");Check(beforeShop==0&&!CampaignState.Instance.HasInventoryItem("AIR_MINERAL")&&CampaignState.Instance.Data.wallet_bound+CampaignState.Instance.Data.wallet_legitimate==0,"After paying both family bills, the shop refuses an unaffordable purchase without changing funds");
+            Click("ShopAskAtmaja");Check(CampaignState.Instance.HasInventoryItem("EVENT_P0_BU_SRI_ATMAJA_WARNING"),"The visible shopkeeper offers a persistent Atmaja conversation");Click("ShopClose");yield return Walk(new Vector3(1.15f,.04f,-24));yield return Walk(new Vector3(0,.04f,-12));yield return Walk(new Vector3(0,.04f,-4.7f));
             yield return Use(corridor.motor.GetComponent<KosTravelItem>(),corridor.motor.GetComponent<Collider>().bounds.center);
             Check(View.Apps.TravelSelection&&corridor.CanDepart,"Motor interaction opens a valid destination map at the kos gate");yield return Shot("12-departure-map");
             // Cinematic movement needs multiple real samples even on a very slow software renderer.
@@ -193,17 +214,6 @@ namespace LayarTerakhir.Diagnostics
             Check(corridor.motorHeadlight&&corridor.motorHeadlight.enabled,"Motor engine sequence turns on the real lens-mounted headlight");
             yield return Wait(()=>receipt.motorPassedGate,150,"Motorcycle actually crosses kos gate");
             yield return Shot("14-riding-through-gate");
-            var neighborhood=FindFirstObjectByType<MelatiNeighborhood>();
-            yield return Wait(()=>neighborhood&&neighborhood.Reached&&!corridor.Busy,150,"Motor stops in the explorable Melati neighborhood");
-            BindPlayer();player.enabled=false;Time.timeScale=3;
-            Aim(new Vector3(8,1.5f,-25));yield return Shot("14a-melati-houses-and-rain");
-            yield return Walk(new Vector3(1.15f,.04f,-24));yield return Walk(new Vector3(4.9f,.04f,-24));
-            var shop=FindFirstObjectByType<MelatiShop>();Aim(shop.GetComponent<Collider>().bounds.center);yield return Use(shop,shop.GetComponent<Collider>().bounds.center);
-            Check(shop.IsOpen,"World counter opens the actual warung shop");yield return Shot("14b-warung-shop");
-            long beforeShop=CampaignState.Instance.Data.wallet_bound+CampaignState.Instance.Data.wallet_legitimate;
-            Click("ShopBuy_AIR_MINERAL");Check(beforeShop==0&&!CampaignState.Instance.HasInventoryItem("AIR_MINERAL")&&CampaignState.Instance.Data.wallet_bound+CampaignState.Instance.Data.wallet_legitimate==0,"After paying both family bills, the shop refuses an unaffordable purchase without changing funds");
-            Click("ShopClose");yield return Walk(new Vector3(1.15f,.04f,-24));yield return Walk(new Vector3(1.15f,.04f,-18.2f));
-            Time.timeScale=1;corridor.RequestDeparture();
             yield return Wait(()=>SceneManager.GetActiveScene().name==PrologSceneFlow.AtmajaScene,150,"Road departure transitions to Atmaja");
             receipt.transitionFromKos=true;yield return new WaitForSeconds(1.1f);BindPlayer();player.enabled=false;d=FindFirstObjectByType<AtmajaDirector>();
             // Faster remaining narration waits only. CC walking is frame-stepped and never uses this scale.

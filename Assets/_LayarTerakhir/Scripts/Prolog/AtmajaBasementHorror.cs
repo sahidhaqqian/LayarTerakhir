@@ -280,6 +280,7 @@ namespace LayarTerakhir.Prolog
             { route = first[i]; total = cost[i] + Vector3.Distance(waypoints[i].position, goal); }
             return route < 0 ? start : waypoints[route].position;
         }
+        public void PursueForChase(Vector3 goal,float speed,float dt)=>StepToward(goal,speed,dt);
         private void StepToward(Vector3 goal, float speed, float dt)
         {
             Vector3 position = nyonya.transform.position, target = NextPathPoint(goal), delta = target - position; delta.y = 0;

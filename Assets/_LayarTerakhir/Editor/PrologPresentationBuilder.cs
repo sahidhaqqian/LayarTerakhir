@@ -23,7 +23,7 @@ namespace LayarTerakhir.Editor
             materials.Clear();
             foreach(var guid in AssetDatabase.FindAssets("t:Material",new[]{Root+"Materials"}))
             {var material=AssetDatabase.LoadAssetAtPath<Material>(AssetDatabase.GUIDToAssetPath(guid));materials[material.name]=material;}
-            Surface("Raka_TShirt",null,new Color(.14f,.17f,.2f));ImportModel("RakaRigged",true);
+            Surface("Raka_TShirt",null,new Color(.14f,.17f,.2f));Surface("Raka_DenimWaistband",null,new Color(.035f,.065f,.095f));ImportModel("RakaRigged",true);
             var model=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(Root+"Models/RakaRigged.fbx"));
             ApplyMaterials(model);model.name="RakaCharacter";
             var avatar=model.AddComponent<AnimatedRakaAvatar>();avatar.motion=BindMotion(model,"RakaRigged");
@@ -51,6 +51,7 @@ namespace LayarTerakhir.Editor
             Surface("Raka_Skin","RakaSkin",Color.white);Surface("Raka_Hair","RakaHair",new Color(.28f,.25f,.23f),true);
             Surface("Raka_Eye","BrownEyes",Color.white);Surface("Raka_Clothes","RakaClothes",new Color(.85f,.92f,.85f));
             Surface("Raka_PhoneScreen",null,new Color(.07f,.13f,.15f));
+            Surface("Raka_DenimWaistband",null,new Color(.035f,.065f,.095f));
             Surface("Raka_Shoes","RakaShoes",new Color(.60f,.60f,.57f));Surface("Raka_Phone",null,new Color(.018f,.02f,.023f));
             materials["Raka_Clothes"].SetTexture("_BumpMap",Texture("RakaClothesNormal"));materials["Raka_Clothes"].EnableKeyword("_NORMALMAP");
             foreach(string name in new[]{"SriAtmajaRigged","RakaRigged"})ImportModel(name,true);

@@ -27,6 +27,33 @@
     "recording_status": "WAITING_FOR_USER_RECORDING"
   },
   {
+    "id": "1551325d86f5",
+    "speaker": "Bu Sri",
+    "text": "Lurus sampai ujung jalan, lalu belok kanan. Kalau dengar orang manggil dari dalam, jangan jawab sembarangan, Mas.",
+    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/MelatiShop.cs",
+    "direction": "Ikuti konteks adegan; hindari intonasi datar.",
+    "estimated_seconds": 6.6,
+    "recording_status": "WAITING_FOR_USER_RECORDING"
+  },
+  {
+    "id": "2c7570216df1",
+    "speaker": "Bu Sri",
+    "text": "Malam, Mas Raka. Hujan begini masih mau keluar?",
+    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/MelatiShop.cs",
+    "direction": "Ikuti konteks adegan; hindari intonasi datar.",
+    "estimated_seconds": 2.8,
+    "recording_status": "WAITING_FOR_USER_RECORDING"
+  },
+  {
+    "id": "e5f037768730",
+    "speaker": "Bu Sri",
+    "text": "Yang bawa kamera? Sore tadi lewat sini. Saya sudah bilang, rumah itu lama kosong.",
+    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/MelatiShop.cs",
+    "direction": "Ikuti konteks adegan; hindari intonasi datar.",
+    "estimated_seconds": 4.8,
+    "recording_status": "WAITING_FOR_USER_RECORDING"
+  },
+  {
     "id": "5d62d26bc7ad",
     "speaker": "Damar",
     "text": "Raka! Tolong! Aaaah!",
@@ -549,6 +576,15 @@
     "recording_status": "WAITING_FOR_USER_RECORDING"
   },
   {
+    "id": "d968832a3ecf",
+    "speaker": "Raka",
+    "text": "Bu, teman saya belum pulang dari rumah Atmaja. Ibu lihat dia lewat?",
+    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/MelatiShop.cs",
+    "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
+    "estimated_seconds": 3.9,
+    "recording_status": "WAITING_FOR_USER_RECORDING"
+  },
+  {
     "id": "ddccbede0078",
     "speaker": "Raka",
     "text": "Ini HP-nya Damar... Layarnya pecah, tapi kartu memorinya masih kebaca. Gue pindahin dulu aplikasinya ke HP gue.",
@@ -573,15 +609,6 @@
     "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/AtmajaUpperDirector.cs",
     "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
     "estimated_seconds": 2.8,
-    "recording_status": "WAITING_FOR_USER_RECORDING"
-  },
-  {
-    "id": "ea12014f592a",
-    "speaker": "Raka",
-    "text": "Warung Bu Sari masih buka. Jalan ke Atmaja lewat ujung kompleks ini...",
-    "trigger": "Assets/_LayarTerakhir/Scripts/Prolog/MelatiNeighborhood.cs",
-    "direction": "Pria muda; bahasa sehari-hari Jakarta; gugup ditahan, jeda napas wajar. Jangan baca rata.",
-    "estimated_seconds": 4.1,
     "recording_status": "WAITING_FOR_USER_RECORDING"
   },
   {

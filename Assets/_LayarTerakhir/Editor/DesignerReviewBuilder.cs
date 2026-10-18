@@ -156,11 +156,18 @@ namespace LayarTerakhir.Editor
                 ReviewModel("DeadRatOnPlate_"+i,"DeadStreetRat",root,p-d.east*.027f+Vector3.up*.0205f,new Vector3(.19f,.055f,.085f),false);
             }
         }
+        public static void RepairChildRoom()
+        {
+            var scene=EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);d=Object.FindFirstObjectByType<AtmajaDirector>();root=Find("DesignerReviewEnvironment").transform;
+            string stairs=StairSignature();Remove("BimaToyTrainCar","ARVentFracture");RefineChildRoom();
+            if(stairs!=StairSignature())throw new Exception("Child-room repair modified protected stairs");
+            EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene);AssetDatabase.SaveAssets();
+        }
         private static void RefineChildRoom()
         {
             Center("ChildShelf",-3.25f,.40f,4.52f,new Vector3(1.1f,1.4f,.28f));Center("ChildBooks",-3.25f,.40f,4.93f,new Vector3(.8f,.28f,.20f));
             Center("ChildWardrobe",-2.99f,1.20f,4.84f,new Vector3(.87f,2.04f,.55f));
-            Center("ChildBed",-3.55f,3.02f,4.35f);Center("ChildMattress",-3.55f,3.02f,4.62f);Center("ChildPillow",-3.55f,2.30f,4.79f);Center("ChildBlanket",-3.55f,3.45f,4.78f);
+            Center("ChildBed",-3.55f,2.85f,4.145f,new Vector3(1.08f,.63f,2.05f));Center("ChildMattress",-3.55f,2.85f,4.49f,new Vector3(.98f,.16f,1.92f));Center("ChildPillow",-3.55f,2.20f,4.63f,new Vector3(.56f,.12f,.33f));
             Center("ChildStudyChair",-5.27f,1.55f,4.25f);Center("ChildCarpet",-4.48f,2.70f,3.84f,new Vector3(1.35f,.025f,2.1f));
             Center("ChildDiaryBook",-5.32f,.62f,4.587f);Center("ChildDeskLamp",-5.65f,.48f,4.76f);
             Remove("ChildNotebook");DressChildCup();DrapeChildQuilt();
@@ -194,7 +201,7 @@ namespace LayarTerakhir.Editor
         }
         private static void DrapeChildQuilt()
         {
-            var quilt=Find("ChildBlanket");quilt.transform.SetPositionAndRotation(P(-3.55f,3.45f,4.75f),Quaternion.LookRotation(d.north));quilt.transform.localScale=Vector3.one;
+            var quilt=Find("ChildBlanket");quilt.transform.SetPositionAndRotation(P(-3.55f,3.25f,4.585f),Quaternion.LookRotation(d.north));quilt.transform.localScale=Vector3.one;
             const int columns=24,rows=7;var vertices=new List<Vector3>();var uv=new List<Vector2>();var triangles=new List<int>();
             for(int layer=0;layer<2;layer++)for(int z=0;z<=rows;z++)for(int x=0;x<=columns;x++)
             {float across=(x/(float)columns-.5f)*1.16f,depth=(z/(float)rows-.5f)*.92f;float edge=Mathf.Clamp01((Mathf.Abs(across)-.43f)/.15f);float y=-Mathf.Sin(edge*Mathf.PI*.5f)*.16f+Mathf.Sin(across*48+depth*9)*.004f-layer*.014f;vertices.Add(new Vector3(across,y,depth));uv.Add(new Vector2(x/(float)columns,z/(float)rows));}

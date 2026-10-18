@@ -329,3 +329,6 @@ Jok tertutup diambil dari geometri sumber recovery asli, bukan nama mesh
 yang hilang setelah penggabungan material. `Tools/author_raka_scooter.py`
 dan `Audit/raka-scooter-contact-authoring.json` mencatat sumber serta hash-nya;
 model motor Damar tetap utuh.
+
+
+Revisi playtest 18 Oktober 2026: Bu Sri memakai adaptasi baru data grafis MakeHuman CC0 yang sudah dipin dalam `character-source-manifest.json`; karakter sehat, pakaian penuh, tanpa senjata. Rumah-rumah Melati memakai geometri arsitektur buatan proyek dengan material PBR yang sudah tercatat. Kaus Raka dan pemisahan celana/jaket dibenahi dari sumber MakeHuman yang sama. Tidak memakai aset Outlast.
