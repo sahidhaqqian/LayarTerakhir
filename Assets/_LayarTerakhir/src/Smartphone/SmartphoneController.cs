@@ -202,6 +202,7 @@ namespace LayarTerakhir.Smartphone
 
             if (phoneFlashlight != null)
             {
+                LayarTerakhir.Player.PracticalLightPresentation.ConfigureBeam(phoneFlashlight);
                 phoneFlashlight.enabled = hasSmartphoneInInventory && isPhoneRaised && isScreenOn && batteryPercent > 0f;
                 phoneFlashlight.intensity = 22f;
                 phoneFlashlight.range = 16f;

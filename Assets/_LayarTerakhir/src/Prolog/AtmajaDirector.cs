@@ -50,9 +50,6 @@ namespace LayarTerakhir.Prolog
         private bool clockTimeShown;
         private AudioClip arStatic;
         private AtmajaReviewMoments moments;
-        private Vector3 previousPosition;
-        private float walked;
-        private int footstep;
         private CampaignState Campaign=>CampaignState.Instance;
         private SmartphoneController Phone=>SmartphoneController.Instance;
         private HudController Hud=>HudController.Instance;
@@ -72,7 +69,10 @@ namespace LayarTerakhir.Prolog
             Phone.hasSmartphoneInInventory=true;Phone.batteryPercent=Campaign.Data.battery;
             Phone.isPhoneRaised=false;Phone.isScreenOn=Phone.batteryPercent>0;Phone.isBroadcastConnected=LiveConnected;
             Phone.arModuleUnlocked=Has("MATABATIN_APK");Phone.SyncVisualState();
-            RestoreWorld();previousPosition=player.transform.position;
+            RestoreWorld();
+            LayarTerakhir.Audio.PlayerFootsteps.Install(player,audioProfile,stepsSource);
+            PracticalLightPresentation.AddThreatRim(arFigure);
+            if(basement)PracticalLightPresentation.AddThreatRim(basement.nyonya);
             if(!Has("EVENT_P0_ATMAJA_ARRIVED"))Commit("EVENT_P0_ATMAJA_ARRIVED","PROLOG_ATMAJA_COURTYARD");
             Hud.SetFadeAlpha(1);yield return Hud.FadeBlack(1,0,1.4f);
             Objective();
@@ -133,11 +133,6 @@ namespace LayarTerakhir.Prolog
             if(Stage<AtmajaStage.Chase&&Has("EVENT_P0_KITCHEN_ENTERED")&&!wellHeard&&Vector3.Distance(player.transform.position,P(2.7f,11.2f,.35f))<2)
             {wellHeard=true;Hud.EnqueueSubtitle("SFX","[KLOTAK... KLOTAK... Suara ember timba ditarik dari dasar sumur]",3);Hud.EnqueueSubtitle("Bisikan","Haus... bukakan...",3);Sfx(audioProfile.knock,P(2.7f,11.2f,.4f),.4f);StartCoroutine(moments.HearWell());}
             if(!modal&&Phone&&Phone.isPhoneRaised&&Phone.isScreenOn&&phoneView&&phoneView.IsCameraApp&&GameInputConfig.Instance.GetActionDown(GameAction.CaptureOrBlitz))TryPhotographWell();
-            var delta=player.transform.position-previousPosition;previousPosition=player.transform.position;delta.y=0;
-            if(delta.sqrMagnitude>1||modal||player.MovementLocked)return;
-            walked+=delta.magnitude;
-            if(walked>.9f&&player.GetComponent<CharacterController>().isGrounded)
-            {walked=0;stepsSource.transform.position=player.transform.position;stepsSource.PlayOneShot(audioProfile.tileSteps[footstep++%audioProfile.tileSteps.Length],player.IsCrouching?.10f:.22f);}
         }
         public void Interact(AtmajaItem item)
         {

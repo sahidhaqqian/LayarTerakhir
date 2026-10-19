@@ -22,6 +22,8 @@ namespace LayarTerakhir.Prolog
             CampaignState.Instance.HasInventoryItem("KUNCI_MOTOR")&&CampaignState.Instance.HasInventoryItem("JAKET_RAKA");
         private IEnumerator Start()
         {
+            PlayerFootsteps.Install(player,audioProfile);
+            PracticalLightPresentation.ConfigureBeam(motorHeadlight);
             PrologSceneFlow.RestoreBindings();var c=CampaignState.Instance;c.LoadCheckpoint();
             if(!c.HasInventoryItem("SMARTPHONE_RAKA"))
             {c.StartNewGame();foreach(var id in new[]{"SMARTPHONE_RAKA","KUNCI_MOTOR","JAKET_RAKA","POWERBANK_KECIL_KOS"})c.AddInventoryItem(id);c.Data.wallet_bound=5000000;}

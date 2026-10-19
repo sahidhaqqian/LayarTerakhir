@@ -14,12 +14,8 @@ namespace LayarTerakhir.Audio
         public AmbientAudioLoop room, roof, computer;
         public AudioSource doorSource, itemSource, uiSource, phoneSource, stepsSource, departureSource;
         public FirstPersonController player;
-        private Vector3 previousPosition;
-        private float stepDistance;
-        private int stepIndex;
         private bool departing;
         private bool lastRaised,lastScreen;
-        private CharacterController controller;
         public bool HasPhoneVibration => phoneSource && phoneSource.isPlaying;
         public int OpeningKnockCount {get;private set;}
         public int DepartingFootstepCount {get;private set;}
@@ -36,7 +32,7 @@ namespace LayarTerakhir.Audio
                 if(roof){roof.gain=profile.rainGain;roof.fadeSeconds=profile.fadeSeconds;}
                 if(computer){computer.gain=profile.pcGain;computer.fadeSeconds=profile.fadeSeconds;}
             }
-            if(player){previousPosition=player.transform.position;controller=player.GetComponent<CharacterController>();}
+            if(player)PlayerFootsteps.Install(player,profile,stepsSource);
             var phone=SmartphoneController.Instance;
             if(phone){lastRaised=phone.isPhoneRaised;lastScreen=phone.isScreenOn;}
         }
@@ -56,17 +52,6 @@ namespace LayarTerakhir.Audio
                 if(phone.isPhoneRaised!=lastRaised || phone.isScreenOn!=lastScreen)PlayUI(profile.phoneSwitch);
                 lastRaised=phone.isPhoneRaised;lastScreen=phone.isScreenOn;
             }
-            if(!player)return;
-            var p=player.transform.position;var delta=p-previousPosition;delta.y=0;previousPosition=p;
-            if(delta.sqrMagnitude>1f){stepDistance=0;return;} // Teleports/load are not footsteps.
-            if(player.MovementLocked || (HudController.Instance && HudController.Instance.IsModalOpen))return;
-            if(!controller || !controller.isGrounded)return;
-            stepDistance+=delta.magnitude;
-            float stride=player.IsCrouching ? .85f : player.IsSprinting ? 1.25f : 1.05f;
-            if(stepDistance<stride || profile.tileSteps==null || profile.tileSteps.Length==0)return;
-            stepDistance-=stride;stepsSource.transform.position=p+Vector3.up*.1f;
-            stepsSource.pitch=1f+(stepIndex%3-1)*.035f;
-            stepsSource.PlayOneShot(profile.tileSteps[stepIndex++%profile.tileSteps.Length],player.IsCrouching ? .12f : .23f);
         }
         public void PlayUI(AudioClip clip=null)
         {if(uiSource&&profile)uiSource.PlayOneShot(clip?clip:profile.uiClick,profile.uiGain);}

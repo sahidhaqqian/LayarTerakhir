@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using LayarTerakhir.Smartphone;
 using LayarTerakhir.UI;
 using LayarTerakhir.Core;
@@ -40,6 +41,9 @@ namespace LayarTerakhir.Player
         private MotorcycleRiderAlignment riderAlignment;
         private float cameraDistance = -1, distanceVelocity, phoneBlend, visualSpeed, bodyYaw;
         private int cameraFrame = -1, animationFrame = -1;
+        private readonly List<Material> fadeMaterials = new List<Material>();
+        private MaterialPropertyBlock fadeProperties;
+        public float AvatarOpacity { get; private set; } = 1;
 
         private void Start()
         {
@@ -47,6 +51,7 @@ namespace LayarTerakhir.Player
             eye = GetComponent<InteractionInteractor>().playerCamera;
             eye.nearClipPlane = .055f;
             BuildRaka();
+            InstallCameraFade();
             foreach(var part in Avatar.GetComponentsInChildren<Transform>(true))part.gameObject.layer=AvatarLayer;
             foreach(var renderer in bodyRenderers)renderer.renderingLayerMask|=1u|AvatarRenderingLayer;
             eye.cullingMask|=1<<AvatarLayer;
@@ -84,7 +89,7 @@ namespace LayarTerakhir.Player
                 avatarBounce.enabled=CinematicVisible;
                 if(CinematicVisible)
                 {
-                    foreach(var renderer in bodyRenderers)renderer.shadowCastingMode=ShadowCastingMode.On;
+                    SetAvatarCoverage(1,false);
                     AnimateRaka();
                 }
                 return;
@@ -107,7 +112,7 @@ namespace LayarTerakhir.Player
                 CurrentDistance=0;
                 eye.transform.SetPositionAndRotation(pivot.position, pivot.rotation);
                 AnimateRaka();
-                foreach (var renderer in bodyRenderers) renderer.shadowCastingMode = ShadowCastingMode.ShadowsOnly;
+                SetAvatarCoverage(0,true);
                 return;
             }
             Vector3 anchor = pivot.position;
@@ -150,13 +155,51 @@ namespace LayarTerakhir.Player
             else if (advance)
                 cameraDistance = Mathf.SmoothDamp(cameraDistance, distance, ref distanceVelocity, .12f, Mathf.Infinity, Time.deltaTime);
             CurrentDistance = Mathf.Min(distance, cameraDistance);
-            avatarBounce.enabled=CurrentDistance>=.9f;
+            avatarBounce.enabled=CurrentDistance>.35f;
             Vector3 position = anchor + direction.normalized * CurrentDistance;
             eye.transform.SetPositionAndRotation(position, Quaternion.LookRotation(AimPoint - position, pivot.up));
             AnimateRaka();
-            foreach (var renderer in bodyRenderers)
-                renderer.shadowCastingMode = CurrentDistance < .9f ? ShadowCastingMode.ShadowsOnly : ShadowCastingMode.On;
+            SetAvatarCoverage(Mathf.InverseLerp(.35f,.9f,CurrentDistance),false);
         }
+
+        private void InstallCameraFade()
+        {
+            var shader=Resources.Load<Shader>("PlayerPresentation/AvatarDither");
+            if(!shader)return;
+            fadeProperties=new MaterialPropertyBlock();
+            var clones=new Dictionary<Material,Material>();
+            foreach(var renderer in bodyRenderers)
+            {
+                var materials=renderer.sharedMaterials;
+                for(int i=0;i<materials.Length;i++)
+                {
+                    var source=materials[i];if(!source||source.shader.name!="Universal Render Pipeline/Lit")continue;
+                    if(!clones.TryGetValue(source,out var copy))
+                    {
+                        copy=new Material(source){shader=shader,name=source.name+" (camera fade)"};
+                        copy.SetFloat("_DitherAlpha",1);clones.Add(source,copy);fadeMaterials.Add(copy);
+                    }
+                    materials[i]=copy;
+                }
+                renderer.sharedMaterials=materials;
+            }
+        }
+
+        private void SetAvatarCoverage(float opacity,bool firstPerson)
+        {
+            AvatarOpacity=opacity;
+            foreach(var renderer in bodyRenderers)
+            {
+                // Keep the established first-person shadow-only body and emergency
+                // fallback; third-person coverage is shared by colour/depth/normals.
+                renderer.shadowCastingMode=firstPerson||fadeProperties==null&&opacity<1?ShadowCastingMode.ShadowsOnly:ShadowCastingMode.On;
+                if(fadeProperties==null)continue;
+                renderer.GetPropertyBlock(fadeProperties);fadeProperties.SetFloat("_DitherAlpha",opacity);renderer.SetPropertyBlock(fadeProperties);
+            }
+        }
+
+        private void OnDestroy()
+        {foreach(var material in fadeMaterials)if(material)Destroy(material);}
 
         private void AnimateRaka()
         {
