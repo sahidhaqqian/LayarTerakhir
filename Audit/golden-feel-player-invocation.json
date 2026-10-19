@@ -1,0 +1,32 @@
+{
+  "stage": "feel-player",
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Projects/LayarTerakhir-main/Builds/LinuxAudit/LayarTerakhir.x86_64",
+    "-force-glcore",
+    "-screen-fullscreen",
+    "0",
+    "-screen-width",
+    "640",
+    "-screen-height",
+    "360",
+    "-feelAudit",
+    "/root/Projects/LayarTerakhir-main/Audit/Visuals/PlayerFeel-After",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Audit/golden-feel-player.log"
+  ],
+  "startedUtc": "2026-10-19T06:07:56.551000+00:00",
+  "rendererEnvironment": {
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "LP_NUM_THREADS": "2"
+  },
+  "audioBackend": "Private clocked PulseAudio null sink; virtual audio device; this fixture does not measure listener audio, no physical audio hardware",
+  "status": "Finished",
+  "endedUtc": "2026-10-19T06:09:36.608563+00:00",
+  "exitCode": 0,
+  "screenCapturesVerified": 15,
+  "completedSmokeReceiptVerified": true
+}

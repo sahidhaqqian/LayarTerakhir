@@ -1,0 +1,6 @@
+{
+  "base_commit": "c9de35ddd77b1c9f2ac9dc9e61e23eaf6ecdafe2",
+  "images_source": "Existing native captures from the preceding graphics build; not newly recorded movement telemetry or matched-frame animation comparisons",
+  "movement_source_baseline": "Instant planar velocity; walk 1.7 / run 4.2 / crouch .8 m/s after Awake clamps; pose crossfade .16s; no gait phase transfer; linear per-frame posture lerp; handset toggles immediately; world/phone aim rays parallel and offset",
+  "protected_file_count": 70
+}

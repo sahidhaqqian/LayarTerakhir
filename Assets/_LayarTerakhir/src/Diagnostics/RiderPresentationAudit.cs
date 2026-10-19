@@ -87,7 +87,7 @@ namespace LayarTerakhir.Diagnostics
             yield return Wait(()=>SceneManager.GetActiveScene().name==PrologSceneFlow.AtmajaScene,120,"Travel arrives in Atmaja");if(done)yield break;
             yield return new WaitForSeconds(1.7f);
             var arrival=FindFirstObjectByType<FirstPersonController>().GetComponent<ShoulderCameraRig>();
-            Check(!arrival.Riding&&arrival.Avatar.localPosition==Vector3.zero,"Arrival restores the normal walking model origin");
+            Check(!arrival.Riding&&arrival.Avatar.localPosition==Vector3.down*arrival.VisualGroundOffset,"Arrival restores the grounded walking model origin");
             receipt.checkpointSaved=CampaignState.Instance.Data.checkpoint_id=="PROLOG_ATMAJA_COURTYARD";
             Check(receipt.checkpointSaved,"Arrival saves the real Atmaja courtyard checkpoint");yield return Shot("04-arrival-standing");Finish(true);
         }

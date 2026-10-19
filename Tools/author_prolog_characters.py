@@ -26,6 +26,9 @@ SPEC = json.loads((SOURCE / 'default.mhskel').read_text())
 SOURCE_WEIGHTS = json.loads((SOURCE / 'default_weights.mhw').read_text())['weights']
 random.seed(1998)
 NERA_PALMS={}
+# Each digit braces the far rim; the opposed thumb braces the near rim.
+# Angles are authored against the existing 78 x 165 x 14 mm handset.
+PHONE_FINGER_FLEX={2:[30,0,90],3:[-10,30,80],4:[-10,20,80],5:[-10,0,10]}
 
 
 def obj_data(path):
@@ -246,13 +249,13 @@ def hand_frame(defs,side):
 def set_pose(rig,defs,kind,phase,female):
     for bone in rig.pose.bones:bone.matrix_basis=Matrix.Identity(4)
     installing=kind=='InstallCard'
-    crouch='Crouch' in kind or installing;walk='Walk' in kind;run='Run' in kind;phone='Phone' in kind or installing;riding=kind=='Riding';seated=kind=='Seated'
+    crouch='Crouch' in kind or installing;low='LowCrouch' in kind;walk='Walk' in kind;run='Run' in kind;phone='Phone' in kind or installing;riding=kind=='Riding';seated=kind=='Seated'
     gait=phase*math.tau
-    sink=.48 if crouch else .40 if riding or seated else .09 if run else .03 if walk else 0
+    sink=(.65 if low else .63 if not female and not installing else .48) if crouch else .40 if riding or seated else .09 if run else .03 if walk else 0
     bob=(math.cos(gait*2)*(.012 if run else .006) if walk or run else math.sin(gait)*.002)
     hips_offset=Vector((0,0,-sink+bob))
     hips=rig.pose.bones['Hips'];hips.location=hips.bone.matrix_local.to_3x3().inverted()@hips_offset
-    lean=math.radians(29 if crouch else 16 if run else 17 if riding else -9 if kind=='Stun' else 3 if female else 1)
+    lean=math.radians((58 if low else 35 if not female and not installing else 29) if crouch else 12 if run and not female else 16 if run else 17 if riding else -9 if kind=='Stun' else 3 if female else 1)
     rig.pose.bones['Spine'].rotation_mode='XYZ';rig.pose.bones['Spine'].rotation_euler.x=lean*.5
     rig.pose.bones['Chest'].rotation_mode='XYZ';rig.pose.bones['Chest'].rotation_euler.x=lean*.5
     if not female and (walk or run):
@@ -264,6 +267,8 @@ def set_pose(rig,defs,kind,phase,female):
     world_axis=head.bone.matrix_local.to_3x3().inverted()@Vector((0,1,0))
     from mathutils import Quaternion
     head.rotation_quaternion=Quaternion(world_axis,math.radians(76+math.sin(gait)*.6 if female else math.sin(gait)*.4))
+    if not female and crouch:
+        head.rotation_quaternion @= Quaternion(head.bone.matrix_local.to_3x3().inverted()@Vector((1,0,0)),math.radians(-30 if low else -20 if not installing else -10))
     if kind=='Windup':rig.pose.bones['Jaw'].rotation_mode='XYZ';rig.pose.bones['Jaw'].rotation_euler.x=math.radians(18)
     bpy.context.view_layer.update()
 
@@ -293,7 +298,9 @@ def set_pose(rig,defs,kind,phase,female):
                 longitudinal,normal,sideways=hand_frame(defs,'R')
                 up=Vector((0,-.08,1)).normalized();palm=Vector((0,1,.08)).normalized()
                 source=Matrix((sideways,longitudinal,normal)).transposed()
-                destination=Matrix((up.cross(palm),up,palm)).transposed()
+                # Fingers run across the back of a portrait handset, rather than
+                # curling vertically through its screen from the middle of the palm.
+                destination=Matrix((up,palm.cross(up),palm)).transposed()
                 rotation=destination@source.transposed()
                 rig.pose.bones[end].matrix=Matrix.Translation(target)@rotation.to_4x4()@rest.matrix_local.to_quaternion().to_matrix().to_4x4()
             elif riding:matrix_pose(end,target,Vector((0,-.09,0)))
@@ -303,23 +310,33 @@ def set_pose(rig,defs,kind,phase,female):
         angle=gait+(0 if side=='L' else math.pi)
         foot=defs['Foot_'+side][0].copy()
         if walk or run:
-            amplitude=.25 if crouch else .57 if run else .35
+            amplitude=.14 if low else .18 if crouch and not female else .25 if crouch else .57 if run else .35
             cycle=(phase+(0 if side=='L' else .5))%1
-            stance=.58 if not run else .46
+            stance=(.64 if crouch and not female else .58) if not run else .46
             if cycle<stance:
                 foot.y+=amplitude*(-1+2*cycle/stance)
             else:
                 swing=(cycle-stance)/(1-stance)
                 foot.y+=amplitude*(1-2*(swing*swing*(3-2*swing)))
-                foot.z+=math.sin(swing*math.pi)*(.14 if run else .045 if crouch else .085)
-        if crouch:foot.x=sign*.13;foot.y-=.14
+                foot.z+=math.sin(swing*math.pi)*(.14 if run else .028 if crouch and not female else .045 if crouch else .085)
+        if crouch:foot.x=sign*(.115 if not female and not installing else .13);foot.y-=.08 if not female and not installing else .14
         if riding or seated:foot=Vector((sign*.23,-.20,.27 if riding else .08))
-        limb('Thigh_'+side,'Shin_'+side,'Foot_'+side,foot,Vector((sign*.18,-1.2,.65-sink*.2)))
+        # Deep squat knees must bend upward even while the planted foot travels
+        # behind the pelvis; the standing pole can fold the shin below the floor.
+        limb('Thigh_'+side,'Shin_'+side,'Foot_'+side,foot,Vector((sign*.18,-1.2,1.0 if low or crouch and not female and not installing else .65-sink*.2)))
         bpy.context.view_layer.update();shoulder=rig.pose.bones['UpperArm_'+side].head.copy()
         hand=Vector((shoulder.x+sign*.045,shoulder.y-.035,.83-sink))
-        if walk or run:hand.y+=math.sin(angle)*(.22 if run else .13);hand.z+=.04
-        if phone and side=='R':hand=Vector((-.19,-.34,1.31-sink*.85))
-        if crouch and side=='L':hand=Vector((.22,-.34,.63))
+        if walk or run:
+            hand.y+=(math.sin(angle) if female else math.cos(angle))*(.22 if run else .13);hand.z+=.04
+        if run and not female:
+            # Keep the elbow flexed through the entire run, rather than swinging
+            # a nearly straight walking arm faster. Hands counter the opposite leg.
+            hand=Vector((shoulder.x+sign*.015,shoulder.y-.10+math.cos(angle)*.18,1.18-sink+math.cos(gait*2)*.015))
+        if crouch and not female and not installing:
+            hand=Vector((sign*.18,-.32+math.cos(angle)*(.025 if walk else 0),.27 if low else .47))
+        # Leave chin clearance through the whole crouch stride, including head bob.
+        if phone and side=='R':hand=Vector((-.18,rig.pose.bones['Head'].head.y-.22 if low else -.36,.58 if low else 1.34-sink*.85-(.15 if crouch and not installing else 0)))
+        if crouch and side=='L' and (female or installing):hand=Vector((.19,-.29,.64))
         if installing and side=='L':
             reach=math.sin(min(1,phase*2.8)*math.pi*.5)
             hand=Vector((.29,-.28,.64)).lerp(Vector((-.045,-.40,.88)),reach)
@@ -327,7 +344,11 @@ def set_pose(rig,defs,kind,phase,female):
         if seated:hand=Vector((sign*.18,-.27,.75))
         if female and kind=='Windup':hand=Vector((-.22,-.38,1.69)) if side=='R' else Vector((.32,-.34,1.17))
         if female and kind=='Stun':hand=Vector((.19,-.13,1.48)) if side=='L' else Vector((-.29,-.06,.89))
-        limb('UpperArm_'+side,'Forearm_'+side,'Hand_'+side,hand,Vector((sign*.36,-.16,.94-sink*.35)))
+        elbow=Vector((sign*.36,-.16,.94-sink*.35))
+        if not female and run:elbow=Vector((sign*.27,shoulder.y+.12,1.14-sink))
+        if not female and crouch and not installing:elbow=Vector((sign*.27,-.02,.40 if low else .65))
+        if not female and phone and side=='R':elbow=Vector((sign*.29,shoulder.y+.08 if low else .035,.44 if low else 1.04-sink*.55))
+        limb('UpperArm_'+side,'Forearm_'+side,'Hand_'+side,hand,elbow)
         grip=(phone and side=='R') or (female and side=='R') or riding
         longitudinal,palm,sideways=hand_frame(defs,side)
         for finger in range(1,6):
@@ -339,22 +360,22 @@ def set_pose(rig,defs,kind,phase,female):
                     direction=bone.bone.tail_local-bone.bone.head_local
                     axis=direction.normalized().cross(palm).normalized()
                     local_axis=bone.bone.matrix_local.to_quaternion().inverted()@axis
-                    degrees=([14,26,16] if finger==1 else [8,18,12] if phone else [18,48,22])[segment-1] if grip else [5,9,5][segment-1]
+                    degrees=([0,75,75] if finger==1 and phone and not female else [14,26,16] if finger==1 else PHONE_FINGER_FLEX[finger] if phone and not female else [8,18,12] if phone else [18,48,22])[segment-1] if grip else [5,9,5][segment-1]
                     bone.rotation_mode='QUATERNION';bone.rotation_quaternion=Quaternion(local_axis,math.radians(degrees))
                     if phone and side=='R' and finger==1 and segment==1:
                         # Oppose the thumb along the handset edge instead of leaving
                         # the rest-pose thumb splayed out beside an otherwise closed grip.
-                        thumb_side=1 if (bone.bone.head_local-defs['Hand_R'][0]).dot(sideways)>0 else -1
-                        desired=(longitudinal*.8+palm*.5-sideways*thumb_side*.25).normalized()
+                        desired=(-longitudinal+palm*.6).normalized()
                         rest=bone.bone.matrix_local.to_quaternion()
-                        bone.rotation_quaternion=rest.inverted()@direction.normalized().rotation_difference(desired)@rest
+                        bone.rotation_quaternion=rest.inverted()@Quaternion(desired,math.radians(-90))@direction.normalized().rotation_difference(desired)@rest
     bpy.context.view_layer.update()
 
 
 def actions(rig,defs,female):
     specifications=[('Idle',2.8),('Walk',1.2 if female else .85),('Run',.65),('Windup',.8),('Stun',1.2)] if female else [
-        ('Idle',2.8),('Walk',.85),('Run',.65),('Crouch',2.0),('CrouchWalk',.85),
-        ('PhoneIdle',2.8),('PhoneWalk',.85),('PhoneRun',.65),('PhoneCrouch',2.0),('PhoneCrouchWalk',.85),('Riding',2.0),('InstallCard',6.8)]
+        ('Idle',2.8),('Walk',.85),('Run',.65),('Crouch',2.0),('CrouchWalk',1.08),
+        ('PhoneIdle',2.8),('PhoneWalk',.85),('PhoneRun',.65),('PhoneCrouch',2.0),('PhoneCrouchWalk',1.08),
+        ('LowCrouch',2.0),('LowCrouchWalk',1.08),('PhoneLowCrouch',2.0),('PhoneLowCrouchWalk',1.08),('Riding',2.0),('InstallCard',6.8)]
     for name,duration in specifications:
         action=bpy.data.actions.new(name);action.use_fake_user=True;rig.animation_data_create();rig.animation_data.action=action
         count=round(duration*24)
@@ -367,6 +388,51 @@ def actions(rig,defs,female):
             for key in curve.keyframe_points:key.interpolation='LINEAR'
     rig.animation_data.action=bpy.data.actions['Idle'];bpy.context.scene.frame_set(1)
     return [n for n,_ in specifications]
+
+
+def export_phone_hand(rig,defs,meshes):
+    """Bake the existing clothed right forearm/palm around the handset centre.
+
+    Presentation mesh only: no duplicate body, new rig, collider or animation system.
+    The existing UI still owns all phone apps and puzzle input.
+    """
+    rig.animation_data.action=None;set_pose(rig,defs,'PhoneIdle',0,False)
+    deps=bpy.context.evaluated_depsgraph_get()
+    rest=rig.data.bones['Hand_R'].matrix_local
+    pose=rig.pose.bones['Hand_R'].matrix@rest.inverted()
+    longitudinal,palm,sideways=hand_frame(defs,'R')
+    centre=pose@(defs['Hand_R'][0]+longitudinal*.09+palm*.045)
+    axes=[(pose.to_3x3()@v).normalized() for v in (-longitudinal,palm,sideways)]
+    copies=[];total=0
+    for original in meshes:
+        indices={g.index for g in original.vertex_groups if g.name in ['Forearm_R','Hand_R'] or g.name.startswith('Finger') and g.name.endswith('_R')}
+        if not indices:continue
+        selected=[p for p in original.data.polygons if sum(sum(g.weight for g in original.data.vertices[i].groups if g.group in indices) for i in p.vertices)/len(p.vertices)>.65]
+        if not selected:continue
+        evaluated=original.evaluated_get(deps);data=evaluated.to_mesh();points=[];faces=[];uv=[];mapping={}
+        for polygon in selected:
+            face=[];coords=[]
+            for i,loop in zip(reversed(polygon.vertices),reversed(polygon.loop_indices)):
+                if i not in mapping:
+                    delta=evaluated.matrix_world@data.vertices[i].co-centre;mapping[i]=len(points)
+                    points.append(tuple(delta.dot(axis) for axis in axes))
+                face.append(mapping[i]);coords.append(tuple(original.data.uv_layers.active.data[loop].uv))
+            faces.append(face);uv.append(coords)
+        mesh=bpy.data.meshes.new('PhoneHand_'+original.name);mesh.from_pydata(points,[],faces);mesh.update()
+        layer=mesh.uv_layers.new(name='UVMap')
+        for polygon,coords,source in zip(mesh.polygons,uv,selected):
+            polygon.use_smooth=True;polygon.material_index=source.material_index
+            for i,value in zip(polygon.loop_indices,coords):layer.data[i].uv=value
+        for mat in original.data.materials:mesh.materials.append(mat)
+        copy=bpy.data.objects.new(mesh.name,mesh);bpy.context.collection.objects.link(copy);copies.append(copy)
+        total+=sum(len(p.vertices)-2 for p in mesh.polygons);evaluated.to_mesh_clear()
+    assert copies and total<20000,('Invalid first-person forearm',total)
+    bpy.ops.object.select_all(action='DESELECT')
+    for copy in copies:copy.select_set(True)
+    bpy.context.view_layer.objects.active=copies[0]
+    bpy.ops.export_scene.fbx(filepath=str(MODEL/'RakaPhoneHand.fbx'),use_selection=True,object_types={'MESH'},axis_forward='-Z',axis_up='Y',bake_anim=False,path_mode='STRIP')
+    for copy in copies:bpy.data.objects.remove(copy,do_unlink=True)
+    return total
 
 
 def make_character(female):
@@ -532,11 +598,11 @@ def make_character(female):
         # World handset is visible only in phone poses, managed by AnimatedRakaAvatar.
         phone=material('Raka_Phone',(.018,.02,.023));hand=defs['Hand_R'][0]
         longitudinal,palm,sideways=hand_frame(defs,'R')
-        def phone_point(x,y,z):return hand+sideways*x+longitudinal*y+palm*z
-        points=[phone_point(dx,dy,dz) for dy in [.030,.195] for dz in [.018,.032] for dx in [-.039,.039]]
+        def phone_point(x,y,z):return hand+longitudinal*(.09-x)+sideways*y+palm*(.045+z)
+        points=[phone_point(dx,dy,dz) for dy in [-.0825,.0825] for dz in [-.007,.007] for dx in [-.039,.039]]
         handset=geometry('HandheldPhone',points,[(0,1,3,2),(4,6,7,5),(0,4,5,1),(2,3,7,6),(0,2,6,4),(1,5,7,3)],phone,'Hand_R',rig)
         display=material('Raka_PhoneScreen',(.07,.13,.15))
-        screen=geometry('HandsetScreen',[phone_point(x,y,.033) for x,y in [(-.034,.037),(.034,.037),(.034,.187),(-.034,.187)]],[(0,1,2,3)],display,'Hand_R',rig)
+        screen=geometry('HandsetScreen',[phone_point(x,y,.008) for x,y in [(-.034,-.075),(.034,-.075),(.034,.075),(-.034,.075)]],[(0,1,2,3)],display,'Hand_R',rig)
         screen.parent=handset
     clips=actions(rig,defs,female)
     meshes=[o for o in bpy.context.scene.objects if o.type=='MESH']
@@ -545,12 +611,12 @@ def make_character(female):
     bpy.ops.object.select_all(action='DESELECT');rig.select_set(True)
     for mesh in meshes:mesh.select_set(True)
     bpy.context.view_layer.objects.active=rig
-    bpy.ops.export_scene.fbx(filepath=str(MODEL/(name+'.fbx')),use_selection=True,object_types={'MESH','ARMATURE'},axis_forward='-Z',axis_up='Y',bake_anim=True,bake_anim_use_all_actions=True,bake_anim_use_nla_strips=False,bake_anim_simplify_factor=.25,add_leaf_bones=False,path_mode='STRIP')
+    bpy.ops.export_scene.fbx(filepath=str(MODEL/(name+'.fbx')),use_selection=True,object_types={'MESH','ARMATURE'},axis_forward='-Z',axis_up='Y',bake_anim=True,bake_anim_use_all_actions=True,bake_anim_use_nla_strips=False,bake_anim_simplify_factor=0,add_leaf_bones=False,path_mode='STRIP')
     records=dict(character=name,triangles=triangles,renderers=len(meshes),bones=len(rig.data.bones),clips=clips)
     records['poseBoundsMetres']={}
     max_gap=0
-    for pose in (['Idle','Run'] if female else ['Idle','Walk','Run','Crouch','CrouchWalk','PhoneWalk','Riding']):
-        for phase in [0,.25,.5,.75]:
+    for pose in (['Idle','Run'] if female else ['Idle','Walk','Run','Crouch','CrouchWalk','LowCrouch','LowCrouchWalk','PhoneLowCrouch','PhoneLowCrouchWalk','PhoneWalk','Riding']):
+        for phase in [i/8 for i in range(8)]:
             set_pose(rig,defs,pose,phase,female)
             for side in ['L','R']:
                 for a,b in [('Thigh_','Shin_'),('Shin_','Foot_'),('UpperArm_','Forearm_'),('Forearm_','Hand_')]:
@@ -565,10 +631,17 @@ def make_character(female):
     assert max_gap<.003,('Disconnected limb during locomotion',max_gap)
 
     rig.animation_data.action=None
-    for pose in (['Idle','Run','Seated'] if female else ['Idle','Run','Crouch','CrouchWalk','PhoneCrouch','Riding']):
-        set_pose(rig,defs,pose,0,female);deps=bpy.context.evaluated_depsgraph_get()
-        points=[o.matrix_world@Vector(corner) for original in meshes for o in [original.evaluated_get(deps)] for corner in o.bound_box]
+    for pose in (['Idle','Run','Seated'] if female else ['Idle','Run','Crouch','CrouchWalk','PhoneCrouch','PhoneCrouchWalk','LowCrouch','LowCrouchWalk','PhoneLowCrouch','PhoneLowCrouchWalk','Riding']):
+        points=[]
+        for phase in ([i/8 for i in range(8)] if 'Crouch' in pose else [0]):
+            set_pose(rig,defs,pose,phase,female);deps=bpy.context.evaluated_depsgraph_get()
+            points.extend(o.matrix_world@Vector(corner) for original in meshes for o in [original.evaluated_get(deps)] for corner in o.bound_box)
         records['poseBoundsMetres'][pose]=dict(min=[round(min(p[i] for p in points),4) for i in range(3)],max=[round(max(p[i] for p in points),4) for i in range(3)])
+        if 'Crouch' in pose:
+            bounds=records['poseBoundsMetres'][pose]
+            assert bounds['max'][2]<(.83 if 'Low' in pose else 1.02) and bounds['min'][2]>-.02,('Crouch exceeds capsule headroom/floor',pose,bounds)
+    if not female:records['phoneHandTriangles']=export_phone_hand(rig,defs,meshes)
+    if '--skip-preview' in sys.argv:return records
     if female:
         for variant,pose in [('SriAtmajaEcho','Idle'),('SriAtmajaSeated','Seated')]:
             rig.animation_data.action=None;set_pose(rig,defs,pose,0,True);bpy.context.view_layer.update()

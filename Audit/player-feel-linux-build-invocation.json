@@ -1,0 +1,21 @@
+{
+  "stage": "linux",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-main",
+    "-buildTarget",
+    "Linux64",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.GoldenLinuxBuild.Build",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Audit/golden-linux.log"
+  ],
+  "startedUtc": "2026-10-19T06:06:54.754613+00:00",
+  "status": "Finished",
+  "endedUtc": "2026-10-19T06:07:55.423621+00:00",
+  "exitCode": 0
+}

@@ -11,6 +11,9 @@ namespace LayarTerakhir.Player
         public bool Installing {get;set;}
         private string current;
         private Renderer[] jacket,shirt;
+        private float playbackSpeed = 1;
+        private float handsetVisible;
+        private bool handsetGraspVisible;
         private void Awake()
         {
             var renderers=GetComponentsInChildren<Renderer>(true);
@@ -18,20 +21,37 @@ namespace LayarTerakhir.Player
             shirt=System.Array.FindAll(renderers,r=>r.name.StartsWith("RakaTShirt"));
         }
 
-        public void Present(float speed, bool crouching, bool phone, bool riding)
+        public void Present(float speed, bool crouching, bool phone, bool riding, Vector2 direction = default, bool lowCrouch = false)
         {
             if (!motion) return;
             RefreshOutfit();
-            if (handset) handset.SetActive(phone && !riding);
-            bool moving = speed > .12f && speed < 12;
-            string clip = Installing ? "InstallCard" : riding ? "Riding" : crouching ? (moving ? "CrouchWalk" : "Crouch") : moving ? (speed > 3.25f ? "Run" : "Walk") : "Idle";
-            if (phone && !riding && !Installing) clip = "Phone" + clip;
+            handsetVisible = Mathf.MoveTowards(handsetVisible, phone && !riding ? 1 : 0, Time.deltaTime / .22f);
+            bool heldPose = phone || handsetVisible > .02f;
+            // Display the world handset only after the grasp has been sampled.
+            // Keep that grasp while lowering, until the handset leaves the hand.
+            bool graspReady = current != null && current.StartsWith("Phone") && motion[current] != null && motion[current].weight > .98f;
+            handsetGraspVisible = heldPose && !riding && (handsetGraspVisible || graspReady);
+            if (handset) handset.SetActive(handsetGraspVisible);
+            bool moving = speed > (IsLocomotion(current) ? .055f : .12f) && speed < 12;
+            bool running = speed > (current != null && current.EndsWith("Run") ? 2.9f : 3.25f);
+            string clip = Installing ? "InstallCard" : riding ? "Riding" : crouching ? (moving ? "CrouchWalk" : "Crouch") : moving ? (running ? "Run" : "Walk") : "Idle";
+            if (crouching && lowCrouch && !Installing && !riding) clip = moving ? "LowCrouchWalk" : "LowCrouch";
+            if (heldPose && !riding && !Installing) clip = "Phone" + clip;
             var state = motion[clip]; if (!state) return;
-            state.speed = !moving || riding || Installing ? 1 : Mathf.Clamp(speed / (crouching ? 1.01f : clip.EndsWith("Run") ? 3.81f : 1.42f), .65f, 3.5f);
+            float strideScale = Mathf.Max(.1f, Mathf.Abs(transform.localScale.x));
+            float targetSpeed = !moving || riding || Installing ? 1 : Mathf.Clamp(speed / ((crouching ? lowCrouch ? .405f : .52f : running ? 3.81f : 1.42f) * strideScale), .12f, 2.2f);
+            if (moving && direction.y < -.0001f) targetSpeed = -targetSpeed;
+            playbackSpeed = Mathf.MoveTowards(playbackSpeed, targetSpeed, 12 * Time.deltaTime);
+            state.speed = playbackSpeed;
             if (clip == current && motion.IsPlaying(clip)) return;
             state.wrapMode = Installing ? WrapMode.ClampForever : WrapMode.Loop;
-            motion.CrossFade(clip, .16f); current = clip;
+            bool phaseMatch = IsLocomotion(clip) && IsLocomotion(current) && motion[current] != null;
+            float phase = phaseMatch ? Mathf.Repeat(motion[current].normalizedTime, 1) : 0;
+            motion.CrossFade(clip, crouching || heldPose ? .24f : .18f);
+            if (phaseMatch) state.normalizedTime = phase;
+            current = clip;
         }
+        private static bool IsLocomotion(string clip) => clip != null && (clip.EndsWith("Walk") || clip.EndsWith("Run"));
         public void RefreshOutfit(bool visible=true)
         {
             bool wearingJacket=CampaignState.Instance&&CampaignState.Instance.HasInventoryItem("JAKET_RAKA");

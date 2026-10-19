@@ -1,0 +1,37 @@
+{
+  "archiveSha256": "431ffebea1fef585f28ae81d1a79e12ad5a7488d033e1d35443c631eaa242e07",
+  "runtimeSymbolsVerified": [
+    "StepPlanarVelocity",
+    "get_PlanarVelocity",
+    "get_VisualGroundOffset",
+    "get_RaiseAmount",
+    "AnimatedRakaAvatar",
+    "handsetGraspVisible",
+    "PlayerFeelAudit"
+  ],
+  "resourceAndClipNameMarkers": {
+    "RakaPhoneHand": [
+      "resources.assets"
+    ],
+    "LowCrouch": [
+      "resources.assets"
+    ],
+    "LowCrouchWalk": [
+      "resources.assets"
+    ],
+    "PhoneLowCrouch": [
+      "resources.assets"
+    ],
+    "PhoneLowCrouchWalk": [
+      "resources.assets"
+    ],
+    "InstallCard": [
+      "resources.assets"
+    ],
+    "Riding": [
+      "resources.assets"
+    ]
+  },
+  "windowsRuntimeTested": false,
+  "description": "Packaged player content/identity verification only. Imported geometry tests and actual Linux player fixtures verify behavior separately; native Windows feel/rendering still needs user playtest."
+}

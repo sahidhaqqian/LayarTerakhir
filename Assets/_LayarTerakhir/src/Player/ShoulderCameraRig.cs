@@ -18,6 +18,8 @@ namespace LayarTerakhir.Player
         public Vector3 shoulderOffset = new Vector3(.48f, .10f, -1.85f);
         public float collisionRadius = .16f;
         public float CurrentDistance { get; private set; }
+        public Vector3 AimPoint { get; private set; }
+        public float VisualGroundOffset { get; private set; }
         public Transform Avatar { get; private set; }
         public bool CinematicVisible { get; set; }
         public bool Riding { get; set; }
@@ -36,6 +38,8 @@ namespace LayarTerakhir.Player
         private AnimatedRakaAvatar authoredAvatar;
         private Light avatarBounce;
         private MotorcycleRiderAlignment riderAlignment;
+        private float cameraDistance = -1, distanceVelocity, phoneBlend, visualSpeed, bodyYaw;
+        private int cameraFrame = -1, animationFrame = -1;
 
         private void Start()
         {
@@ -86,15 +90,19 @@ namespace LayarTerakhir.Player
                 return;
             }
             if (!player.enabled) return;
-            RefreshCameraPose();
+            UpdateCameraPose(false);
         }
 
-        public void RefreshCameraPose()
+        // Interactions and teleports explicitly request a settled pose in the same frame.
+        public void RefreshCameraPose() => UpdateCameraPose(true);
+
+        private void UpdateCameraPose(bool immediate)
         {
             if (!eye || !player || !player.cameraPivot) return;
             var pivot = player.cameraPivot;
             if (IsFirstPerson)
             {
+                cameraDistance = -1;
                 avatarBounce.enabled=false;
                 CurrentDistance=0;
                 eye.transform.SetPositionAndRotation(pivot.position, pivot.rotation);
@@ -103,7 +111,24 @@ namespace LayarTerakhir.Player
                 return;
             }
             Vector3 anchor = pivot.position;
-            Vector3 desired = pivot.TransformPoint(shoulderOffset);
+            bool advance = cameraFrame != Time.frameCount;
+            if (advance)
+            {
+                cameraFrame = Time.frameCount;
+                bool raised = SmartphoneController.Instance && SmartphoneController.Instance.isPhoneRaised;
+                phoneBlend = Mathf.MoveTowards(phoneBlend, raised ? 1 : 0, Time.deltaTime / .22f);
+            }
+            // Keep the same physical aim line as the phone. The shoulder camera converges
+            // on the first visible surface instead of looking along a parallel, offset ray.
+            int aimCount = Physics.RaycastNonAlloc(pivot.position, pivot.forward, hits, 40, ~0, QueryTriggerInteraction.Ignore);
+            var aimHits = aimCount == hits.Length ? Physics.RaycastAll(pivot.position, pivot.forward, 40, ~0, QueryTriggerInteraction.Ignore) : hits;
+            if (aimHits != hits) aimCount = aimHits.Length;
+            float focus = 40;
+            for (int i = 0; i < aimCount; i++)
+                if (aimHits[i].collider && !aimHits[i].transform.IsChildOf(transform)) focus = Mathf.Min(focus, aimHits[i].distance);
+            AimPoint = pivot.position + pivot.forward * Mathf.Max(.15f, focus);
+            Vector3 offset = Vector3.Lerp(shoulderOffset, new Vector3(.36f, .06f, -1.42f), phoneBlend);
+            Vector3 desired = pivot.TransformPoint(offset);
             Vector3 direction = desired - anchor;
             float length = direction.magnitude;
             int count = Physics.SphereCastNonAlloc(anchor, collisionRadius, direction.normalized,
@@ -115,20 +140,53 @@ namespace LayarTerakhir.Player
             for (int i = 0; i < count; i++)
                 if (results[i].collider && !results[i].transform.IsChildOf(transform))
                     distance = Mathf.Min(distance, Mathf.Max(.12f, results[i].distance - .06f));
-            CurrentDistance = distance;
-            avatarBounce.enabled=distance>=.9f;
-            eye.transform.SetPositionAndRotation(anchor + direction.normalized * distance, pivot.rotation);
+            if (immediate || cameraDistance < 0 || Time.deltaTime <= 0 || Vector3.Distance(transform.position, lastPosition) > 3)
+            {
+                cameraDistance = distance;
+                distanceVelocity = 0;
+            }
+            // Collision retracts immediately; only the unobstructed return is eased.
+            if (distance < cameraDistance) { cameraDistance = distance; distanceVelocity = 0; }
+            else if (advance)
+                cameraDistance = Mathf.SmoothDamp(cameraDistance, distance, ref distanceVelocity, .12f, Mathf.Infinity, Time.deltaTime);
+            CurrentDistance = Mathf.Min(distance, cameraDistance);
+            avatarBounce.enabled=CurrentDistance>=.9f;
+            Vector3 position = anchor + direction.normalized * CurrentDistance;
+            eye.transform.SetPositionAndRotation(position, Quaternion.LookRotation(AimPoint - position, pivot.up));
             AnimateRaka();
             foreach (var renderer in bodyRenderers)
-                renderer.shadowCastingMode = distance < .9f ? ShadowCastingMode.ShadowsOnly : ShadowCastingMode.On;
+                renderer.shadowCastingMode = CurrentDistance < .9f ? ShadowCastingMode.ShadowsOnly : ShadowCastingMode.On;
         }
 
         private void AnimateRaka()
         {
+            // Mount/unmount can happen through explicit refreshes in one frame.
+            if (authoredAvatar)
+            {
+                // Skin clearance varies while settling and stepping. Probe only the
+                // nearby support; retain the last offset in air and during traversals.
+                var capsule=GetComponent<CharacterController>();
+                if(!Riding&&capsule.enabled)
+                {
+                    float nearest=float.PositiveInfinity;
+                    int count=Physics.RaycastNonAlloc(transform.position+Vector3.up*.12f,Vector3.down,hits,.12f+Mathf.Max(.08f,capsule.skinWidth*1.5f),~0,QueryTriggerInteraction.Ignore);
+                    for(int i=0;i<count;i++)
+                        if(hits[i].collider&&!hits[i].transform.IsChildOf(transform)&&hits[i].normal.y>.5f&&hits[i].distance<nearest)
+                        {nearest=hits[i].distance;VisualGroundOffset=Mathf.Clamp(transform.position.y-hits[i].point.y,0,capsule.skinWidth);}
+                }
+                Avatar.localPosition = Riding ? Vector3.up * .4f : Vector3.down * VisualGroundOffset;
+                Avatar.localScale = Vector3.one * (Riding ? 1 : 1 + VisualGroundOffset / player.standingHeight);
+            }
+            // Explicit refreshes by interactions/fixtures must not advance the gait twice.
+            if (animationFrame == Time.frameCount) return;
+            animationFrame = Time.frameCount;
             Vector3 delta = transform.position - lastPosition;
             lastPosition = transform.position;
             delta.y = 0;
             float speed = delta.magnitude / Mathf.Max(.001f, Time.deltaTime);
+            if (speed > 12 || Time.deltaTime <= 0) { speed = 0; visualSpeed = 0; }
+            visualSpeed = Mathf.MoveTowards(visualSpeed, speed, 24 * Time.deltaTime);
+            Vector3 localMotion = transform.InverseTransformDirection(delta);
             if (speed < 9) stride += delta.magnitude * 7;
             float swing = Mathf.Sin(stride) * Mathf.Clamp01(speed / 1.5f) * (player.IsCrouching ? 19 : 30);
             bool phone = SmartphoneController.Instance && SmartphoneController.Instance.isPhoneRaised;
@@ -136,8 +194,11 @@ namespace LayarTerakhir.Player
             {
                 // The seated clip lowers the pelvis by .4 m; the existing motorcycle
                 // mount was authored against the standing avatar's pelvis height.
-                Avatar.localPosition=Riding?Vector3.up*.4f:Vector3.zero;
-                authoredAvatar.Present(speed,player.IsCrouching,phone,Riding);
+                float yaw = localMotion.sqrMagnitude > .00001f ? Mathf.Atan2(localMotion.x, Mathf.Abs(localMotion.z)) * Mathf.Rad2Deg : 0;
+                yaw = Riding || UiFocus.Cinematic ? 0 : Mathf.Clamp(yaw, phone ? -18 : -60, phone ? 18 : 60);
+                bodyYaw = Mathf.LerpAngle(bodyYaw, yaw, 1 - Mathf.Exp(-16 * Time.deltaTime));
+                Avatar.localRotation = Quaternion.Euler(0, bodyYaw, 0);
+                authoredAvatar.Present(visualSpeed,player.IsCrouching,phone,Riding,new Vector2(localMotion.x,localMotion.z),player.crouchHeight<.9f);
                 if(Riding&&transform.parent){if(!riderAlignment)riderAlignment=Avatar.gameObject.AddComponent<MotorcycleRiderAlignment>();riderAlignment.Fit(transform.parent);}
                 return;
             }

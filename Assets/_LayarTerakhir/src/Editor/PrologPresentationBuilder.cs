@@ -29,6 +29,13 @@ namespace LayarTerakhir.Editor
             var avatar=model.AddComponent<AnimatedRakaAvatar>();avatar.motion=BindMotion(model,"RakaRigged");
             avatar.handset=model.GetComponentsInChildren<Transform>(true).First(t=>t.name=="HandheldPhone").gameObject;
             PrefabUtility.SaveAsPrefabAsset(model,"Assets/Resources/RakaCharacter.prefab");Object.DestroyImmediate(model);AssetDatabase.SaveAssets();
+            if(File.Exists(Root+"Models/RakaPhoneHand.fbx"))
+            {
+                ImportModel("RakaPhoneHand",false);
+                var hand=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(Root+"Models/RakaPhoneHand.fbx"));
+                ApplyMaterials(hand);hand.name="RakaPhoneHand";
+                PrefabUtility.SaveAsPrefabAsset(hand,"Assets/Resources/RakaPhoneHand.prefab");Object.DestroyImmediate(hand);AssetDatabase.SaveAssets();
+            }
         }
         private static readonly Dictionary<string,Material> materials=new Dictionary<string,Material>();
         private static string Hash(string path){using var sha=SHA256.Create();return BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(path))).Replace("-","").ToLowerInvariant();}
@@ -96,6 +103,8 @@ namespace LayarTerakhir.Editor
         private static void ImportModel(string name,bool animate)
         {
             var importer=(ModelImporter)AssetImporter.GetAtPath(Root+"Models/"+name+".fbx");
+            // Retain the authored player foot contacts instead of reducing joint keys.
+            if(name=="RakaRigged")importer.animationCompression=ModelImporterAnimationCompression.Off;
             importer.importCameras=false;importer.importLights=false;importer.addCollider=false;importer.importAnimation=animate;importer.animationType=animate?ModelImporterAnimationType.Legacy:ModelImporterAnimationType.None;importer.SaveAndReimport();
             if(!animate)return;
             var clips=importer.defaultClipAnimations;

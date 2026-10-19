@@ -14,14 +14,18 @@
     "-screen-height",
     "360",
     "-prologAudit",
-    "/root/Projects/LayarTerakhir-main/Audit/Visuals/Dreadout-Look-Prolog",
+    "/root/Projects/LayarTerakhir-main/Audit/Visuals/Prolog-PlayerFeel",
     "-logFile",
     "/root/Projects/LayarTerakhir-main/Audit/golden-prolog-player.log"
   ],
-  "startedUtc": "2026-10-18T17:12:51.433009+00:00",
+  "startedUtc": "2026-10-19T06:11:33.191146+00:00",
+  "rendererEnvironment": {
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "LP_NUM_THREADS": "2"
+  },
   "audioBackend": "Private clocked PulseAudio null sink; virtual audio device; this fixture does not measure listener audio, no physical audio hardware",
   "status": "Finished",
-  "endedUtc": "2026-10-18T17:16:35.357828+00:00",
+  "endedUtc": "2026-10-19T06:16:20.769737+00:00",
   "exitCode": 0,
   "screenCapturesVerified": 30,
   "completedSmokeReceiptVerified": true

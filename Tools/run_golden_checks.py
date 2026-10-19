@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 UNITY='/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity'
 parser=argparse.ArgumentParser()
-parser.add_argument('--stage',required=True,choices=['graphics-look','graphics-validate','graphics-player','melati-street','apply','polish','validate','test','linux','windows','player','atmaja-build','atmaja-validate','atmaja-player','review-build','review-validate','review-player','kos-refine','prolog-complete','prolog-presentation','stair-revision','designer-review','lounge-refine','playtest-repair','raka-repair','melati-repair','review-survey','prolog-player','rider-player','designer-player'])
+parser.add_argument('--stage',required=True,choices=['feel-player','graphics-look','graphics-validate','graphics-player','melati-street','apply','polish','validate','test','linux','windows','player','atmaja-build','atmaja-validate','atmaja-player','review-build','review-validate','review-player','kos-refine','prolog-complete','prolog-presentation','stair-revision','designer-review','lounge-refine','playtest-repair','raka-repair','melati-repair','review-survey','prolog-player','rider-player','designer-player'])
 parser.add_argument('--test-filter',default='LayarTerakhir.Editor.Tests')
 parser.add_argument('--chase-only',action='store_true',help='Diagnostic prolog chase checkpoint fixture; final delivery must also run the full continuation')
 parser.add_argument('--width',type=int,default=1280)
@@ -26,7 +26,7 @@ if stage in ('atmaja-player','player'):
 command=[UNITY,'-batchmode','-nographics','-projectPath',str(ROOT)]
 record_path=ROOT/('Audit/golden-'+stage+'-invocation.json')
 log=ROOT/('Audit/golden-'+stage+'.log')
-is_player=stage in ['graphics-player','player','atmaja-player','review-player','prolog-player','rider-player','designer-player']
+is_player=stage in ['feel-player','graphics-player','player','atmaja-player','review-player','prolog-player','rider-player','designer-player']
 if stage.startswith(('atmaja-','review-')):
     record_path=ROOT/('Audit/'+stage+'-invocation.json');log=ROOT/('Audit/'+stage+'.log')
 if stage=='test':
@@ -34,7 +34,7 @@ if stage=='test':
 elif is_player:
     command=['xvfb-run','-a','-s','-screen 0 1280x720x24',str(ROOT/'Builds/LinuxAudit/LayarTerakhir.x86_64'),
              '-force-'+args.graphics,'-screen-fullscreen','0','-screen-width',str(args.width),'-screen-height',str(args.height),
-             '-graphicsAudit' if stage=='graphics-player' else '-designerAudit' if stage=='designer-player' else '-riderAudit' if stage=='rider-player' else '-prologAudit' if stage=='prolog-player' else '-reviewAudit' if stage=='review-player' else '-atmajaAudit' if stage=='atmaja-player' else '-goldenAudit',str(review_output if stage in ('graphics-player','review-player','prolog-player','rider-player','designer-player') else ROOT/('Audit/Visuals/Atmaja-Linux' if stage=='atmaja-player' else 'Audit/Visuals/Golden-Linux')),'-logFile',str(log)]
+             '-feelAudit' if stage=='feel-player' else '-graphicsAudit' if stage=='graphics-player' else '-designerAudit' if stage=='designer-player' else '-riderAudit' if stage=='rider-player' else '-prologAudit' if stage=='prolog-player' else '-reviewAudit' if stage=='review-player' else '-atmajaAudit' if stage=='atmaja-player' else '-goldenAudit',str(review_output if stage in ('feel-player','graphics-player','review-player','prolog-player','rider-player','designer-player') else ROOT/('Audit/Visuals/Atmaja-Linux' if stage=='atmaja-player' else 'Audit/Visuals/Golden-Linux')),'-logFile',str(log)]
     if args.fast and stage=='player':command+=['-goldenAuditFast']
     if args.chase_only:
         assert stage=='prolog-player'
@@ -57,6 +57,8 @@ pulse_temp=None
 if is_player or stage=='test':
     # Clocked private virtual sink: ALSA's unclocked null sink can busy-loop on hosts without a soundcard.
     env['LIBGL_ALWAYS_SOFTWARE']='1'
+    # Leave CPU headroom for the editor regression suite beside software captures.
+    if is_player:env.setdefault('LP_NUM_THREADS','2')
     pulse_temp=tempfile.TemporaryDirectory(prefix='layar-golden-pulse-')
     env['PULSE_RUNTIME_PATH']=pulse_temp.name
     socket=str(Path(pulse_temp.name)/'native')
@@ -76,6 +78,7 @@ if is_player or stage=='test':
         raise RuntimeError('Private PulseAudio sink did not start: '+diagnostic.decode(errors='replace').strip())
     env['PULSE_SERVER']='unix:'+socket
 record={'stage':stage,'command':command,'startedUtc':datetime.now(timezone.utc).isoformat()}
+if is_player:record['rendererEnvironment']={key:env[key] for key in ('LIBGL_ALWAYS_SOFTWARE','LP_NUM_THREADS')}
 if pulse:record['audioBackend']='Private clocked PulseAudio null sink; '+('real listener tap' if stage=='review-player' else 'headless test audio device' if stage=='test' else 'virtual audio device; this fixture does not measure listener audio')+', no physical audio hardware'
 record['status']='Running'
 record_path.parent.mkdir(parents=True,exist_ok=True)
@@ -106,17 +109,20 @@ if stage=='test' and result.returncode==0:
     except (AssertionError,OSError,ET.ParseError) as error:
         record['exitCode']=1;record['validationError']=str(error)
 if is_player and result.returncode==0:
-    graphics=stage=='graphics-player';review=stage=='review-player';atmaja=stage=='atmaja-player';prolog=stage=='prolog-player';rider=stage=='rider-player';designer=stage=='designer-player'
-    source='GraphicsReferenceAudit.cs' if graphics else 'DesignerReviewPlayerAudit.cs' if designer else 'RiderPresentationAudit.cs' if rider else 'PrologCompletionAudit.cs' if prolog else 'ReviewPlayerAudit.cs'
-    expected_names=re.findall(r'\bShot\("([^"\n]+)"\)',(ROOT/'Assets/_LayarTerakhir/src/Diagnostics'/source).read_text()) if graphics or review or prolog or rider or designer else []
+    feel=stage=='feel-player';graphics=stage=='graphics-player';review=stage=='review-player';atmaja=stage=='atmaja-player';prolog=stage=='prolog-player';rider=stage=='rider-player';designer=stage=='designer-player'
+    source='PlayerFeelAudit.cs' if feel else 'GraphicsReferenceAudit.cs' if graphics else 'DesignerReviewPlayerAudit.cs' if designer else 'RiderPresentationAudit.cs' if rider else 'PrologCompletionAudit.cs' if prolog else 'ReviewPlayerAudit.cs'
+    expected_names=re.findall(r'\bShot\("([^"\n]+)"\)',(ROOT/'Assets/_LayarTerakhir/src/Diagnostics'/source).read_text()) if feel or graphics or review or prolog or rider or designer else []
     if prolog and args.chase_only:expected_names=[name for name in expected_names if int(re.match(r'\d+',name).group())>=16]
-    expected=len(expected_names) if graphics or review or prolog or rider or designer else 12 if atmaja else 13
-    receipt=review_output/'player-audit.json' if graphics or review or prolog or rider or designer else ROOT/('Audit/Visuals/Atmaja-Linux/player-audit.json' if atmaja else 'Audit/Visuals/Golden-Linux/player-audit.json')
+    expected=len(expected_names) if feel or graphics or review or prolog or rider or designer else 12 if atmaja else 13
+    receipt=review_output/'player-audit.json' if feel or graphics or review or prolog or rider or designer else ROOT/('Audit/Visuals/Atmaja-Linux/player-audit.json' if atmaja else 'Audit/Visuals/Golden-Linux/player-audit.json')
     data=json.loads(receipt.read_text()) if receipt.exists() else {}
     try:
         assert data.get('completed') and data.get('actualStandalonePlayer') and len(data.get('screenshots',[]))==expected
         assert graphics or data.get('checkpointSaved')
-        if graphics:
+        if feel:
+            assert set(data['screenshots'])=={name+'.png' for name in expected_names}
+            assert all(c.startswith('PASS ') for c in data['checks']) and len(data.get('samples',[]))>180
+        elif graphics:
             assert not data.get('errors') and set(data['screenshots'])=={name+'.png' for name in expected_names}
         elif prolog:
             assert set(data['screenshots'])=={name+'.png' for name in expected_names},'Missing declared prolog captures'

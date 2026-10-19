@@ -14,14 +14,18 @@
     "-screen-height",
     "360",
     "-reviewAudit",
-    "/root/Projects/LayarTerakhir-main/Audit/Visuals/Dreadout-Look-Opening",
+    "/root/Projects/LayarTerakhir-main/Audit/Visuals/Review-PlayerFeel",
     "-logFile",
     "/root/Projects/LayarTerakhir-main/Audit/review-player.log"
   ],
-  "startedUtc": "2026-10-18T16:35:04.658423+00:00",
+  "startedUtc": "2026-10-19T01:51:10.483461+00:00",
+  "rendererEnvironment": {
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "LP_NUM_THREADS": "2"
+  },
   "audioBackend": "Private clocked PulseAudio null sink; real listener tap, no physical audio hardware",
   "status": "Finished",
-  "endedUtc": "2026-10-18T16:54:38.089152+00:00",
+  "endedUtc": "2026-10-19T02:10:23.356082+00:00",
   "exitCode": 0,
   "screenCapturesVerified": 59,
   "completedSmokeReceiptVerified": true

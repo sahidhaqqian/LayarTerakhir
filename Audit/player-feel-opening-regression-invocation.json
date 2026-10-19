@@ -1,0 +1,34 @@
+{
+  "stage": "review-player",
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Projects/LayarTerakhir-main/Builds/LinuxAudit/LayarTerakhir.x86_64",
+    "-force-glcore",
+    "-screen-fullscreen",
+    "0",
+    "-screen-width",
+    "640",
+    "-screen-height",
+    "360",
+    "-reviewAudit",
+    "/root/Projects/LayarTerakhir-main/Audit/Visuals/Review-PlayerFeel",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Audit/review-player.log"
+  ],
+  "startedUtc": "2026-10-19T01:51:10.483461+00:00",
+  "rendererEnvironment": {
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "LP_NUM_THREADS": "2"
+  },
+  "audioBackend": "Private clocked PulseAudio null sink; real listener tap, no physical audio hardware",
+  "status": "Finished",
+  "endedUtc": "2026-10-19T02:10:23.356082+00:00",
+  "exitCode": 0,
+  "screenCapturesVerified": 59,
+  "completedSmokeReceiptVerified": true,
+  "scopeNote": "Opening, departure and ground-floor preflight before final visual grounding. Updated grounding is covered by the final full suite and targeted feel/rider/prolog players.",
+  "sourceRecord": "Audit/player-feel-opening-sources.json"
+}

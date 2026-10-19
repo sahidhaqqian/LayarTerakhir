@@ -40,12 +40,30 @@ pemain. Kamera bahu memakai spherecast dan menyembunyikan tubuh saat jarak <0,9 
 first-person tetap menganimasikan bayangan tubuh. Layer 26 mengisolasi avatar dari feed
 HP dan membatasi cahaya pantul tanpa shadow ke tubuh Raka; fill mati di first-person
 atau saat tubuh tersembunyi. Cutscene dan modal memiliki kamera/input.
-`Resources/RakaCharacter` menyediakan mesh skinned 55 tulang dan 12 klip Legacy;
-`AnimatedRakaAvatar` hanya memilih gerak visual, tanpa root motion atau collider tambahan.
+`Resources/RakaCharacter` menyediakan mesh skinned 55 tulang dan 16 klip Legacy;
+empat varian `LowCrouch` mengikuti collider Atmaja .78 m, sementara jongkok kos
+memakai pose 1 m. `AnimatedRakaAvatar` meneruskan fase langkah, memperhalus playback,
+dan memilih gerak visual tanpa root motion atau collider tambahan. Tubuh mengikuti
+arah gerak secara terbatas; posisi duduk motor tetap mengikuti anchor existing.
+Kamera bahu mengarah ke garis bidik pivot/feed HP, menutup jarak segera saat terhalang,
+dan memperhalus jarak kembali pada `LateUpdate`; `RefreshCameraPose()` eksplisit tetap
+menyelesaikan pose segera untuk teleport dan interaksi cerita.
+`Resources/RakaPhoneHand` adalah mesh lengan/tangan statis dari karakter yang sama,
+ditampilkan hanya saat HP first-person. `AtmajaPhoneView` menyelaraskannya dengan
+panel UI yang bergerak naik/turun .24 detik; kamera feed menjadi anak pivot sehingga
+foto pada `Update` tidak membaca arah frame sebelumnya. Aplikasi dan input puzzle
+tetap dimiliki sistem HP existing.
 Nyonya menggunakan lima klip melalui `AtmajaThreatPresentation`; AI tetap memegang
 posisi root. `PrologPresentationBuilder.Apply` mengganti visual saja dan memverifikasi
 hash kedua scene kos. Sumber grafis CC0, tekstur renda original dan ukuran mesh/pose
 dicatat di `Audit/character-*.json` serta `Audit/rigged-character-authoring.json`.
+
+Presentasi Raka mengukur support di bawah root (dibatasi `CharacterController.skinWidth`)
+dan mengisi celah aktual dengan offset visual ke bawah serta skala seragam
+`1 + VisualGroundOffset / standingHeight`; proporsi tubuh
+dipertahankan dan framing kepala berdiri hampir sama. Playback langkah mengompensasi
+skala ini. Saat duduk motor, skala 1 dan offset +.4 m existing dipakai kembali.
+Collider, posisi root pemain dan pivot kamera tidak berubah karena penyesuaian ini.
 
 `AtmajaHandycamPlayback` merender set original di layer 28 ke RT 640×360 hanya ketika
 rekaman aktif. Gameplay dan HP mengecualikan layer ini. `AtmajaMirrorReflection` memakai
@@ -95,7 +113,7 @@ Namespace runtime memakai prefiks `LayarTerakhir.*` (`Core`, `Player`, `Prolog`,
 Assets/
   Scenes/                         SampleScene (template, tidak dipakai)
   Readme.asset                    aset Readme bawaan template Unity
-  Resources/                      LayarPresentation, RakaCharacter, KosAudio, Phone (lokasi tetap)
+  Resources/                      LayarPresentation, RakaCharacter, RakaPhoneHand, KosAudio, Phone (lokasi tetap)
   Settings/, TutorialInfo/         pengaturan/template Unity, tetap di luar konten first-party
   _LayarTerakhir/
     assets/
@@ -173,10 +191,13 @@ Prinsip penting: **collider fisik, root interaksi, dan state cerita tidak dihapu
 ### 4.2 Player
 
 **`FirstPersonController`** (`src/Player/FirstPersonController.cs`)
+
 - Berbasis `CharacterController`. Nilai legacy field walk/sprint/crouch dibatasi di `Awake()` menjadi maksimal 1,7 / 4,2 / 0,8 m/detik; nilai scene dapat lebih rendah. Slide 5,5; tinggi berdiri 1,75, crouch 1,0; gravitasi −19,62.
 - Slide dipicu crouch saat sprint dengan input maju; Space adalah impuls vertikal umum, tetapi `AtmajaVault` mengonsumsi lebih dahulu saat konteks jendela valid. Atmaja memakai crouch height .78 m untuk akses kolong meja.
 - `MovementLocked` dan modal HUD membekukan input; saat terkunci hanya gravitasi yang berjalan. Browsing HP tetap mengizinkan gerak. `CanStandUp()` memeriksa overlap kapsul berdiri agar kepala tidak menembus meja/langit-langit rendah.
 - Mouse look memakai `GameInputConfig.GetLookDelta()`; pitch dibatasi ±80°.
+- `StepPlanarVelocity` memberi akselerasi jalan/lari/jongkok 9/13/6 m/detik², pengereman 24 dan steering tajam 28; slide mempertahankan kecepatannya. Momentum dibuang saat gerak dikunci/controller dinonaktifkan. Collider, gravitasi, vault dan headroom tetap memiliki gerak fisik.
+- Tinggi kapsul merespons secara eksponensial; tinggi mata memakai `SmoothDamp`, dengan lift jongkok .08 m yang dibatasi tinggi kapsul. `PlanarVelocity` adalah kecepatan perintah gerak, sementara animasi mengukur perpindahan root aktual.
 
 **`InteractionInteractor`** (`src/Player/InteractionInteractor.cs`)
 - Raycast dari kamera, jarak 2,6 m, buffer `RaycastNonAlloc` 16 dengan fallback `RaycastAll`.

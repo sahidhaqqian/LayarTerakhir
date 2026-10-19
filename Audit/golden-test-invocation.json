@@ -10,20 +10,20 @@
     "-testPlatform",
     "EditMode",
     "-testFilter",
-    "LayarTerakhir.Editor.Tests.DesignerRevisionTests",
+    "LayarTerakhir.Editor.Tests",
     "-testResults",
     "/root/Projects/LayarTerakhir-main/Audit/golden-tests.xml",
     "-logFile",
     "/root/Projects/LayarTerakhir-main/Audit/golden-test.log"
   ],
-  "startedUtc": "2026-10-18T16:30:27.493385+00:00",
+  "startedUtc": "2026-10-19T06:24:13.905131+00:00",
   "audioBackend": "Private clocked PulseAudio null sink; headless test audio device, no physical audio hardware",
   "status": "Finished",
-  "endedUtc": "2026-10-18T16:30:52.047109+00:00",
+  "endedUtc": "2026-10-19T06:31:29.651727+00:00",
   "exitCode": 0,
   "testsVerified": {
-    "total": 9,
-    "passed": 9,
+    "total": 98,
+    "passed": 98,
     "failed": 0,
     "skipped": 0
   }

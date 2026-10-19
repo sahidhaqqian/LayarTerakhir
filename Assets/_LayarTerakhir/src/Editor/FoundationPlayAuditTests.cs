@@ -294,9 +294,15 @@ namespace LayarTerakhir.Editor.Tests
             var view=Find<AtmajaPhoneView>();view.Apps.Open(PhoneApp.Home);yield return null;
             Assert.That(UiFocus.Phone,Is.True);Assert.That(UiFocus.BlocksMovement,Is.False);
             PlacePlayer(new Vector3(.6f,.08f,-.5f));var player=Find<FirstPersonController>();
-            var from=player.transform.position;InputSystem.QueueStateEvent(_keyboard,new KeyboardState(Key.W));
-            yield return new WaitForSeconds(.16f);yield return Press();
-            Assert.That(Vector3.Distance(from,player.transform.position),Is.GreaterThan(.15f));
+            var from=player.transform.position;_keyboard.MakeCurrent();InputSystem.QueueStateEvent(_keyboard,new KeyboardState(Key.W));
+            // Test app focus blocking, rather than how many Update calls happen to
+            // fit in one short headless WaitForSeconds window after queued input.
+            float deadline=Time.realtimeSinceStartup+2;
+            while(Vector3.ProjectOnPlane(player.transform.position-from,Vector3.up).magnitude<=.15f&&Time.realtimeSinceStartup<deadline)
+            {_keyboard.MakeCurrent();yield return null;}
+            float distance=Vector3.ProjectOnPlane(player.transform.position-from,Vector3.up).magnitude;
+            yield return Press();
+            Assert.That(distance,Is.GreaterThan(.15f),$"Actual phone-app movement: enabled={player.enabled}, locked={player.MovementLocked}, input={GameInputConfig.Instance.GetMovementInput()}, velocity={player.PlanarVelocity}");
             Assert.That(phone.isPhoneRaised,Is.True,"Walking must not close the handset");
             Assert.That(PhoneDesktop.Contacts.Length,Is.GreaterThanOrEqualTo(3));
         }

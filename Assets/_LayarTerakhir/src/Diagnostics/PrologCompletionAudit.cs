@@ -77,7 +77,10 @@ namespace LayarTerakhir.Diagnostics
                 actualStandalonePlayer = !Application.isEditor, width = Screen.width, height = Screen.height,
                 initialCheckpoint = chaseOnly?"PROLOG_CHASE_START (isolated escape retry fixture)":"PROLOG_ATMAJA_STAIRS_UNLOCKED (isolated fixture with completed Kos/ground-floor progress)",
                 navigationMethod = "Continuous CharacterController.Move <=0.12m substeps using deltaTime and the player's walk/crouch/sprint speeds, actual E/Ctrl/Space/F/LMB bindings, game-owned cellar/vault traversals; time frozen during framebuffer captures. Directed path verification, not manual pacing/Windows performance acceptance." };
+            // Keep desktop focus/device events out of this opt-in synthetic fixture.
+            foreach(var device in InputSystem.devices)if(device is Keyboard||device is Mouse)InputSystem.DisableDevice(device);
             keyboard = InputSystem.AddDevice<Keyboard>(); mouse = InputSystem.AddDevice<Mouse>();
+            InputSystem.EnableDevice(keyboard);InputSystem.EnableDevice(mouse);keyboard.MakeCurrent();mouse.MakeCurrent();
             yield return Drive(Scenario());
             if (!done) Finish(true);
         }
@@ -85,11 +88,12 @@ namespace LayarTerakhir.Diagnostics
         {
             yield return Wait(() => SceneManager.GetActiveScene().name == PrologSceneFlow.AtmajaScene && FindFirstObjectByType<AtmajaDirector>(), 120, "Continue routes completed ground floor directly to Atmaja");
             yield return new WaitForSeconds(1.7f); Bind(); player.enabled = false;
-            if(chaseOnly)goto Escape;
+            if(chaseOnly){yield return Crouch(true);goto Escape;}
             Check(d.Stage == AtmajaStage.StairCheckpoint, "Continuation starts at the real stair checkpoint");
             var hybrid=player.GetComponent<ShoulderCameraRig>();
             Check(hybrid.SelectedPerspective==PlayerPerspective.OverShoulder,"Exploration defaults to over-the-shoulder third person");
-            Check(hybrid.Avatar.GetComponent<AnimatedRakaAvatar>()&&hybrid.Avatar.GetComponent<Animation>().GetClipCount()==12,"Standalone loads the skinned Raka resource and twelve motion clips including memory-card interaction");
+            var rakaMotion=hybrid.Avatar.GetComponent<Animation>();
+            Check(hybrid.Avatar.GetComponent<AnimatedRakaAvatar>()&&rakaMotion.GetClipCount()==16&&rakaMotion.GetClip("InstallCard")&&rakaMotion.GetClip("LowCrouchWalk")&&rakaMotion.GetClip("PhoneLowCrouchWalk"),"Standalone loads sixteen Raka clips including memory-card interaction and low Atmaja crouch");
             // Controlled closed-leaf inspection inside the unlocked continuation fixture.
             // This checks presentation without replaying/re-paying the completed ground floor.
             yield return Walk(d.P(-3.55f,5.1f,.54f));d.stairDoorMotion.SetOpenImmediate(false);Physics.SyncTransforms();
@@ -164,11 +168,11 @@ namespace LayarTerakhir.Diagnostics
             Check(Campaign.Data.checkpoint_id==AtmajaChaseSequence.ChaseCheckpoint,"Escape can be retried without replaying the full prolog");
             Check(d.chase.FollowsPlayerInBasement,"After the handycam, the hunter navigates toward Raka in the basement");
             Check(Mathf.Abs(d.chase.chaserFigure.transform.position.y-player.transform.position.y)<.5f,"Handycam pursuit begins on the player's basement floor");
-            yield return Walk(d.P(1.4f,4.3f,-2.79f));
-            // The handycam is reached crouched. Release Ctrl in the clear aisle
-            // before sprinting; keeping the disabled controller's crouch latch
-            // here incorrectly simulated crawling away from the chase.
+            // The pickup requires crouching, but its clear aisle allows standing
+            // immediately after playback. Crawling toward the pursuer first spends
+            // the escape lead and lets its collider prevent the stand transition.
             yield return Crouch(false);
+            yield return Walk(d.P(1.4f,4.3f,-2.79f));
             foreach(var p in new[]{d.P(1.4f,2.8f,-2.79f),d.chase.cellarExitApproach.position})yield return Walk(p);
             InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftShift));yield return null;
             yield return Wait(()=>d.chase.Traversing,10,"Sprint initiates the cellar stair escape");yield return Wait(()=>!d.chase.Traversing,15,"Cellar ascent reaches the closing trapdoor");
@@ -246,7 +250,7 @@ namespace LayarTerakhir.Diagnostics
                 var blocks=Physics.OverlapCapsule(next+Vector3.up*.32f,next+Vector3.up*(cc.height-.32f),.36f,~0,QueryTriggerInteraction.Ignore);
                 Debug.Log("PROLOG_ROUTE_BLOCKED stage="+d.Stage+" checkpoint="+Campaign.Data.checkpoint_id+" hits="+string.Join("; ",blocks.Where(b=>!b.transform.IsChildOf(player.transform)).Select(b=>b.name+" "+b.bounds)));
             }
-            Check(remaining.magnitude<.17f,"Capsule route reaches "+target+" from "+player.transform.position);
+            Check(remaining.magnitude<.17f&&Mathf.Abs(player.transform.position.y-target.y)<.5f,"Capsule route reaches "+target+" from "+player.transform.position);
         }
         private AtmajaItem Item(AtmajaAction action)=>FindObjectsByType<AtmajaItem>(FindObjectsInactive.Include,FindObjectsSortMode.None).First(i=>i.action==action);
         private IEnumerator Use(IInteractable item)
@@ -260,6 +264,7 @@ namespace LayarTerakhir.Diagnostics
         }
         private IEnumerator Crouch(bool on)
         {
+            keyboard.MakeCurrent();
             InputSystem.QueueStateEvent(keyboard,on?new KeyboardState(Key.LeftCtrl):new KeyboardState());player.enabled=true;
             // Wait for the real stance transition instead of inserting a fixed stop
             // on both sides of the trapdoor. That test-only pause spent the chase lead.

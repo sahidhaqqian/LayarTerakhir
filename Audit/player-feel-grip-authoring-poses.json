@@ -1,0 +1,343 @@
+{
+  "authoringSource": "Tools/author_prolog_characters.py",
+  "sourceSha256": "ec0b31acb94415bdbd53e2c76d23a7a322f041b0f762e88ec4a38fa2da540174",
+  "method": "Offline linear blend skinning of visible skin at eight phases of each phone clip. Unity imported asset tests and actual standalone movement checks are separate.",
+  "samples": [
+    {
+      "clip": "PhoneIdle",
+      "phase": 0.0,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneIdle",
+      "phase": 0.125,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneIdle",
+      "phase": 0.25,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneIdle",
+      "phase": 0.375,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneIdle",
+      "phase": 0.5,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneIdle",
+      "phase": 0.625,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneIdle",
+      "phase": 0.75,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneIdle",
+      "phase": 0.875,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneWalk",
+      "phase": 0.0,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneWalk",
+      "phase": 0.125,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneWalk",
+      "phase": 0.25,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneWalk",
+      "phase": 0.375,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneWalk",
+      "phase": 0.5,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneWalk",
+      "phase": 0.625,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneWalk",
+      "phase": 0.75,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneWalk",
+      "phase": 0.875,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneRun",
+      "phase": 0.0,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneRun",
+      "phase": 0.125,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneRun",
+      "phase": 0.25,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneRun",
+      "phase": 0.375,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneRun",
+      "phase": 0.5,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneRun",
+      "phase": 0.625,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneRun",
+      "phase": 0.75,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneRun",
+      "phase": 0.875,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneCrouch",
+      "phase": 0.0,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneCrouch",
+      "phase": 0.125,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneCrouch",
+      "phase": 0.25,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneCrouch",
+      "phase": 0.375,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneCrouch",
+      "phase": 0.5,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneCrouch",
+      "phase": 0.625,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneCrouch",
+      "phase": 0.75,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneCrouch",
+      "phase": 0.875,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneCrouchWalk",
+      "phase": 0.0,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneCrouchWalk",
+      "phase": 0.125,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneCrouchWalk",
+      "phase": 0.25,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneCrouchWalk",
+      "phase": 0.375,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneCrouchWalk",
+      "phase": 0.5,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneCrouchWalk",
+      "phase": 0.625,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneCrouchWalk",
+      "phase": 0.75,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneCrouchWalk",
+      "phase": 0.875,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneLowCrouch",
+      "phase": 0.0,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneLowCrouch",
+      "phase": 0.125,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneLowCrouch",
+      "phase": 0.25,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneLowCrouch",
+      "phase": 0.375,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneLowCrouch",
+      "phase": 0.5,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneLowCrouch",
+      "phase": 0.625,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneLowCrouch",
+      "phase": 0.75,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneLowCrouch",
+      "phase": 0.875,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneLowCrouchWalk",
+      "phase": 0.0,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneLowCrouchWalk",
+      "phase": 0.125,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneLowCrouchWalk",
+      "phase": 0.25,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneLowCrouchWalk",
+      "phase": 0.375,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneLowCrouchWalk",
+      "phase": 0.5,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneLowCrouchWalk",
+      "phase": 0.625,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneLowCrouchWalk",
+      "phase": 0.75,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    },
+    {
+      "clip": "PhoneLowCrouchWalk",
+      "phase": 0.875,
+      "maximumDepth": 0,
+      "deepVertices": 0
+    }
+  ]
+}

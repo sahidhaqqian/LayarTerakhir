@@ -1,0 +1,39 @@
+{
+  "stage": "test",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-main",
+    "-runTests",
+    "-testPlatform",
+    "EditMode",
+    "-testFilter",
+    "LayarTerakhir.Editor.Tests",
+    "-testResults",
+    "/root/Projects/LayarTerakhir-main/Audit/golden-tests.xml",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Audit/golden-test.log"
+  ],
+  "startedUtc": "2026-10-19T06:11:33.195442+00:00",
+  "audioBackend": "Private clocked PulseAudio null sink; headless test audio device, no physical audio hardware",
+  "status": "Interrupted",
+  "restartReason": "Editor stopped producing startup/test progress after Unloading 4 Unused Serialized files; no fresh test result. Native feel/prolog/rider succeeded separately. This attempt is not counted as passed.",
+  "lastLogWriteUtc": "2026-10-19T06:11:51.048790+00:00",
+  "restartRequestedUtc": "2026-10-19T06:22:24.035031+00:00",
+  "countedAsPassed": false,
+  "nativeStackAtStall": [
+    "GarbageCollectSharedAssets",
+    "UnloadUnusedAssetsOperation::IntegrateMainThread",
+    "EditorSceneManager::NewScene"
+  ],
+  "exitCode": -9,
+  "finalRetryInvocation": "Audit/player-feel-full-regression-invocation.json",
+  "finalRetryResult": {
+    "total": 98,
+    "passed": 98,
+    "failed": 0,
+    "skipped": 0
+  }
+}

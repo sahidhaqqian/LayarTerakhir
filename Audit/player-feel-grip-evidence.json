@@ -1,0 +1,68 @@
+{
+  "source": "Assets/_LayarTerakhir/assets/Art/Characters/Models/RakaPhoneHand.fbx",
+  "sha256": "ea19dd6950a98808e12715c91dd7df1d285083e3815313c1cb5d860a9b49f733",
+  "method": "Exact polygon clipping against handset OBB in baked phone-local meters; interior shrunk 1.5mm to exclude contact/import rounding. Exported static first-person grip only; Unity samples separately cover animated world grips.",
+  "meshes": [
+    {
+      "mesh": "PhoneHand_VisibleSkin",
+      "polygons": 1831,
+      "polygonsEnteringHandsetBeyond1_5mm": 0
+    },
+    {
+      "mesh": "PhoneHand_RakaJacketOutfit",
+      "polygons": 285,
+      "polygonsEnteringHandsetBeyond1_5mm": 0
+    }
+  ],
+  "beforeFbxSha256": "94e6644428c57244182140fabcde6408fc80aceeabb88c8a460356f352ac4df3",
+  "beforeVertexInspection": {
+    "skinVertices": 1844,
+    "insideHandset": 190,
+    "deeperThan2mm": 130
+  },
+  "afterVertexInspection": {
+    "skinVertices": 1844,
+    "insideHandset": 0,
+    "deeperThan2mm": 0
+  },
+  "closeups": "Matched Blender 512x512 orthographic captures from the actual before/after exported FBX; neutral inspection materials. These are geometry review renders, not game/Windows screenshots.",
+  "authoredGrasp": {
+    "phoneDimensionsMetres": [
+      0.078,
+      0.165,
+      0.014
+    ],
+    "fingerFlexionDegrees": {
+      "index": [
+        30,
+        0,
+        90
+      ],
+      "middle": [
+        -10,
+        30,
+        80
+      ],
+      "ring": [
+        -10,
+        20,
+        80
+      ],
+      "little": [
+        -10,
+        0,
+        10
+      ]
+    },
+    "thumbDirectionInHandAxes": [
+      -1,
+      0.6,
+      0
+    ],
+    "thumbOppositionTwistDegrees": -90,
+    "thumbFlexionDegrees": [
+      75,
+      75
+    ]
+  }
+}

@@ -178,7 +178,9 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(input.GetKeyForAction(GameAction.TogglePerspective),Is.EqualTo(KeyCode.V));
             Assert.That(input.modeSelfieKey,Is.EqualTo(KeyCode.X),"Old serialized V selfie binding must migrate without colliding with perspective");
             var avatar=rig.Avatar.GetComponent<AnimatedRakaAvatar>();Assert.That(avatar,Is.Not.Null);
-            Assert.That(avatar.motion.GetClipCount(),Is.EqualTo(12));
+            Assert.That(avatar.motion.GetClipCount(),Is.EqualTo(16));
+            foreach(var clip in new[]{"LowCrouch","LowCrouchWalk","PhoneLowCrouch","PhoneLowCrouchWalk"})
+                Assert.That(avatar.motion[clip],Is.Not.Null,"Existing low Atmaja capsule needs a matching visual pose");
             Assert.That(rig.Avatar.GetComponentsInChildren<SkinnedMeshRenderer>().Length,Is.GreaterThanOrEqualTo(5));
             Assert.That(d.phoneView.FeedCamera.cullingMask&(1<<ShoulderCameraRig.AvatarLayer),Is.Zero,"Raka's shoulder/handset must not obscure the separate phone feed");
             var bounce=p.transform.Find("RakaSoftBounce").GetComponent<Light>();
@@ -212,7 +214,9 @@ namespace LayarTerakhir.Editor.Tests
             var feet=p.transform.position;rig.Riding=true;rig.RefreshCameraPose();
             Assert.That(rig.Avatar.localPosition.y,Is.GreaterThan(.25f),"The seated clip compensates for the existing motor mount anchor");
             Assert.That(p.transform.position,Is.EqualTo(feet),"Rider pose compensation must only move the visual mesh");
-            rig.Riding=false;rig.RefreshCameraPose();Assert.That(rig.Avatar.localPosition,Is.EqualTo(Vector3.zero));
+            rig.Riding=false;rig.RefreshCameraPose();Assert.That(rig.Avatar.localPosition,Is.EqualTo(Vector3.down*rig.VisualGroundOffset));
+            Assert.That(rig.VisualGroundOffset,Is.InRange(0,p.GetComponent<CharacterController>().skinWidth));
+            Assert.That(rig.Avatar.localScale.x,Is.EqualTo(1+rig.VisualGroundOffset/p.standingHeight).Within(.0001f),"Grounded visual keeps standing head framing without moving the capsule");
             Assert.That(CampaignState.Instance.Data.wallet_bound,Is.EqualTo(wallet));Assert.That(CampaignState.Instance.Data.checkpoint_id,Is.EqualTo(checkpoint));
         }
         private IEnumerator FinaleGeometry()
