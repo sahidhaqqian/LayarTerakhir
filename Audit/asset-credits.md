@@ -1,5 +1,13 @@
 Asset provenance for Kamar Kos and the Atmaja continuation, with the 2026-10-16 playtest revision.
 
+## Photo ritual smoke — 19 October 2026
+
+The thick Nyonya photo smoke uses `whitePuff06.png` from
+[Kenney Smoke Particles](https://kenney.nl/assets/smoke-particles), released under
+CC0. The unchanged license is `Audit/kenney-smoke-CC0.txt`. Only that one texture
+is shipped under `Assets/Resources/PlayerPresentation/Smoke`; the rest of the pack
+is not included.
+
 ## Designer review — 18 October 2026
 
 Selected new [Poly Haven](https://polyhaven.com/license) CC0 models:
@@ -33,9 +41,10 @@ MataBatin's eye/lens mark is original code-native vector UI in `PhoneGlyph`.
 ## Prolog completion — 17 October 2026
 
 The handycam market/mirror set, reaching-hand geometry, low-poly round mesh, wardrobe slats,
-AR scratch strokes, escape staging and smoke sprite are original project-authored work in
+AR scratch strokes and escape staging are original project-authored work in
 `PrologCompletionBuilder.cs`. They reuse the previously credited local materials and props.
-No new third-party asset pack or synthesized voice was obtained in this pass.
+The later photo-ritual smoke is the CC0 Kenney puff noted above, not the original
+project-authored smoke sprite. No synthesized voice was obtained in this pass.
 
 `SriAtmajaCharacter.fbx` is original Blender geometry authored by
 `Tools/author_atmaja_character.py`: 7,648 triangles with an articulated rigid hierarchy,

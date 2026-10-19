@@ -78,7 +78,7 @@ Shader "LayarTerakhir/Avatar Dither Lit"
    ENDHLSL
   }
   // Camera fading must not remove Raka's shadow from the environment.
-  UsePass "Universal Render Pipeline/Lit/ShadowCaster"
+  UsePass "Universal Render Pipeline/Lit/SHADOWCASTER"
   Pass
   {
    Name "DepthOnly"

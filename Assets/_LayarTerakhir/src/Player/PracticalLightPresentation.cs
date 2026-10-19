@@ -24,7 +24,7 @@ namespace LayarTerakhir.Player
             {
                 float px=(x+.5f)/size*2-1,py=(y+.5f)/size*2-1;
                 float radius=Mathf.Sqrt(px*px+py*py);
-                float edge=1-Mathf.SmoothStep(.68f,.98f,radius);
+                float edge=1-Mathf.SmoothStep(0f,1f,Mathf.InverseLerp(.68f,.98f,radius));
                 float hotspot=Mathf.Lerp(.56f,1,Mathf.Exp(-radius*radius*3.6f));
                 byte value=(byte)Mathf.RoundToInt(edge*hotspot*255);
                 pixels[y*size+x]=new Color32(value,value,value,value);

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using LayarTerakhir.Core;
 using LayarTerakhir.Player;
 using LayarTerakhir.Prolog;
@@ -15,6 +16,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using Object=UnityEngine.Object;
@@ -24,6 +26,7 @@ namespace LayarTerakhir.Editor.Tests
     public sealed class AtmajaPlayTests
     {
         private Keyboard keyboard;
+        private Mouse mouse;
         [UnitySetUp] public IEnumerator SetUp()
         {
             SessionState.SetString("AtmajaAudit.PreviousSave",Environment.GetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY")??"");
@@ -34,12 +37,13 @@ namespace LayarTerakhir.Editor.Tests
             var settings=Object.Instantiate(InputSystem.settings);
             settings.backgroundBehavior=InputSettings.BackgroundBehavior.IgnoreFocus;
             settings.editorInputBehaviorInPlayMode=InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
-            InputSystem.settings=settings;keyboard=InputSystem.AddDevice<Keyboard>();Time.timeScale=5;
+            InputSystem.settings=settings;keyboard=InputSystem.AddDevice<Keyboard>();mouse=InputSystem.AddDevice<Mouse>();Time.timeScale=5;
             yield return null;
         }
         [UnityTearDown] public IEnumerator TearDown()
         {
             if(keyboard!=null)InputSystem.RemoveDevice(keyboard);
+            if(mouse!=null)InputSystem.RemoveDevice(mouse);
             var old=InputSystem.settings;var settings=ScriptableObject.CreateInstance<InputSettings>();
             JsonUtility.FromJsonOverwrite(SessionState.GetString("AtmajaAudit.Input","{}"),settings);InputSystem.settings=settings;Object.Destroy(old);
             Time.timeScale=1;yield return new ExitPlayMode();
@@ -60,16 +64,102 @@ namespace LayarTerakhir.Editor.Tests
         [UnityTest] public IEnumerator LockerWarningAllowsScreenInputAndSafeManualExit()=>Run(LockerInput());
         [UnityTest] public IEnumerator InterruptedHandycamCanBePlayedAgainAfterContinue()=>Run(InterruptedRecording());
         [UnityTest] public IEnumerator FinishedPrologRestoresTheTitleWithoutAnotherDonation()=>Run(FinishedProlog());
-        [UnityTest] public IEnumerator MissedEmergencyBlitzReturnsToMenuAndContinueRestoresChase()=>Run(BlitzRetry());
+        [UnityTest] public IEnumerator PhotoRitualRequiresThreeShotsThenNyonyaVanishes()=>Run(PhotoRitual());
         [UnityTest] public IEnumerator MasterCellarAndClosingTrapdoorHaveConnectedCapsuleRoutes()=>Run(FinaleGeometry());
         [UnityTest] public IEnumerator HybridCameraUsesRemappedInputAndPreservesChoiceDuringForcedCloseups()=>Run(HybridCamera());
         [UnityTest] public IEnumerator EveryOpenedDocumentPersistsItsFullTextInPhoneNotes()=>Run(DocumentArchive());
         [UnityTest] public IEnumerator JacketPickupChangesTheBodyAndShutterPulsesTheHandset()=>Run(OutfitAndShutter());
-        [UnityTest] public IEnumerator LiveCommentsArriveIndividuallyAtTwoToThreeSecondIntervals()=>Run(StaggeredChat());
+        [UnityTest] public IEnumerator LiveCommentsArriveIndividuallyWithinOneToFiveSeconds()=>Run(StaggeredChat());
         [UnityTest] public IEnumerator WardrobeExitDoesNotReenterOnTheSameInteractPress()=>Run(WardrobeExitDebounce());
         [UnityTest] public IEnumerator ExpandedCellarHasRunnableConnectedCorridors()=>Run(ExpandedCellarNavigation());
         [UnityTest] public IEnumerator NeighborhoodIsWalkableBeforeTravelAndShopPurchasesPersist()=>Run(NeighborhoodShop());
         [UnityTest] public IEnumerator HunterDoesNotAbandonStationaryRakaForTheWindow()=>Run(HunterTracksRaka());
+        [UnityTest] public IEnumerator PracticalBeamThreatRimAndCameraDitherAreLive()=>Run(PracticalPresentation());
+        [UnityTest] public IEnumerator BasementEmergencyBlitzCostsBatteryAndStunsHunter()=>Run(BasementBlitz());
+        [UnityTest] public IEnumerator ViewfinderFocusFillsPhoneAndRestoresChrome()=>Run(ViewfinderFocus());
+        [UnityTest] public IEnumerator BasementAndChaseChatBurstsWithThousandsOfViewers()=>Run(ChatIntensity());
+        [UnityTest] public IEnumerator RightMouseRaisesAndLowersThePhoneCamera()=>Run(CameraShortcut());
+        private IEnumerator CameraShortcut()
+        {
+            yield return new WaitForSeconds(2);var phone=SmartphoneController.Instance;var view=Find<AtmajaPhoneView>();var d=Find<AtmajaDirector>();
+            phone.hasSmartphoneInInventory=true;phone.isPhoneRaised=false;phone.isScreenOn=true;phone.batteryPercent=80;phone.SyncVisualState();
+            view.Apps.Open(PhoneApp.Home);yield return null;
+            InputSystem.QueueStateEvent(mouse,new MouseState{buttons=2});yield return null;yield return null;
+            Assert.That(phone.isPhoneRaised,Is.True,"Right mouse must raise the phone immediately");
+            Assert.That(view.IsCameraApp,Is.True,"Raising the camera must not require Tab or an app tap");
+            InputSystem.QueueStateEvent(mouse,new MouseState{buttons=0});yield return null;yield return null;
+            Assert.That(phone.isPhoneRaised,Is.False,"Releasing the aim button lowers the camera");
+            Assert.That(GameInputConfig.Instance.GetKeyForAction(GameAction.Vault),Is.EqualTo(KeyCode.Space),"The window escape stays on Space");
+        }
+        private IEnumerator ChatIntensity()
+        {
+            yield return new WaitForSeconds(2);var d=SeedBasement();var b=d.basement;var c=CampaignState.Instance;var phone=SmartphoneController.Instance;var view=d.phoneView;
+            c.AddInventoryItem("EVENT_P0_BASEMENT_ENTERED");d.SetStage(AtmajaStage.BasementStealth);
+            phone.isPhoneRaised=phone.isScreenOn=phone.isBroadcastConnected=true;view.Apps.Open(PhoneApp.Camera);phone.SyncVisualState();
+            var mind=typeof(AtmajaBasementHorror).GetField("mind",BindingFlags.Instance|BindingFlags.NonPublic);
+            mind.SetValue(b,Enum.ToObject(mind.FieldType,4));
+            int start=view.DisplayedChatCount;yield return new WaitForSeconds(3f);
+            Assert.That(view.DisplayedChatCount-start,Is.GreaterThanOrEqualTo(3),"A hunting ghost must flood live chat");
+            Assert.That(d.Viewers,Is.GreaterThanOrEqualTo(10000),"Basement broadcast already has thousands of viewers");
+            d.SetStage(AtmajaStage.Chase);start=view.DisplayedChatCount;yield return new WaitForSeconds(2f);
+            Assert.That(view.DisplayedChatCount-start,Is.GreaterThanOrEqualTo(3),"The chase chat keeps bursting");
+            Assert.That(d.Viewers,Is.GreaterThan(30000),"Chase viewers climb into the tens of thousands");
+            mind.SetValue(b,Enum.ToObject(mind.FieldType,2));d.SetStage(AtmajaStage.EvidenceHunt);
+            d.PlacePlayer(d.P(-3.3f,5.75f,3.82f),Quaternion.identity);start=view.DisplayedChatCount;
+            yield return new WaitForSeconds(3f);
+            Assert.That(view.DisplayedChatCount-start,Is.GreaterThanOrEqualTo(2),"The upper floor stays chatty even outside a chase");
+        }
+        private IEnumerator ViewfinderFocus()
+        {
+            yield return new WaitForSeconds(2);var d=Find<AtmajaDirector>();var phone=SmartphoneController.Instance;var view=d.phoneView;
+            phone.isPhoneRaised=phone.isScreenOn=true;phone.SyncVisualState();view.Apps.Open(PhoneApp.Camera);yield return null;
+            view.SetViewfinder(true);yield return new WaitForSecondsRealtime(.4f);
+            var rect=view.Panel.GetComponent<RectTransform>();
+            Assert.That(view.ViewfinderActive,Is.True,"Holding focus must raise the full viewfinder");
+            Assert.That(rect.anchorMax.y,Is.GreaterThan(.95f),"Viewfinder fills the screen height");
+            Assert.That(rect.anchorMax.x-rect.anchorMin.x,Is.LessThan(.5f),"Phone feed keeps its portrait aspect");
+            Assert.That(view.FeedCamera.enabled,Is.EqualTo(view.HasGraphicsDevice));
+            view.SetViewfinder(false);yield return new WaitForSecondsRealtime(.1f);
+            Assert.That(view.ViewfinderActive,Is.False,"Releasing focus restores the handset");
+            Assert.That(rect.anchorMax.y,Is.LessThan(.8f));
+        }
+        private IEnumerator PracticalPresentation()
+        {
+            yield return new WaitForSeconds(2);var d=Find<AtmajaDirector>();var phone=SmartphoneController.Instance;var rig=d.player.GetComponent<ShoulderCameraRig>();
+            phone.hasSmartphoneInInventory=true;phone.isPhoneRaised=phone.isScreenOn=true;phone.SyncVisualState();
+            Assert.That(phone.phoneFlashlight.cookie,Is.Not.Null,"The live phone beam must use its soft light cookie");
+            Assert.That(phone.phoneFlashlight.shadows,Is.EqualTo(LightShadows.Soft),"The held beam is the shadow-casting practical");
+            var rim=d.basement.nyonya.GetComponentsInChildren<Light>(true).FirstOrDefault(l=>l.name=="ThreatSilhouette");
+            Assert.That(rim,Is.Not.Null,"Nyonya needs her own ghost rim");
+            Assert.That((uint)rim.GetUniversalAdditionalLightData().renderingLayers,Is.EqualTo(PracticalLightPresentation.ThreatRenderingLayer));
+            var fade=rig.Avatar.GetComponentsInChildren<Renderer>(true).SelectMany(r=>r.sharedMaterials).FirstOrDefault(m=>m&&m.shader&&m.shader.name=="LayarTerakhir/Avatar Dither Lit");
+            Assert.That(fade,Is.Not.Null,"Raka's live body materials must use the camera dither shader");
+            Assert.That(rig.AvatarOpacity,Is.EqualTo(1f).Within(.01f));
+            var coverage=typeof(ShoulderCameraRig).GetMethod("SetAvatarCoverage",BindingFlags.Instance|BindingFlags.NonPublic);
+            coverage.Invoke(rig,new object[]{.5f,false});
+            var block=new MaterialPropertyBlock();
+            foreach(var renderer in rig.Avatar.GetComponentsInChildren<Renderer>(true))
+            {
+                if(!renderer.sharedMaterials.Any(m=>m&&m.shader&&m.shader.name=="LayarTerakhir/Avatar Dither Lit"))continue;
+                renderer.GetPropertyBlock(block);
+                Assert.That(block.GetFloat("_DitherAlpha"),Is.EqualTo(.5f).Within(.01f),"camera coverage reaches the live material");
+                Assert.That(renderer.shadowCastingMode,Is.EqualTo(UnityEngine.Rendering.ShadowCastingMode.On),"partial coverage keeps the shadow");
+            }
+        }
+        private IEnumerator BasementBlitz()
+        {
+            yield return new WaitForSeconds(2);var d=SeedBasement();var b=d.basement;var c=CampaignState.Instance;var phone=SmartphoneController.Instance;
+            c.AddInventoryItem("EVENT_P0_BASEMENT_ENTERED");Assert.That(c.SaveCheckpointAtomic("PROLOG_BASEMENT_ENTRY"),Is.True);d.RestoreWorld();
+            d.SetStage(AtmajaStage.BasementStealth);
+            phone.hasSmartphoneInInventory=true;phone.isPhoneRaised=phone.isScreenOn=true;phone.batteryPercent=80;phone.currentScanMode=ScanVisualMode.Normal;phone.SyncVisualState();
+            d.phoneView.Apps.Open(PhoneApp.Camera);yield return null;
+            var mind=typeof(AtmajaBasementHorror).GetField("mind",BindingFlags.Instance|BindingFlags.NonPublic);
+            mind.SetValue(b,Enum.ToObject(mind.FieldType,4));
+            Assert.That(b.IsHunting,Is.True);
+            Assert.That(b.TryEmergencyBlitz(),Is.True,"A spotted player can spend battery to stun the basement hunter");
+            Assert.That(phone.batteryPercent,Is.EqualTo(65).Within(.01f));Assert.That(b.IsBlitzStunned,Is.True);
+            yield return new WaitForSeconds(2.2f);Assert.That(b.IsBlitzStunned,Is.False,"The stun lasts about two seconds");
+        }
         private IEnumerator HunterTracksRaka()
         {
             yield return new WaitForSeconds(2);var d=SeedBasement();var c=CampaignState.Instance;
@@ -119,9 +209,9 @@ namespace LayarTerakhir.Editor.Tests
             yield return new WaitForSeconds(2);Time.timeScale=1;var view=Find<AtmajaPhoneView>();var phone=SmartphoneController.Instance;
             phone.isBroadcastConnected=true;view.AddChat("@review_a","Pesan satu");view.AddChat("@review_b","Pesan dua");view.AddChat("@review_c","Pesan tiga");
             yield return null;yield return null;int count=view.DisplayedChatCount;float at=view.LastChatTime;
-            Assert.That(count,Is.EqualTo(1));yield return new WaitForSeconds(1.7f);Assert.That(view.DisplayedChatCount,Is.EqualTo(count));
-            float end=Time.time+1.5f;while(view.DisplayedChatCount==count&&Time.time<end)yield return null;
-            Assert.That(view.DisplayedChatCount,Is.EqualTo(count+1));Assert.That(view.LastChatTime-at,Is.InRange(2f,3.12f));
+            Assert.That(count,Is.EqualTo(1));yield return new WaitForSeconds(.8f);Assert.That(view.DisplayedChatCount,Is.EqualTo(count));
+            float end=Time.time+4.6f;while(view.DisplayedChatCount==count&&Time.time<end)yield return null;
+            Assert.That(view.DisplayedChatCount,Is.EqualTo(count+1));Assert.That(view.LastChatTime-at,Is.InRange(1f,5.1f));
         }
         private IEnumerator WardrobeExitDebounce()
         {
@@ -209,7 +299,17 @@ namespace LayarTerakhir.Editor.Tests
             var wall=GameObject.CreatePrimitive(PrimitiveType.Cube);wall.name="HybridCameraOccluder";
             wall.transform.SetPositionAndRotation(p.cameraPivot.TransformPoint(0,0,-.55f),p.transform.rotation);wall.transform.localScale=new Vector3(4,3,.12f);
             Physics.SyncTransforms();rig.RefreshCameraPose();Assert.That(rig.CurrentDistance,Is.LessThan(.9f));
-            Assert.That(rig.Avatar.GetComponentsInChildren<Renderer>(true).All(r=>r.shadowCastingMode==UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly),Is.True,"A squeezed camera must not render inside Raka's head");
+            var ditherBlock=new MaterialPropertyBlock();
+            var ditherRenderers=rig.Avatar.GetComponentsInChildren<Renderer>(true)
+                .Where(r=>r.sharedMaterials.Any(m=>m&&m.shader&&m.shader.name=="LayarTerakhir/Avatar Dither Lit")).ToArray();
+            Assert.That(ditherRenderers.Length,Is.GreaterThan(0));
+            Assert.That(rig.AvatarOpacity,Is.LessThan(1f),"A squeezed camera must dither the body instead of a hard cut");
+            foreach(var renderer in ditherRenderers)
+            {
+                renderer.GetPropertyBlock(ditherBlock);
+                Assert.That(ditherBlock.GetFloat("_DitherAlpha"),Is.LessThan(1f),"Dither coverage follows the squeezed camera");
+                Assert.That(renderer.shadowCastingMode,Is.EqualTo(UnityEngine.Rendering.ShadowCastingMode.On),"The dithered body still casts its shadow");
+            }
             Object.DestroyImmediate(wall);Physics.SyncTransforms();rig.RefreshCameraPose();Assert.That(rig.CurrentDistance,Is.GreaterThan(1));
             var feet=p.transform.position;rig.Riding=true;rig.RefreshCameraPose();
             Assert.That(rig.Avatar.localPosition.y,Is.GreaterThan(.25f),"The seated clip compensates for the existing motor mount anchor");
@@ -243,44 +343,40 @@ namespace LayarTerakhir.Editor.Tests
             d.upper.bathDoor.SetOpenImmediate(true);d.upper.childDoor.SetOpenImmediate(true);
             foreach(var point in new[]{d.P(.8f,4.25f,3.83f),d.P(1.1f,4.7f,3.83f),d.P(1.3f,5.75f,3.83f),d.P(-3.3f,5.75f,3.83f)})yield return WalkCapsule(p,point);
         }
-        private IEnumerator BlitzRetry()
+        private IEnumerator PhotoRitual()
         {
-            yield return new WaitForSeconds(2);Time.timeScale=1;var d=SeedBasement();var c=CampaignState.Instance;
+            yield return new WaitForSeconds(2);Time.timeScale=1;var d=SeedBasement();var c=CampaignState.Instance;var phone=SmartphoneController.Instance;
             foreach(var id in new[]{"EVENT_P0_BASEMENT_ENTERED","EVENT_P0_CHASE_STARTED","EVENT_P0_HANDYCAM_PLAYED","EVENT_P0_POWERBANK_TAKEN",AtmajaBasementHorror.HandycamId})c.AddInventoryItem(id);
             c.Data.battery=80;Assert.That(c.SaveCheckpointAtomic(AtmajaChaseSequence.ChaseCheckpoint),Is.True);d.RestoreWorld();
-            SmartphoneController.Instance.batteryPercent=80;yield return new WaitForSeconds(1.8f);
-            d.PlacePlayer(d.chase.cellarExitApproach.position,Quaternion.identity);
-            d.player.enabled=true;
+            phone.batteryPercent=80;yield return new WaitForSeconds(1.8f);
+            d.PlacePlayer(d.chase.cellarExitApproach.position,Quaternion.identity);d.player.enabled=true;
             InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftShift));yield return null;yield return new WaitForSeconds(2.6f);
             InputSystem.QueueStateEvent(keyboard,new KeyboardState());Assert.That(d.chase.Traversing,Is.False);
             d.PlacePlayer(d.chase.diningVaultStart.position,Quaternion.identity);yield return Press(Key.Space);yield return new WaitForSeconds(1);
             d.PlacePlayer(d.vaultInside.position,d.vaultInside.rotation);yield return null;yield return null;
-            Assert.That(d.chase.AwaitingBlitz,Is.True);Assert.That(Time.timeScale,Is.EqualTo(.15f));
-            GameShell.Instance.Pause();yield return new WaitForSecondsRealtime(3.2f);
-            Assert.That(d.chase.AwaitingBlitz,Is.True,"Pause must freeze the real-time QTE deadline");GameShell.Instance.Resume();
-            yield return new WaitForSecondsRealtime(3.3f);
-            Assert.That(GameShell.AwaitingStart&&UiFocus.Menu,Is.True,"Failure must wait in the main menu");
-            Assert.That(Time.timeScale,Is.Zero);var deathPosition=d.player.transform.position;
-            yield return new WaitForSecondsRealtime(.25f);Assert.That(d.player.transform.position,Is.EqualTo(deathPosition));
-            GameShell.Instance.Continue();
-            yield return new WaitUntil(()=>SceneManager.GetActiveScene().name==PrologSceneFlow.AtmajaScene&&Find<AtmajaDirector>()!=d);
-            yield return new WaitForSeconds(2);d=Find<AtmajaDirector>();c=CampaignState.Instance;
-            Assert.That(d.Stage,Is.EqualTo(AtmajaStage.Chase));Assert.That(Time.timeScale,Is.EqualTo(1));
-            Assert.That(SmartphoneController.Instance.batteryPercent,Is.InRange(79.5f,80));
-            Assert.That(d.GetComponents<AudioSource>().Any(a=>a.clip&&a.clip.name=="AtmajaSynth_ChaseLoop"&&a.isPlaying),Is.True,"Explicit Continue restarts chase music");
-            Assert.That(Vector3.Distance(d.player.transform.position,d.chase.spawnChase.position),Is.LessThan(.3f));
-            // Recovery covers the window traverse and the mandatory crouch under
-            // the branch, while the window action itself still has four seconds.
-            yield return new WaitForSeconds(1.8f);d.PlacePlayer(d.chase.cellarExitApproach.position,Quaternion.identity);
-            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftShift));yield return null;yield return new WaitForSeconds(2.6f);
-            InputSystem.QueueStateEvent(keyboard,new KeyboardState());d.PlacePlayer(d.chase.diningVaultStart.position,Quaternion.identity);
-            yield return Press(Key.Space);yield return new WaitForSeconds(1);d.PlacePlayer(d.vaultInside.position,d.vaultInside.rotation);yield return null;yield return null;
-            Assert.That(d.chase.TryEmergencyBlitz(),Is.True);yield return Press(Key.Space);yield return new WaitForSeconds(1.2f);
-            Assert.That(d.chase.IsGateRun&&d.chase.IsStunned,Is.True,"Leaving the window must not cancel the remaining Blitz stun");
-            var stopped=d.chase.chaserFigure.transform.position;yield return new WaitForSeconds(.6f);
-            Assert.That(d.chase.chaserFigure.transform.position,Is.EqualTo(stopped),"The outdoor hunter must stay still until recovery");
-            yield return new WaitForSeconds(2.3f);Assert.That(d.chase.IsStunned,Is.True,"Recovery must cover the mandatory branch crawl");
-            yield return new WaitForSeconds(6);Assert.That(d.chase.IsStunned,Is.False,"Recovery must finish ten game seconds after firing");
+            Assert.That(d.chase.AwaitingPhotos,Is.True);Assert.That(d.chase.PhotosTaken,Is.Zero);
+            var wounds=d.basement.nyonya.GetComponentsInChildren<Renderer>(true).SelectMany(r=>r.sharedMaterials).Where(m=>m&&m.name.Contains("(wounds)")).ToArray();
+            Assert.That(wounds.Length,Is.GreaterThan(0),"Nyonya's body uses the bloody puncture material");
+            Assert.That(wounds[0].GetTexture("_BaseMap").name,Is.EqualTo("NyonyaWound"));
+            Assert.That(Time.timeScale,Is.EqualTo(.5f),"Photo ritual runs in slow motion");
+            Assert.That(d.player.MovementLocked,Is.False,"Raka can still move, just slowly");
+            Assert.That(phone.isPhoneRaised&&d.phoneView.IsCameraApp,Is.True);
+            Assert.That(d.chase.TryPhoto(),Is.True);Assert.That(d.chase.PhotosTaken,Is.EqualTo(1));
+            Assert.That(d.chase.chaserFigure.activeSelf,Is.True,"One photo must not remove Nyonya");
+            yield return null;
+            var smoke=GameObject.Find("NyonyaPhotoSmoke");Assert.That(smoke,Is.Not.Null,"Photo ritual builds a dedicated smoke system");
+            var smokeSystem=smoke.GetComponent<ParticleSystem>();Assert.That(smokeSystem.particleCount,Is.GreaterThan(0),"Each photo emits a thick puff");
+            Assert.That(smoke.GetComponent<ParticleSystemRenderer>().sharedMaterial.mainTexture.name,Is.EqualTo("whitePuff06"),"Smoke uses the Kenney CC0 puff");
+            yield return new WaitForSecondsRealtime(.35f);
+            Assert.That(d.chase.TryPhoto(),Is.True);Assert.That(d.chase.PhotosTaken,Is.EqualTo(2));
+            Assert.That(d.chase.chaserFigure.activeSelf,Is.True);
+            yield return new WaitForSecondsRealtime(.35f);
+            Assert.That(d.chase.TryPhoto(),Is.True);Assert.That(d.chase.PhotosTaken,Is.EqualTo(3));
+            yield return new WaitForSecondsRealtime(.7f);
+            Assert.That(d.chase.chaserFigure.activeSelf,Is.False,"The third photo makes Nyonya vanish");
+            Assert.That(d.chase.AwaitingPhotos,Is.False);Assert.That(Time.timeScale,Is.EqualTo(1));
+            d.PlacePlayer(d.vaultInside.position,d.vaultInside.rotation);yield return Press(Key.Space);yield return new WaitForSeconds(1.2f);
+            Assert.That(d.chase.IsGateRun,Is.True,"Space still carries Raka through the window");
         }
         private AtmajaDirector SeedBasement()
         {

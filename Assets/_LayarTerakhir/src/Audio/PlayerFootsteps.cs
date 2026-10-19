@@ -53,10 +53,16 @@ namespace LayarTerakhir.Audio
             if(blocked){hasPhase=false;fallbackDistance=0;return;}
             if(!avatar&&rig&&rig.Avatar)avatar=rig.Avatar.GetComponent<AnimatedRakaAvatar>();
             bool step=false;
-            if(avatar&&avatar.TryGetFootstepPhase(out float next,out float reverseContact))
+            if(avatar&&avatar.TryGetFootstepPhase(out float next,out float reverseContact,out bool reverse))
             {
-                float offset=hasPhase&&next<phase?reverseContact:0;
-                if(hasPhase&&Mathf.Abs(next-phase)<.7f&&Mathf.Approximately(contact,reverseContact))step=CrossedContact(phase,next,offset);
+                // Normalized time wraps in both directions. Make the interval
+                // continuous first, then look for the authored contact points.
+                if(hasPhase)
+                {
+                    if(reverse&&next>phase)next-=1;
+                    else if(!reverse&&next<phase)next+=1;
+                    if(Mathf.Approximately(contact,reverseContact))step=CrossedContact(phase,next,reverse?reverseContact:0);
+                }
                 phase=next;contact=reverseContact;hasPhase=true;
             }
             else
@@ -95,7 +101,7 @@ namespace LayarTerakhir.Audio
             var renderer=floor.GetComponent<Renderer>();
             string material=renderer&&renderer.sharedMaterial?renderer.sharedMaterial.name:"";
             string label=(floor.name+" "+material).ToLowerInvariant();
-            if(label.Contains("wood")||label.Contains("timber")||label.Contains("plank"))return FootstepSurface.Wood;
+            if(label.Contains("wood")||label.Contains("timber")||label.Contains("plank")||label.Contains("upperfloor"))return FootstepSurface.Wood;
             if(label.Contains("grass")||label.Contains("soil")||label.Contains("mud")||label.Contains("earth")||label.Contains("neighborhoodground"))return FootstepSurface.Earth;
             if(label.Contains("asphalt")||label.Contains("road")||label.Contains("street")||label.Contains("concrete")||label.Contains("cellar")||label.Contains("courtyard")||label.Contains("paving"))return FootstepSurface.Stone;
             return FootstepSurface.Tile;

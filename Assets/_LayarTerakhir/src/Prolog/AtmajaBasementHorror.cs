@@ -29,9 +29,12 @@ namespace LayarTerakhir.Prolog
         public bool InspectingLocker => lockerCheckRunning;
         public float Detection => detect;
         public bool IsHunting => mind == Mind.Pursue;
+        public bool IsBlitzStunned => Time.time < stunnedUntil;
         private Mind mind;
         private int waypointIndex;
-        private float waypointPause, detect, suspicionTimer, giveUpTimer, dragTimer, hideEnteredAt, inspectElapsed;
+        private float waypointPause, detect, suspicionTimer, giveUpTimer, dragTimer, hideEnteredAt, inspectElapsed, stunnedUntil;
+        private AudioSource nyonyaSource;
+        private AudioLowPassFilter nyonyaFilter;
         private Vector3 suspicionPoint, lastPosition;
         private bool lockerCheckRunning, lockerCleared, hiddenWasSeen;
         private float nextHideTime;
@@ -58,6 +61,24 @@ namespace LayarTerakhir.Prolog
         private void Ui(AudioClip clip, float gain) { if (director.notificationSource && clip) director.notificationSource.PlayOneShot(clip, gain); }
         private void Sfx(AudioClip clip, Vector3 where, float gain)
         { if (!director.foleySource || !clip) return; director.foleySource.transform.position = where; director.foleySource.PlayOneShot(clip, gain); }
+        private void Start()
+        {
+            if(!nyonya)return;
+            var go=new GameObject("NyonyaVoice",typeof(AudioSource),typeof(AudioLowPassFilter));
+            go.transform.SetParent(nyonya.transform,false);
+            nyonyaSource=go.GetComponent<AudioSource>();nyonyaSource.playOnAwake=false;
+            nyonyaSource.spatialBlend=1;nyonyaSource.minDistance=1;nyonyaSource.maxDistance=12;
+            nyonyaSource.rolloffMode=AudioRolloffMode.Linear;nyonyaSource.dopplerLevel=0;
+            if(director.audioProfile)nyonyaSource.outputAudioMixerGroup=director.audioProfile.effectsBus;
+            nyonyaFilter=go.GetComponent<AudioLowPassFilter>();nyonyaFilter.cutoffFrequency=22000;
+        }
+        private void PlayNyonya(AudioClip clip,float gain)
+        {
+            if(!clip)return;
+            if(!nyonyaSource)Start();
+            if(nyonyaSource){nyonyaSource.transform.position=nyonya.transform.position;nyonyaSource.PlayOneShot(clip,gain);}
+            else Sfx(clip,nyonya.transform.position,gain);
+        }
         // Only loading/retrying resets the hunter. Equipment pickups never teleport her.
         public void RestoreWorld()
         {
@@ -192,8 +213,13 @@ namespace LayarTerakhir.Prolog
             if(director.Stage>=AtmajaStage.Chase)return;
             if (mind == Mind.Dormant || mind == Mind.Done || mind == Mind.Emerge || !nyonya || !nyonya.activeSelf) return;
             float dt = Time.deltaTime; dragTimer -= dt;
-            if (dragTimer <= 0) { dragTimer = mind == Mind.Pursue ? .35f : .95f; if (!scrapeClip) scrapeClip = AtmajaSynth.Scrape(.42f); Sfx(scrapeClip, nyonya.transform.position, .3f); }
+            if (dragTimer <= 0) { dragTimer = mind == Mind.Pursue ? .35f : .95f; if (!scrapeClip) scrapeClip = AtmajaSynth.Scrape(.42f); PlayNyonya(scrapeClip, .3f); }
+            if (nyonyaFilter) nyonyaFilter.cutoffFrequency=Mathf.Lerp(nyonyaFilter.cutoffFrequency,CanSeePlayer(14)?22000f:620f,1-Mathf.Exp(-8*dt));
+            var pose = nyonya.GetComponent<AtmajaThreatPresentation>(); if (pose) pose.ExternalStun = IsBlitzStunned;
+            if (IsBlitzStunned) return;
             if (humSource) humSource.volume = Mathf.Clamp01(1.2f - Vector3.Distance(nyonya.transform.position, director.player.transform.position) / 9) * .35f;
+            if (!IsHidden&&mind==Mind.Pursue&&Phone&&Phone.isPhoneRaised&&Phone.isScreenOn&&director.phoneView&&director.phoneView.IsCameraApp
+                &&GameInputConfig.Instance.GetActionDown(GameAction.CaptureOrBlitz)&&TryEmergencyBlitz()) return;
             if (IsHidden) HiddenTick(dt);
             else { if (director.player.MovementLocked) return; SenseTick(dt); }
             if (!lockerCheckRunning)
@@ -207,8 +233,25 @@ namespace LayarTerakhir.Prolog
                         giveUpTimer -= dt; if (!IsHidden && !CanSeePlayer(12) && giveUpTimer <= 0) ReturnToPatrol(); break;
                 }
             }
-            if (!IsHidden && Vector3.Distance(nyonya.transform.position, director.player.transform.position) < .85f && CanSeePlayer(2))
+            if (!IsHidden && !IsBlitzStunned && Vector3.Distance(nyonya.transform.position, director.player.transform.position) < .85f && CanSeePlayer(2))
                 director.FailToCheckpoint("PROLOG_BASEMENT_ENTRY", "Nyonya Sri Atmaja menemukanmu. Gunakan rak untuk memutus pandangannya.");
+        }
+        // Flash costs the same 15% battery as the chase QTE, but is available
+        // whenever the basement hunter has actually spotted Raka.
+        public bool TryEmergencyBlitz()
+        {
+            if (mind != Mind.Pursue || IsHidden || IsBlitzStunned) return false;
+            if (!Phone || !Phone.isPhoneRaised || !Phone.isScreenOn || Phone.batteryPercent < Phone.blitzCostPercent) return false;
+            if (!director.phoneView || !director.phoneView.IsCameraApp) return false;
+            Phone.ConsumeBattery(Phone.blitzCostPercent);
+            stunnedUntil = Time.time + 2f; detect = 0; giveUpTimer = 5;
+            var pose = nyonya.GetComponent<AtmajaThreatPresentation>();
+            if (pose) { pose.ExternalStun = true; if (pose.blitzSmoke) pose.blitzSmoke.Play(); }
+            director.phoneView.CaptureFlash();
+            Ui(AtmajaSynth.Tone(.7f, 900, 140, .35f), .5f);
+            if(director.phoneView)director.phoneView.AddChatBurst(new[]{"@rizky_pratama_","@kopi_susu99","@bocil_kematian"},new[]{"BLITZ! KENA BANG!","LARI SEKARANG SELAGI KOSONG!","WOW KAMERANYA NYALA TERANG!"});
+            Hud.ShowBroadcastNotification("BLITZ! Nyonya terpana 2 detik. Putus pandangan dan lari!", 3);
+            return true;
         }
         private void EnterBasementBeats()
         {
@@ -225,6 +268,7 @@ namespace LayarTerakhir.Prolog
             if (teplokFlame) teplokFlame.SetActive(false); if (teplokLight) teplokLight.enabled = false;
             Ui(AtmajaSynth.Tone(.5f, 240, 90, .35f), .4f); yield return new WaitForSeconds(.85f);
             if (nyonya) nyonya.SetActive(true);
+            if(director.phoneView)director.phoneView.AddChatBurst(new[]{"@kopi_susu99","@dinda_ayu","@bocil_kematian"},new[]{"ITU APA BARUSAN?!","ADA BAYANGAN DI KAMAR JAHIT!","BANG KAMERA NYA BERGETAR!"});
             Hud.ShowBroadcastNotification($"MataBatin • Entitas belum teridentifikasi.\nKamera tidak bisa melukainya. Sembunyi dan matikan layar [{Key(GameAction.ToggleScreen)}].", 7);
             yield return new WaitForSeconds(3); mind = Mind.Patrol; director.SetStage(AtmajaStage.BasementStealth); director.Objective();
         }
@@ -248,7 +292,10 @@ namespace LayarTerakhir.Prolog
             detect = Mathf.Clamp01(detect + dt * (seen ? .8f : heard ? .35f : -.28f));
             if (seen && mind == Mind.Pursue) giveUpTimer = 5;
             if (detect >= 1 && mind != Mind.Pursue)
-            { mind = Mind.Pursue; giveUpTimer = 5; Ui(AtmajaSynth.Tone(.6f, 250, 650, .3f), .45f); Hud.ShowBroadcastNotification("Dia melihatmu. Putus pandangannya, lalu sembunyi!", 3); }
+            {
+                mind = Mind.Pursue; giveUpTimer = 5; Ui(AtmajaSynth.Tone(.6f, 250, 650, .3f), .45f); Hud.ShowBroadcastNotification("Dia melihatmu. Putus pandangannya, lalu sembunyi!", 3);
+                if(director.phoneView)director.phoneView.AddChatBurst(new[]{"@maya_sari","@rudi_tabuti","@intan_permata"},new[]{"LARI BANG DIA LIAT KE KAMERA!","SEMBUNYI CEPET BANG!","MATIIN LAYAR HP NYA!"});
+            }
             else if (detect > .32f && mind == Mind.Patrol) { mind = Mind.Suspicion; suspicionTimer = 3; }
         }
         private bool ClearPath(Vector3 a, Vector3 b)
@@ -283,6 +330,7 @@ namespace LayarTerakhir.Prolog
         public void PursueForChase(Vector3 goal,float speed,float dt)=>StepToward(goal,speed,dt);
         private void StepToward(Vector3 goal, float speed, float dt)
         {
+            if (IsBlitzStunned) return;
             Vector3 position = nyonya.transform.position, target = NextPathPoint(goal), delta = target - position; delta.y = 0;
             if (delta.magnitude < .03f) return;
             var next = position + delta.normalized * Mathf.Min(speed * dt, delta.magnitude); if (ClearPath(position, next)) nyonya.transform.position = next;
@@ -308,6 +356,7 @@ namespace LayarTerakhir.Prolog
             if (!lockerCleared && !lockerCheckRunning && (distance < 1.8f || hiddenWasSeen && distance < 2.5f))
             {
                 lockerCheckRunning = true; inspectElapsed = 0;
+                if(director.phoneView)director.phoneView.AddChatBurst(new[]{"@maya_sari","@dinda_ayu","@rudi_tabuti"},new[]{"DIA DEKET LEMARI BANG!","MATIIN LAYAR SEKARANG!","JANGAN NAFAS BANG PLIS!"});
                 Hud.ShowBroadcastNotification($"Dia mendekat ke lemari. Matikan layar [{Key(GameAction.ToggleScreen)}] sekarang!", 5); director.Objective();
             }
             if (lockerCheckRunning)

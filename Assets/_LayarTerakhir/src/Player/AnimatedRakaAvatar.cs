@@ -52,12 +52,12 @@ namespace LayarTerakhir.Player
             current = clip;
         }
         private static bool IsLocomotion(string clip) => clip != null && (clip.EndsWith("Walk") || clip.EndsWith("Run"));
-        public bool TryGetFootstepPhase(out float phase, out float reverseContact)
+        public bool TryGetFootstepPhase(out float phase, out float reverseContact, out bool reverse)
         {
-            phase=0;reverseContact=.58f;
+            phase=0;reverseContact=.58f;reverse=playbackSpeed<0;
             if(!motion||!IsLocomotion(current)||!motion.IsPlaying(current))return false;
             var state=motion[current];if(!state)return false;
-            phase=state.normalizedTime;
+            phase=Mathf.Repeat(state.normalizedTime,1);
             // Authored stance starts at 0/.5, not .25/.75. In reverse playback
             // the landing is at the opposite end of the planted interval.
             reverseContact=current.EndsWith("Run")?.46f:current.Contains("Crouch")?.64f:.58f;

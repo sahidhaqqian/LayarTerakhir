@@ -185,10 +185,16 @@ namespace LayarTerakhir.Diagnostics
             yield return Wait(()=>!d.chase.Traversing&&d.player.transform.position.z!=0,10,"Vault animation finishes");
             Check(Vector3.Distance(player.transform.position,d.chase.diningVaultEnd.position)<.25f,"Space actually carries Raka across the fallen table");
             foreach(var p in new[]{d.P(4.1f,8.4f,.54f),d.P(4.1f,9.8f,.37f),d.P(4.9f,10.5f,.37f)})yield return Walk(p);
-            yield return Wait(()=>d.chase.AwaitingBlitz,10,"Nyonya blocks the kitchen window in slow motion");
-            Check(player.GetComponent<ShoulderCameraRig>().IsFirstPerson,"Emergency Blitz uses the first-person aiming closeup");Aim(d.chase.windowBlockSpot.position+Vector3.up*1.3f);yield return Shot("19-emergency-blitz-standoff");
-            float battery=Phone.batteryPercent;yield return ClickMouse();Check(d.chase.IsStunned&&Time.timeScale==1,"Real left click fires the emergency Blitz and restores normal time");
-            Check(Mathf.Abs(battery-Phone.batteryPercent-15)<.25f,"Emergency Blitz costs fifteen percent once");yield return Press(Key.Space);
+            yield return Wait(()=>d.chase.AwaitingPhotos,10,"Nyonya blocks the kitchen window for the photo ritual");
+            Check(player.GetComponent<ShoulderCameraRig>().IsFirstPerson,"Photo ritual uses the first-person aiming closeup");Aim(d.chase.windowBlockSpot.position+Vector3.up*1.3f);
+            Check(Time.timeScale==.5f,"The photo ritual deliberately slows Raka's movement");
+            for(int i=0;i<AtmajaChaseSequence.RequiredPhotos;i++)
+            {
+                yield return ClickMouse();yield return new WaitForSecondsRealtime(.4f);
+                Check(d.chase.PhotosTaken==i+1,"Photo "+(i+1)+" registers");
+                yield return Shot("19-photo-ritual-"+(i+1));
+            }
+            Check(!d.chase.chaserFigure.activeSelf&&Time.timeScale==1,"The third photo makes Nyonya vanish and restores normal speed");yield return Press(Key.Space);
             yield return Wait(()=>d.chase.IsGateRun,10,"Space breaks through the kitchen window into the side yard");yield return Shot("20-kitchen-window-escape");
             foreach(var p in new[]{d.P(8.2f,7.0f,.06f)})yield return Walk(p);yield return Crouch(true);yield return Walk(d.P(8.2f,4.1f,.06f));yield return Crouch(false);
             foreach(var p in new[]{d.P(8.2f,-3,.06f),d.P(0,-3,.06f),d.P(0,-8.3f,.06f)})yield return Walk(p);
@@ -224,7 +230,7 @@ namespace LayarTerakhir.Diagnostics
             for(int frame=0;frame<700;frame++)
             {
                 if(d.Stage==AtmajaStage.EndingVista&&UiFocus.Cinematic){Check(true,"Gate approach hands control to the street ending");yield break;}
-                if(d.chase.AwaitingBlitz){Check(true,"The window standoff locks movement and hands control to the emergency Blitz");yield break;}
+                if(d.chase.AwaitingPhotos){Check(true,"The window photo ritual takes over the final approach");yield break;}
                 if(d.CheckpointRestores!=restores)Check(false,"Checkpoint reset while walking toward "+target);
                 var delta=target-player.transform.position;delta.y=0;if(delta.magnitude<.12f)break;
                 Vector3 before=player.transform.position;

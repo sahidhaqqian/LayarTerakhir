@@ -11,7 +11,7 @@ namespace LayarTerakhir.Prolog
     public sealed class AtmajaChaseSequence : MonoBehaviour
     {
         public const string ChaseCheckpoint = "PROLOG_CHASE_START";
-        private enum Run { Idle, Playback, Breaking, Pursuit, WindowStandoff, Stunned, GateRun, Ending, Complete }
+        private enum Run { Idle, Playback, Breaking, Pursuit, WindowStandoff, EscapeReady, Stunned, GateRun, Ending, Complete }
         public AtmajaDirector director;
         public AtmajaBasementHorror basement;
         public Transform spawnChase, spawnStreet, windowBlockSpot, windowExitSpot, gateSpot, houseLookSpot;
@@ -26,9 +26,12 @@ namespace LayarTerakhir.Prolog
         public Transform handycamScreenSpot;
         public AtmajaHandycamPlayback recording;
         public PrologFinaleView finale;
+        public const int RequiredPhotos=3;
         public bool AwaitingBlitz => run == Run.WindowStandoff;
+        public bool AwaitingPhotos => run == Run.WindowStandoff;
         public bool IsStunned => run == Run.Stunned || run == Run.GateRun && Time.time < stunEndsAt;
         public bool IsGateRun => run == Run.GateRun;
+        public int PhotosTaken => photosTaken;
         public bool Traversing { get; private set; }
         public bool IsPursuing => run == Run.Pursuit;
         public bool FollowsPlayerInBasement => run == Run.Pursuit && !climbedOut;
@@ -36,7 +39,11 @@ namespace LayarTerakhir.Prolog
             && Vector3.Distance(chaserFigure.transform.position,director.player.transform.position)<.95f
             && basement.CanSeePlayer(2);
         private Run run;
-        private float stunTimer, stunEndsAt, blitzWindow, railDistance, dangerGrace, dragTimer;
+        private float stunEndsAt, railDistance, dangerGrace, dragTimer;
+        private int photosTaken;
+        private float photoReadyAt;
+        private ParticleSystem photoSmoke;
+        private Material photoSmokeMaterial;
         private bool climbedOut, vaultedTable;
         private float[] railLengths;
         private AudioSource music;
@@ -118,6 +125,7 @@ namespace LayarTerakhir.Prolog
             run = Run.Breaking; railDistance = -6; dangerGrace = 5; climbedOut = vaultedTable = false;
             director.SetStage(AtmajaStage.Chase); director.SetBusy(false);
             if (chaserFigure) { chaserFigure.SetActive(true); chaserFigure.transform.position = RailPoint(0); }
+            if(director.phoneView)director.phoneView.AddChatBurst(new[]{"@kopi_susu99","@rizky_pratama_","@bocil_kematian"},new[]{"LARI BANG JANGAN NENGOK!","DIA DI BELAKANG LU!","TANGGA BANG CEPET!"},4);
             Music(true); StartCoroutine(BreakBeat());
         }
         private void Music(bool on)
@@ -131,8 +139,8 @@ namespace LayarTerakhir.Prolog
         }
         public string Objective()
         {
-            if (run == Run.WindowStandoff) return $"[{Key(GameAction.CaptureOrBlitz)}] TEMBAKKAN BLITZ!";
-            if (run == Run.Stunned) return $"[{Key(GameAction.Vault)}] Terobos jendela dapur!";
+            if (run == Run.WindowStandoff) return $"FOTO NYONYA [{Key(GameAction.CaptureOrBlitz)}] • {photosTaken}/{RequiredPhotos}";
+            if (run == Run.EscapeReady || run == Run.Stunned) return $"[{Key(GameAction.Vault)}] Terobos jendela dapur!";
             if (run == Run.GateRun) return "Lari ke gerbang! Merunduk melewati dahan kamboja.";
             if (run == Run.Ending || run == Run.Complete) return "Malam pertama selesai. Damar masih di balik cermin.";
             if (!climbedOut) return "LARI! Kembali ke tangga batu di sudut ruang jahit!";
@@ -171,12 +179,10 @@ namespace LayarTerakhir.Prolog
         {
             if (!director || !director.player || !Campaign || !Hud || director.Busy || UiFocus.HardModal || Hud.IsModalOpen || Time.timeScale<=0) return;
             if (run == Run.WindowStandoff) { StandoffTick(); return; }
-            if (run == Run.Stunned)
+            if (run == Run.EscapeReady)
             {
-                stunTimer -= Time.deltaTime;
                 if (GameInputConfig.Instance.GetActionDown(GameAction.Vault) && Vector3.Distance(director.player.transform.position, director.vaultInside.position) < 3.8f)
                     StartCoroutine(EscapeWindow());
-                else if (stunTimer <= 0) Fail("Terlambat melewati jendela setelah Blitz. Terobos segera saat dia terpaku.");
                 return;
             }
             if (run != Run.Pursuit && run != Run.GateRun) return;
@@ -261,35 +267,119 @@ namespace LayarTerakhir.Prolog
         }
         private void BeginStandoff()
         {
-            run = Run.WindowStandoff; blitzWindow = 3; Time.timeScale = .15f; finale.Prompt($"[{Key(GameAction.CaptureOrBlitz)}] TEMBAKKAN FLASH SEKARANG!");
+            run = Run.WindowStandoff; photosTaken = 0; photoReadyAt = 0; Time.timeScale = .5f;
             Phone.isPhoneRaised = Phone.isScreenOn = true; Phone.currentScanMode = ScanVisualMode.Normal; Phone.SyncVisualState();
-            director.phoneView.Apps.Open(PhoneApp.Camera); director.player.MovementLocked = true;
-            if (chaserFigure) chaserFigure.transform.SetPositionAndRotation(windowBlockSpot.position, windowBlockSpot.rotation);
+            director.phoneView.Apps.Open(PhoneApp.Camera);
+            director.player.MovementLocked = false;
+            if (chaserFigure)
+            {
+                chaserFigure.transform.SetPositionAndRotation(windowBlockSpot.position, windowBlockSpot.rotation);
+                var pose=chaserFigure.GetComponent<AtmajaThreatPresentation>();if(pose)pose.ExternalStun=false;
+            }
             Vector3 direction=windowBlockSpot.position+Vector3.up*1.45f-director.player.cameraPivot.position;
             Vector3 flat=direction;flat.y=0;
             if(flat.sqrMagnitude>.001f)director.player.transform.rotation=Quaternion.LookRotation(flat);
             director.player.SetViewPitch(-Mathf.Atan2(direction.y,flat.magnitude)*Mathf.Rad2Deg);
             var rig=director.player.GetComponent<ShoulderCameraRig>();if(rig){rig.FirstPersonOverride=true;rig.RefreshCameraPose();}
-            Ui(AtmajaSynth.Tone(2.8f, 400, 2200, .2f), .5f); director.Objective();
+            finale.Prompt($"FOTO NYONYA 3x [{Key(GameAction.CaptureOrBlitz)}]");
+            Ui(AtmajaSynth.Tone(2.8f, 400, 2200, .2f), .5f);
+            if(director.phoneView)director.phoneView.AddChatBurst(new[]{"@maya_sari","@rudi_tabuti","@intan_permata"},new[]{"FOTO DIA BANG!","JANGAN BERHENTI MOTRET!","ASAPNYA NUTUPIN KAMERA!"});
+            director.Objective();
         }
         private void StandoffTick()
         {
-            blitzWindow -= Time.unscaledDeltaTime;
-            if (GameInputConfig.Instance.GetActionDown(GameAction.CaptureOrBlitz) && TryEmergencyBlitz()) return;
-            if (blitzWindow <= 0) Fail("Blitz terlambat. Saat dia menghadang jendela, tembakkan Flash kamera.");
+            if(!Phone.isPhoneRaised||!Phone.isScreenOn){Phone.isPhoneRaised=Phone.isScreenOn=true;Phone.SyncVisualState();}
+            if(director.phoneView&&!director.phoneView.IsCameraApp)director.phoneView.Apps.Open(PhoneApp.Camera);
+            if (Time.unscaledTime < photoReadyAt) return;
+            if (GameInputConfig.Instance.GetActionDown(GameAction.CaptureOrBlitz)) TryPhoto();
         }
-        public bool TryEmergencyBlitz()
+        public bool TryPhoto()
         {
-            if (run != Run.WindowStandoff || Phone.batteryPercent < Phone.blitzCostPercent) return false;
-            // The window action stays urgent; recovery also covers the mandatory
-            // crouch under the fallen branch at the player's authored pace.
-            Phone.ConsumeBattery(Phone.blitzCostPercent); run = Run.Stunned; stunTimer = 4; stunEndsAt=Time.time+10; Time.timeScale = 1;
-            director.player.MovementLocked = false;
-            var rig=director.player.GetComponent<ShoulderCameraRig>();if(rig)rig.FirstPersonOverride=false;
-            StartCoroutine(finale.Flash());
+            if (run != Run.WindowStandoff) return false;
+            if (!Phone.isPhoneRaised || !Phone.isScreenOn) return false;
+            if (!director.phoneView || !director.phoneView.IsCameraApp) return false;
+            if (Time.unscaledTime < photoReadyAt) return false;
+            photoReadyAt = Time.unscaledTime + .3f;
+            photosTaken++;
             director.phoneView.CaptureFlash();
-            Hud.PlayPriorityDialogue("Nyonya Sri Atmaja", "AAAAAARGH!!!", 2);
-            finale.Prompt($"[{Key(GameAction.Vault)}] TEROBOS JENDELA!"); director.Objective(); return true;
+            var pose = chaserFigure ? chaserFigure.GetComponent<AtmajaThreatPresentation>() : null;
+            PuffSmoke(photosTaken >= RequiredPhotos ? 70 : 34);
+            if (pose)
+            {
+                pose.ExternalStun = true;
+                pose.EmitPhotoSmoke(photosTaken >= RequiredPhotos ? 40 : 18);
+                StartCoroutine(ReleasePhotoStun(pose));
+            }
+            if (director.phoneView)
+            {
+                string[][] lines =
+                {
+                    new[]{"FOTO PERTAMA KENA BANG!","ASAPNYA MULAI TEBEL!","DIA MUNDUR SEDIKIT!"},
+                    new[]{"LAGI BANG SATU LAGI!","KAMERA JANGAN TURUN!","TUBUHNYA UDAH NGEROKOK!"},
+                    new[]{"FOTO KETIGA! HABIS DIA!","DIA ILANG BANG!","LARI KE JENDELA SEKARANG!"}
+                };
+                director.phoneView.AddChatBurst(new[]{"@rizky_pratama_","@kopi_susu99","@bocil_kematian"},lines[Mathf.Clamp(photosTaken-1,0,lines.Length-1)]);
+            }
+            if (photosTaken >= RequiredPhotos) StartCoroutine(CompletePhotoRitual());
+            else director.Objective();
+            return true;
+        }
+        private IEnumerator ReleasePhotoStun(AtmajaThreatPresentation pose)
+        {
+            yield return new WaitForSeconds(.28f);
+            if (pose) pose.ExternalStun = false;
+        }
+        private IEnumerator CompletePhotoRitual()
+        {
+            run = Run.EscapeReady; Time.timeScale = 1;
+            PuffSmoke(80);
+            var pose = chaserFigure ? chaserFigure.GetComponent<AtmajaThreatPresentation>() : null;
+            if (pose) { pose.ExternalStun = true; pose.EmitPhotoSmoke(50); }
+            Ui(AtmajaSynth.Tone(1.1f, 900, 90, .4f), .55f);
+            Hud.PlayPriorityDialogue("Nyonya Sri Atmaja", "AAAAAARGH...", 1.6f);
+            yield return new WaitForSeconds(.35f);
+            if (chaserFigure) chaserFigure.SetActive(false);
+            var rig=director.player.GetComponent<ShoulderCameraRig>();if(rig)rig.FirstPersonOverride=false;
+            finale.Prompt($"[{Key(GameAction.Vault)}] TEROBOS JENDELA!");
+            director.Objective();
+        }
+        private void PuffSmoke(int count)
+        {
+            if(!photoSmoke)BuildPhotoSmoke();
+            if(!photoSmoke)return;
+            if(chaserFigure)photoSmoke.transform.position=chaserFigure.transform.position+Vector3.up*1.1f;
+            photoSmoke.Emit(Mathf.Clamp(count,1,90));
+        }
+        private void BuildPhotoSmoke()
+        {
+            if(photoSmoke||!chaserFigure)return;
+            var texture=Resources.Load<Texture2D>("PlayerPresentation/Smoke/whitePuff06");
+            var shader=Shader.Find("Universal Render Pipeline/Particles/Unlit");
+            if(!texture||!shader)return;
+            photoSmokeMaterial=new Material(shader){name="Nyonya Photo Ritual Smoke"};
+            photoSmokeMaterial.SetTexture("_BaseMap",texture);
+            photoSmokeMaterial.SetColor("_BaseColor",new Color(.88f,.90f,.86f,.62f));
+            photoSmokeMaterial.SetFloat("_Surface",1);photoSmokeMaterial.SetFloat("_Blend",0);
+            photoSmokeMaterial.SetInt("_SrcBlend",(int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+            photoSmokeMaterial.SetInt("_DstBlend",(int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+            photoSmokeMaterial.SetInt("_ZWrite",0);photoSmokeMaterial.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+            photoSmokeMaterial.renderQueue=3000;
+            var go=new GameObject("NyonyaPhotoSmoke",typeof(ParticleSystem));
+            go.transform.SetParent(chaserFigure.transform,false);
+            photoSmoke=go.GetComponent<ParticleSystem>();photoSmoke.Stop(true,ParticleSystemStopBehavior.StopEmittingAndClear);
+            var main=photoSmoke.main;main.loop=false;main.playOnAwake=false;main.duration=2.2f;
+            main.startLifetime=new ParticleSystem.MinMaxCurve(1.2f,2.3f);
+            main.startSpeed=new ParticleSystem.MinMaxCurve(.22f,.85f);
+            main.startSize=new ParticleSystem.MinMaxCurve(.4f,1.25f);
+            main.startRotation=new ParticleSystem.MinMaxCurve(0f,Mathf.PI*2f);
+            main.startColor=new ParticleSystem.MinMaxGradient(new Color(.9f,.91f,.87f,.55f),new Color(.52f,.55f,.53f,.34f));
+            main.maxParticles=260;main.simulationSpace=ParticleSystemSimulationSpace.World;main.gravityModifier=-.012f;
+            var emission=photoSmoke.emission;emission.rateOverTime=0;
+            var shape=photoSmoke.shape;shape.shapeType=ParticleSystemShapeType.Sphere;shape.radius=.24f;
+            var noise=photoSmoke.noise;noise.enabled=true;noise.strength=.22f;noise.frequency=.28f;noise.scrollSpeed=.18f;noise.damping=true;
+            var renderer=photoSmoke.GetComponent<ParticleSystemRenderer>();
+            renderer.sharedMaterial=photoSmokeMaterial;renderer.renderMode=ParticleSystemRenderMode.Billboard;
+            renderer.sortMode=ParticleSystemSortMode.Distance;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;renderer.receiveShadows=false;
         }
         private IEnumerator EscapeWindow()
         {
@@ -354,6 +444,7 @@ namespace LayarTerakhir.Prolog
         {
             if (Time.timeScale > 0 && Time.timeScale < .5f) Time.timeScale = 1;
             if (music && music.clip) Destroy(music.clip);
+            if (photoSmokeMaterial) Destroy(photoSmokeMaterial);
         }
     }
 }

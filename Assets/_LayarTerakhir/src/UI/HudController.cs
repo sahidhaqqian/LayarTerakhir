@@ -325,7 +325,9 @@ namespace LayarTerakhir.UI
             phoneStatusText.text=$"{battery}%    {(phone.isBroadcastConnected?"LIVE":"Offline")}\n{screen}";
             var presentation=GetComponent<HudPresentation>();
             if(presentation&&presentation.phoneHints)
-                presentation.phoneHints.text=$"{phoneKey.ToString().ToUpperInvariant()}  {(phone.isPhoneRaised?"Simpan":"Angkat")}   ·   {screenKey.ToString().ToUpperInvariant()}  {(phone.isScreenOn?"Matikan layar":"Nyalakan layar")}";
+                presentation.phoneHints.text=phone.isPhoneRaised
+                    ?$"{phoneKey.ToString().ToUpperInvariant()}  Simpan   ·   {screenKey.ToString().ToUpperInvariant()}  {(phone.isScreenOn?"Matikan layar":"Nyalakan layar")}"
+                    :"KLIK KANAN  Angkat kamera   ·   "+phoneKey.ToString().ToUpperInvariant()+"  Aplikasi";
         }
 
         public void OpenDocumentModal(string title, string body, Action onClosed = null, string documentId = null)

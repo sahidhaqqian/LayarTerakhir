@@ -198,9 +198,6 @@ namespace LayarTerakhir.Player
             }
         }
 
-        private void OnDestroy()
-        {foreach(var material in fadeMaterials)if(material)Destroy(material);}
-
         private void AnimateRaka()
         {
             // Mount/unmount can happen through explicit refreshes in one frame.
@@ -336,6 +333,7 @@ namespace LayarTerakhir.Player
         private void OnDestroy()
         {
             foreach (var material in new[] { skin, hair, jacket, jeans, shoes, shirt }) if (material) Destroy(material);
+            foreach (var material in fadeMaterials) if (material) Destroy(material);
         }
     }
 }

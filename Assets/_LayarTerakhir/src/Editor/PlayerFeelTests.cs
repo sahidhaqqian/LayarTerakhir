@@ -2,9 +2,11 @@
 using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
+using LayarTerakhir.Audio;
 using LayarTerakhir.Player;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace LayarTerakhir.Editor.Tests
 {
@@ -149,6 +151,73 @@ namespace LayarTerakhir.Editor.Tests
                 Assert.That(capsule.height,Is.EqualTo(1));Assert.That(capsule.radius,Is.EqualTo(.32f));
             }
             finally{Object.DestroyImmediate(roof);Object.DestroyImmediate(actor);}
+        }
+        [Test] public void EveryFootstepSurfaceHasRecordedDerivatives()
+        {
+            foreach(string surface in new[]{"Stone","Earth","Wood"})
+            {
+                var clips=Resources.LoadAll<AudioClip>("PlayerPresentation/Steps/"+surface);
+                Assert.That(clips.Length,Is.EqualTo(3),surface+" surface bank");
+            }
+        }
+        [Test] public void FootstepContactHandlesForwardReverseAndLoopWrap()
+        {
+            Assert.That(PlayerFootsteps.CrossedContact(.48f,.52f,0),Is.True,"forward contact");
+            Assert.That(PlayerFootsteps.CrossedContact(.52f,.58f,0),Is.False,"forward between contacts");
+            Assert.That(PlayerFootsteps.CrossedContact(.60f,.56f,.58f),Is.True,"reverse contact");
+            Assert.That(PlayerFootsteps.CrossedContact(.99f,1.01f,0),Is.True,"forward loop wrap");
+            Assert.That(PlayerFootsteps.CrossedContact(.10f,.06f,.58f),Is.True,"reverse contact after wrap");
+        }
+        [Test] public void FootstepSurfaceRecognisesAuthoredFloorNames()
+        {
+            var names=new[]{"MelatiRoadSection","UpperFloor_West","MelatiNeighborhoodGround","CeramicTileFloor","CellarFloor"};
+            var objects=names.Select(name=>{var go=new GameObject(name);go.AddComponent<BoxCollider>();return go;}).ToArray();
+            try
+            {
+                Assert.That(PlayerFootsteps.SurfaceFor(objects[0].GetComponent<Collider>()),Is.EqualTo(FootstepSurface.Stone));
+                Assert.That(PlayerFootsteps.SurfaceFor(objects[1].GetComponent<Collider>()),Is.EqualTo(FootstepSurface.Wood));
+                Assert.That(PlayerFootsteps.SurfaceFor(objects[2].GetComponent<Collider>()),Is.EqualTo(FootstepSurface.Earth));
+                Assert.That(PlayerFootsteps.SurfaceFor(objects[3].GetComponent<Collider>()),Is.EqualTo(FootstepSurface.Tile));
+                Assert.That(PlayerFootsteps.SurfaceFor(objects[4].GetComponent<Collider>()),Is.EqualTo(FootstepSurface.Stone));
+            }
+            finally{foreach(var go in objects)Object.DestroyImmediate(go);}
+        }
+        [Test] public void PracticalBeamCookieHasSoftEdgeAndOpaqueCore()
+        {
+            var go=new GameObject("CookieLight",typeof(Light));var light=go.GetComponent<Light>();light.type=LightType.Spot;
+            try
+            {
+                PracticalLightPresentation.ConfigureBeam(light);
+                Assert.That(light.cookie,Is.Not.Null,"flashlight must receive a cookie");
+                var texture=PracticalLightPresentation.CreateCookie();
+                try
+                {
+                    Assert.That(texture.GetPixel(128,128).a,Is.GreaterThan(.5f),"cookie core stays bright");
+                    Assert.That(texture.GetPixel(4,4).a,Is.LessThan(.05f),"cookie edge fades out");
+                }
+                finally{Object.DestroyImmediate(texture);}
+            }
+            finally{Object.DestroyImmediate(go);}
+        }
+        [Test] public void ThreatRimIsLimitedToItsRenderingLayer()
+        {
+            var subject=new GameObject("ThreatSubject");var model=GameObject.CreatePrimitive(PrimitiveType.Cube);model.transform.SetParent(subject.transform,false);
+            try
+            {
+                PracticalLightPresentation.AddThreatRim(subject);
+                var silhouette=subject.transform.Find("ThreatSilhouette");Assert.That(silhouette,Is.Not.Null);
+                var light=silhouette.GetComponent<Light>();var data=light.GetUniversalAdditionalLightData();
+                Assert.That((uint)data.renderingLayers,Is.EqualTo(PracticalLightPresentation.ThreatRenderingLayer));
+                Assert.That(model.GetComponent<Renderer>().renderingLayerMask&PracticalLightPresentation.ThreatRenderingLayer,Is.Not.Zero);
+            }
+            finally{Object.DestroyImmediate(subject);}
+        }
+        [Test] public void AvatarDitherShaderCompilesWithoutErrors()
+        {
+            var shader=Resources.Load<Shader>("PlayerPresentation/AvatarDither");
+            Assert.That(shader,Is.Not.Null,"camera fade shader must stay under Resources");
+            Assert.That(shader.name,Is.EqualTo("LayarTerakhir/Avatar Dither Lit"));
+            Assert.That(UnityEditor.ShaderUtil.ShaderHasError(shader),Is.False,"URP dither shader compiles");
         }
     }
 }

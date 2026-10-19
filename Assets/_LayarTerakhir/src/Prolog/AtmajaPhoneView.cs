@@ -28,7 +28,10 @@ namespace LayarTerakhir.Prolog
         private readonly Queue<string> pendingMessages=new Queue<string>();
         private readonly System.Random chatRandom=new System.Random();
         private float nextChat,nextAmbient,flashUntil,glitchUntil;private string currentRoom="";
-        private Image shutter;private AudioSource shutterAudio;private AudioClip shutterClip;
+        private Image shutter;private AudioSource shutterAudio;private AudioClip shutterClip,switchClip;
+        private RawImage focusVignette;private Image thumb;private Texture2D vignetteTexture;
+        private Vector2 panelMin,panelMax,cameraMin,cameraMax;
+        private bool focusOverride,lastSelfie,cameraHeldRaise;private ScanVisualMode lastMode;private float thumbUntil;
         private Image[] signalBars;
         private FirstPersonController owner;
         private RectTransform handsetRect;
@@ -40,6 +43,8 @@ namespace LayarTerakhir.Prolog
         public float LastChatTime {get;private set;}
         public int DisplayedChatCount {get;private set;}
         public float GlitchStrength {get;set;}
+        public bool ViewfinderActive {get;private set;}
+        public void SetViewfinder(bool on)=>focusOverride=on;
         private HudController Hud=>HudController.Instance;private SmartphoneController Phone=>SmartphoneController.Instance;
         private void Start()
         {
@@ -51,7 +56,7 @@ namespace LayarTerakhir.Prolog
             var canvas=Hud.GetComponentInChildren<Canvas>().transform;
             Panel=PhoneSkin.Card("RakaSmartphone",canvas,new Vector2(.772f,.045f),new Vector2(.973f,.758f),new Color(.16f,.18f,.20f));
             handsetInput=Panel.AddComponent<CanvasGroup>();
-            handsetRect=Panel.GetComponent<RectTransform>();
+            handsetRect=Panel.GetComponent<RectTransform>();panelMin=handsetRect.anchorMin;panelMax=handsetRect.anchorMax;
             PhoneSkin.Card("GlassScreen",Panel.transform,new Vector2(.018f,.012f),new Vector2(.982f,.988f),new Color(.008f,.012f,.019f));
             PhoneSkin.Card("Earpiece",Panel.transform,new Vector2(.38f,.978f),new Vector2(.62f,.984f),new Color(.23f,.25f,.27f));
             PhoneSkin.Card("FrontLens",Panel.transform,new Vector2(.66f,.970f),new Vector2(.69f,.985f),new Color(.06f,.13f,.18f));
@@ -59,6 +64,7 @@ namespace LayarTerakhir.Prolog
             PhoneSkin.Card("VolumeRocker",Panel.transform,new Vector2(-.008f,.63f),new Vector2(0,.80f),new Color(.25f,.28f,.3f));
             header=UiWidgets.Text("PhoneLiveLabel",Panel.transform,"",new Vector2(.075f,.918f),new Vector2(.925f,.966f),20);
             cameraRoot=UiWidgets.Rect("CameraApp",Panel.transform,new Vector2(.045f,.16f),new Vector2(.955f,.91f));cameraImage=cameraRoot.AddComponent<RawImage>();cameraImage.raycastTarget=false;
+            var cameraRect=cameraRoot.GetComponent<RectTransform>();cameraMin=cameraRect.anchorMin;cameraMax=cameraRect.anchorMax;
             runtimeFeedMaterial=new Material(feedMaterial);cameraImage.material=runtimeFeedMaterial;
             feed=new RenderTexture(256,448,16,RenderTextureFormat.ARGB32){name="RakaPhoneFeed",antiAliasing=1};if(HasGraphicsDevice)feed.Create();cameraImage.texture=feed;
             var cam=new GameObject("RakaPhoneCamera",typeof(Camera));cam.transform.SetParent(playerCamera.transform.root,false);FeedCamera=cam.GetComponent<Camera>();FeedCamera.CopyFrom(playerCamera);FeedCamera.targetTexture=feed;
@@ -84,11 +90,17 @@ namespace LayarTerakhir.Prolog
             stowLabel=stow.GetComponentInChildren<Text>();
             PhoneSkin.Card("GestureBar",Panel.transform,new Vector2(.37f,.014f),new Vector2(.63f,.019f),new Color(.55f,.57f,.6f));
             chat=UiWidgets.Text("AtmajaLiveChat",canvas,"",new Vector2(.035f,.17f),new Vector2(.32f,.43f),18);chat.color=new Color(.82f,.83f,.77f,.93f);
-            walkHint=UiWidgets.Text("PhoneWalkHint",canvas,"WASD jalan · tahan klik kanan untuk menoleh",new Vector2(.52f,.008f),new Vector2(.97f,.04f),16,TextAnchor.MiddleRight);
+            walkHint=UiWidgets.Text("PhoneWalkHint",canvas,"WASD jalan · klik kanan angkat kamera · tahan untuk bidik",new Vector2(.42f,.008f),new Vector2(.97f,.04f),16,TextAnchor.MiddleRight);
             Apps=gameObject.AddComponent<PhoneDesktop>();Apps.Initialize(this);Panel.transform.SetAsFirstSibling();chat.transform.SetAsFirstSibling();
             shutter=UiWidgets.Panel("PhoneShutterFlash",cameraRoot.transform,Vector2.zero,Vector2.one,Color.clear).GetComponent<Image>();shutter.raycastTarget=false;
             signalBars=new Image[8];for(int i=0;i<signalBars.Length;i++)
             {signalBars[i]=UiWidgets.Panel("HandsetSignalTear_"+i,Panel.transform,new Vector2(.045f,.15f+i*.09f),new Vector2(.955f,.151f+i*.09f),Color.clear).GetComponent<Image>();signalBars[i].raycastTarget=false;}
+            vignetteTexture=CreateVignetteTexture();
+            var vignette=UiWidgets.Rect("ViewfinderThreat",cameraRoot.transform,Vector2.zero,Vector2.one);
+            focusVignette=vignette.AddComponent<RawImage>();focusVignette.texture=vignetteTexture;focusVignette.raycastTarget=false;focusVignette.color=new Color(1,1,1,0);
+            var thumbObj=PhoneSkin.Card("PhoneThumb",Panel.transform,new Vector2(.82f,.055f),new Vector2(.945f,.145f),new Color(.60f,.42f,.28f,.94f));
+            thumb=thumbObj.GetComponent<Image>();thumb.raycastTarget=false;thumb.gameObject.SetActive(false);
+            if(Phone){lastMode=Phone.currentScanMode;lastSelfie=Phone.isSelfieCamera;}
             shutterAudio=gameObject.AddComponent<AudioSource>();shutterAudio.playOnAwake=false;
             var audio=PresentationProfile.Load()?.audio;if(audio)shutterAudio.outputAudioMixerGroup=audio.uiBus;
             if(Phone.handPhoneMeshRoot)foreach(var r in Phone.handPhoneMeshRoot.GetComponentsInChildren<Renderer>(true))r.enabled=false;
@@ -96,34 +108,56 @@ namespace LayarTerakhir.Prolog
         private void Update()
         {
             if(!Phone||!Apps||!Hud||UiFocus.HardModal||Hud.IsModalOpen)return;
+            HandleCameraShortcut();
             if(!UiFocus.Cinematic&&Phone.isPhoneRaised&&Phone.isScreenOn&&IsCameraApp&&!UiFocus.Phone&&(!director||!director.Busy&&director.Stage<AtmajaStage.Chase)
                 &&GameInputConfig.Instance.GetActionDown(GameAction.CaptureOrBlitz))CaptureFlash();
             if(!director||!Phone.isBroadcastConnected||ChatFrozen||UiFocus.Menu||UiFocus.Cinematic)return;
             var p=director.LocalPosition(director.player.transform.position);float y=director.player.transform.position.y-director.origin.y;
             string room=y<-.5f?"cellar":y>3.3f?(p.y>5.1f?"hall":p.x< -2.5f?"child":p.x<.25f?"bath":p.x<2.3f?"master":"balcony"):
                 p.y>9?"kitchen":p.x>1.6f&&p.x<6.1f&&p.y>1?"dining":p.y>0&&p.x<1.6f?"lounge":"yard";
+            bool danger=director.basement&&director.basement.IsHunting;
+            bool chase=director.Stage>=AtmajaStage.Chase;
+            bool upstairs=!danger&&!chase&&y>3.3f;
+            float ambientDelay=danger?.55f+(float)chatRandom.NextDouble()*.65f:chase?.45f+(float)chatRandom.NextDouble()*.55f:upstairs?.9f+(float)chatRandom.NextDouble()*1.1f:1f+(float)chatRandom.NextDouble()*2f;
             if(room!=currentRoom||Time.time>=nextAmbient)
             {
-                currentRoom=room;nextAmbient=Time.time+9+(float)chatRandom.NextDouble()*8;
-                string[] lines=RoomComments(room);
-                if(pendingMessages.Count<4)AddChat(new[]{"@kopi_susu99","@dinda_ayu","@intan_permata","@bocil_kematian","@rudi_tabuti"}[chatRandom.Next(5)],lines[chatRandom.Next(lines.Length)]);
+                currentRoom=room;nextAmbient=Time.time+ambientDelay;
+                string[] lines=danger||chase?PanicComments(chase,room):RoomComments(room);
+                int burst=danger?3:chase?3:upstairs?2:1+(chatRandom.NextDouble()>.55?1:0);
+                int capacity=danger?16:chase?16:upstairs?12:8;
+                for(int i=0;i<burst&&pendingMessages.Count<capacity;i++)AddChat(LiveAuthors[chatRandom.Next(LiveAuthors.Length)],lines[chatRandom.Next(lines.Length)]);
             }
             if(pendingMessages.Count>0&&Time.time>=nextChat)
             {
-                messages.Enqueue(pendingMessages.Dequeue());while(messages.Count>3)messages.Dequeue();
+                int batch=danger||chase?2:1;
+                for(int i=0;i<batch&&pendingMessages.Count>0;i++)messages.Enqueue(pendingMessages.Dequeue());
+                while(messages.Count>(danger||chase?4:upstairs?4:3))messages.Dequeue();
                 chat.text=string.Join("\n\n",messages);LastChatTime=Time.time;DisplayedChatCount++;
-                nextChat=Time.time+2+(float)chatRandom.NextDouble();
+                nextChat=Time.time+(danger?.4f+(float)chatRandom.NextDouble()*.4f:chase?.3f+(float)chatRandom.NextDouble()*.35f:upstairs?1f+(float)chatRandom.NextDouble()*1.8f:1.2f+(float)chatRandom.NextDouble()*3.3f);
             }
+        }
+        private static readonly string[] LiveAuthors={"@kopi_susu99","@dinda_ayu","@intan_permata","@bocil_kematian","@rudi_tabuti","@maya_sari","@rizky_pratama_","@hantu_karang01"};
+        private static string[] PanicComments(bool chase,string room)
+        {
+            if(chase)return new[]{"LARI BANG JANGAN NENGOK!","DIA MASIH DI BELAKANG LU!","TANGGA! TANGGA! CEPET!","KAMERA JANGAN DITUTUP BANG!","BLITZ BANG KALO DIA DEKET!","JANGAN BERHENTI ANJIR!","BLITZ! BLITZ! BLITZ!"};
+            return room switch
+            {
+                "cellar"=>new[]{"ITU GUNTINGNYA KEDENGERAN!","DIA LEWAT KAMAR JAHIT!","MATIIN LAYAR HP BANG!","SEMBUNYI DI LEMARI!","JANGAN NAFAS BANG!","ADA BAYANGAN DI BELAKANG RAK!"},
+                "hall"=>new[]{"LANGKAHNYA DI ATAS BANG!","JANGAN LEWAT LORONG ITU!","ITU BAYANGAN APA?!","KAMERA NYA BERGETAR BANG!"},
+                "master"=>new[]{"ADA YANG NUNGGU DI KAMAR!","JANGAN DEKETIN CERMIN!","TALI ITU GERAK SENDIRI BANG!"},
+                "kitchen"=>new[]{"SUMURNYA BUNYI LAGI!","JANGAN LIAT KE BAWAH!","ADA BAYANGAN DI JENDELA!"},
+                _=>new[]{"BANG DI BELAKANG LU!","LARI BANG!","ITU APA BARUSAN?!","KAMERA JANGAN DITUTUP!"}
+            };
         }
         private static string[] RoomComments(string room)
         {
             switch(room)
             {
-                case "child":return new[]{"Mainannya masih ada semua...","Itu kamar anaknya ya? Sedih banget lihatnya.","Aku denger sesuatu kayak anak kecil tadi."};
-                case "bath":return new[]{"Kok lantainya basah bang?","Di sini suaranya kayak menggema ya.","Airnya warnanya aneh, jangan disentuh bang."};
-                case "hall":return new[]{"Lantai atas bikin merinding asli.","Bang pelan-pelan, langkah siapa itu?","Lukisan keluarganya serem juga dilihat malam-malam."};
-                case "master":return new[]{"Kamarnya gede tapi sunyi banget.","Ada suara kain diseret nggak sih?","Gue masih mantau bang, jangan panik."};
-                case "balcony":return new[]{"Anginnya masuk mic juga bang.","Tuh dari balkon kelihatan halaman.","Aku nggak suka tali itu gerak sendiri."};
+                case "child":return new[]{"Mainannya masih ada semua...","Itu kamar anaknya ya? Sedih banget lihatnya.","Aku denger sesuatu kayak anak kecil tadi.","Jangan sentuh mainan itu bang...","Bonekanya kayak baru dipindahin."};
+                case "bath":return new[]{"Kok lantainya basah bang?","Di sini suaranya kayak menggema ya.","Airnya warnanya aneh, jangan disentuh bang.","Tirai itu tadi gerak sendiri kan?","Gue nggak berani lihat cerminnya."};
+                case "hall":return new[]{"Lantai atas bikin merinding asli.","Bang pelan-pelan, langkah siapa itu?","Lukisan keluarganya serem juga dilihat malam-malam.","Jangan lewat kamar anak itu bang.","Kayaknya ada yang ngikutin dari ujung lorong."};
+                case "master":return new[]{"Kamarnya gede tapi sunyi banget.","Ada suara kain diseret nggak sih?","Gue masih mantau bang, jangan panik.","Itu pintu kamar utama ketutup sendiri?","Wanginya kayak kapur barus banget."};
+                case "balcony":return new[]{"Anginnya masuk mic juga bang.","Tuh dari balkon kelihatan halaman.","Aku nggak suka tali itu gerak sendiri.","Jangan deket-deket pagar bang.","Ada bayangan di ujung balkon nggak?"};
                 case "cellar":return new[]{"Sinyalnya mulai pecah bang.","Ada yang nyanyi pelan banget...","Jahitannya banyak banget, ini dulu tempat usaha ya?"};
                 case "kitchen":return new[]{"Piringnya udah berjamur semua astaga.","Tadi bunyi ember dari mana?","Gue merinding lihat sumurnya."};
                 case "dining":return new[]{"Itu di piring... tikus?!","Kayak meja makan ditinggal pas orang-orangnya belum selesai makan.","Bang Damar ninggalin tasnya di situ kenapa ya?"};
@@ -137,6 +171,46 @@ namespace LayarTerakhir.Prolog
             if(!shutterClip)shutterClip=AtmajaSynth.Shutter();if(shutterAudio)shutterAudio.PlayOneShot(shutterClip,.65f);
         }
         public void Glitch(float seconds,float strength=.8f){glitchUntil=Time.unscaledTime+seconds;GlitchStrength=strength;}
+        private static bool LensFocusHeld()
+        {
+#if ENABLE_INPUT_SYSTEM
+            return UnityEngine.InputSystem.Mouse.current!=null&&UnityEngine.InputSystem.Mouse.current.rightButton.isPressed;
+#else
+            return Input.GetMouseButton(1);
+#endif
+        }
+        private static Texture2D CreateVignetteTexture()
+        {
+            const int size=128;var texture=new Texture2D(size,size,TextureFormat.RGBA32,false,true){name="PhoneThreatVignette",wrapMode=TextureWrapMode.Clamp,filterMode=FilterMode.Bilinear};
+            var pixels=new Color32[size*size];
+            for(int y=0;y<size;y++)for(int x=0;x<size;x++)
+            {
+                float px=(x+.5f)/size*2-1,py=(y+.5f)/size*2-1;
+                float radius=Mathf.Sqrt(px*px+py*py);
+                float edge=Mathf.SmoothStep(0f,1f,Mathf.InverseLerp(.42f,1.02f,radius));
+                byte alpha=(byte)Mathf.RoundToInt(edge*edge*255);
+                pixels[y*size+x]=new Color32(210,32,24,alpha);
+            }
+            texture.SetPixels32(pixels);texture.Apply(false,false);return texture;
+        }
+        private void HandleCameraShortcut()
+        {
+            bool held=LensFocusHeld();
+            if(!held)
+            {
+                if(!cameraHeldRaise)return;
+                cameraHeldRaise=false;
+                if(Phone.isPhoneRaised&&IsCameraApp&&!UiFocus.Cinematic&&!(director&&(director.Busy||director.Stage>=AtmajaStage.Chase)))
+                {Phone.isPhoneRaised=false;Phone.SyncVisualState();}
+                return;
+            }
+            if(cameraHeldRaise)return;
+            if(!Phone.hasSmartphoneInInventory||!Phone.isScreenOn||Phone.batteryPercent<=0)return;
+            if(UiFocus.Cinematic||(director&&(director.Busy||director.Stage>=AtmajaStage.Chase)))return;
+            cameraHeldRaise=true;
+            if(!Phone.isPhoneRaised){Phone.isPhoneRaised=true;Phone.SyncVisualState();}
+            Apps.Open(PhoneApp.Camera);
+        }
         private void LateUpdate()
         {
             if(!Panel||!Phone||!Apps)return;
@@ -144,13 +218,50 @@ namespace LayarTerakhir.Prolog
             bool active=Phone.isPhoneRaised&&allowed;
             raiseAmount=allowed?Mathf.MoveTowards(raiseAmount,active?1:0,Time.unscaledDeltaTime/.24f):0;
             Panel.SetActive(raiseAmount>0);bool screen=raiseAmount>0&&Phone.isScreenOn&&Phone.batteryPercent>0;
+            bool canFocus=screen&&IsCameraApp&&raiseAmount>.92f&&!Hud.IsModalOpen&&!UiFocus.Cinematic&&(focusOverride||LensFocusHeld());
+            ViewfinderActive=canFocus;
             float eased=raiseAmount*raiseAmount*(3-2*raiseAmount);
-            float sway=owner&&IsCameraApp&&!Hud.IsModalOpen?Mathf.Clamp01(owner.PlanarVelocity.magnitude/4.2f):0;
-            handsetRect.anchoredPosition=new Vector2(Mathf.Sin(Time.time*3.5f)*sway*1.8f,-(handsetRect.rect.height+85)*(1-eased));
-            handsetRect.localRotation=Quaternion.Euler(0,0,(1-eased)*-7+Mathf.Sin(Time.time*3.5f)*sway*.35f);
-            handsetInput.interactable=active&&!Hud.IsModalOpen;handsetInput.blocksRaycasts=active&&!Hud.IsModalOpen;
+            if(ViewfinderActive)
+            {
+                // A portrait viewfinder that fills the screen height; the feed's
+                // 256:448 aspect is preserved, so the lens is not stretched.
+                float aspect=(Screen.height*256f)/Mathf.Max(1f,Screen.width*448f);
+                float height=.97f,width=height*aspect;
+                if(width>.94f){width=.94f;height=width/Mathf.Max(.01f,aspect);}
+                handsetRect.anchorMin=new Vector2(.5f-width*.5f,.015f);
+                handsetRect.anchorMax=new Vector2(.5f+width*.5f,.985f);
+                handsetRect.anchoredPosition=Vector2.zero;handsetRect.localRotation=Quaternion.identity;
+            }
+            else
+            {
+                handsetRect.anchorMin=panelMin;handsetRect.anchorMax=panelMax;
+                float sway=owner&&IsCameraApp&&!Hud.IsModalOpen?Mathf.Clamp01(owner.PlanarVelocity.magnitude/4.2f):0;
+                handsetRect.anchoredPosition=new Vector2(Mathf.Sin(Time.time*3.5f)*sway*1.8f,-(handsetRect.rect.height+85)*(1-eased));
+                handsetRect.localRotation=Quaternion.Euler(0,0,(1-eased)*-7+Mathf.Sin(Time.time*3.5f)*sway*.35f);
+            }
+            handsetInput.interactable=active&&!Hud.IsModalOpen&&!ViewfinderActive;handsetInput.blocksRaycasts=active&&!Hud.IsModalOpen&&!ViewfinderActive;
             cameraRoot.SetActive(screen&&IsCameraApp);Apps.SetScreenVisible(screen);FeedCamera.enabled=screen&&IsCameraApp&&HasGraphicsDevice;cameraImage.enabled=FeedCamera.enabled;
-            homeButton.gameObject.SetActive(screen&&!UiFocus.Cinematic&&!Hud.IsModalOpen);stowButton.gameObject.SetActive(screen&&!UiFocus.Cinematic&&!Hud.IsModalOpen);
+            var cameraRect=cameraRoot.GetComponent<RectTransform>();
+            cameraRect.anchorMin=ViewfinderActive?Vector2.zero:cameraMin;
+            cameraRect.anchorMax=ViewfinderActive?Vector2.one:cameraMax;
+            cameraRect.offsetMin=cameraRect.offsetMax=Vector2.zero;
+            if(Phone.currentScanMode!=lastMode||Phone.isSelfieCamera!=lastSelfie)
+            {
+                bool changed=Phone.currentScanMode!=lastMode;lastMode=Phone.currentScanMode;lastSelfie=Phone.isSelfieCamera;
+                if(changed&&screen)
+                {
+                    Glitch(.2f,.9f);thumbUntil=Time.unscaledTime+.22f;
+                    if(shutterAudio)
+                    {
+                        if(!switchClip){var audio=PresentationProfile.Load()?.audio;switchClip=audio&&audio.phoneSwitch?audio.phoneSwitch:AtmajaSynth.Tone(.06f,1400,240,.3f);}
+                        shutterAudio.PlayOneShot(switchClip,.45f);
+                    }
+                }
+            }
+            bool thumbVisible=screen&&Time.unscaledTime<thumbUntil;
+            if(thumb){thumb.gameObject.SetActive(thumbVisible);if(thumbVisible)thumb.rectTransform.anchoredPosition=new Vector2(0,-12f*Mathf.Clamp01((thumbUntil-Time.unscaledTime)/.22f));}
+            header.enabled=!ViewfinderActive;mode.enabled=!ViewfinderActive;
+            homeButton.gameObject.SetActive(screen&&!UiFocus.Cinematic&&!Hud.IsModalOpen&&!ViewfinderActive);stowButton.gameObject.SetActive(screen&&!UiFocus.Cinematic&&!Hud.IsModalOpen&&!ViewfinderActive);
             var stowBinding=GameInputConfig.Instance?GameInputConfig.Instance.togglePhoneKey:KeyCode.Tab;
             if(stowBinding!=lastStowBinding){lastStowBinding=stowBinding;stowLabel.text="SIMPAN  ["+stowBinding.ToString().ToUpperInvariant()+"]";}
             FeedCamera.cullingMask=(playerCamera.cullingMask|((Phone.currentScanMode==ScanVisualMode.AR)?1<<ARLayer:0))&~(1<<ShoulderCameraRig.AvatarLayer);
@@ -159,23 +270,30 @@ namespace LayarTerakhir.Prolog
             runtimeFeedMaterial.SetFloat("_ARGain",Phone.currentScanMode==ScanVisualMode.AR?2:1);runtimeFeedMaterial.SetFloat("_ReducedGlitch",GameShell.ReducedGlitch?1:0);
             float disturbance=Time.unscaledTime<glitchUntil?GlitchStrength:director&&director.Stage>=AtmajaStage.BasementEntry&&director.Stage<AtmajaStage.EndingVista?.38f:0;
             runtimeFeedMaterial.SetFloat("_Glitch",disturbance);
+            if(focusVignette)
+            {
+                float threat=disturbance;
+                if(director&&director.basement&&director.basement.IsHunting)threat=1;
+                float pulse=.86f+.14f*Mathf.Sin(Time.unscaledTime*17f);
+                focusVignette.color=new Color(1,1,1,ViewfinderActive?Mathf.Clamp01(.09f+threat*.56f)*pulse*(GameShell.ReducedGlitch?.4f:1):0);
+            }
             float signal=disturbance*(GameShell.ReducedGlitch?.15f:1);
             for(int i=0;i<signalBars.Length;i++)
             {float noise=Mathf.Sin(Mathf.Floor(Time.unscaledTime*13)+i*5.76f);var rect=signalBars[i].rectTransform;rect.anchoredPosition=new Vector2(noise*signal*18,noise*signal*13);signalBars[i].color=new Color(i%2==0?.22f:.65f,.7f,.55f,screen&&noise>.72f?signal*.5f:0);}
             if(shutter)shutter.color=new Color(1,1,1,Mathf.Clamp01((flashUntil-Time.unscaledTime)/.22f)*(GameShell.ReducedGlitch?.45f:1));
             header.text=!screen?"":Phone.isBroadcastConnected?$"LIVE • {(director?director.Viewers:14):N0}   |   {Phone.batteryPercent:0}%":(director?"23:52":"23:46")+$"    LTE    {Phone.batteryPercent:0}%";
             mode.text=screen&&IsCameraApp?(Phone.currentScanMode==ScanVisualMode.AR?"MATA BATIN / AR":"KAMERA")+$" • {Phone.batteryPercent:0}%\n[Z] Aplikasi   [M] Peta":"";
-            LiveButton.gameObject.SetActive(screen&&IsCameraApp&&director&&!Phone.isBroadcastConnected);LiveButton.interactable=director&&director.CanBeginLive&&!director.Busy&&!Hud.IsModalOpen;
+            LiveButton.gameObject.SetActive(screen&&IsCameraApp&&director&&!Phone.isBroadcastConnected&&!ViewfinderActive);LiveButton.interactable=director&&director.CanBeginLive&&!director.Busy&&!Hud.IsModalOpen;
             UiFocus.Phone=active&&screen&&!Hud.IsModalOpen&&(!IsCameraApp||(director&&!Phone.isBroadcastConnected));
             if(owner&&!UiFocus.HardModal&&!Hud.IsModalOpen&&!UiFocus.Cinematic)owner.SetCursorLock(!UiFocus.Phone||FirstPersonController.PhoneLookHeld);
-            walkHint.enabled=UiFocus.Phone&&!UiFocus.Cinematic&&!Hud.IsModalOpen;
-            chat.enabled=director&&Phone.isBroadcastConnected&&!Hud.IsModalOpen&&(!UiFocus.Cinematic||CinematicHandsetVisible);
+            walkHint.enabled=UiFocus.Phone&&!UiFocus.Cinematic&&!Hud.IsModalOpen&&!ViewfinderActive;
+            chat.enabled=director&&Phone.isBroadcastConnected&&!Hud.IsModalOpen&&(!UiFocus.Cinematic||CinematicHandsetVisible)&&!ViewfinderActive;
         }
         private void PresentHand()
         {
             if(!firstPersonHand)return;
             var rig=owner?owner.GetComponent<ShoulderCameraRig>():null;
-            bool visible=Panel.activeSelf&&rig&&rig.IsFirstPerson&&!UiFocus.Cinematic;
+            bool visible=Panel.activeSelf&&rig&&rig.IsFirstPerson&&!UiFocus.Cinematic&&!ViewfinderActive;
             firstPersonHand.SetActive(visible);if(!visible)return;
             bool jacket=CampaignState.Instance&&CampaignState.Instance.HasInventoryItem("JAKET_RAKA");
             foreach(var r in handRenderers)
@@ -193,7 +311,12 @@ namespace LayarTerakhir.Prolog
             firstPersonHand.transform.rotation=playerCamera.transform.rotation*handsetRect.localRotation*Quaternion.Euler(0,180,0);
         }
         public void AddChat(string author,string text){if(ChatFrozen)return;pendingMessages.Enqueue($"<color=#C0AA7A>{author}</color> {text}");while(pendingMessages.Count>18)pendingMessages.Dequeue();}
+        public void AddChatBurst(string[] authors,string[] lines,int count=3)
+        {
+            int limit=Mathf.Min(count,authors.Length,lines.Length);
+            for(int i=0;i<limit;i++)AddChat(authors[i],lines[i]);
+        }
         public void LabelClockModal(){}
-        private void OnDestroy(){UiFocus.Phone=false;if(firstPersonHand)Destroy(firstPersonHand);if(feed){feed.Release();Destroy(feed);}if(runtimeFeedMaterial)Destroy(runtimeFeedMaterial);if(shutterClip)Destroy(shutterClip);}
+        private void OnDestroy(){UiFocus.Phone=false;if(firstPersonHand)Destroy(firstPersonHand);if(feed){feed.Release();Destroy(feed);}if(runtimeFeedMaterial)Destroy(runtimeFeedMaterial);if(shutterClip)Destroy(shutterClip);if(switchClip&&switchClip.name.Contains("AtmajaSynth"))Destroy(switchClip);if(vignetteTexture)Destroy(vignetteTexture);}
     }
 }
