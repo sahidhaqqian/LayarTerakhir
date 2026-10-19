@@ -11,7 +11,7 @@ namespace LayarTerakhir.Prolog
     public sealed class AtmajaChaseSequence : MonoBehaviour
     {
         public const string ChaseCheckpoint = "PROLOG_CHASE_START";
-        private enum Run { Idle, Playback, Breaking, Pursuit, WindowStandoff, EscapeReady, Stunned, GateRun, Ending, Complete }
+        private enum Run { Idle, Playback, Breaking, Pursuit, WindowStandoff, FinalFlash, EscapeReady, Stunned, GateRun, Ending, Complete }
         public AtmajaDirector director;
         public AtmajaBasementHorror basement;
         public Transform spawnChase, spawnStreet, windowBlockSpot, windowExitSpot, gateSpot, houseLookSpot;
@@ -29,6 +29,7 @@ namespace LayarTerakhir.Prolog
         public const int RequiredPhotos=3;
         public bool AwaitingBlitz => run == Run.WindowStandoff;
         public bool AwaitingPhotos => run == Run.WindowStandoff;
+        public bool IsFinalFlash => run == Run.FinalFlash;
         public bool IsStunned => run == Run.Stunned || run == Run.GateRun && Time.time < stunEndsAt;
         public bool IsGateRun => run == Run.GateRun;
         public int PhotosTaken => photosTaken;
@@ -331,17 +332,58 @@ namespace LayarTerakhir.Prolog
         }
         private IEnumerator CompletePhotoRitual()
         {
-            run = Run.EscapeReady; Time.timeScale = 1;
-            PuffSmoke(80);
+            run = Run.FinalFlash; Time.timeScale = 1;
+            director.player.MovementLocked = true;
+            Phone.batteryPercent = 10f;
+            if (Campaign) Campaign.Data.battery = 10f;
+            Phone.isScreenOn = true;
+            Phone.SyncVisualState();
+            Hud.ShowBroadcastNotification("FLASH BEAM! Ruangan terang sekejap. Baterai tersisa 10%.", 5);
+            if(director.phoneView)director.phoneView.AddChatBurst(new[]{"@rizky_pratama_","@kopi_susu99","@bocil_kematian"},new[]{"FLASH BEAM GILA!","RUANGANNYA PUTIH BANG!","BATERAI TINGGAL 10%!"});
+            PuffSmoke(90);
             var pose = chaserFigure ? chaserFigure.GetComponent<AtmajaThreatPresentation>() : null;
-            if (pose) { pose.ExternalStun = true; pose.EmitPhotoSmoke(50); }
-            Ui(AtmajaSynth.Tone(1.1f, 900, 90, .4f), .55f);
+            if (pose) { pose.ExternalStun = true; pose.EmitPhotoSmoke(60); }
+            StartCoroutine(finale.FlashBeam());
+            StartCoroutine(FlashBeamLights());
+            Ui(AtmajaSynth.Tone(1.1f, 1600, 40, .5f), .65f);
             Hud.PlayPriorityDialogue("Nyonya Sri Atmaja", "AAAAAARGH...", 1.6f);
-            yield return new WaitForSeconds(.35f);
+            yield return new WaitForSecondsRealtime(.55f);
             if (chaserFigure) chaserFigure.SetActive(false);
+            yield return new WaitForSecondsRealtime(.75f);
+            director.player.MovementLocked = false;
             var rig=director.player.GetComponent<ShoulderCameraRig>();if(rig)rig.FirstPersonOverride=false;
+            run = Run.EscapeReady;
             finale.Prompt($"[{Key(GameAction.Vault)}] TEROBOS JENDELA!");
             director.Objective();
+        }
+        private IEnumerator FlashBeamLights()
+        {
+            var ambientColour = RenderSettings.ambientLight;
+            var ambientIntensity = RenderSettings.ambientIntensity;
+            var burst = new GameObject("FinalFlashBeamBurst", typeof(Light));
+            burst.transform.position = director.player.transform.position + Vector3.up * 1.65f;
+            var point = burst.GetComponent<Light>();
+            point.type = LightType.Point; point.range = 42f; point.intensity = 18f;
+            point.color = new Color(1f, .97f, .90f); point.shadows = LightShadows.None;
+            var windowBurst = new GameObject("FinalFlashBeamWindow", typeof(Light));
+            windowBurst.transform.position = windowBlockSpot ? windowBlockSpot.position + Vector3.up * 1.4f : director.player.transform.position + director.north * 3f + Vector3.up * 1.4f;
+            var windowPoint = windowBurst.GetComponent<Light>();
+            windowPoint.type = LightType.Point; windowPoint.range = 32f; windowPoint.intensity = 14f;
+            windowPoint.color = new Color(1f, .95f, .86f); windowPoint.shadows = LightShadows.None;
+            RenderSettings.ambientLight = new Color(.82f, .82f, .78f);
+            RenderSettings.ambientIntensity = 1.35f;
+            for (float t = 0; t < 1f; t += Time.unscaledDeltaTime / 1.05f)
+            {
+                float fade = (1f - t) * (1f - t);
+                point.intensity = 18f * fade;
+                windowPoint.intensity = 14f * fade;
+                RenderSettings.ambientIntensity = Mathf.Lerp(ambientIntensity, 1.35f, fade);
+                yield return null;
+            }
+            RenderSettings.ambientLight = ambientColour;
+            RenderSettings.ambientIntensity = ambientIntensity;
+            if (burst) Destroy(burst);
+            if (windowBurst) Destroy(windowBurst);
         }
         private void PuffSmoke(int count)
         {

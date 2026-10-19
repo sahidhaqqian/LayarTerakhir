@@ -372,9 +372,15 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(d.chase.chaserFigure.activeSelf,Is.True);
             yield return new WaitForSecondsRealtime(.35f);
             Assert.That(d.chase.TryPhoto(),Is.True);Assert.That(d.chase.PhotosTaken,Is.EqualTo(3));
-            yield return new WaitForSecondsRealtime(.7f);
+            Assert.That(d.chase.IsFinalFlash,Is.True,"The third photo fires the Flash Beam");
+            Assert.That(phone.batteryPercent,Is.EqualTo(10f),"The Flash Beam drains the battery to ten percent");
+            Assert.That(CampaignState.Instance.Data.battery,Is.EqualTo(10f));
+            var beam=GameObject.Find("FinalFlashBeamBurst");Assert.That(beam,Is.Not.Null,"The room gets a real flash light");
+            Assert.That(beam.GetComponent<Light>().intensity,Is.GreaterThan(1f));
+            Assert.That(GameObject.Find("FinalFlashBeamWindow"),Is.Not.Null,"The window side is lit too");
+            yield return new WaitForSecondsRealtime(1.5f);
             Assert.That(d.chase.chaserFigure.activeSelf,Is.False,"The third photo makes Nyonya vanish");
-            Assert.That(d.chase.AwaitingPhotos,Is.False);Assert.That(Time.timeScale,Is.EqualTo(1));
+            Assert.That(d.chase.AwaitingPhotos,Is.False);Assert.That(d.chase.IsFinalFlash,Is.False);Assert.That(Time.timeScale,Is.EqualTo(1));
             d.PlacePlayer(d.vaultInside.position,d.vaultInside.rotation);yield return Press(Key.Space);yield return new WaitForSeconds(1.2f);
             Assert.That(d.chase.IsGateRun,Is.True,"Space still carries Raka through the window");
         }

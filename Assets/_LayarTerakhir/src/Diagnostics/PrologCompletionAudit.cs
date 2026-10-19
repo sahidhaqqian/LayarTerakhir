@@ -194,7 +194,9 @@ namespace LayarTerakhir.Diagnostics
                 Check(d.chase.PhotosTaken==i+1,"Photo "+(i+1)+" registers");
                 yield return Shot("19-photo-ritual-"+(i+1));
             }
-            Check(!d.chase.chaserFigure.activeSelf&&Time.timeScale==1,"The third photo makes Nyonya vanish and restores normal speed");yield return Press(Key.Space);
+            yield return Wait(()=>!d.chase.IsFinalFlash,5,"The final Flash Beam burns out");
+            Check(!d.chase.chaserFigure.activeSelf&&Time.timeScale==1,"The third photo makes Nyonya vanish and restores normal speed");
+            Check(Mathf.Abs(Phone.batteryPercent-10f)<.1f,"The Flash Beam leaves the handset at ten percent");yield return Press(Key.Space);
             yield return Wait(()=>d.chase.IsGateRun,10,"Space breaks through the kitchen window into the side yard");yield return Shot("20-kitchen-window-escape");
             foreach(var p in new[]{d.P(8.2f,7.0f,.06f)})yield return Walk(p);yield return Crouch(true);yield return Walk(d.P(8.2f,4.1f,.06f));yield return Crouch(false);
             foreach(var p in new[]{d.P(8.2f,-3,.06f),d.P(0,-3,.06f),d.P(0,-8.3f,.06f)})yield return Walk(p);

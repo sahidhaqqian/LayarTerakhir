@@ -49,6 +49,20 @@ namespace LayarTerakhir.Prolog
             for (float t = 0; t < duration; t += Time.deltaTime) { flash.color = new Color(1, 1, 1, Mathf.Lerp(GameShell.ReducedGlitch ? .4f : 1, 0, t / duration)); yield return null; }
             flash.color = Color.clear;
         }
+        public IEnumerator FlashBeam()
+        {
+            CanvasRoot();
+            if (!flash) { flash = UiWidgets.Panel("BlitzFlash", overlay.transform, Vector2.zero, Vector2.one, Color.white).GetComponent<Image>(); flash.raycastTarget = false; }
+            float duration = GameShell.ReducedGlitch ? .75f : 1.35f;
+            for (float t = 0; t < duration; t += Time.unscaledDeltaTime)
+            {
+                float remaining = 1f - t / duration;
+                float flicker = .9f + .1f * Mathf.Sin(Time.unscaledTime * 74f);
+                flash.color = new Color(1f, .98f, .92f, Mathf.Clamp01(remaining * 1.7f) * flicker);
+                yield return null;
+            }
+            flash.color = Color.clear;
+        }
         public void ShowContract(Transform handset)
         {
             ContractRead = false;
