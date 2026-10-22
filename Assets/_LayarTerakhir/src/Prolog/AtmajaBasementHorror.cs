@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using LayarTerakhir.Audio;
 using LayarTerakhir.Core;
 using LayarTerakhir.Player;
 using LayarTerakhir.Smartphone;
@@ -34,7 +35,6 @@ namespace LayarTerakhir.Prolog
         private int waypointIndex;
         private float waypointPause, detect, suspicionTimer, giveUpTimer, dragTimer, hideEnteredAt, inspectElapsed, stunnedUntil;
         private AudioSource nyonyaSource;
-        private AudioLowPassFilter nyonyaFilter;
         private Vector3 suspicionPoint, lastPosition;
         private bool lockerCheckRunning, lockerCleared, hiddenWasSeen;
         private float nextHideTime;
@@ -63,26 +63,30 @@ namespace LayarTerakhir.Prolog
         { if (!director.foleySource || !clip) return; director.foleySource.transform.position = where; director.foleySource.PlayOneShot(clip, gain); }
         private void Start()
         {
-            if(!nyonya)return;
-            var go=new GameObject("NyonyaVoice",typeof(AudioSource),typeof(AudioLowPassFilter));
+            if(!nyonya||nyonyaSource)return;
+            var go=new GameObject("NyonyaVoice",typeof(AudioSource));
             go.transform.SetParent(nyonya.transform,false);
+            go.transform.localPosition=Vector3.up*1.15f;
             nyonyaSource=go.GetComponent<AudioSource>();nyonyaSource.playOnAwake=false;
             nyonyaSource.spatialBlend=1;nyonyaSource.minDistance=1;nyonyaSource.maxDistance=12;
             nyonyaSource.rolloffMode=AudioRolloffMode.Linear;nyonyaSource.dopplerLevel=0;
             if(director.audioProfile)nyonyaSource.outputAudioMixerGroup=director.audioProfile.effectsBus;
-            nyonyaFilter=go.GetComponent<AudioLowPassFilter>();nyonyaFilter.cutoffFrequency=22000;
+            ThreatAudioOcclusion.Install(nyonyaSource,director.player.cameraPivot,director.player.transform,nyonya.transform);
+            ThreatAudioOcclusion.Install(humSource,director.player.cameraPivot,director.player.transform,nyonya.transform);
         }
-        private void PlayNyonya(AudioClip clip,float gain)
+        public void PlayThreatScrape(AudioClip clip,float gain)
         {
             if(!clip)return;
             if(!nyonyaSource)Start();
-            if(nyonyaSource){nyonyaSource.transform.position=nyonya.transform.position;nyonyaSource.PlayOneShot(clip,gain);}
+            if(nyonyaSource)nyonyaSource.PlayOneShot(clip,gain);
             else Sfx(clip,nyonya.transform.position,gain);
         }
         // Only loading/retrying resets the hunter. Equipment pickups never teleport her.
         public void RestoreWorld()
         {
             StopAllCoroutines();
+            stunnedUntil=0;
+            if(nyonya){var pose=nyonya.GetComponent<AtmajaThreatPresentation>();if(pose)pose.ExternalStun=false;}
             bool entered = Has("EVENT_P0_BASEMENT_ENTERED"), chased = Has("EVENT_P0_CHASE_STARTED");
             hiddenIn = hiddenAnchor = null; lockerCheckRunning = lockerCleared = false;
             mind = !entered ? Mind.Dormant : chased ? Mind.Done : Mind.Patrol;
@@ -213,8 +217,7 @@ namespace LayarTerakhir.Prolog
             if(director.Stage>=AtmajaStage.Chase)return;
             if (mind == Mind.Dormant || mind == Mind.Done || mind == Mind.Emerge || !nyonya || !nyonya.activeSelf) return;
             float dt = Time.deltaTime; dragTimer -= dt;
-            if (dragTimer <= 0) { dragTimer = mind == Mind.Pursue ? .35f : .95f; if (!scrapeClip) scrapeClip = AtmajaSynth.Scrape(.42f); PlayNyonya(scrapeClip, .3f); }
-            if (nyonyaFilter) nyonyaFilter.cutoffFrequency=Mathf.Lerp(nyonyaFilter.cutoffFrequency,CanSeePlayer(14)?22000f:620f,1-Mathf.Exp(-8*dt));
+            if (dragTimer <= 0) { dragTimer = mind == Mind.Pursue ? .35f : .95f; if (!scrapeClip) scrapeClip = AtmajaSynth.Scrape(.42f); PlayThreatScrape(scrapeClip, .3f); }
             var pose = nyonya.GetComponent<AtmajaThreatPresentation>(); if (pose) pose.ExternalStun = IsBlitzStunned;
             if (IsBlitzStunned) return;
             if (humSource) humSource.volume = Mathf.Clamp01(1.2f - Vector3.Distance(nyonya.transform.position, director.player.transform.position) / 9) * .35f;
@@ -243,6 +246,7 @@ namespace LayarTerakhir.Prolog
             if (mind != Mind.Pursue || IsHidden || IsBlitzStunned) return false;
             if (!Phone || !Phone.isPhoneRaised || !Phone.isScreenOn || Phone.batteryPercent < Phone.blitzCostPercent) return false;
             if (!director.phoneView || !director.phoneView.IsCameraApp) return false;
+            if (!director.phoneView.FramesTarget(nyonya,8f)) return false;
             Phone.ConsumeBattery(Phone.blitzCostPercent);
             stunnedUntil = Time.time + 2f; detect = 0; giveUpTimer = 5;
             var pose = nyonya.GetComponent<AtmajaThreatPresentation>();

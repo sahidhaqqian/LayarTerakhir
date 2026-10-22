@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using LayarTerakhir.Core;
+using LayarTerakhir.Audio;
 using LayarTerakhir.Player;
 using LayarTerakhir.Prolog;
 using LayarTerakhir.Smartphone;
@@ -79,6 +80,48 @@ namespace LayarTerakhir.Editor.Tests
         [UnityTest] public IEnumerator ViewfinderFocusFillsPhoneAndRestoresChrome()=>Run(ViewfinderFocus());
         [UnityTest] public IEnumerator BasementAndChaseChatBurstsWithThousandsOfViewers()=>Run(ChatIntensity());
         [UnityTest] public IEnumerator RightMouseRaisesAndLowersThePhoneCamera()=>Run(CameraShortcut());
+        [UnityTest] public IEnumerator ThreatAudioUsesPhysicalWallsForBothHumAndScrape()=>Run(ThreatAudioWalls());
+        [UnityTest] public IEnumerator AuthoredHunterActuallySamplesTwelveFramePoses()=>Run(AuthoredHunterStutter());
+        private IEnumerator ThreatAudioWalls()
+        {
+            yield return new WaitForSeconds(2);Time.timeScale=1;
+            var d=SeedBasement();var b=d.basement;b.enabled=false;
+            b.nyonya.SetActive(true);b.nyonya.transform.SetPositionAndRotation(new Vector3(1000,20,1000),Quaternion.LookRotation(Vector3.back));
+            d.PlacePlayer(new Vector3(1000,20,1004),Quaternion.identity);Physics.SyncTransforms();
+            var filters=b.nyonya.GetComponentsInChildren<ThreatAudioOcclusion>(true);
+            Assert.That(filters.Length,Is.EqualTo(2),"Hum and scrape each receive occlusion");
+            foreach(var filter in filters){filter.Probe();Assert.That(filter.Occluded,Is.False,"Turning away does not create a wall");}
+            var blocker=GameObject.CreatePrimitive(PrimitiveType.Cube);blocker.name="AudioBarrier";
+            blocker.transform.position=new Vector3(1000,21.35f,1002);blocker.transform.localScale=new Vector3(2,2,.1f);Physics.SyncTransforms();
+            foreach(var filter in filters){filter.Probe();Assert.That(filter.Occluded,Is.True);}
+            yield return new WaitForSecondsRealtime(.5f);
+            foreach(var filter in filters)Assert.That(filter.GetComponent<AudioLowPassFilter>().cutoffFrequency,Is.LessThan(2000));
+            blocker.GetComponent<Collider>().isTrigger=true;Physics.SyncTransforms();
+            foreach(var filter in filters){filter.Probe();Assert.That(filter.Occluded,Is.False,"Trigger volumes do not muffle sound");}
+            Object.DestroyImmediate(blocker);yield return new WaitForSecondsRealtime(.5f);
+            foreach(var filter in filters)Assert.That(filter.GetComponent<AudioLowPassFilter>().cutoffFrequency,Is.GreaterThan(21000));
+        }
+        private IEnumerator AuthoredHunterStutter()
+        {
+            yield return new WaitForSeconds(2);Time.timeScale=1;
+            var d=SeedBasement();var b=d.basement;b.enabled=false;b.nyonya.SetActive(true);
+            var mind=typeof(AtmajaBasementHorror).GetField("mind",BindingFlags.Instance|BindingFlags.NonPublic);
+            mind.SetValue(b,Enum.ToObject(mind.FieldType,4));
+            var pose=b.nyonya.GetComponent<AtmajaThreatPresentation>();
+            Assert.That(pose.authoredMotion,Is.Not.Null,"Test the shipped character, not the procedural fallback");
+            yield return null;yield return null; // Let the newly activated rig capture its rest pose.
+            float until=Time.time+.4f;
+            while(Time.time<until)
+            {
+                b.nyonya.transform.position+=Vector3.forward*.02f;yield return null;
+                Assert.That(pose.authoredMotion["Walk"].speed,Is.Zero,"The live clip must be manually sampled while hunting");
+                Assert.That(pose.SampledHuntPoseTime*12f,Is.EqualTo(Mathf.Round(pose.SampledHuntPoseTime*12f)).Within(.0001f));
+            }
+            Assert.That(pose.SampledHuntPoseTime,Is.GreaterThan(.08f),"Quantized poses advance rather than freeze");
+            mind.SetValue(b,Enum.ToObject(mind.FieldType,2));
+            b.nyonya.transform.position+=Vector3.forward*.02f;yield return null;yield return null;
+            Assert.That(pose.authoredMotion["Walk"].speed,Is.GreaterThan(0),"Patrolling restores normal animation playback");
+        }
         private IEnumerator CameraShortcut()
         {
             yield return new WaitForSeconds(2);var phone=SmartphoneController.Instance;var view=Find<AtmajaPhoneView>();var d=Find<AtmajaDirector>();
@@ -87,8 +130,18 @@ namespace LayarTerakhir.Editor.Tests
             InputSystem.QueueStateEvent(mouse,new MouseState{buttons=2});yield return null;yield return null;
             Assert.That(phone.isPhoneRaised,Is.True,"Right mouse must raise the phone immediately");
             Assert.That(view.IsCameraApp,Is.True,"Raising the camera must not require Tab or an app tap");
+            yield return new WaitForSecondsRealtime(.3f);Assert.That(view.ViewfinderActive,Is.True,"Focus remains active while the button is held");
+            view.Apps.Open(PhoneApp.Inventory);yield return null;yield return null;
+            Assert.That(view.IsCameraApp,Is.True,"An app menu cannot displace a held camera");
             InputSystem.QueueStateEvent(mouse,new MouseState{buttons=0});yield return null;yield return null;
             Assert.That(phone.isPhoneRaised,Is.False,"Releasing the aim button lowers the camera");
+            Assert.That(view.ViewfinderActive,Is.False);Assert.That(view.Apps.CurrentApp,Is.EqualTo(PhoneApp.Home));
+            phone.isPhoneRaised=true;phone.SyncVisualState();view.Apps.Open(PhoneApp.Journal);yield return null;
+            InputSystem.QueueStateEvent(mouse,new MouseState{buttons=2});yield return new WaitForSecondsRealtime(.3f);
+            Assert.That(view.IsCameraApp&&view.ViewfinderActive,Is.True,"Holding aim forces an already-open menu into the camera");
+            InputSystem.QueueStateEvent(mouse,new MouseState{buttons=0});yield return null;yield return null;
+            Assert.That(view.ViewfinderActive,Is.False,"Releasing aim never leaves a toggled viewfinder");
+            Assert.That(phone.isPhoneRaised,Is.True);Assert.That(view.Apps.CurrentApp,Is.EqualTo(PhoneApp.Journal),"Releasing aim restores the previous handset state");
             Assert.That(GameInputConfig.Instance.GetKeyForAction(GameAction.Vault),Is.EqualTo(KeyCode.Space),"The window escape stays on Space");
         }
         private IEnumerator ChatIntensity()
@@ -117,11 +170,14 @@ namespace LayarTerakhir.Editor.Tests
             var rect=view.Panel.GetComponent<RectTransform>();
             Assert.That(view.ViewfinderActive,Is.True,"Holding focus must raise the full viewfinder");
             Assert.That(rect.anchorMax.y,Is.GreaterThan(.95f),"Viewfinder fills the screen height");
-            Assert.That(rect.anchorMax.x-rect.anchorMin.x,Is.LessThan(.5f),"Phone feed keeps its portrait aspect");
+            Assert.That(rect.anchorMin,Is.EqualTo(Vector2.zero));Assert.That(rect.anchorMax,Is.EqualTo(Vector2.one),"Focus covers the full viewport");
+            Assert.That(view.FeedCamera.aspect,Is.EqualTo((float)Screen.width/Screen.height).Within(.01f),"The focus feed matches the viewport without stretching");
+            Assert.That(view.FeedCamera.targetTexture.width,Is.InRange(640,960));
             Assert.That(view.FeedCamera.enabled,Is.EqualTo(view.HasGraphicsDevice));
             view.SetViewfinder(false);yield return new WaitForSecondsRealtime(.1f);
             Assert.That(view.ViewfinderActive,Is.False,"Releasing focus restores the handset");
             Assert.That(rect.anchorMax.y,Is.LessThan(.8f));
+            Assert.That(view.FeedCamera.targetTexture.width,Is.EqualTo(256));Assert.That(view.FeedCamera.targetTexture.height,Is.EqualTo(448),"Handset feed returns to its inexpensive portrait target");
         }
         private IEnumerator PracticalPresentation()
         {
@@ -155,10 +211,19 @@ namespace LayarTerakhir.Editor.Tests
             d.phoneView.Apps.Open(PhoneApp.Camera);yield return null;
             var mind=typeof(AtmajaBasementHorror).GetField("mind",BindingFlags.Instance|BindingFlags.NonPublic);
             mind.SetValue(b,Enum.ToObject(mind.FieldType,4));
+            b.enabled=false;
+            b.nyonya.transform.position=d.P(1.4f,4.3f,-2.79f);
+            d.PlacePlayer(d.P(1.4f,5.1f,-2.79f),Quaternion.LookRotation(-d.north));
+            var lens=d.phoneView.FeedCamera;lens.transform.LookAt(b.nyonya.transform.position+Vector3.up*1.45f);Physics.SyncTransforms();
             Assert.That(b.IsHunting,Is.True);
+            var rotation=lens.transform.rotation;lens.transform.rotation=rotation*Quaternion.Euler(0,180,0);
+            float before=phone.batteryPercent;
+            Assert.That(b.TryEmergencyBlitz(),Is.False,"Blitz cannot hit a ghost behind the lens");Assert.That(phone.batteryPercent,Is.EqualTo(before));
+            lens.transform.rotation=rotation;
             Assert.That(b.TryEmergencyBlitz(),Is.True,"A spotted player can spend battery to stun the basement hunter");
-            Assert.That(phone.batteryPercent,Is.EqualTo(65).Within(.01f));Assert.That(b.IsBlitzStunned,Is.True);
+            Assert.That(phone.batteryPercent,Is.EqualTo(before-phone.blitzCostPercent).Within(.001f));Assert.That(b.IsBlitzStunned,Is.True);
             yield return new WaitForSeconds(2.2f);Assert.That(b.IsBlitzStunned,Is.False,"The stun lasts about two seconds");
+            Assert.That(b.TryEmergencyBlitz(),Is.True);b.RestoreWorld();Assert.That(b.IsBlitzStunned,Is.False,"Checkpoint restores clear transient stuns");
         }
         private IEnumerator HunterTracksRaka()
         {
@@ -361,6 +426,16 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(Time.timeScale,Is.EqualTo(.5f),"Photo ritual runs in slow motion");
             Assert.That(d.player.MovementLocked,Is.False,"Raka can still move, just slowly");
             Assert.That(phone.isPhoneRaised&&d.phoneView.IsCameraApp,Is.True);
+            var lens=d.phoneView.FeedCamera;var aim=lens.transform.rotation;
+            lens.transform.rotation=aim*Quaternion.Euler(0,180,0);
+            Assert.That(d.chase.TryPhoto(),Is.False,"Photographing behind Raka cannot advance the ritual");Assert.That(d.chase.PhotosTaken,Is.Zero);
+            lens.transform.rotation=aim;
+            var barrier=GameObject.CreatePrimitive(PrimitiveType.Cube);barrier.name="PhotoBarrier";
+            var target=d.chase.chaserFigure.transform.position+Vector3.up*1.45f;
+            barrier.transform.position=(lens.transform.position+target)*.5f;
+            barrier.transform.localScale=Vector3.one*.2f;Physics.SyncTransforms();
+            Assert.That(d.chase.TryPhoto(),Is.False,"An opaque wall blocks the photograph");Assert.That(d.chase.PhotosTaken,Is.Zero);
+            Object.DestroyImmediate(barrier);Physics.SyncTransforms();
             Assert.That(d.chase.TryPhoto(),Is.True);Assert.That(d.chase.PhotosTaken,Is.EqualTo(1));
             Assert.That(d.chase.chaserFigure.activeSelf,Is.True,"One photo must not remove Nyonya");
             yield return null;
@@ -383,6 +458,14 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(d.chase.AwaitingPhotos,Is.False);Assert.That(d.chase.IsFinalFlash,Is.False);Assert.That(Time.timeScale,Is.EqualTo(1));
             d.PlacePlayer(d.vaultInside.position,d.vaultInside.rotation);yield return Press(Key.Space);yield return new WaitForSeconds(1.2f);
             Assert.That(d.chase.IsGateRun,Is.True,"Space still carries Raka through the window");
+            var hiddenHunter=d.chase.chaserFigure;
+            hiddenHunter.transform.position=d.player.transform.position+d.east*.15f;Physics.SyncTransforms();
+            Assert.That(d.basement.CanSeePlayer(2),Is.True,"Exercise an unobstructed close hunter rather than a wall-blocked false result");
+            Assert.That(d.chase.CanCatchPlayer(),Is.False,"The vanished hunter cannot capture Raka even at touching distance");
+            Vector3 hiddenPosition=hiddenHunter.transform.position;int restores=d.CheckpointRestores;
+            yield return new WaitForSeconds(4.4f);
+            Assert.That(d.CheckpointRestores,Is.EqualTo(restores),"An invisible hunter never causes a checkpoint reset");
+            Assert.That(hiddenHunter.transform.position,Is.EqualTo(hiddenPosition),"The vanished hunter stops navigating during the gate escape");
         }
         private AtmajaDirector SeedBasement()
         {

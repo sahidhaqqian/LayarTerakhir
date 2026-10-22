@@ -30,6 +30,8 @@ namespace LayarTerakhir.Prolog
         private bool ready, wasStunned;
         private Quaternion leftArmBase,rightArmBase,leftLegBase,rightLegBase,headBase;
         private string currentClip;
+        private float huntPoseClock;
+        public float SampledHuntPoseTime {get;private set;}
         private readonly List<Material> woundMaterials=new List<Material>();
         private void Start()
         {
@@ -71,7 +73,7 @@ namespace LayarTerakhir.Prolog
             if (!ready || !director || !director.chase) return;
             var chase = director.chase;
             bool windup = chase.AwaitingBlitz, recoil = chase.IsStunned || ExternalStun;
-            bool hunting = director.basement && director.basement.IsHunting;
+            bool hunting = director.basement && director.basement.IsHunting || chase.IsPursuing;
             float moved = Vector3.Distance(previous, transform.position); previous = transform.position;
             if (moved < .6f) stride += moved * 9;
             float motion = moved > .001f ? 1 : 0;
@@ -83,9 +85,21 @@ namespace LayarTerakhir.Prolog
                 var state=authoredMotion[clip];
                 if(state)
                 {
+                    if(weapon)weapon.localRotation=weaponBase;
                     state.wrapMode=recoil||windup?WrapMode.ClampForever:WrapMode.Loop;
-                    if(clip=="Walk"||clip=="Run")state.speed=Mathf.Clamp(moved/Mathf.Max(.001f,Time.deltaTime)/(clip=="Run"?3.2f:.9f),.65f,1.5f);
-                    if(currentClip!=clip||!authoredMotion.IsPlaying(clip)){authoredMotion.CrossFade(clip,.18f);currentClip=clip;}
+                    float speed=clip=="Walk"||clip=="Run"?Mathf.Clamp(moved/Mathf.Max(.001f,Time.deltaTime)/(clip=="Run"?3.2f:.9f),.65f,1.5f):1f;
+                    if(currentClip!=clip||!authoredMotion.IsPlaying(clip)){authoredMotion.CrossFade(clip,.18f);currentClip=clip;huntPoseClock=0;}
+                    if(hunting&&!recoil&&!windup)
+                    {
+                        huntPoseClock+=Time.deltaTime*speed;
+                        SampledHuntPoseTime=Mathf.Floor(huntPoseClock*12f)/12f;
+                        state.speed=0;state.time=SampledHuntPoseTime;
+                        authoredMotion.Sample();
+                        // Authored clips already contain the tilted head. Sample
+                        // their pose without doubling that bend on the live rig.
+                        if(weapon)weapon.localRotation*=Quaternion.Euler(0,0,Mathf.Sin(poseTime*4.6f)*17f);
+                    }
+                    else state.speed=speed;
                 }
                 if(blitzSmoke&&recoil&&!wasStunned)blitzSmoke.Play();wasStunned=recoil;
                 return;

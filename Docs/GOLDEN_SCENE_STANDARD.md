@@ -38,15 +38,21 @@ Leave a player-radius-clear, connected route to the door, bed, desk and wardrobe
 Reuse `Art/Generated/KosPipeline.asset`, `KosRenderer.asset`, `KosAtmosphere.asset` and
 `Production/Prefabs/GoldenPracticalLighting`. The lighting prefab is a starting arrangement,
 not an overlay to duplicate on top of existing room lights. Reposition all sources to visible fixtures.
-One shadowed ceiling spot, other sources unshadowed; additional lights per pixel, maximum 4/object.
-1024 shadow atlas, 10 m shadow distance, SRP batcher, 1× MSAA + FXAA, render scale 1.
-SSAO half resolution, radius .14 / strength .75; restrained ACES, exposure +.25, bloom .08,
-vignette .16. Avoid extra volume effects, live reflection probes, light cookies and decorative lights.
+Current serialized URP configuration: additional lights per pixel, maximum 8/object;
+2048 main/additional shadow atlases, 38 m shadow distance, soft shadows, light cookies
+and rendering layers enabled, SRP batcher, 1× MSAA, render scale 1.
+The raised phone already casts soft shadows; its 256px runtime cookie and the motorcycle
+headlight cookie shape the beam. Threat rim lights use their own rendering layer.
+SSAO runs at half resolution, radius .22 / strength .60. Avoid adding unrelated volume
+effects or live reflection probes. These settings supersede the earlier minimal headless preset.
 Current probe disabled. Realtime practical light retained for reproducibility on the headless host;
 no successful baked-lighting result is claimed. Bake static indirect light later only if it improves
 measured target-machine costs without changing the reference look or hiding moving objects.
 
-Room budget: ≤160k visible triangles, bound textures ≤1024, one shadow-casting practical source.
+Opening-room art budget: ≤160k visible triangles, bound textures ≤1024. Keep overlapping
+shadow-casting practical sources limited; the raised phone is a moving shadow source.
+Focused phone view renders a screen-aspect feed up to 960px wide; lowered focus returns
+to 256×448. Profile the second camera and shadows on the target GPU before increasing it.
 Current validation records actual triangles/renderers and reachable cells; draw calls are not equal to renderer count.
 30 FPS on i5-1155G7 / Iris Xe / 8 GB is a **target**, not a measured result on this host.
 Profile 1280×720 on Windows, record CPU/GPU frame times and memory, then consider resolution/SSAO reduction.

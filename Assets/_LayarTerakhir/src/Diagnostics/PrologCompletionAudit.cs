@@ -192,10 +192,15 @@ namespace LayarTerakhir.Diagnostics
             {
                 yield return ClickMouse();yield return new WaitForSecondsRealtime(.4f);
                 Check(d.chase.PhotosTaken==i+1,"Photo "+(i+1)+" registers");
-                yield return Shot("19-photo-ritual-"+(i+1));
+                // Keep capture names explicit so the delivery verifier can require
+                // all three real framebuffers instead of overlooking a loop.
+                if(i==0)yield return Shot("19-photo-ritual-1");
+                else if(i==1)yield return Shot("19-photo-ritual-2");
+                else yield return Shot("19-photo-ritual-3");
             }
             yield return Wait(()=>!d.chase.IsFinalFlash,5,"The final Flash Beam burns out");
             Check(!d.chase.chaserFigure.activeSelf&&Time.timeScale==1,"The third photo makes Nyonya vanish and restores normal speed");
+            Check(!d.chase.CanCatchPlayer(),"The vanished hunter cannot capture Raka during the final escape");
             Check(Mathf.Abs(Phone.batteryPercent-10f)<.1f,"The Flash Beam leaves the handset at ten percent");yield return Press(Key.Space);
             yield return Wait(()=>d.chase.IsGateRun,10,"Space breaks through the kitchen window into the side yard");yield return Shot("20-kitchen-window-escape");
             foreach(var p in new[]{d.P(8.2f,7.0f,.06f)})yield return Walk(p);yield return Crouch(true);yield return Walk(d.P(8.2f,4.1f,.06f));yield return Crouch(false);

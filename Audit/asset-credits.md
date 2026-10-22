@@ -358,3 +358,14 @@ Official DreadOut (2014) Steam screenshots were viewed as art-direction referenc
 only. The links and visual observations are in `dreadout-visual-reference.md`; no
 DreadOut artwork is included in the game or committed reference images. Cloud sky,
 lighting profiles and visible lamp diffusers are original Unity/shader authoring.
+
+## Reviewed surface footsteps — 19 October 2026
+
+The Stone, Earth and Wood banks use fifteen original **Kenney Impact Sounds CC0**
+recordings (concrete, grass and wood, five takes each). They replace the earlier
+filtered tile derivatives. `Tools/generate_footstep_surfaces.py` verifies the source
+archive hash, decodes mono PCM at 32 kHz, removes DC, normalizes peaks to −13 dBFS
+and applies 5 ms boundary fades. `review-footstep-sources.json` records each original
+member and both source/output hashes; `kenney-impact-CC0.txt` retains the license.
+Concrete stands in for paved roads; water splashes and gamelan were not recorded
+or added. Existing synthetic voices, hum and chase music remain placeholders.

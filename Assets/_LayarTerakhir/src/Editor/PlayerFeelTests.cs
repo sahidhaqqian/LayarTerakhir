@@ -152,13 +152,23 @@ namespace LayarTerakhir.Editor.Tests
             }
             finally{Object.DestroyImmediate(roof);Object.DestroyImmediate(actor);}
         }
-        [Test] public void EveryFootstepSurfaceHasRecordedDerivatives()
+        [Test] public void EveryFootstepSurfaceHasFiveOriginalSurfaceRecordings()
         {
             foreach(string surface in new[]{"Stone","Earth","Wood"})
             {
                 var clips=Resources.LoadAll<AudioClip>("PlayerPresentation/Steps/"+surface);
-                Assert.That(clips.Length,Is.EqualTo(3),surface+" surface bank");
+                Assert.That(clips.Length,Is.EqualTo(5),surface+" surface bank");
             }
+        }
+        [TestCase(false)] [TestCase(true)]
+        public void FootstepContactsStayCorrectOverTenWrappedCycles(bool reverse)
+        {
+            float[] phases=reverse?new[]{.9f,.65f,.4f,.15f,.9f}:new[]{.1f,.3f,.55f,.8f,.1f};
+            int count=0;
+            for(int cycle=0;cycle<10;cycle++)
+                for(int i=1;i<phases.Length;i++)
+                    if(PlayerFootsteps.CrossedWrappedContact(phases[i-1],phases[i],reverse?.58f:0,reverse))count++;
+            Assert.That(count,Is.EqualTo(20),"Two footfalls per cycle, including every later wrap");
         }
         [Test] public void FootstepContactHandlesForwardReverseAndLoopWrap()
         {

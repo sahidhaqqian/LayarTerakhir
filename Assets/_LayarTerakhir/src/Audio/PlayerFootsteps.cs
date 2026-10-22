@@ -19,7 +19,7 @@ namespace LayarTerakhir.Audio
         private AudioClip[][] banks;
         private Vector3 previous;
         private float phase,contact,fallbackDistance;
-        private bool hasPhase;
+        private bool hasPhase,wasReverse;
         private int lastClip=-1;
         private FootstepSurface lastSurface;
         private readonly RaycastHit[] hits=new RaycastHit[32];
@@ -59,11 +59,10 @@ namespace LayarTerakhir.Audio
                 // continuous first, then look for the authored contact points.
                 if(hasPhase)
                 {
-                    if(reverse&&next>phase)next-=1;
-                    else if(!reverse&&next<phase)next+=1;
-                    if(Mathf.Approximately(contact,reverseContact))step=CrossedContact(phase,next,reverse?reverseContact:0);
+                    if(reverse==wasReverse&&Mathf.Approximately(contact,reverseContact))
+                        step=CrossedWrappedContact(phase,next,reverse?reverseContact:0,reverse);
                 }
-                phase=next;contact=reverseContact;hasPhase=true;
+                phase=next;contact=reverseContact;wasReverse=reverse;hasPhase=true;
             }
             else
             {
@@ -95,6 +94,14 @@ namespace LayarTerakhir.Audio
         {
             return after>=before?Mathf.FloorToInt((after-offset)*2)>Mathf.FloorToInt((before-offset)*2):
                 Mathf.CeilToInt((after-offset)*2)<Mathf.CeilToInt((before-offset)*2);
+        }
+        public static bool CrossedWrappedContact(float before,float after,float offset,bool reverse)
+        {
+            // Keep the stored phase in [0,1); unwrap this interval only. Storing
+            // the unwrapped endpoint loses a footfall on every later loop.
+            if(reverse&&after>before)after-=1;
+            else if(!reverse&&after<before)after+=1;
+            return CrossedContact(before,after,offset);
         }
         public static FootstepSurface SurfaceFor(Collider floor)
         {

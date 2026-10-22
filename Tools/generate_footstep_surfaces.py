@@ -1,102 +1,81 @@
-"""Derive Stone/Earth/Wood footsteps from the three authored tile recordings.
+"""Prepare recorded Kenney CC0 surface footsteps without synthesizing surfaces.
 
-The source assets stay the single recorded base; each surface is a filtered,
-transient-shaped variant so a step never reuses the same ceramic sample.
+Usage: python3 Tools/generate_footstep_surfaces.py --archive /path/impact-sounds.zip
+The archive is the verified source already recorded by golden-source-manifest.json.
+Stone uses concrete recordings; no claim of recorded wet asphalt is made.
 """
-import wave
+import argparse
+import array
+import hashlib
+import io
+import json
 from pathlib import Path
-
-import numpy as np
+import subprocess
+import sys
+import wave
+import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "Assets/_LayarTerakhir/assets/Audio/Prepared"
 TARGET = ROOT / "Assets/Resources/PlayerPresentation/Steps"
+ARCHIVE_SHA256 = "029d734af1582474edf3a694d1b0cebc97c1c152f2f39fa34d4c2bafc5de77f8"
 RATE = 32000
 
 
-def read(path):
-    with wave.open(str(path), "rb") as handle:
-        assert handle.getnchannels() == 1 and handle.getsampwidth() == 2
-        rate = handle.getframerate()
-        data = np.frombuffer(handle.readframes(handle.getnframes()), dtype="<i2")
-    return rate, data.astype(np.float64) / 32768.0
-
-
-def write(path, samples, rate):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    pcm = np.clip(samples, -1, 1)
-    with wave.open(str(path), "wb") as handle:
+def prepare(encoded):
+    decoded = subprocess.run(
+        ["ffmpeg", "-v", "error", "-i", "pipe:0", "-f", "s16le", "-ac", "1", "-ar", str(RATE), "pipe:1"],
+        input=encoded, capture_output=True, check=True,
+    ).stdout
+    pcm = array.array("h")
+    pcm.frombytes(decoded)
+    if sys.byteorder != "little":
+        pcm.byteswap()
+    mean = sum(pcm) / max(1, len(pcm))
+    samples = [sample - mean for sample in pcm]
+    peak = max(abs(sample) for sample in samples) or 1
+    gain = 32767 * 10 ** (-13 / 20) / peak
+    fade = int(RATE * .005)
+    output = array.array("h", (round(sample * gain * min(1, i / fade, (len(samples) - 1 - i) / fade))
+                               for i, sample in enumerate(samples)))
+    if sys.byteorder != "little":
+        output.byteswap()
+    result = io.BytesIO()
+    with wave.open(result, "wb") as handle:
         handle.setnchannels(1)
         handle.setsampwidth(2)
-        handle.setframerate(rate)
-        handle.writeframes((pcm * 32767).astype("<i2").tobytes())
-
-
-def lowpass(samples, alpha):
-    result = np.empty_like(samples)
-    value = 0.0
-    for index, sample in enumerate(samples):
-        value += alpha * (sample - value)
-        result[index] = value
-    return result
-
-
-def highpass(samples, alpha=0.92):
-    return samples - lowpass(samples, alpha)
-
-
-def normalise(samples, peak=0.92):
-    maximum = float(np.max(np.abs(samples))) or 1.0
-    return samples * (peak / maximum)
-
-
-def windowed(samples, length):
-    result = np.zeros(length)
-    result[: min(length, len(samples))] = samples[:length]
-    return result
-
-
-def stone(source, rng):
-    base = windowed(source, int(RATE * 0.115))
-    body = highpass(base, 0.90)
-    body = np.tanh(body * 2.4) * 0.72
-    click = rng.normal(0, 1, len(body)) * np.exp(-np.linspace(0, 34, len(body))) * 0.20
-    splash = lowpass(rng.normal(0, 1, len(body)), 0.20) * np.exp(-np.linspace(0, 18, len(body))) * 0.22
-    return normalise(body + click + splash)
-
-
-def earth(source, rng):
-    base = windowed(source, int(RATE * 0.13))
-    body = lowpass(base, 0.10) * 1.35
-    thump = np.sin(2 * np.pi * 68 * np.arange(len(body)) / RATE) * np.exp(-np.linspace(0, 26, len(body)))
-    grit = lowpass(rng.normal(0, 1, len(body)), 0.012) * np.exp(-np.linspace(0, 12, len(body))) * 0.28
-    return normalise(body + thump * 0.42 + grit)
-
-
-def wood(source, rng):
-    base = windowed(source, int(RATE * 0.175))
-    low = lowpass(base, 0.42)
-    band = lowpass(base, 0.055)
-    body = (low - band) * 1.4
-    times = np.arange(len(body)) / RATE
-    creak = (
-        np.sin(2 * np.pi * (185 + 34 * np.sin(times * 21)) * times)
-        + 0.42 * np.sin(2 * np.pi * 305 * times)
-    ) * np.exp(-times * 15)
-    grit = rng.normal(0, 1, len(body)) * np.exp(-np.linspace(0, 30, len(body))) * 0.06
-    return normalise(body + creak * 0.30 + grit)
+        handle.setframerate(RATE)
+        handle.writeframes(output.tobytes())
+    return result.getvalue()
 
 
 def main():
-    sources = [read(SOURCE / f"FootstepTile{index}.wav") for index in range(3)]
-    rate = sources[0][0]
-    assert all(item[0] == rate for item in sources)
-    rng = np.random.default_rng(1998)
-    for index, (_, samples) in enumerate(sources):
-        write(TARGET / "Stone" / f"FootstepStone{index}.wav", stone(samples, rng), rate)
-        write(TARGET / "Earth" / f"FootstepEarth{index}.wav", earth(samples, rng), rate)
-        write(TARGET / "Wood" / f"FootstepWood{index}.wav", wood(samples, rng), rate)
-    print(f"Wrote 9 surface clips under {TARGET.relative_to(ROOT)}")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--archive", type=Path, required=True)
+    args = parser.parse_args()
+    digest = hashlib.sha256(args.archive.read_bytes()).hexdigest()
+    if digest != ARCHIVE_SHA256:
+        raise ValueError("Archive does not match the previously verified Kenney source")
+    entries = []
+    with zipfile.ZipFile(args.archive) as archive:
+        for surface, original in (("Stone", "concrete"), ("Earth", "grass"), ("Wood", "wood")):
+            for index in range(5):
+                member = f"Audio/footstep_{original}_{index:03d}.ogg"
+                encoded = archive.read(member)
+                output = TARGET / surface / f"Footstep{surface}{index}.wav"
+                output.parent.mkdir(parents=True, exist_ok=True)
+                data = prepare(encoded)
+                output.write_bytes(data)
+                entries.append({"path": output.relative_to(ROOT).as_posix(), "sourceMember": member,
+                                "sourceSha256": hashlib.sha256(encoded).hexdigest(),
+                                "sha256": hashlib.sha256(data).hexdigest()})
+        (ROOT / "Audit/kenney-impact-CC0.txt").write_bytes(archive.read("License.txt"))
+    manifest = {"source": "Kenney Impact Sounds", "license": "CC0-1.0",
+                "sourceUrl": "https://kenney.nl/assets/impact-sounds", "archiveSha256": digest,
+                "processing": "Mono PCM16 32kHz, DC removal, peak -13 dBFS, 5ms boundary fades; original surface recordings",
+                "limitation": "Concrete represents stone/paved roads. Grass represents earth. No recorded water splashes or gamelan.",
+                "entries": entries}
+    (ROOT / "Audit/review-footstep-sources.json").write_text(json.dumps(manifest, indent=2) + "\n")
+    print(f"Prepared {len(entries)} recorded footsteps")
 
 
 if __name__ == "__main__":

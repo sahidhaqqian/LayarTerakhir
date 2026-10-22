@@ -1,0 +1,46 @@
+{
+  "reviewedHead": "d15d8a841f4f4916ab94bc916b9dae56d4221b77",
+  "method": "Byte-for-byte comparison to reviewed HEAD; behavioral regression additionally requires Unity/player tests",
+  "files": [
+    {
+      "path": "Assets/_LayarTerakhir/src/Player/FirstPersonController.cs",
+      "sha256": "1e5a5c002ba47586e448833c1860afd8089493ae88f5eb2bea7d749476f9bebe",
+      "unchangedFromReviewedHead": true
+    },
+    {
+      "path": "Assets/_LayarTerakhir/src/Smartphone/SmartphoneController.cs",
+      "sha256": "75349c6c0986b9dcc9dc525b14993cb42198b8d6d7e439957c4ceba2db8963ab",
+      "unchangedFromReviewedHead": true
+    },
+    {
+      "path": "Assets/_LayarTerakhir/src/Core/CampaignState.cs",
+      "sha256": "8abbe52631eb07211cb26ce2a82595c7ed88b1cf21a2f458d8d8f014a63057b1",
+      "unchangedFromReviewedHead": true
+    },
+    {
+      "path": "Assets/_LayarTerakhir/src/Prolog/AtmajaUpperDirector.cs",
+      "sha256": "804ca6cd06ad8f1fadefa945d366f2eb03f9cbb004d6b121ac6cabafb0372a73",
+      "unchangedFromReviewedHead": true
+    },
+    {
+      "path": "Assets/_LayarTerakhir/src/Prolog/PrologSceneFlow.cs",
+      "sha256": "f620a01935d598871f7c52eabbcc900750b91b7262bdf4cfed324051bc5af33a",
+      "unchangedFromReviewedHead": true
+    },
+    {
+      "path": "Assets/_LayarTerakhir/assets/Scenes/Prolog_RumahAtmaja.unity",
+      "sha256": "2c88a490c2849ae538244b7e837be6527ca19946683b7e47ce9a7c65ed876739",
+      "unchangedFromReviewedHead": true
+    },
+    {
+      "path": "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity",
+      "sha256": "468daa5c40bb2cdc2d520151b84a4cac60364db85e0d4163244cf76fd8c14ac8",
+      "unchangedFromReviewedHead": true
+    },
+    {
+      "path": "Assets/_LayarTerakhir/assets/Scenes/Prolog_KoridorKos.unity",
+      "sha256": "f275e3e961b72b0974a02cd89de89e41b14c9850ea0902ca3a0575cc18726f09",
+      "unchangedFromReviewedHead": true
+    }
+  ]
+}

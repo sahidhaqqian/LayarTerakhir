@@ -1,0 +1,58 @@
+{
+  "checkedUtc": "2026-10-22T08:19:08.939552+00:00",
+  "receipt": "Audit/Visuals/DeepSeek-Review-Feel/player-audit.json",
+  "receiptUtc": "2026-10-19T11:20:58.2665150Z",
+  "receiptSha256": "ed6cc4ba1e6d655326f26f7e8490263a60045ae0a40296c357f37dab7bd43efc",
+  "method": "Byte-identical player/camera/phone/input/footstep implementation and character resources against the source snapshot used by the 1280x720 native feel run. The subsequent changes affect only Atmaja chase activation, its regression test and prolog diagnostics. The feel fixture runs in the existing Kos corridor, without an Atmaja chase instance.",
+  "verifiedSources": [
+    {
+      "path": "Assets/_LayarTerakhir/src/Player/FirstPersonController.cs",
+      "sha256": "1e5a5c002ba47586e448833c1860afd8089493ae88f5eb2bea7d749476f9bebe"
+    },
+    {
+      "path": "Assets/_LayarTerakhir/src/Player/ShoulderCameraRig.cs",
+      "sha256": "d372f33c824193411e7961500e85cce4d1b6f358422d3a65860a2b8c48c5e4b5"
+    },
+    {
+      "path": "Assets/_LayarTerakhir/src/Player/AnimatedRakaAvatar.cs",
+      "sha256": "5021d5b70b572959f109a87e0e57acd530d7b21a64a4febb10904228e3543411"
+    },
+    {
+      "path": "Assets/_LayarTerakhir/src/Prolog/AtmajaPhoneView.cs",
+      "sha256": "e874917240dcddc408d228d63cc28741b5ee9ea4f3331b3ab4735c7e38f838f9"
+    },
+    {
+      "path": "Assets/_LayarTerakhir/src/UI/PhoneDesktop.cs",
+      "sha256": "742bb47789e595fac5c07ae8fda175e3061e0135265bd683ed079eaa059e7d0f"
+    },
+    {
+      "path": "Assets/_LayarTerakhir/src/Core/GameInputConfig.cs",
+      "sha256": "2ed99f083fed6beb31ddf3786b3ea4a62a7a68cc28c8192a3e2acd45b7871cc2"
+    },
+    {
+      "path": "Assets/_LayarTerakhir/src/Diagnostics/PlayerFeelAudit.cs",
+      "sha256": "300cf1b75d5853d1325c2349df7ea3ef26f7eed10d76941389859606ecc0bfa1"
+    },
+    {
+      "path": "Assets/_LayarTerakhir/src/Audio/PlayerFootsteps.cs",
+      "sha256": "f045a688d5967f8839f33b789e9466665c92118f35053f74fc0878b934b352c8"
+    },
+    {
+      "path": "Assets/Resources/RakaCharacter.prefab",
+      "sha256": "73e548e1b4ee819f8653351841b7776f0e01714ecd6eda001d3843555d7fe038"
+    },
+    {
+      "path": "Assets/Resources/RakaPhoneHand.prefab",
+      "sha256": "a91f2eac3a60e6375c1e1270dc56b55794082e63596f3261ca141bef0f209436"
+    },
+    {
+      "path": "Assets/Resources/PlayerPresentation/AvatarDither.shader",
+      "sha256": "fd0e969adebca5431998b35a7d0e67ff84b04c54f5811017bf8de94d1ab496f3"
+    }
+  ],
+  "checks": 30,
+  "screenshots": 17,
+  "rerunClaimed": false,
+  "originalBuildSourceSnapshot": "Audit/deepseek-feel-build-sources.json",
+  "sourceSnapshotSha256": "df7523bc4c74f3d71421766793de49ead3cf75a9027fbf3ae4acefc3e98ad12b"
+}

@@ -36,7 +36,7 @@ namespace LayarTerakhir.Prolog
         public bool Traversing { get; private set; }
         public bool IsPursuing => run == Run.Pursuit;
         public bool FollowsPlayerInBasement => run == Run.Pursuit && !climbedOut;
-        public bool CanCatchPlayer() => chaserFigure && director && director.player && basement
+        public bool CanCatchPlayer() => chaserFigure && chaserFigure.activeInHierarchy && director && director.player && basement
             && Vector3.Distance(chaserFigure.transform.position,director.player.transform.position)<.95f
             && basement.CanSeePlayer(2);
         private Run run;
@@ -188,7 +188,7 @@ namespace LayarTerakhir.Prolog
             }
             if (run != Run.Pursuit && run != Run.GateRun) return;
             float dt = Time.deltaTime; dangerGrace = Mathf.Max(0, dangerGrace - dt);
-            if (chaserFigure && rail.Length > 1 && !IsStunned)
+            if (chaserFigure && chaserFigure.activeInHierarchy && rail.Length > 1 && !IsStunned)
             {
                 Vector3 before = chaserFigure.transform.position;
                 if(FollowsPlayerInBasement)
@@ -204,7 +204,7 @@ namespace LayarTerakhir.Prolog
                 if(Vector3.Distance(chaserFigure.transform.position,director.player.transform.position)<2)
                 {direction=director.player.transform.position-chaserFigure.transform.position;direction.y=0;}
                 if (direction.sqrMagnitude > .00001f) chaserFigure.transform.rotation = Quaternion.Slerp(chaserFigure.transform.rotation, Quaternion.LookRotation(direction), dt * 6);
-                dragTimer -= dt; if (dragTimer <= 0) { dragTimer = .48f; if (!scrape) scrape = AtmajaSynth.Scrape(.3f); Sfx(scrape, chaserFigure.transform.position, .3f); }
+                dragTimer -= dt; if (dragTimer <= 0) { dragTimer = .48f; if (!scrape) scrape = AtmajaSynth.Scrape(.3f); basement.PlayThreatScrape(scrape,.3f); }
                 // Adjacent stair flights/furniture must not cause a capture through
                 // solid geometry merely because their root positions are close.
                 if (dangerGrace <= 0 && CanCatchPlayer())
@@ -299,6 +299,7 @@ namespace LayarTerakhir.Prolog
             if (run != Run.WindowStandoff) return false;
             if (!Phone.isPhoneRaised || !Phone.isScreenOn) return false;
             if (!director.phoneView || !director.phoneView.IsCameraApp) return false;
+            if (!director.phoneView.FramesTarget(chaserFigure,10f)) return false;
             if (Time.unscaledTime < photoReadyAt) return false;
             photoReadyAt = Time.unscaledTime + .3f;
             photosTaken++;
@@ -484,7 +485,7 @@ namespace LayarTerakhir.Prolog
         }
         private void OnDestroy()
         {
-            if (Time.timeScale > 0 && Time.timeScale < .5f) Time.timeScale = 1;
+            if (Time.timeScale > 0 && Time.timeScale < 1f) Time.timeScale = 1;
             if (music && music.clip) Destroy(music.clip);
             if (photoSmokeMaterial) Destroy(photoSmokeMaterial);
         }

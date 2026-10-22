@@ -32,6 +32,8 @@ namespace LayarTerakhir.Prolog
         private RawImage focusVignette;private Image thumb;private Texture2D vignetteTexture;
         private Vector2 panelMin,panelMax,cameraMin,cameraMax;
         private bool focusOverride,lastSelfie,cameraHeldRaise;private ScanVisualMode lastMode;private float thumbUntil;
+        private bool phoneRaisedBeforeFocus;
+        private PhoneApp appBeforeFocus;
         private Image[] signalBars;
         private FirstPersonController owner;
         private RectTransform handsetRect;
@@ -45,6 +47,34 @@ namespace LayarTerakhir.Prolog
         public float GlitchStrength {get;set;}
         public bool ViewfinderActive {get;private set;}
         public void SetViewfinder(bool on)=>focusOverride=on;
+        public bool FramesTarget(GameObject target,float range)
+        {
+            if(!FeedCamera||!target||!target.activeInHierarchy||!Phone||Phone.batteryPercent<=0)return false;
+            Vector3 point=target.transform.position+Vector3.up*1.45f;
+            Vector3 viewport=FeedCamera.WorldToViewportPoint(point);
+            Vector3 delta=point-FeedCamera.transform.position;
+            if(viewport.z<=FeedCamera.nearClipPlane||delta.magnitude>range||viewport.x<.06f||viewport.x>.94f||viewport.y<.06f||viewport.y>.94f)return false;
+            foreach(var hit in Physics.RaycastAll(FeedCamera.transform.position,delta.normalized,delta.magnitude,~((1<<29)|(1<<2)),QueryTriggerInteraction.Ignore))
+            {
+                if(hit.transform.IsChildOf(target.transform)||(owner&&hit.transform.IsChildOf(owner.transform)))continue;
+                return false;
+            }
+            return true;
+        }
+        private void PresentFeed(bool focus)
+        {
+            int width=focus?Mathf.Clamp(Screen.width,640,960):256;
+            int height=focus?Mathf.Max(1,Mathf.RoundToInt(width*(float)Screen.height/Mathf.Max(1,Screen.width))):448;
+            if(feed.width!=width||feed.height!=height)
+            {
+                FeedCamera.targetTexture=null;cameraImage.texture=null;
+                feed.Release();Destroy(feed);
+                feed=new RenderTexture(width,height,16,RenderTextureFormat.ARGB32){name="RakaPhoneFeed",antiAliasing=1};
+                if(HasGraphicsDevice)feed.Create();
+                FeedCamera.targetTexture=feed;cameraImage.texture=feed;
+            }
+            FeedCamera.aspect=(float)width/height;
+        }
         private HudController Hud=>HudController.Instance;private SmartphoneController Phone=>SmartphoneController.Instance;
         private void Start()
         {
@@ -195,41 +225,48 @@ namespace LayarTerakhir.Prolog
         }
         private void HandleCameraShortcut()
         {
+            if(UiFocus.Menu||UiFocus.HardModal||Hud.IsModalOpen||UiFocus.Cinematic||(director&&director.Busy))return;
             bool held=LensFocusHeld();
             if(!held)
             {
                 if(!cameraHeldRaise)return;
                 cameraHeldRaise=false;
-                if(Phone.isPhoneRaised&&IsCameraApp&&!UiFocus.Cinematic&&!(director&&(director.Busy||director.Stage>=AtmajaStage.Chase)))
-                {Phone.isPhoneRaised=false;Phone.SyncVisualState();}
+                bool scriptedCamera=director&&director.chase&&(director.chase.AwaitingPhotos||director.chase.IsFinalFlash);
+                if(!scriptedCamera)
+                {
+                    Phone.isPhoneRaised=phoneRaisedBeforeFocus;Phone.SyncVisualState();
+                    Apps.Open(appBeforeFocus);
+                }
                 return;
             }
-            if(cameraHeldRaise)return;
             if(!Phone.hasSmartphoneInInventory||!Phone.isScreenOn||Phone.batteryPercent<=0)return;
-            if(UiFocus.Cinematic||(director&&(director.Busy||director.Stage>=AtmajaStage.Chase)))return;
-            cameraHeldRaise=true;
+            if(!cameraHeldRaise)
+            {
+                phoneRaisedBeforeFocus=Phone.isPhoneRaised;appBeforeFocus=Apps.CurrentApp;
+                cameraHeldRaise=true;
+            }
             if(!Phone.isPhoneRaised){Phone.isPhoneRaised=true;Phone.SyncVisualState();}
-            Apps.Open(PhoneApp.Camera);
+            if(!IsCameraApp)Apps.Open(PhoneApp.Camera);
         }
         private void LateUpdate()
         {
             if(!Panel||!Phone||!Apps)return;
+            // PhoneDesktop can process an app shortcut later in Update. The hold
+            // remains authoritative through presentation, independent of order.
+            HandleCameraShortcut();
             bool allowed=(!Hud.IsModalOpen||(Hud.IsDocumentOpen&&!UiFocus.HardModal))&&(!UiFocus.Cinematic||CinematicHandsetVisible);
             bool active=Phone.isPhoneRaised&&allowed;
             raiseAmount=allowed?Mathf.MoveTowards(raiseAmount,active?1:0,Time.unscaledDeltaTime/.24f):0;
             Panel.SetActive(raiseAmount>0);bool screen=raiseAmount>0&&Phone.isScreenOn&&Phone.batteryPercent>0;
-            bool canFocus=screen&&IsCameraApp&&raiseAmount>.92f&&!Hud.IsModalOpen&&!UiFocus.Cinematic&&(focusOverride||LensFocusHeld());
+            bool canFocus=screen&&IsCameraApp&&raiseAmount>.92f&&!Hud.IsModalOpen&&!UiFocus.HardModal&&!UiFocus.Menu&&!UiFocus.Cinematic&&(focusOverride||cameraHeldRaise&&LensFocusHeld());
             ViewfinderActive=canFocus;
+            PresentFeed(ViewfinderActive);
             float eased=raiseAmount*raiseAmount*(3-2*raiseAmount);
             if(ViewfinderActive)
             {
-                // A portrait viewfinder that fills the screen height; the feed's
-                // 256:448 aspect is preserved, so the lens is not stretched.
-                float aspect=(Screen.height*256f)/Mathf.Max(1f,Screen.width*448f);
-                float height=.97f,width=height*aspect;
-                if(width>.94f){width=.94f;height=width/Mathf.Max(.01f,aspect);}
-                handsetRect.anchorMin=new Vector2(.5f-width*.5f,.015f);
-                handsetRect.anchorMax=new Vector2(.5f+width*.5f,.985f);
+                // Match the actual screen aspect and expose only the lens feed.
+                // A stretched portrait panel leaves the shoulder view at its sides.
+                handsetRect.anchorMin=Vector2.zero;handsetRect.anchorMax=Vector2.one;
                 handsetRect.anchoredPosition=Vector2.zero;handsetRect.localRotation=Quaternion.identity;
             }
             else

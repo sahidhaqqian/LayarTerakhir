@@ -1,0 +1,13 @@
+{
+  "fullRun": {
+    "path": "Audit/golden-tests.xml",
+    "total": 113,
+    "passed": 113,
+    "failed": 0,
+    "startedUtc": "2026-10-22 08:24:35Z",
+    "endedUtc": "2026-10-22 08:24:40Z"
+  },
+  "uniqueCasesPassingAfterRetest": 113,
+  "singleAllGreenFullRun": true,
+  "explanation": "Final full Unity suite after the inactive-hunter regression fix, run from an isolated worktree with a fresh Unity Library. Earlier timing-fixture and copied-cache failures are superseded by this complete passing run."
+}

@@ -1,10 +1,13 @@
 {
-  "startedUtc": "2026-10-19T09:54:36.615166+00:00",
-  "verifiedUtc": "2026-10-19T09:54:36.615226+00:00",
+  "startedUtc": "2026-10-22T08:56:01.958606+00:00",
+  "verifiedUtc": "2026-10-22T08:56:15.999655+00:00",
   "remote": "r2:layarterakhir/Layarterakhir/LayarTerakhir-Windows-x86_64-Development.zip",
-  "sizeBytes": 203418347,
-  "sha256": "f06e580cfb9c63cd68b6a55c024a2486f080b60e8e7d5f64c782d6e658a916cc",
+  "archiveSizeBytes": 203494655,
+  "archiveSha256": "a203db40a86953554e7c5e3ab00b7ad6ddd76317764574feb921fa7ab7fed74e",
+  "uploadExitCode": 0,
   "uploadSucceeded": true,
-  "verification": "Full remote object readback SHA-256 equals local archive",
-  "credentialsExposed": false
+  "verification": "Full remote object streamed via rclone cat; byte count and SHA-256 equal local ZIP.",
+  "remoteReadbackExitCode": 0,
+  "remoteReadbackSha256": "a203db40a86953554e7c5e3ab00b7ad6ddd76317764574feb921fa7ab7fed74e",
+  "note": "First upload finalization reported R2 501; rclone retry succeeded. Full readback independently verifies the stored object."
 }

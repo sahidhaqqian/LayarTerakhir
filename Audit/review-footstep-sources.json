@@ -1,0 +1,100 @@
+{
+  "source": "Kenney Impact Sounds",
+  "license": "CC0-1.0",
+  "sourceUrl": "https://kenney.nl/assets/impact-sounds",
+  "archiveSha256": "029d734af1582474edf3a694d1b0cebc97c1c152f2f39fa34d4c2bafc5de77f8",
+  "processing": "Mono PCM16 32kHz, DC removal, peak -13 dBFS, 5ms boundary fades; original surface recordings",
+  "limitation": "Concrete represents stone/paved roads. Grass represents earth. No recorded water splashes or gamelan.",
+  "entries": [
+    {
+      "path": "Assets/Resources/PlayerPresentation/Steps/Stone/FootstepStone0.wav",
+      "sourceMember": "Audio/footstep_concrete_000.ogg",
+      "sourceSha256": "d7267e183067757c92c169de2a379abea592cfca6b39bb2e8feea15221ad79fe",
+      "sha256": "1f4b10d2e520c9ade19e49c08c8c7926a08699d2e451398c7a0d1243fcdda121"
+    },
+    {
+      "path": "Assets/Resources/PlayerPresentation/Steps/Stone/FootstepStone1.wav",
+      "sourceMember": "Audio/footstep_concrete_001.ogg",
+      "sourceSha256": "507a75eb19b897087855a3be3cf11a12d7fa37d143ad535eeebe0b8031c7325d",
+      "sha256": "624f9aa187c108f47637deae6e74684a72ddb0a1c7b488390ee7b80c90155973"
+    },
+    {
+      "path": "Assets/Resources/PlayerPresentation/Steps/Stone/FootstepStone2.wav",
+      "sourceMember": "Audio/footstep_concrete_002.ogg",
+      "sourceSha256": "b21fa546d74941196b25da8a20b7010abd8c05c4fcf93545d1f344e66a664e13",
+      "sha256": "b509f278ade78e5e446eceeb3b322f5c52542a6c4f2bb531e0e8f9e818ddb4ff"
+    },
+    {
+      "path": "Assets/Resources/PlayerPresentation/Steps/Stone/FootstepStone3.wav",
+      "sourceMember": "Audio/footstep_concrete_003.ogg",
+      "sourceSha256": "8b513c2f0316324060b9174b8f28df6c2147418c506e6a53b77f18e149a5547b",
+      "sha256": "7b0825dfed40310fb335bc0b303681fbe0d5f9ceb1555102dbd66d427782f781"
+    },
+    {
+      "path": "Assets/Resources/PlayerPresentation/Steps/Stone/FootstepStone4.wav",
+      "sourceMember": "Audio/footstep_concrete_004.ogg",
+      "sourceSha256": "24dd8db2413e5b81ad181e1205c12a1c7801da5f85715d471b92a4b2f632e45e",
+      "sha256": "3ddd0d746f8ddc788197d7d3f31946d3a197ace8922732877d80f43e53f56399"
+    },
+    {
+      "path": "Assets/Resources/PlayerPresentation/Steps/Earth/FootstepEarth0.wav",
+      "sourceMember": "Audio/footstep_grass_000.ogg",
+      "sourceSha256": "9d49497777405d78d7cf7f2888e28277f3a23192300cfd1d79d54876b20f479f",
+      "sha256": "a4a52aa9d4b37e72cb208c77b3c7759784ed37b8c19c7696dcf83fcd98495ed4"
+    },
+    {
+      "path": "Assets/Resources/PlayerPresentation/Steps/Earth/FootstepEarth1.wav",
+      "sourceMember": "Audio/footstep_grass_001.ogg",
+      "sourceSha256": "fb28781bd22b2eefdc14077f1adf5c94d7fe9c3a130194633b55f3e0d39d9f04",
+      "sha256": "2f5a335bf6ed8182ac85c6fafcccf9bd96b845e010acd812b39f616d94c51162"
+    },
+    {
+      "path": "Assets/Resources/PlayerPresentation/Steps/Earth/FootstepEarth2.wav",
+      "sourceMember": "Audio/footstep_grass_002.ogg",
+      "sourceSha256": "73a520139f5be716a403bfe9c80e0e94d1e61d8e9de04a354b336392164b53dc",
+      "sha256": "aed24f4020e78181c6b49fd73e0e9342bc177c583ff07979b167f4880661799f"
+    },
+    {
+      "path": "Assets/Resources/PlayerPresentation/Steps/Earth/FootstepEarth3.wav",
+      "sourceMember": "Audio/footstep_grass_003.ogg",
+      "sourceSha256": "0546e1d8ab2def714425701a18bd34c5ee2794b12e858e5b595aabcf38a34137",
+      "sha256": "b62df45c2de41f5b4160df80f368fd82eceaa99a95ddb2325d1f1cfbb5985f2a"
+    },
+    {
+      "path": "Assets/Resources/PlayerPresentation/Steps/Earth/FootstepEarth4.wav",
+      "sourceMember": "Audio/footstep_grass_004.ogg",
+      "sourceSha256": "086fd4ab3546a507ea5f5c759a9a10e535c95ade13705c238bc0eeffd7d4e8ba",
+      "sha256": "bf66da20238ea4ff5bfd19a2402213bc9a44f625da8d151e3e86f3630c5469ea"
+    },
+    {
+      "path": "Assets/Resources/PlayerPresentation/Steps/Wood/FootstepWood0.wav",
+      "sourceMember": "Audio/footstep_wood_000.ogg",
+      "sourceSha256": "5f1c252942a220d658121bd9417448cd19649ded9fff2ff15f6e50899373ce8e",
+      "sha256": "d9e76bffbb0310e3a4dfb4b56ed4e4cce850ca651414e857bbbbc68dbfe75c4a"
+    },
+    {
+      "path": "Assets/Resources/PlayerPresentation/Steps/Wood/FootstepWood1.wav",
+      "sourceMember": "Audio/footstep_wood_001.ogg",
+      "sourceSha256": "e4f68e1c9fd55b4dc8ca89ed2bbab6f200171bc54bdc18aa96b80d8e7336f462",
+      "sha256": "bcba91616d6198b0c8439c6d424a90edb8c66c548fe0e34c1c826c8cde4eb451"
+    },
+    {
+      "path": "Assets/Resources/PlayerPresentation/Steps/Wood/FootstepWood2.wav",
+      "sourceMember": "Audio/footstep_wood_002.ogg",
+      "sourceSha256": "9ff095b05cee5eec40b081defe3f0eef7232bb16d4865ce03b9f6dbab875cfdd",
+      "sha256": "ed63c0cb5c15680e0e60a7f5cafd302b3127a82826c6a6caed257b6934818067"
+    },
+    {
+      "path": "Assets/Resources/PlayerPresentation/Steps/Wood/FootstepWood3.wav",
+      "sourceMember": "Audio/footstep_wood_003.ogg",
+      "sourceSha256": "2a68a083daa9eda08fed0ea5da5280dfbe0de226196c576be02f95259dd139d9",
+      "sha256": "46c939ffb199c7132569b1499c48d93c7b582e990f5bbc44c3d8a67137e01a69"
+    },
+    {
+      "path": "Assets/Resources/PlayerPresentation/Steps/Wood/FootstepWood4.wav",
+      "sourceMember": "Audio/footstep_wood_004.ogg",
+      "sourceSha256": "b33e0854e2b3f6b6492e25c25ef8f90447a332f7c6bb25dd02edced9581d3441",
+      "sha256": "b6ddb37cae4263afd9c9775c7e0cd256f4596a74cc16de7f23f977d836b89123"
+    }
+  ]
+}

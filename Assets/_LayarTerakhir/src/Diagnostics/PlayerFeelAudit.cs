@@ -117,6 +117,17 @@ namespace LayarTerakhir.Diagnostics
             var sleeve=Array.Find(hand.GetComponentsInChildren<Renderer>(),r=>r.enabled&&r.name.Contains("Jacket"));
             var sleevePosition=sleeve?player.GetComponent<InteractionInteractor>().playerCamera.WorldToViewportPoint(sleeve.bounds.center):Vector3.zero;
             Check(sleeve&&sleevePosition.z>0&&sleevePosition.x>.82f&&sleevePosition.y<.5f,"First-person sleeve enters from the lower right and leaves the sightline clear");
+            view.Apps.Open(PhoneApp.Journal);
+            InputSystem.QueueStateEvent(mouse,new MouseState{buttons=2});
+            yield return Frames("hold-focus",12);yield return Shot("10a-held-fullscreen-viewfinder");
+            Check(view.ViewfinderActive&&view.IsCameraApp,"Held right mouse forces the open journal into the camera");
+            var focusRect=view.Panel.GetComponent<RectTransform>();
+            Check(focusRect.anchorMin==Vector2.zero&&focusRect.anchorMax==Vector2.one&&Mathf.Abs(view.FeedCamera.aspect-(float)Screen.width/Screen.height)<.01f,"Focused camera fills the screen without stretching the feed");
+            view.Apps.Open(PhoneApp.Inventory);yield return Frames("focus-overrides-menu",2);
+            Check(view.IsCameraApp&&view.ViewfinderActive,"Held aim remains authoritative over app changes");
+            InputSystem.QueueStateEvent(mouse,new MouseState());yield return Frames("release-focus",4);yield return Shot("10b-release-restores-journal");
+            Check(!view.ViewfinderActive&&phone.isPhoneRaised&&view.Apps.CurrentApp==PhoneApp.Journal,"Releasing right mouse restores the prior handset and application");
+            view.Apps.Open(PhoneApp.Camera);
             HudController.Instance.OpenDocumentModal("Presentation fixture","Document/phone continuity check.",()=>{});
             yield return Frames("document",5);yield return Shot("11-document-keeps-phone");
             Check(phone.isPhoneRaised&&view.Panel.activeSelf&&view.FeedCamera.enabled,"Reading preserves the held phone and live feed");HudController.Instance.CloseDocumentModal();

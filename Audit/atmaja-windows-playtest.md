@@ -1,4 +1,4 @@
-# Playtest revisi desainer Kos–Atmaja — 18 Oktober 2026
+# Playtest Kos–Atmaja — kontrol kamera/finale diperbarui 22 Oktober 2026
 
 Jalankan LayarTerakhir.exe tanpa flag audit. Main menu: NEW GAME (save lama diarsipkan),
 CONTINUE (checkpoint terakhir), SETTINGS, EXIT. ESC saat bermain membuka pause menu.
@@ -10,7 +10,8 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
    dana tercatat di Bank; HP tidak dibuka paksa. Angkat HP untuk melihat banner notifikasi,
    buka Pesan sendiri, lalu tunggu 10 detik waktu permainan sebelum reaksi Raka.
    Ketukan harus keras dan Raka menoleh; surat baru masuk setelah ketukan. Sebelum pickup ada ringtone;
-   sebelum telepon putus ada teriakan Damar. HP boleh tetap dibuka sambil WASD; tahan RMB untuk menoleh.
+   sebelum telepon putus ada teriakan Damar. HP boleh tetap dibuka sambil WASD. Saat permainan biasa, tahan RMB untuk langsung
+   membidik kamera meskipun menu HP sedang terbuka; lepas RMB untuk kembali ke aplikasi/status HP sebelumnya.
    Cocokkan sticky note dan kalender untuk **empat roda tanggal/bulan**; petunjuk tidak mencetak jawaban.
    Ambil kunci yang terlihat di meja, powerbank/dompet/buku harian dari laci dan jaket di gantungan. Baca buku harian melalui Jurnal/Tas. Setelah menutup
    gembok/modal, WASD/E harus tetap bekerja; tidak ada daftar tugas di HUD atau Jurnal. Raka mulai dengan kaos; pengambilan jaket mengubah pakaian modelnya.
@@ -82,8 +83,11 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
     (atau E) untuk menaikinya. Di atas, merunduk/meluncur [CTRL] lewat pintu jebakan yang menutup.
     Turuni tangga tengah; lompati meja makan yang roboh dengan SPACE,
     lewati lampu yang pecah, lalu berhenti di jendela dapur. Slow-motion: **klik kiri**
-    untuk menembakkan Blitz flash tepat waktu (3 detik; butuh baterai). Gagal membuka menu utama; pilih Continue untuk mencoba checkpoint chase.
-11. Setelah Blitz, tekan SPACE dalam empat detik untuk menerobos jendela. Lari lewat halaman
+    untuk mengambil **tiga foto** Nyonya. Arahkan lensa HP ke tubuhnya: bidikan yang
+    meleset atau terhalang dinding tidak dihitung. Tahan RMB bila ingin membidik seluas layar.
+11. Foto ketiga memicu Flash Beam, baterai menjadi 10%, dan Nyonya menghilang.
+    Setelah flash selesai, tekan SPACE untuk menerobos jendela. Hantu yang sudah
+    menghilang tidak boleh bergerak atau menangkap pemain lagi. Lari lewat halaman
     samping, merunduk di bawah kamboja, kemudian ke gerbang dan jalan raya.
     Ending: siluet di jendela lantai 2 saat kilat, 54.820 penonton, chat cepat yang berhenti,
     dan kontrak Penonton_Terakhir di HP. Pesannya bisa di-scroll; klik SIMPAN PESAN.
@@ -96,17 +100,17 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
 
 SETTINGS: volume, sensitivitas, subtitle, reduksi glitch, pilihan kamera, remap sembilan aksi utama.
 Default V memilih perspektif; selfie memakai X untuk menghindari benturan. Di lemari
-dan standoff Blitz, kamera menjadi first-person sementara lalu memulihkan pilihan.
+dan standoff tiga foto, kamera menjadi first-person sementara lalu memulihkan pilihan.
 Coba remap perspektif ke L, uji dekat dinding, jongkok dan pause tanpa mengubah checkpoint.
 Mode layar: fullscreen borderless/windowed lewat Settings atau Alt+Enter, juga saat pause.
 Pilihan tersimpan antar-launch; windowed dapat di-resize/maximize. Peluncuran normal pertama
 memakai fullscreen pada resolusi monitor. Flag `-screen-*` untuk audit tetap dihormati.
 M/Z/ESC adalah shortcut UI tetap. J membuka Jurnal dengan entri yang bisa diklik untuk detail.
-Sistem tujuan/to-do dihapus. Target foto memiliki kilau kecil hanya di AR. Klik shutter memberi ceklek, pulsa senter, dan kilatan layar HP. Komentar live tampil satu per satu setiap 2–3 detik dengan variasi sesuai ruangan.
+Sistem tujuan/to-do dihapus. Target foto memiliki kilau kecil hanya di AR. Klik shutter memberi ceklek, pulsa senter, dan kilatan layar HP. Komentar live tampil bertahap sesuai ruangan dan makin cepat saat bahaya/kejaran.
 Dialog tambahan menggunakan suara sintetis fiktif lokal; penerimaan akting tetap memerlukan pendengaran manusia. Dialog Ibu/Ratna dan komentar baru
 berupa subtitle sampai rekaman manusia tersedia. Dialogue-For-Recording.csv berisi naskah dan
 arahan intonasi. Jangan menganggap kualitas voice acting sudah final.
-Tiga adegan lantai dua, basement stealth, chase rail + QTE Blitz, dan ending sudah tersedia;
+Tiga adegan lantai dua, basement stealth, chase dan konfrontasi tiga foto, dan ending sudah tersedia;
 kesulitan/tensi tetap perlu review manusia dan pengukuran FPS Windows.
 
 Uji tambahan: remap E/CTRL/SPACE/TAB/Q; baterai 0; gunakan powerbank B; port USB motor
