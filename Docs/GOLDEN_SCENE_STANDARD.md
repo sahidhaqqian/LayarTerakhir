@@ -118,3 +118,9 @@ standalone ScreenCapture includes final tonemapping, game camera and overlay HUD
 Windows acceptance: traverse all routes, solve both item orders, test phone/battery modes and save reload,
 inspect HUD clipping and shadows, listen for loop seams/overload, and measure target-hardware frame pacing.
 Ship the complete `Builds/Windows` directory ZIP plus bundled source credits/OFL; never just the EXE.
+
+Designer character revision (22 October 2026): Atmaja plus its hunter and runtime
+Raka has a 350k authored-triangle ceiling. Environment maps remain ≤1024; the
+three designer-character albedos may use ≤2048 with mipmaps/compression. See
+`DESIGNER_VRM_MODELS.md` for source provenance, the fixed Raka outfit and budgets.
+This allowance does not establish target-hardware performance.

@@ -1,0 +1,46 @@
+{
+  "baseCommit": "cdd0eaef7f096b461db61881d66bea47953014c4",
+  "method": "Byte comparison to baseline Git blobs for movement, camera, phone, threat/chase, and the two Kos scenes. Additional story/puzzle validation is in the Unity suite and standalone receipts.",
+  "files": [
+    {
+      "path": "Assets/_LayarTerakhir/src/Player/FirstPersonController.cs",
+      "sha256": "1e5a5c002ba47586e448833c1860afd8089493ae88f5eb2bea7d749476f9bebe",
+      "unchanged": true
+    },
+    {
+      "path": "Assets/_LayarTerakhir/src/Smartphone/SmartphoneController.cs",
+      "sha256": "75349c6c0986b9dcc9dc525b14993cb42198b8d6d7e439957c4ceba2db8963ab",
+      "unchanged": true
+    },
+    {
+      "path": "Assets/_LayarTerakhir/src/Prolog/AtmajaPhoneView.cs",
+      "sha256": "e874917240dcddc408d228d63cc28741b5ee9ea4f3331b3ab4735c7e38f838f9",
+      "unchanged": true
+    },
+    {
+      "path": "Assets/_LayarTerakhir/src/Prolog/AtmajaBasementHorror.cs",
+      "sha256": "6ee5691720722f014d58ac6e7203997e7f145fad9d4ab671b0685fea2ac9017c",
+      "unchanged": true
+    },
+    {
+      "path": "Assets/_LayarTerakhir/src/Prolog/AtmajaChaseSequence.cs",
+      "sha256": "dbfe8ea899900cb46f105931d22d9df18722068a16176135d0097268740ad212",
+      "unchanged": true
+    },
+    {
+      "path": "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity",
+      "sha256": "468daa5c40bb2cdc2d520151b84a4cac60364db85e0d4163244cf76fd8c14ac8",
+      "unchanged": true
+    },
+    {
+      "path": "Assets/_LayarTerakhir/assets/Scenes/Prolog_KoridorKos.unity",
+      "sha256": "f275e3e961b72b0974a02cd89de89e41b14c9850ea0902ca3a0575cc18726f09",
+      "unchanged": true
+    }
+  ],
+  "presentationChanges": {
+    "Assets/_LayarTerakhir/src/Player/ShoulderCameraRig.cs": "Rebind material keywords after camera shader switch; invoke crouch foot alignment.",
+    "Assets/_LayarTerakhir/src/Player/AnimatedRakaAvatar.cs": "Align visual feet through legacy crossfades, preserving authored knee plane and planted/swinging ankle height.",
+    "Assets/_LayarTerakhir/src/Player/MotorcycleRiderAlignment.cs": "Reuse the two-bone solver for foot contacts and adapt the mounted torso lean to actual handlebar reach; sample the existing animation before fitting to prevent accumulated bends."
+  }
+}

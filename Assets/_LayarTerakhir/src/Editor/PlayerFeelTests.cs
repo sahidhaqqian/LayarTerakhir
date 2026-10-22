@@ -12,6 +12,34 @@ namespace LayarTerakhir.Editor.Tests
 {
     public sealed class PlayerFeelTests
     {
+        [Test] public void CrouchCrossfadesKeepVisualFeetAboveTheSupportPlane()
+        {
+            var actor=Object.Instantiate(Resources.Load<GameObject>("RakaCharacter"));
+            var baked=new Mesh();
+            try
+            {
+                var avatar=actor.GetComponent<AnimatedRakaAvatar>();avatar.PrepareFootContacts();avatar.handset.SetActive(false);
+                var body=actor.GetComponentsInChildren<SkinnedMeshRenderer>().Single(r=>r.name=="VisibleSkin");
+                foreach(bool low in new[]{false,true})
+                foreach(float phase in new[]{0f,.05f,.12f,.25f,.5f,.75f})
+                foreach(float blend in new[]{.16f,.33f,.5f,.66f,.83f})
+                {
+                    foreach(AnimationState state in avatar.motion){state.enabled=false;state.weight=0;}
+                    var idle=avatar.motion[low?"LowCrouch":"Crouch"];var walk=avatar.motion[low?"LowCrouchWalk":"CrouchWalk"];
+                    idle.enabled=walk.enabled=true;idle.weight=1-blend;walk.weight=blend;idle.time=.5f;walk.time=walk.length*phase;
+                    avatar.motion.Sample();avatar.AlignCrouchFootContacts(true,low);
+                    body.BakeMesh(baked,true);
+                    var heights=baked.vertices.Select(v=>body.transform.TransformPoint(v).y).ToArray();
+                    int lowest=System.Array.IndexOf(heights,heights.Min());var weight=body.sharedMesh.boneWeights[lowest];
+                    string detail=$"lowest bone {body.bones[weight.boneIndex0].name}, left ankle {actor.GetComponentsInChildren<Transform>().Single(t=>t.name=="Foot_L").position.y}, right ankle {actor.GetComponentsInChildren<Transform>().Single(t=>t.name=="Foot_R").position.y}";
+                    Assert.That(heights.Min(),Is.InRange(-.025f,.025f),$"{walk.name} phase {phase} blend {blend} foot contact; {detail}");
+                    Assert.That(heights.Max(),Is.LessThan(low?.83f:1.02f),"Grounding must retain capsule headroom");
+                    Assert.That(actor.transform.position,Is.EqualTo(Vector3.zero),"Only bones may be aligned, never the controller/root");
+                    baked.Clear();
+                }
+            }
+            finally{Object.DestroyImmediate(baked);Object.DestroyImmediate(actor);}
+        }
         [Test] public void ImportedPhoneGripsBraceHandsetWithoutSkinPenetration()
         {
             var actor=Object.Instantiate(Resources.Load<GameObject>("RakaCharacter"));

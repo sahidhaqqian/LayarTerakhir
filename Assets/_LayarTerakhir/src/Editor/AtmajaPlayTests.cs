@@ -69,7 +69,7 @@ namespace LayarTerakhir.Editor.Tests
         [UnityTest] public IEnumerator MasterCellarAndClosingTrapdoorHaveConnectedCapsuleRoutes()=>Run(FinaleGeometry());
         [UnityTest] public IEnumerator HybridCameraUsesRemappedInputAndPreservesChoiceDuringForcedCloseups()=>Run(HybridCamera());
         [UnityTest] public IEnumerator EveryOpenedDocumentPersistsItsFullTextInPhoneNotes()=>Run(DocumentArchive());
-        [UnityTest] public IEnumerator JacketPickupChangesTheBodyAndShutterPulsesTheHandset()=>Run(OutfitAndShutter());
+        [UnityTest] public IEnumerator DesignerOutfitPreservesJacketInventoryAndShutterPulsesTheHandset()=>Run(OutfitAndShutter());
         [UnityTest] public IEnumerator LiveCommentsArriveIndividuallyWithinOneToFiveSeconds()=>Run(StaggeredChat());
         [UnityTest] public IEnumerator WardrobeExitDoesNotReenterOnTheSameInteractPress()=>Run(WardrobeExitDebounce());
         [UnityTest] public IEnumerator ExpandedCellarHasRunnableConnectedCorridors()=>Run(ExpandedCellarNavigation());
@@ -190,6 +190,10 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That((uint)rim.GetUniversalAdditionalLightData().renderingLayers,Is.EqualTo(PracticalLightPresentation.ThreatRenderingLayer));
             var fade=rig.Avatar.GetComponentsInChildren<Renderer>(true).SelectMany(r=>r.sharedMaterials).FirstOrDefault(m=>m&&m.shader&&m.shader.name=="LayarTerakhir/Avatar Dither Lit");
             Assert.That(fade,Is.Not.Null,"Raka's live body materials must use the camera dither shader");
+            var designer=rig.Avatar.GetComponentsInChildren<SkinnedMeshRenderer>(true).Single(r=>r.name=="VisibleSkin").sharedMaterial;
+            Assert.That(designer.IsKeywordEnabled("_NORMALMAP"),Is.True,"Rebind normal-map keywords to the camera shader");
+            Assert.That(designer.IsKeywordEnabled("_METALLICSPECGLOSSMAP"),Is.True,"The camera shader must sample the cloth's metallic mask instead of using a solid-metal fallback");
+            Assert.That(designer.GetFloat("_Metallic"),Is.Zero,"A stripped map variant must retain a dielectric cloth/skin fallback");
             Assert.That(rig.AvatarOpacity,Is.EqualTo(1f).Within(.01f));
             var coverage=typeof(ShoulderCameraRig).GetMethod("SetAvatarCoverage",BindingFlags.Instance|BindingFlags.NonPublic);
             coverage.Invoke(rig,new object[]{.5f,false});
@@ -257,10 +261,12 @@ namespace LayarTerakhir.Editor.Tests
         {
             yield return new WaitForSeconds(2);var d=Find<AtmajaDirector>();var c=CampaignState.Instance;var phone=SmartphoneController.Instance;
             var rig=d.player.GetComponent<ShoulderCameraRig>();c.Data.inventory.Remove("JAKET_RAKA");yield return null;yield return null;
-            var renderers=rig.Avatar.GetComponentsInChildren<Renderer>(true);var shirt=renderers.Single(r=>r.name=="RakaTShirt");var jacket=renderers.Single(r=>r.name=="RakaJacketOutfit");
-            Assert.That(shirt.enabled&&!jacket.enabled,Is.True,"The opening outfit must actually show the T-shirt");
-            c.AddInventoryItem("JAKET_RAKA");yield return null;yield return null;Assert.That(jacket.enabled&&!shirt.enabled,Is.True);
-            d.player.enabled=false;yield return null;yield return null;Assert.That(jacket.enabled&&!shirt.enabled,Is.True,"A contextual traversal must not render both outfits");d.player.enabled=true;
+            var body=rig.Avatar.GetComponentsInChildren<SkinnedMeshRenderer>(true).Single(r=>r.name=="VisibleSkin");
+            Assert.That(body.enabled,Is.True,"The designer VRM includes a single, complete clothed body");
+            Assert.That(c.HasInventoryItem("JAKET_RAKA"),Is.False);
+            c.AddInventoryItem("JAKET_RAKA");yield return null;yield return null;
+            Assert.That(c.HasInventoryItem("JAKET_RAKA")&&body.enabled,Is.True,"The inventory contract remains intact with the supplied fixed outfit");
+            d.player.enabled=false;yield return null;yield return null;Assert.That(body.enabled,Is.True,"Contextual traversals retain the clothed body");d.player.enabled=true;
             phone.isPhoneRaised=phone.isScreenOn=phone.isBroadcastConnected=true;phone.SyncVisualState();d.phoneView.Apps.Open(PhoneApp.Camera);
             GameInputConfig.Instance.RemapAction(GameAction.CaptureOrBlitz,KeyCode.P);yield return null;
             InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.P));yield return null;yield return null;
@@ -336,7 +342,10 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(avatar.motion.GetClipCount(),Is.EqualTo(16));
             foreach(var clip in new[]{"LowCrouch","LowCrouchWalk","PhoneLowCrouch","PhoneLowCrouchWalk"})
                 Assert.That(avatar.motion[clip],Is.Not.Null,"Existing low Atmaja capsule needs a matching visual pose");
-            Assert.That(rig.Avatar.GetComponentsInChildren<SkinnedMeshRenderer>().Length,Is.GreaterThanOrEqualTo(5));
+            var body=rig.Avatar.GetComponentsInChildren<SkinnedMeshRenderer>().Single(r=>r.name=="VisibleSkin");
+            foreach(var required in new[]{"Hips","Head","Hand_R","Finger1_1_R","Finger2_1_R","Finger3_1_R","Finger4_1_R","Finger5_1_R"})
+                Assert.That(body.bones.Any(b=>b&&b.name==required),Is.True,"The replacement skin must deform with "+required);
+            Assert.That(body.sharedMesh.vertexCount,Is.InRange(10000,65000),"Use the optimized designer mesh, not the million-vertex source or a primitive fallback");
             Assert.That(d.phoneView.FeedCamera.cullingMask&(1<<ShoulderCameraRig.AvatarLayer),Is.Zero,"Raka's shoulder/handset must not obscure the separate phone feed");
             var bounce=p.transform.Find("RakaSoftBounce").GetComponent<Light>();
             Assert.That(bounce.cullingMask,Is.EqualTo(1<<ShoulderCameraRig.AvatarLayer));Assert.That(bounce.shadows,Is.EqualTo(LightShadows.None));
@@ -420,9 +429,9 @@ namespace LayarTerakhir.Editor.Tests
             d.PlacePlayer(d.chase.diningVaultStart.position,Quaternion.identity);yield return Press(Key.Space);yield return new WaitForSeconds(1);
             d.PlacePlayer(d.vaultInside.position,d.vaultInside.rotation);yield return null;yield return null;
             Assert.That(d.chase.AwaitingPhotos,Is.True);Assert.That(d.chase.PhotosTaken,Is.Zero);
-            var wounds=d.basement.nyonya.GetComponentsInChildren<Renderer>(true).SelectMany(r=>r.sharedMaterials).Where(m=>m&&m.name.Contains("(wounds)")).ToArray();
-            Assert.That(wounds.Length,Is.GreaterThan(0),"Nyonya's body uses the bloody puncture material");
-            Assert.That(wounds[0].GetTexture("_BaseMap").name,Is.EqualTo("NyonyaWound"));
+            var body=d.basement.nyonya.GetComponentsInChildren<SkinnedMeshRenderer>(true).Single(r=>r.name=="NyonyaDesignerBody");
+            Assert.That(body.sharedMaterial.GetTexture("_BaseMap"),Is.EqualTo(AssetDatabase.LoadAssetAtPath<Texture2D>(DesignerVrmBuilder.Root+"Textures/NyonyaAlbedo.png")),"Retain the designer's weathered/bloodied artwork instead of stamping the old model's unrelated wound UV map over it");
+            Assert.That(body.sharedMaterial.GetTexture("_BumpMap"),Is.EqualTo(AssetDatabase.LoadAssetAtPath<Texture2D>(DesignerVrmBuilder.Root+"Textures/NyonyaNormal.png")));
             Assert.That(Time.timeScale,Is.EqualTo(.5f),"Photo ritual runs in slow motion");
             Assert.That(d.player.MovementLocked,Is.False,"Raka can still move, just slowly");
             Assert.That(phone.isPhoneRaised&&d.phoneView.IsCameraApp,Is.True);

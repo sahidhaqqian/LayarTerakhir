@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 UNITY='/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity'
 parser=argparse.ArgumentParser()
-parser.add_argument('--stage',required=True,choices=['feel-player','graphics-look','graphics-validate','graphics-player','melati-street','apply','polish','validate','test','linux','windows','player','atmaja-build','atmaja-validate','atmaja-player','review-build','review-validate','review-player','kos-refine','prolog-complete','prolog-presentation','stair-revision','designer-review','lounge-refine','playtest-repair','raka-repair','melati-repair','review-survey','prolog-player','rider-player','designer-player'])
+parser.add_argument('--stage',required=True,choices=['feel-player','graphics-look','graphics-validate','graphics-player','melati-street','apply','polish','validate','test','linux','windows','player','atmaja-build','atmaja-validate','atmaja-player','review-build','review-validate','review-player','kos-refine','prolog-complete','prolog-presentation','stair-revision','designer-review','lounge-refine','playtest-repair','raka-repair','melati-repair','review-survey','prolog-player','rider-player','designer-player','designer-models'])
 parser.add_argument('--test-filter',default='LayarTerakhir.Editor.Tests')
 parser.add_argument('--chase-only',action='store_true',help='Diagnostic prolog chase checkpoint fixture; final delivery must also run the full continuation')
 parser.add_argument('--width',type=int,default=1280)
@@ -41,6 +41,7 @@ elif is_player:
         command+=['-prologChaseOnly']
 else:
     methods={'graphics-look':'DreadoutVisualRevision.Apply','graphics-validate':'DreadoutVisualRevision.Validate','melati-street':'MelatiStreetRevision.Apply','apply':'GoldenSceneProduction.Apply','polish':'CompactKosPolish.Apply','validate':'GoldenSceneValidation.Run','linux':'GoldenLinuxBuild.Build','windows':'WindowsDevelopmentBuild.Build','atmaja-build':'PlaytestRevisionBuilder.Build','atmaja-validate':'AtmajaSceneValidation.Run','review-build':'PlaytestRevisionBuilder.Build','review-validate':'PlaytestReviewValidation.Run','kos-refine':'PlaytestRevisionBuilder.RefineKos','prolog-complete':'PrologCompletionBuilder.Apply','prolog-presentation':'PrologPresentationBuilder.Apply','stair-revision':'AtmajaStairRevisionBuilder.Apply','designer-review':'DesignerReviewBuilder.Apply','lounge-refine':'DesignerReviewBuilder.RefineLounge','review-survey':'DesignerReviewBuilder.Survey','playtest-repair':'PlaytestRepairBuilder.Apply','raka-repair':'PrologPresentationBuilder.RebuildRakaOnly','melati-repair':'MelatiNeighborhoodBuilder.Apply'}
+    methods['designer-models']='DesignerVrmBuilder.Apply'
     if stage in ['linux','windows']:command+=['-buildTarget','Linux64' if stage=='linux' else 'Win64']
     if stage=='windows':
         prior=ROOT/'Builds/Previous'/('before-golden-'+datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S'))
@@ -78,6 +79,8 @@ if is_player or stage=='test':
         raise RuntimeError('Private PulseAudio sink did not start: '+diagnostic.decode(errors='replace').strip())
     env['PULSE_SERVER']='unix:'+socket
 record={'stage':stage,'command':command,'startedUtc':datetime.now(timezone.utc).isoformat()}
+host_overrides={key:env[key] for key in ('UNITY_BURST_DISABLE_COMPILATION','LD_BIND_NOW') if key in env}
+if host_overrides:record['hostEnvironmentOverrides']=host_overrides
 if is_player:record['rendererEnvironment']={key:env[key] for key in ('LIBGL_ALWAYS_SOFTWARE','LP_NUM_THREADS')}
 if pulse:record['audioBackend']='Private clocked PulseAudio null sink; '+('real listener tap' if stage=='review-player' else 'headless test audio device' if stage=='test' else 'virtual audio device; this fixture does not measure listener audio')+', no physical audio hardware'
 record['status']='Running'

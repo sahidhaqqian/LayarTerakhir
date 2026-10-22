@@ -177,6 +177,10 @@ namespace LayarTerakhir.Player
                     if(!clones.TryGetValue(source,out var copy))
                     {
                         copy=new Material(source){shader=shader,name=source.name+" (camera fade)"};
+                        // Local keywords belong to a shader's own keyword space.
+                        // Rebind their names after switching away from URP/Lit.
+                        foreach(string keyword in new[]{"_NORMALMAP","_METALLICSPECGLOSSMAP","_OCCLUSIONMAP","_EMISSION"})
+                        {if(source.IsKeywordEnabled(keyword))copy.EnableKeyword(keyword);else copy.DisableKeyword(keyword);}
                         copy.SetFloat("_DitherAlpha",1);clones.Add(source,copy);fadeMaterials.Add(copy);
                     }
                     materials[i]=copy;
@@ -239,6 +243,7 @@ namespace LayarTerakhir.Player
                 bodyYaw = Mathf.LerpAngle(bodyYaw, yaw, 1 - Mathf.Exp(-16 * Time.deltaTime));
                 Avatar.localRotation = Quaternion.Euler(0, bodyYaw, 0);
                 authoredAvatar.Present(visualSpeed,player.IsCrouching,phone,Riding,new Vector2(localMotion.x,localMotion.z),player.crouchHeight<.9f);
+                if(!Riding)authoredAvatar.AlignCrouchFootContacts(player.IsCrouching,player.crouchHeight<.9f);
                 if(Riding&&transform.parent){if(!riderAlignment)riderAlignment=Avatar.gameObject.AddComponent<MotorcycleRiderAlignment>();riderAlignment.Fit(transform.parent);}
                 return;
             }

@@ -114,7 +114,9 @@ namespace LayarTerakhir.Diagnostics
             Check(rig.IsFirstPerson&&Vector3.Distance(player.GetComponent<InteractionInteractor>().playerCamera.transform.position,player.cameraPivot.position)<.01f,"First-person still uses the player's eyes");
             var hand=player.GetComponent<InteractionInteractor>().playerCamera.transform.Find("RakaPhoneHand(Clone)");
             Check(hand&&hand.gameObject.activeInHierarchy,"First-person displays the authored Raka hand");
-            var sleeve=Array.Find(hand.GetComponentsInChildren<Renderer>(),r=>r.enabled&&r.name.Contains("Jacket"));
+            // The supplied VRM has one combined forearm/skin surface instead of
+            // the previous model's separate jacket sleeve renderer.
+            var sleeve=Array.Find(hand.GetComponentsInChildren<Renderer>(),r=>r.enabled&&(r.name.Contains("Jacket")||r.name=="PhoneHand_VisibleSkin"));
             var sleevePosition=sleeve?player.GetComponent<InteractionInteractor>().playerCamera.WorldToViewportPoint(sleeve.bounds.center):Vector3.zero;
             Check(sleeve&&sleevePosition.z>0&&sleevePosition.x>.82f&&sleevePosition.y<.5f,"First-person sleeve enters from the lower right and leaves the sightline clear");
             view.Apps.Open(PhoneApp.Journal);

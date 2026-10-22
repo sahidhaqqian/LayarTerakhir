@@ -1,0 +1,11 @@
+{
+  "method": "Compare complete source/asset snapshots before and after the successful native feel run. Only the mounted rider fitting implementation changed afterward; camera, foot contacts, phone, character art and gameplay sources stayed identical. The rider change receives its own native departure test.",
+  "feelReceipt": "Audit/Visuals/Designer-VRM-Feel/player-audit.json",
+  "feelReceiptSha256": "0052c5c9810e6a261d3d89a8ebda9690972461c206df3739aafb0e2996a02a03",
+  "checks": 30,
+  "screenshots": 17,
+  "changedSources": [
+    "Assets/_LayarTerakhir/src/Player/MotorcycleRiderAlignment.cs"
+  ],
+  "rerunClaimed": false
+}

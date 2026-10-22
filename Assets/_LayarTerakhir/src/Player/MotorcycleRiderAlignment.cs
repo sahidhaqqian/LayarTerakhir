@@ -6,14 +6,17 @@ namespace LayarTerakhir.Player
     // The riding clip supplies the posture; analytic limb alignment fits the actual scooter.
     public sealed class MotorcycleRiderAlignment : MonoBehaviour
     {
-        private Transform hips;private Transform[] bones;
+        private Transform hips,spine;private Transform[] bones;
         private Transform motor,seat;private Transform[] grips,feet;
         private Transform Bone(string name)=>bones.FirstOrDefault(b=>b.name==name);
         public void Fit(Transform vehicle)
         {
             if(!vehicle)return;
-            if(bones==null){bones=GetComponentsInChildren<Transform>(true);hips=Bone("Hips");}
+            if(bones==null){bones=GetComponentsInChildren<Transform>(true);hips=Bone("Hips");spine=Bone("Spine");}
             if(!hips)return;
+            // Sample the current legacy blend before fitting, so capture/pause
+            // frames cannot accumulate an extra torso bend on the previous fit.
+            var animation=GetComponent<Animation>();if(animation)animation.Sample();
             if(motor!=vehicle)
             {
                 motor=vehicle;var contacts=vehicle.GetComponentsInChildren<Transform>(true).Where(t=>!t.IsChildOf(transform)).ToArray();
@@ -24,6 +27,25 @@ namespace LayarTerakhir.Player
             if(!seat||grips.Length<2)return;
             var seatPoint=seat.position+Vector3.up*.075f;
             transform.position+=seatPoint-hips.position;
+            if(spine)
+            {
+                var authored=spine.rotation;
+                for(float lean=0;lean<=28;lean+=2)
+                {
+                    spine.rotation=Quaternion.AngleAxis(lean,motor.right)*authored;
+                    bool reachable=true;
+                    foreach(string side in new[]{"L","R"})
+                    {
+                        var upper=Bone("UpperArm_"+side);var elbow=Bone("Forearm_"+side);var wrist=Bone("Hand_"+side);
+                        if(!upper||!elbow||!wrist)continue;
+                        var grip=grips.OrderBy(g=>Vector3.Distance(g.position,wrist.position)).First();
+                        var target=grip.position-motor.forward*.055f-Vector3.up*.01f;
+                        float reach=Vector3.Distance(upper.position,elbow.position)+Vector3.Distance(elbow.position,wrist.position);
+                        if(Vector3.Distance(upper.position,target)>reach-.015f)reachable=false;
+                    }
+                    if(reachable)break;
+                }
+            }
             foreach(string side in new[]{"L","R"})
             {
                 var hand=Bone("Hand_"+side);var foot=Bone("Foot_"+side);if(!hand||!foot)continue;
@@ -36,7 +58,7 @@ namespace LayarTerakhir.Player
                     motor.position+motor.right*sign*.24f+motor.forward*.32f+Vector3.up*.5f);
             }
         }
-        private static void Solve(Transform root,Transform middle,Transform end,Vector3 target,Vector3 pole)
+        internal static void Solve(Transform root,Transform middle,Transform end,Vector3 target,Vector3 pole)
         {
             if(!root||!middle||!end)return;
             var endRotation=end.rotation;

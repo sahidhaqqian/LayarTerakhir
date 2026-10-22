@@ -1,0 +1,45 @@
+{
+  "baseline": "cdd0eaef7f096b461db61881d66bea47953014c4",
+  "fullSuite": {
+    "id": "2",
+    "testcasecount": "114",
+    "result": "Passed",
+    "total": "114",
+    "passed": "114",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-10-22 11:13:52Z",
+    "end-time": "2026-10-22 11:14:00Z",
+    "duration": "7.420227"
+  },
+  "native": [
+    {
+      "receipt": "Audit/Visuals/Designer-VRM-Feel/player-audit.json",
+      "completed": true,
+      "checksPassed": 30,
+      "screenshots": 17,
+      "method": "Actual keyboard input and CharacterController in existing Melati; isolated synthetic devices ignore desktop focus; fixed 1/30 simulation delta. No hardware FPS claim."
+    },
+    {
+      "receipt": "Audit/Visuals/Designer-VRM-Rider-Final/player-audit.json",
+      "completed": true,
+      "checksPassed": 18,
+      "screenshots": 4,
+      "method": "Isolated completed-kos-yard save; pose player beside motor, invoke the existing contextual departure, capture the real mount/ride and arrival. Max delta time .5s for the software-rendering host. Targeted rider presentation fixture, not a manual/full opening playthrough."
+    },
+    {
+      "receipt": "Audit/Visuals/Designer-VRM-Prolog/player-audit.json",
+      "completed": true,
+      "checksPassed": 153,
+      "screenshots": 32,
+      "method": "Continuous CharacterController.Move <=0.12m substeps using deltaTime and the player's walk/crouch/sprint speeds, actual E/Ctrl/Space/F/LMB bindings, game-owned cellar/vault traversals; time frozen during framebuffer captures. Directed path verification, not manual pacing/Windows performance acceptance."
+    }
+  ],
+  "windowsRuntimeTested": false,
+  "targetHardwareFpsMeasured": false,
+  "feelContinuityProof": "Audit/designer-vrm-feel-continuity.json"
+}

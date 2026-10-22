@@ -80,12 +80,21 @@ namespace LayarTerakhir.Editor
             foreach(var mat in r.sharedMaterials)
             {
                 Check(mat&&mat.shader&&mat.shader.name!="Hidden/InternalErrorShader","Material: "+r.name);
-                if(mat)foreach(var property in mat.GetTexturePropertyNames()){var t=mat.GetTexture(property);if(t)texture=Mathf.Max(texture,t.width,t.height);}
+                if(mat)foreach(var property in mat.GetTexturePropertyNames())
+                {
+                    var t=mat.GetTexture(property);
+                    if(t)
+                    {
+                        texture=Mathf.Max(texture,t.width,t.height);
+                        bool designerAlbedo=(property=="_BaseMap"||property=="_MainTex")&&mat.HasProperty("_BaseMap")&&t==mat.GetTexture("_BaseMap")&&AssetDatabase.GetAssetPath(t).StartsWith(DesignerVrmBuilder.Root);
+                        Check(Mathf.Max(t.width,t.height)<=(designerAlbedo?2048:1024),"Texture budget: "+r.name+"/"+property);
+                    }
+                }
             }
             foreach(var t in UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects().SelectMany(g=>g.GetComponentsInChildren<Transform>(true)))
                 Check(GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(t.gameObject)==0,"No missing scripts: "+t.name);
-            Check(tris<300000,"Scene, skinned hunter and runtime Raka together remain under 300k authored triangles");
-            Check(texture<=1024,"Bound artwork textures at most 1024px");
+            Check(tris<350000,"Designer characters and the existing scene remain under 350k authored triangles");
+            Check(texture<=2048,"Designer albedo at most 2048px; environment and other maps at most 1024px");
             var concreteCut=AssetDatabase.LoadAssetAtPath<Mesh>("Assets/_LayarTerakhir/assets/Art/Atmaja/Models/AtmajaConcreteFacadeCutout.asset");
             Check(concreteCut&&root.GetComponentsInChildren<MeshFilter>(true).Any(f=>f.sharedMesh==concreteCut),"Facade band preserves the exterior while opening its phantom interior floor at y=4.2");
             if(concreteCut)

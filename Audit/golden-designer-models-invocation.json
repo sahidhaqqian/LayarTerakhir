@@ -1,0 +1,23 @@
+{
+  "stage": "designer-models",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-review",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.DesignerVrmBuilder.Apply",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-review/Audit/golden-designer-models.log"
+  ],
+  "startedUtc": "2026-10-22T10:36:24.781263+00:00",
+  "hostEnvironmentOverrides": {
+    "UNITY_BURST_DISABLE_COMPILATION": "1",
+    "LD_BIND_NOW": "1"
+  },
+  "status": "Finished",
+  "endedUtc": "2026-10-22T10:36:54.429117+00:00",
+  "exitCode": 0
+}

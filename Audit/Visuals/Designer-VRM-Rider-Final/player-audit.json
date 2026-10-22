@@ -1,0 +1,57 @@
+{
+    "utc": "2026-10-22T11:07:02.4964430Z",
+    "platform": "LinuxPlayer",
+    "gpu": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "navigationMethod": "Isolated completed-kos-yard save; pose player beside motor, invoke the existing contextual departure, capture the real mount/ride and arrival. Max delta time .5s for the software-rendering host. Targeted rider presentation fixture, not a manual/full opening playthrough.",
+    "actualStandalonePlayer": true,
+    "completed": true,
+    "checkpointSaved": true,
+    "width": 1280,
+    "height": 720,
+    "checks": [
+        "PASS Yard checkpoint routes into the kos corridor",
+        "PASS Contextual travel accepts the player beside the motor",
+        "PASS The real mount enters the authored rider pose",
+        "PASS Motor cinematic owns the camera while showing Raka",
+        "PASS The seated head clears the motor instead of sinking into the saddle",
+        "PASS Rider head is inside the actual shot",
+        "PASS Porch columns and walls do not obstruct the mounted rider shot",
+        "PASS Rider renderers are visible during the cinematic",
+        "PASS The pelvis sits on the actual closed saddle",
+        "PASS Two authored grip contacts remain inside the visible control assembly",
+        "PASS Riding L hand reaches a physical handlebar grip",
+        "PASS Two authored grip contacts remain inside the visible control assembly",
+        "PASS Riding R hand reaches a physical handlebar grip",
+        "PASS The rider and motorcycle pass through the kos gate",
+        "PASS The same departure continues directly to Atmaja without dismounting in Melati",
+        "PASS Travel arrives in Atmaja",
+        "PASS Arrival restores the grounded walking model origin",
+        "PASS Arrival saves the real Atmaja courtyard checkpoint"
+    ],
+    "screenshots": [
+        "01-mounted-rider.png",
+        "02-rider-through-gate.png",
+        "03-continuous-road-departure.png",
+        "04-arrival-standing.png"
+    ],
+    "playerFeet": {
+        "x": -14.079291343688965,
+        "y": -0.4591051936149597,
+        "z": -4.702702522277832
+    },
+    "motorOrigin": {
+        "x": -14.079291343688965,
+        "y": -0.009105205535888672,
+        "z": -4.702702522277832
+    },
+    "avatarOrigin": {
+        "x": -13.920437812805176,
+        "y": 0.44512778520584109,
+        "z": -4.645031929016113
+    },
+    "headPosition": {
+        "x": -14.337029457092286,
+        "y": 1.4227392673492432,
+        "z": -4.796272277832031
+    }
+}

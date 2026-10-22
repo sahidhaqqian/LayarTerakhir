@@ -369,3 +369,11 @@ and applies 5 ms boundary fades. `review-footstep-sources.json` records each ori
 member and both source/output hashes; `kenney-impact-CC0.txt` retains the license.
 Concrete stands in for paved roads; water splashes and gamelan were not recorded
 or added. Existing synthetic voices, hum and chase music remain placeholders.
+
+## Designer-supplied VRM character replacement (22 October 2026)
+
+Raka, Nyonya Atmaja and Damar were supplied by the project owner as VRM 1.0
+models. Optimized meshes/textures and baked first-party animation derivatives
+are under `Art/DesignerCharacters`. These replacements are not attributed to
+MakeHuman/CC0. Source hashes and conversion details: `designer-vrm-authoring.json`
+and `../Docs/DESIGNER_VRM_MODELS.md`. Original files are preserved locally.

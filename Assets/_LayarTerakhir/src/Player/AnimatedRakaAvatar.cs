@@ -14,11 +14,59 @@ namespace LayarTerakhir.Player
         private float playbackSpeed = 1;
         private float handsetVisible;
         private bool handsetGraspVisible;
+        private Transform[] thighs, shins, feet;
+        private float[] soleHeights;
+        private Quaternion[] flatFootRotations;
         private void Awake()
         {
             var renderers=GetComponentsInChildren<Renderer>(true);
             jacket=System.Array.FindAll(renderers,r=>r.name=="RakaJacketOutfit");
             shirt=System.Array.FindAll(renderers,r=>r.name.StartsWith("RakaTShirt"));
+            PrepareFootContacts();
+        }
+
+        public void PrepareFootContacts()
+        {
+            if(feet!=null)return;
+            var bones=GetComponentsInChildren<Transform>(true);
+            thighs=new Transform[2];shins=new Transform[2];feet=new Transform[2];
+            soleHeights=new float[2];flatFootRotations=new Quaternion[2];
+            for(int i=0;i<2;i++)
+            {
+                string side=i==0?"L":"R";
+                thighs[i]=System.Array.Find(bones,b=>b.name=="Thigh_"+side);
+                shins[i]=System.Array.Find(bones,b=>b.name=="Shin_"+side);
+                feet[i]=System.Array.Find(bones,b=>b.name=="Foot_"+side);
+                if(!feet[i])continue;
+                soleHeights[i]=transform.InverseTransformPoint(feet[i].position).y;
+                flatFootRotations[i]=Quaternion.Inverse(transform.rotation)*feet[i].rotation;
+            }
+        }
+
+        // Legacy quaternion crossfades do not preserve the baked foot contacts.
+        // Keep the visual ankles above their bind-pose sole height and solve the
+        // same two-bone chain already used by the rider. Never move the capsule.
+        public void AlignCrouchFootContacts(bool crouching,bool lowCrouch)
+        {
+            if(!motion)return;
+            bool blendingCrouch=crouching;
+            foreach(AnimationState state in motion)
+                if(state.enabled&&state.weight>.001f&&state.name.Contains("Crouch"))blendingCrouch=true;
+            if(!blendingCrouch)return;
+            PrepareFootContacts();
+            for(int i=0;i<2;i++)
+            {
+                if(!thighs[i]||!shins[i]||!feet[i])continue;
+                Vector3 target=feet[i].position;
+                target.y=Mathf.Max(target.y,transform.position.y+soleHeights[i]*transform.lossyScale.y);
+                // Retain the authored knee plane, including its turn/stride.
+                // A fixed pole can roll baggy trousers under a deep-squat thigh.
+                Vector3 pole=shins[i].position;
+                if(Vector3.ProjectOnPlane(pole-thighs[i].position,target-thighs[i].position).sqrMagnitude<.000001f)
+                    pole=transform.TransformPoint(new Vector3(i==0?.18f:-.18f,lowCrouch?1:.524f,1.2f));
+                MotorcycleRiderAlignment.Solve(thighs[i],shins[i],feet[i],target,pole);
+                feet[i].rotation=transform.rotation*flatFootRotations[i];
+            }
         }
 
         public void Present(float speed, bool crouching, bool phone, bool riding, Vector2 direction = default, bool lowCrouch = false)
