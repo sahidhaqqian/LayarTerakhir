@@ -4,12 +4,12 @@
 - cluster-only mode — file stats not available
 
 ## Summary
-- 2585 nodes · 9259 edges · 101 communities (72 shown, 29 thin omitted)
+- 2585 nodes · 9259 edges · 101 communities (73 shown, 28 thin omitted)
 - Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 534 edges (avg confidence: 0.84)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1294c949`
+- Built from commit: `9ca5f57b`
 - Commit above is the pre-commit base, not a freshness check. Verify source/artifact hashes with `python3 Tools/update_graphify.py --check`.
 - Regenerate safely with `python3 Tools/update_graphify.py` before commit/push.
 
@@ -79,7 +79,7 @@
 - Community 64
 - Community 65
 - Community 66
-- Community 68
+- Community 67
 - Community 69
 - Community 70
 - Community 71
@@ -106,16 +106,16 @@
 - Community 92
 - Community 93
 - Community 94
-- Community 96
+- Community 95
 - Community 97
 - Community 98
-- Community 100
+- Community 99
 
 ## God Nodes (most connected - your core abstractions)
 1. `AtmajaDirector` - 100 edges
 2. `AtmajaPhoneView` - 88 edges
 3. `Phase1Director` - 86 edges
-4. `HudController` - 84 edges
+4. `HudController` - 83 edges
 5. `ShoulderCameraRig` - 83 edges
 6. `AtmajaPlayTests` - 78 edges
 7. `FirstPersonController` - 76 edges
@@ -138,7 +138,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (101 total, 29 thin omitted)
+## Communities (101 total, 28 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.07
@@ -153,8 +153,8 @@ Cohesion: 0.06
 Nodes (13): DreadoutVisualRevision, Report, SceneReport, BoundsReport, Diagnosis, Entry, KosRenderDiagnosis, Metric (+5 more)
 
 ### Community 3 - "Community 3"
-Cohesion: 0.08
-Nodes (12): PresentationProfile, GoldenHudBuilder, HudController, CurrentDialogueSpeaker, CurrentObjective, Instance, IsDialoguePlaying, IsDocumentOpen (+4 more)
+Cohesion: 0.05
+Nodes (24): AtmajaPhoneView, Apps, Chapter, ChatFrozen, CinematicHandsetVisible, DisplayedChatCount, FeedCamera, FocusHandsVisible (+16 more)
 
 ### Community 4 - "Community 4"
 Cohesion: 0.12
@@ -181,12 +181,12 @@ Cohesion: 0.14
 Nodes (7): GoldenLinuxBuild, Record, DressingReceipt, Phase1SceneBuilder, PropPlacement, ImportedSceneReceipt, Phase1Anchor
 
 ### Community 12 - "Community 12"
-Cohesion: 0.06
-Nodes (23): AtmajaPhoneView, Apps, Chapter, ChatFrozen, CinematicHandsetVisible, DisplayedChatCount, FeedCamera, FocusHandsVisible (+15 more)
+Cohesion: 0.12
+Nodes (10): PhoneDesktop, CallActive, ContractReceived, CurrentApp, DialedContact, IsCalling, Phone, TravelSelection (+2 more)
 
 ### Community 13 - "Community 13"
-Cohesion: 0.14
-Nodes (3): PhoneSkin, Rounded, UiWidgets
+Cohesion: 0.09
+Nodes (9): MotorcycleRiderAlignment, HudController, CurrentDialogueSpeaker, CurrentObjective, Instance, IsDialoguePlaying, IsDocumentOpen, IsHandsetNotification (+1 more)
 
 ### Community 14 - "Community 14"
 Cohesion: 0.08
@@ -232,45 +232,45 @@ Nodes (18): cloth(), ellipsoid(), finish(), mesh(), tube(), ball(), box(), cloth
 Cohesion: 0.10
 Nodes (4): DesignerRevisionTests, GoldenSceneTests, KosVisualV2Tests, PlayerFeelTests
 
-### Community 26 - "Community 26"
-Cohesion: 0.09
-Nodes (17): PhoneApp, Bank, Call, Camera, Home, Inventory, Journal, Map (+9 more)
-
-### Community 28 - "Community 28"
+### Community 27 - "Community 27"
 Cohesion: 0.11
 Nodes (15): Phase1Balance, Phase1Threats, Balance, BossStatus, Exposed, FreezeKunti, IsChasing, Kunti (+7 more)
 
-### Community 29 - "Community 29"
+### Community 28 - "Community 28"
 Cohesion: 0.15
 Nodes (4): AtmajaSceneBuilder, Manifest, MaterialRecord, DesignerWorldRevision
 
-### Community 30 - "Community 30"
+### Community 29 - "Community 29"
 Cohesion: 0.11
 Nodes (7): DisplayPreferences, Isolated, GameShell, AwaitingStart, Instance, IsPaused, MenuSceneLoading
 
-### Community 31 - "Community 31"
+### Community 30 - "Community 30"
 Cohesion: 0.12
 Nodes (23): actions(), add_armature(), at(), joint(), mapped(), asset_mesh(), copy_texture(), create_mesh() (+15 more)
 
-### Community 32 - "Community 32"
+### Community 31 - "Community 31"
 Cohesion: 0.16
 Nodes (4): Authoring, PrologCompletionBuilder, AtmajaEvidenceAtmosphere, NeighborhoodRain
 
-### Community 33 - "Community 33"
+### Community 32 - "Community 32"
 Cohesion: 0.15
 Nodes (6): AtmajaUpperDirector, ArActive, Campaign, ChainsBroken, Hud, Phone
 
-### Community 35 - "Community 35"
+### Community 34 - "Community 34"
 Cohesion: 0.10
 Nodes (19): Phase1Director, BossActive, Busy, CameraCanScan, CameraLocked, CameraStatus, Campaign, CanBeginLive (+11 more)
 
-### Community 36 - "Community 36"
+### Community 35 - "Community 35"
 Cohesion: 0.10
 Nodes (16): PlayerPerspective, FirstPerson, OverShoulder, ShoulderCameraRig, AimPoint, Avatar, AvatarOpacity, CinematicVisible (+8 more)
 
-### Community 37 - "Community 37"
+### Community 36 - "Community 36"
 Cohesion: 0.13
 Nodes (5): GoldenSceneValidation, Record, KosRoomSurvey, TempShaftProbe, KosRoomCorrections
+
+### Community 38 - "Community 38"
+Cohesion: 0.15
+Nodes (6): PrologFinaleView, ContractRead, IsCompletionVisible, IsContractVisible, WantsPointer, UiWidgets
 
 ### Community 39 - "Community 39"
 Cohesion: 0.12
@@ -341,32 +341,32 @@ Cohesion: 0.18
 Nodes (7): IContextInteractionResolver, OwnsInteraction, IInteractable, InteractableId, InteractionInteractor, ContextResolver, CurrentTarget
 
 ### Community 60 - "Community 60"
+Cohesion: 0.28
+Nodes (3): PresentationProfile, GoldenHudBuilder, HudStyle
+
+### Community 61 - "Community 61"
 Cohesion: 0.22
 Nodes (3): GoldenAudioTap, GoldenPlayerAudit, Receipt
 
-### Community 61 - "Community 61"
+### Community 62 - "Community 62"
 Cohesion: 0.19
 Nodes (4): AtmajaSceneValidation, OpeningBaseline, Report, AtmajaSceneTests
 
-### Community 66 - "Community 66"
+### Community 67 - "Community 67"
 Cohesion: 0.35
 Nodes (3): Check, KosSceneValidation, Report
 
-### Community 68 - "Community 68"
+### Community 69 - "Community 69"
 Cohesion: 0.17
 Nodes (12): Phase1Stage, Arrival, Boss, Complete, Epilogue, Investigation, Kuntilanak, Lift (+4 more)
 
-### Community 69 - "Community 69"
+### Community 70 - "Community 70"
 Cohesion: 0.17
 Nodes (12): Run, Breaking, Complete, Ending, EscapeReady, FinalFlash, GateRun, Idle (+4 more)
 
-### Community 70 - "Community 70"
+### Community 71 - "Community 71"
 Cohesion: 0.23
 Nodes (4): AtmajaHandycamPlayback, IsPlaying, Progress, AtmajaMirrorReflection
-
-### Community 72 - "Community 72"
-Cohesion: 0.23
-Nodes (5): PrologFinaleView, ContractRead, IsCompletionVisible, IsContractVisible, WantsPointer
 
 ### Community 74 - "Community 74"
 Cohesion: 0.20
@@ -400,53 +400,57 @@ Nodes (8): checked(), export(), image_path(), material_record(), source_texture(
 Cohesion: 0.25
 Nodes (4): AtmajaThreatPresentation, ExternalStun, HasCharacterRig, SampledHuntPoseTime
 
-### Community 87 - "Community 87"
+### Community 86 - "Community 86"
+Cohesion: 0.22
+Nodes (9): PhoneApp, Bank, Call, Camera, Home, Inventory, Journal, Map (+1 more)
+
+### Community 88 - "Community 88"
 Cohesion: 0.32
 Nodes (3): PlaytestReviewValidation, Record, PlaytestReviewTests
 
-### Community 89 - "Community 89"
+### Community 90 - "Community 90"
 Cohesion: 0.29
 Nodes (3): MelatiShop, InteractableId, IsOpen
 
-### Community 91 - "Community 91"
+### Community 92 - "Community 92"
 Cohesion: 0.29
 Nodes (7): Mind, Done, Dormant, Emerge, Patrol, Pursue, Suspicion
 
-### Community 92 - "Community 92"
+### Community 93 - "Community 93"
 Cohesion: 0.29
 Nodes (7): KosPrologStage, Completed, PreparationAndDrawerPuzzle, ReadyToDepart, WaitPickupSmartphone, WaitReadSuratIbuKos, WakeUpAndKnocks
 
-### Community 93 - "Community 93"
+### Community 94 - "Community 94"
 Cohesion: 0.33
 Nodes (6): EndingType, Bad, None, Normal, Secret, True
 
-### Community 96 - "Community 96"
+### Community 97 - "Community 97"
 Cohesion: 0.60
 Nodes (3): BuildFileRecord, BuildRecord, WindowsDevelopmentBuild
 
-### Community 97 - "Community 97"
+### Community 98 - "Community 98"
 Cohesion: 0.40
 Nodes (5): KuntiState, Dormant, Manifested, Pursuit, Resolved
 
 ## Knowledge Gaps
-- **316 isolated node(s):** `CameraLocked`, `CameraStatus`, `CanBeginLive`, `Viewers`, `Apps` (+311 more)
+- **316 isolated node(s):** `Rounded`, `CallActive`, `ContractReceived`, `CurrentApp`, `DialedContact` (+311 more)
   These have ≤1 connection - possible missing edges. (Counts symbols only; 571 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **29 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **28 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `AtmajaPhoneView` connect `Community 12` to `Community 0`, `Community 3`, `Community 4`, `Community 5`, `Community 8`, `Community 9`, `Community 10`, `Community 11`, `Community 13`, `Community 14`, `Community 15`, `Community 17`, `Community 19`, `Community 24`, `Community 27`, `Community 28`, `Community 29`, `Community 30`, `Community 33`, `Community 34`, `Community 35`, `Community 36`, `Community 37`, `Community 38`, `Community 42`, `Community 43`, `Community 46`, `Community 47`, `Community 48`, `Community 51`, `Community 66`, `Community 70`, `Community 71`, `Community 74`, `Community 76`, `Community 95`, `Community 98`?**
-  _High betweenness centrality (0.268) - this node is a cross-community bridge._
-- **What connects `CameraLocked`, `CameraStatus`, `CanBeginLive` to the rest of the system?**
+- **Why does `AtmajaPhoneView` connect `Community 3` to `Community 0`, `Community 4`, `Community 5`, `Community 8`, `Community 9`, `Community 10`, `Community 11`, `Community 13`, `Community 14`, `Community 15`, `Community 17`, `Community 19`, `Community 24`, `Community 26`, `Community 27`, `Community 28`, `Community 29`, `Community 32`, `Community 33`, `Community 34`, `Community 35`, `Community 36`, `Community 37`, `Community 38`, `Community 42`, `Community 43`, `Community 46`, `Community 47`, `Community 48`, `Community 51`, `Community 60`, `Community 67`, `Community 71`, `Community 72`, `Community 74`, `Community 76`, `Community 96`, `Community 99`?**
+  _High betweenness centrality (0.239) - this node is a cross-community bridge._
+- **What connects `Rounded`, `CallActive`, `ContractReceived` to the rest of the system?**
   _316 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.06940480334145492 - nodes in this community are weakly interconnected._
-- **Why does `AtmajaDirector` connect `Community 19` to `Community 0`, `Community 2`, `Community 3`, `Community 4`, `Community 5`, `Community 7`, `Community 10`, `Community 11`, `Community 12`, `Community 13`, `Community 15`, `Community 17`, `Community 21`, `Community 22`, `Community 25`, `Community 29`, `Community 32`, `Community 33`, `Community 37`, `Community 41`, `Community 42`, `Community 43`, `Community 47`, `Community 48`, `Community 49`, `Community 50`, `Community 55`, `Community 56`, `Community 64`, `Community 70`, `Community 71`, `Community 74`, `Community 85`, `Community 87`, `Community 98`?**
-  _High betweenness centrality (0.073) - this node is a cross-community bridge._
+  _Cohesion score 0.07023105100028176 - nodes in this community are weakly interconnected._
+- **Why does `Phase1Director` connect `Community 34` to `Community 0`, `Community 3`, `Community 4`, `Community 8`, `Community 10`, `Community 12`, `Community 13`, `Community 15`, `Community 21`, `Community 27`, `Community 33`, `Community 38`, `Community 44`, `Community 49`, `Community 53`, `Community 59`, `Community 67`, `Community 68`, `Community 69`, `Community 74`, `Community 89`?**
+  _High betweenness centrality (0.072) - this node is a cross-community bridge._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.05906553041434029 - nodes in this community are weakly interconnected._
-- **Why does `PlayerFootsteps` connect `Community 43` to `Community 0`, `Community 37`, `Community 71`, `Community 74`, `Community 10`, `Community 15`, `Community 79`, `Community 53`, `Community 24`, `Community 25`?**
-  _High betweenness centrality (0.065) - this node is a cross-community bridge._
+- **Why does `AtmajaDirector` connect `Community 19` to `Community 0`, `Community 2`, `Community 3`, `Community 4`, `Community 5`, `Community 7`, `Community 10`, `Community 11`, `Community 13`, `Community 15`, `Community 17`, `Community 21`, `Community 22`, `Community 25`, `Community 28`, `Community 31`, `Community 32`, `Community 36`, `Community 41`, `Community 42`, `Community 43`, `Community 47`, `Community 48`, `Community 49`, `Community 50`, `Community 55`, `Community 56`, `Community 65`, `Community 71`, `Community 72`, `Community 74`, `Community 85`, `Community 88`, `Community 99`?**
+  _High betweenness centrality (0.070) - this node is a cross-community bridge._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.05926251097453907 - nodes in this community are weakly interconnected._
