@@ -12,6 +12,45 @@ namespace LayarTerakhir.Editor.Tests
 {
     public sealed class PlayerFeelTests
     {
+        [Test] public void SourcedLandscapeGraspWrapsTheBezelAtRealHandsetScale()
+        {
+            var grasp=Object.Instantiate(Resources.Load<GameObject>("RakaCameraGrip"));
+            try
+            {
+                const float width=.165f,height=width/1.9f;
+                var skin=grasp.GetComponentsInChildren<MeshFilter>(true).Single(m=>m.name=="PhoneHand_VisibleSkin");
+                var material=skin.GetComponent<Renderer>().sharedMaterial;
+                var sourceMaterial=UnityEditor.AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/assets/Art/Characters/Materials/Raka_Skin.mat");
+                Assert.That(material.GetTexture("_BaseMap"),Is.SameAs(sourceMaterial.GetTexture("_BaseMap")),"FBX re-export must not leave a broken material override and white hands");
+                var corners=skin.sharedMesh.vertices.Select(skin.transform.TransformPoint).ToArray();
+                var surface=new List<Vector3>(corners);var triangles=skin.sharedMesh.triangles;
+                for(int t=0;t<triangles.Length;t+=3)
+                    for(int i=0;i<=4;i++)for(int j=0;j<=4-i;j++)
+                        surface.Add(corners[triangles[t]]*(i/4f)+corners[triangles[t+1]]*(j/4f)+corners[triangles[t+2]]*((4-i-j)/4f));
+                var vertices=surface.ToArray();
+                float penetration=vertices.Max(p=>Mathf.Min(p.x+width,-p.x,p.y+height/2,height/2-p.y,p.z+.004f,.004f-p.z));
+                Assert.That(penetration,Is.LessThan(.0015f),"The downloaded hand must wrap around the handset, including hidden skin");
+                float glassIntrusion=vertices.Where(p=>Mathf.Abs(p.x+width/2)<width*.43f&&Mathf.Abs(p.y)<height*.46f&&!(p.x>-width*.18f&&p.y<.01f)).Select(p=>Mathf.Max(0,.004f-p.z)).DefaultIfEmpty(0).Max();
+                Assert.That(glassIntrusion,Is.LessThan(.0015f),"Fingers must stay behind the camera glass, never float over its feed");
+                Transform Contact(string finger)=>grasp.GetComponentsInChildren<Transform>(true).Single(t=>t.name=="Grip"+finger+"Contact");
+                var wrist=grasp.GetComponentsInChildren<Transform>(true).Single(t=>t.name=="GripWrist");
+                Assert.That(wrist.position.z,Is.GreaterThan(.01f),"The wrist/palm must stay behind the handset, never cover its viewfinder");
+                foreach(string finger in new[]{"Thumb","Index","Middle","Ring","Pinky"})
+                {
+                    var point=Contact(finger).position;
+                    Assert.That(vertices.Min(v=>(v-point).magnitude),Is.LessThan(.0002f),finger+" contact guide must correspond to the actual exported skin");
+                    float dx=Mathf.Max(0,-width-point.x,point.x);
+                    float dy=Mathf.Max(0,Mathf.Abs(point.y)-height/2);
+                    float dz=Mathf.Max(0,Mathf.Abs(point.z)-.004f);
+                    Assert.That(new Vector3(dx,dy,dz).magnitude,Is.LessThan(.004f),finger+" must brace the landscape handset within source vertex tolerance");
+                    if(finger=="Thumb")Assert.That(Mathf.Abs(point.x),Is.LessThan(.004f),"The opposed thumb braces the side bezel");
+                    else Assert.That(point.z,Is.GreaterThan(0),finger+" must brace the rear face");
+                }
+                var clothedBounds=grasp.GetComponentsInChildren<MeshFilter>(true).SelectMany(m=>m.sharedMesh.vertices.Select(m.transform.TransformPoint));
+                Assert.That(clothedBounds.Min(p=>p.y),Is.LessThan(-.10f),"The existing clothed forearm exits below the hand");
+            }
+            finally{Object.DestroyImmediate(grasp);}
+        }
         [Test] public void CrouchCrossfadesKeepVisualFeetAboveTheSupportPlane()
         {
             var actor=Object.Instantiate(Resources.Load<GameObject>("RakaCharacter"));

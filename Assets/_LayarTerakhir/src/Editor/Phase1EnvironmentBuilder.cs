@@ -13,6 +13,12 @@ namespace LayarTerakhir.Editor
     {
         private static readonly Dictionary<string, Material> surfaceVariants = new Dictionary<string, Material>();
         private static Material parkingSurface;
+        [MenuItem("LayarTerakhir/Player/Rebuild Existing Phone Grasp")]
+        public static void RebuildPhoneGrasp()
+        {
+            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+            PrepareExistingPhoneGrasp();AssetDatabase.SaveAssets();
+        }
         private static void PrepareExistingPhoneGrasp()
         {
             string source=Art+"Characters/Models/PhoneCameraGrip.fbx";
@@ -20,6 +26,9 @@ namespace LayarTerakhir.Editor
             var correction=new GameObject("SourceUnits");correction.transform.SetParent(root.transform,false);
             var orientation=new GameObject("SourceBasis");orientation.transform.SetParent(correction.transform,false);
             var model=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(source));model.transform.SetParent(orientation.transform,false);
+            // Store explicit renderer/material bindings rather than stale nested
+            // FBX override IDs after a source mesh has been re-exported.
+            PrefabUtility.UnpackPrefabInstance(model,PrefabUnpackMode.Completely,InteractionMode.AutomatedAction);
             Transform Guide(string name)=>model.GetComponentsInChildren<Transform>().Single(t=>t.name==name);
             var origin=Guide("GripOrigin").position;
             var right=Guide("GripRight").position-origin;var up=Guide("GripUp").position-origin;var forward=Guide("GripForward").position-origin;
@@ -27,8 +36,14 @@ namespace LayarTerakhir.Editor
             var q=Quaternion.Inverse(Quaternion.LookRotation(forward.normalized,up.normalized));orientation.transform.localRotation=q;
             correction.transform.localScale=new Vector3(Mathf.Sign((q*right).x)*.1f/right.magnitude,.1f/up.magnitude,.1f/forward.magnitude);
             var surface=Plain("SourcedPhoneHand",Color.white,.25f);
-            surface.SetTexture("_BaseMap",AssetDatabase.LoadAssetAtPath<Texture2D>(Art+"Characters/Textures/PhoneCameraGripDiffuse.png"));surface.SetFloat("_Cull",0);
-            foreach(var renderer in model.GetComponentsInChildren<Renderer>(true))renderer.sharedMaterial=surface;
+            const string materials="Assets/_LayarTerakhir/assets/Art/Characters/Materials/";
+            var characterSurface=AssetDatabase.LoadAssetAtPath<Material>(materials+"Raka_Skin.mat");
+            surface.SetTexture("_BaseMap",characterSurface.GetTexture("_BaseMap"));
+            surface.SetTexture("_BumpMap",characterSurface.GetTexture("_BumpMap"));
+            surface.SetFloat("_BumpScale",.45f);if(surface.GetTexture("_BumpMap"))surface.EnableKeyword("_NORMALMAP");else surface.DisableKeyword("_NORMALMAP");surface.SetFloat("_Cull",0);
+            foreach(var renderer in model.GetComponentsInChildren<Renderer>(true))
+                renderer.sharedMaterial=renderer.name.Contains("Jacket")?AssetDatabase.LoadAssetAtPath<Material>(materials+"Raka_Clothes.mat"):
+                    renderer.name.Contains("TShirt")?AssetDatabase.LoadAssetAtPath<Material>(materials+"Raka_TShirt.mat"):surface;
             PrefabUtility.SaveAsPrefabAsset(root,"Assets/Resources/RakaCameraGrip.prefab");Object.DestroyImmediate(root);
         }
 

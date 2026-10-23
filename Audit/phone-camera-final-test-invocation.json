@@ -1,0 +1,30 @@
+{
+  "stage": "test",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-held-camera",
+    "-runTests",
+    "-testPlatform",
+    "EditMode",
+    "-testFilter",
+    "SourcedLandscapeGraspWrapsTheBezelAtRealHandsetScale|HybridCameraUsesRemappedInputAndPreservesChoiceDuringForcedCloseups|RightMouseRaisesAndLowersThePhoneCamera|ViewfinderFocusFillsPhoneAndRestoresChrome|OnePhoneARClockZeroBatteryAndCheckpointResume|UpperEvidenceUsesPhoneLensAndAcceptsTargetSurface|PhotoRitualRequiresThreeShotsThenNyonyaVanishes",
+    "-testResults",
+    "/root/Projects/LayarTerakhir-held-camera/Audit/golden-tests.xml",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-held-camera/Audit/golden-test.log"
+  ],
+  "startedUtc": "2026-10-23T16:54:05.918337+00:00",
+  "audioBackend": "Private clocked PulseAudio null sink; headless test audio device, no physical audio hardware",
+  "status": "Finished",
+  "endedUtc": "2026-10-23T16:55:51.145420+00:00",
+  "exitCode": 0,
+  "testsVerified": {
+    "total": 7,
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0
+  }
+}

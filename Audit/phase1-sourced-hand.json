@@ -1,34 +1,168 @@
 {
-  "sourcePage": "https://opengameart.org/content/fps-arms-rigged-only",
-  "author": "para / MakeHuman",
+  "source": "Assets/_LayarTerakhir/assets/Art/Characters/Models/RakaRigged.fbx",
+  "sourceSha256": "634addfcdc6260adf42576c60234bde012f1d829f7b36193b9d596c54bc875df",
+  "provenance": "Existing project CC0 MakeHuman Raka rig, skin and clothing; no new model artwork",
   "license": "CC0-1.0",
-  "archiveSha256": "31f6c7bd5caea8856c4aafca8461f38a3c8bfdd3d8f05c898e403b9475e54562",
-  "sourceSha256": "5c41f224f40525fa2f09c1168b3df638fc0b401ba5e59ae7fad6f88369fd6f82",
   "originalTopologyAndUVs": true,
-  "conversion": "Source rig posed; existing right forearm/hand faces extracted; no original hand/model artwork",
-  "gripStyle": "DreadOut landscape: palms brace the side edges, index over the top corner, thumb on the lower front corner, other fingers wrapped behind the set",
-  "fingerFlexDegrees": {
-    "2": [
-      15,
-      45,
-      45
+  "conversion": "Source rig posed with the existing geometry fitter; existing right forearm/hand faces extracted",
+  "handsetWidthMetres": 0.165,
+  "handsetAspect": 1.9,
+  "handsetThicknessMetres": 0.008,
+  "canonicalOrigin": "right handset edge",
+  "maximumSkinPenetrationMetres": 0.00014317152335455857,
+  "maximumGlassIntrusionMetres": 0,
+  "surfaceSamples": 45788,
+  "fingerSurfaceGapsMetres": {
+    "Index": 8.303067729915613e-05,
+    "Middle": 0.0016155305355787276,
+    "Ring": 0.00037836023047566406,
+    "Pinky": 0.0013208190947771072,
+    "Thumb": 0.00015792876726695854
+  },
+  "actualContactsMetres": {
+    "Index": [
+      -0.1155610904097557,
+      -0.043503597378730774,
+      0.003991030156612396
     ],
-    "3": [
-      -5,
-      0,
-      0
+    "Middle": [
+      -0.1502242386341095,
+      -0.012532261200249195,
+      0.005615530535578728
     ],
-    "4": [
-      -8,
-      0,
-      0
+    "Ring": [
+      -0.14274707436561584,
+      0.022754773497581482,
+      0.004378360230475664
     ],
-    "5": [
-      -10,
-      0,
-      0
+    "Pinky": [
+      -0.12879464030265808,
+      0.041014328598976135,
+      0.005320819094777107
+    ],
+    "Thumb": [
+      -0.00011562148574739695,
+      -0.0024360576644539833,
+      0.004107578657567501
     ]
   },
-  "triangles": 3636,
-  "thumbTipErrorMetres": 0.0004945284121863537
+  "triangles": 3947,
+  "fit": {
+    "fingerQuaternions": {
+      "Finger1_1_R": [
+        0.3550410568714142,
+        0.5741965770721436,
+        -0.36222392320632935,
+        -0.642680287361145
+      ],
+      "Finger1_2_R": [
+        0.7860461473464966,
+        -0.32995882630348206,
+        -5.9371814131736755e-08,
+        -0.5227415561676025
+      ],
+      "Finger1_3_R": [
+        0.8195338249206543,
+        -0.566332221031189,
+        5.122274160385132e-08,
+        -0.0873628556728363
+      ],
+      "Finger2_1_R": [
+        0.965126633644104,
+        0.2194034904241562,
+        4.682806320488453e-08,
+        0.14280347526073456
+      ],
+      "Finger2_2_R": [
+        0.9999954104423523,
+        -7.603432459291071e-05,
+        2.9075347685036945e-10,
+        0.003030056832358241
+      ],
+      "Finger2_3_R": [
+        0.707607626914978,
+        -0.25631245970726013,
+        -5.7945726439356804e-08,
+        0.6584796905517578
+      ],
+      "Finger3_1_R": [
+        0.9985789060592651,
+        -0.00759808998554945,
+        -5.791662260890007e-09,
+        -0.05275002494454384
+      ],
+      "Finger3_2_R": [
+        0.96116042137146,
+        -0.03471273556351662,
+        2.7765054255723953e-08,
+        0.2737986743450165
+      ],
+      "Finger3_3_R": [
+        0.7646681070327759,
+        -0.24562525749206543,
+        -6.00120984017849e-08,
+        0.5957775115966797
+      ],
+      "Finger4_1_R": [
+        0.9969876408576965,
+        0.004875365179032087,
+        3.6670826375484467e-09,
+        0.07740715891122818
+      ],
+      "Finger4_2_R": [
+        0.9892686009407043,
+        -0.025575950741767883,
+        1.57160684466362e-09,
+        0.14385172724723816
+      ],
+      "Finger4_3_R": [
+        0.7645204663276672,
+        -0.2023017555475235,
+        8.399365469813347e-08,
+        0.6120313405990601
+      ],
+      "Finger5_1_R": [
+        0.938230574131012,
+        -0.01162479817867279,
+        1.4202669262886047e-08,
+        0.3458155393600464
+      ],
+      "Finger5_2_R": [
+        0.9997286200523376,
+        -0.00658063217997551,
+        -2.5168152006926903e-09,
+        0.022347893565893173
+      ],
+      "Finger5_3_R": [
+        0.9938948750495911,
+        -0.046089671552181244,
+        -9.42964106798172e-09,
+        0.10024324804544449
+      ]
+    },
+    "phoneOffset": [
+      0.00838214215555627,
+      0.0011195930765877148,
+      -0.007041911229644802
+    ],
+    "maxPenetrationMetres": 0.0001999974520620479,
+    "fingerContactGapsMetres": [
+      0.0001578880464527059,
+      9.840983819858458e-05,
+      0.0016155402120897186,
+      0.00037847406342133,
+      0.0013209350704066697
+    ],
+    "maxGlassIntrusionMetres": 0.0,
+    "beforeMaxPenetrationMetres": 0.0037917237714422776,
+    "beforeFingerContactGapsMetres": [
+      0.005008764534180109,
+      0.002776579768632706,
+      0.01811173397358196,
+      0.03655326700509566,
+      0.05945008808873237
+    ],
+    "fittedVertices": 1873,
+    "fittedSurfaceSamples": 46501
+  }
 }

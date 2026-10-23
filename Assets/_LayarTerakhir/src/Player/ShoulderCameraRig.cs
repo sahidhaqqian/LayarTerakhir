@@ -88,6 +88,7 @@ namespace LayarTerakhir.Player
             if(authoredAvatar)authoredAvatar.RefreshOutfit(!UiFocus.Cinematic||CinematicVisible);
             if (UiFocus.Cinematic)
             {
+                avatarBounce.intensity=2.5f;
                 avatarBounce.enabled=CinematicVisible;
                 if(CinematicVisible)
                 {
@@ -110,8 +111,9 @@ namespace LayarTerakhir.Player
             if (IsFirstPerson)
             {
                 cameraDistance = -1;
-                avatarBounce.enabled=PhoneAimOverride;
-                avatarBounce.intensity=.65f;
+                var heldPhone=SmartphoneController.Instance;
+                avatarBounce.enabled=PhoneAimOverride||heldPhone&&heldPhone.isPhoneRaised&&heldPhone.hasSmartphoneInInventory;
+                avatarBounce.intensity=.25f;
                 CurrentDistance=0;
                 eye.transform.SetPositionAndRotation(pivot.position, pivot.rotation);
                 AnimateRaka();

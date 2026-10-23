@@ -88,7 +88,7 @@ if 'phase1' in args.source_record.lower():
   assert marker.encode() in phase1_data,marker
  for marker in ['Phase1Director','Phase1Threats','Phase1Navigator','IPhoneChapterContent','CampaignRouting','Phase1LightBudget']:
   assert marker.encode() in runtime,marker
- for filename in ['phase1-asset-credits.md','phase1-audio-credits.md','phase1-windows-playtest.md','phase1-environment-revision.md']:
+ for filename in ['phase1-asset-credits.md','phase1-audio-credits.md','phase1-windows-playtest.md','phase1-environment-revision.md','phone-camera-presentation-revision.md']:
   shutil.copy2(root/'Audit'/filename,out/filename)
  fixture={'schema_version':2,'chapter_id':1,'checkpoint_id':'PHASE1_CP1','battery':100,'sanity':100,
           'inventory':['SMARTPHONE_RAKA','JAKET_RAKA','MATABATIN_APK'], 'phase1':{'completed_event_ids':['P1_ARRIVAL'],'safe_anchor':'ARRIVAL'}}

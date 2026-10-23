@@ -78,6 +78,10 @@ Powered by Poly Haven. Thirty distinct newly downloaded models, excluding Prolog
 - [metal_stool_03](https://polyhaven.com/a/metal_stool_03) — CC0-1.0.
 - [potted_plant_04](https://polyhaven.com/a/potted_plant_04) — CC0-1.0.
 
-## First-person grasp source
+## Previous first-person grasp source (superseded)
 
-[FPS arms (rigged only)](https://opengameart.org/content/fps-arms-rigged-only) — para / MakeHuman, CC0-1.0. The downloaded mesh/UVs and source rig are reused for a phone grasp; posing, filtering the existing right hand/forearm, axis/unit conversion and mirroring are integration steps. No hand/model artwork was generated or modeled from scratch. Source checksum and pose conversion: `phase1-sourced-hand.json`.
+[FPS arms (rigged only)](https://opengameart.org/content/fps-arms-rigged-only) — para / MakeHuman, CC0-1.0. The downloaded mesh/UVs and source rig were used for an earlier phone grasp; posing, filtering the existing right hand/forearm, axis/unit conversion and mirroring are integration steps. No hand/model artwork was generated or modeled from scratch. This source was superseded after designer review.
+
+## Current first-person grasp
+
+The existing clothed Raka rig under `Art/Characters` supplies the current foreground hand, forearm and jacket/T-shirt cuff geometry. Its MakeHuman graphical sources are CC0, already documented in `makehuman-assets-CC0.txt`. Original topology and UVs are retained; the existing offline geometry fitter poses the rig for the landscape handset. No hand/model artwork was generated. Source checksum, conversion and sampled surface checks: `phase1-sourced-hand.json`.

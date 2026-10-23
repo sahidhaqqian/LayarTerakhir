@@ -117,7 +117,7 @@ Laporan pelaksanaan dan status penerimaan berada di [Audit/PHASE1_IMPLEMENTATION
 - Baterai awal Phase 1 **100%** hanya pada transisi babak setelah Prolog. Ini menggantikan arahan carry-over baterai awal sebelumnya. Tidak ada refill otomatis CP3/CP5, dan retry/Continue tetap snapshot.
 - Klik kanan **ditahan** untuk mengangkat kamera; lepas kembali ke keadaan/perspektif sebelumnya. Kamera fokus memperlihatkan HP horizontal dengan dua tangan dan bingkai fisik, berdasarkan referensi pengguna `r2:layarterakhir/Layarterakhir/dreadout-referensi/dread9.png`. App menu HP dialihkan ke Kamera selama tombol ditahan. Override hiding dan scripted pursuit tetap dipertahankan.
 - Tambahkan minimal **30 model prop baru yang berbeda** dari sumber internet berlisensi, di luar modul bangunan/tekstur/duplikasi. Model harus benar-benar ditempatkan sesuai fungsi ruang. Sumber/hash: `Audit/phase1-additional-prop-sources.json`; posisi/penopang/ukuran: `Audit/phase1-additional-prop-placement.json`. Jalur koridor, tangga, petunjuk, keris, charging dan hiding harus tetap dapat dipakai.
-- Gunakan aset yang sudah ada/unduhan. Kedua grasp memakai model tangan rigged unduhan CC0 (para/MakeHuman), dengan pose dan konversi impor; tidak membuat model/tekstur tangan sendiri. Gambar DreadOut hanya referensi, tidak dimasukkan ke aset game.
+- Gunakan aset yang sudah ada/unduhan. Kedua grasp FP memakai mesh tangan dan cuff karakter Raka berlisensi CC0 yang sudah ada, dengan pose horizontal melalui fitter geometri yang sudah tersedia dan konversi impor; tidak membuat model/tekstur tangan sendiri. Gambar DreadOut hanya referensi, tidak dimasukkan ke aset game.
 
 ## 1. Naskah enam adegan (KANON; bagian yang diubah diberi catatan audit)
 

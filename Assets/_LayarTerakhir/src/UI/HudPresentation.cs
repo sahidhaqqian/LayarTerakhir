@@ -26,6 +26,16 @@ namespace LayarTerakhir.UI
         private string lastSubtitle;
         private bool lastNarrow;
         private int lastScreenWidth;
+        private bool viewfinderFraming;
+        public void SetViewfinderFraming(bool held)
+        {
+            if(viewfinderFraming==held||!toastGroup)return;
+            viewfinderFraming=held;
+            var rect=toastGroup.GetComponent<RectTransform>();
+            rect.anchorMin=rect.anchorMax=held?new Vector2(.5f,1):Vector2.zero;
+            rect.pivot=held?new Vector2(.5f,1):Vector2.zero;
+            rect.anchoredPosition=held?new Vector2(0,-16):new Vector2(54,190);
+        }
         private void Start()
         {
             audioRig=FindFirstObjectByType<KosSceneAudio>();

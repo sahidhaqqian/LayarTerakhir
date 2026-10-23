@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="7" result="Passed" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 16:55:42Z" end-time="2026-10-23 16:55:43Z" duration="1.7526186">
+  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="150" result="Passed" start-time="2026-10-23 16:55:42Z" end-time="2026-10-23 16:55:43Z" duration="1.752619" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1175" name="Assembly-CSharp-Editor.dll" fullname="/root/Projects/LayarTerakhir-held-camera/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="150" result="Passed" start-time="2026-10-23 16:55:42Z" end-time="2026-10-23 16:55:43Z" duration="1.663764" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="153309" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1176" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="150" result="Passed" start-time="2026-10-23 16:55:42Z" end-time="2026-10-23 16:55:43Z" duration="1.660839" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1177" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="150" result="Passed" start-time="2026-10-23 16:55:42Z" end-time="2026-10-23 16:55:43Z" duration="1.659356" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1178" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="150" result="Passed" start-time="2026-10-23 16:55:42Z" end-time="2026-10-23 16:55:43Z" duration="1.657878" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1001" name="AtmajaPlayTests" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" testcasecount="32" result="Passed" start-time="2026-10-23 16:55:42Z" end-time="2026-10-23 16:55:43Z" duration="1.579961" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1016" name="HybridCameraUsesRemappedInputAndPreservesChoiceDuringForcedCloseups" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.HybridCameraUsesRemappedInputAndPreservesChoiceDuringForcedCloseups" methodname="HybridCameraUsesRemappedInputAndPreservesChoiceDuringForcedCloseups" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1504252282" result="Passed" start-time="2026-10-23 16:54:26Z" end-time="2026-10-23 16:54:33Z" duration="7.440922" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+              </test-case>
+              <test-case id="1003" name="OnePhoneARClockZeroBatteryAndCheckpointResume" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.OnePhoneARClockZeroBatteryAndCheckpointResume" methodname="OnePhoneARClockZeroBatteryAndCheckpointResume" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1554606834" result="Passed" start-time="2026-10-23 16:54:33Z" end-time="2026-10-23 16:55:00Z" duration="27.027574" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+              </test-case>
+              <test-case id="1014" name="PhotoRitualRequiresThreeShotsThenNyonyaVanishes" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.PhotoRitualRequiresThreeShotsThenNyonyaVanishes" methodname="PhotoRitualRequiresThreeShotsThenNyonyaVanishes" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="2075747068" result="Passed" start-time="2026-10-23 16:55:00Z" end-time="2026-10-23 16:55:21Z" duration="20.085827" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+              </test-case>
+              <test-case id="1028" name="RightMouseRaisesAndLowersThePhoneCamera" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.RightMouseRaisesAndLowersThePhoneCamera" methodname="RightMouseRaisesAndLowersThePhoneCamera" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1465015692" result="Passed" start-time="2026-10-23 16:55:21Z" end-time="2026-10-23 16:55:29Z" duration="8.519437" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+              </test-case>
+              <test-case id="1007" name="UpperEvidenceUsesPhoneLensAndAcceptsTargetSurface" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.UpperEvidenceUsesPhoneLensAndAcceptsTargetSurface" methodname="UpperEvidenceUsesPhoneLensAndAcceptsTargetSurface" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="2064322192" result="Passed" start-time="2026-10-23 16:55:29Z" end-time="2026-10-23 16:55:36Z" duration="6.877414" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+              </test-case>
+              <test-case id="1026" name="ViewfinderFocusFillsPhoneAndRestoresChrome" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.ViewfinderFocusFillsPhoneAndRestoresChrome" methodname="ViewfinderFocusFillsPhoneAndRestoresChrome" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1303452640" result="Passed" start-time="2026-10-23 16:55:36Z" end-time="2026-10-23 16:55:43Z" duration="7.343211" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1145" name="PlayerFeelTests" fullname="LayarTerakhir.Editor.Tests.PlayerFeelTests" classname="LayarTerakhir.Editor.Tests.PlayerFeelTests" runstate="Runnable" testcasecount="20" result="Passed" start-time="2026-10-23 16:55:43Z" end-time="2026-10-23 16:55:43Z" duration="0.069640" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1146" name="SourcedLandscapeGraspWrapsTheBezelAtRealHandsetScale" fullname="LayarTerakhir.Editor.Tests.PlayerFeelTests.SourcedLandscapeGraspWrapsTheBezelAtRealHandsetScale" methodname="SourcedLandscapeGraspWrapsTheBezelAtRealHandsetScale" classname="LayarTerakhir.Editor.Tests.PlayerFeelTests" runstate="Runnable" seed="213939296" result="Passed" start-time="2026-10-23 16:55:43Z" end-time="2026-10-23 16:55:43Z" duration="0.064245" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: /root/.config/unity3d/DefaultCompany/LayarTerakhir/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

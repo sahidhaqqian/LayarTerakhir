@@ -130,8 +130,18 @@ namespace LayarTerakhir.Editor.Tests
             InputSystem.QueueStateEvent(mouse,new MouseState{buttons=2});yield return null;yield return null;
             Assert.That(phone.isPhoneRaised,Is.True,"Right mouse must raise the phone immediately");
             Assert.That(view.IsCameraApp,Is.True,"Raising the camera must not require Tab or an app tap");
+            var aimRect=view.Panel.GetComponent<RectTransform>();
+            Assert.That(aimRect.rect.width/aimRect.rect.height,Is.EqualTo(AtmajaPhoneView.LandscapeHandsetAspect).Within(.03f),"A stowed camera rises horizontally without a portrait pop-in");
             yield return new WaitForSecondsRealtime(.3f);Assert.That(view.ViewfinderActive,Is.True,"Focus remains active while the button is held");
             Assert.That(view.FocusHandsVisible,Is.True,"The held landscape camera has two existing physical grasps");
+            var right=view.playerCamera.transform.Find("RakaPhoneRightGrip");var left=view.playerCamera.transform.Find("RakaPhoneLeftGrip");
+            Assert.That(right.GetComponentsInChildren<Renderer>(true).All(r=>r.renderingLayerMask==ShoulderCameraRig.AvatarRenderingLayer),Is.True,"World/phone lights must not overexpose the foreground hand material");
+            Assert.That(Vector3.Distance(right.position,left.position),Is.EqualTo(AtmajaPhoneView.LandscapeHandsetWidth).Within(.003f),"The landscape handset is 165mm wide, not a portrait height stretched into a tablet");
+            var gripCamera=view.playerCamera.transform.Find("RakaPhoneGripCamera").GetComponent<Camera>();
+            var projected=gripCamera.WorldToViewportPoint(right.position);
+            Assert.That(projected.x,Is.EqualTo(aimRect.anchorMax.x).Within(.006f),"The separate hand projection stays on the handset edge");
+            Assert.That(projected.z,Is.GreaterThan(.25f),"Keep the eye outside the source forearm/sleeve envelope");
+            Assert.That(view.FeedCamera.fieldOfView,Is.EqualTo(70),"Viewmodel framing must not change the gameplay lens");
             Assert.That(d.player.GetComponent<ShoulderCameraRig>().PhoneAimOverride,Is.True);
             view.Apps.Open(PhoneApp.Inventory);yield return null;yield return null;
             Assert.That(view.IsCameraApp,Is.True,"An app menu cannot displace a held camera");
@@ -144,6 +154,15 @@ namespace LayarTerakhir.Editor.Tests
             InputSystem.QueueStateEvent(mouse,new MouseState{buttons=0});yield return null;yield return null;
             Assert.That(view.ViewfinderActive,Is.False,"Releasing aim never leaves a toggled viewfinder");
             Assert.That(phone.isPhoneRaised,Is.True);Assert.That(view.Apps.CurrentApp,Is.EqualTo(PhoneApp.Journal),"Releasing aim restores the previous handset state");
+            var rig=d.player.GetComponent<ShoulderCameraRig>();rig.SetPerspective(PlayerPerspective.FirstPerson);
+            yield return new WaitForSecondsRealtime(.3f);
+            var portraitSkin=view.playerCamera.transform.Find("ExistingHandsetDepthMask").GetComponentsInChildren<Renderer>(true).Single(r=>r.name=="PhoneHand_VisibleSkin");
+            Assert.That(portraitSkin.enabled,Is.True,"First-person apps retain the existing validated portrait grasp");
+            InputSystem.QueueStateEvent(mouse,new MouseState{buttons=2});yield return new WaitForSecondsRealtime(.3f);
+            Assert.That(view.FocusHandsVisible,Is.True);Assert.That(portraitSkin.enabled,Is.False,"Portrait and landscape skin must not overlap");
+            InputSystem.QueueStateEvent(mouse,new MouseState());yield return new WaitForSecondsRealtime(.3f);
+            Assert.That(rig.SelectedPerspective,Is.EqualTo(PlayerPerspective.FirstPerson),"Aim release preserves the chosen first-person view too");
+            Assert.That(view.Apps.CurrentApp,Is.EqualTo(PhoneApp.Journal));Assert.That(portraitSkin.enabled,Is.True);
             Assert.That(GameInputConfig.Instance.GetKeyForAction(GameAction.Vault),Is.EqualTo(KeyCode.Space),"The window escape stays on Space");
         }
         private IEnumerator ChatIntensity()

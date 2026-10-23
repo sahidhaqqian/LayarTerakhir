@@ -1,0 +1,13 @@
+{
+  "verifiedUtc": "2026-10-23T16:57:29.375260+00:00",
+  "uniqueCases": 61,
+  "passed": 61,
+  "failed": 0,
+  "method": "Two-run evidence: 61-case regression, then seven affected geometry/camera/AR/photo/checkpoint cases rerun after final hand/lighting changes. 54 unchanged cases retain the earlier regression evidence. Not a fresh single full-suite pass.",
+  "sources": [
+    "Audit/phone-camera-regression-tests.xml",
+    "Audit/phone-camera-final-tests.xml"
+  ],
+  "nativeReceipt": "Audit/Visuals/Phone-Camera-Clothed-Final/player-audit.json",
+  "windowsRuntimeTested": false
+}

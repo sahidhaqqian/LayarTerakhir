@@ -38,8 +38,15 @@ namespace LayarTerakhir.Prolog
         private PhoneApp appBeforeFocus;
         private Image[] signalBars;
         private FirstPersonController owner;
+        private HudPresentation hudPresentation;
         private RectTransform handsetRect;
         private float raiseAmount,viewfinderBlend;
+        // A stowed handset rises and lowers in its aiming pose. It must not
+        // first appear as a portrait app panel and then stretch across the eye.
+        private bool landscapeFromStowed;
+        public const float LandscapeHandsetWidth=.165f;
+        public const float LandscapeHandsetAspect=1.9f;
+        private const float HandPresentationFieldOfView=28f;
         private Text chapterReticle;private bool chapterTargetVisible;private Vector3 chapterTargetPoint;
         private GameObject firstPersonHand,supportHand;
         private Renderer[] handRenderers,supportRenderers;
@@ -49,6 +56,7 @@ namespace LayarTerakhir.Prolog
         private RenderTexture gripTexture;
         private RawImage gripOverlay;
         private GameObject gripOccluder;
+        private Renderer[] portraitRenderers;
         private Material gripDepthMaterial;
         private Vector3 depthMaskScale;
         public bool FocusHandsVisible=>firstPersonHand&&supportHand&&firstPersonHand.activeSelf&&supportHand.activeSelf;
@@ -95,7 +103,7 @@ namespace LayarTerakhir.Prolog
             director=director?director:FindFirstObjectByType<AtmajaDirector>();
             owner=playerCamera.GetComponentInParent<FirstPersonController>();
             if(!feedMaterial){var profile=PresentationProfile.Load();if(profile)feedMaterial=profile.phoneFeedMaterial;}
-            UiWidgets.Font=Hud.GetComponent<HudPresentation>().style.bodyFont;
+            hudPresentation=Hud.GetComponent<HudPresentation>();UiWidgets.Font=hudPresentation.style.bodyFont;
             var canvas=Hud.GetComponentInChildren<Canvas>().transform;
             Panel=PhoneSkin.Card("RakaSmartphone",canvas,new Vector2(.772f,.045f),new Vector2(.973f,.758f),new Color(.035f,.04f,.045f));
             handsetInput=Panel.AddComponent<CanvasGroup>();
@@ -125,23 +133,25 @@ namespace LayarTerakhir.Prolog
                 firstPersonHand.name="RakaPhoneRightGrip";handScale=firstPersonHand.transform.localScale;
                 handRenderers=firstPersonHand.GetComponentsInChildren<Renderer>(true);
                 foreach(var part in firstPersonHand.GetComponentsInChildren<Transform>(true))part.gameObject.layer=GripLayer;
-                foreach(var r in handRenderers){r.shadowCastingMode=ShadowCastingMode.Off;r.renderingLayerMask|=ShoulderCameraRig.AvatarRenderingLayer;}
+                foreach(var r in handRenderers){r.shadowCastingMode=ShadowCastingMode.Off;r.renderingLayerMask=ShoulderCameraRig.AvatarRenderingLayer;}
                 firstPersonHand.SetActive(false);
                 // Mirror the existing grasp by transform only; no authored/exported hand asset.
                 supportHand=Instantiate(handPrefab,playerCamera.transform,false);supportHand.name="RakaPhoneLeftGrip";
                 supportScale=Vector3.Scale(supportHand.transform.localScale,new Vector3(-1,1,1));supportHand.transform.localScale=supportScale;
                 supportRenderers=supportHand.GetComponentsInChildren<Renderer>(true);
                 foreach(var part in supportHand.GetComponentsInChildren<Transform>(true))part.gameObject.layer=GripLayer;
-                foreach(var r in supportRenderers){r.shadowCastingMode=ShadowCastingMode.Off;r.renderingLayerMask|=ShoulderCameraRig.AvatarRenderingLayer;}
+                foreach(var r in supportRenderers){r.shadowCastingMode=ShadowCastingMode.Off;r.renderingLayerMask=ShoulderCameraRig.AvatarRenderingLayer;}
                 supportHand.SetActive(false);
                 // The existing handset supplies depth so fingers behind its body
                 // stay hidden, while front fingers can cover the UI bezel naturally.
                 gripOccluder=Instantiate(Resources.Load<GameObject>("RakaPhoneHand"),playerCamera.transform,false);gripOccluder.name="ExistingHandsetDepthMask";
                 depthMaskScale=gripOccluder.transform.localScale;
+                portraitRenderers=gripOccluder.GetComponentsInChildren<Renderer>(true);
                 gripDepthMaterial=new Material(Resources.Load<Shader>("PhoneGripDepth"));
                 foreach(var part in gripOccluder.GetComponentsInChildren<Transform>(true))part.gameObject.layer=GripLayer;
-                foreach(var renderer in gripOccluder.GetComponentsInChildren<Renderer>(true))
+                foreach(var renderer in portraitRenderers)
                 {
+                    renderer.renderingLayerMask=ShoulderCameraRig.AvatarRenderingLayer;
                     renderer.enabled=renderer.name.Contains("HandheldPhone");renderer.shadowCastingMode=ShadowCastingMode.Off;
                     if(renderer.enabled)renderer.sharedMaterial=gripDepthMaterial;
                 }
@@ -150,11 +160,12 @@ namespace LayarTerakhir.Prolog
                     if(renderer.name.Contains("VisibleSkin"))
                     {
                         var material=new Material(renderer.sharedMaterial);material.name="PhoneGripSurface_Runtime";
-                        material.SetColor("_BaseColor",new Color(.86f,.72f,.62f));material.SetFloat("_Smoothness",.22f);material.SetFloat("_BumpScale",.45f);
+                        material.SetFloat("_Smoothness",.22f);material.SetFloat("_BumpScale",.45f);
                         renderer.sharedMaterial=material;handMaterials.Add(material);
                     }
                 var gripView=new GameObject("RakaPhoneGripCamera",typeof(Camera));gripView.transform.SetParent(playerCamera.transform,false);
                 gripCamera=gripView.GetComponent<Camera>();gripCamera.CopyFrom(playerCamera);gripCamera.cullingMask=1<<GripLayer;
+                gripCamera.fieldOfView=HandPresentationFieldOfView;
                 gripCamera.clearFlags=CameraClearFlags.SolidColor;gripCamera.backgroundColor=Color.clear;gripCamera.allowHDR=false;
                 gripCamera.nearClipPlane=.035f;gripCamera.farClipPlane=1.5f;gripCamera.depth=playerCamera.depth-.2f;
                 gripCamera.GetUniversalAdditionalCameraData().renderPostProcessing=false;
@@ -298,6 +309,7 @@ namespace LayarTerakhir.Prolog
             if(!cameraHeldRaise)
             {
                 phoneRaisedBeforeFocus=Phone.isPhoneRaised;appBeforeFocus=Apps.CurrentApp;
+                landscapeFromStowed=!phoneRaisedBeforeFocus;
                 cameraHeldRaise=true;
             }
             if(!Phone.isPhoneRaised){Phone.isPhoneRaised=true;Phone.SyncVisualState();}
@@ -312,13 +324,15 @@ namespace LayarTerakhir.Prolog
             bool allowed=(!Hud.IsModalOpen||(Hud.IsDocumentOpen&&!UiFocus.HardModal))&&(!UiFocus.Cinematic||CinematicHandsetVisible);
             bool active=Phone.isPhoneRaised&&allowed;
             raiseAmount=allowed?Mathf.MoveTowards(raiseAmount,active?1:0,Time.unscaledDeltaTime/.24f):0;
+            if(raiseAmount<=0)landscapeFromStowed=false;
+            bool loweringAim=landscapeFromStowed&&!active&&raiseAmount>0;
             Panel.SetActive(raiseAmount>0);bool screen=raiseAmount>0&&Phone.isScreenOn&&Phone.batteryPercent>0;
-            bool canFocus=screen&&IsCameraApp&&raiseAmount>.92f&&!Hud.IsModalOpen&&!UiFocus.HardModal&&!UiFocus.Menu&&!UiFocus.Cinematic&&(focusOverride||cameraHeldRaise&&LensFocusHeld());
+            bool canFocus=screen&&IsCameraApp&&!Hud.IsModalOpen&&!UiFocus.HardModal&&!UiFocus.Menu&&!UiFocus.Cinematic&&(focusOverride||cameraHeldRaise&&LensFocusHeld());
             ViewfinderActive=canFocus;
             viewfinderBlend=Mathf.MoveTowards(viewfinderBlend,canFocus?1:0,Time.unscaledDeltaTime/.18f);
             var perspective=owner?owner.GetComponent<ShoulderCameraRig>():null;
-            if(perspective){bool changed=perspective.PhoneAimOverride!=(viewfinderBlend>.01f);perspective.PhoneAimOverride=viewfinderBlend>.01f;if(changed)perspective.RefreshCameraPose();}
-            PresentFeed(ViewfinderActive);
+            if(perspective){bool aimPose=viewfinderBlend>.01f||loweringAim;bool changed=perspective.PhoneAimOverride!=aimPose;perspective.PhoneAimOverride=aimPose;if(changed)perspective.RefreshCameraPose();}
+            PresentFeed(ViewfinderActive||loweringAim);
             if(chapterReticle)
             {
                 Vector3 v=FeedCamera.WorldToViewportPoint(chapterTargetPoint);
@@ -327,14 +341,18 @@ namespace LayarTerakhir.Prolog
                 if(targetOnScreen){chapterReticle.rectTransform.anchorMin=chapterReticle.rectTransform.anchorMax=new Vector2(v.x,v.y);chapterReticle.rectTransform.anchoredPosition=Vector2.zero;}
             }
             float eased=raiseAmount*raiseAmount*(3-2*raiseAmount);
-            if(viewfinderBlend>.001f)
+            if(viewfinderBlend>.001f||landscapeFromStowed)
             {
-                // DreadOut R2 reference: landscape handset framed by two physical grasps.
-                float halfHeight=Mathf.Min(.34f,.64f*Screen.width/Mathf.Max(1,Screen.height)/1.9f*.5f);
-                float t=viewfinderBlend*viewfinderBlend*(3-2*viewfinderBlend);
-                handsetRect.anchorMin=Vector2.Lerp(panelMin,new Vector2(.18f,.5f-halfHeight),t);
-                handsetRect.anchorMax=Vector2.Lerp(panelMax,new Vector2(.82f,.5f+halfHeight),t);
-                handsetRect.anchoredPosition=new Vector2(0,-35*(1-t));handsetRect.localRotation=Quaternion.Euler(0,0,-4*(1-t));
+                float screenAspect=(float)Screen.width/Mathf.Max(1,Screen.height);
+                float width=Mathf.Min(.62f,.68f*LandscapeHandsetAspect/screenAspect);
+                float halfHeight=width*screenAspect/LandscapeHandsetAspect*.5f;
+                float t=landscapeFromStowed?1:viewfinderBlend*viewfinderBlend*(3-2*viewfinderBlend);
+                handsetRect.anchorMin=Vector2.Lerp(panelMin,new Vector2(.5f-width*.5f,.47f-halfHeight),t);
+                handsetRect.anchorMax=Vector2.Lerp(panelMax,new Vector2(.5f+width*.5f,.47f+halfHeight),t);
+                float sway=owner?Mathf.Clamp01(owner.PlanarVelocity.magnitude/4.2f):0;
+                handsetRect.anchoredPosition=new Vector2(Mathf.Sin(Time.time*3.5f)*sway*1.3f,
+                    landscapeFromStowed?-(Screen.height*.75f)*(1-eased):-35*(1-t));
+                handsetRect.localRotation=Quaternion.Euler(0,0,landscapeFromStowed?-5*(1-eased):-4*(1-t));
             }
             else
             {
@@ -344,10 +362,12 @@ namespace LayarTerakhir.Prolog
                 handsetRect.localRotation=Quaternion.Euler(0,0,(1-eased)*-7+Mathf.Sin(Time.time*3.5f)*sway*.35f);
             }
             handsetInput.interactable=active&&!Hud.IsModalOpen&&!ViewfinderActive;handsetInput.blocksRaycasts=active&&!Hud.IsModalOpen&&!ViewfinderActive;
-            cameraRoot.SetActive(screen&&IsCameraApp);Apps.SetScreenVisible(screen);FeedCamera.enabled=screen&&IsCameraApp&&HasGraphicsDevice;cameraImage.enabled=FeedCamera.enabled;
+            cameraRoot.SetActive(screen&&(IsCameraApp||loweringAim));Apps.SetScreenVisible(screen&&!loweringAim);FeedCamera.enabled=screen&&(IsCameraApp||loweringAim)&&HasGraphicsDevice;cameraImage.enabled=FeedCamera.enabled;
             var cameraRect=cameraRoot.GetComponent<RectTransform>();
-            cameraRect.anchorMin=ViewfinderActive?new Vector2(.07f,.04f):cameraMin;
-            cameraRect.anchorMax=ViewfinderActive?new Vector2(.93f,.96f):cameraMax;
+            bool landscapeFeed=ViewfinderActive||loweringAim;
+            if(hudPresentation)hudPresentation.SetViewfinderFraming(landscapeFeed);
+            cameraRect.anchorMin=landscapeFeed?new Vector2(.07f,.04f):cameraMin;
+            cameraRect.anchorMax=landscapeFeed?new Vector2(.93f,.96f):cameraMax;
             cameraRect.offsetMin=cameraRect.offsetMax=Vector2.zero;
             if(Phone.currentScanMode!=lastMode||Phone.isSelfieCamera!=lastSelfie)
             {
@@ -362,10 +382,10 @@ namespace LayarTerakhir.Prolog
                     }
                 }
             }
-            bool thumbVisible=screen&&Time.unscaledTime<thumbUntil;
+            bool thumbVisible=screen&&!landscapeFeed&&Time.unscaledTime<thumbUntil;
             if(thumb){thumb.gameObject.SetActive(thumbVisible);if(thumbVisible)thumb.rectTransform.anchoredPosition=new Vector2(0,-12f*Mathf.Clamp01((thumbUntil-Time.unscaledTime)/.22f));}
-            header.enabled=!ViewfinderActive;mode.enabled=!ViewfinderActive;
-            homeButton.gameObject.SetActive(screen&&!UiFocus.Cinematic&&!Hud.IsModalOpen&&!ViewfinderActive);stowButton.gameObject.SetActive(screen&&!UiFocus.Cinematic&&!Hud.IsModalOpen&&!ViewfinderActive);
+            header.enabled=!landscapeFeed;mode.enabled=!landscapeFeed;
+            homeButton.gameObject.SetActive(screen&&!UiFocus.Cinematic&&!Hud.IsModalOpen&&!landscapeFeed);stowButton.gameObject.SetActive(screen&&!UiFocus.Cinematic&&!Hud.IsModalOpen&&!landscapeFeed);
             var stowBinding=GameInputConfig.Instance?GameInputConfig.Instance.togglePhoneKey:KeyCode.Tab;
             if(stowBinding!=lastStowBinding){lastStowBinding=stowBinding;stowLabel.text="SIMPAN  ["+stowBinding.ToString().ToUpperInvariant()+"]";}
             FeedCamera.cullingMask=(playerCamera.cullingMask|((Phone.currentScanMode==ScanVisualMode.AR)?1<<ARLayer:0))&~(1<<ShoulderCameraRig.AvatarLayer);
@@ -380,7 +400,7 @@ namespace LayarTerakhir.Prolog
                 float threat=disturbance;
                 if(director&&director.basement&&director.basement.IsHunting)threat=1;
                 float pulse=.86f+.14f*Mathf.Sin(Time.unscaledTime*17f);
-                focusVignette.color=new Color(1,1,1,ViewfinderActive?Mathf.Clamp01(.09f+threat*.56f)*pulse*(GameShell.ReducedGlitch?.4f:1):0);
+                focusVignette.color=new Color(1,1,1,ViewfinderActive?Mathf.Clamp01(threat*.56f)*pulse*(GameShell.ReducedGlitch?.4f:1):0);
             }
             float signal=disturbance*(GameShell.ReducedGlitch?.15f:1);
             for(int i=0;i<signalBars.Length;i++)
@@ -388,7 +408,7 @@ namespace LayarTerakhir.Prolog
             if(shutter)shutter.color=new Color(1,1,1,Mathf.Clamp01((flashUntil-Time.unscaledTime)/.22f)*(GameShell.ReducedGlitch?.45f:1));
             header.text=!screen?"":Phone.isBroadcastConnected?$"LIVE • {(Chapter!=null?Chapter.Viewers:director?director.Viewers:14):N0}   |   {Phone.batteryPercent:0}%":(Chapter!=null?"23:58":director?"23:52":"23:46")+$"    LTE    {Phone.batteryPercent:0}%";
             mode.text=screen&&IsCameraApp?(Chapter!=null?Chapter.CameraStatus:(Phone.currentScanMode==ScanVisualMode.AR?"MATA BATIN / AR":"KAMERA")+$" • {Phone.batteryPercent:0}%\n[Z] Aplikasi   [M] Peta"):"";
-            LiveButton.gameObject.SetActive(screen&&IsCameraApp&&(director||Chapter!=null)&&!Phone.isBroadcastConnected&&!ViewfinderActive);LiveButton.interactable=Chapter!=null?Chapter.CanBeginLive:director&&director.CanBeginLive&&!director.Busy&&!Hud.IsModalOpen;
+            LiveButton.gameObject.SetActive(screen&&IsCameraApp&&(director||Chapter!=null)&&!Phone.isBroadcastConnected&&!landscapeFeed);LiveButton.interactable=Chapter!=null?Chapter.CanBeginLive:director&&director.CanBeginLive&&!director.Busy&&!Hud.IsModalOpen;
             UiFocus.Phone=active&&screen&&!Hud.IsModalOpen&&(!IsCameraApp||((director||Chapter!=null)&&!Phone.isBroadcastConnected));
             if(owner&&!UiFocus.HardModal&&!Hud.IsModalOpen&&!UiFocus.Cinematic)owner.SetCursorLock(!UiFocus.Phone||FirstPersonController.PhoneLookHeld);
             walkHint.enabled=UiFocus.Phone&&!UiFocus.Cinematic&&!Hud.IsModalOpen&&!ViewfinderActive;
@@ -402,13 +422,17 @@ namespace LayarTerakhir.Prolog
             if(!firstPersonHand)return;
             var rig=owner?owner.GetComponent<ShoulderCameraRig>():null;
             bool visible=Panel.activeSelf&&rig&&rig.IsFirstPerson&&!UiFocus.Cinematic;
-            bool both=visible&&viewfinderBlend>.01f;
-            firstPersonHand.SetActive(visible);if(supportHand)supportHand.SetActive(both);
+            bool both=visible&&(viewfinderBlend>.01f||landscapeFromStowed);
+            firstPersonHand.SetActive(both);if(supportHand)supportHand.SetActive(both);
             if(gripOccluder)gripOccluder.SetActive(visible);
-            if(gripCamera){gripCamera.enabled=visible&&HasGraphicsDevice;gripCamera.fieldOfView=playerCamera.fieldOfView;}
+            if(gripCamera){gripCamera.enabled=visible&&HasGraphicsDevice;gripCamera.fieldOfView=HandPresentationFieldOfView;}
             if(gripOverlay)gripOverlay.enabled=visible&&HasGraphicsDevice;
             if(!visible)return;
             bool jacket=CampaignState.Instance&&CampaignState.Instance.HasInventoryItem("JAKET_RAKA");
+            // Keep the previously validated portrait grasp for apps/documents.
+            // The landscape source pose cannot wrap a handset twice as tall.
+            if(portraitRenderers!=null)foreach(var r in portraitRenderers)
+                r.enabled=r.name.Contains("HandheldPhone")||!both&&!r.name.Contains("HandsetScreen")&&(r.name.Contains("Jacket")?jacket:!r.name.Contains("TShirt")||!jacket);
             foreach(var r in handRenderers)
                 r.enabled=(!r.name.Contains("HandheldPhone")&&!r.name.Contains("HandsetScreen"))&&(r.name.Contains("Jacket")?jacket:!r.name.Contains("TShirt")||!jacket);
             if(supportRenderers!=null)foreach(var r in supportRenderers)r.enabled=(!r.name.Contains("HandheldPhone")&&!r.name.Contains("HandsetScreen"))&&(r.name.Contains("Jacket")?jacket:!r.name.Contains("TShirt")||!jacket);
@@ -416,19 +440,25 @@ namespace LayarTerakhir.Prolog
             Vector2 bottom=RectTransformUtility.WorldToScreenPoint(null,panelCorners[0]);
             Vector2 top=RectTransformUtility.WorldToScreenPoint(null,panelCorners[2]);
             Vector2 centre=(bottom+top)*.5f;
-            float depth=.165f/(Mathf.Max(.08f,(top.y-bottom.y)/Screen.height)*2*Mathf.Tan(playerCamera.fieldOfView*Mathf.Deg2Rad*.5f));
-            depth=Mathf.Max(playerCamera.nearClipPlane+.07f,depth);
-            Vector3 phoneCentre=playerCamera.ScreenToWorldPoint(new Vector3(centre.x,centre.y,depth));
-            float physicalWidth=.165f*(top.x-bottom.x)/Mathf.Max(1,top.y-bottom.y);
-            float gripOffset=both?Mathf.Max(0,(physicalWidth-.078f)*.5f)*viewfinderBlend:0;
-            firstPersonHand.transform.position=phoneCentre+playerCamera.transform.right*gripOffset;
+            float pixelHeight=(RectTransformUtility.WorldToScreenPoint(null,panelCorners[1])-bottom).magnitude;
+            float pixelWidth=(RectTransformUtility.WorldToScreenPoint(null,panelCorners[3])-bottom).magnitude;
+            float t=landscapeFromStowed?1:viewfinderBlend*viewfinderBlend*(3-2*viewfinderBlend);
+            float physicalHeight=Mathf.Lerp(.165f,LandscapeHandsetWidth/LandscapeHandsetAspect,t);
+            var presentationCamera=gripCamera?gripCamera:playerCamera;
+            float depth=physicalHeight/(Mathf.Max(.08f,pixelHeight/Screen.height)*2*Mathf.Tan(presentationCamera.fieldOfView*Mathf.Deg2Rad*.5f));
+            depth=Mathf.Max((gripCamera?gripCamera.nearClipPlane:.03f)+.025f,depth);
+            Vector3 phoneCentre=presentationCamera.ViewportToWorldPoint(new Vector3(centre.x/Screen.width,centre.y/Screen.height,depth));
+            float physicalWidth=physicalHeight*pixelWidth/Mathf.Max(1,pixelHeight);
+            float gripOffset=physicalWidth*.5f;
+            Quaternion handRotation=playerCamera.transform.rotation*handsetRect.localRotation;
+            Vector3 edge=handRotation*Vector3.right*gripOffset;
+            firstPersonHand.transform.position=phoneCentre+edge;
             firstPersonHand.transform.localScale=handScale;
-            // The imported handset's viewing basis faces away from the Unity camera.
-            // Turn the complete grasp together, keeping the forearm behind the phone
-            // and entering the shot from the player's right.
-            firstPersonHand.transform.rotation=playerCamera.transform.rotation*handsetRect.localRotation;
-            if(both){supportHand.transform.position=phoneCentre-playerCamera.transform.right*gripOffset;supportHand.transform.rotation=firstPersonHand.transform.rotation;supportHand.transform.localScale=supportScale;}
-            if(gripOccluder){gripOccluder.transform.SetPositionAndRotation(phoneCentre,firstPersonHand.transform.rotation*Quaternion.Euler(0,180,0));gripOccluder.transform.localScale=Vector3.Scale(depthMaskScale,new Vector3(physicalWidth/.078f,1,1));}
+            // Source grasp origin is the edge, in metres. Mirror around the
+            // handset centre; never enlarge the hand to fill a stretched UI.
+            firstPersonHand.transform.rotation=handRotation;
+            if(both){supportHand.transform.position=phoneCentre-edge;supportHand.transform.rotation=handRotation;supportHand.transform.localScale=supportScale;}
+            if(gripOccluder){gripOccluder.transform.SetPositionAndRotation(phoneCentre,firstPersonHand.transform.rotation*Quaternion.Euler(0,180,0));gripOccluder.transform.localScale=Vector3.Scale(depthMaskScale,new Vector3(physicalWidth/.078f,physicalHeight/.165f,Mathf.Lerp(1,.008f/.014f,t)));}
         }
         public void AddChat(string author,string text){if(ChatFrozen)return;pendingMessages.Enqueue($"<color=#C0AA7A>{author}</color> {text}");while(pendingMessages.Count>18)pendingMessages.Dequeue();}
         public void AddChatBurst(string[] authors,string[] lines,int count=3)
@@ -437,6 +467,6 @@ namespace LayarTerakhir.Prolog
             for(int i=0;i<limit;i++)AddChat(authors[i],lines[i]);
         }
         public void LabelClockModal(){}
-        private void OnDestroy(){UiFocus.Phone=false;var rig=owner?owner.GetComponent<ShoulderCameraRig>():null;if(rig)rig.PhoneAimOverride=false;if(firstPersonHand)Destroy(firstPersonHand);if(supportHand)Destroy(supportHand);if(gripOccluder)Destroy(gripOccluder);if(gripDepthMaterial)Destroy(gripDepthMaterial);foreach(var material in handMaterials)if(material)Destroy(material);if(gripCamera)Destroy(gripCamera.gameObject);if(gripOverlay)Destroy(gripOverlay.gameObject);if(gripTexture){gripTexture.Release();Destroy(gripTexture);}if(feed){feed.Release();Destroy(feed);}if(runtimeFeedMaterial)Destroy(runtimeFeedMaterial);if(shutterClip)Destroy(shutterClip);if(switchClip&&switchClip.name.Contains("AtmajaSynth"))Destroy(switchClip);if(vignetteTexture)Destroy(vignetteTexture);}
+        private void OnDestroy(){if(hudPresentation)hudPresentation.SetViewfinderFraming(false);UiFocus.Phone=false;var rig=owner?owner.GetComponent<ShoulderCameraRig>():null;if(rig)rig.PhoneAimOverride=false;if(firstPersonHand)Destroy(firstPersonHand);if(supportHand)Destroy(supportHand);if(gripOccluder)Destroy(gripOccluder);if(gripDepthMaterial)Destroy(gripDepthMaterial);foreach(var material in handMaterials)if(material)Destroy(material);if(gripCamera)Destroy(gripCamera.gameObject);if(gripOverlay)Destroy(gripOverlay.gameObject);if(gripTexture){gripTexture.Release();Destroy(gripTexture);}if(feed){feed.Release();Destroy(feed);}if(runtimeFeedMaterial)Destroy(runtimeFeedMaterial);if(shutterClip)Destroy(shutterClip);if(switchClip&&switchClip.name.Contains("AtmajaSynth"))Destroy(switchClip);if(vignetteTexture)Destroy(vignetteTexture);}
     }
 }
