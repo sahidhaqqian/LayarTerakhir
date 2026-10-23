@@ -9,7 +9,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `446e6a59`
+- Built from commit: `f5f2ae7d`
 - Commit above is the pre-commit base, not a freshness check. Verify source/artifact hashes with `python3 Tools/update_graphify.py --check`.
 - Regenerate safely with `python3 Tools/update_graphify.py` before commit/push.
 
