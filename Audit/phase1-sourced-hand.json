@@ -6,35 +6,29 @@
   "sourceSha256": "5c41f224f40525fa2f09c1168b3df638fc0b401ba5e59ae7fad6f88369fd6f82",
   "originalTopologyAndUVs": true,
   "conversion": "Source rig posed; existing right forearm/hand faces extracted; no original hand/model artwork",
-  "gripStyle": "DreadOut landscape: fingers up, index over top bezel, thumb lower front bezel",
+  "gripStyle": "DreadOut landscape: palms brace the side edges, index over the top corner, thumb on the lower front corner, other fingers wrapped behind the set",
   "fingerFlexDegrees": {
     "2": [
-      30,
-      47,
-      37
+      15,
+      45,
+      45
     ],
     "3": [
-      4,
-      10,
-      8
+      -5,
+      0,
+      0
     ],
     "4": [
-      3,
-      8,
-      6
+      -8,
+      0,
+      0
     ],
     "5": [
-      2,
-      6,
-      5
+      -10,
+      0,
+      0
     ]
   },
-  "fingerAdductionDegrees": {
-    "2": -15,
-    "3": 0,
-    "4": 18,
-    "5": 30
-  },
   "triangles": 3636,
-  "thumbTipErrorMetres": 0.0002657289369044224
+  "thumbTipErrorMetres": 0.0004945284121863537
 }

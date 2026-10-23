@@ -1,8 +1,8 @@
 {
   "artifacts_sha256": {
-    "GRAPH_REPORT.md": "84b26e79441e0e2793d94e61b3f64bf607bb1fa2bb6c9afb9f11e874379ffd3d",
+    "GRAPH_REPORT.md": "6a5a4faf6b438c7167e5fc31f687c689c49aadd1dec8871ec6950fdcc256b35c",
     "graph.html": "2617c33a4f7122ff235fea9f5cce8808655d0b842ad841e61c2e721fa3b8c65c",
-    "graph.json": "56020092f112d45c64b8d8fceae79636164950702f0e076468bbd8b28341afdc"
+    "graph.json": "4dfb2d79600499985bc4c67cc8efc00ee6c39a768745746bbf68ea7ea4146db7"
   },
   "asset_file_count": 0,
   "code_file_count": 192,
@@ -171,7 +171,7 @@
     "Tools/generate_nyonya_wounds.py": "f655bbbaaf20fed4949b4ef3ae02171a48fe77eea8ff6646df7859ad8172d1e9",
     "Tools/import_phase1_environment_meshes.py": "015832cadee56858420fe173ac16346bd29b51537d66a53a9de272609ba619b3",
     "Tools/import_phase1_modular.py": "65309e856bb5eedda8ab4cd1fff79490dceeb1386fb97688781477052781a409",
-    "Tools/import_phase1_phone_grasp.py": "3fa83c0b243e61e3239f0815868589f457cffa222e23a90f11eef8807093ffc1",
+    "Tools/import_phase1_phone_grasp.py": "c6deef2449eac6dfcd1b881b9b0c50d1036b4dc69e7f39b3acafb0939e6a7320",
     "Tools/improve_kos_audio.py": "fe1ee5d2245b2f6a4c7dd35a89151868d50566f80212453f812a40a5e6b5a9ef",
     "Tools/nera_character_adapter.py": "549c74ef000ed8d25c3c3d080cb1b226aa91f8ff35597a1dcb8215b9534440f3",
     "Tools/neural_prolog_voice.py": "20179013788a72ee79c123b3aa474b820e1b8718ad49bc552c798fe88ce9a047",

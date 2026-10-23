@@ -28,52 +28,54 @@ wrist=rig.data.bones['hand.R'].head_local
 index=rig.data.bones['f_index.01.R'].head_local
 pinky=rig.data.bones['f_pinky.01.R'].head_local
 middle=rig.data.bones['f_middle.01.R'].head_local
-forward=(middle-wrist).normalized()
-side=index-pinky;side=(side-forward*side.dot(forward)).normalized()
-normal=forward.cross(side).normalized()
-# Source palm width -> 75mm. DreadOut-style landscape grasp: fingers up the
-# back of the handset, index over the top bezel, thumb on the lower front bezel.
-scale=.075/(index-pinky).length
-palm=(wrist+middle)*.5
-rotation=Matrix((-side,forward,normal))
-transform=rotation.to_4x4()
-for i in range(3):
-    for j in range(3):transform[i][j]*=scale
-transform.translation=Vector((.05,-.035,.03))-transform.to_3x3()@palm
-inverse=transform.inverted()
-target=inverse@Vector((.014,-.055,-.014))
+axis=Matrix(((1,0,0),(0,0,-1),(0,1,0)))
+# DreadOut landscape grasp: the palms brace the side edges, the index curls
+# over the top corner onto the front, the thumb presses the lower front corner,
+# and the remaining fingers stay wrapped behind the set.
+hand_forward=(middle-wrist).normalized()
+hand_side=index-pinky;hand_side=(hand_side-hand_forward*hand_side.dot(hand_forward)).normalized()
+hand_normal=hand_forward.cross(hand_side).normalized()
+thumb=rig.data.bones['thumb.01.R'].head_local
+if hand_normal.dot(thumb-((wrist+middle)*.5))<0:hand_normal=-hand_normal
+Wu=axis.inverted()@wrist
+Lu=(axis.inverted()@(wrist+hand_forward))-Wu;Lu.normalize()
+Au=(axis.inverted()@(wrist+hand_side))-Wu;Au.normalize()
+Nu=(axis.inverted()@(wrist+hand_normal))-Wu;Nu.normalize()
+Wp=Vector((.082,-.060,.010))
+Lp=Vector((0,.82,.57)).normalized()
+Np=Vector((-1,0,0));Np=(Np-Lp*Np.dot(Lp)).normalized()
+Ap=Np.cross(Lp).normalized()
+scale=.105/(index-pinky).length
+Ms=Matrix((Lu,Au,Nu)).transposed()
+Mt=Matrix((Lp,Ap,Np)).transposed()
+R=Mt@Ms.transposed()*scale
+Tp=Vector((.022,-.062,-.012))
+Tb=axis@(Wu+R.inverted()@(Tp-Wp))
 chain=[rig.pose.bones[n] for n in ['thumb.01.R','thumb.02.R','thumb.03.R']]
-for iteration in range(100):
+for iteration in range(200):
     for bone in reversed(chain):
         bpy.context.view_layer.update()
         pivot=bone.head.copy();tip=chain[-1].tail.copy()
-        a=tip-pivot;b=target-pivot
+        a=tip-pivot;b=Tb-pivot
         if min(a.length,b.length)<1e-6:continue
         q=a.rotation_difference(b)
-        angle=min(q.angle,.18)
+        angle=min(q.angle,.14)
         if angle<1e-6:continue
         q=Quaternion(q.axis,angle)
         bone.matrix=Matrix.Translation(pivot)@q.to_matrix().to_4x4()@Matrix.Translation(-pivot)@bone.matrix
-    if (transform@chain[-1].tail-Vector((.014,-.055,-.014))).length<.001:break
-# DreadOut reference: index curls over the top onto the front bezel; the
-# remaining fingers stay together behind the set, hidden by the occluder.
-front_dir=transform.to_quaternion().inverted()@Vector((0,0,-1))
-palm_axis=transform.to_quaternion().inverted()@Vector((0,0,1))
-FLEX={2:[30,47,37],3:[4,10,8],4:[3,8,6],5:[2,6,5]}
-ADDUCT={2:-15,3:0,4:18,5:30}
+    if (chain[-1].tail-Tb).length<.001:break
+FLEX={2:[15,45,45],3:[-5,0,0],4:[-8,0,0],5:[-10,0,0]}
+fingers=['index','middle','ring','pinky']
 for f in range(2,6):
     for seg in range(1,4):
-        bone=rig.pose.bones.get(f'f_{["index","middle","ring","pinky"][f-2]}.{seg:02d}.R')
+        bone=rig.pose.bones.get(f'f_{fingers[f-2]}.{seg:02d}.R')
         if not bone:continue
         direction=(bone.bone.tail_local-bone.bone.head_local).normalized()
-        bend=direction.cross(front_dir)
+        bend=direction.cross(hand_normal)
         if bend.length<1e-6:continue
-        inverse_bone=bone.bone.matrix_local.to_quaternion().inverted()
-        quaternion=Quaternion(inverse_bone@bend.normalized(),math.radians(FLEX[f][seg-1]))
-        if seg==1 and ADDUCT[f]!=0:
-            quaternion=Quaternion(inverse_bone@palm_axis,math.radians(ADDUCT[f]))@quaternion
+        local_ax=bone.bone.matrix_local.to_quaternion().inverted()@bend.normalized()
         bone.rotation_mode='QUATERNION'
-        bone.rotation_quaternion=quaternion
+        bone.rotation_quaternion=Quaternion(local_ax,math.radians(FLEX[f][seg-1]))
 bpy.context.view_layer.update()
 deps=bpy.context.evaluated_depsgraph_get();evaluated=mesh.evaluated_get(deps);data=evaluated.to_mesh()
 assert len(data.vertices)==len(mesh.data.vertices),'Source rig must preserve topology'
@@ -81,13 +83,11 @@ selected_groups={g.index for g in mesh.vertex_groups if g.name.endswith('.R') an
 selected=[p for p in mesh.data.polygons if sum(sum(g.weight for g in mesh.data.vertices[v].groups if g.group in selected_groups) for v in p.vertices)/len(p.vertices)>.7]
 points=[];faces=[];uvs=[];mapping={}
 to_rig=rig.matrix_world.inverted()@evaluated.matrix_world
-# Unity camera-space -> Blender coordinates for standard FBX export.
-axis=Matrix(((1,0,0),(0,0,-1),(0,1,0)))
 for polygon in selected:
     face=[];coords=[]
     for vertex,loop in zip(polygon.vertices,polygon.loop_indices):
         if vertex not in mapping:
-            mapping[vertex]=len(points);points.append(axis@(transform@(to_rig@data.vertices[vertex].co)))
+            mapping[vertex]=len(points);points.append(axis@(Wp+R@(axis.inverted()@(to_rig@data.vertices[vertex].co)-Wu)))
         face.append(mapping[vertex]);coords.append(mesh.data.uv_layers.active.data[loop].uv.copy())
     faces.append(face);uvs.append(coords)
 evaluated.to_mesh_clear()
@@ -107,8 +107,8 @@ record=dict(sourcePage='https://opengameart.org/content/fps-arms-rigged-only',au
     archiveSha256=hashlib.sha256((SOURCE.parent.parent/'fps-arms.7z').read_bytes()).hexdigest(),
     sourceSha256=hashlib.sha256(SOURCE.read_bytes()).hexdigest(),originalTopologyAndUVs=True,
     conversion='Source rig posed; existing right forearm/hand faces extracted; no original hand/model artwork',
-    gripStyle='DreadOut landscape: fingers up, index over top bezel, thumb lower front bezel',
-    fingerFlexDegrees=FLEX,fingerAdductionDegrees=ADDUCT,
-    triangles=sum(len(p.vertices)-2 for p in existing.polygons),thumbTipErrorMetres=(transform@chain[-1].tail-Vector((.014,-.055,-.014))).length)
+    gripStyle='DreadOut landscape: palms brace the side edges, index over the top corner, thumb on the lower front corner, other fingers wrapped behind the set',
+    fingerFlexDegrees=FLEX,
+    triangles=sum(len(p.vertices)-2 for p in existing.polygons),thumbTipErrorMetres=(chain[-1].tail-Tb).length)
 (ROOT/'Audit/phase1-sourced-hand.json').write_text(json.dumps(record,indent=2)+'\n')
 print('SOURCED_PHONE_GRASP',record)
