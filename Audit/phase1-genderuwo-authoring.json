@@ -1,0 +1,30 @@
+{
+  "role": "Genderuwo",
+  "sourceSha256": "d5e2939c839de91786142ab7661dd1e572ea195ec8c9c4ea4f1ee249e156840b",
+  "sourceTriangles": 5472428,
+  "gameTriangles": 24000,
+  "height": 2.5,
+  "textures": {
+    "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase1/Characters/Textures/GenderuwoAlbedo.png",
+    "Normal": "Assets/_LayarTerakhir/assets/Art/Phase1/Characters/Textures/GenderuwoNormal.png",
+    "MetalSmooth": "Assets/_LayarTerakhir/assets/Art/Phase1/Characters/Textures/GenderuwoMetalSmooth.png"
+  },
+  "clips": [
+    "Idle",
+    "Run",
+    "Walk",
+    "Stun",
+    "Windup"
+  ],
+  "motionSources": [
+    {
+      "path": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/RakaDesigner.fbx",
+      "sha256": "d39639b9d1e89bca89817d0bcddc6444282f5acf9d07e510504406b65d9dbd3f"
+    },
+    {
+      "path": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/NyonyaDesigner.fbx",
+      "sha256": "d307ad0d637504cbcaf8baff91391a12dddc7cebf5600a8669b1e62c00d4847b"
+    }
+  ],
+  "motionOperation": "retarget existing rotation deltas, no original motion authored"
+}

@@ -448,3 +448,42 @@ tersedia lewat `--stage graphics-validate`; `review-player` dan `prolog-player` 
 memverifikasi perjalanan dan progres cerita. Acuan visual, kredit CC0 serta batas
 klaim ada di `Audit/dreadout-visual-reference.md`. Graphify tetap hanya mengindeks
 kode; tidak memindai gambar referensi, shader, aset, scene atau build.
+
+## Phase 1 Rusunawa — 23 Oktober 2026
+
+`Phase1.MD` root adalah spesifikasi aktif; §0.5 memuat arahan desainer untuk memakai
+aturan global dan aset existing/unduhan berlisensi. `Babak1_Rusunawa` ditambahkan
+pada build index 3, setelah ketiga scene Prolog. Rekaman rumah sakit adalah set
+non-playable di scene yang sama, bukan implementasi Babak 2.
+
+`CampaignData` schema 2 mempertahankan seluruh field P0 dan menambah receipt P1
+melalui `Phase1Data`. Loader menerima schema 1 tanpa memigrasikan event P0 ke
+inventori lain. `CampaignRouting` menentukan Continue; checkpoint asing tidak
+boleh di-reset menjadi New Game. `CampaignState.TryCommit` memakai file atomik
+existing dan rollback seluruh data. Owner attempt CP5 menutup penulisan biasa
+sampai CP6; retry memuat snapshot persis, tanpa grant resource.
+
+`Phase1Director` mengoordinasikan stage yang diturunkan dari receipt, bukti,
+interaksi dan checkpoint. Partial `Phase1Presentation` menangani aplikasi HP,
+hiding, pengisian fisik, ritual dan epilog. `Phase1Threats` + `Phase1Navigator`
+mengelola tiga ancaman pada graf navigasi lokal dengan capsule clearance;
+`Phase1Projectile` menguji lintasan puing. `Phase1Soundscape` memakai bus audio
+existing, sedangkan `Phase1LightBudget` membatasi lampu fixture antarlantai.
+
+Handset tetap `SmartphoneController` / `AtmajaPhoneView` / `PhoneDesktop`.
+`IPhoneChapterContent` adalah seam konten, bukan HP/AR/inventori kedua.
+`IContextInteractionResolver` memperluas interactor E existing untuk pickup/rantai
+L3 tanpa memutar kamera. Player, OTS/first-person, puzzle 148 dan sistem Prolog
+lain tetap sumber yang sama. Gembok 644 menggunakan modal gembok existing.
+
+Builder `Phase1SceneBuilder`, `Phase1StoryBuilder`, dan `Phase1AssetImport`
+merakit mesh sumber existing/unduhan; mesh baru hanya untuk collision yang tidak
+terlihat. Konversi VRM/PBR dan retarget motion sumber dicatat di `Audit/phase1-*`.
+`Tools/run_phase1_checks.py` menjalankan compiler/build Linux, suite Editor dan
+native smoke terisolasi. Penempatan boss dalam fixture dinyatakan eksplisit;
+kelulusan otomatis bukan bukti pacing, luring alami, seluruh 74 QA atau FPS GPU.
+Status penerimaan: `Audit/PHASE1_IMPLEMENTATION_REVIEW.md`.
+
+### Phase 1 playtest revisions
+
+`Phase1Director.PrepareNextNight` charges the first Prolog→P1 transition to 100% atomically; chapter guards prevent recharge on Continue/retry. `Phase1AdditionalDressing` places thirty additional downloaded prop models with preserved proportions and support surfaces; source and placement manifests remain in Audit. `AtmajaPhoneView` keeps the existing hold/release input and handset apps, adds a temporary `ShoulderCameraRig.PhoneAimOverride`, and presents a landscape handset with two instances of a downloaded CC0 grasp posed with its source rig. A transparent grasp render and colorless handset depth pass preserve foreground fingers without replacing the shared camera/AR/photo logic. No parallel save, inventory, AR or event system is introduced.

@@ -15,6 +15,7 @@ namespace LayarTerakhir.Player
         private readonly RaycastHit[] _hits = new RaycastHit[16];
         private string _lastPromptSource, _cachedPrompt;
         private KeyCode _lastPromptKey;
+        public IContextInteractionResolver ContextResolver { get; set; }
 
         private void Update()
         {
@@ -37,6 +38,13 @@ namespace LayarTerakhir.Player
         private void UpdateRaycastTarget()
         {
             CurrentTarget = null;
+            if(ContextResolver!=null&&ContextResolver.OwnsInteraction)
+            {
+                CurrentTarget=ContextResolver.ResolveContextInteraction();
+                string key=GameInputConfig.Instance?GameInputConfig.Instance.GetActionLabel(GameAction.Interact):"E";
+                HudController.Instance?.SetInteractionPrompt(CurrentTarget!=null?$"[{key}] {CurrentTarget.GetInteractionPrompt()}":"");
+                return;
+            }
             if (playerCamera == null)
                 return;
 

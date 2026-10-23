@@ -60,6 +60,10 @@ namespace LayarTerakhir.Prolog
             {
                 if (CampaignState.Instance.LoadCheckpoint())
                 {
+                    if(CampaignRouting.IsPhase1(CampaignState.Instance.Data))
+                    {HudController.Instance.SetFadeAlpha(1);UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(CampaignRouting.RusunawaScene);return;}
+                    if(CampaignState.Instance.Data.chapter_id!=0)
+                    {GameShell.Instance?.ReturnAfterDeath("Babak checkpoint belum tersedia. Save tidak diubah.");return;}
                     if(PrologSceneFlow.AutomaticTransitions&&PrologSceneFlow.IsCorridorCheckpoint(CampaignState.Instance.Data.checkpoint_id))
                     {HudController.Instance.SetFadeAlpha(1);StartCoroutine(PrologSceneFlow.LoadCorridor());return;}
                     if (PrologSceneFlow.CanContinue && PrologSceneFlow.IsAtmajaCheckpoint(CampaignState.Instance.Data.checkpoint_id))

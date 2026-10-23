@@ -1,0 +1,34 @@
+{
+    "completed": false,
+    "actualStandalonePlayer": true,
+    "checkpointSaved": false,
+    "platform": "LinuxPlayer",
+    "gpu": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "utc": "2026-10-23T06:03:10.0720290Z",
+    "method": "Opt-in isolated campaign. Continuous collision capsule substeps at authored movement speeds, actual E/Q/C/LMB and production UI callbacks. Directed smoke. Boss placements are explicitly arranged fixtures; 3x simulation clock when -phase1AuditFast is supplied. Not hands-on luring, pacing or Windows hardware performance acceptance.",
+    "walkedMeters": 63.55320739746094,
+    "checks": [
+        "PASS P1 Continue routes safely from startup",
+        "PASS Capsule reaches (2.00, 8.06, -11.00) actual (2.00, 8.08, -11.00)",
+        "PASS Kuntilanak remains stationary before cutter",
+        "PASS Production interaction resolves CUTTER (actual CUTTER)",
+        "PASS Cutter begins pursuit after pickup animation",
+        "PASS Capsule reaches (19.80, 8.06, -10.50) actual (19.80, 8.08, -10.50)",
+        "PASS Production interaction resolves CHAIN (actual CHAIN)",
+        "PASS Backwards chain interaction freezes AI then commits landing",
+        "PASS Kuntilanak permanently resolved before boss",
+        "PASS Capsule reaches (20.00, 8.06, -8.80) actual (20.00, 8.24, -8.81)",
+        "PASS Capsule reaches (20.00, 12.06, -1.70) actual (20.00, 12.08, -1.70)",
+        "PASS Capsule reaches (20.00, 12.06, 3.90) actual (20.00, 12.08, 3.90)",
+        "PASS Capsule reaches (15.00, 12.06, 4.00) actual (15.00, 12.08, 4.00)",
+        "PASS Genderuwo emerges from 401 with closed 404 intact",
+        "PASS Capsule reaches (20.00, 12.06, 4.00) actual (20.00, 12.08, 4.00)",
+        "PASS AR aura is a separate evidence flag",
+        "FAIL P1 AUDIT FAIL Production interaction resolves KERIS (actual )"
+    ],
+    "screenshots": [
+        "04-kuntilanak-watched-idle.png",
+        "05-l4-ritual-corridor.png",
+        "06-kitchen-aura.png"
+    ]
+}

@@ -1,0 +1,15 @@
+{
+  "verifiedUtc": "2026-10-23T07:49:53.354617+00:00",
+  "uniqueCases": 149,
+  "passed": 149,
+  "failed": 0,
+  "method": "Two-run evidence: full suite 148/149; obsolete avatar-only light-mask oracle updated to include the isolated grip layer. All 38 affected chapter/camera cases rerun and passed. 111 unchanged cases retain full-suite evidence. Not a fresh single full-suite pass.",
+  "sources": [
+    "Audit/phase1-regression-tests.xml",
+    "Audit/phase1-final-targeted-tests.xml"
+  ],
+  "sourceSha256": {
+    "Audit/phase1-regression-tests.xml": "1e8c7c94a9fed5dcb1e9616333ba6734b6afec7b89710e390950fc0e909cb346",
+    "Audit/phase1-final-targeted-tests.xml": "2aedca7af3e7e551478d59677fbb1aa21cf876641e237509b9417561f1807e9b"
+  }
+}

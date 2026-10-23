@@ -86,6 +86,13 @@ namespace LayarTerakhir.Prolog
             UiWidgets.Text("NextNight", page.transform, "Damar masih di balik cermin.\nMalam berikutnya: Rusunawa Griya Asri • 23:59", new Vector2(.15f, .24f), new Vector2(.85f, .35f), 26, TextAnchor.MiddleCenter);
             UiWidgets.Text("StreamTotals", page.transform, "54.820 PENONTON   /   TOTAL SAWERAN Rp25.450.000", new Vector2(.1f, .76f), new Vector2(.9f, .82f), 19, TextAnchor.MiddleCenter).color = new Color(.44f, .45f, .44f);
             UiWidgets.Button("PrologMainMenu", page.transform, "MENU UTAMA", new Vector2(.37f, .12f), new Vector2(.63f, .195f), () => GameShell.Instance.OpenMain()).interactable = saved;
+            if(saved&&UnityEngine.Application.CanStreamedLevelBeLoaded(LayarTerakhir.Core.CampaignRouting.RusunawaScene))
+                UiWidgets.Button("ContinuePhase1",page.transform,"MALAM BERIKUTNYA — RUSUNAWA",new Vector2(.25f,.025f),new Vector2(.75f,.10f),()=>
+                {
+                    if(!LayarTerakhir.Phase1.Phase1Director.PrepareNextNight(LayarTerakhir.Core.CampaignState.Instance))return;
+                    Time.timeScale=1;AudioListener.pause=false;LayarTerakhir.Core.UiFocus.Cinematic=LayarTerakhir.Core.UiFocus.Phone=false;
+                    UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(LayarTerakhir.Core.CampaignRouting.RusunawaScene);
+                });
             if (!saved) UiWidgets.Button("RetryFinalSave", page.transform, "COBA SIMPAN LAGI", new Vector2(.37f, .025f), new Vector2(.63f, .10f), () => {
                 var campaign = CampaignState.Instance; campaign.AddInventoryItem("PROLOG_COMPLETE");
                 bool success = campaign.SaveCheckpointAtomic("PROLOG_COMPLETE");

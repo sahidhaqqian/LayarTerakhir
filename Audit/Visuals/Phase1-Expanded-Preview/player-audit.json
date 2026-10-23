@@ -1,0 +1,27 @@
+{
+    "completed": false,
+    "actualStandalonePlayer": true,
+    "checkpointSaved": false,
+    "platform": "LinuxPlayer",
+    "gpu": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "utc": "2026-10-23T06:39:35.1537470Z",
+    "method": "Standalone visual review only: arranged camera positions, no route/puzzle/FPS acceptance. Isolated save. AI remains active.",
+    "walkedMeters": 0.0,
+    "checks": [
+        "PASS P1 Continue routes safely from startup",
+        "PASS Held RMB raises the landscape camera with two physical grips",
+        "PASS Held RMB overrides a handset app menu",
+        "FAIL P1 AUDIT FAIL RMB release restores the previous camera and stored phone"
+    ],
+    "screenshots": [
+        "01-revised-exterior.png",
+        "02-revised-pump.png",
+        "03-revised-gallery.png",
+        "04-revised-courtyard.png",
+        "05-revised-stairs.png",
+        "06-revised-l3.png",
+        "07-revised-l4.png",
+        "08-revised-kitchen.png",
+        "09-rmb-held-two-handed-camera.png"
+    ]
+}

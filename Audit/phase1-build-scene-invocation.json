@@ -1,0 +1,21 @@
+{
+  "stage": "build-scene",
+  "startedUtc": "2026-10-23T06:40:14.398960+00:00",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-main",
+    "-buildTarget",
+    "Linux64",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.Phase1SceneBuilder.Build",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Audit/phase1-build-scene.log"
+  ],
+  "status": "Finished",
+  "endedUtc": "2026-10-23T06:41:30.181520+00:00",
+  "exitCode": 0
+}

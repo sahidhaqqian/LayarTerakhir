@@ -1,0 +1,28 @@
+{
+  "stage": "player",
+  "startedUtc": "2026-10-23T07:40:38.246073+00:00",
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Projects/LayarTerakhir-main/Builds/LinuxAudit/LayarTerakhir.x86_64",
+    "-force-glcore",
+    "-screen-fullscreen",
+    "0",
+    "-screen-width",
+    "1280",
+    "-screen-height",
+    "720",
+    "-phase1Audit",
+    "/root/Projects/LayarTerakhir-main/Audit/Visuals/Phase1-Sourced-Grasp",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Audit/phase1-player.log",
+    "-phase1VisualReview"
+  ],
+  "status": "Finished",
+  "endedUtc": "2026-10-23T07:41:45.639114+00:00",
+  "exitCode": 0,
+  "checksVerified": 5,
+  "capturesVerified": 10
+}

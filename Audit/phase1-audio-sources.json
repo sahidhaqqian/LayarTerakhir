@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Lift",
+    "author": "YCbCr",
+    "sourcePage": "https://opengameart.org/content/generator-loop",
+    "downloadUrl": "https://opengameart.org/sites/default/files/loop_generator_1.mp3",
+    "license": "CC0-1.0",
+    "sourceSha256": "c5989e33550cefb84e7e224c531662d02530e0484caa814a7fa7e7bed39f2062",
+    "filters": "atrim=0:2.5,afade=t=in:d=0.1,afade=t=out:st=2:d=0.5,alimiter=limit=0.7"
+  },
+  {
+    "name": "Halogen",
+    "author": "themightyglider",
+    "sourcePage": "https://opengameart.org/content/electric-buzz",
+    "downloadUrl": "https://opengameart.org/sites/default/files/buzz_0.ogg",
+    "license": "CC0-1.0",
+    "sourceSha256": "4427905b12e7dbd35613a45ab3cf6b74b10816888db3446b3acbadbe36829dd8",
+    "filters": "atrim=0:1.5,alimiter=limit=0.7"
+  },
+  {
+    "name": "Kunti",
+    "author": "AlucardsBride",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Cry_of_woman.ogg",
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Cry_of_woman.ogg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+    "license": "CC0-1.0",
+    "sourceSha256": "88d57d1dc3356688409b246971ee134b8aaed2595fbfcf63209f801bb0cd2f0e",
+    "filters": "highpass=f=110,lowpass=f=6500,acompressor=threshold=0.14:ratio=2,afade=t=in:d=0.3,afade=t=out:st=25.5:d=0.8"
+  },
+  {
+    "name": "Manifest",
+    "author": "Darsycho",
+    "sourcePage": "https://opengameart.org/content/monster-snarls",
+    "downloadUrl": "https://opengameart.org/sites/default/files/monster-snarl-attack.ogg",
+    "license": "CC0-1.0",
+    "sourceSha256": "34bf1ceef265725abf00ab3263bbbb492792e126bb1619addd4a5d3ad123347f",
+    "filters": "asetrate=44100*0.82,aresample=32000,highpass=f=45,alimiter=limit=0.8"
+  },
+  {
+    "name": "Tuyul",
+    "author": "AntumDeluge",
+    "sourcePage": "https://opengameart.org/content/evil-laugh",
+    "downloadUrl": "https://opengameart.org/sites/default/files/laugh-evil-1_0.ogg",
+    "license": "CC0-1.0",
+    "sourceSha256": "2662d484fd3f174145de1ac7527994d153b109ff8f1ee3ac83591beec58d62e4",
+    "filters": "asetrate=44100*1.55,aresample=32000,highpass=f=160,alimiter=limit=0.8"
+  }
+]

@@ -43,6 +43,9 @@ namespace LayarTerakhir.Smartphone
         public Light phoneFlashlight;
 
         private float _blitzCooldownTimer;
+        public IPhoneChapterContent ChapterContent { get; set; }
+        public float BlitzCooldownRemaining => Mathf.Max(0, _blitzCooldownTimer);
+        public bool CameraLocked => ChapterContent != null && ChapterContent.CameraLocked;
         private Light spillLight;
         private float shutterUntil;
 
@@ -66,7 +69,7 @@ namespace LayarTerakhir.Smartphone
             if (_blitzCooldownTimer > 0f)
                 _blitzCooldownTimer -= Time.deltaTime;
 
-            if (!hasSmartphoneInInventory || UiFocus.Cinematic)
+            if (!hasSmartphoneInInventory || UiFocus.Cinematic || UiFocus.HardModal)
                 return;
 
             if (HudController.Instance != null && HudController.Instance.IsModalOpen)
@@ -88,6 +91,14 @@ namespace LayarTerakhir.Smartphone
         {
             if (GameInputConfig.Instance == null)
                 return;
+
+            if (CameraLocked)
+            {
+                if (GameInputConfig.Instance.GetActionDown(GameAction.TogglePhone) ||
+                    GameInputConfig.Instance.GetActionDown(GameAction.ToggleScreen))
+                    HudController.Instance?.ShowBroadcastNotification("Jaga kamera menghadap Kuntilanak. Mundur menuju rantai.", 2);
+                return;
+            }
 
             if (GameInputConfig.Instance.GetActionDown(GameAction.TogglePhone))
             {
@@ -174,6 +185,19 @@ namespace LayarTerakhir.Smartphone
             if (CampaignState.Instance == null || batteryPercent >= 100f)
                 return false;
 
+            string instance = CampaignState.Instance.Data.inventory.Find(id =>
+                id == "P1_POWERBANK_MAILBOX_207" || id == "P1_POWERBANK_ARRIVAL");
+            if (instance != null)
+            {
+                var campaign = CampaignState.Instance;
+                float restored = Mathf.Min(100, batteryPercent + largePowerbankRestore);
+                if (campaign.WritesBlocked)
+                { campaign.Data.inventory.Remove(instance); campaign.Data.battery = restored; }
+                else if (!campaign.TryCommit(campaign.Data.checkpoint_id, data =>
+                    { data.inventory.Remove(instance); data.battery = restored; })) return false;
+                batteryPercent = restored; SyncVisualState(); return true;
+            }
+
             if (CampaignState.Instance.Data.inventory.Remove("POWERBANK_BESAR"))
             {
                 batteryPercent = Mathf.Clamp(batteryPercent + largePowerbankRestore, 0f, 100f);
@@ -191,6 +215,22 @@ namespace LayarTerakhir.Smartphone
             }
 
             return false;
+        }
+
+        public bool TryCaptureEnergy(bool blitz)
+        {
+            float cost = blitz ? blitzCostPercent : photoCostPercent;
+            if (!hasSmartphoneInInventory || !isPhoneRaised || !isScreenOn || batteryPercent < cost ||
+                (blitz && _blitzCooldownTimer > 0)) return false;
+            if (blitz) _blitzCooldownTimer = blitzCooldownSeconds;
+            ConsumeBattery(cost); return true;
+        }
+
+        public void RestoreBattery(float value)
+        {
+            batteryPercent = Mathf.Clamp(value, 0, 100);
+            if (CampaignState.Instance) CampaignState.Instance.Data.battery = batteryPercent;
+            SyncVisualState();
         }
 
         public void SyncVisualState()

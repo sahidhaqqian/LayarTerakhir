@@ -81,6 +81,20 @@ if 'prolog' in args.source_record.lower():
  for marker in ['PrologFinaleView','AtmajaHandycamPlayback','AtmajaMirrorReflection','AtmajaThreatPresentation','PrologCompletionAudit']:
   assert marker.encode() in runtime,marker
 assert b'LayarPresentation' in (out/'LayarTerakhir_Data/resources.assets').read_bytes(),'Presentation/voice resource missing'
+if 'phase1' in args.source_record.lower():
+ assert report['scenes'][3]=='Assets/_LayarTerakhir/assets/Scenes/Babak1_Rusunawa.unity','Rusunawa scene is missing or reordered'
+ phase1_data=(out/'LayarTerakhir_Data/level3').read_bytes()
+ for marker in ['Rusunawa_GriyaAsri_Environment','K102_HiddenConcreteFlight','BoltCutter_HandReach','K403_UsableDoor','DamarExistingWheelchair','HalogenImportedHousing_N','DYNAMO_L3_PANEL']:
+  assert marker.encode() in phase1_data,marker
+ for marker in ['Phase1Director','Phase1Threats','Phase1Navigator','IPhoneChapterContent','CampaignRouting','Phase1LightBudget']:
+  assert marker.encode() in runtime,marker
+ for filename in ['phase1-asset-credits.md','phase1-audio-credits.md','phase1-windows-playtest.md','phase1-environment-revision.md']:
+  shutil.copy2(root/'Audit'/filename,out/filename)
+ fixture={'schema_version':2,'chapter_id':1,'checkpoint_id':'PHASE1_CP1','battery':100,'sanity':100,
+          'inventory':['SMARTPHONE_RAKA','JAKET_RAKA','MATABATIN_APK'], 'phase1':{'completed_event_ids':['P1_ARRIVAL'],'safe_anchor':'ARRIVAL'}}
+ (out/'Phase1Review-Start.json').write_text(json.dumps(fixture,indent=2)+'\n')
+ (out/'Review-Phase1.cmd').write_text('@echo off\nsetlocal\nset "LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY=%~dp0ReviewSaves\\Phase1"\nif not exist "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%" mkdir "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%"\nif not exist "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%\\layar_terakhir_save.json" copy /Y "%~dp0Phase1Review-Start.json" "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%\\layar_terakhir_save.json" >nul\nstart "" /D "%~dp0" "%~dp0LayarTerakhir.exe"\nendlocal\n')
+
 shutil.copy2(root/'Audit/asset-credits.md',out/'Asset-Credits.txt')
 shutil.copy2(root/'Audit/windows-kos-capture.md',out/'Screenshot-Guide.txt')
 shutil.copy2(root/'Assets/_LayarTerakhir/assets/UI/Fonts/OFL.txt',out/'Barlow-OFL.txt')

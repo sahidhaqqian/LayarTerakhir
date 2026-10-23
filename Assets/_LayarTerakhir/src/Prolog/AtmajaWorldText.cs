@@ -8,6 +8,7 @@ namespace LayarTerakhir.Prolog
     public sealed class AtmajaWorldText : MonoBehaviour
     {
         public Material materialTemplate;
+        public bool includeARText;
         private readonly Dictionary<Font, Material> materials = new Dictionary<Font, Material>();
         private void OnEnable() { Font.textureRebuilt += Rebuilt; }
         private void OnDisable() { Font.textureRebuilt -= Rebuilt; }
@@ -16,7 +17,7 @@ namespace LayarTerakhir.Prolog
             if (!materialTemplate) return;
             foreach (var text in FindObjectsByType<TextMesh>(FindObjectsInactive.Include, FindObjectsSortMode.None))
             {
-                if (!text.font || text.gameObject.layer == AtmajaPhoneView.ARLayer) continue;
+                if (!text.font || !includeARText&&text.gameObject.layer == AtmajaPhoneView.ARLayer) continue;
                 text.font.RequestCharactersInTexture(text.text, text.fontSize, text.fontStyle);
                 if (!materials.TryGetValue(text.font, out var material))
                 {

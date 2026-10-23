@@ -18,6 +18,9 @@
 # Project content after migration stays versioned:
 # Assets/_LayarTerakhir/src/, Assets/_LayarTerakhir/assets/, Resources and .meta.
 # Do not ignore assets/ or src/ globally; .graphifyignore controls graph inputs only.
+# Original designer VRMs exceed GitHub's 100 MB file limit and are only offline
+# authoring inputs; keep them local (their .meta stays versioned for stable GUIDs).
+/Assets/_LayarTerakhir/assets/LayarTerakhir/*.vrm
 
 # Local editor/OS state and Unity MCP scan cache
 .DS_Store

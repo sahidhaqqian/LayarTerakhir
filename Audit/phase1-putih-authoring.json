@@ -1,0 +1,30 @@
+{
+  "role": "Putih",
+  "sourceSha256": "a18946a819ca4ce735aa81c4d8eab9b24c6cca3e41fef5973261bbf98ba3fd6a",
+  "sourceTriangles": 4367460,
+  "gameTriangles": 18000,
+  "height": 1.8,
+  "textures": {
+    "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase1/Characters/Textures/PutihAlbedo.png",
+    "Normal": "Assets/_LayarTerakhir/assets/Art/Phase1/Characters/Textures/PutihNormal.png",
+    "MetalSmooth": "Assets/_LayarTerakhir/assets/Art/Phase1/Characters/Textures/PutihMetalSmooth.png"
+  },
+  "clips": [
+    "Idle",
+    "Run",
+    "Walk",
+    "Stun",
+    "Windup"
+  ],
+  "motionSources": [
+    {
+      "path": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/RakaDesigner.fbx",
+      "sha256": "d39639b9d1e89bca89817d0bcddc6444282f5acf9d07e510504406b65d9dbd3f"
+    },
+    {
+      "path": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/NyonyaDesigner.fbx",
+      "sha256": "d307ad0d637504cbcaf8baff91391a12dddc7cebf5600a8669b1e62c00d4847b"
+    }
+  ],
+  "motionOperation": "retarget existing rotation deltas, no original motion authored"
+}

@@ -1,0 +1,500 @@
+[
+  {
+    "id": "ConcreteInterior",
+    "sourcePage": "https://axel-kulomaa.itch.io/modular-concrete-interior",
+    "author": "Axel Kulomaa / AXLplosion",
+    "license": "CC0-1.0",
+    "download": "https://opengameart.org/sites/default/files/modular_concrete_interior.zip",
+    "archiveSha256": "55aca3e652c814c1ad5565822d2084aa7519912a5c062ce1b6effba13fbd615d",
+    "importedFiles": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/Ceiling.fbx",
+        "sha256": "0202ddb1fea64a2697b4cb1aed9974833f19f1cede3dc5957b2f86da53b2dd58"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/Cube.fbx",
+        "sha256": "385e7d981c9402482bce2d66a8f7a691163f6be10b798223b1b753f18b5fca73"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/DoorwayConnector.fbx",
+        "sha256": "481b574196d1121229888736784dd2b5b442497e0d4ba478d8c5b384134f4c0f"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/Floor.fbx",
+        "sha256": "4e72ef197674bb6c12f320d01675e31497bd77b48a0e6c15c5ef8eda5c6c10df"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/FloorDiffuse.jpg",
+        "sha256": "65c02209f70e662b02e2f6be261f488ce4d177b55bb00291375ca8bb8add4c4e"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/FloorMetalSmooth.png",
+        "sha256": "09aa4a40dbff3ab4a9018f27ad840c4bf573fff54cb9cdefa737fd10142fa42d"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/FloorNormal.jpg",
+        "sha256": "22ff30b7919cb7b23940749123577ed4c0e9f18765843a1a30f3b3fd54c238a1"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/License.txt",
+        "sha256": "dc762980f95bed086809854c94d427630fcdb0831be204e9adc413dee13569b4"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/MetalDiffuse.png",
+        "sha256": "709936ef5257719df1ee2b2fbf291528ac4ceb133328218ea1ab397890b6b1b9"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/MetalMetalSmooth.png",
+        "sha256": "5b8c8823179813281c46d2cd7990b956917769fa6bfb223ad09a2fb341a648fe"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/MetalNormal.png",
+        "sha256": "6827584904301e221e598559693626c41a87d72dbedea903faf0e897d4430fce"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/Pillar.fbx",
+        "sha256": "98ae44235f4f1bc8426fde13dc8ccf103f34f292a821df5445bd25e0354f916f"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/ShortStairs.fbx",
+        "sha256": "57b9cd39ab70b1d7cb6a56cc41063f3e5d842efb5ea4b78a07bfa92010e41294"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/ShortStairs_Landing.fbx",
+        "sha256": "f47457a97865e0b3bb2c74fc670e2b3a96e979eb36a110d5a895f6fa73f7f718"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/Stairs.fbx",
+        "sha256": "e7c977797c5c13d0534625fe09fd8155df5989de891d689f10fd8e1a0f95c21d"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/Stairs_Landing.fbx",
+        "sha256": "c63361deed293c63ecbf0bd3958c88a42bfdd5fd28c46cc1adde9521ae21c04e"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/TallPillar.fbx",
+        "sha256": "9c367be614bfd5798838d076844f6421e63d37234a8cc91c44d91f98a2e5f4a6"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/TallWall.fbx",
+        "sha256": "b7081bcbb620c95a3a923eefd65fca0bfaa35677ad1f530e7eb2f2bd8f877484"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/TallWallCorner.fbx",
+        "sha256": "d5fd653122b7e23efbdbefb12fa1507fc84f2763dc6310723b0a1cff2a27f3a1"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/TallWall_Doorway_Bottom.fbx",
+        "sha256": "f0380f227aac96bf371d0a271e51ed909854a1e31f6f52431b0b4e05401ee9ff"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/TallWall_Doorway_Middle.fbx",
+        "sha256": "8e7234bd29c98ea7b7606bf2feb332eab7eceb89d758872d8f090f92c9267d71"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/TallWall_Doorway_Top.fbx",
+        "sha256": "3b52ede9061219db182f58e56a4e729da09b887130269cf165fce4aae2634b03"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/Wall.fbx",
+        "sha256": "e70c5c1133ad95bd360577b94273fc228f5cb684e30cae82411b34f970131f79"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/WallDiffuse.png",
+        "sha256": "dc3c60964f8becd056c9a6d9962b8648e6d1bcf5b2eb05a40bfca5d043c94337"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/WallDoorway.fbx",
+        "sha256": "349b4b113d66b2297e7b06905a2527598051e0721651dad14b8581c78e4c3297"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/WallMetalSmooth.png",
+        "sha256": "8bb57c7b6bc3e4751438207be9d300546a09e0e1c06b8765725e0567c0f105ea"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/WallNormal.png",
+        "sha256": "e474287ab68bef271933686dcca88990c08e17863a4e16b3382bbd6dbe00b337"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ConcreteInterior/Wall_Corner.fbx",
+        "sha256": "416ec8ac0a270930ef36dd0afe91bb76a663bb22a920ef1f8684e3b6b09bcf3e"
+      }
+    ]
+  },
+  {
+    "id": "DoorsWindows",
+    "sourcePage": "https://opengameart.org/content/breakable-doors-and-windows",
+    "author": "loafbrr_1",
+    "license": "CC0-1.0",
+    "download": "https://opengameart.org/sites/default/files/doorsandwindows_fbx_gltf_textures_blend.zip",
+    "archiveSha256": "bdbd02be973599096d4ee43b197c1429415798b7e3f91c5596d54763d839195d",
+    "importedFiles": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/DoorsWindows/DoorDiffuse.png",
+        "sha256": "94a76cf69015a8d90890067cca554ab02fe36e2e686c010e7058e14dfe93fce1"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/DoorsWindows/DoorMetalSmooth.png",
+        "sha256": "9479ec09a05a2cdbdff80203c3dd56db25a057e70a603e66542ce9ea186dda32"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/DoorsWindows/DoorNormal.png",
+        "sha256": "a039713b61436056ae52356b391acbf65a5cb09a11f657fcd04929e8d8e88694"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/DoorsWindows/DoorOcclusion.png",
+        "sha256": "472c0a2a5dfaed8afb2b985005f1de6b5b04f5d06708df102ef4855cc853b333"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/DoorsWindows/Door_DoorFrame_Broken_Double.fbx",
+        "sha256": "90ddf871f5cbf8b567468d7230b9f17113ced5c66dd96b420d8eef577a852468"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/DoorsWindows/Door_DoorFrame_Broken_Single_1.fbx",
+        "sha256": "064a9699b8020ea08379bd3721afc44bf4058ecf1c29e25f1a67900e22d48222"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/DoorsWindows/Door_DoorFrame_Broken_single_2.fbx",
+        "sha256": "759f0944919a7aa8bafb0213a8e9064413048d6be29d4b25648b6f1fab0f01b9"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/DoorsWindows/Door_DoorFrame_Double.fbx",
+        "sha256": "5cc7f35da600dec46b0f86e292121a5fda2803000f7044c30a1f9157ba264cfa"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/DoorsWindows/Door_DoorFrame_Single_1.fbx",
+        "sha256": "7fda6f3a25084f87964798fbdc5cb175dcb4b737efeb522cbaa6cc0b00384820"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/DoorsWindows/Door_DoorFrame_Single_2.fbx",
+        "sha256": "9f96d980d44e340159fa3e61c1d1ff19a52117f4a1c0ad224890e20fb8a2dc8f"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/DoorsWindows/License.txt",
+        "sha256": "da6fb4244e87397f8fc6ed376a0108e01330ea8cb8a5928fd21fb8cc409bf8a8"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/DoorsWindows/Windows_BrokenWindow_1.fbx",
+        "sha256": "9d2afe14180d2f78e3e70f418454e2884157eb76d46a068f88cfb47c0be9a6f1"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/DoorsWindows/Windows_BrokenWindow_2.fbx",
+        "sha256": "adae31cc012af27dc795c195404c5b7fb0eb6b755ee654418be5b5e60996592c"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/DoorsWindows/Windows_Window_1.fbx",
+        "sha256": "fa8ff89fb8f5ce80c0ae1f3bd4b9dd9f005c68980cfc948d239ba812cba6e7db"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/DoorsWindows/Windows_Window_2.fbx",
+        "sha256": "b0299459219ef0a4c84110e1afe8f955ad1400a6eb5d4f578b85d0ec96a5e6f5"
+      }
+    ]
+  },
+  {
+    "id": "metal_office_desk",
+    "sourcePage": "https://polyhaven.com/a/metal_office_desk",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "authors": {
+      "Ulan Cabanilla": "All"
+    },
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/metal_office_desk/metal_office_desk.fbx",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/metal_office_desk/metal_office_desk_1k.fbx",
+        "sha256": "858d23fe96547b3c5d0d5d29db858598554b3d06e5af1e45f2f9c3e6be19cd91"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/metal_office_desk/metal_office_deskDiffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/metal_office_desk/metal_office_desk_diff_1k.jpg",
+        "sha256": "1f02e3e77e8f82a3600664c991bd45c1c187452d61e9ede4336c6f90f7fa3139"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/metal_office_desk/metal_office_deskNormal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/metal_office_desk/metal_office_desk_nor_gl_1k.jpg",
+        "sha256": "f57eb004937e46392151b803e0cb1d88983958d01ad11d93df78a82cfcc6c407"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/metal_office_desk/metal_office_deskARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/metal_office_desk/metal_office_desk_arm_1k.jpg",
+        "sha256": "752916dd9bf8a163dc7e0d3673900791ee6d558bbe23894263ac92b42387f51b"
+      }
+    ]
+  },
+  {
+    "id": "painted_wooden_bench",
+    "sourcePage": "https://polyhaven.com/a/painted_wooden_bench",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "authors": {
+      "Kirill Sannikov": "All"
+    },
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/painted_wooden_bench/painted_wooden_bench.fbx",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/painted_wooden_bench/painted_wooden_bench_1k.fbx",
+        "sha256": "db95b2b8a305cd4555d75dcd48f2e042f0d6c0dc0a3f76e8a782dc97680a279e"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/painted_wooden_bench/painted_wooden_benchDiffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/painted_wooden_bench/painted_wooden_bench_diff_1k.jpg",
+        "sha256": "9bc533313091ee71eaca5fa6334b71d27935d9d75311f64df6a53c28a67c435c"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/painted_wooden_bench/painted_wooden_benchNormal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/painted_wooden_bench/painted_wooden_bench_nor_gl_1k.jpg",
+        "sha256": "a0f53740d77fc61aac01de0b7e1ae6109445d1756839f739ae31fdf10c9911f2"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/painted_wooden_bench/painted_wooden_benchARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/painted_wooden_bench/painted_wooden_bench_arm_1k.jpg",
+        "sha256": "878785565eeff706b8f1e4db7e3d794a544e9cf0e56cee424d9a271ab4ead47e"
+      }
+    ]
+  },
+  {
+    "id": "worn_metal_rack",
+    "sourcePage": "https://polyhaven.com/a/worn_metal_rack",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "authors": {
+      "Luca B": "All"
+    },
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/worn_metal_rack/worn_metal_rack.fbx",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/worn_metal_rack/worn_metal_rack_1k.fbx",
+        "sha256": "6eba398a8879dff691f7bf15830c5d937b9e239c3f4b15582ed442e0120e72a6"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/worn_metal_rack/worn_metal_rackDiffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/worn_metal_rack/worn_metal_rack_diff_1k.jpg",
+        "sha256": "295c2d48ad55289fed76b7438513520cadd94516639ab8ffd8790ffe7c903dbb"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/worn_metal_rack/worn_metal_rackNormal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/worn_metal_rack/worn_metal_rack_nor_gl_1k.jpg",
+        "sha256": "3222c47e6fac0d103afec06b8a53476828777f5282d6703266010ecf587ad49e"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/worn_metal_rack/worn_metal_rackARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/worn_metal_rack/worn_metal_rack_arm_1k.jpg",
+        "sha256": "b3523f947b3ebd960d508361bb323cec5a959d0b7043a8a7118ffab781925a65"
+      }
+    ]
+  },
+  {
+    "id": "metal_trash_can",
+    "sourcePage": "https://polyhaven.com/a/metal_trash_can",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "authors": {
+      "GurJas Studios": "All"
+    },
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/metal_trash_can/metal_trash_can.fbx",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/metal_trash_can/metal_trash_can_1k.fbx",
+        "sha256": "e5f5176cccf94a09b05350f2500f11ec7ffed191247f5ccf908f9936324ebca0"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/metal_trash_can/metal_trash_canDiffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/metal_trash_can/metal_trash_can_diff_1k.jpg",
+        "sha256": "920c895a31b1cd2c000123c0592c70c33d46562752987da98070e7e0eebb662f"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/metal_trash_can/metal_trash_canNormal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/metal_trash_can/metal_trash_can_nor_gl_1k.jpg",
+        "sha256": "b977f17aa9d4718ffc91a62868b7171b4479578b8cffd1d32001d92552af81a4"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/metal_trash_can/metal_trash_canARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/metal_trash_can/metal_trash_can_arm_1k.jpg",
+        "sha256": "b23dcdb2ed40c1c6cfbd2d2779c6f075025b7269bfbbed2a70c6bdb7167e47fb"
+      }
+    ]
+  },
+  {
+    "id": "trashbag",
+    "sourcePage": "https://polyhaven.com/a/trashbag",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "authors": {
+      "Benny Weimer": "All"
+    },
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/trashbag/trashbag.fbx",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/trashbag/trashbag_1k.fbx",
+        "sha256": "c4255ca3ee1b586a00a85cf57813b1701b642358dfe49119e5575841d6c77f7f"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/trashbag/trashbagDiffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/trashbag/trashbag_diff_1k.jpg",
+        "sha256": "676e01cbeef39b51c9ecd67315c952a605c8db9c11544fbe11e14dcbd00be27f"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/trashbag/trashbagNormal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/trashbag/trashbag_nor_gl_1k.jpg",
+        "sha256": "33ddb9711bb3ab2ff1ed19fa361a4251909643fada7e5579a28f6346a58b4daf"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/trashbag/trashbagARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/trashbag/trashbag_arm_1k.jpg",
+        "sha256": "95e69ba47bc7b84f342cdbe4385cfab670295827740fb09407b967ea2114c0aa"
+      }
+    ]
+  },
+  {
+    "id": "modern_wooden_cabinet",
+    "sourcePage": "https://polyhaven.com/a/modern_wooden_cabinet",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "authors": {
+      "Patrik Pangerl": "All"
+    },
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/modern_wooden_cabinet/modern_wooden_cabinet.fbx",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/modern_wooden_cabinet/modern_wooden_cabinet_1k.fbx",
+        "sha256": "606c105e4ee2082fb179bf495965d83d21c1945f005649f99eb783698f590dbe"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/modern_wooden_cabinet/modern_wooden_cabinetDiffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modern_wooden_cabinet/modern_wooden_cabinet_diff_1k.jpg",
+        "sha256": "e494b67439da73775413d6aaea369ae05a8ebd7705be8df08dbcd2ee4fd545e4"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/modern_wooden_cabinet/modern_wooden_cabinetNormal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modern_wooden_cabinet/modern_wooden_cabinet_nor_gl_1k.jpg",
+        "sha256": "f08b3d0619a60e2eac19c9d9c0d7dc0e3eb75af2692d84b32ddfd12d857c15ab"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/modern_wooden_cabinet/modern_wooden_cabinetARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modern_wooden_cabinet/modern_wooden_cabinet_arm_1k.jpg",
+        "sha256": "fad6df227ec6d431387b10bd244a0d087e89e6dce0b1c732df5c87f0a1def3f5"
+      }
+    ]
+  },
+  {
+    "id": "worn_cracked_plaster",
+    "sourcePage": "https://polyhaven.com/a/worn_cracked_plaster",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "authors": null,
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/Surfaces/worn_cracked_plaster/worn_cracked_plasterDiffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/worn_cracked_plaster/worn_cracked_plaster_diff_2k.jpg",
+        "sha256": "26b3771611b553d87b8411d5dd20c64aec79e295b87f4f5f1b94dcb04157988a"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/Surfaces/worn_cracked_plaster/worn_cracked_plasterNormal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/worn_cracked_plaster/worn_cracked_plaster_nor_gl_2k.jpg",
+        "sha256": "879136c54b32fa9029a5393d49b848f8a6039501a699c847f754388d69ead70a"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/Surfaces/worn_cracked_plaster/worn_cracked_plasterARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/worn_cracked_plaster/worn_cracked_plaster_arm_2k.jpg",
+        "sha256": "a33b2554c1f022e3001b43fb61d07ff079bf999c6433eed1efabd59d2d44eceb"
+      }
+    ]
+  },
+  {
+    "id": "worn_mossy_plasterwall",
+    "sourcePage": "https://polyhaven.com/a/worn_mossy_plasterwall",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "authors": null,
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/Surfaces/worn_mossy_plasterwall/worn_mossy_plasterwallDiffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/worn_mossy_plasterwall/worn_mossy_plasterwall_diff_2k.jpg",
+        "sha256": "b55a5ac7b045d64d7615c30cc47d8c2f630127877ddf686585722c178fab4b4c"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/Surfaces/worn_mossy_plasterwall/worn_mossy_plasterwallNormal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/worn_mossy_plasterwall/worn_mossy_plasterwall_nor_gl_2k.jpg",
+        "sha256": "f7057359fa854bf8bda43d16c9d69a8da27f557f33270270b0b87043cb6e8775"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/Surfaces/worn_mossy_plasterwall/worn_mossy_plasterwallARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/worn_mossy_plasterwall/worn_mossy_plasterwall_arm_2k.jpg",
+        "sha256": "d0e7a47562b1263ba0ca9943aa2831c6f40c553c9bd19516bfab733c0ded4105"
+      }
+    ]
+  },
+  {
+    "id": "blue_floor_tiles_01",
+    "sourcePage": "https://polyhaven.com/a/blue_floor_tiles_01",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "authors": null,
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/Surfaces/blue_floor_tiles_01/blue_floor_tiles_01Diffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/blue_floor_tiles_01/blue_floor_tiles_01_diff_2k.jpg",
+        "sha256": "705866e2a133b0b4cde1bd034128e4b9aebb1f5cd12acd9ff4328528a49eae97"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/Surfaces/blue_floor_tiles_01/blue_floor_tiles_01Normal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/blue_floor_tiles_01/blue_floor_tiles_01_nor_gl_2k.jpg",
+        "sha256": "f3abed29aac3c34f05af03117fac1535f73eda77b1e43b33a83a57c92df5a542"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/Surfaces/blue_floor_tiles_01/blue_floor_tiles_01ARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/blue_floor_tiles_01/blue_floor_tiles_01_arm_2k.jpg",
+        "sha256": "c48a337eba8a41525a06a70ddff6d304451c99dced5d3a0a0284b8caddfb8675"
+      }
+    ]
+  },
+  {
+    "id": "asphalt_02",
+    "sourcePage": "https://polyhaven.com/a/asphalt_02",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "authors": null,
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/Surfaces/asphalt_02/asphalt_02Diffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/asphalt_02/asphalt_02_diff_2k.jpg",
+        "sha256": "28f5ba8690553f192c0e5e1a5ff40f34765b4b93f4cc7059b1a3e9c795b6c28c"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/Surfaces/asphalt_02/asphalt_02Normal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/asphalt_02/asphalt_02_nor_gl_2k.jpg",
+        "sha256": "ffe49db71a0fd34c1e259625df66a302a237597d6ef655307987ec4e45bc6f21"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/Surfaces/asphalt_02/asphalt_02ARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/asphalt_02/asphalt_02_arm_2k.jpg",
+        "sha256": "ed70e88640e4ed51cf1c3e57cb20db26983599b20b867c2526439e3a2c849fea"
+      }
+    ]
+  },
+  {
+    "id": "rust_coarse_01",
+    "sourcePage": "https://polyhaven.com/a/rust_coarse_01",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "authors": null,
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/Surfaces/rust_coarse_01/rust_coarse_01Diffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rust_coarse_01/rust_coarse_01_diff_2k.jpg",
+        "sha256": "5b8801674fa53ff1b6f7853300f50aa7a1b31e69278554803bd957fe9fa7e392"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/Surfaces/rust_coarse_01/rust_coarse_01Normal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rust_coarse_01/rust_coarse_01_nor_gl_2k.jpg",
+        "sha256": "495d3c87da059827ffaf49dae59f967cb3e0b187f4426ab0a47088c3fa83e50b"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase1/Imported/Surfaces/rust_coarse_01/rust_coarse_01ARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rust_coarse_01/rust_coarse_01_arm_2k.jpg",
+        "sha256": "22f10597662e8d5268f79960d23c4a03790a2083f9f05d0680c3535152b26843"
+      }
+    ]
+  }
+]

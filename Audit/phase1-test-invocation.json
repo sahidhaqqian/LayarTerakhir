@@ -1,0 +1,23 @@
+{
+  "stage": "test",
+  "startedUtc": "2026-10-23T07:14:31.479376+00:00",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-main",
+    "-runTests",
+    "-testPlatform",
+    "EditMode",
+    "-testFilter",
+    "LayarTerakhir.Editor.Tests",
+    "-testResults",
+    "/root/Projects/LayarTerakhir-main/Audit/phase1-regression-tests.xml",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Audit/phase1-test.log"
+  ],
+  "status": "Finished",
+  "endedUtc": "2026-10-23T07:22:56.834410+00:00",
+  "exitCode": 2
+}

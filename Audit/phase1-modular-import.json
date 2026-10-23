@@ -1,0 +1,61 @@
+{
+  "source": "https://opengameart.org/content/unfinished-buildings",
+  "author": "loafbrr_1",
+  "license": "CC0-1.0",
+  "sourceSha256": "689b2c4a7d2c4c40cae5fc51272f534ba6f19ffbe3c407c153cff2cd4df2c355",
+  "conversionOnly": true,
+  "objects": [
+    {
+      "sourceObject": "Cube.002",
+      "output": "ModularBlock.fbx",
+      "polygons": 24,
+      "dimensions": [
+        4.900000095367432,
+        4.900000095367432,
+        4.900000095367432
+      ]
+    },
+    {
+      "sourceObject": "Concrete_Stairs_1",
+      "output": "Concrete_Stairs_1.fbx",
+      "polygons": 35,
+      "dimensions": [
+        1.5,
+        3.0,
+        3.0
+      ]
+    },
+    {
+      "sourceObject": "Wall_Concrete_Window_2",
+      "output": "Wall_Concrete_Window_2.fbx",
+      "polygons": 18,
+      "dimensions": [
+        3.0,
+        0.15000012516975403,
+        3.0
+      ]
+    },
+    {
+      "sourceObject": "Wall_Concrete_Door_1",
+      "output": "Wall_Concrete_Door_1.fbx",
+      "polygons": 9,
+      "dimensions": [
+        3.0,
+        0.15000012516975403,
+        3.0
+      ]
+    },
+    {
+      "sourceObject": "Floor_Concrete_2",
+      "output": "Floor_Concrete_2.fbx",
+      "polygons": 2,
+      "dimensions": [
+        3.0,
+        3.0,
+        0.15000025928020477
+      ]
+    }
+  ],
+  "superseded": true,
+  "replacement": "phase1-environment-sources.json and phase1-stair-import.json; old environment models removed"
+}

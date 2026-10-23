@@ -29,7 +29,7 @@ namespace LayarTerakhir.UI
         {
             if(banner&&Time.unscaledTime>bannerUntil){Destroy(banner);banner=null;}
             if(callTimer&&IsCalling){int seconds=Mathf.FloorToInt(Time.time-callStarted);callTimer.text=dialing&&!outgoingConnected?"Memanggil…":$"{seconds/60:00}:{seconds%60:00}  •  Tersambung";}
-            if(!Phone||!Phone.hasSmartphoneInInventory||!root||UiFocus.Cinematic||HudController.Instance.IsModalOpen)return;
+            if(!Phone||!Phone.hasSmartphoneInInventory||!root||UiFocus.Cinematic||UiFocus.HardModal||HudController.Instance.IsModalOpen||Phone.CameraLocked)return;
             if(Keyboard.current!=null)
             {
                 if(Keyboard.current.zKey.wasPressedThisFrame&&Phone.isPhoneRaised)Open(CurrentApp==PhoneApp.Home?PhoneApp.Camera:PhoneApp.Home);
@@ -39,15 +39,17 @@ namespace LayarTerakhir.UI
             if(GameInputConfig.Instance&&GameInputConfig.Instance.GetActionDown(GameAction.OpenJournal)){Phone.isPhoneRaised=true;Phone.SyncVisualState();Open(PhoneApp.Journal);}
         }
         public void SetScreenVisible(bool on){if(root)root.SetActive(on&&CurrentApp!=PhoneApp.Camera);if(banner)banner.SetActive(on);if(on&&pendingNotification){pendingNotification=false;ShowNotification();}}
-        public void Stow(){Phone.isPhoneRaised=false;Phone.SyncVisualState();UiFocus.Phone=false;}
+        public void Stow(){if(Phone.CameraLocked)return;Phone.isPhoneRaised=false;Phone.SyncVisualState();UiFocus.Phone=false;}
         public void Open(PhoneApp app)
         {
+            if(Phone&&Phone.CameraLocked&&app!=PhoneApp.Camera)return;
             CurrentApp=app;TravelSelection=false;if(page){page.SetActive(false);Destroy(page);}if(!root)return;
             root.SetActive(app!=PhoneApp.Camera);page=PhoneSkin.Card("App_"+app,root.transform,Vector2.zero,Vector2.one,app==PhoneApp.Home?new Color(.045f,.09f,.14f):PhoneSkin.Ink);
             if(app==PhoneApp.Camera)return;if(app==PhoneApp.Home){Home();return;}if(app==PhoneApp.Call){CallScreen();return;}
             string title=app==PhoneApp.Map?"Peta":app==PhoneApp.Messages?"Pesan":app==PhoneApp.Bank?"Bank":app==PhoneApp.Journal?"Jurnal":"Tas";
             UiWidgets.Text("AppTitle",page.transform,title,new Vector2(.075f,.91f),new Vector2(.93f,.99f),34);
             PhoneSkin.Button("BackHome",page.transform,"‹  Aplikasi",new Vector2(.06f,.015f),new Vector2(.94f,.085f),()=>Open(PhoneApp.Home));
+            if(Phone.ChapterContent!=null&&Phone.ChapterContent.PopulateApp(app,page.transform))return;
             if(app==PhoneApp.Map)Map();else if(app==PhoneApp.Messages)Messages();else if(app==PhoneApp.Journal)Journal();else if(app==PhoneApp.Inventory)Inventory();else if(app==PhoneApp.Bank)Bank();
         }
         private void Home()

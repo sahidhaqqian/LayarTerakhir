@@ -15,6 +15,7 @@ namespace LayarTerakhir.Player
     public sealed class ShoulderCameraRig : MonoBehaviour
     {
         public const int AvatarLayer = 26;
+        public const int PhoneGripLayer = 31;
         public const uint AvatarRenderingLayer = 1u<<7;
         public Vector3 shoulderOffset = new Vector3(.48f, .10f, -1.85f);
         public float collisionRadius = .16f;
@@ -25,8 +26,9 @@ namespace LayarTerakhir.Player
         public bool CinematicVisible { get; set; }
         public bool Riding { get; set; }
         public bool FirstPersonOverride { get; set; }
+        public bool PhoneAimOverride { get; set; }
         public PlayerPerspective SelectedPerspective { get; private set; }
-        public bool IsFirstPerson => FirstPersonOverride || SelectedPerspective == PlayerPerspective.FirstPerson;
+        public bool IsFirstPerson => FirstPersonOverride || PhoneAimOverride || SelectedPerspective == PlayerPerspective.FirstPerson;
         public static PlayerPerspective SavedPerspective => string.IsNullOrEmpty(Environment.GetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY")) && PlayerPrefs.GetInt("LT.Perspective",0)==1 ? PlayerPerspective.FirstPerson : PlayerPerspective.OverShoulder;
         private FirstPersonController player;
         private Camera eye;
@@ -58,7 +60,7 @@ namespace LayarTerakhir.Player
             var bounce=new GameObject("RakaSoftBounce",typeof(Light));bounce.transform.SetParent(transform,false);
             bounce.transform.localPosition=new Vector3(.55f,1.85f,-.9f);avatarBounce=bounce.GetComponent<Light>();
             avatarBounce.type=LightType.Point;avatarBounce.range=2.8f;avatarBounce.intensity=2.5f;
-            avatarBounce.color=new Color(.62f,.68f,.76f);avatarBounce.shadows=LightShadows.None;avatarBounce.cullingMask=1<<AvatarLayer;
+            avatarBounce.color=new Color(.62f,.68f,.76f);avatarBounce.shadows=LightShadows.None;avatarBounce.cullingMask=(1<<AvatarLayer)|(1<<PhoneGripLayer);
             avatarBounce.renderMode=LightRenderMode.ForcePixel;
             avatarBounce.GetUniversalAdditionalLightData().renderingLayers=(RenderingLayerMask)AvatarRenderingLayer;
             SelectedPerspective=SavedPerspective;
@@ -79,7 +81,7 @@ namespace LayarTerakhir.Player
         {
             if (!eye || !player.cameraPivot) return;
             bool modal=HudController.Instance&&HudController.Instance.IsModalOpen;
-            if(player.enabled&&!UiFocus.Cinematic&&!UiFocus.HardModal&&!modal&&!FirstPersonOverride&&GameInputConfig.Instance&&GameInputConfig.Instance.GetActionDown(GameAction.TogglePerspective))
+            if(player.enabled&&!UiFocus.Cinematic&&!UiFocus.HardModal&&!modal&&!FirstPersonOverride&&!PhoneAimOverride&&GameInputConfig.Instance&&GameInputConfig.Instance.GetActionDown(GameAction.TogglePerspective))
                 TogglePerspective();
             // Wake-up and motorcycle shots temporarily own the camera.
             foreach (var renderer in bodyRenderers) renderer.enabled = !UiFocus.Cinematic || CinematicVisible;
@@ -108,7 +110,8 @@ namespace LayarTerakhir.Player
             if (IsFirstPerson)
             {
                 cameraDistance = -1;
-                avatarBounce.enabled=false;
+                avatarBounce.enabled=PhoneAimOverride;
+                avatarBounce.intensity=.65f;
                 CurrentDistance=0;
                 eye.transform.SetPositionAndRotation(pivot.position, pivot.rotation);
                 AnimateRaka();
@@ -155,7 +158,7 @@ namespace LayarTerakhir.Player
             else if (advance)
                 cameraDistance = Mathf.SmoothDamp(cameraDistance, distance, ref distanceVelocity, .12f, Mathf.Infinity, Time.deltaTime);
             CurrentDistance = Mathf.Min(distance, cameraDistance);
-            avatarBounce.enabled=CurrentDistance>.35f;
+            avatarBounce.enabled=CurrentDistance>.35f;avatarBounce.intensity=2.5f;
             Vector3 position = anchor + direction.normalized * CurrentDistance;
             eye.transform.SetPositionAndRotation(position, Quaternion.LookRotation(AimPoint - position, pivot.up));
             AnimateRaka();

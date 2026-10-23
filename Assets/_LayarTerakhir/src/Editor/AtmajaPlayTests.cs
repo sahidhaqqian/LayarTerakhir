@@ -131,6 +131,8 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(phone.isPhoneRaised,Is.True,"Right mouse must raise the phone immediately");
             Assert.That(view.IsCameraApp,Is.True,"Raising the camera must not require Tab or an app tap");
             yield return new WaitForSecondsRealtime(.3f);Assert.That(view.ViewfinderActive,Is.True,"Focus remains active while the button is held");
+            Assert.That(view.FocusHandsVisible,Is.True,"The held landscape camera has two existing physical grasps");
+            Assert.That(d.player.GetComponent<ShoulderCameraRig>().PhoneAimOverride,Is.True);
             view.Apps.Open(PhoneApp.Inventory);yield return null;yield return null;
             Assert.That(view.IsCameraApp,Is.True,"An app menu cannot displace a held camera");
             InputSystem.QueueStateEvent(mouse,new MouseState{buttons=0});yield return null;yield return null;
@@ -169,9 +171,10 @@ namespace LayarTerakhir.Editor.Tests
             view.SetViewfinder(true);yield return new WaitForSecondsRealtime(.4f);
             var rect=view.Panel.GetComponent<RectTransform>();
             Assert.That(view.ViewfinderActive,Is.True,"Holding focus must raise the full viewfinder");
-            Assert.That(rect.anchorMax.y,Is.GreaterThan(.95f),"Viewfinder fills the screen height");
-            Assert.That(rect.anchorMin,Is.EqualTo(Vector2.zero));Assert.That(rect.anchorMax,Is.EqualTo(Vector2.one),"Focus covers the full viewport");
-            Assert.That(view.FeedCamera.aspect,Is.EqualTo((float)Screen.width/Screen.height).Within(.01f),"The focus feed matches the viewport without stretching");
+            Assert.That(rect.anchorMin.x,Is.GreaterThan(.1f));Assert.That(rect.anchorMax.x,Is.LessThan(.9f),"Physical handset frame leaves the world visible around the phone");
+            Assert.That(rect.rect.width/rect.rect.height,Is.GreaterThan(1.5f),"Camera is held horizontally");
+            Assert.That(view.FocusHandsVisible,Is.True);
+            Assert.That(view.FeedCamera.aspect,Is.EqualTo(16f/9).Within(.01f),"Landscape feed preserves the screen's aspect");
             Assert.That(view.FeedCamera.targetTexture.width,Is.InRange(640,960));
             Assert.That(view.FeedCamera.enabled,Is.EqualTo(view.HasGraphicsDevice));
             view.SetViewfinder(false);yield return new WaitForSecondsRealtime(.1f);
@@ -348,7 +351,7 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(body.sharedMesh.vertexCount,Is.InRange(10000,65000),"Use the optimized designer mesh, not the million-vertex source or a primitive fallback");
             Assert.That(d.phoneView.FeedCamera.cullingMask&(1<<ShoulderCameraRig.AvatarLayer),Is.Zero,"Raka's shoulder/handset must not obscure the separate phone feed");
             var bounce=p.transform.Find("RakaSoftBounce").GetComponent<Light>();
-            Assert.That(bounce.cullingMask,Is.EqualTo(1<<ShoulderCameraRig.AvatarLayer));Assert.That(bounce.shadows,Is.EqualTo(LightShadows.None));
+            Assert.That(bounce.cullingMask,Is.EqualTo((1<<ShoulderCameraRig.AvatarLayer)|(1<<ShoulderCameraRig.PhoneGripLayer)));Assert.That(bounce.shadows,Is.EqualTo(LightShadows.None));
             Assert.That((uint)bounce.GetComponent<UnityEngine.Rendering.Universal.UniversalAdditionalLightData>().renderingLayers,Is.EqualTo(ShoulderCameraRig.AvatarRenderingLayer));
             Assert.That(rig.Avatar.GetComponentsInChildren<Renderer>(true).All(r=>(r.renderingLayerMask&ShoulderCameraRig.AvatarRenderingLayer)!=0),Is.True,"Only avatar renderers opt into the body fill's URP rendering layer");
             long wallet=CampaignState.Instance.Data.wallet_bound;var checkpoint=CampaignState.Instance.Data.checkpoint_id;

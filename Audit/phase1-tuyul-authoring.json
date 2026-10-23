@@ -1,0 +1,30 @@
+{
+  "role": "Tuyul",
+  "sourceSha256": "e845cb1e8819fd9afcf9404c2983bb0850ce625257b089a941fcadb18580a224",
+  "sourceTriangles": 1029976,
+  "gameTriangles": 9000,
+  "height": 0.85,
+  "textures": {
+    "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase1/Characters/Textures/TuyulAlbedo.png",
+    "Normal": "Assets/_LayarTerakhir/assets/Art/Phase1/Characters/Textures/TuyulNormal.png",
+    "MetalSmooth": "Assets/_LayarTerakhir/assets/Art/Phase1/Characters/Textures/TuyulMetalSmooth.png"
+  },
+  "clips": [
+    "Idle",
+    "Run",
+    "Walk",
+    "Stun",
+    "Windup"
+  ],
+  "motionSources": [
+    {
+      "path": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/RakaDesigner.fbx",
+      "sha256": "d39639b9d1e89bca89817d0bcddc6444282f5acf9d07e510504406b65d9dbd3f"
+    },
+    {
+      "path": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/NyonyaDesigner.fbx",
+      "sha256": "d307ad0d637504cbcaf8baff91391a12dddc7cebf5600a8669b1e62c00d4847b"
+    }
+  ],
+  "motionOperation": "retarget existing rotation deltas, no original motion authored"
+}

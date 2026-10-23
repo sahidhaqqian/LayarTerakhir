@@ -2,7 +2,7 @@
 
 > **Project:** Layar Terakhir · **Babak:** 1 · **Lokasi:** Rusunawa Griya Asri · **Versi:** 2.2-r1, penyelarasan audit repositori Codex, 23 Oktober 2026 (basis naskah v2.2 Claude + Gemini)  
 > **Jenis dokumen:** *Single source of truth* untuk naskah, level design, mekanik, implementasi Unity, penyimpanan, dan QA.  
-> **Status:** **Audit repositori selesai / menunggu persetujuan implementasi**, **belum phase-freeze** dan bukan bukti fitur sudah ada di repository. Penyelarasan r1 hanya dokumentasi; belum ada implementasi Babak 1. Aturan global yang sudah jelas disalin ke §0.4; proposal yang berbenturan ditahan, bukan otomatis dijadikan kanon. Seluruh 74 QA adalah rencana uji, belum hasil lulus.  
+> **Status:** **Implementasi diizinkan 23 Oktober 2026; sedang dikerjakan dan diuji**, **belum phase-freeze** dan belum menjadi bukti seluruh penerimaan gameplay lulus. Status implementasi sesudah audit dijelaskan pada §0.6. Aturan global yang sudah jelas disalin ke §0.4; proposal yang berbenturan ditahan, bukan otomatis dijadikan kanon. Seluruh 74 QA tetap acceptance yang perlu dicocokkan dengan hasil aktual.
 > **Rujukan lintas babak:** `Rancangan.MD` (parameter global dan kontinuitas cerita). Bila ketentuan global belum diketahui, jangan membuat asumsi diam-diam.
 
 ## 0. Cara membaca dan batas keputusan
@@ -86,13 +86,46 @@ Dokumen ini adalah acuan implementasi P1 di root. `Assets/_LayarTerakhir/src/Doc
 
 **Pagar keputusan:** Ikuti kontrak global/default di atas. D01 (pengecualian energi), D02 (Sanity/dua-hit), D03 (ledger/transfer), D05 (kaset nubuat), D06 (carry-over/grant), D07 (tier performa), dan D08 (ratifikasi retry boss), dan D09 (urutan intro/endpoint chapter) harus tercatat sebelum freeze bagian terkait. Mekanik inti cerita tetap; prototype angka boleh diuji setelah milestone implementasi diizinkan. Jangan membaca label “siap blockout” sebagai izin coding dalam sesi audit.
 
+### 0.5 Keputusan implementasi dari desainer — 23 Oktober 2026
+
+**Arahan terbaru:** “tahan dulu sementara pakai global dulu aja nanti kalau gak sesuai aku ubah”. Bagian ini mengungguli baseline yang belum disetujui pada bagian berikutnya. Implementasi tidak boleh mengurangi kualitas visual, atmosfer, atau gameplay untuk mengejar checklist.
+
+- **Revisi desainer terbaru:** perpindahan pertama `PROLOG_COMPLETE` → Phase 1 mengisi baterai ke **100%** sekali. Inventori/Sanity/uang tetap diwarisan yang sebenarnya. Continue/checkpoint/retry tidak mengisi ulang baterai. Tidak ada refill 100% saat Continue/retry, powerbank awal tambahan, top-up otomatis CP3 20%, ataupun floor CP5 40%.
+- **Tidak ada WATCH_ONLY gratis pada 0%.** Baterai nol tetap mematikan layar. Tambahkan panel isi ulang manual fisik di landing lift L3 sebelum mengambil cutter. Panel memakai mekanisme dinamo existing P1 (25 poin/8 detik sekali, crank darurat hingga 10% bila habis), bukan energi otomatis. Retry memuat snapshot, bukan menambah energi.
+- Sanity belum aktif di P1. Serangan langsung tetap fatal; jangan implementasikan proposal dua-hit/8 detik atau sistem health paralel.
+- Blitz tetap 15% dengan cooldown 6 detik. Boss memakai titik daya arena fisik selama recovery, tanpa Blitz bertenaga halogen pada 0%. Pengisian arena tetap tersedia setelah boss agar transmisi HP tidak terhalang baterai nol.
+- Retry boss memulihkan CP5 dengan baterai tepat snapshot dan tiga lampu utuh. CP6 disimpan atomik setelah kemenangan. Semua penulisan biasa ditolak selama attempt.
+- Sumber ekonomi mengikuti perilaku existing: dana Penonton_Terakhir terikat, donasi manusia sah. Hanya nominal peristiwa yang benar-benar ditulis boleh dibukukan satu kali. Rp78,2 juta tetap capaian naratif, tanpa menciptakan transaksi penutup selisih.
+- Status pembayaran kos/RS mengikuti receipt save, tidak dilunaskan diam-diam untuk menyesuaikan monolog.
+- Nubuat kaset 1998 masih ditahan. Untuk implementasi sementara, rekaman hanya menyampaikan kanon global lima gerbang/empat segel; jangan mengklaim nubuat sudah disahkan. Dialog/performa manusia yang belum direkam harus dicatat sebagai belum final.
+- Babak berakhir pada konfirmasi motor dan CP7; simpan tujuan RSUD tanpa membuat scene Babak 2. Video Damar memakai set rekaman non-playable di dalam scene P1.
+- **Aset wajib existing atau unduhan internet berlisensi.** Tidak membuat model, gambar, tekstur, atau gerak original sendiri. Konversi/optimasi VRM pengguna, retargeting animasi existing dan konversi channel PBR diperbolehkan sebagai langkah impor, tanpa mengarang artwork. Sumber/lisensi ada di `Audit/phase1-asset-credits.md` dan `Audit/phase1-audio-credits.md`.
+- Target 60 FPS global tetap dipertahankan. Headless/Linux software rendering tidak menggantikan pengukuran Windows pada GPU sasaran.
+
+**Penyesuaian oracle QA:** QA-59 menguji baterai masuk **L3** 0/1/19/85 tetap sesuai snapshot dan panel manual dapat dipakai; secara terpisah, perpindahan pertama Prolog→P1 mengisi baterai ke 100% sekali; QA-60 memuat snapshot tepat tanpa grant berulang; QA-61 memverifikasi layar mati pada 0% dan pemulihan/retry melalui panel fisik; QA-62 memastikan Kuntilanak tetap resolved tanpa kamera gratis. QA-39 tidak boleh dianggap menyetujui nubuat. QA-41 memakai serangan fatal global. Status QA lainnya tetap rencana sampai hasil aktual dicatat pada laporan implementasi.
+
+### 0.6 Status implementasi — build review, bukan phase freeze
+
+Sesudah audit, desainer mengizinkan implementasi. Baseline pada §0.4 dan laporan audit tetap catatan historis. Implementasi sekarang memperluas `CampaignState` schema 2, routing Continue, handset/interactor existing, dan scene `Babak1_Rusunawa` pada index 3; tiga scene Prolog dipertahankan. Sumber runtime babak berada di `Assets/_LayarTerakhir/src/Phase1`; builder di `src/Editor/Phase1*Builder.cs`.
+
+Laporan pelaksanaan dan status penerimaan berada di [Audit/PHASE1_IMPLEMENTATION_REVIEW.md](Audit/PHASE1_IMPLEMENTATION_REVIEW.md). Daftar QA §10 adalah acceptance, **bukan daftar yang otomatis sudah lulus**. Uji aturan/editor, native smoke yang diarahkan, playtest manusia, kualitas visual/audio akhir, pacing satu jam dan pengukuran GPU Windows mempunyai tingkat bukti berbeda. Versi implementasi wajib menyebut keterbatasan tersebut.
+
+**Revisi visual setelah playtest desainer, 23 Oktober 2026:** build review pertama ditolak karena mutu bangunan/lingkungan. Phase 1 memakai pustaka lingkungan unduhan tersendiri, bukan furnitur, permukaan bangunan atau housing lampu Prolog. Gunakan modul beton/pintu/jendela berlisensi, UV pada skala nyata, tekstur PBR 2K dan dressing ruang sesuai fungsi. Sistem pemain/HP, karakter desainer dan motor yang dibawa dari babak sebelumnya tetap digunakan untuk kontinuitas. Dilarang membuat aset visual sendiri. Sumber dan checksum wajib dicatat di `Audit/phase1-environment-sources.json`. Penerimaan visual dan 74 QA tetap harus dibuktikan, bukan diasumsikan dari build berhasil.
+
+### 0.7 Revisi playtest terbaru — baterai, kamera dan kepadatan lingkungan
+
+- Baterai awal Phase 1 **100%** hanya pada transisi babak setelah Prolog. Ini menggantikan arahan carry-over baterai awal sebelumnya. Tidak ada refill otomatis CP3/CP5, dan retry/Continue tetap snapshot.
+- Klik kanan **ditahan** untuk mengangkat kamera; lepas kembali ke keadaan/perspektif sebelumnya. Kamera fokus memperlihatkan HP horizontal dengan dua tangan dan bingkai fisik, berdasarkan referensi pengguna `r2:layarterakhir/Layarterakhir/dreadout-referensi/dread9.png`. App menu HP dialihkan ke Kamera selama tombol ditahan. Override hiding dan scripted pursuit tetap dipertahankan.
+- Tambahkan minimal **30 model prop baru yang berbeda** dari sumber internet berlisensi, di luar modul bangunan/tekstur/duplikasi. Model harus benar-benar ditempatkan sesuai fungsi ruang. Sumber/hash: `Audit/phase1-additional-prop-sources.json`; posisi/penopang/ukuran: `Audit/phase1-additional-prop-placement.json`. Jalur koridor, tangga, petunjuk, keris, charging dan hiding harus tetap dapat dipakai.
+- Gunakan aset yang sudah ada/unduhan. Kedua grasp memakai model tangan rigged unduhan CC0 (para/MakeHuman), dengan pose dan konversi impor; tidak membuat model/tekstur tangan sendiri. Gambar DreadOut hanya referensi, tidak dimasukkan ke aset game.
+
 ## 1. Naskah enam adegan (KANON; bagian yang diubah diberi catatan audit)
 
 > **[REVISI EDITORIAL]** Beberapa teks dokumen/dialog di bawah dikoreksi untuk menutup kontradiksi. Perubahan itu bukan kutipan verbatim versi pertama; periksa daftar perubahan §13 sebelum menetapkan kanon final.
 
 ### ADEGAN 1: Pelataran Parkir Rusunawa Griya Asri (Menit 00:00 – 08:00)
 
-**Kondisi Awal:** Pukul **23:55 WIB**. Hujan gerimis dan kabut tipis menyelimuti halaman Rusunawa Terbengkalai Griya Asri—bangunan beton 4 lantai berbentuk huruf 'O' dengan lapangan jemuran di tengah (*void* terbuka) yang kumuh dan gelap gulita. Raka berdiri di samping motornya, sementara di jok belakang terikat Handycam Sony milik Damar. **[BASELINE UJI]** Di inventori awal Babak 1 terdapat **1 powerbank cadangan** yang dibawa Raka dari perjalanannya; inisialisasi **idempoten** sekali saat masuk babak, jangan berikan ulang pada checkpoint. Jika `Rancangan.MD` menetapkan inventori carry-over berbeda, sesuaikan data awal dan penjelasan naratif sekaligus sebelum freeze.
+**Kondisi Awal:** Pukul **23:55 WIB**. Hujan gerimis dan kabut tipis menyelimuti halaman Rusunawa Terbengkalai Griya Asri—bangunan beton 4 lantai berbentuk huruf 'O' dengan lapangan jemuran di tengah (*void* terbuka) yang kumuh dan gelap gulita. Raka berdiri di samping motornya, sementara di jok belakang terikat Handycam Sony milik Damar. **[KEPUTUSAN DESAINER]** Baterai terisi **100%** sekali saat perpindahan setelah Prolog. Inventori berasal dari save sebenarnya; tidak ada powerbank awal tambahan. Continue/retry tidak melakukan pengisian ulang.
 
 #### 1. Monolog Pembuka & Status Finansial
 
@@ -1040,10 +1073,10 @@ Urutan akhir **wajib tunggal**: `P1_BOSS_WIN` (Raka tetap K404) → `P1_DAMAR_CL
 
 | ID | Skenario | Hasil wajib |
 |---|---|---|
-| QA-59 | Masuk L3 dengan baterai 0%, 1%, 19%, dan 85% | CP3 pertama menjadi 20%, 20%, 20%, 85%; tercatat sekali, tak menghasilkan powerbank |
+| QA-59 | Masuk L3 dengan baterai 0%, 1%, 19%, dan 85% | Baterai tetap 0%, 1%, 19%, 85% sesuai carry-over; panel manual L3 dapat dipakai sebelum cutter; tidak ada grant gratis |
 | QA-60 | Mati/retry L3 sepuluh kali, kembali ke lift, lalu load CP3 | Baterai selalu nilai snapshot CP3; tidak naik +20% pada tiap ulang |
-| QA-61 | Baterai habis setelah CP3 sebelum/sewaktu pursuit | Kamera WATCH_ONLY tetap memberi frustum/watch dengan 0%; E untuk chain dapat dipakai; AR/Flash/EVP mati dan baterai tidak naik |
-| QA-62 | P1_CUT_CHAIN berhasil lalu kembali lagi ke L3 dengan baterai 0% | Kuntilanak tidak respawn; mode WATCH_ONLY nonaktif; pemain bisa kembali lewat jalur terbuka |
+| QA-61 | Baterai habis setelah CP3 sebelum/sewaktu pursuit | Layar mati pada 0%, tidak ada WATCH_ONLY. Sebelum cutter gunakan panel manual; gagal saat pursuit dapat retry CP3 tanpa grant dan mengisi panel fisik |
+| QA-62 | P1_CUT_CHAIN berhasil lalu kembali lagi ke L3 dengan baterai 0% | Kuntilanak tidak respawn, layar tetap mati pada 0%, pemain dapat kembali lewat jalur terbuka |
 | QA-63 | Kamera menatap hantu sementara pemain membelakangi cutter/rantai lalu menekan E dari ≤1,3/1,6m | Pickup dan chain-cut berhasil tanpa memaksa membalik kamera; interaksi menolak jika ada dinding solid yang memisahkan |
 | QA-64 | E tertekan saat hantu sudah ≤1,2m dan saat masih >1,2m | Yang pertama Game Over; yang kedua animasi 2s aman lalu resolve atomik |
 | QA-65 | E pada altar K404 dari dapur jauh vs saat tepat di depan altar | CP5 **tidak** tercipta dari dapur; tercipta sekali saat E valid depan altar dengan tiga bukti+keris |
@@ -1122,7 +1155,7 @@ Sediakan debug overlay khusus developer dengan `stage`, `completedEvents`, `evid
 
 [r1] Checklist berikut mengikuti pagar D01/D02/D06/D08 pada §0.4: baseline pengecualian belum menjadi persetujuan. Default biaya HP/recovery/Sanity global tetap berlaku.
 
-- [ ] Mulai babak dengan baseline 1x powerbank **sekali** bila desain carry-over belum bertentangan; +1 dari mailbox 207 **sekali**; Tuyul mencuri bila tersedia tanpa inventori negatif.
+- [ ] Mulai babak dengan baterai 100% sekali dan inventori carry-over tanpa powerbank tambahan; +1 powerbank dari mailbox 207 **sekali**; Tuyul mencuri bila tersedia tanpa inventori negatif.
 - [ ] Tiga dinamo: 1 full-charge +25%/8s tiap lokasi, emergency jika **<10%**, 45s **akumulatif**, cooldown 120s, cap 10%; stop/pause progres saat terancam. **Tidak ada dinamo di arena boss.**
 - [ ] CP3 pertama dibuat setelah panel lift darurat menetapkan `battery=max(current,20%)` satu kali; retry memuat snapshot dan tidak memicu recharge baru.
 - [ ] Kamera Kuntilanak `WATCH_ONLY` tetap aktif saat 0%, **hanya di L3 selama encounter**; AR/EVP/Flash tidak gratis, baterai tidak bertambah.

@@ -40,7 +40,8 @@ namespace LayarTerakhir.Core
         public List<PhoneDocument> documents = new List<PhoneDocument>();
         public bool archive_prepared = false;
         public EndingType ending = EndingType.None;
-        public int schema_version = 1;
+        public int schema_version = 2;
+        public Phase1Data phase1 = new Phase1Data();
     }
 
     public class CampaignState : MonoBehaviour
@@ -48,6 +49,31 @@ namespace LayarTerakhir.Core
         public static CampaignState Instance { get; private set; }
 
         public CampaignData Data { get; private set; } = new CampaignData();
+        private object checkpointAttemptOwner;
+        public bool WritesBlocked => checkpointAttemptOwner != null;
+
+        public bool BeginCheckpointAttempt(object owner)
+        {
+            if (owner == null || checkpointAttemptOwner != null) return false;
+            checkpointAttemptOwner = owner; return true;
+        }
+        public void EndCheckpointAttempt(object owner)
+        { if (ReferenceEquals(checkpointAttemptOwner, owner)) checkpointAttemptOwner = null; }
+
+        // Mutate, validate and replace disk once, or restore *all* campaign fields.
+        public bool TryCommit(string checkpointId, Action<CampaignData> mutate, object attemptOwner = null)
+        {
+            if (WritesBlocked && !ReferenceEquals(checkpointAttemptOwner, attemptOwner)) return false;
+            string before = JsonUtility.ToJson(Data);
+            try
+            {
+                mutate?.Invoke(Data);
+                if (SaveAtomic(checkpointId)) return true;
+            }
+            catch (Exception ex) { Debug.LogWarning("[CampaignState] Transaksi dibatalkan: " + ex.Message); }
+            JsonUtility.FromJsonOverwrite(before, Data);
+            return false;
+        }
 
         private string SaveDirectory
         {
@@ -77,6 +103,7 @@ namespace LayarTerakhir.Core
 
         public void StartNewGame()
         {
+            checkpointAttemptOwner = null;
             Data = new CampaignData();
         }
 
@@ -104,6 +131,7 @@ namespace LayarTerakhir.Core
 
         public bool ArchiveDocument(string title, string body, string documentId = null)
         {
+            if (WritesBlocked) return false;
             if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(body)) return false;
             if (Data.documents == null) Data.documents = new List<PhoneDocument>();
             bool archived = Data.documents.Exists(d => d.title == title && d.body == body);
@@ -120,6 +148,7 @@ namespace LayarTerakhir.Core
 
         public bool TryPayFamilyBill(bool hospital)
         {
+            if (WritesBlocked) return false;
             string call = hospital ? "EVENT_CALLED_IBU" : "EVENT_CALLED_RATNA";
             string paid = hospital ? "EVENT_PAID_HOSPITAL" : "EVENT_PAID_RENT";
             long amount = hospital ? 1500000 : 3500000;
@@ -138,6 +167,12 @@ namespace LayarTerakhir.Core
         }
 
         public bool SaveCheckpointAtomic(string checkpointId)
+        {
+            if (WritesBlocked) return false;
+            return SaveAtomic(checkpointId);
+        }
+
+        private bool SaveAtomic(string checkpointId)
         {
             string previousCheckpoint = Data.checkpoint_id;
             try
@@ -180,6 +215,7 @@ namespace LayarTerakhir.Core
                 if (!File.Exists(SaveFilePath) || !TryReadCheckpoint(SaveFilePath, out CampaignData loaded))
                     return false;
                 Data = loaded;
+                checkpointAttemptOwner = null;
                 return true;
             }
             catch (Exception ex)
@@ -215,6 +251,7 @@ namespace LayarTerakhir.Core
                 if (!File.Exists(BackupSaveFilePath) || !TryReadCheckpoint(BackupSaveFilePath, out var loaded))
                     return false;
                 Data = loaded;
+                checkpointAttemptOwner = null;
                 return true;
             }
             catch (Exception ex)
@@ -228,19 +265,41 @@ namespace LayarTerakhir.Core
         {
             loaded = new CampaignData { schema_version = 0 };
             JsonUtility.FromJsonOverwrite(File.ReadAllText(path), loaded);
+            if (loaded.schema_version == 1)
+            {
+                // Schema 1 never stored a stage. Leave every P0 inventory/event flag intact.
+                loaded.phase1 = new Phase1Data();
+                loaded.schema_version = 2;
+            }
             return IsValid(loaded);
         }
 
         private static bool IsValid(CampaignData data)
         {
-            return data != null && data.schema_version == 1 && data.chapter_id >= 0 &&
+            return data != null && data.schema_version == 2 && data.chapter_id >= 0 &&
                 !string.IsNullOrWhiteSpace(data.checkpoint_id) &&
                 data.battery >= 0f && data.battery <= 100f && data.sanity >= 0f && data.sanity <= 100f &&
                 data.wallet_legitimate >= 0 && data.wallet_bound >= 0 && data.spent >= 0 &&
                 Enum.IsDefined(typeof(EndingType), data.ending) &&
                 ValidIds(data.inventory) && ValidIds(data.evidence_ids) && ValidIds(data.relic_ids) &&
                 ValidIds(data.location_seals) && ValidIds(data.upgrades) && ValidIds(data.secret_items) &&
-                ValidIds(data.secret_notes_read);
+                ValidIds(data.secret_notes_read) && ValidPhase1(data.phase1);
+        }
+
+        private static bool ValidPhase1(Phase1Data p)
+        {
+            if (p == null || !ValidIds(p.completed_event_ids) || !ValidIds(p.dynamo_full_charge_used_ids) ||
+                !Enum.IsDefined(typeof(Phase1Challenge), p.signboard_challenge) ||
+                !float.IsFinite(p.elapsed_gameplay_seconds) || p.elapsed_gameplay_seconds < 0 ||
+                string.IsNullOrWhiteSpace(p.safe_anchor) || p.dynamo_emergency_last_uses == null || p.money_ledger == null) return false;
+            var ids = new HashSet<string>();
+            foreach (var entry in p.dynamo_emergency_last_uses)
+                if (entry == null || string.IsNullOrWhiteSpace(entry.id) || !ids.Add(entry.id) ||
+                    !float.IsFinite(entry.at_gameplay_seconds) || entry.at_gameplay_seconds < 0 || entry.at_gameplay_seconds > p.elapsed_gameplay_seconds) return false;
+            ids.Clear();
+            foreach (var entry in p.money_ledger)
+                if (entry == null || string.IsNullOrWhiteSpace(entry.id) || !ids.Add(entry.id) || entry.amount <= 0) return false;
+            return true;
         }
 
         private static bool ValidIds(List<string> ids)

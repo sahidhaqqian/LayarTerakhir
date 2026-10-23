@@ -1,0 +1,787 @@
+{
+    "minimumDistinctModels": 30,
+    "distinctModels": 30,
+    "utc": "2026-10-23T07:38:01.4609530Z",
+    "placements": [
+        {
+            "id": "medical_box",
+            "role": "GuardFirstAid",
+            "source": "https://polyhaven.com/a/medical_box",
+            "supportPoint": {
+                "x": -9.449999809265137,
+                "y": 0.0,
+                "z": -22.700000762939454
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": -9.449999809265137,
+                "y": 0.04125775396823883,
+                "z": -22.700000762939454
+            },
+            "size": {
+                "x": 0.37999916076660159,
+                "y": 0.07051550596952439,
+                "z": 0.25322723388671877
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "stationery_supplies",
+            "role": "GuardDeskStationery",
+            "source": "https://polyhaven.com/a/stationery_supplies",
+            "supportPoint": {
+                "x": -8.550000190734864,
+                "y": 0.9300000071525574,
+                "z": -23.149999618530275
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": -8.550000190734864,
+                "y": 1.0013338327407838,
+                "z": -23.149999618530275
+            },
+            "size": {
+                "x": 0.24000167846679688,
+                "y": 0.13066768646240235,
+                "z": 0.06651687622070313
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "small_plastic_torch",
+            "role": "GuardDeskTorch",
+            "source": "https://polyhaven.com/a/small_plastic_torch",
+            "supportPoint": {
+                "x": -7.449999809265137,
+                "y": 0.9300000071525574,
+                "z": -23.149999618530275
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": -7.449999809265137,
+                "y": 0.9626209735870361,
+                "z": -23.149999618530275
+            },
+            "size": {
+                "x": 0.0964956283569336,
+                "y": 0.05324196815490723,
+                "z": 0.220001220703125
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "wall_clock",
+            "role": "GuardRearWallClock",
+            "source": "https://polyhaven.com/a/wall_clock",
+            "supportPoint": {
+                "x": -8.0,
+                "y": 2.25,
+                "z": -21.424999237060548
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            },
+            "centre": {
+                "x": -8.0,
+                "y": 2.25,
+                "z": -21.4560489654541
+            },
+            "size": {
+                "x": 0.3399982452392578,
+                "y": 0.3399991989135742,
+                "z": 0.050098419189453128
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "metal_toolbox",
+            "role": "PumpServiceToolbox",
+            "source": "https://polyhaven.com/a/metal_toolbox",
+            "supportPoint": {
+                "x": -29.0,
+                "y": 0.0,
+                "z": -8.75
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": -29.0,
+                "y": 0.22293621301651,
+                "z": -8.75
+            },
+            "size": {
+                "x": 0.5,
+                "y": 0.43387243151664736,
+                "z": 0.3654022216796875
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "adjustable_wrench",
+            "role": "WorkbenchAdjustableWrench",
+            "source": "https://polyhaven.com/a/adjustable_wrench",
+            "supportPoint": {
+                "x": -29.700000762939454,
+                "y": 0.8799999952316284,
+                "z": -8.800000190734864
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": -29.700000762939454,
+                "y": 0.9022502899169922,
+                "z": -8.800000190734864
+            },
+            "size": {
+                "x": 0.07261276245117188,
+                "y": 0.032500624656677249,
+                "z": 0.2700004577636719
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "combination_wrench",
+            "role": "WorkbenchCombinationWrench",
+            "source": "https://polyhaven.com/a/combination_wrench",
+            "supportPoint": {
+                "x": -29.350000381469728,
+                "y": 0.8799999952316284,
+                "z": -8.800000190734864
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": -29.350000381469728,
+                "y": 0.8936607837677002,
+                "z": -8.800000190734864
+            },
+            "size": {
+                "x": 0.0402984619140625,
+                "y": 0.015321612358093262,
+                "z": 0.23999977111816407
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "cross_pein_hammer",
+            "role": "WorkbenchHammer",
+            "source": "https://polyhaven.com/a/cross_pein_hammer",
+            "supportPoint": {
+                "x": -28.950000762939454,
+                "y": 0.8799999952316284,
+                "z": -8.800000190734864
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": -28.950000762939454,
+                "y": 0.8981277346611023,
+                "z": -8.800000190734864
+            },
+            "size": {
+                "x": 0.09898757934570313,
+                "y": 0.02425551414489746,
+                "z": 0.2999992370605469
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "measuring_tape_01",
+            "role": "WorkbenchMeasuringTape",
+            "source": "https://polyhaven.com/a/measuring_tape_01",
+            "supportPoint": {
+                "x": -28.549999237060548,
+                "y": 0.8799999952316284,
+                "z": -8.800000190734864
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": -28.549999237060548,
+                "y": 0.9076664447784424,
+                "z": -8.800000190734864
+            },
+            "size": {
+                "x": 0.023944854736328126,
+                "y": 0.04333293437957764,
+                "z": 0.10000038146972656
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "utility_box_01",
+            "role": "PumpWallServiceBox",
+            "source": "https://polyhaven.com/a/utility_box_01",
+            "supportPoint": {
+                "x": -28.0,
+                "y": 1.7999999523162842,
+                "z": -8.149999618530274
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            },
+            "centre": {
+                "x": -28.0,
+                "y": 1.7999999523162842,
+                "z": -8.236974716186524
+            },
+            "size": {
+                "x": 0.19494247436523438,
+                "y": 0.4199998378753662,
+                "z": 0.16195106506347657
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "cement_bag",
+            "role": "PumpRepairSupplies",
+            "source": "https://polyhaven.com/a/cement_bag",
+            "supportPoint": {
+                "x": -30.5,
+                "y": 0.0,
+                "z": -10.0
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": -30.5,
+                "y": 0.08957917988300324,
+                "z": -10.0
+            },
+            "size": {
+                "x": 0.42969512939453127,
+                "y": 0.1671583652496338,
+                "z": 0.6499996185302734
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "oil_tin",
+            "role": "PumpLubricant",
+            "source": "https://polyhaven.com/a/oil_tin",
+            "supportPoint": {
+                "x": -30.5,
+                "y": 0.0,
+                "z": -10.850000381469727
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": -30.5,
+                "y": 0.156000018119812,
+                "z": -10.850000381469727
+            },
+            "size": {
+                "x": 0.16757583618164063,
+                "y": 0.30000004172325137,
+                "z": 0.22428512573242188
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "metal_jerrycan_green",
+            "role": "PumpFuelCan",
+            "source": "https://polyhaven.com/a/metal_jerrycan_green",
+            "supportPoint": {
+                "x": -30.5,
+                "y": 0.0,
+                "z": -11.5
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": -30.5,
+                "y": 0.2460000216960907,
+                "z": -11.5
+            },
+            "size": {
+                "x": 0.3583106994628906,
+                "y": 0.4800000488758087,
+                "z": 0.16373443603515626
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "plastic_crate_02",
+            "role": "L3CleaningCrate",
+            "source": "https://polyhaven.com/a/plastic_crate_02",
+            "supportPoint": {
+                "x": 10.300000190734864,
+                "y": 8.0,
+                "z": -12.550000190734864
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": 10.300000190734864,
+                "y": 8.144227981567383,
+                "z": -12.550000190734864
+            },
+            "size": {
+                "x": 0.5500011444091797,
+                "y": 0.2764568328857422,
+                "z": 0.44119834899902346
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "cardboard_box_01",
+            "role": "ArchiveStorageBox",
+            "source": "https://polyhaven.com/a/cardboard_box_01",
+            "supportPoint": {
+                "x": -2.0,
+                "y": 4.0,
+                "z": 18.799999237060548
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": -2.0,
+                "y": 4.204771041870117,
+                "z": 18.799999237060548
+            },
+            "size": {
+                "x": 0.4501415491104126,
+                "y": 0.39754199981689455,
+                "z": 0.6000022888183594
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "ceramic_pot",
+            "role": "ResidentsEmptyPlanter",
+            "source": "https://polyhaven.com/a/ceramic_pot",
+            "supportPoint": {
+                "x": -13.5,
+                "y": 4.0,
+                "z": 12.25
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": -13.5,
+                "y": 4.0852885246276859,
+                "z": 12.25
+            },
+            "size": {
+                "x": 0.2800006866455078,
+                "y": 0.15857696533203126,
+                "z": 0.214080810546875
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "potted_plant_04",
+            "role": "ResidentsCourtyardPlant",
+            "source": "https://polyhaven.com/a/potted_plant_04",
+            "supportPoint": {
+                "x": 16.299999237060548,
+                "y": 0.0,
+                "z": -6.0
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": 16.299999237060548,
+                "y": 0.2959999740123749,
+                "z": -6.0
+            },
+            "size": {
+                "x": 0.3640708923339844,
+                "y": 0.5799999237060547,
+                "z": 0.4006462097167969
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "wicker_basket_01",
+            "role": "ResidentsLaundryBasket",
+            "source": "https://polyhaven.com/a/wicker_basket_01",
+            "supportPoint": {
+                "x": -10.0,
+                "y": 4.0,
+                "z": 12.300000190734864
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": -10.0,
+                "y": 4.082602024078369,
+                "z": 12.300000190734864
+            },
+            "size": {
+                "x": 0.5,
+                "y": 0.15320396423339845,
+                "z": 0.38491249084472659
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "plastic_broom",
+            "role": "BathroomCleaningBroom",
+            "source": "https://polyhaven.com/a/plastic_broom",
+            "supportPoint": {
+                "x": -17.600000381469728,
+                "y": 12.0,
+                "z": -0.800000011920929
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": -17.600000381469728,
+                "y": 12.580999374389649,
+                "z": -0.800000011920929
+            },
+            "size": {
+                "x": 0.527069091796875,
+                "y": 1.1499996185302735,
+                "z": 0.6290616989135742
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "rubber_boots",
+            "role": "BathroomMaintenanceBoots",
+            "source": "https://polyhaven.com/a/rubber_boots",
+            "supportPoint": {
+                "x": -21.399999618530275,
+                "y": 12.0,
+                "z": -0.800000011920929
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": -21.399999618530275,
+                "y": 12.072964668273926,
+                "z": -0.800000011920929
+            },
+            "size": {
+                "x": 0.31999778747558596,
+                "y": 0.13393020629882813,
+                "z": 0.09564411640167237
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "folding_wooden_stool",
+            "role": "BathroomWashStool",
+            "source": "https://polyhaven.com/a/folding_wooden_stool",
+            "supportPoint": {
+                "x": -18.200000762939454,
+                "y": 12.0,
+                "z": 4.900000095367432
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": -18.200000762939454,
+                "y": 12.187768936157227,
+                "z": 4.900000095367432
+            },
+            "size": {
+                "x": 0.43416595458984377,
+                "y": 0.3635387420654297,
+                "z": 0.4499998092651367
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "brass_pan_01",
+            "role": "KitchenCookingPan",
+            "source": "https://polyhaven.com/a/brass_pan_01",
+            "supportPoint": {
+                "x": 20.100000381469728,
+                "y": 12.859999656677246,
+                "z": 7.25
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": 20.100000381469728,
+                "y": 12.88293170928955,
+                "z": 7.25
+            },
+            "size": {
+                "x": 0.12335586547851563,
+                "y": 0.03386497497558594,
+                "z": 0.28999996185302737
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "vintage_electric_kettle",
+            "role": "KitchenKettle",
+            "source": "https://polyhaven.com/a/vintage_electric_kettle",
+            "supportPoint": {
+                "x": 20.649999618530275,
+                "y": 12.859999656677246,
+                "z": 7.300000190734863
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": 20.649999618530275,
+                "y": 12.99895191192627,
+                "z": 7.300000190734863
+            },
+            "size": {
+                "x": 0.279998779296875,
+                "y": 0.26590538024902346,
+                "z": 0.21687889099121095
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "wooden_cutting_board",
+            "role": "KitchenCuttingBoard",
+            "source": "https://polyhaven.com/a/wooden_cutting_board",
+            "supportPoint": {
+                "x": 19.649999618530275,
+                "y": 12.859999656677246,
+                "z": 7.300000190734863
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": 19.649999618530275,
+                "y": 12.879754066467286,
+                "z": 7.300000190734863
+            },
+            "size": {
+                "x": 0.2999992370605469,
+                "y": 0.027509689331054689,
+                "z": 0.1644754409790039
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "carved_wooden_plate",
+            "role": "KitchenPlate",
+            "source": "https://polyhaven.com/a/carved_wooden_plate",
+            "supportPoint": {
+                "x": 19.25,
+                "y": 12.859999656677246,
+                "z": 7.300000190734863
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": 19.25,
+                "y": 12.881421089172364,
+                "z": 7.300000190734863
+            },
+            "size": {
+                "x": 0.220001220703125,
+                "y": 0.030843734741210939,
+                "z": 0.2175302505493164
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "metal_jug",
+            "role": "KitchenWaterJug",
+            "source": "https://polyhaven.com/a/metal_jug",
+            "supportPoint": {
+                "x": 20.399999618530275,
+                "y": 12.859999656677246,
+                "z": 7.550000190734863
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": 20.399999618530275,
+                "y": 12.965999603271485,
+                "z": 7.550000190734863
+            },
+            "size": {
+                "x": 0.13689422607421876,
+                "y": 0.20000076293945313,
+                "z": 0.13594436645507813
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "small_lpg_tank",
+            "role": "KitchenFuelCylinder",
+            "source": "https://polyhaven.com/a/small_lpg_tank",
+            "supportPoint": {
+                "x": 23.200000762939454,
+                "y": 12.0,
+                "z": 6.400000095367432
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": 23.200000762939454,
+                "y": 12.295999526977539,
+                "z": 6.400000095367432
+            },
+            "size": {
+                "x": 0.3704376220703125,
+                "y": 0.5799999237060547,
+                "z": 0.3696889877319336
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "metal_stool_03",
+            "role": "KitchenWorkStool",
+            "source": "https://polyhaven.com/a/metal_stool_03",
+            "supportPoint": {
+                "x": 18.5,
+                "y": 12.0,
+                "z": 6.699999809265137
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": 18.5,
+                "y": 12.255999565124512,
+                "z": 6.699999809265137
+            },
+            "size": {
+                "x": 0.22510910034179688,
+                "y": 0.5,
+                "z": 0.2299966812133789
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "ceiling_fan",
+            "role": "K403UnpoweredFan",
+            "source": "https://polyhaven.com/a/ceiling_fan",
+            "supportPoint": {
+                "x": 8.5,
+                "y": 15.524999618530274,
+                "z": 16.700000762939454
+            },
+            "supportNormal": {
+                "x": 0.0,
+                "y": -1.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": 8.5,
+                "y": 15.351346969604493,
+                "z": 16.700000762939454
+            },
+            "size": {
+                "x": 0.9499979019165039,
+                "y": 0.33530616760253909,
+                "z": 0.9500007629394531
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "fire_alarm",
+            "role": "L4FireSafetyRemnant",
+            "source": "https://polyhaven.com/a/fire_alarm",
+            "supportPoint": {
+                "x": 16.889999389648439,
+                "y": 14.5,
+                "z": 7.0
+            },
+            "supportNormal": {
+                "x": -1.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "centre": {
+                "x": 16.86196517944336,
+                "y": 14.5,
+                "z": 7.0
+            },
+            "size": {
+                "x": 0.0440673828125,
+                "y": 0.23999977111816407,
+                "z": 0.16616058349609376
+            },
+            "physicalCollider": false
+        }
+    ]
+}

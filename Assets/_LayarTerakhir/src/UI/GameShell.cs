@@ -136,8 +136,12 @@ namespace LayarTerakhir.UI
         {
             if(loading)return;
             if(!CampaignState.Instance||!CampaignState.Instance.LoadCheckpoint()){error="Checkpoint tidak tersedia atau rusak.";Draw();return;}
-            error="";loading=true;awaiting=false;Resume();StartCoroutine(LoadKos(false));
+            string scene=CampaignRouting.ContinueScene(CampaignState.Instance.Data);
+            if(string.IsNullOrEmpty(scene)||!Application.CanStreamedLevelBeLoaded(scene)){error="Babak checkpoint ini belum tersedia. Save tetap disimpan.";Draw();return;}
+            error="";loading=true;awaiting=false;Resume();StartCoroutine(LoadSavedScene(scene));
         }
+        private IEnumerator LoadSavedScene(string scene)
+        {var op=SceneManager.LoadSceneAsync(scene);while(!op.isDone)yield return null;loading=false;}
         private IEnumerator LoadKos(bool keepMenu)
         {loading=true;var op=SceneManager.LoadSceneAsync(KosScene);while(!op.isDone)yield return null;loading=false;if(keepMenu)OpenMain();}
         public void ShowSettings(){settings=true;Open();}

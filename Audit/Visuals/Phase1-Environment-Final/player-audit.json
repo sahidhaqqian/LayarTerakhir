@@ -1,0 +1,24 @@
+{
+    "completed": true,
+    "actualStandalonePlayer": true,
+    "checkpointSaved": true,
+    "platform": "LinuxPlayer",
+    "gpu": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "utc": "2026-10-23T05:54:33.4878840Z",
+    "method": "Standalone visual review only: arranged camera positions, no route/puzzle/FPS acceptance. Isolated save. AI remains active.",
+    "walkedMeters": 0.0,
+    "checks": [
+        "PASS P1 Continue routes safely from startup",
+        "PASS Eight arranged views captured; gameplay route and visual acceptance remain separate"
+    ],
+    "screenshots": [
+        "01-revised-exterior.png",
+        "02-revised-pump.png",
+        "03-revised-gallery.png",
+        "04-revised-courtyard.png",
+        "05-revised-stairs.png",
+        "06-revised-l3.png",
+        "07-revised-l4.png",
+        "08-revised-kitchen.png"
+    ]
+}
