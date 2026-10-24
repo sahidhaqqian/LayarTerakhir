@@ -34,7 +34,7 @@ namespace LayarTerakhir.Prolog
         private RawImage focusVignette;private Image thumb;private Texture2D vignetteTexture;
         private Vector2 panelMin,panelMax,cameraMin,cameraMax;
         private bool focusOverride,lastSelfie,cameraHeldRaise;private ScanVisualMode lastMode;private float thumbUntil;
-        private bool phoneRaisedBeforeFocus;
+        private bool phoneRaisedBeforeFocus, suppressHeldUntilRelease;
         private PhoneApp appBeforeFocus;
         private Image[] signalBars;
         private FirstPersonController owner;
@@ -47,7 +47,7 @@ namespace LayarTerakhir.Prolog
         public const float LandscapeHandsetWidth=.165f;
         public const float LandscapeHandsetAspect=1.9f;
         private const float HandPresentationFieldOfView=28f;
-        private Text chapterReticle;private bool chapterTargetVisible;private Vector3 chapterTargetPoint;
+        private Text chapterReticle,chapterReadout;private bool chapterTargetVisible;private Vector3 chapterTargetPoint;
         private GameObject firstPersonHand,supportHand;
         private Renderer[] handRenderers,supportRenderers;
         private Vector3 handScale,supportScale;
@@ -97,6 +97,8 @@ namespace LayarTerakhir.Prolog
         }
         private HudController Hud=>HudController.Instance;private SmartphoneController Phone=>SmartphoneController.Instance;
         private IPhoneChapterContent Chapter=>Phone?Phone.ChapterContent:null;
+        public string ClockText=>Chapter is LayarTerakhir.Phase2.Phase2Hub?"14:00":Chapter is LayarTerakhir.Phase2.Phase2Director?"23:50":Chapter!=null?"23:58":director?"23:52":"23:46";
+        public string DateText=>Chapter is LayarTerakhir.Phase2.Phase2Hub?"Siang • Persiapan malam kedua":Chapter is LayarTerakhir.Phase2.Phase2Director?"Malam kedua • RSUD Sido Waras":"Kamis, 15 Oktober  •  Hujan";
         private void Start()
         {
             if(!playerCamera){var p=FindFirstObjectByType<FirstPersonController>();if(p)playerCamera=p.GetComponent<InteractionInteractor>().playerCamera;}
@@ -205,7 +207,7 @@ namespace LayarTerakhir.Prolog
         {
             if(!Phone||!Apps||!Hud||UiFocus.HardModal||Hud.IsModalOpen)return;
             HandleCameraShortcut();
-            if(!UiFocus.Cinematic&&Phone.isPhoneRaised&&Phone.isScreenOn&&IsCameraApp&&!UiFocus.Phone&&(!director||!director.Busy&&director.Stage<AtmajaStage.Chase)
+            if(!UiFocus.Cinematic&&Phone.isPhoneRaised&&Phone.isScreenOn&&IsCameraApp&&(!UiFocus.Phone||ViewfinderActive)&&(!director||!director.Busy&&director.Stage<AtmajaStage.Chase)
                 &&GameInputConfig.Instance.GetActionDown(GameAction.CaptureOrBlitz)){if(Chapter!=null)Chapter.Capture();else CaptureFlash();}
             if(!director||!Phone.isBroadcastConnected||ChatFrozen||UiFocus.Menu||UiFocus.Cinematic)return;
             var p=director.LocalPosition(director.player.transform.position);float y=director.player.transform.position.y-director.origin.y;
@@ -293,6 +295,11 @@ namespace LayarTerakhir.Prolog
         {
             if(UiFocus.Menu||UiFocus.HardModal||Hud.IsModalOpen||UiFocus.Cinematic||(director&&director.Busy))return;
             bool held=LensFocusHeld();
+            // Screen-off / stow is explicit and must beat a held aiming shortcut.
+            if (held && GameInputConfig.Instance &&
+                (GameInputConfig.Instance.GetActionDown(GameAction.ToggleScreen) || GameInputConfig.Instance.GetActionDown(GameAction.TogglePhone)))
+            { suppressHeldUntilRelease = true; cameraHeldRaise = false; return; }
+            if (suppressHeldUntilRelease) { if (!held) suppressHeldUntilRelease = false; return; }
             if(!held)
             {
                 if(!cameraHeldRaise)return;
@@ -390,7 +397,7 @@ namespace LayarTerakhir.Prolog
             if(stowBinding!=lastStowBinding){lastStowBinding=stowBinding;stowLabel.text="SIMPAN  ["+stowBinding.ToString().ToUpperInvariant()+"]";}
             FeedCamera.cullingMask=(playerCamera.cullingMask|((Phone.currentScanMode==ScanVisualMode.AR)?1<<ARLayer:0))&~(1<<ShoulderCameraRig.AvatarLayer);
             if(Chapter!=null&&Phone.currentScanMode==ScanVisualMode.AR)FeedCamera.cullingMask&=~(1<<30); // Chapter illusion surface; physical passage has its own latch.
-            if(owner&&owner.cameraPivot){FeedCamera.transform.localPosition=Vector3.forward*.08f;FeedCamera.transform.localRotation=Quaternion.identity;}
+            RefreshLensPose();
             PresentHand();
             runtimeFeedMaterial.SetFloat("_ARGain",Phone.currentScanMode==ScanVisualMode.AR?2:1);runtimeFeedMaterial.SetFloat("_ReducedGlitch",GameShell.ReducedGlitch?1:0);
             float disturbance=Time.unscaledTime<glitchUntil?GlitchStrength:director&&director.Stage>=AtmajaStage.BasementEntry&&director.Stage<AtmajaStage.EndingVista?.38f:0;
@@ -406,7 +413,7 @@ namespace LayarTerakhir.Prolog
             for(int i=0;i<signalBars.Length;i++)
             {float noise=Mathf.Sin(Mathf.Floor(Time.unscaledTime*13)+i*5.76f);var rect=signalBars[i].rectTransform;rect.anchoredPosition=new Vector2(noise*signal*18,noise*signal*13);signalBars[i].color=new Color(i%2==0?.22f:.65f,.7f,.55f,screen&&noise>.72f?signal*.5f:0);}
             if(shutter)shutter.color=new Color(1,1,1,Mathf.Clamp01((flashUntil-Time.unscaledTime)/.22f)*(GameShell.ReducedGlitch?.45f:1));
-            header.text=!screen?"":Phone.isBroadcastConnected?$"LIVE • {(Chapter!=null?Chapter.Viewers:director?director.Viewers:14):N0}   |   {Phone.batteryPercent:0}%":(Chapter!=null?"23:58":director?"23:52":"23:46")+$"    LTE    {Phone.batteryPercent:0}%";
+            header.text=!screen?"":Phone.isBroadcastConnected?$"LIVE • {(Chapter!=null?Chapter.Viewers:director?director.Viewers:14):N0}   |   {Phone.batteryPercent:0}%":ClockText+$"    LTE    {Phone.batteryPercent:0}%";
             mode.text=screen&&IsCameraApp?(Chapter!=null?Chapter.CameraStatus:(Phone.currentScanMode==ScanVisualMode.AR?"MATA BATIN / AR":"KAMERA")+$" • {Phone.batteryPercent:0}%\n[Z] Aplikasi   [M] Peta"):"";
             LiveButton.gameObject.SetActive(screen&&IsCameraApp&&(director||Chapter!=null)&&!Phone.isBroadcastConnected&&!landscapeFeed);LiveButton.interactable=Chapter!=null?Chapter.CanBeginLive:director&&director.CanBeginLive&&!director.Busy&&!Hud.IsModalOpen;
             UiFocus.Phone=active&&screen&&!Hud.IsModalOpen&&(!IsCameraApp||((director||Chapter!=null)&&!Phone.isBroadcastConnected));
@@ -416,6 +423,60 @@ namespace LayarTerakhir.Prolog
         }
         public void ShowChapterChat(string text)
         {if(chat)chat.text=text;}
+        public void ShowChapterReadout(string text,Color color)
+        {
+            if(!cameraRoot)return;
+            if(!chapterReadout)
+            {
+                chapterReadout=UiWidgets.Text("ChapterSensorReadout",cameraRoot.transform,"",new Vector2(.025f,.72f),new Vector2(.975f,.98f),17,TextAnchor.UpperLeft);
+                chapterReadout.raycastTarget=false;
+            }
+            chapterReadout.text=text;chapterReadout.color=color;
+        }
+        public void RefreshLensPose()
+        {
+            if (!FeedCamera || !owner || !owner.cameraPivot || !Phone) return;
+            bool selfie = Phone.isSelfieCamera && Phone.selfieModuleUnlocked;
+            if (selfie)
+            {
+                Vector3 face = owner.cameraPivot.position - Vector3.up * .06f;
+                Vector3 forward = owner.transform.forward;
+                float distance = .72f;
+                foreach (var hit in Physics.RaycastAll(face, forward, distance, ~((1 << 26) | (1 << 29) | (1 << 31)), QueryTriggerInteraction.Ignore))
+                    if (!hit.transform.IsChildOf(owner.transform)) distance = Mathf.Min(distance, Mathf.Max(.28f, hit.distance - .05f));
+                // Offset the physical front lens toward the watched shoulder. Parallel
+                // framing leaves Raka beside the threat instead of covering it with his head.
+                Vector3 lens = face + forward * distance - owner.transform.right * .18f;
+                FeedCamera.transform.SetPositionAndRotation(lens, Quaternion.LookRotation(-forward, Vector3.up));
+                FeedCamera.nearClipPlane = .025f;
+                FeedCamera.cullingMask |= 1 << ShoulderCameraRig.AvatarLayer;
+            }
+            else
+            {
+                FeedCamera.transform.localPosition = Vector3.forward * .08f; FeedCamera.transform.localRotation = Quaternion.identity;
+                FeedCamera.nearClipPlane = .055f;
+                FeedCamera.cullingMask &= ~(1 << ShoulderCameraRig.AvatarLayer);
+            }
+            FeedCamera.cullingMask &= ~(1 << GripLayer);
+            if (Chapter is LayarTerakhir.Phase2.Phase2Director)
+            {
+                playerCamera.cullingMask &= ~(1 << LayarTerakhir.Phase2.Phase2Lastri.VisibilityLayer);
+                if (selfie) FeedCamera.cullingMask |= 1 << LayarTerakhir.Phase2.Phase2Lastri.VisibilityLayer;
+                else FeedCamera.cullingMask &= ~(1 << LayarTerakhir.Phase2.Phase2Lastri.VisibilityLayer);
+            }
+        }
+        private void OnEnable()
+        { RenderPipelineManager.beginCameraRendering += BeforeFeedRender; RenderPipelineManager.endCameraRendering += AfterFeedRender; }
+        private void OnDisable()
+        {
+            RenderPipelineManager.beginCameraRendering -= BeforeFeedRender; RenderPipelineManager.endCameraRendering -= AfterFeedRender;
+            if (owner) owner.GetComponent<ShoulderCameraRig>()?.SetSelfieFeedCoverage(false);
+            cameraHeldRaise = false; suppressHeldUntilRelease = LensFocusHeld();
+        }
+        private void BeforeFeedRender(ScriptableRenderContext context, Camera camera)
+        { if (camera == FeedCamera && Phone && Phone.isSelfieCamera && owner) owner.GetComponent<ShoulderCameraRig>()?.SetSelfieFeedCoverage(true); }
+        private void AfterFeedRender(ScriptableRenderContext context, Camera camera)
+        { if (camera == FeedCamera && owner) owner.GetComponent<ShoulderCameraRig>()?.SetSelfieFeedCoverage(false); }
         public void ShowChapterTarget(Vector3 point,bool visible){chapterTargetPoint=point;chapterTargetVisible=visible;}
         private void PresentHand()
         {

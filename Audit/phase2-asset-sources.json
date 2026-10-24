@@ -1,0 +1,322 @@
+[
+  {
+    "id": "Madduck modular hospital",
+    "author": "Madduck",
+    "sourcePage": "https://madduck.itch.io/modular-3d-hospital-environment",
+    "license": "Author license: commercial game use and adaptation; no standalone asset redistribution",
+    "sourceSha256": "d5072f585056fa3e4e3a1c92d1ab342812ec4c1fa527ca4b378d4770dc18df1a",
+    "rawBinariesInGit": false
+  },
+  {
+    "id": "AutopsyLab",
+    "title": "Autopsy Lab - Assets",
+    "author": "Evan Petrov",
+    "sourcePage": "https://sketchfab.com/3d-models/5ceaaa4482a84774b9922366cfb228e7",
+    "license": "CC-BY-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "mirror": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-032/5ceaaa4482a84774b9922366cfb228e7.glb",
+    "sourceSha256": "f908acf86f5d2f2acf0f141aae682415ec7e4c850f92a82a250420f5e0446f76",
+    "operation": "offline format conversion, material extraction and scale fitting"
+  },
+  {
+    "id": "Neonatal",
+    "title": "Isola Neonatale",
+    "author": "centronina3d",
+    "sourcePage": "https://sketchfab.com/3d-models/b27fc2f948c34c6084488d9d3e3b64db",
+    "license": "CC-BY-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "mirror": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-030/b27fc2f948c34c6084488d9d3e3b64db.glb",
+    "sourceSha256": "2aa01a619d32f2d27c23634dc73f96ee013c9ca2611401f1520a7837e848d1a9",
+    "operation": "offline format conversion, material extraction and scale fitting"
+  },
+  {
+    "id": "Scissors",
+    "title": "Scissors Stationery (Low Poly, Game Ready)",
+    "author": "Skript47",
+    "sourcePage": "https://sketchfab.com/3d-models/c67efef1abeb41969eef84c06311fac6",
+    "license": "CC-BY-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "mirror": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-085/c67efef1abeb41969eef84c06311fac6.glb",
+    "sourceSha256": "77988a0d4dabf347a036a2c8b7bd96d604ab99831913440579d89604d573cd04",
+    "operation": "offline format conversion, material extraction and scale fitting"
+  },
+  {
+    "id": "Safe",
+    "title": "Antique Iron Safe",
+    "author": "pixelgrapher",
+    "sourcePage": "https://sketchfab.com/3d-models/196cf0d3d5094b50874dbf51064a7d3e",
+    "license": "CC-BY-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "mirror": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-098/196cf0d3d5094b50874dbf51064a7d3e.glb",
+    "sourceSha256": "9ac0b0bb50d95f38f9d210b883f77216bf8d014a65b6bf6c63dae0fc1d0566f2",
+    "operation": "offline format conversion, material extraction and scale fitting"
+  },
+  {
+    "id": "Generator",
+    "title": "Portable Generator",
+    "author": "Alpha One",
+    "sourcePage": "https://sketchfab.com/3d-models/222717d27f0b4a4f84106260c1fd0d7e",
+    "license": "CC-BY-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "mirror": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-038/222717d27f0b4a4f84106260c1fd0d7e.glb",
+    "sourceSha256": "890effd08685b0af9f3f0d4c96daeaf9a6746c684e76d2b84c9024f874388f07",
+    "operation": "offline format conversion, material extraction and scale fitting"
+  },
+  {
+    "id": "Kenney stair module",
+    "sourcePage": "https://kenney.nl/assets/prototype-kit",
+    "license": "CC0-1.0",
+    "sourceSha256": "213b522fb12bcc9b9ac66c4f7581f7c74623293272212e40a70c39936ad3da95",
+    "operation": "existing stair mesh conversion and application of downloaded hospital material"
+  },
+  {
+    "id": "chemistry_set",
+    "sourcePage": "https://polyhaven.com/a/chemistry_set",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/chemistry_set/chemistry_set.fbx",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/chemistry_set/chemistry_set_1k.fbx",
+        "sha256": "4595b7813124697508a5fff5c4a2a766d1fe3ef162fb854899b87a6f78aa9a01"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/chemistry_set/chemistry_setDiffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/chemistry_set/chemistry_set_diff_1k.jpg",
+        "sha256": "cf013f7898f70e1479b1b0fe774668b24cc7718983a9c7bb5eaa1670b0088b4b"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/chemistry_set/chemistry_setNormal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/chemistry_set/chemistry_set_nor_gl_1k.jpg",
+        "sha256": "8bccb3f526b30a60e46981ed8ea8cf40b6af40b0fde1f3c9b3f5a7e36579e0e8"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/chemistry_set/chemistry_setARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/chemistry_set/chemistry_set_arm_1k.jpg",
+        "sha256": "cca7d3b4c30e8d0563934b59e0600e9659ce6c546b77705ca87c7ae5ffd3fd7a"
+      }
+    ]
+  },
+  {
+    "id": "medical_tape",
+    "sourcePage": "https://polyhaven.com/a/medical_tape",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/medical_tape/medical_tape.fbx",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/medical_tape/medical_tape_1k.fbx",
+        "sha256": "7960b8e0b3062c00575c5ee7ff9a6ca731e204b5d6d73ec6589238ee546059b6"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/medical_tape/medical_tapeDiffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/medical_tape/medical_tape_diff_1k.jpg",
+        "sha256": "a418d5f1a4be304f1263e332fabd4d4b6b7fadcedead45908110023e96bea15b"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/medical_tape/medical_tapeNormal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/medical_tape/medical_tape_nor_gl_1k.jpg",
+        "sha256": "dd76d3059eb93f02eda108d043c025779c6fc3982c487b4d8bc334384faddbc6"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/medical_tape/medical_tapeARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/medical_tape/medical_tape_arm_1k.jpg",
+        "sha256": "4fee094b9a8c8e3ac1ece6e137b51b08abb4968e263391aea4d088998c163457"
+      }
+    ]
+  },
+  {
+    "id": "metal_tool_chest",
+    "sourcePage": "https://polyhaven.com/a/metal_tool_chest",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/metal_tool_chest/metal_tool_chest.fbx",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/metal_tool_chest/metal_tool_chest_1k.fbx",
+        "sha256": "1536f3683956db4780a71d9cbf8d9b00b8a9243b68dd79d47b5131e61dad1f80"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/metal_tool_chest/metal_tool_chestDiffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/metal_tool_chest/metal_tool_chest_diff_1k.jpg",
+        "sha256": "da37ba2a8d064637c7206cb091597275986e788ce379bee58a96c949cce06511"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/metal_tool_chest/metal_tool_chestNormal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/metal_tool_chest/metal_tool_chest_nor_gl_1k.jpg",
+        "sha256": "bc5a4009a544a9504849b951afd984d6ac7c5adb0d43c5a08c0a834f8e811a01"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/metal_tool_chest/metal_tool_chestARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/metal_tool_chest/metal_tool_chest_arm_1k.jpg",
+        "sha256": "d5552ee63ac9bc53527ee1bf19bcbd31d8424bcc15fe9861f79bba917e857828"
+      }
+    ]
+  },
+  {
+    "id": "bunsen_burner",
+    "sourcePage": "https://polyhaven.com/a/bunsen_burner",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/bunsen_burner/bunsen_burner.fbx",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/bunsen_burner/bunsen_burner_1k.fbx",
+        "sha256": "291db3a9a904c4f46c756161e7661c8ce197f7de0e6397de8b9e03f7b1be128d"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/bunsen_burner/bunsen_burnerDiffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/bunsen_burner/bunsen_burner_diff_1k.jpg",
+        "sha256": "fd12b3ef7c6904b1675e26f15bb06acddefb8aa380a0a151f59cf1b1f6f3a474"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/bunsen_burner/bunsen_burnerNormal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/bunsen_burner/bunsen_burner_nor_gl_1k.jpg",
+        "sha256": "2b02cefc52e30c8f6d946f9f804e87d2b33dbb4a42499f22956f48283491a5f8"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/bunsen_burner/bunsen_burnerARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/bunsen_burner/bunsen_burner_arm_1k.jpg",
+        "sha256": "5d6cb8b08cefa4588f778fd843ad7cfd97246d3919e447b6213f9356f59dfa4c"
+      }
+    ]
+  },
+  {
+    "id": "tool_cart",
+    "sourcePage": "https://polyhaven.com/a/tool_cart",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/tool_cart/tool_cart.fbx",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/tool_cart/tool_cart_1k.fbx",
+        "sha256": "df39f10c3cc3985b486ea747334e3f1b89008bd34d8fd333f5205ef1f1f10634"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/tool_cart/tool_cartDiffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/tool_cart/tool_cart_diff_1k.jpg",
+        "sha256": "3a3e18efa54d18f2d01ad51cb40f8edd9af76e054a6a9c21324bc14fe49be965"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/tool_cart/tool_cartNormal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/tool_cart/tool_cart_nor_gl_1k.jpg",
+        "sha256": "fa995e77eacad81c78f650e28a6d4c1c7b9d6c74a3f314d5f5ebdddf6de510fc"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/tool_cart/tool_cartARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/tool_cart/tool_cart_arm_1k.jpg",
+        "sha256": "2b928779ab242468c90e6074ab72567bc58ecf3e0240fd709e4507b59764aef7"
+      }
+    ]
+  },
+  {
+    "id": "large_iron_gate",
+    "sourcePage": "https://polyhaven.com/a/large_iron_gate",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/large_iron_gate/large_iron_gate.fbx",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/large_iron_gate/large_iron_gate_1k.fbx",
+        "sha256": "8a8a34ede62860b6e053c61a98b1be7dee64ec08e870c6f64ddae7fb6b805b12"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/large_iron_gate/large_iron_gateDiffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/large_iron_gate/large_iron_gate_diff_1k.jpg",
+        "sha256": "422b17616829c7a48805211fcca9699c0aec63dee40a8d851f5ba81fcf329575"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/large_iron_gate/large_iron_gateNormal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/large_iron_gate/large_iron_gate_nor_gl_1k.jpg",
+        "sha256": "c46a14086705f0d4bc2858c461aa8dfdd3bf7a09955c370591511612429d60fb"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/large_iron_gate/large_iron_gateARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/large_iron_gate/large_iron_gate_arm_1k.jpg",
+        "sha256": "f528b46396e097324af2c14cc2f15b855b5f9b909bf6a8da9819f528e6ebde4a"
+      }
+    ]
+  },
+  {
+    "id": "binder_notebook",
+    "sourcePage": "https://polyhaven.com/a/binder_notebook",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/binder_notebook/binder_notebook.fbx",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/binder_notebook/binder_notebook_1k.fbx",
+        "sha256": "d4de5da356605b5b8c55e500e9a1f178f241fdd4d6dd05a03f295b07238afb9c"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/binder_notebook/binder_notebookDiffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/binder_notebook/binder_notebook_diff_1k.jpg",
+        "sha256": "8591cce815138bd737c252dc12a4d9bf41bceb499ace7dbfef0725e64dadda2d"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/binder_notebook/binder_notebookNormal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/binder_notebook/binder_notebook_nor_gl_1k.jpg",
+        "sha256": "24b18d9792c3816337d7d09b30aed400a887747ea6beb04b23612b6e1210a29e"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/binder_notebook/binder_notebookARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/binder_notebook/binder_notebook_arm_1k.jpg",
+        "sha256": "c0bc38cd13e5ada9552c3a9b60f88c36acf9e672011d97d066a6c0148f01898a"
+      }
+    ]
+  },
+  {
+    "id": "red_brick_03",
+    "sourcePage": "https://polyhaven.com/a/red_brick_03",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/red_brick_03/red_brick_03Diffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_brick_03/red_brick_03_diff_1k.jpg",
+        "sha256": "9c58254c099b2d211478f50a427fcdde622af24249ff2e94da41fb836f8c857f"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/red_brick_03/red_brick_03Normal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_brick_03/red_brick_03_nor_gl_1k.jpg",
+        "sha256": "9bfd45e24720d851017c1e1678b70219c72239b2ac6b25e11d57d458bdab8503"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/red_brick_03/red_brick_03ARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_brick_03/red_brick_03_arm_1k.jpg",
+        "sha256": "31d8d33a9c44af49cd082eae8f49016aaca6d55f2fd80be2183e2ba9185bd8cf"
+      }
+    ]
+  },
+  {
+    "id": "Kenney particle smoke",
+    "author": "Kenney",
+    "sourcePage": "https://kenney.nl/assets/particle-pack",
+    "license": "CC0-1.0",
+    "sourceSha256": "b631d4b07f7002549fdcf155f01141ad482f79f3440e4e301eed49ce5f1d8958",
+    "operation": "Unmodified downloaded transparent smoke texture for local particle mist"
+  },
+  {
+    "id": "metal_plate_02",
+    "sourcePage": "https://polyhaven.com/a/metal_plate_02",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/metal_plate_02/metal_plate_02Diffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/metal_plate_02/metal_plate_02_diff_1k.jpg",
+        "sha256": "6e80877d0e9d5973d96298c6091df7ace906b0a6760afc4f3592e4855f3f1d4c"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/metal_plate_02/metal_plate_02Normal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/metal_plate_02/metal_plate_02_nor_gl_1k.jpg",
+        "sha256": "58736fbb8aa4fc6690cf8152b174db65caf22a766375b625fb0087e1bc955bc7"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/metal_plate_02/metal_plate_02ARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/metal_plate_02/metal_plate_02_arm_1k.jpg",
+        "sha256": "e099a8385d53f4a515b7e0ce94f85d88657fcac49c23979474f5394b22dd550b"
+      }
+    ]
+  }
+]

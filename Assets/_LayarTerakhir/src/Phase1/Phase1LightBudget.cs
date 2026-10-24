@@ -9,13 +9,16 @@ namespace LayarTerakhir.Phase1
     public sealed class Phase1LightBudget : MonoBehaviour
     {
         public Transform player;
+        public bool isolateFloors;
+        public Light[] externallyControlledLights;
         private Light[] fixtures;
         private bool[] authoredShadows;
         private float next;
         private readonly List<Material> localMaterials=new List<Material>();
         private void Start()
         {
-            fixtures=FindObjectsByType<Light>(FindObjectsSortMode.None).Where(l=>l.name.EndsWith("Light")&&l.type==LightType.Point).ToArray();
+            fixtures=FindObjectsByType<Light>(FindObjectsSortMode.None).Where(l=>l.name.EndsWith("Light")&&l.type==LightType.Point&&
+                (externallyControlledLights==null||!externallyControlledLights.Contains(l))).ToArray();
             authoredShadows=fixtures.Select(l=>l.shadows!=LightShadows.None).ToArray();
             foreach(var renderer in player.GetComponentsInChildren<SkinnedMeshRenderer>())
             {
@@ -31,7 +34,8 @@ namespace LayarTerakhir.Phase1
             {
                 var light=fixtures[i];if(!light)continue;
                 Vector3 delta=light.transform.position-player.position;
-                light.enabled=delta.sqrMagnitude<30*30&&Mathf.Abs(delta.y)<5;
+                bool sameFloor=!isolateFloors||Mathf.FloorToInt((light.transform.position.y-.5f)/4)==Mathf.FloorToInt((player.position.y+.5f)/4);
+                light.enabled=sameFloor&&delta.sqrMagnitude<30*30&&Mathf.Abs(delta.y)<5;
                 light.shadows=authoredShadows[i]&&delta.sqrMagnitude<14*14?LightShadows.Soft:LightShadows.None;
             }
         }

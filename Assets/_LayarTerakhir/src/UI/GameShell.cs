@@ -76,7 +76,7 @@ namespace LayarTerakhir.UI
             {
                 if(remapping.HasValue){remapping=null;Draw();return;}
                 if(settings){settings=false;Draw();return;}
-                if(UiFocus.Clock){var shop=FindFirstObjectByType<MelatiShop>();if(shop&&shop.IsOpen)shop.Close();else FindFirstObjectByType<ClockPuzzleView>()?.Close();return;}
+                if(UiFocus.Clock){var hub=FindFirstObjectByType<LayarTerakhir.Phase2.Phase2Hub>();if(hub){hub.Close();return;}var p2=FindFirstObjectByType<LayarTerakhir.Phase2.Phase2Director>();if(p2){p2.CloseOverlay();return;}var shop=FindFirstObjectByType<MelatiShop>();if(shop&&shop.IsOpen)shop.Close();else FindFirstObjectByType<ClockPuzzleView>()?.Close();return;}
                 var hud=HudController.Instance;
                 if(hud&&hud.documentPanel.activeSelf){hud.CloseDocumentModal();return;}
                 if(hud&&hud.padlockPanel.activeSelf){hud.ClosePadlockModal();return;}
@@ -91,6 +91,11 @@ namespace LayarTerakhir.UI
             OpenMain();
         }
         public void Pause(){if(awaiting)return;settings=false;Open();}
+        private void OnApplicationFocus(bool focused)
+        {
+            if (!focused && !awaiting && !loading && !UiFocus.Menu &&
+                string.IsNullOrEmpty(Environment.GetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY"))) Pause();
+        }
         private void Open()
         {
             if(!UiFocus.Menu)previousScale=Time.timeScale;

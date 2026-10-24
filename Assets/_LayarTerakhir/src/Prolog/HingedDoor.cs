@@ -44,5 +44,10 @@ namespace LayarTerakhir.Prolog
             if(slides)hinge.localPosition=closedPosition+(open?slideOffset:Vector3.zero);
             else hinge.localRotation=Quaternion.Euler(0,open?angle:0,0);
         }
+        public void SetOpenAnimated(bool open)
+        {
+            if(opened==open)return;CapturePosition();StopAllCoroutines();opened=open;
+            if(isActiveAndEnabled)StartCoroutine(Swing());else SetOpenImmediate(open);
+        }
     }
 }

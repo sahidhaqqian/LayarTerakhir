@@ -1,8 +1,8 @@
 # PHASE 2 — DIAGNOSIS TENGAH MALAM
 
-> **Project:** Layar Terakhir · **Babak:** 2 · **Lokasi:** RSUD Lama Sido Waras · **Versi:** 2.2-AUDIT-r1, audit repositori `9ca5f57` dan revisi teknis 23 Oktober 2026 (basis cerita: 15 Oktober 2026; draf masukan bertanggal 24 Oktober dipertahankan sebagai riwayat)
+> **Project:** Layar Terakhir · **Babak:** 2 · **Lokasi:** RSUD Lama Sido Waras · **Versi:** 2.2-S1-r1, audit repositori `9ca5f57` dan revisi teknis 23 Oktober 2026 (basis cerita: 15 Oktober 2026; draf masukan bertanggal 24 Oktober dipertahankan sebagai riwayat)
 > **Jenis dokumen:** *Single source of truth* untuk naskah, level design, mekanik, implementasi Unity, penyimpanan, dan QA Babak 2.
-> **Status:** **Audit statis repositori selesai; dokumen direvisi, implementasi P2 belum dimulai dan belum phase-freeze.** Baseline kode `9ca5f57` sama dengan `origin/main` saat pemeriksaan; draf Phase2 terbaru milik desainer di working tree menjadi masukan, bukan versi lama dari Git. Bukti dan klasifikasi fitur ada di §14–§15. Seluruh **100 QA (QA-01 s.d. QA-100)** telah diperiksa secara spesifikasi, tetapi **100/100 masih `NOT_RUN` untuk gameplay P2**. Audit dokumen tidak membuktikan build, kualitas artistik atau performa lulus.
+> **Status terkini:** **Sesi 1 (Adegan 1–4) tersedia untuk review build** atas izin desainer setelah audit. Runtime investigasi, scene RSUD dan aset baru sudah tersedia; **Sesi 2 (boss/ritual/epilog/segel/perjalanan keluar) belum diterapkan**. Lihat [catatan implementasi](Audit/phase2-session1-implementation.md) dan [panduan review](Audit/phase2-session1-review.md) untuk bukti pengujian aktual dan batasan. Tabel audit §14–§15 adalah snapshot historis `9ca5f57`; 100 QA tidak otomatis menjadi lulus karena kode sudah dibuat.
 > **Rujukan lintas babak:** `Phase1.MD` (kontrak global yang sudah ditetapkan di §0.4–§0.5 dan §8.0-nya) dan `Rancangan.MD` (parameter global dan kontinuitas cerita). Bila ketentuan global belum diketahui, jangan membuat asumsi diam-diam; catat sebagai keputusan terbuka (§11.2).
 
 ## 0. Cara membaca dan batas keputusan
@@ -89,7 +89,7 @@ Bagian ini telah dicocokkan dengan `Rancangan.MD`, Phase 1 §0.5–§0.7 dan kod
 
 ### 0.5 Kontrak kerja P2 [DIWARISI GLOBAL + HASIL AUDIT]
 
-**Arahan terbaru Phase 1 (23 Oktober 2026):** "tahan dulu sementara pakai global dulu aja nanti kalau gak sesuai aku ubah". Arahan itu ditulis untuk Phase 1. P2 memakai aturan bersama yang memang ditetapkan `Rancangan.MD`; **tidak mewarisi grant baterai Prolog→P1** atau menganggap proposal P2 telah diratifikasi. Pengguna mengizinkan audit/revisi dokumen ini, bukan coding. Konsekuensinya:
+**Arahan terbaru Phase 1 (23 Oktober 2026):** "tahan dulu sementara pakai global dulu aja nanti kalau gak sesuai aku ubah". Arahan itu ditulis untuk Phase 1. P2 memakai aturan bersama yang memang ditetapkan `Rancangan.MD`; **tidak mewarisi grant baterai Prolog→P1** atau menganggap proposal P2 telah diratifikasi. Pada audit awal pengguna hanya mengizinkan revisi dokumen. Arahan sesudahnya mengizinkan implementasi **Sesi 1/Adegan 1–4**; boss dan epilog tetap di luar sesi ini. Konsekuensinya:
 
 - Pakai **default global** untuk energi, ekonomi, Sanity, dan retry; angka P2 di §8.0 adalah baseline yang mudah diubah di satu konfigurasi.
 - Tidak mengurangi kualitas visual, atmosfer, atau gameplay demi mengejar checklist.
@@ -100,11 +100,13 @@ Bagian ini telah dicocokkan dengan `Rancangan.MD`, Phase 1 §0.5–§0.7 dan kod
 - **Aset wajib existing atau unduhan internet berlisensi**; Phase 2 memakai pustaka lingkungan rumah sakit tersendiri (bukan furnitur/permukaan Rusunawa), UV skala nyata, tekstur PBR, dan dressing sesuai fungsi ruang. Sistem pemain/HP, karakter desainer, dan motor yang dibawa dari babak sebelumnya tetap digunakan.
 - Target 60 FPS global tetap dipertahankan. Headless/Linux software rendering tidak menggantikan pengukuran Windows pada GPU sasaran.
 
-### 0.6 Status dokumen — audit selesai, implementasi belum dimulai
+### 0.6 Riwayat audit dan status implementasi bertahap
 
-Audit membaca seluruh spesifikasi ini, `Phase1.MD`, `Rancangan.MD`, kode terkait, Build Settings, scene Kos/Rusunawa, mixer serta inventaris aset terarah. Ada empat scene build, **belum ada scene RSUD, runtime Phase2, Thermo atau render Selfie produksi**. Sistem P1 sudah tersedia tetapi penerimaan P1 belum tuntas; jangan mewarisi status lulus yang belum ada. Bukti ada di §14–§15 dan [laporan audit](Audit/PHASE2_REPOSITORY_AUDIT.md).
+**Snapshot audit sebelum implementasi (`9ca5f57`):** audit membaca seluruh spesifikasi ini, `Phase1.MD`, `Rancangan.MD`, kode terkait, Build Settings, scene Kos/Rusunawa, mixer serta inventaris aset terarah. Ada empat scene build, **belum ada scene RSUD, runtime Phase2, Thermo atau render Selfie produksi**. Sistem P1 sudah tersedia tetapi penerimaan P1 belum tuntas; jangan mewarisi status lulus yang belum ada. Bukti ada di §14–§15 dan [laporan audit](Audit/PHASE2_REPOSITORY_AUDIT.md).
 
-Audit ini **hanya mengubah dokumen**. Tidak ada Unity Editor/PlayMode/build dijalankan; tidak ada unduhan atau perubahan aset. Kelayakan teknis dibedakan dari persetujuan kreatif, kesiapan aset, dan penerimaan gameplay. QA §10 diperiksa satu per satu di §15.3, semuanya tetap `NOT_RUN`.
+Audit awal **hanya mengubah dokumen**. Tidak ada Unity Editor/PlayMode/build dijalankan; tidak ada unduhan atau perubahan aset. Kelayakan teknis dibedakan dari persetujuan kreatif, kesiapan aset, dan penerimaan gameplay. QA §10 diperiksa satu per satu di §15.3, semuanya tetap `NOT_RUN`.
+
+**Implementasi Sesi 1 (23–24 Oktober 2026):** `Babak2_RSUD` ditambahkan sebagai scene kelima. `Phase2Director/Hub` memakai `CampaignState` schema **3** (migrasi 1→2→3), interactor, ponsel, render feed, AR, UI dan inventori existing. Config encounter adalah `Phase2Balance.asset`; biaya energi tetap bersumber dari `SmartphoneController`. Jalur berakhir di pintu Ruang Operasi tanpa membuat boss, CP5–CP7 atau segel kedua. `Review-Phase2.cmd` adalah fixture pengembangan dalam slot terpisah, bukan pemberian progres pada save produksi. Daftar QA historis tetap `NOT_RUN` sampai masing-masing skenario benar-benar dijalankan; hasil tes terarah dilaporkan tersendiri dan tidak dianggap penerimaan 100 QA.
 
 ### 0.7 Koreksi editorial atas naskah 15 Oktober 2026 [REVISI EDITORIAL]
 

@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/root/Projects/LayarTerakhir-main/Builds/LinuxAudit/LayarTerakhir.x86_64",
+    "-batchmode",
+    "-nographics",
+    "-phase2AuditFast",
+    "-phase2Audit",
+    "/root/Projects/LayarTerakhir-main/Builds/Phase2Route10",
+    "-logFile",
+    "/tmp/phase2-route-delivery-player.log"
+  ],
+  "environment": {
+    "DISPLAY": ":94",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "LP_NUM_THREADS": "6"
+  },
+  "startedUtc": "2026-10-24T02:08:37.396905+00:00",
+  "status": "Finished",
+  "endedUtc": "2026-10-24T02:10:22.984868+00:00",
+  "exitCode": 0
+}

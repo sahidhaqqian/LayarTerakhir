@@ -1,0 +1,112 @@
+{
+  "note": "Failed development attempts retained; none is counted as a passed scenario. Test steering and real gameplay defects are distinguished in the implementation report.",
+  "attempts": [
+    {
+      "attempt": "Phase2Route01",
+      "completed": false,
+      "utc": "2026-10-23T21:32:13.5791430Z",
+      "walkedMeters": 0.0,
+      "failures": [
+        "ERROR P2 HUB missing interaction DEPART"
+      ]
+    },
+    {
+      "attempt": "Phase2Route02",
+      "completed": false,
+      "utc": "2026-10-23T21:39:31.8913530Z",
+      "walkedMeters": 100.69373321533203,
+      "failures": [
+        "FAIL AR aura photo and its one energy debit persist",
+        "FAIL System.InvalidOperationException: AR aura photo and its one energy debit persist\n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit.Check (System.Boolean condition, System.String description) [0x00059] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:83 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Route>d__19.MoveNext () [0x00bb5] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:121 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Drive>d__16.MoveNext () [0x00046] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:70 "
+      ]
+    },
+    {
+      "attempt": "Phase2Route03",
+      "completed": false,
+      "utc": "2026-10-23T21:50:37.4775330Z",
+      "walkedMeters": 136.23890686035156,
+      "failures": [
+        "FAIL Optional D1 secret persists without mandatory scan",
+        "FAIL System.InvalidOperationException: Optional D1 secret persists without mandatory scan\n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit.Check (System.Boolean condition, System.String description) [0x00059] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:83 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Route>d__19.MoveNext () [0x00e4e] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:132 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Drive>d__16.MoveNext () [0x00046] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:70 "
+      ]
+    },
+    {
+      "attempt": "Phase2Route04",
+      "completed": false,
+      "utc": "2026-10-23T21:58:15.7000750Z",
+      "walkedMeters": 101.00379180908203,
+      "failures": [
+        "FAIL System.Exception: Capsule route blocked at (26.80, -3.92, 22.00) toward (24.06, -3.99, 18.36)\n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Walk>d__24.MoveNext () [0x001c0] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:250 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Drive>d__16.MoveNext () [0x00046] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:70 "
+      ]
+    },
+    {
+      "attempt": "Phase2Route05",
+      "completed": false,
+      "utc": "2026-10-24T00:38:39.9182060Z",
+      "walkedMeters": 252.68157958984375,
+      "failures": [
+        "FAIL Visible reticle targets BLOOD through real interaction ray",
+        "FAIL System.InvalidOperationException: Visible reticle targets BLOOD through real interaction ray\n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit.Check (System.Boolean condition, System.String description) [0x00059] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:83 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<AimInteraction>d__28.MoveNext () [0x00325] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:324 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Drive>d__16.MoveNext () [0x00046] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:70 "
+      ]
+    },
+    {
+      "attempt": "Phase2Route06",
+      "completed": false,
+      "utc": "2026-10-24T00:52:57.1153620Z",
+      "walkedMeters": 252.50338745117188,
+      "failures": [
+        "FAIL Visible reticle targets BLOOD through real interaction ray",
+        "FAIL System.InvalidOperationException: Visible reticle targets BLOOD through real interaction ray\n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit.Check (System.Boolean condition, System.String description) [0x00059] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:83 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<AimInteraction>d__28.MoveNext () [0x00325] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:326 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Drive>d__16.MoveNext () [0x00046] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:70 "
+      ]
+    },
+    {
+      "attempt": "Phase2Route07",
+      "completed": false,
+      "utc": "2026-10-24T01:25:54.6180300Z",
+      "walkedMeters": 253.73263549804688,
+      "failures": [
+        "FAIL System.Exception: Capsule route blocked at (21.80, 4.20, 9.97) toward (21.06, 4.02, 10.08)\n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Walk>d__24.MoveNext () [0x00210] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:259 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Drive>d__16.MoveNext () [0x00046] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:70 "
+      ]
+    },
+    {
+      "attempt": "Phase2Route08",
+      "completed": false,
+      "utc": "2026-10-24T01:42:09.9151330Z",
+      "walkedMeters": 319.9434509277344,
+      "failures": [
+        "FAIL Scene restore places capsule at nurse checkpoint",
+        "FAIL System.InvalidOperationException: Scene restore places capsule at nurse checkpoint\n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit.Check (System.Boolean condition, System.String description) [0x00059] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:83 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Route>d__19.MoveNext () [0x01a82] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:174 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Drive>d__16.MoveNext () [0x00046] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:70 "
+      ]
+    },
+    {
+      "attempt": "Phase2Safety01",
+      "completed": false,
+      "utc": "2026-10-23T21:47:58.6967860Z",
+      "walkedMeters": 8.91862678527832,
+      "failures": [
+        "FAIL Eight-second held E gives one persisted +25 operation from zero",
+        "FAIL System.InvalidOperationException: Eight-second held E gives one persisted +25 operation from zero\n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit.Check (System.Boolean condition, System.String description) [0x00059] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:83 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Safety>d__20.MoveNext () [0x004bf] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:188 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Drive>d__16.MoveNext () [0x00046] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:70 "
+      ]
+    },
+    {
+      "attempt": "Phase2Safety02",
+      "completed": false,
+      "utc": "2026-10-23T21:57:32.0814890Z",
+      "walkedMeters": 16.154773712158203,
+      "failures": [
+        "FAIL Six seconds hidden with dead screen detaches without battery",
+        "FAIL System.InvalidOperationException: Six seconds hidden with dead screen detaches without battery\n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit.Check (System.Boolean condition, System.String description) [0x00059] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:83 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Safety>d__20.MoveNext () [0x00810] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:203 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Drive>d__16.MoveNext () [0x00046] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:70 "
+      ]
+    },
+    {
+      "attempt": "Phase2Visual03",
+      "completed": false,
+      "utc": "2026-10-24T01:25:20.2727640Z",
+      "walkedMeters": 0.0,
+      "failures": [
+        "FAIL Continue/depart reaches RSUD scene",
+        "FAIL System.InvalidOperationException: Continue/depart reaches RSUD scene\n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit.Check (System.Boolean condition, System.String description) [0x00059] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:83 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Wait>d__17.MoveNext () [0x0007a] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:80 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Drive>d__16.MoveNext () [0x00046] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:70 "
+      ]
+    }
+  ]
+}

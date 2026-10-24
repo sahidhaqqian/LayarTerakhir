@@ -186,7 +186,8 @@ namespace LayarTerakhir.Smartphone
                 return false;
 
             string instance = CampaignState.Instance.Data.inventory.Find(id =>
-                id == "P1_POWERBANK_MAILBOX_207" || id == "P1_POWERBANK_ARRIVAL");
+                id == "P1_POWERBANK_MAILBOX_207" || id == "P1_POWERBANK_ARRIVAL" ||
+                id == "P2_POWERBANK_PASAR_GAIB_A" || id == "P2_POWERBANK_PASAR_GAIB_B");
             if (instance != null)
             {
                 var campaign = CampaignState.Instance;
@@ -235,6 +236,13 @@ namespace LayarTerakhir.Smartphone
 
         public void SyncVisualState()
         {
+            // Restores/atomic photo transactions can also reach exactly zero.
+            // A dead screen must remain switchable through hiding/recovery rules.
+            if (batteryPercent <= 0f)
+            {
+                isScreenOn = false;
+                currentScanMode = ScanVisualMode.Normal;
+            }
             if (handPhoneMeshRoot != null)
             {
                 handPhoneMeshRoot.SetActive(hasSmartphoneInInventory && isPhoneRaised);
@@ -287,6 +295,9 @@ namespace LayarTerakhir.Smartphone
             phoneFlashlight.transform.SetPositionAndRotation(
                 player.cameraPivot.position + player.transform.right * .24f + player.transform.forward * .28f,
                 player.cameraPivot.rotation);
+            if (pulse && isSelfieCamera && selfieModuleUnlocked)
+                phoneFlashlight.transform.SetPositionAndRotation(player.cameraPivot.position + player.transform.forward * .52f,
+                    Quaternion.LookRotation(-player.transform.forward,Vector3.up));
         }
     }
 }

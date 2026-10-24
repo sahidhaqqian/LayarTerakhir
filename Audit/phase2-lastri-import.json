@@ -1,0 +1,29 @@
+{
+  "source": "Assets/_LayarTerakhir/assets/LayarTerakhir/Merah.vrm",
+  "sourceSha256": "b9e2c42d03bf18158fb81d7b904943cd1b2f10f4928f9dc1bf949d5b5a0719f7",
+  "originalTriangles": 5550176,
+  "gameTriangles": 28000,
+  "textures": {
+    "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase2/Characters/Textures/LastriAlbedo.png",
+    "Normal": "Assets/_LayarTerakhir/assets/Art/Phase2/Characters/Textures/LastriNormal.png",
+    "MetalSmooth": "Assets/_LayarTerakhir/assets/Art/Phase2/Characters/Textures/LastriMetalSmooth.png"
+  },
+  "clips": [
+    "Idle",
+    "Run",
+    "Walk",
+    "Stun",
+    "Windup"
+  ],
+  "motionSources": [
+    {
+      "path": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/RakaDesigner.fbx",
+      "sha256": "d39639b9d1e89bca89817d0bcddc6444282f5acf9d07e510504406b65d9dbd3f"
+    },
+    {
+      "path": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/NyonyaDesigner.fbx",
+      "sha256": "d307ad0d637504cbcaf8baff91391a12dddc7cebf5600a8669b1e62c00d4847b"
+    }
+  ],
+  "operation": "Designer Merah VRM, converted/optimized; previously authored motion retarget only"
+}

@@ -145,3 +145,11 @@ __pycache__/
 !/graphify-out/GRAPH_REPORT.md
 !/graphify-out/graph.html
 !/graphify-out/source-manifest.json
+
+# Madduck permits game use, but no public distribution as loose game assets.
+# Reconstruct locally with Tools/fetch_phase2_assets.py + import_phase2_assets.py.
+# Stable Unity GUID sidecars are retained so scene references survive fetching.
+/Assets/_LayarTerakhir/assets/Art/Phase2/Imported/Madduck/**/*
+!/Assets/_LayarTerakhir/assets/Art/Phase2/Imported/Madduck/**/
+!/Assets/_LayarTerakhir/assets/Art/Phase2/Imported/Madduck/**/*.meta
+!/Assets/_LayarTerakhir/assets/Art/Phase2/Imported/Madduck/LICENSE.md

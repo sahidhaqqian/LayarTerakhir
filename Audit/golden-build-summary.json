@@ -1,20 +1,20 @@
 {
-  "verifiedUtc": "2026-10-23T17:00:03.795256+00:00",
+  "verifiedUtc": "2026-10-24T02:11:42.468255+00:00",
   "unityExitCode": 0,
   "result": "Succeeded",
   "target": "StandaloneWindows64",
   "scriptingBackend": "Mono2x",
   "development": true,
   "startupScene": "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity",
-  "executable": "/root/Projects/LayarTerakhir-held-camera/Builds/Windows/LayarTerakhir.exe",
-  "unityReportedFilesVerified": 300,
+  "executable": "/root/Projects/LayarTerakhir-main/Builds/Windows/LayarTerakhir.exe",
+  "unityReportedFilesVerified": 304,
   "scriptingAssembliesVerified": 112,
-  "unityReportedSizeBytes": 738580617,
-  "buildFileCount": 311,
-  "totalBuildSizeBytes": 738864636,
-  "archivePath": "/root/Projects/LayarTerakhir-held-camera/Builds/LayarTerakhir-Windows-x86_64-Development.zip",
-  "archiveSizeBytes": 433825619,
-  "archiveSha256": "4c3c0175cf7078dfd9d1265a098bab2759bd4c60a7ca242359e0a535bd276b47",
+  "unityReportedSizeBytes": 972212493,
+  "buildFileCount": 325,
+  "totalBuildSizeBytes": 972528491,
+  "archivePath": "/root/Projects/LayarTerakhir-main/Builds/LayarTerakhir-Windows-x86_64-Development.zip",
+  "archiveSizeBytes": 521430132,
+  "archiveSha256": "df5855eed33fe222526156cf3c3b5808673adde6f678dcba488ca079ee2a7b8d",
   "zipCrcVerified": true,
   "zipContainsAllBuildFiles": true,
   "windowsRuntimeTested": false,
@@ -32,6 +32,7 @@
     "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity",
     "Assets/_LayarTerakhir/assets/Scenes/Prolog_RumahAtmaja.unity",
     "Assets/_LayarTerakhir/assets/Scenes/Prolog_KoridorKos.unity",
-    "Assets/_LayarTerakhir/assets/Scenes/Babak1_Rusunawa.unity"
+    "Assets/_LayarTerakhir/assets/Scenes/Babak1_Rusunawa.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Babak2_RSUD.unity"
   ]
 }

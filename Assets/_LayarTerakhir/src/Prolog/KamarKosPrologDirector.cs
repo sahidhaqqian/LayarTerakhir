@@ -18,6 +18,7 @@ namespace LayarTerakhir.Prolog
         Completed = 5
     }
 
+    [DefaultExecutionOrder(10)]
     public class KamarKosPrologDirector : MonoBehaviour
     {
         public const string DrawerPasscode = "1408";
@@ -44,6 +45,8 @@ namespace LayarTerakhir.Prolog
 
         private void Awake()
         {
+            if (CampaignState.Instance && CampaignState.Instance.LoadCheckpoint() && CampaignRouting.IsPhase2(CampaignState.Instance.Data))
+            { LayarTerakhir.Phase2.Phase2Hub.Install(this); return; }
             KosRoomCorrections.Apply(this);
             if(suratKosItem){suratKosItem.isInteractable=false;suratKosItem.gameObject.SetActive(false);}
         }

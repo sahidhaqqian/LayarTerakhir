@@ -5,17 +5,17 @@
     "-batchmode",
     "-nographics",
     "-projectPath",
-    "/root/Projects/LayarTerakhir-held-camera",
+    "/root/Projects/LayarTerakhir-main",
     "-buildTarget",
     "Win64",
     "-quit",
     "-executeMethod",
     "LayarTerakhir.Editor.WindowsDevelopmentBuild.Build",
     "-logFile",
-    "/root/Projects/LayarTerakhir-held-camera/Builds/Logs/windows-development.log"
+    "/root/Projects/LayarTerakhir-main/Builds/Logs/windows-development.log"
   ],
-  "startedUtc": "2026-10-23T16:57:47.580121+00:00",
+  "startedUtc": "2026-10-24T02:08:54.395450+00:00",
   "status": "Finished",
-  "endedUtc": "2026-10-23T16:59:07.547529+00:00",
+  "endedUtc": "2026-10-24T02:09:59.892320+00:00",
   "exitCode": 0
 }

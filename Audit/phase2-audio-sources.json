@@ -1,0 +1,47 @@
+{
+  "sources": [
+    {
+      "name": "Moans.zip",
+      "sourcePage": "https://opengameart.org/content/ghost-monster-voice-moaning-growling",
+      "url": "https://opengameart.org/sites/default/files/qubodup-GhostMoans.zip",
+      "license": "CC0-1.0",
+      "author": "qubodup",
+      "sha256": "25962d146f4634a93efa7fbfe9cde63f4182189ced6105b4f92f23c65d8c2a43"
+    },
+    {
+      "name": "Breathing.zip",
+      "sourcePage": "https://opengameart.org/content/horror-breathing",
+      "url": "https://opengameart.org/sites/default/files/horrorbreathing.zip",
+      "license": "CC0-1.0",
+      "author": "primbal",
+      "sha256": "5984aa9d197885ab110c31ea0ba382d3f47d12b93449f8942e1cf96b0449462c"
+    },
+    {
+      "name": "Mechanical.zip",
+      "sourcePage": "https://opengameart.org/content/the-shop",
+      "url": "https://opengameart.org/sites/default/files/legit_audio_-_the_shop_free_sfx_wav.zip",
+      "license": "CC0-1.0",
+      "author": "LEGIT Audio",
+      "sha256": "87d49c4431fdf5647f3c434455b3bcd402fc757f97f2640b2ef84e2e5db9d86e"
+    },
+    {
+      "name": "Rain.wav",
+      "sourcePage": "https://opengameart.org/content/rain-on-window-loop",
+      "url": "https://opengameart.org/sites/default/files/rain_on_window_loop.wav",
+      "license": "CC0-1.0",
+      "author": "alxl",
+      "sha256": "97b9405025e5ed7ed8a58d24dd7146d06e925519b1f718efda94bb85dcd1a61a"
+    },
+    {
+      "name": "Baby.ogg",
+      "sourcePage": "https://opengameart.org/content/baby-sound-effect",
+      "url": "https://opengameart.org/sites/default/files/Baby%2001_0.ogg",
+      "license": "CC0-1.0",
+      "author": "TokyoGeisha",
+      "sha256": "86a32fdb0a97fb4c8fc688c67c3ac165c3708f97eeffffb1b68eff7eaaf05f87"
+    }
+  ],
+  "roomSelected": "TheShopCollection_convenience_store_drinks_fridge_drone.wav",
+  "exteriorSelected": "Rain.wav",
+  "note": "Nonverbal source performances and mechanical ambience only. Canon dialogue/EVP/Damar use subtitles pending human VO; no AI dialogue generated."
+}

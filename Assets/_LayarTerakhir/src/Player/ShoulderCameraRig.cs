@@ -207,6 +207,21 @@ namespace LayarTerakhir.Player
             }
         }
 
+        // Only the existing phone render temporarily sees the real designer avatar.
+        // Restore immediately so FP world rendering keeps its normal head clearance.
+        public void SetSelfieFeedCoverage(bool enabled)
+        {
+            if (bodyRenderers == null) return;
+            float opacity = enabled ? 1 : AvatarOpacity;
+            foreach (var renderer in bodyRenderers)
+            {
+                renderer.shadowCastingMode = enabled ? ShadowCastingMode.On :
+                    IsFirstPerson ? ShadowCastingMode.ShadowsOnly : ShadowCastingMode.On;
+                if (fadeProperties == null) continue;
+                renderer.GetPropertyBlock(fadeProperties); fadeProperties.SetFloat("_DitherAlpha", opacity); renderer.SetPropertyBlock(fadeProperties);
+            }
+        }
+
         private void AnimateRaka()
         {
             // Mount/unmount can happen through explicit refreshes in one frame.

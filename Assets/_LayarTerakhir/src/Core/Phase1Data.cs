@@ -29,10 +29,14 @@ namespace LayarTerakhir.Core
     public static class CampaignRouting
     {
         public const string RusunawaScene = "Babak1_Rusunawa";
+        public const string HospitalScene = "Babak2_RSUD";
+        public static bool IsPhase2(CampaignData data) => data != null && data.chapter_id == 2 &&
+            data.checkpoint_id != null && data.checkpoint_id.StartsWith("PHASE2_", StringComparison.Ordinal);
         public static bool IsPhase1(CampaignData data) => data != null && data.chapter_id == 1 &&
             data.checkpoint_id != null && data.checkpoint_id.StartsWith("PHASE1_", StringComparison.Ordinal);
         // Unknown chapters must not be sent through a director that starts a fresh campaign.
-        public static string ContinueScene(CampaignData data) => IsPhase1(data) ? RusunawaScene :
+        public static string ContinueScene(CampaignData data) => IsPhase2(data) ?
+            (data.phase2.Completed("P2_DEPART_KOS") ? HospitalScene : "Prolog_KamarKos") : IsPhase1(data) ? RusunawaScene :
             data != null && data.chapter_id == 0 ? "Prolog_KamarKos" : null;
     }
 }

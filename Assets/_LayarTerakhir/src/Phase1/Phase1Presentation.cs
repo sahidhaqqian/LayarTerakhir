@@ -227,8 +227,13 @@ namespace LayarTerakhir.Phase1
         }
         private void ShowChapterComplete()
         {
-            ShowOverlay("PENGHUNI LANTAI EMPAT — SELESAI", "Segel Rusunawa tersimpan.\nTujuan berikutnya: RSUD Lama Sido Waras.\nBabak berikutnya belum tersedia dalam build ini.",
-                "Menu Utama", () => GameShell.Instance.OpenMain(), "Tutup permainan", () => Application.Quit());
+            ShowOverlay("PENGHUNI LANTAI EMPAT — SELESAI", "Segel Rusunawa tersimpan.\nKembali ke Kos Raka untuk mempersiapkan malam kedua di RSUD Lama Sido Waras.",
+                "Menu Utama", () => GameShell.Instance.OpenMain(), "Lanjutkan — Kamar Kos", () =>
+                {
+                    if (!LayarTerakhir.Phase2.Phase2Campaign.EnterHub(Campaign))
+                    { Hud.ShowBroadcastNotification("Transisi belum tersimpan. Periksa segel dan coba lagi.",4); return; }
+                    CloseOverlay(); UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Prolog_KamarKos");
+                });
         }
         private void ShowSaveRecovery(string reason, Action retry)
         { ShowOverlay("PENYIMPANAN BELUM BERHASIL", reason, "Coba simpan lagi", () => { CloseOverlay(); retry(); }, "Muat checkpoint aman", () => { CloseOverlay(); GameShell.Instance.ReturnAfterDeath("Checkpoint sebelumnya tetap utuh."); }); }

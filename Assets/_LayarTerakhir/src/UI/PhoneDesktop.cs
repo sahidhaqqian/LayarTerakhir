@@ -54,8 +54,8 @@ namespace LayarTerakhir.UI
         }
         private void Home()
         {
-            UiWidgets.Text("Clock",page.transform,view.director?"23:52":"23:46",new Vector2(.08f,.77f),new Vector2(.92f,.94f),82,TextAnchor.MiddleCenter);
-            UiWidgets.Text("Date",page.transform,"Kamis, 15 Oktober  •  Hujan",new Vector2(.08f,.72f),new Vector2(.92f,.78f),20,TextAnchor.MiddleCenter);
+            UiWidgets.Text("Clock",page.transform,view.ClockText,new Vector2(.08f,.77f),new Vector2(.92f,.94f),82,TextAnchor.MiddleCenter);
+            UiWidgets.Text("Date",page.transform,view.DateText,new Vector2(.08f,.72f),new Vector2(.92f,.78f),20,TextAnchor.MiddleCenter);
             var widget=PhoneSkin.Card("ChannelWidget",page.transform,new Vector2(.07f,.59f),new Vector2(.93f,.70f),new Color(.10f,.18f,.24f));
             UiWidgets.Text("ChannelWidgetText",widget.transform,"MALAM KERAMAT\n"+(Phone.isBroadcastConnected?"Siaran langsung berlangsung":"Kanal offline  •  32 penonton terakhir"),new Vector2(.07f,.06f),new Vector2(.93f,.94f),21);
             string[] labels={"Kamera","Peta","Pesan","Jurnal","Tas","Bank","Setelan","Telepon","MataBatin"};string[] glyphs={"Camera","Map","Messages","Journal","Inventory","Bank","Settings","Call","MataBatin"};

@@ -1,0 +1,21 @@
+{
+  "stage": "windows",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-main",
+    "-buildTarget",
+    "Win64",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.WindowsDevelopmentBuild.Build",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Builds/Logs/windows-development.log"
+  ],
+  "startedUtc": "2026-10-24T02:08:54.395450+00:00",
+  "status": "Finished",
+  "endedUtc": "2026-10-24T02:09:59.892320+00:00",
+  "exitCode": 0
+}
