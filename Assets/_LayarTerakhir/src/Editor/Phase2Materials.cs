@@ -29,6 +29,7 @@ namespace LayarTerakhir.Editor
             }
             Surface("Window",new Color(.13f,.22f,.24f,.25f),null,null,null,.95f,.1f,true);
             var input=JsonUtility.FromJson<ImportedMaterials>(File.ReadAllText("Audit/phase2-import-manifest.json"));
+            if(File.Exists("Audit/phase2-session2-import-manifest.json")) input.materials=input.materials.Concat(JsonUtility.FromJson<ImportedMaterials>(File.ReadAllText("Audit/phase2-session2-import-manifest.json")).materials).ToArray();
             foreach(var m in input.materials)
             {
                 string mask=string.IsNullOrEmpty(m.MetalRough)?null:m.MetalRough.Replace("MetalRough","MetalSmooth");

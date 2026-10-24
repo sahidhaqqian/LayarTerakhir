@@ -1,0 +1,83 @@
+[
+  {
+    "id": "Furnace",
+    "title": "Low-pol Furnace",
+    "author": "newArteest",
+    "sourcePage": "https://sketchfab.com/3d-models/30f3ad44e42342b7b32a3b2cd49517fd",
+    "license": "CC-BY-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "mirror": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-016/30f3ad44e42342b7b32a3b2cd49517fd.glb",
+    "sourceSha256": "1a79be7af15777850779f7b6aabf747d63357964a780d11c57c543d9cf83efc2",
+    "operation": "offline format conversion, material extraction and scale fitting"
+  },
+  {
+    "id": "Rope",
+    "title": "rope",
+    "author": "Marcel Porsiel",
+    "sourcePage": "https://sketchfab.com/3d-models/018f4f36fb154171912bdacbf0e6415c",
+    "license": "CC-BY-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "mirror": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-026/018f4f36fb154171912bdacbf0e6415c.glb",
+    "sourceSha256": "3cbf23542cd3bfddbe64a89cf76c1638a91f8e312758e6dbed93716ea19ffb18",
+    "operation": "offline format conversion, material extraction and scale fitting"
+  },
+  {
+    "id": "pull_chain_light_socket",
+    "sourcePage": "https://polyhaven.com/a/pull_chain_light_socket",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/pull_chain_light_socket/pull_chain_light_socket.fbx",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/pull_chain_light_socket/pull_chain_light_socket_1k.fbx",
+        "sha256": "202c6ec0744eca92ce095406da3a86f9a8e96c7a981133e110f5a5556b84d7ba"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/pull_chain_light_socket/pull_chain_light_socketDiffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/pull_chain_light_socket/pull_chain_light_socket_diff_1k.jpg",
+        "sha256": "92675203e71250358db8e200a8a367ff39839f231db93050135718769b155552"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/pull_chain_light_socket/pull_chain_light_socketNormal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/pull_chain_light_socket/pull_chain_light_socket_nor_gl_1k.jpg",
+        "sha256": "8af515ce9ad355961bfc086830c54e065a579a737f233cea627735f850256860"
+      },
+      {
+        "file": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/pull_chain_light_socket/pull_chain_light_socketARM.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/pull_chain_light_socket/pull_chain_light_socket_arm_1k.jpg",
+        "sha256": "35a97a7025587b8d11cbe32e385b8383fe8e7cb05e1e84c74f58cf31c5f1c295"
+      }
+    ]
+  },
+  {
+    "id": "Kenney particle fire",
+    "sourcePage": "https://kenney.nl/assets/particle-pack",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "operation": "Unmodified fire_01.png; particle configuration, no generated texture"
+  },
+  {
+    "id": "Glass",
+    "author": "Till Behrend / TinyWorlds",
+    "sourcePage": "https://opengameart.org/content/glass-break",
+    "url": "https://opengameart.org/sites/default/files/glass_breaking.wav",
+    "license": "CC0-1.0",
+    "sourceSha256": "37d29069c885afe3f7ca639293fa679fb6511a6a1e54316f0e403e4493f502b3"
+  },
+  {
+    "id": "Chain",
+    "author": "bart",
+    "sourcePage": "https://opengameart.org/content/chain-winch-sounds",
+    "url": "https://opengameart.org/sites/default/files/winch.zip",
+    "license": "CC0-1.0",
+    "sourceSha256": "276c46982e4ea7bd1cc1b90e2bcef8b460c967788be7668b83b1a235d198368a"
+  },
+  {
+    "id": "Shutter",
+    "author": "Mike Koenig",
+    "sourcePage": "https://soundbible.com/563-Camera-Shutter-Click.html",
+    "url": "https://soundbible.com/grab.php?id=563&type=wav",
+    "license": "CC-BY-3.0",
+    "sourceSha256": "9ab3faa80b60c5ea6c0304c781385b4a89f1bba4ab6b2e63c6efc885b0caac42"
+  }
+]

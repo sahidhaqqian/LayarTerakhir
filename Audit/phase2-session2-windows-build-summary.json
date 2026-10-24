@@ -1,0 +1,38 @@
+{
+  "verifiedUtc": "2026-10-24T06:25:22.505499+00:00",
+  "unityExitCode": 0,
+  "result": "Succeeded",
+  "target": "StandaloneWindows64",
+  "scriptingBackend": "Mono2x",
+  "development": true,
+  "startupScene": "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity",
+  "executable": "/root/Projects/LayarTerakhir-main/Builds/Windows/LayarTerakhir.exe",
+  "unityReportedFilesVerified": 304,
+  "scriptingAssembliesVerified": 112,
+  "unityReportedSizeBytes": 980653566,
+  "buildFileCount": 325,
+  "totalBuildSizeBytes": 980972029,
+  "archivePath": "/root/Projects/LayarTerakhir-main/Builds/LayarTerakhir-Windows-x86_64-Development.zip",
+  "archiveSizeBytes": 526223001,
+  "archiveSha256": "0a5f92cb895c1383e7c94ef0b1b6c1ffb2d6cf4868c563b7d8244f73f8fc8a1b",
+  "zipCrcVerified": true,
+  "zipContainsAllBuildFiles": true,
+  "windowsRuntimeTested": false,
+  "sourceSceneSha256": "468daa5c40bb2cdc2d520151b84a4cac60364db85e0d4163244cf76fd8c14ac8",
+  "atmajaSceneSha256": "a59e5de870809842ab054e1547ea50a40a2693ebdd521174df3ebecceb54e3f0",
+  "openingProtection": {
+    "method": "Historic approved structure; camera presentation may change",
+    "sha256": "468daa5c40bb2cdc2d520151b84a4cac60364db85e0d4163244cf76fd8c14ac8",
+    "structureSha256": "8829d1989c6f093c76abcd9409fd3957be21affd87afe5c6f4701c0a8989302a",
+    "historicSha256": "4b73b117b832fb753b92d3de885c163bc1dd3f6225101867f7b4e2437c8b793a",
+    "baseCommit": "30d9e7e93b82870bec3f8f03f8465b5b0b8c9d63"
+  },
+  "developmentScreenshotUtilityIncluded": true,
+  "includedScenes": [
+    "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Prolog_RumahAtmaja.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Prolog_KoridorKos.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Babak1_Rusunawa.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Babak2_RSUD.unity"
+  ]
+}

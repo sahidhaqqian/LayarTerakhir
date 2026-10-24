@@ -1,0 +1,54 @@
+{
+  "attempts": [
+    {
+      "attempt": "Phase2Boss01",
+      "completed": false,
+      "utc": "2026-10-24T02:41:38.2343250Z",
+      "failures": [
+        "FAIL Arena repeatable generator supplies actual +25 for cycle 2",
+        "FAIL System.InvalidOperationException: Arena repeatable generator supplies actual +25 for cycle 2\n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit.Check (System.Boolean condition, System.String description) [0x00059] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:83 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<CompleteChapter>d__4.MoveNext () [0x003aa] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2BossPlayerAudit.cs:41 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Drive>d__22.MoveNext () [0x00046] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:70 "
+      ],
+      "classification": "Harness expected total25 instead of prior battery+25; first real Selfie-Blitz and LO beam succeeded. Corrected oracle, no energy tuning."
+    },
+    {
+      "attempt": "Phase2Full01",
+      "completed": false,
+      "utc": "2026-10-24T02:43:28.7984360Z",
+      "failures": [
+        "FAIL Arena repeatable generator supplies actual +25 for cycle 2",
+        "FAIL System.InvalidOperationException: Arena repeatable generator supplies actual +25 for cycle 2\n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit.Check (System.Boolean condition, System.String description) [0x00059] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:83 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<CompleteChapter>d__4.MoveNext () [0x003aa] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2BossPlayerAudit.cs:41 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Drive>d__22.MoveNext () [0x00046] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:70 "
+      ],
+      "classification": "Harness expected total25 instead of prior battery+25; first real Selfie-Blitz and LO beam succeeded. Corrected oracle, no energy tuning."
+    },
+    {
+      "attempt": "Phase2Boss02",
+      "completed": false,
+      "utc": "2026-10-24T02:48:53.0407860Z",
+      "failures": [
+        "FAIL Actual lamp geometry exposes Lastri for cycle 3",
+        "FAIL System.InvalidOperationException: Actual lamp geometry exposes Lastri for cycle 3\n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit.Check (System.Boolean condition, System.String description) [0x00059] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:83 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Wait>d__23.MoveNext () [0x0007a] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:80 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Drive>d__22.MoveNext () [0x00046] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:70 "
+      ],
+      "classification": "Directed lure approached UV-S from outside its beam; no successful exposure. Corrected traversal."
+    },
+    {
+      "attempt": "Phase2BossRecovery01",
+      "completed": false,
+      "utc": "2026-10-24T03:00:27.6078130Z",
+      "failures": [
+        "FAIL Cycle-2 fixture contains exactly two nonphysical illusions",
+        "FAIL System.InvalidOperationException: Cycle-2 fixture contains exactly two nonphysical illusions\n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit.Check (System.Boolean condition, System.String description) [0x00059] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:83 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<BossRecoveryScenarios>d__7.MoveNext () [0x00a46] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2BossRecoveryAudit.cs:44 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Drive>d__24.MoveNext () [0x00046] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:70 "
+      ],
+      "classification": "Initial illusion spawn too close to table player; one immediately popped. Authored spawn moved back."
+    },
+    {
+      "attempt": "Phase2InvestigationEdges01",
+      "completed": false,
+      "utc": "2026-10-24T06:08:20.8489550Z",
+      "failures": [
+        "FAIL Visible reticle targets B2 through real interaction ray",
+        "FAIL System.InvalidOperationException: Visible reticle targets B2 through real interaction ray\n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit.Check (System.Boolean condition, System.String description) [0x00059] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:84 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<AimInteraction>d__41.MoveNext () [0x0054a] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:360 \n  at LayarTerakhir.Diagnostics.Phase2PlayerAudit+<Drive>d__28.MoveNext () [0x00046] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase2PlayerAudit.cs:71 "
+      ],
+      "classification": "Real bug: moving drawer blocked fixed marker. Moving colliders now belong to drawer interaction owner."
+    }
+  ]
+}

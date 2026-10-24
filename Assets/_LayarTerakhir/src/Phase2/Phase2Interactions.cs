@@ -1,3 +1,5 @@
+using System.Linq;
+using LayarTerakhir.Phase1;
 using System.Collections;
 using LayarTerakhir.Core;
 using LayarTerakhir.Player;
@@ -17,7 +19,8 @@ namespace LayarTerakhir.Phase2
             if (Hidden && item == hidingItem) return "Keluar dari persembunyian";
             var drawer = item.GetComponent<Phase2Drawer>();
             if (drawer) return drawer.Prompt;
-            if (item.id == "OR_DOOR") return Phase2Ids.AllRelics(Campaign.Data) ? "Ruang Operasi — periksa persiapan ritual" : "Pintu berkabut — tiga pusaka belum lengkap";
+            if (item.id == "RITUAL_TABLE") return boss.Active ? boss.Status : Completed("P2_BOSS_WIN") ? "Meja operasi — segel Lastri tersimpan" : "Letakkan tiga pusaka — mulai ritual";
+            if (item.id == "OR_DOOR") return Completed("P2_BOSS_WIN") || Phase2Ids.AllRelics(Campaign.Data) ? "Ruang Operasi — periksa persiapan ritual" : "Pintu berkabut — tiga pusaka belum lengkap";
             return item.prompt;
         }
         public IInteractable ResolveContextInteraction() => Hidden ? hidingItem : null;
@@ -48,7 +51,7 @@ namespace LayarTerakhir.Phase2
                 case "D1":
                     if (!Campaign.HasInventoryItem(Phase2Ids.ArchiveKey)) { Hud.ShowBroadcastNotification("Laci arsip terkunci. Papan kunci ada di gudang ini.",4); break; }
                     if (!Campaign.Data.secret_items.Contains(Phase2Ids.Secret) && Commit("P2_SECRET_PICKUP",d=>d.secret_items.Add(Phase2Ids.Secret),"PHASE2_CP4",SafeAnchor))
-                        Hud.ShowBroadcastNotification("LABEL PASIEN TANPA NAMA TERSIMPAN • Arsip Saksi " + Campaign.Data.secret_items.Count + "/5",6);
+                        Hud.ShowBroadcastNotification("LABEL PASIEN TANPA NAMA TERSIMPAN • Arsip Saksi " + Phase1Ids.Secrets.Count(Campaign.Data.secret_items.Contains) + "/5",6);
                     break;
                 case "GUNTING": Take(item,"P2_TAKE_GUNTING",Phase2Ids.Gunting,true); break;
                 case "GELANG": Take(item,"P2_TAKE_GELANG",Phase2Ids.Gelang,true); break;
@@ -60,7 +63,15 @@ namespace LayarTerakhir.Phase2
                 case "SERVICE_TRACE": Hud.EnqueueSubtitle("Raka","Gantungan kamera Damar... ada goresan menuju lantai atas. Terowongannya dirantai.",6); break;
                 case "HIDE_TABLE_A": case "HIDE_TABLE_B": case "HIDE_LOCKER": ToggleHide(item); break;
                 case "DYNAMO_IGD": case "DYNAMO_DUTY": case "DYNAMO_NURSE": StartCoroutine(Charge(item)); break;
-                case "OR_DOOR": ShowInvestigationGate(); break;
+                case "OR_DOOR":
+                    if(Phase2Ids.AllRelics(Campaign.Data)||Completed("P2_BOSS_WIN"))
+                    {if(!Completed("P2_BOSS_WIN"))Commit("P2_INVESTIGATION_COMPLETE",null,null,"NURSE");Hud.ShowBroadcastNotification("Ruang Operasi. Periksa meja; ritual hanya dimulai lewat interaksi sadar.",4);}
+                    else Hud.ShowBroadcastNotification("Pintu berkabut. Lengkapi tiga pusaka.",4);
+                    break;
+                case "RITUAL_TABLE": if(boss.Active)boss.ContinueCycle();else if(!Completed("P2_BOSS_WIN"))boss.Begin();else if(!Completed("P2_EPILOGUE")){if(Phone.batteryPercent>0&&!StoryPlaying){storyRetryRequired=false;StartCoroutine(Epilogue());}else Hud.ShowBroadcastNotification("Isi daya di generator untuk menampilkan rekaman Damar.",4);} break;
+                case "LAMP_0": case "LAMP_1": case "LAMP_2": boss.UseLamp(item.id[item.id.Length-1]-'0'); break;
+                case "GENERATOR_NE": case "GENERATOR_SW": StartCoroutine(ChargeArena(item)); break;
+                case "EXIT_MOTOR": OpenExitPanel(); break;
             }
         }
         private void Take(Phase2WorldItem item,string receipt,string id,bool relic = false)
@@ -87,7 +98,7 @@ namespace LayarTerakhir.Phase2
         }
         private bool CanOpenHardModal()
         {
-            if (!lastri.Attached) return true;
+            if (!lastri.Attached && !boss.Active) return true;
             Hud.ShowBroadcastNotification("Ada yang menempel. Lepaskan lewat Selfie sambil maju, atau sembunyi + matikan layar sebelum membaca.",5); return false;
         }
         private void Keypad(string code,System.Func<bool> commit)

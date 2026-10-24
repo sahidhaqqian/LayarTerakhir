@@ -150,7 +150,8 @@ namespace LayarTerakhir.Editor
                 var unit=PH("metal_tool_chest",p,new Vector3(1.65f,.7f,2.3f),90);
                 unit.name="Freezer_"+id;
                 foreach(var surface in unit.GetComponentsInChildren<Renderer>())surface.sharedMaterial=materials["metal_plate_02"];
-                var interaction=Item(unit,id,"Laci pendingin "+id,p+new Vector3(-1.2f,.3f,0));
+                // The drawer owns its moving colliders, so E can still cancel after the tray slides over its old marker.
+                var interaction=Item(unit,id,"Laci pendingin "+id);
                 var drawer=interaction.gameObject.AddComponent<Phase2Drawer>();drawer.director=d;drawer.id=id;drawer.temperature=temps[row,col];drawer.tray=unit.transform.GetChild(0);
                 drawer.slideOffset=Vector3.back*.65f;drawers.Add(drawer);
                 Vector3 face=p+new Vector3(-1.21f,.34f,0);Thermal(id,face,temps[row,col],1.5f);

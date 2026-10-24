@@ -24,6 +24,7 @@ namespace LayarTerakhir.Phase2
         }
         public void Interact()
         {
+            if(director.Completed("P2_BOSS_WIN"))return;
             if (id=="C3")
             { if (director.Completed("P2_DRAWER_CHAIN_BREAK")) director.Commit("P2_C3_OPEN",null,"PHASE2_CP4",director.SafeAnchor); return; }
             if (State==Phase2DrawerState.Telegraph) { State=Phase2DrawerState.Closed;timer=0;return; }

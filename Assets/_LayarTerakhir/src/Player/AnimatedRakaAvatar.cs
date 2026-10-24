@@ -9,6 +9,7 @@ namespace LayarTerakhir.Player
         public Animation motion;
         public GameObject handset;
         public bool Installing {get;set;}
+        public bool CinematicCrouch {get;set;}
         private string current;
         private Renderer[] jacket,shirt;
         private float playbackSpeed = 1;
@@ -73,6 +74,7 @@ namespace LayarTerakhir.Player
         {
             if (!motion) return;
             RefreshOutfit();
+            crouching |= CinematicCrouch;
             handsetVisible = Mathf.MoveTowards(handsetVisible, phone && !riding ? 1 : 0, Time.deltaTime / .22f);
             bool heldPose = phone || handsetVisible > .02f;
             // Display the world handset only after the grasp has been sampled.

@@ -1,0 +1,108 @@
+{
+  "materials": [
+    {
+      "name": "Ritual_Furnace_Material_7",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.5,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/Ritual/Textures/Ritual_Furnace_Material_7Albedo.png"
+    },
+    {
+      "name": "Ritual_Rope_Material.001",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.6,
+      "metallic": 0
+    }
+  ],
+  "models": [
+    {
+      "name": "Furnace",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/Ritual/Models/Furnace.fbx",
+      "sourceMeshes": [
+        "GLTF_SceneRootNode",
+        "machine.3ds_0",
+        "Object_4",
+        "root",
+        "Sketchfab_model"
+      ],
+      "bounds": [
+        18.190916061401367,
+        35.52720642089844,
+        28.144575119018555
+      ]
+    },
+    {
+      "name": "Rope",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/Ritual/Models/Rope.fbx",
+      "sourceMeshes": [
+        "Lamp",
+        "Lamp.001",
+        "Root",
+        "seil",
+        "seil_0",
+        "Sketchfab_model"
+      ],
+      "bounds": [
+        39.55418014526367,
+        1.9760600328445435,
+        39.512107849121094
+      ]
+    },
+    {
+      "name": "SurgicalHead",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/Ritual/Models/SurgicalHead.fbx",
+      "sourceMeshes": [
+        "MedicalLight_Arm_11",
+        "MedicalLight_Shade_9",
+        "MedicalLight_Shade_Glass_7",
+        "Object_26",
+        "MedicalLight_ShadeCable_8",
+        "Object_28",
+        "Object_24",
+        "MedicalLight_ShadeHandle_10",
+        "Object_30",
+        "Object_22"
+      ],
+      "bounds": [
+        0.8922498226165771,
+        0.34808290004730225,
+        0.2981407642364502
+      ]
+    },
+    {
+      "name": "BurntCloth",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/Ritual/Models/BurntCloth.fbx",
+      "sourceMeshes": [
+        "MedicalPartition_Curtain00_6",
+        "MedicalPartition_Main_4",
+        "MedicalPartition_Side_01_3",
+        "MedicalPartition_Curtain01_2",
+        "Object_14",
+        "Object_12",
+        "MedicalPartition_Side_1",
+        "MedicalPartition_Curtain02_0",
+        "Object_10",
+        "Object_8",
+        "Object_6",
+        "MedicalPartition_Main_Legs_5",
+        "Object_16",
+        "Object_4"
+      ],
+      "bounds": [
+        0.7083380818367004,
+        1.7035378217697144,
+        3.5128955841064453
+      ]
+    }
+  ]
+}

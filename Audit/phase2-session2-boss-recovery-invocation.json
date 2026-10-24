@@ -1,0 +1,26 @@
+{
+  "command": [
+    "/root/Projects/LayarTerakhir-main/Builds/LinuxAudit/LayarTerakhir.x86_64",
+    "-batchmode",
+    "-nographics",
+    "-phase2AuditFast",
+    "-phase2BossAudit",
+    "-phase2BossRecoveryAudit",
+    "-phase2Audit",
+    "/root/Projects/LayarTerakhir-main/Builds/Phase2BossRecovery03",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Builds/Phase2BossRecovery03/player.log"
+  ],
+  "startedUtc": "2026-10-24T05:49:43.689907+00:00",
+  "status": "Finished",
+  "mode": "recovery",
+  "graphical": false,
+  "fast": true,
+  "environment": {
+    "DISPLAY": ":94",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "LP_NUM_THREADS": "3"
+  },
+  "endedUtc": "2026-10-24T05:50:27.816337+00:00",
+  "exitCode": 0
+}

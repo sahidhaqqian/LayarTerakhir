@@ -1,3 +1,5 @@
+using System.Linq;
+using LayarTerakhir.Phase1;
 using System.Collections.Generic;
 using System.Linq;
 using LayarTerakhir.Core;
@@ -51,9 +53,9 @@ namespace LayarTerakhir.Phase2
                 string body="JURNAL KLENIK — DIAGNOSIS TENGAH MALAM\n\n"+
                     Check(Phase2Ids.Freeze,"Suhu beku ekstrem — Poli 03 (−16°C)")+"\n"+
                     Check(Phase2Ids.Aura,"Residu aura tumbal — AR")+"\n"+Check(Phase2Ids.EVP,"EVP tangisan bersalin")+
-                    "\n\nPUSAKA "+Phase2Ids.Relics.Count(Campaign.HasInventoryItem)+"/3\n"+
-                    string.Join("\n",Phase2Ids.Relics.Select((id,i)=>(Campaign.HasInventoryItem(id)?"[✓] ":"[ ] ")+new[]{"Gunting Tali Pusar","Gelang Identitas Bayi Lastri","Botol Darah Segel"}[i]))+
-                    "\n\nArsip Babak 2: "+(Campaign.Data.secret_items.Contains(Phase2Ids.Secret)?"1/1":"0/1")+" • Arsip Saksi "+Campaign.Data.secret_items.Count+"/5"+
+                    "\n\nPUSAKA "+Phase2Ids.Relics.Count(Campaign.Data.relic_ids.Contains)+"/3\n"+
+                    string.Join("\n",Phase2Ids.Relics.Select((id,i)=>(Campaign.Data.relic_ids.Contains(id)?"[✓] ":"[ ] ")+new[]{"Gunting Tali Pusar","Gelang Identitas Bayi Lastri","Botol Darah Segel"}[i]))+
+                    "\n\nArsip Babak 2: "+(Campaign.Data.secret_items.Contains(Phase2Ids.Secret)?"1/1":"0/1")+" • Arsip Saksi "+Phase1Ids.Secrets.Count(Campaign.Data.secret_items.Contains)+"/5"+
                     (Completed("P2_DRAWER_CHAIN_BREAK")?"\nPetunjuk: Laci C3 −24°C.":"")+
                     (Completed("P2_SAFE_ECHO_SEEN")?"\nGema brankas obat: 2 — 6 — 0 — 4.":"")+
                     (Completed("P2_JOURNAL_CONFIRMED")?"\n\n"+Phase2Content.Method:"");
@@ -68,16 +70,19 @@ namespace LayarTerakhir.Phase2
             if(app==PhoneApp.Map) text="RSUD LAMA SIDO WARAS\n\nL1 — IGD / Poli 01–04\n         Basement: panel elektronik\n         Teralis: tangga Bangsal Bersalin\n\nB1 — Pos Petugas / kamar mayat / arsip\n\nL2 — Inkubator / Ruang Jaga Suster\n          Ruang Operasi Bersalin Utama\n\nTanda ruangan adalah petunjuk rute. Tidak ada panah menuju pusaka.";
             else if(app==PhoneApp.Messages) text="RIWAYAT SIARAN LOKAL\n\n"+string.Join("\n\n",chatHistory)+
                 (Completed("P2_START_LIVE")?"\nPenonton_Terakhir • Rp666.000 (dana terikat)\nLastri tidak suka dipunggungi.":"")+
-                (Completed("P2_LASTRI_SCARE1")?"\nCari laci pendingin tempat bayinya disimpan. Jangan menoleh langsung.":"");
+                (Completed("P2_LASTRI_SCARE1")?"\nCari laci pendingin tempat bayinya disimpan. Jangan menoleh langsung.":"")+(Completed("P2_DAMAR_VIDEO")?"\n\n"+Phase2Content.DamarVideoDescription+"\n"+Phase2Content.FinalMessage:"");
             else if(app==PhoneApp.Inventory)
             {
                 text="BARANG BAWAAN\n\n";
                 foreach(var item in Campaign.Data.inventory)
-                {var label=Phase2Content.ItemLabel(item);if(label!=null)text+="• "+label+"\n";}
+                {if(boss.Active&&boss.UsedFlares.Contains(item))continue;var label=Phase2Content.ItemLabel(item);if(label!=null)text+="• "+label+"\n";}
                 text+="\nKemenyan Bakar belum dapat digunakan. Flare hanya digunakan pada ritual; tidak terkonsumsi di investigasi.";
             }
             else return false;
-            UiWidgets.ScrollText("P2App",parent,text,new Vector2(.05f,.1f),new Vector2(.95f,.9f),22);return true;
+            bool video=app==PhoneApp.Messages&&Completed("P2_EPILOGUE");
+            UiWidgets.ScrollText("P2App",parent,text,new Vector2(.05f,video?.24f:.1f),new Vector2(.95f,.9f),22);
+            if(video)PhoneSkin.Button("ReplayDamar",parent,"Putar arsip video Damar • 8 detik",new Vector2(.05f,.08f),new Vector2(.95f,.21f),ReplayDamarVideo);
+            return true;
         }
         private void ShowDocuments(Transform parent)
         {
@@ -100,6 +105,8 @@ namespace LayarTerakhir.Phase2
             UiWidgets.Button("Back",overlay.transform,"Kembali menjelajah",new Vector2(.06f,.07f),new Vector2(.94f,.22f),CloseOverlay);
             UiFocus.Clock=true;Cursor.lockState=CursorLockMode.None;Cursor.visible=true;
         }
-        public void CloseOverlay() { if(overlay)Destroy(overlay);overlay=null;UiFocus.Clock=false; }
+        private void RemoveOverlay(){if(overlay)Destroy(overlay);overlay=null;UiFocus.Clock=false;}
+        public void CloseOverlay()
+        {bool finished=overlay&&overlay.name=="P2Complete"&&Completed("P2_COMPLETE");RemoveOverlay();if(finished)GameShell.Instance.OpenMain();}
     }
 }

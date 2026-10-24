@@ -19,6 +19,9 @@ namespace LayarTerakhir.Phase2
         public AtmajaPhoneView phoneView;
         public Phase2Lastri lastri;
         public Phase2Soundscape soundscape;
+        public Phase2Boss boss;
+        public bool VideoPlaying { get; private set; }
+        public bool StoryPlaying { get; private set; }
         public bool Ready { get; private set; }
         public bool Dead { get; private set; }
         public bool Hidden { get; private set; }
@@ -29,7 +32,7 @@ namespace LayarTerakhir.Phase2
         public string ThermalTargetId => thermalTarget ? thermalTarget.id : "";
         public bool CameraLocked => false; // F / hiding remains available during every investigation attach.
         public bool CanBeginLive => Ready && !Dead && Phone.batteryPercent > 0 && !Completed("P2_START_LIVE");
-        public int Viewers => 42300;
+        public int Viewers => Completed("P2_BOSS_WIN") ? 310500 : 42300;
         public CampaignState Campaign => CampaignState.Instance;
         public SmartphoneController Phone => SmartphoneController.Instance;
         private HudController Hud => HudController.Instance;
@@ -61,7 +64,7 @@ namespace LayarTerakhir.Phase2
             Phone.hasSmartphoneInInventory = Phone.arModuleUnlocked = Phone.selfieModuleUnlocked = true;
             Phone.batteryPercent = Campaign.Data.battery; Phone.isScreenOn = Phone.batteryPercent > 0;
             Phone.isPhoneRaised = false; Phone.isSelfieCamera = false; Phone.currentScanMode = ScanVisualMode.Normal;
-            Phone.isBroadcastConnected = Completed("P2_START_LIVE"); Phone.SyncVisualState();
+            Phone.isBroadcastConnected = Completed("P2_START_LIVE") || Completed("P2_EPILOGUE_CHAT"); Phone.SyncVisualState();
             originalWalk = player.walkSpeed; originalRun = player.sprintSpeed; originalCrouch = player.crouchSpeed;
             RestoreWorld(); Ready = true; Hud.SetFadeAlpha(0);
             if(!Completed("P2_ARRIVE_IGD")&&Commit("P2_ARRIVE_IGD"))
@@ -76,7 +79,7 @@ namespace LayarTerakhir.Phase2
             bool result = Campaign.TryCommit(cp, d =>
             {
                 d.phase2.Add(id); mutate?.Invoke(d);
-                if (anchor != null) d.phase2.safe_anchor = anchor;
+                if (anchor != null && !d.phase2.Completed("P2_BOSS_WIN")) d.phase2.safe_anchor = cp=="PHASE2_CP5" ? "OR_PREP" : anchor;
             });
             if (!result) Hud.ShowBroadcastNotification("Penyimpanan gagal. Progres belum berubah; coba lagi.", 5);
             else { RefreshWorldItems(); RefreshObjective(); }
@@ -93,7 +96,9 @@ namespace LayarTerakhir.Phase2
             if (world.dutyDoor) world.dutyDoor.SetOpenImmediate(true);
             if (world.safeDoor) world.safeDoor.SetOpenImmediate(Completed("P2_NURSE_SAFE_OPEN"));
             foreach (var light in world.corridorLights) if (light) light.enabled = true;
-            RefreshWorldItems(); lastri.Restore(); previousRoom = "";
+            Phone.RestoreBattery(Campaign.Data.battery);
+            RefreshWorldItems(); lastri.Restore(); boss.Restore(); previousRoom = "";
+            if (Completed("P2_COMPLETE")) ShowPhase3Handoff();
         }
         private void RefreshWorldItems()
         {
@@ -105,21 +110,25 @@ namespace LayarTerakhir.Phase2
             bool opened = Completed("P2_C3_OPEN");
             world.c3Contents.SetActive(opened);
             world.c3Chain.SetActive(!Completed("P2_DRAWER_CHAIN_BREAK"));
-            world.gunting.SetActive(opened && !Campaign.HasInventoryItem(Phase2Ids.Gunting));
-            world.aura.SetActive(opened); world.gelang.SetActive(!Campaign.HasInventoryItem(Phase2Ids.Gelang));
-            world.blood.SetActive(Completed("P2_NURSE_SAFE_OPEN") && !Campaign.HasInventoryItem(Phase2Ids.Blood));
+            world.gunting.SetActive(opened && !Completed("P2_TAKE_GUNTING"));
+            world.aura.SetActive(opened); world.gelang.SetActive(!Completed("P2_TAKE_GELANG"));
+            world.blood.SetActive(Completed("P2_NURSE_SAFE_OPEN") && !Completed("P2_TAKE_BOTOL"));
             if(world.safeDoor)world.safeDoor.SetOpenAnimated(Completed("P2_NURSE_SAFE_OPEN"));
             world.safePanel.SetActive(!Completed("P2_NURSE_SAFE_OPEN"));
             world.secret.SetActive(!Campaign.Data.secret_items.Contains(Phase2Ids.Secret));
-            world.operationFog.SetActive(!Phase2Ids.AllRelics(Campaign.Data));
+            bool blocked = !Completed("P2_BOSS_WIN") && !Phase2Ids.AllRelics(Campaign.Data);
+            world.operationFog.SetActive(blocked);
+            var gate = world.operationFog.GetComponent<Collider>(); if (gate) gate.enabled = blocked;
+            if(world.operationDoor)world.operationDoor.SetOpenAnimated(!blocked && !boss.Active);
         }
         private void Update()
         {
             if(Ready&&!Dead&&player.transform.position.y< -10)
             {
+                if(boss.Active){boss.Abort();Campaign.LoadCheckpoint();}
                 RestoreWorld();Hud.ShowBroadcastNotification("Kembali ke titik aman terakhir. Progres dan daya HP tetap tersimpan.",4);return;
             }
-            if (!ClockRunning) { if(Ready&&lastri)lastri.SuspendClock(); return; }
+            if (!ClockRunning) { if(Ready&&lastri)lastri.SuspendClock();if(Ready&&boss)boss.Suspend(); return; }
             float dt = Time.deltaTime; Campaign.Data.phase2.elapsed_gameplay_seconds += dt;
             phoneView.RefreshLensPose();
             string room = CurrentRoom;
@@ -132,22 +141,25 @@ namespace LayarTerakhir.Phase2
                 if(room=="L2"&&!Completed("P2_L2_ARRIVE"))Commit("P2_L2_ARRIVE",null,null,"NURSE");
                 previousRoom = room;
             }
-            lastri.Tick(dt); // Fatal deadlines resolve before the ordinary E interactor.
+            if (boss.Active) boss.Tick(dt);
+            else if (!Completed("P2_BOSS_WIN")) lastri.Tick(dt); // Fatal deadlines resolve before ordinary E.
+            if (Completed("P2_BOSS_WIN") && !Completed("P2_EPILOGUE") && !StoryPlaying && !storyRetryRequired && Phone.batteryPercent > 0) StartCoroutine(Epilogue());
+            if (boss.Active && GameInputConfig.Instance.GetActionDown(GameAction.UseFlare)) boss.DropFlare();
             if (Dead) return;
-            foreach (var drawer in world.drawers) drawer.Tick(dt);
+            if (!Completed("P2_BOSS_WIN")) foreach (var drawer in world.drawers) drawer.Tick(dt);
             float movement = GasActive ? balance.formalinMoveMultiplier : 1;
             player.walkSpeed = originalWalk * movement; player.sprintSpeed = originalRun * movement; player.crouchSpeed = originalCrouch * movement;
             if (GameInputConfig.Instance.GetActionDown(GameAction.ModeThermo) && Phone.isPhoneRaised && Phone.isScreenOn)
             { ThermoActive = !ThermoActive; phoneView.Apps.Open(PhoneApp.Camera); }
             if(ThermoActive&&!Completed("P2_THERMO_TUTORIAL"))Commit("P2_THERMO_TUTORIAL");
             UpdateThermal(dt); UpdateAR(dt); UpdateEVP(dt); RefreshObjective();
-            if(!lastri.Attached)phoneView.ShowChapterReadout(ThermoActive?$"THERMOKLENIK  {Temperature}°C"+(thermalTarget?"\n"+thermalTarget.id:""):RecordingEVP?$"EVP {EvpProgress:0.0}/{balance.evpSeconds:0}s":"",Color.white);
+            if(!lastri.Attached && !boss.Active)phoneView.ShowChapterReadout(ThermoActive?$"THERMOKLENIK  {Temperature}°C"+(thermalTarget?"\n"+thermalTarget.id:""):RecordingEVP?$"EVP {EvpProgress:0.0}/{balance.evpSeconds:0}s":"",Color.white);
             soundscape?.Tick(dt);
         }
         public bool GasActive => Campaign && Campaign.Data.phase2.elapsed_gameplay_seconds < gasUntil;
         public void ApplyFormalin(Vector3 at)
         {
-            if (Vector3.Distance(at, player.transform.position + Vector3.up) > balance.formalinRadius) return;
+            if (Completed("P2_BOSS_WIN") || Vector3.Distance(at, player.transform.position + Vector3.up) > balance.formalinRadius) return;
             gasUntil = Campaign.Data.phase2.elapsed_gameplay_seconds + balance.formalinSeconds;
             Hud.ShowBroadcastNotification("FORMALIN — menjauh dari laci. Napas tersendat; bukan luka fatal.", 5);
             lastri.CallFromFormalin(); phoneView.Glitch(balance.formalinSeconds,.35f); soundscape?.Cue("Gas", at);
@@ -183,7 +195,10 @@ namespace LayarTerakhir.Phase2
         private void RefreshObjective()
         {
             if (!Ready) return;
-            string next = !Campaign.Data.evidence_ids.Contains(Phase2Ids.Freeze) ? "Baca Buku Jaga di IGD. Cari poli kandungan dengan ThermoKlenik." :
+            string next = Completed("P2_COMPLETE") ? "Babak 2 selesai. Tujuan berikutnya: " + Phase2Ids.Destination :
+                Completed("P2_EPILOGUE") ? "Tinggalkan RSUD lewat motor di pelataran IGD. Opsional: kembali ke arsip basement." :
+                Completed("P2_BOSS_WIN") ? "Segel kedua tersimpan. Isi daya manual di generator bila HP mati; periksa pesan Damar." :
+                boss.Active ? boss.Status : !Campaign.Data.evidence_ids.Contains(Phase2Ids.Freeze) ? "Baca Buku Jaga di IGD. Cari poli kandungan dengan ThermoKlenik." :
                 !Completed("P2_KEYPAD_1603") ? "Gabungkan suhu tanpa minus dan nomor poli. Buka panel pintu basement." :
                 !Completed("P2_AUTOPSY_REPORT") ? "Turun ke kamar mayat. Baca laporan di meja otopsi; pantau belakang lewat Selfie." :
                 !MorgueCleared ? "Cari laci lebih dingin dari −20°C. Ambil pusaka dan foto aura dengan AR." :
@@ -197,14 +212,16 @@ namespace LayarTerakhir.Phase2
         public void Die(string cause)
         {
             if (Dead) return; Debug.Log("P2_FAILURE "+cause); Dead = true; RecordingEVP = false; player.MovementLocked = true;
+            boss.Abort();
             Phone.isPhoneRaised = false; Phone.SyncVisualState(); phoneView.SetViewfinder(false);
             Hud.SetFadeAlpha(1); GameShell.Instance?.ReturnAfterDeath(cause + " — Continue memuat checkpoint terakhir, tanpa mengisi baterai.");
         }
         private void OnDestroy()
         {
+            if(boss)boss.Abort();
             if (Phone && ReferenceEquals(Phone.ChapterContent,this)) Phone.ChapterContent = null;
             if (player) { player.walkSpeed=originalWalk; player.sprintSpeed=originalRun; player.crouchSpeed=originalCrouch; }
-            if (overlay) CloseOverlay();
+            if (overlay) RemoveOverlay();
         }
     }
 }

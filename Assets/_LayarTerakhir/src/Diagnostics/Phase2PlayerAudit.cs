@@ -19,14 +19,14 @@ using UnityEngine.SceneManagement;
 namespace LayarTerakhir.Diagnostics
 {
     // Explicit development-only review fixture. No real campaign is seeded or overwritten.
-    public sealed class Phase2PlayerAudit : MonoBehaviour
+    public sealed partial class Phase2PlayerAudit : MonoBehaviour
     {
         private static string output;
         private readonly List<string> checks=new List<string>(),screenshots=new List<string>();
         private Phase2Director d;
         private Keyboard keyboard;private Mouse mouse;
         private float started,walked;
-        private bool done;
+        private bool done, expectedPersistenceError, persistenceErrorSeen;
         [Serializable]private sealed class Result
         {public bool completed,actualStandalonePlayer;public string utc,platform,gpu,method;public float walkedMeters,simulationTimeScale;public bool rendered;public string[] checks,screenshots;}
         public static CampaignData ReviewFixture()
@@ -54,7 +54,8 @@ namespace LayarTerakhir.Diagnostics
         }
         private void Awake(){started=Time.realtimeSinceStartup;Application.targetFrameRate=60;if(Array.IndexOf(Environment.GetCommandLineArgs(),"-phase2AuditFast")>=0)Time.timeScale=2;Application.logMessageReceived+=Log;}
         private void Log(string message,string trace,LogType type)
-        {if(!done&&(type==LogType.Error||type==LogType.Exception)){checks.Add("ERROR "+message);Finish(false);}}
+        {if(expectedPersistenceError&&type==LogType.Error&&message.StartsWith("[CampaignState] Gagal menyimpan checkpoint secara atomik")){persistenceErrorSeen=true;return;}
+            if(!done&&(type==LogType.Error||type==LogType.Exception)){checks.Add("ERROR "+message);Finish(false);}}
         private void Update(){if(!done&&Time.realtimeSinceStartup-started>1200){checks.Add("FAIL route timeout");Finish(false);}}
         private IEnumerator Start()
         {
@@ -97,6 +98,8 @@ namespace LayarTerakhir.Diagnostics
             Check(d.Phone.selfieModuleUnlocked&&d.Phone.arModuleUnlocked,"One existing phone with both investigation modules");
             Check(CampaignState.Instance.Data.battery<=100&&CampaignState.Instance.Data.battery>99,"Departure carries actual battery without duplicate grant");
             yield return Shot("02-igd-arrival");
+            if(HasArg("-phase2InvestigationEdges")){yield return InvestigationEdges();yield break;}
+            if(Array.IndexOf(Environment.GetCommandLineArgs(),"-phase2BossAudit")>=0){yield return BossFixture();yield break;}
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-phase2ModelAudit")>=0){yield return MerahReview();yield break;}
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-phase2SafeAudit")>=0)
             {
@@ -136,8 +139,8 @@ namespace LayarTerakhir.Diagnostics
             yield return Detach();yield return Camera(false,false,false);
             yield return Walk(new Vector3(13,-3.97f,30));yield return Walk(new Vector3(9.6f,-3.97f,29.1f));yield return Use("ARCHIVE_KEY");
             Check(CampaignState.Instance.HasInventoryItem(Phase2Ids.ArchiveKey),"Archive key reached and collected independently");
-            yield return Walk(new Vector3(12,-3.97f,31.7f));yield return Use("D1");
-            Check(CampaignState.Instance.Data.secret_items.Contains(Phase2Ids.Secret),"Optional D1 secret persists without mandatory scan");
+            yield return Walk(new Vector3(12,-3.97f,31.7f));if(!NoSecret)yield return Use("D1");
+            Check(NoSecret || CampaignState.Instance.Data.secret_items.Contains(Phase2Ids.Secret),"Optional D1 secret persists without mandatory scan");
             yield return Detach();yield return Walk(new Vector3(31.7f,-3.97f,18.3f));yield return Walk(new Vector3(34,-3.97f,17));
             yield return Walk(new Vector3(34,.03f,3));yield return Walk(new Vector3(1,.03f,2.7f));yield return Use("TERALI");
             yield return Walk(new Vector3(2,4.03f,15));yield return Walk(new Vector3(17,4.03f,18));yield return Walk(new Vector3(18,4.03f,12));
@@ -167,13 +170,14 @@ namespace LayarTerakhir.Diagnostics
             Check(!d.Completed("P2_BOSS_WIN")&&!CampaignState.Instance.Data.location_seals.Contains("SEAL_RSUD_LAMA_SIDO_WARAS"),"No Session 2 boss/seal/ending is fabricated");
             yield return Shot("07-operation-door");
             Check(CampaignState.Instance.LoadCheckpoint(),"Last investigation snapshot reloads");
-            Check(Phase2Ids.RitualReady(CampaignState.Instance.Data)&&CampaignState.Instance.Data.secret_items.Contains(Phase2Ids.Secret),"Latest snapshot retains relics, evidence, journal and secret");
+            Check(Phase2Ids.RitualReady(CampaignState.Instance.Data)&&(NoSecret||CampaignState.Instance.Data.secret_items.Contains(Phase2Ids.Secret)),"Latest snapshot retains relics, evidence, journal and secret");
             Check(CampaignState.Instance.Data.sanity==23&&CampaignState.Instance.Data.wallet_legitimate==0,"Sanity and legitimate money never mutated by P2 investigation");
             yield return SceneManager.LoadSceneAsync(CampaignRouting.HospitalScene);
             yield return Wait(()=>FindFirstObjectByType<Phase2Director>()&&FindFirstObjectByType<Phase2Director>().Ready,300,"Actual scene reload reaches saved investigation anchor");
             d=FindFirstObjectByType<Phase2Director>();
             Check(Vector3.Distance(d.player.transform.position,d.world.Anchor("NURSE").position)<.5f,"Scene restore places capsule at nurse checkpoint");
             Check(d.Phone.batteryPercent==0&&!d.world.inkubatorWall.activeSelf&&Phase2Ids.RitualReady(CampaignState.Instance.Data),"Scene restore retains zero battery, permanent passage and all investigation progress");
+            if(HasArg("-phase2CompleteAudit")){d.player.enabled=false;yield return CompleteChapter();}
         }
         private IEnumerator Safety()
         {

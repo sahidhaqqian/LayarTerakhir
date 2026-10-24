@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using LayarTerakhir.Core;
 using LayarTerakhir.Phase1;
 
@@ -55,9 +57,40 @@ namespace LayarTerakhir.Phase2
         }
         public static string InvestigationCheckpoint(CampaignData d, string desired)
         {
+            if (d.phase2.Completed("P2_COMPLETE")) return "PHASE2_CP7";
+            if (d.phase2.Completed("P2_BOSS_WIN")) return "PHASE2_CP6";
+            if (d.checkpoint_id == "PHASE2_CP5") return d.checkpoint_id;
             // Receipts are authoritative; optional early evidence can create CP4 before CP2/3.
             if (d.checkpoint_id == "PHASE2_CP4" && (desired == "PHASE2_CP2" || desired == "PHASE2_CP3")) return d.checkpoint_id;
             return desired ?? d.checkpoint_id;
+        }
+        public static bool PrepareRitual(CampaignState campaign)
+        {
+            if (!campaign || !CampaignRouting.IsPhase2(campaign.Data) || campaign.WritesBlocked ||
+                campaign.Data.phase2.Completed("P2_BOSS_WIN") || !Phase2Ids.RitualReady(campaign.Data)) return false;
+            return campaign.TryCommit("PHASE2_CP5", d => d.phase2.safe_anchor = "OR_PREP");
+        }
+        public static bool WinRitual(CampaignState campaign, object owner, int layers, IEnumerable<string> flares)
+        {
+            if (!campaign || !campaign.WritesBlocked || layers != 3 || !Phase2Ids.RitualReady(campaign.Data) ||
+                campaign.Data.phase2.Completed("P2_BOSS_WIN")) return false;
+            var used = flares.Distinct().ToArray();
+            if (used.Any(id => !id.StartsWith("P2_FLARE_") || !campaign.Data.inventory.Contains(id))) return false;
+            return campaign.TryCommit("PHASE2_CP6", d =>
+            {
+                d.phase2.Add("P2_BOSS_WIN"); d.phase2.safe_anchor = "OR_PREP";
+                foreach (var id in Phase2Ids.Relics) d.inventory.Remove(id);
+                foreach (var id in used) d.inventory.Remove(id);
+                if (!d.location_seals.Contains(Phase2Ids.Seal)) d.location_seals.Add(Phase2Ids.Seal);
+            }, owner);
+        }
+        public static bool Finish(CampaignState campaign)
+        {
+            if (!campaign || campaign.WritesBlocked || !campaign.Data.phase2.Completed("P2_EPILOGUE") ||
+                !campaign.Data.phase2.Completed("P2_BOSS_WIN") || !campaign.Data.location_seals.Contains(Phase2Ids.Seal) ||
+                campaign.Data.phase2.Completed("P2_COMPLETE")) return false;
+            return campaign.TryCommit("PHASE2_CP7", d =>
+            { d.phase2.Add("P2_COMPLETE"); d.phase2.next_destination = Phase2Ids.Destination; d.phase2.safe_anchor = "IGD"; });
         }
     }
 }

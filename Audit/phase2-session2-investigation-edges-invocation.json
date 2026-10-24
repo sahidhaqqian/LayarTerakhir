@@ -1,0 +1,25 @@
+{
+  "command": [
+    "/root/Projects/LayarTerakhir-main/Builds/LinuxAudit/LayarTerakhir.x86_64",
+    "-batchmode",
+    "-nographics",
+    "-phase2AuditFast",
+    "-phase2InvestigationEdges",
+    "-phase2Audit",
+    "/root/Projects/LayarTerakhir-main/Builds/Phase2InvestigationEdges02",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Builds/Phase2InvestigationEdges02/player.log"
+  ],
+  "startedUtc": "2026-10-24T06:13:31.212675+00:00",
+  "status": "Finished",
+  "mode": "investigation-edges",
+  "graphical": false,
+  "fast": true,
+  "environment": {
+    "DISPLAY": ":94",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "LP_NUM_THREADS": "3"
+  },
+  "endedUtc": "2026-10-24T06:14:13.572578+00:00",
+  "exitCode": 0
+}

@@ -120,7 +120,7 @@ namespace LayarTerakhir.Editor
             var vignette=profile.Add<Vignette>(true);vignette.intensity.value=.19f;vignette.smoothness.value=.5f;
             foreach(var component in profile.components)AssetDatabase.AddObjectToAsset(component,profile);
             EditorUtility.SetDirty(profile);var volume=Point("RSUD_Atmosphere",Vector3.zero).gameObject.AddComponent<Volume>();volume.isGlobal=true;volume.sharedProfile=profile;
-            var budget=d.gameObject.AddComponent<Phase1LightBudget>();budget.player=d.player.transform;budget.isolateFloors=true;budget.externallyControlledLights=d.world.corridorLights;
+            var budget=d.gameObject.AddComponent<Phase1LightBudget>();budget.player=d.player.transform;budget.isolateFloors=true;budget.externallyControlledLights=d.world.corridorLights.Concat(d.world.arenaAmbient).ToArray();
             Probe("IGD",new Vector3(6,1.5f,-3),new Vector3(12,3,10));Probe("Morgue",new Vector3(18,-2.5f,22),new Vector3(26,3,14));Probe("L2",new Vector3(18,5.5f,18),new Vector3(36,3,8));
         }
         private static void Probe(string id,Vector3 p,Vector3 size)

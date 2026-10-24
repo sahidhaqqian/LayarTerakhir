@@ -334,7 +334,7 @@ namespace LayarTerakhir.Prolog
             if(raiseAmount<=0)landscapeFromStowed=false;
             bool loweringAim=landscapeFromStowed&&!active&&raiseAmount>0;
             Panel.SetActive(raiseAmount>0);bool screen=raiseAmount>0&&Phone.isScreenOn&&Phone.batteryPercent>0;
-            bool canFocus=screen&&IsCameraApp&&!Hud.IsModalOpen&&!UiFocus.HardModal&&!UiFocus.Menu&&!UiFocus.Cinematic&&(focusOverride||cameraHeldRaise&&LensFocusHeld());
+            bool canFocus=screen&&IsCameraApp&&!Hud.IsModalOpen&&!UiFocus.HardModal&&!UiFocus.Menu&&(!UiFocus.Cinematic||CinematicHandsetVisible)&&(focusOverride||cameraHeldRaise&&LensFocusHeld());
             ViewfinderActive=canFocus;
             viewfinderBlend=Mathf.MoveTowards(viewfinderBlend,canFocus?1:0,Time.unscaledDeltaTime/.18f);
             var perspective=owner?owner.GetComponent<ShoulderCameraRig>():null;
@@ -436,6 +436,12 @@ namespace LayarTerakhir.Prolog
         public void RefreshLensPose()
         {
             if (!FeedCamera || !owner || !owner.cameraPivot || !Phone) return;
+            if (Chapter is LayarTerakhir.Phase2.Phase2Director story && story.VideoPlaying)
+            {
+                FeedCamera.transform.SetPositionAndRotation(story.world.videoCamera.position,story.world.videoCamera.rotation);
+                FeedCamera.cullingMask &= ~((1 << ShoulderCameraRig.AvatarLayer)|(1 << GripLayer)|(1 << LayarTerakhir.Phase2.Phase2Lastri.VisibilityLayer));
+                return;
+            }
             bool selfie = Phone.isSelfieCamera && Phone.selfieModuleUnlocked;
             if (selfie)
             {
@@ -446,7 +452,12 @@ namespace LayarTerakhir.Prolog
                     if (!hit.transform.IsChildOf(owner.transform)) distance = Mathf.Min(distance, Mathf.Max(.28f, hit.distance - .05f));
                 // Offset the physical front lens toward the watched shoulder. Parallel
                 // framing leaves Raka beside the threat instead of covering it with his head.
-                Vector3 lens = face + forward * distance - owner.transform.right * .18f;
+                float shoulderOffset=Chapter is LayarTerakhir.Phase2.Phase2Director p2 && p2.boss && p2.boss.Active ? .3f : .18f;
+                Vector3 lens = face + forward * distance - owner.transform.right * shoulderOffset;
+                Vector3 lensRay=lens-face;float clearance=lensRay.magnitude;
+                foreach(var hit in Physics.RaycastAll(face,lensRay.normalized,clearance,~((1<<26)|(1<<29)|(1<<31)|(1<<25)|(1<<2)),QueryTriggerInteraction.Ignore))
+                    if(!hit.transform.IsChildOf(owner.transform))clearance=Mathf.Min(clearance,Mathf.Max(.02f,hit.distance-.035f));
+                lens=face+lensRay.normalized*clearance;
                 FeedCamera.transform.SetPositionAndRotation(lens, Quaternion.LookRotation(-forward, Vector3.up));
                 FeedCamera.nearClipPlane = .025f;
                 FeedCamera.cullingMask |= 1 << ShoulderCameraRig.AvatarLayer;
@@ -477,12 +488,12 @@ namespace LayarTerakhir.Prolog
         { if (camera == FeedCamera && Phone && Phone.isSelfieCamera && owner) owner.GetComponent<ShoulderCameraRig>()?.SetSelfieFeedCoverage(true); }
         private void AfterFeedRender(ScriptableRenderContext context, Camera camera)
         { if (camera == FeedCamera && owner) owner.GetComponent<ShoulderCameraRig>()?.SetSelfieFeedCoverage(false); }
-        public void ShowChapterTarget(Vector3 point,bool visible){chapterTargetPoint=point;chapterTargetVisible=visible;}
+        public void ShowChapterTarget(Vector3 point,bool visible,bool valid=true){chapterTargetPoint=point;chapterTargetVisible=visible;if(chapterReticle)chapterReticle.color=valid?new Color(1,.22f,.16f):new Color(1,.7f,.3f);}
         private void PresentHand()
         {
             if(!firstPersonHand)return;
             var rig=owner?owner.GetComponent<ShoulderCameraRig>():null;
-            bool visible=Panel.activeSelf&&rig&&rig.IsFirstPerson&&!UiFocus.Cinematic;
+            bool visible=Panel.activeSelf&&rig&&rig.IsFirstPerson&&(!UiFocus.Cinematic||CinematicHandsetVisible);
             bool both=visible&&(viewfinderBlend>.01f||landscapeFromStowed);
             firstPersonHand.SetActive(both);if(supportHand)supportHand.SetActive(both);
             if(gripOccluder)gripOccluder.SetActive(visible);

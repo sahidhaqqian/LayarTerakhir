@@ -45,7 +45,7 @@ namespace LayarTerakhir.Phase2
         public void Tick(float dt)
         {
             bool morgue=director.CurrentRoom=="MORGUE"||director.CurrentRoom=="ARCHIVE"||director.CurrentRoom=="DUTY";
-            float outdoors=morgue?.002f:director.IsQuiet?.045f:director.CurrentRoom=="L2"?.08f:.22f;
+            float outdoors=director.Completed("P2_BOSS_WIN")&&!morgue?.42f:morgue?.002f:director.IsQuiet?.045f:director.CurrentRoom=="L2"?.08f:.22f;
             if(exterior)exterior.volume=Mathf.MoveTowards(exterior.volume,outdoors,dt*.8f);
             if(incubatorCries!=null)foreach(var cry in incubatorCries)
                 if(cry)cry.volume=Mathf.MoveTowards(cry.volume,director.CurrentRoom=="INKUBATOR"?.11f:0,dt*.2f);
@@ -54,6 +54,7 @@ namespace LayarTerakhir.Phase2
             if(director.ThermoActive&&director.CameraCanScan&&director.Temperature<0&&Time.time-lastThermo>.8f)
             {lastThermo=Time.time;Cue("Thermo",director.player.transform.position);}
         }
+        public void Resolve(){if(exterior)exterior.volume=.42f;if(refrigerator)refrigerator.volume=.015f;}
         public void Cue(string id,Vector3 position)
         {
             var clip=Clip(id);if(!clip)return;

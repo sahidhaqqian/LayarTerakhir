@@ -1,0 +1,30 @@
+{
+  "command": [
+    "/root/Projects/LayarTerakhir-main/Builds/LinuxAudit/LayarTerakhir.x86_64",
+    "-force-glcore",
+    "-screen-width",
+    "1280",
+    "-screen-height",
+    "720",
+    "-screen-fullscreen",
+    "0",
+    "-phase2BossAudit",
+    "-phase2ArenaVisual",
+    "-phase2Audit",
+    "/root/Projects/LayarTerakhir-main/Builds/Phase2ArenaVisual05",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Builds/Phase2ArenaVisual05/player.log"
+  ],
+  "startedUtc": "2026-10-24T06:13:31.212637+00:00",
+  "status": "Finished",
+  "mode": "visual",
+  "graphical": true,
+  "fast": false,
+  "environment": {
+    "DISPLAY": ":94",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "LP_NUM_THREADS": "3"
+  },
+  "endedUtc": "2026-10-24T06:18:02.050367+00:00",
+  "exitCode": 0
+}

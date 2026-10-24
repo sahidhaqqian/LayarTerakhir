@@ -1,0 +1,26 @@
+{
+  "command": [
+    "/root/Projects/LayarTerakhir-main/Builds/LinuxAudit/LayarTerakhir.x86_64",
+    "-batchmode",
+    "-nographics",
+    "-phase2AuditFast",
+    "-phase2CompleteAudit",
+    "-phase2ExitFault",
+    "-phase2Audit",
+    "/root/Projects/LayarTerakhir-main/Builds/Phase2Full04",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Builds/Phase2Full04/player.log"
+  ],
+  "startedUtc": "2026-10-24T06:15:50.483107+00:00",
+  "status": "Finished",
+  "mode": "complete",
+  "graphical": false,
+  "fast": true,
+  "environment": {
+    "DISPLAY": ":94",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "LP_NUM_THREADS": "3"
+  },
+  "endedUtc": "2026-10-24T06:19:16.045746+00:00",
+  "exitCode": 0
+}

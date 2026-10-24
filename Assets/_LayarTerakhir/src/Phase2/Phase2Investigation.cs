@@ -20,7 +20,8 @@ namespace LayarTerakhir.Phase2
                     float angle = Vector3.Angle(phoneView.FeedCamera.transform.forward, point-phoneView.FeedCamera.transform.position);
                     if (angle <= nearest && Aim(point,target.range,balance.thermalAngle)) { selected = target; nearest = angle; }
                 }
-                if (Phone.isSelfieCamera && lastri.Attached && Aim(lastri.Head,3,balance.thermalAngle)) Temperature = -20;
+                if(boss.Active && Phone.isSelfieCamera) Temperature = boss.Temperature();
+                else if (Phone.isSelfieCamera && lastri.Attached && Aim(lastri.Head,3,balance.thermalAngle)) Temperature = -20;
             }
             if (selected != thermalTarget) { thermalTarget = selected; thermalDwell = 0; }
             if (!selected) return;
@@ -81,6 +82,7 @@ namespace LayarTerakhir.Phase2
         public void Capture()
         {
             if (!CameraCanScan) return;
+            if (boss.Capture()) return;
             if (auraDwell >= balance.auraDwell && !Campaign.Data.evidence_ids.Contains(Phase2Ids.Aura))
             {
                 // Evidence mutation and the one photo debit share the same disk transaction.

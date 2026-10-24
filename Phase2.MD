@@ -1,8 +1,8 @@
 # PHASE 2 — DIAGNOSIS TENGAH MALAM
 
-> **Project:** Layar Terakhir · **Babak:** 2 · **Lokasi:** RSUD Lama Sido Waras · **Versi:** 2.2-S1-r1, audit repositori `9ca5f57` dan revisi teknis 23 Oktober 2026 (basis cerita: 15 Oktober 2026; draf masukan bertanggal 24 Oktober dipertahankan sebagai riwayat)
+> **Project:** Layar Terakhir · **Babak:** 2 · **Lokasi:** RSUD Lama Sido Waras · **Versi:** 2.2-S2-r1, audit repositori `9ca5f57` dan revisi teknis 23 Oktober 2026 (basis cerita: 15 Oktober 2026; draf masukan bertanggal 24 Oktober dipertahankan sebagai riwayat)
 > **Jenis dokumen:** *Single source of truth* untuk naskah, level design, mekanik, implementasi Unity, penyimpanan, dan QA Babak 2.
-> **Status terkini:** **Sesi 1 (Adegan 1–4) tersedia untuk review build** atas izin desainer setelah audit. Runtime investigasi, scene RSUD dan aset baru sudah tersedia; **Sesi 2 (boss/ritual/epilog/segel/perjalanan keluar) belum diterapkan**. Lihat [catatan implementasi](Audit/phase2-session1-implementation.md) dan [panduan review](Audit/phase2-session1-review.md) untuk bukti pengujian aktual dan batasan. Tabel audit §14–§15 adalah snapshot historis `9ca5f57`; 100 QA tidak otomatis menjadi lulus karena kode sudah dibuat.
+> **Status terkini:** Sesi 1 dan Sesi 2 (Adegan 1–6) telah diimplementasikan; build kandidat Windows tersedia untuk review dan telah diverifikasi unggahannya ke R2. Runtime investigasi, ritual tiga siklus, epilog dan CP5–CP7 tersedia. Babak 3 playable belum dibuat: CP7 menyimpan tujuan Sindang Laut. Hasil penerimaan terbaru ada di [laporan Sesi 2](Audit/phase2-session2-implementation.md) dan [matriks seluruh100 QA](Audit/PHASE2_QA_100.md); tidak menganggap jumlah tes otomatis sebagai acceptance100/100. Tabel §14–§15 adalah riwayat audit `9ca5f57`.
 > **Rujukan lintas babak:** `Phase1.MD` (kontrak global yang sudah ditetapkan di §0.4–§0.5 dan §8.0-nya) dan `Rancangan.MD` (parameter global dan kontinuitas cerita). Bila ketentuan global belum diketahui, jangan membuat asumsi diam-diam; catat sebagai keputusan terbuka (§11.2).
 
 ## 0. Cara membaca dan batas keputusan
@@ -89,7 +89,7 @@ Bagian ini telah dicocokkan dengan `Rancangan.MD`, Phase 1 §0.5–§0.7 dan kod
 
 ### 0.5 Kontrak kerja P2 [DIWARISI GLOBAL + HASIL AUDIT]
 
-**Arahan terbaru Phase 1 (23 Oktober 2026):** "tahan dulu sementara pakai global dulu aja nanti kalau gak sesuai aku ubah". Arahan itu ditulis untuk Phase 1. P2 memakai aturan bersama yang memang ditetapkan `Rancangan.MD`; **tidak mewarisi grant baterai Prolog→P1** atau menganggap proposal P2 telah diratifikasi. Pada audit awal pengguna hanya mengizinkan revisi dokumen. Arahan sesudahnya mengizinkan implementasi **Sesi 1/Adegan 1–4**; boss dan epilog tetap di luar sesi ini. Konsekuensinya:
+**Arahan terbaru Phase 1 (23 Oktober 2026):** "tahan dulu sementara pakai global dulu aja nanti kalau gak sesuai aku ubah". Arahan itu ditulis untuk Phase 1. P2 memakai aturan bersama yang memang ditetapkan `Rancangan.MD`; **tidak mewarisi grant baterai Prolog→P1** atau menganggap proposal P2 telah diratifikasi. Pada audit awal pengguna hanya mengizinkan revisi dokumen. Arahan sesudahnya mengizinkan implementasi Sesi 1/Adegan 1–4, lalu **Sesi 2/Adegan 5–6: boss, ending, polish dan QA** pada 24 Oktober 2026. Babak 3 playable tetap di luar lingkup; hanya tujuan/transisi disiapkan. Konsekuensinya:
 
 - Pakai **default global** untuk energi, ekonomi, Sanity, dan retry; angka P2 di §8.0 adalah baseline yang mudah diubah di satu konfigurasi.
 - Tidak mengurangi kualitas visual, atmosfer, atau gameplay demi mengejar checklist.
@@ -107,6 +107,8 @@ Bagian ini telah dicocokkan dengan `Rancangan.MD`, Phase 1 §0.5–§0.7 dan kod
 Audit awal **hanya mengubah dokumen**. Tidak ada Unity Editor/PlayMode/build dijalankan; tidak ada unduhan atau perubahan aset. Kelayakan teknis dibedakan dari persetujuan kreatif, kesiapan aset, dan penerimaan gameplay. QA §10 diperiksa satu per satu di §15.3, semuanya tetap `NOT_RUN`.
 
 **Implementasi Sesi 1 (23–24 Oktober 2026):** `Babak2_RSUD` ditambahkan sebagai scene kelima. `Phase2Director/Hub` memakai `CampaignState` schema **3** (migrasi 1→2→3), interactor, ponsel, render feed, AR, UI dan inventori existing. Config encounter adalah `Phase2Balance.asset`; biaya energi tetap bersumber dari `SmartphoneController`. Jalur berakhir di pintu Ruang Operasi tanpa membuat boss, CP5–CP7 atau segel kedua. `Review-Phase2.cmd` adalah fixture pengembangan dalam slot terpisah, bukan pemberian progres pada save produksi. Daftar QA historis tetap `NOT_RUN` sampai masing-masing skenario benar-benar dijalankan; hasil tes terarah dilaporkan tersendiri dan tidak dianggap penerimaan 100 QA.
+
+**Implementasi Sesi 2 (24 Oktober 2026):** `Phase2Boss` memakai aktor/agent Lastri existing dengan kepemilikan runtime eksklusif, tiga lampu dan dua generator. CP5 ditulis sebelum write barrier; hit, flare dan sumber daya percobaan di RAM; CP6 atomik berisi segel/pusaka/flare yang menang. `Phase2Ending` memakai feed HP yang sama untuk video tungku delapan detik, epilog dan replay tanpa reward. Kontrol kembali sebelum motor; hanya konfirmasi motor menulis CP7 dan fade. Kualitas artistik, VO manusia, pacing dan profil Windows/GPU belum disertifikasi oleh directed smoke Linux. Acuan bukti terkini berada pada laporan Sesi 2 dan matriks QA; jangan membaca snapshot historis sebagai status kode terbaru.
 
 ### 0.7 Koreksi editorial atas naskah 15 Oktober 2026 [REVISI EDITORIAL]
 
@@ -737,7 +739,7 @@ Ini **budget waktu per beat berdasarkan jalur contoh**, bukan kunci progres line
 
 ### 3.6 Ruang Operasi: denah dan titik interaksi arena (BASELINE UJI)
 
-Denah konseptual, **belum denah final**. Ruang ±10×8 m dengan satu pintu di sisi barat.
+Denah awal konseptual ±10×8 m. **Implementasi Sesi 2:** arena 12×12 m (x36–48, z12–24, elevasi4) dengan satu pintu di sisi barat, agar loop dua arah, sakelar dan generator memiliki clearance. Radius beam, jangkauan sakelar dan mekanik tetap mengikuti kontrak di bawah.
 
 ```text
               UTARA (UV-N)
@@ -1045,7 +1047,7 @@ Status enum untuk paket: bila perlu dilacak, gunakan satu nilai per paket `PURCH
 }
 ```
 
-**[AUDIT — contoh parsial, bukan fixture dapat dimuat]** Loader saat ini memigrasikan 1→2 dan hanya menerima schema 2; contoh schema 3 ini **belum dapat dibaca**. Implementasi kelak menambahkan migrasi 1→2→3 dan validator nested `phase2` di `CampaignState` yang sama (P2-D10). Field P0/P1 yang tidak ditampilkan harus tetap dipertahankan; contoh ini tidak mengganti save riil. Jangan sekadar mengganti angka versi: migrasi harus mempertahankan flag P0, seluruh field P1, dan semua ID rahasia. List receipt dipilih karena `JsonUtility` bukan serializer dictionary/HashSet; runtime boleh membangun set/index dari list, tetapi jangan persist dua salinan nilai yang sama. `evidence_ids`, `inventory`, `battery`, `sanity`, dan `checkpoint_id` tetap milik campaign existing; jangan membuat duplikat di `phase2`.
+**[RIWAYAT AUDIT `9ca5f57` — contoh parsial, bukan fixture dapat dimuat]** Pada snapshot audit loader hanya menerima schema 2. **Implementasi Sesi 1 telah menambahkan migrasi 1→2→3 dan validator nested `phase2`** di `CampaignState` yang sama (P2-D10). Field P0/P1 yang tidak ditampilkan harus tetap dipertahankan; contoh ini tidak mengganti save riil. Jangan sekadar mengganti angka versi: migrasi harus mempertahankan flag P0, seluruh field P1, dan semua ID rahasia. List receipt dipilih karena `JsonUtility` bukan serializer dictionary/HashSet; runtime boleh membangun set/index dari list, tetapi jangan persist dua salinan nilai yang sama. `evidence_ids`, `inventory`, `battery`, `sanity`, dan `checkpoint_id` tetap milik campaign existing; jangan membuat duplikat di `phase2`.
 
 **Angka dan ID dalam JSON adalah contoh snapshot CP4 (bukan inventori awal kanon).** receipt `P2_KOS_CHARGED` menandai interaksi colokan sekali; `P2_SHOP_PACK_*` menjadi satu-satunya status pembelian, tanpa `shop_receipts` atau boolean duplikat; `dynamo_full_charge_used_ids` menyimpan satu pengisian penuh per dinamo; waktu pemulihan darurat memakai *elapsed gameplay time* (bukan jam dinding OS). Timer 1,5 s formalin, 5 s window, 6 s loiter, jendela belajar 30 s, dan status luka sementara tidak disimpan. Save item rahasia tetap langsung dan sekali saja. `money_ledger` memuat audit transaksi unik (ID event + nominal); `wallet_legitimate`, `wallet_bound`, dan `spent` tetap field saldo authoritative existing, diperbarui dalam transaksi yang sama, bukan dihitung ulang dari ledger P2 yang tidak memuat seluruh kampanye.
 
@@ -1484,7 +1486,7 @@ Urutan akhir **wajib tunggal**: `P2_BOSS_WIN` (Raka tetap di Ruang Operasi) → 
 
 ### 10.2D Pengujian silang tambahan hasil merger (QA-77–QA-100; WAJIB sebelum phase freeze)
 
-Kasus di bawah menutup cakupan yang relatif kurang eksplisit di matriks QA Claude: kontrol fisik RMB, scene Kos Golden, *fault injection* lintas kampanye, batas energi numerik, desinkronisasi save, dan mutu aset. **Status awal semua `NOT_RUN`**; nomor QA-01–QA-76 dipertahankan agar laporan lama tidak putus.
+Kasus di bawah menutup cakupan yang relatif kurang eksplisit di matriks QA Claude: kontrol fisik RMB, scene Kos Golden, *fault injection* lintas kampanye, batas energi numerik, desinkronisasi save, dan mutu aset. **Status awal saat audit adalah `NOT_RUN`; hasil implementasi terbaru dicatat tersendiri pada matriks QA Sesi 2**; nomor QA-01–QA-76 dipertahankan agar laporan lama tidak putus.
 
 | ID | Kategori | Skenario / langkah uji | Hasil wajib |
 |---|---|---|---|

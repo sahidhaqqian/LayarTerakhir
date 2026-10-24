@@ -1,6 +1,6 @@
-# Phase 2 — Sesi 1: panduan review build
+# Phase 2 lengkap — panduan review build
 
-Lingkup: Kos pukul 14:00 → RSUD Lama Sido Waras pukul 23:50 → seluruh investigasi IGD, Poli 03, basement/kamar mayat, Arsip, Pos Petugas, Inkubator dan Ruang Jaga Suster → pintu Ruang Operasi. Boss, pemasangan ritual, epilog, segel kedua dan perjalanan keluar adalah **Sesi 2 dan belum diterapkan**.
+Lingkup: Kos pukul 14:00 → RSUD Lama Sido Waras pukul 23:50 → seluruh investigasi IGD, Poli 03, basement/kamar mayat, Arsip, Pos Petugas, Inkubator dan Ruang Jaga Suster → ritual Lastri tiga siklus → epilog Damar → kembali ke motor → transisi Pabrik Gula. Babak 3 sendiri berada di luar build ini.
 
 ## Membuka jalur review
 
@@ -19,7 +19,11 @@ Kos memakai scene existing yang sudah diperbesar oleh desainer; ukuran dan tata 
 
 Buku Jaga + jadwal + Thermo Poli 03 → kode basement. Laporan otopsi memberi kunci L2. C3 memerlukan pembacaan suhu stabil; Gunting dan foto aura AR merupakan dua progres terpisah. Arsip D1 opsional. Di L2, Inkubator dan Ruang Jaga Suster boleh didatangi dalam urutan bebas; kode brankas dapat disimpulkan dari catatan atau gema AR. EVP memerlukan framing sumber yang tepat selama enam detik. Tiga bukti perlu **konfirmasi eksplisit di Jurnal**, selain tiga pusaka. Bukaan AR yang sudah dilewati tetap terbuka dua arah saat baterai nol.
 
-Pintu Ruang Operasi menyimpan batas akhir Sesi 1 dan menampilkan status persiapan; tidak memulai boss atau menyatakan Babak 2 tamat. Pemain masih bisa kembali mencari bukti/rahasia.
+Pintu Ruang Operasi terbuka ketika tiga pusaka dibawa. Ritual dimulai hanya lewat **E di meja** setelah tiga bukti dan konfirmasi Jurnal lengkap. CP5 menyimpan kondisi sebelum attempt.
+
+Saat persiapan (minimum 30 detik) dan jeda (minimum 20 detik), generator NE/SW memberi **+25 daya dengan tahan E selama 8 detik**, dapat diulang. Lanjut siklus hanya lewat E lagi di meja; mengangkat HP tidak memulai serangan. Tiga sumber LO/UV-N/UV-S masing-masing habis setelah satu hit sukses. Pancing Lastri ke bawah sorotan lalu E di sakelar. Saat **PERISAI HANCUR**, bidik kepala dan LMB dalam lima detik: Selfie atau balik badan dengan kamera belakang. G memakai flare opsional. Thermo membedakan asli −20°C dan ilusi −6°C. Jika daya tidak cukup untuk Blitz, ancaman masuk recovery dan generator dapat dipakai lagi.
+
+Kalah atau quit sebelum kemenangan memuat CP5 utuh; tidak menyimpan hit parsial atau memberikan isi baterai gratis. Setelah kemenangan, segel kedua dan perpindahan pusaka disimpan bersama. Video Damar berdurasi delapan detik memakai feed HP yang sama. Video dapat diputar ulang melalui **Pesan → Putar arsip video Damar**, tanpa donasi atau progres tambahan. Setelah pesan selesai, kontrol kembali: turun ke motor atau kembali ke basement untuk arsip. Panel motor dapat dibatalkan. Hanya **Lanjutkan** yang menyimpan CP7 dan memutar CKREK + hitam.
 
 ## Batas penerimaan kualitas
 

@@ -23,6 +23,8 @@ namespace LayarTerakhir.Core
 
     public static class Phase2Ids
     {
+        public const string Seal = "SEAL_RSUD_LAMA_SIDO_WARAS";
+        public const string Destination = "Pabrik Gula Belanda Sindang Laut";
         public const string Freeze = "P2_FREEZE_POLI03", Aura = "P2_AURA_TUMBAL_C3", EVP = "P2_EVP_INKUBATOR04";
         public const string Gunting = "P2_GUNTING_TALI_PUSAR", Gelang = "P2_GELANG_BAYI_LASTRI", Blood = "P2_BOTOL_DARAH_SEGEL";
         public const string Key = "P2_KUNCI_TERALIS_L2", ArchiveKey = "P2_KUNCI_ARSIP", Secret = "SECRET_P2_LABEL_PASIEN";

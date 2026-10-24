@@ -29,8 +29,36 @@ namespace LayarTerakhir.Editor.Tests
         {
             var root=GameObject.Find("RSUD_Lama_SidoWaras");Assert.That(root,Is.Not.Null);
             var paths=root.GetComponentsInChildren<MeshFilter>(true).Select(m=>AssetDatabase.GetAssetPath(m.sharedMesh)).Distinct().ToArray();
-            foreach(var path in paths)Assert.That(path,Does.StartWith("Assets/_LayarTerakhir/assets/Art/Phase2/"));
+            foreach(var path in paths)Assert.That(path.StartsWith("Assets/_LayarTerakhir/assets/Art/Phase2/") || path=="Assets/_LayarTerakhir/assets/Art/Atmaja/Models/DamarScooter.fbx",Is.True,path+" must be new hospital art, except Raka's carried motorcycle");
             Assert.That(paths.Length,Is.GreaterThanOrEqualTo(30));
+        }
+        [Test]public void RitualSceneHasRealSourcesAndNoGeneratorOrBeamOutsideReach()
+        {
+            Assert.That(d.boss,Is.Not.Null);Assert.That(d.world.ritualLights.Length,Is.EqualTo(3));Assert.That(d.world.illusions.Length,Is.EqualTo(2));
+            Assert.That(d.world.breakableGlass.Length,Is.EqualTo(4));Assert.That(d.world.burntCloth.GetComponentsInChildren<MeshFilter>(true).Length,Is.GreaterThan(0));
+            Assert.That(d.world.videoSet.GetComponentsInChildren<SkinnedMeshRenderer>(true).Length,Is.GreaterThan(0));Assert.That(d.world.videoSet.activeSelf,Is.False);
+            Assert.That(d.world.operationDoor,Is.Not.Null);Assert.That(d.world.arenaLock.GetComponent<Collider>(),Is.Not.Null);
+            for(int i=0;i<3;i++)
+            {
+                var toggle=UnityEngine.Object.FindObjectsByType<Phase2WorldItem>(FindObjectsSortMode.None).Single(t=>t.id=="LAMP_"+i);
+                Vector3 delta=toggle.transform.position-d.world.beamCentres[i].position;delta.y=0;
+                Assert.That(delta.magnitude,Is.LessThanOrEqualTo(i==0?4:3),"Switch too far from its source");
+                Assert.That(d.boss.InsideBeam(d.world.beamCentres[i].position+Vector3.forward*.7f,i),Is.True,"Source blocked by dressing");
+                float headPlane=d.world.beamCentres[i].position.y+1.7f;
+                float radiusAtHead=Mathf.Tan(d.world.ritualLights[i].spotAngle*.5f*Mathf.Deg2Rad)*(d.world.ritualLights[i].transform.position.y-headPlane);
+                Assert.That(radiusAtHead,Is.GreaterThanOrEqualTo(d.world.beamRadii[i]),"Visible light must reach the head across its gameplay beam");
+            }
+            foreach(var glass in d.world.breakableGlass)Assert.That(glass.GetComponentsInChildren<Renderer>().Length,Is.GreaterThan(0));
+            Assert.That(d.world.videoCamera.position.x,Is.GreaterThan(60),"Transmission is a separate non-playable set");
+        }
+        [Test]public void MovingDrawerGeometryRemainsInteractableDuringCancelWindow()
+        {
+            foreach(var drawer in d.world.drawers)
+            {
+                drawer.tray.localPosition+=drawer.slideOffset;
+                foreach(var solid in drawer.tray.GetComponentsInChildren<Collider>())
+                    Assert.That(solid.GetComponentInParent<LayarTerakhir.Player.IInteractable>(),Is.SameAs(drawer.GetComponent<Phase2WorldItem>()),drawer.id+" moving geometry must resolve its own E interaction");
+            }
         }
         [Test]public void NoMissingScriptsOrDuplicateChapterDirectors()
         {
@@ -40,6 +68,8 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(UnityEngine.Object.FindFirstObjectByType<LayarTerakhir.Prolog.KamarKosPrologDirector>(),Is.Null);
             Assert.That(UnityEngine.Object.FindFirstObjectByType<LayarTerakhir.Phase1.Phase1Director>(),Is.Null);
         }
+        [TestCase(18,4,18,39.4f,4,18)][TestCase(39.4f,4,18,46.4f,4,22)][TestCase(39.4f,4,18,37.6f,4,14)]
+        [TestCase(39.4f,4,18,44.5f,4,18)][TestCase(39.4f,4,18,43,4,22.5f)][TestCase(39.4f,4,18,43,4,13.5f)]
         [TestCase(5,0,-10,34,-4,17)][TestCase(34,-4,17,18,-4,22)]
         [TestCase(34,-4,17,12,-4,31)][TestCase(34,-4,17,34,-4,24)]
         [TestCase(5,0,-10,18,4,12)][TestCase(18,4,12,13,4,22)]

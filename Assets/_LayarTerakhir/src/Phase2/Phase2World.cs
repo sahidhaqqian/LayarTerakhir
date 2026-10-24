@@ -20,7 +20,14 @@ namespace LayarTerakhir.Phase2
         public Phase2Drawer[] drawers;
         public Light[] corridorLights;
         public Transform[] incubatorSources;
-        public HingedDoor dutyDoor, safeDoor;
+        public HingedDoor dutyDoor, safeDoor, operationDoor;
+        public Transform ritualTable, bossHome, bossRetreat, videoCamera;
+        public GameObject arenaLock, tableRelics, burntCloth, videoSet, bossMist, flareTemplate;
+        public GameObject[] illusions, breakableGlass;
+        public Light[] ritualLights, arenaAmbient;
+        public Transform[] beamCentres;
+        public ParticleSystem[] glassBursts;
+        public float[] beamRadii;
         public Transform Anchor(string id)
         {
             foreach (var a in anchors) if (a.id == id) return a.point;

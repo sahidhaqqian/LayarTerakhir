@@ -1,0 +1,32 @@
+{
+    "completed": true,
+    "actualStandalonePlayer": true,
+    "utc": "2026-10-24T06:17:59.6443270Z",
+    "platform": "LinuxPlayer",
+    "gpu": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "method": "Opt-in isolated P1-complete fixture. Production campaign transactions, capsule collision, NavMesh route, E/phone inputs and keypad callbacks. Directed smoke; optional headless mode tests physics/input/frustum math without rendered proof, optional 2x test simulation. Separate graphical review, not hands-on QA or Windows GPU performance acceptance.",
+    "walkedMeters": 0.0,
+    "simulationTimeScale": 1.0,
+    "rendered": true,
+    "checks": [
+        "PASS P2 HUB guards Prolog before corrections and starts in existing Kos",
+        "PASS Prolog director disabled in P2 hub",
+        "PASS Actual isolated carry-over, no economy grant",
+        "PASS PC preparation menu opens",
+        "PASS Zero wallet route needs no purchased powerbank",
+        "PASS Atomic departure installs fallback modules",
+        "PASS Continue/depart reaches RSUD scene",
+        "PASS One existing phone with both investigation modules",
+        "PASS Departure carries actual battery without duplicate grant",
+        "PASS Explicit boss-only test fixture seeds investigation; not an end-to-end playthrough",
+        "PASS Visual fixture starts real ritual then freezes brain for composed screenshots"
+    ],
+    "screenshots": [
+        "01-kos-day-hub.png",
+        "02-igd-arrival.png",
+        "arena-before-ritual.png",
+        "damar-video-set-fixture.png",
+        "boss-selfie-track-fixture.png",
+        "boss-exposed-selfie-fixture.png"
+    ]
+}

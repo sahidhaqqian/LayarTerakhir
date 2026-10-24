@@ -35,3 +35,16 @@ Permukaan cold-storage memakai [Metal Plate 02](https://polyhaven.com/a/metal_pl
 - **Baby.ogg** — TokyoGeisha, [sumber](https://opengameart.org/content/baby-sound-effect), CC0-1.0. Konversi mono 32 kHz, pemotongan/filter/gain untuk penempatan ruang; tidak ada dialog AI baru.
 
 Dialog Raka, Damar dan kalimat EVP kanon disajikan sebagai subtitle; rekaman pemeran manusia berbahasa Indonesia belum tersedia. Ambience mekanikal, hujan dan cue nonverbal memakai sumber di atas. Kredensial dan URL unduhan sementara tidak dicatat. Tidak ada aset/kode DreadOut yang disalin.
+
+
+## Tambahan Sesi 2 — 24 Oktober 2026
+
+- **Furnace** — newArteest; CC-BY-4.0; https://sketchfab.com/3d-models/30f3ad44e42342b7b32a3b2cd49517fd.
+- **Rope** — Marcel Porsiel; CC-BY-4.0; https://sketchfab.com/3d-models/018f4f36fb154171912bdacbf0e6415c.
+- **pull_chain_light_socket** — Poly Haven contributors; CC0-1.0; https://polyhaven.com/a/pull_chain_light_socket.
+- **Kenney particle fire** — Kenney; CC0-1.0; https://kenney.nl/assets/particle-pack.
+- **Glass** — Till Behrend / TinyWorlds; CC0-1.0; https://opengameart.org/content/glass-break.
+- **Chain** — bart; CC0-1.0; https://opengameart.org/content/chain-winch-sounds.
+- **Shutter** — Mike Koenig; CC-BY-3.0; https://soundbible.com/563-Camera-Shutter-Click.html.
+
+Tungku dan tali dikonversi dari geometri unduhan. Kepala/arm lampu operasi dan kain adalah bagian existing AutopsyLab (Evan Petrov, CC BY 4.0) yang diekstrak dan dipasang ulang. Damar memakai karakter desainer existing, motor memakai kendaraan Raka yang dibawa antarbabak. Tidak ada model, lukisan, tekstur atau klip gerak original baru. Efek flare/kabut/pecahan memakai gambar CC0 Kenney; parameter VFX diatur dalam Unity. Konversi, skala, material PBR dan koordinat dapat ditelusuri melalui importer, builder, scene dan manifest Sesi 2.

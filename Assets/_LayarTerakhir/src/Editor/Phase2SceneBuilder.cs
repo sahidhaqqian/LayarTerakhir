@@ -35,7 +35,7 @@ namespace LayarTerakhir.Editor
         private static readonly Dictionary<string,Material> materials=new Dictionary<string,Material>();
         private static readonly HashSet<string> usedModels=new HashSet<string>();
 
-        [MenuItem("LayarTerakhir/Phase 2/Build Session 1 Hospital")]
+        [MenuItem("LayarTerakhir/Phase 2/Build Complete Hospital")]
         public static void Build()
         {
             AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
@@ -61,6 +61,7 @@ namespace LayarTerakhir.Editor
             d.balance=AssetDatabase.LoadAssetAtPath<Phase2Balance>(config);
             if(!d.balance){d.balance=ScriptableObject.CreateInstance<Phase2Balance>();AssetDatabase.CreateAsset(d.balance,config);}
             d.lastri=systems.AddComponent<Phase2Lastri>();d.lastri.director=d;
+            d.boss=systems.AddComponent<Phase2Boss>();d.boss.director=d;
             d.soundscape=systems.AddComponent<Phase2Soundscape>();d.soundscape.director=d;
             d.soundscape.routing=AssetDatabase.LoadAssetAtPath<SceneAudioProfile>("Assets/_LayarTerakhir/assets/Audio/KosAudioProfile.asset");
             d.soundscape.sounds=Sounds();
@@ -68,11 +69,11 @@ namespace LayarTerakhir.Editor
             signs.materialTemplate=AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/assets/Art/Atmaja/Materials/CompletionWorldText.mat");
             environment=new GameObject("RSUD_Lama_SidoWaras").transform;
             anchors.Clear();rooms.Clear();thermal.Clear();drawers.Clear();usedModels.Clear();
-            Architecture();InvestigationObjects();DressHospital();Lastri();Lighting(profile);
+            Architecture();InvestigationObjects();DressHospital();Lastri();RitualArena();Lighting(profile);
             d.world.anchors=anchors.ToArray();d.world.rooms=rooms.ToArray();d.world.thermalTargets=thermal.ToArray();d.world.drawers=drawers.ToArray();
             // The existing navigation package bakes physical, multi-floor geometry.
             // Gate colliders are runtime owners, so exclude them only during baking.
-            var gates=new[]{d.world.basementDoor,d.world.stairGrille,d.world.inkubatorWall};
+            var gates=new[]{d.world.basementDoor,d.world.stairGrille,d.world.inkubatorWall,d.world.operationDoor.gameObject,d.world.operationFog,d.world.arenaLock};
             foreach(var gate in gates)gate.SetActive(false);
             d.world.dutyDoor.SetOpenImmediate(true);
             var navigation=environment.gameObject.AddComponent<NavMeshSurface>();navigation.collectObjects=CollectObjects.Children;
@@ -82,7 +83,7 @@ namespace LayarTerakhir.Editor
             var sources=new List<NavMeshBuildSource>();
             UnityEngine.AI.NavMeshBuilder.CollectSources(environment,navigation.layerMask,NavMeshCollectGeometry.PhysicsColliders,0,new List<NavMeshBuildMarkup>(),sources);
             navigation.navMeshData=UnityEngine.AI.NavMeshBuilder.BuildNavMeshData(settings,sources,
-                new Bounds(new Vector3(18,1,10),new Vector3(60,20,60)),Vector3.zero,Quaternion.identity);
+                new Bounds(new Vector3(24,1,10),new Vector3(72,20,60)),Vector3.zero,Quaternion.identity);
             navigation.AddData();
             string navPath=Art+"RSUDNavMesh.asset";
             if(AssetDatabase.LoadAssetAtPath<UnityEngine.AI.NavMeshData>(navPath))AssetDatabase.DeleteAsset(navPath);
@@ -97,8 +98,8 @@ namespace LayarTerakhir.Editor
             AssetDatabase.SaveAssets();
             File.WriteAllText("Audit/phase2-scene-content.json",JsonUtility.ToJson(new SceneRecord{scene=ScenePath,newModelPaths=usedModels.OrderBy(x=>x).ToArray(),
                 anchors=anchors.Select(a=>a.id).ToArray(),thermalTargets=thermal.Select(t=>t.id).ToArray(),drawerCount=drawers.Count,
-                floorElevations=new[]{-4f,0f,4f},scope="Session 1: investigation only; no boss / epilogue / P2 seal grant"},true)+"\n");
-            Debug.Log("PHASE2_SESSION1_SCENE_BUILT models="+usedModels.Count+" thermal="+thermal.Count+" drawers="+drawers.Count);
+                floorElevations=new[]{-4f,0f,4f},scope="Complete Phase 2: investigation, three-cycle Lastri ritual, epilogue, optional archive return, CP7 departure"},true)+"\n");
+            Debug.Log("PHASE2_COMPLETE_SCENE_BUILT models="+usedModels.Count+" thermal="+thermal.Count+" drawers="+drawers.Count);
         }
         [Serializable]private sealed class SceneRecord{public string scene,scope;public string[] newModelPaths,anchors,thermalTargets;public int drawerCount;public float[] floorElevations;}
         private static GameObject Prop(string name,string path,Vector3 p,Vector3 size,float yaw=0,bool collision=true)
@@ -107,7 +108,7 @@ namespace LayarTerakhir.Editor
             if(!source)throw new InvalidOperationException("Missing newly sourced model: "+path);
             usedModels.Add(Imported+path+".fbx");
             var go=(GameObject)PrefabUtility.InstantiatePrefab(source);
-            if(path=="Additional/Models/Safe")PrefabUtility.UnpackPrefabInstance(go,PrefabUnpackMode.Completely,InteractionMode.AutomatedAction);
+            if(path=="Additional/Models/Safe"||path.StartsWith("Neonatal/"))PrefabUtility.UnpackPrefabInstance(go,PrefabUnpackMode.Completely,InteractionMode.AutomatedAction);
             go.name=name;
             var root=new GameObject(name+"_Placement");root.transform.SetParent(environment,false);
             var fitting=new GameObject(name+"_Fit").transform;fitting.SetParent(root.transform,false);go.transform.SetParent(fitting,false);
@@ -171,9 +172,12 @@ namespace LayarTerakhir.Editor
         {
             string folder="Assets/_LayarTerakhir/assets/Audio/Phase2/";
             var a=new List<Phase2Sound>();
-            foreach(string id in new[]{"Moan","Breath","Refrigerator","Exterior","Echo","Hiss","Baby"})
+            foreach(string id in new[]{"Moan","Breath","Refrigerator","Exterior","Echo","Hiss","Baby","Glass","Chain"})
                 a.Add(new Phase2Sound{id=id,clip=AssetDatabase.LoadAssetAtPath<AudioClip>(folder+id+".wav")});
             a.Add(new Phase2Sound{id="EVP",clip=AssetDatabase.LoadAssetAtPath<AudioClip>(folder+"Echo.wav")});
+            a.Add(new Phase2Sound{id="Scream",clip=AssetDatabase.LoadAssetAtPath<AudioClip>(folder+"Moan.wav")});
+            a.Add(new Phase2Sound{id="Seal",clip=AssetDatabase.LoadAssetAtPath<AudioClip>(folder+"Echo.wav")});
+            a.Add(new Phase2Sound{id="Shutter",clip=AssetDatabase.LoadAssetAtPath<AudioClip>(folder+"Shutter.wav")});
             a.Add(new Phase2Sound{id="Gas",clip=AssetDatabase.LoadAssetAtPath<AudioClip>(folder+"Hiss.wav")});
             // Shared device UI/latch sounds are existing core presentation, not hospital art.
             var profile=PresentationProfile.Load().audio;

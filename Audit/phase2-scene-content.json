@@ -1,6 +1,6 @@
 {
     "scene": "Assets/_LayarTerakhir/assets/Scenes/Babak2_RSUD.unity",
-    "scope": "Session 1: investigation only; no boss / epilogue / P2 seal grant",
+    "scope": "Complete Phase 2: investigation, three-cycle Lastri ritual, epilogue, optional archive return, CP7 departure",
     "newModelPaths": [
         "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/Additional/Models/Generator.fbx",
         "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/Additional/Models/Safe.fbx",
@@ -44,13 +44,19 @@
         "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/large_iron_gate/large_iron_gate.fbx",
         "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/medical_tape/medical_tape.fbx",
         "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/metal_tool_chest/metal_tool_chest.fbx",
+        "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/pull_chain_light_socket/pull_chain_light_socket.fbx",
         "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/PolyHaven/tool_cart/tool_cart.fbx",
+        "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/Ritual/Models/BurntCloth.fbx",
+        "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/Ritual/Models/Furnace.fbx",
+        "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/Ritual/Models/Rope.fbx",
+        "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/Ritual/Models/SurgicalHead.fbx",
         "Assets/_LayarTerakhir/assets/Art/Phase2/Imported/Scissors/Models/Scissors.fbx"
     ],
     "anchors": [
         "IGD",
         "BASEMENT",
-        "NURSE"
+        "NURSE",
+        "OR_PREP"
     ],
     "thermalTargets": [
         "POLI01",
