@@ -1,0 +1,37 @@
+{
+    "completed": true,
+    "actualStandalonePlayer": true,
+    "rendered": true,
+    "utc": "2026-10-24T15:08:36.3681950Z",
+    "platform": "LinuxPlayer",
+    "gpu": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "method": "Isolated P2-complete fixture, production hub/departure, followed by explicitly posed/frozen composition views. Not traversal, Windows playtest or GPU acceptance.",
+    "walkedMeters": 0.0,
+    "simulationTimeScale": 1.0,
+    "checks": [
+        "PASS Existing Golden Kos starts P3 hub with Prolog guarded",
+        "PASS Isolated fixture carry-over remains exact before manual outlet",
+        "PASS Zero wallet cannot buy optional supplies",
+        "PASS Physical preparation outlet transaction stores one 100 percent charge",
+        "PASS Preparation outlet cannot duplicate its receipt",
+        "PASS Atomic departure unlocks mandatory UV and EVP without purchase",
+        "PASS Factory standalone scene starts from real campaign checkpoint",
+        "PASS Actual graphical renderer available for posed composition review",
+        "PASS Normal and UV images captured for all mandatory factory areas; posed fixtures, not gameplay or GPU benchmark"
+    ],
+    "screenshots": [
+        "01-yard-normal-fixture.png",
+        "02-mill-normal-fixture.png",
+        "02-mill-uv-fixture.png",
+        "03-sling-normal-fixture.png",
+        "04-boiler-normal-fixture.png",
+        "05-office-normal-fixture.png",
+        "06-bagasse-normal-fixture.png",
+        "06-bagasse-uv-fixture.png",
+        "07-balcony-normal-fixture.png",
+        "07-balcony-uv-fixture.png",
+        "08-arena-normal-fixture.png",
+        "09-stair-normal-fixture.png",
+        "10-wewe-artist-model-fixture.png"
+    ]
+}

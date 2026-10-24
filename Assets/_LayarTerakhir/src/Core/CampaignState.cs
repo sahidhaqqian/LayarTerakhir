@@ -40,9 +40,10 @@ namespace LayarTerakhir.Core
         public List<PhoneDocument> documents = new List<PhoneDocument>();
         public bool archive_prepared = false;
         public EndingType ending = EndingType.None;
-        public int schema_version = 3;
+        public int schema_version = 4;
         public Phase1Data phase1 = new Phase1Data();
         public Phase2Data phase2 = new Phase2Data();
+        public Phase3Data phase3 = new Phase3Data();
     }
 
     public class CampaignState : MonoBehaviour
@@ -277,19 +278,25 @@ namespace LayarTerakhir.Core
                 loaded.phase2 = new Phase2Data();
                 loaded.schema_version = 3;
             }
+            if (loaded.schema_version == 3)
+            {
+                loaded.phase3 = new Phase3Data();
+                loaded.schema_version = 4;
+            }
+            if (loaded.phase3 != null) Phase3Ids.NormalizeAliases(loaded);
             return IsValid(loaded);
         }
 
         private static bool IsValid(CampaignData data)
         {
-            return data != null && data.schema_version == 3 && data.chapter_id >= 0 &&
+            return data != null && data.schema_version == 4 && data.chapter_id >= 0 &&
                 !string.IsNullOrWhiteSpace(data.checkpoint_id) &&
                 data.battery >= 0f && data.battery <= 100f && data.sanity >= 0f && data.sanity <= 100f &&
                 data.wallet_legitimate >= 0 && data.wallet_bound >= 0 && data.spent >= 0 &&
                 Enum.IsDefined(typeof(EndingType), data.ending) &&
                 ValidIds(data.inventory) && ValidIds(data.evidence_ids) && ValidIds(data.relic_ids) &&
                 ValidIds(data.location_seals) && ValidIds(data.upgrades) && ValidIds(data.secret_items) &&
-                ValidIds(data.secret_notes_read) && ValidPhase1(data.phase1) && ValidPhase2(data.phase2);
+                ValidIds(data.secret_notes_read) && ValidPhase1(data.phase1) && ValidPhase2(data.phase2) && ValidPhase3(data.phase3);
         }
 
         private static bool ValidPhase2(Phase2Data p)
@@ -297,6 +304,21 @@ namespace LayarTerakhir.Core
             if (p == null || !ValidIds(p.completed_event_ids) || !ValidIds(p.dynamo_full_charge_used_ids) ||
                 !float.IsFinite(p.elapsed_gameplay_seconds) || p.elapsed_gameplay_seconds < 0 ||
                 string.IsNullOrWhiteSpace(p.safe_anchor) || p.dynamo_emergency_last_uses == null || p.money_ledger == null) return false;
+            var ids = new HashSet<string>();
+            foreach (var e in p.dynamo_emergency_last_uses)
+                if (e == null || string.IsNullOrWhiteSpace(e.id) || !ids.Add(e.id) ||
+                    !float.IsFinite(e.at_gameplay_seconds) || e.at_gameplay_seconds < 0 || e.at_gameplay_seconds > p.elapsed_gameplay_seconds) return false;
+            ids.Clear();
+            foreach (var e in p.money_ledger)
+                if (e == null || string.IsNullOrWhiteSpace(e.id) || !ids.Add(e.id) || e.amount <= 0) return false;
+            return true;
+        }
+
+        private static bool ValidPhase3(Phase3Data p)
+        {
+            if (p == null || !ValidIds(p.completed_event_ids) || !ValidIds(p.dynamo_full_charge_used_ids) ||
+                !float.IsFinite(p.elapsed_gameplay_seconds) || p.elapsed_gameplay_seconds < 0 ||
+                Array.IndexOf(Phase3Ids.SafeAnchors,p.safe_anchor)<0 || (p.Completed("P3_DEPART_KOS")&&p.safe_anchor=="HUB") || p.dynamo_emergency_last_uses == null || p.money_ledger == null) return false;
             var ids = new HashSet<string>();
             foreach (var e in p.dynamo_emergency_last_uses)
                 if (e == null || string.IsNullOrWhiteSpace(e.id) || !ids.Add(e.id) ||

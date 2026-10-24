@@ -39,7 +39,7 @@ namespace LayarTerakhir.Editor.Tests
             Directory.CreateDirectory(folder);
             File.WriteAllText(Path.Combine(folder,"layar_terakhir_save.json"), "{\"schema_version\":1,\"checkpoint_id\":\"PROLOG_COMPLETE\",\"battery\":31,\"sanity\":12,\"wallet_legitimate\":7000,\"spent\":5000000,\"inventory\":[\"SMARTPHONE_RAKA\",\"EVENT_P0_CHAIN3_BROKEN\"],\"secret_items\":[\"SECRET_P2_LABEL_PASIEN\"]}");
             Assert.That(campaign.LoadCheckpoint(), Is.True);
-            Assert.That(campaign.Data.schema_version, Is.EqualTo(3));
+            Assert.That(campaign.Data.schema_version, Is.EqualTo(4));
             Assert.That(campaign.Data.inventory, Does.Contain("EVENT_P0_CHAIN3_BROKEN"));
             Assert.That(campaign.Data.secret_items, Does.Contain("SECRET_P2_LABEL_PASIEN"));
             Assert.That(campaign.Data.battery, Is.EqualTo(31)); Assert.That(campaign.Data.sanity, Is.EqualTo(12));

@@ -1,0 +1,28 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-job-worker-count",
+    "1",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-main",
+    "-nographics",
+    "-runTests",
+    "-testPlatform",
+    "EditMode",
+    "-testFilter",
+    "LayarTerakhir.Editor.Tests.Phase3CampaignTests;LayarTerakhir.Editor.Tests.Phase3SceneTests",
+    "-testResults",
+    "/tmp/phase3-tests-10.xml",
+    "-logFile",
+    "Builds/Logs/phase3-tests-10.log"
+  ],
+  "startedUtc": "2026-10-24T15:29:01.469746+00:00",
+  "status": "Finished",
+  "endedUtc": "2026-10-24T15:29:47.461001+00:00",
+  "exitCode": 0
+}

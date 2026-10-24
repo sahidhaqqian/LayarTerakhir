@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_LayarTerakhir/assets/Scenes/Babak2_RSUD.unity
     guid: cb1c337d232186e7485845d74077f0ed
+  - enabled: 1
+    path: Assets/_LayarTerakhir/assets/Scenes/Babak3_PabrikGula.unity
+    guid: e59de80597b2f1a07a2fc659011bf5c8
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

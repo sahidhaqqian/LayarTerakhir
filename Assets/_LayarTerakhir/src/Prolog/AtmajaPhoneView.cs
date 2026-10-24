@@ -97,8 +97,8 @@ namespace LayarTerakhir.Prolog
         }
         private HudController Hud=>HudController.Instance;private SmartphoneController Phone=>SmartphoneController.Instance;
         private IPhoneChapterContent Chapter=>Phone?Phone.ChapterContent:null;
-        public string ClockText=>Chapter is LayarTerakhir.Phase2.Phase2Hub?"14:00":Chapter is LayarTerakhir.Phase2.Phase2Director?"23:50":Chapter!=null?"23:58":director?"23:52":"23:46";
-        public string DateText=>Chapter is LayarTerakhir.Phase2.Phase2Hub?"Siang • Persiapan malam kedua":Chapter is LayarTerakhir.Phase2.Phase2Director?"Malam kedua • RSUD Sido Waras":"Kamis, 15 Oktober  •  Hujan";
+        public string ClockText=>Chapter is LayarTerakhir.Phase3.Phase3Hub?"15:30":Chapter is LayarTerakhir.Phase3.Phase3Director?"23:54":Chapter is LayarTerakhir.Phase2.Phase2Hub?"14:00":Chapter is LayarTerakhir.Phase2.Phase2Director?"23:50":Chapter!=null?"23:58":director?"23:52":"23:46";
+        public string DateText=>Chapter is LayarTerakhir.Phase3.Phase3Hub?"Siang • Persiapan Sindang Laut":Chapter is LayarTerakhir.Phase3.Phase3Director?"Malam • Sindang Laut":Chapter is LayarTerakhir.Phase2.Phase2Hub?"Siang • Persiapan malam kedua":Chapter is LayarTerakhir.Phase2.Phase2Director?"Malam kedua • RSUD Sido Waras":"Kamis, 15 Oktober  •  Hujan";
         private void Start()
         {
             if(!playerCamera){var p=FindFirstObjectByType<FirstPersonController>();if(p)playerCamera=p.GetComponent<InteractionInteractor>().playerCamera;}
@@ -469,6 +469,19 @@ namespace LayarTerakhir.Prolog
                 FeedCamera.cullingMask &= ~(1 << ShoulderCameraRig.AvatarLayer);
             }
             FeedCamera.cullingMask &= ~(1 << GripLayer);
+            if (Chapter is LayarTerakhir.Phase3.Phase3Director)
+            {
+                playerCamera.cullingMask &= ~(1 << 24);
+                if (Phone.isScreenOn && Phone.batteryPercent > 0 && Phone.currentScanMode == ScanVisualMode.UV)
+                    FeedCamera.cullingMask |= 1 << 24;
+                else FeedCamera.cullingMask &= ~(1 << 24);
+                // In the factory only UV distinguishes a false void from the intact floor beneath.
+                if(Phone.ChapterContent is LayarTerakhir.Phase3.Phase3Director)
+                {
+                    if(Phone.currentScanMode==ScanVisualMode.UV)FeedCamera.cullingMask &= ~(1 << 30);
+                    else FeedCamera.cullingMask |= playerCamera.cullingMask & (1 << 30);
+                }
+            }
             if (Chapter is LayarTerakhir.Phase2.Phase2Director)
             {
                 playerCamera.cullingMask &= ~(1 << LayarTerakhir.Phase2.Phase2Lastri.VisibilityLayer);

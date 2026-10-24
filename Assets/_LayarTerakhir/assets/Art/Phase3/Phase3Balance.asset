@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92381a236f42df7f5b73b528bf602b96, type: 3}
+  m_Name: Phase3Balance
+  m_EditorClassIdentifier: Assembly-CSharp::LayarTerakhir.Phase3.Phase3Balance
+  photoDwell: 1
+  evpTap: 0.25
+  evpRange: 2
+  evpSeconds: 6
+  realSeconds: 2
+  secretRecordSeconds: 1.5
+  fakeSegment: 8
+  realSegment: 3
+  analyzerRange: 15
+  searchDelay: 3.5
+  crankSeconds: 1.5
+  dynamoSeconds: 8
+  emergencySeconds: 45
+  emergencyCooldown: 120
+  fragileTelegraph: 0.6
+  learnTelegraph: 1.2
+  learnWindow: 30
+  dynamicSpawnDistance: 6
+  safeWidth: 1.4
+  patrolSpeed: 1.2
+  ceilingSpeed: 1.8
+  chaseSpeed: 3
+  grabRange: 1.4
+  grabTelegraph: 0.8
+  loiterSeconds: 6
+  screenRadius: 12
+  revealDistance: 12
+  lureCooldown: 25
+  learnSpeed: 0.7
+  prepSeconds: 30
+  recoverySeconds: 20
+  exposedSeconds: 5
+  stalkSpeed: 2
+  beamRadius: 2.5
+  beamSeconds: 2.5
+  beamCooldown: 12
+  aimRange: 8
+  aimAngle: 20
+  powerSeconds: 8
+  powerAmount: 25
+  resetSeconds: 8
+  resetCooldown: 20
+  flareRange: 8
+  flareSeconds: 20
+  flareRadius: 3
+  flareDwell: 0.3
+  pullSpeed: 1
+  pullLimit: 12
+  pullUvSeconds: 1
+  pullTelegraph: 1.5

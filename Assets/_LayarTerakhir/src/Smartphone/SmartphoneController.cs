@@ -186,7 +186,7 @@ namespace LayarTerakhir.Smartphone
                 return false;
 
             string instance = CampaignState.Instance.Data.inventory.Find(id =>
-                id == "P1_POWERBANK_MAILBOX_207" || id == "P1_POWERBANK_ARRIVAL" ||
+                id.StartsWith("P3_POWERBANK_") || id == "P1_POWERBANK_MAILBOX_207" || id == "P1_POWERBANK_ARRIVAL" ||
                 id == "P2_POWERBANK_PASAR_GAIB_A" || id == "P2_POWERBANK_PASAR_GAIB_B");
             if (instance != null)
             {

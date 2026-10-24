@@ -45,6 +45,8 @@ namespace LayarTerakhir.Prolog
 
         private void Awake()
         {
+            if (CampaignState.Instance && CampaignState.Instance.LoadCheckpoint() && CampaignRouting.IsPhase3(CampaignState.Instance.Data))
+            { LayarTerakhir.Phase3.Phase3Hub.Install(this); return; }
             if (CampaignState.Instance && CampaignState.Instance.LoadCheckpoint() && CampaignRouting.IsPhase2(CampaignState.Instance.Data))
             { LayarTerakhir.Phase2.Phase2Hub.Install(this); return; }
             KosRoomCorrections.Apply(this);

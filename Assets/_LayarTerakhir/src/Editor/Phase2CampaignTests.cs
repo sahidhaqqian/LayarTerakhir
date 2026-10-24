@@ -94,9 +94,9 @@ namespace LayarTerakhir.Editor.Tests
             CompletedP1();campaign.Data.battery=19;campaign.Data.phase1.safe_anchor="PARKING";campaign.Data.phase1.dynamo_full_charge_used_ids.Add("PUMP");
             campaign.Data.secret_items.Add(Phase1Ids.Secret);campaign.Data.documents.Add(new PhoneDocument("P1","test"));campaign.Data.inventory.Add("P0_FLAG");
             campaign.Data.phase1.money_ledger.Add(new Phase1MoneyReceipt{id="P1_TX",amount=22});
-            Directory.CreateDirectory(folder);string json=JsonUtility.ToJson(campaign.Data).Replace("\"schema_version\":3","\"schema_version\":2");
+            Directory.CreateDirectory(folder);string json=JsonUtility.ToJson(campaign.Data).Replace("\"schema_version\":4","\"schema_version\":2");
             File.WriteAllText(Path.Combine(folder,"layar_terakhir_save.json"),json);
-            Assert.That(campaign.LoadCheckpoint(),Is.True);Assert.That(campaign.Data.schema_version,Is.EqualTo(3));
+            Assert.That(campaign.LoadCheckpoint(),Is.True);Assert.That(campaign.Data.schema_version,Is.EqualTo(4));
             Assert.That(campaign.Data.phase1.Completed("P1_COMPLETE"),Is.True);Assert.That(campaign.Data.phase1.safe_anchor,Is.EqualTo("PARKING"));
             Assert.That(campaign.Data.phase1.money_ledger[0].amount,Is.EqualTo(22));Assert.That(campaign.Data.phase1.dynamo_full_charge_used_ids,Does.Contain("PUMP"));
             Assert.That(campaign.Data.battery,Is.EqualTo(19));Assert.That(campaign.Data.documents[0].title,Is.EqualTo("P1"));Assert.That(campaign.Data.inventory,Does.Contain("P0_FLAG"));

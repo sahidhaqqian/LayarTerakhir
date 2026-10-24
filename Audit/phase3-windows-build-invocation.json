@@ -1,0 +1,26 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-job-worker-count",
+    "1",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-main",
+    "-nographics",
+    "-buildTarget",
+    "Win64",
+    "-executeMethod",
+    "LayarTerakhir.Editor.WindowsDevelopmentBuild.Build",
+    "-quit",
+    "-logFile",
+    "Builds/Logs/phase3-windows-development-build-motorfix.log"
+  ],
+  "startedUtc": "2026-10-24T15:30:45.839202+00:00",
+  "status": "Finished",
+  "endedUtc": "2026-10-24T15:31:56.213883+00:00",
+  "exitCode": 0
+}

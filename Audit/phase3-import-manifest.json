@@ -1,0 +1,5862 @@
+{
+  "models": [
+    {
+      "name": "Sack",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Models/Sack.fbx",
+      "sourceMeshes": [
+        "b78da2c36d88471e9cba076fd7fd9a39.fbx",
+        "RootNode",
+        "sack",
+        "sack_Material_0",
+        "Sketchfab_model"
+      ],
+      "bounds": [
+        0.8144962191581726,
+        0.9307102560997009,
+        0.6067789793014526
+      ]
+    },
+    {
+      "name": "IndustrialBuilding",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Models/IndustrialBuilding.fbx",
+      "sourceMeshes": [
+        "4cfd79d3259444ceb3cc013c7b29652a.fbx",
+        "building ",
+        "building _building _0",
+        "building _building _0.001",
+        "building floor",
+        "building floor_building floor_0",
+        "building top",
+        "building top_building _0",
+        "building windows",
+        "building windows_building windows_0",
+        "RootNode",
+        "Sketchfab_model"
+      ],
+      "bounds": [
+        11.610809326171875,
+        15.191072463989258,
+        34.50706481933594
+      ]
+    },
+    {
+      "name": "Doll",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Models/Doll.fbx",
+      "sourceMeshes": [
+        "f0430f54bc534a1782fba82b9c9a8c5f.fbx",
+        "Object_4",
+        "RootNode",
+        "Sketchfab_model",
+        "Sphere001",
+        "Sphere001_Voodoo Doll_0"
+      ],
+      "bounds": [
+        14.082514762878418,
+        5.798372268676758,
+        8.549625396728516
+      ]
+    },
+    {
+      "name": "Boiler",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Models/Boiler.fbx",
+      "sourceMeshes": [
+        "7115802d15de475b9c48fd11b4ec0fc6.fbx",
+        "Box001",
+        "Box001__0",
+        "default",
+        "default_Material #21_0",
+        "default_Material #21_0.001",
+        "Object_4",
+        "RootNode",
+        "Sketchfab_model"
+      ],
+      "bounds": [
+        2.598623275756836,
+        4.787086486816406,
+        2.5666403770446777
+      ]
+    },
+    {
+      "name": "Sickle",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Models/Sickle.fbx",
+      "sourceMeshes": [
+        "Object_2",
+        "Sickle.obj.cleaner.materialmerger.gles",
+        "Sketchfab_model"
+      ],
+      "bounds": [
+        54.06739044189453,
+        124.46173858642578,
+        12.93360424041748
+      ]
+    },
+    {
+      "name": "Locker",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Models/Locker.fbx",
+      "sourceMeshes": [
+        "b860164dad8f4ad9a1eb623f0166db08.fbx",
+        "RootNode",
+        "Sketchfab_model",
+        "Taquilla",
+        "Taquilla_aiStandardSurface1_0"
+      ],
+      "bounds": [
+        1.0514936447143555,
+        2.595402240753174,
+        6.064813613891602
+      ]
+    },
+    {
+      "name": "Cloth",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Models/Cloth.fbx",
+      "sourceMeshes": [
+        "8933d7908be9420596c694d0f5b5e831.fbx",
+        "fabric",
+        "fabric_M_fabric_0",
+        "RootNode",
+        "Sketchfab_model"
+      ],
+      "bounds": [
+        1.8702173233032227,
+        10.314557075500488,
+        3.0006966590881348
+      ]
+    },
+    {
+      "name": "MineCart",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Models/MineCart.fbx",
+      "sourceMeshes": [
+        "1a6655d6596d41f7b4e008322c3ff44e.obj.cleaner.gles",
+        "Object_2",
+        "Object_3",
+        "Sketchfab_model"
+      ],
+      "bounds": [
+        0.9508807063102722,
+        0.9884921908378601,
+        1.8960063457489014
+      ]
+    },
+    {
+      "name": "Shoe",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Models/Shoe.fbx",
+      "sourceMeshes": [
+        "Object_2",
+        "sh_oldOxfordShoe.obj.cleaner.materialmerger.gles",
+        "Sketchfab_model"
+      ],
+      "bounds": [
+        0.3065580129623413,
+        0.10734999924898148,
+        0.11423599720001221
+      ]
+    },
+    {
+      "name": "base_end_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/base_end_01.fbx",
+      "sourceMeshes": [
+        "base_end_01"
+      ],
+      "bounds": [
+        0.2000000923871994,
+        0.2000000923871994,
+        0.75
+      ]
+    },
+    {
+      "name": "base_end_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/base_end_02.fbx",
+      "sourceMeshes": [
+        "base_end_02"
+      ],
+      "bounds": [
+        0.2000001072883606,
+        0.2000001072883606,
+        0.75
+      ]
+    },
+    {
+      "name": "base_standard_corner_large_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/base_standard_corner_large_01.fbx",
+      "sourceMeshes": [
+        "base_standard_corner_large_01"
+      ],
+      "bounds": [
+        3.1999998092651367,
+        3.200000047683716,
+        0.75
+      ]
+    },
+    {
+      "name": "base_standard_corner_large_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/base_standard_corner_large_02.fbx",
+      "sourceMeshes": [
+        "base_standard_corner_large_02"
+      ],
+      "bounds": [
+        3.0,
+        3.0,
+        0.75
+      ]
+    },
+    {
+      "name": "base_standard_corner_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/base_standard_corner_small_01.fbx",
+      "sourceMeshes": [
+        "base_standard_corner_small_01"
+      ],
+      "bounds": [
+        2.1999998092651367,
+        2.200000047683716,
+        0.75
+      ]
+    },
+    {
+      "name": "base_standard_corner_small_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/base_standard_corner_small_02.fbx",
+      "sourceMeshes": [
+        "base_standard_corner_small_02"
+      ],
+      "bounds": [
+        2.0,
+        2.0,
+        0.75
+      ]
+    },
+    {
+      "name": "base_standard_standard_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/base_standard_standard_01.fbx",
+      "sourceMeshes": [
+        "base_standard_standard_01"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        0.75
+      ]
+    },
+    {
+      "name": "cornice01_end_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice01_end_01.fbx",
+      "sourceMeshes": [
+        "cornice01_end_01"
+      ],
+      "bounds": [
+        0.21778321266174316,
+        0.16778811812400818,
+        0.1519855260848999
+      ]
+    },
+    {
+      "name": "cornice01_end_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice01_end_02.fbx",
+      "sourceMeshes": [
+        "cornice01_end_02"
+      ],
+      "bounds": [
+        0.21780163049697876,
+        0.16778811812400818,
+        0.1519855260848999
+      ]
+    },
+    {
+      "name": "cornice01_pier_corner_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice01_pier_corner_01.fbx",
+      "sourceMeshes": [
+        "cornice01_pier_corner_01"
+      ],
+      "bounds": [
+        0.43558329343795776,
+        0.43557503819465637,
+        0.1519855260848999
+      ]
+    },
+    {
+      "name": "cornice01_pier_corner_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice01_pier_corner_02.fbx",
+      "sourceMeshes": [
+        "cornice01_pier_corner_02"
+      ],
+      "bounds": [
+        0.3677981495857239,
+        0.36778688430786133,
+        0.13874031603336334
+      ]
+    },
+    {
+      "name": "cornice01_pier_standard_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice01_pier_standard_01.fbx",
+      "sourceMeshes": [
+        "cornice01_pier_standard_01"
+      ],
+      "bounds": [
+        0.4355815351009369,
+        0.16778811812400818,
+        0.1519855260848999
+      ]
+    },
+    {
+      "name": "cornice01_standard_corner_large_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice01_standard_corner_large_01.fbx",
+      "sourceMeshes": [
+        "cornice01_standard_corner_large_01"
+      ],
+      "bounds": [
+        3.0677876472473145,
+        3.0677900314331055,
+        0.1519855260848999
+      ]
+    },
+    {
+      "name": "cornice01_standard_corner_large_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice01_standard_corner_large_02.fbx",
+      "sourceMeshes": [
+        "cornice01_standard_corner_large_02"
+      ],
+      "bounds": [
+        3.099999189376831,
+        3.1000027656555176,
+        0.1519855260848999
+      ]
+    },
+    {
+      "name": "cornice01_standard_corner_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice01_standard_corner_small_01.fbx",
+      "sourceMeshes": [
+        "cornice01_standard_corner_small_01"
+      ],
+      "bounds": [
+        2.0677876472473145,
+        2.0677900314331055,
+        0.1519855260848999
+      ]
+    },
+    {
+      "name": "cornice01_standard_corner_small_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice01_standard_corner_small_02.fbx",
+      "sourceMeshes": [
+        "cornice01_standard_corner_small_02"
+      ],
+      "bounds": [
+        2.099999189376831,
+        2.1000027656555176,
+        0.1519855260848999
+      ]
+    },
+    {
+      "name": "cornice01_standard_standard_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice01_standard_standard_01.fbx",
+      "sourceMeshes": [
+        "cornice01_standard_standard_01"
+      ],
+      "bounds": [
+        3.000007152557373,
+        0.16819985210895538,
+        0.1519855409860611
+      ]
+    },
+    {
+      "name": "cornice02_end_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice02_end_01.fbx",
+      "sourceMeshes": [
+        "cornice02_end_01"
+      ],
+      "bounds": [
+        0.1731296181678772,
+        0.256873220205307,
+        0.16000008583068848
+      ]
+    },
+    {
+      "name": "cornice02_end_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice02_end_02.fbx",
+      "sourceMeshes": [
+        "cornice02_end_02"
+      ],
+      "bounds": [
+        0.1731296181678772,
+        0.256873220205307,
+        0.16000008583068848
+      ]
+    },
+    {
+      "name": "cornice02_pier_corner_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice02_pier_corner_01.fbx",
+      "sourceMeshes": [
+        "cornice02_pier_corner_01"
+      ],
+      "bounds": [
+        0.36943912506103516,
+        0.36943215131759644,
+        0.19521522521972656
+      ]
+    },
+    {
+      "name": "cornice02_pier_corner_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice02_pier_corner_02.fbx",
+      "sourceMeshes": [
+        "cornice02_pier_corner_02"
+      ],
+      "bounds": [
+        0.4147101044654846,
+        0.4147225022315979,
+        0.19521522521972656
+      ]
+    },
+    {
+      "name": "cornice02_pier_standard_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice02_pier_standard_01.fbx",
+      "sourceMeshes": [
+        "cornice02_pier_standard_01"
+      ],
+      "bounds": [
+        0.3694327175617218,
+        0.21471595764160156,
+        0.19521524012088776
+      ]
+    },
+    {
+      "name": "cornice02_standard_corner_large_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice02_standard_corner_large_01.fbx",
+      "sourceMeshes": [
+        "cornice02_standard_corner_large_01"
+      ],
+      "bounds": [
+        3.0568747520446777,
+        3.0568745136260986,
+        0.16000008583068848
+      ]
+    },
+    {
+      "name": "cornice02_standard_corner_large_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice02_standard_corner_large_02.fbx",
+      "sourceMeshes": [
+        "cornice02_standard_corner_large_02"
+      ],
+      "bounds": [
+        3.11625075340271,
+        3.1162502765655518,
+        0.16000008583068848
+      ]
+    },
+    {
+      "name": "cornice02_standard_corner_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice02_standard_corner_small_01.fbx",
+      "sourceMeshes": [
+        "cornice02_standard_corner_small_01"
+      ],
+      "bounds": [
+        2.0568747520446777,
+        2.0568745136260986,
+        0.16000008583068848
+      ]
+    },
+    {
+      "name": "cornice02_standard_corner_small_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice02_standard_corner_small_02.fbx",
+      "sourceMeshes": [
+        "cornice02_standard_corner_small_02"
+      ],
+      "bounds": [
+        2.11625075340271,
+        2.1162502765655518,
+        0.16000008583068848
+      ]
+    },
+    {
+      "name": "cornice02_standard_standard_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice02_standard_standard_01.fbx",
+      "sourceMeshes": [
+        "cornice02_standard_standard_01"
+      ],
+      "bounds": [
+        3.0000014305114746,
+        0.17312370240688324,
+        0.16000017523765564
+      ]
+    },
+    {
+      "name": "cornice03_standard_corner_large_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice03_standard_corner_large_01.fbx",
+      "sourceMeshes": [
+        "cornice03_standard_corner_large_01"
+      ],
+      "bounds": [
+        3.029998302459717,
+        3.029998302459717,
+        0.12469269335269928
+      ]
+    },
+    {
+      "name": "cornice03_standard_corner_large_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice03_standard_corner_large_02.fbx",
+      "sourceMeshes": [
+        "cornice03_standard_corner_large_02"
+      ],
+      "bounds": [
+        3.176248073577881,
+        3.1462478637695312,
+        0.12469270080327988
+      ]
+    },
+    {
+      "name": "cornice03_standard_corner_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice03_standard_corner_small_01.fbx",
+      "sourceMeshes": [
+        "cornice03_standard_corner_small_01"
+      ],
+      "bounds": [
+        2.029998302459717,
+        2.029998302459717,
+        0.12469269335269928
+      ]
+    },
+    {
+      "name": "cornice03_standard_corner_small_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice03_standard_corner_small_02.fbx",
+      "sourceMeshes": [
+        "cornice03_standard_corner_small_02"
+      ],
+      "bounds": [
+        2.176248073577881,
+        2.1462478637695312,
+        0.12469270080327988
+      ]
+    },
+    {
+      "name": "cornice03_standard_standard_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/cornice03_standard_standard_01.fbx",
+      "sourceMeshes": [
+        "cornice03_standard_standard_01"
+      ],
+      "bounds": [
+        2.9999966621398926,
+        0.17624957859516144,
+        0.12469270080327988
+      ]
+    },
+    {
+      "name": "crown_end_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/crown_end_01.fbx",
+      "sourceMeshes": [
+        "crown_end_01"
+      ],
+      "bounds": [
+        0.22999995946884155,
+        0.32999998331069946,
+        0.32000020146369934
+      ]
+    },
+    {
+      "name": "crown_end_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/crown_end_02.fbx",
+      "sourceMeshes": [
+        "crown_end_02"
+      ],
+      "bounds": [
+        0.22999995946884155,
+        0.32999998331069946,
+        0.32000020146369934
+      ]
+    },
+    {
+      "name": "crown_pier_corner_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/crown_pier_corner_01.fbx",
+      "sourceMeshes": [
+        "crown_pier_corner_01"
+      ],
+      "bounds": [
+        0.5599998235702515,
+        0.5599997639656067,
+        0.3234681785106659
+      ]
+    },
+    {
+      "name": "crown_pier_corner_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/crown_pier_corner_02.fbx",
+      "sourceMeshes": [
+        "crown_pier_corner_02"
+      ],
+      "bounds": [
+        0.4099962115287781,
+        0.4099997282028198,
+        0.3234681785106659
+      ]
+    },
+    {
+      "name": "crown_pier_pedestal_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/crown_pier_pedestal_01.fbx",
+      "sourceMeshes": [
+        "crown_pier_pedestal_01"
+      ],
+      "bounds": [
+        0.5599995851516724,
+        0.20999988913536072,
+        0.3234681785106659
+      ]
+    },
+    {
+      "name": "crown_standard_corner_large_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/crown_standard_corner_large_01.fbx",
+      "sourceMeshes": [
+        "crown_standard_corner_large_01"
+      ],
+      "bounds": [
+        3.130000114440918,
+        3.130000114440918,
+        0.32000020146369934
+      ]
+    },
+    {
+      "name": "crown_standard_corner_large_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/crown_standard_corner_large_02.fbx",
+      "sourceMeshes": [
+        "crown_standard_corner_large_02"
+      ],
+      "bounds": [
+        3.0000038146972656,
+        3.0000038146972656,
+        0.32000020146369934
+      ]
+    },
+    {
+      "name": "crown_standard_corner_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/crown_standard_corner_small_01.fbx",
+      "sourceMeshes": [
+        "crown_standard_corner_small_01"
+      ],
+      "bounds": [
+        2.130000114440918,
+        2.130000114440918,
+        0.32000020146369934
+      ]
+    },
+    {
+      "name": "crown_standard_corner_small_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/crown_standard_corner_small_02.fbx",
+      "sourceMeshes": [
+        "crown_standard_corner_small_02"
+      ],
+      "bounds": [
+        2.0000038146972656,
+        2.0000038146972656,
+        0.32000020146369934
+      ]
+    },
+    {
+      "name": "crown_standard_standard_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/crown_standard_standard_01.fbx",
+      "sourceMeshes": [
+        "crown_standard_standard_01"
+      ],
+      "bounds": [
+        3.0,
+        0.12999999523162842,
+        0.32000020146369934
+      ]
+    },
+    {
+      "name": "dado_door_centered_large_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/dado_door_centered_large_01.fbx",
+      "sourceMeshes": [
+        "dado_door_centered_large_01"
+      ],
+      "bounds": [
+        3.000000476837158,
+        0.46000003814697266,
+        0.5500001311302185
+      ]
+    },
+    {
+      "name": "dado_door_centered_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/dado_door_centered_small_01.fbx",
+      "sourceMeshes": [
+        "dado_door_centered_small_01"
+      ],
+      "bounds": [
+        2.999997138977051,
+        0.46000006794929504,
+        0.5500001311302185
+      ]
+    },
+    {
+      "name": "dado_door_recessed_large_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/dado_door_recessed_large_01.fbx",
+      "sourceMeshes": [
+        "dado_door_recessed_large_01"
+      ],
+      "bounds": [
+        3.0000011920928955,
+        0.46000003814697266,
+        0.5500000715255737
+      ]
+    },
+    {
+      "name": "dado_door_recessed_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/dado_door_recessed_small_01.fbx",
+      "sourceMeshes": [
+        "dado_door_recessed_small_01"
+      ],
+      "bounds": [
+        3.0,
+        0.46000006794929504,
+        0.5500001311302185
+      ]
+    },
+    {
+      "name": "dado_end_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/dado_end_01.fbx",
+      "sourceMeshes": [
+        "dado_end_01"
+      ],
+      "bounds": [
+        0.0999971330165863,
+        0.46000003814697266,
+        0.550000011920929
+      ]
+    },
+    {
+      "name": "dado_end_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/dado_end_02.fbx",
+      "sourceMeshes": [
+        "dado_end_02"
+      ],
+      "bounds": [
+        0.09999459981918335,
+        0.46000003814697266,
+        0.550000011920929
+      ]
+    },
+    {
+      "name": "dado_garage_centered_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/dado_garage_centered_01.fbx",
+      "sourceMeshes": [
+        "dado_garage_centered_01"
+      ],
+      "bounds": [
+        5.999997138977051,
+        0.46000006794929504,
+        0.5500001311302185
+      ]
+    },
+    {
+      "name": "dado_garage_door_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/dado_garage_door_01.fbx",
+      "sourceMeshes": [
+        "dado_garage_door_01"
+      ],
+      "bounds": [
+        6.000000953674316,
+        0.46000003814697266,
+        0.5500000715255737
+      ]
+    },
+    {
+      "name": "dado_garage_door_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/dado_garage_door_02.fbx",
+      "sourceMeshes": [
+        "dado_garage_door_02"
+      ],
+      "bounds": [
+        6.000000953674316,
+        0.46000003814697266,
+        0.5500000715255737
+      ]
+    },
+    {
+      "name": "dado_garage_double_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/dado_garage_double_01.fbx",
+      "sourceMeshes": [
+        "dado_garage_double_01"
+      ],
+      "bounds": [
+        8.999998092651367,
+        0.46000006794929504,
+        0.5500001311302185
+      ]
+    },
+    {
+      "name": "dado_pier_corner_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/dado_pier_corner_01.fbx",
+      "sourceMeshes": [
+        "dado_pier_corner_01"
+      ],
+      "bounds": [
+        0.4000062942504883,
+        0.39999979734420776,
+        0.7500000596046448
+      ]
+    },
+    {
+      "name": "dado_pier_corner_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/dado_pier_corner_02.fbx",
+      "sourceMeshes": [
+        "dado_pier_corner_02"
+      ],
+      "bounds": [
+        0.4299936890602112,
+        0.43000608682632446,
+        0.7500000596046448
+      ]
+    },
+    {
+      "name": "dado_pier_pedestal_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/dado_pier_pedestal_01.fbx",
+      "sourceMeshes": [
+        "dado_pier_pedestal_01"
+      ],
+      "bounds": [
+        0.3999998867511749,
+        0.23000001907348633,
+        0.75
+      ]
+    },
+    {
+      "name": "dado_standard_corner_large_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/dado_standard_corner_large_01.fbx",
+      "sourceMeshes": [
+        "dado_standard_corner_large_01"
+      ],
+      "bounds": [
+        3.100003242492676,
+        3.1000027656555176,
+        0.5499999523162842
+      ]
+    },
+    {
+      "name": "dado_standard_corner_large_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/dado_standard_corner_large_02.fbx",
+      "sourceMeshes": [
+        "dado_standard_corner_large_02"
+      ],
+      "bounds": [
+        3.000002384185791,
+        3.0000057220458984,
+        0.5499999523162842
+      ]
+    },
+    {
+      "name": "dado_standard_corner_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/dado_standard_corner_small_01.fbx",
+      "sourceMeshes": [
+        "dado_standard_corner_small_01"
+      ],
+      "bounds": [
+        2.100003242492676,
+        2.1000027656555176,
+        0.5499999523162842
+      ]
+    },
+    {
+      "name": "dado_standard_corner_small_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/dado_standard_corner_small_02.fbx",
+      "sourceMeshes": [
+        "dado_standard_corner_small_02"
+      ],
+      "bounds": [
+        2.000002384185791,
+        2.0000057220458984,
+        0.5499999523162842
+      ]
+    },
+    {
+      "name": "dado_standard_standard_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/dado_standard_standard_01.fbx",
+      "sourceMeshes": [
+        "dado_standard_standard_01"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.10000049322843552,
+        0.5499999523162842
+      ]
+    },
+    {
+      "name": "door_centered_large_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/door_centered_large_01.fbx",
+      "sourceMeshes": [
+        "door_centered_large_01"
+      ],
+      "bounds": [
+        1.7999963760375977,
+        0.2350001037120819,
+        2.3299994468688965
+      ]
+    },
+    {
+      "name": "door_centered_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/door_centered_small_01.fbx",
+      "sourceMeshes": [
+        "door_centered_small_01"
+      ],
+      "bounds": [
+        1.2599966526031494,
+        0.2350001037120819,
+        2.3299994468688965
+      ]
+    },
+    {
+      "name": "door_centered_small_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/door_centered_small_02.fbx",
+      "sourceMeshes": [
+        "door_centered_small_02"
+      ],
+      "bounds": [
+        2.909998893737793,
+        0.2350001037120819,
+        3.2109994888305664
+      ]
+    },
+    {
+      "name": "door_garage_centered_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/door_garage_centered_01.fbx",
+      "sourceMeshes": [
+        "door_garage_centered_01"
+      ],
+      "bounds": [
+        3.3199965953826904,
+        0.5300009250640869,
+        2.739999532699585
+      ]
+    },
+    {
+      "name": "door_garage_door_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/door_garage_door_01.fbx",
+      "sourceMeshes": [
+        "door_garage_door_01"
+      ],
+      "bounds": [
+        5.3199968338012695,
+        0.5300009250640869,
+        2.739999532699585
+      ]
+    },
+    {
+      "name": "door_garage_door_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/door_garage_door_02.fbx",
+      "sourceMeshes": [
+        "door_garage_door_02"
+      ],
+      "bounds": [
+        5.3199968338012695,
+        0.5300009250640869,
+        2.739999532699585
+      ]
+    },
+    {
+      "name": "door_garage_double_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/door_garage_double_01.fbx",
+      "sourceMeshes": [
+        "door_garage_double_01"
+      ],
+      "bounds": [
+        7.319996356964111,
+        0.5300009250640869,
+        2.739999532699585
+      ]
+    },
+    {
+      "name": "door_recessed_large_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/door_recessed_large_01.fbx",
+      "sourceMeshes": [
+        "door_recessed_large_01"
+      ],
+      "bounds": [
+        2.3199965953826904,
+        0.5300009250640869,
+        2.739999532699585
+      ]
+    },
+    {
+      "name": "door_recessed_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/door_recessed_small_01.fbx",
+      "sourceMeshes": [
+        "door_recessed_small_01"
+      ],
+      "bounds": [
+        1.3199965953826904,
+        0.5300004482269287,
+        2.739999532699585
+      ]
+    },
+    {
+      "name": "door_recessed_small_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/door_recessed_small_02.fbx",
+      "sourceMeshes": [
+        "door_recessed_small_02"
+      ],
+      "bounds": [
+        2.9399988651275635,
+        0.5300004482269287,
+        3.620999574661255
+      ]
+    },
+    {
+      "name": "door_window_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/door_window_small_01.fbx",
+      "sourceMeshes": [
+        "door_window_small_01"
+      ],
+      "bounds": [
+        2.909998893737793,
+        0.23500022292137146,
+        3.215999126434326
+      ]
+    },
+    {
+      "name": "door_window_small_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/door_window_small_02.fbx",
+      "sourceMeshes": [
+        "door_window_small_02"
+      ],
+      "bounds": [
+        4.22999906539917,
+        0.23500019311904907,
+        3.215999126434326
+      ]
+    },
+    {
+      "name": "door_window_small_03",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/door_window_small_03.fbx",
+      "sourceMeshes": [
+        "door_window_small_03"
+      ],
+      "bounds": [
+        2.909998893737793,
+        0.23500022292137146,
+        3.2159996032714844
+      ]
+    },
+    {
+      "name": "door_window_small_04",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/door_window_small_04.fbx",
+      "sourceMeshes": [
+        "door_window_small_04"
+      ],
+      "bounds": [
+        4.22999906539917,
+        0.23500019311904907,
+        3.2159996032714844
+      ]
+    },
+    {
+      "name": "door_window_small_05",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/door_window_small_05.fbx",
+      "sourceMeshes": [
+        "door_window_small_05"
+      ],
+      "bounds": [
+        2.909998893737793,
+        0.23500022292137146,
+        3.23599910736084
+      ]
+    },
+    {
+      "name": "door_window_small_06",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/door_window_small_06.fbx",
+      "sourceMeshes": [
+        "door_window_small_06"
+      ],
+      "bounds": [
+        4.22999906539917,
+        0.23500019311904907,
+        3.23599910736084
+      ]
+    },
+    {
+      "name": "door_window_small_07",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/door_window_small_07.fbx",
+      "sourceMeshes": [
+        "door_window_small_07"
+      ],
+      "bounds": [
+        2.909998893737793,
+        0.23500022292137146,
+        3.2360000610351562
+      ]
+    },
+    {
+      "name": "door_window_small_08",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/door_window_small_08.fbx",
+      "sourceMeshes": [
+        "door_window_small_08"
+      ],
+      "bounds": [
+        4.22999906539917,
+        0.23500019311904907,
+        3.2360000610351562
+      ]
+    },
+    {
+      "name": "wall_door_centered_large_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_door_centered_large_01.fbx",
+      "sourceMeshes": [
+        "wall_door_centered_large_01"
+      ],
+      "bounds": [
+        3.0,
+        0.0,
+        3.0
+      ]
+    },
+    {
+      "name": "wall_door_centered_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_door_centered_small_01.fbx",
+      "sourceMeshes": [
+        "wall_door_centered_small_01"
+      ],
+      "bounds": [
+        3.0,
+        0.0,
+        3.000000238418579
+      ]
+    },
+    {
+      "name": "wall_door_centered_small_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_door_centered_small_02.fbx",
+      "sourceMeshes": [
+        "wall_door_centered_small_02"
+      ],
+      "bounds": [
+        3.0,
+        0.0,
+        3.000000238418579
+      ]
+    },
+    {
+      "name": "wall_door_garage_centered_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_door_garage_centered_01.fbx",
+      "sourceMeshes": [
+        "wall_door_garage_centered_01"
+      ],
+      "bounds": [
+        6.000000953674316,
+        0.26000016927719116,
+        3.000000238418579
+      ]
+    },
+    {
+      "name": "wall_door_garage_door_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_door_garage_door_01.fbx",
+      "sourceMeshes": [
+        "wall_door_garage_door_01"
+      ],
+      "bounds": [
+        6.000000953674316,
+        0.26000016927719116,
+        3.000000476837158
+      ]
+    },
+    {
+      "name": "wall_door_garage_door_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_door_garage_door_02.fbx",
+      "sourceMeshes": [
+        "wall_door_garage_door_02"
+      ],
+      "bounds": [
+        6.000000953674316,
+        0.26000016927719116,
+        3.000000476837158
+      ]
+    },
+    {
+      "name": "wall_door_garage_double_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_door_garage_double_01.fbx",
+      "sourceMeshes": [
+        "wall_door_garage_double_01"
+      ],
+      "bounds": [
+        9.000000953674316,
+        0.26000016927719116,
+        3.000000238418579
+      ]
+    },
+    {
+      "name": "wall_door_recessed_large_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_door_recessed_large_01.fbx",
+      "sourceMeshes": [
+        "wall_door_recessed_large_01"
+      ],
+      "bounds": [
+        3.0000011920928955,
+        0.26000016927719116,
+        3.000000476837158
+      ]
+    },
+    {
+      "name": "wall_door_recessed_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_door_recessed_small_01.fbx",
+      "sourceMeshes": [
+        "wall_door_recessed_small_01"
+      ],
+      "bounds": [
+        3.0000011920928955,
+        0.26000016927719116,
+        3.000000476837158
+      ]
+    },
+    {
+      "name": "wall_door_recessed_small_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_door_recessed_small_02.fbx",
+      "sourceMeshes": [
+        "wall_door_recessed_small_02"
+      ],
+      "bounds": [
+        3.0000011920928955,
+        0.26000016927719116,
+        3.000000476837158
+      ]
+    },
+    {
+      "name": "wall_door_window_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_door_window_small_01.fbx",
+      "sourceMeshes": [
+        "wall_door_window_small_01"
+      ],
+      "bounds": [
+        2.999999523162842,
+        0.20000000298023224,
+        3.000000238418579
+      ]
+    },
+    {
+      "name": "wall_door_window_small_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_door_window_small_02.fbx",
+      "sourceMeshes": [
+        "wall_door_window_small_02"
+      ],
+      "bounds": [
+        3.000000238418579,
+        0.20000000298023224,
+        3.000000238418579
+      ]
+    },
+    {
+      "name": "wall_door_window_small_03",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_door_window_small_03.fbx",
+      "sourceMeshes": [
+        "wall_door_window_small_03"
+      ],
+      "bounds": [
+        2.999999523162842,
+        0.20000000298023224,
+        3.000000238418579
+      ]
+    },
+    {
+      "name": "wall_door_window_small_04",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_door_window_small_04.fbx",
+      "sourceMeshes": [
+        "wall_door_window_small_04"
+      ],
+      "bounds": [
+        3.000000476837158,
+        0.20000000298023224,
+        3.000000238418579
+      ]
+    },
+    {
+      "name": "wall_door_window_small_05",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_door_window_small_05.fbx",
+      "sourceMeshes": [
+        "wall_door_window_small_05"
+      ],
+      "bounds": [
+        2.999999523162842,
+        0.20000000298023224,
+        3.000000238418579
+      ]
+    },
+    {
+      "name": "wall_door_window_small_06",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_door_window_small_06.fbx",
+      "sourceMeshes": [
+        "wall_door_window_small_06"
+      ],
+      "bounds": [
+        3.0000007152557373,
+        0.20000000298023224,
+        3.000000238418579
+      ]
+    },
+    {
+      "name": "wall_door_window_small_07",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_door_window_small_07.fbx",
+      "sourceMeshes": [
+        "wall_door_window_small_07"
+      ],
+      "bounds": [
+        2.999999523162842,
+        0.20000000298023224,
+        3.000000238418579
+      ]
+    },
+    {
+      "name": "wall_door_window_small_08",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_door_window_small_08.fbx",
+      "sourceMeshes": [
+        "wall_door_window_small_08"
+      ],
+      "bounds": [
+        3.000000476837158,
+        0.20000000298023224,
+        3.000000238418579
+      ]
+    },
+    {
+      "name": "wall_pier_corner_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_pier_corner_01.fbx",
+      "sourceMeshes": [
+        "wall_pier_corner_01"
+      ],
+      "bounds": [
+        0.3000013828277588,
+        0.29999643564224243,
+        3.0
+      ]
+    },
+    {
+      "name": "wall_pier_corner_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_pier_corner_02.fbx",
+      "sourceMeshes": [
+        "wall_pier_corner_02"
+      ],
+      "bounds": [
+        0.2799965739250183,
+        0.2800014913082123,
+        3.0
+      ]
+    },
+    {
+      "name": "wall_pier_standard_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_pier_standard_01.fbx",
+      "sourceMeshes": [
+        "wall_pier_standard_01"
+      ],
+      "bounds": [
+        0.30000126361846924,
+        0.08000011742115021,
+        3.0
+      ]
+    },
+    {
+      "name": "wall_standard_corner_large_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_standard_corner_large_01.fbx",
+      "sourceMeshes": [
+        "wall_standard_corner_large_01"
+      ],
+      "bounds": [
+        3.0,
+        3.0,
+        3.0
+      ]
+    },
+    {
+      "name": "wall_standard_corner_large_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_standard_corner_large_02.fbx",
+      "sourceMeshes": [
+        "wall_standard_corner_large_02"
+      ],
+      "bounds": [
+        3.000000238418579,
+        3.0000007152557373,
+        3.0
+      ]
+    },
+    {
+      "name": "wall_standard_corner_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_standard_corner_small_01.fbx",
+      "sourceMeshes": [
+        "wall_standard_corner_small_01"
+      ],
+      "bounds": [
+        2.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "name": "wall_standard_corner_small_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_standard_corner_small_02.fbx",
+      "sourceMeshes": [
+        "wall_standard_corner_small_02"
+      ],
+      "bounds": [
+        2.0,
+        2.0000007152557373,
+        3.0
+      ]
+    },
+    {
+      "name": "wall_standard_standard_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_standard_standard_01.fbx",
+      "sourceMeshes": [
+        "wall_standard_standard_01"
+      ],
+      "bounds": [
+        3.0,
+        0.0,
+        3.0
+      ]
+    },
+    {
+      "name": "wall_window_centered_double_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_double_01.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_double_01"
+      ],
+      "bounds": [
+        2.999999761581421,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_centered_double_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_double_02.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_double_02"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_centered_double_03",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_double_03.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_double_03"
+      ],
+      "bounds": [
+        3.000000238418579,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_centered_double_04",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_double_04.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_double_04"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_centered_large_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_large_01.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_large_01"
+      ],
+      "bounds": [
+        3.0000038146972656,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_centered_large_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_large_02.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_large_02"
+      ],
+      "bounds": [
+        3.0000038146972656,
+        0.25,
+        2.9999990463256836
+      ]
+    },
+    {
+      "name": "wall_window_centered_large_03",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_large_03.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_large_03"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_centered_large_04",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_large_04.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_large_04"
+      ],
+      "bounds": [
+        3.0000038146972656,
+        0.25,
+        3.0
+      ]
+    },
+    {
+      "name": "wall_window_centered_large_05",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_large_05.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_large_05"
+      ],
+      "bounds": [
+        3.0000038146972656,
+        0.25,
+        2.9999990463256836
+      ]
+    },
+    {
+      "name": "wall_window_centered_large_06",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_large_06.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_large_06"
+      ],
+      "bounds": [
+        3.0000038146972656,
+        0.25,
+        3.0
+      ]
+    },
+    {
+      "name": "wall_window_centered_medium_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_medium_01.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_medium_01"
+      ],
+      "bounds": [
+        2.9999914169311523,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_centered_medium_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_medium_02.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_medium_02"
+      ],
+      "bounds": [
+        3.0000076293945312,
+        0.2500004768371582,
+        2.9999990463256836
+      ]
+    },
+    {
+      "name": "wall_window_centered_medium_03",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_medium_03.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_medium_03"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_centered_medium_04",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_medium_04.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_medium_04"
+      ],
+      "bounds": [
+        3.0000076293945312,
+        0.2500004768371582,
+        3.0
+      ]
+    },
+    {
+      "name": "wall_window_centered_medium_05",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_medium_05.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_medium_05"
+      ],
+      "bounds": [
+        3.0000076293945312,
+        0.2500004768371582,
+        2.9999990463256836
+      ]
+    },
+    {
+      "name": "wall_window_centered_medium_06",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_medium_06.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_medium_06"
+      ],
+      "bounds": [
+        3.0000076293945312,
+        0.2500004768371582,
+        3.0
+      ]
+    },
+    {
+      "name": "wall_window_centered_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_small_01.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_small_01"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_centered_small_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_small_02.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_small_02"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_centered_small_03",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_small_03.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_small_03"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_centered_small_04",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_centered_small_04.fbx",
+      "sourceMeshes": [
+        "wall_window_centered_small_04"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_offset_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_offset_small_01.fbx",
+      "sourceMeshes": [
+        "wall_window_offset_small_01"
+      ],
+      "bounds": [
+        2.999999761581421,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_offset_small_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_offset_small_02.fbx",
+      "sourceMeshes": [
+        "wall_window_offset_small_02"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_offset_small_03",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_offset_small_03.fbx",
+      "sourceMeshes": [
+        "wall_window_offset_small_03"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_offset_small_04",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_offset_small_04.fbx",
+      "sourceMeshes": [
+        "wall_window_offset_small_04"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_offset_small_05",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_offset_small_05.fbx",
+      "sourceMeshes": [
+        "wall_window_offset_small_05"
+      ],
+      "bounds": [
+        3.000000238418579,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_offset_small_06",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_offset_small_06.fbx",
+      "sourceMeshes": [
+        "wall_window_offset_small_06"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_offset_small_07",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_offset_small_07.fbx",
+      "sourceMeshes": [
+        "wall_window_offset_small_07"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_offset_small_08",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_offset_small_08.fbx",
+      "sourceMeshes": [
+        "wall_window_offset_small_08"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "wall_window_tall_large_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_large_01.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_large_01"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.16999998688697815,
+        3.000000476837158
+      ]
+    },
+    {
+      "name": "wall_window_tall_large_010",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_large_010.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_large_010"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.30000004172325134,
+        2.999998092651367
+      ]
+    },
+    {
+      "name": "wall_window_tall_large_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_large_02.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_large_02"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.16999994218349457,
+        3.000000476837158
+      ]
+    },
+    {
+      "name": "wall_window_tall_large_03",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_large_03.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_large_03"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.17000003159046173,
+        3.0000014305114746
+      ]
+    },
+    {
+      "name": "wall_window_tall_large_04",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_large_04.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_large_04"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.30000004172325134,
+        2.999998092651367
+      ]
+    },
+    {
+      "name": "wall_window_tall_large_05",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_large_05.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_large_05"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.30000004172325134,
+        2.999998092651367
+      ]
+    },
+    {
+      "name": "wall_window_tall_large_06",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_large_06.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_large_06"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.16999998688697815,
+        3.000000476837158
+      ]
+    },
+    {
+      "name": "wall_window_tall_large_07",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_large_07.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_large_07"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.16999994218349457,
+        3.000000476837158
+      ]
+    },
+    {
+      "name": "wall_window_tall_large_08",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_large_08.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_large_08"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.16999994218349457,
+        3.000000238418579
+      ]
+    },
+    {
+      "name": "wall_window_tall_large_09",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_large_09.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_large_09"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.30000004172325134,
+        2.999998092651367
+      ]
+    },
+    {
+      "name": "wall_window_tall_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_small_01.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_small_01"
+      ],
+      "bounds": [
+        3.000000476837158,
+        0.17000000178813934,
+        3.000000476837158
+      ]
+    },
+    {
+      "name": "wall_window_tall_small_010",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_small_010.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_small_010"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.30000051856040955,
+        2.999998092651367
+      ]
+    },
+    {
+      "name": "wall_window_tall_small_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_small_02.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_small_02"
+      ],
+      "bounds": [
+        2.9999852180480957,
+        0.16999997198581696,
+        3.0
+      ]
+    },
+    {
+      "name": "wall_window_tall_small_03",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_small_03.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_small_03"
+      ],
+      "bounds": [
+        3.000000476837158,
+        0.17000001668930054,
+        3.0000014305114746
+      ]
+    },
+    {
+      "name": "wall_window_tall_small_04",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_small_04.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_small_04"
+      ],
+      "bounds": [
+        2.9999899864196777,
+        0.30000051856040955,
+        2.9999985694885254
+      ]
+    },
+    {
+      "name": "wall_window_tall_small_05",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_small_05.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_small_05"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.30000051856040955,
+        2.999998092651367
+      ]
+    },
+    {
+      "name": "wall_window_tall_small_06",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_small_06.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_small_06"
+      ],
+      "bounds": [
+        3.000000476837158,
+        0.17000000178813934,
+        3.000000476837158
+      ]
+    },
+    {
+      "name": "wall_window_tall_small_07",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_small_07.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_small_07"
+      ],
+      "bounds": [
+        2.9999852180480957,
+        0.16999997198581696,
+        3.000000476837158
+      ]
+    },
+    {
+      "name": "wall_window_tall_small_08",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_small_08.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_small_08"
+      ],
+      "bounds": [
+        3.000000476837158,
+        0.17000001668930054,
+        3.0000014305114746
+      ]
+    },
+    {
+      "name": "wall_window_tall_small_09",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/wall_window_tall_small_09.fbx",
+      "sourceMeshes": [
+        "wall_window_tall_small_09"
+      ],
+      "bounds": [
+        2.9999899864196777,
+        0.30000051856040955,
+        3.0
+      ]
+    },
+    {
+      "name": "window_centered_double_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_centered_double_01.fbx",
+      "sourceMeshes": [
+        "window_centered_double_01"
+      ],
+      "bounds": [
+        2.409996509552002,
+        0.21666677296161652,
+        1.7446928024291992
+      ]
+    },
+    {
+      "name": "window_centered_double_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_centered_double_02.fbx",
+      "sourceMeshes": [
+        "window_centered_double_02"
+      ],
+      "bounds": [
+        2.409996509552002,
+        0.21666677296161652,
+        1.3771939277648926
+      ]
+    },
+    {
+      "name": "window_centered_double_03",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_centered_double_03.fbx",
+      "sourceMeshes": [
+        "window_centered_double_03"
+      ],
+      "bounds": [
+        2.409996509552002,
+        0.21666677296161652,
+        1.014692783355713
+      ]
+    },
+    {
+      "name": "window_centered_double_04",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_centered_double_04.fbx",
+      "sourceMeshes": [
+        "window_centered_double_04"
+      ],
+      "bounds": [
+        2.409996509552002,
+        0.21666677296161652,
+        0.657193660736084
+      ]
+    },
+    {
+      "name": "window_centered_large_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_centered_large_01.fbx",
+      "sourceMeshes": [
+        "window_centered_large_01"
+      ],
+      "bounds": [
+        2.219996452331543,
+        0.21666666865348816,
+        1.7446932792663574
+      ]
+    },
+    {
+      "name": "window_centered_large_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_centered_large_02.fbx",
+      "sourceMeshes": [
+        "window_centered_large_02"
+      ],
+      "bounds": [
+        2.0999951362609863,
+        0.21666669845581055,
+        1.6246988773345947
+      ]
+    },
+    {
+      "name": "window_centered_large_03",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_centered_large_03.fbx",
+      "sourceMeshes": [
+        "window_centered_large_03"
+      ],
+      "bounds": [
+        2.219996452331543,
+        0.21666666865348816,
+        1.0146937370300293
+      ]
+    },
+    {
+      "name": "window_centered_large_04",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_centered_large_04.fbx",
+      "sourceMeshes": [
+        "window_centered_large_04"
+      ],
+      "bounds": [
+        2.0999951362609863,
+        0.21666669845581055,
+        0.8796994686126709
+      ]
+    },
+    {
+      "name": "window_centered_medium_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_centered_medium_01.fbx",
+      "sourceMeshes": [
+        "window_centered_medium_01"
+      ],
+      "bounds": [
+        1.5599966049194336,
+        0.21666666865348816,
+        1.7446928024291992
+      ]
+    },
+    {
+      "name": "window_centered_medium_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_centered_medium_02.fbx",
+      "sourceMeshes": [
+        "window_centered_medium_02"
+      ],
+      "bounds": [
+        1.3999943733215332,
+        0.21669727563858032,
+        1.624584674835205
+      ]
+    },
+    {
+      "name": "window_centered_medium_03",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_centered_medium_03.fbx",
+      "sourceMeshes": [
+        "window_centered_medium_03"
+      ],
+      "bounds": [
+        1.5599966049194336,
+        0.21666666865348816,
+        1.0146937370300293
+      ]
+    },
+    {
+      "name": "window_centered_medium_04",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_centered_medium_04.fbx",
+      "sourceMeshes": [
+        "window_centered_medium_04"
+      ],
+      "bounds": [
+        1.3999943733215332,
+        0.21669727563858032,
+        0.8795850276947021
+      ]
+    },
+    {
+      "name": "window_centered_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_centered_small_01.fbx",
+      "sourceMeshes": [
+        "window_centered_small_01"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        1.7446928024291992
+      ]
+    },
+    {
+      "name": "window_centered_small_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_centered_small_02.fbx",
+      "sourceMeshes": [
+        "window_centered_small_02"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        1.3771939277648926
+      ]
+    },
+    {
+      "name": "window_centered_small_03",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_centered_small_03.fbx",
+      "sourceMeshes": [
+        "window_centered_small_03"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        1.014692783355713
+      ]
+    },
+    {
+      "name": "window_centered_small_04",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_centered_small_04.fbx",
+      "sourceMeshes": [
+        "window_centered_small_04"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        0.657193660736084
+      ]
+    },
+    {
+      "name": "window_offset_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_offset_small_01.fbx",
+      "sourceMeshes": [
+        "window_offset_small_01"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        1.7446928024291992
+      ]
+    },
+    {
+      "name": "window_offset_small_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_offset_small_02.fbx",
+      "sourceMeshes": [
+        "window_offset_small_02"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        1.7446928024291992
+      ]
+    },
+    {
+      "name": "window_offset_small_03",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_offset_small_03.fbx",
+      "sourceMeshes": [
+        "window_offset_small_03"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        1.3771939277648926
+      ]
+    },
+    {
+      "name": "window_offset_small_04",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_offset_small_04.fbx",
+      "sourceMeshes": [
+        "window_offset_small_04"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        1.3771939277648926
+      ]
+    },
+    {
+      "name": "window_offset_small_05",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_offset_small_05.fbx",
+      "sourceMeshes": [
+        "window_offset_small_05"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        1.014692783355713
+      ]
+    },
+    {
+      "name": "window_offset_small_06",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_offset_small_06.fbx",
+      "sourceMeshes": [
+        "window_offset_small_06"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        1.014692783355713
+      ]
+    },
+    {
+      "name": "window_offset_small_07",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_offset_small_07.fbx",
+      "sourceMeshes": [
+        "window_offset_small_07"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        0.657193660736084
+      ]
+    },
+    {
+      "name": "window_offset_small_08",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_offset_small_08.fbx",
+      "sourceMeshes": [
+        "window_offset_small_08"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        0.657193660736084
+      ]
+    },
+    {
+      "name": "window_tall_large_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_tall_large_01.fbx",
+      "sourceMeshes": [
+        "window_tall_large_01"
+      ],
+      "bounds": [
+        2.8355722427368164,
+        0.26778674125671387,
+        2.01973819732666
+      ]
+    },
+    {
+      "name": "window_tall_large_010",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_tall_large_010.fbx",
+      "sourceMeshes": [
+        "window_tall_large_010"
+      ],
+      "bounds": [
+        3.0000014305114746,
+        0.17312371730804443,
+        0.7500019073486328
+      ]
+    },
+    {
+      "name": "window_tall_large_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_tall_large_02.fbx",
+      "sourceMeshes": [
+        "window_tall_large_02"
+      ],
+      "bounds": [
+        2.0000033378601074,
+        0.06666667759418488,
+        3.000000476837158
+      ]
+    },
+    {
+      "name": "window_tall_large_03",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_tall_large_03.fbx",
+      "sourceMeshes": [
+        "window_tall_large_03"
+      ],
+      "bounds": [
+        3.0000014305114746,
+        0.17312371730804443,
+        3.000000476837158
+      ]
+    },
+    {
+      "name": "window_tall_large_04",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_tall_large_04.fbx",
+      "sourceMeshes": [
+        "window_tall_large_04"
+      ],
+      "bounds": [
+        2.000004768371582,
+        0.06666670739650726,
+        2.6249959468841553
+      ]
+    },
+    {
+      "name": "window_tall_large_05",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_tall_large_05.fbx",
+      "sourceMeshes": [
+        "window_tall_large_05"
+      ],
+      "bounds": [
+        3.0000014305114746,
+        0.17312371730804443,
+        2.6249961853027344
+      ]
+    },
+    {
+      "name": "window_tall_large_06",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_tall_large_06.fbx",
+      "sourceMeshes": [
+        "window_tall_large_06"
+      ],
+      "bounds": [
+        2.8355722427368164,
+        0.26778674125671387,
+        0.15198636054992676
+      ]
+    },
+    {
+      "name": "window_tall_large_08",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_tall_large_08.fbx",
+      "sourceMeshes": [
+        "window_tall_large_08"
+      ],
+      "bounds": [
+        3.0000014305114746,
+        0.17312371730804443,
+        0.7500019073486328
+      ]
+    },
+    {
+      "name": "window_tall_small_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_tall_small_01.fbx",
+      "sourceMeshes": [
+        "window_tall_small_01"
+      ],
+      "bounds": [
+        2.035576820373535,
+        0.26778677105903625,
+        2.01973819732666
+      ]
+    },
+    {
+      "name": "window_tall_small_010",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_tall_small_010.fbx",
+      "sourceMeshes": [
+        "window_tall_small_010"
+      ],
+      "bounds": [
+        2.0000009536743164,
+        0.17312371730804443,
+        0.7500017881393433
+      ]
+    },
+    {
+      "name": "window_tall_small_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_tall_small_02.fbx",
+      "sourceMeshes": [
+        "window_tall_small_02"
+      ],
+      "bounds": [
+        1.3466637134552002,
+        0.06666667759418488,
+        3.0000009536743164
+      ]
+    },
+    {
+      "name": "window_tall_small_03",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_tall_small_03.fbx",
+      "sourceMeshes": [
+        "window_tall_small_03"
+      ],
+      "bounds": [
+        2.0000009536743164,
+        0.17312371730804443,
+        2.999999523162842
+      ]
+    },
+    {
+      "name": "window_tall_small_04",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_tall_small_04.fbx",
+      "sourceMeshes": [
+        "window_tall_small_04"
+      ],
+      "bounds": [
+        1.3466663360595703,
+        0.06669734418392181,
+        2.624891757965088
+      ]
+    },
+    {
+      "name": "window_tall_small_05",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_tall_small_05.fbx",
+      "sourceMeshes": [
+        "window_tall_small_05"
+      ],
+      "bounds": [
+        2.0000009536743164,
+        0.17312371730804443,
+        2.6248908042907715
+      ]
+    },
+    {
+      "name": "window_tall_small_06",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_tall_small_06.fbx",
+      "sourceMeshes": [
+        "window_tall_small_06"
+      ],
+      "bounds": [
+        2.035576820373535,
+        0.26778677105903625,
+        0.15198636054992676
+      ]
+    },
+    {
+      "name": "window_tall_small_08",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_factory_facade/window_tall_small_08.fbx",
+      "sourceMeshes": [
+        "window_tall_small_08"
+      ],
+      "bounds": [
+        2.0000009536743164,
+        0.17312371730804443,
+        0.7500017881393433
+      ]
+    },
+    {
+      "name": "modular_fire_escape_ladder_bottom",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_fire_escape/modular_fire_escape_ladder_bottom.fbx",
+      "sourceMeshes": [
+        "modular_fire_escape_ladder_bottom"
+      ],
+      "bounds": [
+        0.7749732732772827,
+        0.06441383808851242,
+        6.465871810913086
+      ]
+    },
+    {
+      "name": "modular_fire_escape_platform_bottom",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_fire_escape/modular_fire_escape_platform_bottom.fbx",
+      "sourceMeshes": [
+        "modular_fire_escape_platform_bottom"
+      ],
+      "bounds": [
+        4.793094158172607,
+        1.3644320964813232,
+        0.7724194526672363
+      ]
+    },
+    {
+      "name": "modular_fire_escape_platform_railing",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_fire_escape/modular_fire_escape_platform_railing.fbx",
+      "sourceMeshes": [
+        "modular_fire_escape_platform_railing"
+      ],
+      "bounds": [
+        2.2339792251586914,
+        0.7303793430328369,
+        0.9857151508331299
+      ]
+    },
+    {
+      "name": "modular_fire_escape_railing_bottom",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_fire_escape/modular_fire_escape_railing_bottom.fbx",
+      "sourceMeshes": [
+        "modular_fire_escape_railing_bottom"
+      ],
+      "bounds": [
+        4.711300849914551,
+        1.4077428579330444,
+        0.9841318130493164
+      ]
+    },
+    {
+      "name": "modular_fire_escape_railing_middle",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_fire_escape/modular_fire_escape_railing_middle.fbx",
+      "sourceMeshes": [
+        "modular_fire_escape_railing_middle"
+      ],
+      "bounds": [
+        4.711301326751709,
+        1.3866746425628662,
+        0.9841316938400269
+      ]
+    },
+    {
+      "name": "modular_fire_escape_stairs",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_fire_escape/modular_fire_escape_stairs.fbx",
+      "sourceMeshes": [
+        "modular_fire_escape_stairs"
+      ],
+      "bounds": [
+        2.9946389198303223,
+        1.3715578317642212,
+        4.0055251121521
+      ]
+    },
+    {
+      "name": "modular_wooden_pier_planks",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_wooden_pier/modular_wooden_pier_planks.fbx",
+      "sourceMeshes": [
+        "modular_wooden_pier_planks"
+      ],
+      "bounds": [
+        2.5213563442230225,
+        2.2051942348480225,
+        0.08031343668699265
+      ]
+    },
+    {
+      "name": "modular_wooden_pier_poles",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_wooden_pier/modular_wooden_pier_poles.fbx",
+      "sourceMeshes": [
+        "modular_wooden_pier_poles"
+      ],
+      "bounds": [
+        2.2118451595306396,
+        3.0810225009918213,
+        3.849259376525879
+      ]
+    },
+    {
+      "name": "modular_wooden_pier_section_01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_wooden_pier/modular_wooden_pier_section_01.fbx",
+      "sourceMeshes": [
+        "modular_wooden_pier_section_01"
+      ],
+      "bounds": [
+        2.489583969116211,
+        3.517908811569214,
+        4.266040802001953
+      ]
+    },
+    {
+      "name": "modular_wooden_pier_section_02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_wooden_pier/modular_wooden_pier_section_02.fbx",
+      "sourceMeshes": [
+        "modular_wooden_pier_section_02"
+      ],
+      "bounds": [
+        2.5070314407348633,
+        3.392314910888672,
+        3.8376777172088623
+      ]
+    },
+    {
+      "name": "modular_wooden_pier_section_03",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_wooden_pier/modular_wooden_pier_section_03.fbx",
+      "sourceMeshes": [
+        "modular_wooden_pier_section_03"
+      ],
+      "bounds": [
+        2.5070314407348633,
+        3.3923158645629883,
+        3.837677478790283
+      ]
+    },
+    {
+      "name": "modular_wooden_pier_section_04",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_wooden_pier/modular_wooden_pier_section_04.fbx",
+      "sourceMeshes": [
+        "modular_wooden_pier_section_04"
+      ],
+      "bounds": [
+        2.4582791328430176,
+        3.1583991050720215,
+        4.157828330993652
+      ]
+    },
+    {
+      "name": "modular_wooden_pier_section_05",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_wooden_pier/modular_wooden_pier_section_05.fbx",
+      "sourceMeshes": [
+        "modular_wooden_pier_section_05"
+      ],
+      "bounds": [
+        3.101562976837158,
+        0.4646182060241699,
+        7.001336574554443
+      ]
+    },
+    {
+      "name": "modular_industrial_pipes_01_pipe01",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_industrial_pipes_01/modular_industrial_pipes_01_pipe01.fbx",
+      "sourceMeshes": [
+        "modular_industrial_pipes_01_pipe01"
+      ],
+      "bounds": [
+        0.20710761845111847,
+        0.20632138848304749,
+        0.8590618968009949
+      ]
+    },
+    {
+      "name": "modular_industrial_pipes_01_pipe02",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_industrial_pipes_01/modular_industrial_pipes_01_pipe02.fbx",
+      "sourceMeshes": [
+        "modular_industrial_pipes_01_pipe02"
+      ],
+      "bounds": [
+        0.2071039080619812,
+        0.20632098615169525,
+        1.9546396732330322
+      ]
+    },
+    {
+      "name": "modular_industrial_pipes_01_pipe03",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_industrial_pipes_01/modular_industrial_pipes_01_pipe03.fbx",
+      "sourceMeshes": [
+        "modular_industrial_pipes_01_pipe03"
+      ],
+      "bounds": [
+        0.5986486673355103,
+        0.2063768208026886,
+        1.3143846988677979
+      ]
+    },
+    {
+      "name": "modular_industrial_pipes_01_pipe04",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_industrial_pipes_01/modular_industrial_pipes_01_pipe04.fbx",
+      "sourceMeshes": [
+        "modular_industrial_pipes_01_pipe04"
+      ],
+      "bounds": [
+        0.4241492748260498,
+        0.20632076263427734,
+        0.4446014165878296
+      ]
+    },
+    {
+      "name": "modular_industrial_pipes_01_pipe05",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_industrial_pipes_01/modular_industrial_pipes_01_pipe05.fbx",
+      "sourceMeshes": [
+        "modular_industrial_pipes_01_pipe05"
+      ],
+      "bounds": [
+        0.5980877876281738,
+        0.20634499192237854,
+        0.43286627531051636
+      ]
+    },
+    {
+      "name": "modular_industrial_pipes_01_pipe06",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_industrial_pipes_01/modular_industrial_pipes_01_pipe06.fbx",
+      "sourceMeshes": [
+        "modular_industrial_pipes_01_pipe06"
+      ],
+      "bounds": [
+        0.30873069167137146,
+        0.20638155937194824,
+        0.3575584292411804
+      ]
+    },
+    {
+      "name": "modular_industrial_pipes_01_pipe07",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_industrial_pipes_01/modular_industrial_pipes_01_pipe07.fbx",
+      "sourceMeshes": [
+        "modular_industrial_pipes_01_pipe07"
+      ],
+      "bounds": [
+        0.35680580139160156,
+        0.20638170838356018,
+        0.411080539226532
+      ]
+    },
+    {
+      "name": "modular_industrial_pipes_01_pipe08",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_industrial_pipes_01/modular_industrial_pipes_01_pipe08.fbx",
+      "sourceMeshes": [
+        "modular_industrial_pipes_01_pipe08"
+      ],
+      "bounds": [
+        0.26629501581192017,
+        0.3075922727584839,
+        0.37882888317108154
+      ]
+    },
+    {
+      "name": "overhead_crane",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/overhead_crane/overhead_crane.fbx",
+      "sourceMeshes": [
+        "overhead_crane"
+      ],
+      "bounds": [
+        12.218733787536621,
+        1.7902510166168213,
+        3.246145725250244
+      ]
+    },
+    {
+      "name": "overhead_crane_rails",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/overhead_crane/overhead_crane_rails.fbx",
+      "sourceMeshes": [
+        "overhead_crane_rails"
+      ],
+      "bounds": [
+        12.491660118103027,
+        4.000000476837158,
+        0.7259173393249512
+      ]
+    },
+    {
+      "name": "overhead_crane_winch",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/overhead_crane/overhead_crane_winch.fbx",
+      "sourceMeshes": [
+        "overhead_crane_winch"
+      ],
+      "bounds": [
+        4.581447601318359,
+        1.221912145614624,
+        4.5405144691467285
+      ]
+    },
+    {
+      "name": "Chimneys",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Models/Chimneys.fbx",
+      "sourceMeshes": [
+        "Object_2",
+        "Object_3",
+        "Object_4",
+        "Object_5",
+        "Object_6",
+        "Sketchfab_model",
+        "TripleSchorn.obj.cleaner.materialmerger.gles"
+      ],
+      "bounds": [
+        2.200000047683716,
+        18.45267677307129,
+        8.199999809265137
+      ]
+    },
+    {
+      "name": "Gear",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Models/Gear.fbx",
+      "sourceMeshes": [
+        "1fea66e988f24d06b83e8b8806ae4b96.fbx",
+        "Gear",
+        "Gear_Gear_0",
+        "GearRust",
+        "GearRust_GearRust_0",
+        "RootNode",
+        "Sketchfab_model"
+      ],
+      "bounds": [
+        7.545400142669678,
+        7.540599822998047,
+        0.9842000007629395
+      ]
+    },
+    {
+      "name": "modular_fire_escape_platform_middle",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_fire_escape/modular_fire_escape_platform_middle.fbx",
+      "sourceMeshes": [
+        "modular_fire_escape_platform_middle"
+      ],
+      "bounds": [
+        4.742369651794434,
+        1.3629670143127441,
+        0.7611182332038879
+      ]
+    },
+    {
+      "name": "Wewe",
+      "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Models/Wewe.fbx",
+      "clips": [
+        "mixamo.com_Object_4"
+      ],
+      "source": "artist rig/animation; no new clip",
+      "removedSourceHelpers": [
+        "unskinned materialless Icosphere"
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "name": "P3_Sack_Material",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.5,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Sack_MaterialAlbedo.png",
+      "Normal": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Sack_MaterialNormal.png",
+      "MetalRough": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Sack_MaterialMetalRough.png"
+    },
+    {
+      "name": "P3_IndustrialBuilding_building",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.5,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_IndustrialBuilding_buildingAlbedo.png",
+      "Normal": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_IndustrialBuilding_buildingNormal.png",
+      "MetalRough": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_IndustrialBuilding_buildingMetalRough.png"
+    },
+    {
+      "name": "P3_IndustrialBuilding_building_floor",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.8211145401000977,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_IndustrialBuilding_building_floorAlbedo.png"
+    },
+    {
+      "name": "P3_IndustrialBuilding_building_windows",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.5,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_IndustrialBuilding_building_windowsAlbedo.png",
+      "Normal": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_IndustrialBuilding_building_windowsNormal.png",
+      "MetalRough": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_IndustrialBuilding_building_windowsMetalRough.png"
+    },
+    {
+      "name": "P3_Doll_Voodoo_Doll",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.5,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Doll_Voodoo_DollAlbedo.png",
+      "Normal": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Doll_Voodoo_DollNormal.png",
+      "MetalRough": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Doll_Voodoo_DollMetalRough.png"
+    },
+    {
+      "name": "P3_Boiler_Box001__0",
+      "color": [
+        0.12256760150194168,
+        0.11917868256568909,
+        0.11917868256568909,
+        1.0
+      ],
+      "roughness": 1.0,
+      "metallic": 0.0
+    },
+    {
+      "name": "P3_Boiler_Material_21",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.8929713368415833,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Boiler_Material_21Albedo.png",
+      "Normal": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Boiler_Material_21Normal.png"
+    },
+    {
+      "name": "P3_Sickle_lambert2SG",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 1.0,
+      "metallic": 0.5383002758026123,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Sickle_lambert2SGAlbedo.png"
+    },
+    {
+      "name": "P3_Locker_aiStandardSurface1",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.5,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Locker_aiStandardSurface1Albedo.png",
+      "Normal": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Locker_aiStandardSurface1Normal.png",
+      "MetalRough": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Locker_aiStandardSurface1MetalRough.png"
+    },
+    {
+      "name": "P3_Cloth_M_fabric",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.5,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Cloth_M_fabricAlbedo.png",
+      "Normal": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Cloth_M_fabricNormal.png",
+      "MetalRough": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Cloth_M_fabricMetalRough.png"
+    },
+    {
+      "name": "P3_MineCart_defaultMat",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.6000000238418579,
+      "metallic": 0.75
+    },
+    {
+      "name": "P3_Shoe_sh_oldOxfordShoe",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.6,
+      "metallic": 0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Shoe_sh_oldOxfordShoeAlbedo.png"
+    },
+    {
+      "name": "P3_Chimneys_AnotherBricksWall",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.9818906784057617,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Chimneys_AnotherBricksWallAlbedo.png"
+    },
+    {
+      "name": "P3_Chimneys_Betonos",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.806350827217102,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Chimneys_BetonosAlbedo.png"
+    },
+    {
+      "name": "P3_Chimneys_BrickBetonMaterial",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.9652854204177856,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Chimneys_BrickBetonMaterialAlbedo.png"
+    },
+    {
+      "name": "P3_Chimneys_Metall",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.1690167635679245,
+      "metallic": 0.7334222793579102
+    },
+    {
+      "name": "P3_Chimneys_redWarnLight",
+      "color": [
+        0.800000011920929,
+        0.007203999906778336,
+        0.0,
+        1.0
+      ],
+      "roughness": 0.806350827217102,
+      "metallic": 0.0
+    },
+    {
+      "name": "P3_Gear_Gear",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.5,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Gear_GearAlbedo.png",
+      "Normal": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Gear_GearNormal.png",
+      "MetalRough": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Gear_GearMetalRough.png"
+    },
+    {
+      "name": "P3_Gear_GearRust",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.5,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Gear_GearRustAlbedo.png",
+      "Normal": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Gear_GearRustNormal.png",
+      "MetalRough": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Gear_GearRustMetalRough.png"
+    },
+    {
+      "name": "P3_Wewe_auto_7mat",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.9302135109901428,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Wewe_auto_7matAlbedo.png"
+    },
+    {
+      "name": "P3_Wewe_auto_8mat",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.9302135109901428,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Wewe_auto_8matAlbedo.png"
+    },
+    {
+      "name": "P3_Wewe_auto_9mat",
+      "color": [
+        0.01960800029337406,
+        0.521569013595581,
+        0.01960800029337406,
+        1.0
+      ],
+      "roughness": 0.9302135109901428,
+      "metallic": 0.0
+    },
+    {
+      "name": "P3_Wewe_Chipboardmat",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.9302135109901428,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Wewe_ChipboardmatAlbedo.png"
+    },
+    {
+      "name": "P3_Wewe_Chris_Pantsmat",
+      "color": [
+        0.4392159879207611,
+        0.3921569883823395,
+        0.2901960015296936,
+        1.0
+      ],
+      "roughness": 0.9302135109901428,
+      "metallic": 0.0
+    },
+    {
+      "name": "P3_Wewe_dirtypaper1_jpgmat",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.9302135109901428,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Wewe_dirtypaper1_jpgmatAlbedo.png"
+    },
+    {
+      "name": "P3_Wewe_hair1mat",
+      "color": [
+        0.11764699965715408,
+        0.11764699965715408,
+        0.11764699965715408,
+        1.0
+      ],
+      "roughness": 0.9302135109901428,
+      "metallic": 0.0
+    },
+    {
+      "name": "P3_Wewe_LambentFemale1mat",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.9302135109901428,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Wewe_LambentFemale1matAlbedo.png"
+    },
+    {
+      "name": "P3_Wewe_skin_texture2_jpg1_mat",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.9302135109901428,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Wewe_skin_texture2_jpg1_matAlbedo.png"
+    },
+    {
+      "name": "P3_Wewe_skin_texture2_jpgmat",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.9302135109901428,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Wewe_skin_texture2_jpgmatAlbedo.png"
+    },
+    {
+      "name": "P3_Wewe_Vegetation_Bark_Ponderosa_1mat",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "roughness": 0.9302135109901428,
+      "metallic": 0.0,
+      "Albedo": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Converted/Textures/P3_Wewe_Vegetation_Bark_Ponderosa_1matAlbedo.png"
+    }
+  ],
+  "modules": [
+    {
+      "group": "modular_factory_facade",
+      "name": "base_end_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.2000000923871994,
+        0.2000000923871994,
+        0.75
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "base_end_02",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.2000001072883606,
+        0.2000001072883606,
+        0.75
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "base_standard_corner_large_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        3.1999998092651367,
+        3.200000047683716,
+        0.75
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "base_standard_corner_large_02",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        3.0,
+        3.0,
+        0.75
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "base_standard_corner_small_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        2.1999998092651367,
+        2.200000047683716,
+        0.75
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "base_standard_corner_small_02",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        2.0,
+        2.0,
+        0.75
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "base_standard_standard_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        0.75
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice01_end_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.21778321266174316,
+        0.16778811812400818,
+        0.1519855260848999
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice01_end_02",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.21780163049697876,
+        0.16778811812400818,
+        0.1519855260848999
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice01_pier_corner_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.43558329343795776,
+        0.43557503819465637,
+        0.1519855260848999
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice01_pier_corner_02",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.3677981495857239,
+        0.36778688430786133,
+        0.13874031603336334
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice01_pier_standard_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.4355815351009369,
+        0.16778811812400818,
+        0.1519855260848999
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice01_standard_corner_large_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        3.0677876472473145,
+        3.0677900314331055,
+        0.1519855260848999
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice01_standard_corner_large_02",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        3.099999189376831,
+        3.1000027656555176,
+        0.1519855260848999
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice01_standard_corner_small_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        2.0677876472473145,
+        2.0677900314331055,
+        0.1519855260848999
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice01_standard_corner_small_02",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        2.099999189376831,
+        2.1000027656555176,
+        0.1519855260848999
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice01_standard_standard_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        3.000007152557373,
+        0.16819985210895538,
+        0.1519855409860611
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice02_end_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.1731296181678772,
+        0.256873220205307,
+        0.16000008583068848
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice02_end_02",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.1731296181678772,
+        0.256873220205307,
+        0.16000008583068848
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice02_pier_corner_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.36943912506103516,
+        0.36943215131759644,
+        0.19521522521972656
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice02_pier_corner_02",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.4147101044654846,
+        0.4147225022315979,
+        0.19521522521972656
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice02_pier_standard_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.3694327175617218,
+        0.21471595764160156,
+        0.19521524012088776
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice02_standard_corner_large_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        3.0568747520446777,
+        3.0568745136260986,
+        0.16000008583068848
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice02_standard_corner_large_02",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        3.11625075340271,
+        3.1162502765655518,
+        0.16000008583068848
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice02_standard_corner_small_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        2.0568747520446777,
+        2.0568745136260986,
+        0.16000008583068848
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice02_standard_corner_small_02",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        2.11625075340271,
+        2.1162502765655518,
+        0.16000008583068848
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice02_standard_standard_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        3.0000014305114746,
+        0.17312370240688324,
+        0.16000017523765564
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice03_standard_corner_large_01",
+      "materials": [
+        "modular_factory_facade_windows"
+      ],
+      "bounds": [
+        3.029998302459717,
+        3.029998302459717,
+        0.12469269335269928
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice03_standard_corner_large_02",
+      "materials": [
+        "modular_factory_facade_windows"
+      ],
+      "bounds": [
+        3.176248073577881,
+        3.1462478637695312,
+        0.12469270080327988
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice03_standard_corner_small_01",
+      "materials": [
+        "modular_factory_facade_windows"
+      ],
+      "bounds": [
+        2.029998302459717,
+        2.029998302459717,
+        0.12469269335269928
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice03_standard_corner_small_02",
+      "materials": [
+        "modular_factory_facade_windows"
+      ],
+      "bounds": [
+        2.176248073577881,
+        2.1462478637695312,
+        0.12469270080327988
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "cornice03_standard_standard_01",
+      "materials": [
+        "modular_factory_facade_windows"
+      ],
+      "bounds": [
+        2.9999966621398926,
+        0.17624957859516144,
+        0.12469270080327988
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "crown_end_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.22999995946884155,
+        0.32999998331069946,
+        0.32000020146369934
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "crown_end_02",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.22999995946884155,
+        0.32999998331069946,
+        0.32000020146369934
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "crown_pier_corner_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.5599998235702515,
+        0.5599997639656067,
+        0.3234681785106659
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "crown_pier_corner_02",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.4099962115287781,
+        0.4099997282028198,
+        0.3234681785106659
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "crown_pier_pedestal_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.5599995851516724,
+        0.20999988913536072,
+        0.3234681785106659
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "crown_standard_corner_large_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        3.130000114440918,
+        3.130000114440918,
+        0.32000020146369934
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "crown_standard_corner_large_02",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        3.0000038146972656,
+        3.0000038146972656,
+        0.32000020146369934
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "crown_standard_corner_small_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        2.130000114440918,
+        2.130000114440918,
+        0.32000020146369934
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "crown_standard_corner_small_02",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        2.0000038146972656,
+        2.0000038146972656,
+        0.32000020146369934
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "crown_standard_standard_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        3.0,
+        0.12999999523162842,
+        0.32000020146369934
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "dado_door_centered_large_01",
+      "materials": [
+        "modular_factory_facade_garage"
+      ],
+      "bounds": [
+        3.000000476837158,
+        0.46000003814697266,
+        0.5500001311302185
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "dado_door_centered_small_01",
+      "materials": [
+        "modular_factory_facade_garage"
+      ],
+      "bounds": [
+        2.999997138977051,
+        0.46000006794929504,
+        0.5500001311302185
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "dado_door_recessed_large_01",
+      "materials": [
+        "modular_factory_facade_garage"
+      ],
+      "bounds": [
+        3.0000011920928955,
+        0.46000003814697266,
+        0.5500000715255737
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "dado_door_recessed_small_01",
+      "materials": [
+        "modular_factory_facade_garage"
+      ],
+      "bounds": [
+        3.0,
+        0.46000006794929504,
+        0.5500001311302185
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "dado_end_01",
+      "materials": [
+        "modular_factory_facade_garage"
+      ],
+      "bounds": [
+        0.0999971330165863,
+        0.46000003814697266,
+        0.550000011920929
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "dado_end_02",
+      "materials": [
+        "modular_factory_facade_garage"
+      ],
+      "bounds": [
+        0.09999459981918335,
+        0.46000003814697266,
+        0.550000011920929
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "dado_garage_centered_01",
+      "materials": [
+        "modular_factory_facade_garage"
+      ],
+      "bounds": [
+        5.999997138977051,
+        0.46000006794929504,
+        0.5500001311302185
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "dado_garage_door_01",
+      "materials": [
+        "modular_factory_facade_garage"
+      ],
+      "bounds": [
+        6.000000953674316,
+        0.46000003814697266,
+        0.5500000715255737
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "dado_garage_door_02",
+      "materials": [
+        "modular_factory_facade_garage"
+      ],
+      "bounds": [
+        6.000000953674316,
+        0.46000003814697266,
+        0.5500000715255737
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "dado_garage_double_01",
+      "materials": [
+        "modular_factory_facade_garage"
+      ],
+      "bounds": [
+        8.999998092651367,
+        0.46000006794929504,
+        0.5500001311302185
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "dado_pier_corner_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.4000062942504883,
+        0.39999979734420776,
+        0.7500000596046448
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "dado_pier_corner_02",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.4299936890602112,
+        0.43000608682632446,
+        0.7500000596046448
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "dado_pier_pedestal_01",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        0.3999998867511749,
+        0.23000001907348633,
+        0.75
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "dado_standard_corner_large_01",
+      "materials": [
+        "modular_factory_facade_garage"
+      ],
+      "bounds": [
+        3.100003242492676,
+        3.1000027656555176,
+        0.5499999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "dado_standard_corner_large_02",
+      "materials": [
+        "modular_factory_facade_garage"
+      ],
+      "bounds": [
+        3.000002384185791,
+        3.0000057220458984,
+        0.5499999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "dado_standard_corner_small_01",
+      "materials": [
+        "modular_factory_facade_garage"
+      ],
+      "bounds": [
+        2.100003242492676,
+        2.1000027656555176,
+        0.5499999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "dado_standard_corner_small_02",
+      "materials": [
+        "modular_factory_facade_garage"
+      ],
+      "bounds": [
+        2.000002384185791,
+        2.0000057220458984,
+        0.5499999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "dado_standard_standard_01",
+      "materials": [
+        "modular_factory_facade_garage"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.10000049322843552,
+        0.5499999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "door_centered_large_01",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_brick_doors"
+      ],
+      "bounds": [
+        1.7999963760375977,
+        0.2350001037120819,
+        2.3299994468688965
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "door_centered_small_01",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_brick_doors"
+      ],
+      "bounds": [
+        1.2599966526031494,
+        0.2350001037120819,
+        2.3299994468688965
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "door_centered_small_02",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_brick_doors"
+      ],
+      "bounds": [
+        2.909998893737793,
+        0.2350001037120819,
+        3.2109994888305664
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "door_garage_centered_01",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_garage"
+      ],
+      "bounds": [
+        3.3199965953826904,
+        0.5300009250640869,
+        2.739999532699585
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "door_garage_door_01",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_garage",
+        "modular_factory_facade_brick_doors"
+      ],
+      "bounds": [
+        5.3199968338012695,
+        0.5300009250640869,
+        2.739999532699585
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "door_garage_door_02",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_garage",
+        "modular_factory_facade_brick_doors"
+      ],
+      "bounds": [
+        5.3199968338012695,
+        0.5300009250640869,
+        2.739999532699585
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "door_garage_double_01",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_garage"
+      ],
+      "bounds": [
+        7.319996356964111,
+        0.5300009250640869,
+        2.739999532699585
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "door_recessed_large_01",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_garage",
+        "modular_factory_facade_brick_doors"
+      ],
+      "bounds": [
+        2.3199965953826904,
+        0.5300009250640869,
+        2.739999532699585
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "door_recessed_small_01",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_garage",
+        "modular_factory_facade_brick_doors"
+      ],
+      "bounds": [
+        1.3199965953826904,
+        0.5300004482269287,
+        2.739999532699585
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "door_recessed_small_02",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_garage",
+        "modular_factory_facade_brick_doors"
+      ],
+      "bounds": [
+        2.9399988651275635,
+        0.5300004482269287,
+        3.620999574661255
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "door_window_small_01",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass",
+        "modular_factory_facade_brick_doors"
+      ],
+      "bounds": [
+        2.909998893737793,
+        0.23500022292137146,
+        3.215999126434326
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "door_window_small_02",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass",
+        "modular_factory_facade_brick_doors"
+      ],
+      "bounds": [
+        4.22999906539917,
+        0.23500019311904907,
+        3.215999126434326
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "door_window_small_03",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass",
+        "modular_factory_facade_brick_doors"
+      ],
+      "bounds": [
+        2.909998893737793,
+        0.23500022292137146,
+        3.2159996032714844
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "door_window_small_04",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass",
+        "modular_factory_facade_brick_doors"
+      ],
+      "bounds": [
+        4.22999906539917,
+        0.23500019311904907,
+        3.2159996032714844
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "door_window_small_05",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass",
+        "modular_factory_facade_brick_doors"
+      ],
+      "bounds": [
+        2.909998893737793,
+        0.23500022292137146,
+        3.23599910736084
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "door_window_small_06",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass",
+        "modular_factory_facade_brick_doors"
+      ],
+      "bounds": [
+        4.22999906539917,
+        0.23500019311904907,
+        3.23599910736084
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "door_window_small_07",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass",
+        "modular_factory_facade_brick_doors"
+      ],
+      "bounds": [
+        2.909998893737793,
+        0.23500022292137146,
+        3.2360000610351562
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "door_window_small_08",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass",
+        "modular_factory_facade_brick_doors"
+      ],
+      "bounds": [
+        4.22999906539917,
+        0.23500019311904907,
+        3.2360000610351562
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_door_centered_large_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0,
+        0.0,
+        3.0
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_door_centered_small_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0,
+        0.0,
+        3.000000238418579
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_door_centered_small_02",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0,
+        0.0,
+        3.000000238418579
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_door_garage_centered_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        6.000000953674316,
+        0.26000016927719116,
+        3.000000238418579
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_door_garage_door_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        6.000000953674316,
+        0.26000016927719116,
+        3.000000476837158
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_door_garage_door_02",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        6.000000953674316,
+        0.26000016927719116,
+        3.000000476837158
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_door_garage_double_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        9.000000953674316,
+        0.26000016927719116,
+        3.000000238418579
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_door_recessed_large_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000011920928955,
+        0.26000016927719116,
+        3.000000476837158
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_door_recessed_small_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000011920928955,
+        0.26000016927719116,
+        3.000000476837158
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_door_recessed_small_02",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000011920928955,
+        0.26000016927719116,
+        3.000000476837158
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_door_window_small_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        2.999999523162842,
+        0.20000000298023224,
+        3.000000238418579
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_door_window_small_02",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.000000238418579,
+        0.20000000298023224,
+        3.000000238418579
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_door_window_small_03",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        2.999999523162842,
+        0.20000000298023224,
+        3.000000238418579
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_door_window_small_04",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.000000476837158,
+        0.20000000298023224,
+        3.000000238418579
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_door_window_small_05",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        2.999999523162842,
+        0.20000000298023224,
+        3.000000238418579
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_door_window_small_06",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000007152557373,
+        0.20000000298023224,
+        3.000000238418579
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_door_window_small_07",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        2.999999523162842,
+        0.20000000298023224,
+        3.000000238418579
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_door_window_small_08",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.000000476837158,
+        0.20000000298023224,
+        3.000000238418579
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_pier_corner_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        0.3000013828277588,
+        0.29999643564224243,
+        3.0
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_pier_corner_02",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        0.2799965739250183,
+        0.2800014913082123,
+        3.0
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_pier_standard_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        0.30000126361846924,
+        0.08000011742115021,
+        3.0
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_standard_corner_large_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0,
+        3.0,
+        3.0
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_standard_corner_large_02",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.000000238418579,
+        3.0000007152557373,
+        3.0
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_standard_corner_small_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        2.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_standard_corner_small_02",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        2.0,
+        2.0000007152557373,
+        3.0
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_standard_standard_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0,
+        0.0,
+        3.0
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_double_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        2.999999761581421,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_double_02",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_double_03",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.000000238418579,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_double_04",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_large_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000038146972656,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_large_02",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000038146972656,
+        0.25,
+        2.9999990463256836
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_large_03",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_large_04",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000038146972656,
+        0.25,
+        3.0
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_large_05",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000038146972656,
+        0.25,
+        2.9999990463256836
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_large_06",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000038146972656,
+        0.25,
+        3.0
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_medium_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        2.9999914169311523,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_medium_02",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000076293945312,
+        0.2500004768371582,
+        2.9999990463256836
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_medium_03",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_medium_04",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000076293945312,
+        0.2500004768371582,
+        3.0
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_medium_05",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000076293945312,
+        0.2500004768371582,
+        2.9999990463256836
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_medium_06",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000076293945312,
+        0.2500004768371582,
+        3.0
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_small_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_small_02",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_small_03",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_centered_small_04",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_offset_small_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        2.999999761581421,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_offset_small_02",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_offset_small_03",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_offset_small_04",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_offset_small_05",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.000000238418579,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_offset_small_06",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_offset_small_07",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_offset_small_08",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0,
+        0.20000000298023224,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_large_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.16999998688697815,
+        3.000000476837158
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_large_010",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.30000004172325134,
+        2.999998092651367
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_large_02",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.16999994218349457,
+        3.000000476837158
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_large_03",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.17000003159046173,
+        3.0000014305114746
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_large_04",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.30000004172325134,
+        2.999998092651367
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_large_05",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.30000004172325134,
+        2.999998092651367
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_large_06",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.16999998688697815,
+        3.000000476837158
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_large_07",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.16999994218349457,
+        3.000000476837158
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_large_08",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.16999994218349457,
+        3.000000238418579
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_large_09",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.30000004172325134,
+        2.999998092651367
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_small_01",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.000000476837158,
+        0.17000000178813934,
+        3.000000476837158
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_small_010",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.30000051856040955,
+        2.999998092651367
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_small_02",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        2.9999852180480957,
+        0.16999997198581696,
+        3.0
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_small_03",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.000000476837158,
+        0.17000001668930054,
+        3.0000014305114746
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_small_04",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        2.9999899864196777,
+        0.30000051856040955,
+        2.9999985694885254
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_small_05",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.0000009536743164,
+        0.30000051856040955,
+        2.999998092651367
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_small_06",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.000000476837158,
+        0.17000000178813934,
+        3.000000476837158
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_small_07",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        2.9999852180480957,
+        0.16999997198581696,
+        3.000000476837158
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_small_08",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        3.000000476837158,
+        0.17000001668930054,
+        3.0000014305114746
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "wall_window_tall_small_09",
+      "materials": [
+        "modular_factory_facade_brick"
+      ],
+      "bounds": [
+        2.9999899864196777,
+        0.30000051856040955,
+        3.0
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_centered_double_01",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        2.409996509552002,
+        0.21666677296161652,
+        1.7446928024291992
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_centered_double_02",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        2.409996509552002,
+        0.21666677296161652,
+        1.3771939277648926
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_centered_double_03",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        2.409996509552002,
+        0.21666677296161652,
+        1.014692783355713
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_centered_double_04",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        2.409996509552002,
+        0.21666677296161652,
+        0.657193660736084
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_centered_large_01",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        2.219996452331543,
+        0.21666666865348816,
+        1.7446932792663574
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_centered_large_02",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        2.0999951362609863,
+        0.21666669845581055,
+        1.6246988773345947
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_centered_large_03",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        2.219996452331543,
+        0.21666666865348816,
+        1.0146937370300293
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_centered_large_04",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        2.0999951362609863,
+        0.21666669845581055,
+        0.8796994686126709
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_centered_medium_01",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        1.5599966049194336,
+        0.21666666865348816,
+        1.7446928024291992
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_centered_medium_02",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        1.3999943733215332,
+        0.21669727563858032,
+        1.624584674835205
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_centered_medium_03",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        1.5599966049194336,
+        0.21666666865348816,
+        1.0146937370300293
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_centered_medium_04",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        1.3999943733215332,
+        0.21669727563858032,
+        0.8795850276947021
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_centered_small_01",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        1.7446928024291992
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_centered_small_02",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        1.3771939277648926
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_centered_small_03",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        1.014692783355713
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_centered_small_04",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        0.657193660736084
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_offset_small_01",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        1.7446928024291992
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_offset_small_02",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        1.7446928024291992
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_offset_small_03",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        1.3771939277648926
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_offset_small_04",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        1.3771939277648926
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_offset_small_05",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        1.014692783355713
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_offset_small_06",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        1.014692783355713
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_offset_small_07",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        0.657193660736084
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_offset_small_08",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        0.9099966287612915,
+        0.21666677296161652,
+        0.657193660736084
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_tall_large_01",
+      "materials": [
+        "modular_factory_facade_trim_01",
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        2.8355722427368164,
+        0.26778674125671387,
+        2.01973819732666
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_tall_large_010",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        3.0000014305114746,
+        0.17312371730804443,
+        0.7500019073486328
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_tall_large_02",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        2.0000033378601074,
+        0.06666667759418488,
+        3.000000476837158
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_tall_large_03",
+      "materials": [
+        "modular_factory_facade_trim_01",
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        3.0000014305114746,
+        0.17312371730804443,
+        3.000000476837158
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_tall_large_04",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        2.000004768371582,
+        0.06666670739650726,
+        2.6249959468841553
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_tall_large_05",
+      "materials": [
+        "modular_factory_facade_trim_01",
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        3.0000014305114746,
+        0.17312371730804443,
+        2.6249961853027344
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_tall_large_06",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        2.8355722427368164,
+        0.26778674125671387,
+        0.15198636054992676
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_tall_large_08",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        3.0000014305114746,
+        0.17312371730804443,
+        0.7500019073486328
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_tall_small_01",
+      "materials": [
+        "modular_factory_facade_trim_01",
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        2.035576820373535,
+        0.26778677105903625,
+        2.01973819732666
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_tall_small_010",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        2.0000009536743164,
+        0.17312371730804443,
+        0.7500017881393433
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_tall_small_02",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        1.3466637134552002,
+        0.06666667759418488,
+        3.0000009536743164
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_tall_small_03",
+      "materials": [
+        "modular_factory_facade_trim_01",
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        2.0000009536743164,
+        0.17312371730804443,
+        2.999999523162842
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_tall_small_04",
+      "materials": [
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        1.3466663360595703,
+        0.06669734418392181,
+        2.624891757965088
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_tall_small_05",
+      "materials": [
+        "modular_factory_facade_trim_01",
+        "modular_factory_facade_windows",
+        "modular_factory_facade_windows_glass"
+      ],
+      "bounds": [
+        2.0000009536743164,
+        0.17312371730804443,
+        2.6248908042907715
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_tall_small_06",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        2.035576820373535,
+        0.26778677105903625,
+        0.15198636054992676
+      ]
+    },
+    {
+      "group": "modular_factory_facade",
+      "name": "window_tall_small_08",
+      "materials": [
+        "modular_factory_facade_trim_01"
+      ],
+      "bounds": [
+        2.0000009536743164,
+        0.17312371730804443,
+        0.7500017881393433
+      ]
+    },
+    {
+      "group": "modular_fire_escape",
+      "name": "modular_fire_escape_ladder_bottom",
+      "materials": [
+        "modular_fire_escape_01"
+      ],
+      "bounds": [
+        0.7749732732772827,
+        0.06441383808851242,
+        6.465871810913086
+      ]
+    },
+    {
+      "group": "modular_fire_escape",
+      "name": "modular_fire_escape_platform_bottom",
+      "materials": [
+        "modular_fire_escape_02"
+      ],
+      "bounds": [
+        4.793094158172607,
+        1.3644320964813232,
+        0.7724194526672363
+      ]
+    },
+    {
+      "group": "modular_fire_escape",
+      "name": "modular_fire_escape_platform_middle",
+      "materials": [
+        "modular_fire_escape_02"
+      ],
+      "bounds": [
+        4.793094158172607,
+        1.3644320964813232,
+        0.7724194526672363
+      ]
+    },
+    {
+      "group": "modular_fire_escape",
+      "name": "modular_fire_escape_platform_railing",
+      "materials": [
+        "modular_fire_escape_01"
+      ],
+      "bounds": [
+        2.2339792251586914,
+        0.7303793430328369,
+        0.9857151508331299
+      ]
+    },
+    {
+      "group": "modular_fire_escape",
+      "name": "modular_fire_escape_railing_bottom",
+      "materials": [
+        "modular_fire_escape_01"
+      ],
+      "bounds": [
+        4.711300849914551,
+        1.4077428579330444,
+        0.9841318130493164
+      ]
+    },
+    {
+      "group": "modular_fire_escape",
+      "name": "modular_fire_escape_railing_middle",
+      "materials": [
+        "modular_fire_escape_01"
+      ],
+      "bounds": [
+        4.711301326751709,
+        1.3866746425628662,
+        0.9841316938400269
+      ]
+    },
+    {
+      "group": "modular_fire_escape",
+      "name": "modular_fire_escape_stairs",
+      "materials": [
+        "modular_fire_escape_01"
+      ],
+      "bounds": [
+        2.9946389198303223,
+        1.3715578317642212,
+        4.0055251121521
+      ]
+    },
+    {
+      "group": "modular_wooden_pier",
+      "name": "modular_wooden_pier_planks",
+      "materials": [
+        "modular_wooden_pier_planks"
+      ],
+      "bounds": [
+        2.5213563442230225,
+        2.2051942348480225,
+        0.08031343668699265
+      ]
+    },
+    {
+      "group": "modular_wooden_pier",
+      "name": "modular_wooden_pier_poles",
+      "materials": [
+        "modular_wooden_pier_poles"
+      ],
+      "bounds": [
+        2.2118451595306396,
+        3.0810225009918213,
+        3.849259376525879
+      ]
+    },
+    {
+      "group": "modular_wooden_pier",
+      "name": "modular_wooden_pier_section_01",
+      "materials": [
+        "modular_wooden_pier_poles",
+        "modular_wooden_pier_planks"
+      ],
+      "bounds": [
+        2.489583969116211,
+        3.517908811569214,
+        4.266040802001953
+      ]
+    },
+    {
+      "group": "modular_wooden_pier",
+      "name": "modular_wooden_pier_section_02",
+      "materials": [
+        "modular_wooden_pier_poles",
+        "modular_wooden_pier_planks"
+      ],
+      "bounds": [
+        2.5070314407348633,
+        3.392314910888672,
+        3.8376777172088623
+      ]
+    },
+    {
+      "group": "modular_wooden_pier",
+      "name": "modular_wooden_pier_section_03",
+      "materials": [
+        "modular_wooden_pier_poles",
+        "modular_wooden_pier_planks"
+      ],
+      "bounds": [
+        2.5070314407348633,
+        3.3923158645629883,
+        3.837677478790283
+      ]
+    },
+    {
+      "group": "modular_wooden_pier",
+      "name": "modular_wooden_pier_section_04",
+      "materials": [
+        "modular_wooden_pier_poles",
+        "modular_wooden_pier_planks"
+      ],
+      "bounds": [
+        2.4582791328430176,
+        3.1583991050720215,
+        4.157828330993652
+      ]
+    },
+    {
+      "group": "modular_wooden_pier",
+      "name": "modular_wooden_pier_section_05",
+      "materials": [
+        "modular_wooden_pier_poles",
+        "modular_wooden_pier_planks"
+      ],
+      "bounds": [
+        3.101562976837158,
+        0.4646182060241699,
+        7.001336574554443
+      ]
+    },
+    {
+      "group": "modular_industrial_pipes_01",
+      "name": "modular_industrial_pipes_01_pipe01",
+      "materials": [
+        "modular_industrial_pipes_01_group01"
+      ],
+      "bounds": [
+        0.20710761845111847,
+        0.20632138848304749,
+        0.8590618968009949
+      ]
+    },
+    {
+      "group": "modular_industrial_pipes_01",
+      "name": "modular_industrial_pipes_01_pipe02",
+      "materials": [
+        "modular_industrial_pipes_01_group01"
+      ],
+      "bounds": [
+        0.2071039080619812,
+        0.20632098615169525,
+        1.9546396732330322
+      ]
+    },
+    {
+      "group": "modular_industrial_pipes_01",
+      "name": "modular_industrial_pipes_01_pipe03",
+      "materials": [
+        "modular_industrial_pipes_01_group01"
+      ],
+      "bounds": [
+        0.5986486673355103,
+        0.2063768208026886,
+        1.3143846988677979
+      ]
+    },
+    {
+      "group": "modular_industrial_pipes_01",
+      "name": "modular_industrial_pipes_01_pipe04",
+      "materials": [
+        "modular_industrial_pipes_01_group01"
+      ],
+      "bounds": [
+        0.4241492748260498,
+        0.20632076263427734,
+        0.4446014165878296
+      ]
+    },
+    {
+      "group": "modular_industrial_pipes_01",
+      "name": "modular_industrial_pipes_01_pipe05",
+      "materials": [
+        "modular_industrial_pipes_01_group02"
+      ],
+      "bounds": [
+        0.5980877876281738,
+        0.20634499192237854,
+        0.43286627531051636
+      ]
+    },
+    {
+      "group": "modular_industrial_pipes_01",
+      "name": "modular_industrial_pipes_01_pipe06",
+      "materials": [
+        "modular_industrial_pipes_01_group02"
+      ],
+      "bounds": [
+        0.30873069167137146,
+        0.20638155937194824,
+        0.3575584292411804
+      ]
+    },
+    {
+      "group": "modular_industrial_pipes_01",
+      "name": "modular_industrial_pipes_01_pipe07",
+      "materials": [
+        "modular_industrial_pipes_01_group02"
+      ],
+      "bounds": [
+        0.35680580139160156,
+        0.20638170838356018,
+        0.411080539226532
+      ]
+    },
+    {
+      "group": "modular_industrial_pipes_01",
+      "name": "modular_industrial_pipes_01_pipe08",
+      "materials": [
+        "modular_industrial_pipes_01_group02"
+      ],
+      "bounds": [
+        0.26629501581192017,
+        0.3075922727584839,
+        0.37882888317108154
+      ]
+    },
+    {
+      "group": "overhead_crane",
+      "name": "overhead_crane",
+      "materials": [
+        "overhead_crane_trim",
+        "overhead_crane"
+      ],
+      "bounds": [
+        12.218733787536621,
+        1.7902510166168213,
+        3.246145725250244
+      ]
+    },
+    {
+      "group": "overhead_crane",
+      "name": "overhead_crane_rails",
+      "materials": [
+        "overhead_crane_trim"
+      ],
+      "bounds": [
+        12.491660118103027,
+        4.000000476837158,
+        0.7259173393249512
+      ]
+    },
+    {
+      "group": "overhead_crane",
+      "name": "overhead_crane_winch",
+      "materials": [
+        "overhead_crane_trim",
+        "overhead_crane"
+      ],
+      "bounds": [
+        4.581447601318359,
+        1.221912145614624,
+        4.5405144691467285
+      ]
+    }
+  ]
+}

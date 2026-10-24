@@ -1,0 +1,31 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Projects/LayarTerakhir-main/Builds/LinuxPhase3/LayarTerakhir.x86_64",
+    "-batchmode",
+    "-nographics",
+    "-phase3Fast",
+    "-phase3NoSecret",
+    "-phase3Audit",
+    "/root/Projects/LayarTerakhir-main/Builds/Phase3Full16",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Builds/Phase3Full16/player.log"
+  ],
+  "startedUtc": "2026-10-24T15:20:58.089063+00:00",
+  "status": "Finished",
+  "graphical": false,
+  "fast": true,
+  "assemblySha256": "efb9d2d0cf022df327a956a5719deb4acf871095440409c4db2eeeae535561b8",
+  "buildReport": {
+    "result": "Succeeded",
+    "utc": "2026-10-24T15:19:26.3176370Z",
+    "errors": 0,
+    "warnings": 8,
+    "bytes": 2027040318
+  },
+  "endedUtc": "2026-10-24T15:24:11.446277+00:00",
+  "exitCode": 2
+}

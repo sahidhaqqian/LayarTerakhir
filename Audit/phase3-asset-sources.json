@@ -1,0 +1,1980 @@
+{
+  "discovery": {
+    "google": "https://www.google.com/search?q=free+abandoned+factory+industrial+boiler+3d+models+CC0+CC+BY",
+    "googleResponseSnapshot": "Builds/ArtSources/Phase3/google-discovery.html"
+  },
+  "sources": [
+    {
+      "id": "Boiler",
+      "kind": "model",
+      "author": "Scottish Maritime Museum",
+      "title": "Boiler from the puffer \u201cVIC 32\u201d",
+      "sourcePage": "https://sketchfab.com/3d-models/884ed11e38054aa48a3db1d9025c881d",
+      "mirror": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-126/884ed11e38054aa48a3db1d9025c881d.glb",
+      "license": "CC0-1.0",
+      "sourceSha256": "d2d365eb391557358088a79524e681aeab96c0f2b4e447f49059c088536cebb4"
+    },
+    {
+      "id": "Cloth",
+      "kind": "model",
+      "author": "Arthur.Zim",
+      "title": "Low Poly hanging cloth 2",
+      "sourcePage": "https://sketchfab.com/3d-models/e3e85978a98444bdb483ea79f2395407",
+      "mirror": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-121/e3e85978a98444bdb483ea79f2395407.glb",
+      "license": "CC-BY-4.0",
+      "sourceSha256": "94467f167a0305d258973952eae6d9c017d66ce3ec8832fc214eac6b355bca0e"
+    },
+    {
+      "id": "Doll",
+      "kind": "model",
+      "author": "Sophie",
+      "title": "Voodoo Doll",
+      "sourcePage": "https://sketchfab.com/3d-models/e0245d6f01f141f9812582a9487c3062",
+      "mirror": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-067/e0245d6f01f141f9812582a9487c3062.glb",
+      "license": "CC-BY-4.0",
+      "sourceSha256": "f98e728b45d79ea399549d803a20b32221cd1054eedb031c04fbfe362b25d241"
+    },
+    {
+      "id": "IndustrialBuilding",
+      "kind": "model",
+      "author": "Hrvoje W\u00e4chter",
+      "title": "Old Industrial Building",
+      "sourcePage": "https://sketchfab.com/3d-models/0dafa7aaadfd4666bb4a32776c84b14e",
+      "mirror": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-151/0dafa7aaadfd4666bb4a32776c84b14e.glb",
+      "license": "CC-BY-4.0",
+      "sourceSha256": "22c9ca708b7705797788f15cabf40bbbae0b46c92307e82688845d5de5995281"
+    },
+    {
+      "id": "Locker",
+      "kind": "model",
+      "author": "carlosbarrera_10",
+      "title": "Metal locker",
+      "sourcePage": "https://sketchfab.com/3d-models/35012fef3a9c41289cc3cb4771f8c829",
+      "mirror": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-120/35012fef3a9c41289cc3cb4771f8c829.glb",
+      "license": "CC-BY-4.0",
+      "sourceSha256": "09352b57508a62ca534a43ab186d31264edda8280ae764c2eded97a1186d6621"
+    },
+    {
+      "id": "MineCart",
+      "kind": "model",
+      "author": "Xillute | Dev",
+      "title": "Mine Cart",
+      "sourcePage": "https://sketchfab.com/3d-models/2beeab5f44704421bc10cd310db96860",
+      "mirror": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-073/2beeab5f44704421bc10cd310db96860.glb",
+      "license": "CC-BY-4.0",
+      "sourceSha256": "9c8210ada0bf08ff47362602e36f9ffb9ef82e4c404144bab80836fae8c1b424"
+    },
+    {
+      "id": "Sack",
+      "kind": "model",
+      "author": "TheDrone",
+      "title": "Sack_v2",
+      "sourcePage": "https://sketchfab.com/3d-models/74f60f70effb486faf645519b3dae1a9",
+      "mirror": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-010/74f60f70effb486faf645519b3dae1a9.glb",
+      "license": "CC-BY-4.0",
+      "sourceSha256": "e490f1fde59abfa31fdb56e2bf0d612781f3b56e033e483522cde51b1c2bbe0f"
+    },
+    {
+      "id": "Shoe",
+      "kind": "model",
+      "author": "inciprocal",
+      "title": "Old Oxford Shoe",
+      "sourcePage": "https://sketchfab.com/3d-models/29a5ed053eab46a7af308215600985a2",
+      "mirror": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-006/29a5ed053eab46a7af308215600985a2.glb",
+      "license": "CC-BY-4.0",
+      "sourceSha256": "fbdc878437b38b609390250339e39a31257ab34781f2e865a5924bce81169226"
+    },
+    {
+      "id": "Sickle",
+      "kind": "model",
+      "author": "ZengMN",
+      "title": "Sickle",
+      "sourcePage": "https://sketchfab.com/3d-models/25924b6dc3a841e4b1a6ebdef52e3173",
+      "mirror": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-087/25924b6dc3a841e4b1a6ebdef52e3173.glb",
+      "license": "CC-BY-4.0",
+      "sourceSha256": "b72919c7c3d7bc5aa045eb910c75581d92e3cb5319bf537b0b28960f9383b189"
+    },
+    {
+      "id": "Wewe",
+      "kind": "character",
+      "author": "udi_kreasindo3D",
+      "title": "Wewe gombel - Indonesian ghost",
+      "sourcePage": "https://sketchfab.com/3d-models/a8cee601a6fe40f18c774262e3363461",
+      "mirror": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-022/a8cee601a6fe40f18c774262e3363461.glb",
+      "license": "CC-BY-4.0",
+      "sourceSha256": "e16fb352bc257f4e7a690123646de0d62be8debd2421e8308ae8ee8520132cec"
+    },
+    {
+      "id": "adjustable_wrench",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/adjustable_wrench",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/adjustable_wrench/adjustable_wrench.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/adjustable_wrench/adjustable_wrench_2k.fbx",
+          "sha256": "e4072c911cff0c545bb3b29550b6cf550b49e796e8c991ad513bc822a1aedc8a"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/adjustable_wrench/adjustable_wrench_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/adjustable_wrench/adjustable_wrench_arm_2k.jpg",
+          "sha256": "efbf43d2a3f34347e37531a030c0fdec94bb6e4c3204102014de1dea8bf1b93b"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/adjustable_wrench/adjustable_wrench_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/adjustable_wrench/adjustable_wrench_diff_2k.jpg",
+          "sha256": "9162708b7d4604c8d81eb77d999b3e1fc57f554427963f7153e8f7d19af2a858"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/adjustable_wrench/adjustable_wrench_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/adjustable_wrench/adjustable_wrench_nor_gl_2k.jpg",
+          "sha256": "94f140336908d6d4eb6a29279c20be265703e1fd25520a9317b9157a8f8c496a"
+        }
+      ]
+    },
+    {
+      "id": "barrel_stove",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/barrel_stove",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/barrel_stove/barrel_stove.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/barrel_stove/barrel_stove_2k.fbx",
+          "sha256": "0ba2afdd05f85498e021729dbb460fae9019e68b07f628d8944f3b979a3f7bcf"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/barrel_stove/barrel_stove_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/barrel_stove/barrel_stove_diff_2k.jpg",
+          "sha256": "92a0cdddf46a589d8c26bbe284d06a11d6631e55517b37dbfc739a2c5f518e3a"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/barrel_stove/barrel_stove_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/barrel_stove/barrel_stove_nor_gl_2k.jpg",
+          "sha256": "a8a17a3223bf8c12e5426ec4b0d5bd31239444f87556cfc389b97b5792304b95"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/barrel_stove/barrel_stove_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/barrel_stove/barrel_stove_arm_2k.jpg",
+          "sha256": "42d5b6c4e966d9272e6fdaed5435bfea8d883ee266404711385aeb5a7b8ce99c"
+        }
+      ]
+    },
+    {
+      "id": "bench_vice_01",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/bench_vice_01",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/bench_vice_01/bench_vice_01.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/bench_vice_01/bench_vice_01_2k.fbx",
+          "sha256": "5c86e13d593bbcbd0e44d1e09405398d8b500e46d92b9a88a3c4396e28dbf7df"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/bench_vice_01/bench_vice_01_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/bench_vice_01/bench_vice_01_diff_2k.jpg",
+          "sha256": "543227c390f657d5bf9f014a7e9b74f3bbc46b41ce6b4370f445513af419d483"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/bench_vice_01/bench_vice_01_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/bench_vice_01/bench_vice_01_nor_gl_2k.jpg",
+          "sha256": "d890d29aa7f508e1be3fe0956ff720c069e192a3b971687214ad765a4ba8be5a"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/bench_vice_01/bench_vice_01_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/bench_vice_01/bench_vice_01_arm_2k.jpg",
+          "sha256": "220b9d0a4fcdbc3354622334e8fa3f87d297979cef0ef334bbfb8146f2ce1583"
+        }
+      ]
+    },
+    {
+      "id": "brown_planks_09",
+      "kind": "texture",
+      "sourcePage": "https://polyhaven.com/a/brown_planks_09",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/brown_planks_09/brown_planks_09_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/brown_planks_09/brown_planks_09_arm_2k.jpg",
+          "sha256": "cf0447689785f7789c41c2318fcc28c666a68fab59e01fed799e0f0ca6d5dd1c"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/brown_planks_09/brown_planks_09_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/brown_planks_09/brown_planks_09_diff_2k.jpg",
+          "sha256": "903485ed603e60eb7649a13bf18185a65ae3ab1aba6490f1c32808f4afb8aaca"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/brown_planks_09/brown_planks_09_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/brown_planks_09/brown_planks_09_nor_gl_2k.jpg",
+          "sha256": "60f6b5db8ebac9bf705c332ac1354f6387d63cd1717d2dd1fba2345f034619e0"
+        }
+      ]
+    },
+    {
+      "id": "caged_hanging_light",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/caged_hanging_light",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/caged_hanging_light/caged_hanging_light.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/caged_hanging_light/caged_hanging_light_2k.fbx",
+          "sha256": "9906694c8c4057de82afd83f15f145a64bd11716f38878a00d60fd3a1b260694"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/caged_hanging_light/caged_hanging_light_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/caged_hanging_light/caged_hanging_light_arm_2k.jpg",
+          "sha256": "9aa26b03e132c7ebb29c724ed83e7fb76d448e189d112e1d4517f69134151199"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/caged_hanging_light/caged_hanging_light_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/caged_hanging_light/caged_hanging_light_diff_2k.jpg",
+          "sha256": "bfa7533e804b38086bc125343bf40403f3f808a6f0861718408793ad3ecb05fd"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/caged_hanging_light/caged_hanging_light_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/caged_hanging_light/caged_hanging_light_nor_gl_2k.jpg",
+          "sha256": "18fbce7b2dc01118c937c7c5ff88c31b044077cdb84421eaf05e89222761df0d"
+        }
+      ]
+    },
+    {
+      "id": "corrugated_iron_02",
+      "kind": "texture",
+      "sourcePage": "https://polyhaven.com/a/corrugated_iron_02",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/corrugated_iron_02/corrugated_iron_02_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/corrugated_iron_02/corrugated_iron_02_arm_2k.jpg",
+          "sha256": "80ae7f8b9ff7521898049cb79b7cfb82a0bb95bf0cba312ffe1d0e5760f45dcb"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/corrugated_iron_02/corrugated_iron_02_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/corrugated_iron_02/corrugated_iron_02_diff_2k.jpg",
+          "sha256": "1bd2b9900e066d7e6cbacc5093aa4204db71c1bbe13b42a3d8ad23d04fa8075a"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/corrugated_iron_02/corrugated_iron_02_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/corrugated_iron_02/corrugated_iron_02_nor_gl_2k.jpg",
+          "sha256": "a7972360f64fb44beee57750b0ad6bee1f3b64268cd9f649b5e92e1de4de0632"
+        }
+      ]
+    },
+    {
+      "id": "cross_pein_hammer",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/cross_pein_hammer",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/cross_pein_hammer/cross_pein_hammer.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/cross_pein_hammer/cross_pein_hammer_2k.fbx",
+          "sha256": "29472d0c00931b0281d0d63ac1c347e7bec28fc6f26070668d5e9a9edf6ed759"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/cross_pein_hammer/cross_pein_hammer_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/cross_pein_hammer/cross_pein_hammer_arm_2k.jpg",
+          "sha256": "fa21cd8fff723859a55e5eeaeada83a2cfd50753b83f3e7491492f965a6b8ab4"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/cross_pein_hammer/cross_pein_hammer_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/cross_pein_hammer/cross_pein_hammer_diff_2k.jpg",
+          "sha256": "5f61f71f02f164ec9e42215073fe2dedcdf3468b653df8ac23afe43a2074a5d8"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/cross_pein_hammer/cross_pein_hammer_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/cross_pein_hammer/cross_pein_hammer_nor_gl_2k.jpg",
+          "sha256": "dc5bc7c8be9cea0b38a3328f1662fb5ccb7f067111040df7002e1b982348f9fa"
+        }
+      ]
+    },
+    {
+      "id": "drill_press_01",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/drill_press_01",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/drill_press_01/drill_press_01.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/drill_press_01/drill_press_01_2k.fbx",
+          "sha256": "7971c8c5401e6ab6a1c5dcfb1be0228889e0f5a2491e88c9789e3865c482a54c"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/drill_press_01/drill_press_01_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/drill_press_01/drill_press_01_arm_2k.jpg",
+          "sha256": "5acb3962a4edfe30a478cca2c877937b2c558ecf63d2d4bdc81528df28f88da2"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/drill_press_01/drill_press_01_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/drill_press_01/drill_press_01_diff_2k.jpg",
+          "sha256": "0cc01376306d6231c79bd0c6e87764871479489094c34984644015456473be02"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/drill_press_01/drill_press_01_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/drill_press_01/drill_press_01_nor_gl_2k.jpg",
+          "sha256": "d0afa4be93caba253defcea91b11885f7616316df02f229030df946baa8e0036"
+        }
+      ]
+    },
+    {
+      "id": "factory_brick",
+      "kind": "texture",
+      "sourcePage": "https://polyhaven.com/a/factory_brick",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/factory_brick/factory_brick_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/factory_brick/factory_brick_diff_2k.jpg",
+          "sha256": "6ff9f4696b75de41972a80d2d73a318bc131e84512e0f4b6b0903dd69312e8e3"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/factory_brick/factory_brick_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/factory_brick/factory_brick_nor_gl_2k.jpg",
+          "sha256": "940b583a6b44f2be46c235f5b1aa15bcbe9ee98208cb46e6025b18d0b3b41cee"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/factory_brick/factory_brick_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/factory_brick/factory_brick_arm_2k.jpg",
+          "sha256": "909b08c0fc72fa21848f54229940eca38405dcb41452920b7492b5224192760a"
+        }
+      ]
+    },
+    {
+      "id": "factory_wall",
+      "kind": "texture",
+      "sourcePage": "https://polyhaven.com/a/factory_wall",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/factory_wall/factory_wall_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/factory_wall/factory_wall_diff_2k.jpg",
+          "sha256": "243178a7f3fecb28de5d491716bbea0b8caa6ec032c46e99abf3d3043792f0ee"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/factory_wall/factory_wall_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/factory_wall/factory_wall_nor_gl_2k.jpg",
+          "sha256": "27b5d00ced3f6aa10a781c6659c3e0d3c2d52a22344500bad786a8e4ac69e2a0"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/factory_wall/factory_wall_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/factory_wall/factory_wall_arm_2k.jpg",
+          "sha256": "4539d7ee25584849bcecd346bb917717ccbeb3030da49162b4c4c50090afc00d"
+        }
+      ]
+    },
+    {
+      "id": "hand_truck",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/hand_truck",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/hand_truck/hand_truck.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/hand_truck/hand_truck_2k.fbx",
+          "sha256": "ba4db7d35dae35f8250295f2654ea0afee561c1bd13f52410147df1708607556"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/hand_truck/hand_truck_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/hand_truck/hand_truck_arm_2k.jpg",
+          "sha256": "59bcd407ed5fc86e66e3f280e4f90a0b9ad60511510aafefbfad81f80eac441e"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/hand_truck/hand_truck_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/hand_truck/hand_truck_diff_2k.jpg",
+          "sha256": "1c1f239efcafe762616d6f7b5da507b09ed8f4b07f80999b49360754757938f2"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/hand_truck/hand_truck_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/hand_truck/hand_truck_nor_gl_2k.jpg",
+          "sha256": "f8029aa5a1a8425e46899d0c99beac238b5185ef7d40f7ee04a062c5ee1c5409"
+        }
+      ]
+    },
+    {
+      "id": "hanging_industrial_lamp",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/hanging_industrial_lamp",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/hanging_industrial_lamp/hanging_industrial_lamp.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/hanging_industrial_lamp/hanging_industrial_lamp_2k.fbx",
+          "sha256": "069b2fc176805a3d302d4bc254a709b5b625cf41f3415f88ce96f96743fdecad"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/hanging_industrial_lamp/hanging_industrial_lamp_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/hanging_industrial_lamp/hanging_industrial_lamp_arm_2k.jpg",
+          "sha256": "71ced5d117238513bf17015d6e987501e6491828f107da21e57ff05e0cf905ec"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/hanging_industrial_lamp/hanging_industrial_lamp_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/hanging_industrial_lamp/hanging_industrial_lamp_diff_2k.jpg",
+          "sha256": "cdee2c7c2af9d46f4ff4eac94ffacbe63b64ead655655355c1b9bca28045dfff"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/hanging_industrial_lamp/hanging_industrial_lamp_glass_alpha.jpg",
+          "kind": "glass_alpha",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/hanging_industrial_lamp/hanging_industrial_lamp_glass_alpha_2k.jpg",
+          "sha256": "1ca2bc3143427c665c53ad69612e3360e2b6395ecc57b69cbe1d4b31c7ddf1a3"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/hanging_industrial_lamp/hanging_industrial_lamp_glass_arm.jpg",
+          "kind": "glass_arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/hanging_industrial_lamp/hanging_industrial_lamp_glass_arm_2k.jpg",
+          "sha256": "c05157d31d2a792110f96e7705dd0bf2ded66ee5f3720f81f7bd1f1953a1772d"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/hanging_industrial_lamp/hanging_industrial_lamp_glass_nor_gl.jpg",
+          "kind": "glass_nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/hanging_industrial_lamp/hanging_industrial_lamp_glass_nor_gl_2k.jpg",
+          "sha256": "0f5ad2e149c5ca34606521904dbdd9b7368bbb8e0ebd61d8af76f4e300b3ac61"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/hanging_industrial_lamp/hanging_industrial_lamp_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/hanging_industrial_lamp/hanging_industrial_lamp_nor_gl_2k.jpg",
+          "sha256": "eb5196dd618ae777d0cb163ad8ab0e1bcd9b18c44253064ad0f1d3ebf86fd784"
+        }
+      ]
+    },
+    {
+      "id": "industrial_caged_sconce",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/industrial_caged_sconce",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_caged_sconce/industrial_caged_sconce.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/industrial_caged_sconce/industrial_caged_sconce_2k.fbx",
+          "sha256": "93cbfbaacd0140c2cf38f2e6c59d0d78c204f7d17cc289c811e84f0687c7ce7c"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_caged_sconce/industrial_caged_sconce_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_caged_sconce/industrial_caged_sconce_arm_2k.jpg",
+          "sha256": "3c525ea3c3ad9ec2bcdc59b267837f580cd1825da99734e922a1bde2ad1c5d27"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_caged_sconce/industrial_caged_sconce_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_caged_sconce/industrial_caged_sconce_diff_2k.jpg",
+          "sha256": "503f8637f45ebd4edb332b6fe70599fbc5d8eaadf1497d572ff79aa35d842506"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_caged_sconce/industrial_caged_sconce_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_caged_sconce/industrial_caged_sconce_nor_gl_2k.jpg",
+          "sha256": "42fd31dca0a8e61ae2b746d1abeffd849a8a4263fc5b5003844d91dc0b9c01d4"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_caged_sconce/industrial_caged_sconce_industrial_wall_sconce_arm.jpg",
+          "kind": "industrial_wall_sconce_arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_caged_sconce/industrial_wall_sconce_arm_2k.jpg",
+          "sha256": "3c525ea3c3ad9ec2bcdc59b267837f580cd1825da99734e922a1bde2ad1c5d27"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_caged_sconce/industrial_caged_sconce_industrial_wall_sconce_diff.jpg",
+          "kind": "industrial_wall_sconce_diff",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_caged_sconce/industrial_wall_sconce_diff_2k.jpg",
+          "sha256": "503f8637f45ebd4edb332b6fe70599fbc5d8eaadf1497d572ff79aa35d842506"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_caged_sconce/industrial_caged_sconce_industrial_wall_sconce_nor_gl.jpg",
+          "kind": "industrial_wall_sconce_nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_caged_sconce/industrial_wall_sconce_nor_gl_2k.jpg",
+          "sha256": "42fd31dca0a8e61ae2b746d1abeffd849a8a4263fc5b5003844d91dc0b9c01d4"
+        }
+      ]
+    },
+    {
+      "id": "industrial_coffee_table",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/industrial_coffee_table",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_coffee_table/industrial_coffee_table.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/industrial_coffee_table/industrial_coffee_table_2k.fbx",
+          "sha256": "9ffaeb4fd2c73d7d6fcd017b029a7411d1f67b7e08cf120219164c6f14a1030e"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_coffee_table/industrial_coffee_table_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_coffee_table/industrial_coffee_table_arm_2k.jpg",
+          "sha256": "9ae5197b09b8ec6c04df92cfb9fa96d4400e3f2cbd3a7a6d19250f21f2b3d2d4"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_coffee_table/industrial_coffee_table_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_coffee_table/industrial_coffee_table_diff_2k.jpg",
+          "sha256": "3012a4a3fa0f41face4d06307b352f925e55450807abded01162ba6d6628b644"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_coffee_table/industrial_coffee_table_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_coffee_table/industrial_coffee_table_nor_gl_2k.jpg",
+          "sha256": "8360d8be2d75bdd37bc4d1d746e7838ef976459a8bf28e041fa2d4238ff69f2f"
+        }
+      ]
+    },
+    {
+      "id": "industrial_storage_cart",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/industrial_storage_cart",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_storage_cart/industrial_storage_cart.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/industrial_storage_cart/industrial_storage_cart_2k.fbx",
+          "sha256": "27bedecf2b6f79c0c9d73dda851ea5794370d277c3c403793f0daac20001383a"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_storage_cart/industrial_storage_cart_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_storage_cart/industrial_storage_cart_arm_2k.jpg",
+          "sha256": "a0d8a23a499314d3e5227620a3f6df45eaff4fb29b71908abea1beb260d741c2"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_storage_cart/industrial_storage_cart_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_storage_cart/industrial_storage_cart_diff_2k.jpg",
+          "sha256": "5fe0db42ab40f00825451ec5462ac1e15640126f7d7d8abfb57fa840770d9f92"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_storage_cart/industrial_storage_cart_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_storage_cart/industrial_storage_cart_nor_gl_2k.jpg",
+          "sha256": "2fd85dc7a89719368e69b259a365b6c2814a9034f28bae0e8f066186fe02b0ad"
+        }
+      ]
+    },
+    {
+      "id": "industrial_wall_lamp",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/industrial_wall_lamp",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_wall_lamp/industrial_wall_lamp.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/industrial_wall_lamp/industrial_wall_lamp_2k.fbx",
+          "sha256": "a0e51fd39556ba392557b479e518b883af67055e30bcb6b54ee70154641263a1"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_wall_lamp/industrial_wall_lamp_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_wall_lamp/industrial_wall_lamp_arm_2k.jpg",
+          "sha256": "425fac478959a6c749826faca4e3aaabe9638a6c3af478383596f4a11df4cdf2"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_wall_lamp/industrial_wall_lamp_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_wall_lamp/industrial_wall_lamp_diff_2k.jpg",
+          "sha256": "96021a7cfe4c1f575ea2fa94049ee0e88d21565353a75895e73cd569c940ea49"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_wall_lamp/industrial_wall_lamp_glass_alpha.jpg",
+          "kind": "glass_alpha",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_wall_lamp/industrial_wall_lamp_glass_alpha_2k.jpg",
+          "sha256": "581b9b51526134c3904508bc81e9fcba8b1e5b3e342b43218142bfc45c879a49"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_wall_lamp/industrial_wall_lamp_glass_arm.jpg",
+          "kind": "glass_arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_wall_lamp/industrial_wall_lamp_glass_arm_2k.jpg",
+          "sha256": "917155e113d6669ef2c3a17763230016a5ac7c03372eb7c8cd3be7de19d674c2"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_wall_lamp/industrial_wall_lamp_glass_diff.jpg",
+          "kind": "glass_diff",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_wall_lamp/industrial_wall_lamp_glass_diff_2k.jpg",
+          "sha256": "7a3684b068b597ecca9ef006db0063ce7011ffaed4c4b01636be688abbd4c183"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_wall_lamp/industrial_wall_lamp_glass_nor_gl.jpg",
+          "kind": "glass_nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_wall_lamp/industrial_wall_lamp_glass_nor_gl_2k.jpg",
+          "sha256": "4ea7997403abcf2ad389eb3aa87cb5fac94a0c5378aada47a4b5184071b2064f"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_wall_lamp/industrial_wall_lamp_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_wall_lamp/industrial_wall_lamp_nor_gl_2k.jpg",
+          "sha256": "6e720b06e39bc5bb307322146f68f775f8020140fa94f59e7d954d414ac3c3ad"
+        }
+      ]
+    },
+    {
+      "id": "metal_grate_rusty",
+      "kind": "texture",
+      "sourcePage": "https://polyhaven.com/a/metal_grate_rusty",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/metal_grate_rusty/metal_grate_rusty_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/metal_grate_rusty/metal_grate_rusty_diff_2k.jpg",
+          "sha256": "7ba7b58b5e743d9bd5892551cf087c60239d0aefdf06156f08e0da15010aec60"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/metal_grate_rusty/metal_grate_rusty_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/metal_grate_rusty/metal_grate_rusty_nor_gl_2k.jpg",
+          "sha256": "5f9137f941c7c4c5c5b5f7a78baa6d44a70809f73f6937e9741af28c0772ee37"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/metal_grate_rusty/metal_grate_rusty_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/metal_grate_rusty/metal_grate_rusty_arm_2k.jpg",
+          "sha256": "17af141eb9ec835e0561993e7c7c8c18ad94363af95ba900f9ed96568355173c"
+        }
+      ]
+    },
+    {
+      "id": "metal_jerrycan",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/metal_jerrycan",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/metal_jerrycan/metal_jerrycan.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/metal_jerrycan/metal_jerrycan_2k.fbx",
+          "sha256": "0b2ee9c3eccac2f0e9c608be10c6352569dd65198539a64cdbcf4bfb98eb3f66"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/metal_jerrycan/metal_jerrycan_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/metal_jerrycan/metal_jerrycan_arm_2k.jpg",
+          "sha256": "b83095cc78f9f63628184c6392f063ea58b3d1cc86c3e345edf6ed8fd202025e"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/metal_jerrycan/metal_jerrycan_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/metal_jerrycan/metal_jerrycan_diff_2k.jpg",
+          "sha256": "ac8d951523d5bc4879718b518be81603745f515350db07f653990429ec36ab11"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/metal_jerrycan/metal_jerrycan_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/metal_jerrycan/metal_jerrycan_nor_gl_2k.jpg",
+          "sha256": "8f9b6c6e2fb535a049d86b60031d5d9199c3d82e348f0c939c996e76820f5d22"
+        }
+      ]
+    },
+    {
+      "id": "metal_toolbox",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/metal_toolbox",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/metal_toolbox/metal_toolbox.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/metal_toolbox/metal_toolbox_2k.fbx",
+          "sha256": "023bec6ae542df94d07b4a2bcdab0dc6c7fdbdd4313465a239b7f9d3ee710cd3"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/metal_toolbox/metal_toolbox_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/metal_toolbox/metal_toolbox_arm_2k.jpg",
+          "sha256": "a44b02d7a7d0e694cac55f74942d4a16246a74fbc9d5bdb551aded247c5ff623"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/metal_toolbox/metal_toolbox_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/metal_toolbox/metal_toolbox_diff_2k.jpg",
+          "sha256": "ff84f51ac4c88c13407a591abd2111ed6210566b3528232c655806429e4e0b44"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/metal_toolbox/metal_toolbox_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/metal_toolbox/metal_toolbox_nor_gl_2k.jpg",
+          "sha256": "e2eeb85716bd244973583dd74b7aec7a2aee1cde5d15d2f49a6a7c2b8cc60b0f"
+        }
+      ]
+    },
+    {
+      "id": "modular_factory_facade",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/modular_factory_facade",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_factory_facade/modular_factory_facade.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/modular_factory_facade/modular_factory_facade_2k.fbx",
+          "sha256": "93edf842692a2f0f99bdf3504bfdf9b52f68291974155101f53031743bc9681e"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_factory_facade/modular_factory_facade_windows_alpha.jpg",
+          "kind": "windows_alpha",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_factory_facade/modular_factory_facade_windows_alpha_2k.jpg",
+          "sha256": "23950fec095b75a51d1cb1bd22c8fbbb8eeb05d41e7ea8bcc92be25f7a7bc629"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_factory_facade/modular_factory_facade_windows_nor_gl.jpg",
+          "kind": "windows_nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_factory_facade/modular_factory_facade_windows_nor_gl_2k.jpg",
+          "sha256": "7d66b69bf4715555085b1d3c0f95fc2e28f325d8a1ab7a68d1078dca7db7ab04"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_factory_facade/modular_factory_facade_trim_01_nor_gl.jpg",
+          "kind": "trim_01_nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_factory_facade/modular_factory_facade_trim_01_nor_gl_2k.jpg",
+          "sha256": "1f43fa78247a60f4f06096c95df26b95b94727167e917a18962963b2993eb650"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_factory_facade/modular_factory_facade_windows_arm.jpg",
+          "kind": "windows_arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_factory_facade/modular_factory_facade_windows_arm_2k.jpg",
+          "sha256": "963ececefba6c4a104a32258e611f250ea1f715fba747f7a0a640b7e4603f1b6"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_factory_facade/modular_factory_facade_brick_nor_gl.jpg",
+          "kind": "brick_nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_factory_facade/modular_factory_facade_brick_nor_gl_2k.jpg",
+          "sha256": "a31341b4b1329bb2c27ce74da866aa56b359a5a60fcddbc6cd5be0029e410611"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_factory_facade/modular_factory_facade_doors_diff.jpg",
+          "kind": "doors_diff",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_factory_facade/modular_factory_facade_doors_diff_2k.jpg",
+          "sha256": "1189acbe5ed4ecaccda9ec40f0a4a4a454016a22dbab0f18d3bdb61a01d9821a"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_factory_facade/modular_factory_facade_garage_diff.jpg",
+          "kind": "garage_diff",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_factory_facade/modular_factory_facade_garage_diff_2k.jpg",
+          "sha256": "83722741c6bbdfafd285b6f5d0a2913c133d91b11705fb684d526a6695da0537"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_factory_facade/modular_factory_facade_doors_arm.jpg",
+          "kind": "doors_arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_factory_facade/modular_factory_facade_doors_arm_2k.jpg",
+          "sha256": "07af095d6ecb4966ec029968ff7b0d111de8b2e1910bbea168dc9c958a4da3d1"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_factory_facade/modular_factory_facade_garage_nor_gl.jpg",
+          "kind": "garage_nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_factory_facade/modular_factory_facade_garage_nor_gl_2k.jpg",
+          "sha256": "d42a8cbcffe9a08d4fea5d12dbac82da0622efa49ad083361eead5b94927a086"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_factory_facade/modular_factory_facade_trim_01_arm.jpg",
+          "kind": "trim_01_arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_factory_facade/modular_factory_facade_trim_01_arm_2k.jpg",
+          "sha256": "3c70a0bb5e9f4d46183bebe5494d7665a775ea13c428af0dcea2fc29c950d48f"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_factory_facade/modular_factory_facade_doors_nor_gl.jpg",
+          "kind": "doors_nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_factory_facade/modular_factory_facade_doors_nor_gl_2k.jpg",
+          "sha256": "4c885d8170310e9b26c80780458eee000dcb67ea057cb14b782d10e835b2a698"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_factory_facade/modular_factory_facade_brick_diff.jpg",
+          "kind": "brick_diff",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_factory_facade/modular_factory_facade_brick_diff_2k.jpg",
+          "sha256": "02204a7971f406dcd2b6e1e3bc90e5656c5749a4417cfd5977dc7dfa5042a5d4"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_factory_facade/modular_factory_facade_garage_arm.jpg",
+          "kind": "garage_arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_factory_facade/modular_factory_facade_garage_arm_2k.jpg",
+          "sha256": "0efc9b69568cf6b13bb22256edf8bec347fbc0ac5496d5736c8dc3eb69e800dd"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_factory_facade/modular_factory_facade_brick_arm.jpg",
+          "kind": "brick_arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_factory_facade/modular_factory_facade_brick_arm_2k.jpg",
+          "sha256": "dc313e13bd12687bd8827b5e439c1ea2b56fbc883d935f26132b44781a21be14"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_factory_facade/modular_factory_facade_windows_diff.jpg",
+          "kind": "windows_diff",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_factory_facade/modular_factory_facade_windows_diff_2k.jpg",
+          "sha256": "2ca66aa0a753ab7fb6dcf605ec64a90fe116d6271719b20ee1a2069b568d2edd"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_factory_facade/modular_factory_facade_trim_01_diff.jpg",
+          "kind": "trim_01_diff",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_factory_facade/modular_factory_facade_trim_01_diff_2k.jpg",
+          "sha256": "bc4e041d46829466f8a7cb45b2b84f26e6cd7a41464b89590423d7ba65075c6d"
+        }
+      ]
+    },
+    {
+      "id": "modular_fire_escape",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/modular_fire_escape",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_fire_escape/modular_fire_escape.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/modular_fire_escape/modular_fire_escape_2k.fbx",
+          "sha256": "56da8c2442b76589b4558b37ac4ba6556dabdd13c82d1beb3d846fe9ca9ca27d"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_fire_escape/modular_fire_escape_02_diff.jpg",
+          "kind": "02_diff",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_fire_escape/modular_fire_escape_02_diff_2k.jpg",
+          "sha256": "f2dfa6154feec86d2eb9e72a16695614ffa337487af65007915f71e45d703e86"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_fire_escape/modular_fire_escape_02_arm.jpg",
+          "kind": "02_arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_fire_escape/modular_fire_escape_02_arm_2k.jpg",
+          "sha256": "ec1916947900e19706fa06935b9f4ce8f837cf392e01e758b28a60ba1c586770"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_fire_escape/modular_fire_escape_01_diff.jpg",
+          "kind": "01_diff",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_fire_escape/modular_fire_escape_01_diff_2k.jpg",
+          "sha256": "6890195b554f7d3bc9caa098be30673b7c21d08af8ce49f8379d93e56dd3438a"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_fire_escape/modular_fire_escape_01_nor_gl.jpg",
+          "kind": "01_nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_fire_escape/modular_fire_escape_01_nor_gl_2k.jpg",
+          "sha256": "967001955d1a3049ac90e26c87920199c281e709749961bb83838fa0e7cf4614"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_fire_escape/modular_fire_escape_02_nor_gl.jpg",
+          "kind": "02_nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_fire_escape/modular_fire_escape_02_nor_gl_2k.jpg",
+          "sha256": "8277e70a2695b237c168a332831a1fe0daadb4f9ba300988873e4eb421c9ae04"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_fire_escape/modular_fire_escape_01_arm.jpg",
+          "kind": "01_arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_fire_escape/modular_fire_escape_01_arm_2k.jpg",
+          "sha256": "afabe05d73d27cb7079f9acf8bf05ba21460dd92ecea7b6eca4d2b395644b8e6"
+        }
+      ]
+    },
+    {
+      "id": "modular_industrial_pipes_01",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/modular_industrial_pipes_01",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_industrial_pipes_01/modular_industrial_pipes_01.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/modular_industrial_pipes_01/modular_industrial_pipes_01_2k.fbx",
+          "sha256": "26ba85f655c2a6e5b2a263b0ce0c04e2a04f5b25d3004b5827061dcc8ba53ff5"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_industrial_pipes_01/modular_industrial_pipes_01_group01_diff.jpg",
+          "kind": "group01_diff",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_industrial_pipes_01/modular_industrial_pipes_01_group01_diff_2k.jpg",
+          "sha256": "310a12247dfbbcaacafa1106e6b7cfc4b68c4d2674b6464b2e8199a21c3f5ed7"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_industrial_pipes_01/modular_industrial_pipes_01_group02_arm.jpg",
+          "kind": "group02_arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_industrial_pipes_01/modular_industrial_pipes_01_group02_arm_2k.jpg",
+          "sha256": "b114cf8d9ef958cbabd9f1cf5f4a0b33b8301d2aa7b4600a4e3f346c5d7b5be3"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_industrial_pipes_01/modular_industrial_pipes_01_group01_arm.jpg",
+          "kind": "group01_arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_industrial_pipes_01/modular_industrial_pipes_01_group01_arm_2k.jpg",
+          "sha256": "13474d35bd64ccbffaee7cf15b6c889294a45c924a8da37b24dbb13924b5f9ee"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_industrial_pipes_01/modular_industrial_pipes_01_group01_nor_gl.jpg",
+          "kind": "group01_nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_industrial_pipes_01/modular_industrial_pipes_01_group01_nor_gl_2k.jpg",
+          "sha256": "6ef90f868c2224d9f7de8d9639601c4dd915dc8c51144db0526e9ab940f2b9c4"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_industrial_pipes_01/modular_industrial_pipes_01_group02_nor_gl.jpg",
+          "kind": "group02_nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_industrial_pipes_01/modular_industrial_pipes_01_group02_nor_gl_2k.jpg",
+          "sha256": "c9ec4ba0df837c7684f2c42adb9722c4ecb9284db7a5dd3190af90da3d89c5e0"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_industrial_pipes_01/modular_industrial_pipes_01_group02_diff.jpg",
+          "kind": "group02_diff",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_industrial_pipes_01/modular_industrial_pipes_01_group02_diff_2k.jpg",
+          "sha256": "89c4de4912204e62bb238cb626a3ddad3ba128799ecb834edf1086d7afc62966"
+        }
+      ]
+    },
+    {
+      "id": "modular_wooden_pier",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/modular_wooden_pier",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_wooden_pier/modular_wooden_pier.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/modular_wooden_pier/modular_wooden_pier_2k.fbx",
+          "sha256": "bc5302ba6755db31f02374e0d7ba68daedeae850e95db7521c4e0e76b7be0bcc"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_wooden_pier/modular_wooden_pier_poles_diff.jpg",
+          "kind": "poles_diff",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_wooden_pier/modular_wooden_pier_poles_diff_2k.jpg",
+          "sha256": "002fdfbba4149d918daa1f7109f2602d0c0737434c08f09beebc4347ebf97dd9"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_wooden_pier/modular_wooden_pier_planks_diff.jpg",
+          "kind": "planks_diff",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_wooden_pier/modular_wooden_pier_planks_diff_2k.jpg",
+          "sha256": "2c7249c008b19732634c86e9dfd4759fac04ff8c69e0d7c4c6518881398a83ff"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_wooden_pier/modular_wooden_pier_poles_nor_gl.jpg",
+          "kind": "poles_nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_wooden_pier/modular_wooden_pier_poles_nor_gl_2k.jpg",
+          "sha256": "ae83a82f0666a47dacdc6a1477a162367317ec448bfe9e5f1ddef0514c29846f"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_wooden_pier/modular_wooden_pier_planks_nor_gl.jpg",
+          "kind": "planks_nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_wooden_pier/modular_wooden_pier_planks_nor_gl_2k.jpg",
+          "sha256": "ac17e902940037d13508b0763cb5f07a267117ff6ae74197b9883d70665d914d"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_wooden_pier/modular_wooden_pier_poles_arm.jpg",
+          "kind": "poles_arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_wooden_pier/modular_wooden_pier_poles_arm_2k.jpg",
+          "sha256": "4bf16be51286362ff725cd34b25f125d7c16ece3ac4aa29752f345226437c8fa"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/modular_wooden_pier/modular_wooden_pier_planks_arm.jpg",
+          "kind": "planks_arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/modular_wooden_pier/modular_wooden_pier_planks_arm_2k.jpg",
+          "sha256": "2b1141c77052449c1da01e60951211a79fb8c4553f7cc9349894e9d3c996cec0"
+        }
+      ]
+    },
+    {
+      "id": "oil_tin",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/oil_tin",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/oil_tin/oil_tin.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/oil_tin/oil_tin_2k.fbx",
+          "sha256": "ecdf2cf4f4c69e8add9f37ccbc8f4d2b0c41200968a4d3d10a633c0ecd070f20"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/oil_tin/oil_tin_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/oil_tin/oil_tin_arm_2k.jpg",
+          "sha256": "8cd6073b4b074d0c32063fbca4c338fa5bb093cfe099d7010fd78568617f424c"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/oil_tin/oil_tin_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/oil_tin/oil_tin_diff_2k.jpg",
+          "sha256": "2ba9c6894c076c72bd69377439c43cbd16fe3f6cceb647b12751ff4e738c3233"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/oil_tin/oil_tin_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/oil_tin/oil_tin_nor_gl_2k.jpg",
+          "sha256": "fa5c93d1462b2afaf31d37242313e2a22a8c5f234267685e0cc2a8643cbf0bd7"
+        }
+      ]
+    },
+    {
+      "id": "old_military_compressor",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/old_military_compressor",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/old_military_compressor/old_military_compressor.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/old_military_compressor/old_military_compressor_2k.fbx",
+          "sha256": "aca4adfa46dbe56edfe62308126115146adde2d64d3342559e49ebbe55b3e3ff"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/old_military_compressor/old_military_compressor_Alpha.jpg",
+          "kind": "Alpha",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/old_military_compressor/old_military_compressor_alpha_2k.jpg",
+          "sha256": "91788446da5ab58fb2e7c865bf529960e2898281a7a0ac9ac5c89860ae0264d1"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/old_military_compressor/old_military_compressor_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/old_military_compressor/old_military_compressor_arm_2k.jpg",
+          "sha256": "b7ca154f05e75ba5a37f38acdf0f92f2a28de029bf99f7104945892a38c1ffb3"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/old_military_compressor/old_military_compressor_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/old_military_compressor/old_military_compressor_diff_2k.jpg",
+          "sha256": "4fd9f1fa31da35a9d48b8a9e97a73d07ec21f9a92278a42cf394f294b070e537"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/old_military_compressor/old_military_compressor_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/old_military_compressor/old_military_compressor_nor_gl_2k.jpg",
+          "sha256": "98eca39e654335ee611e6b297aa406b237bb73add4f94b90cd9df92365528fc7"
+        }
+      ]
+    },
+    {
+      "id": "old_military_crate",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/old_military_crate",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/old_military_crate/old_military_crate.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/old_military_crate/old_military_crate_2k.fbx",
+          "sha256": "04cac900338f11be5fe0a280b100e3c709eb9febc4ad75364d59cd9770b33d3d"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/old_military_crate/old_military_crate_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/old_military_crate/old_military_crate_arm_2k.jpg",
+          "sha256": "9ebf54402762793d4b95165702be28c3579a9f2ed7a75865a8be3cd1931099dc"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/old_military_crate/old_military_crate_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/old_military_crate/old_military_crate_diff_2k.jpg",
+          "sha256": "ebc666e42a5d276195f2589243e2c202f3cd166216c96e7d6a776feada85002d"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/old_military_crate/old_military_crate_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/old_military_crate/old_military_crate_nor_gl_2k.jpg",
+          "sha256": "121a513b6d70be49f6ff17ddb0a04e8ff217f7a580ed93cacebae907e4907c98"
+        }
+      ]
+    },
+    {
+      "id": "overhead_crane",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/overhead_crane",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/overhead_crane/overhead_crane.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/overhead_crane/overhead_crane_2k.fbx",
+          "sha256": "6910279dac066cb4820839984f008822130dcd239fd6a391fdd5212a0d950fbc"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/overhead_crane/overhead_crane_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/overhead_crane/overhead_crane_arm_2k.jpg",
+          "sha256": "36700ea0d48af2f70f58976492736ac14733eb05b0c0e15a88f45d2f77542724"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/overhead_crane/overhead_crane_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/overhead_crane/overhead_crane_diff_2k.jpg",
+          "sha256": "796347fde192bf73317c88bd169e04c9d4c7b7e75d111b4ab63e835d603cc962"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/overhead_crane/overhead_crane_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/overhead_crane/overhead_crane_nor_gl_2k.jpg",
+          "sha256": "b63798b5a2e3dc58a215cf1ef35451242f5e31f02ccfeb5d9323c096072017ab"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/overhead_crane/overhead_crane_trim_arm.jpg",
+          "kind": "trim_arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/overhead_crane/overhead_crane_trim_arm_2k.jpg",
+          "sha256": "28810c7016b496ecab47cd20e7ee7d29eb368d4d10223a6f44a10dceda69e941"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/overhead_crane/overhead_crane_trim_diff.jpg",
+          "kind": "trim_diff",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/overhead_crane/overhead_crane_trim_diff_2k.jpg",
+          "sha256": "87c49f0abd50367bce0964f89e4d2a7a842a5cdfbe0131b5a5fde6dce430fd90"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/overhead_crane/overhead_crane_trim_nor_gl.jpg",
+          "kind": "trim_nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/overhead_crane/overhead_crane_trim_nor_gl_2k.jpg",
+          "sha256": "5661f301ddb3380581bacab81c01630a8ac36029fe5baeb730216dc64c3d9696"
+        }
+      ]
+    },
+    {
+      "id": "pipe_wrench",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/pipe_wrench",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/pipe_wrench/pipe_wrench.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/pipe_wrench/pipe_wrench_2k.fbx",
+          "sha256": "4b96e3cfd0330dc06ec854f34ee97bb95bcee9fd569596c18617fd71e750f658"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/pipe_wrench/pipe_wrench_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/pipe_wrench/pipe_wrench_diff_2k.jpg",
+          "sha256": "aec05d4fdca5467f5c4fd611f70e3e9b1e53d79ca95693c8127bed0cfaaede65"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/pipe_wrench/pipe_wrench_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/pipe_wrench/pipe_wrench_nor_gl_2k.jpg",
+          "sha256": "72969e047b68ee7da67af9d2dee83b5d2d9ffa0e9bbd0cbe4acd23485f22ee0c"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/pipe_wrench/pipe_wrench_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/pipe_wrench/pipe_wrench_arm_2k.jpg",
+          "sha256": "11ec368aa88802aac2f826776e10b66be3e7b7e996f01a4cde54141acabd8f79"
+        }
+      ]
+    },
+    {
+      "id": "pliers",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/pliers",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/pliers/pliers.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/pliers/pliers_2k.fbx",
+          "sha256": "b88e89a8e58cb0baa89cd4507fa725f0f5f5dd4c2188da138ed264316498a0d8"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/pliers/pliers_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/pliers/pliers_arm_2k.jpg",
+          "sha256": "b155de937c5c31831d1bc60c408f215530401cb264e49bd077c9ea27044668ce"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/pliers/pliers_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/pliers/pliers_diff_2k.jpg",
+          "sha256": "aca520d7bbd84795ccfe99894e68699998f64258e539690e0a8a7f39da35d266"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/pliers/pliers_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/pliers/pliers_nor_gl_2k.jpg",
+          "sha256": "fbbbcc5e6076a29e50b9e4fce47564a7043fd822b147c4115cde348246d60b75"
+        }
+      ]
+    },
+    {
+      "id": "portable_generator",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/portable_generator",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/portable_generator/portable_generator.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/portable_generator/portable_generator_2k.fbx",
+          "sha256": "6350c267c97a0f6d1b0e759b80fb726e3f4cda5c77e24d7c2ec02b53569558f1"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/portable_generator/portable_generator_Alpha.jpg",
+          "kind": "Alpha",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/portable_generator/portable_generator_alpha_2k.jpg",
+          "sha256": "552b114cacdfec4544d4f5d97f2fd8b991ee495f5e5bf46fd917dffc8ed2ae08"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/portable_generator/portable_generator_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/portable_generator/portable_generator_arm_2k.jpg",
+          "sha256": "8f2c0b3ff0366393b547680a712416de1cfd522b0178d3a2cfb7b61b7decb427"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/portable_generator/portable_generator_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/portable_generator/portable_generator_diff_2k.jpg",
+          "sha256": "18321bec1851f5863fefee6e299af18629015701d8999e02c51560bb0581ae2e"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/portable_generator/portable_generator_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/portable_generator/portable_generator_nor_gl_2k.jpg",
+          "sha256": "d98066fa97e59dacefd4878df5069b8f59e3e653a0f7e739545fcf400a93b680"
+        }
+      ]
+    },
+    {
+      "id": "portable_searchlight",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/portable_searchlight",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/portable_searchlight/portable_searchlight.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/portable_searchlight/portable_searchlight_2k.fbx",
+          "sha256": "a7392b7a49376b6c60cee1e5819e875226734a413f6dfeec7c0027cf621f2ec3"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/portable_searchlight/portable_searchlight_Alpha.jpg",
+          "kind": "Alpha",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/portable_searchlight/portable_searchlight_alpha_2k.jpg",
+          "sha256": "3e911f27050f1f8d18c6ae722a6cd7dd0bc7b3c1dcf0565b6c82bbe6358f06fa"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/portable_searchlight/portable_searchlight_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/portable_searchlight/portable_searchlight_arm_2k.jpg",
+          "sha256": "348a7b805d289b274fbef8b71fbe30391465443c6a41cfc0cf440d31d3082bad"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/portable_searchlight/portable_searchlight_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/portable_searchlight/portable_searchlight_diff_2k.jpg",
+          "sha256": "5ca77a1fe2dff387269d4fa64325ebae16648a1563239465eafb11c0e2ce577b"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/portable_searchlight/portable_searchlight_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/portable_searchlight/portable_searchlight_nor_gl_2k.jpg",
+          "sha256": "501b10b21fda0003dca651906953d6eca64caff2c0655df28d44d4d33993a0be"
+        }
+      ]
+    },
+    {
+      "id": "portable_welding_cart",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/portable_welding_cart",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/portable_welding_cart/portable_welding_cart.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/portable_welding_cart/portable_welding_cart_2k.fbx",
+          "sha256": "7064a8c19c5e78600c5ade9e63eda89ce7df8cf324a3d5050fe9f93a68a66279"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/portable_welding_cart/portable_welding_cart_Alpha.jpg",
+          "kind": "Alpha",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/portable_welding_cart/portable_welding_cart_alpha_2k.jpg",
+          "sha256": "479941c154bed1b43cb0fc040bb523a810cbc02238c59e07a50a18386283927a"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/portable_welding_cart/portable_welding_cart_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/portable_welding_cart/portable_welding_cart_arm_2k.jpg",
+          "sha256": "70b5476e03e92c361a4868f3cc6330d3821e2f6f582e84ae0fb29b006d89e8ec"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/portable_welding_cart/portable_welding_cart_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/portable_welding_cart/portable_welding_cart_diff_2k.jpg",
+          "sha256": "3232c4d4fe935ba538415d2cea1d4642bcef760425490dac99ec7954089a8b8f"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/portable_welding_cart/portable_welding_cart_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/portable_welding_cart/portable_welding_cart_nor_gl_2k.jpg",
+          "sha256": "f7a15dd27e7893c56eb3986dc62c03fd2021c821958492300d14316ed7feb83f"
+        }
+      ]
+    },
+    {
+      "id": "power_box_01",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/power_box_01",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/power_box_01/power_box_01.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/power_box_01/power_box_01_2k.fbx",
+          "sha256": "4e3cf0ec5235f1d427bb96022747b8b19b8d9d17143bc951ab144b98f728d73a"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/power_box_01/power_box_01_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/power_box_01/power_box_01_diff_2k.jpg",
+          "sha256": "045f04100a6a95bf6d43ea0989545b52008c84dd1d1d238ad0d7fa89789f8d0b"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/power_box_01/power_box_01_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/power_box_01/power_box_01_nor_gl_2k.jpg",
+          "sha256": "fff3e5b9037375226c10e7625b2d7735029cdae4d926ddc90567e02de61420e0"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/power_box_01/power_box_01_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/power_box_01/power_box_01_arm_2k.jpg",
+          "sha256": "792a1e04f9ab4740cbde8a70c1b720f4e411afc42d1359b24ab6602ef52d1c33"
+        }
+      ]
+    },
+    {
+      "id": "retro_multimeter",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/retro_multimeter",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/retro_multimeter/retro_multimeter.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/retro_multimeter/retro_multimeter_2k.fbx",
+          "sha256": "6c121fcbdc56719e081e3232a6460621bbc959e362551084b58c986b0b02ead2"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/retro_multimeter/retro_multimeter_Alpha.jpg",
+          "kind": "Alpha",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/retro_multimeter/retro_multimeter_alpha_2k.jpg",
+          "sha256": "57eaa619b389ec4771f6553c8ece9cc6aedb8080c635deecb781ce0adf9b0fc4"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/retro_multimeter/retro_multimeter_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/retro_multimeter/retro_multimeter_arm_2k.jpg",
+          "sha256": "8dbe287ad5fac8f6ff6c4fa885411aba0136829a7743c6f708c0b472f2ad11f2"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/retro_multimeter/retro_multimeter_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/retro_multimeter/retro_multimeter_diff_2k.jpg",
+          "sha256": "b3ba9213aa2c8becdf2660b6f549ef27817d11e19116915f345a58c844080db7"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/retro_multimeter/retro_multimeter_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/retro_multimeter/retro_multimeter_nor_gl_2k.jpg",
+          "sha256": "0555cb6c0ea9566ebc43fb75ac452bf683c47874735ee1d88fe077bea2426716"
+        }
+      ]
+    },
+    {
+      "id": "rusted_spade_01",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/rusted_spade_01",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/rusted_spade_01/rusted_spade_01.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/rusted_spade_01/rusted_spade_01_2k.fbx",
+          "sha256": "9fcbcf8453139ff23c04f5be7110c06b43929604bbff2af41052f62f51998ab3"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/rusted_spade_01/rusted_spade_01_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/rusted_spade_01/rusted_spade_01_diff_2k.jpg",
+          "sha256": "e9b1c2895dbfa8b77796a7dad8e0cd513342c39b7727486df44a856a98f57648"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/rusted_spade_01/rusted_spade_01_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/rusted_spade_01/rusted_spade_01_nor_gl_2k.jpg",
+          "sha256": "e24d7be8baeffc9ebcf8abfe4bcfaa66213510df0b85361d46c2abd6c13b4b36"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/rusted_spade_01/rusted_spade_01_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/rusted_spade_01/rusted_spade_01_arm_2k.jpg",
+          "sha256": "b8d45d3805111468d3308edb98b2c7b428cf96fc2e005094c119243f7530269d"
+        }
+      ]
+    },
+    {
+      "id": "small_oil_can_01",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/small_oil_can_01",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/small_oil_can_01/small_oil_can_01.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/small_oil_can_01/small_oil_can_01_2k.fbx",
+          "sha256": "1c5c85eeab71764c22bbf481b68b468f676625165bf59aa7a2606900ec23f833"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/small_oil_can_01/small_oil_can_01_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/small_oil_can_01/small_oil_can_01_diff_2k.jpg",
+          "sha256": "e377d6158e53cc30e4c0877db47cf6940d80f2471b4428c0b2cf5c50b11a11f8"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/small_oil_can_01/small_oil_can_01_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/small_oil_can_01/small_oil_can_01_nor_gl_2k.jpg",
+          "sha256": "c772b3c610a84a2055d8d55dbeb8dd8dd7ace82f9c6720d3835ae2589753375a"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/small_oil_can_01/small_oil_can_01_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/small_oil_can_01/small_oil_can_01_arm_2k.jpg",
+          "sha256": "466388dfb38c6963c8c9b0a056f14cd3d01182b741259c59d27a9f15b8c59b97"
+        }
+      ]
+    },
+    {
+      "id": "steel_frame_shelves_01",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/steel_frame_shelves_01",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/steel_frame_shelves_01/steel_frame_shelves_01.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/steel_frame_shelves_01/steel_frame_shelves_01_2k.fbx",
+          "sha256": "f09324d1ab41ac62e707d940e29d2e29fcfd9108735df71ff94033b681d63d1c"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/steel_frame_shelves_01/steel_frame_shelves_01_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/steel_frame_shelves_01/steel_frame_shelves_01_diff_2k.jpg",
+          "sha256": "f13b689662757c99dce62503fa98baa54d5c8aec1597fce1ab7c5b8d5a77f721"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/steel_frame_shelves_01/steel_frame_shelves_01_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/steel_frame_shelves_01/steel_frame_shelves_01_nor_gl_2k.jpg",
+          "sha256": "bb5db1bdc40938b7f949d773ffdf4c7d2d8319b285ab291173676114ddb91c7b"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/steel_frame_shelves_01/steel_frame_shelves_01_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/steel_frame_shelves_01/steel_frame_shelves_01_arm_2k.jpg",
+          "sha256": "6aeca77df7c022bec768212cba95011ce4fc67555c5e039e22542db171492a4f"
+        }
+      ]
+    },
+    {
+      "id": "steel_frame_shelves_02",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/steel_frame_shelves_02",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/steel_frame_shelves_02/steel_frame_shelves_02.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/steel_frame_shelves_02/steel_frame_shelves_02_2k.fbx",
+          "sha256": "b911284f42d63afec0f9213b8d1869764e358c190519a0dc91854b3a0708448a"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/steel_frame_shelves_02/steel_frame_shelves_02_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/steel_frame_shelves_02/steel_frame_shelves_02_diff_2k.jpg",
+          "sha256": "e953ee6efb0d858502aa5dbb50b7fed91d1df49873b20958fe0ceb818c1da3eb"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/steel_frame_shelves_02/steel_frame_shelves_02_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/steel_frame_shelves_02/steel_frame_shelves_02_nor_gl_2k.jpg",
+          "sha256": "316326876b1265a470301699d6729b4118c844c91a8c52e527e44138930e7fce"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/steel_frame_shelves_02/steel_frame_shelves_02_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/steel_frame_shelves_02/steel_frame_shelves_02_arm_2k.jpg",
+          "sha256": "3481eb9f8839fabaabec0a7a83b05684940475d2f09f00b7901137e5a5687ac9"
+        }
+      ]
+    },
+    {
+      "id": "utility_box_01",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/utility_box_01",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/utility_box_01/utility_box_01.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/utility_box_01/utility_box_01_2k.fbx",
+          "sha256": "14809b4be24db3ac36af16081a7110684626b6a34ce2240b58f9567bfe7842d5"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/utility_box_01/utility_box_01_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/utility_box_01/utility_box_01_diff_2k.jpg",
+          "sha256": "c0b5560ef0bc650139232edb5ae489012eb58bb1d0dfd4b1fde3ad737e11dc56"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/utility_box_01/utility_box_01_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/utility_box_01/utility_box_01_nor_gl_2k.jpg",
+          "sha256": "e97b9f34d7b00e697c9de9a47630a54fa089f68b1e0f1d2ef4b6c39f7f241bcd"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/utility_box_01/utility_box_01_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/utility_box_01/utility_box_01_arm_2k.jpg",
+          "sha256": "47631004401c1deb7927bf731d0e5eacead056e8fe1beb5906d21db10b1fb88b"
+        }
+      ]
+    },
+    {
+      "id": "vintage_hand_drill",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/vintage_hand_drill",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/vintage_hand_drill/vintage_hand_drill.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/vintage_hand_drill/vintage_hand_drill_2k.fbx",
+          "sha256": "13c70d446d84a7a0ae4d6a3a2c3c0020ab5059617ff993ec7cad25d400e3a4c7"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/vintage_hand_drill/vintage_hand_drill_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/vintage_hand_drill/vintage_hand_drill_diff_2k.jpg",
+          "sha256": "550182936f5c4406bad9a772ed5b742ba159888bcdc665645a801e69562bbba4"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/vintage_hand_drill/vintage_hand_drill_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/vintage_hand_drill/vintage_hand_drill_nor_gl_2k.jpg",
+          "sha256": "811be26baee49fd549356ff0945f04e48cd7710b7728f246e118454c5db115b3"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/vintage_hand_drill/vintage_hand_drill_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/vintage_hand_drill/vintage_hand_drill_arm_2k.jpg",
+          "sha256": "c8af27eee5f8a021d822f69f216ecdb6120d743a29fd4cec0de195214214ce85"
+        }
+      ]
+    },
+    {
+      "id": "vintage_radio_transceiver",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/vintage_radio_transceiver",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/vintage_radio_transceiver/vintage_radio_transceiver.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/vintage_radio_transceiver/vintage_radio_transceiver_2k.fbx",
+          "sha256": "739abdfe223e8e7250b4f67ef70d23af04d929e274e17bd537adc2831069e9b4"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/vintage_radio_transceiver/vintage_radio_transceiver_accessories_arm.jpg",
+          "kind": "accessories_arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/vintage_radio_transceiver/vintage_radio_transceiver_accessories_arm_2k.jpg",
+          "sha256": "f9c03b0960f0e0723327ff9f73e9818a8c17fdbc28fa931c82b295647067397c"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/vintage_radio_transceiver/vintage_radio_transceiver_accessories_diff.jpg",
+          "kind": "accessories_diff",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/vintage_radio_transceiver/vintage_radio_transceiver_accessories_diff_2k.jpg",
+          "sha256": "67124a78e7de97188ddee5f43b5dc58068dacd679a03cfc15da3c768bd495991"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/vintage_radio_transceiver/vintage_radio_transceiver_accessories_nor_gl.jpg",
+          "kind": "accessories_nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/vintage_radio_transceiver/vintage_radio_transceiver_accessories_nor_gl_2k.jpg",
+          "sha256": "fb0a8dc541d9b6337405354df580144c95804490f1ba0bc24a46ed7b79128979"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/vintage_radio_transceiver/vintage_radio_transceiver_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/vintage_radio_transceiver/vintage_radio_transceiver_arm_2k.jpg",
+          "sha256": "3b301d0a23ccc10711e88380af600e12b74c5e564b6bb3b94f002bfd86124bc1"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/vintage_radio_transceiver/vintage_radio_transceiver_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/vintage_radio_transceiver/vintage_radio_transceiver_diff_2k.jpg",
+          "sha256": "87f03f8ce4b48d78083609a91afc9172f09ffe572c622342c6352b04ab90356f"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/vintage_radio_transceiver/vintage_radio_transceiver_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/vintage_radio_transceiver/vintage_radio_transceiver_nor_gl_2k.jpg",
+          "sha256": "0847075bff7d68574dcf65986f6c441cfb46c4619878786b1beffe3ad853622a"
+        }
+      ]
+    },
+    {
+      "id": "water_manhole_cover",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/water_manhole_cover",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/water_manhole_cover/water_manhole_cover.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/water_manhole_cover/water_manhole_cover_2k.fbx",
+          "sha256": "d198ea6870633f2716ae6b0f416907e25a4248d3cae7a94e66a1ca0294602fa5"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/water_manhole_cover/water_manhole_cover_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/water_manhole_cover/water_manhole_cover_diff_2k.jpg",
+          "sha256": "f3038b11493dd09626e7b1e34c8eb72a8f594d77d9084d06d67bef34a35a8371"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/water_manhole_cover/water_manhole_cover_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/water_manhole_cover/water_manhole_cover_nor_gl_2k.jpg",
+          "sha256": "abdfc1f149e31989b9a29dd7d812e4751ec7fe7593a71213db8774c12b65814b"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/water_manhole_cover/water_manhole_cover_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/water_manhole_cover/water_manhole_cover_arm_2k.jpg",
+          "sha256": "e58a4c473f0233d6c41c71d5a0b7b5d616160432d5fe299f071a1351b3640a15"
+        }
+      ]
+    },
+    {
+      "id": "wood_chips",
+      "kind": "texture",
+      "sourcePage": "https://polyhaven.com/a/wood_chips",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wood_chips/wood_chips_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wood_chips/wood_chips_diff_2k.jpg",
+          "sha256": "e938bf4508e4fb08e78d1e6a402e7705f0dd48cdd3386c143964b2a902d81946"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wood_chips/wood_chips_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wood_chips/wood_chips_nor_gl_2k.jpg",
+          "sha256": "ba24d480dce4552a2f4869e731e2110d944701e4836c8d0a54ab3f832c027aa5"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wood_chips/wood_chips_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wood_chips/wood_chips_arm_2k.jpg",
+          "sha256": "c685162c52defbfb39ac4c7a6c71fe493f6ab060565d194f8cd161edaf03bf72"
+        }
+      ]
+    },
+    {
+      "id": "wooden_barrels_01",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/wooden_barrels_01",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_barrels_01/wooden_barrels_01.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/wooden_barrels_01/wooden_barrels_01_2k.fbx",
+          "sha256": "58b85218eb8742007fc821927b4dae84a0b7cb10d5f1fb8ebcf7c4ef413edd75"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_barrels_01/wooden_barrels_01_pieces_diff.jpg",
+          "kind": "pieces_diff",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/wooden_barrels_01/wooden_barrels_01_pieces_diff_2k.jpg",
+          "sha256": "de4a266727e4c1beda7f4a2d5d508fffebd66419cfb77a3eef16d7ff1f490431"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_barrels_01/wooden_barrels_01_pieces_arm.jpg",
+          "kind": "pieces_arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/wooden_barrels_01/wooden_barrels_01_pieces_arm_2k.jpg",
+          "sha256": "90685b98ab179dd7bb410563ccd7ace601a2f9a9a3bf09ec7d15f63f9b1de169"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_barrels_01/wooden_barrels_01_barrel01_arm.jpg",
+          "kind": "barrel01_arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/wooden_barrels_01/wooden_barrels_01_barrel01_arm_2k.jpg",
+          "sha256": "f6b51c989a84179c63f04f63382019087ead88b55d28569df2879101c76cd730"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_barrels_01/wooden_barrels_01_barrel02_diff.jpg",
+          "kind": "barrel02_diff",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/wooden_barrels_01/wooden_barrels_01_barrel02_diff_2k.jpg",
+          "sha256": "82ef7f7c95f46205d08bf1b357d73ceee0d41857c7c8e4bf1f5c50ce40372357"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_barrels_01/wooden_barrels_01_barrel02_arm.jpg",
+          "kind": "barrel02_arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/wooden_barrels_01/wooden_barrels_01_barrel02_arm_2k.jpg",
+          "sha256": "35b90d35093550357db30f66ff92373c5d9dd2d4dad8290c0b7e1ee554422af8"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_barrels_01/wooden_barrels_01_pieces_nor_gl.jpg",
+          "kind": "pieces_nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/wooden_barrels_01/wooden_barrels_01_pieces_nor_gl_2k.jpg",
+          "sha256": "9b0a16897b4f8cefb427dff47591c8cfd8dba894b5e3027f600dd523a1636c88"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_barrels_01/wooden_barrels_01_barrel01_diff.jpg",
+          "kind": "barrel01_diff",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/wooden_barrels_01/wooden_barrels_01_barrel01_diff_2k.jpg",
+          "sha256": "9712db80b6ce8e8afc85fa67855abef7261339cb5efc6d366e1ffd96476f7089"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_barrels_01/wooden_barrels_01_barrel02_nor_gl.jpg",
+          "kind": "barrel02_nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/wooden_barrels_01/wooden_barrels_01_barrel02_nor_gl_2k.jpg",
+          "sha256": "6b38d0c9be7ac930e688cf3d34e455bcc54ed39efa045406c4d43a8980531a56"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_barrels_01/wooden_barrels_01_barrel01_nor_gl.jpg",
+          "kind": "barrel01_nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/wooden_barrels_01/wooden_barrels_01_barrel01_nor_gl_2k.jpg",
+          "sha256": "1688fe3dd19beef088ed5880bc4c5ff82ad3dcee468a94ef89a43ba01fbcccb0"
+        }
+      ]
+    },
+    {
+      "id": "wooden_crate_02",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/wooden_crate_02",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/wooden_crate_02/wooden_crate_02_2k.fbx",
+          "sha256": "fc9389068ec8cfe60cc4d0ed0d81d67ac76c8974780ad6114942944d78ac9014"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/wooden_crate_02/wooden_crate_02_diff_2k.jpg",
+          "sha256": "e39ab2f122698069f4ee7d56f22624349eaf587dc9af51109d450f632d25f7ae"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/wooden_crate_02/wooden_crate_02_nor_gl_2k.jpg",
+          "sha256": "04274163275dc16b9dbd829aa45145796bd129cf980c916280fcad352cf5542e"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/wooden_crate_02/wooden_crate_02_arm_2k.jpg",
+          "sha256": "c426597684b4e86bc2189bfaaf9d162118b54a01523ed4eec625cdbe2f1e52c8"
+        }
+      ]
+    },
+    {
+      "id": "industrial_pastic_container",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/industrial_pastic_container",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_pastic_container/industrial_pastic_container.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/industrial_pastic_container/industrial_pastic_container_2k.fbx",
+          "sha256": "15ea67184aeed869b6a2e85ae59b5f0f9849974331738e12b4870ce2892facf8"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_pastic_container/industrial_pastic_container_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_pastic_container/industrial_pastic_container_arm_2k.jpg",
+          "sha256": "4de96358aeedcb26b769a7df0b9e9ed84792bf21cdabd2f2c42d182fd72d447a"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_pastic_container/industrial_pastic_container_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_pastic_container/industrial_pastic_container_diff_2k.jpg",
+          "sha256": "35ec4060b77fe6d80364d8b2796441506233d49d8c994f5b4301489bfa6fb443"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/industrial_pastic_container/industrial_pastic_container_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/industrial_pastic_container/industrial_pastic_container_nor_gl_2k.jpg",
+          "sha256": "34f0b1cb2eac9464f48633eaea9c5d53787a46d96a939960e11d354a99f4e37d"
+        }
+      ]
+    },
+    {
+      "id": "Chimneys",
+      "kind": "model",
+      "author": "ribot02",
+      "title": "simple triple chimney",
+      "sourcePage": "https://sketchfab.com/3d-models/04ec66aa997942aa911d2d4508c7dafe",
+      "mirror": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-051/04ec66aa997942aa911d2d4508c7dafe.glb",
+      "license": "CC-BY-4.0",
+      "sourceSha256": "6507a623037b32fa4dda3fe5f8dec4ec26dda21a703193022c4da81a1ccdf7ea"
+    },
+    {
+      "id": "office_notepads",
+      "kind": "model",
+      "sourcePage": "https://polyhaven.com/a/office_notepads",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/office_notepads/office_notepads.fbx",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/2k/office_notepads/office_notepads_2k.fbx",
+          "sha256": "bd7c07c7de276ac74e6a8d2ab8f9506d07593df16eb8a9b997174e9d4e393ca2"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/office_notepads/office_notepads_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/office_notepads/office_notepads_arm_2k.jpg",
+          "sha256": "5149eb4fbfcb2335829de4e87e476abb6a7e2e10bda8679b6610a7eeb9f88d9d"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/office_notepads/office_notepads_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/office_notepads/office_notepads_diff_2k.jpg",
+          "sha256": "9037c4c6ffe60a123e875d2618f71bf448a25c5e87c494289c8fb0c9c52ab469"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/office_notepads/office_notepads_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/office_notepads/office_notepads_nor_gl_2k.jpg",
+          "sha256": "9a23fa5d40dcf1a1b754aa5bcd3e32d3ce40bee5505aa40dc640dff3084b9ff9"
+        }
+      ]
+    },
+    {
+      "id": "Gear",
+      "kind": "model",
+      "author": "plaggy",
+      "title": "CC0 - Gear",
+      "sourcePage": "https://sketchfab.com/3d-models/bb92a0e2e5e04ed4a62a51dde6cb854a",
+      "mirror": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-136/bb92a0e2e5e04ed4a62a51dde6cb854a.glb",
+      "license": "CC-BY-4.0",
+      "sourceSha256": "c6bf3616a3930624966f344ae3d4db1f73a68d5def4bd015f4843a0ecc86e5be"
+    },
+    {
+      "id": "concrete_floor_02",
+      "kind": "texture",
+      "sourcePage": "https://polyhaven.com/a/concrete_floor_02",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/concrete_floor_02/concrete_floor_02_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/concrete_floor_02/concrete_floor_02_diff_2k.jpg",
+          "sha256": "b08a20dcb306d08ee7f4a05ec216b19b7fd37e95745998ec5f81ecedaac1f0e9"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/concrete_floor_02/concrete_floor_02_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/concrete_floor_02/concrete_floor_02_arm_2k.jpg",
+          "sha256": "bea1da529cfaf1dba9d127b8ae89793530d261f199409cdebb23abf750306c74"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/concrete_floor_02/concrete_floor_02_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/concrete_floor_02/concrete_floor_02_nor_gl_2k.jpg",
+          "sha256": "ce12d18f283f884f4be6f6c110f81582376049caada1e226958659d3d5fbaae1"
+        }
+      ]
+    },
+    {
+      "id": "moonless_golf",
+      "kind": "hdri",
+      "sourcePage": "https://polyhaven.com/a/moonless_golf",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/moonless_golf/moonless_golf.hdr",
+          "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/moonless_golf_2k.hdr",
+          "sha256": "d85421f5a0ed59f6f761babf088b80472e7b3b122e492f30668393dd1c1363bd"
+        }
+      ]
+    },
+    {
+      "id": "RajahCircle",
+      "kind": "image",
+      "author": "Luke.RUSTLTD",
+      "title": "4 summoning circles \u2014 circle4",
+      "sourcePage": "https://opengameart.org/content/4-summoning-circles",
+      "license": "CC0-1.0",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Decals/RajahCircle.png",
+          "url": "https://opengameart.org/sites/default/files/circle4.png",
+          "sha256": "368729d4ee4ac17de8758cb41154e02b916671c92768e96313c86dcf4cf4e4b0"
+        }
+      ]
+    },
+    {
+      "id": "red_brick_03",
+      "kind": "texture",
+      "sourcePage": "https://polyhaven.com/a/red_brick_03",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "files": [
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/red_brick_03/red_brick_03_Diffuse.jpg",
+          "kind": "Diffuse",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/red_brick_03/red_brick_03_diff_2k.jpg",
+          "sha256": "c37ef11bb94a533d1c758c5c7d7199264e90f19b23946766c7c59aa189c11ff6"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/red_brick_03/red_brick_03_nor_gl.jpg",
+          "kind": "nor_gl",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/red_brick_03/red_brick_03_nor_gl_2k.jpg",
+          "sha256": "3bcb8714c450369915a9608a9e5318433a5e5df932184519bdbfd993dec16a9f"
+        },
+        {
+          "file": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/red_brick_03/red_brick_03_arm.jpg",
+          "kind": "arm",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/red_brick_03/red_brick_03_arm_2k.jpg",
+          "sha256": "8866779a31fdda349433ed749b299bf0b4bb7c56b1ca12637ca3d17642a07982"
+        }
+      ]
+    }
+  ],
+  "failures": []
+}

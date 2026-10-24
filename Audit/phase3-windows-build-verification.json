@@ -1,0 +1,2056 @@
+{
+  "verifiedUtc": "2026-10-24T15:37:59.728185+00:00",
+  "unityExitCode": 0,
+  "result": "Succeeded",
+  "target": "StandaloneWindows64",
+  "scriptingBackend": "Mono2x",
+  "development": true,
+  "startupScene": "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity",
+  "executable": "/root/Projects/LayarTerakhir-main/Builds/Windows/LayarTerakhir.exe",
+  "nativeArchitectures": {
+    "LayarTerakhir.exe": "PE32+ AMD64 (0x8664)",
+    "UnityPlayer.dll": "PE32+ AMD64 (0x8664)",
+    "MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll": "PE32+ AMD64 (0x8664)"
+  },
+  "unityReportedFilesVerified": 309,
+  "scriptingAssembliesVerified": 112,
+  "unityReportedSizeBytes": 2002731379,
+  "buildFileCount": 335,
+  "totalBuildSizeBytes": 2003088878,
+  "archivePath": "/root/Projects/LayarTerakhir-main/Builds/LayarTerakhir-Windows-x86_64-Development.zip",
+  "archiveSizeBytes": 1228612594,
+  "archiveSha256": "4c148ef7ab0c3e91ae78ae97fd0f607c400c45533e180e01445dc84419315c4e",
+  "zipCrcVerified": true,
+  "zipContainsAllBuildFiles": true,
+  "windowsRuntimeTested": false,
+  "files": [
+    {
+      "path": "Asset-Credits.txt",
+      "sizeBytes": 38609,
+      "sha256": "bed2d022fd7253015faaf6f437b94e1c400b9139c29168e2a2b959295f26dd17",
+      "crc32": 498145075
+    },
+    {
+      "path": "Atmaja-Playtest-Guide.txt",
+      "sizeBytes": 11795,
+      "sha256": "8329fbbdc4d9392726f7f0ecabb20c9f030cc2de5bffb17397f4b383d5ddc4ec",
+      "crc32": 3270816382
+    },
+    {
+      "path": "Barlow-OFL.txt",
+      "sizeBytes": 4377,
+      "sha256": "186d750eb496a4c17a76385f82be6aea2ac1cf2de074a811d63786cf374ea73f",
+      "crc32": 745739911
+    },
+    {
+      "path": "D3D12/D3D12Core.dll",
+      "sizeBytes": 4725304,
+      "sha256": "625bd40005b1c3708695d5256ecf230d278e6b8edba5a88af70f3d91324f3052",
+      "crc32": 2239523468
+    },
+    {
+      "path": "D3D12/d3d12SDKLayers.dll",
+      "sizeBytes": 4930104,
+      "sha256": "c0730cc70d3250d3de19c04c17845ba9e70eecaf502d684d1409195ebc5b5959",
+      "crc32": 841711521
+    },
+    {
+      "path": "DejaVu-Font-License.txt",
+      "sizeBytes": 2421,
+      "sha256": "21c02e5746372a877cb6593be77569d4a7837c8c3b59740ccd35b9e363687025",
+      "crc32": 4059395575
+    },
+    {
+      "path": "Dialogue-For-Recording.csv",
+      "sizeBytes": 17604,
+      "sha256": "d996f7c03aef674cee061bfaf0e533236a980859dc49fb2941b2375673b79dfc",
+      "crc32": 3361461805
+    },
+    {
+      "path": "Dialogue-Recording-Readme.txt",
+      "sizeBytes": 1448,
+      "sha256": "0e8c6b50fe8b03a2942d8ecb83ecaa1c6e4149aaee67c869eced9553f7582397",
+      "crc32": 3912455748
+    },
+    {
+      "path": "Golden-Review-Guide.txt",
+      "sizeBytes": 5142,
+      "sha256": "66790fd4c01ee2dc7a15b98f336ef9ad5bb19915ec64a23e74ed949d2b8ff8d1",
+      "crc32": 1291191614
+    },
+    {
+      "path": "Kenney-Suburban-CC0.txt",
+      "sizeBytes": 706,
+      "sha256": "d778fa769a89a7d9f167bc337fdf8fc2144e47d9abb0c35eb6ad897c0ee24d0a",
+      "crc32": 1300146324
+    },
+    {
+      "path": "LayarTerakhir.exe",
+      "sizeBytes": 667136,
+      "sha256": "b7cca8b82003185f22644d0ee1c23b3640de1b996802d4f5d0501e287011afa6",
+      "crc32": 3968079263
+    },
+    {
+      "path": "LayarTerakhir_BurstDebugInformation_DoNotShip/Data/Plugins/x86_64/lib_burst_generated.txt",
+      "sizeBytes": 193091,
+      "sha256": "2f1c160c4425aaf2c4a5f2c8c6d28e9b33ad9cdac4d54f547776ccd165f6d888",
+      "crc32": 390916851
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Assembly-CSharp.dll",
+      "sizeBytes": 952320,
+      "sha256": "5e09bf369ee53987e15c2ab1974de5726e62251467d606edad7fb2c9206bee4e",
+      "crc32": 380886134
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Assembly-CSharp.pdb",
+      "sizeBytes": 280464,
+      "sha256": "507874f3a7d133f937de5cd985a99090f01e94d64bcddb1e3337e9b95eb1e66d",
+      "crc32": 3479558199
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Mono.Security.dll",
+      "sizeBytes": 241152,
+      "sha256": "82df31404def10ffd69c09e3a8c454e76552f3a37675d1b7b8c743cfd3d1af6f",
+      "crc32": 4080956902
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/System.ComponentModel.Composition.dll",
+      "sizeBytes": 257024,
+      "sha256": "9373a420101d4c674b9f74bce93a45c58ddb3548c130d9b65ab87235d0a4ed30",
+      "crc32": 2912633990
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/System.Configuration.dll",
+      "sizeBytes": 124928,
+      "sha256": "d3acb14b8ebaf7482d2d3e26e8c04685299e2b471a513a30508bd0cab8336354",
+      "crc32": 2987603135
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/System.Core.dll",
+      "sizeBytes": 1113088,
+      "sha256": "ebf140bf5f8d49ccac20c14935625b0ae0a46c30aa4f90b2808f3b9678822470",
+      "crc32": 735064987
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/System.Data.DataSetExtensions.dll",
+      "sizeBytes": 29696,
+      "sha256": "79a01061129709358567a9254684ba52ba66371e01e0354e7fa4852a9f62e59f",
+      "crc32": 2042730700
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/System.Data.dll",
+      "sizeBytes": 2125312,
+      "sha256": "5d0807269bfcf112aa844951232ef105bbb642abb1e14c2e78dd70fb9245e98a",
+      "crc32": 1832949620
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/System.Drawing.dll",
+      "sizeBytes": 489984,
+      "sha256": "76dca8fbe098c285b03de79369f9f2aa141dec44de99ebcc0478c7e762024204",
+      "crc32": 215995567
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/System.EnterpriseServices.dll",
+      "sizeBytes": 44544,
+      "sha256": "d8a3d6c1929ec028793ff07df92781c03ebb38c63005d4c12c35e3116d04fcaf",
+      "crc32": 1434252186
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/System.IO.Compression.FileSystem.dll",
+      "sizeBytes": 18432,
+      "sha256": "40ef91246d44d6c4d8a1505e1210b0c54963a12938ba0458959bb064d62f36f4",
+      "crc32": 1505672836
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/System.IO.Compression.dll",
+      "sizeBytes": 114688,
+      "sha256": "7370dc2d3a6f02dbda1a69ca596f2ae96fc464809b3bbca6071fc1fc1edfbb2d",
+      "crc32": 602497929
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/System.Net.Http.dll",
+      "sizeBytes": 122880,
+      "sha256": "c46d5b5dc68af8ce1b34e8ace4372b157e2e85ab63d6b5eea938ca71dc7fb064",
+      "crc32": 170265286
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/System.Numerics.dll",
+      "sizeBytes": 119296,
+      "sha256": "74f6771aedd33262470e8e653fc0f4e04a659bcdadbeb44b2f8826fba7053f77",
+      "crc32": 4178257832
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/System.Runtime.Serialization.dll",
+      "sizeBytes": 934400,
+      "sha256": "2aa92fb930200ddb3c9c3ffaaff39bd6cdc6d689f19614f6c3b84a15060800f0",
+      "crc32": 4030230551
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/System.Runtime.dll",
+      "sizeBytes": 12288,
+      "sha256": "e0a7334b7ba419aaab6bd3bb6992d693e689341a9178172c9bf99c2aa6a085bd",
+      "crc32": 1487839048
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/System.Security.dll",
+      "sizeBytes": 320000,
+      "sha256": "95a29120e164e5bdb7ff5dcb2cb4641e5ea0aca7c1ad0854b0e9b2b0ff5abe2d",
+      "crc32": 3718092049
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/System.ServiceModel.Internals.dll",
+      "sizeBytes": 215040,
+      "sha256": "6738a31088136d38a50354371feb83a4fd1558acca2a5f8b165c34a859e08c47",
+      "crc32": 1923947275
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/System.Transactions.dll",
+      "sizeBytes": 35328,
+      "sha256": "cfac784408e3b7da6c6e94ec04c162c6d902372fab19353c02aeda3464ce185f",
+      "crc32": 3992542043
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/System.Xml.Linq.dll",
+      "sizeBytes": 136704,
+      "sha256": "ed219710472b837fddf45cc73c912e04b4d6b8ca833ea074ec1f73bc00157b05",
+      "crc32": 716488647
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/System.Xml.dll",
+      "sizeBytes": 3160064,
+      "sha256": "f90799a0c38f3d45e390f9768ab467bf681a052e1b807f4c59fabef5f7edaffa",
+      "crc32": 3060191190
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/System.dll",
+      "sizeBytes": 2641920,
+      "sha256": "9e8a5190797e35428b1ae9bce6d47d39a1dbc3e974f14239e44678913dc6194a",
+      "crc32": 4205960348
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.AI.Navigation.dll",
+      "sizeBytes": 24576,
+      "sha256": "9f12cd04d90e172c3a38f830fb1334650355913f39379a3a211ec2f3bf39e215",
+      "crc32": 1049054951
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.AI.Navigation.pdb",
+      "sizeBytes": 24864,
+      "sha256": "02e7feb092969b05efd270f81a2d76f98d924dddbcd17854a503e7090112b873",
+      "crc32": 2745702503
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.Burst.Unsafe.dll",
+      "sizeBytes": 5632,
+      "sha256": "9d9c1ff52411decbee5d9f0d1cd61ebeaa222077aa77a52101ea3debafae98e2",
+      "crc32": 3573856617
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.Burst.dll",
+      "sizeBytes": 327680,
+      "sha256": "2a9298e16f7dbd39732274a1e255b3c9ad340ba8cb15866f61d868ee1fdfb3c5",
+      "crc32": 2244854159
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.Burst.pdb",
+      "sizeBytes": 217892,
+      "sha256": "0c422989ad255e759336bd220478cfb307f06938f7e9916e109fe1fc8f0b1b5a",
+      "crc32": 3743685295
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.Collections.LowLevel.ILSupport.dll",
+      "sizeBytes": 5120,
+      "sha256": "ff50383f807f9692e4913b97e47d86fefcb8faa33d6d48cd3e3fd6fc7ffb448d",
+      "crc32": 625685738
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.Collections.dll",
+      "sizeBytes": 478208,
+      "sha256": "b48d2694fd6bdb1e4bef2a7f756ef4784e3b342d71f022b879cf6e9ca6f34fac",
+      "crc32": 2495606171
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.Collections.pdb",
+      "sizeBytes": 304796,
+      "sha256": "d3b24cab78a726b8d9e60f2b972842539bb94121d65e03650e5a98e6862d3c66",
+      "crc32": 3438148809
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.InputSystem.ForUI.dll",
+      "sizeBytes": 16384,
+      "sha256": "e778d7fb19e203469c06c31b4aaad60c851007af3e78d47249a617ca9269a4ae",
+      "crc32": 3554323441
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.InputSystem.ForUI.pdb",
+      "sizeBytes": 20396,
+      "sha256": "acc73263876aba418f5506fbfe4fb13c673fb8e86dfa22557d6d1e07cdaf3f06",
+      "crc32": 2695125713
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.InputSystem.dll",
+      "sizeBytes": 1226240,
+      "sha256": "8be780f37987d1cb5215b2273d8064568557b6f4a562c0e671f0f0e54f26ad7f",
+      "crc32": 2718332637
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.InputSystem.pdb",
+      "sizeBytes": 563256,
+      "sha256": "ef236a41c1fc5337660edbb0d1d874c36e0f6e84afc49963a78959187f9c9090",
+      "crc32": 3270095674
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.InternalAPIEngineBridge.004.dll",
+      "sizeBytes": 4096,
+      "sha256": "868efd517af43e7de7f603dabf8c7a6c7fcef84e52abc38305af67ada429f076",
+      "crc32": 3429706749
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.InternalAPIEngineBridge.004.pdb",
+      "sizeBytes": 15848,
+      "sha256": "37059d9dbd79a4b774d4ba14e228141b92416097a4eb86c12a26d7062f4a9362",
+      "crc32": 848518661
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.Mathematics.dll",
+      "sizeBytes": 871424,
+      "sha256": "1de6152073f68ad45942e0dc950f58deae978b007c840c1a3c82eac4129a08f3",
+      "crc32": 3670605038
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.Mathematics.pdb",
+      "sizeBytes": 510636,
+      "sha256": "9a4a457a98368ba3a8870d6b6945e9e3e1fcceb93ad75774d184424179f66d7d",
+      "crc32": 312731673
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.Multiplayer.Center.Common.dll",
+      "sizeBytes": 8704,
+      "sha256": "06755a195c8e0ca53ad5e956c86d7e19301e60b4a928e6774e9c94696e10001d",
+      "crc32": 1595942563
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.Multiplayer.Center.Common.pdb",
+      "sizeBytes": 16872,
+      "sha256": "b621e6f42aa74e4c7c064fbbb86174eaf30be762adbe4cf2211348875d798df2",
+      "crc32": 2919463564
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipeline.Universal.ShaderLibrary.dll",
+      "sizeBytes": 7680,
+      "sha256": "ec4b314fd262cf979c7f22e36e9a80eb8578c54f36f44cc59f3643b5909dd619",
+      "crc32": 1794903100
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipeline.Universal.ShaderLibrary.pdb",
+      "sizeBytes": 15908,
+      "sha256": "38589afcd1e7822e087765ab6fa7eb084bf56be9ff3854b85e2c7ed5e03e1aac",
+      "crc32": 2436800261
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipelines.Core.Runtime.Shared.dll",
+      "sizeBytes": 4608,
+      "sha256": "044be9ae892d275ae0fa1d408d249d41077be70a6cebc9a3338d93c93998a6d2",
+      "crc32": 1970706386
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipelines.Core.Runtime.Shared.pdb",
+      "sizeBytes": 15760,
+      "sha256": "9e0f97d652e8e3dcf7b4fee16a626b65672fd4d5788712c1293fd6d95056017c",
+      "crc32": 2033932027
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipelines.Core.Runtime.dll",
+      "sizeBytes": 1230336,
+      "sha256": "a0fa6a970516fe951a6c1b58208b996408daf78206b74dcf66b726d64dafe9fa",
+      "crc32": 1509448311
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipelines.Core.Runtime.pdb",
+      "sizeBytes": 456176,
+      "sha256": "3693d106f38801d57de382fce07958cb8c6a3f99d9c1005f9b7c635ca53e8c46",
+      "crc32": 2544220493
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipelines.Core.ShaderLibrary.dll",
+      "sizeBytes": 3584,
+      "sha256": "89009a6e4e7dfc45a6527f37f4da3781fb6745cc27b23e79f0bc0ae1e2d52515",
+      "crc32": 1582277149
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipelines.Core.ShaderLibrary.pdb",
+      "sizeBytes": 15604,
+      "sha256": "94617dab9b5a0fd4910ed38c6555180a72661c2282cbf0fd11ea63220972294f",
+      "crc32": 1059975267
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipelines.GPUDriven.Runtime.dll",
+      "sizeBytes": 243712,
+      "sha256": "d41cca67edce788440cbaaf422a0f4b17c703f4ad37e08a8d6d5dcbc36e7d160",
+      "crc32": 4184959513
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipelines.GPUDriven.Runtime.pdb",
+      "sizeBytes": 122068,
+      "sha256": "13af613ddba0436e3aea0102afa6dda0fae8f8f276a06ac5954bcafa889ae2ac",
+      "crc32": 3410214213
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll",
+      "sizeBytes": 3584,
+      "sha256": "6e67c3e1d5f1c9f470e430f8553a02fe34fd9a3f2df128b36bda9e59b2c91212",
+      "crc32": 3607993585
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.pdb",
+      "sizeBytes": 15604,
+      "sha256": "d7ed5efbe242285ee62207ea08758b6f5d38909a5a18bb0cf63aba1fbfcc109d",
+      "crc32": 524433875
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipelines.Universal.2D.Runtime.dll",
+      "sizeBytes": 243200,
+      "sha256": "46d71f5f0435a705aec2add64ddb37edd367de19f6108d333f84636b7389c3fe",
+      "crc32": 1442551570
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipelines.Universal.2D.Runtime.pdb",
+      "sizeBytes": 151300,
+      "sha256": "3b2a5d0f016fd3a1dee1c3f8b458fd8768ec3410399055e1e8805e2e7d618295",
+      "crc32": 2987185834
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipelines.Universal.Config.Runtime.dll",
+      "sizeBytes": 4096,
+      "sha256": "77f673162f089e2da94c15422784c81731a70a51e8fa8e7510961e056194b5ed",
+      "crc32": 1552815590
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipelines.Universal.Config.Runtime.pdb",
+      "sizeBytes": 15688,
+      "sha256": "808d78e8863e02dcc049bf3cc376b41ce05f17d49d9fd640bcc1bf761c4b21e4",
+      "crc32": 2338035122
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipelines.Universal.Runtime.dll",
+      "sizeBytes": 755200,
+      "sha256": "f0db877145b73d8b2e747c14516eb52a0d80e87267e72b1e11d8365db97be93f",
+      "crc32": 2025410294
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipelines.Universal.Runtime.pdb",
+      "sizeBytes": 307804,
+      "sha256": "5c80e7fc5b6fbcfbaba3b03be35f7aeefad7fa5f9228f613a225910505555101",
+      "crc32": 1440249290
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipelines.Universal.Shaders.dll",
+      "sizeBytes": 3584,
+      "sha256": "884262e1a523f50766c972ac6ed0bcfe6b79bcd332da83758b1c561dc089c82c",
+      "crc32": 3257435981
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.RenderPipelines.Universal.Shaders.pdb",
+      "sizeBytes": 15592,
+      "sha256": "3cc45411c2a7261014e221b9a37645354065f3e5d0b6bd4e2f167af86da5c4ea",
+      "crc32": 496471319
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.TextMeshPro.dll",
+      "sizeBytes": 497664,
+      "sha256": "dbbf2c5e46d34a350755f392894a7299e7928ba87acbd227d8bb5d059f96fc1e",
+      "crc32": 1247924206
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.TextMeshPro.pdb",
+      "sizeBytes": 251940,
+      "sha256": "ad490ab107ff5483b5b9be43a517eb1a50574f0fbf1e0350c51b767b314055ad",
+      "crc32": 366871848
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.Timeline.dll",
+      "sizeBytes": 136704,
+      "sha256": "2ec64b50f9eaca6feb4706c4593e8bc8a2f5b6b856b952edb87485031b135638",
+      "crc32": 1304737938
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.Timeline.pdb",
+      "sizeBytes": 85384,
+      "sha256": "c4de243257941b0917254e9f7e56d98abb9a86bbe4fd31d3ebdccda8b23737b8",
+      "crc32": 3733622934
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.UnifiedRayTracing.Runtime.dll",
+      "sizeBytes": 100352,
+      "sha256": "30b9a19cb9c92d791c836d6ec4a5587c9b0a81807cbb49c963bf5de21fed9a7b",
+      "crc32": 3886591458
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.UnifiedRayTracing.Runtime.pdb",
+      "sizeBytes": 54928,
+      "sha256": "d45342276faf9ed62952818717546339493ea2579b9e15490d98308f05324eb2",
+      "crc32": 3171165326
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.VisualScripting.Antlr3.Runtime.dll",
+      "sizeBytes": 86016,
+      "sha256": "ed7ce205f66eafe39bbb5d084d42e7fe11cb4b386ff208e5d5110891be0b7b37",
+      "crc32": 845729802
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.VisualScripting.Core.dll",
+      "sizeBytes": 593408,
+      "sha256": "3cc5df88888fc914ad05f2d0a62539dad6656a24e36c4bd1f14120ee5c5cea0c",
+      "crc32": 3742308441
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.VisualScripting.Core.pdb",
+      "sizeBytes": 312236,
+      "sha256": "f2f12c6ffe16bdad6ef663b60d33a194771c931efd5a439b163919ad26937a22",
+      "crc32": 2769042905
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.VisualScripting.DocCodeExamples.dll",
+      "sizeBytes": 6144,
+      "sha256": "4a785f7ebbdcf3067b8efb48b8cf79daf9940bf6394cf2399319b9b9a9b3e466",
+      "crc32": 3066594130
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.VisualScripting.DocCodeExamples.pdb",
+      "sizeBytes": 16288,
+      "sha256": "77830f5340c0eda75d507454079b3a4250557611ba11bacb5c2d380befae5e53",
+      "crc32": 827703492
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.VisualScripting.Flow.dll",
+      "sizeBytes": 361472,
+      "sha256": "b12403012ca17c6fc24b5193b69fad2a61381999eeffa889c83306deb55b89d8",
+      "crc32": 2405260950
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.VisualScripting.Flow.pdb",
+      "sizeBytes": 200440,
+      "sha256": "ab7c3dad5fcc46ec2528096200a4d260c6cc7acca0df27723a96e8f7417fbac8",
+      "crc32": 3429690415
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.VisualScripting.State.dll",
+      "sizeBytes": 28672,
+      "sha256": "fda5e2589bac14d9679243907336aa1c7d95a8d66d18ddac2de802368b0958ee",
+      "crc32": 3319256843
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/Unity.VisualScripting.State.pdb",
+      "sizeBytes": 27424,
+      "sha256": "7d978a246be555ca730650cb5bcdf3d5ddb29802407c68399e413c30299faaac",
+      "crc32": 2990726499
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.AIModule.dll",
+      "sizeBytes": 77232,
+      "sha256": "ba39f35f31d89b3d726002db219fb4f4c75de24d2dbd31fe5e6eeb5e8fe9404c",
+      "crc32": 152637376
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.AIModule.pdb",
+      "sizeBytes": 20664,
+      "sha256": "9584a5ca5b4af549e737ae92f169effe0b5cb9f2b35b82ea1d5b76ef9e86477d",
+      "crc32": 2559539717
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.AMDModule.dll",
+      "sizeBytes": 21928,
+      "sha256": "d618b3cfa47906c136c1def44728e69c1d16e264b4ec65a4bf47b419300728b2",
+      "crc32": 3966667250
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.AMDModule.pdb",
+      "sizeBytes": 12032,
+      "sha256": "047c2d1e63b8887c2a28d7965f53d9757ed3cb52e1cd82b077c935e1e8b9454f",
+      "crc32": 3571829546
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ARModule.dll",
+      "sizeBytes": 25512,
+      "sha256": "e292c7b2f67464d1f0e34926a99a35b9b4d1450fdef7865f8f103657d7a662b7",
+      "crc32": 2319668520
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ARModule.pdb",
+      "sizeBytes": 10012,
+      "sha256": "f98f6e3c28c373b343a6061d1a30b501b608ce92e6d43db33ef754476fd92535",
+      "crc32": 2827101601
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.AccessibilityModule.dll",
+      "sizeBytes": 51112,
+      "sha256": "9413f549098eba189f2fdd506fdc65d7edde3bbc2866f041e3ad786756dd66c9",
+      "crc32": 3549434256
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.AccessibilityModule.pdb",
+      "sizeBytes": 23076,
+      "sha256": "2da85588671e8ba9eb32776b9fbce2a980adcb1d028b473223f0524552802dc1",
+      "crc32": 1058365880
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.AdaptivePerformanceModule.dll",
+      "sizeBytes": 125360,
+      "sha256": "a473e505c63cfa4558fd3f553b3a8d57376bdb2b683fc8e37090883051bd2698",
+      "crc32": 4124497404
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.AdaptivePerformanceModule.pdb",
+      "sizeBytes": 53316,
+      "sha256": "b420b6386fa94fe71940e5b676e0fd5e3005e67dbb2423bbceb648759f8e6422",
+      "crc32": 1632976311
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.AndroidJNIModule.dll",
+      "sizeBytes": 121768,
+      "sha256": "22588a69d0e54c5d794c0ead557f6cd4c5e9eb15c5198b6dbd4b3aad09b9e031",
+      "crc32": 144179203
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.AndroidJNIModule.pdb",
+      "sizeBytes": 50232,
+      "sha256": "4bddb2c1c9f10d5a16dc0266f365ede06ae3896ef10758a37c4d50438697885c",
+      "crc32": 943209900
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.AnimationModule.dll",
+      "sizeBytes": 225200,
+      "sha256": "f1762f5fb06252b4dd5c7de2bd5748cee31edb800a749e5be88e98cb850e8683",
+      "crc32": 3310808265
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.AnimationModule.pdb",
+      "sizeBytes": 60776,
+      "sha256": "e8795a50f6ba64b19a16212b099ad9a4726e5c1544e7626a1961d17db43ddf6f",
+      "crc32": 534449608
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.AssetBundleModule.dll",
+      "sizeBytes": 41896,
+      "sha256": "efc4255fd77f62033bf1cf757d5b4e7d26d08fe2f437678753273898132f4a1b",
+      "crc32": 8874775
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.AssetBundleModule.pdb",
+      "sizeBytes": 14152,
+      "sha256": "8d21e5f4db4dcec53b8fcc20882d9bd253563f85da71afe28fb4d2c443796b24",
+      "crc32": 2895278130
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.AudioModule.dll",
+      "sizeBytes": 142760,
+      "sha256": "a50256c632695a1a16ce1a81f407a8767c8039d4b641550582e3a4ec5728ba4f",
+      "crc32": 2351596081
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.AudioModule.pdb",
+      "sizeBytes": 35200,
+      "sha256": "9b3fd9aaa3986fb9e600fc559e396f2f22f2a647246a71809cd98d267cace665",
+      "crc32": 1679363811
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ClothModule.dll",
+      "sizeBytes": 36264,
+      "sha256": "a3d741b647415173bdaedeb611ec6e6fdb863e8d7f31bc1dc937a9b0d08ff721",
+      "crc32": 2378369644
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ClothModule.pdb",
+      "sizeBytes": 10580,
+      "sha256": "4ba5b31d1fa10d8e10e0682188099e9f03cf8bd6e1b458f2dfd0f38a85ab4755",
+      "crc32": 3801294843
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ClusterInputModule.dll",
+      "sizeBytes": 28080,
+      "sha256": "00417d9c78620b833db40149d67faad19c16ac77160e5123719e30e1174bd7e5",
+      "crc32": 3024193495
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ClusterInputModule.pdb",
+      "sizeBytes": 9396,
+      "sha256": "c38265c655c20168144394cb8995e88a9114ade06ff22a536fcf374edfe4c027",
+      "crc32": 3810097867
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ClusterRendererModule.dll",
+      "sizeBytes": 26544,
+      "sha256": "efc5c5909ffd34c979d6ef8c8ba1b3b47b300bb75d5234c5b9d2e49b0af3d6da",
+      "crc32": 801625259
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ClusterRendererModule.pdb",
+      "sizeBytes": 10004,
+      "sha256": "e1600f446b6328f988bf7ea757dc9b498b41e13586b2464da7cdb894a878ec50",
+      "crc32": 3189335928
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ContentLoadModule.dll",
+      "sizeBytes": 32688,
+      "sha256": "13026b7b91158cfe87ede96ce98ce3f377549d0d15fb83eff86286797492e031",
+      "crc32": 425317401
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ContentLoadModule.pdb",
+      "sizeBytes": 11176,
+      "sha256": "2cd988e675b60f40cc926c830388f34d146883ab1ef8acfe41baa62236fe1bbe",
+      "crc32": 4018151962
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.CoreModule.dll",
+      "sizeBytes": 1985968,
+      "sha256": "9e3de7931374a2c77b09de567b00a70c69a5aa758f03a7e86f640c28c1e5a9fa",
+      "crc32": 1048119020
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.CoreModule.pdb",
+      "sizeBytes": 573696,
+      "sha256": "df5447d91297f05f50f50d0534b07f910b68bb940235635e62e457cb0a193bbe",
+      "crc32": 1427836377
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.CrashReportingModule.dll",
+      "sizeBytes": 26536,
+      "sha256": "73076aa15f7ab4460b42cf7cfa9df6929037d8990a0d045d1b094a096a50d57b",
+      "crc32": 539655485
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.CrashReportingModule.pdb",
+      "sizeBytes": 10008,
+      "sha256": "8e423c0f7eacb205a9e4f072d6ead6def1faed071f5481b7e52c28e69f38eed8",
+      "crc32": 2187972286
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.DSPGraphModule.dll",
+      "sizeBytes": 31664,
+      "sha256": "9e1c9e6f4552a93710fc47ae301c66ba764056781ad3c62de2aa1d0f050b08a8",
+      "crc32": 3304457168
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.DSPGraphModule.pdb",
+      "sizeBytes": 9604,
+      "sha256": "4bf1d2d61c907ab2a4ae1194adafac725049ec687208df4f734e5e546d51bfe4",
+      "crc32": 4112887406
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.DirectorModule.dll",
+      "sizeBytes": 41896,
+      "sha256": "798e180fdc62cb3a1ef784d4b8282b45635f94050c2f3df15b5a01c7da0087d3",
+      "crc32": 1156162497
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.DirectorModule.pdb",
+      "sizeBytes": 13920,
+      "sha256": "9d210f8da84c23fd755e099410676f86194ccef7447c68fb84c95502e2354387",
+      "crc32": 1296717358
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.GIModule.dll",
+      "sizeBytes": 24496,
+      "sha256": "dfd6575ef5bf41823f0daf36ffd32bc6a84f23e720066c3f3d0e3e7e22dbb350",
+      "crc32": 1585239627
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.GIModule.pdb",
+      "sizeBytes": 9276,
+      "sha256": "63dccf906f85380d2fde85e8c4612c6a11dfe5c734bf4b6a626e29532b65a145",
+      "crc32": 1749058390
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.GameCenterModule.dll",
+      "sizeBytes": 45992,
+      "sha256": "84187b9aa3ddb798ed3d10e98ca31dde302ebfe0de9a83ce81ae45e5e1ed2a16",
+      "crc32": 1925344817
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.GameCenterModule.pdb",
+      "sizeBytes": 17488,
+      "sha256": "2c3fae70530f3dddd78f31ec2630bd538692087d7deb54d0c12bfe4fbe75c8e9",
+      "crc32": 1553406390
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.GraphicsStateCollectionSerializerModule.dll",
+      "sizeBytes": 14248,
+      "sha256": "13799b96205bac9d5035d0252b6f48a44237ec3591101e1a4a341695414dd796",
+      "crc32": 2505439397
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.GraphicsStateCollectionSerializerModule.pdb",
+      "sizeBytes": 9304,
+      "sha256": "e6fe3c5041d870d90d7ad7ce45d53b908ed5868f9ee76147d6d7281688118481",
+      "crc32": 2193213094
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.GridModule.dll",
+      "sizeBytes": 30640,
+      "sha256": "ad7549fba12e92dab18cfe10809f13ed25a8eb64fe6c2269a6745d05ded1e74e",
+      "crc32": 2542603967
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.GridModule.pdb",
+      "sizeBytes": 10132,
+      "sha256": "be97b83a737655f3644ed7948c8231bae5fcb4812ea1ed65bd471c7ebb643474",
+      "crc32": 4197772323
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.HierarchyCoreModule.dll",
+      "sizeBytes": 109480,
+      "sha256": "fd21db4b0eb1b4c3bec203302923d7dc08da58c95c19be24b9296fefed1b51c5",
+      "crc32": 2471236477
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.HierarchyCoreModule.pdb",
+      "sizeBytes": 36440,
+      "sha256": "ba009ad2936554fe4fbb068b50bed3d1644b5979b4576cf5d48fc0949a8d95de",
+      "crc32": 3374482158
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.HierarchyModule.dll",
+      "sizeBytes": 102312,
+      "sha256": "39ae4c794800fecd274ada0db3ef1602b6a0153b7c0bd516fa3b47ae1945b6ca",
+      "crc32": 3987116228
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.HierarchyModule.pdb",
+      "sizeBytes": 47660,
+      "sha256": "2f01671fd5cffa314594a03a61eab816d27a74c2401e0106d5720268c29aac71",
+      "crc32": 4284090949
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.HotReloadModule.dll",
+      "sizeBytes": 24488,
+      "sha256": "75c1db04e92ac9d5f7d24e78f65c6262bf628384abc5bea4a6f771405c49faa3",
+      "crc32": 1156108075
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.HotReloadModule.pdb",
+      "sizeBytes": 9276,
+      "sha256": "4c5e3e42f62e56dff41532d71d847ca1c1ef9a7656a75b463d8e9b19873647f3",
+      "crc32": 3463766561
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.IMGUIModule.dll",
+      "sizeBytes": 214448,
+      "sha256": "8ba45dbf28d35692ac54aa7c0c29d9844c2f94c7cdd116b50caad919c70e924d",
+      "crc32": 2408148225
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.IMGUIModule.pdb",
+      "sizeBytes": 90504,
+      "sha256": "aea69c792f42312444801a4f58669ed0615cfa153e64c85353d6928086fd40f4",
+      "crc32": 3756309080
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.IdentifiersModule.dll",
+      "sizeBytes": 16816,
+      "sha256": "58e09982007a313c0b70723fb99c582be84c4d0da1c5e1c8db4a90cb2b54e9a6",
+      "crc32": 2161332143
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.IdentifiersModule.pdb",
+      "sizeBytes": 9760,
+      "sha256": "f29f897f33f4bca66d04114348edbada66d7c3a2829e655e99ced23fa5120fc6",
+      "crc32": 3573019685
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ImageConversionModule.dll",
+      "sizeBytes": 31144,
+      "sha256": "f26022563e96dd347f2eb638f320ddff0a9285bbce0b9ac8bd983213bda8cd6e",
+      "crc32": 3929550931
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ImageConversionModule.pdb",
+      "sizeBytes": 10616,
+      "sha256": "95bc973fee3888bb8a6ecf9d786a9fb7935092dc6d28ae456bffb3aaa2f55b4b",
+      "crc32": 1705862510
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.InputForUIModule.dll",
+      "sizeBytes": 57768,
+      "sha256": "80773fc98db5dda31a9e0755f6be3dbf00ff6e457b04dd954d7b72358de0838c",
+      "crc32": 974166309
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.InputForUIModule.pdb",
+      "sizeBytes": 26108,
+      "sha256": "89e62b71c1b2736e0d9586fc9b61f2585fb51a0b3429868fff69a7da53855409",
+      "crc32": 3829038062
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.InputLegacyModule.dll",
+      "sizeBytes": 45480,
+      "sha256": "d1c30e150af23c16400ef2f6ece52e2155f8334eb6b2a86ee3cafb3eb53150ca",
+      "crc32": 2942607041
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.InputLegacyModule.pdb",
+      "sizeBytes": 15384,
+      "sha256": "6c04fbc424556f2f473125ff9911302ce158638527b6e935a3ff22b14c83df12",
+      "crc32": 1637333813
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.InputModule.dll",
+      "sizeBytes": 28584,
+      "sha256": "17e0fe1bec245c1ced0027f592cd45cace36644310e359742e5d275c2adcca19",
+      "crc32": 3596517187
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.InputModule.pdb",
+      "sizeBytes": 10644,
+      "sha256": "083b1a7f70f91b8e062af0ae569f30173f5f082422d345b3042031c0542b104d",
+      "crc32": 3191208441
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.InsightsModule.dll",
+      "sizeBytes": 14256,
+      "sha256": "bbe4d6412954a4b38180f1bd5eb062d5d159e038516717fd4e112e685e417691",
+      "crc32": 4127706622
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.InsightsModule.pdb",
+      "sizeBytes": 9600,
+      "sha256": "0cc18a40ee9d160604a710dd43c3acebc9bb90359d95e66d11c24d3cdfb1383d",
+      "crc32": 3357244416
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.JSONSerializeModule.dll",
+      "sizeBytes": 27048,
+      "sha256": "d7c70045517ff7ae508c35c2c8bb94229c04d3c6a0e15893f12c08d04f82c093",
+      "crc32": 4151652578
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.JSONSerializeModule.pdb",
+      "sizeBytes": 9900,
+      "sha256": "22857ab648d8d941a4171dd878b831f1e5f124056d48a249ca0db14fa8268fc0",
+      "crc32": 3994367102
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.LocalizationModule.dll",
+      "sizeBytes": 27056,
+      "sha256": "c8493e9199ad1b1e60d5a155df165bb0df55602982042358a448e2fc203c5ad9",
+      "crc32": 1506128746
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.LocalizationModule.pdb",
+      "sizeBytes": 9696,
+      "sha256": "762386a83674bb7777beb37ac7302a40eda8b71ff6d7bddc32a4847da335b6fe",
+      "crc32": 2202554358
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.MarshallingModule.dll",
+      "sizeBytes": 83880,
+      "sha256": "f82a545b2f05feafb08cbff66dfeb22f578adcb88a1f198d543e6f614e9ae2d5",
+      "crc32": 3018421200
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.MarshallingModule.pdb",
+      "sizeBytes": 14288,
+      "sha256": "6fedcb922f34da7a029f69580a41714727a9f2741adcfe2ee6e828ac74466acb",
+      "crc32": 1056075249
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.MultiplayerModule.dll",
+      "sizeBytes": 17832,
+      "sha256": "07365a8bb981493ca3e870f5b2964354e48b41fd4ea6a2f9e8ae4338f34cecc7",
+      "crc32": 2485135717
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.MultiplayerModule.pdb",
+      "sizeBytes": 10368,
+      "sha256": "1980cb440fa8530076d1a2479988ef070dc47b0a310b6c362d351229cc1ac6b0",
+      "crc32": 2290736972
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.NVIDIAModule.dll",
+      "sizeBytes": 40880,
+      "sha256": "3018adec1b670b25fae6e9f4fb0af07252b4186fece66431d6d6d5276562458a",
+      "crc32": 1404057442
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.NVIDIAModule.pdb",
+      "sizeBytes": 16444,
+      "sha256": "810417bb3a8820b423fb4e6e2bd04990bda09d4b9c5a954b03a8a08afa730306",
+      "crc32": 2478909314
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ParticleSystemModule.dll",
+      "sizeBytes": 171952,
+      "sha256": "ef26b7d39e56208595f230da6fc9f11512299e81a9aa46426b933690490eadff",
+      "crc32": 3424214002
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ParticleSystemModule.pdb",
+      "sizeBytes": 40464,
+      "sha256": "4259a9e44175ae680a75604e848f3142c434cd3de726c757e657e3b9c5994e85",
+      "crc32": 3379851698
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.PerformanceReportingModule.dll",
+      "sizeBytes": 25000,
+      "sha256": "585d98090f0a26af7a46d46b454a73d4eb23570c0a2452e3988d3b7a4ac9a210",
+      "crc32": 3897261116
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.PerformanceReportingModule.pdb",
+      "sizeBytes": 9480,
+      "sha256": "71d64555e2c6fdbfdee431651efc9a859ea60a54481b510de7da2bcac46d9688",
+      "crc32": 984148814
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.Physics2DModule.dll",
+      "sizeBytes": 586664,
+      "sha256": "2a485ecfbafad8274361f6ac7d35070f192a283521f01b4639951b5eee2f39dc",
+      "crc32": 702927830
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.Physics2DModule.pdb",
+      "sizeBytes": 135156,
+      "sha256": "3cb1cbf9b94ca28bb38a56e369a00073b41b824074a2000d868f5b2ad2480cc6",
+      "crc32": 2773232935
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.PhysicsBackendPhysXModule.dll",
+      "sizeBytes": 14256,
+      "sha256": "2b5e11d24b92d3e8787d39f4d5b4d6c49ea4af4389fb4d74b91d20a31d1d6000",
+      "crc32": 3733031535
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.PhysicsBackendPhysXModule.pdb",
+      "sizeBytes": 9296,
+      "sha256": "00249e78260f203211d27c14a24f33a2ec90602a10f627be8a9e77a08d1eae8d",
+      "crc32": 1809096259
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.PhysicsModule.dll",
+      "sizeBytes": 183720,
+      "sha256": "e48a765c1693241cfc4dda50c871cf097872b31d1b9166aa5d721d3e5a69dccd",
+      "crc32": 3414650875
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.PhysicsModule.pdb",
+      "sizeBytes": 46224,
+      "sha256": "3df315983e183a1ad58cdc009889fe8a15665a0b663433e6e401bc783864ca7d",
+      "crc32": 3669943838
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.PropertiesModule.dll",
+      "sizeBytes": 134056,
+      "sha256": "d861efc231122a370481ab8c43f4010b4e8a2786b321ff426bfe7d075bc35be6",
+      "crc32": 3385798089
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.PropertiesModule.pdb",
+      "sizeBytes": 62772,
+      "sha256": "6fbdf3c9e812304c9e02a86b93ffeface96de6ff8541fef7f2cb531732417760",
+      "crc32": 1878821864
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.RenderAs2DModule.dll",
+      "sizeBytes": 25520,
+      "sha256": "ec4556d29fe23c471c9d44a53269911a47e7c0e585a56336bdf1ae488d74d145",
+      "crc32": 1847238827
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.RenderAs2DModule.pdb",
+      "sizeBytes": 9324,
+      "sha256": "c3a58050f8816331edee37b30038f9671e337ed1304b496fbab5c9a2f1f94e99",
+      "crc32": 3048403404
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll",
+      "sizeBytes": 24488,
+      "sha256": "bdf07783bcbaa6db1aa258829b5d2c923452225c443a0e3f4b56fa367649ec68",
+      "crc32": 2134522380
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.pdb",
+      "sizeBytes": 9336,
+      "sha256": "e6b0624094b6016ec2d841994c2960f84ab49ca0236fa87d0fb597350254cca5",
+      "crc32": 1359501616
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ScreenCaptureModule.dll",
+      "sizeBytes": 26544,
+      "sha256": "c27da2faa606e13fb2b2d3382fc5c2a81a44a06ff7aafeb6dbbf4a2311c39526",
+      "crc32": 1642730384
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ScreenCaptureModule.pdb",
+      "sizeBytes": 9880,
+      "sha256": "c3d54ae7dee235b3fe8c26beb76a3295c85e1facd74f930450bb583f4c428977",
+      "crc32": 1955025479
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ShaderRuntimeModule.dll",
+      "sizeBytes": 25520,
+      "sha256": "392db35017695a340ab20e06b420e1c9ca0b78938f7a385e428a4209c9ce7dec",
+      "crc32": 2945288237
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ShaderRuntimeModule.pdb",
+      "sizeBytes": 9316,
+      "sha256": "4625f8597e97412a65495463d7af15be3ce2e53a013f8823ffd25f8cc60d5ada",
+      "crc32": 1106936838
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ShaderVariantAnalyticsModule.dll",
+      "sizeBytes": 24496,
+      "sha256": "3a33103c6bc3294e03d1bc379b85c8c1d03dbaa38741c0c3a20238b96ab7aca1",
+      "crc32": 2771340609
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.ShaderVariantAnalyticsModule.pdb",
+      "sizeBytes": 9400,
+      "sha256": "9b4007f3d4e614d0011f572e93e5065e3e4ad1d98208691303e37466da081d0a",
+      "crc32": 3479801757
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.SharedInternalsModule.dll",
+      "sizeBytes": 38320,
+      "sha256": "adb3643f1c09fe18eda362cea402d06c48456b978e61552b8a83e92cd7c69745",
+      "crc32": 1781484097
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.SharedInternalsModule.pdb",
+      "sizeBytes": 14288,
+      "sha256": "cc2f373b2a0b9b9c40d2fd1a75f24f1211d0dbf02d8a0fd65cdf7b847fe95dd8",
+      "crc32": 763239188
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.SpriteMaskModule.dll",
+      "sizeBytes": 28592,
+      "sha256": "67a31f21e1a3dd7fef9330a4898f1b124bf9cc0ccc2e2a34f469c2bb1aed46cb",
+      "crc32": 3206792407
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.SpriteMaskModule.pdb",
+      "sizeBytes": 9608,
+      "sha256": "733680f47faf0281fb766f347f99a7f59dbe157f35b30183761c0435254016e7",
+      "crc32": 3878897566
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.SpriteShapeModule.dll",
+      "sizeBytes": 32680,
+      "sha256": "ab5ccec7face44492c200ea840af221699e73d14e66dfd335bc6df54f9609785",
+      "crc32": 3692175119
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.SpriteShapeModule.pdb",
+      "sizeBytes": 10932,
+      "sha256": "33dea112d2d96758da2c3d5c2d91478d5b848c59aeefc5235add606be2655dc3",
+      "crc32": 1030422288
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.StreamingModule.dll",
+      "sizeBytes": 26024,
+      "sha256": "6f11e62f98109666fdb3abef6bb9d445492115b87efb7dae2e75ad37a13f90f8",
+      "crc32": 329131379
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.StreamingModule.pdb",
+      "sizeBytes": 9352,
+      "sha256": "7af0c0f2d4498f038748368c2e86d1bee74e99155f072d11546161be81dfa4b5",
+      "crc32": 1929837010
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.SubstanceModule.dll",
+      "sizeBytes": 29096,
+      "sha256": "6a296fb26a2072d9dd53ee7b2c65e29b6b1198c8d6abbf526bf85f74f861418f",
+      "crc32": 1338221809
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.SubstanceModule.pdb",
+      "sizeBytes": 11480,
+      "sha256": "a8518a761f5b1b11847ffa3bd464a20654ce65b9dd07828e0dd00743c31985a9",
+      "crc32": 2973514237
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.SubsystemsModule.dll",
+      "sizeBytes": 41904,
+      "sha256": "3e66e3da74a0bab864c1ca21ed2113dafb23548f56ffa625f064b5ebb592b527",
+      "crc32": 1786480212
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.SubsystemsModule.pdb",
+      "sizeBytes": 16020,
+      "sha256": "c83fa4ca5defdbefcbfb845a26cf48577c134a378d51271a340a3567e4c68bf1",
+      "crc32": 2089072902
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.TLSModule.dll",
+      "sizeBytes": 32176,
+      "sha256": "67bf3eacdde2cdcfd91e8bd643546cce0fd8001bad60c5ecd5bbad049da1b1c8",
+      "crc32": 1944516752
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.TLSModule.pdb",
+      "sizeBytes": 9296,
+      "sha256": "0ef0c20d4e7c2f9f4b967bceac3c2f0787f4eb8ed6a01288d9b892485f53fe44",
+      "crc32": 1023978010
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.TerrainModule.dll",
+      "sizeBytes": 134056,
+      "sha256": "b7b7d60e4ba0e0321ac9e7f669fb45bd7c8ddda4e1545026c2d980f88aafb4cf",
+      "crc32": 4101992664
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.TerrainModule.pdb",
+      "sizeBytes": 33988,
+      "sha256": "8f34b096fd6f9eb91e9c765ed234c0c63b9a188b4a952d1015a6c1b4b67b189b",
+      "crc32": 4140116506
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.TerrainPhysicsModule.dll",
+      "sizeBytes": 25512,
+      "sha256": "7184337244ebf5a50cb17c5fdfee86f68121a5bd1dff685baba4509d20b03384",
+      "crc32": 927266903
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.TerrainPhysicsModule.pdb",
+      "sizeBytes": 9740,
+      "sha256": "3763701b23c001fe265e2413a3016005a175856c132c07e8a0e890f314bfc620",
+      "crc32": 1567361775
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.TextCoreFontEngineModule.dll",
+      "sizeBytes": 91568,
+      "sha256": "f27fb10a2c7163da8dffc4dc8106354d7c39925b81466560355c4ccf4179a6c7",
+      "crc32": 95951946
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.TextCoreFontEngineModule.pdb",
+      "sizeBytes": 31540,
+      "sha256": "e4474e92ce4abfd6e155acaf4df88a588744dfe9bb3824ddf40ec81401203d5c",
+      "crc32": 3657979542
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.TextCoreTextEngineModule.dll",
+      "sizeBytes": 334760,
+      "sha256": "ee1a223e336e53bc94ffb8b7051b74e0631c14f645df922c0055872d1b58fe50",
+      "crc32": 3207731657
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.TextCoreTextEngineModule.pdb",
+      "sizeBytes": 153992,
+      "sha256": "2e044fe5d322ce3dac7f8e9c09475dc830befd3c825dd93b4974384cba7bf309",
+      "crc32": 3033483450
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.TextRenderingModule.dll",
+      "sizeBytes": 39344,
+      "sha256": "fa6d3b1167a6a101033dba62b9b24efd1af0bd6cf04e72a93daaf97f47979ff7",
+      "crc32": 541892232
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.TextRenderingModule.pdb",
+      "sizeBytes": 15380,
+      "sha256": "f1edfa86cf2cbcf822e894ca4e023002e623cdc3dac13b695f456fd0d698e625",
+      "crc32": 3726940389
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.TilemapModule.dll",
+      "sizeBytes": 58792,
+      "sha256": "c0f5aae8b9623a0f0e2ed77db16230e4cdc49750eee4c542b64da167fcfe0192",
+      "crc32": 3839629875
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.TilemapModule.pdb",
+      "sizeBytes": 19112,
+      "sha256": "29dc479e3f6f5c98204e7bb6ba1ef8f9e2a4909a7bdeb8506bb9f3c5392de53d",
+      "crc32": 1589123322
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UI.dll",
+      "sizeBytes": 296448,
+      "sha256": "b55ca0239ee3963236357df3b50bb615fad5ee0cb450e5ced3e0887919199c7d",
+      "crc32": 3687104710
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UI.pdb",
+      "sizeBytes": 181572,
+      "sha256": "8bd81920245262e965ef6bc84e9bb997da861b8de85dfdd17a61146c6a90142b",
+      "crc32": 2199449349
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UIElementsModule.dll",
+      "sizeBytes": 2453424,
+      "sha256": "0104eb031aa1c342177d06f8ceb18824a1678f6d9b44523316a533ec5aef86ea",
+      "crc32": 1248178714
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UIElementsModule.pdb",
+      "sizeBytes": 1100332,
+      "sha256": "aeecba314bef8c948dd42f47d979c34380cc3fdfea6583791e13ed10b3aa1272",
+      "crc32": 1492257195
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UIModule.dll",
+      "sizeBytes": 50088,
+      "sha256": "72fc11bc7df760dfebc17a2a6c256cec119e339c466aa738c9fac2ac5243b4e1",
+      "crc32": 1122118701
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UIModule.pdb",
+      "sizeBytes": 13980,
+      "sha256": "a57b3d2f66ea882fa998db4d4dd745367db8790478e70ce15d593f14a4722941",
+      "crc32": 1913162978
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UmbraModule.dll",
+      "sizeBytes": 24488,
+      "sha256": "e0afc364c4a19f6235d5cfa91d0cae4de7257f94f4090379ce497a0d9593a927",
+      "crc32": 673694225
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UmbraModule.pdb",
+      "sizeBytes": 9276,
+      "sha256": "aa7fb94403321fb41e91c7215892a6dce6d3d4fadf1b6bbeed0eefaf3349dbc9",
+      "crc32": 1820065044
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityAnalyticsCommonModule.dll",
+      "sizeBytes": 35760,
+      "sha256": "b1bdbf4ea453ca8a09c16326cdbbdaf70c8767ea0aa177c2c98fb08dd5181755",
+      "crc32": 1372375121
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityAnalyticsCommonModule.pdb",
+      "sizeBytes": 13756,
+      "sha256": "902b40875575b81a14cc833569cc04b8b4a2c8ae527abfd4f6314da27163adef",
+      "crc32": 1355276904
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityAnalyticsModule.dll",
+      "sizeBytes": 60848,
+      "sha256": "d341faac2e992bff7882fc85363143d9d4a042ac207ae089fcf03230253f097b",
+      "crc32": 2397117985
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityAnalyticsModule.pdb",
+      "sizeBytes": 18000,
+      "sha256": "e45815dcf44fcf168772f65ffe0df612ec569b410921d0152d4a711ef8c6f6c0",
+      "crc32": 3904217830
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityConnectModule.dll",
+      "sizeBytes": 27568,
+      "sha256": "15f2dcce0f7815d7594a934ff832007f8a6c5191a57c723f9eb07aef9bdd5298",
+      "crc32": 2589112193
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityConnectModule.pdb",
+      "sizeBytes": 9872,
+      "sha256": "77270eba77918654b142b440febadb774a1d92bfeda49ac20207cb9f5e781041",
+      "crc32": 1228280359
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityConsentModule.dll",
+      "sizeBytes": 16304,
+      "sha256": "258b2697da2354da78154eaade613800789baff3692d161034e46ea7c18f6a59",
+      "crc32": 103873162
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityConsentModule.pdb",
+      "sizeBytes": 9904,
+      "sha256": "c226072ae4e3c725af82756d08ca40b685761f4272516d72e429fbf87fa02157",
+      "crc32": 898953209
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityCurlModule.dll",
+      "sizeBytes": 26032,
+      "sha256": "e4dce8fef34f42d3d53ccd203440e66f438a3a3cd7deff73a4f1bc605ffcca72",
+      "crc32": 3888882225
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityCurlModule.pdb",
+      "sizeBytes": 9668,
+      "sha256": "ee9727b7a6c57ca8f90630864882913b022a2249273c5dc3f8c6087ddc896577",
+      "crc32": 810636736
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityWebRequestAssetBundleModule.dll",
+      "sizeBytes": 28592,
+      "sha256": "3a3b8014af189d1338b28b2de21438c36dcf91d7d78758fabeb5f64ec2ca69c4",
+      "crc32": 4010720322
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityWebRequestAssetBundleModule.pdb",
+      "sizeBytes": 10848,
+      "sha256": "e8080653af27aeac0fe60dff4de0c6ddfbe3ccf9f78e36a609017f28b588c797",
+      "crc32": 2369731636
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityWebRequestAudioModule.dll",
+      "sizeBytes": 28584,
+      "sha256": "af45256b9c06caea7a962d1c1f329c945016b606a35c793314062103048edb8c",
+      "crc32": 25307150
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityWebRequestAudioModule.pdb",
+      "sizeBytes": 10648,
+      "sha256": "9f6cb6a73dfc6e3b1bc24e48a173b42b8144dbc9149d5240f33d4549461707b1",
+      "crc32": 348650243
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityWebRequestModule.dll",
+      "sizeBytes": 70064,
+      "sha256": "392183a43363663ffe7d622bbceec1cce6efe4fcc3d74f10d777a8883585d494",
+      "crc32": 1751515072
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityWebRequestModule.pdb",
+      "sizeBytes": 28484,
+      "sha256": "6e883c459428ac38886f17b30eb9ed5b768aa0b207582adad0842a39067df31e",
+      "crc32": 3045127381
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityWebRequestTextureModule.dll",
+      "sizeBytes": 27568,
+      "sha256": "f17e96a9cba1d329c189b9337cef24a7413604ea5aee241e131f0b90ed8ffa4e",
+      "crc32": 3890554832
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityWebRequestTextureModule.pdb",
+      "sizeBytes": 10816,
+      "sha256": "7505887d6071bd86b3d96145c9804284d2ad8384900341e20289c4c7d29ac1eb",
+      "crc32": 984509597
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityWebRequestWWWModule.dll",
+      "sizeBytes": 36784,
+      "sha256": "5be8ff5a42c94e34d123f40d54d66181565c7780c21c4473ab9b8f845ce7cbb9",
+      "crc32": 10179634
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.UnityWebRequestWWWModule.pdb",
+      "sizeBytes": 13716,
+      "sha256": "4c4a1956fba5efd6e9f92cdf777c2ce009b29c7e034c48e297177db468c01874",
+      "crc32": 2812115131
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.VFXModule.dll",
+      "sizeBytes": 78256,
+      "sha256": "6ba6c7868736da3d46ed89c48d850757c26c34e57fc7ff27aae7ba678b80498a",
+      "crc32": 3466228531
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.VFXModule.pdb",
+      "sizeBytes": 18784,
+      "sha256": "43d8cf5a288a9d81cbc30532825bd6ad8ac336c332d7c97b21f4d2137de6e7e0",
+      "crc32": 2968526446
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.VRModule.dll",
+      "sizeBytes": 31656,
+      "sha256": "5df47299a7bdf80c03097c27f4ca535fc1ebdd4db9228df4d7b695c79ae8a250",
+      "crc32": 1375879301
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.VRModule.pdb",
+      "sizeBytes": 10404,
+      "sha256": "034e3228a06cb3317f84ae15e2bc45eddd558564e38fe0a2f7302ce9f6d93474",
+      "crc32": 4214594756
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.VectorGraphicsModule.dll",
+      "sizeBytes": 254896,
+      "sha256": "0de3129e30ffa373fb72dd8df3b81c2d5e44ada18cdfd008ed9ec8194ed7a743",
+      "crc32": 799875343
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.VectorGraphicsModule.pdb",
+      "sizeBytes": 144672,
+      "sha256": "3087858390cde75956597d377dcefc4d62bb06708d10fde3747272870eeefb74",
+      "crc32": 3691075855
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.VehiclesModule.dll",
+      "sizeBytes": 31664,
+      "sha256": "eff49c1fb43845f3aaa7dd59ba8af91bd8f2d1495e463f55c4d2995cb41073e4",
+      "crc32": 1669291404
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.VehiclesModule.pdb",
+      "sizeBytes": 10516,
+      "sha256": "a3b25b709937d41e91ab01b330b9b999cbd936fad913acedb7e3d1ca15fd150d",
+      "crc32": 300234438
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.VideoModule.dll",
+      "sizeBytes": 49064,
+      "sha256": "31f930dc5a532bb00b3f3f57f279987faa3dd7cb0c8e9013659b8b0f0d92bc4d",
+      "crc32": 2600750500
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.VideoModule.pdb",
+      "sizeBytes": 14164,
+      "sha256": "ddaa5334205e1fe942811190c494a9d996c8eaf8470ec786d31e70ce0bfc89c3",
+      "crc32": 928492470
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.VirtualTexturingModule.dll",
+      "sizeBytes": 42928,
+      "sha256": "03bc3fd50942b64894be32c885eeaa1e59c8c1777461f72f0fd70d168c4f9c7c",
+      "crc32": 3883076031
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.VirtualTexturingModule.pdb",
+      "sizeBytes": 13524,
+      "sha256": "9d8c25b853d56ec6a7a1ffd987c916ccb94b10c0c0472c5f11f85b135b4c259c",
+      "crc32": 163303949
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.WindModule.dll",
+      "sizeBytes": 26536,
+      "sha256": "2aa9ffe8d067f79245ab4b3fdad6cf3b24c94e4ae9f3d9e641d9ab53bdb188e7",
+      "crc32": 2283308198
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.WindModule.pdb",
+      "sizeBytes": 9412,
+      "sha256": "e067aa46fb82cbddb52fd0a768ee833e3b60c75347bace4c0236c19d85d13129",
+      "crc32": 79395584
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.XRModule.dll",
+      "sizeBytes": 88488,
+      "sha256": "881e556460fb5181a78644d51af7d4924fa386f1f45b5ffffbc3d84d6e57bf30",
+      "crc32": 1121387955
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.XRModule.pdb",
+      "sizeBytes": 24288,
+      "sha256": "42e0eafc6976b62b4f6ba48bed18f55547eb033fdce6c02cfcf9301c6083285c",
+      "crc32": 270747077
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.dll",
+      "sizeBytes": 197544,
+      "sha256": "58592c4bb7ffec04593f098c3f88f4e63d961de730b44091f889ece9c1b62ccb",
+      "crc32": 2767108753
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/UnityEngine.pdb",
+      "sizeBytes": 12676,
+      "sha256": "0c4b0cce2b1ec702726dfc5395cf976adf799d0df94d9c27ba8dadd5fd894956",
+      "crc32": 1131397651
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/mscorlib.dll",
+      "sizeBytes": 4632064,
+      "sha256": "194417662b72e9fdc29df44aa07fb693a9cf2194d84e327231f3eeff1104ae0f",
+      "crc32": 364691822
+    },
+    {
+      "path": "LayarTerakhir_Data/Managed/netstandard.dll",
+      "sizeBytes": 90112,
+      "sha256": "6ae62e082dc494a2433984177f60ca4db5fae69b1f360a8b33754172b310b8c5",
+      "crc32": 2539649982
+    },
+    {
+      "path": "LayarTerakhir_Data/Plugins/x86_64/lib_burst_generated.dll",
+      "sizeBytes": 482304,
+      "sha256": "f5c26333e7d906f4a6bb3812d4daaa06f4e92f68ff7087049523c464b2cb5433",
+      "crc32": 4230820729
+    },
+    {
+      "path": "LayarTerakhir_Data/Plugins/x86_64/lib_burst_generated.pdb",
+      "sizeBytes": 2928640,
+      "sha256": "fec49148f9ae7f89f97efc49ff5f3d6a7319f3c2a939ca354427beed8959eda8",
+      "crc32": 802173656
+    },
+    {
+      "path": "LayarTerakhir_Data/Plugins/x86_64/libonigwrap.dll",
+      "sizeBytes": 551336,
+      "sha256": "c22db1e7be04c50eb47e67362bf705830bb95df30c02c22dd7add835ee777583",
+      "crc32": 1734961233
+    },
+    {
+      "path": "LayarTerakhir_Data/Resources/unity default resources",
+      "sizeBytes": 5883716,
+      "sha256": "32b58bdb9cf090212b46a8ca7436dcdae89e4ef43e9d55a835233c21d1347734",
+      "crc32": 2314959836
+    },
+    {
+      "path": "LayarTerakhir_Data/Resources/unity_builtin_extra",
+      "sizeBytes": 403400,
+      "sha256": "13165b0ec95248d866d1c1daf577118aa73e78d9492262a427950cbb9d021465",
+      "crc32": 315910372
+    },
+    {
+      "path": "LayarTerakhir_Data/RuntimeInitializeOnLoads.json",
+      "sizeBytes": 6940,
+      "sha256": "23ae58fa902359507b887b70488cf224f391b0d18ea46786e1a8e68d0a7e5e51",
+      "crc32": 2973256604
+    },
+    {
+      "path": "LayarTerakhir_Data/ScriptingAssemblies.json",
+      "sizeBytes": 4319,
+      "sha256": "bdabbc3c63f9f3328cfdec2221742a3afcf2e85697e3d529263bdc19c13cc186",
+      "crc32": 779897386
+    },
+    {
+      "path": "LayarTerakhir_Data/app.info",
+      "sizeBytes": 28,
+      "sha256": "e89b1c7bd8f3ecef644abec6e3e63a487ae410611b8d38b67c4283acc072c41d",
+      "crc32": 1651089041
+    },
+    {
+      "path": "LayarTerakhir_Data/boot.config",
+      "sizeBytes": 326,
+      "sha256": "0b26e9c0fa38641b14d36aba4f9f94557f364ea7a1be052d062584fe0dc5adff",
+      "crc32": 34686793
+    },
+    {
+      "path": "LayarTerakhir_Data/globalgamemanagers",
+      "sizeBytes": 232932,
+      "sha256": "620767871ea82876137dbcdbbbb30b6c17a9efa248272207f3d79f92de694d51",
+      "crc32": 2567206101
+    },
+    {
+      "path": "LayarTerakhir_Data/globalgamemanagers.assets",
+      "sizeBytes": 1059864,
+      "sha256": "b67bec8b68eed329ba81dda904ce03047047eef6545e5a833f62a50b6dbc6810",
+      "crc32": 789159691
+    },
+    {
+      "path": "LayarTerakhir_Data/globalgamemanagers.assets.resS",
+      "sizeBytes": 6176992,
+      "sha256": "f122983b2e999b7f97c5b76ff4a4d07663df0407e3d921d2826aa61d3671a70a",
+      "crc32": 4293367616
+    },
+    {
+      "path": "LayarTerakhir_Data/level0",
+      "sizeBytes": 219448,
+      "sha256": "2bcaf50e50b83a830a2d051d9b4e801d718e6aff0034e6d6e552577400c2a267",
+      "crc32": 2951730497
+    },
+    {
+      "path": "LayarTerakhir_Data/level1",
+      "sizeBytes": 916888,
+      "sha256": "dffaebd208706ae566d049717c69af57173047d851abd6025b4efbbdbda89df8",
+      "crc32": 255016605
+    },
+    {
+      "path": "LayarTerakhir_Data/level2",
+      "sizeBytes": 1263476,
+      "sha256": "6018158956d4640d6e3c31cb78bb8c2d09f0dfe204ea9b2754010cdea1b7b982",
+      "crc32": 2392157581
+    },
+    {
+      "path": "LayarTerakhir_Data/level2.resS",
+      "sizeBytes": 3524992,
+      "sha256": "1ec35fe0981e9e61ba7b74991cc649bb23e7e83a2acaf32068d06fadac7a698f",
+      "crc32": 1293117531
+    },
+    {
+      "path": "LayarTerakhir_Data/level3",
+      "sizeBytes": 2817784,
+      "sha256": "1b70477d56187fd9e2da1350fb89613a3d21d07cf40c10d9058caffd8581a7d7",
+      "crc32": 86754391
+    },
+    {
+      "path": "LayarTerakhir_Data/level3.resS",
+      "sizeBytes": 647680,
+      "sha256": "61a2ae57a2471bc6fbe48c48a60cd07411d93b37610bc9df7a8d6776ea054b70",
+      "crc32": 3244836926
+    },
+    {
+      "path": "LayarTerakhir_Data/level4",
+      "sizeBytes": 1820288,
+      "sha256": "f3bc79a8847b3c1d79c8fb431880b55f92cd660831cbdc645e083e3e07a8a00c",
+      "crc32": 4264627826
+    },
+    {
+      "path": "LayarTerakhir_Data/level5",
+      "sizeBytes": 19883040,
+      "sha256": "8fabe80d1225d5f0d1b6d98769fe33ea817ae634111cb49fa798896b9546ee74",
+      "crc32": 1577164339
+    },
+    {
+      "path": "LayarTerakhir_Data/level5.resS",
+      "sizeBytes": 70425408,
+      "sha256": "d84863289c7264fe54ed99344d12c135a7f6b5f4e7a67aa81bd9d86ba3ebc1e3",
+      "crc32": 1826655669
+    },
+    {
+      "path": "LayarTerakhir_Data/resources.assets",
+      "sizeBytes": 12532648,
+      "sha256": "f4e3828045da2f23e0d52c7f60f7167d7101cc39fa091b8ce064363a97a870a6",
+      "crc32": 3522893948
+    },
+    {
+      "path": "LayarTerakhir_Data/resources.assets.resS",
+      "sizeBytes": 9889568,
+      "sha256": "8af02419cac4c6130b532c7e85d12d2819d7f130a817ff11492e076e4cd80996",
+      "crc32": 652045181
+    },
+    {
+      "path": "LayarTerakhir_Data/resources.resource",
+      "sizeBytes": 1208960,
+      "sha256": "28078ba6a4d2bf7c3c1300a8dd9dab3f8ef38b44ece7c24bc1a6185b29bfb31f",
+      "crc32": 191071915
+    },
+    {
+      "path": "LayarTerakhir_Data/sharedassets0.assets",
+      "sizeBytes": 5259768,
+      "sha256": "c44e41bf652ed357e94ba058320560fa984372019b4c125266004fd4701c8001",
+      "crc32": 3441394724
+    },
+    {
+      "path": "LayarTerakhir_Data/sharedassets0.assets.resS",
+      "sizeBytes": 62938448,
+      "sha256": "8a3f3581e5b98a7ebed159a505418abfe1b2fdb10a39ef518441c8718c257bee",
+      "crc32": 2934289713
+    },
+    {
+      "path": "LayarTerakhir_Data/sharedassets0.resource",
+      "sizeBytes": 562464,
+      "sha256": "38b0b9302861c74d8def0ff58946e4eb10d21bf2251590e510fe5704a1071602",
+      "crc32": 1534312430
+    },
+    {
+      "path": "LayarTerakhir_Data/sharedassets1.assets",
+      "sizeBytes": 6500956,
+      "sha256": "2fb1c9d667f28e5d242a39e825eb5763d158f7e9f9c6bb866d87fc14b8abd511",
+      "crc32": 167681350
+    },
+    {
+      "path": "LayarTerakhir_Data/sharedassets1.assets.resS",
+      "sizeBytes": 99407248,
+      "sha256": "a264001613e49522c7af72344aeb5701afa4bdcc26f07ceb8466a059cc16734c",
+      "crc32": 1366037480
+    },
+    {
+      "path": "LayarTerakhir_Data/sharedassets2.assets",
+      "sizeBytes": 1839396,
+      "sha256": "80f5d54b30f2086e37d1b20cfb36bcbd036eca7a75f760a546184555b21edda0",
+      "crc32": 3495715348
+    },
+    {
+      "path": "LayarTerakhir_Data/sharedassets2.assets.resS",
+      "sizeBytes": 8208928,
+      "sha256": "e8d032e8012ad89f0eb6611e5c901d1c8b06f71b3669eba94072f3ba761d93a2",
+      "crc32": 2441491113
+    },
+    {
+      "path": "LayarTerakhir_Data/sharedassets3.assets",
+      "sizeBytes": 28057516,
+      "sha256": "9fedec5c4830084a54e8b6c989f38252226a649fdd60c4d901e2aad465f7bc10",
+      "crc32": 4178500122
+    },
+    {
+      "path": "LayarTerakhir_Data/sharedassets3.assets.resS",
+      "sizeBytes": 326069904,
+      "sha256": "e72917a4c032494eabc2b6eed2edf6fb8807056667b91fd183b66001e57de8e0",
+      "crc32": 3412794959
+    },
+    {
+      "path": "LayarTerakhir_Data/sharedassets3.resource",
+      "sizeBytes": 602144,
+      "sha256": "cda91a75c95d3d2005f88b16dfbe7d80147b079c4c69add70cdf901d9fe34529",
+      "crc32": 3819021054
+    },
+    {
+      "path": "LayarTerakhir_Data/sharedassets4.assets",
+      "sizeBytes": 24819304,
+      "sha256": "0ae526a16f999e96a7ec06727e308e908f4fd38e58f6d0a3b823b1bc56ef5d53",
+      "crc32": 494964316
+    },
+    {
+      "path": "LayarTerakhir_Data/sharedassets4.assets.resS",
+      "sizeBytes": 214785696,
+      "sha256": "075cce678fe7d55f58e862702dc453dd1574d1141807a5a7ec020bfa2949354e",
+      "crc32": 2942848762
+    },
+    {
+      "path": "LayarTerakhir_Data/sharedassets4.resource",
+      "sizeBytes": 409888,
+      "sha256": "6b6172d958abc3e89a9208d48873cbd145ffe661fe49fea0cc9deb58175e937e",
+      "crc32": 1573388482
+    },
+    {
+      "path": "LayarTerakhir_Data/sharedassets5.assets",
+      "sizeBytes": 9345860,
+      "sha256": "dee0c8cdd5712c596bfdc9cf7d258d6e6b51b1bc48c363092a0c345c616275ef",
+      "crc32": 2602378820
+    },
+    {
+      "path": "LayarTerakhir_Data/sharedassets5.assets.resS",
+      "sizeBytes": 920778464,
+      "sha256": "cbd9b28eb72f2e26d625d4a4a53bd338f0a55ee75fa5a7df2a7c7146afe9902d",
+      "crc32": 2082573401
+    },
+    {
+      "path": "LayarTerakhir_Data/sharedassets5.resource",
+      "sizeBytes": 1464960,
+      "sha256": "7d06e52e3b6f3f88b347ae56043a3aece89210d877d2ca1d415ae8bf1557e428",
+      "crc32": 1850148030
+    },
+    {
+      "path": "MakeHuman-Graphical-Assets-CC0.txt",
+      "sizeBytes": 6962,
+      "sha256": "f6089cba01cb570a24712b41ab8a586ccd3cc5ef53dc266ca50b95c288956d2c",
+      "crc32": 1335309791
+    },
+    {
+      "path": "MonoBleedingEdge/EmbedRuntime/MonoPosixHelper.dll",
+      "sizeBytes": 611248,
+      "sha256": "d6da6a23d7f58a97b9ad93934ccf7be58ba2b41e9576989a83bf914316b55c45",
+      "crc32": 2612378251
+    },
+    {
+      "path": "MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll",
+      "sizeBytes": 7828912,
+      "sha256": "34a822c5f107559b38e5fb0b857d43c559ffeb047fef5e531d09249395da359c",
+      "crc32": 3994722816
+    },
+    {
+      "path": "MonoBleedingEdge/etc/mono/2.0/Browsers/Compat.browser",
+      "sizeBytes": 1605,
+      "sha256": "8a1082057ac5681dcd4e9c227ed7fb8eb42ac1618963b5de3b65739dd77e2741",
+      "crc32": 773294603
+    },
+    {
+      "path": "MonoBleedingEdge/etc/mono/2.0/DefaultWsdlHelpGenerator.aspx",
+      "sizeBytes": 60575,
+      "sha256": "751861040b69ea63a3827507b7c8da9c7f549dc181c1c8af4b7ca78cc97d710a",
+      "crc32": 2516177076
+    },
+    {
+      "path": "MonoBleedingEdge/etc/mono/2.0/machine.config",
+      "sizeBytes": 29066,
+      "sha256": "e91782a27fa39fc6c1d6ee8b08529f5d35052310d0006034b878eb04b8f2af30",
+      "crc32": 1112816523
+    },
+    {
+      "path": "MonoBleedingEdge/etc/mono/2.0/settings.map",
+      "sizeBytes": 2622,
+      "sha256": "49c6160f9d54af4270a3b4e997fc4a8301f79b9e2070118fa46ddbcbbc44f9a2",
+      "crc32": 2907914489
+    },
+    {
+      "path": "MonoBleedingEdge/etc/mono/2.0/web.config",
+      "sizeBytes": 11635,
+      "sha256": "cf2b54339e069b9e42f7d6795eecbf562c50c1011f4ca8f65f578fe52d97ff92",
+      "crc32": 443935661
+    },
+    {
+      "path": "MonoBleedingEdge/etc/mono/4.0/Browsers/Compat.browser",
+      "sizeBytes": 1605,
+      "sha256": "8a1082057ac5681dcd4e9c227ed7fb8eb42ac1618963b5de3b65739dd77e2741",
+      "crc32": 773294603
+    },
+    {
+      "path": "MonoBleedingEdge/etc/mono/4.0/DefaultWsdlHelpGenerator.aspx",
+      "sizeBytes": 60575,
+      "sha256": "751861040b69ea63a3827507b7c8da9c7f549dc181c1c8af4b7ca78cc97d710a",
+      "crc32": 2516177076
+    },
+    {
+      "path": "MonoBleedingEdge/etc/mono/4.0/machine.config",
+      "sizeBytes": 33598,
+      "sha256": "e60aec2c5115d65b3acb3c55ea21576dbd770f579166c017125571e46ae560ed",
+      "crc32": 2264269764
+    },
+    {
+      "path": "MonoBleedingEdge/etc/mono/4.0/settings.map",
+      "sizeBytes": 2622,
+      "sha256": "ce1db1ad8a9512073164e3eccdc193f7eda036e1a9733caec4635de21b2865c8",
+      "crc32": 3693388352
+    },
+    {
+      "path": "MonoBleedingEdge/etc/mono/4.0/web.config",
+      "sizeBytes": 18802,
+      "sha256": "e38bb8cc68fe5b4edecdfd288d094b9e8ced7629039b2a347682aba0d8bd7492",
+      "crc32": 920173118
+    },
+    {
+      "path": "MonoBleedingEdge/etc/mono/4.5/Browsers/Compat.browser",
+      "sizeBytes": 1605,
+      "sha256": "8a1082057ac5681dcd4e9c227ed7fb8eb42ac1618963b5de3b65739dd77e2741",
+      "crc32": 773294603
+    },
+    {
+      "path": "MonoBleedingEdge/etc/mono/4.5/DefaultWsdlHelpGenerator.aspx",
+      "sizeBytes": 60575,
+      "sha256": "751861040b69ea63a3827507b7c8da9c7f549dc181c1c8af4b7ca78cc97d710a",
+      "crc32": 2516177076
+    },
+    {
+      "path": "MonoBleedingEdge/etc/mono/4.5/machine.config",
+      "sizeBytes": 34056,
+      "sha256": "ee950004b576fb28dc85f4b0435ed04bf96612de2e8b53be84d07afe85a0de6c",
+      "crc32": 3292965355
+    },
+    {
+      "path": "MonoBleedingEdge/etc/mono/4.5/settings.map",
+      "sizeBytes": 2622,
+      "sha256": "ce1db1ad8a9512073164e3eccdc193f7eda036e1a9733caec4635de21b2865c8",
+      "crc32": 3693388352
+    },
+    {
+      "path": "MonoBleedingEdge/etc/mono/4.5/web.config",
+      "sizeBytes": 18811,
+      "sha256": "c4cbddd4fd9347b58cc5a72b36dc4ba1ad2bb699e65869d05cd3fb9865f0d824",
+      "crc32": 1330166803
+    },
+    {
+      "path": "MonoBleedingEdge/etc/mono/browscap.ini",
+      "sizeBytes": 311984,
+      "sha256": "4ddd50f31fb968f30bedefc253a46dc3f2890192d05cdaa9e0a64a056eee807e",
+      "crc32": 3463187123
+    },
+    {
+      "path": "MonoBleedingEdge/etc/mono/config",
+      "sizeBytes": 3815,
+      "sha256": "5776169973a26a387b8b3e5c0f2301a7ab9a6dd7c7d3efa22a96abc47fbf8662",
+      "crc32": 2298113427
+    },
+    {
+      "path": "MonoBleedingEdge/etc/mono/mconfig/config.xml",
+      "sizeBytes": 25817,
+      "sha256": "0c56e34c69124510fa8c19e7b4c2ca6c1c4ff460ae19f798dd0ca035809e396d",
+      "crc32": 2159149882
+    },
+    {
+      "path": "Phase1Review-Start.json",
+      "sizeBytes": 299,
+      "sha256": "01d4cff1df0b3e8027ab6114a145c6271e5336e0d729a9400aa233392e35b346",
+      "crc32": 3512273668
+    },
+    {
+      "path": "Review-Phase1.cmd",
+      "sizeBytes": 420,
+      "sha256": "d6db7850d1754285b5f43e61118fa1ec3065fe6313bc352f17cb355521e3c341",
+      "crc32": 3580362296
+    },
+    {
+      "path": "Review-Phase2.cmd",
+      "sizeBytes": 87,
+      "sha256": "8398e820af27cbee075f23aa0c70bf00ecbd237f28e34120e2589ad163f1aae9",
+      "crc32": 3975661044
+    },
+    {
+      "path": "Review-Phase3.cmd",
+      "sizeBytes": 87,
+      "sha256": "f54795196fff197753bc1e3eaff6bdd220d01cc94c03f6d99b336c630bb1f74c",
+      "crc32": 1800474295
+    },
+    {
+      "path": "Screenshot-Guide.txt",
+      "sizeBytes": 1773,
+      "sha256": "07207e377c3f69ba4b5826f5681e1eecedfe0c265b98db18f2958ed2a56860b3",
+      "crc32": 3077867527
+    },
+    {
+      "path": "UnityCrashHandler64.exe",
+      "sizeBytes": 1728944,
+      "sha256": "6d5896cdd4a867ce449e8b251caf7881527706acf5fb9da3a81bc8f2a78ccc06",
+      "crc32": 1936257273
+    },
+    {
+      "path": "UnityPlayer.dll",
+      "sizeBytes": 84489640,
+      "sha256": "35eb9e080f7409d72de9fde92d6463f57790f5191db541c340c8943847e5e65c",
+      "crc32": 818135122
+    },
+    {
+      "path": "WinPixEventRuntime.dll",
+      "sizeBytes": 58368,
+      "sha256": "81adcfd8253c3489be720da7e30f16004dc9a1f02a8b418c6c3aef4993032e6d",
+      "crc32": 1615993520
+    },
+    {
+      "path": "phase1-asset-credits.md",
+      "sizeBytes": 8056,
+      "sha256": "26c90c1053f8357fe048018f17e63cf376f7ada227fb48574d4a8a6e2436866c",
+      "crc32": 3706353151
+    },
+    {
+      "path": "phase1-audio-credits.md",
+      "sizeBytes": 1564,
+      "sha256": "0006bc5137293bc6f484e417453c91aa707f750e79522b64ab9227239525af32",
+      "crc32": 1737814865
+    },
+    {
+      "path": "phase1-environment-revision.md",
+      "sizeBytes": 4338,
+      "sha256": "806696fc7519b8bd78aa67e3fb32e180b707a4ad7b5cdad0dcf45476b8d34af0",
+      "crc32": 4015545474
+    },
+    {
+      "path": "phase1-windows-playtest.md",
+      "sizeBytes": 4209,
+      "sha256": "c2172a837875a530a4085c986fb7f3af415438eea5e1d7b51fb632e51c62953c",
+      "crc32": 2192357421
+    },
+    {
+      "path": "phase2-asset-credits.md",
+      "sizeBytes": 7221,
+      "sha256": "659eccf235c86a9c8eb13e9e90d3f233f82dcd983456ec0721499fd3cd066143",
+      "crc32": 2092172444
+    },
+    {
+      "path": "phase2-session1-review.md",
+      "sizeBytes": 4867,
+      "sha256": "f46fa36954d5a2d0aca81ba25e2063eb4851db30ca0785fb71b3a5752fce911c",
+      "crc32": 1229578641
+    },
+    {
+      "path": "phase3-asset-credits.md",
+      "sizeBytes": 8865,
+      "sha256": "4ae4d0099546db15c72c7e5e18ab1e36bcde1528391a36d7c00411d1302dec60",
+      "crc32": 3204663297
+    },
+    {
+      "path": "phase3-audio-credits.md",
+      "sizeBytes": 2653,
+      "sha256": "8489098ef24ae3112162aa88125befc0cfdad5074a822ebcbf03232abaff4fc2",
+      "crc32": 3572662642
+    },
+    {
+      "path": "phase3-qa-matrix.md",
+      "sizeBytes": 23859,
+      "sha256": "640ea3d46b2c84210c1c2c145adc433da776a68ddceeb8d0645355024bdc30e0",
+      "crc32": 3047936133
+    },
+    {
+      "path": "phase3-windows-review.md",
+      "sizeBytes": 3572,
+      "sha256": "f5c30a234c32114462ce34dabdbdcc700453f790c2fca9d43d6b26a2efdfdac5",
+      "crc32": 2806690997
+    },
+    {
+      "path": "phone-camera-presentation-revision.md",
+      "sizeBytes": 3474,
+      "sha256": "880013f54d73a09ac0a874a5dbdd30b41813b2cd0dbfdffa4f9595e61fb816ff",
+      "crc32": 1312094047
+    }
+  ],
+  "sourceSceneSha256": "468daa5c40bb2cdc2d520151b84a4cac60364db85e0d4163244cf76fd8c14ac8",
+  "atmajaSceneSha256": "a59e5de870809842ab054e1547ea50a40a2693ebdd521174df3ebecceb54e3f0",
+  "openingProtection": {
+    "method": "Historic approved structure; camera presentation may change",
+    "sha256": "468daa5c40bb2cdc2d520151b84a4cac60364db85e0d4163244cf76fd8c14ac8",
+    "structureSha256": "8829d1989c6f093c76abcd9409fd3957be21affd87afe5c6f4701c0a8989302a",
+    "historicSha256": "4b73b117b832fb753b92d3de885c163bc1dd3f6225101867f7b4e2437c8b793a",
+    "baseCommit": "30d9e7e93b82870bec3f8f03f8465b5b0b8c9d63"
+  },
+  "developmentScreenshotUtilityIncluded": true,
+  "includedScenes": [
+    "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Prolog_RumahAtmaja.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Prolog_KoridorKos.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Babak1_Rusunawa.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Babak2_RSUD.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Babak3_PabrikGula.unity"
+  ]
+}
