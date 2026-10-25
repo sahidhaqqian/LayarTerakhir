@@ -69,7 +69,7 @@ namespace LayarTerakhir.Prolog
         public void SetViewfinder(bool on)=>focusOverride=on;
         public bool FramesTarget(GameObject target,float range)
         {
-            if(!FeedCamera||!target||!target.activeInHierarchy||!Phone||Phone.batteryPercent<=0)return false;
+            if(!FeedCamera||!target||!target.activeInHierarchy||!Phone||!Phone.HasCameraPower)return false;
             Vector3 point=target.transform.position+Vector3.up*1.45f;
             Vector3 viewport=FeedCamera.WorldToViewportPoint(point);
             Vector3 delta=point-FeedCamera.transform.position;
@@ -97,8 +97,8 @@ namespace LayarTerakhir.Prolog
         }
         private HudController Hud=>HudController.Instance;private SmartphoneController Phone=>SmartphoneController.Instance;
         private IPhoneChapterContent Chapter=>Phone?Phone.ChapterContent:null;
-        public string ClockText=>Chapter is LayarTerakhir.Phase4.Phase4Hub?"16:45":Chapter is LayarTerakhir.Phase4.Phase4Director?"23:53":Chapter is LayarTerakhir.Phase3.Phase3Hub?"15:30":Chapter is LayarTerakhir.Phase3.Phase3Director?"23:54":Chapter is LayarTerakhir.Phase2.Phase2Hub?"14:00":Chapter is LayarTerakhir.Phase2.Phase2Director?"23:50":Chapter!=null?"23:58":director?"23:52":"23:46";
-        public string DateText=>Chapter is LayarTerakhir.Phase4.Phase4Hub?"Sore • Persiapan Karang Setra":Chapter is LayarTerakhir.Phase4.Phase4Director?"Malam • Karang Setra":Chapter is LayarTerakhir.Phase3.Phase3Hub?"Siang • Persiapan Sindang Laut":Chapter is LayarTerakhir.Phase3.Phase3Director?"Malam • Sindang Laut":Chapter is LayarTerakhir.Phase2.Phase2Hub?"Siang • Persiapan malam kedua":Chapter is LayarTerakhir.Phase2.Phase2Director?"Malam kedua • RSUD Sido Waras":"Kamis, 15 Oktober  •  Hujan";
+        public string ClockText=>Chapter is LayarTerakhir.Phase5.Phase5Director?"--:--":Chapter is LayarTerakhir.Phase4.Phase4Hub?"16:45":Chapter is LayarTerakhir.Phase4.Phase4Director?"23:53":Chapter is LayarTerakhir.Phase3.Phase3Hub?"15:30":Chapter is LayarTerakhir.Phase3.Phase3Director?"23:54":Chapter is LayarTerakhir.Phase2.Phase2Hub?"14:00":Chapter is LayarTerakhir.Phase2.Phase2Director?"23:50":Chapter!=null?"23:58":director?"23:52":"23:46";
+        public string DateText=>Chapter is LayarTerakhir.Phase5.Phase5Director?"Malam yang sama • Pasar Setan":Chapter is LayarTerakhir.Phase4.Phase4Hub?"Sore • Persiapan Karang Setra":Chapter is LayarTerakhir.Phase4.Phase4Director?"Malam • Karang Setra":Chapter is LayarTerakhir.Phase3.Phase3Hub?"Siang • Persiapan Sindang Laut":Chapter is LayarTerakhir.Phase3.Phase3Director?"Malam • Sindang Laut":Chapter is LayarTerakhir.Phase2.Phase2Hub?"Siang • Persiapan malam kedua":Chapter is LayarTerakhir.Phase2.Phase2Director?"Malam kedua • RSUD Sido Waras":"Kamis, 15 Oktober  •  Hujan";
         private void Start()
         {
             if(!playerCamera){var p=FindFirstObjectByType<FirstPersonController>();if(p)playerCamera=p.GetComponent<InteractionInteractor>().playerCamera;}
@@ -312,7 +312,7 @@ namespace LayarTerakhir.Prolog
                 }
                 return;
             }
-            if(!Phone.hasSmartphoneInInventory||!Phone.isScreenOn||Phone.batteryPercent<=0)return;
+            if(!Phone.hasSmartphoneInInventory||!Phone.isScreenOn||!Phone.HasCameraPower)return;
             if(!cameraHeldRaise)
             {
                 phoneRaisedBeforeFocus=Phone.isPhoneRaised;appBeforeFocus=Apps.CurrentApp;
@@ -333,7 +333,7 @@ namespace LayarTerakhir.Prolog
             raiseAmount=allowed?Mathf.MoveTowards(raiseAmount,active?1:0,Time.unscaledDeltaTime/.24f):0;
             if(raiseAmount<=0)landscapeFromStowed=false;
             bool loweringAim=landscapeFromStowed&&!active&&raiseAmount>0;
-            Panel.SetActive(raiseAmount>0);bool screen=raiseAmount>0&&Phone.isScreenOn&&Phone.batteryPercent>0;
+            Panel.SetActive(raiseAmount>0);bool screen=raiseAmount>0&&Phone.isScreenOn&&Phone.HasCameraPower;
             bool canFocus=screen&&IsCameraApp&&!Hud.IsModalOpen&&!UiFocus.HardModal&&!UiFocus.Menu&&(!UiFocus.Cinematic||CinematicHandsetVisible)&&(focusOverride||cameraHeldRaise&&LensFocusHeld());
             ViewfinderActive=canFocus;
             viewfinderBlend=Mathf.MoveTowards(viewfinderBlend,canFocus?1:0,Time.unscaledDeltaTime/.18f);
@@ -413,8 +413,9 @@ namespace LayarTerakhir.Prolog
             for(int i=0;i<signalBars.Length;i++)
             {float noise=Mathf.Sin(Mathf.Floor(Time.unscaledTime*13)+i*5.76f);var rect=signalBars[i].rectTransform;rect.anchoredPosition=new Vector2(noise*signal*18,noise*signal*13);signalBars[i].color=new Color(i%2==0?.22f:.65f,.7f,.55f,screen&&noise>.72f?signal*.5f:0);}
             if(shutter)shutter.color=new Color(1,1,1,Mathf.Clamp01((flashUntil-Time.unscaledTime)/.22f)*(GameShell.ReducedGlitch?.45f:1));
-            header.text=!screen?"":Phone.isBroadcastConnected?$"LIVE • {(Chapter!=null?Chapter.Viewers:director?director.Viewers:14):N0}   |   {Phone.batteryPercent:0}%":ClockText+$"    LTE    {Phone.batteryPercent:0}%";
-            mode.text=screen&&IsCameraApp?(Chapter!=null?Chapter.CameraStatus:(Phone.currentScanMode==ScanVisualMode.AR?"MATA BATIN / AR":"KAMERA")+$" • {Phone.batteryPercent:0}%\n[Z] Aplikasi   [M] Peta"):"";
+            string energyLabel=Phone.RitualCameraPower?"KAPASITOR RITUAL 5%":$"{Phone.DisplayBatteryPercent:0}%";
+            header.text=!screen?"":Phone.isBroadcastConnected?$"LIVE • {(Chapter!=null?Chapter.Viewers:director?director.Viewers:14):N0}   |   {energyLabel}":ClockText+$"    LTE    {energyLabel}";
+            mode.text=screen&&IsCameraApp?(Chapter!=null?Chapter.CameraStatus:(Phone.currentScanMode==ScanVisualMode.AR?"MATA BATIN / AR":"KAMERA")+$" • {Phone.DisplayBatteryPercent:0}%\n[Z] Aplikasi   [M] Peta"):"";
             LiveButton.gameObject.SetActive(screen&&IsCameraApp&&(director||Chapter!=null)&&!Phone.isBroadcastConnected&&!landscapeFeed);LiveButton.interactable=Chapter!=null?Chapter.CanBeginLive:director&&director.CanBeginLive&&!director.Busy&&!Hud.IsModalOpen;
             UiFocus.Phone=active&&screen&&!Hud.IsModalOpen&&(!IsCameraApp||((director||Chapter!=null)&&!Phone.isBroadcastConnected));
             if(owner&&!UiFocus.HardModal&&!Hud.IsModalOpen&&!UiFocus.Cinematic)owner.SetCursorLock(!UiFocus.Phone||FirstPersonController.PhoneLookHeld);
@@ -452,13 +453,16 @@ namespace LayarTerakhir.Prolog
                     if (!hit.transform.IsChildOf(owner.transform)) distance = Mathf.Min(distance, Mathf.Max(.28f, hit.distance - .05f));
                 // Offset the physical front lens toward the watched shoulder. Parallel
                 // framing leaves Raka beside the threat instead of covering it with his head.
-                float shoulderOffset=Chapter is LayarTerakhir.Phase2.Phase2Director p2 && p2.boss && p2.boss.Active ? .3f : .18f;
+                float shoulderOffset=Chapter is LayarTerakhir.Phase5.Phase5Director ? .32f : Chapter is LayarTerakhir.Phase2.Phase2Director p2 && p2.boss && p2.boss.Active ? .3f : .18f;
                 Vector3 lens = face + forward * distance - owner.transform.right * shoulderOffset;
                 Vector3 lensRay=lens-face;float clearance=lensRay.magnitude;
                 foreach(var hit in Physics.RaycastAll(face,lensRay.normalized,clearance,~((1<<26)|(1<<29)|(1<<31)|(1<<25)|(1<<2)),QueryTriggerInteraction.Ignore))
                     if(!hit.transform.IsChildOf(owner.transform))clearance=Mathf.Min(clearance,Mathf.Max(.02f,hit.distance-.035f));
                 lens=face+lensRay.normalized*clearance;
-                FeedCamera.transform.SetPositionAndRotation(lens, Quaternion.LookRotation(-forward, Vector3.up));
+                Vector3 frontRay = -forward;
+                if (Chapter is LayarTerakhir.Phase5.Phase5Director)
+                    frontRay = Quaternion.AngleAxis(-Mathf.DeltaAngle(0, owner.cameraPivot.localEulerAngles.x), owner.transform.right) * frontRay;
+                FeedCamera.transform.SetPositionAndRotation(lens, Quaternion.LookRotation(frontRay, Vector3.up));
                 FeedCamera.nearClipPlane = .025f;
                 FeedCamera.cullingMask |= 1 << ShoulderCameraRig.AvatarLayer;
             }
@@ -472,7 +476,7 @@ namespace LayarTerakhir.Prolog
             if (Chapter is LayarTerakhir.Phase3.Phase3Director)
             {
                 playerCamera.cullingMask &= ~(1 << 24);
-                if (Phone.isScreenOn && Phone.batteryPercent > 0 && Phone.currentScanMode == ScanVisualMode.UV)
+                if (Phone.isScreenOn && Phone.HasCameraPower && Phone.currentScanMode == ScanVisualMode.UV)
                     FeedCamera.cullingMask |= 1 << 24;
                 else FeedCamera.cullingMask &= ~(1 << 24);
                 // In the factory only UV distinguishes a false void from the intact floor beneath.

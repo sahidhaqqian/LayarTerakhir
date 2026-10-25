@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "method": "Actual isolated native player process termination after flushed temp or after atomic replace; fresh native loader verification. Not physical gameplay inputs.",
+  "cases": [
+    {
+      "action": "core",
+      "point": "temp-flushed",
+      "crashExit": 137,
+      "marker": "temp-flushed core",
+      "verification": {
+        "passed": true,
+        "coreCount": 0,
+        "ending": "NONE",
+        "checkpoint": "PHASE5_CP6"
+      }
+    },
+    {
+      "action": "core",
+      "point": "replaced",
+      "crashExit": 137,
+      "marker": "replaced core",
+      "verification": {
+        "passed": true,
+        "coreCount": 1,
+        "ending": "NONE",
+        "checkpoint": "PHASE5_CP7"
+      }
+    },
+    {
+      "action": "ending",
+      "point": "temp-flushed",
+      "crashExit": 137,
+      "marker": "temp-flushed ending",
+      "verification": {
+        "passed": true,
+        "coreCount": 3,
+        "ending": "NONE",
+        "checkpoint": "PHASE5_CP8"
+      }
+    },
+    {
+      "action": "ending",
+      "point": "replaced",
+      "crashExit": 137,
+      "marker": "replaced ending",
+      "verification": {
+        "passed": true,
+        "coreCount": 3,
+        "ending": "TRUE",
+        "checkpoint": "PHASE5_CP8"
+      }
+    }
+  ]
+}

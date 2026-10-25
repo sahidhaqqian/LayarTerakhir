@@ -1,0 +1,36 @@
+source,speaker,line,status,direction
+Phase5Boss.cs,Penonton_Terakhir,[Napas membeku tepat di belakang leher. Rahang lensa membuka.],Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Boss.cs,Panggung,[Api melesat dari tepi. Matikan layar dan jongkok di balik peti.],Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Boss.cs,MataBatin,PERISAI TERBUKA — satu Blitz pada inti!,Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Boss.cs,Penonton_Terakhir,[Lensa mengatup. Menjauh dari jangkauan tangannya!],Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Sectors.cs,Pintu Cermin,[Api mengembang di balik kaca panas.] Mundur!,Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Cinematics.cs,Damar,Ka...?,Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Ending.cs,Damar,"Gue di sini, Ka. Kali ini kita pulang bareng.",Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Ending.cs,Raka,"Pegang bahu gue, Dam. Kita ke cermin itu.",Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Ending.cs,Arsip Saksi,Tari. Lastri dan anaknya. Sembilan anak buruh. Warga Karang Setra. Saksi tidak membeli korban.,Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Ending.cs,Sistem,"Ending belum tersimpan. Kosongkan ruang penyimpanan, lalu tekan interaksi untuk mencoba lagi.",Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Interactions.cs,Raka,Gue harus tenang. Yang di layar belum tentu nyata.,Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5UnstablePlank.cs,Papan jembatan,[Papan ber-rajah berderit dan mulai retak. Menyingkir!],Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Presentation.cs,Raka,Ya Tuhan... cermin-cermin ini nampilin muka penonton gue sendiri. Mereka semua lagi disedot kesadarannya lewat siaran gue...,Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Presentation.cs,Sumber suara,"[Dua suara dari cabang jembatan: teriakan menyerupai Damar, dan ketukan Morse.]",Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Presentation.cs,Ruang Jahit,[Gunting: SRAAAK... KLING... Langkah berat berbalas dari balik lemari.],Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Presentation.cs,Raka,"Damar! Dam, bangun! Gue di sini!",Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Presentation.cs,Damar,Ka... kenapa lo beneran dateng sambil nyalain live?! Gue udah tulis di catatan... jangan bawa penonton lo ke sini!,Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Presentation.cs,Raka,Gue nggak punya pilihan. Dia ngancam bakal bunuh lo kalau gue matiin kamera! Gimana cara gue ngelepasin kurungan ini?!,Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Presentation.cs,Damar,Di meja altar ada Catatan Asli Mbah Suro. Pindai tiga bukti terakhir buat memaksa wujud aslinya keluar dari jaringan sinyal!,Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Presentation.cs,Penonton_Terakhir,Akulah alasan kanalmu hidup kembali. Akulah satu juta pasang mata yang menolak tidur demi melihat sahabatmu mati di depan kamera!,Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Replicas.cs,Replika Memori,[Sosok membeku dalam frame Selfie. Empat detik untuk memeriksa pintu.],Human VO pending,Intonasi sesuai konteks; jangan TTS datar
+Phase5Epilogues.cs,Damar,Ka... lo beneran milih itu? [Tangan pucat menarik Damar ke balik lantai cermin.],Human VO pending,BAD — blocking/subtitle stage directions require performance review
+Phase5Epilogues.cs,SATU BULAN KEMUDIAN,"Operasi Ibu lunas. Rp500.000.000 tertera di dashboard. Di studio, Raka menulis dengan akun baru: Penonton_Terakhir.",Human VO pending,BAD — blocking/subtitle stage directions require performance review
+Phase5Epilogues.cs,Penonton_Terakhir,"[Di cermin studio, Damar berdiri di belakang sang tuan rumah baru.] Siaran berikutnya akan segera dimulai.",Human VO pending,BAD — blocking/subtitle stage directions require performance review
+Phase5Epilogues.cs,Raka,"Gue udah janji bakal bawa lo pulang, Dam. Maafin gue kalau gue nggak bisa ikut.",Human VO pending,NORMAL — blocking/subtitle stage directions require performance review
+Phase5Epilogues.cs,Siaran Terputus,[HP Raka pecah. Jaringan siaran padam; Damar didorong melewati cermin sebelum Pasar Setan runtuh.],Human VO pending,NORMAL — blocking/subtitle stage directions require performance review
+Phase5Epilogues.cs,Damar,"Satu juta penonton sadar. Raka Wijaya masih dinyatakan hilang. [Di kaca HP yang mati, pantulan Raka melambaikan tangan.]",Human VO pending,NORMAL — blocking/subtitle stage directions require performance review
+Phase5Epilogues.cs,Raka,Kalian mau tontonan terakhir?! INI LAYAR TERAKHIR BUAT LO!,Human VO pending,TRUE — blocking/subtitle stage directions require performance review
+Phase5Epilogues.cs,Jepretan Terakhir,[Blitz memantul di antara cermin. Jaringan Penonton_Terakhir terbakar; Raka dan Damar terlempar ke arah subuh.],Human VO pending,TRUE — blocking/subtitle stage directions require performance review
+Phase5Epilogues.cs,Damar,"Ka... mulai besok, kita ganti channel aja ya. Bikin konten kuliner atau mukbang kek... jangan uji nyali lagi.",Human VO pending,TRUE — blocking/subtitle stage directions require performance review
+Phase5Epilogues.cs,Raka,Setuju. Malam Keramat resmi tamat malam ini. [05:30 WIB. MataBatin.apk terhapus. Donasi tulus tersisa Rp125.000.000.],Human VO pending,TRUE — blocking/subtitle stage directions require performance review
+Phase5Epilogues.cs,Raka,Mereka bukan angka penonton. Mereka punya nama.,Human VO pending,SECRET — blocking/subtitle stage directions require performance review
+Phase5Epilogues.cs,Damar,"Rekam kesaksiannya, Ka. Biar kali ini mereka yang pulang.",Human VO pending,SECRET — blocking/subtitle stage directions require performance review
+Phase5Epilogues.cs,Arsip Saksi,Tari. Lastri dan anaknya. Sembilan anak buruh. Warga Karang Setra. Kesaksian bebas membatalkan klaim kontrak; korban lama meninggalkan jaringan ritual.,Human VO pending,SECRET — blocking/subtitle stage directions require performance review
+Phase5Epilogues.cs,Saksi Tanpa Layar,"Raka dan Damar menyerahkan catatan korban kepada keluarga. Donasi sah Rp125.000.000. MataBatin.apk tak kembali. Kursi kosong; cermin biasa, tanpa wajah yang tertinggal.",Human VO pending,SECRET — blocking/subtitle stage directions require performance review

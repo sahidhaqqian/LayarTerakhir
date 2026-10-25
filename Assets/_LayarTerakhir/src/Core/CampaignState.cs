@@ -11,13 +11,13 @@ namespace LayarTerakhir.Core
         public string title, body;
         public PhoneDocument(string title, string body) { this.title = title; this.body = body; }
     }
-    public enum EndingType
+    public enum EndingId
     {
-        None = 0,
-        Bad = 1,
-        Normal = 2,
-        True = 3,
-        Secret = 4
+        NONE = 0,
+        BAD = 1,
+        NORMAL = 2,
+        TRUE = 3,
+        SECRET = 4
     }
 
     [Serializable]
@@ -39,12 +39,13 @@ namespace LayarTerakhir.Core
         public List<string> secret_notes_read = new List<string>();
         public List<PhoneDocument> documents = new List<PhoneDocument>();
         public bool archive_prepared = false;
-        public EndingType ending = EndingType.None;
-        public int schema_version = 5;
+        public EndingId ending = EndingId.NONE;
+        public int schema_version = 6;
         public Phase1Data phase1 = new Phase1Data();
         public Phase2Data phase2 = new Phase2Data();
         public Phase3Data phase3 = new Phase3Data();
         public Phase4Data phase4 = new Phase4Data();
+        public Phase5Data phase5 = new Phase5Data();
     }
 
     public class CampaignState : MonoBehaviour
@@ -175,6 +176,10 @@ namespace LayarTerakhir.Core
             return SaveAtomic(checkpointId);
         }
 
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        // Explicit diagnostic fault injection only. Production has no callbacks.
+        public static Action<string> SaveAtomicFaultProbe;
+#endif
         private bool SaveAtomic(string checkpointId)
         {
             string previousCheckpoint = Data.checkpoint_id;
@@ -195,12 +200,18 @@ namespace LayarTerakhir.Core
                     stream.Write(bytes, 0, bytes.Length);
                     stream.Flush(true);
                 }
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+                SaveAtomicFaultProbe?.Invoke("temp-flushed");
+#endif
 
                 if (File.Exists(SaveFilePath))
                 {
                     File.Replace(TempSaveFilePath, SaveFilePath, BackupSaveFilePath);
                 }
                 else File.Move(TempSaveFilePath, SaveFilePath);
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+                SaveAtomicFaultProbe?.Invoke("replaced");
+#endif
                 return true;
             }
             catch (Exception ex)
@@ -289,20 +300,59 @@ namespace LayarTerakhir.Core
                 loaded.phase4 = new Phase4Data();
                 loaded.schema_version = 5;
             }
+            if (loaded.schema_version == 5)
+            {
+                loaded.phase5 = new Phase5Data();
+                loaded.schema_version = 6;
+            }
             if (loaded.phase3 != null) Phase3Ids.NormalizeAliases(loaded);
             return IsValid(loaded);
         }
 
         private static bool IsValid(CampaignData data)
         {
-            return data != null && data.schema_version == 5 && data.chapter_id >= 0 &&
+            return data != null && data.schema_version == 6 && data.chapter_id >= 0 &&
                 !string.IsNullOrWhiteSpace(data.checkpoint_id) &&
                 data.battery >= 0f && data.battery <= 100f && data.sanity >= 0f && data.sanity <= 100f &&
                 data.wallet_legitimate >= 0 && data.wallet_bound >= 0 && data.spent >= 0 &&
-                Enum.IsDefined(typeof(EndingType), data.ending) &&
+                Enum.IsDefined(typeof(EndingId), data.ending) &&
                 ValidIds(data.inventory) && ValidIds(data.evidence_ids) && ValidIds(data.relic_ids) &&
                 ValidIds(data.location_seals) && ValidIds(data.upgrades) && ValidIds(data.secret_items) &&
-                ValidIds(data.secret_notes_read) && ValidPhase1(data.phase1) && ValidPhase2(data.phase2) && ValidPhase3(data.phase3) && ValidPhase4(data);
+                ValidIds(data.secret_notes_read) && ValidPhase1(data.phase1) && ValidPhase2(data.phase2) && ValidPhase3(data.phase3) && ValidPhase4(data) && ValidPhase5(data);
+        }
+
+        private static bool ValidPhase5(CampaignData d)
+        {
+            var p = d.phase5;
+            if (p == null || !ValidIds(p.completed_event_ids) || !float.IsFinite(p.elapsed_gameplay_seconds) || p.elapsed_gameplay_seconds < 0 ||
+                !float.IsFinite(p.incense_ready_at) || p.incense_ready_at < 0 || Array.IndexOf(Phase5Ids.Anchors, p.safe_anchor) < 0 ||
+                p.recovery_last_uses == null || p.money_ledger == null) return false;
+            var ids = new HashSet<string>();
+            foreach (var r in p.recovery_last_uses)
+                if (r == null || string.IsNullOrWhiteSpace(r.id) || !ids.Add(r.id) || !float.IsFinite(r.at_gameplay_seconds) ||
+                    r.at_gameplay_seconds < 0 || r.at_gameplay_seconds > p.elapsed_gameplay_seconds) return false;
+            ids.Clear();
+            foreach (var r in p.money_ledger)
+                if (r == null || string.IsNullOrWhiteSpace(r.id) || !ids.Add(r.id) || r.amount <= 0) return false;
+            if (d.chapter_id != 5) return p.completed_event_ids.Count == 0;
+            if (!Phase5Ids.FourSeals(d) || !d.phase4.Completed("P4_COMPLETE") || !p.Completed("P5_ARRIVE_GATE")) return false;
+            for (int n = 2; n <= 3; n++)
+                if (p.Completed("P5_S" + n + "_CLEAR") && !p.Completed("P5_S" + (n - 1) + "_CLEAR") ||
+                    p.Completed("P5_CORE_" + n + "_BROKEN") && !p.Completed("P5_CORE_" + (n - 1) + "_BROKEN")) return false;
+            if (p.Completed("P5_S2_CLEAR") && !p.Completed("P5_BRIDGE_TORCH_OFF")) return false;
+            if (p.Completed("P5_JOURNAL_CONFIRMED") && (!Phase5Ids.AllEvidence(d) || !p.Completed("P5_S3_CLEAR"))) return false;
+            if (p.Completed("P5_ARENA_LOCK") && !p.Completed("P5_JOURNAL_CONFIRMED")) return false;
+            if (Phase5Ids.CoreCount(d) > 0 && !p.Completed("P5_ARENA_LOCK")) return false;
+            if (Phase5Ids.CableCount(d) > 0 && !p.Completed("P5_CORE_2_BROKEN")) return false;
+            if (p.Completed("P5_CORE_3_BROKEN") && Phase5Ids.CableCount(d) != 3) return false;
+            if (p.Completed("P5_FINAL_CHOICE_ENTER") && Phase5Ids.CoreCount(d) != 3) return false;
+            if (p.Completed("P5_ARCHIVE_VALIDATED") && (!d.archive_prepared || !Phase5Ids.ArchiveComplete(d))) return false;
+            if (p.Completed("P5_ENDING_LOCKED") != (d.ending != EndingId.NONE)) return false;
+            if (d.ending != EndingId.NONE && !p.Completed("P5_FINAL_CHOICE_ENTER")) return false;
+            if (d.ending == EndingId.SECRET && (!Phase5Ids.ArchiveComplete(d) || !d.archive_prepared || !p.Completed("P5_ARCHIVE_VALIDATED"))) return false;
+            if ((d.ending == EndingId.SECRET || d.ending == EndingId.TRUE) && !p.Completed("P5_DAMAR_AT_PORTAL")) return false;
+            if (p.Completed("P5_COMPLETE") && d.ending == EndingId.NONE) return false;
+            return true;
         }
 
         private static bool ValidPhase4(CampaignData d)

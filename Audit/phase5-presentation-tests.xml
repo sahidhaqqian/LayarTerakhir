@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="44" result="Passed" total="44" passed="44" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 23:30:49Z" end-time="2026-10-25 23:30:52Z" duration="2.87496">
+  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-10-25 23:30:49Z" end-time="2026-10-25 23:30:52Z" duration="2.874960" total="44" passed="44" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1516" name="Assembly-CSharp-Editor.dll" fullname="/root/Projects/LayarTerakhir-main/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-10-25 23:30:49Z" end-time="2026-10-25 23:30:52Z" duration="2.853670" total="44" passed="44" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="340453" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1517" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-10-25 23:30:49Z" end-time="2026-10-25 23:30:52Z" duration="2.842723" total="44" passed="44" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1518" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-10-25 23:30:49Z" end-time="2026-10-25 23:30:52Z" duration="2.831198" total="44" passed="44" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1519" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-10-25 23:30:49Z" end-time="2026-10-25 23:30:52Z" duration="2.822060" total="44" passed="44" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1437" name="Phase5SceneTests" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" testcasecount="44" result="Passed" start-time="2026-10-25 23:30:49Z" end-time="2026-10-25 23:30:52Z" duration="2.809399" total="44" passed="44" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1439" name="AtLeast100NewActualModelSourcesArePlaced" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.AtLeast100NewActualModelSourcesArePlaced" methodname="AtLeast100NewActualModelSourcesArePlaced" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="582790472" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.090325" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1485" name="BuildContainsExactlyOneMarketScene" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.BuildContainsExactlyOneMarketScene" methodname="BuildContainsExactlyOneMarketScene" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1635744367" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.005680" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1477" name="CriticalInteractionHasAReachableUnoccludedStance" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.046105" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1466" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;TAPE&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;TAPE&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="928218437" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.007965" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1467" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;DOOR_1&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;DOOR_1&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="2097423763" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.000656" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1468" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;REFILL&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;REFILL&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="508880041" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.000433" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1469" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;POUR&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;POUR&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1922744981" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.000247" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1470" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;SEWING_PORTAL&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;SEWING_PORTAL&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1010803697" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.000257" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1471" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;START_ARENA&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;START_ARENA&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="644686534" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.000257" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1472" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;GENERATOR&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;GENERATOR&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1778847550" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.000222" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1473" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;ARCHIVE&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;ARCHIVE&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1627797435" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.000212" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1474" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;CABLE_1&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;CABLE_1&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="2031233645" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.000232" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1475" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;CABLE_2&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;CABLE_2&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1099268269" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.000216" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1476" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;CABLE_3&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;CABLE_3&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1414155395" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.000210" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1478" name="CrowdEvpEmitterIsInFrontOfItsPhysicalScreen" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CrowdEvpEmitterIsInFrontOfItsPhysicalScreen" methodname="CrowdEvpEmitterIsInFrontOfItsPhysicalScreen" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="2122561878" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.001889" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1482" name="DamarHasAuthoredHumanIdleWalkInsteadOfReplicaMotion" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.DamarHasAuthoredHumanIdleWalkInsteadOfReplicaMotion" methodname="DamarHasAuthoredHumanIdleWalkInsteadOfReplicaMotion" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="974735512" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.002426" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1484" name="EndingDurationsRemainMandatory" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.EndingDurationsRemainMandatory" methodname="EndingDurationsRemainMandatory" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1399762512" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.001297" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1483" name="FrozenDoorsAreVisibleFromBothSidesAndSolidWhenClosed" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.FrozenDoorsAreVisibleFromBothSidesAndSolidWhenClosed" methodname="FrozenDoorsAreVisibleFromBothSidesAndSolidWhenClosed" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="135705082" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.029190" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1442" name="LayerBudgetAndAuthoredHumanAvatarsAreValid" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.LayerBudgetAndAuthoredHumanAvatarsAreValid" methodname="LayerBudgetAndAuthoredHumanAvatarsAreValid" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="2027204138" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.007161" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1462" name="LocalNavigationIsConnected" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.LocalNavigationIsConnected" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.005066" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1455" name="LocalNavigationIsConnected(0,4,0,48)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.LocalNavigationIsConnected(0,4,0,48)" methodname="LocalNavigationIsConnected" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="600114289" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.002692" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1456" name="LocalNavigationIsConnected(0,62,0,88)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.LocalNavigationIsConnected(0,62,0,88)" methodname="LocalNavigationIsConnected" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="135681300" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.000136" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1457" name="LocalNavigationIsConnected(6,103,6,144)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.LocalNavigationIsConnected(6,103,6,144)" methodname="LocalNavigationIsConnected" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="429145466" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.000108" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1458" name="LocalNavigationIsConnected(9,157,9,186)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.LocalNavigationIsConnected(9,157,9,186)" methodname="LocalNavigationIsConnected" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="650637931" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.000095" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1459" name="LocalNavigationIsConnected(-9,186,-9,156)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.LocalNavigationIsConnected(-9,186,-9,156)" methodname="LocalNavigationIsConnected" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1269202420" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.000118" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1460" name="LocalNavigationIsConnected(-14.5f,216.4f,-9,220)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.LocalNavigationIsConnected(-14.5f,216.4f,-9,220)" methodname="LocalNavigationIsConnected" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="464580525" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.000092" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1461" name="LocalNavigationIsConnected(-14.5f,216.4f,13.5f,232.5f)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.LocalNavigationIsConnected(-14.5f,216.4f,13.5f,232.5f)" methodname="LocalNavigationIsConnected" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="766733343" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:51Z" duration="0.000117" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1440" name="NoPreviousChapterEnvironmentDependency" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.NoPreviousChapterEnvironmentDependency" methodname="NoPreviousChapterEnvironmentDependency" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="906464001" result="Passed" start-time="2026-10-25 23:30:51Z" end-time="2026-10-25 23:30:52Z" duration="0.518514" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1441" name="PhysicalRecoveryAndToolsExistBeforeAndInsideLock" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.PhysicalRecoveryAndToolsExistBeforeAndInsideLock" methodname="PhysicalRecoveryAndToolsExistBeforeAndInsideLock" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1383028769" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.001998" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1463" name="PlankCollapseHasNoInvisibleFloorUnderIt" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.PlankCollapseHasNoInvisibleFloorUnderIt" methodname="PlankCollapseHasNoInvisibleFloorUnderIt" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="442599127" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.002661" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1465" name="RecoveryCeilingAllowsCrouchButExcludesStanding" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.RecoveryCeilingAllowsCrouchButExcludesStanding" methodname="RecoveryCeilingAllowsCrouchButExcludesStanding" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1585650255" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.002672" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1481" name="RecoveryOverhangPhysicallyBlocksTallBossAtToolStance" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.RecoveryOverhangPhysicallyBlocksTallBossAtToolStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.004041" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1479" name="RecoveryOverhangPhysicallyBlocksTallBossAtToolStance(-14.5f,216,217.94f)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.RecoveryOverhangPhysicallyBlocksTallBossAtToolStance(-14.5f,216,217.94f)" methodname="RecoveryOverhangPhysicallyBlocksTallBossAtToolStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="992116936" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.001462" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1480" name="RecoveryOverhangPhysicallyBlocksTallBossAtToolStance(13.5f,233,231.1f)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.RecoveryOverhangPhysicallyBlocksTallBossAtToolStance(13.5f,233,231.1f)" methodname="RecoveryOverhangPhysicallyBlocksTallBossAtToolStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="185619949" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.000307" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1464" name="SavedAnchorsDoNotSpawnStandingCapsulesInsideGeometry" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.SavedAnchorsDoNotSpawnStandingCapsulesInsideGeometry" methodname="SavedAnchorsDoNotSpawnStandingCapsulesInsideGeometry" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1043830666" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.002063" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1438" name="SerializedSystemsAreSingleAndBound" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.SerializedSystemsAreSingleAndBound" methodname="SerializedSystemsAreSingleAndBound" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="347327837" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.005459" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1454" name="WalkableSurfacesHaveActualSolidGround" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.003082" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1443" name="WalkableSurfacesHaveActualSolidGround(0,4)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(0,4)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1109989235" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.000539" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1444" name="WalkableSurfacesHaveActualSolidGround(0,62)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(0,62)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="2131662049" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.000099" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1445" name="WalkableSurfacesHaveActualSolidGround(6,108)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(6,108)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="611700142" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.000089" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1446" name="WalkableSurfacesHaveActualSolidGround(6,138)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(6,138)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="919036167" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.000081" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1447" name="WalkableSurfacesHaveActualSolidGround(6,147)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(6,147)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1982556798" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.000106" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1448" name="WalkableSurfacesHaveActualSolidGround(9,164)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(9,164)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="514588583" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.000085" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1449" name="WalkableSurfacesHaveActualSolidGround(-9,172)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(-9,172)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1018101159" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.000086" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1450" name="WalkableSurfacesHaveActualSolidGround(0,205)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(0,205)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1567260082" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.000083" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1451" name="WalkableSurfacesHaveActualSolidGround(-10,218)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(-10,218)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1773919747" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.000078" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1452" name="WalkableSurfacesHaveActualSolidGround(11,230)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(11,230)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1788841095" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.000083" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1453" name="WalkableSurfacesHaveActualSolidGround(17,220)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(17,220)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="2045940092" result="Passed" start-time="2026-10-25 23:30:52Z" end-time="2026-10-25 23:30:52Z" duration="0.000106" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: /root/.config/unity3d/DefaultCompany/LayarTerakhir/TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

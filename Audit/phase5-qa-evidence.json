@@ -1,0 +1,1445 @@
+{
+  "specificationCases": 180,
+  "manualAccepted": 0,
+  "rows": [
+    {
+      "id": "QA-001",
+      "scenario": "Continue dari `PHASE4_CP8` dengan empat segel valid",
+      "expected": "Masuk gerbang Pasar Setan tanpa Kos; P0\u2013P4 utuh",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-002",
+      "scenario": "Mulai P5 tanpa `P4_COMPLETE` atau tanpa empat segel (build produksi)",
+      "expected": "Ditolak; skip dev-only tidak menulis segel/inventori palsu",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-003",
+      "scenario": "Muat save P4 berisi Flare/Kemenyan/Powerbank belum terpakai",
+      "expected": "Semua carry-over tampil sebagai instance sah",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-004",
+      "scenario": "Muat save yang berhenti di boundary P4 sebelum router terhubung",
+      "expected": "Save tidak rusak; Continue menuju `PHASE5_CP1` setelah router siap",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-005",
+      "scenario": "Ganti `V` OTS\u2194FP sambil UV/AR aktif",
+      "expected": "FOV/culling/scan konsisten dan kamera pulih",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-006",
+      "scenario": "Tekan `X` (Selfie) dan verifikasi hint",
+      "expected": "Selfie = `X`; hint HUD memakai binding aktual",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-007",
+      "scenario": "Remap `X/Q/R/T/C/F/G/H/E` via `GameInputConfig`",
+      "expected": "Hint mengikuti binding; tidak ada konflik",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-008",
+      "scenario": "Tahan/lepas RMB dengan AR/UV/Thermo bergantian",
+      "expected": "HP dua tangan bekerja; view kembali",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-009",
+      "scenario": "`G` saat Flare 4",
+      "expected": "Flare aktif di P5 (tidak \u201cApi asing ditolak desa\u201d), stok \u22121",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-010",
+      "scenario": "Alt-tab saat animasi angkat HP",
+      "expected": "Input tidak macet; timer sesuai policy fokus",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-011",
+      "scenario": "Masuk dengan `wallet_legitimate=0`, baterai 0, Sanity 0",
+      "expected": "Dinamo dan Altar Doa terjangkau tanpa UV; tidak softlock",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-012",
+      "scenario": "Lihat viewer 1.000.000 dan donasi Rp66.666.666",
+      "expected": "Donasi \u2192 `wallet_bound` sekali; bukan `wallet_legitimate`",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-013",
+      "scenario": "Reload setelah donasi",
+      "expected": "Donasi tidak digandakan",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-014",
+      "scenario": "Beli Powerbank \u00d73 dengan saldo cukup",
+      "expected": "Debit sekali, tiga instance unik, receipt persisted",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-015",
+      "scenario": "Klik beli paket sama dua kali cepat",
+      "expected": "Tidak menggandakan item; saldo tak negatif",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-016",
+      "scenario": "Force quit saat commit pembelian",
+      "expected": "Penuh atau rollback; tidak ada item tanpa debit",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-017",
+      "scenario": "Saldo 0: semua tombol Kios",
+      "expected": "Nonaktif; gerbang dalam tetap dapat dicapai",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-018",
+      "scenario": "Baca Kertas Aturan lalu lewati di run lain",
+      "expected": "Opsional; progres sama",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-019",
+      "scenario": "Lihat kios saat chat menyuruh \u201cjangan matikan siarannya\u201d",
+      "expected": "`F` tetap mematikan layar; chat tidak memblokir",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-020",
+      "scenario": "Selesaikan P5 tanpa membeli apa pun",
+      "expected": "Semua bukti, tiga inti, dan ending dasar tercapai",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-021",
+      "scenario": "Periksa Kios Arsip Bisu tanpa membayar",
+      "expected": "Dapat diperiksa gratis; Kios Tumbal terpisah",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-022",
+      "scenario": "Layar mati 2 s di depan kursi",
+      "expected": "Chat palsu belum berhenti; langkah belum sah",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-023",
+      "scenario": "Layar mati \u22653 s di depan kursi",
+      "expected": "`P5_SECRET_CHAIR_SILENCE` sah; chat palsu pada kursi berhenti",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-024",
+      "scenario": "Nyalakan UV (bukan AR) di depan laci",
+      "expected": "Laci tidak terungkap; feedback mode salah",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-025",
+      "scenario": "AR di depan kursi/laci",
+      "expected": "Tanda mata tertutup terlihat; laci terbuka secara visual",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-026",
+      "scenario": "EVP merekam kalimat Mimic dari cermin",
+      "expected": "Tidak sah; laci tidak terbuka",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-027",
+      "scenario": "EVP merekam \u201cSaksi tidak membeli korban\u201d Authentic",
+      "expected": "Langkah sah; pita dapat diambil",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-028",
+      "scenario": "Ambil pita \u2192 `TryCommit` sukses",
+      "expected": "ID di `secret_items` sebelum popup; prop hilang setelah commit",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-029",
+      "scenario": "Disk penuh saat pickup",
+      "expected": "Popup tidak muncul; prop tersedia untuk retry",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-030",
+      "scenario": "Mati/reload setelah pita diambil",
+      "expected": "ID tetap; objek tidak muncul lagi; Arsip N/5 aktual",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-031",
+      "scenario": "Lihat cermin lama di gerbang",
+      "expected": "Drain 0,06/s sampai lantai 50%; tidak di bawah karena waktu saja",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-scene-tests.xml (serialized/physics scope only)"
+      ]
+    },
+    {
+      "id": "QA-032",
+      "scenario": "Sanity ke 0 di sektor",
+      "expected": "HUNT aktif; bukan Game Over",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-033",
+      "scenario": "Pulihkan lewat Altar Doa pada Sanity 0",
+      "expected": "+15 setelah tahan 10 s; cooldown 30 s",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-034",
+      "scenario": "Kemenyan `H` dengan stok 0",
+      "expected": "Tidak negatif; tidak ada animasi palsu",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-035",
+      "scenario": "Kemenyan `H` dengan stok 1",
+      "expected": "Pulih ke 100; cooldown 12 s; satu instance berkurang",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-036",
+      "scenario": "Pause/alt-tab 2 menit",
+      "expected": "Tidak menguras Sanity di background",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-037",
+      "scenario": "Chat `SYSTEM` palsu muncul",
+      "expected": "Tidak memanggil dispatcher/binding/checkpoint",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-038",
+      "scenario": "Chat 40 pesan saat chase",
+      "expected": "\u22641 pesan/1,2 s; reticle dan prompt `E` tidak tertutup",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-039",
+      "scenario": "Opsi kurangi strobo/blur/shake",
+      "expected": "Clue tetap terbaca",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-040",
+      "scenario": "Replika masuk Sanity 0",
+      "expected": "Radius deteksi naik; telegraph tetap ada",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-041",
+      "scenario": "Masuk koridor dengan replika di 8 m",
+      "expected": "Replika mendekat 1,3 m/s; tidak instakill",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-042",
+      "scenario": "Selfie (`X`) menahan replika 1,0 s",
+      "expected": "Jeda 4 s; cooldown 6 s",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-043",
+      "scenario": "Thermo pintu kiri",
+      "expected": "Bacaan `+50\u00b0C` setelah bidik stabil 2 s",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-044",
+      "scenario": "Thermo pintu kanan",
+      "expected": "Bacaan `+50\u00b0C`",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-045",
+      "scenario": "Thermo pintu tengah",
+      "expected": "Bacaan `-22\u00b0C`",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-046",
+      "scenario": "Chat/banner menyebut \u201ctengah panas\u201d",
+      "expected": "Angka Thermo dunia tetap menang",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-047",
+      "scenario": "Masuk pintu kiri/kanan",
+      "expected": "Semburan telegraph \u22651,0 s; \u221225 Sanity; kembali ke awal koridor",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-048",
+      "scenario": "Masuk pintu tengah sebelum replika menerkam",
+      "expected": "`P5_S1_CLEAR`; `PHASE5_CP3`",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-049",
+      "scenario": "Baterai 0 di awal koridor",
+      "expected": "Dinamo/papan arah tengah tersedia tanpa UV",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-050",
+      "scenario": "Mati di koridor lalu reload",
+      "expected": "Mulai dari CP2; sektor 1 belum clear",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-051",
+      "scenario": "EVP cabang kiri",
+      "expected": "Merah bergerigi, label TIRUAN (Wewe)",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-052",
+      "scenario": "EVP cabang kanan",
+      "expected": "Hijau Morse, label ASLI, subtitle `R-A-K-A`",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-053",
+      "scenario": "Chat serempak ke kiri",
+      "expected": "Tidak memaksa; jalan kanan tetap valid",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-054",
+      "scenario": "UV pada papan kanan",
+      "expected": "Rajah Ungu tengkorak = lantai runtuh",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-scene-tests.xml (serialized/physics scope only)"
+      ]
+    },
+    {
+      "id": "QA-055",
+      "scenario": "Injak papan Rajah Ungu",
+      "expected": "Telegraph; jatuh ke anchor; \u221210 Sanity; tidak fatal",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-056",
+      "scenario": "Siram Obor Santet dengan Kendi air>0",
+      "expected": "Obor padam; air \u22121 tepat sekali",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-057",
+      "scenario": "Siram dengan Kendi air=0",
+      "expected": "\u201cKENDI KOSONG\u201d; tunjuk titik isi ulang; tidak negatif",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-058",
+      "scenario": "Isi ulang di titik sebelah gerbang",
+      "expected": "Isi hingga 3; tahan `E` 4 s; tidak overfill",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-059",
+      "scenario": "Save tanpa Kendi (item hilang)",
+      "expected": "Cawan Air Pasar menggantikan; tidak softlock",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-060",
+      "scenario": "Force quit setelah siram sebelum commit",
+      "expected": "Air dan obor konsisten dari commit terakhir",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-061",
+      "scenario": "Masuk gelap total dengan layar menyala",
+      "expected": "Replika mendeteksi cahaya 12 m; telegraph ada",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-062",
+      "scenario": "`F` lalu merunduk di lemari",
+      "expected": "Replika lewat/investigasi lalu pergi",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-063",
+      "scenario": "Sembunyi di kolong meja saat dikejar",
+      "expected": "LOS harus putus; bukan invulnerability",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-064",
+      "scenario": "Sprint vs jalan vs jongkok pada jarak sama",
+      "expected": "Radius 9 / 4 / 1,5 m sesuai baseline",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-065",
+      "scenario": "Kontak pertama",
+      "expected": "\u221225 Sanity, knockback, i-frame 3 s",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-066",
+      "scenario": "Kontak kedua dalam 10 s",
+      "expected": "`CAUGHT_REPLICA`; retry sektor, bukan seluruh babak",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-067",
+      "scenario": "AR di cermin tanpa mode AR",
+      "expected": "Permukaan tampak cermin biasa; tidak masuk",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-068",
+      "scenario": "AR di Cermin Rias",
+      "expected": "Portal cair hijau glitch; masuk \u2192 `P5_S3_CLEAR`",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-069",
+      "scenario": "Replika spawn di anchor",
+      "expected": "Tidak terjadi; ada grace",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-070",
+      "scenario": "Mati lalu reload di sektor 3",
+      "expected": "Sektor 1\u20132 tetap clear; mulai CP4",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-071",
+      "scenario": "Dialog Damar diulang",
+      "expected": "Tidak mengubah state",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-072",
+      "scenario": "AR pada Server Batu",
+      "expected": "`P5_EVIDENCE_SERVER_AR` sekali",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-073",
+      "scenario": "Thermo `-- \u00b0C` pada Kontrak saja",
+      "expected": "Sub-langkah; bukan bukti",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-074",
+      "scenario": "UV Mata Terbuka saja",
+      "expected": "Sub-langkah; bukan bukti",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-075",
+      "scenario": "Thermo lalu UV (atau sebaliknya)",
+      "expected": "`P5_EVIDENCE_CONTRACT` sekali",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-076",
+      "scenario": "EVP Pilar Layar (Authentic)",
+      "expected": "Bukti #3; Mimic dari layar pinggir tidak dihitung",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-077",
+      "scenario": "Konfirmasi Jurnal dengan 2 bukti",
+      "expected": "Tombol tertutup",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-078",
+      "scenario": "Konfirmasi dengan 3 bukti, empat segel",
+      "expected": "`P5_JOURNAL_CONFIRMED` sekali; reload tetap",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-079",
+      "scenario": "Tutup Jurnal tanpa konfirmasi",
+      "expected": "Tidak ada `ARENA_LOCK` otomatis",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-080",
+      "scenario": "Konfirmasi tanpa salah satu segel (dev hack)",
+      "expected": "Ditolak; daftar syarat tampil",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-081",
+      "scenario": "Ruang Cermin Saksi menampilkan N/5",
+      "expected": "Hitung dari ID unik aktual",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-082",
+      "scenario": "Cermin Jalan Pulang ke gerbang sebelum CP6",
+      "expected": "State utuh; kembali ke ruang cermin",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-083",
+      "scenario": "Konfirmasi arena",
+      "expected": "Peringatan \u201cArena akan terkunci\u201d; CP6 commit sebelum boss",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-084",
+      "scenario": "Fail write CP6",
+      "expected": "Boss tidak mulai; retry",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-085",
+      "scenario": "Fase 1: UV pada 4 sosok",
+      "expected": "Hanya 1 benang kontinu berdenyut ke kurungan",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-086",
+      "scenario": "Bayangan layar disentuh",
+      "expected": "\u221215 Sanity, larut, respawn 6 s",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-087",
+      "scenario": "Pancing sosok asli ke Zona Generator, nyalakan sakelar",
+      "expected": "Kabut terbakar; jendela 5 s",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-088",
+      "scenario": "Blitz tepat kepala lensa",
+      "expected": "Inti 1 pecah; commit atomik; CP7",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-089",
+      "scenario": "Miss Blitz Fase 1",
+      "expected": "Perisai kembali; generator cooldown 12 s; retry",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-090",
+      "scenario": "Fase 2: Thermo `-30\u00b0C`, Selfie rahang, Flare, Blitz",
+      "expected": "Inti 2 pecah via Selfie; CP7",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-091",
+      "scenario": "Fase 2 dengan Flare 0",
+      "expected": "`G` menurunkan Lentera; efek sama",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-092",
+      "scenario": "Fase 2 tanpa Kemenyan",
+      "expected": "Altar doa menjaga solvability",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-093",
+      "scenario": "Gelombang api: layar mati di balik peti",
+      "expected": "Lewat setelah telegraph 2,0 s",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-094",
+      "scenario": "Peti kayu bukan invulnerability",
+      "expected": "LOS/collider menentukan",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-scene-tests.xml (serialized/physics scope only)"
+      ]
+    },
+    {
+      "id": "QA-095",
+      "scenario": "AR memperlihatkan tiga Kabel Roh",
+      "expected": "Tiga target terlihat hanya dengan AR",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-096",
+      "scenario": "Tahan `E` 2 s lalu batal",
+      "expected": "Tidak ada receipt; kabel tetap",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-097",
+      "scenario": "Putus kabel 1, mati, reload",
+      "expected": "`P5_CABLE_1_CUT` tetap; kabel 2\u20133 tersisa",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-098",
+      "scenario": "Putus ketiga kabel",
+      "expected": "Kurungan terbuka; gelombang berhenti",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-099",
+      "scenario": "Blitz Inti 3",
+      "expected": "Entitas berlutut; CP7 \u2192 `FINAL_CHOICE_ENTER`",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-100",
+      "scenario": "Kematian di Fase 3 setelah Inti 1\u20132 committed",
+      "expected": "Mulai awal Fase 3, bukan Fase 1",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-101",
+      "scenario": "Masuk `FINAL_CHOICE`",
+      "expected": "CP8 commit; kapasitor 5%; `ending_id=NONE`",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-102",
+      "scenario": "Tahan `F` 5 s sebelum `FINAL_CHOICE`",
+      "expected": "Hanya toggle layar; tidak ada ending",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-103",
+      "scenario": "LMB pada Damar sebelum state",
+      "expected": "Tidak ada efek",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-104",
+      "scenario": "Tiga aksi dasar terlihat tanpa Secret",
+      "expected": "Bad/Normal/True tersedia",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-105",
+      "scenario": "Aksi Secret terlihat tanpa lima ID",
+      "expected": "Tidak ada aksi Secret; slot kosong menyebut bab",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-106",
+      "scenario": "Dua aksi ending hampir bersamaan",
+      "expected": "Hanya satu `TryLockEnding` menang",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-107",
+      "scenario": "Input ending setelah `endingId!=NONE`",
+      "expected": "Ditolak",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-108",
+      "scenario": "Kapasitor setelah LMB ending",
+      "expected": "Menjadi 0; baterai persisten tidak berubah",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-109",
+      "scenario": "Sanity 0 pada `FINAL_CHOICE`",
+      "expected": "Semua aksi tetap bisa diselesaikan",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-110",
+      "scenario": "Tidak ada timer fatal",
+      "expected": "Entitas hanya bicara/menekan UI",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-111",
+      "scenario": "Arahkan kamera belakang ke Damar <2 s",
+      "expected": "Label TUMBAL belum; LMB tidak diterima",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-112",
+      "scenario": "Dwell 2 s, label TUMBAL \u22650,5 s, LMB",
+      "expected": "Bad terkunci; cutscene Damar ditarik cermin",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-113",
+      "scenario": "Turunkan HP sebelum LMB",
+      "expected": "Batal tanpa penalti",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-114",
+      "scenario": "Epilog Bad: saldo Rp500.000.000",
+      "expected": "State sinematik; wallet tidak berubah",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-115",
+      "scenario": "Epilog Bad: akun `Penonton_Terakhir`",
+      "expected": "Sesuai naskah; credits",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-116",
+      "scenario": "Di Z_EDGE tahan `F` 5 s",
+      "expected": "Progres terlihat; Normal terkunci",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-117",
+      "scenario": "Lepas `F` sebelum 5 s",
+      "expected": "Batal tanpa penalti",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-118",
+      "scenario": "Lepas F pada 4,9s lalu tekan lagi",
+      "expected": "Progres reset; Normal hanya terkunci setelah tahan5s penuh",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-119",
+      "scenario": "Epilog Normal: HP hancur",
+      "expected": "Efek sinematik; save konsisten",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-120",
+      "scenario": "Epilog Normal: Damar di halaman Atmaja",
+      "expected": "Pantulan Raka; credits",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-121",
+      "scenario": "Papah Damar ke Z_PORTAL dengan `E`",
+      "expected": "Escort 1,1 m/s; dapat dilepas",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-122",
+      "scenario": "Urutan `X\u2192Q\u2192R` benar",
+      "expected": "Gauge penuh; reticle inti di layar Selfie",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-123",
+      "scenario": "Urutan salah (`R` sebelum `Q`)",
+      "expected": "Gauge reset tanpa penalti",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-124",
+      "scenario": "AR dan UV di gameplay biasa",
+      "expected": "Tetap saling menggantikan di luar `SYNC_CALIBRATION`",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-125",
+      "scenario": "LMB pada inti di Selfie",
+      "expected": "True terkunci; baterai persisten tak berubah",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-126",
+      "scenario": "Epilog True: 05:30, azan, Rp125.000.000",
+      "expected": "Sesuai naskah; credits",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-127",
+      "scenario": "Lima ID valid; validasi di cermin",
+      "expected": "`P5_ARCHIVE_VALIDATED` tanpa memilih ending",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-128",
+      "scenario": "Tahan `E` 3 s di Cermin Saksi lalu batal",
+      "expected": "Tidak ada ending; progres batal",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-129",
+      "scenario": "Mode Arsip: bidik Damar",
+      "expected": "Target tidak valid",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-130",
+      "scenario": "Mode Arsip: cermin berbidikan emas + LMB",
+      "expected": "Secret terkunci tepat sekali",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-131",
+      "scenario": "Migrasi save P4 valid",
+      "expected": "P0\u2013P4, segel, arsip, ekonomi, inventori utuh",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-132",
+      "scenario": "Inti 1 sukses, force quit",
+      "expected": "Continue CP7 dengan inti 1 pecah",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-133",
+      "scenario": "Inti 1\u20132 sukses, mati Fase 3",
+      "expected": "Receipts utuh; tidak kembali CP6",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-134",
+      "scenario": "Fail write saat inti pecah",
+      "expected": "UI tidak tampil sukses; jendela diulang",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-135",
+      "scenario": "Fail write `FINAL_CHOICE_ENTER`",
+      "expected": "Tetap di arena; retry",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-136",
+      "scenario": "Crash setelah `ending_id` terkunci",
+      "expected": "Continue mengulang cutscene ending, bukan `FINAL_CHOICE`",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-137",
+      "scenario": "Double click ending",
+      "expected": "Satu enum, satu CP9",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-138",
+      "scenario": "Lock ending gagal tulis",
+      "expected": "Input tetap valid; tidak ada cutscene",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-139",
+      "scenario": "`wallet_bound` Rp66.666.666 setelah reload",
+      "expected": "Tetap satu kali",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-140",
+      "scenario": "Bandingkan save CP8 vs CP9",
+      "expected": "CP8 `NONE`; CP9 punya `ending_id`",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-141",
+      "scenario": "720p Low gerbang dengan banyak cermin",
+      "expected": "avg \u226530 FPS; wajah aktif \u226424",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-142",
+      "scenario": "720p Low arena dengan gelombang api",
+      "expected": "Overdraw/shadow dalam budget",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-143",
+      "scenario": "UV + AR bergantian di fase 1/3",
+      "expected": "Tidak ada kamera kedua",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-144",
+      "scenario": "Simulasi buta warna",
+      "expected": "Lingkar/silang/tengkorak dan benang kontinu/putus terbedakan",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-145",
+      "scenario": "Subtitle Morse/api/ketukan",
+      "expected": "Terbaca tanpa audio",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-146",
+      "scenario": "Opsi kurangi flash cermin (True)",
+      "expected": "Epilog tetap terbaca; flash turun",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-147",
+      "scenario": "Peringatan konten Bad ending",
+      "expected": "Opsi muncul dan dihormati",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-148",
+      "scenario": "Audit semua asset Pasar Setan",
+      "expected": "URL, lisensi komersial, SHA-256, penempatan di manifest",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-149",
+      "scenario": "Kit visual replika P5 baru",
+      "expected": "Lisensi/URL/hash tercatat dan identitas sumber tidak berasal dari fase1\u20134; ID P5 terpisah",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-scene-tests.xml (serialized/physics scope only)"
+      ]
+    },
+    {
+      "id": "QA-150",
+      "scenario": "Windows Iris Xe RAM 8GB, \u00b175 menit",
+      "expected": "Visual/FPS/VO diverifikasi nyata; headless tidak mengklaim PASS",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-151",
+      "scenario": "Replika Kuntilanak Merah bukan boss",
+      "expected": "Tidak ada segel/HP; larut saat sektor clear",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-152",
+      "scenario": "Segel P1\u2013P4 setelah semua replika",
+      "expected": "`location_seals` tidak berubah",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-153",
+      "scenario": "Thermo bukan oracle pintu karena chat",
+      "expected": "Hanya angka dunia",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-154",
+      "scenario": "Kendi tunggal sepanjang P4\u2192P5",
+      "expected": "Satu instance; volume 0\u20133 konsisten",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-155",
+      "scenario": "Dua inti dalam satu jendela",
+      "expected": "Tidak mungkin; satu Blitz = satu inti",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-156",
+      "scenario": "Blitz di luar jendela",
+      "expected": "Tidak memecah inti; policy baterai global konsisten",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-157",
+      "scenario": "Generator sakelar tanpa sosok di zona",
+      "expected": "Tidak membuka jendela",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-158",
+      "scenario": "Lentera: ambil, jatuhkan, cooldown 15 s",
+      "expected": "Reusable; tidak menggandakan",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-159",
+      "scenario": "Flare dan Lentera bersamaan",
+      "expected": "Satu efek; tidak menumpuk",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-160",
+      "scenario": "Chat palsu menyuruh menoleh di Fase 2",
+      "expected": "Tidak mengubah kontrol; Thermo/Selfie tetap benar",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-161",
+      "scenario": "Layar mati 3 s menghentikan chat palsu",
+      "expected": "Aturan global; konsisten dengan puzzle Pita",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-162",
+      "scenario": "Kapasitor 5% vs baterai 100% sebelum ending",
+      "expected": "Dipisah; baterai tidak berkurang",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-163",
+      "scenario": "Normal tanpa LMB",
+      "expected": "Kapasitor tidak terpakai; ending sah",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-164",
+      "scenario": "Bad lalu coba True",
+      "expected": "Ditolak; satu enum",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-165",
+      "scenario": "True lalu coba Secret",
+      "expected": "Ditolak",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-166",
+      "scenario": "Secret tanpa Pita (lima ID tidak lengkap)",
+      "expected": "Tidak tersedia",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-167",
+      "scenario": "Secret dengan lima ID benar tetapi tanpa validasi",
+      "expected": "Validasi dapat dilakukan di `FINAL_CHOICE`",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-168",
+      "scenario": "Arsip N/5 dengan kombinasi kepemilikan P1\u2013P5",
+      "expected": "Hitung ID unik; tidak asumsi 5/5",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-169",
+      "scenario": "Pita diambil setelah kembali dari ruang cermin",
+      "expected": "Cermin Jalan Pulang berfungsi; CP tidak turun",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-170",
+      "scenario": "Cermin Jalan Pulang setelah CP6",
+      "expected": "Tertutup; peringatan jelas",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-171",
+      "scenario": "Baterai 0 saat CP6",
+      "expected": "Dinamo arena reachable tanpa UV",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-172",
+      "scenario": "Sanity 0, baterai 0, tanpa kemenyan, Flare 0",
+      "expected": "Seluruh boss solvable",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-173",
+      "scenario": "Satu juta wajah/chat",
+      "expected": "Tidak ada render ribuan UI per frame",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-174",
+      "scenario": "Chat satu juta humanis",
+      "expected": "Pesan manusia bisa benar; tidak sebagai oracle",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-175",
+      "scenario": "Nama korban baru tidak dikarang",
+      "expected": "Rekaman memakai data arsip kanon",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-176",
+      "scenario": "Dua cutscene bersamaan",
+      "expected": "Tidak terjadi",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-177",
+      "scenario": "`CP9` gagal tulis setelah cutscene",
+      "expected": "Pesan error; credits tidak dianggap tercatat sampai commit",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-178",
+      "scenario": "Selesaikan Run A: tanpa toko, tanpa chat, tanpa rahasia",
+      "expected": "Bad/Normal/True dapat dicapai",
+      "acceptance": "MANUAL_PENDING",
+      "support": []
+    },
+    {
+      "id": "QA-179",
+      "scenario": "Selesaikan Run B: semua paket + lima Arsip",
+      "expected": "Secret dapat dicapai; jalur utama sama",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    },
+    {
+      "id": "QA-180",
+      "scenario": "Regresi P1\u2013P4 pascamigrasi dan CP7 rolling P5",
+      "expected": "Save P0\u2013P4, inventori, uang, arsip, checkpoint lama tidak diregresi",
+      "acceptance": "MANUAL_PENDING",
+      "support": [
+        "Audit/phase5-campaign-tests.xml (transaction/loader scope only)"
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "Audit/phase5-campaign-tests.xml",
+      "result": "Passed",
+      "total": "56",
+      "passed": "56",
+      "failed": "0"
+    },
+    {
+      "path": "Audit/phase5-scene-tests.xml",
+      "result": "Passed",
+      "total": "26",
+      "passed": "26",
+      "failed": "0"
+    },
+    {
+      "path": "Audit/phase5-regression-tests.xml",
+      "result": "Failed(Child)",
+      "total": "429",
+      "passed": "427",
+      "failed": "2"
+    },
+    {
+      "path": "Audit/phase5-focused-tests.xml",
+      "result": "Passed",
+      "total": "232",
+      "passed": "232",
+      "failed": "0"
+    },
+    {
+      "path": "Audit/phase5-native-route.json",
+      "result": true,
+      "method": "Actual zero-resource Phase4 handoff; real keyboard/mouse locomotion, interactions, scanning and boss route"
+    },
+    {
+      "path": "Audit/phase5-native-visual.json",
+      "result": true,
+      "method": "Posed composition fixtures, not gameplay acceptance"
+    },
+    {
+      "path": "Audit/phase5-ending-bad.json",
+      "result": true,
+      "method": "Prepared FINAL_CHOICE fixture; actual input, controller collision, cutscene restart and CP9 persistence"
+    },
+    {
+      "path": "Audit/phase5-ending-normal.json",
+      "result": true,
+      "method": "Prepared FINAL_CHOICE fixture; actual input, controller collision, cutscene restart and CP9 persistence"
+    },
+    {
+      "path": "Audit/phase5-ending-true.json",
+      "result": true,
+      "method": "Prepared FINAL_CHOICE fixture; actual input, controller collision, cutscene restart and CP9 persistence"
+    },
+    {
+      "path": "Audit/phase5-ending-secret.json",
+      "result": true,
+      "method": "Prepared FINAL_CHOICE fixture; actual input, controller collision, cutscene restart and CP9 persistence"
+    },
+    {
+      "path": "Audit/phase5-crash-probes.json",
+      "result": true,
+      "method": "Actual isolated native player process termination after flushed temp or after atomic replace; fresh native loader verification. Not physical gameplay inputs."
+    }
+  ]
+}

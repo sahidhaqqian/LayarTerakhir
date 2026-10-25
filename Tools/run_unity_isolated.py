@@ -22,11 +22,15 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--record', required=True)
+    parser.add_argument('--memory-mib', type=int, default=5120)
+    parser.add_argument('--memory-high-mib', type=int, default=4096)
     parser.add_argument('--unity', default=os.environ.get('UNITY_EDITOR', '/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity'))
     parser.add_argument('--child', action='store_true', help=argparse.SUPPRESS)
     parser.add_argument('--finalize', action='store_true', help=argparse.SUPPRESS)
     parser.add_argument('arguments', nargs=argparse.REMAINDER)
     args = parser.parse_args()
+    if not 1024 <= args.memory_high_mib < args.memory_mib:
+        parser.error('Memory high must be at least 1024 MiB and below the hard limit')
     arguments = args.arguments[1:] if args.arguments[:1] == ['--'] else args.arguments
     record = (ROOT / args.record).resolve()
     if not record.is_relative_to(ROOT):
@@ -49,11 +53,13 @@ def main():
         unit = 'lt-unity-' + datetime.datetime.now().strftime('%Y%m%d-%H%M%S') + '-' + str(os.getpid())
         record.write_text(json.dumps(dict(status='Queued', queuedUtc=now(), unit=unit), indent=2) + '\n')
         command = ['systemd-run', '--user', '--collect', '--unit=' + unit,
-                   '--property=MemoryMax=5G', '--property=MemorySwapMax=128M',
+                   '--property=MemoryMax=' + str(args.memory_mib) + 'M',
+                   '--property=MemoryHigh=' + str(args.memory_high_mib) + 'M', '--property=MemorySwapMax=128M',
                    '--property=OOMPolicy=stop', '--property=CPUQuota=300%',
                    '--property=WorkingDirectory=' + str(ROOT), '--setenv=LT_UNITY_UNIT=' + unit,
                    '--property=ExecStopPost=' + shlex.join([sys.executable, str(Path(__file__).resolve()), '--finalize', '--record', str(record)]),
                    sys.executable, str(Path(__file__).resolve()), '--child', '--record', str(record),
+                    '--memory-mib', str(args.memory_mib), '--memory-high-mib', str(args.memory_high_mib),
                    '--unity', args.unity, '--'] + arguments
         subprocess.run(command, check=True)
         print('Unity isolated service:', unit, '\nInvocation record:', record)
@@ -71,7 +77,8 @@ def main():
         command = ['xvfb-run', '-a', '-s', '-screen 0 1280x720x24', args.unity,
                    '-batchmode', '-job-worker-count', '1', '-projectPath', str(ROOT)] + arguments
         result = dict(command=command, startedUtc=now(), status='Running',
-                      unit=os.environ.get('LT_UNITY_UNIT'), memoryLimitBytes=5 * 1024**3)
+                       unit=os.environ.get('LT_UNITY_UNIT'), memoryLimitBytes=args.memory_mib * 1024**2,
+                       memoryHighBytes=args.memory_high_mib * 1024**2)
         record.write_text(json.dumps(result, indent=2) + '\n')
         code = 1
         try:

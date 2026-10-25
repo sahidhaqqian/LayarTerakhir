@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace LayarTerakhir.Editor
@@ -56,6 +57,8 @@ namespace LayarTerakhir.Editor
             Debug.Log("WINDOWS_BUILD Scenes=" + string.Join(",", scenes));
             Debug.Log("WINDOWS_BUILD Output=" + output);
 
+            EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
+            EditorUtility.UnloadUnusedAssetsImmediate();GC.Collect();
             BuildReport report = BuildPipeline.BuildPlayer(new BuildPlayerOptions
             {
                 scenes = scenes,

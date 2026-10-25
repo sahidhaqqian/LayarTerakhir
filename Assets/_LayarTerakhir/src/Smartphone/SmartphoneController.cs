@@ -44,6 +44,9 @@ namespace LayarTerakhir.Smartphone
 
         private float _blitzCooldownTimer;
         public IPhoneChapterContent ChapterContent { get; set; }
+        public bool RitualCameraPower => ChapterContent is IPhoneRitualPower ritual && ritual.RitualCameraPower;
+        public bool HasCameraPower => batteryPercent > 0f || RitualCameraPower;
+        public float DisplayBatteryPercent => RitualCameraPower ? 5f : batteryPercent;
         public float BlitzCooldownRemaining => Mathf.Max(0, _blitzCooldownTimer);
         public bool CameraLocked => ChapterContent != null && ChapterContent.CameraLocked;
         private Light spillLight;
@@ -109,7 +112,7 @@ namespace LayarTerakhir.Smartphone
 
             if (GameInputConfig.Instance.GetActionDown(GameAction.ToggleScreen))
             {
-                if (batteryPercent > 0f)
+                if (HasCameraPower)
                 {
                     isScreenOn = !isScreenOn;
                     SyncVisualState();
@@ -150,6 +153,7 @@ namespace LayarTerakhir.Smartphone
 
         private void UpdateBatteryDrain()
         {
+            if (RitualCameraPower) return;
             if (!isPhoneRaised || !isScreenOn || batteryPercent <= 0f)
                 return;
 
@@ -187,7 +191,7 @@ namespace LayarTerakhir.Smartphone
                 return false;
 
             string instance = CampaignState.Instance.Data.inventory.Find(id =>
-                id.StartsWith("P4_POWERBANK_") || id.StartsWith("P3_POWERBANK_") || id == "P1_POWERBANK_MAILBOX_207" || id == "P1_POWERBANK_ARRIVAL" ||
+                id.StartsWith("P5_POWERBANK_") || id.StartsWith("P4_POWERBANK_") || id.StartsWith("P3_POWERBANK_") || id == "P1_POWERBANK_MAILBOX_207" || id == "P1_POWERBANK_ARRIVAL" ||
                 id == "P2_POWERBANK_PASAR_GAIB_A" || id == "P2_POWERBANK_PASAR_GAIB_B" || id == "POWERBANK_BESAR" || id == "POWERBANK_KECIL_KOS");
             if (instance != null)
             {
@@ -223,7 +227,7 @@ namespace LayarTerakhir.Smartphone
         {
             // Restores/atomic photo transactions can also reach exactly zero.
             // A dead screen must remain switchable through hiding/recovery rules.
-            if (batteryPercent <= 0f)
+            if (!HasCameraPower)
             {
                 isScreenOn = false;
                 currentScanMode = ScanVisualMode.Normal;
@@ -236,7 +240,7 @@ namespace LayarTerakhir.Smartphone
             if (phoneFlashlight != null)
             {
                 LayarTerakhir.Player.PracticalLightPresentation.ConfigureBeam(phoneFlashlight);
-                phoneFlashlight.enabled = hasSmartphoneInInventory && isPhoneRaised && isScreenOn && batteryPercent > 0f;
+                phoneFlashlight.enabled = hasSmartphoneInInventory && isPhoneRaised && isScreenOn && HasCameraPower;
                 phoneFlashlight.intensity = 22f;
                 phoneFlashlight.range = 16f;
                 phoneFlashlight.spotAngle = 76f;

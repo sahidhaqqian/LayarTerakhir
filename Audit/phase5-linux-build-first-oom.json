@@ -1,0 +1,28 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-job-worker-count",
+    "1",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-main",
+    "-nographics",
+    "-executeMethod",
+    "LayarTerakhir.Editor.Phase5SceneBuilder.BuildLinuxReview",
+    "-quit",
+    "-logFile",
+    "Builds/Logs/phase5-linux-build-v2.log"
+  ],
+  "startedUtc": "2026-10-25T18:44:07.800885+00:00",
+  "status": "Finished",
+  "unit": "lt-unity-20261025-184407-321578",
+  "memoryLimitBytes": 5368709120,
+  "systemdServiceResult": "oom-kill",
+  "endedUtc": "2026-10-25T18:45:33.653898+00:00",
+  "exitCode": 137,
+  "error": "Unity service interrupted: oom-kill"
+}

@@ -1,0 +1,1565 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="232" result="Passed" total="232" passed="232" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 23:20:53Z" end-time="2026-10-25 23:21:08Z" duration="14.92541">
+  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-10-25 23:20:53Z" end-time="2026-10-25 23:21:08Z" duration="14.925410" total="232" passed="232" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1516" name="Assembly-CSharp-Editor.dll" fullname="/root/Projects/LayarTerakhir-main/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-10-25 23:20:53Z" end-time="2026-10-25 23:21:08Z" duration="14.915030" total="232" passed="232" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="338898" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1517" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-10-25 23:20:53Z" end-time="2026-10-25 23:21:08Z" duration="14.913186" total="232" passed="232" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1518" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-10-25 23:20:53Z" end-time="2026-10-25 23:21:08Z" duration="14.911718" total="232" passed="232" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1519" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-10-25 23:20:53Z" end-time="2026-10-25 23:21:08Z" duration="14.909974" total="232" passed="232" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1104" name="Phase1CampaignTests" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" testcasecount="35" result="Passed" start-time="2026-10-25 23:20:53Z" end-time="2026-10-25 23:20:59Z" duration="5.946045" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1129" name="AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-25 23:20:53Z" end-time="2026-10-25 23:20:53Z" duration="0.185268" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1123" name="AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris(0,1,2)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris(0,1,2)" methodname="AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="2086172977" result="Passed" start-time="2026-10-25 23:20:53Z" end-time="2026-10-25 23:20:53Z" duration="0.054255" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1124" name="AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris(0,2,1)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris(0,2,1)" methodname="AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="1561799402" result="Passed" start-time="2026-10-25 23:20:53Z" end-time="2026-10-25 23:20:53Z" duration="0.024341" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1125" name="AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris(1,0,2)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris(1,0,2)" methodname="AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="341092420" result="Passed" start-time="2026-10-25 23:20:53Z" end-time="2026-10-25 23:20:53Z" duration="0.025574" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1126" name="AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris(1,2,0)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris(1,2,0)" methodname="AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="1627522261" result="Passed" start-time="2026-10-25 23:20:53Z" end-time="2026-10-25 23:20:53Z" duration="0.024811" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1127" name="AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris(2,0,1)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris(2,0,1)" methodname="AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="2019617346" result="Passed" start-time="2026-10-25 23:20:53Z" end-time="2026-10-25 23:20:53Z" duration="0.022811" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1128" name="AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris(2,1,0)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris(2,1,0)" methodname="AllSixEvidenceOrdersStillRequireExplicitJournalAndKeris" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="338212893" result="Passed" start-time="2026-10-25 23:20:53Z" end-time="2026-10-25 23:20:53Z" duration="0.024939" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1130" name="BacktrackingCannotRegressStageOrWriteAnExitPanelReceipt" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.BacktrackingCannotRegressStageOrWriteAnExitPanelReceipt" methodname="BacktrackingCannotRegressStageOrWriteAnExitPanelReceipt" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="598427098" result="Passed" start-time="2026-10-25 23:20:53Z" end-time="2026-10-25 23:20:53Z" duration="0.025454" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1119" name="BossBarrierBlocksAllOrdinarySaveEntryPointsBeforeMutation" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.BossBarrierBlocksAllOrdinarySaveEntryPointsBeforeMutation" methodname="BossBarrierBlocksAllOrdinarySaveEntryPointsBeforeMutation" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="475124113" result="Passed" start-time="2026-10-25 23:20:53Z" end-time="2026-10-25 23:20:53Z" duration="0.042800" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1142" name="DownloadedPropFitsItsPhysicalWorldDimensions" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.DownloadedPropFitsItsPhysicalWorldDimensions" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 23:20:53Z" end-time="2026-10-25 23:20:55Z" duration="2.473698" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1139" name="DownloadedPropFitsItsPhysicalWorldDimensions(&quot;BoltCutter_HandReach&quot;,0.35f,0.12f,0.75f)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.DownloadedPropFitsItsPhysicalWorldDimensions(&quot;BoltCutter_HandReach&quot;,0.35f,0.12f,0.75f)" methodname="DownloadedPropFitsItsPhysicalWorldDimensions" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="1666400519" result="Passed" start-time="2026-10-25 23:20:53Z" end-time="2026-10-25 23:20:54Z" duration="1.064795" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1140" name="DownloadedPropFitsItsPhysicalWorldDimensions(&quot;K403_UsableDoor&quot;,1.97f,2.6f,0.12f)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.DownloadedPropFitsItsPhysicalWorldDimensions(&quot;K403_UsableDoor&quot;,1.97f,2.6f,0.12f)" methodname="DownloadedPropFitsItsPhysicalWorldDimensions" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="1444816221" result="Passed" start-time="2026-10-25 23:20:54Z" end-time="2026-10-25 23:20:55Z" duration="0.726206" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1141" name="DownloadedPropFitsItsPhysicalWorldDimensions(&quot;DownloadedSafetyChain&quot;,1.95f,1.3f,0.3f)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.DownloadedPropFitsItsPhysicalWorldDimensions(&quot;DownloadedSafetyChain&quot;,1.95f,1.3f,0.3f)" methodname="DownloadedPropFitsItsPhysicalWorldDimensions" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="1059958647" result="Passed" start-time="2026-10-25 23:20:55Z" end-time="2026-10-25 23:20:55Z" duration="0.681186" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1116" name="EveryPhase1CheckpointRoutesDirectlyToRusunawa" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.EveryPhase1CheckpointRoutesDirectlyToRusunawa" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-25 23:20:55Z" end-time="2026-10-25 23:20:56Z" duration="0.153058" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1111" name="EveryPhase1CheckpointRoutesDirectlyToRusunawa(1,&quot;PHASE1_CP1&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.EveryPhase1CheckpointRoutesDirectlyToRusunawa(1,&quot;PHASE1_CP1&quot;)" methodname="EveryPhase1CheckpointRoutesDirectlyToRusunawa" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="1915532861" result="Passed" start-time="2026-10-25 23:20:55Z" end-time="2026-10-25 23:20:56Z" duration="0.036485" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1112" name="EveryPhase1CheckpointRoutesDirectlyToRusunawa(1,&quot;PHASE1_CP3&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.EveryPhase1CheckpointRoutesDirectlyToRusunawa(1,&quot;PHASE1_CP3&quot;)" methodname="EveryPhase1CheckpointRoutesDirectlyToRusunawa" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="1116019632" result="Passed" start-time="2026-10-25 23:20:56Z" end-time="2026-10-25 23:20:56Z" duration="0.029944" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1113" name="EveryPhase1CheckpointRoutesDirectlyToRusunawa(1,&quot;PHASE1_CP5&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.EveryPhase1CheckpointRoutesDirectlyToRusunawa(1,&quot;PHASE1_CP5&quot;)" methodname="EveryPhase1CheckpointRoutesDirectlyToRusunawa" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="745746176" result="Passed" start-time="2026-10-25 23:20:56Z" end-time="2026-10-25 23:20:56Z" duration="0.028116" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1114" name="EveryPhase1CheckpointRoutesDirectlyToRusunawa(1,&quot;PHASE1_CP6&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.EveryPhase1CheckpointRoutesDirectlyToRusunawa(1,&quot;PHASE1_CP6&quot;)" methodname="EveryPhase1CheckpointRoutesDirectlyToRusunawa" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="546251447" result="Passed" start-time="2026-10-25 23:20:56Z" end-time="2026-10-25 23:20:56Z" duration="0.026630" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1115" name="EveryPhase1CheckpointRoutesDirectlyToRusunawa(1,&quot;PHASE1_CP7&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.EveryPhase1CheckpointRoutesDirectlyToRusunawa(1,&quot;PHASE1_CP7&quot;)" methodname="EveryPhase1CheckpointRoutesDirectlyToRusunawa" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="1171811536" result="Passed" start-time="2026-10-25 23:20:56Z" end-time="2026-10-25 23:20:56Z" duration="0.027668" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1134" name="ExposureHasOneFiveSecondWindow" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.ExposureHasOneFiveSecondWindow" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 23:20:56Z" end-time="2026-10-25 23:20:56Z" duration="0.079152" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1131" name="ExposureHasOneFiveSecondWindow(14.999f,True)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.ExposureHasOneFiveSecondWindow(14.999f,True)" methodname="ExposureHasOneFiveSecondWindow" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="110432154" result="Passed" start-time="2026-10-25 23:20:56Z" end-time="2026-10-25 23:20:56Z" duration="0.028485" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1132" name="ExposureHasOneFiveSecondWindow(15,False)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.ExposureHasOneFiveSecondWindow(15,False)" methodname="ExposureHasOneFiveSecondWindow" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="438167840" result="Passed" start-time="2026-10-25 23:20:56Z" end-time="2026-10-25 23:20:56Z" duration="0.024293" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1133" name="ExposureHasOneFiveSecondWindow(9.99f,False)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.ExposureHasOneFiveSecondWindow(9.99f,False)" methodname="ExposureHasOneFiveSecondWindow" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="92358968" result="Passed" start-time="2026-10-25 23:20:56Z" end-time="2026-10-25 23:20:56Z" duration="0.025001" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1118" name="FullTransactionRollbackAlsoPreservesLastDiskSnapshot" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.FullTransactionRollbackAlsoPreservesLastDiskSnapshot" methodname="FullTransactionRollbackAlsoPreservesLastDiskSnapshot" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="741622868" result="Passed" start-time="2026-10-25 23:20:56Z" end-time="2026-10-25 23:20:56Z" duration="0.032389" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1135" name="InvalidP1ReceiptsAndFutureCooldownTimesAreRejected" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.InvalidP1ReceiptsAndFutureCooldownTimesAreRejected" methodname="InvalidP1ReceiptsAndFutureCooldownTimesAreRejected" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="1919195220" result="Passed" start-time="2026-10-25 23:20:56Z" end-time="2026-10-25 23:20:56Z" duration="0.028269" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1144" name="KitchenRelicHasAnUnobstructedHandReachFromItsApproach" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.KitchenRelicHasAnUnobstructedHandReachFromItsApproach" methodname="KitchenRelicHasAnUnobstructedHandReachFromItsApproach" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="1696506766" result="Passed" start-time="2026-10-25 23:20:56Z" end-time="2026-10-25 23:20:56Z" duration="0.703886" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1122" name="MailboxAndDonationReceiptsCannotDuplicateRewards" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.MailboxAndDonationReceiptsCannotDuplicateRewards" methodname="MailboxAndDonationReceiptsCannotDuplicateRewards" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="1405634785" result="Passed" start-time="2026-10-25 23:20:56Z" end-time="2026-10-25 23:20:57Z" duration="0.036004" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1110" name="NextNightStartsWithFullBatteryAndPreservesOtherCarryOver" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.NextNightStartsWithFullBatteryAndPreservesOtherCarryOver" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-25 23:20:57Z" end-time="2026-10-25 23:20:57Z" duration="0.149431" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1106" name="NextNightStartsWithFullBatteryAndPreservesOtherCarryOver(0.0f)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.NextNightStartsWithFullBatteryAndPreservesOtherCarryOver(0.0f)" methodname="NextNightStartsWithFullBatteryAndPreservesOtherCarryOver" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="1820287742" result="Passed" start-time="2026-10-25 23:20:57Z" end-time="2026-10-25 23:20:57Z" duration="0.036104" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1107" name="NextNightStartsWithFullBatteryAndPreservesOtherCarryOver(1.0f)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.NextNightStartsWithFullBatteryAndPreservesOtherCarryOver(1.0f)" methodname="NextNightStartsWithFullBatteryAndPreservesOtherCarryOver" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="602324736" result="Passed" start-time="2026-10-25 23:20:57Z" end-time="2026-10-25 23:20:57Z" duration="0.032116" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1108" name="NextNightStartsWithFullBatteryAndPreservesOtherCarryOver(19.0f)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.NextNightStartsWithFullBatteryAndPreservesOtherCarryOver(19.0f)" methodname="NextNightStartsWithFullBatteryAndPreservesOtherCarryOver" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="234195007" result="Passed" start-time="2026-10-25 23:20:57Z" end-time="2026-10-25 23:20:57Z" duration="0.039223" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1109" name="NextNightStartsWithFullBatteryAndPreservesOtherCarryOver(85.0f)" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.NextNightStartsWithFullBatteryAndPreservesOtherCarryOver(85.0f)" methodname="NextNightStartsWithFullBatteryAndPreservesOtherCarryOver" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="1396257911" result="Passed" start-time="2026-10-25 23:20:57Z" end-time="2026-10-25 23:20:57Z" duration="0.038856" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1120" name="OwnerMismatchCannotUnlockFrozenCheckpoint" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.OwnerMismatchCannotUnlockFrozenCheckpoint" methodname="OwnerMismatchCannotUnlockFrozenCheckpoint" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="500398497" result="Passed" start-time="2026-10-25 23:20:57Z" end-time="2026-10-25 23:20:57Z" duration="0.029743" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1136" name="PursuitUsesRoomNodesWhenPlayerCapsuleIsAtTheGoal" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.PursuitUsesRoomNodesWhenPlayerCapsuleIsAtTheGoal" methodname="PursuitUsesRoomNodesWhenPlayerCapsuleIsAtTheGoal" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="1376714495" result="Passed" start-time="2026-10-25 23:20:57Z" end-time="2026-10-25 23:20:57Z" duration="0.033562" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1138" name="RusunawaUsesIndependentEnvironmentSurfacesAtMeterScale" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.RusunawaUsesIndependentEnvironmentSurfacesAtMeterScale" methodname="RusunawaUsesIndependentEnvironmentSurfacesAtMeterScale" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="1204436116" result="Passed" start-time="2026-10-25 23:20:57Z" end-time="2026-10-25 23:20:58Z" duration="1.118645" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1105" name="SchemaOneMigrationPreservesPrologAndGlobalCollectibles" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.SchemaOneMigrationPreservesPrologAndGlobalCollectibles" methodname="SchemaOneMigrationPreservesPrologAndGlobalCollectibles" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="824055894" result="Passed" start-time="2026-10-25 23:20:58Z" end-time="2026-10-25 23:20:58Z" duration="0.028705" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1121" name="SecretFailureKeepsObjectEligibleAndSuccessIsOneId" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.SecretFailureKeepsObjectEligibleAndSuccessIsOneId" methodname="SecretFailureKeepsObjectEligibleAndSuccessIsOneId" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="607825011" result="Passed" start-time="2026-10-25 23:20:58Z" end-time="2026-10-25 23:20:58Z" duration="0.030489" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1137" name="ThinApartmentWallPreventsFatalGenderuwoContact" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.ThinApartmentWallPreventsFatalGenderuwoContact" methodname="ThinApartmentWallPreventsFatalGenderuwoContact" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="614946662" result="Passed" start-time="2026-10-25 23:20:58Z" end-time="2026-10-25 23:20:58Z" duration="0.036594" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1143" name="ThirtyAdditionalModelsArePlacedWithoutBlockingGalleryCentres" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.ThirtyAdditionalModelsArePlacedWithoutBlockingGalleryCentres" methodname="ThirtyAdditionalModelsArePlacedWithoutBlockingGalleryCentres" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="739419012" result="Passed" start-time="2026-10-25 23:20:58Z" end-time="2026-10-25 23:20:59Z" duration="0.707082" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1117" name="UnknownChapterNeverRoutesToKosReset" fullname="LayarTerakhir.Editor.Tests.Phase1CampaignTests.UnknownChapterNeverRoutesToKosReset" methodname="UnknownChapterNeverRoutesToKosReset" classname="LayarTerakhir.Editor.Tests.Phase1CampaignTests" runstate="Runnable" seed="1272899917" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.036471" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1145" name="Phase2CampaignTests" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" testcasecount="18" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.650114" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1146" name="AtomicPhotoOrRestoreAtZeroTurnsScreenOffAndRecoveryDoesNotAutoRaiseIt" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.AtomicPhotoOrRestoreAtZeroTurnsScreenOffAndRecoveryDoesNotAutoRaiseIt" methodname="AtomicPhotoOrRestoreAtZeroTurnsScreenOffAndRecoveryDoesNotAutoRaiseIt" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" seed="1839712600" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.029531" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1163" name="EarlierGateCannotRegressCheckpointAfterOutOfOrderEvidence" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.EarlierGateCannotRegressCheckpointAfterOutOfOrderEvidence" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.053885" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1161" name="EarlierGateCannotRegressCheckpointAfterOutOfOrderEvidence(&quot;PHASE2_CP2&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.EarlierGateCannotRegressCheckpointAfterOutOfOrderEvidence(&quot;PHASE2_CP2&quot;)" methodname="EarlierGateCannotRegressCheckpointAfterOutOfOrderEvidence" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" seed="1154000871" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.028175" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1162" name="EarlierGateCannotRegressCheckpointAfterOutOfOrderEvidence(&quot;PHASE2_CP3&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.EarlierGateCannotRegressCheckpointAfterOutOfOrderEvidence(&quot;PHASE2_CP3&quot;)" methodname="EarlierGateCannotRegressCheckpointAfterOutOfOrderEvidence" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" seed="72057422" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.024716" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1159" name="FailedValidationRollsBackWholeChapterTransactionAndDisk" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.FailedValidationRollsBackWholeChapterTransactionAndDisk" methodname="FailedValidationRollsBackWholeChapterTransactionAndDisk" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" seed="173540514" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.027526" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1166" name="FutureSchemaCannotBeDowngradedOrLoadedAsNewGame" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.FutureSchemaCannotBeDowngradedOrLoadedAsNewGame" methodname="FutureSchemaCannotBeDowngradedOrLoadedAsNewGame" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" seed="775567772" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.027919" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1152" name="HubAndDeparturePreserveActualCarryOverAndNeverGrantCharge" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.HubAndDeparturePreserveActualCarryOverAndNeverGrantCharge" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.185549" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1147" name="HubAndDeparturePreserveActualCarryOverAndNeverGrantCharge(0)" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.HubAndDeparturePreserveActualCarryOverAndNeverGrantCharge(0)" methodname="HubAndDeparturePreserveActualCarryOverAndNeverGrantCharge" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" seed="2075061589" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.030250" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1148" name="HubAndDeparturePreserveActualCarryOverAndNeverGrantCharge(1)" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.HubAndDeparturePreserveActualCarryOverAndNeverGrantCharge(1)" methodname="HubAndDeparturePreserveActualCarryOverAndNeverGrantCharge" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" seed="2072437373" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.033747" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1149" name="HubAndDeparturePreserveActualCarryOverAndNeverGrantCharge(14)" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.HubAndDeparturePreserveActualCarryOverAndNeverGrantCharge(14)" methodname="HubAndDeparturePreserveActualCarryOverAndNeverGrantCharge" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" seed="1141588927" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.033368" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1150" name="HubAndDeparturePreserveActualCarryOverAndNeverGrantCharge(67)" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.HubAndDeparturePreserveActualCarryOverAndNeverGrantCharge(67)" methodname="HubAndDeparturePreserveActualCarryOverAndNeverGrantCharge" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" seed="718055262" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.041470" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1151" name="HubAndDeparturePreserveActualCarryOverAndNeverGrantCharge(100)" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.HubAndDeparturePreserveActualCarryOverAndNeverGrantCharge(100)" methodname="HubAndDeparturePreserveActualCarryOverAndNeverGrantCharge" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" seed="435180039" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.044040" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1157" name="HubChargeIsExplicitOnceAndDoesNotRepeatAfterLoadOrDeparture" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.HubChargeIsExplicitOnceAndDoesNotRepeatAfterLoadOrDeparture" methodname="HubChargeIsExplicitOnceAndDoesNotRepeatAfterLoadOrDeparture" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" seed="1285741304" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.047081" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1156" name="HubRejectsMissingPrerequisitesWithoutMutation" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.HubRejectsMissingPrerequisitesWithoutMutation" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.120692" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1153" name="HubRejectsMissingPrerequisitesWithoutMutation(True,False)" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.HubRejectsMissingPrerequisitesWithoutMutation(True,False)" methodname="HubRejectsMissingPrerequisitesWithoutMutation" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" seed="1999138226" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.039143" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1154" name="HubRejectsMissingPrerequisitesWithoutMutation(False,True)" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.HubRejectsMissingPrerequisitesWithoutMutation(False,True)" methodname="HubRejectsMissingPrerequisitesWithoutMutation" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" seed="518073735" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.037662" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1155" name="HubRejectsMissingPrerequisitesWithoutMutation(False,False)" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.HubRejectsMissingPrerequisitesWithoutMutation(False,False)" methodname="HubRejectsMissingPrerequisitesWithoutMutation" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" seed="1552969043" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.041798" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1164" name="JournalRequiresExactThreeEvidenceIdsAndExplicitReceipt" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.JournalRequiresExactThreeEvidenceIdsAndExplicitReceipt" methodname="JournalRequiresExactThreeEvidenceIdsAndExplicitReceipt" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" seed="596999861" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.037386" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1160" name="SchemaTwoMigrationPreservesEveryP1AndSharedField" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.SchemaTwoMigrationPreservesEveryP1AndSharedField" methodname="SchemaTwoMigrationPreservesEveryP1AndSharedField" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" seed="1408240313" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.032350" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1158" name="ShopUsesLegitimateWalletAndUniqueInstancesWithNoRepeatPurchase" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.ShopUsesLegitimateWalletAndUniqueInstancesWithNoRepeatPurchase" methodname="ShopUsesLegitimateWalletAndUniqueInstancesWithNoRepeatPurchase" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" seed="1658063929" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.046741" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1165" name="UniqueReceiptAndSecretValidationProtectsAgainstDoubleReward" fullname="LayarTerakhir.Editor.Tests.Phase2CampaignTests.UniqueReceiptAndSecretValidationProtectsAgainstDoubleReward" methodname="UniqueReceiptAndSecretValidationProtectsAgainstDoubleReward" classname="LayarTerakhir.Editor.Tests.Phase2CampaignTests" runstate="Runnable" seed="2067108900" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.034873" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1218" name="Phase3CampaignTests" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" testcasecount="37" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:21:01Z" duration="1.272032" total="37" passed="37" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1245" name="AliasesNormalizeWithoutDoubleEvidenceOrRelics" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.AliasesNormalizeWithoutDoubleEvidenceOrRelics" methodname="AliasesNormalizeWithoutDoubleEvidenceOrRelics" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="2115984580" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.037195" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1255" name="BacktrackingCannotRegressCheckpoint" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.BacktrackingCannotRegressCheckpoint" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.088056" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1252" name="BacktrackingCannotRegressCheckpoint(&quot;PHASE3_CP4&quot;,&quot;PHASE3_CP2&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.BacktrackingCannotRegressCheckpoint(&quot;PHASE3_CP4&quot;,&quot;PHASE3_CP2&quot;)" methodname="BacktrackingCannotRegressCheckpoint" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="636983354" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.031475" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1253" name="BacktrackingCannotRegressCheckpoint(&quot;PHASE3_CP4&quot;,&quot;PHASE3_CP3&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.BacktrackingCannotRegressCheckpoint(&quot;PHASE3_CP4&quot;,&quot;PHASE3_CP3&quot;)" methodname="BacktrackingCannotRegressCheckpoint" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="1529140159" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.027538" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1254" name="BacktrackingCannotRegressCheckpoint(&quot;PHASE3_CP5&quot;,&quot;PHASE3_CP4&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.BacktrackingCannotRegressCheckpoint(&quot;PHASE3_CP5&quot;,&quot;PHASE3_CP4&quot;)" methodname="BacktrackingCannotRegressCheckpoint" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="1623803612" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:20:59Z" duration="0.027006" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1232" name="CP5PreservesExactEnergyAndInventory" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.CP5PreservesExactEnergyAndInventory" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:21:00Z" duration="0.312359" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1223" name="CP5PreservesExactEnergyAndInventory(0)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.CP5PreservesExactEnergyAndInventory(0)" methodname="CP5PreservesExactEnergyAndInventory" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="152227151" result="Passed" start-time="2026-10-25 23:20:59Z" end-time="2026-10-25 23:21:00Z" duration="0.043191" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1224" name="CP5PreservesExactEnergyAndInventory(1)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.CP5PreservesExactEnergyAndInventory(1)" methodname="CP5PreservesExactEnergyAndInventory" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="1609977510" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.035638" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1225" name="CP5PreservesExactEnergyAndInventory(14)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.CP5PreservesExactEnergyAndInventory(14)" methodname="CP5PreservesExactEnergyAndInventory" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="1305625661" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.037613" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1226" name="CP5PreservesExactEnergyAndInventory(15)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.CP5PreservesExactEnergyAndInventory(15)" methodname="CP5PreservesExactEnergyAndInventory" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="1199653445" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.030501" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1227" name="CP5PreservesExactEnergyAndInventory(29)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.CP5PreservesExactEnergyAndInventory(29)" methodname="CP5PreservesExactEnergyAndInventory" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="1951878859" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.029848" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1228" name="CP5PreservesExactEnergyAndInventory(44)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.CP5PreservesExactEnergyAndInventory(44)" methodname="CP5PreservesExactEnergyAndInventory" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="1348741003" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.028612" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1229" name="CP5PreservesExactEnergyAndInventory(45)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.CP5PreservesExactEnergyAndInventory(45)" methodname="CP5PreservesExactEnergyAndInventory" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="1253409914" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.030177" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1230" name="CP5PreservesExactEnergyAndInventory(80)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.CP5PreservesExactEnergyAndInventory(80)" methodname="CP5PreservesExactEnergyAndInventory" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="1448130286" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.037509" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1231" name="CP5PreservesExactEnergyAndInventory(100)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.CP5PreservesExactEnergyAndInventory(100)" methodname="CP5PreservesExactEnergyAndInventory" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="687020301" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.034942" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1239" name="CP6WriteFaultRollsBackEveryFieldAndCanRetry" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.CP6WriteFaultRollsBackEveryFieldAndCanRetry" methodname="CP6WriteFaultRollsBackEveryFieldAndCanRetry" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="702050519" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.041871" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: The file '/tmp/P3-c20fab02-8cc4-46b6-a3e1-6e38bfa02c7c/blocked' already exists.
+]]></output>
+              </test-case>
+              <test-case id="1246" name="EnterHubRequiresRealPreviousChapterReceiptsAndBothSeals" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.EnterHubRequiresRealPreviousChapterReceiptsAndBothSeals" methodname="EnterHubRequiresRealPreviousChapterReceiptsAndBothSeals" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="1284137495" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.043482" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1236" name="ExactGateRequirementsCannotBeSubstituted" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.ExactGateRequirementsCannotBeSubstituted" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.109807" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1233" name="ExactGateRequirementsCannotBeSubstituted(&quot;journal&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.ExactGateRequirementsCannotBeSubstituted(&quot;journal&quot;)" methodname="ExactGateRequirementsCannotBeSubstituted" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="803158483" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.037674" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1234" name="ExactGateRequirementsCannotBeSubstituted(&quot;evidence&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.ExactGateRequirementsCannotBeSubstituted(&quot;evidence&quot;)" methodname="ExactGateRequirementsCannotBeSubstituted" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="1749959841" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.034152" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1235" name="ExactGateRequirementsCannotBeSubstituted(&quot;relic&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.ExactGateRequirementsCannotBeSubstituted(&quot;relic&quot;)" methodname="ExactGateRequirementsCannotBeSubstituted" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="523242214" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.035678" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1240" name="ExitNeedsEpilogueAndCP7FailureDoesNotCompleteOrDuplicate" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.ExitNeedsEpilogueAndCP7FailureDoesNotCompleteOrDuplicate" methodname="ExitNeedsEpilogueAndCP7FailureDoesNotCompleteOrDuplicate" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="1840980090" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.044320" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: The file '/tmp/P3-80e1f2ce-6b93-485b-8486-8316f786abf8/blocked' already exists.
+]]></output>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1261" name="IntercomMetadataIsDeterministicAndNeverUsesMicrophone" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.IntercomMetadataIsDeterministicAndNeverUsesMicrophone" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.141867" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1256" name="IntercomMetadataIsDeterministicAndNeverUsesMicrophone(0,Mimic)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.IntercomMetadataIsDeterministicAndNeverUsesMicrophone(0,Mimic)" methodname="IntercomMetadataIsDeterministicAndNeverUsesMicrophone" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="1935517166" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.028242" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1257" name="IntercomMetadataIsDeterministicAndNeverUsesMicrophone(7.9f,Mimic)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.IntercomMetadataIsDeterministicAndNeverUsesMicrophone(7.9f,Mimic)" methodname="IntercomMetadataIsDeterministicAndNeverUsesMicrophone" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="1004175902" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.027811" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1258" name="IntercomMetadataIsDeterministicAndNeverUsesMicrophone(8,Authentic)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.IntercomMetadataIsDeterministicAndNeverUsesMicrophone(8,Authentic)" methodname="IntercomMetadataIsDeterministicAndNeverUsesMicrophone" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="320038890" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.028476" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1259" name="IntercomMetadataIsDeterministicAndNeverUsesMicrophone(10.99f,Authentic)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.IntercomMetadataIsDeterministicAndNeverUsesMicrophone(10.99f,Authentic)" methodname="IntercomMetadataIsDeterministicAndNeverUsesMicrophone" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="192955453" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.026646" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1260" name="IntercomMetadataIsDeterministicAndNeverUsesMicrophone(11,Mimic)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.IntercomMetadataIsDeterministicAndNeverUsesMicrophone(11,Mimic)" methodname="IntercomMetadataIsDeterministicAndNeverUsesMicrophone" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="1975187409" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.027634" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1221" name="InvalidFactoryAnchorIsRejectedAndExplicitBackupRetainsProgress" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.InvalidFactoryAnchorIsRejectedAndExplicitBackupRetainsProgress" methodname="InvalidFactoryAnchorIsRejectedAndExplicitBackupRetainsProgress" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="837483547" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.034511" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1244" name="LegacySchemasMigrateWithoutLosingCampaign" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.LegacySchemasMigrateWithoutLosingCampaign" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.086408" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1241" name="LegacySchemasMigrateWithoutLosingCampaign(1)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.LegacySchemasMigrateWithoutLosingCampaign(1)" methodname="LegacySchemasMigrateWithoutLosingCampaign" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="2117050616" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.029781" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1242" name="LegacySchemasMigrateWithoutLosingCampaign(2)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.LegacySchemasMigrateWithoutLosingCampaign(2)" methodname="LegacySchemasMigrateWithoutLosingCampaign" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="745247544" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.026782" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1243" name="LegacySchemasMigrateWithoutLosingCampaign(3)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.LegacySchemasMigrateWithoutLosingCampaign(3)" methodname="LegacySchemasMigrateWithoutLosingCampaign" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="445606260" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.027938" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1220" name="NearbyIntercomWinsOverDistantHigherPriorityVent" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.NearbyIntercomWinsOverDistantHigherPriorityVent" methodname="NearbyIntercomWinsOverDistantHigherPriorityVent" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="749760423" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.027541" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1219" name="NewGameDoesNotInheritPhase3AndSavedContinueRemainsExplicit" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.NewGameDoesNotInheritPhase3AndSavedContinueRemainsExplicit" methodname="NewGameDoesNotInheritPhase3AndSavedContinueRemainsExplicit" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="1728366039" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.032040" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1251" name="PackPurchaseIsOneTransactionAndOneReceipt" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.PackPurchaseIsOneTransactionAndOneReceipt" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.105643" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1248" name="PackPurchaseIsOneTransactionAndOneReceipt(&quot;POWERBANK&quot;,750000,3)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.PackPurchaseIsOneTransactionAndOneReceipt(&quot;POWERBANK&quot;,750000,3)" methodname="PackPurchaseIsOneTransactionAndOneReceipt" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="468083856" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.032258" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1249" name="PackPurchaseIsOneTransactionAndOneReceipt(&quot;FLARE&quot;,1000000,4)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.PackPurchaseIsOneTransactionAndOneReceipt(&quot;FLARE&quot;,1000000,4)" methodname="PackPurchaseIsOneTransactionAndOneReceipt" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="937337297" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.035008" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1250" name="PackPurchaseIsOneTransactionAndOneReceipt(&quot;KEMENYAN&quot;,350000,2)" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.PackPurchaseIsOneTransactionAndOneReceipt(&quot;KEMENYAN&quot;,350000,2)" methodname="PackPurchaseIsOneTransactionAndOneReceipt" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="956008414" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:00Z" duration="0.036337" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1222" name="ShopWriteFailureRollsBackBalanceItemsAndReceiptTogether" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.ShopWriteFailureRollsBackBalanceItemsAndReceiptTogether" methodname="ShopWriteFailureRollsBackBalanceItemsAndReceiptTogether" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="1848285345" result="Passed" start-time="2026-10-25 23:21:00Z" end-time="2026-10-25 23:21:01Z" duration="0.042561" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: The file '/tmp/P3-b271c76b-2c68-434a-9763-152fb968b1bc/blocked-write' already exists.
+]]></output>
+              </test-case>
+              <test-case id="1237" name="TwentyAbortedAttemptsRestoreWholeCP5AndBlockEveryOrdinaryWrite" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.TwentyAbortedAttemptsRestoreWholeCP5AndBlockEveryOrdinaryWrite" methodname="TwentyAbortedAttemptsRestoreWholeCP5AndBlockEveryOrdinaryWrite" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="1534748608" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.041456" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1238" name="VictoryConsumesOnlyAttemptFlaresAndKeepsOldChapterSealsEconomyAndSanity" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.VictoryConsumesOnlyAttemptFlaresAndKeepsOldChapterSealsEconomyAndSanity" methodname="VictoryConsumesOnlyAttemptFlaresAndKeepsOldChapterSealsEconomyAndSanity" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="1849803472" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.036594" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1247" name="ZeroWalletUnlockAndExactDepartureDoNotInventResources" fullname="LayarTerakhir.Editor.Tests.Phase3CampaignTests.ZeroWalletUnlockAndExactDepartureDoNotInventResources" methodname="ZeroWalletUnlockAndExactDepartureDoNotInventResources" classname="LayarTerakhir.Editor.Tests.Phase3CampaignTests" runstate="Runnable" seed="83824285" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.036327" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1285" name="Phase4CampaignTests" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" testcasecount="42" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:03Z" duration="1.937090" total="42" passed="42" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1315" name="AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.374995" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1309" name="AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal(0,1,2)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal(0,1,2)" methodname="AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1703162731" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.068120" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1310" name="AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal(0,2,1)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal(0,2,1)" methodname="AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1563651754" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.059309" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1311" name="AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal(1,0,2)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal(1,0,2)" methodname="AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1915696684" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.062940" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1312" name="AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal(1,2,0)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal(1,2,0)" methodname="AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="47677972" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.064404" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1313" name="AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal(2,0,1)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal(2,0,1)" methodname="AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="613376493" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.064920" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1314" name="AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal(2,1,0)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal(2,1,0)" methodname="AllSixSectorOrdersReloadWithProgressThenExactlyOneCoreSeal" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1679857902" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.051734" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1304" name="CP5PreservesExactBatterySanityAndActualWater" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.CP5PreservesExactBatterySanityAndActualWater" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.410108" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1295" name="CP5PreservesExactBatterySanityAndActualWater(0)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.CP5PreservesExactBatterySanityAndActualWater(0)" methodname="CP5PreservesExactBatterySanityAndActualWater" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="151092054" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.057002" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1296" name="CP5PreservesExactBatterySanityAndActualWater(1)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.CP5PreservesExactBatterySanityAndActualWater(1)" methodname="CP5PreservesExactBatterySanityAndActualWater" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="883998802" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.048371" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1297" name="CP5PreservesExactBatterySanityAndActualWater(14)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.CP5PreservesExactBatterySanityAndActualWater(14)" methodname="CP5PreservesExactBatterySanityAndActualWater" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="935449865" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.044902" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1298" name="CP5PreservesExactBatterySanityAndActualWater(15)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.CP5PreservesExactBatterySanityAndActualWater(15)" methodname="CP5PreservesExactBatterySanityAndActualWater" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="298875812" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.043411" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1299" name="CP5PreservesExactBatterySanityAndActualWater(29)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.CP5PreservesExactBatterySanityAndActualWater(29)" methodname="CP5PreservesExactBatterySanityAndActualWater" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1879063684" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.045542" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1300" name="CP5PreservesExactBatterySanityAndActualWater(44)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.CP5PreservesExactBatterySanityAndActualWater(44)" methodname="CP5PreservesExactBatterySanityAndActualWater" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="19263339" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.043771" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1301" name="CP5PreservesExactBatterySanityAndActualWater(45)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.CP5PreservesExactBatterySanityAndActualWater(45)" methodname="CP5PreservesExactBatterySanityAndActualWater" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="281770157" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.038336" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1302" name="CP5PreservesExactBatterySanityAndActualWater(80)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.CP5PreservesExactBatterySanityAndActualWater(80)" methodname="CP5PreservesExactBatterySanityAndActualWater" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1542305471" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.041771" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1303" name="CP5PreservesExactBatterySanityAndActualWater(100)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.CP5PreservesExactBatterySanityAndActualWater(100)" methodname="CP5PreservesExactBatterySanityAndActualWater" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1842988320" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.041373" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1333" name="CP8IsARealBoundaryOnTheSameNightWithoutAPlaceholderSceneLoadOrKosReset" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.CP8IsARealBoundaryOnTheSameNightWithoutAPlaceholderSceneLoadOrKosReset" methodname="CP8IsARealBoundaryOnTheSameNightWithoutAPlaceholderSceneLoadOrKosReset" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="478051957" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:01Z" duration="0.052272" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1317" name="DecoyConsumesOneWaterAndFortySanityThenUnlimitedFreeRefillsWork" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.DecoyConsumesOneWaterAndFortySanityThenUnlimitedFreeRefillsWork" methodname="DecoyConsumesOneWaterAndFortySanityThenUnlimitedFreeRefillsWork" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1441136390" result="Passed" start-time="2026-10-25 23:21:01Z" end-time="2026-10-25 23:21:02Z" duration="0.053005" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1327" name="DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.279321" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1321" name="DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile(&quot;purchase&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile(&quot;purchase&quot;)" methodname="DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="210219349" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.045158" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: The file '/tmp/P4-aaf183f7-0f1f-4ce9-b59a-bcbab5ad8d50/blocked' already exists.
+]]></output>
+                </test-case>
+                <test-case id="1322" name="DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile(&quot;water&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile(&quot;water&quot;)" methodname="DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1945924353" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.039925" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: The file '/tmp/P4-7e7ab5c8-5245-4666-a474-fa921876af0a/blocked' already exists.
+]]></output>
+                </test-case>
+                <test-case id="1323" name="DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile(&quot;hit&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile(&quot;hit&quot;)" methodname="DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="73662276" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.046942" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: The file '/tmp/P4-cfb1e3d0-7593-4eda-90d6-b6b1c67b85fc/blocked' already exists.
+]]></output>
+                </test-case>
+                <test-case id="1324" name="DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile(&quot;incense&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile(&quot;incense&quot;)" methodname="DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1788300524" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.049421" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: The file '/tmp/P4-ddf932b5-bb75-4662-8bd0-66a0a4621f4e/blocked' already exists.
+]]></output>
+                </test-case>
+                <test-case id="1325" name="DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile(&quot;recovery&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile(&quot;recovery&quot;)" methodname="DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1380760150" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.048283" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: The file '/tmp/P4-c42d0f4c-0137-4296-b10d-4fc2b0cd803c/blocked' already exists.
+]]></output>
+                </test-case>
+                <test-case id="1326" name="DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile(&quot;secret&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile(&quot;secret&quot;)" methodname="DiskWriteFaultRollsBackTheWholeResourceTransactionAndPreservesFile" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1025907593" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.046003" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: The file '/tmp/P4-2131abdf-198b-40a6-b344-d9274454ec68/blocked' already exists.
+]]></output>
+                </test-case>
+              </test-suite>
+              <test-case id="1294" name="EvidenceAndRelicsRemainSeparateAndARCostsExactlyOne" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.EvidenceAndRelicsRemainSeparateAndARCostsExactlyOne" methodname="EvidenceAndRelicsRemainSeparateAndARCostsExactlyOne" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1429579957" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.044394" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1286" name="HubAndDeparturePreserveAllCampaignResourcesWithoutPurchases" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.HubAndDeparturePreserveAllCampaignResourcesWithoutPurchases" methodname="HubAndDeparturePreserveAllCampaignResourcesWithoutPurchases" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="934536922" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.034474" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1289" name="HubChargeIsExplicitOnceAndCannotBeUsedAfterDeparture" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.HubChargeIsExplicitOnceAndCannotBeUsedAfterDeparture" methodname="HubChargeIsExplicitOnceAndCannotBeUsedAfterDeparture" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="254144863" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.033044" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1287" name="HubSanityRestIsAnExplicitPreparationChoiceAndDoesNotChargeBattery" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.HubSanityRestIsAnExplicitPreparationChoiceAndDoesNotChargeBattery" methodname="HubSanityRestIsAnExplicitPreparationChoiceAndDoesNotChargeBattery" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="380353392" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.037320" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1319" name="IncenseConsumesCarriedInstanceAndRecoveryCooldownUsesPersistedGameClock" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.IncenseConsumesCarriedInstanceAndRecoveryCooldownUsesPersistedGameClock" methodname="IncenseConsumesCarriedInstanceAndRecoveryCooldownUsesPersistedGameClock" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="536594482" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.035542" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1288" name="MissingThirdSealOrPreviousCompletionCannotEnterPhase4" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.MissingThirdSealOrPreviousCompletionCannotEnterPhase4" methodname="MissingThirdSealOrPreviousCompletionCannotEnterPhase4" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1512171213" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.027350" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1332" name="OldSchemasMigrateWithoutErasingPreviousEvidenceOrInventory" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.OldSchemasMigrateWithoutErasingPreviousEvidenceOrInventory" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.126413" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1328" name="OldSchemasMigrateWithoutErasingPreviousEvidenceOrInventory(1)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.OldSchemasMigrateWithoutErasingPreviousEvidenceOrInventory(1)" methodname="OldSchemasMigrateWithoutErasingPreviousEvidenceOrInventory" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1795460546" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.031267" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1329" name="OldSchemasMigrateWithoutErasingPreviousEvidenceOrInventory(2)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.OldSchemasMigrateWithoutErasingPreviousEvidenceOrInventory(2)" methodname="OldSchemasMigrateWithoutErasingPreviousEvidenceOrInventory" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1729974728" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.034166" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1330" name="OldSchemasMigrateWithoutErasingPreviousEvidenceOrInventory(3)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.OldSchemasMigrateWithoutErasingPreviousEvidenceOrInventory(3)" methodname="OldSchemasMigrateWithoutErasingPreviousEvidenceOrInventory" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1271679942" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.030085" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1331" name="OldSchemasMigrateWithoutErasingPreviousEvidenceOrInventory(4)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.OldSchemasMigrateWithoutErasingPreviousEvidenceOrInventory(4)" methodname="OldSchemasMigrateWithoutErasingPreviousEvidenceOrInventory" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="794013884" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.027984" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1320" name="OptionalSecretRequiresKnockEyeAndWheelAndDoesNotGateBoss" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.OptionalSecretRequiresKnockEyeAndWheelAndDoesNotGateBoss" methodname="OptionalSecretRequiresKnockEyeAndWheelAndDoesNotGateBoss" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="482913596" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.050662" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1318" name="PaidMissAndCoreTimeoutDoNotEraseFinishedSectors" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.PaidMissAndCoreTimeoutDoNotEraseFinishedSectors" methodname="PaidMissAndCoreTimeoutDoNotEraseFinishedSectors" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="963963004" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.058448" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1293" name="ShopDebitReceiptAndUniqueInstancesAreOneIdempotentTransaction" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.ShopDebitReceiptAndUniqueInstancesAreOneIdempotentTransaction" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.114738" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1290" name="ShopDebitReceiptAndUniqueInstancesAreOneIdempotentTransaction(&quot;KEMENYAN&quot;,875000,5)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.ShopDebitReceiptAndUniqueInstancesAreOneIdempotentTransaction(&quot;KEMENYAN&quot;,875000,5)" methodname="ShopDebitReceiptAndUniqueInstancesAreOneIdempotentTransaction" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="471930662" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.038795" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1291" name="ShopDebitReceiptAndUniqueInstancesAreOneIdempotentTransaction(&quot;POWERBANK&quot;,750000,3)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.ShopDebitReceiptAndUniqueInstancesAreOneIdempotentTransaction(&quot;POWERBANK&quot;,750000,3)" methodname="ShopDebitReceiptAndUniqueInstancesAreOneIdempotentTransaction" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1939027731" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.043967" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1292" name="ShopDebitReceiptAndUniqueInstancesAreOneIdempotentTransaction(&quot;WATER&quot;,400000,2)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.ShopDebitReceiptAndUniqueInstancesAreOneIdempotentTransaction(&quot;WATER&quot;,400000,2)" methodname="ShopDebitReceiptAndUniqueInstancesAreOneIdempotentTransaction" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1734030936" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.029569" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1316" name="SouthCannotStartEarlyAndLocalOrCoreBlitzNeedsExactPrerequisites" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.SouthCannotStartEarlyAndLocalOrCoreBlitzNeedsExactPrerequisites" methodname="SouthCannotStartEarlyAndLocalOrCoreBlitzNeedsExactPrerequisites" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="1937193308" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.047338" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1308" name="TorchLayoutHasExactlyOneRealCandidatePerSectorAndPersists" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.TorchLayoutHasExactlyOneRealCandidatePerSectorAndPersists" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:03Z" duration="0.146620" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1305" name="TorchLayoutHasExactlyOneRealCandidatePerSectorAndPersists(0)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.TorchLayoutHasExactlyOneRealCandidatePerSectorAndPersists(0)" methodname="TorchLayoutHasExactlyOneRealCandidatePerSectorAndPersists" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="625080980" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:02Z" duration="0.053405" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1306" name="TorchLayoutHasExactlyOneRealCandidatePerSectorAndPersists(1)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.TorchLayoutHasExactlyOneRealCandidatePerSectorAndPersists(1)" methodname="TorchLayoutHasExactlyOneRealCandidatePerSectorAndPersists" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="527414302" result="Passed" start-time="2026-10-25 23:21:02Z" end-time="2026-10-25 23:21:03Z" duration="0.047704" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1307" name="TorchLayoutHasExactlyOneRealCandidatePerSectorAndPersists(2)" fullname="LayarTerakhir.Editor.Tests.Phase4CampaignTests.TorchLayoutHasExactlyOneRealCandidatePerSectorAndPersists(2)" methodname="TorchLayoutHasExactlyOneRealCandidatePerSectorAndPersists" classname="LayarTerakhir.Editor.Tests.Phase4CampaignTests" runstate="Runnable" seed="2085806637" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:03Z" duration="0.043055" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+            </test-suite>
+            <test-suite type="TestFixture" id="1374" name="Phase5CampaignTests" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" testcasecount="56" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:05Z" duration="2.850119" total="56" passed="56" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1375" name="ActualP4BoundaryMigratesAndHandoffPreservesAllGlobalCarryOver" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ActualP4BoundaryMigratesAndHandoffPreservesAllGlobalCarryOver" methodname="ActualP4BoundaryMigratesAndHandoffPreservesAllGlobalCarryOver" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="2032649515" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:03Z" duration="0.043458" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1396" name="ArenaCannotStartFromInspectingJournalOrIncompleteEvidence" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ArenaCannotStartFromInspectingJournalOrIncompleteEvidence" methodname="ArenaCannotStartFromInspectingJournalOrIncompleteEvidence" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="108697369" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:03Z" duration="0.041310" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1435" name="ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:03Z" duration="0.450741" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1427" name="ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo(0)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo(0)" methodname="ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1534740789" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:03Z" duration="0.058466" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1428" name="ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo(1)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo(1)" methodname="ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="374766051" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:03Z" duration="0.055389" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1429" name="ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo(14)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo(14)" methodname="ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1918278056" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:03Z" duration="0.057034" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1430" name="ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo(15)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo(15)" methodname="ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1176953859" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:03Z" duration="0.051657" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1431" name="ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo(29)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo(29)" methodname="ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="2140225817" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:03Z" duration="0.052959" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1432" name="ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo(44)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo(44)" methodname="ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1614687420" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:03Z" duration="0.056856" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1433" name="ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo(60)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo(60)" methodname="ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1280860294" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:03Z" duration="0.053345" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1434" name="ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo(100)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo(100)" methodname="ArenaSnapshotsRetainExactBatteryAndZeroSanityWithFreeDynamo" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="739018358" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:03Z" duration="0.059579" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1395" name="ContractNeedsBothSubobservationsAndEvidenceCannotDuplicate" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ContractNeedsBothSubobservationsAndEvidenceCannotDuplicate" methodname="ContractNeedsBothSubobservationsAndEvidenceCannotDuplicate" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="698850010" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:03Z" duration="0.046815" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1402" name="CoreOrderAndCablePrerequisitesCannotBeSkipped" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.CoreOrderAndCablePrerequisitesCannotBeSkipped" methodname="CoreOrderAndCablePrerequisitesCannotBeSkipped" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1907665567" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:03Z" duration="0.052272" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1424" name="CrashBeforeEndingReplacementDoesNotLockTemporaryCandidate" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.CrashBeforeEndingReplacementDoesNotLockTemporaryCandidate" methodname="CrashBeforeEndingReplacementDoesNotLockTemporaryCandidate" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1167440341" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:03Z" duration="0.060957" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1416" name="EndingIsSavedBeforeCinematicAndCrashRestoresSameLockedEnding" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.EndingIsSavedBeforeCinematicAndCrashRestoresSameLockedEnding" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:04Z" duration="0.265488" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1412" name="EndingIsSavedBeforeCinematicAndCrashRestoresSameLockedEnding(BAD)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.EndingIsSavedBeforeCinematicAndCrashRestoresSameLockedEnding(BAD)" methodname="EndingIsSavedBeforeCinematicAndCrashRestoresSameLockedEnding" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="2141380509" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:03Z" duration="0.059740" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1413" name="EndingIsSavedBeforeCinematicAndCrashRestoresSameLockedEnding(NORMAL)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.EndingIsSavedBeforeCinematicAndCrashRestoresSameLockedEnding(NORMAL)" methodname="EndingIsSavedBeforeCinematicAndCrashRestoresSameLockedEnding" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="711439900" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:03Z" duration="0.059003" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1414" name="EndingIsSavedBeforeCinematicAndCrashRestoresSameLockedEnding(TRUE)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.EndingIsSavedBeforeCinematicAndCrashRestoresSameLockedEnding(TRUE)" methodname="EndingIsSavedBeforeCinematicAndCrashRestoresSameLockedEnding" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1352404089" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:03Z" duration="0.074353" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1415" name="EndingIsSavedBeforeCinematicAndCrashRestoresSameLockedEnding(SECRET)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.EndingIsSavedBeforeCinematicAndCrashRestoresSameLockedEnding(SECRET)" methodname="EndingIsSavedBeforeCinematicAndCrashRestoresSameLockedEnding" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1300598171" result="Passed" start-time="2026-10-25 23:21:03Z" end-time="2026-10-25 23:21:04Z" duration="0.069081" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1421" name="EveryEndingIsRejectedBeforeFinalChoice" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.EveryEndingIsRejectedBeforeFinalChoice" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.179315" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1417" name="EveryEndingIsRejectedBeforeFinalChoice(BAD)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.EveryEndingIsRejectedBeforeFinalChoice(BAD)" methodname="EveryEndingIsRejectedBeforeFinalChoice" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1246818382" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.045346" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1418" name="EveryEndingIsRejectedBeforeFinalChoice(NORMAL)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.EveryEndingIsRejectedBeforeFinalChoice(NORMAL)" methodname="EveryEndingIsRejectedBeforeFinalChoice" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="2108186744" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.042657" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1419" name="EveryEndingIsRejectedBeforeFinalChoice(TRUE)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.EveryEndingIsRejectedBeforeFinalChoice(TRUE)" methodname="EveryEndingIsRejectedBeforeFinalChoice" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="963492771" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.044696" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1420" name="EveryEndingIsRejectedBeforeFinalChoice(SECRET)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.EveryEndingIsRejectedBeforeFinalChoice(SECRET)" methodname="EveryEndingIsRejectedBeforeFinalChoice" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="357779331" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.043737" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1403" name="ExactlyThreeSuccessfulCoreBlitzCostsOnceAndNeverAddsFifthLocationSeal" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ExactlyThreeSuccessfulCoreBlitzCostsOnceAndNeverAddsFifthLocationSeal" methodname="ExactlyThreeSuccessfulCoreBlitzCostsOnceAndNeverAddsFifthLocationSeal" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="230720669" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.049910" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1397" name="FailedArenaCommitDoesNotActivateBossOrCloseBacktrack" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.FailedArenaCommitDoesNotActivateBossOrCloseBacktrack" methodname="FailedArenaCommitDoesNotActivateBossOrCloseBacktrack" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="409640602" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.050357" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: Access to the path '/tmp/P5-d9c6befe-c636-408d-a6e4-6b41e0081539/layar_terakhir_save.json.tmp' is denied.
+]]></output>
+              </test-case>
+              <test-case id="1406" name="FailedCableCommitDoesNotCreateReceipt" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.FailedCableCommitDoesNotCreateReceipt" methodname="FailedCableCommitDoesNotCreateReceipt" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1480094034" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.053429" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: Access to the path '/tmp/P5-b3d4aeea-2bb5-4ad0-b7f9-354b56c8dd17/layar_terakhir_save.json.tmp' is denied.
+]]></output>
+              </test-case>
+              <test-case id="1404" name="FailedCoreCommitRestoresBatteryAndEntireProgressSnapshot" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.FailedCoreCommitRestoresBatteryAndEntireProgressSnapshot" methodname="FailedCoreCommitRestoresBatteryAndEntireProgressSnapshot" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1468543667" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.056958" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: Access to the path '/tmp/P5-0e80715a-fe76-468d-b7d2-692fdc642883/layar_terakhir_save.json.tmp' is denied.
+]]></output>
+              </test-case>
+              <test-case id="1425" name="FailedCP8EntryKeepsThirdCoreAtRollingCP7" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.FailedCP8EntryKeepsThirdCoreAtRollingCP7" methodname="FailedCP8EntryKeepsThirdCoreAtRollingCP7" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="515420533" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.065013" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: Access to the path '/tmp/P5-b6451c51-5c3d-4b32-8852-c6739ee0767b/layar_terakhir_save.json.tmp' is denied.
+]]></output>
+              </test-case>
+              <test-case id="1426" name="FailedCP9LeavesLockedEndingForCinematicReplayNotFalseCompletion" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.FailedCP9LeavesLockedEndingForCinematicReplayNotFalseCompletion" methodname="FailedCP9LeavesLockedEndingForCinematicReplayNotFalseCompletion" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1693811415" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.066006" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: Access to the path '/tmp/P5-7213e1eb-6105-4523-87f9-d4663beedaa4/layar_terakhir_save.json.tmp' is denied.
+]]></output>
+              </test-case>
+              <test-case id="1422" name="FailedEndingLockPreservesChoiceCapacitorWalletAndBattery" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.FailedEndingLockPreservesChoiceCapacitorWalletAndBattery" methodname="FailedEndingLockPreservesChoiceCapacitorWalletAndBattery" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1580796306" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.057154" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: Access to the path '/tmp/P5-4839a662-9e1c-43b4-bba1-165260616c6c/layar_terakhir_save.json.tmp' is denied.
+]]></output>
+              </test-case>
+              <test-case id="1382" name="FailedHandoffLeavesMemoryAndDiskAtP4Boundary" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.FailedHandoffLeavesMemoryAndDiskAtP4Boundary" methodname="FailedHandoffLeavesMemoryAndDiskAtP4Boundary" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1333356046" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.030803" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: Access to the path '/tmp/P5-7de80e0d-b018-45c5-bcdc-97db46dc3464/layar_terakhir_save.json.tmp' is denied.
+]]></output>
+              </test-case>
+              <test-case id="1394" name="FailedPourDoesNotSpendWaterOrOpenGate" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.FailedPourDoesNotSpendWaterOrOpenGate" methodname="FailedPourDoesNotSpendWaterOrOpenGate" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="346250196" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.033581" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: Access to the path '/tmp/P5-4a2fb999-7a0f-4197-bb5b-b65e2a5187b3/layar_terakhir_save.json.tmp' is denied.
+]]></output>
+              </test-case>
+              <test-case id="1390" name="FailedPurchaseRollsBackLedgerMoneyAndAllInstances" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.FailedPurchaseRollsBackLedgerMoneyAndAllInstances" methodname="FailedPurchaseRollsBackLedgerMoneyAndAllInstances" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1289949537" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.028321" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: Access to the path '/tmp/P5-60d56ca0-1b3c-4bbd-8766-d0b601ff0622/layar_terakhir_save.json.tmp' is denied.
+]]></output>
+              </test-case>
+              <test-case id="1409" name="FailedTapePickupDoesNotAddSecretId" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.FailedTapePickupDoesNotAddSecretId" methodname="FailedTapePickupDoesNotAddSecretId" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="889950468" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.037618" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[CampaignState] Gagal menyimpan checkpoint secara atomik: Access to the path '/tmp/P5-be1ddabb-2fa9-4f83-80b7-eca13cfa85dd/layar_terakhir_save.json.tmp' is denied.
+]]></output>
+              </test-case>
+              <test-case id="1410" name="FiveUnknownIdsDoNotUnlockSecretOrValidation" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.FiveUnknownIdsDoNotUnlockSecretOrValidation" methodname="FiveUnknownIdsDoNotUnlockSecretOrValidation" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="452415066" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.053239" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1392" name="KendiAndVolumeHaveOneOwnerWithNoFallbackDuplicate" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.KendiAndVolumeHaveOneOwnerWithNoFallbackDuplicate" methodname="KendiAndVolumeHaveOneOwnerWithNoFallbackDuplicate" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1518020143" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.035758" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1405" name="MissCanRetryWithoutLosingEarlierCoreOrDoubleSpending" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.MissCanRetryWithoutLosingEarlierCoreOrDoubleSpending" methodname="MissCanRetryWithoutLosingEarlierCoreOrDoubleSpending" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="881231742" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.055537" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1380" name="MissingAnyOfTheFourSealsDeniesHandoff" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.MissingAnyOfTheFourSealsDeniesHandoff" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:05Z" duration="0.141419" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1376" name="MissingAnyOfTheFourSealsDeniesHandoff(0)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.MissingAnyOfTheFourSealsDeniesHandoff(0)" methodname="MissingAnyOfTheFourSealsDeniesHandoff" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="235027457" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.034307" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1377" name="MissingAnyOfTheFourSealsDeniesHandoff(1)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.MissingAnyOfTheFourSealsDeniesHandoff(1)" methodname="MissingAnyOfTheFourSealsDeniesHandoff" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1445743520" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:04Z" duration="0.033387" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1378" name="MissingAnyOfTheFourSealsDeniesHandoff(2)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.MissingAnyOfTheFourSealsDeniesHandoff(2)" methodname="MissingAnyOfTheFourSealsDeniesHandoff" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1943285293" result="Passed" start-time="2026-10-25 23:21:04Z" end-time="2026-10-25 23:21:05Z" duration="0.037558" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1379" name="MissingAnyOfTheFourSealsDeniesHandoff(3)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.MissingAnyOfTheFourSealsDeniesHandoff(3)" methodname="MissingAnyOfTheFourSealsDeniesHandoff" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1619821147" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.032408" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1393" name="MissingKendiGetsOneFreeCupAndSameWaterCounter" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.MissingKendiGetsOneFreeCupAndSameWaterCounter" methodname="MissingKendiGetsOneFreeCupAndSameWaterCounter" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="2013478049" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.049392" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1383" name="OpeningDonationNeverBecomesSpendableAndCannotRepeatAfterReload" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.OpeningDonationNeverBecomesSpendableAndCannotRepeatAfterReload" methodname="OpeningDonationNeverBecomesSpendableAndCannotRepeatAfterReload" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="222547663" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.039837" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1381" name="P4CompletionAndCP8AreBothRequired" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.P4CompletionAndCP8AreBothRequired" methodname="P4CompletionAndCP8AreBothRequired" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1231648785" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.032714" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1400" name="ReloadAfterEachCoreKeepsCP7AndPreviousPhases" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ReloadAfterEachCoreKeepsCP7AndPreviousPhases" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.111881" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1398" name="ReloadAfterEachCoreKeepsCP7AndPreviousPhases(1)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ReloadAfterEachCoreKeepsCP7AndPreviousPhases(1)" methodname="ReloadAfterEachCoreKeepsCP7AndPreviousPhases" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="589926399" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.057000" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1399" name="ReloadAfterEachCoreKeepsCP7AndPreviousPhases(2)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ReloadAfterEachCoreKeepsCP7AndPreviousPhases(2)" methodname="ReloadAfterEachCoreKeepsCP7AndPreviousPhases" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="535639480" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.053277" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1408" name="SecretTapeRequiresPuzzleAndCommitsBeforeSuccessfulPickup" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.SecretTapeRequiresPuzzleAndCommitsBeforeSuccessfulPickup" methodname="SecretTapeRequiresPuzzleAndCommitsBeforeSuccessfulPickup" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="656278271" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.040677" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1391" name="SectorOrderingAndCheckpointsNeverRegressOnBacktrackReceipts" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.SectorOrderingAndCheckpointsNeverRegressOnBacktrackReceipts" methodname="SectorOrderingAndCheckpointsNeverRegressOnBacktrackReceipts" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="352039684" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.038360" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1388" name="ShopIsAtomicUniqueAndNeverDebitsBoundFunds" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ShopIsAtomicUniqueAndNeverDebitsBoundFunds" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.181415" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1384" name="ShopIsAtomicUniqueAndNeverDebitsBoundFunds(&quot;POWERBANK&quot;,750000,3)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ShopIsAtomicUniqueAndNeverDebitsBoundFunds(&quot;POWERBANK&quot;,750000,3)" methodname="ShopIsAtomicUniqueAndNeverDebitsBoundFunds" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="299657958" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.047035" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1385" name="ShopIsAtomicUniqueAndNeverDebitsBoundFunds(&quot;FLARE&quot;,600000,4)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ShopIsAtomicUniqueAndNeverDebitsBoundFunds(&quot;FLARE&quot;,600000,4)" methodname="ShopIsAtomicUniqueAndNeverDebitsBoundFunds" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1238456242" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.046360" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1386" name="ShopIsAtomicUniqueAndNeverDebitsBoundFunds(&quot;KEMENYAN&quot;,700000,4)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ShopIsAtomicUniqueAndNeverDebitsBoundFunds(&quot;KEMENYAN&quot;,700000,4)" methodname="ShopIsAtomicUniqueAndNeverDebitsBoundFunds" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1373295250" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.044423" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1387" name="ShopIsAtomicUniqueAndNeverDebitsBoundFunds(&quot;CHARGE&quot;,100000,0)" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ShopIsAtomicUniqueAndNeverDebitsBoundFunds(&quot;CHARGE&quot;,100000,0)" methodname="ShopIsAtomicUniqueAndNeverDebitsBoundFunds" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1965690455" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.040492" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1407" name="StaleTemporaryFileFromCrashCannotCreateUncommittedCore" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.StaleTemporaryFileFromCrashCannotCreateUncommittedCore" methodname="StaleTemporaryFileFromCrashCannotCreateUncommittedCore" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="766531774" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.053787" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1401" name="ThirdPhaseDeathRetainsTwoCoresAndEveryCommittedCable" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ThirdPhaseDeathRetainsTwoCoresAndEveryCommittedCable" methodname="ThirdPhaseDeathRetainsTwoCoresAndEveryCommittedCable" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1427102588" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.069721" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1423" name="TwoEndingInputsAndDoubleClickOnlyCommitOneEnumAndNoExtraCost" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.TwoEndingInputsAndDoubleClickOnlyCommitOneEnumAndNoExtraCost" methodname="TwoEndingInputsAndDoubleClickOnlyCommitOneEnumAndNoExtraCost" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1186492033" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.067837" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1411" name="ValidationAtFinalChoiceDoesNotChooseSecretAndBasicActionsRemain" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ValidationAtFinalChoiceDoesNotChooseSecretAndBasicActionsRemain" methodname="ValidationAtFinalChoiceDoesNotChooseSecretAndBasicActionsRemain" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="2081454329" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.062663" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1436" name="ZeroBatteryFinalChoiceUsesRitualPowerWithoutRewritingPersistentBattery" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ZeroBatteryFinalChoiceUsesRitualPowerWithoutRewritingPersistentBattery" methodname="ZeroBatteryFinalChoiceUsesRitualPowerWithoutRewritingPersistentBattery" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="969055435" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.072457" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1389" name="ZeroWalletDoesNotGateSectorsEvidenceBossOrFreeRecovery" fullname="LayarTerakhir.Editor.Tests.Phase5CampaignTests.ZeroWalletDoesNotGateSectorsEvidenceBossOrFreeRecovery" methodname="ZeroWalletDoesNotGateSectorsEvidenceBossOrFreeRecovery" classname="LayarTerakhir.Editor.Tests.Phase5CampaignTests" runstate="Runnable" seed="1575516126" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:05Z" duration="0.049801" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1437" name="Phase5SceneTests" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" testcasecount="44" result="Passed" start-time="2026-10-25 23:21:05Z" end-time="2026-10-25 23:21:08Z" duration="2.221027" total="44" passed="44" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1439" name="AtLeast100NewActualModelSourcesArePlaced" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.AtLeast100NewActualModelSourcesArePlaced" methodname="AtLeast100NewActualModelSourcesArePlaced" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1720995170" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.077072" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1485" name="BuildContainsExactlyOneMarketScene" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.BuildContainsExactlyOneMarketScene" methodname="BuildContainsExactlyOneMarketScene" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1821744834" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.001080" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1477" name="CriticalInteractionHasAReachableUnoccludedStance" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.048813" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1466" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;TAPE&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;TAPE&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1728819386" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.005346" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1467" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;DOOR_1&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;DOOR_1&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1486343376" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.000877" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1468" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;REFILL&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;REFILL&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1549018988" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.000684" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1469" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;POUR&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;POUR&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1759532248" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.000401" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1470" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;SEWING_PORTAL&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;SEWING_PORTAL&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="160577858" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.000313" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1471" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;START_ARENA&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;START_ARENA&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1898584745" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.000312" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1472" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;GENERATOR&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;GENERATOR&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="2140909819" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.000275" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1473" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;ARCHIVE&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;ARCHIVE&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1422721898" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.000269" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1474" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;CABLE_1&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;CABLE_1&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="2073862468" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.000289" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1475" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;CABLE_2&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;CABLE_2&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="501410506" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.000241" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1476" name="CriticalInteractionHasAReachableUnoccludedStance(&quot;CABLE_3&quot;)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CriticalInteractionHasAReachableUnoccludedStance(&quot;CABLE_3&quot;)" methodname="CriticalInteractionHasAReachableUnoccludedStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1710136066" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.000264" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1478" name="CrowdEvpEmitterIsInFrontOfItsPhysicalScreen" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.CrowdEvpEmitterIsInFrontOfItsPhysicalScreen" methodname="CrowdEvpEmitterIsInFrontOfItsPhysicalScreen" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="711210181" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.001503" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1482" name="DamarHasAuthoredHumanIdleWalkInsteadOfReplicaMotion" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.DamarHasAuthoredHumanIdleWalkInsteadOfReplicaMotion" methodname="DamarHasAuthoredHumanIdleWalkInsteadOfReplicaMotion" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1737451817" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.001840" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1484" name="EndingDurationsRemainMandatory" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.EndingDurationsRemainMandatory" methodname="EndingDurationsRemainMandatory" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1512182553" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.000271" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1483" name="FrozenDoorsAreVisibleFromBothSidesAndSolidWhenClosed" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.FrozenDoorsAreVisibleFromBothSidesAndSolidWhenClosed" methodname="FrozenDoorsAreVisibleFromBothSidesAndSolidWhenClosed" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="738039799" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.017813" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1442" name="LayerBudgetAndAuthoredHumanAvatarsAreValid" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.LayerBudgetAndAuthoredHumanAvatarsAreValid" methodname="LayerBudgetAndAuthoredHumanAvatarsAreValid" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1929783795" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.008530" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1462" name="LocalNavigationIsConnected" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.LocalNavigationIsConnected" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.007715" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1455" name="LocalNavigationIsConnected(0,4,0,48)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.LocalNavigationIsConnected(0,4,0,48)" methodname="LocalNavigationIsConnected" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="893234919" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.001645" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1456" name="LocalNavigationIsConnected(0,62,0,88)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.LocalNavigationIsConnected(0,62,0,88)" methodname="LocalNavigationIsConnected" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1183128056" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.000183" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1457" name="LocalNavigationIsConnected(6,103,6,144)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.LocalNavigationIsConnected(6,103,6,144)" methodname="LocalNavigationIsConnected" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1811589166" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.000153" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1458" name="LocalNavigationIsConnected(9,157,9,186)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.LocalNavigationIsConnected(9,157,9,186)" methodname="LocalNavigationIsConnected" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1833317773" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.000121" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1459" name="LocalNavigationIsConnected(-9,186,-9,156)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.LocalNavigationIsConnected(-9,186,-9,156)" methodname="LocalNavigationIsConnected" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="855091312" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.000114" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1460" name="LocalNavigationIsConnected(-14.5f,216.4f,-9,220)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.LocalNavigationIsConnected(-14.5f,216.4f,-9,220)" methodname="LocalNavigationIsConnected" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1751927524" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.000303" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1461" name="LocalNavigationIsConnected(-14.5f,216.4f,13.5f,232.5f)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.LocalNavigationIsConnected(-14.5f,216.4f,13.5f,232.5f)" methodname="LocalNavigationIsConnected" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1532411791" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:07Z" duration="0.000156" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1440" name="NoPreviousChapterEnvironmentDependency" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.NoPreviousChapterEnvironmentDependency" methodname="NoPreviousChapterEnvironmentDependency" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="284251473" result="Passed" start-time="2026-10-25 23:21:07Z" end-time="2026-10-25 23:21:08Z" duration="0.419958" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1441" name="PhysicalRecoveryAndToolsExistBeforeAndInsideLock" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.PhysicalRecoveryAndToolsExistBeforeAndInsideLock" methodname="PhysicalRecoveryAndToolsExistBeforeAndInsideLock" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1671305893" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.001487" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1463" name="PlankCollapseHasNoInvisibleFloorUnderIt" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.PlankCollapseHasNoInvisibleFloorUnderIt" methodname="PlankCollapseHasNoInvisibleFloorUnderIt" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1561836170" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.000876" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1465" name="RecoveryCeilingAllowsCrouchButExcludesStanding" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.RecoveryCeilingAllowsCrouchButExcludesStanding" methodname="RecoveryCeilingAllowsCrouchButExcludesStanding" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1568786545" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.001185" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1481" name="RecoveryOverhangPhysicallyBlocksTallBossAtToolStance" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.RecoveryOverhangPhysicallyBlocksTallBossAtToolStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.011954" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1479" name="RecoveryOverhangPhysicallyBlocksTallBossAtToolStance(-14.5f,216,217.94f)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.RecoveryOverhangPhysicallyBlocksTallBossAtToolStance(-14.5f,216,217.94f)" methodname="RecoveryOverhangPhysicallyBlocksTallBossAtToolStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1503621293" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.008899" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1480" name="RecoveryOverhangPhysicallyBlocksTallBossAtToolStance(13.5f,233,231.1f)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.RecoveryOverhangPhysicallyBlocksTallBossAtToolStance(13.5f,233,231.1f)" methodname="RecoveryOverhangPhysicallyBlocksTallBossAtToolStance" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="997947068" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.000153" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1464" name="SavedAnchorsDoNotSpawnStandingCapsulesInsideGeometry" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.SavedAnchorsDoNotSpawnStandingCapsulesInsideGeometry" methodname="SavedAnchorsDoNotSpawnStandingCapsulesInsideGeometry" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="853286139" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.001324" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1438" name="SerializedSystemsAreSingleAndBound" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.SerializedSystemsAreSingleAndBound" methodname="SerializedSystemsAreSingleAndBound" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="263426913" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.005535" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1454" name="WalkableSurfacesHaveActualSolidGround" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.009515" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1443" name="WalkableSurfacesHaveActualSolidGround(0,4)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(0,4)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="269230563" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.000783" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1444" name="WalkableSurfacesHaveActualSolidGround(0,62)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(0,62)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="63490211" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.000114" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1445" name="WalkableSurfacesHaveActualSolidGround(6,108)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(6,108)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="618142154" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.000152" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1446" name="WalkableSurfacesHaveActualSolidGround(6,138)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(6,138)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="483874943" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.000114" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1447" name="WalkableSurfacesHaveActualSolidGround(6,147)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(6,147)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="206197564" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.000097" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1448" name="WalkableSurfacesHaveActualSolidGround(9,164)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(9,164)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1857868818" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.000297" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1449" name="WalkableSurfacesHaveActualSolidGround(-9,172)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(-9,172)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1131400159" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.000109" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1450" name="WalkableSurfacesHaveActualSolidGround(0,205)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(0,205)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="524843881" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.000091" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1451" name="WalkableSurfacesHaveActualSolidGround(-10,218)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(-10,218)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1966413030" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.000079" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1452" name="WalkableSurfacesHaveActualSolidGround(11,230)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(11,230)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="2032074801" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.000083" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1453" name="WalkableSurfacesHaveActualSolidGround(17,220)" fullname="LayarTerakhir.Editor.Tests.Phase5SceneTests.WalkableSurfacesHaveActualSolidGround(17,220)" methodname="WalkableSurfacesHaveActualSolidGround" classname="LayarTerakhir.Editor.Tests.Phase5SceneTests" runstate="Runnable" seed="1757980452" result="Passed" start-time="2026-10-25 23:21:08Z" end-time="2026-10-25 23:21:08Z" duration="0.000082" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: /root/.config/unity3d/DefaultCompany/LayarTerakhir/TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

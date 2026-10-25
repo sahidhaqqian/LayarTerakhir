@@ -1,0 +1,22 @@
+{
+  "initialBroadRun": {
+    "total": 429,
+    "passed": 427,
+    "failed": 2
+  },
+  "resolvedSchemaExpectations": [
+    "LayarTerakhir.Editor.Tests.Phase1CampaignTests.SchemaOneMigrationPreservesPrologAndGlobalCollectibles",
+    "LayarTerakhir.Editor.Tests.Phase2CampaignTests.SchemaTwoMigrationPreservesEveryP1AndSharedField"
+  ],
+  "latestFocusedRun": {
+    "total": 232,
+    "passed": 232,
+    "failed": 0
+  },
+  "scope": "Targeted rerun includes both corrected migrations, all campaign suites1\u20135 and Phase5 scene checks; original broader XML retained unchanged.",
+  "latestPresentationRun": {
+    "total": 44,
+    "passed": 44,
+    "failed": 0
+  }
+}

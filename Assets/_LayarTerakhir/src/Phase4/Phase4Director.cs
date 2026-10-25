@@ -55,7 +55,7 @@ namespace LayarTerakhir.Phase4
         private bool evpWasHeld, evpFinished;
         private string objective = "";
         private float nextZoneRetry, nextReadout;
-        private float nextLiveRetry, nextStoryRetry;
+        private float nextLiveRetry, nextStoryRetry, nextHandoffRetry;
         private Phase4WorldItem hidingItem;
         private Vector3 hideEntrance;
         private Quaternion hideRotation;
@@ -120,6 +120,18 @@ namespace LayarTerakhir.Phase4
             if (input.GetActionDown(GameAction.UseIncense)) UseIncense();
             if (input.GetActionDown(GameAction.UseFlare)) Hud.ShowBroadcastNotification("Api asing ditolak desa. Simpan flare untuk perjalanan berikutnya.", 4);
             if (Completed("P4_BOSS_WIN") && !Completed("P4_FIFTH_GATE_REVEAL") && !StoryPlaying && Phone.batteryPercent > 0 && Elapsed>=nextStoryRetry) { nextStoryRetry=Elapsed+5;StartCoroutine(Epilogue()); }
+            if (Completed("P4_COMPLETE") && !Phase4DiagnosticsActive && Elapsed >= nextHandoffRetry &&
+                Vector3.Distance(player.transform.position, world.Anchor("BOUNDARY").position) < 1.7f)
+            {
+                nextHandoffRetry = Elapsed + 5;
+                if (UnityEngine.Application.CanStreamedLevelBeLoaded(CampaignRouting.MarketScene) &&
+                    LayarTerakhir.Phase5.Phase5Campaign.Enter(Campaign))
+                {
+                    player.MovementLocked = true;
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(CampaignRouting.MarketScene); return;
+                }
+                SaveError();
+            }
             RefreshObjective();
         }
         private void UpdateZones()

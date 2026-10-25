@@ -1,0 +1,14 @@
+# Phase 5 — panduan build Windows
+
+Ekstrak ZIP seluruhnya, kemudian jalankan `Review-Phase5.cmd`. Pilih **Continue**. Launcher memakai slot `Phase5Review` terpisah dan fixture PHASE4_CP8 dari hasil route native Phase4; save permainan utama tidak diganti. Untuk campaign sendiri, jalankan `LayarTerakhir.exe` dan Continue dari CP4 sah. Tidak perlu kembali ke Kos. Jangan memindahkan EXE keluar dari folder Data/MonoBleedingEdge.
+
+- RMB ditahan: angkat HP dan kembali ke kamera. Lepas: kembali ke framing sebelumnya. X Selfie, V OTS/FP, Q AR, R UV, T Thermo, tahan C rekam EVP, LMB foto/Blitz, F layar, E interaksi, Ctrl jongkok.
+- Di arena, masuk penutup rendah dengan jongkok agar pulih di balik collider fisik. Dinamo gratis +25 baterai/8detik, Altar Doa +15 Sanity/10detik, titik air gratis. Kemenyan/Flare/perbekalan berbayar opsional. Lentera Panggung reusable menggantikan Flare pada fase2 boss.
+- Gerbang: Kios Arsip Bisu di kanan. Matikan layar3detik dekat kursi; periksa laci lewat AR, rekam EVP asli6detik, lalu ambil Pita dengan E. Teks sukses muncul setelah transaksi tersimpan.
+- Koridor: bandingkan suhu pintu. Jembatan: cari rute aman, verifikasi suara/rajah, isi Kendi existing dan padamkan Obor Santet. Ruang Jahit: matikan layar/jongkok di balik cover untuk memutus LOS; cermin jalan keluar memakai AR.
+- Panggung: foto Server lewat AR, scan Kontrak lewat Thermo dan UV, rekam EVP asli pada Pilar Layar. Konfirmasi Jurnal. Cermin Jalan Pulang memungkinkan kembali ke Pita sebelum peringatan CP6 disetujui. Lihat Arsip N/5 sebelum mengunci arena.
+- Boss1: benang UV kontinu menunjukkan wujud asli. Pancing ke zona generator, nyalakan sakelar, satu Blitz pada inti saat perisai terbuka. Boss2: Selfie+Thermo+cahaya Lentera/Flare, satu Blitz. Boss3: layar mati+jongkok di balik cover saat tiga sapuan; AR dan tahan E2detik untuk tiap kabel, lalu satu Blitz inti. Miss dapat diulang; CP7 mempertahankan setiap inti/kabel.
+- FINAL_CHOICE tidak berbatas waktu. Angka5% adalah **kapasitor ritual**, bukan reset baterai HP. BAD: bidik Damar2detik lalu LMB. NORMAL: tahan F5detik di tepi panggung, lepas membatalkan. TRUE: papah Damar ke portal, X→Q stabil→R stabil, bidik inti di Selfie lalu LMB. SECRET: lima ID Arsip unik, papah Damar, validasi/tahan interaksi Cermin Saksi, lalu jepret cermin. Validasi tidak memilih ending otomatis.
+- Satu campaign mengunci satu ending sebelum cutscene. Continue setelah crash mengulang cutscene yang sama; CP9 setelah selesai. Jangan mengedit JSON untuk mencoba ending lain pada save utama.
+
+Batas bukti otomatis dicatat di `phase5-qa-matrix.md`. Subtitle/ambience/SFX tersedia; VO manusia belum final. Penilaian artistik, durasi75menit, seluruh180QA manual, dan FPS GPU Windows tetap perlu playtest. Screenshot dev memakai F12; kirim catatan lokasi, checkpoint, baterai/Sanity, input dan langkah reproduksi agar bug dapat ditelusuri.

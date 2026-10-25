@@ -41,7 +41,7 @@ namespace LayarTerakhir.Phase4
         }
         private void Bind(GameObject target, string id, string prompt)
         {
-            if (!target) { Debug.LogError("P3 HUB missing interaction " + id); return; }
+            if (!target) { Debug.LogError("P4 HUB missing interaction " + id); return; }
             target.SetActive(true);
             if(!target.GetComponent<Collider>())target.AddComponent<BoxCollider>();
             var item = target.AddComponent<Phase4WorldItem>(); item.hub = this; item.id = id; item.prompt = prompt;
@@ -50,11 +50,11 @@ namespace LayarTerakhir.Phase4
         {
             while (GameShell.AwaitingStart || GameShell.MenuSceneLoading) yield return null;
             if (!Campaign.LoadCheckpoint() || !CampaignRouting.IsPhase4(Campaign.Data)) yield break;
-            if (Campaign.Data.phase3.Completed("P4_DEPART_KOS")) { SceneManager.LoadScene(CampaignRouting.VillageScene); yield break; }
+            if (Campaign.Data.phase4.Completed("P4_DEPART_KOS")) { SceneManager.LoadScene(CampaignRouting.VillageScene); yield break; }
             view = FindFirstObjectByType<AtmajaPhoneView>();
             Phone.ChapterContent = this; Phone.hasSmartphoneInInventory = true; Phone.isPhoneRaised = false;
             Phone.isBroadcastConnected = false; Phone.arModuleUnlocked=true; Phone.batteryPercent = Campaign.Data.battery;
-            Phone.isScreenOn = Phone.batteryPercent > 0; Phone.selfieModuleUnlocked = true; Phone.uvModuleUnlocked = Campaign.Data.phase3.Completed("P4_MODULE_CALIBRATED");
+            Phone.isScreenOn = Phone.batteryPercent > 0; Phone.selfieModuleUnlocked = true; Phone.uvModuleUnlocked = Campaign.Data.phase4.Completed("P4_MODULE_CALIBRATED");
             Phone.isSelfieCamera = false; Phone.SyncVisualState();
             // A daytime lighting override on the existing approved scene, no geometry edits.
             foreach (var light in FindObjectsByType<Light>(FindObjectsSortMode.None))
@@ -64,7 +64,7 @@ namespace LayarTerakhir.Phase4
             RenderSettings.ambientEquatorColor = new Color(.25f,.27f,.28f);
             RenderSettings.ambientGroundColor = new Color(.14f,.13f,.12f);
             Ready = true; Hud.SetFadeAlpha(0); Hud.SetObjective("16:45 WIB — Buka PC: riset lokasi keempat dan pasang modul Smartphone. Pintu kos untuk berangkat.");
-            if(!Campaign.Data.phase3.Completed("P4_HUB_MONOLOGUE")&&Campaign.TryCommit(Campaign.Data.checkpoint_id,d=>d.phase3.Add("P4_HUB_MONOLOGUE")))
+            if(!Campaign.Data.phase4.Completed("P4_HUB_MONOLOGUE")&&Campaign.TryCommit(Campaign.Data.checkpoint_id,d=>d.phase4.Add("P4_HUB_MONOLOGUE")))
                 Hud.EnqueueSubtitle("Raka","Tiga segel, tapi Damar masih belum pulang. Sekarang mereka nyuruh gue ke Karang Setra. Gue harus bedain mana petunjuk dan mana yang sengaja menggiring gue.",12);
         }
         public void Interact(string id)
@@ -74,7 +74,7 @@ namespace LayarTerakhir.Phase4
             else if (id == "CHARGE")
             {
                 if (Phase4Campaign.ChargeHub(Campaign)) { Phone.RestoreBattery(100); Hud.ShowBroadcastNotification("HP terisi penuh. Pengisian persiapan malam ini tersimpan.", 4); }
-                else Hud.ShowBroadcastNotification(Campaign.Data.phase3.Completed("P4_KOS_CHARGE_USED") ? "Pengisian persiapan malam ini sudah dipakai." : "Pengisian gagal disimpan; coba lagi.", 4);
+                else Hud.ShowBroadcastNotification(Campaign.Data.phase4.Completed("P4_KOS_CHARGE_USED") ? "Pengisian persiapan malam ini sudah dipakai." : "Pengisian gagal disimpan; coba lagi.", 4);
             }
             else if (id == "DEPART") OpenDeparture();
         }
@@ -85,7 +85,7 @@ namespace LayarTerakhir.Phase4
             {
                 if (!Campaign.TryCommit(Campaign.Data.checkpoint_id, d =>
                 {
-                    d.phase3.Add("P4_FORUM_READ"); Phase4Campaign.Unlock(d);
+                    d.phase4.Add("P4_FORUM_READ"); Phase4Campaign.Unlock(d);
                     if(!d.inventory.Contains("P4_DOC_FORUM"))d.inventory.Add("P4_DOC_FORUM");
                     if (!d.documents.Exists(doc => doc.title == Phase4Content.ForumTitle)) d.documents.Add(new PhoneDocument(Phase4Content.ForumTitle, Phase4Content.Forum));
                 })) { SaveError(); return; }
@@ -121,7 +121,7 @@ namespace LayarTerakhir.Phase4
         }
         private void Shop(string id, string title, float y, long price)
         {
-            bool bought = Campaign.Data.phase3.Completed("P4_SHOP_" + id);
+            bool bought = Campaign.Data.phase4.Completed("P4_SHOP_" + id);
             var b = Button(id, bought ? title + " • TERBELI" : title, y, () =>
             { if (Phase4Campaign.Buy(Campaign, id)) OpenPC(); else SaveError(); });
             b.interactable = !bought && Campaign.Data.wallet_legitimate >= price;
@@ -154,7 +154,7 @@ namespace LayarTerakhir.Phase4
             if (app != PhoneApp.Journal && app != PhoneApp.Map && app != PhoneApp.Inventory && app != PhoneApp.Messages) return false;
             string body = app == PhoneApp.Map ? "KOS RAKA → DESA MATI KARANG SETRA\nBerangkat dari kunci motor di meja.\nTiba 23:53 WIB." :
                 app == PhoneApp.Inventory ? InventoryText() :
-                "PERSIAPAN MALAM KEEMPAT\n\n" + (Campaign.Data.phase3.Completed("P4_FORUM_READ") ? Phase4Content.Forum : "Buka PC untuk meriset Desa Mati Karang Setra.");
+                "PERSIAPAN MALAM KEEMPAT\n\n" + (Campaign.Data.phase4.Completed("P4_FORUM_READ") ? Phase4Content.Forum : "Buka PC untuk meriset Desa Mati Karang Setra.");
             UiWidgets.ScrollText("HubContent",parent,body,new Vector2(.06f,.1f),new Vector2(.94f,.9f),22); return true;
         }
         private string InventoryText()

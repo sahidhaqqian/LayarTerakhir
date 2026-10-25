@@ -313,8 +313,8 @@ namespace LayarTerakhir.UI
                 _lastPhoneState=-1;
                 return;
             }
-            int state=(phone.isPhoneRaised?1:0)|(phone.isScreenOn?2:0)|(phone.isBroadcastConnected?4:0)|((int)phone.currentScanMode<<3);
-            int battery=Mathf.Clamp(Mathf.CeilToInt(phone.batteryPercent),0,100);
+            int state=(phone.isPhoneRaised?1:0)|(phone.isScreenOn?2:0)|(phone.isBroadcastConnected?4:0)|((int)phone.currentScanMode<<3)|(phone.RitualCameraPower?64:0);
+            int battery=Mathf.Clamp(Mathf.CeilToInt(phone.DisplayBatteryPercent),0,100);
             var input=GameInputConfig.Instance;
             var phoneKey=input?input.togglePhoneKey:KeyCode.Tab;
             var screenKey=input?input.toggleScreenKey:KeyCode.F;
@@ -322,7 +322,8 @@ namespace LayarTerakhir.UI
             _lastPhoneState=state;_lastPhoneBattery=battery;_lastPhoneKey=phoneKey;_lastScreenKey=screenKey;
             string mode=phone.currentScanMode==ScanVisualMode.AR?"MataBatin AR":phone.currentScanMode==ScanVisualMode.UV?"Lensa UV":"Kamera biasa";
             string screen=!phone.isPhoneRaised?"Tersimpan":phone.isScreenOn?mode:"Layar mati · Hemat daya";
-            phoneStatusText.text=$"{battery}%    {(phone.isBroadcastConnected?"LIVE":"Offline")}\n{screen}";
+            string energy=phone.RitualCameraPower?"Kapasitor ritual 5%":$"{battery}%";
+            phoneStatusText.text=$"{energy}    {(phone.isBroadcastConnected?"LIVE":"Offline")}\n{screen}";
             var presentation=GetComponent<HudPresentation>();
             if(presentation&&presentation.phoneHints)
                 presentation.phoneHints.text=phone.isPhoneRaised

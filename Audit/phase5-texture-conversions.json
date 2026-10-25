@@ -1,0 +1,1197 @@
+{
+  "operation": "R=metallic B; G=AO R (or 1 for glTF MR); A=1-roughness G. glTF MR channels include original material metallic/roughness factors. Original UVs and source maps preserved.",
+  "files": [
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/ArmChair_01/Armchair_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/ArmChair_01/Armchair_01_arm_2k_UnityMask.png",
+      "sourceSha256": "9f5011595cfc5ba523ac385b0bf978c5e455dcf9f9fb6f53d4bfcb4159224e39",
+      "derivedSha256": "66d27f45e919058b97b4fb45a4157f81a66439a512c755f657bd87d696838816"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/BarberShopChair_01/BarberShopChair_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/BarberShopChair_01/BarberShopChair_01_arm_2k_UnityMask.png",
+      "sourceSha256": "0b4461ae9d1477ca4e061569cf8a9d506ce0da3210732b8d877767c4bd88ea32",
+      "derivedSha256": "63a5bc32e9247e7405d557f71202da35d651f93613622fb150da9e239e865910"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/Barrel_02/Barrel_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/Barrel_02/Barrel_02_arm_2k_UnityMask.png",
+      "sourceSha256": "cf2b67d9f544473c459a873b828839374477a195b84249700ecdfdec88561366",
+      "derivedSha256": "def56173cf5104596efe355f5986f1da7429989488be6e01a4197f9605f591d9"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/Camera_01/Camera_01_body_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/Camera_01/Camera_01_body_arm_2k_UnityMask.png",
+      "sourceSha256": "8bc0bf066da00a3710490109016256935f428cce472d53c9f4068ee0d7b83170",
+      "derivedSha256": "3771383c3cafc1f2855408bd999df3445562790c69b667ed9a89d653d073afc9"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/Camera_01/Camera_01_lens_body_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/Camera_01/Camera_01_lens_body_arm_2k_UnityMask.png",
+      "sourceSha256": "9a1df61eee9800037cd56dde898f85db5300c334cf4818536caa1b626ef28bce",
+      "derivedSha256": "0111c6c697dc4bd85d92aaf2361932d99f415a9416750e60458efe86ba2d3580"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/Camera_01/Camera_01_strap_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/Camera_01/Camera_01_strap_arm_2k_UnityMask.png",
+      "sourceSha256": "35d1642705d1b5133deef8622790366d6a6f7fb503bcb2d5443ebfe1b023dece",
+      "derivedSha256": "ef7e1102784c1736feea1c2bbeb4f0b8526810c32b44540656735716ed2bbc8d"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/CashRegister_01/CashRegister_01_glass_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/CashRegister_01/CashRegister_01_glass_arm_2k_UnityMask.png",
+      "sourceSha256": "858244b4434f417a4af43fb10a839f53598ea175253f8fa02e2152bc45c92f26",
+      "derivedSha256": "2525033c1e3c3b0b7b64930591c2ca243535a3aa557ada4970972935f7e4844e"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/Chandelier_02/Chandelier_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/Chandelier_02/Chandelier_02_arm_2k_UnityMask.png",
+      "sourceSha256": "13898d606dc43d7b6703cd593ba1088da2364cd1d1e1f78e6bb4db8aa3298254",
+      "derivedSha256": "9043bc46a3055463170819cf54d17fa69c157be898bc453fd1512b8d90d910f6"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/Chandelier_02/Chandelier_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/Chandelier_02/Chandelier_02_arm_2k_UnityMask.png",
+      "sourceSha256": "13898d606dc43d7b6703cd593ba1088da2364cd1d1e1f78e6bb4db8aa3298254",
+      "derivedSha256": "9043bc46a3055463170819cf54d17fa69c157be898bc453fd1512b8d90d910f6"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/Chandelier_03/Chandelier_03_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/Chandelier_03/Chandelier_03_arm_2k_UnityMask.png",
+      "sourceSha256": "e5ee65cbcbee470d010a9c502f00dbcd04fddbf5c34cd4e47fc85a4f1f98505a",
+      "derivedSha256": "947dad6840e0fc7994b7d43fa4bf46ff215d332eee7b99578fc63400a69629ac"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/Chandelier_03/Chandelier_03_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/Chandelier_03/Chandelier_03_arm_2k_UnityMask.png",
+      "sourceSha256": "e5ee65cbcbee470d010a9c502f00dbcd04fddbf5c34cd4e47fc85a4f1f98505a",
+      "derivedSha256": "947dad6840e0fc7994b7d43fa4bf46ff215d332eee7b99578fc63400a69629ac"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/Chandelier_03/Chandelier_03_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/Chandelier_03/Chandelier_03_arm_2k_UnityMask.png",
+      "sourceSha256": "e5ee65cbcbee470d010a9c502f00dbcd04fddbf5c34cd4e47fc85a4f1f98505a",
+      "derivedSha256": "947dad6840e0fc7994b7d43fa4bf46ff215d332eee7b99578fc63400a69629ac"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/CheeseBox_01/CheeseBox_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/CheeseBox_01/CheeseBox_01_arm_2k_UnityMask.png",
+      "sourceSha256": "38ee05232bfd8203434e9a3e5b5cc064b7e627a64a78a79b7773cfc9d0d9f464",
+      "derivedSha256": "9c476028df363d86ab2ad24a94c3163dede89e9f331bf842f972014c9bc3694c"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/ClassicConsole_01/ClassicConsole_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/ClassicConsole_01/ClassicConsole_01_arm_2k_UnityMask.png",
+      "sourceSha256": "5ad3f740a2bf95899eec12bfcfe9cd8f739144c9482683fc814891c9bbe9e232",
+      "derivedSha256": "c75fa1491afe70d20f5e9c3e615de98bc2a38757d9b2ad32a6d15fd6ba1756e5"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/ClassicNightstand_01/ClassicNightstand_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/ClassicNightstand_01/ClassicNightstand_01_arm_2k_UnityMask.png",
+      "sourceSha256": "c010760b3ac18c20819d8e2050ee6558cd609ad467cec5470dded17f8c3512d0",
+      "derivedSha256": "22d1dd2ffea0c90350d2dc3e11964941a8f3c781c0a508b0ccf49c7f3fce58b7"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/CoffeeCart_01/CoffeeCart_01_cart_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/CoffeeCart_01/CoffeeCart_01_cart_arm_2k_UnityMask.png",
+      "sourceSha256": "ecfc46f9e4cb6beb919f9ed2227f0d7c3780d0461f6ab7c735bf90ef464c36c1",
+      "derivedSha256": "7c2e3bfa46b8adb453c8604d93583f1196d57c28e44ac0e8515d5054dc978a88"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/CoffeeCart_01/CoffeeCart_01_mugs_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/CoffeeCart_01/CoffeeCart_01_mugs_arm_2k_UnityMask.png",
+      "sourceSha256": "7ba389e2a532598a2f0e62c4e470b5a474ff7ed4dfeb56e606ddbd8e16a8d60e",
+      "derivedSha256": "52d73bda43d96a4057902bcc6745483d1b1789eb17d1af9f29f56334746bffe1"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/CoffeeCart_01/CoffeeCart_01_props_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/CoffeeCart_01/CoffeeCart_01_props_arm_2k_UnityMask.png",
+      "sourceSha256": "c9d14e8e95c57f4c509b210e1e12055b688b7685e3c5e66fe0cea194e1c154ef",
+      "derivedSha256": "c2bee4efd026a7cc59305cd68281dd2b4e093d56661d03e09b0d6b02ced3c50c"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/CoffeeTable_01/CoffeeTable_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/CoffeeTable_01/CoffeeTable_01_arm_2k_UnityMask.png",
+      "sourceSha256": "bea476f336f1fb31dd334b0e408fb2b4f27564399d8b6c087e07fe3a7813f996",
+      "derivedSha256": "84a946fdb0093f6b3413131c8cf4252e3d839a1b065090e64098aa0a326d19de"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/UnusedSourceTextures/FerrisWheel/P5_FerrisWheel_lambert1MetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/FerrisWheel/P5_FerrisWheel_lambert1MetalRough_UnityMask.png",
+      "sourceSha256": "7a3c9b964af44b5bedaadadc110bcba57cf70ce5bde1e8690ee1d5e545d301d9",
+      "derivedSha256": "59684f8afb95a9023e6ec019a6ef96f3e18d784b3c747edd01a819c223cd342f"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/UnusedSourceTextures/FerrisWheel/P5_FerrisWheel_UnUsedMetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/FerrisWheel/P5_FerrisWheel_UnUsedMetalRough_UnityMask.png",
+      "sourceSha256": "9e3ccf20334162cdc0c644daf7d2246348d7134787e7395bc3936a6de7300908",
+      "derivedSha256": "59684f8afb95a9023e6ec019a6ef96f3e18d784b3c747edd01a819c223cd342f"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/GothicBed_01/GothicBed_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/GothicBed_01/GothicBed_01_arm_2k_UnityMask.png",
+      "sourceSha256": "fc4bbdba4e14fd30d519c45bf942a4c7ab8446476a642bfe3bbc3f770cd35458",
+      "derivedSha256": "4e24c38f73452c961bd7297426f5e3f8dd3d0bee99aaf34042f3b8be690ecbbc"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/GothicCabinet_01/GothicCabinet_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/GothicCabinet_01/GothicCabinet_01_arm_2k_UnityMask.png",
+      "sourceSha256": "8c85c2c923567015312009fd54f0f713cc3077fd2c1fd260073c35ec25bf3068",
+      "derivedSha256": "17ad9f6ab31ec343ff0b823d4cd62eff668819cbd42760a2ebf7b0c1ad57b5da"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/GothicCommode_01/GothicCommode_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/GothicCommode_01/GothicCommode_01_arm_2k_UnityMask.png",
+      "sourceSha256": "b90c23821e0e81e0598b1bc6b46f184cab304b97154f126c3dddd493f64aea8e",
+      "derivedSha256": "478c734da9731f62004ee1424496d7d5a5a802e809688bb61b49609064164ff4"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/Megaphone_01/Megaphone_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/Megaphone_01/Megaphone_01_arm_2k_UnityMask.png",
+      "sourceSha256": "e3f42c9970e548f86c9965bcc3f55cd166a186334c96c4b63a6c5695d696903c",
+      "derivedSha256": "22a4741940e9922a51d76fb9e78feafaf49e86b97d6c55a2816ff53f4367a1a8"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/Ottoman_01/Ottoman_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/Ottoman_01/Ottoman_01_arm_2k_UnityMask.png",
+      "sourceSha256": "ed1aed3df4509ce1fc10e59b8fd9f059aed8d2e554744a0452410b30cd069b4d",
+      "derivedSha256": "9f3c96cac1cf8e9f608d0c1c7c9acfcdaaf36e7bbd507c7b99e846f1c270a85a"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/SchoolDesk_01/SchoolDesk_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/SchoolDesk_01/SchoolDesk_01_arm_2k_UnityMask.png",
+      "sourceSha256": "de68c0fa738d75992e36a9ae5cd1dffeed8db3fa16b1bbb3e30cbb2d754e9f40",
+      "derivedSha256": "0e0cf30d8eff6640b6ad3b4294804809cfe8df5e505949b001c31d582ec207ea"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/UnusedSourceTextures/SewingMachine/P5_SewingMachine_Sewing_MachineMetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/SewingMachine/P5_SewingMachine_Sewing_MachineMetalRough_UnityMask.png",
+      "sourceSha256": "187b599bd012d0def7c17eb92aca22ed3970d74c6bae85a4f4b806a0f2478660",
+      "derivedSha256": "ee5b87159ac8a00ed4afad7a41b792e6aeeb894c4e4b78ee2409a878c82e6094"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/UnusedSourceTextures/SewingMachine/P5_SewingMachine_TableMetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/SewingMachine/P5_SewingMachine_TableMetalRough_UnityMask.png",
+      "sourceSha256": "8961fec461118a999dd27f783a2e45d2bc396796678d88684366d17b3363c2e5",
+      "derivedSha256": "1ec13257db2656dd30f3639add40414990f8b3c4fb1f21c1a7429111f0b8e7e5"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/Shelf_01/Shelf_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/Shelf_01/Shelf_01_arm_2k_UnityMask.png",
+      "sourceSha256": "ccedd6c6eabfcaf71167135aaaa33b54066d95653cce525d5d9e515d16222916",
+      "derivedSha256": "b77db1104495767f6e6cc35cfa4ce212de22ef52c8ddc1b044348360d0936309"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/Sofa_01/Sofa_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/Sofa_01/Sofa_01_arm_2k_UnityMask.png",
+      "sourceSha256": "b852654ed4b8dea85b37505023d9187ec115edd14b0f2dcc00230a4698b300b1",
+      "derivedSha256": "7bb0b89f25200fdc0f27bf6c2dde69c7faa24b7b939a2084003ee045582a2f51"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/Television_01/Television_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/Television_01/Television_01_arm_2k_UnityMask.png",
+      "sourceSha256": "7ac7cbe0877a8c78478dd61e5c5a20cff9fed9da61fa34419c66037b605ce733",
+      "derivedSha256": "9db3999f6f4d983de6a776f615c71e9989a0e09890f4a5236d0fa30ec21caa40"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/WetFloorSign_01/WetFloorSign_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/WetFloorSign_01/WetFloorSign_01_arm_2k_UnityMask.png",
+      "sourceSha256": "dfe8b7eaa199845ba5e0049d73407c5fae8567803c7c22bdd7cf6c16c05e750d",
+      "derivedSha256": "ed9e3c861f98c1844b252990a97477a97d5468720c56d79a58a9adc42797d6ee"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/all_purpose_cleaner/all_purpose_cleaner_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/all_purpose_cleaner/all_purpose_cleaner_arm_2k_UnityMask.png",
+      "sourceSha256": "c55ae710c157cefaa8caecad2bd8bca033d4a3474d787b4eff78b6afc5f924c5",
+      "derivedSha256": "982cbeb584ec6f0b1cbc700401847be94f21af700be43d7a9b5520f29752de67"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/bar_chair_round_01/bar_chair_round_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/bar_chair_round_01/bar_chair_round_01_arm_2k_UnityMask.png",
+      "sourceSha256": "115e39a21a98d7c07a334b3df65539f763795d6dbba9c70d1506c965de50d1fd",
+      "derivedSha256": "90c1dfd30a11b3884f7b53837a4441325c85a6e237fa16b7f734cc7adeed85f2"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/bark_debris_01/bark_debris_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/bark_debris_01/bark_debris_01_arm_2k_UnityMask.png",
+      "sourceSha256": "8e95b2e46ddd4cb86db2a780fe52d469f257d1300e65a9679feb3513c8fe29c8",
+      "derivedSha256": "6775395d171f8d536776220f9ed71e29872612f9644127dbad657916b3848a85"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/barrel_03/barrel_03_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/barrel_03/barrel_03_arm_2k_UnityMask.png",
+      "sourceSha256": "15faef31ea4afdf74864848244a9f48da0cc0843c7b42d4ee3d1bfb1f6c39d6c",
+      "derivedSha256": "61610d76f2817c0962843fb539e8e1455a3e32478cfc38b9b049c829dca42475"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/bleach_bottle/bleach_bottle_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/bleach_bottle/bleach_bottle_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a41d7bfe7c6e970aa406f9085920fba5f037076c65d49f51c1d3134af1c45daa",
+      "derivedSha256": "26124b06f8affce6492318dbbd51e68ab3a45b7bd9cea08b03709f05538fb73f"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/boombox/boombox_speakers_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/boombox/boombox_speakers_arm_2k_UnityMask.png",
+      "sourceSha256": "fa46f505c76524892b0d043872fa24b5379db27f3133806093fdfd54d9040552",
+      "derivedSha256": "9047266418e51f6e19ebf415b9ba2c9a8766c7f2348c10f2b748f0bc16cc563b"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/boulder_01/boulder_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/boulder_01/boulder_01_arm_2k_UnityMask.png",
+      "sourceSha256": "ab52859dde519b4822111aa60916b6d21f8a6966c67b6cec44d1cd0775b8a86a",
+      "derivedSha256": "e006c325161d406fbdebef0211d6ef98100aa4e32ed1e5d6199859f226a2a369"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/brass_blowtorch/brass_blowtorch_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/brass_blowtorch/brass_blowtorch_arm_2k_UnityMask.png",
+      "sourceSha256": "b97d51bc8bc5f4af52eb44a4c655a2a9b4b6b3d7f77bdd641dd68c7582724299",
+      "derivedSha256": "6d18dac60badc38db630cbe1c33fec6196d9e72750dc6d5f2d8b4802c414e749"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/can_rusted/can_rusted_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/can_rusted/can_rusted_arm_2k_UnityMask.png",
+      "sourceSha256": "132819a9e521c1f2a02ff069ae3840fa8278cb488e1d3eb835443d5b76e3c315",
+      "derivedSha256": "fdefaf14f1db26c1b7297cc9f735a89f1ee55c92226ae61d91e21547a9f16a71"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/chinese_armchair/chinese_armchair_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/chinese_armchair/chinese_armchair_arm_2k_UnityMask.png",
+      "sourceSha256": "fe67e0b482fa206eb1dea3d803455b9639468de1104f6c2a5c5f8c17a6a8eb02",
+      "derivedSha256": "a576ec32185c8b9b82ad122e283eb57e6734d284ac4efab6ce28e3c1ed52c0be"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/chinese_cabinet/chinese_cabinet_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/chinese_cabinet/chinese_cabinet_arm_2k_UnityMask.png",
+      "sourceSha256": "d32e9b4c24719306d069f5b8788d168816ded09e25552f94c2e18ce0d395fe01",
+      "derivedSha256": "72d6ce301a8134f7ce3c3e45dc1b5199d962e5e507d421ac4ce3e95566823bc2"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/chinese_chandelier/chinese_chandelier_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/chinese_chandelier/chinese_chandelier_arm_2k_UnityMask.png",
+      "sourceSha256": "a7df4260f12af937237ac0f8110cadcb6ec730ac3112a3bef332f379c2067a9d",
+      "derivedSha256": "9ba5a80e5b86bdfab0f5c2405283fdf49852179e82557e5f89b44fadb57a83c6"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/chinese_commode/chinese_commode_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/chinese_commode/chinese_commode_arm_2k_UnityMask.png",
+      "sourceSha256": "fa947dfcf0d7e46338207314abc0c17ee89ab2125993df7cafd5d5794536a11e",
+      "derivedSha256": "2f36267af3e88714a7a666ad5c3d6c3ca151f9200718ccd13d12ce2b3e1a0200"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/chinese_console_table/chinese_console_table_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/chinese_console_table/chinese_console_table_arm_2k_UnityMask.png",
+      "sourceSha256": "9b6e60560ae4da869fafb57e7a18ee93e572bcd2110d34779efe737858c691f6",
+      "derivedSha256": "84ff2461017ba9b4e852d97306a7887f13110f661701ced5c0f00b34c4c43fc5"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/chinese_screen_panels/chinese_screen_panels_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/chinese_screen_panels/chinese_screen_panels_arm_2k_UnityMask.png",
+      "sourceSha256": "bb41fb737068c276b4959f5d30783d0178ef6fd0f712201fbbc085786a4e121f",
+      "derivedSha256": "99dc4721047bf646ea41d9010bb95c2fb8c9d7bb46681d2ad0f5a8fd0bd2c5ad"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/chinese_sofa/chinese_sofa_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/chinese_sofa/chinese_sofa_arm_2k_UnityMask.png",
+      "sourceSha256": "6696208747252c93e33e41df0b3a69443a2ff350fa7c6869e795d7b70220d4c0",
+      "derivedSha256": "ca66e97d9ad324213b6273d2c22e0791c646041a05870c8ce036e57df1fab903"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/cigarette_case/cigarette_case_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/cigarette_case/cigarette_case_arm_2k_UnityMask.png",
+      "sourceSha256": "624287abe36637deaaea6dcd1e22e90b130f1b627b981c018967293e59c8fae6",
+      "derivedSha256": "fbe44939153b2537ad6269bf9f61e34379a71e5af6c6a0da9493f7d959706622"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/cigarette_pack/cigarette_pack_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/cigarette_pack/cigarette_pack_arm_2k_UnityMask.png",
+      "sourceSha256": "59c3871cf97b4d2a6f237e8cbc730f647fa0dc580d7e83523d8a0d0843525c36",
+      "derivedSha256": "07c9facaca26787f1cf41125f201802b4f132c3cc5f68a4d13bd1299b4c8ec9c"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/circuit_board/circuit_board_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/circuit_board/circuit_board_arm_2k_UnityMask.png",
+      "sourceSha256": "854f3bee2afc89963377e1d6d1cc0f72c508e780084545e54ad670f5af30479a",
+      "derivedSha256": "32831d607a6f6e2c7c2871061d8fa0f1c594557062725d8063f9add2d08a773a"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/circuit_board/circuit_board_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/circuit_board/circuit_board_arm_2k_UnityMask.png",
+      "sourceSha256": "854f3bee2afc89963377e1d6d1cc0f72c508e780084545e54ad670f5af30479a",
+      "derivedSha256": "32831d607a6f6e2c7c2871061d8fa0f1c594557062725d8063f9add2d08a773a"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/classic_laptop/classic_laptop_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/classic_laptop/classic_laptop_arm_2k_UnityMask.png",
+      "sourceSha256": "d6f26a39ec9466103cc9614fbe0c7a9863870dc08be9b9c1e77e61fb56265327",
+      "derivedSha256": "f64ec04ae9a383825ce11b6199eae60c179e52e4a5507235eea34865f8e28a8b"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/classic_laptop/classic_laptop_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/classic_laptop/classic_laptop_arm_2k_UnityMask.png",
+      "sourceSha256": "d6f26a39ec9466103cc9614fbe0c7a9863870dc08be9b9c1e77e61fb56265327",
+      "derivedSha256": "f64ec04ae9a383825ce11b6199eae60c179e52e4a5507235eea34865f8e28a8b"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/clipboard/clipboard_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/clipboard/clipboard_arm_2k_UnityMask.png",
+      "sourceSha256": "76b254d4ba39895a0f8ccd1c988f759d463e5013c180b181dfc823dba0e0cec2",
+      "derivedSha256": "58531ef028172f204822912b47b7b4534d6bdcbafa387f1561c8c28ce0438626"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/coffee_table_round_01/coffee_table_round_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/coffee_table_round_01/coffee_table_round_01_arm_2k_UnityMask.png",
+      "sourceSha256": "fa00d2026a24f65cd825f565e010d498206d68ede792fcc5f058f20a3d94aa88",
+      "derivedSha256": "2abe0f4e624e24caee16a15a42b02659a31e5dbc76221943bcdeab7a4f54f5e4"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/crowbar_01/crowbar_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/crowbar_01/crowbar_01_arm_2k_UnityMask.png",
+      "sourceSha256": "d7b97a51775433e4777d016d89576e0cef41b9486a37d2782ff783c4df76056a",
+      "derivedSha256": "e57c065ea2bba7b4573620900bb8867297913d27b895c9c8b0921dc69e39a3d9"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/dead_quiver_branch_01/dead_quiver_branch_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/dead_quiver_branch_01/dead_quiver_branch_01_arm_2k_UnityMask.png",
+      "sourceSha256": "1e854d58d2d17e6a30e7b2c104fffa9b54c7fd2bcf6b0bd7fb7ee7be5633223f",
+      "derivedSha256": "99945ded227077ce65d02671c293b6842b7210a847a02f2dbb0911d6c08e4a16"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/dead_quiver_branch_02/dead_quiver_branch_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/dead_quiver_branch_02/dead_quiver_branch_02_arm_2k_UnityMask.png",
+      "sourceSha256": "9b6ede0f777139d9d71e122a77ebe15e92561e9eba6460d22f2b1df52c4797f8",
+      "derivedSha256": "1e1aa2524c6654ea39b8b58ffb8fd43299a32fa636268bea64f11604cbef1e03"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/dead_quiver_trunk/dead_quiver_trunk_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/dead_quiver_trunk/dead_quiver_trunk_arm_2k_UnityMask.png",
+      "sourceSha256": "cb28a582b2b45fb4cf3f259e4b036958a9c204e516431c99e20d2829e8c28c57",
+      "derivedSha256": "c8e8417a4b3267f9825f6bd5409c7291f50c4530cbed04bd43dd4c9dc4d6cbcb"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/dining_table/dining_table_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/dining_table/dining_table_arm_2k_UnityMask.png",
+      "sourceSha256": "68e05c23755446328d9cb85d017ce55626ad847ec989908dedb4002f74b4404f",
+      "derivedSha256": "32c1f84ce7731d681836d02a51a5eac17a6763866e2e7b553d0d9c67bfdbeac7"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/dirty_football/dirty_football_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/dirty_football/dirty_football_arm_2k_UnityMask.png",
+      "sourceSha256": "ea27178dbc325248f8b37a7bdbd836d010addd702f7860483b55b933666cfab1",
+      "derivedSha256": "c6864327ffb330b7abc31132632e2ee31d9dee48009effd709397e9035e97ffe"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/drain_cleaner/drain_cleaner_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/drain_cleaner/drain_cleaner_arm_2k_UnityMask.png",
+      "sourceSha256": "6710cec71fcf7a329e223b4448f67f5c1cc3abe4ff41c640c6842bd6a473fc42",
+      "derivedSha256": "0a4b40770c2f415779e06332640233652d1e2e202230426528a37a5e433825ff"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/drawer_cabinet/drawer_cabinet_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/drawer_cabinet/drawer_cabinet_arm_2k_UnityMask.png",
+      "sourceSha256": "b0d86115d9b8d9c85fc9c787c56dc32e573b64a8ae1d3d5a82268f540c820f0b",
+      "derivedSha256": "981b06c09d0c16237c249248c8ac56d7b8fc8d33f95a579492943bf9b7127273"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/exterior_aircon_unit/exterior_aircon_unit_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/exterior_aircon_unit/exterior_aircon_unit_01_arm_2k_UnityMask.png",
+      "sourceSha256": "1a146357454fc143ed7e3b1443abc901d675d3dbef6b8c5afc9705d53be681a9",
+      "derivedSha256": "26bce39cdcb2469daa14c901059312002862d0bbc999aa89b707f74a4fcc9db8"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/exterior_aircon_unit/exterior_aircon_unit_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/exterior_aircon_unit/exterior_aircon_unit_02_arm_2k_UnityMask.png",
+      "sourceSha256": "4817491a80bbe44a63d88d6191fe4771128b2e1bc9f772851ce61bcf1d673d49",
+      "derivedSha256": "768498782c48958069e9a537582a1830eb57d7e3893040bc66330e1f037862a6"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/exterior_aircon_unit/exterior_aircon_unit_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/exterior_aircon_unit/exterior_aircon_unit_01_arm_2k_UnityMask.png",
+      "sourceSha256": "1a146357454fc143ed7e3b1443abc901d675d3dbef6b8c5afc9705d53be681a9",
+      "derivedSha256": "26bce39cdcb2469daa14c901059312002862d0bbc999aa89b707f74a4fcc9db8"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/exterior_aircon_unit/exterior_aircon_unit_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/exterior_aircon_unit/exterior_aircon_unit_02_arm_2k_UnityMask.png",
+      "sourceSha256": "4817491a80bbe44a63d88d6191fe4771128b2e1bc9f772851ce61bcf1d673d49",
+      "derivedSha256": "768498782c48958069e9a537582a1830eb57d7e3893040bc66330e1f037862a6"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/filmstrip_projector_8mm/filmstrip_projector_8mm_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/filmstrip_projector_8mm/filmstrip_projector_8mm_arm_2k_UnityMask.png",
+      "sourceSha256": "ce8c46c9aa9d15a2be2d9057e6bec692aa374e8d9380b37e8dbb11cee713cf84",
+      "derivedSha256": "a8e3a3ac5c4352658adbfba61c88dc286bc7407d998cbd4f6dd7df81ba798e5b"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/filmstrip_projector_8mm/filmstrip_projector_8mm_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/filmstrip_projector_8mm/filmstrip_projector_8mm_arm_2k_UnityMask.png",
+      "sourceSha256": "ce8c46c9aa9d15a2be2d9057e6bec692aa374e8d9380b37e8dbb11cee713cf84",
+      "derivedSha256": "a8e3a3ac5c4352658adbfba61c88dc286bc7407d998cbd4f6dd7df81ba798e5b"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/fish_knife/fish_knife_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/fish_knife/fish_knife_arm_2k_UnityMask.png",
+      "sourceSha256": "58168100eb3aed7a6b749c75920f6326eb787ad33cda2f33cd3df9c95fb1d68f",
+      "derivedSha256": "50caeef4ba64d63e2d5cfc8a361668d62e0cc3657f83840cbdc362c363f061e5"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/fishermans_hat/fishermans_hat_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/fishermans_hat/fishermans_hat_arm_2k_UnityMask.png",
+      "sourceSha256": "64912d3c67ccda31e8bd48ac6ae55414bbb06dad0e25714895c222bd792971bc",
+      "derivedSha256": "e467a41291d397de09b914fe25fdd28bd1b35f9f4dd670f83512c3cccefad21a"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/food_kiwi_01/food_kiwi_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/food_kiwi_01/food_kiwi_01_arm_2k_UnityMask.png",
+      "sourceSha256": "57ccaf689abce3c884388b1f7a3b4e7cb8a3f17713a32f60a5f2a504b48e0cef",
+      "derivedSha256": "b1cdcc49406bbf9a5bf4344c7dee2b86bf09d9649fb78cc7c71707663f5297b3"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/gallinera_table/gallinera_table_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/gallinera_table/gallinera_table_arm_2k_UnityMask.png",
+      "sourceSha256": "dd9f57c2a65ca28a6933b4f44d7cd1ffa1ce549d7f48d619f3f0d2c4194b899c",
+      "derivedSha256": "3e306b8bcfe0e2187726df472e1809c2b9db7af4bf1319486298336a06d5904a"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/garden_gloves_01/garden_gloves_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/garden_gloves_01/garden_gloves_01_arm_2k_UnityMask.png",
+      "sourceSha256": "d07709f24bdac3bb1ebe9de68cdd6792d044f3e4b75a1d9edff8625d555e0612",
+      "derivedSha256": "f6c9e3aea1af96a980d019efbac3de695aa71294795c64994e16cb9b523b1a64"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/gate_latch_01/gate_latch_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/gate_latch_01/gate_latch_01_arm_2k_UnityMask.png",
+      "sourceSha256": "aa6e3cb4441302a2d8a35805a0fe3d5d44a12aa0cdfcc1b8b447a35ef7f61f59",
+      "derivedSha256": "5ef139fc66c90abb2f7e0848454503ec183ed58eef61f5868a120382b6492091"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/gothic_coffee_table/gothic_coffee_table_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/gothic_coffee_table/gothic_coffee_table_arm_2k_UnityMask.png",
+      "sourceSha256": "cf160023fdc398f42efaebb0fad1ff42876792607d51d4264674da6eee33f7b2",
+      "derivedSha256": "3f96db9542c2d985b2bc7fb944ae9885c56b7d38ebe5b251600525961308f354"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/hand_plane_no4/hand_plane_no4_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/hand_plane_no4/hand_plane_no4_arm_2k_UnityMask.png",
+      "sourceSha256": "08d48c3688af799594d3b246315919b5ff6f55e7ad8e092c7a447ce687e7b5ed",
+      "derivedSha256": "6f2a7af8e9ed8f652cbf8cd15030ed7dceb2a9b4fb9053886f9123962ff17879"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/handsaw_wood/handsaw_wood_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/handsaw_wood/handsaw_wood_arm_2k_UnityMask.png",
+      "sourceSha256": "8e9c618fb6b3b31a15e3251c79db2a3bfa769e7bfcd4ada7b4b1837aa8bc06c4",
+      "derivedSha256": "62f89205626173a245a5885ae0b1913dfb25e64d1e619466bb6fc3d84c7e86b5"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/industrial_microscope/industrial_microscope_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/industrial_microscope/industrial_microscope_arm_2k_UnityMask.png",
+      "sourceSha256": "c75af1f6b7fbfc6715376f0b3dffcd599dc386a7f4f9597de7a63925389151dc",
+      "derivedSha256": "50918eeab643f6fe611f949104526ca02b063af00305ca3913070b748c4a3fc5"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/industrial_pipe_lamp/industrial_pipe_lamp_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/industrial_pipe_lamp/industrial_pipe_lamp_arm_2k_UnityMask.png",
+      "sourceSha256": "8b350f9faad05b770cc0b63024ac86ab3896ca85aeabfdc49626a055b9837d7f",
+      "derivedSha256": "7d535a8b59b294be42271b3d80d973cdf885d5be181481220c0fa7ca5025bedd"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/industrial_pipe_lamp/industrial_pipe_lamp_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/industrial_pipe_lamp/industrial_pipe_lamp_arm_2k_UnityMask.png",
+      "sourceSha256": "8b350f9faad05b770cc0b63024ac86ab3896ca85aeabfdc49626a055b9837d7f",
+      "derivedSha256": "7d535a8b59b294be42271b3d80d973cdf885d5be181481220c0fa7ca5025bedd"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/industrial_wall_sconce/industrial_wall_sconce_bulb_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/industrial_wall_sconce/industrial_wall_sconce_bulb_arm_2k_UnityMask.png",
+      "sourceSha256": "acb99afbcf6ed7a4b545b40a2e0a44c7cf5200591605db4b1e1db6ea4a7afa26",
+      "derivedSha256": "c6be81337e5a0137da1f007bbe99d805a8cd98d73d83b081dbcd4ca1c9987b9e"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/island_tree_01/island_tree_01_branches_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/island_tree_01/island_tree_01_branches_arm_2k_UnityMask.png",
+      "sourceSha256": "a39d8291ba54adf1ca42f15abe2f622d0ac59fb13c87087a0fabc755b91dfee8",
+      "derivedSha256": "bb30e0ce3639acf62eb695a94031ca055328dd247fabcaf68d20ed3ef2bb3af8"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/island_tree_01/island_tree_01_leaves_diff_2k.jpg",
+      "sourceAlpha": "Builds/ArtSources/Phase5/PolyHaven/island_tree_01/island_tree_01_leaves_alpha_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/island_tree_01/island_tree_01_leaves_diff_2k_WithAlpha.png",
+      "sourceSha256": "e5c56ca13525aed76572852da5f69ae87cbee9e15abe2e1eff23adf92975f14a",
+      "derivedSha256": "48d68b302516f3c78600ba0c0111740d28bfd8a4c07fcd99943bd67cc285eece"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/island_tree_01/island_tree_01_leaves_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/island_tree_01/island_tree_01_leaves_arm_2k_UnityMask.png",
+      "sourceSha256": "cf4d604711d955d74a13b656bdbf840015ac38a71e24821849efade730634cc6",
+      "derivedSha256": "adb9fccbb5e053a4891e979b96c0fd853527550177a8d8026cb04d5fc1bb6d72"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/island_tree_02/island_tree_02_branches_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/island_tree_02/island_tree_02_branches_arm_2k_UnityMask.png",
+      "sourceSha256": "a39d8291ba54adf1ca42f15abe2f622d0ac59fb13c87087a0fabc755b91dfee8",
+      "derivedSha256": "bb30e0ce3639acf62eb695a94031ca055328dd247fabcaf68d20ed3ef2bb3af8"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/island_tree_02/island_tree_02_leaves_diff_2k.jpg",
+      "sourceAlpha": "Builds/ArtSources/Phase5/PolyHaven/island_tree_02/island_tree_02_leaves_alpha_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/island_tree_02/island_tree_02_leaves_diff_2k_WithAlpha.png",
+      "sourceSha256": "e5c56ca13525aed76572852da5f69ae87cbee9e15abe2e1eff23adf92975f14a",
+      "derivedSha256": "48d68b302516f3c78600ba0c0111740d28bfd8a4c07fcd99943bd67cc285eece"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/island_tree_02/island_tree_02_leaves_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/island_tree_02/island_tree_02_leaves_arm_2k_UnityMask.png",
+      "sourceSha256": "cf4d604711d955d74a13b656bdbf840015ac38a71e24821849efade730634cc6",
+      "derivedSha256": "adb9fccbb5e053a4891e979b96c0fd853527550177a8d8026cb04d5fc1bb6d72"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/island_tree_03/island_tree_03_branches_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/island_tree_03/island_tree_03_branches_arm_2k_UnityMask.png",
+      "sourceSha256": "a39d8291ba54adf1ca42f15abe2f622d0ac59fb13c87087a0fabc755b91dfee8",
+      "derivedSha256": "bb30e0ce3639acf62eb695a94031ca055328dd247fabcaf68d20ed3ef2bb3af8"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/island_tree_03/island_tree_03_leaves_diff_2k.jpg",
+      "sourceAlpha": "Builds/ArtSources/Phase5/PolyHaven/island_tree_03/island_tree_03_leaves_alpha_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/island_tree_03/island_tree_03_leaves_diff_2k_WithAlpha.png",
+      "sourceSha256": "e5c56ca13525aed76572852da5f69ae87cbee9e15abe2e1eff23adf92975f14a",
+      "derivedSha256": "48d68b302516f3c78600ba0c0111740d28bfd8a4c07fcd99943bd67cc285eece"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/island_tree_03/island_tree_03_leaves_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/island_tree_03/island_tree_03_leaves_arm_2k_UnityMask.png",
+      "sourceSha256": "cf4d604711d955d74a13b656bdbf840015ac38a71e24821849efade730634cc6",
+      "derivedSha256": "adb9fccbb5e053a4891e979b96c0fd853527550177a8d8026cb04d5fc1bb6d72"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/korean_fire_extinguisher_01/korean_fire_extinguisher_01_body_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/korean_fire_extinguisher_01/korean_fire_extinguisher_01_body_arm_2k_UnityMask.png",
+      "sourceSha256": "2f5387154f4985ae8103825f05acd1a9c43e3307642f3b74b26db8932346e34c",
+      "derivedSha256": "e82c33ba80f471c5113e1a8c6def58fafb77747dd1c994338b59150e109548ef"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/korean_fire_extinguisher_01/korean_fire_extinguisher_01_glass_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/korean_fire_extinguisher_01/korean_fire_extinguisher_01_glass_arm_2k_UnityMask.png",
+      "sourceSha256": "d618f13b5c84957ae3e3b79f189465f52f9d409e17a0e110ded95adf39dcda62",
+      "derivedSha256": "9ccac4b969c5fe6fb04d4f44b1ffea87552811453f6cff31e8208a463f782f21"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/korean_fire_extinguisher_01/korean_fire_extinguisher_01_paper_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/korean_fire_extinguisher_01/korean_fire_extinguisher_01_paper_arm_2k_UnityMask.png",
+      "sourceSha256": "b4ea1553ae5a841cc837f92cced525868f0f67d02d72914adba553d3154ce6c5",
+      "derivedSha256": "75f352bdddb9f310815b41d6a4575a69c30aff22100da8d2a998301f027a4962"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/lambis_shell/lambis_shell_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/lambis_shell/lambis_shell_arm_2k_UnityMask.png",
+      "sourceSha256": "b802199a9c5816ebd490d8dc7c943175aa01002c673117b7c812e2d8c36cffa8",
+      "derivedSha256": "044beffbd9e66fe2570f571cdb0f8ba9559c1924dd07784466fe1b929625c99e"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/lemon/lemon_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/lemon/lemon_arm_2k_UnityMask.png",
+      "sourceSha256": "6b85c70070bd6dc4394e87fe8e701b19eb2af105beed913f1a99a7184ac1ffc7",
+      "derivedSha256": "95d1cee074855efa9249e2801f77268915eb3a1233d9ca59f3317da54af126d5"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/lightbulb_01/lightbulb_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/lightbulb_01/lightbulb_01_arm_2k_UnityMask.png",
+      "sourceSha256": "c93e0de95ea6b60455e144c718b4a3502fb701a381337b12c5afe58fc255c6cf",
+      "derivedSha256": "fe84a643ade44942e566bdcb595e59855c3a01aed68eacee71b33de25acef807"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/lightbulb_01/lightbulb_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/lightbulb_01/lightbulb_01_arm_2k_UnityMask.png",
+      "sourceSha256": "c93e0de95ea6b60455e144c718b4a3502fb701a381337b12c5afe58fc255c6cf",
+      "derivedSha256": "fe84a643ade44942e566bdcb595e59855c3a01aed68eacee71b33de25acef807"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/lightbulb_led/lightbulb_led_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/lightbulb_led/lightbulb_led_arm_2k_UnityMask.png",
+      "sourceSha256": "aa977237e2ec4a3dc36d383d42ed7e54a2f2e9b183580cb6ca3634c73a2b95d9",
+      "derivedSha256": "2a4ba9930e7d96c1c012525097f8b5f676f56ffb2cbbb6411e5f837299a31f44"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/long_life_food/long_life_food_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/long_life_food/long_life_food_arm_2k_UnityMask.png",
+      "sourceSha256": "b4e485f4e3d53a48c7295e60a46cebf8d1df5bf37ee089a641c1b579b7985003",
+      "derivedSha256": "4881c5356a2db150e22d99c450373ac7af1a5395ba4e87103c0cb183cc3c30f9"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/magnifying_glass_01/magnifying_glass_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/magnifying_glass_01/magnifying_glass_01_arm_2k_UnityMask.png",
+      "sourceSha256": "dab48b814ff172f3996339eafd87be42bb1e933b333d4410de49baa4a9acad22",
+      "derivedSha256": "36b6689608e7970bdeacedb112352abadf5b5ace5aedb72f4cbaef17bd999909"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/magnifying_glass_01/magnifying_glass_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/magnifying_glass_01/magnifying_glass_01_arm_2k_UnityMask.png",
+      "sourceSha256": "dab48b814ff172f3996339eafd87be42bb1e933b333d4410de49baa4a9acad22",
+      "derivedSha256": "36b6689608e7970bdeacedb112352abadf5b5ace5aedb72f4cbaef17bd999909"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/mantel_clock_01/mantel_clock_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/mantel_clock_01/mantel_clock_01_arm_2k_UnityMask.png",
+      "sourceSha256": "8dc8b4ac0af1f2005255638782c759035f4e21853e59682ae039e2d00a6b95d9",
+      "derivedSha256": "cf9041bd486e9474d69fa6b0aa2566bacc38c8bdd25df92442551e620d97beac"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/mantel_clock_01/mantel_clock_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/mantel_clock_01/mantel_clock_01_arm_2k_UnityMask.png",
+      "sourceSha256": "8dc8b4ac0af1f2005255638782c759035f4e21853e59682ae039e2d00a6b95d9",
+      "derivedSha256": "cf9041bd486e9474d69fa6b0aa2566bacc38c8bdd25df92442551e620d97beac"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/modular_airduct_circular_01/modular_airduct_circular_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/modular_airduct_circular_01/modular_airduct_circular_01_arm_2k_UnityMask.png",
+      "sourceSha256": "50df975b2280d7119ea871afebf2f3b62e3b42273c5bda49f186afa868bf4dba",
+      "derivedSha256": "cf0903b4e2ec49d8cad06fdbce90a8dc162c76a025d205155dfc69ee232acb18"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/modular_airduct_rectangular_01/modular_airduct_rectangular_01_parts01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/modular_airduct_rectangular_01/modular_airduct_rectangular_01_parts01_arm_2k_UnityMask.png",
+      "sourceSha256": "6421490e4d61687306455f6595f824ab381e46a28de7744f31063f095a0c66ca",
+      "derivedSha256": "5ebbe26048c00d46ce930c9877bf3660c353ba2fbe05e0d5529f814fe06e5b5c"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/modular_airduct_rectangular_01/modular_airduct_rectangular_01_parts02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/modular_airduct_rectangular_01/modular_airduct_rectangular_01_parts02_arm_2k_UnityMask.png",
+      "sourceSha256": "49de00f29fe7576c32f802fdbbcc3e124b3bc05a7bf259712bbff02cbb118b6d",
+      "derivedSha256": "147857d2d635e87725941089fdf46feb0b70d1010c40c9c7580f5c1b80e7b12d"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/modular_chainlink_fence/modular_chainlink_fence_posts_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/modular_chainlink_fence/modular_chainlink_fence_posts_arm_2k_UnityMask.png",
+      "sourceSha256": "54da8887d80d86057e1b94818e374515ae8ee585cfe2a0f5351ed45826a14891",
+      "derivedSha256": "b3c41024ba7d1bbd77e63c719517654c1b428f94912012a9b5ba805065e52af5"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/modular_chainlink_fence/modular_chainlink_fence_wire_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/modular_chainlink_fence/modular_chainlink_fence_wire_arm_2k_UnityMask.png",
+      "sourceSha256": "d3e8f0ac72d9177f442d6e2906537f5b4166e50a2dbf74cae9349e7724da2a54",
+      "derivedSha256": "e4c48915c4db313b12259f6ab70c149f555c08af8e1368926baf441b414605b2"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/modular_electric_cables/modular_electric_cables_boxes_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/modular_electric_cables/modular_electric_cables_boxes_arm_2k_UnityMask.png",
+      "sourceSha256": "560fa1d5fe3cb38cdc46118677f6924def4aa5a25895465ddd46a1c6706ef178",
+      "derivedSha256": "6c3403dc369f40461cf1052ce901c466c0ff1abfa7bb1bfd64a3a67668a66465"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/modular_electricity_poles/modular_electricity_poles_pieces_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/modular_electricity_poles/modular_electricity_poles_pieces_arm_2k_UnityMask.png",
+      "sourceSha256": "00b6c8c407b736cd79034f28d12b820ff5bcc5a04835883e70fe0c752cab6aa5",
+      "derivedSha256": "cab7be4ac75c6f26f8f7edb1fd28eea5f511299c1b1f58bec8c771131b7d6a37"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/modular_fort_01/modular_fort_01_plaster_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/modular_fort_01/modular_fort_01_plaster_arm_2k_UnityMask.png",
+      "sourceSha256": "5f5b44b6e5122e9430378f07ef9369ddc1186e45a7709992e431e256741ca7ca",
+      "derivedSha256": "5fc8eeeb6bcbc473f8ffc2f555b67ba6b3fb7ba32000cda4f73c81625dadb6db"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/modular_fort_01/modular_fort_01_trim_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/modular_fort_01/modular_fort_01_trim_arm_2k_UnityMask.png",
+      "sourceSha256": "eca67b74bfc9ff3402380e8e88d21ce574b6aa28fdc245689175fe13f3920878",
+      "derivedSha256": "d531d7bf92bfc9ba1a9af80a9a0fbeaf2a23e050fcbbb9158ee268e1901b6269"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/modular_fort_01/modular_fort_01_wall_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/modular_fort_01/modular_fort_01_wall_arm_2k_UnityMask.png",
+      "sourceSha256": "41b149fc7f1668a4e98d2bcd508c4fff445b64dc6a2681a7e61b5bb6fd9239de",
+      "derivedSha256": "748dda116f6be33fe145a6d133dd9324331e141c84b8d7babb8f5713cd0150c5"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/modular_metal_gutter/modular_metal_gutter_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/modular_metal_gutter/modular_metal_gutter_arm_2k_UnityMask.png",
+      "sourceSha256": "96905ea557e9300658c8ea349c6f10a87c5aac2b43135633af803dee03c65d75",
+      "derivedSha256": "717bc29938cc37440a268e6d3855650ff535a5c71345cc9e8bb8b1371fa36c19"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/modular_pipes/modular_pipes_metal_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/modular_pipes/modular_pipes_metal_arm_2k_UnityMask.png",
+      "sourceSha256": "86f932c63810afc4d1e38ceecfb1cf08d2b8ec327a7fe8361a42151ef4710b13",
+      "derivedSha256": "cd6a6152e40badf4ead568c6b1cec40415baf72e97b5319a6467abaade1618e5"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/modular_pipes/modular_pipes_pvc_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/modular_pipes/modular_pipes_pvc_arm_2k_UnityMask.png",
+      "sourceSha256": "7c1091dd1d1fc88e4f499635f27dd8dcdf58684bb7d7b98efc8369d916520e9a",
+      "derivedSha256": "e4f8c5b49375e1d805a327a5bd585f2984d90e2b52f17e939f7584aefb552659"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/modular_pipes_plastic_01/modular_pipes_plastic_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/modular_pipes_plastic_01/modular_pipes_plastic_01_arm_2k_UnityMask.png",
+      "sourceSha256": "6f32a8eebc59a65fb7d04b0f1ad5ce03054dbcd7a43cad1447efac38d1933d40",
+      "derivedSha256": "7c4a14222ee27ea70d19b5d58d40f5de615219d3a7cf9c011466519154643611"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/modular_urban_apartments_facade/modular_urban_apartments_facade_objects_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/modular_urban_apartments_facade/modular_urban_apartments_facade_objects_arm_2k_UnityMask.png",
+      "sourceSha256": "8573bb7a15e809f635aa71fb0348355f93195394f1788bf05ea68ca4daa2e887",
+      "derivedSha256": "76865f630a1e04f0ebe28c8342841498bef2cc499602d67fdf0e0f11d9e6164e"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/modular_urban_apartments_facade/modular_urban_apartments_facade_plaster_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/modular_urban_apartments_facade/modular_urban_apartments_facade_plaster_arm_2k_UnityMask.png",
+      "sourceSha256": "0658b150074321691cdd81e04d0c42966034f45f4c74b501ec497a29c4144375",
+      "derivedSha256": "f924e70dc9356d041a21acf05d4775dc2ba9c04c6c6e6242c59c89187e448c18"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/modular_urban_apartments_facade/modular_urban_apartments_facade_trim_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/modular_urban_apartments_facade/modular_urban_apartments_facade_trim_01_arm_2k_UnityMask.png",
+      "sourceSha256": "c34c3eb081a60a8d5daacc217bdca889c945225be79b272135abd08fb6b8aa85",
+      "derivedSha256": "80380c880297f430e1d2d328d87c7e2d79d548fd470769d58d26fe5384c3786d"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/modular_urban_apartments_facade/modular_urban_apartments_facade_trim_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/modular_urban_apartments_facade/modular_urban_apartments_facade_trim_02_arm_2k_UnityMask.png",
+      "sourceSha256": "bab306cc2a40a9f699e5c33fd97e0f3a4ac1817e71afa47518861fb452011e86",
+      "derivedSha256": "31334809aaa4d09a2d7ecbd6c3277e6f9b5d8089b2a30e1fbf0624cf207b2ad2"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/multi_cleaner_5_litre/multi_cleaner_5_litre_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/multi_cleaner_5_litre/multi_cleaner_5_litre_arm_2k_UnityMask.png",
+      "sourceSha256": "06e672cff1c4dfd7a14efa12e0e457a5c409fe79dbd73ec2e4505ab2ad47ebd7",
+      "derivedSha256": "76108cdb70c16e4d14bcbe370ae0e3e4fc0599c406c20a48bf4c6e55c0faf27b"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/multi_cleaner_bottle/multi_cleaner_bottle_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/multi_cleaner_bottle/multi_cleaner_bottle_arm_2k_UnityMask.png",
+      "sourceSha256": "2e92505b79e0749d37ca503ca8c424b55cb9da12963ac369c55a0ef8725c71b7",
+      "derivedSha256": "475e2ae5c3d951c607351f04dd814245eec5bf59c6d96a21949f7c19b824f953"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/namaqualand_rocks_01/namaqualand_rocks_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/namaqualand_rocks_01/namaqualand_rocks_01_arm_2k_UnityMask.png",
+      "sourceSha256": "7ebc77e723e942e78b26b8074fd5de0a4c23906ed81069153691bb6fc92aadf7",
+      "derivedSha256": "1b935b57dd4e4912221f5313e501ae583fc743052c380b03436b5f5b56a53310"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/old_drill_press/old_drill_press_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/old_drill_press/old_drill_press_arm_2k_UnityMask.png",
+      "sourceSha256": "c2ac4e964c049f0ed4ae00c789033c03d3b6f7aa2c403ed9cb3b9e72e3391c96",
+      "derivedSha256": "4f01c4b5c9b642f3314329e923d321fea132bc7d6f83e386380cc7efdc34cf1c"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/old_tyre/old_tyre_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/old_tyre/old_tyre_arm_2k_UnityMask.png",
+      "sourceSha256": "2a5bcb0b7a9f447de60bbf6f492dc01059dcbbfe94cf67eee8c5e1b2892ff5eb",
+      "derivedSha256": "9523d574218ea99937767a31c6d754a7924a9fe5f9c372eb8381fe44f66b1119"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/outdoor_table_chair_set_01/outdoor_table_chair_set_01_chair_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/outdoor_table_chair_set_01/outdoor_table_chair_set_01_chair_arm_2k_UnityMask.png",
+      "sourceSha256": "646ed8503d7e1d1806506a38c3b2d31b616e0720538e7df054c3d982b9bfa5ae",
+      "derivedSha256": "18e1b05b54e6d7454a12db9d76978a2dbab07217a0380be4b5857b6bd843f607"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/outdoor_table_chair_set_01/outdoor_table_chair_set_01_chair_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/outdoor_table_chair_set_01/outdoor_table_chair_set_01_chair_arm_2k_UnityMask.png",
+      "sourceSha256": "646ed8503d7e1d1806506a38c3b2d31b616e0720538e7df054c3d982b9bfa5ae",
+      "derivedSha256": "18e1b05b54e6d7454a12db9d76978a2dbab07217a0380be4b5857b6bd843f607"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/plastic_crate_01/plastic_crate_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/plastic_crate_01/plastic_crate_01_arm_2k_UnityMask.png",
+      "sourceSha256": "5eacb0a5d7facfc2dfd9ad4dda7f14f1bf314f3804c173d6790f6e0369a4b6be",
+      "derivedSha256": "0fdc171bee6e3093ea4b7ad27bb6c131ff802e283987fa1d5a7547ecbe050eb9"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/plastic_crate_03/plastic_crate_03_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/plastic_crate_03/plastic_crate_03_arm_2k_UnityMask.png",
+      "sourceSha256": "81c3fef7fc2b917f68cd9506493886a702059fe13b1c9e3998f8d7d13f2a2f1c",
+      "derivedSha256": "7d58370b826d61e8302c303be47cd81c8526e356326473cc681d6fe22bf55d91"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/plastic_jerrycan/plastic_jerrycan_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/plastic_jerrycan/plastic_jerrycan_arm_2k_UnityMask.png",
+      "sourceSha256": "fcf4e5a1f85769c82de0713a42218edbb9c7116159c6b33056c6a5779bd6ea72",
+      "derivedSha256": "f1c1cc501a0c91b84481bc175e53770190813566f7caa6a551be0ee59fec7d17"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/pocket_watch/pocket_watch_glass_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/pocket_watch/pocket_watch_glass_arm_2k_UnityMask.png",
+      "sourceSha256": "797d9d374f8678df85275424bce9751055f4a1397d0cbd811de68c1bbc02be34",
+      "derivedSha256": "9dc85a4b55e111df45b4a5ce267d4757d7d55f4aa02abd96617604c1d428ae37"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/postcard_set_01/postcard_set_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/postcard_set_01/postcard_set_01_arm_2k_UnityMask.png",
+      "sourceSha256": "f666627ba49dd406919c89e48d76db8486360416263fd029e0a1dd08940d6a0a",
+      "derivedSha256": "fe2f2681da44ccdd1f6cd8e3b0f789df46b53126ea35d6d4e391a0442571929c"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/projector_screen/projector_screen_frame_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/projector_screen/projector_screen_frame_arm_2k_UnityMask.png",
+      "sourceSha256": "aae0362c4e1348ebfdf94815c451478c519a5fd8cd2602faa20eec0ac1ccf405",
+      "derivedSha256": "ae67a664ab619a06baa6809081b983f763cca7cb3ab90c9371bee01f689f6f4f"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/propane_tank/propane_tank_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/propane_tank/propane_tank_arm_2k_UnityMask.png",
+      "sourceSha256": "dc87d82a6e6e0a1da7e6c2c633f3a06c93043a87c75ff381085237310f48362f",
+      "derivedSha256": "48400d5495d3682cb3cb21f7918894c8f025f6501cc8301b447b8914f2ec16b5"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/ratchet_wrench/ratchet_wrench_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/ratchet_wrench/ratchet_wrench_arm_2k_UnityMask.png",
+      "sourceSha256": "d024f5bbdcf4da22eec58bbb6ea58d11d229b59dd28ecdd58e590d4700fb9dcb",
+      "derivedSha256": "05f12c2b5ca80216f03d89622079f74f6e24c12aae4a8540639c664d82e89a4f"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/rubber_duck_toy/rubber_duck_toy_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/rubber_duck_toy/rubber_duck_toy_arm_2k_UnityMask.png",
+      "sourceSha256": "87cd18f544e579fb9a5bb42076abf731a5dcd629486d2cdd34f3378716e1eeda",
+      "derivedSha256": "22a1c6a954227fe26943ccb0d85ea57c8a877180167a7f5b235f41c017414295"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/russian_food_cans_01/russian_food_cans_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/russian_food_cans_01/russian_food_cans_01_arm_2k_UnityMask.png",
+      "sourceSha256": "943128f93486f9bc3736dc6f1bc49ed00d2bffdaae5de942a5699ef572e352c2",
+      "derivedSha256": "eca97551d9e5ccfb98209aabd9fb668241efb575262f956d657fb2196144454c"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/rusted_hacksaw/rusted_hacksaw_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/rusted_hacksaw/rusted_hacksaw_arm_2k_UnityMask.png",
+      "sourceSha256": "a29a4d109b4edfd2cffd3daafe350cbf2cb237ce3d09b5aae3f1e7c8ce411285",
+      "derivedSha256": "cabf286f414bbf5c77f6429ed3017651cf3df4779d2724f102d9c7eedf2f4da6"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/security_camera_01/security_camera_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/security_camera_01/security_camera_01_arm_2k_UnityMask.png",
+      "sourceSha256": "666909428a2cf5ebc209a56078852862ca7717747321f4d486193db854277383",
+      "derivedSha256": "62c4283b4fc4dba57784b61eeafacec7aee55032c7b7a531ad2e57df33cbacf2"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/security_camera_01/security_camera_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/security_camera_01/security_camera_01_arm_2k_UnityMask.png",
+      "sourceSha256": "666909428a2cf5ebc209a56078852862ca7717747321f4d486193db854277383",
+      "derivedSha256": "62c4283b4fc4dba57784b61eeafacec7aee55032c7b7a531ad2e57df33cbacf2"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/security_camera_02/security_camera_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/security_camera_02/security_camera_02_arm_2k_UnityMask.png",
+      "sourceSha256": "5123eea1d25d07e05c7dcda7ff3d561bf672ad71cb43d6341ecf71780e4f8bcc",
+      "derivedSha256": "c641c8332318eea689f02d523db469589e3d985dd9bc7e7565067485981b8ab5"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/security_camera_02/security_camera_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/security_camera_02/security_camera_02_arm_2k_UnityMask.png",
+      "sourceSha256": "5123eea1d25d07e05c7dcda7ff3d561bf672ad71cb43d6341ecf71780e4f8bcc",
+      "derivedSha256": "c641c8332318eea689f02d523db469589e3d985dd9bc7e7565067485981b8ab5"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/side_table_01/side_table_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/side_table_01/side_table_01_arm_2k_UnityMask.png",
+      "sourceSha256": "135641036b9b436467f757510112362ddd7bf82b79bc6750345fde4be2d4bf81",
+      "derivedSha256": "4a87bd2c107d8e161ce2dd51327fc0caa067480fc3d66c852f4936103bd40a75"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/side_table_tall_01/side_table_tall_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/side_table_tall_01/side_table_tall_01_arm_2k_UnityMask.png",
+      "sourceSha256": "6b588dea4dea704983fe2f47ca20a6cda9f9ce03fe59a025de2f7e8baa5b7ddc",
+      "derivedSha256": "64a2786886e0173bbf629753ceff1ab806b240ac91835053a3366ea304ee046f"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/signal_flashlight/signal_flashlight_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/signal_flashlight/signal_flashlight_arm_2k_UnityMask.png",
+      "sourceSha256": "1024ba603bba9d062afa65650c135051820ef640a09a97c7942b4dd455f25e62",
+      "derivedSha256": "f32e9682f8f3ae2c8a38a3cd94ac93847974e3e6f56848e2da157499e25a7964"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/signal_flashlight/signal_flashlight_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/signal_flashlight/signal_flashlight_arm_2k_UnityMask.png",
+      "sourceSha256": "1024ba603bba9d062afa65650c135051820ef640a09a97c7942b4dd455f25e62",
+      "derivedSha256": "f32e9682f8f3ae2c8a38a3cd94ac93847974e3e6f56848e2da157499e25a7964"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/signal_flashlight/signal_flashlight_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/signal_flashlight/signal_flashlight_arm_2k_UnityMask.png",
+      "sourceSha256": "1024ba603bba9d062afa65650c135051820ef640a09a97c7942b4dd455f25e62",
+      "derivedSha256": "f32e9682f8f3ae2c8a38a3cd94ac93847974e3e6f56848e2da157499e25a7964"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/sledgehammer_01/sledgehammer_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/sledgehammer_01/sledgehammer_01_arm_2k_UnityMask.png",
+      "sourceSha256": "0a0b3263195e3773cef117fc609410306826ea7d2bdcf33e74117f9f702f88ab",
+      "derivedSha256": "cfc5d0c37f599d019142e6174e8ed831681a8f55c2450809f4656a8263746091"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/sofa_02/sofa_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/sofa_02/sofa_02_arm_2k_UnityMask.png",
+      "sourceSha256": "1e6bb97f6c0d2a1b81b9aa3c67c26b65bc02aeed88b19373726f117c16f89980",
+      "derivedSha256": "389f15b588a6dc6ece64a720d2c8b6c9db7f1b9d8945807fa0eea51ae4dbdfb8"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/sofa_03/sofa_03_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/sofa_03/sofa_03_arm_2k_UnityMask.png",
+      "sourceSha256": "cb792a269d31ca52f5f2021d595fbb27cacf2f540ba039b582982ec68e30256f",
+      "derivedSha256": "62a4c79755dc4191bc63953c143863eb33ee38706b0e8c8bd5a9d7beabfe7842"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/sofa_03/sofa_03_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/sofa_03/sofa_03_arm_2k_UnityMask.png",
+      "sourceSha256": "cb792a269d31ca52f5f2021d595fbb27cacf2f540ba039b582982ec68e30256f",
+      "derivedSha256": "62a4c79755dc4191bc63953c143863eb33ee38706b0e8c8bd5a9d7beabfe7842"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/standing_chalkboard_01/standing_chalkboard_01_board_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/standing_chalkboard_01/standing_chalkboard_01_board_arm_2k_UnityMask.png",
+      "sourceSha256": "06224b87bddcd007ff3d9b25a290620ed96de913e200cc237df74676ba4208c5",
+      "derivedSha256": "94cc38bbed60607a60dbd4236db48e33432fe36f793bc169f64b91c5ca1ba051"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/standing_chalkboard_01/standing_chalkboard_01_board_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/standing_chalkboard_01/standing_chalkboard_01_board_arm_2k_UnityMask.png",
+      "sourceSha256": "06224b87bddcd007ff3d9b25a290620ed96de913e200cc237df74676ba4208c5",
+      "derivedSha256": "94cc38bbed60607a60dbd4236db48e33432fe36f793bc169f64b91c5ca1ba051"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/steel_frame_shelves_03/steel_frame_shelves_03_drawers_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/steel_frame_shelves_03/steel_frame_shelves_03_drawers_arm_2k_UnityMask.png",
+      "sourceSha256": "b5febeb23a1dfc1a32e7d95864a47f326e61d77536a1b943215035ddd9d65378",
+      "derivedSha256": "30436f567ac0b49a38bd3f10350006d16da140a11729fba9b6a23d87e4dab5f3"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/street_lamp_01/street_lamp_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/street_lamp_01/street_lamp_01_arm_2k_UnityMask.png",
+      "sourceSha256": "dadbbf2c75473587e6023d3555f81ea4fcb899976405c61aada539c6078e24e2",
+      "derivedSha256": "bc55ceb4e83f7995a046ec50522d86af9a776210016fa25ece7e451efbe7450e"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/street_lamp_01/street_lamp_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/street_lamp_01/street_lamp_01_arm_2k_UnityMask.png",
+      "sourceSha256": "dadbbf2c75473587e6023d3555f81ea4fcb899976405c61aada539c6078e24e2",
+      "derivedSha256": "bc55ceb4e83f7995a046ec50522d86af9a776210016fa25ece7e451efbe7450e"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/street_lamp_01/street_lamp_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/street_lamp_01/street_lamp_01_arm_2k_UnityMask.png",
+      "sourceSha256": "dadbbf2c75473587e6023d3555f81ea4fcb899976405c61aada539c6078e24e2",
+      "derivedSha256": "bc55ceb4e83f7995a046ec50522d86af9a776210016fa25ece7e451efbe7450e"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/street_lamp_02/street_lamp_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/street_lamp_02/street_lamp_02_arm_2k_UnityMask.png",
+      "sourceSha256": "973fb199377471cc14d8e2182aa22f163af5b98d3ca2913bddc4b1a0e5580d0f",
+      "derivedSha256": "3dad6e7a3371d0a962de97912b0f70495c1f59240a3193b552c68904df6d6d0c"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/street_lamp_02/street_lamp_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/street_lamp_02/street_lamp_02_arm_2k_UnityMask.png",
+      "sourceSha256": "973fb199377471cc14d8e2182aa22f163af5b98d3ca2913bddc4b1a0e5580d0f",
+      "derivedSha256": "3dad6e7a3371d0a962de97912b0f70495c1f59240a3193b552c68904df6d6d0c"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/street_lamp_02/street_lamp_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/street_lamp_02/street_lamp_02_arm_2k_UnityMask.png",
+      "sourceSha256": "973fb199377471cc14d8e2182aa22f163af5b98d3ca2913bddc4b1a0e5580d0f",
+      "derivedSha256": "3dad6e7a3371d0a962de97912b0f70495c1f59240a3193b552c68904df6d6d0c"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/tire_pump/tire_pump_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/tire_pump/tire_pump_arm_2k_UnityMask.png",
+      "sourceSha256": "5bf2fbbb87105149fa65b7d275919af8345dddfbc9eafaabcc6437634714dea1",
+      "derivedSha256": "3a9df32162bb69d1b35c2e4dbfa4418415a0712293245871b7f2be0c876fd554"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/tongue_groove_pliers/tongue_groove_pliers_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/tongue_groove_pliers/tongue_groove_pliers_arm_2k_UnityMask.png",
+      "sourceSha256": "b3174116dfc24cc3ae59d1b4c22e01f10c06a492bee2af6b64a2449152da5f52",
+      "derivedSha256": "9310625b9edb03a619943b1d94a285db41226e55035af10384acfd1c0aa32442"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/tree_small_02/tree_small_02_branch_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/tree_small_02/tree_small_02_branch_arm_2k_UnityMask.png",
+      "sourceSha256": "82da928cc4e8a45c559f6abe8053227c7ae6cc14eb8d026a30c203aedd087042",
+      "derivedSha256": "19442415c35b3213a5d6633dc14395f92d3c99fb65511425e0cd022e47fd1416"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/tree_small_02/tree_small_02_leaves_diff_2k.jpg",
+      "sourceAlpha": "Builds/ArtSources/Phase5/PolyHaven/tree_small_02/tree_small_02_leaves_alpha_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/tree_small_02/tree_small_02_leaves_diff_2k_WithAlpha.png",
+      "sourceSha256": "6c984a46861562f2a20381c54106aa5e07ce0d3fce785907f8d263157e7561af",
+      "derivedSha256": "4d0ba2d1f8e493cb650251e37c72435b633151e1ec80b2c17053633e48073b71"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/tree_small_02/tree_small_02_leaves_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/tree_small_02/tree_small_02_leaves_arm_2k_UnityMask.png",
+      "sourceSha256": "a126c0d92b60c44c0664e4d3651831970e259b0d5a1fb39ebb67081cbecaca96",
+      "derivedSha256": "e81c5c3969d287fad7fef50a457131c584fe30ddef2fbba57ab097ebb1125f99"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/tree_stump_01/tree_stump_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/tree_stump_01/tree_stump_01_arm_2k_UnityMask.png",
+      "sourceSha256": "b025cf566d4ce1da452353f3d98c6ddee2fa63b2b440cfa94d9405de347f846f",
+      "derivedSha256": "25bc8b283b3eb4c6ec9ab01f6fa1d78f853442c4c69503d784c80ae8cc6baf44"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/tree_stump_02/tree_stump_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/tree_stump_02/tree_stump_02_arm_2k_UnityMask.png",
+      "sourceSha256": "d34610d4d6133c28688eb68208c9be223580f6c7b43e98c5d35dea48266512d3",
+      "derivedSha256": "e642ab562cb1faa964d8c2a151fdf845ef6dcae04a43fb8853894794c2eaca8f"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/utility_box_02/utility_box_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/utility_box_02/utility_box_02_arm_2k_UnityMask.png",
+      "sourceSha256": "e767bef42b431106db00cfb50374dd399f8acfe8a8d05045ab2590593920a177",
+      "derivedSha256": "9975e934263562d42df58ea7e18be9c294e4510f9d7d6cb024f87ba683c9198d"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/vintage_binocular/vintage_binocular_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/vintage_binocular/vintage_binocular_arm_2k_UnityMask.png",
+      "sourceSha256": "6a48bbab22a51f2f8028a10c56f243e7fa94ee77eb8005f8201c752249200cdb",
+      "derivedSha256": "b68048d26fea902c493cc60c3958b80fb351537ea227a28f2b453d53d9effc34"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/vintage_crutches_01/vintage_crutches_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/vintage_crutches_01/vintage_crutches_01_arm_2k_UnityMask.png",
+      "sourceSha256": "072f4e2db16f007c6da2d430564d68525fc3fa01d3aba23d3c2731c85ff4d7a6",
+      "derivedSha256": "53638d0f1f57542b5968075eebbbd1bd1ad067a206e82a11355294849d851671"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/vintage_flashlight/vintage_flashlight_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/vintage_flashlight/vintage_flashlight_arm_2k_UnityMask.png",
+      "sourceSha256": "ca4efb4c388d4dd31a0f141b1e979bb02aaa7cf1f4e0aaefa0cbc8b19632fc9b",
+      "derivedSha256": "5826758a07bfbe1c6271bad482225c0cbc98767e30fc9da042ed5ecb8eddab90"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/vintage_flashlight/vintage_flashlight_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/vintage_flashlight/vintage_flashlight_arm_2k_UnityMask.png",
+      "sourceSha256": "ca4efb4c388d4dd31a0f141b1e979bb02aaa7cf1f4e0aaefa0cbc8b19632fc9b",
+      "derivedSha256": "5826758a07bfbe1c6271bad482225c0cbc98767e30fc9da042ed5ecb8eddab90"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/vintage_grandfather_clock_01/vintage_grandfather_clock_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/vintage_grandfather_clock_01/vintage_grandfather_clock_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a1e8a24a439cc98fde64549ff4b70ac4ac99ca7c2d827a353914fb350d57ad11",
+      "derivedSha256": "154d153a53656fc4801ca4514df4ce5469047f365b1f3abcfdf30ff5c0394ef8"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/vintage_grandfather_clock_01/vintage_grandfather_clock_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/vintage_grandfather_clock_01/vintage_grandfather_clock_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a1e8a24a439cc98fde64549ff4b70ac4ac99ca7c2d827a353914fb350d57ad11",
+      "derivedSha256": "154d153a53656fc4801ca4514df4ce5469047f365b1f3abcfdf30ff5c0394ef8"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/vintage_microscope/vintage_microscope_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/vintage_microscope/vintage_microscope_arm_2k_UnityMask.png",
+      "sourceSha256": "53d28f1c3b48c9ecf0f7eca257ee6c2757cc9e4d2b182b97487a13f9677ec89d",
+      "derivedSha256": "191d3f9cd60a6c7de51fa72c0741df1f8c01f8742e462453adc019c92db9ed8c"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/vintage_microscope/vintage_microscope_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/vintage_microscope/vintage_microscope_arm_2k_UnityMask.png",
+      "sourceSha256": "53d28f1c3b48c9ecf0f7eca257ee6c2757cc9e4d2b182b97487a13f9677ec89d",
+      "derivedSha256": "191d3f9cd60a6c7de51fa72c0741df1f8c01f8742e462453adc019c92db9ed8c"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/vintage_stapler/vintage_stapler_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/vintage_stapler/vintage_stapler_arm_2k_UnityMask.png",
+      "sourceSha256": "12182a7327bbba61e32b6fab68c5a34f75793a7be05dd46a6b021619004bd65c",
+      "derivedSha256": "5eede0a7840dcd834cdff55ed2a2c8317fef2153daa2e61304bf05f40dbd35d9"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/vintage_suitcase/vintage_suitcase_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/vintage_suitcase/vintage_suitcase_01_arm_2k_UnityMask.png",
+      "sourceSha256": "5a696cdd9ac9e583a7d775d7b317994bd39aab4f4f07e61d7ec68f5c154b0672",
+      "derivedSha256": "8584d30618deb3901782199f2d6901e49a9806e5d65ce60798c8717824ad4b0f"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/vintage_suitcase/vintage_suitcase_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/vintage_suitcase/vintage_suitcase_02_arm_2k_UnityMask.png",
+      "sourceSha256": "0c53ba2096048d93640a944882b156e204335523595c15cf00fe3ec73037ce29",
+      "derivedSha256": "4574457d6481431f0104158b7f3829a44f26b83ad6f9589dfb909c3272e7fce1"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/vintage_telephone_wall_clock/vintage_telephone_wall_clock_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/vintage_telephone_wall_clock/vintage_telephone_wall_clock_arm_2k_UnityMask.png",
+      "sourceSha256": "626a0708483ec87a487e8379e99ddb565c18e3c737f8440cfc8f25aeabe0b7eb",
+      "derivedSha256": "1196ad25c436646fd5a7dd9168f6e521a1e0a6276116dbf56d97bee424695e26"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/vintage_telephone_wall_clock/vintage_telephone_wall_clock_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/vintage_telephone_wall_clock/vintage_telephone_wall_clock_arm_2k_UnityMask.png",
+      "sourceSha256": "626a0708483ec87a487e8379e99ddb565c18e3c737f8440cfc8f25aeabe0b7eb",
+      "derivedSha256": "1196ad25c436646fd5a7dd9168f6e521a1e0a6276116dbf56d97bee424695e26"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/wine_barrel_01/wine_barrel_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/wine_barrel_01/wine_barrel_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a8902e757c8fe2a80a851bf419906da641fd3829f5f21e5c6cd13016ee13180b",
+      "derivedSha256": "0fcd4e4f68e2b6eaced2698ccec230cb9dfa8d23fd1919ec79dba14a58337700"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/wooden_military_crate/wooden_military_crate_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/wooden_military_crate/wooden_military_crate_arm_2k_UnityMask.png",
+      "sourceSha256": "e56692c52460d0b29cf9675c5edacca4d1760c27955f01495c961e5786f5b1ea",
+      "derivedSha256": "64332fe872e9f1594bc181a24dbf38c076bfa1191111fcca5520e18468489172"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/wooden_picnic_table/wooden_picnic_table_bottom_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/wooden_picnic_table/wooden_picnic_table_bottom_arm_2k_UnityMask.png",
+      "sourceSha256": "a7d8573dc60ed977f2069d34460b6784eb4155601b4890b47c4f52c4b1231ffe",
+      "derivedSha256": "d3963f9cc349f2aee8a55e53f3dbf89ffc17489657d2a171080b893ab1a4bcf0"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/UnusedSourceTextures/ScreenRobe/P5_ScreenRobe_Scene_-_RootMetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/ScreenRobe/P5_ScreenRobe_Scene_-_RootMetalRough_UnityMask.png",
+      "sourceSha256": "1f5b390380b476526c94bbe7fbf2cbfc7b3a0fdbf4b8bbb8f5948e8803205e3a",
+      "derivedSha256": "0e4f0688cfd2a8e6ff6c1c2669ae9d9b1c0b3b74e7a2baaff860e5ce4ee6643f"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/brown_mud_03/brown_mud_03_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/brown_mud_03/brown_mud_03_arm_2k_UnityMask.png",
+      "sourceSha256": "29dae9a0c85cb0b91bd8c9b878d184f36363472212bd6a02662f415627f06992",
+      "derivedSha256": "7c3493b7cbc110860f0294bd22f616cae32f51f49e44b6421a0a6c9eff408cc3"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/concrete_wall_007/concrete_wall_007_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/concrete_wall_007/concrete_wall_007_arm_2k_UnityMask.png",
+      "sourceSha256": "e821fb48a8a1f31fbee196ef8c7a6a67957fd71f77422391d59b7ae436660341",
+      "derivedSha256": "2ad91ff66d6b3a427eecc1c580dc4d485440b01c4256d2e972bb42a7bfd56549"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/fabric_pattern_07/fabric_pattern_07_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/fabric_pattern_07/fabric_pattern_07_arm_2k_UnityMask.png",
+      "sourceSha256": "68b0e04fbee9a5e5e896f4e3826376149745afb67b1cf3f5a1144687f33c669f",
+      "derivedSha256": "0e7bd2ae9ba3b0ea001a7615648dcc5bc8b87a214721031be30c4e68af23673b"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/rusty_metal_04/rusty_metal_04_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/rusty_metal_04/rusty_metal_04_arm_2k_UnityMask.png",
+      "sourceSha256": "ac62465ccd41994d31fc5b6f0c1651a1e9cdd2d80ec32e3bb0cc3b4fe22f3caa",
+      "derivedSha256": "c91fd24dc06bb303c7bd03eae8519926b4fac63de33c9755e55b1d6e20b06c59"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/wooden_rough_planks/wooden_rough_planks_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/wooden_rough_planks/wooden_rough_planks_arm_2k_UnityMask.png",
+      "sourceSha256": "26ceed18f44e9d7d9a62d30f8296e26c4341a3cacb0af65499100a2897defa45",
+      "derivedSha256": "496308222b6ae265bd88c7f99b9407fabade80a92708632b7f07526dabe7a5a0"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/UnusedSourceTextures/AntiqueMirror/P5_AntiqueMirror_antique_standing_mirror_MatMetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/AntiqueMirror/P5_AntiqueMirror_antique_standing_mirror_MatMetalRough_UnityMask.png",
+      "sourceSha256": "5befd0a2d07e94520bd97082f6c8ad52e2a28e0d301f080fa28a0476728065c6",
+      "derivedSha256": "dddb0182c97fb15a0d65262591b2208cc94baa30f24d3ce0c0defcc5c2762b40"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/PolyHaven/modified_thermos/modified_thermos_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/modified_thermos/modified_thermos_arm_2k_UnityMask.png",
+      "sourceSha256": "86b48b9a664bdffb1d0b71466bf1fa4ac43df303579b0de273dd7cb9cf03e4f2",
+      "derivedSha256": "6834521a997dea34c0805e771db8b303c5f56e3fadcf37bb7737e6b382e2792f"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/UnusedSourceTextures/MarketGenerator/P5_MarketGenerator_lambert1MetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/MarketGenerator/P5_MarketGenerator_lambert1MetalRough_UnityMask.png",
+      "sourceSha256": "779d7b5dede4454dd2f8033ad13482483c9b2371bb40be31c69126ce17c29a50",
+      "derivedSha256": "bd047a7d9c1ec286e575bca6200a40fda3c545b0669a3bb6486ffff07ed5c781"
+    },
+    {
+      "source": "Builds/ArtSources/Phase5/UnusedSourceTextures/StageLantern/P5_StageLantern_initialShadingGroupMetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Textures/StageLantern/P5_StageLantern_initialShadingGroupMetalRough_UnityMask.png",
+      "sourceSha256": "41b1b8d27e79a1f6e7108e38ff3077abcee02d1e37422e7afedf8c06beb2965f",
+      "derivedSha256": "5f4cc2de8eacfffd3b6d7aac6f9556d5887a9d21d84b06e7455c69bfacd22b2e"
+    }
+  ]
+}

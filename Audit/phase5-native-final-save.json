@@ -1,0 +1,220 @@
+{
+    "chapter_id": 5,
+    "checkpoint_id": "PHASE5_CP9",
+    "evidence_ids": [
+        "P4_EVIDENCE_EVP_4DIR",
+        "P4_EVIDENCE_AR_ALTAR",
+        "P4_EVIDENCE_THERMO_66",
+        "P5_EVIDENCE_CONTRACT",
+        "P5_EVIDENCE_SERVER_AR",
+        "P5_EVIDENCE_EVP_CROWD"
+    ],
+    "relic_ids": [
+        "P4_RELIC_TANAH",
+        "P4_RELIC_BELATI",
+        "P4_RELIC_KENDI"
+    ],
+    "location_seals": [
+        "SEAL_RUSUNAWA_GRIYA_ASRI",
+        "SEAL_RSUD_LAMA_SIDO_WARAS",
+        "SEAL_PABRIK_GULA_SINDANG_LAUT",
+        "SEAL_DESA_MATI_KARANG_SETRA"
+    ],
+    "upgrades": [
+        "AR_FULL",
+        "SELFIE_MODE",
+        "THERMOKLENIK_APK",
+        "UV_RAJAH",
+        "EVP_V2",
+        "SANITY_MONITOR",
+        "FILTER_ANTI_SENGKALA",
+        "UV_RAJAH_V2"
+    ],
+    "inventory": [
+        "SMARTPHONE_RAKA",
+        "JAKET_RAKA",
+        "MATABATIN_APK",
+        "P4_DOC_RAJAH_4",
+        "P4_DOC_DAMAR_LAST",
+        "P4_RELIC_KENDI"
+    ],
+    "battery": 25.315237045288087,
+    "sanity": 0.0,
+    "wallet_legitimate": 0,
+    "wallet_bound": 73332666,
+    "spent": 0,
+    "secret_items": [
+        "SECRET_P4_CERMIN_SAKSI",
+        "SECRET_P5_PITA_PERTAMA"
+    ],
+    "secret_notes_read": [],
+    "documents": [
+        {
+            "title": "Kitab Rajah Mbah Suro — Bagian Keempat",
+            "body": "Empat obor penjuru desa adalah nyawa Banaspati peliharaanku. Selama keempatnya menyala, cahaya kamera tak sanggup melukai kami. Hanya mereka yang membawa 3 Tumbal Tanah Kubur dan memadamkan 4 Obor Santet Asli dengan air ruwatan dapat memutus ikatannya. Obor palsu bertanda Rajah Silang Merah akan membalas!\n\n[Catatan Raka]\nTiga pusaka, bukan tiga kantong tanah: Kendi, Belati Perak, dan Kantong Tanah Kubur. Utara, Timur, Barat boleh diselesaikan dengan urutan apa pun. Pancing Banaspati mendekat, periksa UV, siram, lalu satu Blitz saat inti terbuka. Selatan terakhir: siram saja, kemudian kembali ke Pendopo untuk Blitz penutup. Total empat, bukan lima. Air sumur tidak habis."
+        },
+        {
+            "title": "Sobekan Buku Catatan Terakhir Damar",
+            "body": "Ka, gue akhirnya ngerti kenapa Penonton_Terakhir nyuruh lo livestream dari malam pertama. MataBatin.apk yang gue unduh dari deep-web dibuat pengikut Mbah Suro! Ketakutan penonton disedot lewat siaran buat membuka gerbang kelima: Pasar Setan. Gue diseret masuk ke kawah di belakang pendopo desa ini... Tolong hancurin Mbah Suro, Ka!"
+        }
+    ],
+    "archive_prepared": false,
+    "ending": 2,
+    "schema_version": 6,
+    "phase1": {
+        "completed_event_ids": [
+            "P1_COMPLETE"
+        ],
+        "dynamo_full_charge_used_ids": [],
+        "dynamo_emergency_last_uses": [],
+        "money_ledger": [],
+        "signboard_challenge": 0,
+        "elapsed_gameplay_seconds": 0.0,
+        "safe_anchor": "ARRIVAL",
+        "next_destination": ""
+    },
+    "phase2": {
+        "completed_event_ids": [
+            "P2_COMPLETE"
+        ],
+        "dynamo_full_charge_used_ids": [],
+        "dynamo_emergency_last_uses": [],
+        "money_ledger": [],
+        "elapsed_gameplay_seconds": 0.0,
+        "safe_anchor": "HUB",
+        "next_destination": ""
+    },
+    "phase3": {
+        "completed_event_ids": [
+            "P3_BOSS_WIN",
+            "P3_COMPLETE",
+            "P4_HUB_MONOLOGUE"
+        ],
+        "dynamo_full_charge_used_ids": [],
+        "dynamo_emergency_last_uses": [],
+        "money_ledger": [],
+        "elapsed_gameplay_seconds": 0.0,
+        "safe_anchor": "HUB",
+        "next_destination": "Desa Mati Karang Setra"
+    },
+    "phase4": {
+        "completed_event_ids": [
+            "P4_ARRIVE_KOS",
+            "P4_KOS_CHARGE_USED",
+            "P4_MODULE_CALIBRATED",
+            "P4_DEPART_KOS",
+            "P4_ARRIVE_FOREST",
+            "P4_START_LIVE",
+            "P4_ENTER_BAMBOO",
+            "P4_BAMBOO_BRANCH_1",
+            "P4_BAMBOO_BRANCH_2",
+            "P4_BAMBOO_BRANCH_3",
+            "P4_PENDOPO_REACHED",
+            "P4_BANASPATI_REVEAL",
+            "P4_DOC_RAJAH_4",
+            "P4_EVIDENCE_EVP_4DIR",
+            "P4_TAKE_P4_RELIC_TANAH",
+            "P4_SECRET_KNOCK_VERIFIED",
+            "P4_SECRET_EYE_VERIFIED",
+            "P4_SECRET_WHEEL_ALIGNED",
+            "P4_SECRET_PICKUP",
+            "P4_EVIDENCE_AR_ALTAR",
+            "P4_TAKE_P4_RELIC_BELATI",
+            "P4_DOC_DAMAR_LAST",
+            "P4_EVIDENCE_THERMO_66",
+            "P4_TAKE_P4_RELIC_KENDI",
+            "P4_JOURNAL_CONFIRMED",
+            "P4_OFFERINGS_PLACED",
+            "P4_RITUAL_TRIGGER",
+            "P4_BLITZ_W",
+            "P4_BLITZ_N",
+            "P4_BLITZ_E",
+            "P4_SOUTH_OFF",
+            "P4_BLITZ_CORE",
+            "P4_BOSS_WIN",
+            "P4_FIFTH_GATE_REVEAL",
+            "P4_COMPLETE"
+        ],
+        "recovery_last_uses": [
+            {
+                "id": "SHRINE_PENDOPO",
+                "at_gameplay_seconds": 74.67076873779297
+            }
+        ],
+        "money_ledger": [
+            {
+                "id": "P4_DONATION_ARRIVAL",
+                "amount": 6666000,
+                "bound": true
+            }
+        ],
+        "elapsed_gameplay_seconds": 548.6444091796875,
+        "incense_ready_at": 0.0,
+        "water_units": 2,
+        "water_action_sequence": 5,
+        "torch_layout_seed": 0,
+        "safe_anchor": "BOUNDARY",
+        "next_destination": "Pasar Setan"
+    },
+    "phase5": {
+        "completed_event_ids": [
+            "P5_ARRIVE_GATE",
+            "P5_LIVE_LOCK_1M",
+            "P5_SECRET_CHAIR_SILENCE",
+            "P5_SECRET_AR_DRAWER",
+            "P5_SECRET_EVP_TRUE",
+            "P5_SECRET_PICKUP",
+            "P5_ENTER_SECTORS",
+            "P5_S1_CLEAR",
+            "P5_BRIDGE_TORCH_OFF",
+            "P5_S2_CLEAR",
+            "P5_S3_CLEAR",
+            "P5_STAGE_REACHED",
+            "P5_CONTRACT_THERMO_OK",
+            "P5_CONTRACT_UV_OK",
+            "P5_EVIDENCE_CONTRACT",
+            "P5_EVIDENCE_SERVER_AR",
+            "P5_EVIDENCE_EVP_CROWD",
+            "P5_JOURNAL_CONFIRMED",
+            "P5_ARENA_LOCK",
+            "P5_CORE_1_BROKEN",
+            "P5_CORE_2_BROKEN",
+            "P5_CABLE_1_CUT",
+            "P5_CABLE_2_CUT",
+            "P5_CABLE_3_CUT",
+            "P5_CORE_3_BROKEN",
+            "P5_DAMAR_FREED",
+            "P5_FINAL_CHOICE_ENTER",
+            "P5_ENDING_LOCKED",
+            "P5_COMPLETE"
+        ],
+        "recovery_last_uses": [
+            {
+                "id": "DYNAMO_GATE",
+                "at_gameplay_seconds": 11.739152908325196
+            },
+            {
+                "id": "PRAYER_GATE",
+                "at_gameplay_seconds": 27.599956512451173
+            },
+            {
+                "id": "DYNAMO_ARENA_W",
+                "at_gameplay_seconds": 245.3577423095703
+            },
+            {
+                "id": "DYNAMO_ARENA_E",
+                "at_gameplay_seconds": 378.6733093261719
+            }
+        ],
+        "money_ledger": [
+            {
+                "id": "P5_DONATION_GATE",
+                "amount": 66666666,
+                "bound": true
+            }
+        ],
+        "elapsed_gameplay_seconds": 422.29193115234377,
+        "incense_ready_at": 0.0,
+        "safe_anchor": "ENDING"
+    }
+}

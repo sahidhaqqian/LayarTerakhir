@@ -67,6 +67,8 @@ namespace LayarTerakhir.Prolog
             {
                 if (CampaignState.Instance.LoadCheckpoint())
                 {
+                    if(CampaignRouting.IsPhase5(CampaignState.Instance.Data))
+                    {HudController.Instance.SetFadeAlpha(1);UnityEngine.SceneManagement.SceneManager.LoadScene(CampaignRouting.MarketScene);return;}
                     if(CampaignRouting.IsPhase1(CampaignState.Instance.Data))
                     {HudController.Instance.SetFadeAlpha(1);UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(CampaignRouting.RusunawaScene);return;}
                     if(CampaignState.Instance.Data.chapter_id!=0)

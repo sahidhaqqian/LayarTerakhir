@@ -1,0 +1,31 @@
+{
+  "completed": true,
+  "standalone": true,
+  "rendered": false,
+  "utc": "2026-10-25T22:46:14.8865980Z",
+  "platform": "LinuxPlayer",
+  "gpu": "Null Device",
+  "method": "Prepared FINAL_CHOICE fixture; actual input, controller collision, cutscene restart and CP9 persistence",
+  "resumedFrom": "",
+  "walkedMeters": 31.074195861816406,
+  "checks": [
+    "PASS Actual Phase4 CP8 fixture loads",
+    "PASS Valid Phase4 boundary or explicitly resumed prior native checkpoint",
+    "PASS Final-choice isolated fixture persists zero battery",
+    "PASS Pasar Setan restored from committed checkpoint",
+    "PASS Only FINAL_CHOICE permits an ending",
+    "PASS Nav endpoints exist (-16.00, 0.00, 207.00)",
+    "PASS Connected physical path (-16.00, 0.00, 207.00)",
+    "PASS Normal hold released before five seconds cancels",
+    "PASS Requested ending locked before cutscene",
+    "PASS Ending capacitor never changes persistent phone battery",
+    "PASS A second ending input cannot overwrite the lock",
+    "PASS Pasar Setan restored from committed checkpoint",
+    "PASS Crash-style Continue replays the same locked ending",
+    "PASS Cutscene completion commits ending CP9",
+    "PASS Final ending persists in CP9"
+  ],
+  "screenshots": [],
+  "ending": "NORMAL",
+  "fixtureScope": "Prepared FINAL_CHOICE at zero persistent battery, real input/escort/sync/hold/lock and cutscene restart. Not a complete campaign replay."
+}

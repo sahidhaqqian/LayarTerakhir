@@ -1,0 +1,31 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-job-worker-count",
+    "1",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-main",
+    "-nographics",
+    "-runTests",
+    "-testPlatform",
+    "EditMode",
+    "-testFilter",
+    "LayarTerakhir.Editor.Tests",
+    "-testResults",
+    "Audit/phase5-regression-tests.xml",
+    "-logFile",
+    "Builds/Logs/phase5-regression-tests-v2.log"
+  ],
+  "startedUtc": "2026-10-25T18:23:12.356406+00:00",
+  "status": "Finished",
+  "unit": "lt-unity-20261025-182312-318701",
+  "memoryLimitBytes": 5368709120,
+  "endedUtc": "2026-10-25T18:34:17.536285+00:00",
+  "exitCode": 2,
+  "systemdServiceResult": "exit-code"
+}

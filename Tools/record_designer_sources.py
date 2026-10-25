@@ -21,7 +21,7 @@ def snapshot():
     # This hashes local files only; Graphify's separate code-only allowlist is unchanged.
     files = sorted({p for p in base.rglob("*") if p.is_file()} |
                    {p for p in (ROOT / "Assets/Resources").rglob("*") if p.is_file()} |
-                   set(settings) | {ROOT / "Packages/manifest.json", ROOT / "Packages/packages-lock.json"})
+                   set(settings) | {ROOT / "Packages/manifest.json", ROOT / "Packages/packages-lock.json", ROOT / "Assets/InputSystem_Actions.inputactions", ROOT / "Assets/InputSystem_Actions.inputactions.meta"})
     return {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in files}
 
 

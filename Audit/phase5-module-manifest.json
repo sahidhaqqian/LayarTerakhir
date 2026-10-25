@@ -1,0 +1,228 @@
+[
+  {
+    "name": "FacadeWall",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Modules/FacadeWall.fbx",
+    "sourceMeshes": [
+      "wall_standard_standard_01.001"
+    ],
+    "bounds": [
+      3.000000476837158,
+      1.1920928955078125e-07,
+      3.000000476837158
+    ],
+    "sourceId": "modular_urban_apartments_facade",
+    "operation": "Selection/rotation/recentering of original licensed geometry; no authored vertices, UVs or textures"
+  },
+  {
+    "name": "FacadeFloor",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Modules/FacadeFloor.fbx",
+    "sourceMeshes": [
+      "wall_standard_standard_01.001"
+    ],
+    "bounds": [
+      3.000000476837158,
+      1.1920928955078125e-07,
+      3.000000476837158
+    ],
+    "sourceId": "modular_urban_apartments_facade",
+    "operation": "Selection/rotation/recentering of original licensed geometry; no authored vertices, UVs or textures"
+  },
+  {
+    "name": "FacadeWindow",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Modules/FacadeWindow.fbx",
+    "sourceMeshes": [
+      "window_centered_large_01.001"
+    ],
+    "bounds": [
+      2.1200180053710938,
+      0.39000749588012695,
+      2.299999237060547
+    ],
+    "sourceId": "modular_urban_apartments_facade",
+    "operation": "Selection/rotation/recentering of original licensed geometry; no authored vertices, UVs or textures"
+  },
+  {
+    "name": "FacadeDoorFrame",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Modules/FacadeDoorFrame.fbx",
+    "sourceMeshes": [
+      "wall_door_centered_large_01.001"
+    ],
+    "bounds": [
+      2.999998092651367,
+      1.1920928955078125e-07,
+      3.000000476837158
+    ],
+    "sourceId": "modular_urban_apartments_facade",
+    "operation": "Selection/rotation/recentering of original licensed geometry; no authored vertices, UVs or textures"
+  },
+  {
+    "name": "FacadeDoor",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Modules/FacadeDoor.fbx",
+    "sourceMeshes": [
+      "door_centered_large_01.001"
+    ],
+    "bounds": [
+      2.080005645751953,
+      0.440000057220459,
+      2.809999704360962
+    ],
+    "sourceId": "modular_urban_apartments_facade",
+    "operation": "Selection/rotation/recentering of original licensed geometry; no authored vertices, UVs or textures"
+  },
+  {
+    "name": "FacadePost",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Modules/FacadePost.fbx",
+    "sourceMeshes": [
+      "wall_pier_corner_01.001"
+    ],
+    "bounds": [
+      0.25,
+      0.24999988079071045,
+      3.0
+    ],
+    "sourceId": "modular_urban_apartments_facade",
+    "operation": "Selection/rotation/recentering of original licensed geometry; no authored vertices, UVs or textures"
+  },
+  {
+    "name": "FortGate",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Modules/FortGate.fbx",
+    "sourceMeshes": [
+      "modular_fort_01_wall_thin_gate_01.001"
+    ],
+    "bounds": [
+      7.410238265991211,
+      2.6719703674316406,
+      8.616225242614746
+    ],
+    "sourceId": "modular_fort_01",
+    "operation": "Selection/rotation/recentering of original licensed geometry; no authored vertices, UVs or textures"
+  },
+  {
+    "name": "StraightCable",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Modules/StraightCable.fbx",
+    "sourceMeshes": [
+      "cable_10cm.001"
+    ],
+    "bounds": [
+      0.0097116157412529,
+      0.011214010417461395,
+      0.10000002384185791
+    ],
+    "sourceId": "modular_electric_cables",
+    "operation": "Selection/rotation/recentering of original licensed geometry; no authored vertices, UVs or textures"
+  },
+  {
+    "name": "WitnessHand",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Modules/WitnessHand.fbx",
+    "sourceMeshes": [
+      "Object_4.001",
+      "Object_5.001"
+    ],
+    "bounds": [
+      0.31218835711479187,
+      0.4973301887512207,
+      0.26566702127456665
+    ],
+    "sourceId": "WitnessHands",
+    "operation": "Selection/rotation/recentering of original licensed geometry; no authored vertices, UVs or textures"
+  },
+  {
+    "name": "MirrorScreen",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Modules/MirrorScreen.fbx",
+    "sourceMeshes": [
+      "projector_screen.001",
+      "projector_screen_frame.001"
+    ],
+    "bounds": [
+      1.093566656112671,
+      0.9158008098602295,
+      1.799464225769043
+    ],
+    "sourceId": "projector_screen",
+    "operation": "Selection/rotation/recentering of original licensed geometry; no authored vertices, UVs or textures"
+  },
+  {
+    "name": "ChainlinkPanel",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Modules/ChainlinkPanel.fbx",
+    "sourceMeshes": [
+      "modular_chainlink_fence_door_frame.001"
+    ],
+    "bounds": [
+      1.910531997680664,
+      0.14829722046852112,
+      2.5229129791259766
+    ],
+    "sourceId": "modular_chainlink_fence",
+    "operation": "Selection/rotation/recentering of original licensed geometry; no authored vertices, UVs or textures"
+  },
+  {
+    "name": "AirductCircular",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Modules/AirductCircular.fbx",
+    "sourceMeshes": [
+      "modular_airduct_rectangular_vent_fan.001"
+    ],
+    "bounds": [
+      0.5521080493927002,
+      0.11082154512405396,
+      0.41999703645706177
+    ],
+    "sourceId": "modular_airduct_circular_01",
+    "operation": "Selection/rotation/recentering of original licensed geometry; no authored vertices, UVs or textures"
+  },
+  {
+    "name": "AirductRectangular",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Modules/AirductRectangular.fbx",
+    "sourceMeshes": [
+      "modular_airduct_rectangular_01_splitter_01.001"
+    ],
+    "bounds": [
+      0.8000001907348633,
+      0.8000003099441528,
+      0.5126132965087891
+    ],
+    "sourceId": "modular_airduct_rectangular_01",
+    "operation": "Selection/rotation/recentering of original licensed geometry; no authored vertices, UVs or textures"
+  },
+  {
+    "name": "MetalGutter",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Modules/MetalGutter.fbx",
+    "sourceMeshes": [
+      "modular_metal_gutter_shower_receiver.001"
+    ],
+    "bounds": [
+      0.42428043484687805,
+      0.38912975788116455,
+      0.3104034662246704
+    ],
+    "sourceId": "modular_metal_gutter",
+    "operation": "Selection/rotation/recentering of original licensed geometry; no authored vertices, UVs or textures"
+  },
+  {
+    "name": "PipeSteel",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Modules/PipeSteel.fbx",
+    "sourceMeshes": [
+      "pipe_valve_large_metal.001"
+    ],
+    "bounds": [
+      0.2398895025253296,
+      0.4577658176422119,
+      0.5000001192092896
+    ],
+    "sourceId": "modular_pipes",
+    "operation": "Selection/rotation/recentering of original licensed geometry; no authored vertices, UVs or textures"
+  },
+  {
+    "name": "PipePlastic",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Modules/PipePlastic.fbx",
+    "sourceMeshes": [
+      "straight_pvc_pipe_01.001"
+    ],
+    "bounds": [
+      0.8125001192092896,
+      0.02641819417476654,
+      0.026418190449476242
+    ],
+    "sourceId": "modular_pipes_plastic_01",
+    "operation": "Selection/rotation/recentering of original licensed geometry; no authored vertices, UVs or textures"
+  }
+]

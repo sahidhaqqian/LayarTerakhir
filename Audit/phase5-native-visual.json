@@ -1,0 +1,31 @@
+{
+    "completed": true,
+    "standalone": true,
+    "rendered": true,
+    "utc": "2026-10-25T23:34:25.9097750Z",
+    "platform": "LinuxPlayer",
+    "gpu": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "method": "Posed composition fixtures, not gameplay acceptance",
+    "resumedFrom": "",
+    "walkedMeters": 0.0,
+    "checks": [
+        "PASS Actual Phase4 CP8 fixture loads",
+        "PASS Valid Phase4 boundary or explicitly resumed prior native checkpoint",
+        "PASS Pasar Setan restored from committed checkpoint",
+        "PASS Graphical standalone composition renderer"
+    ],
+    "screenshots": [
+        "01-market.png",
+        "02-archive-stall.png",
+        "03-frozen-corridor.png",
+        "04-bamboo-bridge.png",
+        "05-sewing.png",
+        "06-auction.png",
+        "07-witness.png",
+        "08-boss-posed.png",
+        "09-epilogue-bad-posed.png",
+        "09-epilogue-normal-posed.png",
+        "09-epilogue-true-posed.png",
+        "09-epilogue-secret-posed.png"
+    ]
+}

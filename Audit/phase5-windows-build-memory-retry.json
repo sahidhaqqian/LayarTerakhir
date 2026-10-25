@@ -1,0 +1,32 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-job-worker-count",
+    "1",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-main",
+    "-nographics",
+    "-buildTarget",
+    "Win64",
+    "-executeMethod",
+    "LayarTerakhir.Editor.WindowsDevelopmentBuild.Build",
+    "-quit",
+    "-logFile",
+    "Builds/Logs/phase5-windows-build-v2.log"
+  ],
+  "startedUtc": "2026-10-25T23:40:28.929574+00:00",
+  "status": "Finished",
+  "unit": "lt-unity-20261025-234028-342107",
+  "memoryLimitBytes": 5368709120,
+  "memoryHighBytes": 4294967296,
+  "systemdServiceResult": "success",
+  "endedUtc": "2026-10-25T23:42:38.466069+00:00",
+  "exitCode": 143,
+  "error": "Unity service interrupted: success",
+  "operatorReason": "MemoryHigh=4GiB caused sustained pressure at Phase4 serialization; retry with 4.75GiB high / 5.5GiB max after checking host headroom. No assets or player quality settings changed."
+}
