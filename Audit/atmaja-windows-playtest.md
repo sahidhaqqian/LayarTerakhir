@@ -1,14 +1,51 @@
-# Playtest kampanye — Prolog Kos–Atmaja + Babak 1–3
+# Guideline Playtest Lengkap — Prolog hingga Babak 3
 Diperbarui 24 Oktober 2026.
 
 Build Development ini memuat Prolog, Babak 1 Rusunawa, Babak 2 RSUD, dan Babak 3 Pabrik Gula.
-Dokumen ini memandu alur normal dari New Game, dengan penekanan pada Prolog Kos–Atmaja dan
-sambungan antarbabak. Rincian rute tiap babak ada di `phase1-windows-playtest.md`,
-`phase2-session1-review.md`, dan `phase3-windows-review.md`.
+Dokumen ini menggabungkan rute playtest keempat bagian. File `phase1-windows-playtest.md`,
+`phase2-session1-review.md`, dan `phase3-windows-review.md` tetap disertakan sebagai rujukan terpisah.
 
-Jalankan LayarTerakhir.exe tanpa flag audit. Main menu: NEW GAME (save lama diarsipkan),
+## Persiapan
+
+Jalankan `LayarTerakhir.exe` tanpa flag audit. Main menu: NEW GAME (save lama diarsipkan),
 CONTINUE (checkpoint terakhir), SETTINGS, EXIT. ESC saat bermain membuka pause menu.
 Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di ArchivedCampaigns.
+
+Alur normal memakai satu campaign dan checkpoint yang sama dari Prolog sampai Babak 3.
+Kehilangan fokus jendela saat bermain otomatis membuka pause; Alt-Tab tidak membiarkan
+karakter berjalan sendiri.
+
+Untuk menilai satu babak tanpa mengulang dari awal, jalankan launcher review yang sesuai.
+Launcher memakai slot save terpisah dan tidak mengubah campaign normal:
+- `Review-Phase1.cmd`: `ReviewSaves/Phase1`, fixture 100% baterai tanpa powerbank awal.
+- `Review-Phase2.cmd`: slot `Phase2Review`, fixture sesudah Babak 1 dengan saldo belanja nol.
+- `Review-Phase3.cmd`: slot `Phase3Review`, fixture P2 selesai, HP 37%, saldo uji Rp2.100.000;
+  saldo fixture bukan hadiah pada campaign asli.
+
+Fixture review bukan bukti carry-over campaign dan bukan perubahan aturan New Game.
+Untuk mengulang Phase3, cadangkan lalu hapus folder `Phase3Review` di lokasi save aplikasi.
+
+## Kontrol
+
+- WASD bergerak, Shift lari, Ctrl jongkok, Space vault, E interaksi. Beberapa panel daya,
+  dinamo, dan katup perlu **menahan E**.
+- Tahan **RMB** untuk viewfinder HP: HP terangkat dua tangan dalam bingkai landscape, kamera
+  aktif, dan lepas RMB mengembalikan aplikasi/perspektif sebelumnya. Ini berlaku juga saat HP
+  dibuka dari Jurnal/Tas. Di Prolog, saat bersembunyi di lemari dan pada standoff tiga foto,
+  kamera menjadi first-person sementara lalu memulihkan pilihan.
+- **TAB** angkat/simpan HP, **Z** beralih aplikasi/kamera, **M** peta, **F** layar, **J** Jurnal,
+  **B** powerbank, **G** flare, **H** kemenyan.
+- **Q** AR, **R** UV, **X** Selfie, **T** ThermoKlenik, **C** EVP (pada Babak 3: C singkat
+  mengganti analyzer, C ditahan merekam EVP), **LMB** foto/Blitz. Ketersediaan modul mengikuti
+  babak; label aktual ada di HP dan Pengaturan.
+- **V** mengganti perspektif first-person/over-the-shoulder. Saat kamera terdesak dinding,
+  tubuh disembunyikan sementara agar kepala/punggung tidak menutup pandangan. Pada pengejaran
+  Kuntilanak di Babak 1, kamera tetap terkunci ke viewfinder; mundur sambil menjaga sosok dalam bingkai.
+- Settings menyediakan volume, sensitivitas, subtitle, reduksi glitch, pilihan kamera, mode layar,
+  dan remap sembilan aksi utama. M/Z/ESC adalah shortcut UI tetap. F12 mengambil screenshot.
+  Alt+Enter/Setelan mengganti fullscreen borderless/windowed; pilihan tersimpan antar-launch.
+
+## Prolog — Kos–Atmaja
 
 1. NEW GAME: bangun dari kasur, monolog Raka, **tiga ketukan sungguhan lalu langkah menjauh**.
    Tidak ada caption SFX atau suara ibu kos. Baca surat bawah pintu, lalu ambil HP:
@@ -106,44 +143,153 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
     Coba pause/Settings saat kontrak akhir dan title; sesudah Resume pointer tombol harus tetap dapat dipakai.
     Save lama boleh dilanjutkan; gunakan NEW GAME untuk menguji pembuka dari awal.
 
-## Lanjutan kampanye
+Transisi ke Babak 1: di layar PROLOG SELESAI, tombol **MALAM BERIKUTNYA — RUSUNAWA** memulai
+Babak 1. Tombol hanya muncul jika checkpoint berhasil disimpan; baterai diisi ke 100% sekali saat
+transisi. Uang, inventaris, dan pilihan kamera tetap terbawa. Jika tombol tidak muncul karena save
+gagal, gunakan **COBA SIMPAN LAGI**; Continue setelah tamat memulihkan layar PROLOG SELESAI ini.
 
-- Di layar PROLOG SELESAI, tombol **MALAM BERIKUTNYA — RUSUNAWA** memulai Babak 1. Tombol ini
-  hanya muncul jika checkpoint berhasil disimpan; baterai diisi ke 100% sekali saat transisi.
-  Uang, inventaris, dan pilihan kamera tetap terbawa.
-- Babak 1 Rusunawa: investigasi lantai 1–4, ambil tiga bukti dan tiga pusaka, lalu kalahkan
-  Genderuwo. Di akhir, **Lanjutkan — Kamar Kos** membawa Raka ke Kos untuk persiapan Babak 2
-  (PC, modul gratis, colokan, toko opsional, lalu berangkat dari kunci motor).
-- Babak 2 RSUD: IGD, Poli 03, basement/kamar mayat, Arsip, Inkubator, Ruang Jaga Suster, lalu
-  ritual Lastri. Setelah epilog, tinggalkan RSUD lewat motor dan pilih **Lanjutkan**. Dari
-  menu utama, Continue membuka Kos persiapan Babak 3.
-- Babak 3 Pabrik Gula: gilingan, bangsal, gudang ampas, rahasia ventilasi opsional, lalu ritual
-  Wewe Gombel. Setelah segel ketiga, tujuan berikutnya tercatat: Karang Setra.
-  **Babak 4 belum playable** di build ini.
-- Untuk lompat langsung ke awal babak review, jalankan `Review-Phase1.cmd`, `Review-Phase2.cmd`,
-  atau `Review-Phase3.cmd`. Launcher memakai slot save terpisah dan bukan bukti carry-over
-  campaign normal; rute lengkapnya ada di file panduan masing-masing.
+## Babak 1 — Rusunawa Griya Asri
 
-SETTINGS: volume, sensitivitas, subtitle, reduksi glitch, pilihan kamera, remap sembilan aksi utama.
-Default V memilih perspektif; selfie memakai X untuk menghindari benturan. Di lemari
-dan standoff tiga foto, kamera menjadi first-person sementara lalu memulihkan pilihan.
-Coba remap perspektif ke L, uji dekat dinding, jongkok dan pause tanpa mengubah checkpoint.
-Mode layar: fullscreen borderless/windowed lewat Settings atau Alt+Enter, juga saat pause.
-Pilihan tersimpan antar-launch; windowed dapat di-resize/maximize. Peluncuran normal pertama
-memakai fullscreen pada resolusi monitor. Flag `-screen-*` untuk audit tetap dihormati.
-Kehilangan fokus jendela saat bermain otomatis membuka pause; Alt-Tab tidak membiarkan
-karakter berjalan sendiri. M/Z/ESC adalah shortcut UI tetap. J membuka Jurnal dengan entri yang bisa diklik untuk detail.
-Sistem tujuan/to-do dihapus. Target foto memiliki kilau kecil hanya di AR. Klik shutter memberi ceklek, pulsa senter, dan kilatan layar HP. Komentar live tampil bertahap sesuai ruangan dan makin cepat saat bahaya/kejaran.
-Dialog tambahan menggunakan suara sintetis fiktif lokal; penerimaan akting tetap memerlukan pendengaran manusia. Dialog Ibu/Ratna dan komentar baru
-berupa subtitle sampai rekaman manusia tersedia. Dialogue-For-Recording.csv berisi naskah dan
-arahan intonasi. Jangan menganggap kualitas voice acting sudah final.
-Genggaman HP dua tangan, framing viewfinder, pencahayaan, dan HUD diperbarui 23 Oktober;
-semuanya tetap memerlukan penilaian mata manusia di Windows. Tiga adegan lantai dua,
-basement stealth, chase dan konfrontasi tiga foto, serta ending sudah tersedia; kesulitan/tensi
-perlu review manusia dan pengukuran FPS Windows.
+Masuk dari tombol Malam Berikutnya, atau jalankan **`Review-Phase1.cmd`** lalu **Continue**.
+Transisi pertama setelah Prolog mengisi baterai menjadi 100% sekali; Continue/retry mempertahankan
+snapshot dan tidak memberikan powerbank awal tambahan. Review-Phase1 memakai save uji terpisah
+di `ReviewSaves/Phase1` dalam folder build dan hanya menyalin fixture jika folder belum memiliki save.
 
-Uji tambahan: remap E/CTRL/SPACE/TAB/Q; baterai 0; gunakan powerbank B; port USB motor
-dan charger dapur memulihkan ke 35% agar tidak softlock. Coba buka HP saat modal/menu,
-berdiri di bawah meja, save sebelum koran ditutup, dan donasi/foto sumur berulang.
-F12 mengambil screenshot. Sertakan Player.log, checkpoint dan langkah reproduksi bila ada masalah.
-Ukur FPS/frame time/memori pada Windows Iris Xe 1280×720; Linux software-rendering bukan bukti performa target.
+1. Periksa log satpam, mulai Live di aplikasi Kamera, temukan ruang pompa di sisi barat.
+   Charger manual di pompa dapat dipakai bila baterai habis.
+2. Scan tembok K102 dalam AR. Masuk melalui pintu, belok ke kaki tangga dan naik. Jalur menjadi
+   terbuka dua arah. Hindari Tuyul lewat AR + Blitz atau terima kehilangan daya/item yang tersedia.
+3. Kotak 207 memakai kode 644; panel status dan dokumen memberi petunjuk. Hadiah kunci/powerbank
+   hanya satu kali. Periksa arsip penghuni dengan AR untuk rahasia Tari.
+4. Gunakan lift barang. Di L3 tersedia panel daya sebelum cutter. Ambil alat sambil memantau
+   Kuntilanak; mundur ke ujung timur, E rantai lalu naik tangga tertutup.
+5. Di L4: foto cakaran 402, rekam EVP 7 detik di kamar mandi, foto aura AR tungku dan ambil keris.
+   Gunakan lemari/bilik; layar menyala membocorkan persembunyian. Konfirmasi identitas di Jurnal.
+6. Aktifkan altar 404. Pancing tubuh Genderuwo ke tiga titik halogen, gunakan tuas, Blitz ke kepala
+   dalam 5 detik. Blitz 15% / cooldown 6 detik. Panel daya arena hanya aman saat recovery.
+   Kalah memuat ulang CP5 persis, tanpa grant.
+7. Setelah segel, periksa kain dan kaset. Transmisi Damar berlangsung di HP; bila daya habis gunakan
+   panel arena lalu coba kembali. Setelah epilog, turun ke L3 lalu lift ke L1 atau L2 (opsional arsip).
+   Motor menampilkan konfirmasi sebelum CP7. **Lanjutkan — Kamar Kos** membuka persiapan Babak 2.
+
+Batas Babak 1: ini build review implementasi, belum visual/audio freeze. Dialog/EVP manusia belum
+direkam; subtitle bukan pengganti acting final. Durasi 60 menit, kenyamanan input, framing karakter,
+seluruh 74 QA, GPU Windows, target FPS/1% low dan variasi save perlu playtest Windows. Tes otomatis
+serta gambar Linux tidak membuktikan semuanya.
+
+Revisi visual: bangunan/furnitur/material memakai sumber unduhan terpisah. Periksa fasad, galeri,
+tangga, area pompa, K403 dan dapur; bandingkan dengan `phase1-environment-revision.md`. Minta
+pencahayaan tetap terbaca saat layar HP padam, periksa benturan perabot dan laporkan celah geometri.
+Tambahan 30 model unduhan mempunyai sumber dan penempatan terpisah; periksa koridor, pintu, tangga,
+keris, titik charging dan bilik sembunyi. Capture visual tersusun tidak membuktikan boss/CP7 atau
+seluruh 74 QA telah lulus.
+
+## Babak 2 — RSUD Lama Sido Waras
+
+Alur normal: setelah segel Rusunawa, pilih **Lanjutkan — Kamar Kos**. Kos dipakai untuk persiapan
+malam kedua: buka PC untuk riset dan pemasangan modul gratis, gunakan colokan (satu pengisian
+persiapan setelah interaksi sadar), lalu berangkat dari kunci motor. Berangkat tidak otomatis
+mengisi baterai. Paket Pasar Gaib opsional dan hanya memakai saldo sah.
+
+Untuk review langsung, jalankan **`Review-Phase2.cmd`** lalu **Continue**. Launcher memakai slot
+terpisah `Phase2Review`, dimulai dari fixture sesudah Babak 1 dengan saldo belanja nol agar jalur
+tanpa belanja bisa dicoba. Ini bukan pemberian uang/segel pada save produksi, dan EXE biasa tetap
+memakai campaign normal.
+
+Lingkup: Kos pukul 14:00 → RSUD pukul 23:50 → IGD, Poli 03, basement/kamar mayat, Arsip,
+Pos Petugas, Inkubator, Ruang Jaga Suster → ritual Lastri tiga siklus → epilog Damar →
+kembali ke motor → transisi Pabrik Gula.
+
+- Buku Jaga + jadwal + Thermo Poli 03 → kode basement. Laporan otopsi memberi kunci L2.
+  C3 memerlukan pembacaan suhu stabil; Gunting dan foto aura AR merupakan dua progres terpisah.
+  Arsip D1 opsional.
+- Di L2, Inkubator dan Ruang Jaga Suster boleh didatangi dalam urutan bebas; kode brankas dapat
+  disimpulkan dari catatan atau gema AR. EVP memerlukan framing sumber yang tepat selama enam detik.
+  Tiga bukti perlu **konfirmasi eksplisit di Jurnal**, selain tiga pusaka. Bukaan AR yang sudah
+  dilewati tetap terbuka dua arah saat baterai nol.
+- Pintu Ruang Operasi terbuka ketika tiga pusaka dibawa. Ritual dimulai hanya lewat **E di meja**
+  setelah tiga bukti dan konfirmasi Jurnal lengkap. CP5 menyimpan kondisi sebelum attempt.
+- Saat persiapan (minimum 30 detik) dan jeda (minimum 20 detik), generator NE/SW memberi
+  **+25 daya dengan tahan E selama 8 detik**, dapat diulang. Lanjut siklus hanya lewat E lagi di meja;
+  mengangkat HP tidak memulai serangan. Tiga sumber LO/UV-N/UV-S masing-masing habis setelah satu
+  hit sukses. Pancing Lastri ke bawah sorotan lalu E di sakelar. Saat **PERISAI HANCUR**, bidik kepala
+  dan LMB dalam lima detik: Selfie atau balik badan dengan kamera belakang. G memakai flare opsional.
+  Thermo membedakan asli −20°C dan ilusi −6°C. Jika daya tidak cukup untuk Blitz, ancaman masuk
+  recovery dan generator dapat dipakai lagi.
+- Lastri hanya terlihat pada feed Selfie. Saat menempel, pantau sambil benar-benar bergerak maju;
+  menoleh langsung berbahaya setelah jendela belajar. Alternatif: E masuk persembunyian, F matikan
+  layar, tunggu enam detik, E keluar. Baterai nol tetap bisa memakai persembunyian dan dinamo.
+- Menu/jeda dan dokumen menghentikan clock investigasi; aplikasi HP biasa tetap membawa risiko.
+- Kalah atau quit sebelum kemenangan memuat CP5 utuh; tidak menyimpan hit parsial atau memberikan
+  isi baterai gratis. Setelah kemenangan, segel kedua dan perpindahan pusaka disimpan bersama.
+  Video Damar berdurasi delapan detik memakai feed HP yang sama dan dapat diputar ulang melalui
+  **Pesan → Putar arsip video Damar**, tanpa donasi atau progres tambahan.
+- Setelah pesan selesai, kontrol kembali: turun ke motor atau kembali ke basement untuk arsip.
+  Panel motor dapat dibatalkan. Hanya **Lanjutkan** yang menyimpan CP7 dan memutar CKREK + hitam.
+  Dari menu utama, Continue membuka Kos persiapan Babak 3.
+
+Batas Babak 2: model Lastri berasal dari **Merah.vrm milik desainer**, dengan konversi/optimasi dan
+retarget gerak existing. Lingkungan memakai unduhan berlisensi; sumber dan atribusi ada di
+`phase2-asset-credits.md`. Tidak memakai aset/kode DreadOut. Rekaman dialog manusia Indonesia untuk
+Raka, Damar dan kalimat EVP belum tersedia: teks kanon disajikan sebagai subtitle dengan cue
+nonverbal berlisensi. Model neonatal memakai inkubator kaca unduhan dengan material transparan;
+freezer memakai modul penyimpanan logam unduhan yang diadaptasi. Properti gelang, rantai dan perekam
+masih memerlukan penilaian visual desainer. Ini belum penerimaan mutu final setara DreadOut/Outlast.
+Build berhasil dan directed smoke bukan pengganti seluruh 100 QA, playtest manusia, atau pengukuran
+performa Windows pada GPU sasaran.
+
+## Babak 3 — Pabrik Gula Sindang Laut
+
+Alur normal: setelah menyelesaikan RSUD, tinggalkan lewat motor dan pilih **Lanjutkan**.
+Dari menu utama, Continue membuka Kos persiapan Babak 3. Buka PC, baca forum, pasang modul gratis,
+periksa toko, dan gunakan colokan yang mengisi 100% sekali untuk persiapan. Pintu/kunci motor
+membuka keberangkatan 23:45; tiba 23:54. Melewatkan toko/forum tidak mengunci permainan.
+
+Untuk review langsung, jalankan **`Review-Phase3.cmd`** lalu **Continue**. Launcher memakai slot
+terpisah `Phase3Review`; slot awal adalah fixture P2 selesai, HP 37%, serta saldo uji Rp2.100.000
+agar ketiga paket toko dapat diperiksa. Saldo fixture bukan hadiah pada campaign asli. Launcher
+mempertahankan progres review yang sudah ada. Continue dari P2 yang benar memerlukan dua segel
+sebelumnya; Babak 3 tidak menciptakannya sendiri.
+
+1. Kos: buka PC, baca forum, pasang modul gratis, periksa toko. Colokan mengisi 100% sekali untuk
+   persiapan. Pintu/kunci motor membuka keberangkatan 23:45; tiba 23:54.
+2. Gilingan: suara kiri adalah tiruan. Silang UV menandai papan rapuh; jalur pipa kanan aman.
+   Engkol G-ACC tiga kali, tunggu tiap aksi selesai. Foto ayunan dengan AR dan bidik stabil satu detik.
+   Boneka serta buku mandor diambil terpisah.
+3. Bangsal: tangga menuju kantor. Rekam interkom enam detik, termasuk minimal dua detik ASLI;
+   mulai saat segmen ASLI agar mudah. Sabit diambil terpisah. Gudang ampas memiliki foto rajah UV
+   dan selendang. Kartu pers serta sepatu Damar adalah dua interaksi terpisah. Dokumen yang diambil
+   saat dikejar disimpan tanpa membuka modal.
+4. Rahasia opsional: rekam ketukan ventilasi balkon, lihat petunjuk UV, tahan E pada katup 09,
+   lalu periksa loker 09. Area ini dapat dikunjungi lagi setelah ritual.
+5. Konfirmasi identitas di Jurnal setelah tiga bukti. Gerbang aula tetap menunggu tiga pusaka dan
+   konfirmasi itu. Pasang ketiga dudukan, lalu periksa sosok terikat untuk memulai ritual.
+6. Pancing Wewe ke sorotan N/S/E, nyalakan generator, lalu Blitz dada/wajah selama exposure lima detik.
+   Lampu korslet hanya setelah hit sukses. Flare opsional. Pada tarikan terakhir, bidik simpul dengan
+   UV satu detik atau gunakan sorotan yang masih tersedia.
+7. Rak daya manual tersedia selama jeda. Jika jatahnya habis, masuk alcove, tutup pintu dari dalam,
+   tahan engkol reset, lalu gunakan rak daya. Tidak perlu menang satu hit agar bisa pulih setelah miss.
+8. Sesudah segel, tunggu pesan. Jika HP habis, gunakan pengisian manual. Jelajah kembali tetap tersedia.
+   Gerbang servis Timur dan lorong lori mengarah ke motor; panel motor bisa dibatalkan. CP7 disimpan
+   sebelum fade, dan menyimpan tujuan Karang Setra. **Babak 4 belum playable.**
+
+Batas Babak 3: periksa rasa kontrol, genggaman HP, tangga, keterbacaan UV, pengejaran/loker, luring
+tiga lampu, serta rute pulang. Ukur FPS/1% low dan memori pada Windows/Iris Xe; render Linux software
+bukan hasil performa mesin target. VO dialog Indonesia masih berupa subtitle, dengan cue/humming
+berlisensi sebagai atmosfer. Pose sinematik menggenggam sepatu dan penyamaran Damar belum memenuhi
+presentasi final naskah. Kesetaraan kualitas DreadOut belum dinyatakan lulus. Status setiap acceptance
+case ada di `phase3-qa-matrix.md`; 146 baris bukan berarti 146 PASS. Sumber, pembuat, lisensi serta
+perubahan konversi tercantum pada dua file kredit di paket.
+
+## Batas umum dan pelaporan
+
+Build ini adalah review implementasi, bukan visual/audio freeze. Voice acting manusia belum final;
+dialog memakai suara sintetis/subtitle. Beberapa model, properti, animasi sinematik, dan pose
+genggaman HP masih prototipe dan memerlukan penilaian visual desainer. Tes otomatis, directed smoke,
+dan capture Linux tidak membuktikan seluruh QA, playtest manusia, atau performa Windows.
+
+Catat checkpoint, baterai, mode kamera, lokasi, dan langkah reproduksi saat menemukan masalah.
+Sertakan `Player.log` dan screenshot F12. Bandingkan performa pada Windows Iris Xe 1280×720;
+Linux software-rendering bukan bukti performa target. Untuk detail acceptance per babak, gunakan
+`phase1-windows-playtest.md`, `phase2-session1-review.md`, `phase3-windows-review.md`, dan
+`phase3-qa-matrix.md`; untuk kredit aset gunakan file kredit yang disertakan di paket.
