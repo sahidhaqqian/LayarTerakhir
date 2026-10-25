@@ -1,4 +1,10 @@
-# Playtest Kos–Atmaja — kontrol kamera/finale diperbarui 22 Oktober 2026
+# Playtest kampanye — Prolog Kos–Atmaja + Babak 1–3
+Diperbarui 24 Oktober 2026.
+
+Build Development ini memuat Prolog, Babak 1 Rusunawa, Babak 2 RSUD, dan Babak 3 Pabrik Gula.
+Dokumen ini memandu alur normal dari New Game, dengan penekanan pada Prolog Kos–Atmaja dan
+sambungan antarbabak. Rincian rute tiap babak ada di `phase1-windows-playtest.md`,
+`phase2-session1-review.md`, dan `phase3-windows-review.md`.
 
 Jalankan LayarTerakhir.exe tanpa flag audit. Main menu: NEW GAME (save lama diarsipkan),
 CONTINUE (checkpoint terakhir), SETTINGS, EXIT. ESC saat bermain membuka pause menu.
@@ -11,7 +17,8 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
    buka Pesan sendiri, lalu tunggu 10 detik waktu permainan sebelum reaksi Raka.
    Ketukan harus keras dan Raka menoleh; surat baru masuk setelah ketukan. Sebelum pickup ada ringtone;
    sebelum telepon putus ada teriakan Damar. HP boleh tetap dibuka sambil WASD. Saat permainan biasa, tahan RMB untuk langsung
-   membidik kamera meskipun menu HP sedang terbuka; lepas RMB untuk kembali ke aplikasi/status HP sebelumnya.
+   membidik kamera meskipun menu HP sedang terbuka; HP terangkat dua tangan dalam bingkai landscape,
+   lalu lepas RMB untuk kembali ke aplikasi/status HP sebelumnya.
    Cocokkan sticky note dan kalender untuk **empat roda tanggal/bulan**; petunjuk tidak mencetak jawaban.
    Ambil kunci yang terlihat di meja, powerbank/dompet/buku harian dari laci dan jaket di gantungan. Baca buku harian melalui Jurnal/Tas. Setelah menutup
    gembok/modal, WASD/E harus tetap bekerja; tidak ada daftar tugas di HUD atau Jurnal. Raka mulai dengan kaos; pengambilan jaket mengubah pakaian modelnya.
@@ -84,7 +91,8 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
     Turuni tangga tengah; lompati meja makan yang roboh dengan SPACE,
     lewati lampu yang pecah, lalu berhenti di jendela dapur. Slow-motion: **klik kiri**
     untuk mengambil **tiga foto** Nyonya. Arahkan lensa HP ke tubuhnya: bidikan yang
-    meleset atau terhalang dinding tidak dihitung. Tahan RMB bila ingin membidik seluas layar.
+    meleset atau terhalang dinding tidak dihitung. Tahan RMB bila ingin membidik seluas layar
+    dengan genggaman dua tangan; lepas RMB mengembalikan kamera sebelumnya.
 11. Foto ketiga memicu Flash Beam, baterai menjadi 10%, dan Nyonya menghilang.
     Setelah flash selesai, tekan SPACE untuk menerobos jendela. Hantu yang sudah
     menghilang tidak boleh bergerak atau menangkap pemain lagi. Lari lewat halaman
@@ -98,6 +106,24 @@ Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di Arch
     Coba pause/Settings saat kontrak akhir dan title; sesudah Resume pointer tombol harus tetap dapat dipakai.
     Save lama boleh dilanjutkan; gunakan NEW GAME untuk menguji pembuka dari awal.
 
+## Lanjutan kampanye
+
+- Di layar PROLOG SELESAI, tombol **MALAM BERIKUTNYA — RUSUNAWA** memulai Babak 1. Tombol ini
+  hanya muncul jika checkpoint berhasil disimpan; baterai diisi ke 100% sekali saat transisi.
+  Uang, inventaris, dan pilihan kamera tetap terbawa.
+- Babak 1 Rusunawa: investigasi lantai 1–4, ambil tiga bukti dan tiga pusaka, lalu kalahkan
+  Genderuwo. Di akhir, **Lanjutkan — Kamar Kos** membawa Raka ke Kos untuk persiapan Babak 2
+  (PC, modul gratis, colokan, toko opsional, lalu berangkat dari kunci motor).
+- Babak 2 RSUD: IGD, Poli 03, basement/kamar mayat, Arsip, Inkubator, Ruang Jaga Suster, lalu
+  ritual Lastri. Setelah epilog, tinggalkan RSUD lewat motor dan pilih **Lanjutkan**. Dari
+  menu utama, Continue membuka Kos persiapan Babak 3.
+- Babak 3 Pabrik Gula: gilingan, bangsal, gudang ampas, rahasia ventilasi opsional, lalu ritual
+  Wewe Gombel. Setelah segel ketiga, tujuan berikutnya tercatat: Karang Setra.
+  **Babak 4 belum playable** di build ini.
+- Untuk lompat langsung ke awal babak review, jalankan `Review-Phase1.cmd`, `Review-Phase2.cmd`,
+  atau `Review-Phase3.cmd`. Launcher memakai slot save terpisah dan bukan bukti carry-over
+  campaign normal; rute lengkapnya ada di file panduan masing-masing.
+
 SETTINGS: volume, sensitivitas, subtitle, reduksi glitch, pilihan kamera, remap sembilan aksi utama.
 Default V memilih perspektif; selfie memakai X untuk menghindari benturan. Di lemari
 dan standoff tiga foto, kamera menjadi first-person sementara lalu memulihkan pilihan.
@@ -105,13 +131,16 @@ Coba remap perspektif ke L, uji dekat dinding, jongkok dan pause tanpa mengubah 
 Mode layar: fullscreen borderless/windowed lewat Settings atau Alt+Enter, juga saat pause.
 Pilihan tersimpan antar-launch; windowed dapat di-resize/maximize. Peluncuran normal pertama
 memakai fullscreen pada resolusi monitor. Flag `-screen-*` untuk audit tetap dihormati.
-M/Z/ESC adalah shortcut UI tetap. J membuka Jurnal dengan entri yang bisa diklik untuk detail.
+Kehilangan fokus jendela saat bermain otomatis membuka pause; Alt-Tab tidak membiarkan
+karakter berjalan sendiri. M/Z/ESC adalah shortcut UI tetap. J membuka Jurnal dengan entri yang bisa diklik untuk detail.
 Sistem tujuan/to-do dihapus. Target foto memiliki kilau kecil hanya di AR. Klik shutter memberi ceklek, pulsa senter, dan kilatan layar HP. Komentar live tampil bertahap sesuai ruangan dan makin cepat saat bahaya/kejaran.
 Dialog tambahan menggunakan suara sintetis fiktif lokal; penerimaan akting tetap memerlukan pendengaran manusia. Dialog Ibu/Ratna dan komentar baru
 berupa subtitle sampai rekaman manusia tersedia. Dialogue-For-Recording.csv berisi naskah dan
 arahan intonasi. Jangan menganggap kualitas voice acting sudah final.
-Tiga adegan lantai dua, basement stealth, chase dan konfrontasi tiga foto, dan ending sudah tersedia;
-kesulitan/tensi tetap perlu review manusia dan pengukuran FPS Windows.
+Genggaman HP dua tangan, framing viewfinder, pencahayaan, dan HUD diperbarui 23 Oktober;
+semuanya tetap memerlukan penilaian mata manusia di Windows. Tiga adegan lantai dua,
+basement stealth, chase dan konfrontasi tiga foto, serta ending sudah tersedia; kesulitan/tensi
+perlu review manusia dan pengukuran FPS Windows.
 
 Uji tambahan: remap E/CTRL/SPACE/TAB/Q; baterai 0; gunakan powerbank B; port USB motor
 dan charger dapur memulihkan ke 35% agar tidak softlock. Coba buka HP saat modal/menu,
