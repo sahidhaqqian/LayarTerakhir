@@ -1,0 +1,32 @@
+{
+    "completed": true,
+    "standalone": true,
+    "rendered": true,
+    "utc": "2026-10-25T13:04:22.8627750Z",
+    "platform": "LinuxPlayer",
+    "gpu": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "method": "Posed standalone composition fixtures; not gameplay acceptance",
+    "walkedMeters": 0.0,
+    "checks": [
+        "PASS Golden Kos guarded from prolog and starts Phase4 hub",
+        "PASS Carry-over values are exact; no hidden resource reset",
+        "PASS No-wallet fixture cannot purchase supplies",
+        "PASS Hub outlet explicitly charges to100",
+        "PASS One-time outlet receipt prevents duplicate",
+        "PASS Free mandatory modules and atomic CP1 departure",
+        "PASS Village starts from actual saved CP1",
+        "PASS Graphical standalone renderer for posed compositions",
+        "PASS Posed UV feed includes authored glyph layer"
+    ],
+    "screenshots": [
+        "01-forest.png",
+        "02-pendopo.png",
+        "03-grave.png",
+        "04-gubuk.png",
+        "05-well.png",
+        "06-south.png",
+        "07-suro-roof-posed.png",
+        "08-stairs-posed.png",
+        "09-uv-torches-posed.png"
+    ]
+}

@@ -17,10 +17,13 @@
     "LayarTerakhir.Editor.WindowsDevelopmentBuild.Build",
     "-quit",
     "-logFile",
-    "Builds/Logs/phase3-windows-development-build-motorfix.log"
+    "Builds/Logs/phase4-windows-build.log"
   ],
-  "startedUtc": "2026-10-24T15:30:45.839202+00:00",
+  "startedUtc": "2026-10-25T13:09:17.630126+00:00",
   "status": "Finished",
-  "endedUtc": "2026-10-24T15:31:56.213883+00:00",
-  "exitCode": 0
+  "unit": "lt-unity-20261025-130917-305202",
+  "memoryLimitBytes": 5368709120,
+  "endedUtc": "2026-10-25T13:15:39.683018+00:00",
+  "exitCode": 0,
+  "systemdServiceResult": "success"
 }

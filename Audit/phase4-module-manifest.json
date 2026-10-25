@@ -1,0 +1,351 @@
+[
+  {
+    "name": "JogloPendopo",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Modules/JogloPendopo.fbx",
+    "sourceMeshes": [
+      "Mesh408_Roof_Tiles___French_Red_0"
+    ],
+    "bounds": [
+      566.9291381835938,
+      448.81890869140625,
+      260.622314453125
+    ],
+    "sourceId": "Joglo",
+    "operation": "Selection of licensed original geometry, transforms baked; no modeled geometry"
+  },
+  {
+    "name": "JogloHouse",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Modules/JogloHouse.fbx",
+    "sourceMeshes": [
+      "Mesh100_Wood___Pine_Grained_Horizontal_0",
+      "Mesh101_Wood___Pine_Grained_Horizontal_0",
+      "Mesh102_Wood___Pine_Grained_Horizontal_0",
+      "Mesh103_Wood___Pine_Grained_Horizontal_0",
+      "Mesh104_Wood___Pine_Grained_Horizontal_0",
+      "Mesh105_Wood___Pine_Grained_Horizontal_0",
+      "Mesh106_Brick___Brown_0",
+      "Mesh107_Paint___Golden_Ochre_0",
+      "Mesh107_Paint___Light_Gray_0",
+      "Mesh114_Brick___Brown_0",
+      "Mesh117_Brick___Brown_0",
+      "Mesh122_Wood___Pine_Grained_Horizontal_0",
+      "Mesh123_Wood___Pine_Grained_Horizontal_0",
+      "Mesh124_Wood___Pine_Grained_Horizontal_0",
+      "Mesh125_Wood___Pine_Grained_Horizontal_0",
+      "Mesh126_Wood___Pine_Grained_Horizontal_0",
+      "Mesh127_Wood___Pine_Grained_Horizontal_0",
+      "Mesh128_Wood___Pine_Grained_Horizontal_0",
+      "Mesh129_Wood___Pine_Grained_Horizontal_0",
+      "Mesh130_Wood___Pine_Grained_Horizontal_0",
+      "Mesh131_Wood___Pine_Grained_Horizontal_0",
+      "Mesh132_Wood___Pine_Grained_Horizontal_0",
+      "Mesh133_Wood___Pine_Grained_Horizontal_0",
+      "Mesh134_Wood___Pine_Grained_Horizontal_0",
+      "Mesh135_Wood___Pine_Grained_Horizontal_0",
+      "Mesh136_Glass___Clear_Fast_0",
+      "Mesh137_Wood___Pine_Grained_Horizontal_0",
+      "Mesh138_Wood___Pine_Grained_Horizontal_0",
+      "Mesh139_Wood___Pine_Grained_Horizontal_0",
+      "Mesh140_Wood___Pine_Grained_Horizontal_0",
+      "Mesh141_Wood___Pine_Grained_Horizontal_0",
+      "Mesh142_Wood___Pine_Grained_Horizontal_0",
+      "Mesh143_Wood___Pine_Grained_Horizontal_0",
+      "Mesh144_Wood___Pine_Grained_Horizontal_0",
+      "Mesh145_Wood___Pine_Grained_Horizontal_0",
+      "Mesh146_Wood___Pine_Grained_Horizontal_0",
+      "Mesh147_Wood___Pine_Grained_Horizontal_0",
+      "Mesh148_Wood___Pine_Grained_Horizontal_0",
+      "Mesh149_Wood___Pine_Grained_Horizontal_0",
+      "Mesh150_Wood___Pine_Grained_Horizontal_0",
+      "Mesh151_Glass___Clear_Fast_0",
+      "Mesh24_Paint___Golden_Ochre_0",
+      "Mesh24_Paint___Light_Gray_0",
+      "Mesh25_Paint___Golden_Ochre_0",
+      "Mesh25_Paint___Light_Gray_0",
+      "Mesh26_Paint___Golden_Ochre_0",
+      "Mesh26_Paint___Light_Gray_0",
+      "Mesh27_Paint___Golden_Ochre_0",
+      "Mesh27_Paint___Light_Gray_0",
+      "Mesh289_Wood___Pine_Grained_Horizontal_0",
+      "Mesh292_Wood___Pine_Grained_Horizontal_0",
+      "Mesh295_Wood___Pine_Grained_Horizontal_0",
+      "Mesh298_Wood___Pine_Grained_Horizontal_0",
+      "Mesh303_Glass___Clear_Fast_0",
+      "Mesh304_Brick___Brown_0",
+      "Mesh305_Wood___Pine_Grained_Horizontal_0",
+      "Mesh308_Wood___Pine_Grained_Horizontal_0",
+      "Mesh311_Wood___Pine_Grained_Horizontal_0",
+      "Mesh314_Wood___Pine_Grained_Horizontal_0",
+      "Mesh317_Wood___Pine_Grained_Horizontal_0",
+      "Mesh318_Wood___Pine_Grained_Horizontal_0",
+      "Mesh319_Glass___Clear_Fast_0",
+      "Mesh31_Brick___Brown_0",
+      "Mesh321_Wood___Pine_Grained_Horizontal_0",
+      "Mesh322_Wood___Pine_Grained_Horizontal_0",
+      "Mesh323_Wood___Pine_Grained_Horizontal_0",
+      "Mesh324_Wood___Pine_Grained_Horizontal_0",
+      "Mesh325_Wood___Pine_Grained_Horizontal_0",
+      "Mesh326_Wood___Pine_Grained_Horizontal_0",
+      "Mesh327_Wood___Pine_Grained_Horizontal_0",
+      "Mesh328_Wood___Pine_Grained_Horizontal_0",
+      "Mesh329_Wood___Pine_Grained_Horizontal_0",
+      "Mesh32_Brick___Brown_0",
+      "Mesh330_Wood___Pine_Grained_Horizontal_0",
+      "Mesh331_Wood___Pine_Grained_Horizontal_0",
+      "Mesh332_Wood___Pine_Grained_Horizontal_0",
+      "Mesh333_Wood___Pine_Grained_Horizontal_0",
+      "Mesh334_Wood___Pine_Grained_Horizontal_0",
+      "Mesh335_Wood___Pine_Grained_Horizontal_0",
+      "Mesh336_Wood___Pine_Grained_Horizontal_0",
+      "Mesh337_Wood___Pine_Grained_Horizontal_0",
+      "Mesh338_Wood___Pine_Grained_Horizontal_0",
+      "Mesh39_Brick___Brown_0",
+      "Mesh409_Paint___Light_Gray_0",
+      "Mesh409_Roof_Tiles___French_Red_0",
+      "Mesh40_Brick___Brown_0",
+      "Mesh41_Brick___Brown_0",
+      "Mesh42_Brick___Brown_0",
+      "Mesh43_Wood___Pine_Grained_Horizontal_0",
+      "Mesh44_Wood___Pine_Grained_Horizontal_0",
+      "Mesh45_Wood___Pine_Grained_Horizontal_0",
+      "Mesh46_Wood___Pine_Grained_Horizontal_0",
+      "Mesh47_Wood___Pine_Grained_Horizontal_0",
+      "Mesh48_Wood___Pine_Grained_Horizontal_0",
+      "Mesh49_Wood___Pine_Grained_Horizontal_0",
+      "Mesh50_Wood___Pine_Grained_Horizontal_0",
+      "Mesh51_Wood___Pine_Grained_Horizontal_0",
+      "Mesh52_Wood___Pine_Grained_Horizontal_0",
+      "Mesh53_Wood___Pine_Grained_Horizontal_0",
+      "Mesh54_Wood___Pine_Grained_Horizontal_0",
+      "Mesh55_Wood___Pine_Grained_Horizontal_0",
+      "Mesh56_Wood___Pine_Grained_Horizontal_0",
+      "Mesh57_Glass___Clear_Fast_0",
+      "Mesh58_Wood___Pine_Grained_Horizontal_0",
+      "Mesh59_Wood___Pine_Grained_Horizontal_0",
+      "Mesh60_Wood___Pine_Grained_Horizontal_0",
+      "Mesh61_Wood___Pine_Grained_Horizontal_0",
+      "Mesh62_Wood___Pine_Grained_Horizontal_0",
+      "Mesh63_Wood___Pine_Grained_Horizontal_0",
+      "Mesh64_Wood___Pine_Grained_Horizontal_0",
+      "Mesh65_Wood___Pine_Grained_Horizontal_0",
+      "Mesh66_Wood___Pine_Grained_Horizontal_0",
+      "Mesh67_Wood___Pine_Grained_Horizontal_0",
+      "Mesh68_Wood___Pine_Grained_Horizontal_0",
+      "Mesh69_Wood___Pine_Grained_Horizontal_0",
+      "Mesh70_Wood___Pine_Grained_Horizontal_0",
+      "Mesh71_Wood___Pine_Grained_Horizontal_0",
+      "Mesh72_Glass___Clear_Fast_0",
+      "Mesh73_Wood___Pine_Grained_Horizontal_0",
+      "Mesh74_Wood___Pine_Grained_Horizontal_0",
+      "Mesh75_Wood___Pine_Grained_Horizontal_0",
+      "Mesh76_Wood___Pine_Grained_Horizontal_0",
+      "Mesh77_Wood___Pine_Grained_Horizontal_0",
+      "Mesh78_Wood___Pine_Grained_Horizontal_0",
+      "Mesh79_Wood___Pine_Grained_Horizontal_0",
+      "Mesh80_Wood___Pine_Grained_Horizontal_0",
+      "Mesh81_Wood___Pine_Grained_Horizontal_0",
+      "Mesh82_Wood___Pine_Grained_Horizontal_0",
+      "Mesh83_Wood___Pine_Grained_Horizontal_0",
+      "Mesh84_Wood___Pine_Grained_Horizontal_0",
+      "Mesh85_Wood___Pine_Grained_Horizontal_0",
+      "Mesh86_Wood___Pine_Grained_Horizontal_0",
+      "Mesh87_Glass___Clear_Fast_0",
+      "Mesh88_Wood___Pine_Grained_Horizontal_0",
+      "Mesh89_Wood___Pine_Grained_Horizontal_0",
+      "Mesh90_Wood___Pine_Grained_Horizontal_0",
+      "Mesh91_Wood___Pine_Grained_Horizontal_0",
+      "Mesh92_Wood___Pine_Grained_Horizontal_0",
+      "Mesh93_Wood___Pine_Grained_Horizontal_0",
+      "Mesh94_Wood___Pine_Grained_Horizontal_0",
+      "Mesh95_Wood___Pine_Grained_Horizontal_0",
+      "Mesh96_Wood___Pine_Grained_Horizontal_0",
+      "Mesh97_Wood___Pine_Grained_Horizontal_0",
+      "Mesh98_Wood___Pine_Grained_Horizontal_0",
+      "Mesh99_Wood___Pine_Grained_Horizontal_0"
+    ],
+    "bounds": [
+      616.7410278320312,
+      614.9212646484375,
+      372.807373046875
+    ],
+    "sourceId": "Joglo",
+    "operation": "Selection of licensed original geometry, transforms baked; no modeled geometry"
+  },
+  {
+    "name": "JogloRoof",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Modules/JogloRoof.fbx",
+    "sourceMeshes": [
+      "Mesh408_Roof_Tiles___French_Red_0"
+    ],
+    "bounds": [
+      566.9291381835938,
+      448.81890869140625,
+      260.622314453125
+    ],
+    "sourceId": "Joglo",
+    "operation": "Selection of licensed original geometry, transforms baked; no modeled geometry"
+  },
+  {
+    "name": "JogloFloor",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Modules/JogloFloor.fbx",
+    "sourceMeshes": [
+      "Mesh339_Concrete___04_0"
+    ],
+    "bounds": [
+      1107.0443115234375,
+      1733.8135986328125,
+      3.9370079040527344
+    ],
+    "sourceId": "Joglo",
+    "operation": "Selection of licensed original geometry, transforms baked; no modeled geometry"
+  },
+  {
+    "name": "JogloWall",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Modules/JogloWall.fbx",
+    "sourceMeshes": [
+      "Mesh106_Brick___Brown_0"
+    ],
+    "bounds": [
+      5.905517578125,
+      132.29443359375,
+      29.527559280395508
+    ],
+    "sourceId": "Joglo",
+    "operation": "Selection of licensed original geometry, transforms baked; no modeled geometry"
+  },
+  {
+    "name": "JogloPost",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Modules/JogloPost.fbx",
+    "sourceMeshes": [
+      "Mesh10_Paint___Light_Gray_0"
+    ],
+    "bounds": [
+      5.905517578125,
+      5.9055023193359375,
+      106.29920959472656
+    ],
+    "sourceId": "Joglo",
+    "operation": "Selection of licensed original geometry, transforms baked; no modeled geometry"
+  },
+  {
+    "name": "JogloGate",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Modules/JogloGate.fbx",
+    "sourceMeshes": [
+      "Mesh266_Wood___Pine_Grained_Horizontal_0",
+      "Mesh267_Wood___Pine_Grained_Horizontal_0",
+      "Mesh268_Wood___Pine_Grained_Horizontal_0",
+      "Mesh269_Wood___Pine_Grained_Horizontal_0",
+      "Mesh270_Wood___Pine_Grained_Horizontal_0",
+      "Mesh271_Wood___Pine_Grained_Horizontal_0",
+      "Mesh272_Wood___Pine_Grained_Horizontal_0",
+      "Mesh273_Wood___Pine_Grained_Horizontal_0",
+      "Mesh274_Wood___Pine_Grained_Horizontal_0",
+      "Mesh275_Wood___Pine_Grained_Horizontal_0",
+      "Mesh276_Wood___Pine_Grained_Horizontal_0",
+      "Mesh277_Wood___Pine_Grained_Horizontal_0",
+      "Mesh278_Wood___Pine_Grained_Horizontal_0",
+      "Mesh279_Wood___Pine_Grained_Horizontal_0",
+      "Mesh280_Wood___Pine_Grained_Horizontal_0",
+      "Mesh281_Wood___Pine_Grained_Horizontal_0",
+      "Mesh282_Wood___Pine_Grained_Horizontal_0",
+      "Mesh283_Wood___Pine_Grained_Horizontal_0",
+      "Mesh405_Brick___Brown_0",
+      "Mesh406_Paint___Light_Gray_0",
+      "Mesh407_Paint___Light_Gray_0",
+      "Mesh414_Paint___Light_Gray_0",
+      "Mesh414_Roof_Tiles___French_Red_0"
+    ],
+    "bounds": [
+      145.74282836914062,
+      98.42520141601562,
+      184.809814453125
+    ],
+    "sourceId": "Joglo",
+    "operation": "Selection of licensed original geometry, transforms baked; no modeled geometry"
+  },
+  {
+    "name": "BambooA",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Modules/BambooA.fbx",
+    "sourceMeshes": [
+      "Object_15",
+      "Object_16"
+    ],
+    "bounds": [
+      8.03188705444336,
+      9.227346420288086,
+      10.237530708312988
+    ],
+    "sourceId": "BambooSet",
+    "operation": "Selection of licensed original geometry, transforms baked; no modeled geometry"
+  },
+  {
+    "name": "BambooB",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Modules/BambooB.fbx",
+    "sourceMeshes": [
+      "Object_34",
+      "Object_35"
+    ],
+    "bounds": [
+      11.301077842712402,
+      14.013330459594727,
+      33.79991149902344
+    ],
+    "sourceId": "BambooSet",
+    "operation": "Selection of licensed original geometry, transforms baked; no modeled geometry"
+  },
+  {
+    "name": "BambooC",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Modules/BambooC.fbx",
+    "sourceMeshes": [
+      "Object_38",
+      "Object_39",
+      "Object_40"
+    ],
+    "bounds": [
+      11.712566375732422,
+      12.984903335571289,
+      34.04732894897461
+    ],
+    "sourceId": "BambooSet",
+    "operation": "Selection of licensed original geometry, transforms baked; no modeled geometry"
+  },
+  {
+    "name": "BambooD",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Modules/BambooD.fbx",
+    "sourceMeshes": [
+      "Object_50",
+      "Object_51",
+      "Object_52"
+    ],
+    "bounds": [
+      14.258691787719727,
+      12.775096893310547,
+      36.38825988769531
+    ],
+    "sourceId": "BambooSet",
+    "operation": "Selection of licensed original geometry, transforms baked; no modeled geometry"
+  },
+  {
+    "name": "StoneWellAssembly",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Modules/StoneWellAssembly.fbx",
+    "sourceMeshes": [
+      "Cube.001_Wood Sides_0",
+      "Cube.002_Roof_0",
+      "Cube_Water_0",
+      "Cylinder.002_Rod_0",
+      "Cylinder.003_Brick_0",
+      "Cylinder.004_Brick_0",
+      "Cylinder.005_Brick_0",
+      "Cylinder.006_Brick_0",
+      "Cylinder.007_Bucket_0",
+      "Cylinder_Brick_0"
+    ],
+    "bounds": [
+      1223.0418701171875,
+      938.9563598632812,
+      1734.912109375
+    ],
+    "sourceId": "StoneWell",
+    "operation": "Selection of licensed original geometry, transforms baked; no modeled geometry"
+  }
+]

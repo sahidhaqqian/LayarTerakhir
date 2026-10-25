@@ -76,7 +76,7 @@ namespace LayarTerakhir.UI
             {
                 if(remapping.HasValue){remapping=null;Draw();return;}
                 if(settings){settings=false;Draw();return;}
-                if(UiFocus.Clock){var h3=FindFirstObjectByType<LayarTerakhir.Phase3.Phase3Hub>();if(h3){h3.Close();return;}var p3=FindFirstObjectByType<LayarTerakhir.Phase3.Phase3Director>();if(p3){p3.CloseOverlay();return;}var hub=FindFirstObjectByType<LayarTerakhir.Phase2.Phase2Hub>();if(hub){hub.Close();return;}var p2=FindFirstObjectByType<LayarTerakhir.Phase2.Phase2Director>();if(p2){p2.CloseOverlay();return;}var shop=FindFirstObjectByType<MelatiShop>();if(shop&&shop.IsOpen)shop.Close();else FindFirstObjectByType<ClockPuzzleView>()?.Close();return;}
+                if(UiFocus.Clock){var h4=FindFirstObjectByType<LayarTerakhir.Phase4.Phase4Hub>();if(h4){h4.Close();return;}var p4=FindFirstObjectByType<LayarTerakhir.Phase4.Phase4Director>();if(p4){p4.CloseOverlay();return;}var h3=FindFirstObjectByType<LayarTerakhir.Phase3.Phase3Hub>();if(h3){h3.Close();return;}var p3=FindFirstObjectByType<LayarTerakhir.Phase3.Phase3Director>();if(p3){p3.CloseOverlay();return;}var hub=FindFirstObjectByType<LayarTerakhir.Phase2.Phase2Hub>();if(hub){hub.Close();return;}var p2=FindFirstObjectByType<LayarTerakhir.Phase2.Phase2Director>();if(p2){p2.CloseOverlay();return;}var shop=FindFirstObjectByType<MelatiShop>();if(shop&&shop.IsOpen)shop.Close();else FindFirstObjectByType<ClockPuzzleView>()?.Close();return;}
                 var hud=HudController.Instance;
                 if(hud&&hud.documentPanel.activeSelf){hud.CloseDocumentModal();return;}
                 if(hud&&hud.padlockPanel.activeSelf){hud.ClosePadlockModal();return;}
@@ -144,12 +144,15 @@ namespace LayarTerakhir.UI
             if(CampaignRouting.IsPhase2(CampaignState.Instance.Data) && CampaignState.Instance.Data.phase2.Completed("P2_COMPLETE") &&
                 !LayarTerakhir.Phase3.Phase3Campaign.EnterHub(CampaignState.Instance))
             {error="Persiapan Babak 3 gagal disimpan; checkpoint RSUD tetap utuh.";Draw();return;}
+            if(CampaignRouting.IsPhase3(CampaignState.Instance.Data) && CampaignState.Instance.Data.phase3.Completed("P3_COMPLETE") &&
+                !LayarTerakhir.Phase4.Phase4Campaign.EnterHub(CampaignState.Instance))
+            {error="Persiapan Karang Setra gagal disimpan; checkpoint pabrik tetap utuh.";Draw();return;}
             string scene=CampaignRouting.ContinueScene(CampaignState.Instance.Data);
             if(string.IsNullOrEmpty(scene)||!Application.CanStreamedLevelBeLoaded(scene)){error="Babak checkpoint ini belum tersedia. Save tetap disimpan.";Draw();return;}
             error="";loading=true;awaiting=false;Resume();StartCoroutine(LoadSavedScene(scene));
         }
         private IEnumerator LoadSavedScene(string scene)
-        {if(scene==CampaignRouting.FactoryScene){SceneManager.LoadScene(scene);yield return null;}else{var op=SceneManager.LoadSceneAsync(scene);while(!op.isDone)yield return null;}loading=false;}
+        {if(scene==CampaignRouting.FactoryScene||scene==CampaignRouting.VillageScene){SceneManager.LoadScene(scene);yield return null;}else{var op=SceneManager.LoadSceneAsync(scene);while(!op.isDone)yield return null;}loading=false;}
         private IEnumerator LoadKos(bool keepMenu)
         {loading=true;var op=SceneManager.LoadSceneAsync(KosScene);while(!op.isDone)yield return null;loading=false;if(keepMenu)OpenMain();}
         public void ShowSettings(){settings=true;Open();}

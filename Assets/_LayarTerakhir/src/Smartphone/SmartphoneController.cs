@@ -66,6 +66,7 @@ namespace LayarTerakhir.Smartphone
 
         private void Update()
         {
+            if (ChapterContent is IPhoneChapterClock clock && !clock.PhoneClockRunning) return;
             if (_blitzCooldownTimer > 0f)
                 _blitzCooldownTimer -= Time.deltaTime;
 
@@ -186,33 +187,17 @@ namespace LayarTerakhir.Smartphone
                 return false;
 
             string instance = CampaignState.Instance.Data.inventory.Find(id =>
-                id.StartsWith("P3_POWERBANK_") || id == "P1_POWERBANK_MAILBOX_207" || id == "P1_POWERBANK_ARRIVAL" ||
-                id == "P2_POWERBANK_PASAR_GAIB_A" || id == "P2_POWERBANK_PASAR_GAIB_B");
+                id.StartsWith("P4_POWERBANK_") || id.StartsWith("P3_POWERBANK_") || id == "P1_POWERBANK_MAILBOX_207" || id == "P1_POWERBANK_ARRIVAL" ||
+                id == "P2_POWERBANK_PASAR_GAIB_A" || id == "P2_POWERBANK_PASAR_GAIB_B" || id == "POWERBANK_BESAR" || id == "POWERBANK_KECIL_KOS");
             if (instance != null)
             {
                 var campaign = CampaignState.Instance;
-                float restored = Mathf.Min(100, batteryPercent + largePowerbankRestore);
+                float restored = Mathf.Min(100, batteryPercent + (instance == "POWERBANK_KECIL_KOS" ? smallPowerbankRestore : largePowerbankRestore));
                 if (campaign.WritesBlocked)
                 { campaign.Data.inventory.Remove(instance); campaign.Data.battery = restored; }
                 else if (!campaign.TryCommit(campaign.Data.checkpoint_id, data =>
                     { data.inventory.Remove(instance); data.battery = restored; })) return false;
                 batteryPercent = restored; SyncVisualState(); return true;
-            }
-
-            if (CampaignState.Instance.Data.inventory.Remove("POWERBANK_BESAR"))
-            {
-                batteryPercent = Mathf.Clamp(batteryPercent + largePowerbankRestore, 0f, 100f);
-                CampaignState.Instance.Data.battery = batteryPercent;
-                SyncVisualState();
-                return true;
-            }
-
-            if (CampaignState.Instance.Data.inventory.Remove("POWERBANK_KECIL_KOS"))
-            {
-                batteryPercent = Mathf.Clamp(batteryPercent + smallPowerbankRestore, 0f, 100f);
-                CampaignState.Instance.Data.battery = batteryPercent;
-                SyncVisualState();
-                return true;
             }
 
             return false;

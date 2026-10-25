@@ -81,7 +81,7 @@ if 'prolog' in args.source_record.lower():
  for marker in ['PrologFinaleView','AtmajaHandycamPlayback','AtmajaMirrorReflection','AtmajaThreatPresentation','PrologCompletionAudit']:
   assert marker.encode() in runtime,marker
 assert b'LayarPresentation' in (out/'LayarTerakhir_Data/resources.assets').read_bytes(),'Presentation/voice resource missing'
-if any(chapter in args.source_record.lower() for chapter in ('phase1','phase2','phase3')):
+if any(chapter in args.source_record.lower() for chapter in ('phase1','phase2','phase3','phase4')):
  assert report['scenes'][3]=='Assets/_LayarTerakhir/assets/Scenes/Babak1_Rusunawa.unity','Rusunawa scene is missing or reordered'
  phase1_data=(out/'LayarTerakhir_Data/level3').read_bytes()
  for marker in ['Rusunawa_GriyaAsri_Environment','K102_HiddenConcreteFlight','BoltCutter_HandReach','K403_UsableDoor','DamarExistingWheelchair','HalogenImportedHousing_N','DYNAMO_L3_PANEL']:
@@ -95,7 +95,7 @@ if any(chapter in args.source_record.lower() for chapter in ('phase1','phase2','
  (out/'Phase1Review-Start.json').write_text(json.dumps(fixture,indent=2)+'\n')
  (out/'Review-Phase1.cmd').write_text('@echo off\nsetlocal\nset "LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY=%~dp0ReviewSaves\\Phase1"\nif not exist "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%" mkdir "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%"\nif not exist "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%\\layar_terakhir_save.json" copy /Y "%~dp0Phase1Review-Start.json" "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%\\layar_terakhir_save.json" >nul\nstart "" /D "%~dp0" "%~dp0LayarTerakhir.exe"\nendlocal\n')
 
-if any(chapter in args.source_record.lower() for chapter in ('phase2','phase3')):
+if any(chapter in args.source_record.lower() for chapter in ('phase2','phase3','phase4')):
  assert report['scenes'][4]=='Assets/_LayarTerakhir/assets/Scenes/Babak2_RSUD.unity','RSUD Session 1 scene is missing or reordered'
  phase2_data=(out/'LayarTerakhir_Data/level4').read_bytes()
  for marker in ['RSUD_Lama_SidoWaras','Freezer_C3','C3_Contents','Lastri_KuntilanakMerah','MedicineSafeHinge','Inkubator_04','DYNAMO_IGD']:
@@ -106,7 +106,7 @@ if any(chapter in args.source_record.lower() for chapter in ('phase2','phase3'))
   shutil.copy2(root/'Audit'/filename,out/filename)
  (out/'Review-Phase2.cmd').write_text('@echo off\nsetlocal\nstart "" /D "%~dp0" "%~dp0LayarTerakhir.exe" -phase2Review\nendlocal\n')
 
-if 'phase3' in args.source_record.lower():
+if any(chapter in args.source_record.lower() for chapter in ('phase3','phase4')):
  assert report['scenes'][5]=='Assets/_LayarTerakhir/assets/Scenes/Babak3_PabrikGula.unity','Factory missing or reordered'
  phase3_data=(out/'LayarTerakhir_Data/level5').read_bytes()
  for marker in ['Pabrik_Gula_Sindang_Laut','G_ACC_MagneticGate','SlingPhotoTarget','RajahPhotoTarget','EVP_INTERCOM','EVP_VENT09','RitualHallGate','Alcove_ClosedDoor','WeweGombel_ArtistRig','RakaMotor_CampaignCarryOver']:
@@ -116,6 +116,20 @@ if 'phase3' in args.source_record.lower():
  for filename in ['phase3-asset-credits.md','phase3-audio-credits.md','phase3-windows-review.md','phase3-qa-matrix.md']:
   shutil.copy2(root/'Audit'/filename,out/filename)
  (out/'Review-Phase3.cmd').write_text('@echo off\nsetlocal\nstart "" /D "%~dp0" "%~dp0LayarTerakhir.exe" -phase3Review\nendlocal\n')
+
+if 'phase4' in args.source_record.lower():
+ assert report['scenes'][6]=='Assets/_LayarTerakhir/assets/Scenes/Babak4_KarangSetra.unity','Village missing or reordered'
+ data=(out/'LayarTerakhir_Data/level6').read_bytes()
+ for marker in ['Desa_Mati_Karang_Setra','Thermal66_Target','AR_Altar_Target','Hidden_Drawer','PasarSetan_Stairway','Arwah_Mbah_Suro']:
+  assert marker.encode() in data,marker
+ for marker in ['Phase4Director','Phase4Hub','Phase4Campaign','Phase4Ritual','Phase4Banaspati','Phase4PlayerAudit','Phase4Data']:
+  assert marker.encode() in runtime,marker
+ verification_assets=json.loads((root/'Audit/phase4-asset-verification.json').read_text())
+ assert verification_assets['ok'] and verification_assets['distinctPlacedNewModels']>=100
+ for filename in ['phase4-asset-credits.md','phase4-audio-credits.md','phase4-windows-review.md','phase4-qa-matrix.md','phase4-implementation.md']:
+  shutil.copy2(root/'Audit'/filename,out/filename)
+ shutil.copy2(root/'Audit/Recording/phase4-dialogue-recording.csv',out/'Phase4-Dialogue-For-Recording.csv')
+ (out/'Review-Phase4.cmd').write_text('@echo off\nsetlocal\nstart "" /D "%~dp0" "%~dp0LayarTerakhir.exe" -phase4Review\nendlocal\n')
 
 shutil.copy2(root/'Audit/asset-credits.md',out/'Asset-Credits.txt')
 shutil.copy2(root/'Audit/windows-kos-capture.md',out/'Screenshot-Guide.txt')

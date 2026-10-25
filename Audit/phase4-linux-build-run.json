@@ -1,0 +1,27 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-job-worker-count",
+    "1",
+    "-projectPath",
+    "/root/Projects/LayarTerakhir-main",
+    "-nographics",
+    "-executeMethod",
+    "LayarTerakhir.Editor.Phase4SceneBuilder.BuildLinuxReview",
+    "-quit",
+    "-logFile",
+    "Builds/phase4-linux-build.log"
+  ],
+  "startedUtc": "2026-10-25T13:01:46.701642+00:00",
+  "status": "Finished",
+  "unit": "lt-unity-20261025-130146-303980",
+  "memoryLimitBytes": 5368709120,
+  "endedUtc": "2026-10-25T13:02:58.240528+00:00",
+  "exitCode": 0,
+  "systemdServiceResult": "success"
+}

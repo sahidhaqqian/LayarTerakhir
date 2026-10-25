@@ -109,7 +109,7 @@ namespace LayarTerakhir.Editor.Tests
         {
             var d=c.Data;d.schema_version=schema;d.chapter_id=2;d.checkpoint_id="PHASE2_CP7";d.inventory.Add("EVENT_P0_CHAIN3_BROKEN");d.secret_items.Add(Phase3Ids.Secret);
             Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,"layar_terakhir_save.json"),JsonUtility.ToJson(d));Assert.That(c.LoadCheckpoint(),Is.True);
-            Assert.That(c.Data.schema_version,Is.EqualTo(4));Assert.That(c.Data.battery,Is.EqualTo(44));Assert.That(c.Data.inventory,Does.Contain("EVENT_P0_CHAIN3_BROKEN"));Assert.That(c.Data.secret_items,Does.Contain(Phase3Ids.Secret));
+            Assert.That(c.Data.schema_version,Is.EqualTo(5));Assert.That(c.Data.battery,Is.EqualTo(44));Assert.That(c.Data.inventory,Does.Contain("EVENT_P0_CHAIN3_BROKEN"));Assert.That(c.Data.secret_items,Does.Contain(Phase3Ids.Secret));
         }
         [Test] public void AliasesNormalizeWithoutDoubleEvidenceOrRelics()
         {

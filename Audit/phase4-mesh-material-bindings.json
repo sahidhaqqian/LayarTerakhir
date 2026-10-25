@@ -1,0 +1,3140 @@
+{
+  "models": [
+    {
+      "sourceId": "GreenChair_01",
+      "meshes": [
+        {
+          "renderer": "GreenChair_01.001",
+          "mesh": "classic-chair.001",
+          "materials": [
+            "P4_GreenChair_01_GreenChair_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "SchoolChair_01",
+      "meshes": [
+        {
+          "renderer": "SchoolChair_01.001",
+          "mesh": "Mesh.001",
+          "materials": [
+            "P4_SchoolChair_01_SchoolChair_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "WoodenChair_01",
+      "meshes": [
+        {
+          "renderer": "WoodenChair_01.001",
+          "mesh": "Cube.002",
+          "materials": [
+            "P4_WoodenChair_01_WoodenChair_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "WoodenTable_01",
+      "meshes": [
+        {
+          "renderer": "WoodenTable_01.001",
+          "mesh": "Mesh.001",
+          "materials": [
+            "P4_WoodenTable_01_WoodenTable_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "WoodenTable_02",
+      "meshes": [
+        {
+          "renderer": "WoodenTable_02.001",
+          "mesh": "Mesh.001",
+          "materials": [
+            "P4_WoodenTable_02_WoodenTable_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "WoodenTable_03",
+      "meshes": [
+        {
+          "renderer": "WoodenTable_03_body.001",
+          "mesh": "Cube.001",
+          "materials": [
+            "P4_WoodenTable_03_WoodenTable_03"
+          ]
+        },
+        {
+          "renderer": "WoodenTable_03_door.001",
+          "mesh": "Cube.003",
+          "materials": [
+            "P4_WoodenTable_03_WoodenTable_03"
+          ]
+        },
+        {
+          "renderer": "WoodenTable_03_drawer01.001",
+          "mesh": "Cube.004",
+          "materials": [
+            "P4_WoodenTable_03_WoodenTable_03"
+          ]
+        },
+        {
+          "renderer": "WoodenTable_03_drawer02.001",
+          "mesh": "Cube.007",
+          "materials": [
+            "P4_WoodenTable_03_WoodenTable_03"
+          ]
+        },
+        {
+          "renderer": "WoodenTable_03_drawer03.001",
+          "mesh": "Cube.008",
+          "materials": [
+            "P4_WoodenTable_03_WoodenTable_03"
+          ]
+        },
+        {
+          "renderer": "WoodenTable_03_drawer04.001",
+          "mesh": "Cube.009",
+          "materials": [
+            "P4_WoodenTable_03_WoodenTable_03"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "anthurium_botany_01",
+      "meshes": [
+        {
+          "renderer": "anthurium_botany_01_a.001",
+          "mesh": "Plane.007",
+          "materials": [
+            "P4_anthurium_botany_01_anthurium_botany_01"
+          ]
+        },
+        {
+          "renderer": "anthurium_botany_01_b.001",
+          "mesh": "Plane.008",
+          "materials": [
+            "P4_anthurium_botany_01_anthurium_botany_01"
+          ]
+        },
+        {
+          "renderer": "anthurium_botany_01_c.001",
+          "mesh": "Plane.009",
+          "materials": [
+            "P4_anthurium_botany_01_anthurium_botany_01"
+          ]
+        },
+        {
+          "renderer": "anthurium_botany_04_d.001",
+          "mesh": "Plane.010",
+          "materials": [
+            "P4_anthurium_botany_01_anthurium_botany_01"
+          ]
+        },
+        {
+          "renderer": "anthurium_botany_05_e.001",
+          "mesh": "Plane.011",
+          "materials": [
+            "P4_anthurium_botany_01_anthurium_botany_01"
+          ]
+        },
+        {
+          "renderer": "anthurium_botany_06_f.001",
+          "mesh": "Plane.012",
+          "materials": [
+            "P4_anthurium_botany_01_anthurium_botany_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "antique_ceramic_vase_01",
+      "meshes": [
+        {
+          "renderer": "antique_ceramic_vase_01.001",
+          "mesh": "Cylinder.001",
+          "materials": [
+            "P4_antique_ceramic_vase_01_antique_ceramic_vase_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "bananas",
+      "meshes": [
+        {
+          "renderer": "bananas_a.001",
+          "mesh": "mesh.001",
+          "materials": [
+            "P4_bananas_Material.008"
+          ]
+        },
+        {
+          "renderer": "bananas_b.001",
+          "mesh": "mesh.002",
+          "materials": [
+            "P4_bananas_Material.008"
+          ]
+        },
+        {
+          "renderer": "bananas_bunch.001",
+          "mesh": "mesh.003",
+          "materials": [
+            "P4_bananas_Material.008"
+          ]
+        },
+        {
+          "renderer": "bananas_c.001",
+          "mesh": "mesh.004",
+          "materials": [
+            "P4_bananas_Material.008"
+          ]
+        },
+        {
+          "renderer": "bananas_d.001",
+          "mesh": "mesh.005",
+          "materials": [
+            "P4_bananas_Material.008"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "brass_candleholders",
+      "meshes": [
+        {
+          "renderer": "brass_candleholder_01.001",
+          "mesh": "Vert.001",
+          "materials": [
+            "P4_brass_candleholders_brass_candleholders_flame",
+            "P4_brass_candleholders_brass_candleholders_01"
+          ]
+        },
+        {
+          "renderer": "brass_candleholder_02.001",
+          "mesh": "Vert.002",
+          "materials": [
+            "P4_brass_candleholders_brass_candleholders_flame",
+            "P4_brass_candleholders_brass_candleholders_02",
+            "P4_brass_candleholders_brass_candleholders_candles"
+          ]
+        },
+        {
+          "renderer": "brass_candleholder_03.001",
+          "mesh": "Circle.001",
+          "materials": [
+            "P4_brass_candleholders_brass_candleholders_flame",
+            "P4_brass_candleholders_brass_candleholders_03"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "brass_diya_lantern",
+      "meshes": [
+        {
+          "renderer": "brass_diya_lantern.001",
+          "mesh": "Cylinder.001",
+          "materials": [
+            "P4_brass_diya_lantern_brass_diya_lantern",
+            "P4_brass_diya_lantern_brass_diya_lantern_glass",
+            "P4_brass_diya_lantern_brass_diya_lantern_flame"
+          ]
+        },
+        {
+          "renderer": "brass_diya_lantern_chain.001",
+          "mesh": "Plane.001",
+          "materials": [
+            "P4_brass_diya_lantern_brass_diya_lantern"
+          ]
+        },
+        {
+          "renderer": "brass_diya_lantern_connection.001",
+          "mesh": "Spiral.002",
+          "materials": [
+            "P4_brass_diya_lantern_brass_diya_lantern"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "brass_goblets",
+      "meshes": [
+        {
+          "renderer": "brass_goblet_01.001",
+          "mesh": "brass_goblet_01.001",
+          "materials": [
+            "P4_brass_goblets_brass_goblets_01"
+          ]
+        },
+        {
+          "renderer": "brass_goblet_02.001",
+          "mesh": "brass_goblet_02.001",
+          "materials": [
+            "P4_brass_goblets_brass_goblets_02"
+          ]
+        },
+        {
+          "renderer": "brass_goblet_03.001",
+          "mesh": "brass_goblet_03.001",
+          "materials": [
+            "P4_brass_goblets_brass_goblets_03"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "brass_pot_01",
+      "meshes": [
+        {
+          "renderer": "brass_pot_01.001",
+          "mesh": "brass_pot_01.001",
+          "materials": [
+            "P4_brass_pot_01_brass_pot_01"
+          ]
+        },
+        {
+          "renderer": "brass_pot_01_lid.001",
+          "mesh": "brass_pot_01.004",
+          "materials": [
+            "P4_brass_pot_01_brass_pot_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "brass_pot_02",
+      "meshes": [
+        {
+          "renderer": "brass_pot_02.001",
+          "mesh": "brass_pot_02.002",
+          "materials": [
+            "P4_brass_pot_02_brass_pot_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "brass_vase_01",
+      "meshes": [
+        {
+          "renderer": "brass_vase_01.001",
+          "mesh": "Circle.002",
+          "materials": [
+            "P4_brass_vase_01_brass_vase_001"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "brass_vase_02",
+      "meshes": [
+        {
+          "renderer": "brass_vase_02.001",
+          "mesh": "brass_vase_02_blockout.002",
+          "materials": [
+            "P4_brass_vase_02_brass_vase_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "brass_vase_03",
+      "meshes": [
+        {
+          "renderer": "brass_vase_03.001",
+          "mesh": "brass_vase_03.002",
+          "materials": [
+            "P4_brass_vase_03_brass_vase_03"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "brass_vase_04",
+      "meshes": [
+        {
+          "renderer": "brass_vase_04.001",
+          "mesh": "brass_vase_04_Cylinder.001",
+          "materials": [
+            "P4_brass_vase_04_brass_vase_04"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "carved_wooden_elephant",
+      "meshes": [
+        {
+          "renderer": "carved_wooden_elephant.001",
+          "mesh": "elephant_orig.001",
+          "materials": [
+            "P4_carved_wooden_elephant_carved_wooden_elephant"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "ceramic_vase_01",
+      "meshes": [
+        {
+          "renderer": "ceramic_vase_01.001",
+          "mesh": "Cylinder.002",
+          "materials": [
+            "P4_ceramic_vase_01_ceramic_vase_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "ceramic_vase_02",
+      "meshes": [
+        {
+          "renderer": "ceramic_vase_02.001",
+          "mesh": "Cylinder.002",
+          "materials": [
+            "P4_ceramic_vase_02_ceramic_vase_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "ceramic_vase_03",
+      "meshes": [
+        {
+          "renderer": "ceramic_vase_03.001",
+          "mesh": "Cube.001",
+          "materials": [
+            "P4_ceramic_vase_03_ceramic_vase_03"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "ceramic_vase_04",
+      "meshes": [
+        {
+          "renderer": "ceramic_vase_04.001",
+          "mesh": "Cylinder.002",
+          "materials": [
+            "P4_ceramic_vase_04_ceramic_vase_04"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "chinese_stool",
+      "meshes": [
+        {
+          "renderer": "chinese_stool.001",
+          "mesh": "Plane.002",
+          "materials": [
+            "P4_chinese_stool_chinese_stool"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "chinese_tea_table",
+      "meshes": [
+        {
+          "renderer": "chinese_tea_table.001",
+          "mesh": "Plane.002",
+          "materials": [
+            "P4_chinese_tea_table_chinese_tea_table"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "coast_land_rocks_02",
+      "meshes": [
+        {
+          "renderer": "coast_land_rocks_02_LOD0.001",
+          "mesh": "Plane.004",
+          "materials": [
+            "P4_coast_land_rocks_02_coast_land_rocks_02"
+          ]
+        },
+        {
+          "renderer": "coast_land_rocks_02_LOD1.001",
+          "mesh": "Plane.005",
+          "materials": [
+            "P4_coast_land_rocks_02_coast_land_rocks_02"
+          ]
+        },
+        {
+          "renderer": "coast_land_rocks_02_LOD2.001",
+          "mesh": "Plane.006",
+          "materials": [
+            "P4_coast_land_rocks_02_coast_land_rocks_02"
+          ]
+        },
+        {
+          "renderer": "coast_land_rocks_02_LOD3.001",
+          "mesh": "Plane.007",
+          "materials": [
+            "P4_coast_land_rocks_02_coast_land_rocks_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "coast_land_rocks_03",
+      "meshes": [
+        {
+          "renderer": "coast_land_rocks_03_LOD0.001",
+          "mesh": "Plane.004",
+          "materials": [
+            "P4_coast_land_rocks_03_coast_land_rocks_03"
+          ]
+        },
+        {
+          "renderer": "coast_land_rocks_03_LOD1.001",
+          "mesh": "Plane.005",
+          "materials": [
+            "P4_coast_land_rocks_03_coast_land_rocks_03"
+          ]
+        },
+        {
+          "renderer": "coast_land_rocks_03_LOD2.001",
+          "mesh": "Plane.006",
+          "materials": [
+            "P4_coast_land_rocks_03_coast_land_rocks_03"
+          ]
+        },
+        {
+          "renderer": "coast_land_rocks_03_LOD3.001",
+          "mesh": "Plane.007",
+          "materials": [
+            "P4_coast_land_rocks_03_coast_land_rocks_03"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "coast_land_rocks_04",
+      "meshes": [
+        {
+          "renderer": "coast_land_rocks_04_LOD0.001",
+          "mesh": "Plane.004",
+          "materials": [
+            "P4_coast_land_rocks_04_coast_land_rocks_04"
+          ]
+        },
+        {
+          "renderer": "coast_land_rocks_04_LOD1.001",
+          "mesh": "Plane.005",
+          "materials": [
+            "P4_coast_land_rocks_04_coast_land_rocks_04"
+          ]
+        },
+        {
+          "renderer": "coast_land_rocks_04_LOD2.001",
+          "mesh": "Plane.006",
+          "materials": [
+            "P4_coast_land_rocks_04_coast_land_rocks_04"
+          ]
+        },
+        {
+          "renderer": "coast_land_rocks_04_LOD3.001",
+          "mesh": "Plane.007",
+          "materials": [
+            "P4_coast_land_rocks_04_coast_land_rocks_04"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "coast_rocks_01",
+      "meshes": [
+        {
+          "renderer": "coast_rocks_01_LOD0.001",
+          "mesh": "Plane.003",
+          "materials": [
+            "P4_coast_rocks_01_coast_rocks_01"
+          ]
+        },
+        {
+          "renderer": "coast_rocks_01_LOD1.001",
+          "mesh": "Plane.006",
+          "materials": [
+            "P4_coast_rocks_01_coast_rocks_01"
+          ]
+        },
+        {
+          "renderer": "coast_rocks_01_LOD2.001",
+          "mesh": "Plane.007",
+          "materials": [
+            "P4_coast_rocks_01_coast_rocks_01"
+          ]
+        },
+        {
+          "renderer": "coast_rocks_01_LOD3.001",
+          "mesh": "Plane.008",
+          "materials": [
+            "P4_coast_rocks_01_coast_rocks_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "coast_rocks_02",
+      "meshes": [
+        {
+          "renderer": "coast_rocks_02_LOD0.001",
+          "mesh": "Plane.005",
+          "materials": [
+            "P4_coast_rocks_02_coast_rocks_02"
+          ]
+        },
+        {
+          "renderer": "coast_rocks_02_LOD1.001",
+          "mesh": "Plane.006",
+          "materials": [
+            "P4_coast_rocks_02_coast_rocks_02"
+          ]
+        },
+        {
+          "renderer": "coast_rocks_02_LOD2.001",
+          "mesh": "Plane.007",
+          "materials": [
+            "P4_coast_rocks_02_coast_rocks_02"
+          ]
+        },
+        {
+          "renderer": "coast_rocks_02_LOD3.001",
+          "mesh": "Plane.008",
+          "materials": [
+            "P4_coast_rocks_02_coast_rocks_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "coast_rocks_03",
+      "meshes": [
+        {
+          "renderer": "coast_rocks_03_LOD0.001",
+          "mesh": "Plane1.005",
+          "materials": [
+            "P4_coast_rocks_03_coast_rocks_03"
+          ]
+        },
+        {
+          "renderer": "coast_rocks_03_LOD1.001",
+          "mesh": "Plane1.006",
+          "materials": [
+            "P4_coast_rocks_03_coast_rocks_03"
+          ]
+        },
+        {
+          "renderer": "coast_rocks_03_LOD2.001",
+          "mesh": "Plane1.007",
+          "materials": [
+            "P4_coast_rocks_03_coast_rocks_03"
+          ]
+        },
+        {
+          "renderer": "coast_rocks_03_LOD3.001",
+          "mesh": "Plane1.008",
+          "materials": [
+            "P4_coast_rocks_03_coast_rocks_03"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "coast_rocks_05",
+      "meshes": [
+        {
+          "renderer": "coast_rocks_05_LOD0.001",
+          "mesh": "type_01_uv_map_zbrush.004",
+          "materials": [
+            "P4_coast_rocks_05_coast_rocks_05"
+          ]
+        },
+        {
+          "renderer": "coast_rocks_05_LOD1.001",
+          "mesh": "type_01_uv_map_zbrush.005",
+          "materials": [
+            "P4_coast_rocks_05_coast_rocks_05"
+          ]
+        },
+        {
+          "renderer": "coast_rocks_05_LOD2.001",
+          "mesh": "type_01_uv_map_zbrush.006",
+          "materials": [
+            "P4_coast_rocks_05_coast_rocks_05"
+          ]
+        },
+        {
+          "renderer": "coast_rocks_05_LOD3.001",
+          "mesh": "type_01_uv_map_zbrush.007",
+          "materials": [
+            "P4_coast_rocks_05_coast_rocks_05"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "compost_bag_02",
+      "meshes": [
+        {
+          "renderer": "compost_bag_02.001",
+          "mesh": "mesh.001",
+          "materials": [
+            "P4_compost_bag_02_compost_bag_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "compost_bags",
+      "meshes": [
+        {
+          "renderer": "compost_bags_floor.001",
+          "mesh": "Cube.001",
+          "materials": [
+            "P4_compost_bags_compost_bags"
+          ]
+        },
+        {
+          "renderer": "compost_bags_floorstacked.001",
+          "mesh": "Cube.006",
+          "materials": [
+            "P4_compost_bags_compost_bags"
+          ]
+        },
+        {
+          "renderer": "compost_bags_leaning.001",
+          "mesh": "Cube.007",
+          "materials": [
+            "P4_compost_bags_compost_bags"
+          ]
+        },
+        {
+          "renderer": "compost_bags_standing.001",
+          "mesh": "Cube.008",
+          "materials": [
+            "P4_compost_bags_compost_bags"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "dead_tree_trunk",
+      "meshes": [
+        {
+          "renderer": "dead_tree_trunk.001",
+          "mesh": "dead_tree.001",
+          "materials": [
+            "P4_dead_tree_trunk_dead_tree_trunk"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "dead_tree_trunk_02",
+      "meshes": [
+        {
+          "renderer": "dead_tree_trunk_02_LOD0.001",
+          "mesh": "fallen_log_5m_PROXY.005",
+          "materials": [
+            "P4_dead_tree_trunk_02_dead_tree_trunk_02"
+          ]
+        },
+        {
+          "renderer": "dead_tree_trunk_02_LOD1.001",
+          "mesh": "fallen_log_5m_PROXY.006",
+          "materials": [
+            "P4_dead_tree_trunk_02_dead_tree_trunk_02"
+          ]
+        },
+        {
+          "renderer": "dead_tree_trunk_02_LOD2.001",
+          "mesh": "fallen_log_5m_PROXY.007",
+          "materials": [
+            "P4_dead_tree_trunk_02_dead_tree_trunk_02"
+          ]
+        },
+        {
+          "renderer": "dead_tree_trunk_02_LOD3.001",
+          "mesh": "fallen_log_5m_PROXY.008",
+          "materials": [
+            "P4_dead_tree_trunk_02_dead_tree_trunk_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "decorative_book_set_01",
+      "meshes": [
+        {
+          "renderer": "book_hardcover_01_cover02.001",
+          "mesh": "Plane.001",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover02"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover06.001",
+          "mesh": "Plane.006",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover06"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover07.001",
+          "mesh": "Plane.008",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover07"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover08.001",
+          "mesh": "Plane.013",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover08"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover13.001",
+          "mesh": "Plane.016",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover13"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover15.001",
+          "mesh": "Plane.018",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover15"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover23.001",
+          "mesh": "Plane.019",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover23"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover24.001",
+          "mesh": "Plane.020",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover24"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover29.001",
+          "mesh": "Plane.021",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover29"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover34.001",
+          "mesh": "Plane.022",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover34"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover35.001",
+          "mesh": "Plane.023",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover35"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover36.001",
+          "mesh": "Plane.024",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover36"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover37.001",
+          "mesh": "Plane.025",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover37"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover41.001",
+          "mesh": "Plane.026",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover41"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover42.001",
+          "mesh": "Plane.027",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover42"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover47.001",
+          "mesh": "Plane.028",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover47"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover48.001",
+          "mesh": "Plane.029",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover48"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover49.001",
+          "mesh": "Plane.030",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover49"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover51.001",
+          "mesh": "Plane.031",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover51"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover54.001",
+          "mesh": "Plane.032",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover54"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover62.001",
+          "mesh": "Plane.033",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover62"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover65.001",
+          "mesh": "Plane.034",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover65"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover66.001",
+          "mesh": "Plane.035",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover66"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover68.001",
+          "mesh": "Plane.036",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover68"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover69.001",
+          "mesh": "Plane.037",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover69"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover75.001",
+          "mesh": "Plane.038",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover75"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover79.001",
+          "mesh": "Plane.039",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover79"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover80.001",
+          "mesh": "Plane.040",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover80"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover83.001",
+          "mesh": "Plane.041",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover83"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover85.001",
+          "mesh": "Plane.042",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover85"
+          ]
+        },
+        {
+          "renderer": "book_hardcover_01_cover87.001",
+          "mesh": "Plane.043",
+          "materials": [
+            "P4_decorative_book_set_01_book_hardcover_01_cover87"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover01.001",
+          "mesh": "Plane.044",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover01"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover04.001",
+          "mesh": "Plane.045",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover04"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover05.001",
+          "mesh": "Plane.046",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover05"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover09.001",
+          "mesh": "Plane.047",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover09"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover11.001",
+          "mesh": "Plane.048",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover11"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover12.001",
+          "mesh": "Plane.049",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover12"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover14.001",
+          "mesh": "Plane.050",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover14"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover25.001",
+          "mesh": "Plane.051",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover25"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover27.001",
+          "mesh": "Plane.052",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover27"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover28.001",
+          "mesh": "Plane.053",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover28"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover31.001",
+          "mesh": "Plane.054",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover31"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover32.001",
+          "mesh": "Plane.055",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover32"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover33.001",
+          "mesh": "Plane.056",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover33"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover38.001",
+          "mesh": "Plane.057",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover38"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover39.001",
+          "mesh": "Plane.058",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover39"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover40.001",
+          "mesh": "Plane.059",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover40"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover45.001",
+          "mesh": "Plane.060",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover45"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover46.001",
+          "mesh": "Plane.061",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover46"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover52.001",
+          "mesh": "Plane.062",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover52"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover56.001",
+          "mesh": "Plane.063",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover56"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover58.001",
+          "mesh": "Plane.064",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover58"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover59.001",
+          "mesh": "Plane.065",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover59"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover61.001",
+          "mesh": "Plane.066",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover61"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover63.001",
+          "mesh": "Plane.067",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover63"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover64.001",
+          "mesh": "Plane.068",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover64"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover67.001",
+          "mesh": "Plane.069",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover67"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover70.001",
+          "mesh": "Plane.070",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover70"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover76.001",
+          "mesh": "Plane.071",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover76"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover77.001",
+          "mesh": "Plane.072",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover77"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover78.001",
+          "mesh": "Plane.073",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover78"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover81.001",
+          "mesh": "Plane.074",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover81"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover82.001",
+          "mesh": "Plane.075",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover82"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover86.001",
+          "mesh": "Plane.076",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover86"
+          ]
+        },
+        {
+          "renderer": "book_softcover_01_cover88.001",
+          "mesh": "Plane.077",
+          "materials": [
+            "P4_decorative_book_set_01_book_softcover_01_cover88"
+          ]
+        },
+        {
+          "renderer": "catalogue_hardcover_01_cover03.001",
+          "mesh": "Plane.078",
+          "materials": [
+            "P4_decorative_book_set_01_catalogue_hardcover_01_cover03"
+          ]
+        },
+        {
+          "renderer": "catalogue_hardcover_01_cover44.001",
+          "mesh": "Plane.079",
+          "materials": [
+            "P4_decorative_book_set_01_catalogue_hardcover_01_cover44"
+          ]
+        },
+        {
+          "renderer": "catalogue_hardcover_01_cover55.001",
+          "mesh": "Plane.081",
+          "materials": [
+            "P4_decorative_book_set_01_catalogue_hardcover_01_cover55"
+          ]
+        },
+        {
+          "renderer": "catalogue_hardcover_01_cover60.001",
+          "mesh": "Plane.082",
+          "materials": [
+            "P4_decorative_book_set_01_catalogue_hardcover_01_cover60"
+          ]
+        },
+        {
+          "renderer": "catalogue_softcover_01_cover10.001",
+          "mesh": "Plane.083",
+          "materials": [
+            "P4_decorative_book_set_01_catalogue_softcover_01_cover10"
+          ]
+        },
+        {
+          "renderer": "catalogue_softcover_01_cover26.001",
+          "mesh": "Plane.084",
+          "materials": [
+            "P4_decorative_book_set_01_catalogue_softcover_01_cover26"
+          ]
+        },
+        {
+          "renderer": "catalogue_softcover_01_cover57.001",
+          "mesh": "Plane.085",
+          "materials": [
+            "P4_decorative_book_set_01_catalogue_softcover_01_cover57"
+          ]
+        },
+        {
+          "renderer": "magazine_01_cover16.001",
+          "mesh": "Cube.001",
+          "materials": [
+            "P4_decorative_book_set_01_magazine_01_cover16"
+          ]
+        },
+        {
+          "renderer": "magazine_01_cover17.001",
+          "mesh": "Cube.003",
+          "materials": [
+            "P4_decorative_book_set_01_magazine_01_cover17"
+          ]
+        },
+        {
+          "renderer": "magazine_01_cover18.001",
+          "mesh": "Cube.006",
+          "materials": [
+            "P4_decorative_book_set_01_magazine_01_cover18"
+          ]
+        },
+        {
+          "renderer": "magazine_01_cover19.001",
+          "mesh": "Cube.007",
+          "materials": [
+            "P4_decorative_book_set_01_magazine_01_cover19"
+          ]
+        },
+        {
+          "renderer": "magazine_01_cover20.001",
+          "mesh": "Cube.008",
+          "materials": [
+            "P4_decorative_book_set_01_magazine_01_cover20"
+          ]
+        },
+        {
+          "renderer": "magazine_01_cover21.001",
+          "mesh": "Cube.009",
+          "materials": [
+            "P4_decorative_book_set_01_magazine_01_cover21"
+          ]
+        },
+        {
+          "renderer": "magazine_01_cover22.001",
+          "mesh": "Cube.010",
+          "materials": [
+            "P4_decorative_book_set_01_magazine_01_cover22"
+          ]
+        },
+        {
+          "renderer": "magazine_01_cover43.001",
+          "mesh": "Cube.011",
+          "materials": [
+            "P4_decorative_book_set_01_magazine_01_cover43"
+          ]
+        },
+        {
+          "renderer": "magazine_01_cover50.001",
+          "mesh": "Cube.012",
+          "materials": [
+            "P4_decorative_book_set_01_magazine_01_cover50"
+          ]
+        },
+        {
+          "renderer": "magazine_01_cover53.001",
+          "mesh": "Cube.013",
+          "materials": [
+            "P4_decorative_book_set_01_magazine_01_cover53"
+          ]
+        },
+        {
+          "renderer": "magazine_01_cover71.001",
+          "mesh": "Cube.014",
+          "materials": [
+            "P4_decorative_book_set_01_magazine_01_cover71"
+          ]
+        },
+        {
+          "renderer": "magazine_01_cover72.001",
+          "mesh": "Cube.015",
+          "materials": [
+            "P4_decorative_book_set_01_magazine_01_cover72"
+          ]
+        },
+        {
+          "renderer": "magazine_01_cover73.001",
+          "mesh": "Cube.016",
+          "materials": [
+            "P4_decorative_book_set_01_magazine_01_cover73"
+          ]
+        },
+        {
+          "renderer": "magazine_01_cover74.001",
+          "mesh": "Cube.017",
+          "materials": [
+            "P4_decorative_book_set_01_magazine_01_cover74"
+          ]
+        },
+        {
+          "renderer": "magazine_01_cover89.001",
+          "mesh": "Cube.018",
+          "materials": [
+            "P4_decorative_book_set_01_magazine_01_cover89"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "dining_chair_02",
+      "meshes": [
+        {
+          "renderer": "dining_chair_02.001",
+          "mesh": "Cube.002",
+          "materials": [
+            "P4_dining_chair_02_dining_chair_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "dry_branches_medium_01",
+      "meshes": [
+        {
+          "renderer": "dry_branches_medium_01_a.001",
+          "mesh": "branches_b_dynamesh.001",
+          "materials": [
+            "P4_dry_branches_medium_01_dry_branches_medium_01"
+          ]
+        },
+        {
+          "renderer": "dry_branches_medium_01_b.001",
+          "mesh": "branches_b_dynamesh.002",
+          "materials": [
+            "P4_dry_branches_medium_01_dry_branches_medium_01"
+          ]
+        },
+        {
+          "renderer": "dry_branches_medium_01_c.001",
+          "mesh": "branches_b_dynamesh.003",
+          "materials": [
+            "P4_dry_branches_medium_01_dry_branches_medium_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "food_avocado_01",
+      "meshes": [
+        {
+          "renderer": "food_avocado_01.001",
+          "mesh": "avocado_50k_uv.001",
+          "materials": [
+            "P4_food_avocado_01_food_avocado_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "food_ginger_01",
+      "meshes": [
+        {
+          "renderer": "food_ginger_01.001",
+          "mesh": "ginger_root_50k_uv.001",
+          "materials": [
+            "P4_food_ginger_01_food_ginger_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "food_lime_01",
+      "meshes": [
+        {
+          "renderer": "food_lime_01.001",
+          "mesh": "lime_50k_uv.001",
+          "materials": [
+            "P4_food_lime_01_food_lime_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "food_lychee_01",
+      "meshes": [
+        {
+          "renderer": "food_lychee_01.001",
+          "mesh": "lychee_50k_uv.001",
+          "materials": [
+            "P4_food_lychee_01_food_lychee_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "food_pears_asian_01",
+      "meshes": [
+        {
+          "renderer": "food_pears_asian_01_a.001",
+          "mesh": "food_pears_asian_01a.001",
+          "materials": [
+            "P4_food_pears_asian_01_food_pears_asian_01"
+          ]
+        },
+        {
+          "renderer": "food_pears_asian_01_b.001",
+          "mesh": "food_pears_asian_01b.001",
+          "materials": [
+            "P4_food_pears_asian_01_food_pears_asian_01"
+          ]
+        },
+        {
+          "renderer": "food_pears_asian_01_c.001",
+          "mesh": "food_pears_asian_01c.001",
+          "materials": [
+            "P4_food_pears_asian_01_food_pears_asian_01"
+          ]
+        },
+        {
+          "renderer": "food_pears_asian_01_d.001",
+          "mesh": "food_pears_asian_01d.001",
+          "materials": [
+            "P4_food_pears_asian_01_food_pears_asian_01"
+          ]
+        },
+        {
+          "renderer": "food_pears_asian_01_e.001",
+          "mesh": "food_pears_asian_01e.001",
+          "materials": [
+            "P4_food_pears_asian_01_food_pears_asian_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "food_pomegranate_01",
+      "meshes": [
+        {
+          "renderer": "food_pomegranate_01.001",
+          "mesh": "pomegranate_50k_uv.001",
+          "materials": [
+            "P4_food_pomegranate_01_food_pomegranate_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "gallinera_chair",
+      "meshes": [
+        {
+          "renderer": "gallinera_chair.001",
+          "mesh": "Cube.002",
+          "materials": [
+            "P4_gallinera_chair_gallinera_chair"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "grass_medium_01",
+      "meshes": [
+        {
+          "renderer": "grass_medium_01_large_a_LOD0.001",
+          "mesh": "Plane.001",
+          "materials": [
+            "P4_grass_medium_01_grass_medium_01"
+          ]
+        },
+        {
+          "renderer": "grass_medium_01_large_b_LOD0.001",
+          "mesh": "Plane.002",
+          "materials": [
+            "P4_grass_medium_01_grass_medium_01"
+          ]
+        },
+        {
+          "renderer": "grass_medium_01_large_c_LOD0.001",
+          "mesh": "Plane.003",
+          "materials": [
+            "P4_grass_medium_01_grass_medium_01"
+          ]
+        },
+        {
+          "renderer": "grass_medium_01_mid_a_LOD0.001",
+          "mesh": "Plane.004",
+          "materials": [
+            "P4_grass_medium_01_grass_medium_01"
+          ]
+        },
+        {
+          "renderer": "grass_medium_01_mid_b_LOD0.001",
+          "mesh": "Plane.005",
+          "materials": [
+            "P4_grass_medium_01_grass_medium_01"
+          ]
+        },
+        {
+          "renderer": "grass_medium_01_mid_c_LOD0.001",
+          "mesh": "Plane.006",
+          "materials": [
+            "P4_grass_medium_01_grass_medium_01"
+          ]
+        },
+        {
+          "renderer": "grass_medium_01_small_a_LOD0.001",
+          "mesh": "Plane.007",
+          "materials": [
+            "P4_grass_medium_01_grass_medium_01"
+          ]
+        },
+        {
+          "renderer": "grass_medium_01_small_b_LOD0.001",
+          "mesh": "Plane.008",
+          "materials": [
+            "P4_grass_medium_01_grass_medium_01"
+          ]
+        },
+        {
+          "renderer": "grass_medium_01_tall_a_LOD0.001",
+          "mesh": "Plane.009",
+          "materials": [
+            "P4_grass_medium_01_grass_medium_01"
+          ]
+        },
+        {
+          "renderer": "grass_medium_01_tall_b_LOD0.001",
+          "mesh": "Plane.010",
+          "materials": [
+            "P4_grass_medium_01_grass_medium_01"
+          ]
+        },
+        {
+          "renderer": "grass_medium_01_tall_c_LOD0.001",
+          "mesh": "Plane.011",
+          "materials": [
+            "P4_grass_medium_01_grass_medium_01"
+          ]
+        },
+        {
+          "renderer": "grass_medium_01_tiny_a_LOD0.001",
+          "mesh": "Plane.012",
+          "materials": [
+            "P4_grass_medium_01_grass_medium_01"
+          ]
+        },
+        {
+          "renderer": "grass_medium_01_tiny_b_LOD0.001",
+          "mesh": "Plane.013",
+          "materials": [
+            "P4_grass_medium_01_grass_medium_01"
+          ]
+        },
+        {
+          "renderer": "grass_medium_01_tiny_c_LOD0.001",
+          "mesh": "Plane.014",
+          "materials": [
+            "P4_grass_medium_01_grass_medium_01"
+          ]
+        },
+        {
+          "renderer": "grass_medium_01_tiny_d_LOD0.001",
+          "mesh": "Plane.015",
+          "materials": [
+            "P4_grass_medium_01_grass_medium_01"
+          ]
+        },
+        {
+          "renderer": "grass_medium_01_tiny_e_LOD0.001",
+          "mesh": "Plane.016",
+          "materials": [
+            "P4_grass_medium_01_grass_medium_01"
+          ]
+        },
+        {
+          "renderer": "grass_medium_01_tiny_f_LOD0.001",
+          "mesh": "Plane.017",
+          "materials": [
+            "P4_grass_medium_01_grass_medium_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "grass_medium_02",
+      "meshes": [
+        {
+          "renderer": "grass_medium_02_a.001",
+          "mesh": "Plane.006",
+          "materials": [
+            "P4_grass_medium_02_grass_medium_02"
+          ]
+        },
+        {
+          "renderer": "grass_medium_02_b.001",
+          "mesh": "Plane.007",
+          "materials": [
+            "P4_grass_medium_02_grass_medium_02"
+          ]
+        },
+        {
+          "renderer": "grass_medium_02_c.001",
+          "mesh": "Plane.008",
+          "materials": [
+            "P4_grass_medium_02_grass_medium_02"
+          ]
+        },
+        {
+          "renderer": "grass_medium_02_d.001",
+          "mesh": "Plane.009",
+          "materials": [
+            "P4_grass_medium_02_grass_medium_02"
+          ]
+        },
+        {
+          "renderer": "grass_medium_02_e.001",
+          "mesh": "Plane.010",
+          "materials": [
+            "P4_grass_medium_02_grass_medium_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "hanging_picture_frame_02",
+      "meshes": [
+        {
+          "renderer": "hanging_picture_frame_02.001",
+          "mesh": "Cube.002",
+          "materials": [
+            "P4_hanging_picture_frame_02_hanging_picture_frame_02_artwork",
+            "P4_hanging_picture_frame_02_hanging_picture_frame_02",
+            "P4_hanging_picture_frame_02_hanging_picture_frame_02_glass"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "hatchet",
+      "meshes": [
+        {
+          "renderer": "hatchet.001",
+          "mesh": "Plane.002",
+          "materials": [
+            "P4_hatchet_hatchet"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "jug_01",
+      "meshes": [
+        {
+          "renderer": "jug_01.001",
+          "mesh": "Cylinder.002",
+          "materials": [
+            "P4_jug_01_jug_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "ladder_sectioned_01",
+      "meshes": [
+        {
+          "renderer": "ladder_ribbon.001",
+          "mesh": "Plane.001",
+          "materials": [
+            "P4_ladder_sectioned_01_ladder_sectioned_01"
+          ]
+        },
+        {
+          "renderer": "ladder_section_01.001",
+          "mesh": "Cube.004",
+          "materials": [
+            "P4_ladder_sectioned_01_ladder_sectioned_01"
+          ]
+        },
+        {
+          "renderer": "ladder_section_02.001",
+          "mesh": "Cube.005",
+          "materials": [
+            "P4_ladder_sectioned_01_ladder_sectioned_01"
+          ]
+        },
+        {
+          "renderer": "ladder_section_03.001",
+          "mesh": "Cube.006",
+          "materials": [
+            "P4_ladder_sectioned_01_ladder_sectioned_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "lantern_chandelier_01",
+      "meshes": [
+        {
+          "renderer": "lantern_chandelier_01.001",
+          "mesh": "Plane.002",
+          "materials": [
+            "P4_lantern_chandelier_01_lantern_chandelier_01",
+            "P4_lantern_chandelier_01_lantern_chandelier_01_glass",
+            "P4_lantern_chandelier_01_lantern_chandelier_01_lamp"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "metal_stool_01",
+      "meshes": [
+        {
+          "renderer": "metal_stool_01.001",
+          "mesh": "Cylinder.002",
+          "materials": [
+            "P4_metal_stool_01_metal_stool_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "metal_stool_02",
+      "meshes": [
+        {
+          "renderer": "metal_stool_02.001",
+          "mesh": "Cylinder.002",
+          "materials": [
+            "P4_metal_stool_02_metal_stool_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "moss_01",
+      "meshes": [
+        {
+          "renderer": "moss_01_a_LOD0.001",
+          "mesh": "Plane.001",
+          "materials": [
+            "P4_moss_01_moss_01"
+          ]
+        },
+        {
+          "renderer": "moss_01_b_LOD0.001",
+          "mesh": "Plane.002",
+          "materials": [
+            "P4_moss_01_moss_01"
+          ]
+        },
+        {
+          "renderer": "moss_01_c_LOD0.001",
+          "mesh": "Plane.012",
+          "materials": [
+            "P4_moss_01_moss_01"
+          ]
+        },
+        {
+          "renderer": "moss_01_d_LOD0.001",
+          "mesh": "Plane.013",
+          "materials": [
+            "P4_moss_01_moss_01"
+          ]
+        },
+        {
+          "renderer": "moss_01_e_LOD0.001",
+          "mesh": "Plane.014",
+          "materials": [
+            "P4_moss_01_moss_01"
+          ]
+        },
+        {
+          "renderer": "moss_01_f_LOD0.001",
+          "mesh": "Plane.015",
+          "materials": [
+            "P4_moss_01_moss_01"
+          ]
+        },
+        {
+          "renderer": "moss_01_g_LOD0.001",
+          "mesh": "Plane.016",
+          "materials": [
+            "P4_moss_01_moss_01"
+          ]
+        },
+        {
+          "renderer": "moss_01_h_LOD0.001",
+          "mesh": "Plane.017",
+          "materials": [
+            "P4_moss_01_moss_01"
+          ]
+        },
+        {
+          "renderer": "moss_01_i_LOD0.001",
+          "mesh": "Plane.018",
+          "materials": [
+            "P4_moss_01_moss_01"
+          ]
+        },
+        {
+          "renderer": "moss_01_j_LOD0.001",
+          "mesh": "Plane.019",
+          "materials": [
+            "P4_moss_01_moss_01"
+          ]
+        },
+        {
+          "renderer": "moss_01_tall_a_LOD0.001",
+          "mesh": "Plane.020",
+          "materials": [
+            "P4_moss_01_moss_01"
+          ]
+        },
+        {
+          "renderer": "moss_01_tall_b_LOD0.001",
+          "mesh": "Plane.021",
+          "materials": [
+            "P4_moss_01_moss_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "painted_wooden_cabinet",
+      "meshes": [
+        {
+          "renderer": "painted_wooden_cabinet.001",
+          "mesh": "commode.006",
+          "materials": [
+            "P4_painted_wooden_cabinet_painted_wooden_cabinet"
+          ]
+        },
+        {
+          "renderer": "painted_wooden_cabinet_door_01.001",
+          "mesh": "commode.007",
+          "materials": [
+            "P4_painted_wooden_cabinet_painted_wooden_cabinet"
+          ]
+        },
+        {
+          "renderer": "painted_wooden_cabinet_door_02.001",
+          "mesh": "commode.008",
+          "materials": [
+            "P4_painted_wooden_cabinet_painted_wooden_cabinet"
+          ]
+        },
+        {
+          "renderer": "painted_wooden_cabinet_drawer_01.001",
+          "mesh": "commode.009",
+          "materials": [
+            "P4_painted_wooden_cabinet_painted_wooden_cabinet"
+          ]
+        },
+        {
+          "renderer": "painted_wooden_cabinet_drawer_02.001",
+          "mesh": "commode.010",
+          "materials": [
+            "P4_painted_wooden_cabinet_painted_wooden_cabinet"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "painted_wooden_chair_02",
+      "meshes": [
+        {
+          "renderer": "painted_wooden_chair_02.001",
+          "mesh": "chair.001",
+          "materials": [
+            "P4_painted_wooden_chair_02_painted_wooden_chair_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "painted_wooden_table",
+      "meshes": [
+        {
+          "renderer": "painted_wooden_table.001",
+          "mesh": "table.002",
+          "materials": [
+            "P4_painted_wooden_table_painted_wooden_table"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "pine_roots",
+      "meshes": [
+        {
+          "renderer": "pine_roots_a.001",
+          "mesh": "pine_roots_a.001",
+          "materials": [
+            "P4_pine_roots_pine_roots_a"
+          ]
+        },
+        {
+          "renderer": "pine_roots_b.001",
+          "mesh": "pine_roots_b.001",
+          "materials": [
+            "P4_pine_roots_pine_roots_b"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "potted_plant_01",
+      "meshes": [
+        {
+          "renderer": "potted_plant_01_leaves.001",
+          "mesh": "Plane.002",
+          "materials": [
+            "P4_potted_plant_01_potted_plant_01_leaves"
+          ]
+        },
+        {
+          "renderer": "potted_plant_01_pebbles.001",
+          "mesh": "Circle.001",
+          "materials": [
+            "P4_potted_plant_01_potted_plant_01_pot"
+          ]
+        },
+        {
+          "renderer": "potted_plant_01_pot.001",
+          "mesh": "Circle.003",
+          "materials": [
+            "P4_potted_plant_01_potted_plant_01_pot"
+          ]
+        },
+        {
+          "renderer": "potted_plant_01_stem.001",
+          "mesh": "potted_plant_01_base_low.001",
+          "materials": [
+            "P4_potted_plant_01_potted_plant_01_pot"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "potted_plant_02",
+      "meshes": [
+        {
+          "renderer": "potted_plant_02_dirt.001",
+          "mesh": "low.001",
+          "materials": [
+            "P4_potted_plant_02_potted_plant_02_pot"
+          ]
+        },
+        {
+          "renderer": "potted_plant_02_leaves.001",
+          "mesh": "Circle.002",
+          "materials": [
+            "P4_potted_plant_02_potted_plant_02_leaves"
+          ]
+        },
+        {
+          "renderer": "potted_plant_02_pot.001",
+          "mesh": "Circle.003",
+          "materials": [
+            "P4_potted_plant_02_potted_plant_02_pot"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "rock_07",
+      "meshes": [
+        {
+          "renderer": "rock_07_LOD0.001",
+          "mesh": "realCap_Model_3.004",
+          "materials": [
+            "P4_rock_07_rock_07"
+          ]
+        },
+        {
+          "renderer": "rock_07_LOD1.001",
+          "mesh": "realCap_Model_3.005",
+          "materials": [
+            "P4_rock_07_rock_07"
+          ]
+        },
+        {
+          "renderer": "rock_07_LOD2.001",
+          "mesh": "realCap_Model_3.006",
+          "materials": [
+            "P4_rock_07_rock_07"
+          ]
+        },
+        {
+          "renderer": "rock_07_LOD3.001",
+          "mesh": "realCap_Model_3.007",
+          "materials": [
+            "P4_rock_07_rock_07"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "rock_09",
+      "meshes": [
+        {
+          "renderer": "rock_09_LOD0.001",
+          "mesh": "realCap_Model_1.004",
+          "materials": [
+            "P4_rock_09_rock_09"
+          ]
+        },
+        {
+          "renderer": "rock_09_LOD1.001",
+          "mesh": "realCap_Model_1.005",
+          "materials": [
+            "P4_rock_09_rock_09"
+          ]
+        },
+        {
+          "renderer": "rock_09_LOD2.001",
+          "mesh": "realCap_Model_1.006",
+          "materials": [
+            "P4_rock_09_rock_09"
+          ]
+        },
+        {
+          "renderer": "rock_09_LOD3.001",
+          "mesh": "realCap_Model_1.007",
+          "materials": [
+            "P4_rock_09_rock_09"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "rock_face_01",
+      "meshes": [
+        {
+          "renderer": "rock_face_01.001",
+          "mesh": "rock_face_section_1_proxy.001",
+          "materials": [
+            "P4_rock_face_01_rock_face_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "rock_face_02",
+      "meshes": [
+        {
+          "renderer": "rock_face_02.001",
+          "mesh": "rock_face_section_2_proxy.002",
+          "materials": [
+            "P4_rock_face_02_rock_face_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "rock_moss_set_01",
+      "meshes": [
+        {
+          "renderer": "rock_moss_set_01_rock01.001",
+          "mesh": "modelShape.001",
+          "materials": [
+            "P4_rock_moss_set_01_rock_moss_set_01"
+          ]
+        },
+        {
+          "renderer": "rock_moss_set_01_rock02.001",
+          "mesh": "modelShape.004",
+          "materials": [
+            "P4_rock_moss_set_01_rock_moss_set_01"
+          ]
+        },
+        {
+          "renderer": "rock_moss_set_01_rock03.001",
+          "mesh": "modelShape.006",
+          "materials": [
+            "P4_rock_moss_set_01_rock_moss_set_01"
+          ]
+        },
+        {
+          "renderer": "rock_moss_set_01_rock04.001",
+          "mesh": "medium.002",
+          "materials": [
+            "P4_rock_moss_set_01_rock_moss_set_01"
+          ]
+        },
+        {
+          "renderer": "rock_moss_set_01_rock05.001",
+          "mesh": "modelShape.007",
+          "materials": [
+            "P4_rock_moss_set_01_rock_moss_set_01"
+          ]
+        },
+        {
+          "renderer": "rock_moss_set_01_rock06.001",
+          "mesh": "mesh1-geometry.001",
+          "materials": [
+            "P4_rock_moss_set_01_rock_moss_set_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "rock_moss_set_02",
+      "meshes": [
+        {
+          "renderer": "rock_moss_set_02_rock07.001",
+          "mesh": "low.002",
+          "materials": [
+            "P4_rock_moss_set_02_rock_moss_set_02"
+          ]
+        },
+        {
+          "renderer": "rock_moss_set_02_rock08.001",
+          "mesh": "low.003",
+          "materials": [
+            "P4_rock_moss_set_02_rock_moss_set_02"
+          ]
+        },
+        {
+          "renderer": "rock_moss_set_02_rock09.001",
+          "mesh": "moss rock 10.002",
+          "materials": [
+            "P4_rock_moss_set_02_rock_moss_set_02"
+          ]
+        },
+        {
+          "renderer": "rock_moss_set_02_rock10.001",
+          "mesh": "moss rock 11.002",
+          "materials": [
+            "P4_rock_moss_set_02_rock_moss_set_02"
+          ]
+        },
+        {
+          "renderer": "rock_moss_set_02_rock11.001",
+          "mesh": "moss rock 12.001",
+          "materials": [
+            "P4_rock_moss_set_02_rock_moss_set_02"
+          ]
+        },
+        {
+          "renderer": "rock_moss_set_02_rock12.001",
+          "mesh": "moss rock 13.001",
+          "materials": [
+            "P4_rock_moss_set_02_rock_moss_set_02"
+          ]
+        },
+        {
+          "renderer": "rock_moss_set_02_rock13.001",
+          "mesh": "moss rock 14.002",
+          "materials": [
+            "P4_rock_moss_set_02_rock_moss_set_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "root_cluster_01",
+      "meshes": [
+        {
+          "renderer": "root_cluster_01.001",
+          "mesh": "root_cluster_5m.002",
+          "materials": [
+            "P4_root_cluster_01_root_cluster_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "root_cluster_02",
+      "meshes": [
+        {
+          "renderer": "root_cluster_02_a.001",
+          "mesh": "realCap_1M.002",
+          "materials": [
+            "P4_root_cluster_02_root_cluster_02"
+          ]
+        },
+        {
+          "renderer": "root_cluster_02_b.001",
+          "mesh": "realCap_1M.003",
+          "materials": [
+            "P4_root_cluster_02_root_cluster_02"
+          ]
+        },
+        {
+          "renderer": "root_cluster_02_c.001",
+          "mesh": "realCap_1M.006",
+          "materials": [
+            "P4_root_cluster_02_root_cluster_02"
+          ]
+        },
+        {
+          "renderer": "root_cluster_02_d.001",
+          "mesh": "realCap_1M.008",
+          "materials": [
+            "P4_root_cluster_02_root_cluster_02"
+          ]
+        },
+        {
+          "renderer": "root_cluster_02_e.001",
+          "mesh": "realCap_1M.010",
+          "materials": [
+            "P4_root_cluster_02_root_cluster_02"
+          ]
+        },
+        {
+          "renderer": "root_cluster_02_f.001",
+          "mesh": "realCap_1M.014",
+          "materials": [
+            "P4_root_cluster_02_root_cluster_02"
+          ]
+        },
+        {
+          "renderer": "root_cluster_02_g.001",
+          "mesh": "realCap_1M.015",
+          "materials": [
+            "P4_root_cluster_02_root_cluster_02"
+          ]
+        },
+        {
+          "renderer": "root_cluster_02_h.001",
+          "mesh": "realCap_1M.016",
+          "materials": [
+            "P4_root_cluster_02_root_cluster_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "round_spectacles",
+      "meshes": [
+        {
+          "renderer": "round_spectacles.001",
+          "mesh": "Circle.001",
+          "materials": [
+            "P4_round_spectacles_round_spectacles",
+            "P4_round_spectacles_round_spectacles_glass"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "round_wooden_table_01",
+      "meshes": [
+        {
+          "renderer": "round_wooden_table_01.001",
+          "mesh": "Cylinder.003",
+          "materials": [
+            "P4_round_wooden_table_01_round_wooden_table_01"
+          ]
+        },
+        {
+          "renderer": "round_wooden_table_01_bolts.001",
+          "mesh": "Cylinder.004",
+          "materials": [
+            "P4_round_wooden_table_01_round_wooden_table_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "round_wooden_table_02",
+      "meshes": [
+        {
+          "renderer": "round_wooden_table_02.001",
+          "mesh": "Plane.002",
+          "materials": [
+            "P4_round_wooden_table_02_round_wooden_table_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "rusted_wheel_rim_01",
+      "meshes": [
+        {
+          "renderer": "rusted_wheel_rim_01.001",
+          "mesh": "steel_wheel_01_1.001",
+          "materials": [
+            "P4_rusted_wheel_rim_01_rusted_wheel_rim_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "rusted_wheel_rim_02",
+      "meshes": [
+        {
+          "renderer": "rusted_wheel_rim_02.001",
+          "mesh": "steel_wheel_02.001",
+          "materials": [
+            "P4_rusted_wheel_rim_02_rusted_wheel_rim_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "sand_rocks_small_01",
+      "meshes": [
+        {
+          "renderer": "sand_rocks_small_01_LOD0.001",
+          "mesh": "sand_rocks_small_type_01_remesh.003",
+          "materials": [
+            "P4_sand_rocks_small_01_sand_rocks_small_01"
+          ]
+        },
+        {
+          "renderer": "sand_rocks_small_01_LOD1.001",
+          "mesh": "sand_rocks_small_type_01_remesh.006",
+          "materials": [
+            "P4_sand_rocks_small_01_sand_rocks_small_01"
+          ]
+        },
+        {
+          "renderer": "sand_rocks_small_01_LOD2.001",
+          "mesh": "sand_rocks_small_type_01_remesh.007",
+          "materials": [
+            "P4_sand_rocks_small_01_sand_rocks_small_01"
+          ]
+        },
+        {
+          "renderer": "sand_rocks_small_01_LOD3.001",
+          "mesh": "sand_rocks_small_type_01_remesh.008",
+          "materials": [
+            "P4_sand_rocks_small_01_sand_rocks_small_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "shrub_01",
+      "meshes": [
+        {
+          "renderer": "shrub_01_a_LOD0.001",
+          "mesh": "Circle.002",
+          "materials": [
+            "P4_shrub_01_shrub_01"
+          ]
+        },
+        {
+          "renderer": "shrub_01_b_LOD0.001",
+          "mesh": "Circle.004",
+          "materials": [
+            "P4_shrub_01_shrub_01"
+          ]
+        },
+        {
+          "renderer": "shrub_01_c_LOD0.001",
+          "mesh": "Circle.008",
+          "materials": [
+            "P4_shrub_01_shrub_01"
+          ]
+        },
+        {
+          "renderer": "shrub_01_d_LOD0.001",
+          "mesh": "Circle.009",
+          "materials": [
+            "P4_shrub_01_shrub_01"
+          ]
+        },
+        {
+          "renderer": "shrub_01_e_LOD0.001",
+          "mesh": "Circle.011",
+          "materials": [
+            "P4_shrub_01_shrub_01"
+          ]
+        },
+        {
+          "renderer": "shrub_01_f_LOD0.001",
+          "mesh": "Circle.012",
+          "materials": [
+            "P4_shrub_01_shrub_01"
+          ]
+        },
+        {
+          "renderer": "shrub_01_g_LOD0.001",
+          "mesh": "Circle.013",
+          "materials": [
+            "P4_shrub_01_shrub_01"
+          ]
+        },
+        {
+          "renderer": "shrub_01_h_LOD0.001",
+          "mesh": "Circle.014",
+          "materials": [
+            "P4_shrub_01_shrub_01"
+          ]
+        },
+        {
+          "renderer": "shrub_01_i_LOD0.001",
+          "mesh": "Circle.015",
+          "materials": [
+            "P4_shrub_01_shrub_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "shrub_02",
+      "meshes": [
+        {
+          "renderer": "shrub_02_a_LOD0.001",
+          "mesh": "Plane.001",
+          "materials": [
+            "P4_shrub_02_shrub_02"
+          ]
+        },
+        {
+          "renderer": "shrub_02_b_LOD0.001",
+          "mesh": "Plane.002",
+          "materials": [
+            "P4_shrub_02_shrub_02"
+          ]
+        },
+        {
+          "renderer": "shrub_02_c_LOD0.001",
+          "mesh": "Plane.003",
+          "materials": [
+            "P4_shrub_02_shrub_02"
+          ]
+        },
+        {
+          "renderer": "shrub_02_d_LOD0.001",
+          "mesh": "Plane.004",
+          "materials": [
+            "P4_shrub_02_shrub_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "shrub_04",
+      "meshes": [
+        {
+          "renderer": "shrub_04_a_LOD0.001",
+          "mesh": "Plane.001",
+          "materials": [
+            "P4_shrub_04_shrub_04"
+          ]
+        },
+        {
+          "renderer": "shrub_04_b_LOD0.001",
+          "mesh": "Plane.002",
+          "materials": [
+            "P4_shrub_04_shrub_04"
+          ]
+        },
+        {
+          "renderer": "shrub_04_c_LOD0.001",
+          "mesh": "Plane.003",
+          "materials": [
+            "P4_shrub_04_shrub_04"
+          ]
+        },
+        {
+          "renderer": "shrub_04_d_LOD0.001",
+          "mesh": "Plane.004",
+          "materials": [
+            "P4_shrub_04_shrub_04"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "shrub_sorrel_01",
+      "meshes": [
+        {
+          "renderer": "shrub_sorrel_01_a.001",
+          "mesh": "Plane.001",
+          "materials": [
+            "P4_shrub_sorrel_01_shrub_sorrel_01"
+          ]
+        },
+        {
+          "renderer": "shrub_sorrel_01_b.001",
+          "mesh": "Plane.002",
+          "materials": [
+            "P4_shrub_sorrel_01_shrub_sorrel_01"
+          ]
+        },
+        {
+          "renderer": "shrub_sorrel_01_c.001",
+          "mesh": "Plane.003",
+          "materials": [
+            "P4_shrub_sorrel_01_shrub_sorrel_01"
+          ]
+        },
+        {
+          "renderer": "shrub_sorrel_01_d.001",
+          "mesh": "Plane.004",
+          "materials": [
+            "P4_shrub_sorrel_01_shrub_sorrel_01"
+          ]
+        },
+        {
+          "renderer": "shrub_sorrel_01_e.001",
+          "mesh": "Plane.005",
+          "materials": [
+            "P4_shrub_sorrel_01_shrub_sorrel_01"
+          ]
+        },
+        {
+          "renderer": "shrub_sorrel_01_f.001",
+          "mesh": "Plane.006",
+          "materials": [
+            "P4_shrub_sorrel_01_shrub_sorrel_01"
+          ]
+        },
+        {
+          "renderer": "shrub_sorrel_01_g.001",
+          "mesh": "Plane.007",
+          "materials": [
+            "P4_shrub_sorrel_01_shrub_sorrel_01"
+          ]
+        },
+        {
+          "renderer": "shrub_sorrel_01_h.001",
+          "mesh": "Plane.008",
+          "materials": [
+            "P4_shrub_sorrel_01_shrub_sorrel_01"
+          ]
+        },
+        {
+          "renderer": "shrub_sorrel_01_i.001",
+          "mesh": "Plane.009",
+          "materials": [
+            "P4_shrub_sorrel_01_shrub_sorrel_01"
+          ]
+        },
+        {
+          "renderer": "shrub_sorrel_01_j.001",
+          "mesh": "Plane.010",
+          "materials": [
+            "P4_shrub_sorrel_01_shrub_sorrel_01"
+          ]
+        },
+        {
+          "renderer": "shrub_sorrel_01_k.001",
+          "mesh": "Plane.011",
+          "materials": [
+            "P4_shrub_sorrel_01_shrub_sorrel_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "single_root",
+      "meshes": [
+        {
+          "renderer": "single_root_LOD0.001",
+          "mesh": "realCap_Model_7.004",
+          "materials": [
+            "P4_single_root_single_root"
+          ]
+        },
+        {
+          "renderer": "single_root_LOD1.001",
+          "mesh": "realCap_Model_7.005",
+          "materials": [
+            "P4_single_root_single_root"
+          ]
+        },
+        {
+          "renderer": "single_root_LOD2.001",
+          "mesh": "realCap_Model_7.006",
+          "materials": [
+            "P4_single_root_single_root"
+          ]
+        },
+        {
+          "renderer": "single_root_LOD3.001",
+          "mesh": "realCap_Model_7.007",
+          "materials": [
+            "P4_single_root_single_root"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "small_wooden_table_01",
+      "meshes": [
+        {
+          "renderer": "small_wooden_table_01.001",
+          "mesh": "Cylinder.001",
+          "materials": [
+            "P4_small_wooden_table_01_small_wooden_table_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "spinning_wheel_01",
+      "meshes": [
+        {
+          "renderer": "spinning_wheel_01.001",
+          "mesh": "BezierCurve.002",
+          "materials": [
+            "P4_spinning_wheel_01_spinning_wheel_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "standing_picture_frame_01",
+      "meshes": [
+        {
+          "renderer": "standing_picture_frame_01.001",
+          "mesh": "Cube.001",
+          "materials": [
+            "P4_standing_picture_frame_01_standing_picture_frame_01_glass",
+            "P4_standing_picture_frame_01_standing_picture_frame_01_artwork",
+            "P4_standing_picture_frame_01_standing_picture_frame_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "standing_picture_frame_02",
+      "meshes": [
+        {
+          "renderer": "standing_picture_frame_02.001",
+          "mesh": "Cube.001",
+          "materials": [
+            "P4_standing_picture_frame_02_standing_picture_frame_02_artwork",
+            "P4_standing_picture_frame_02_standing_picture_frame_02",
+            "P4_standing_picture_frame_02_standing_picture_frame_02_glass"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "stone_01",
+      "meshes": [
+        {
+          "renderer": "stone_01_LOD0.001",
+          "mesh": "Plane.001",
+          "materials": [
+            "P4_stone_01_stone_01"
+          ]
+        },
+        {
+          "renderer": "stone_01_LOD1.001",
+          "mesh": "Plane.003",
+          "materials": [
+            "P4_stone_01_stone_01"
+          ]
+        },
+        {
+          "renderer": "stone_01_LOD2.001",
+          "mesh": "Plane.004",
+          "materials": [
+            "P4_stone_01_stone_01"
+          ]
+        },
+        {
+          "renderer": "stone_01_LOD3.001",
+          "mesh": "Plane.007",
+          "materials": [
+            "P4_stone_01_stone_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "stone_fire_pit",
+      "meshes": [
+        {
+          "renderer": "stone_fire_pit.001",
+          "mesh": "texturedMesh.001",
+          "materials": [
+            "P4_stone_fire_pit_stone_fire_pit"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "sungka_board",
+      "meshes": [
+        {
+          "renderer": "sungka_board.001",
+          "mesh": "Plane.001",
+          "materials": [
+            "P4_sungka_board_sungka_board"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "sungka_board_02",
+      "meshes": [
+        {
+          "renderer": "sungka_board_02.001",
+          "mesh": "Plane.003",
+          "materials": [
+            "P4_sungka_board_02_sungka_board_02"
+          ]
+        },
+        {
+          "renderer": "sungka_board_02_shells.001",
+          "mesh": "Plane.004",
+          "materials": [
+            "P4_sungka_board_02_sungka_board_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "sweet_potato",
+      "meshes": [
+        {
+          "renderer": "sweet_potato.001",
+          "mesh": "sweet_potato.001",
+          "materials": [
+            "P4_sweet_potato_sweet_potato"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "tea_set_01",
+      "meshes": [
+        {
+          "renderer": "tea_set_01_cup_small_01.001",
+          "mesh": "Circle.006",
+          "materials": [
+            "P4_tea_set_01_tea_set_01"
+          ]
+        },
+        {
+          "renderer": "tea_set_01_cup_small_02.001",
+          "mesh": "Circle.007",
+          "materials": [
+            "P4_tea_set_01_tea_set_01"
+          ]
+        },
+        {
+          "renderer": "tea_set_01_plate_large_circular_03.001",
+          "mesh": "Circle.008",
+          "materials": [
+            "P4_tea_set_01_tea_set_01"
+          ]
+        },
+        {
+          "renderer": "tea_set_01_plate_large_square_01.001",
+          "mesh": "Circle.010",
+          "materials": [
+            "P4_tea_set_01_tea_set_01"
+          ]
+        },
+        {
+          "renderer": "tea_set_01_saucer_circular_03.001",
+          "mesh": "Circle.011",
+          "materials": [
+            "P4_tea_set_01_tea_set_01"
+          ]
+        },
+        {
+          "renderer": "tea_set_01_saucer_circular_04.001",
+          "mesh": "Circle.013",
+          "materials": [
+            "P4_tea_set_01_tea_set_01"
+          ]
+        },
+        {
+          "renderer": "tea_set_01_sugar_cup_01.001",
+          "mesh": "Circle.014",
+          "materials": [
+            "P4_tea_set_01_tea_set_01"
+          ]
+        },
+        {
+          "renderer": "tea_set_01_sugar_cup_01_lid.001",
+          "mesh": "Circle.015",
+          "materials": [
+            "P4_tea_set_01_tea_set_01"
+          ]
+        },
+        {
+          "renderer": "tea_set_01_teapot_01.001",
+          "mesh": "Circle.016",
+          "materials": [
+            "P4_tea_set_01_tea_set_01"
+          ]
+        },
+        {
+          "renderer": "tea_set_01_teapot_01_lid.001",
+          "mesh": "Circle.017",
+          "materials": [
+            "P4_tea_set_01_tea_set_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "watering_can_metal_01",
+      "meshes": [
+        {
+          "renderer": "watering_can_metal_01.001",
+          "mesh": "Cylinder.002",
+          "materials": [
+            "P4_watering_can_metal_01_watering_can_metal_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "wooden_axe",
+      "meshes": [
+        {
+          "renderer": "wooden_axe.001",
+          "mesh": "Plane.002",
+          "materials": [
+            "P4_wooden_axe_wooden_axe"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "wooden_axe_02",
+      "meshes": [
+        {
+          "renderer": "wooden_axe_02.001",
+          "mesh": "Plane.002",
+          "materials": [
+            "P4_wooden_axe_02_wooden_axe_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "wooden_axe_03",
+      "meshes": [
+        {
+          "renderer": "wooden_axe_03.001",
+          "mesh": "Plane.002",
+          "materials": [
+            "P4_wooden_axe_03_axe_03"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "wooden_bowl_01",
+      "meshes": [
+        {
+          "renderer": "wooden_bowl_01.001",
+          "mesh": "wood_root_bowl_50k_uv.001",
+          "materials": [
+            "P4_wooden_bowl_01_wooden_bowl_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "wooden_bowl_02",
+      "meshes": [
+        {
+          "renderer": "wooden_bowl_02.001",
+          "mesh": "mesh.001",
+          "materials": [
+            "P4_wooden_bowl_02_wooden_bowl_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "wooden_broom",
+      "meshes": [
+        {
+          "renderer": "wooden_broom.001",
+          "mesh": "Mesh.001",
+          "materials": [
+            "P4_wooden_broom_wooden_broom",
+            "P4_wooden_broom_wooden_broom_bristles"
+          ]
+        },
+        {
+          "renderer": "wooden_broom_bristles.001",
+          "mesh": "Mesh.002",
+          "materials": [
+            "P4_wooden_broom_wooden_broom_bristles"
+          ]
+        },
+        {
+          "renderer": "wooden_broom_handle.001",
+          "mesh": "Mesh.003",
+          "materials": [
+            "P4_wooden_broom_wooden_broom"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "wooden_bucket_02",
+      "meshes": [
+        {
+          "renderer": "wooden_bucket_02.001",
+          "mesh": "Plane.002",
+          "materials": [
+            "P4_wooden_bucket_02_wooden_bucket_02"
+          ]
+        },
+        {
+          "renderer": "wooden_bucket_02_handle_01.001",
+          "mesh": "Plane.005",
+          "materials": [
+            "P4_wooden_bucket_02_wooden_bucket_02"
+          ]
+        },
+        {
+          "renderer": "wooden_bucket_02_handle_02.001",
+          "mesh": "Plane.006",
+          "materials": [
+            "P4_wooden_bucket_02_wooden_bucket_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "wooden_display_shelves_01",
+      "meshes": [
+        {
+          "renderer": "wooden_display_shelves_01.001",
+          "mesh": "Cube.005",
+          "materials": [
+            "P4_wooden_display_shelves_01_wooden_display_shelves_01"
+          ]
+        },
+        {
+          "renderer": "wooden_display_shelves_01_drawer_01.001",
+          "mesh": "Cube.006",
+          "materials": [
+            "P4_wooden_display_shelves_01_wooden_display_shelves_01"
+          ]
+        },
+        {
+          "renderer": "wooden_display_shelves_01_drawer_02.001",
+          "mesh": "Cube.007",
+          "materials": [
+            "P4_wooden_display_shelves_01_wooden_display_shelves_01"
+          ]
+        },
+        {
+          "renderer": "wooden_display_shelves_01_drawer_03.001",
+          "mesh": "Cube.008",
+          "materials": [
+            "P4_wooden_display_shelves_01_wooden_display_shelves_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "wooden_hammer_01",
+      "meshes": [
+        {
+          "renderer": "wooden_hammer_01.001",
+          "mesh": "Cube.002",
+          "materials": [
+            "P4_wooden_hammer_01_wooden_hammer_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "wooden_ladder",
+      "meshes": [
+        {
+          "renderer": "wooden_ladder_steps.001",
+          "mesh": "wooden_step_ladder_01.001",
+          "materials": [
+            "P4_wooden_ladder_wooden_ladder"
+          ]
+        },
+        {
+          "renderer": "wooden_ladder_supports.001",
+          "mesh": "wooden_step_ladder_02.001",
+          "materials": [
+            "P4_wooden_ladder_wooden_ladder"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "wooden_ladder_02",
+      "meshes": [
+        {
+          "renderer": "wooden_ladder_02.001",
+          "mesh": "Cube.001",
+          "materials": [
+            "P4_wooden_ladder_02_wooden_ladder_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "wooden_lantern_01",
+      "meshes": [
+        {
+          "renderer": "wooden_lantern_01.001",
+          "mesh": "Cube.001",
+          "materials": [
+            "P4_wooden_lantern_01_wooden_lantern_01",
+            "P4_wooden_lantern_01_wooden_lantern_01_glass"
+          ]
+        },
+        {
+          "renderer": "wooden_lantern_01_door.001",
+          "mesh": "Cube.004",
+          "materials": [
+            "P4_wooden_lantern_01_wooden_lantern_01",
+            "P4_wooden_lantern_01_wooden_lantern_01_glass"
+          ]
+        },
+        {
+          "renderer": "wooden_lantern_01_handle.001",
+          "mesh": "Cylinder.001",
+          "materials": [
+            "P4_wooden_lantern_01_wooden_lantern_01"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "wooden_spoon",
+      "meshes": [
+        {
+          "renderer": "wooden_spoon.001",
+          "mesh": "Plane.001",
+          "materials": [
+            "P4_wooden_spoon_wooden_spoon"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "wooden_stool_02",
+      "meshes": [
+        {
+          "renderer": "wooden_stool_02.001",
+          "mesh": "mesh.001",
+          "materials": [
+            "P4_wooden_stool_02_wooden_stool_02"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "yellow_onion",
+      "meshes": [
+        {
+          "renderer": "yellow_onion.001",
+          "mesh": "mesh.002",
+          "materials": [
+            "P4_yellow_onion_yellow_onion"
+          ]
+        }
+      ]
+    }
+  ]
+}

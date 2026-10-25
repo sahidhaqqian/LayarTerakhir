@@ -31,6 +31,9 @@ namespace LayarTerakhir.Core
         public const string RusunawaScene = "Babak1_Rusunawa";
         public const string HospitalScene = "Babak2_RSUD";
         public const string FactoryScene = "Babak3_PabrikGula";
+        public const string VillageScene = "Babak4_KarangSetra";
+        public static bool IsPhase4(CampaignData data) => data != null && data.chapter_id == 4 &&
+            data.checkpoint_id != null && data.checkpoint_id.StartsWith("PHASE4_", StringComparison.Ordinal);
         public static bool IsPhase3(CampaignData data) => data != null && data.chapter_id == 3 &&
             data.checkpoint_id != null && data.checkpoint_id.StartsWith("PHASE3_", StringComparison.Ordinal);
         public static bool IsPhase2(CampaignData data) => data != null && data.chapter_id == 2 &&
@@ -38,7 +41,7 @@ namespace LayarTerakhir.Core
         public static bool IsPhase1(CampaignData data) => data != null && data.chapter_id == 1 &&
             data.checkpoint_id != null && data.checkpoint_id.StartsWith("PHASE1_", StringComparison.Ordinal);
         // Unknown chapters must not be sent through a director that starts a fresh campaign.
-        public static string ContinueScene(CampaignData data) => IsPhase3(data) ? (data.phase3.Completed("P3_DEPART_KOS") ? FactoryScene : "Prolog_KamarKos") : IsPhase2(data) ?
+        public static string ContinueScene(CampaignData data) => IsPhase4(data) ? (data.phase4.Completed("P4_DEPART_KOS") ? VillageScene : "Prolog_KamarKos") : IsPhase3(data) ? (data.phase3.Completed("P3_COMPLETE") ? "Prolog_KamarKos" : data.phase3.Completed("P3_DEPART_KOS") ? FactoryScene : "Prolog_KamarKos") : IsPhase2(data) ?
             (data.phase2.Completed("P2_DEPART_KOS") ? HospitalScene : "Prolog_KamarKos") : IsPhase1(data) ? RusunawaScene :
             data != null && data.chapter_id == 0 ? "Prolog_KamarKos" : null;
     }

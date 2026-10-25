@@ -1,0 +1,155 @@
+{
+    "chapter_id": 4,
+    "checkpoint_id": "PHASE4_CP8",
+    "evidence_ids": [
+        "P4_EVIDENCE_EVP_4DIR",
+        "P4_EVIDENCE_AR_ALTAR",
+        "P4_EVIDENCE_THERMO_66"
+    ],
+    "relic_ids": [
+        "P4_RELIC_TANAH",
+        "P4_RELIC_BELATI",
+        "P4_RELIC_KENDI"
+    ],
+    "location_seals": [
+        "SEAL_RUSUNAWA_GRIYA_ASRI",
+        "SEAL_RSUD_LAMA_SIDO_WARAS",
+        "SEAL_PABRIK_GULA_SINDANG_LAUT",
+        "SEAL_DESA_MATI_KARANG_SETRA"
+    ],
+    "upgrades": [
+        "AR_FULL",
+        "SELFIE_MODE",
+        "THERMOKLENIK_APK",
+        "UV_RAJAH",
+        "EVP_V2",
+        "SANITY_MONITOR",
+        "FILTER_ANTI_SENGKALA",
+        "UV_RAJAH_V2"
+    ],
+    "inventory": [
+        "SMARTPHONE_RAKA",
+        "JAKET_RAKA",
+        "MATABATIN_APK",
+        "P4_DOC_RAJAH_4",
+        "P4_DOC_DAMAR_LAST",
+        "P4_RELIC_KENDI"
+    ],
+    "battery": 30.517967224121095,
+    "sanity": 10.800102233886719,
+    "wallet_legitimate": 0,
+    "wallet_bound": 6666000,
+    "spent": 0,
+    "secret_items": [
+        "SECRET_P4_CERMIN_SAKSI"
+    ],
+    "secret_notes_read": [],
+    "documents": [
+        {
+            "title": "Kitab Rajah Mbah Suro — Bagian Keempat",
+            "body": "Empat obor penjuru desa adalah nyawa Banaspati peliharaanku. Selama keempatnya menyala, cahaya kamera tak sanggup melukai kami. Hanya mereka yang membawa 3 Tumbal Tanah Kubur dan memadamkan 4 Obor Santet Asli dengan air ruwatan dapat memutus ikatannya. Obor palsu bertanda Rajah Silang Merah akan membalas!\n\n[Catatan Raka]\nTiga pusaka, bukan tiga kantong tanah: Kendi, Belati Perak, dan Kantong Tanah Kubur. Utara, Timur, Barat boleh diselesaikan dengan urutan apa pun. Pancing Banaspati mendekat, periksa UV, siram, lalu satu Blitz saat inti terbuka. Selatan terakhir: siram saja, kemudian kembali ke Pendopo untuk Blitz penutup. Total empat, bukan lima. Air sumur tidak habis."
+        },
+        {
+            "title": "Sobekan Buku Catatan Terakhir Damar",
+            "body": "Ka, gue akhirnya ngerti kenapa Penonton_Terakhir nyuruh lo livestream dari malam pertama. MataBatin.apk yang gue unduh dari deep-web dibuat pengikut Mbah Suro! Ketakutan penonton disedot lewat siaran buat membuka gerbang kelima: Pasar Setan. Gue diseret masuk ke kawah di belakang pendopo desa ini... Tolong hancurin Mbah Suro, Ka!"
+        }
+    ],
+    "archive_prepared": false,
+    "ending": 0,
+    "schema_version": 5,
+    "phase1": {
+        "completed_event_ids": [
+            "P1_COMPLETE"
+        ],
+        "dynamo_full_charge_used_ids": [],
+        "dynamo_emergency_last_uses": [],
+        "money_ledger": [],
+        "signboard_challenge": 0,
+        "elapsed_gameplay_seconds": 0.0,
+        "safe_anchor": "ARRIVAL",
+        "next_destination": ""
+    },
+    "phase2": {
+        "completed_event_ids": [
+            "P2_COMPLETE"
+        ],
+        "dynamo_full_charge_used_ids": [],
+        "dynamo_emergency_last_uses": [],
+        "money_ledger": [],
+        "elapsed_gameplay_seconds": 0.0,
+        "safe_anchor": "HUB",
+        "next_destination": ""
+    },
+    "phase3": {
+        "completed_event_ids": [
+            "P3_BOSS_WIN",
+            "P3_COMPLETE",
+            "P4_HUB_MONOLOGUE"
+        ],
+        "dynamo_full_charge_used_ids": [],
+        "dynamo_emergency_last_uses": [],
+        "money_ledger": [],
+        "elapsed_gameplay_seconds": 0.0,
+        "safe_anchor": "HUB",
+        "next_destination": "Desa Mati Karang Setra"
+    },
+    "phase4": {
+        "completed_event_ids": [
+            "P4_ARRIVE_KOS",
+            "P4_KOS_CHARGE_USED",
+            "P4_MODULE_CALIBRATED",
+            "P4_DEPART_KOS",
+            "P4_ARRIVE_FOREST",
+            "P4_START_LIVE",
+            "P4_ENTER_BAMBOO",
+            "P4_BAMBOO_BRANCH_1",
+            "P4_BAMBOO_BRANCH_2",
+            "P4_BAMBOO_BRANCH_3",
+            "P4_PENDOPO_REACHED",
+            "P4_BANASPATI_REVEAL",
+            "P4_DOC_RAJAH_4",
+            "P4_EVIDENCE_EVP_4DIR",
+            "P4_TAKE_P4_RELIC_TANAH",
+            "P4_SECRET_KNOCK_VERIFIED",
+            "P4_SECRET_EYE_VERIFIED",
+            "P4_SECRET_WHEEL_ALIGNED",
+            "P4_SECRET_PICKUP",
+            "P4_EVIDENCE_AR_ALTAR",
+            "P4_TAKE_P4_RELIC_BELATI",
+            "P4_DOC_DAMAR_LAST",
+            "P4_EVIDENCE_THERMO_66",
+            "P4_TAKE_P4_RELIC_KENDI",
+            "P4_JOURNAL_CONFIRMED",
+            "P4_OFFERINGS_PLACED",
+            "P4_RITUAL_TRIGGER",
+            "P4_BLITZ_W",
+            "P4_BLITZ_N",
+            "P4_BLITZ_E",
+            "P4_SOUTH_OFF",
+            "P4_BLITZ_CORE",
+            "P4_BOSS_WIN",
+            "P4_FIFTH_GATE_REVEAL",
+            "P4_COMPLETE"
+        ],
+        "recovery_last_uses": [
+            {
+                "id": "SHRINE_PENDOPO",
+                "at_gameplay_seconds": 74.67076873779297
+            }
+        ],
+        "money_ledger": [
+            {
+                "id": "P4_DONATION_ARRIVAL",
+                "amount": 6666000,
+                "bound": true
+            }
+        ],
+        "elapsed_gameplay_seconds": 548.6444091796875,
+        "incense_ready_at": 0.0,
+        "water_units": 2,
+        "water_action_sequence": 4,
+        "torch_layout_seed": 0,
+        "safe_anchor": "BOUNDARY",
+        "next_destination": "Pasar Setan"
+    }
+}

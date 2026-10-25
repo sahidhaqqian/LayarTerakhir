@@ -1,0 +1,1405 @@
+{
+  "operation": "R=metallic B; G=AO R (or 1 for glTF MR); A=1-roughness G. glTF MR channels include original material metallic/roughness factors. Original UVs and source maps preserved.",
+  "files": [
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/GreenChair_01/GreenChair_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/GreenChair_01/GreenChair_01_arm_2k_UnityMask.png",
+      "sourceSha256": "1ff03d6731f1ebacc13c1797163d283de8ba99f059f774ea7eeeed3838385d6d",
+      "derivedSha256": "be824a5033c3cc01283856b6b032bf45f6704d44552cfabb9bc12662ab0bf2ba"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/SchoolChair_01/SchoolChair_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/SchoolChair_01/SchoolChair_01_arm_2k_UnityMask.png",
+      "sourceSha256": "270a10398ee3a5753dd4208f2eb3ee97edcb00ccf3ac3227d00b276403d00df4",
+      "derivedSha256": "3255040acd87b6be57f0941e23e2a9ea78095c6b9dd304a1038d8c8b94445d29"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/WoodenChair_01/WoodenChair_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/WoodenChair_01/WoodenChair_01_arm_2k_UnityMask.png",
+      "sourceSha256": "82cc24a3859aedb7e898aa935c9e106994af94302f2182d04e0c37534687e572",
+      "derivedSha256": "714304a7eb8f94450550f6682036c446f3323d4d2c09c8d499b083fce334f288"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/WoodenTable_01/WoodenTable_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/WoodenTable_01/WoodenTable_01_arm_2k_UnityMask.png",
+      "sourceSha256": "7551f1c235f39577e18ba5d7af2c70eb5a7252e4e506794f9e8166e80525188a",
+      "derivedSha256": "9ddcc01b67e1c61d31df716645b53f2c3bb247d554c853a65591f43f27bdfc98"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/WoodenTable_02/WoodenTable_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/WoodenTable_02/WoodenTable_02_arm_2k_UnityMask.png",
+      "sourceSha256": "49de22565780f367ca99ae8e638713cce2cc3b8d3dccca032da28920ecbfaeac",
+      "derivedSha256": "049ce033efc765250b43ed1228d64e038eca38a713da1aeae445ea8433dc37fd"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/WoodenTable_03/WoodenTable_03_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/WoodenTable_03/WoodenTable_03_arm_2k_UnityMask.png",
+      "sourceSha256": "02deebce38fb9ba4d8edf756d2fa1083a820f7641e2e5ddcaa030e0433dc798b",
+      "derivedSha256": "68b9ee1f141e11419c9c8168afe06c548d4a694f0b8491293242e7103521fa5c"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/anthurium_botany_01/anthurium_botany_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/anthurium_botany_01/anthurium_botany_01_arm_2k_UnityMask.png",
+      "sourceSha256": "81bcc96fa59e09169df48cf2eb930361c4df157a8114e7f3149c97934d47aadc",
+      "derivedSha256": "3c755460e556557a3e0e0e4dba77c8f59e24f5a372bf28f56a2c852bb7552f0f"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/antique_ceramic_vase_01/antique_ceramic_vase_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/antique_ceramic_vase_01/antique_ceramic_vase_01_arm_2k_UnityMask.png",
+      "sourceSha256": "be7908d396587e9eaed4a7a9620865e9546c53dac435f80bfa7f17f2ee639829",
+      "derivedSha256": "d5c6c74eb6d7ffd56d7d35bc2933335a1283cfdcc3f159be527ffa7fc6925f15"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/bananas/bananas_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/bananas/bananas_arm_2k_UnityMask.png",
+      "sourceSha256": "46cd08e7965ce2da88c68eee128571b600fe2563808dcbca667d9b25548e20fa",
+      "derivedSha256": "82088678a15dc73edf43e3c77fa6916725860bce1b3ced46d52a4b7015374ab2"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/bananas/bananas_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/bananas/bananas_arm_2k_UnityMask.png",
+      "sourceSha256": "46cd08e7965ce2da88c68eee128571b600fe2563808dcbca667d9b25548e20fa",
+      "derivedSha256": "82088678a15dc73edf43e3c77fa6916725860bce1b3ced46d52a4b7015374ab2"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_candleholders/brass_candleholders_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_candleholders/brass_candleholders_01_arm_2k_UnityMask.png",
+      "sourceSha256": "505fe318fe91e328d7a1549bcfd81fc2f1a205a49508e75bba40d5818f813983",
+      "derivedSha256": "bf6398f1490ea803a27d80b70861eceab565f8b6d7e230d55ec008d200f273b7"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_candleholders/brass_candleholders_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_candleholders/brass_candleholders_02_arm_2k_UnityMask.png",
+      "sourceSha256": "a83aea6bbd8058358e3e118f22939dc432265abdccad6d5e28ad265cfcb4ceef",
+      "derivedSha256": "1f9e9a1738aed7722436a30b60b5d57e557f31f83d9d62e4ef628081401f7417"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_candleholders/brass_candleholders_03_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_candleholders/brass_candleholders_03_arm_2k_UnityMask.png",
+      "sourceSha256": "4c9c8833d85a912753167914039f2ffe95039e469058e6b92a97ed17fd73e3a8",
+      "derivedSha256": "0e548b05a317c39191d78fb80c3bcc093e7f3f6974b58718d9c414d1080471dd"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_candleholders/brass_candleholders_candles_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_candleholders/brass_candleholders_candles_arm_2k_UnityMask.png",
+      "sourceSha256": "68b1e75fab09f2a7e90eb91113d45f850de0ba74e29ea9092076b02ed8a4b2f8",
+      "derivedSha256": "dddb68f9860de0161973d71bfd891c91dc962b23bd647953d162d5d70f225025"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_diya_lantern/brass_diya_lantern_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_diya_lantern/brass_diya_lantern_arm_2k_UnityMask.png",
+      "sourceSha256": "ca89f9d346486d3c6e76003d643c2057daa98c6e1a32842bbe7d63f78078df41",
+      "derivedSha256": "caafc531318e8e07a8a66e1a71bcd9e8186f4150a3f92dbc5d2eca312ea33daf"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_diya_lantern/brass_diya_lantern_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_diya_lantern/brass_diya_lantern_arm_2k_UnityMask.png",
+      "sourceSha256": "ca89f9d346486d3c6e76003d643c2057daa98c6e1a32842bbe7d63f78078df41",
+      "derivedSha256": "caafc531318e8e07a8a66e1a71bcd9e8186f4150a3f92dbc5d2eca312ea33daf"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_diya_lantern/brass_diya_lantern_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_diya_lantern/brass_diya_lantern_arm_2k_UnityMask.png",
+      "sourceSha256": "ca89f9d346486d3c6e76003d643c2057daa98c6e1a32842bbe7d63f78078df41",
+      "derivedSha256": "caafc531318e8e07a8a66e1a71bcd9e8186f4150a3f92dbc5d2eca312ea33daf"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_pot_01/brass_pot_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_pot_01/brass_pot_01_arm_2k_UnityMask.png",
+      "sourceSha256": "4458d2dd4ea49b016f2b415765c1888b17483d67321d2b393889bec3872a588a",
+      "derivedSha256": "a91daac1c64d7d3ba5374df9ee86f053c5ec643bb1532cca2fa39af0cfe86515"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_pot_02/brass_pot_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_pot_02/brass_pot_02_arm_2k_UnityMask.png",
+      "sourceSha256": "39fd42ac4bfd7b67d01155d47a3fa96a4afb03d4e699d847ec8b785d24e6cf0d",
+      "derivedSha256": "61486dfeac9b4b6d66985f636a5ea4e86a0f7971aea66115f6e75bd5c313bb50"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_vase_01/brass_vase_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_vase_01/brass_vase_01_arm_2k_UnityMask.png",
+      "sourceSha256": "4c57b8076885c117205ea125a57b13ff2caf90ebb55bbbe5efd55c93562587d4",
+      "derivedSha256": "71d1b59cf8e468ab758a5c568a6f51b452af1b5da82e3059c3e6c4807e1f41f0"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_vase_02/brass_vase_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_vase_02/brass_vase_02_arm_2k_UnityMask.png",
+      "sourceSha256": "868976c805a76126ccd0ab3a3a11eb32dd0fcbfab685b690f142ed834fa846cc",
+      "derivedSha256": "427996421ae14adf28f8b071a595ac448edd5aed38daeffc5d1ddeb1e0b990ec"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_vase_03/brass_vase_03_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_vase_03/brass_vase_03_arm_2k_UnityMask.png",
+      "sourceSha256": "b1ae2cf3bb0854d8f3fef5f7998512da022cf3bb5cc534d17391e07cb34b6cd5",
+      "derivedSha256": "542374d53f5cab6790e0526005476254eef30bc3f39d7e20e0fb7ec99b9f270c"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_vase_04/brass_vase_04_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/brass_vase_04/brass_vase_04_arm_2k_UnityMask.png",
+      "sourceSha256": "b99224a219c6a2cacb7f43ac7a659aed84bfde96bc49d1f7670dd2faa1ab07a8",
+      "derivedSha256": "e8a287d76a10fbcb964f27a71775481b2182b4f3ba732b4d29fdf01883ef163a"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/carved_wooden_elephant/carved_wooden_elephant_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/carved_wooden_elephant/carved_wooden_elephant_arm_2k_UnityMask.png",
+      "sourceSha256": "38aa8e6d953737ca01a255a81d9d6f1612e426c0afcab275fcb9438338d8b33f",
+      "derivedSha256": "45dc6c7f9bcbedd9e859046fa2de34e458e9e894268b44765c72531f0c435be9"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/ceramic_vase_01/ceramic_vase_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/ceramic_vase_01/ceramic_vase_01_arm_2k_UnityMask.png",
+      "sourceSha256": "cc2d1700280bb2aa09f4961f18a75eb81ffc502247654be809b87d0822a5d7b7",
+      "derivedSha256": "a1cf254815842c7c2ffefa35706dd5d65cbcec86c2953b61b34981d24f78ab1b"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/ceramic_vase_02/ceramic_vase_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/ceramic_vase_02/ceramic_vase_02_arm_2k_UnityMask.png",
+      "sourceSha256": "8e16823825f1b230db88302272bfffe8777c6f481cc6a857bb5dabb3a7ca62fe",
+      "derivedSha256": "2f49617758e9c8bd619d45f334615b3e4abcaa848aa8c232532090e072d381bd"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/ceramic_vase_03/ceramic_vase_03_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/ceramic_vase_03/ceramic_vase_03_arm_2k_UnityMask.png",
+      "sourceSha256": "852eb388dcc051885dfda17774a93a129f4e2207b05f727bd274b915526874ed",
+      "derivedSha256": "826fb4117e4dfae814c33750ecf5c6362f51d3bcc70870ac0fd9fc4b3191a1c7"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/ceramic_vase_04/ceramic_vase_04_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/ceramic_vase_04/ceramic_vase_04_arm_2k_UnityMask.png",
+      "sourceSha256": "f6990f86ede9fa6f3fe2cf12b1ef9ecb8cd687266e3115f69d69e0c1de99a46d",
+      "derivedSha256": "b0755d00cafc3b495b9c90c951ccb40883246bb90db9f5adef4fbfc860ece426"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/chinese_stool/chinese_stool_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/chinese_stool/chinese_stool_arm_2k_UnityMask.png",
+      "sourceSha256": "16b87f8764af15668c4f5af13cd258b626e916581fd383d13725dc24e5bdfc74",
+      "derivedSha256": "d36cb90fb0916817e0dfe2f3190922fd207078b64fa54650a8915375e443e367"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/chinese_tea_table/chinese_tea_table_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/chinese_tea_table/chinese_tea_table_arm_2k_UnityMask.png",
+      "sourceSha256": "316bfe378289b18df8bec3bf906996e921153474417215baad8ce5c2f3701d88",
+      "derivedSha256": "dd47a2246ea933dd5d9204b8abaa3b849dcbf4a0062707a11113a93151a950d6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/coast_land_rocks_02/coast_land_rocks_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/coast_land_rocks_02/coast_land_rocks_02_arm_2k_UnityMask.png",
+      "sourceSha256": "e2271f9b0db4646b5d38586495c7ecba627d880f80706048751e5a61ec7736bd",
+      "derivedSha256": "3908219b40a032788e0767b0d848671ea45a1ddb95b0a733530e3cb2629bc5f6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/coast_land_rocks_03/coast_land_rocks_03_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/coast_land_rocks_03/coast_land_rocks_03_arm_2k_UnityMask.png",
+      "sourceSha256": "56dfc261dd41f7fe73f95e2e71330a1bf6cfd70e9b0eb2d88c759476b05e4031",
+      "derivedSha256": "72ebdfe6796bd56a3962f8deada3a029363fae0711181d6b68c30baa3e3918f4"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/coast_land_rocks_04/coast_land_rocks_04_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/coast_land_rocks_04/coast_land_rocks_04_arm_2k_UnityMask.png",
+      "sourceSha256": "87bef8d40f12977d7598c9bf1f35d3634357449115faea015644a47099b1bd87",
+      "derivedSha256": "5684da9511ef99a35c845e7a9836607d7e739235c9f9eb93f1cbdb292dd92d31"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/coast_rocks_01/coast_rocks_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/coast_rocks_01/coast_rocks_01_arm_2k_UnityMask.png",
+      "sourceSha256": "3bccfb7e593a7944b1a3564170206765a98f0669a78ba9167b483fb3a6b109f0",
+      "derivedSha256": "8125ee83c6c06c2fefb918e1edb5201409f89074af24195ea59cff8ffa3df49b"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/coast_rocks_02/coast_rocks_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/coast_rocks_02/coast_rocks_02_arm_2k_UnityMask.png",
+      "sourceSha256": "9843167f68c1944285384d19c2ab48813cb05da0adc370c08f541382e61152d0",
+      "derivedSha256": "6a104483549d12b81cf8a0bcabbf773d9b8d352e4f6d851ed5624ddbf44d843a"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/coast_rocks_03/coast_rocks_03_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/coast_rocks_03/coast_rocks_03_arm_2k_UnityMask.png",
+      "sourceSha256": "1bd0c4794e9a7db859057df39c21210a6f1b6123a250fc7e7873afd622f43532",
+      "derivedSha256": "abb2d58869f6580eb7f000a9f26d5109de751dd975f48b016a7e9f2d0b7f43aa"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/coast_rocks_05/coast_rocks_05_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/coast_rocks_05/coast_rocks_05_arm_2k_UnityMask.png",
+      "sourceSha256": "e610fb57fa8539249432ba0435e6d8bd8df22833b423b8f33737d8143ef17d25",
+      "derivedSha256": "61409b29d1dbdf08b844199aa9713aec9034ba95268504cb48b5db9da117f25f"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/compost_bag_02/compost_bag_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/compost_bag_02/compost_bag_02_arm_2k_UnityMask.png",
+      "sourceSha256": "541a4dc57c4d6850bd7b94e579ebedc6e7dbbc4c0bb559cfa846780e103ec402",
+      "derivedSha256": "a9cc3fba667a72a7b1c09d50a800d84c95c51f6c7835c0c54005972195166c3d"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/compost_bags/compost_bags_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/compost_bags/compost_bags_arm_2k_UnityMask.png",
+      "sourceSha256": "57ea546015658d29c33d955f1bdfc1b929c6948089f8022a60efd4a6510f05a5",
+      "derivedSha256": "bf2b33ea7b2a6be5db7c2d3729aafbcffda25795927606779d030199e11f3408"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/dead_tree_trunk/dead_tree_trunk_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/dead_tree_trunk/dead_tree_trunk_arm_2k_UnityMask.png",
+      "sourceSha256": "f244cfbfab760d877980065593710f74947bb70eac9d47d9a189537d23ba1f6b",
+      "derivedSha256": "8922ced09b8621609ef2387c1a6fb732ffb58e3c9374f8e1c877004832279c2a"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/dead_tree_trunk_02/dead_tree_trunk_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/dead_tree_trunk_02/dead_tree_trunk_02_arm_2k_UnityMask.png",
+      "sourceSha256": "0be2e1a7c945090c385c7ae2636e6e6c341d4da14d741164b5cfe3080655331d",
+      "derivedSha256": "f826d1f16183793213784cdfdfbebcbd9fb5801b85f0e1c68760e27513ba0dc5"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "196402dffe27dc91dbedc59bb6d4944aff197c67d3a7a5191c4407376f89b554",
+      "derivedSha256": "9a55af153f8db891fca34aeb7087844c24b8347dd319dfe8bfcef6dcae0e0cd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/book_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32de02f3fca77f581472d0445a26e4c7a8138fa8d0ddd2a23de6802e444d7747",
+      "derivedSha256": "e45355daac1762364e9e0f58a4f349db36ec17aea020be37f1df0616e57c1129"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/catalogue_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/catalogue_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a04f8ebe8d927e06df54f6c08392619506ee8d57496145c37041f233785f6966",
+      "derivedSha256": "aaa0626d9fe19721d42893ce64302534efb1ceab099ed3d49c9ebd29ae3d106a"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/catalogue_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/catalogue_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a04f8ebe8d927e06df54f6c08392619506ee8d57496145c37041f233785f6966",
+      "derivedSha256": "aaa0626d9fe19721d42893ce64302534efb1ceab099ed3d49c9ebd29ae3d106a"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/catalogue_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/catalogue_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a04f8ebe8d927e06df54f6c08392619506ee8d57496145c37041f233785f6966",
+      "derivedSha256": "aaa0626d9fe19721d42893ce64302534efb1ceab099ed3d49c9ebd29ae3d106a"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/catalogue_hardcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/catalogue_hardcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a04f8ebe8d927e06df54f6c08392619506ee8d57496145c37041f233785f6966",
+      "derivedSha256": "aaa0626d9fe19721d42893ce64302534efb1ceab099ed3d49c9ebd29ae3d106a"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/catalogue_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/catalogue_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "f9fe5ae26c4eeee7fa5575df00e85118899389d63a71d2a295f68020dacd3d03",
+      "derivedSha256": "5c61782cf39e6e0b0475264b78cf3fcece2b43714fa6c0e7f410a78ecc16427e"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/catalogue_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/catalogue_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "f9fe5ae26c4eeee7fa5575df00e85118899389d63a71d2a295f68020dacd3d03",
+      "derivedSha256": "5c61782cf39e6e0b0475264b78cf3fcece2b43714fa6c0e7f410a78ecc16427e"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/catalogue_softcover_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/catalogue_softcover_01_arm_2k_UnityMask.png",
+      "sourceSha256": "f9fe5ae26c4eeee7fa5575df00e85118899389d63a71d2a295f68020dacd3d03",
+      "derivedSha256": "5c61782cf39e6e0b0475264b78cf3fcece2b43714fa6c0e7f410a78ecc16427e"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a582ce39d17914708397de7426febd901edcf72d4af9ea53a815f0377218f0bc",
+      "derivedSha256": "b19aa5a3c49ae87988748ec27e2638e04338f4fb75a1dff8d6052b6b436fa9f2"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a582ce39d17914708397de7426febd901edcf72d4af9ea53a815f0377218f0bc",
+      "derivedSha256": "b19aa5a3c49ae87988748ec27e2638e04338f4fb75a1dff8d6052b6b436fa9f2"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a582ce39d17914708397de7426febd901edcf72d4af9ea53a815f0377218f0bc",
+      "derivedSha256": "b19aa5a3c49ae87988748ec27e2638e04338f4fb75a1dff8d6052b6b436fa9f2"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a582ce39d17914708397de7426febd901edcf72d4af9ea53a815f0377218f0bc",
+      "derivedSha256": "b19aa5a3c49ae87988748ec27e2638e04338f4fb75a1dff8d6052b6b436fa9f2"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a582ce39d17914708397de7426febd901edcf72d4af9ea53a815f0377218f0bc",
+      "derivedSha256": "b19aa5a3c49ae87988748ec27e2638e04338f4fb75a1dff8d6052b6b436fa9f2"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a582ce39d17914708397de7426febd901edcf72d4af9ea53a815f0377218f0bc",
+      "derivedSha256": "b19aa5a3c49ae87988748ec27e2638e04338f4fb75a1dff8d6052b6b436fa9f2"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a582ce39d17914708397de7426febd901edcf72d4af9ea53a815f0377218f0bc",
+      "derivedSha256": "b19aa5a3c49ae87988748ec27e2638e04338f4fb75a1dff8d6052b6b436fa9f2"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a582ce39d17914708397de7426febd901edcf72d4af9ea53a815f0377218f0bc",
+      "derivedSha256": "b19aa5a3c49ae87988748ec27e2638e04338f4fb75a1dff8d6052b6b436fa9f2"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a582ce39d17914708397de7426febd901edcf72d4af9ea53a815f0377218f0bc",
+      "derivedSha256": "b19aa5a3c49ae87988748ec27e2638e04338f4fb75a1dff8d6052b6b436fa9f2"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a582ce39d17914708397de7426febd901edcf72d4af9ea53a815f0377218f0bc",
+      "derivedSha256": "b19aa5a3c49ae87988748ec27e2638e04338f4fb75a1dff8d6052b6b436fa9f2"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a582ce39d17914708397de7426febd901edcf72d4af9ea53a815f0377218f0bc",
+      "derivedSha256": "b19aa5a3c49ae87988748ec27e2638e04338f4fb75a1dff8d6052b6b436fa9f2"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a582ce39d17914708397de7426febd901edcf72d4af9ea53a815f0377218f0bc",
+      "derivedSha256": "b19aa5a3c49ae87988748ec27e2638e04338f4fb75a1dff8d6052b6b436fa9f2"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a582ce39d17914708397de7426febd901edcf72d4af9ea53a815f0377218f0bc",
+      "derivedSha256": "b19aa5a3c49ae87988748ec27e2638e04338f4fb75a1dff8d6052b6b436fa9f2"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a582ce39d17914708397de7426febd901edcf72d4af9ea53a815f0377218f0bc",
+      "derivedSha256": "b19aa5a3c49ae87988748ec27e2638e04338f4fb75a1dff8d6052b6b436fa9f2"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/decorative_book_set_01/magazine_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a582ce39d17914708397de7426febd901edcf72d4af9ea53a815f0377218f0bc",
+      "derivedSha256": "b19aa5a3c49ae87988748ec27e2638e04338f4fb75a1dff8d6052b6b436fa9f2"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/dining_chair_02/dining_chair_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/dining_chair_02/dining_chair_02_arm_2k_UnityMask.png",
+      "sourceSha256": "48a766aff4587319218e42ad8b115fbe764b86ae513560d97700af519c424329",
+      "derivedSha256": "d8751b91b138278a29641822b34353b85e0b45265775a90d8b924c6d3a373cc4"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/dry_branches_medium_01/dry_branches_medium_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/dry_branches_medium_01/dry_branches_medium_01_arm_2k_UnityMask.png",
+      "sourceSha256": "53cf4afec248f49ccea0a49975ec9ba0a91bae2124adc802fd80568e17019751",
+      "derivedSha256": "273b74febf4998d4e2ab0b39624dbb360695362011139c44fd2ed690a34966e1"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/food_avocado_01/food_avocado_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/food_avocado_01/food_avocado_01_arm_2k_UnityMask.png",
+      "sourceSha256": "80fed6042a623584d8d3b7a2d62e80295e481663eaabf95476d47e9a5193eb90",
+      "derivedSha256": "ad5dfe57fd88115f9e08d2592b6f6df35379c359425cf6560251bb090a9cc7b0"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/food_ginger_01/food_ginger_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/food_ginger_01/food_ginger_01_arm_2k_UnityMask.png",
+      "sourceSha256": "a5c392ea323efaaa08ec8f809bede9f52228cda3890164b6023a9bd222c86c78",
+      "derivedSha256": "19c3fd42d028328cefe282b20ba2ee581d64856691cdcbf8df0fdbe9779096c2"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/food_lime_01/food_lime_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/food_lime_01/food_lime_01_arm_2k_UnityMask.png",
+      "sourceSha256": "fc36d0a855b605aeb5733662365284973f6269a59fe583aa7a07f1680f62fa2d",
+      "derivedSha256": "c82e19d22ba0e5ce5e6c2bc1c864b6f3c79d8d41c7c40fed1fe7116596dfe5e8"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/food_lychee_01/food_lychee_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/food_lychee_01/food_lychee_01_arm_2k_UnityMask.png",
+      "sourceSha256": "55f5123484276af4f4a3e29f55b73c59578b23e48a7d23f1ccc33af47f2fe6be",
+      "derivedSha256": "de5729433c85abbe5b307f1c4e8c8b04bc27712c74f9cbe536d0eb0b60fcd311"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/food_pears_asian_01/food_pears_asian_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/food_pears_asian_01/food_pears_asian_01_arm_2k_UnityMask.png",
+      "sourceSha256": "bd497aa7d9a7c82f3a04a1e650802a3ba75ab6bbd8256d0a0e73521ddfe4fecc",
+      "derivedSha256": "16ad7ce515c36714865a1e9bdf8ca8e5ddd50d0d68cbee4fe55017fe24a6f7c1"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/food_pomegranate_01/food_pomegranate_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/food_pomegranate_01/food_pomegranate_01_arm_2k_UnityMask.png",
+      "sourceSha256": "f21053d13d9a5c9dfb0bb1eaa36215034cb5a6b6a6998b515b8bf8f9cfaef862",
+      "derivedSha256": "8a0c9e87af10b72de5b48dc8a33aea42fd3de6f14ccc7a66d0c414c653d299ff"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/gallinera_chair/gallinera_chair_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/gallinera_chair/gallinera_chair_arm_2k_UnityMask.png",
+      "sourceSha256": "9f349cb541956760bb09dd77cd4159e1dc5dfcd0e137d39899fdc5ef3c4b5f49",
+      "derivedSha256": "dd0366787be0878eb303cf672c88b899a95425258dfa1995c7198e1da09b2670"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/grass_medium_01/grass_medium_01_diff_2k.jpg",
+      "sourceAlpha": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/grass_medium_01/grass_medium_01_alpha_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/grass_medium_01/grass_medium_01_diff_2k_WithAlpha.png",
+      "sourceSha256": "f768aa68daf14f37a92dd96621628a5252b169f4d94b4d1cc830d62cd3ac9e68",
+      "derivedSha256": "c152e061264625f1a85a214b3879b6b0ec749394f7c8a9f2c72c8f07747d76a4"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/grass_medium_01/grass_medium_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/grass_medium_01/grass_medium_01_arm_2k_UnityMask.png",
+      "sourceSha256": "7b593b1c470c1817b937bb3ca00da7e4b27ca00120e98b06b43bb3a7d5810aa1",
+      "derivedSha256": "e36f9e5ece980c83c9bd0e15b1c0cb6c01286ba0cf18d71ca03d0031352dd347"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/grass_medium_02/grass_medium_02_diff_2k.jpg",
+      "sourceAlpha": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/grass_medium_02/grass_medium_02_alpha_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/grass_medium_02/grass_medium_02_diff_2k_WithAlpha.png",
+      "sourceSha256": "70c0e294fd94b980d01ed91bde30ab19fe7eeed1f2717088cc88ab20bb115c87",
+      "derivedSha256": "31fe7f9cf91596d5e7aa7565baa96e10fc67ded693379e96f0118bd1916981d0"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/grass_medium_02/grass_medium_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/grass_medium_02/grass_medium_02_arm_2k_UnityMask.png",
+      "sourceSha256": "8878f8c5a6287c265231f0818c437a6f9dcf1d9fc01d085decf07324ecba1fd9",
+      "derivedSha256": "efd25f372a5b8b7c925b10e5a7262ad0eaa76578714b7fe40f502582ae6b8750"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/hanging_picture_frame_02/hanging_picture_frame_02_artwork_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/hanging_picture_frame_02/hanging_picture_frame_02_artwork_arm_2k_UnityMask.png",
+      "sourceSha256": "2c26e2a8b4589fa4c651c011866206a5a4caeb9c0f122978a1e6644e8629a42e",
+      "derivedSha256": "79479c78a3eeaccb47eec7fc0e2f11c42e4f350944162fd41ff5b1b125ca5a3a"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/hatchet/hatchet_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/hatchet/hatchet_arm_2k_UnityMask.png",
+      "sourceSha256": "6742e67f644f9858edba0aeb259d93808fa48f1850065bc79841a8ee28df9a7c",
+      "derivedSha256": "2fe546b6e428a6943833ea09e01f13da67cdf30d4801b833265cc5c7bd43ab77"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/jug_01/jug_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/jug_01/jug_01_arm_2k_UnityMask.png",
+      "sourceSha256": "d6e7bbe6c0bb3c1fa2ba7d13d587bded40ef76275d19ad2c7b59076e271ba7d6",
+      "derivedSha256": "5320a7ac3bceb2e55ae8bc36dce3c8d6f306acbcd3263ece1673d7b4c98d6b5f"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/ladder_sectioned_01/ladder_sectioned_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/ladder_sectioned_01/ladder_sectioned_01_arm_2k_UnityMask.png",
+      "sourceSha256": "741e28f6cd386f83a66c66453289ef99a6ddce71600a341ed58be3f6a1be76ee",
+      "derivedSha256": "f87292f3c248cb454f06b32578e5e354588b790d6ea572b092e5f05a2cead276"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/lantern_chandelier_01/lantern_chandelier_01_glass_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/lantern_chandelier_01/lantern_chandelier_01_glass_arm_2k_UnityMask.png",
+      "sourceSha256": "36b8d312e806490b4e5bdbba250bfc675bfdf0e508771b19d3b278e93b6d93c9",
+      "derivedSha256": "8f61fc4cc7ff145e96009886669cf89f0a3b22e5dccfb21fa63f69d4b1b55788"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/metal_stool_01/metal_stool_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/metal_stool_01/metal_stool_01_arm_2k_UnityMask.png",
+      "sourceSha256": "e66ecd34e5a14da864bbf23f3034dfde5347ff3d2d6038d220b49bdd9e0fa83f",
+      "derivedSha256": "9ba77e66cae1927e80cb3430ce3225e9dae41acabb226c399ea9cc5d549b6d34"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/metal_stool_02/metal_stool_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/metal_stool_02/metal_stool_02_arm_2k_UnityMask.png",
+      "sourceSha256": "179c6a64e33c42ff3f165808bf1d6cb1fda8b6597e419ad3ca8e1e57cd0bfb33",
+      "derivedSha256": "9ae4d6a00756198c09671973d805dfa8112524c0b4b20193fd3aa61758f147a3"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/moss_01/moss_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/moss_01/moss_01_arm_2k_UnityMask.png",
+      "sourceSha256": "91d01f1f37d3bc1ce9b699878dc42bd5ca7cf5508b8513607f900e643237b561",
+      "derivedSha256": "bcb89b105f152804eac0377fd9d41b07d34b59e1370d50fdf3b1364b10e75de6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/painted_wooden_cabinet/painted_wooden_cabinet_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/painted_wooden_cabinet/painted_wooden_cabinet_arm_2k_UnityMask.png",
+      "sourceSha256": "4dedb866c4a86d0c32fde3f77736e74440b0f95a90128d0526ea5bad61b1519d",
+      "derivedSha256": "d1b77e563f33257ebc8123c4cfe73ba38b1884e506e772b4976e9bc111fa1a50"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/painted_wooden_chair_02/painted_wooden_chair_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/painted_wooden_chair_02/painted_wooden_chair_02_arm_2k_UnityMask.png",
+      "sourceSha256": "b5bddec6863cadee32cb60f11703bbb6fd73f671364005c7374ed276ee3f2159",
+      "derivedSha256": "18a64bf5a28caed6e896eced1ae446a75e0299f9584b3b9c75d2f7cb77c6c89a"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/painted_wooden_table/painted_wooden_table_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/painted_wooden_table/painted_wooden_table_arm_2k_UnityMask.png",
+      "sourceSha256": "aaeaace97d661baf07a74da93174386d4edf8d666141cf76a307b2472901e719",
+      "derivedSha256": "4978b8778e11b0d7801533b0f6cf497571d9697a8accd28f5eeac32b3e18b47c"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/pine_roots/pine_roots_a_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/pine_roots/pine_roots_a_arm_2k_UnityMask.png",
+      "sourceSha256": "fabbbccf89aba2d5ec89c8537e6ba3e3517a5a4b8bedeadbe43499eac554d593",
+      "derivedSha256": "23911e63645551044bdd0267b90d5bb4f9cd03b3b800e59b4fbe7d4c5e0961c6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/pine_roots/pine_roots_b_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/pine_roots/pine_roots_b_arm_2k_UnityMask.png",
+      "sourceSha256": "ac532244027ed872f8fc1c88a564a90621365b35c2d30999aa206612307c9272",
+      "derivedSha256": "cd70d9a6e8592ab2ecac1ec0ffb7312745d7a92e01b0b2b85b23f296a8f1d313"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/potted_plant_01/potted_plant_01_leaves_diff_2k.jpg",
+      "sourceAlpha": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/potted_plant_01/potted_plant_01_leaves_alpha_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/potted_plant_01/potted_plant_01_leaves_diff_2k_WithAlpha.png",
+      "sourceSha256": "6ff5a44117b77a0ad570a333aea71f04ee735ed9cab9668936f8775da1614c6b",
+      "derivedSha256": "2caca13d92741bf73e80d54b0847dfba86337c6c6842d960d72b2702a36e5fd6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/potted_plant_01/potted_plant_01_pot_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/potted_plant_01/potted_plant_01_pot_arm_2k_UnityMask.png",
+      "sourceSha256": "bf943c7f266ee12afcd5ecc46ecdbcf0050ca6c0d6ddc15653c42ab85d9cb7f4",
+      "derivedSha256": "ff673606090268e3aba47862c2151a45dbea6df84b1d47520a1c30dbc85ff6ff"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/potted_plant_01/potted_plant_01_pot_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/potted_plant_01/potted_plant_01_pot_arm_2k_UnityMask.png",
+      "sourceSha256": "bf943c7f266ee12afcd5ecc46ecdbcf0050ca6c0d6ddc15653c42ab85d9cb7f4",
+      "derivedSha256": "ff673606090268e3aba47862c2151a45dbea6df84b1d47520a1c30dbc85ff6ff"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/potted_plant_02/potted_plant_02_leaves_diff_2k.jpg",
+      "sourceAlpha": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/potted_plant_02/potted_plant_02_leaves_alpha_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/potted_plant_02/potted_plant_02_leaves_diff_2k_WithAlpha.png",
+      "sourceSha256": "f70de9a4b735b740e79d4e7720a47eae5e2bb4a289880cdae5905d156223bd7d",
+      "derivedSha256": "e609a3a7374d335a1e02d31832ef5312cb0be2f10f13153d6a0ed8d2ad683885"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/potted_plant_02/potted_plant_02_pot_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/potted_plant_02/potted_plant_02_pot_arm_2k_UnityMask.png",
+      "sourceSha256": "39e6a865f6ce0f56f17761d6b270a8d3ea613ad185e5115f06bf90efba5c839d",
+      "derivedSha256": "74c84e0d48b1515f07369cee705008bdf54000ca95ea1786c8b9c91a8fd998aa"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/potted_plant_02/potted_plant_02_pot_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/potted_plant_02/potted_plant_02_pot_arm_2k_UnityMask.png",
+      "sourceSha256": "39e6a865f6ce0f56f17761d6b270a8d3ea613ad185e5115f06bf90efba5c839d",
+      "derivedSha256": "74c84e0d48b1515f07369cee705008bdf54000ca95ea1786c8b9c91a8fd998aa"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/rock_07/rock_07_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/rock_07/rock_07_arm_2k_UnityMask.png",
+      "sourceSha256": "d083f995ad460c53f436b335493e66d08d911df67a3106293a62521f49131fa6",
+      "derivedSha256": "2282d4b8a71aa3aa0682c8f4c0b34f8ca2d2e07d14b1478f1b9de05d567a4113"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/rock_09/rock_09_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/rock_09/rock_09_arm_2k_UnityMask.png",
+      "sourceSha256": "eaedeb8428079a27bc5e290a61375454035b5fcfb1e9c7d16ce4bc85313789da",
+      "derivedSha256": "d28075ae86dd4c61607751961498dd538b10c9bda2ebf39fa6ad6d71e0e2296f"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/rock_face_01/rock_face_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/rock_face_01/rock_face_01_arm_2k_UnityMask.png",
+      "sourceSha256": "4738d73c0cd757971dcb32e52ba644b9e520173127108a342a3478a8586a805d",
+      "derivedSha256": "8e1b5a05a8457f8bb3805a3193b8562642256b9cfc03edf8ab17b4968ca8d287"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/rock_face_02/rock_face_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/rock_face_02/rock_face_02_arm_2k_UnityMask.png",
+      "sourceSha256": "06e106bf0d1c885cb245b5a85fb283d00e5871116c5bc8cc39bea150799dd4b8",
+      "derivedSha256": "65517342675b8a620d906dacbf853f56448500d5e3dc397024ffb7f4a3c79f91"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/rock_moss_set_01/rock_moss_set_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/rock_moss_set_01/rock_moss_set_01_arm_2k_UnityMask.png",
+      "sourceSha256": "6950db6ff777260ac42158103c9f00a0cfe30b86b78d8747804549601d309860",
+      "derivedSha256": "7d68d0991079bf986743811f435dcaf640e64a92e54ad0d58b7623408673df86"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/rock_moss_set_02/rock_moss_set_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/rock_moss_set_02/rock_moss_set_02_arm_2k_UnityMask.png",
+      "sourceSha256": "675583a5714ae600a01741d63c31f77a212317cbae2ab94c9d2893781557bc70",
+      "derivedSha256": "dba3c42b02d140dacf635330e7fa535592e11c9935dcbf69fa2521f4101532e3"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/root_cluster_01/root_cluster_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/root_cluster_01/root_cluster_01_arm_2k_UnityMask.png",
+      "sourceSha256": "c3b50240f0bb5c566cfd2979d0ba2500f7b9eb409eb6a4b2fb6d199b4b60cc3e",
+      "derivedSha256": "615be63ae30e34bf3d31654aeca60afff95d6e7906777a0b565864d73411d3bf"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/root_cluster_02/root_cluster_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/root_cluster_02/root_cluster_02_arm_2k_UnityMask.png",
+      "sourceSha256": "0ce21a2d77f62f395d5f54ff4322abfc4d73841195732fd381b3d1d96766741f",
+      "derivedSha256": "e01d30328a5d79331f8d1278adccd5c4a6f64740615c21023c6f85763b10d5bc"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/round_spectacles/round_spectacles_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/round_spectacles/round_spectacles_arm_2k_UnityMask.png",
+      "sourceSha256": "86ede7a8caba82c4cd48cdab4a4569baf6a4cdda71663e5fca35083c92be3758",
+      "derivedSha256": "1a6edee8705a1466170489881a5099b147c6351fde978d17db979d24ade5c7d5"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/round_spectacles/round_spectacles_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/round_spectacles/round_spectacles_arm_2k_UnityMask.png",
+      "sourceSha256": "86ede7a8caba82c4cd48cdab4a4569baf6a4cdda71663e5fca35083c92be3758",
+      "derivedSha256": "1a6edee8705a1466170489881a5099b147c6351fde978d17db979d24ade5c7d5"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/round_wooden_table_01/round_wooden_table_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/round_wooden_table_01/round_wooden_table_01_arm_2k_UnityMask.png",
+      "sourceSha256": "4c51574c5e46efbd4edd892017665bfec7df0856d791cc938f3cd610f3847b7f",
+      "derivedSha256": "2cd69e641cbcfecca7319971ad7014b2dab79ed1ad1c586854803c7ada405a47"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/round_wooden_table_02/round_wooden_table_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/round_wooden_table_02/round_wooden_table_02_arm_2k_UnityMask.png",
+      "sourceSha256": "d8dccc1b9dc545b20d5c352f359b36bed141cb7e17264ba43ac23e58568a990a",
+      "derivedSha256": "b8edb2294fa730b56227b9c1fed33a5ccf53670f10613e2c335f99c3a994a2db"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/rusted_wheel_rim_02/rusted_wheel_rim_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/rusted_wheel_rim_02/rusted_wheel_rim_02_arm_2k_UnityMask.png",
+      "sourceSha256": "34a9eee383ef2743fedebcc30c582003f535ded972f8ace38850f96f9a83eb06",
+      "derivedSha256": "cbc9bcd5b02a0b4530fbdf8c9a79e20e1d7609e67dd799f189449ece1d76bcd3"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/sand_rocks_small_01/sand_rocks_small_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/sand_rocks_small_01/sand_rocks_small_01_arm_2k_UnityMask.png",
+      "sourceSha256": "8504aa069f4429f18b9e2c439635f9f5bb88a3ffda425f02bfcd3d7413c1a6c2",
+      "derivedSha256": "f7aa36ce40dd994149e6e9d2107be690fd05ec03d6b0d309fb74ddcabf330250"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_01/shrub_01_diff_2k.jpg",
+      "sourceAlpha": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_01/shrub_01_alpha_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_01/shrub_01_diff_2k_WithAlpha.png",
+      "sourceSha256": "d464a823982b28832a92d3edacc62461adfb3f99117829127e79eb253051e940",
+      "derivedSha256": "5a983c28857b70eee769568dc048cf7c55a22bb1dbe681b4502336eb9102dc6a"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_01/shrub_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_01/shrub_01_arm_2k_UnityMask.png",
+      "sourceSha256": "0c984bae6f587aba20eadc44e5a4de8c950c8246d1c0da234a4d6043d5a688e4",
+      "derivedSha256": "b7d5465d20472bc45a38a275690994c1aaca7f19c1efcb95ed570963c2073df8"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_02/shrub_02_diff_2k.jpg",
+      "sourceAlpha": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_02/shrub_02_alpha_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_02/shrub_02_diff_2k_WithAlpha.png",
+      "sourceSha256": "ac1f0a16eef67a6e4884f3a5e913d7562f310c7a7a73d1f6039fbcd120445ca5",
+      "derivedSha256": "75b10e93221e01f5bc60e82542b44bcad123368de1144845426c9fb1709189e3"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_02/shrub_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_02/shrub_02_arm_2k_UnityMask.png",
+      "sourceSha256": "52c769baab5a4d33e8967cea904bf57e34f45767ac8de302103d13f726dd0415",
+      "derivedSha256": "ea120dc920321bac6da473e3fbce6a8998ac2cc787df6d07956037c4515b542d"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_04/shrub_04_diff_2k.jpg",
+      "sourceAlpha": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_04/shrub_04_alpha_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_04/shrub_04_diff_2k_WithAlpha.png",
+      "sourceSha256": "a45e95f3c78c31a1d411c58232089bd472bb31ebe146ba4237c3f1a930f49fc9",
+      "derivedSha256": "fbc005337a882e83268aa28926359ab2cdfbfdca7eca28bd70d40db534a94000"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_04/shrub_04_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_04/shrub_04_arm_2k_UnityMask.png",
+      "sourceSha256": "030c84b34ed22469c281310d2b18c298892f78d25518be061e8f0fe22e7423d7",
+      "derivedSha256": "7229e73233cd0c2c4c085db05bd24d4cdb3ac0dfd033695509b9ffc0244aa5ab"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_sorrel_01/shrub_sorrel_01_diff_2k.jpg",
+      "sourceAlpha": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_sorrel_01/shrub_sorrel_01_alpha_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_sorrel_01/shrub_sorrel_01_diff_2k_WithAlpha.png",
+      "sourceSha256": "956ea2f96f3d8a1156233b773293fdef8d255ff0e076e69ddb05ff66695e7d4c",
+      "derivedSha256": "c025422f183b6abc433a9763d709ae9c724691cdfd7ef95edaffef0ba201e6aa"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_sorrel_01/shrub_sorrel_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/shrub_sorrel_01/shrub_sorrel_01_arm_2k_UnityMask.png",
+      "sourceSha256": "376e8d768a156b6f498df7d639df83056607b5c4c0334b2079a6a8838d52dd2f",
+      "derivedSha256": "e719e6f14dc6e2639c656743b6d01761b1c52899d9f7cc4573214d600ce05f18"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/single_root/single_root_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/single_root/single_root_arm_2k_UnityMask.png",
+      "sourceSha256": "73a2af6725af81bdeed83ccfbcce0e45c5aba3f614ff84ac36e6bd91ccbf81e5",
+      "derivedSha256": "9dc95efab2d57f1298f284529287d9c0dd4d8f3e61680530721aa2f1e75be7d8"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/small_wooden_table_01/small_wooden_table_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/small_wooden_table_01/small_wooden_table_01_arm_2k_UnityMask.png",
+      "sourceSha256": "1c7709c844ab8c1530e0d08459f59758d71bf46ed309e88f9f5e80a43392faf5",
+      "derivedSha256": "1c0821490ba97c65967de42548f9db5021df2f2967017e6a2fa5a89844ffaeb8"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/spinning_wheel_01/spinning_wheel_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/spinning_wheel_01/spinning_wheel_01_arm_2k_UnityMask.png",
+      "sourceSha256": "5c0360d5be1fdf12d6de02b378a56f817ca00bd308bf535ba298f562ee0cd4be",
+      "derivedSha256": "6e0a45a6788097e7b7ae41d6473a3ec7532c667a68a300cc18a1f8c91638a8b6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/standing_picture_frame_01/standing_picture_frame_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/standing_picture_frame_01/standing_picture_frame_01_arm_2k_UnityMask.png",
+      "sourceSha256": "2db863d0734bbd104c6874042bde967942e8abb2e4a258cddc00a82bdf3bb0c0",
+      "derivedSha256": "bbd31f5ca725fdc9eec07d4e224c28d091f369faf1b33142870db6847011233c"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/standing_picture_frame_01/standing_picture_frame_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/standing_picture_frame_01/standing_picture_frame_01_arm_2k_UnityMask.png",
+      "sourceSha256": "2db863d0734bbd104c6874042bde967942e8abb2e4a258cddc00a82bdf3bb0c0",
+      "derivedSha256": "bbd31f5ca725fdc9eec07d4e224c28d091f369faf1b33142870db6847011233c"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/standing_picture_frame_01/standing_picture_frame_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/standing_picture_frame_01/standing_picture_frame_01_arm_2k_UnityMask.png",
+      "sourceSha256": "2db863d0734bbd104c6874042bde967942e8abb2e4a258cddc00a82bdf3bb0c0",
+      "derivedSha256": "bbd31f5ca725fdc9eec07d4e224c28d091f369faf1b33142870db6847011233c"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/standing_picture_frame_02/standing_picture_frame_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/standing_picture_frame_02/standing_picture_frame_02_arm_2k_UnityMask.png",
+      "sourceSha256": "5cbadad8a49849ad26f4cc76095916a854c86fa43193bafff334b606d909c06f",
+      "derivedSha256": "3ba6004866fa758a6c8dbd89bfbc730a8264b1d035e963971e12b325e55a5f15"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/standing_picture_frame_02/standing_picture_frame_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/standing_picture_frame_02/standing_picture_frame_02_arm_2k_UnityMask.png",
+      "sourceSha256": "5cbadad8a49849ad26f4cc76095916a854c86fa43193bafff334b606d909c06f",
+      "derivedSha256": "3ba6004866fa758a6c8dbd89bfbc730a8264b1d035e963971e12b325e55a5f15"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/standing_picture_frame_02/standing_picture_frame_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/standing_picture_frame_02/standing_picture_frame_02_arm_2k_UnityMask.png",
+      "sourceSha256": "5cbadad8a49849ad26f4cc76095916a854c86fa43193bafff334b606d909c06f",
+      "derivedSha256": "3ba6004866fa758a6c8dbd89bfbc730a8264b1d035e963971e12b325e55a5f15"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/stone_01/stone_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/stone_01/stone_01_arm_2k_UnityMask.png",
+      "sourceSha256": "32b37ed7dc4b16f0847c8fe631d031a427cc61c69c5167b10a071af4b433e8ba",
+      "derivedSha256": "c6c76d6eb7d365dbbcbdab9a82ed7df2f96fa139f1bf88c28036e7d72b0f8495"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/stone_fire_pit/stone_fire_pit_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/stone_fire_pit/stone_fire_pit_arm_2k_UnityMask.png",
+      "sourceSha256": "e710477110468a6f154ca8a106ce3a8dc33007be418c45565cdcae092de58400",
+      "derivedSha256": "1da95de64578fe4d2b516d6f2c520357aa2a5be234fbb8bd7f3b4f646841b857"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/sungka_board/sungka_board_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/sungka_board/sungka_board_arm_2k_UnityMask.png",
+      "sourceSha256": "6db1b0bee9296038a5c4fcd7216790f2fa53577e191259e9527259e08bbe7724",
+      "derivedSha256": "a99ecf6ae837f454fe1a4999c543dbb4526c29a6f9aa5f55f8a662efad2d36c7"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/sungka_board_02/sungka_board_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/sungka_board_02/sungka_board_02_arm_2k_UnityMask.png",
+      "sourceSha256": "4754a318409e77102ef904318d2698acfa9137eb0e5972019443b62666b99a5b",
+      "derivedSha256": "0e83bee393d38928c95ac68427c36458f7a2db050e56a11472b4782036b57e02"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/sweet_potato/sweet_potato_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/sweet_potato/sweet_potato_arm_2k_UnityMask.png",
+      "sourceSha256": "d7af72f9080a379da32dd45243f449b1ef590795f850e79b3fe27862a2297e6c",
+      "derivedSha256": "b5315068f7978c37433b268bb84bdd3b591871c6256e91be8ca346dffce0309c"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/tea_set_01/tea_set_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/tea_set_01/tea_set_01_arm_2k_UnityMask.png",
+      "sourceSha256": "f74ea16141becbcea8ab9aad02dd7e077c8acab307d126ff73750cf127e62bc7",
+      "derivedSha256": "bcfa86c013efced2963c2fc11b6b5a635a9f568c9aff4c7c034beb274012af12"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/watering_can_metal_01/watering_can_metal_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/watering_can_metal_01/watering_can_metal_01_arm_2k_UnityMask.png",
+      "sourceSha256": "026db74adbfd2667b4ff19f532ec102bc9e695d4775928b791e3e563a463758c",
+      "derivedSha256": "cc95716b4a4224672f2b54b56cbe3da02f8a88096abcc9037397581a9fd7f110"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_axe/wooden_axe_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_axe/wooden_axe_arm_2k_UnityMask.png",
+      "sourceSha256": "683e922555210003a15f24f219dba661493774fee36c45a9064b863896a8a3e9",
+      "derivedSha256": "e27d7973fd1cbb98f838c2c78fcda4072e69fec278f5818d75b49e0db2a0b6b5"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_axe_02/wooden_axe_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_axe_02/wooden_axe_02_arm_2k_UnityMask.png",
+      "sourceSha256": "48fe4bae958db830994cb5014a2253b78b83e8378374165c790d8e82ec89ca79",
+      "derivedSha256": "941e1c655511261e499d9e08bee95c9b1ba981ca6d0c77a8a4885ee4566677f1"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_axe_03/wooden_axe_03_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_axe_03/wooden_axe_03_arm_2k_UnityMask.png",
+      "sourceSha256": "4bfab06e60ad94073c589ffadd4b9578e004aeb208c6fffa95f8f159ada29e13",
+      "derivedSha256": "7ac9f805d505949205219b2a0670e8c3c3d7714dbe7a2d61ee1bb3a83c2b7e7d"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_bowl_01/wooden_bowl_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_bowl_01/wooden_bowl_01_arm_2k_UnityMask.png",
+      "sourceSha256": "6527473aa358b5f8c73cae1a8e5d66b764c9971b3dc7ca569951a084ae2008d0",
+      "derivedSha256": "879424556a666b1a89b0db71548a7944a0e367f5032674282d4e91e7780bf790"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_bowl_02/wooden_bowl_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_bowl_02/wooden_bowl_02_arm_2k_UnityMask.png",
+      "sourceSha256": "be8b112b7fb6230a400d3114cd40472a049feed79501fcd66328c189d793f7ca",
+      "derivedSha256": "cdd7d0cab6f054d7f54697ecf33e70acf1556206a4abdd6e0a193d0731fc9d78"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_broom/wooden_broom_bristles_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_broom/wooden_broom_bristles_arm_2k_UnityMask.png",
+      "sourceSha256": "019db0bff22b9d7f362f06b8cc0143944a45c2cbab9720b266dd717f8170f85a",
+      "derivedSha256": "41ab64d80308695a0af9978f83ba17ac6cef01f9ca413dab2a8d92980c540b35"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_bucket_02/wooden_bucket_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_bucket_02/wooden_bucket_02_arm_2k_UnityMask.png",
+      "sourceSha256": "a8daccc76fcaa844f674c5c34a732bae0cb117218201bdd1a56d0a69b51127d8",
+      "derivedSha256": "c1117e191d101f8a5f40ac3310e87750cc1a177236c30c91548a07549a02a1ca"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_display_shelves_01/wooden_display_shelves_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_display_shelves_01/wooden_display_shelves_01_arm_2k_UnityMask.png",
+      "sourceSha256": "f2240882e5c67fac0a79843628633857375852f171c13bc02603c93686b6933f",
+      "derivedSha256": "019a4f5b9a73f33c5ce1c67412d5917cc4b77d533559817dfddd7df0ffc4f875"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_hammer_01/wooden_hammer_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_hammer_01/wooden_hammer_01_arm_2k_UnityMask.png",
+      "sourceSha256": "4aafec316bdad58b9c9c9996d3387047a42d51c8e0102e2ca2fd15cbd6f3525c",
+      "derivedSha256": "a80be41f95aa1d849ac2136c31082790f3a026b9d72b94578b5f4ce748fe471d"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_ladder/wooden_ladder_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_ladder/wooden_ladder_arm_2k_UnityMask.png",
+      "sourceSha256": "a8c5bf86cd03f27d96dc75c0b0df7ebb5013c1db43ba2ef5624eea9e18e10e97",
+      "derivedSha256": "a26a6df9df9381276fd0e372ceef318b1957b6a29d408c44393c63141a2d91bd"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_ladder_02/wooden_ladder_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_ladder_02/wooden_ladder_02_arm_2k_UnityMask.png",
+      "sourceSha256": "6603efab9a868aea3fa592a78cdcac8a7089bd0b72c802197122a5caef3c948c",
+      "derivedSha256": "252a2b3f5f61adae0ed84ccae8abf4cecce2958d28de410fcdefc624b5db6d7f"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_lantern_01/wooden_lantern_01_glass_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_lantern_01/wooden_lantern_01_glass_arm_2k_UnityMask.png",
+      "sourceSha256": "be21ec21910483063763eb67ac5d64e9648297887c6ce65234f9f48afb1bb62c",
+      "derivedSha256": "4f1e7a71afe24560705fc8b5b6112463811bfa22287bc106fb49c843387d4421"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_spoon/wooden_spoon_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_spoon/wooden_spoon_arm_2k_UnityMask.png",
+      "sourceSha256": "9b27747be8a733221cb0a27c75de202c72b55945c06b1923abc193862880b6c6",
+      "derivedSha256": "5b4c2e856609401f02cea0e72e575e4d120f6b303b6d15186165ff8e5f077534"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_stool_02/wooden_stool_02_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wooden_stool_02/wooden_stool_02_arm_2k_UnityMask.png",
+      "sourceSha256": "2024362415b94d0852c2f3f0e5caf47cd4288f8e94fd6424281120ed0806da14",
+      "derivedSha256": "475eb1407d5c42a09776a35f479e1a3928aeac7ffb7a3664b8da43a98c34d2f3"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/yellow_onion/yellow_onion_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/yellow_onion/yellow_onion_arm_2k_UnityMask.png",
+      "sourceSha256": "84d033d655954184b2b1e421fa5af468d52ee65a7176a2913688ad2174625114",
+      "derivedSha256": "7de29f9e7b7918363bfd844892c27810b37192edcd239cf80ffe2d11cf813470"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/BambooSet/P4_BambooSet_bambooalpha_basecolorMetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/BambooSet/P4_BambooSet_bambooalpha_basecolorMetalRough_UnityMask.png",
+      "sourceSha256": "a1afadb20513a9503c0687208a09e1e3c63254af433acb2bb1c605660147a4fd",
+      "derivedSha256": "3888c0ff54ed96529ec71b3bff4d3a6df3f57f39ef3028f3524646887deb2786"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/BambooSet/P4_BambooSet_bamboobranchMetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/BambooSet/P4_BambooSet_bamboobranchMetalRough_UnityMask.png",
+      "sourceSha256": "f08f7152d94afe53b47d33712de10ca1040a490b3a245e4405514ae8de16d8fa",
+      "derivedSha256": "39cf3422fda837d4bdd7f23056a43d04ebe836f8a4890bb2a9344bf814dd46e7"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/BambooSet/P4_BambooSet_bambooMatMetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/BambooSet/P4_BambooSet_bambooMatMetalRough_UnityMask.png",
+      "sourceSha256": "b2e0a2ade0f3878f895a911aee77a835894bdbbe21131423c0b25426d7fb6dbc",
+      "derivedSha256": "fe4c2ee3b39804d6859ce76d1ad44c92c71afaaed9a55ec1e4cf07d29517d458"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/BambooSet/P4_BambooSet_bamboooldMetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/BambooSet/P4_BambooSet_bamboooldMetalRough_UnityMask.png",
+      "sourceSha256": "ea866b92bc9525efe095c380c09772df5a82e3fab2291ff7e966dffbaca40b73",
+      "derivedSha256": "4c7e7e97b9f3e03c4166b35d44a4613dc32330e099b8200fb4edf57aceea99a6"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/BambooSet/P4_BambooSet_bamboooldnewMetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/BambooSet/P4_BambooSet_bamboooldnewMetalRough_UnityMask.png",
+      "sourceSha256": "886932f8d3a3e541d710a4111c99d0ef3fdfa957e01b7a02ad0baa6d9800ffef",
+      "derivedSha256": "0b4cd77b0da777c8c142c69c36913aeb1583d1e6cb960195b825ad3a1b7a5e58"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/Robe/P4_Robe_ClothesMetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/Robe/P4_Robe_ClothesMetalRough_UnityMask.png",
+      "sourceSha256": "263c1f580217d3988929a7c129ba7cee9f81d3a34811921f1331f9bb4e3a6d79",
+      "derivedSha256": "61a366ef8645511a582ea792791376e1a8473a3df9ddc176fff5ad22a7449ce9"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/Robe/P4_Robe_GearMetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/Robe/P4_Robe_GearMetalRough_UnityMask.png",
+      "sourceSha256": "a5357003a39bf11b66f7079a07734ff2d34901a6be45935ab7b9bdfe1d49d1a1",
+      "derivedSha256": "204303ed414afe1fe29e9b3a22f3b0ab75a2387d0e5d938b5c2e60b7e95d40f0"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/Robe/P4_Robe_HeadMetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/Robe/P4_Robe_HeadMetalRough_UnityMask.png",
+      "sourceSha256": "5f36f07eaa9afa731f83a08100697dec3d050b24c690c9b6b109b8d939808f98",
+      "derivedSha256": "b73ee1fc5c82a5647feb7f24ab5a62771ea8d8f94a104f77362662e80a0b28e7"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/Robe/P4_Robe_materialMetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/Robe/P4_Robe_materialMetalRough_UnityMask.png",
+      "sourceSha256": "1eae05c99fbed2a68e871368ecfc8c14b4719528c328761ed731e6e3266aab3a",
+      "derivedSha256": "e30b65f8953b4ed3c2e39cedcf341de61398d827ac072053572ba64a21fc62b0"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/ElderHead/P4_ElderHead_initialShadingGroup_005MetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/ElderHead/P4_ElderHead_initialShadingGroup_005MetalRough_UnityMask.png",
+      "sourceSha256": "4a2aeca4452398d7bc91fc847ae10f96005dfc9e2f8335b6e84b65df213e4065",
+      "derivedSha256": "4f8b621a4c6c2f9b271d52b5e004f519e7ae5b625f4841f84d69b4bb087d7638"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/ElderHead/P4_ElderHead_initialShadingGroup_007MetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/ElderHead/P4_ElderHead_initialShadingGroup_007MetalRough_UnityMask.png",
+      "sourceSha256": "091a0389b4ea72bcafc20cf5e6ef95d3fc29ed33b94d24e9f339244efd47501d",
+      "derivedSha256": "59684f8afb95a9023e6ec019a6ef96f3e18d784b3c747edd01a819c223cd342f"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/ElderHead/P4_ElderHead_Material_001MetalRough.png",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/ElderHead/P4_ElderHead_Material_001MetalRough_UnityMask.png",
+      "sourceSha256": "71e1e24f115540080e17b6626c5623183b07fd9666aefe4fad27d1df2a2ebba1",
+      "derivedSha256": "59684f8afb95a9023e6ec019a6ef96f3e18d784b3c747edd01a819c223cd342f"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/aerial_rocks_04/aerial_rocks_04_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/aerial_rocks_04/aerial_rocks_04_arm_2k_UnityMask.png",
+      "sourceSha256": "6ce622d51ebc56c297d86ea54ac86950948dc7e02bd25e1b2f157bba0911ec4d",
+      "derivedSha256": "d425a46a555ce08a08d4adb80ac56da69b92a37276efa7f190e30c5aadc743fc"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wood_planks_dirt/wood_planks_dirt_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/wood_planks_dirt/wood_planks_dirt_arm_2k_UnityMask.png",
+      "sourceSha256": "b6018ffa5aeabf378956913734bf5eb1ab727b8d00264be41d572c90b9a35144",
+      "derivedSha256": "1beef7163e98948e698b351092f45e719e1c374ac97f5308c1eb45f44529fdb9"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/forest_ground_04/forest_ground_04_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/forest_ground_04/forest_ground_04_arm_2k_UnityMask.png",
+      "sourceSha256": "a6086cb5611fabcc3dd4c9ac74bcf6cf8ed5d07e136ebe51255a5a3bea9e42c6",
+      "derivedSha256": "97b78ff5586ccbb7687bddc2d7aafdb28e4b7697fd75a3a4e8d5554e6e39066c"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/bamboo_wall_03/bamboo_wall_03_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/bamboo_wall_03/bamboo_wall_03_arm_2k_UnityMask.png",
+      "sourceSha256": "89ed29c2f53944ba453061e7f77387043a0dfb2cd9b318d3b13f10012a83834a",
+      "derivedSha256": "945dfe5edb5315de51719decf96a8f35b56f672bdfb351412c400905d210abbb"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/burned_ground_01/burned_ground_01_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/burned_ground_01/burned_ground_01_arm_2k_UnityMask.png",
+      "sourceSha256": "74b8f7e351ed268c009457f9f2586632eb9339e08fe48a677c29a90783b19878",
+      "derivedSha256": "3e047c96d5ba3940fa59746ef8d16ce7944388844935fddd2ce6eaf7ad2750a3"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/mud_cracked_dry_riverbed_002/mud_cracked_dry_riverbed_002_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/mud_cracked_dry_riverbed_002/mud_cracked_dry_riverbed_002_arm_2k_UnityMask.png",
+      "sourceSha256": "07faf6a2248e15a9eb83933b834bfe13aa30004ad018b34f34fa712fabdc2a8b",
+      "derivedSha256": "77e716cec772e896102c459af4965fd5570b4b6cdd0f5694d6d1645bd3aae8bc"
+    },
+    {
+      "source": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/clay_roof_tiles/clay_roof_tiles_arm_2k.jpg",
+      "target": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Textures/clay_roof_tiles/clay_roof_tiles_arm_2k_UnityMask.png",
+      "sourceSha256": "fb7443d2ff7556fbc76a297783957a6657390b5255020e3d9e06e9692b147728",
+      "derivedSha256": "3e783d18763d07bb6c7c50937e4299c9b52ad9c8f137f09480838dcd59591725"
+    }
+  ]
+}

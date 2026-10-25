@@ -1,0 +1,27 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Projects/LayarTerakhir-main/Builds/LinuxPhase4/LayarTerakhir.x86_64",
+    "-screen-width",
+    "1280",
+    "-screen-height",
+    "720",
+    "-screen-fullscreen",
+    "0",
+    "-force-glcore",
+    "-phase4Audit",
+    "/root/Projects/LayarTerakhir-main/Builds/Phase4Full12",
+    "-logFile",
+    "/root/Projects/LayarTerakhir-main/Builds/Phase4Full12/player.log",
+    "-batchmode",
+    "-nographics",
+    "-phase4Fast"
+  ],
+  "startedUtc": "2026-10-25T12:31:01.711422+00:00",
+  "status": "Finished",
+  "endedUtc": "2026-10-25T12:35:45.462952+00:00",
+  "exitCode": 0
+}

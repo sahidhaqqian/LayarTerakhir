@@ -1,0 +1,149 @@
+{
+  "scope": "Historical directed attempts, including failures; final route acceptance is phase4-native-route.json.",
+  "attempts": [
+    {
+      "attempt": "Phase4Full01",
+      "utc": "2026-10-25T07:19:41.2645760Z",
+      "completed": false,
+      "walkedMeters": 0.0,
+      "lastChecks": [
+        "PASS Village starts from actual saved CP1",
+        "FAIL Opening bound donation recorded once",
+        "FAIL System.Exception: Opening bound donation recorded once\n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit.Check (System.Boolean ok, System.String label) [0x0004c] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:66 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Route>d__21.MoveNext () [0x00503] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:78 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Drive>d__18.MoveNext () [0x0003f] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:64 "
+      ],
+      "scope": "Directed CharacterController/NavMesh route; real E/C/R/Q/T/LMB/RMB, isolated save, live threat; not a human playtest"
+    },
+    {
+      "attempt": "Phase4Full02",
+      "utc": "2026-10-25T09:28:54.3316360Z",
+      "completed": false,
+      "walkedMeters": 110.94347381591797,
+      "lastChecks": [
+        "PASS Actual reticle acquires SHRINE_PENDOPO",
+        "PASS Connected capsule route (0.50, 0.00, -3.20)",
+        "FAIL System.Exception: Capsule blocked/caught (-4.23, 0.08, -5.71) toward (-4.32, 0.58, -5.60)\n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Walk>d__24.MoveNext () [0x001da] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:146 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Drive>d__18.MoveNext () [0x0003f] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:64 "
+      ],
+      "scope": "Directed CharacterController/NavMesh route; real E/C/R/Q/T/LMB/RMB, isolated save, live threat; not a human playtest"
+    },
+    {
+      "attempt": "Phase4Full03",
+      "utc": "2026-10-25T09:40:17.1854770Z",
+      "completed": false,
+      "walkedMeters": 142.99867248535156,
+      "lastChecks": [
+        "PASS Connected capsule route (-28.00, 0.00, -0.50)",
+        "FAIL EVP six-second authentic mantra evidence",
+        "FAIL System.Exception: EVP six-second authentic mantra evidence\n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit.Check (System.Boolean ok, System.String label) [0x0004c] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:66 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Route>d__21.MoveNext () [0x0088a] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:88 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Drive>d__18.MoveNext () [0x0003f] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:64 "
+      ],
+      "scope": "Directed CharacterController/NavMesh route; real E/C/R/Q/T/LMB/RMB, isolated save, live threat; not a human playtest"
+    },
+    {
+      "attempt": "Phase4Full04",
+      "utc": "2026-10-25T09:59:17.3155200Z",
+      "completed": false,
+      "walkedMeters": 220.9822235107422,
+      "lastChecks": [
+        "PASS Optional mirror saved once",
+        "PASS Connected capsule route (29.00, 0.65, -0.10)",
+        "FAIL System.Exception: Capsule blocked/caught (25.60, 0.08, -1.32) toward (25.60, 0.72, -0.96)\n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Walk>d__24.MoveNext () [0x001e5] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:147 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Drive>d__18.MoveNext () [0x0003f] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:64 "
+      ],
+      "scope": "Directed CharacterController/NavMesh route; real E/C/R/Q/T/LMB/RMB, isolated save, live threat; not a human playtest"
+    },
+    {
+      "attempt": "Phase4Full05",
+      "utc": "2026-10-25T10:06:34.9491870Z",
+      "completed": false,
+      "walkedMeters": 225.8123779296875,
+      "lastChecks": [
+        "PASS Connected capsule route (29.00, 0.65, -0.10)",
+        "FAIL Actual AR feed photograph removes illusion",
+        "FAIL System.Exception: Actual AR feed photograph removes illusion\n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit.Check (System.Boolean ok, System.String label) [0x0004c] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:66 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Route>d__21.MoveNext () [0x00c52] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:95 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Drive>d__18.MoveNext () [0x0003f] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:64 "
+      ],
+      "scope": "Directed CharacterController/NavMesh route; real E/C/R/Q/T/LMB/RMB, isolated save, live threat; not a human playtest"
+    },
+    {
+      "attempt": "Phase4Full06",
+      "utc": "2026-10-25T11:30:29.4114250Z",
+      "completed": false,
+      "walkedMeters": 226.23724365234375,
+      "lastChecks": [
+        "PASS Connected capsule route (29.00, 0.65, -0.10)",
+        "FAIL Actual AR feed photograph removes illusion",
+        "FAIL System.Exception: Actual AR feed photograph removes illusion\n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit.Check (System.Boolean ok, System.String label) [0x0004c] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:66 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Route>d__21.MoveNext () [0x00e3e] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:97 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Drive>d__18.MoveNext () [0x0003f] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:64 "
+      ],
+      "scope": "Directed CharacterController/NavMesh route; real E/C/R/Q/T/LMB/RMB, isolated save, live threat; not a human playtest"
+    },
+    {
+      "attempt": "Phase4Full07",
+      "utc": "2026-10-25T11:40:12.5381570Z",
+      "completed": false,
+      "walkedMeters": 284.6624755859375,
+      "lastChecks": [
+        "PASS Connected capsule route (0.00, 0.00, 26.50)",
+        "FAIL Stable Thermo+66 gives evidence without a photo",
+        "FAIL System.Exception: Stable Thermo+66 gives evidence without a photo\n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit.Check (System.Boolean ok, System.String label) [0x0004c] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:66 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Route>d__21.MoveNext () [0x0103b] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:100 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Drive>d__18.MoveNext () [0x0003f] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:64 "
+      ],
+      "scope": "Directed CharacterController/NavMesh route; real E/C/R/Q/T/LMB/RMB, isolated save, live threat; not a human playtest"
+    },
+    {
+      "attempt": "Phase4Full08",
+      "utc": "2026-10-25T11:53:49.1464450Z",
+      "completed": false,
+      "walkedMeters": 342.4861145019531,
+      "lastChecks": [
+        "PASS Physical interaction exists ALTAR_1",
+        "FAIL Actual reticle acquires ALTAR_1",
+        "FAIL System.Exception: Actual reticle acquires ALTAR_1\n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit.Check (System.Boolean ok, System.String label) [0x0004c] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:66 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Use>d__26.MoveNext () [0x00475] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:178 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Drive>d__18.MoveNext () [0x0003f] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:64 "
+      ],
+      "scope": "Directed CharacterController/NavMesh route; real E/C/R/Q/T/LMB/RMB, isolated save, live threat; not a human playtest"
+    },
+    {
+      "attempt": "Phase4Full09",
+      "utc": "2026-10-25T12:05:01.5630950Z",
+      "completed": false,
+      "walkedMeters": 342.3520202636719,
+      "lastChecks": [
+        "PASS Physical interaction exists ALTAR_1",
+        "FAIL Actual reticle acquires ALTAR_1",
+        "FAIL System.Exception: Actual reticle acquires ALTAR_1\n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit.Check (System.Boolean ok, System.String label) [0x0004c] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:66 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Use>d__26.MoveNext () [0x00475] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:178 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Drive>d__18.MoveNext () [0x0003f] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:64 "
+      ],
+      "scope": "Directed CharacterController/NavMesh route; real E/C/R/Q/T/LMB/RMB, isolated save, live threat; not a human playtest"
+    },
+    {
+      "attempt": "Phase4Full10",
+      "utc": "2026-10-25T12:13:50.6143370Z",
+      "completed": false,
+      "walkedMeters": 403.4797058105469,
+      "lastChecks": [
+        "PASS Real water exposes core in sector 0",
+        "FAIL Actual phone Blitz commits sector 0",
+        "FAIL System.Exception: Actual phone Blitz commits sector 0\n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit.Check (System.Boolean ok, System.String label) [0x0004c] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:66 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Route>d__21.MoveNext () [0x015a5] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:113 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Drive>d__18.MoveNext () [0x0003f] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:64 "
+      ],
+      "scope": "Directed CharacterController/NavMesh route; real E/C/R/Q/T/LMB/RMB, isolated save, live threat; not a human playtest"
+    },
+    {
+      "attempt": "Phase4Full11",
+      "utc": "2026-10-25T12:25:04.4543990Z",
+      "completed": false,
+      "walkedMeters": 369.379638671875,
+      "lastChecks": [
+        "PASS Connected capsule route (-25.80, 0.00, -10.30)",
+        "FAIL Banaspati physically approaches sector 2",
+        "FAIL System.Exception: Banaspati physically approaches sector 2\n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit.Check (System.Boolean ok, System.String label) [0x0004c] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:66 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Wait>d__20.MoveNext () [0x00079] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:67 \n  at LayarTerakhir.Diagnostics.Phase4PlayerAudit+<Drive>d__18.MoveNext () [0x0003f] in /root/Projects/LayarTerakhir-main/Assets/_LayarTerakhir/src/Diagnostics/Phase4PlayerAudit.cs:64 "
+      ],
+      "scope": "Directed CharacterController/NavMesh route; real E/C/R/Q/T/LMB/RMB, isolated save, live threat; not a human playtest"
+    },
+    {
+      "attempt": "Phase4Full12",
+      "utc": "2026-10-25T12:35:45.1681760Z",
+      "completed": true,
+      "walkedMeters": 874.7536010742188,
+      "lastChecks": [
+        "PASS Continue uses physical same-night boundary",
+        "PASS Error wallet display never enters actual ledger",
+        "PASS Complete zero-purchase route"
+      ],
+      "scope": "Directed CharacterController/NavMesh route; real E/C/R/Q/T/LMB/RMB, isolated save, live threat; not a human playtest"
+    }
+  ]
+}

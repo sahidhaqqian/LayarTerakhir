@@ -40,10 +40,11 @@ namespace LayarTerakhir.Core
         public List<PhoneDocument> documents = new List<PhoneDocument>();
         public bool archive_prepared = false;
         public EndingType ending = EndingType.None;
-        public int schema_version = 4;
+        public int schema_version = 5;
         public Phase1Data phase1 = new Phase1Data();
         public Phase2Data phase2 = new Phase2Data();
         public Phase3Data phase3 = new Phase3Data();
+        public Phase4Data phase4 = new Phase4Data();
     }
 
     public class CampaignState : MonoBehaviour
@@ -283,20 +284,48 @@ namespace LayarTerakhir.Core
                 loaded.phase3 = new Phase3Data();
                 loaded.schema_version = 4;
             }
+            if (loaded.schema_version == 4)
+            {
+                loaded.phase4 = new Phase4Data();
+                loaded.schema_version = 5;
+            }
             if (loaded.phase3 != null) Phase3Ids.NormalizeAliases(loaded);
             return IsValid(loaded);
         }
 
         private static bool IsValid(CampaignData data)
         {
-            return data != null && data.schema_version == 4 && data.chapter_id >= 0 &&
+            return data != null && data.schema_version == 5 && data.chapter_id >= 0 &&
                 !string.IsNullOrWhiteSpace(data.checkpoint_id) &&
                 data.battery >= 0f && data.battery <= 100f && data.sanity >= 0f && data.sanity <= 100f &&
                 data.wallet_legitimate >= 0 && data.wallet_bound >= 0 && data.spent >= 0 &&
                 Enum.IsDefined(typeof(EndingType), data.ending) &&
                 ValidIds(data.inventory) && ValidIds(data.evidence_ids) && ValidIds(data.relic_ids) &&
                 ValidIds(data.location_seals) && ValidIds(data.upgrades) && ValidIds(data.secret_items) &&
-                ValidIds(data.secret_notes_read) && ValidPhase1(data.phase1) && ValidPhase2(data.phase2) && ValidPhase3(data.phase3);
+                ValidIds(data.secret_notes_read) && ValidPhase1(data.phase1) && ValidPhase2(data.phase2) && ValidPhase3(data.phase3) && ValidPhase4(data);
+        }
+
+        private static bool ValidPhase4(CampaignData d)
+        {
+            var p = d.phase4;
+            if (p == null || !ValidIds(p.completed_event_ids) || !float.IsFinite(p.elapsed_gameplay_seconds) || p.elapsed_gameplay_seconds < 0 ||
+                !float.IsFinite(p.incense_ready_at) || p.incense_ready_at < 0 || p.water_units < 0 || p.water_units > 3 ||
+                p.water_action_sequence < 0 || p.torch_layout_seed < -1 || p.torch_layout_seed > 2 ||
+                Array.IndexOf(Phase4Ids.Anchors, p.safe_anchor) < 0 || p.recovery_last_uses == null || p.money_ledger == null) return false;
+            if (p.Completed("P4_DEPART_KOS") && p.safe_anchor == "HUB") return false;
+            if (p.Completed("P4_RITUAL_TRIGGER") && (p.torch_layout_seed < 0 || !Phase4Ids.RitualReady(d))) return false;
+            if (Phase4Ids.LocalHits(d) > 0 && !p.Completed("P4_RITUAL_TRIGGER")) return false;
+            if (p.Completed("P4_SOUTH_OFF") && Phase4Ids.LocalHits(d) != 3) return false;
+            if (p.Completed("P4_BOSS_WIN") && (!p.Completed("P4_SOUTH_OFF") || !d.location_seals.Contains(Phase4Ids.Seal))) return false;
+            if (p.Completed("P4_COMPLETE") && (!p.Completed("P4_BOSS_WIN") || p.next_destination != Phase4Ids.Destination || p.safe_anchor != "BOUNDARY")) return false;
+            var ids = new HashSet<string>();
+            foreach (var e in p.recovery_last_uses)
+                if (e == null || string.IsNullOrWhiteSpace(e.id) || !ids.Add(e.id) || !float.IsFinite(e.at_gameplay_seconds) ||
+                    e.at_gameplay_seconds < 0 || e.at_gameplay_seconds > p.elapsed_gameplay_seconds) return false;
+            ids.Clear();
+            foreach (var e in p.money_ledger)
+                if (e == null || string.IsNullOrWhiteSpace(e.id) || !ids.Add(e.id) || e.amount <= 0) return false;
+            return true;
         }
 
         private static bool ValidPhase2(Phase2Data p)

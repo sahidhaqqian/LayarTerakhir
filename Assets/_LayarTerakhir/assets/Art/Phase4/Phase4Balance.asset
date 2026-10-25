@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a1ccb7425f894139a16d7d86145ca5, type: 3}
+  m_Name: Phase4Balance
+  m_EditorClassIdentifier: Assembly-CSharp::LayarTerakhir.Phase4.Phase4Balance
+  forestDrain: 0.1
+  villageDrain: 0.04
+  southDrain: 0.12
+  forestFloor: 35
+  villageFloor: 45
+  shelterRate: 3
+  shelterCap: 70
+  photoDwell: 1
+  thermalDwell: 2
+  evpTap: 0.25
+  evpSeconds: 6
+  knockSeconds: 1.5
+  evpRange: 3
+  opticalRange: 7
+  opticalAngle: 24
+  uvDwell: 2
+  refillSeconds: 4
+  chargeSeconds: 8
+  shrineSeconds: 10
+  recoveryCooldown: 20
+  patrolSpeed: 1.5
+  alertSpeed: 2.7
+  chaseSpeed: 3.5
+  huntSpeed: 3.7
+  hearingWalk: 4
+  hearingSprint: 9
+  hearingCrouch: 1.5
+  screenRadius: 12
+  lungeWarning: 1
+  lungeRadius: 1.15
+  hitIFrame: 3
+  hitWindow: 10
+  searchSeconds: 6
+  restoreGrace: 8
+  exposureSeconds: 5
+  recoverySeconds: 8
+  aimRange: 8
+  aimAngle: 25
+  southEmberWarning: 1.2
+  southEmberRadius: 1.6
+  southEmberInterval: 9
+  torchPreset: 0

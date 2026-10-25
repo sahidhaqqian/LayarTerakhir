@@ -1,0 +1,275 @@
+[
+  {
+    "id": "Fire",
+    "kind": "audio",
+    "sourcePage": "https://opengameart.org/content/fire-crackling",
+    "author": "AntumDeluge",
+    "license": "CC0-1.0",
+    "url": "https://opengameart.org/sites/default/files/fire-1_0.ogg",
+    "sourceSha256": "f922929805bc6afdf0a35727fa3998033db544c1b6f62ed3aeab94341ed6ddeb",
+    "sourcePath": "Builds/ArtSources/Phase4/Auxiliary/Fire_0890c291ad.ogg",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Audio/Fire.ogg",
+    "sha256": "f922929805bc6afdf0a35727fa3998033db544c1b6f62ed3aeab94341ed6ddeb"
+  },
+  {
+    "id": "Heartbeat",
+    "kind": "audio",
+    "sourcePage": "https://opengameart.org/content/heartbeat-sounds",
+    "author": "bart",
+    "license": "CC0-1.0",
+    "url": "https://opengameart.org/sites/default/files/heartbeat_slow_0.wav",
+    "sourceSha256": "ce5d2bbe4c9e2a8843fc76419070b9e88f71b2aa4ba7226a5f50a6b45d13be60",
+    "sourcePath": "Builds/ArtSources/Phase4/Auxiliary/Heartbeat_496fb3b4ce.wav",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Audio/Heartbeat.ogg",
+    "sha256": "b8a992fd44e5e061536658c505ab544eb4e0c79c34a23bc64ad8e5be2c8ba672"
+  },
+  {
+    "id": "FireBurst",
+    "kind": "audio",
+    "sourcePage": "https://opengameart.org/content/spell-4-fire",
+    "author": "Clint Bellanger",
+    "license": "CC-BY-3.0",
+    "url": "https://opengameart.org/sites/default/files/foom_0.wav",
+    "sourceSha256": "8accb7cb099c14273527759cbf6812e00a918ca5fc91ca6b21698133642daa60",
+    "sourcePath": "Builds/ArtSources/Phase4/Auxiliary/FireBurst_f2df20ca3d.wav",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Audio/FireBurst.ogg",
+    "sha256": "3d18ade69a1cc3700ce7ebce1acf1311c0b36e8b8cc5315b4509ea577651a0bd"
+  },
+  {
+    "id": "BambooForest",
+    "kind": "music",
+    "sourcePage": "https://opengameart.org/content/bamboo-forest",
+    "author": "Marcelo Fernandez (https://soundcloud.com/marcelofernandezmusic)",
+    "license": "CC-BY-3.0",
+    "url": "https://opengameart.org/sites/default/files/Bamboo%20Forest.flac",
+    "sourceSha256": "81fcb2f6d633542f423095cd500d02ab13505e9d9a42d431627c7c69e007bfd7",
+    "sourcePath": "Builds/ArtSources/Phase4/Auxiliary/BambooForest_72b34dfb0b.flac",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Audio/BambooForest.ogg",
+    "sha256": "f52275ce7249cacd1352979c113b5fab49b27a89d3eeaa14cbff11a3ad00429c"
+  },
+  {
+    "id": "Footprint",
+    "kind": "glyph",
+    "sourcePage": "https://game-icons.net/1x1/lorc/footprint.html",
+    "author": "Lorc",
+    "license": "CC-BY-3.0",
+    "url": "https://game-icons.net/icons/ffffff/transparent/1x1/lorc/footprint.svg",
+    "sourceSha256": "bd5215bea09c8055b8fe13e5458ddeff77dedfb03a44e1a6773e6d2a6c300f81",
+    "sourcePath": "Builds/ArtSources/Phase4/Auxiliary/Footprint_1ecfba851e.svg",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Glyphs/Footprint.png",
+    "sha256": "5a90071c515a29fde77ef17634318980e18349d55f0ff06a893e0ab412e1f6ab"
+  },
+  {
+    "id": "AuthenticSkull",
+    "kind": "glyph",
+    "sourcePage": "https://game-icons.net/1x1/lorc/skull-crack.html",
+    "author": "Lorc",
+    "license": "CC-BY-3.0",
+    "url": "https://game-icons.net/icons/ffffff/transparent/1x1/lorc/skull-crack.svg",
+    "sourceSha256": "2906543d9841ce519dd1ae0679f07c96c5881d5fbb6ce429da930a7667e1b3b3",
+    "sourcePath": "Builds/ArtSources/Phase4/Auxiliary/AuthenticSkull_c344c00493.svg",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Glyphs/AuthenticSkull.png",
+    "sha256": "382ad6a33740f7837c6cc82b2cecb9ad1672a01f7cdc1efd0d7cf29b1aece80d"
+  },
+  {
+    "id": "DecoyCross",
+    "kind": "glyph",
+    "sourcePage": "https://game-icons.net/1x1/lorc/crossed-bones.html",
+    "author": "Lorc",
+    "license": "CC-BY-3.0",
+    "url": "https://game-icons.net/icons/ffffff/transparent/1x1/lorc/crossed-bones.svg",
+    "sourceSha256": "17a4557468fc5aab249470e6f3bc54560d30a7eac43f54f6c2834ac3994c2972",
+    "sourcePath": "Builds/ArtSources/Phase4/Auxiliary/DecoyCross_79db08a59e.svg",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Glyphs/DecoyCross.png",
+    "sha256": "f3523aee3ab7fcb72fa92d492c6e534a221957f82bc7ac8c88722137ec6a51dc"
+  },
+  {
+    "id": "Knock",
+    "kind": "audio",
+    "sourcePage": "https://github.com/ibrews/Understudy/blob/main/LICENSE-SOUNDS.md",
+    "author": "ibrews",
+    "license": "CC0-1.0",
+    "url": "https://raw.githubusercontent.com/ibrews/Understudy/main/android/app/src/main/res/raw/knock.wav",
+    "sourceSha256": "1a04b9343e2bd97d52d9b074fd49d50d923a689aba0c11774343cb68921838ee",
+    "sourcePath": "Builds/ArtSources/Phase4/Auxiliary/Knock_646b71e20f.wav",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Audio/Knock.ogg",
+    "sha256": "9980618bbb41d3111c5a28d0a1ed1d6d1c39e5b3e07d3ba5de3d5b2750f95454"
+  },
+  {
+    "id": "Wind",
+    "kind": "audio",
+    "sourcePage": "https://opengameart.org/content/wind1",
+    "author": "Luke.RUSTLTD",
+    "license": "CC0-1.0",
+    "url": "https://opengameart.org/sites/default/files/wind1.wav",
+    "sourceSha256": "a2856f794fbf77e05f8241dc4adeade7f62fa21c3c9dc49f7725b6c6218060c3",
+    "sourcePath": "Builds/ArtSources/Phase4/Auxiliary/Wind_7442c4dda2.wav",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Audio/Wind.ogg",
+    "sha256": "6c6c4efd78eec31edbcd2f2f4fec11bd0c75000b36594e4028c39510e24c4b09"
+  },
+  {
+    "id": "Market",
+    "kind": "audio",
+    "sourcePage": "https://opengameart.org/content/crowd-shoutingspeaking-ambience",
+    "author": "StarNinjas",
+    "license": "CC0-1.0",
+    "url": "https://opengameart.org/sites/default/files/crowd_shouting_0.ogg",
+    "sourceSha256": "a2c23a64c127c77717cbe4abb21f138bac9d9aa6cb3cc89d62bab5d0d96dd7ca",
+    "sourcePath": "Builds/ArtSources/Phase4/Auxiliary/Market_ee490d2bb1.ogg",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Audio/Market.ogg",
+    "sha256": "a2c23a64c127c77717cbe4abb21f138bac9d9aa6cb3cc89d62bab5d0d96dd7ca"
+  },
+  {
+    "id": "ClosedEye",
+    "kind": "glyph",
+    "sourcePage": "https://game-icons.net/1x1/delapouite/eyelashes.html",
+    "author": "Delapouite",
+    "license": "CC-BY-3.0",
+    "url": "https://game-icons.net/icons/ffffff/transparent/1x1/delapouite/eyelashes.svg",
+    "sourceSha256": "8493e403358ba4b4c79910cc179232f3a52903f387ae965dad01e82282a6e61a",
+    "sourcePath": "Builds/ArtSources/Phase4/Auxiliary/ClosedEye_c8da6e3b30.svg",
+    "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Glyphs/ClosedEye.png",
+    "sha256": "7307ebc191e2db0dfe624e932b69e4cce3cbac0d3766fca6e31538a6a1b120c1"
+  },
+  {
+    "id": "Ghostly",
+    "kind": "audio-pack",
+    "sourcePage": "https://opengameart.org/content/4-atmospheric-ghostly-loops",
+    "author": "Independent.nu / ljudbank",
+    "license": "CC0-1.0",
+    "url": "https://opengameart.org/sites/default/files/independent_nu_ljudbank-atmosphere_moody.7z",
+    "sourceSha256": "5bb3d4d3fa92c76314eb641a054eacc3e7c4413b8acaef2cfcc5f7121f065bb5",
+    "sourcePath": "Builds/ArtSources/Phase4/Auxiliary/Ghostly_9f58d37be0.7z",
+    "derived": [
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Audio/Ghostly_atmoseerie01_mp3.ogg",
+        "original": "atmoseerie01.mp3.flac",
+        "sha256": "2929790731b56765126e7e360065fbe8fcfced1a16785c329201bf846d519375"
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Audio/Ghostly_atmoseerie03_mp3.ogg",
+        "original": "atmoseerie03.mp3.flac",
+        "sha256": "837c6ffbda0ea656c1950b15675a9fbdc3209bea09f5429813a9e77f8b65f458"
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Audio/Ghostly_atmoseerie02_mp3.ogg",
+        "original": "atmoseerie02.mp3.flac",
+        "sha256": "0f253a7924df61795d853c2fd42d997d2c39e37691e86d182eacd29a2d39ec29"
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Audio/Ghostly_atmoseerie04_mp3.ogg",
+        "original": "atmoseerie04.mp3.flac",
+        "sha256": "916098c0f13eabd1e3d1e67179b900603c82fb738b27daa83ddd1fc578e6b38d"
+      }
+    ]
+  },
+  {
+    "id": "Water",
+    "kind": "audio-pack",
+    "sourcePage": "https://opengameart.org/content/6-short-water-splashes",
+    "author": "ezwa / qubodup",
+    "license": "CC0-1.0",
+    "url": "https://opengameart.org/sites/default/files/ezwa-water_splash.7z",
+    "sourceSha256": "6187fa510cb7b5e8c3ac7c79f294ddc0e44d07472758bf6ecf2628a372ae9a26",
+    "sourcePath": "Builds/ArtSources/Phase4/Auxiliary/Water_1106b16249.7z",
+    "derived": [
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Audio/Water_water_splash_02.ogg",
+        "original": "water_splash-02.flac",
+        "sha256": "9098410a755e315593f181a00427699aabc95b0811b4a23ccd5b67ec957ee664"
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Audio/Water_water_splash_03.ogg",
+        "original": "water_splash-03.flac",
+        "sha256": "119eabdcf0f45217832ce11aec009246554c98ed930ca8a16f8d37834023a55b"
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Audio/Water_water_splash_04.ogg",
+        "original": "water_splash-04.flac",
+        "sha256": "06e112753cf5c5fe4d55a209b4c38791864bc82292d5eff9764059a43a42c571"
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Audio/Water_water_splash_06.ogg",
+        "original": "water_splash-06.flac",
+        "sha256": "98c7fbbf673d1dd7358dbd81f13667ee7529944b9795f93a263f78c25ef54650"
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Audio/Water_water_splash_05.ogg",
+        "original": "water_splash-05.flac",
+        "sha256": "c9cf84aed9337fac0ed06a449f0d54b3b4165e348580f0151ee92a2bf3366ef2"
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Audio/Water_water_splash_01.ogg",
+        "original": "water_splash-01.flac",
+        "sha256": "99b067a6c83e1592224138f3a8ea55d5bfc59c87b2fc74a828a0792d50fa2a9a"
+      }
+    ]
+  },
+  {
+    "id": "MagicSmoke",
+    "kind": "particle-pack",
+    "sourcePage": "https://opengameart.org/content/magic-and-smoke-effect",
+    "author": "StumpyStrust",
+    "license": "CC0-1.0",
+    "url": "https://opengameart.org/sites/default/files/magic%20and%20smoke.zip",
+    "sourceSha256": "33aec31dbb52a5b07f195361fc4b51543b70b97c12ccb33af381d76013879157",
+    "sourcePath": "Builds/ArtSources/Phase4/Auxiliary/MagicSmoke_63f4879b89.zip",
+    "derived": [
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Particles/magic4.png",
+        "original": "magic4.png",
+        "sha256": "53b8a9758769007f876df08251bdcc1e42c5129478126b86614dfe50eb2b05af"
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Particles/magic1.png",
+        "original": "magic1.png",
+        "sha256": "8ca1ddd34ffe10a90d4b86195fa44bd710478106447e0e735f7b7647d0e97f5b"
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Particles/smokeTestMedLong.png",
+        "original": "smokeTestMedLong.png",
+        "sha256": "9984824ce2ff3503756a2ea1360b91a6a49ddf6e70995d235e446f7c8c202ebf"
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Particles/smokeTestLow.png",
+        "original": "smokeTestLow.png",
+        "sha256": "db9cfe99b4bc9be0abf67e8499cfa6fa0d9c1f77547ffcf231179403059b62af"
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Particles/magicFlare.png",
+        "original": "magicFlare.png",
+        "sha256": "58ba09fe77074afb8bd3c95b5567e3c22f3bd9b6b6b9a8569bf2cdfe26a34f42"
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Particles/magic5.png",
+        "original": "magic5.png",
+        "sha256": "d2df34bbf42e43cf3a2ce30f1604b486f2c194afddcd05d475550c8392293d7e"
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Particles/magic2.png",
+        "original": "magic2.png",
+        "sha256": "8959f3ce9d2306e5cd77099f057c208cf265fb9fefddfedcc87c3f494a809465"
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Particles/smokeTestMed.png",
+        "original": "smokeTestMed.png",
+        "sha256": "4e8b1b776376592ac0aa1b412d2c24a233115c2cc40997635c7eb8e6555ef9c9"
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Particles/magic7.png",
+        "original": "magic7.png",
+        "sha256": "e68e234a290aa21d72921e1869bd4f54d1c8e47ad293aa33692907adcd7aecb3"
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Particles/smokeTestHigh.png",
+        "original": "smokeTestHigh.png",
+        "sha256": "db31b57cf02f98bacd9a307f1d6aca80cc0df869f72020e4ea125d69aeccea75"
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Phase4/Imported/Particles/magic3.png",
+        "original": "magic3.png",
+        "sha256": "ca98d9a257a2c011599e7391bf629ecf38b3fbac50ffdbfc559e3e2e477e591d"
+      }
+    ]
+  }
+]
