@@ -28,6 +28,7 @@ namespace LayarTerakhir.Prolog
         private Text header,mode,chat,walkHint;private GameObject cameraRoot;private RawImage cameraImage;private RenderTexture feed;private Material runtimeFeedMaterial;
         private readonly Queue<string> messages=new Queue<string>();
         private readonly Queue<string> pendingMessages=new Queue<string>();
+        private bool threatSettled;
         private readonly System.Random chatRandom=new System.Random();
         private float nextChat,nextAmbient,flashUntil,glitchUntil;private string currentRoom="";
         private Image shutter;private AudioSource shutterAudio;private AudioClip shutterClip,switchClip;
@@ -212,18 +213,27 @@ namespace LayarTerakhir.Prolog
             if(!UiFocus.Cinematic&&Phone.isPhoneRaised&&Phone.isScreenOn&&IsCameraApp&&(!UiFocus.Phone||ViewfinderActive)&&(!director||!director.Busy&&director.Stage<AtmajaStage.Chase)
                 &&GameInputConfig.Instance.GetActionDown(GameAction.CaptureOrBlitz)){if(Chapter!=null)Chapter.Capture();else CaptureFlash();}
             if(!director||!Phone.isBroadcastConnected||ChatFrozen||UiFocus.Menu||UiFocus.Cinematic)return;
+            bool resolved=director.chase&&director.chase.ThreatDefeated;
+            if(resolved!=threatSettled)
+            {
+                threatSettled=resolved;
+                // Do not drain an old panic backlog after the hunter vanished.
+                pendingMessages.Clear();messages.Clear();chat.text="";
+                nextChat=Time.time;nextAmbient=Time.time+4;
+                if(resolved)AddChat("@maya_sari","Udah hilang... tarik napas dulu, Bang.");
+            }
             var p=director.LocalPosition(director.player.transform.position);float y=director.player.transform.position.y-director.origin.y;
             string room=y<-.5f?"cellar":y>3.3f?(p.y>5.1f?"hall":p.x< -2.5f?"child":p.x<.25f?"bath":p.x<2.3f?"master":"balcony"):
                 p.y>9?"kitchen":p.x>1.6f&&p.x<6.1f&&p.y>1?"dining":p.y>0&&p.x<1.6f?"lounge":"yard";
-            bool danger=director.basement&&director.basement.IsHunting;
-            bool chase=director.Stage>=AtmajaStage.Chase;
+            bool danger=!resolved&&director.basement&&director.basement.IsHunting;
+            bool chase=!resolved&&director.Stage>=AtmajaStage.Chase;
             bool upstairs=!danger&&!chase&&y>3.3f;
-            float ambientDelay=danger?.55f+(float)chatRandom.NextDouble()*.65f:chase?.45f+(float)chatRandom.NextDouble()*.55f:upstairs?.9f+(float)chatRandom.NextDouble()*1.1f:1f+(float)chatRandom.NextDouble()*2f;
+            float ambientDelay=resolved?4f+(float)chatRandom.NextDouble()*3f:danger?.55f+(float)chatRandom.NextDouble()*.65f:chase?.45f+(float)chatRandom.NextDouble()*.55f:upstairs?.9f+(float)chatRandom.NextDouble()*1.1f:1f+(float)chatRandom.NextDouble()*2f;
             if(room!=currentRoom||Time.time>=nextAmbient)
             {
                 currentRoom=room;nextAmbient=Time.time+ambientDelay;
-                string[] lines=danger||chase?PanicComments(chase,room):RoomComments(room);
-                int burst=danger?3:chase?3:upstairs?2:1+(chatRandom.NextDouble()>.55?1:0);
+                string[] lines=resolved?ReliefComments:danger||chase?PanicComments(chase,room):RoomComments(room);
+                int burst=resolved?1:danger?3:chase?3:upstairs?2:1+(chatRandom.NextDouble()>.55?1:0);
                 int capacity=danger?16:chase?16:upstairs?12:8;
                 for(int i=0;i<burst&&pendingMessages.Count<capacity;i++)AddChat(LiveAuthors[chatRandom.Next(LiveAuthors.Length)],lines[chatRandom.Next(lines.Length)]);
             }
@@ -237,6 +247,7 @@ namespace LayarTerakhir.Prolog
             }
         }
         private static readonly string[] LiveAuthors={"@kopi_susu99","@dinda_ayu","@intan_permata","@bocil_kematian","@rudi_tabuti","@maya_sari","@rizky_pratama_","@hantu_karang01"};
+        private static readonly string[] ReliefComments={"Udah tenang sekarang...","Jalur keluarnya sudah kosong, Bang.","Kita masih di sini. Pelan-pelan aja.","Tarik napas dulu, tadi serem banget."};
         private static string[] PanicComments(bool chase,string room)
         {
             if(chase)return new[]{"LARI BANG JANGAN NENGOK!","DIA MASIH DI BELAKANG LU!","TANGGA! TANGGA! CEPET!","KAMERA JANGAN DITUTUP BANG!","BLITZ BANG KALO DIA DEKET!","JANGAN BERHENTI ANJIR!","BLITZ! BLITZ! BLITZ!"};

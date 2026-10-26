@@ -14,6 +14,11 @@ namespace LayarTerakhir.Prolog
         private AtmajaDirector director;
         private GameObject installation;
         private Light installationLight;
+        private float arApparitionEndsAt;
+        public const float ARApparitionSeconds=3f;
+        public bool ARApparitionActive=>arApparitionEndsAt>0&&Time.time<arApparitionEndsAt;
+        public bool InstallationCompleted {get;private set;}
+        public void HideARApparition(){arApparitionEndsAt=0;if(director&&director.arFigure)director.arFigure.SetActive(false);}
         private SmartphoneController Phone => SmartphoneController.Instance;
         private HudController Hud => HudController.Instance;
         private void Awake() { director = GetComponent<AtmajaDirector>(); }
@@ -57,32 +62,70 @@ namespace LayarTerakhir.Prolog
         }
         public IEnumerator Install(GameObject damagedPhone)
         {
+            InstallationCompleted=false;
+            if(!damagedPhone)yield break;
             Lock(true);var rig=director.player.GetComponent<ShoulderCameraRig>();
             bool first=rig&&rig.FirstPersonOverride;if(rig)rig.FirstPersonOverride=true;
             var avatar=rig&&rig.Avatar?rig.Avatar.GetComponent<AnimatedRakaAvatar>():null;
-            if(avatar)avatar.Installing=true;if(rig)rig.CinematicVisible=true;
+            bool wasVisible=rig&&rig.CinematicVisible;
+            var original=damagedPhone.transform.position;var rotation=damagedPhone.transform.rotation;
+            var phoneCollider=damagedPhone.GetComponent<Collider>();bool colliderEnabled=phoneCollider&&phoneCollider.enabled;
+            if(phoneCollider)phoneCollider.enabled=false;
+            foreach(var line in damagedPhone.GetComponentsInChildren<LineRenderer>(true))
+            {
+                if(!line.useWorldSpace)continue;
+                var points=new Vector3[line.positionCount];line.GetPositions(points);
+                for(int i=0;i<points.Length;i++)points[i]=line.transform.InverseTransformPoint(points[i]);
+                line.useWorldSpace=false;line.SetPositions(points);
+            }
+            if(avatar){avatar.Installing=false;avatar.CinematicCrouch=true;}
+            if(rig)rig.CinematicVisible=false;
+            try
+            {
             Phone.isPhoneRaised=true;Phone.isScreenOn=true;Phone.SyncVisualState();director.phoneView.Apps.Open(PhoneApp.Camera);
-            // Back out from under the table through the real capsule before handling the card.
+            var left=rig&&rig.Avatar?System.Array.Find(rig.Avatar.GetComponentsInChildren<Transform>(true),t=>t.name=="Hand_L"):null;
+            var right=rig&&rig.Avatar?System.Array.Find(rig.Avatar.GetComponentsInChildren<Transform>(true),t=>t.name=="Hand_R"):null;
+            // Retrieve below the tabletop, then carry the phone out while still
+            // crouched. Never start the standing InstallCard clip under it.
+            for(float t=0;t<.45f;t+=Time.deltaTime)
+            {
+                var hand=left?left.position:director.player.cameraPivot.TransformPoint(new Vector3(-.14f,-.2f,.3f));
+                damagedPhone.transform.position=Vector3.Lerp(original,hand,Mathf.SmoothStep(0,1,t/.45f));yield return null;
+            }
             var local=director.LocalPosition(director.player.transform.position);
-            var exit=director.P(local.x>=3.7f?5.25f:2.12f,6.18f,.54f);
+            // From behind the table, retreat straight back instead of cutting
+            // diagonally across its rear legs. Side pickups use the clear aisle.
+            var exit=local.y>7.15f?director.P(local.x,7.85f,.54f):director.P(local.x>=3.7f?5.25f:2.12f,6.18f,.54f);
             var controller=director.player.GetComponent<CharacterController>();
             for(float t=0;t<2.2f&&Vector3.ProjectOnPlane(exit-director.player.transform.position,Vector3.up).magnitude>.08f;t+=Time.deltaTime)
             {
                 var delta=Vector3.ProjectOnPlane(exit-director.player.transform.position,Vector3.up);
                 controller.Move(Vector3.ClampMagnitude(delta,Time.deltaTime*1.4f)+Vector3.down*.02f);
+                if(left)damagedPhone.transform.position=left.position;
                 if(rig)rig.RefreshCameraPose();yield return null;
             }
+            if(!director.player.CanStandUp())
+            {Hud.ShowBroadcastNotification("Ruang di atas masih sempit. Mundur dari kolong meja lalu coba lagi.",4);yield break;}
+            float height=controller.height,eye=director.player.cameraPivot.localPosition.y;
+            for(float t=0;t<.4f;t+=Time.deltaTime)
+            {
+                float k=Mathf.SmoothStep(0,1,t/.4f);controller.height=Mathf.Lerp(height,director.player.standingHeight,k);
+                controller.center=Vector3.up*(controller.height*.5f);
+                var p=director.player.cameraPivot.localPosition;p.y=Mathf.Lerp(eye,director.player.cameraStandingY,k);director.player.cameraPivot.localPosition=p;
+                if(left)damagedPhone.transform.position=left.position;yield return null;
+            }
+            controller.height=director.player.standingHeight;controller.center=Vector3.up*(controller.height*.5f);
+            if(avatar){avatar.CinematicCrouch=false;avatar.Installing=true;}
+            if(rig)rig.CinematicVisible=true;
+            yield return new WaitForSeconds(.25f);
             var camera=director.player.GetComponent<InteractionInteractor>().playerCamera.transform;
-            var left=rig&&rig.Avatar?System.Array.Find(rig.Avatar.GetComponentsInChildren<Transform>(true),t=>t.name=="Hand_L"):null;
-            var right=rig&&rig.Avatar?System.Array.Find(rig.Avatar.GetComponentsInChildren<Transform>(true),t=>t.name=="Hand_R"):null;
             var glow=new GameObject("HandsetInstallationGlow");installationLight=glow.AddComponent<Light>();
             installationLight.type=LightType.Point;installationLight.color=new Color(.76f,.90f,1);installationLight.intensity=1.1f;installationLight.range=1.5f;installationLight.shadows=LightShadows.None;
             FrameInstallation(camera,left,right);
-            var original=damagedPhone.transform.position;var rotation=damagedPhone.transform.rotation;
+            var pickup=damagedPhone.transform.position;
             var hold=left?left.position:camera.TransformPoint(new Vector3(-.14f,-.12f,.40f));
-            var phoneCollider=damagedPhone.GetComponent<Collider>();if(phoneCollider)phoneCollider.enabled=false;
             for(float t=0;t<1;t+=Time.deltaTime)
-            {FrameInstallation(camera,left,right);if(left)hold=left.position+director.player.transform.forward*.035f;damagedPhone.transform.position=Vector3.Lerp(original,hold,Mathf.SmoothStep(0,1,t));damagedPhone.transform.rotation=Quaternion.Slerp(rotation,Quaternion.LookRotation(-camera.forward)*Quaternion.Euler(90,0,0),t);yield return null;}
+            {FrameInstallation(camera,left,right);if(left)hold=left.position+director.player.transform.forward*.035f;damagedPhone.transform.position=Vector3.Lerp(pickup,hold,Mathf.SmoothStep(0,1,t));damagedPhone.transform.rotation=Quaternion.Slerp(rotation,Quaternion.LookRotation(-camera.forward)*Quaternion.Euler(90,0,0),t);yield return null;}
             var chip=GameObject.CreatePrimitive(PrimitiveType.Cube);chip.name="DamarMemoryCard";
             Destroy(chip.GetComponent<Collider>());chip.transform.localScale=new Vector3(.018f,.002f,.025f);
             var material=new Material(Shader.Find("Universal Render Pipeline/Lit"));material.color=new Color(.15f,.13f,.07f);chip.GetComponent<Renderer>().sharedMaterial=material;
@@ -100,20 +143,35 @@ namespace LayarTerakhir.Prolog
             for(float t=0;t<3.6f;t+=Time.deltaTime)
             {FrameInstallation(camera,left,right);float k=Mathf.Clamp01(t/3.6f);progress.anchorMax=new Vector2(k,1);status.text=k<.35f?"Memeriksa paket...":k<.8f?"Menginstal aplikasi... "+Mathf.RoundToInt(k*100)+"%":"Menghubungkan Lensa AR ke Kamera...";yield return null;}
             status.text="Terpasang\nKamera terhubung";progress.anchorMax=Vector2.one;
-            yield return new WaitForSeconds(.8f);Destroy(installation);installation=null;Destroy(installationLight.gameObject);installationLight=null;
-            if(avatar)avatar.Installing=false;if(rig){rig.FirstPersonOverride=first;rig.CinematicVisible=false;}if(phoneCollider)phoneCollider.enabled=true;Lock(false);
+            yield return new WaitForSeconds(.8f);InstallationCompleted=true;
+            }
+            finally
+            {
+                if(installation)Destroy(installation);installation=null;
+                if(installationLight)Destroy(installationLight.gameObject);installationLight=null;
+                if(avatar){avatar.Installing=false;avatar.CinematicCrouch=false;}
+                if(rig){rig.FirstPersonOverride=first;rig.CinematicVisible=wasVisible;}
+                if(phoneCollider)phoneCollider.enabled=colliderEnabled;
+                if(!InstallationCompleted&&damagedPhone){damagedPhone.transform.SetPositionAndRotation(original,rotation);damagedPhone.SetActive(true);}
+                if(director&&director.player)Lock(false);
+            }
         }
         private void FrameInstallation(Transform camera,Transform left,Transform right)
         {
             Vector3 hands=left&&right?(left.position+right.position)*.5f:director.player.transform.position+Vector3.up*.85f;
             float side=director.LocalPosition(director.player.transform.position).x>=3.7f?1:-1;
             Vector3 outside=director.east*side;
-            camera.position=hands+outside*.58f+director.north*.16f+Vector3.up*.34f;
+            var focus=hands+Vector3.up*.045f;var desired=hands+outside*.58f+director.north*.16f+Vector3.up*.34f;
+            var delta=desired-focus;float distance=delta.magnitude;
+            foreach(var hit in Physics.SphereCastAll(focus,.10f,delta.normalized,distance,~0,QueryTriggerInteraction.Ignore))
+                if(!hit.transform.IsChildOf(director.player.transform))distance=Mathf.Min(distance,Mathf.Max(.12f,hit.distance-.025f));
+            camera.position=focus+delta.normalized*distance;
             camera.LookAt(hands+Vector3.up*.045f);camera.LookAt(hands+Vector3.up*.045f+camera.right*.09f);
             if(installationLight)installationLight.transform.position=hands+outside*.18f+Vector3.up*.20f;
         }
         public IEnumerator FirstARScare()
         {
+            arApparitionEndsAt=Time.time+ARApparitionSeconds;
             director.phoneView.Glitch(1.5f,1);
             if(director.arFigure)yield return LookAt(director.arFigure.transform.position+Vector3.up*1.18f,.45f,true);
             Hud.PlayPriorityDialogue("Raka","Siapa... yang duduk di situ?",3);

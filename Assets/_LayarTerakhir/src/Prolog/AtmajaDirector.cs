@@ -83,6 +83,7 @@ namespace LayarTerakhir.Prolog
         public void RestoreWorld()
         {
             Busy=false;UiFocus.Cinematic=false;
+            if(moments)moments.HideARApparition();
             var rig=player.GetComponent<ShoulderCameraRig>();if(rig)rig.FirstPersonOverride=false;
             var doubleGate=gateHinge.GetComponent<DoubleLeafGate>();
             if(doubleGate)doubleGate.SetImmediate(Has("EVENT_P0_GATE_OPEN"));
@@ -126,9 +127,9 @@ namespace LayarTerakhir.Prolog
             if(Phone&&Phone.arModuleUnlocked)
             {
                 bool ar=Phone.isPhoneRaised&&Phone.isScreenOn&&Phone.currentScanMode==ScanVisualMode.AR&&phoneView.IsCameraApp;
-                if(arFigure)arFigure.SetActive(ar);
-                if(arClue)arClue.SetActive(ar);
                 if(ar&&!Has("EVENT_P0_AR_REVEALED"))RevealAR();
+                if(arFigure)arFigure.SetActive(ar&&moments&&moments.ARApparitionActive);
+                if(arClue)arClue.SetActive(ar);
                 if(ar&&!Has("EVENT_P0_AR_CLUE_READ"))ObserveClue();
             }
             if(Stage<AtmajaStage.Chase&&Has("EVENT_P0_KITCHEN_ENTERED")&&!wellHeard&&Vector3.Distance(player.transform.position,P(2.7f,11.2f,.35f))<2)
@@ -237,6 +238,7 @@ namespace LayarTerakhir.Prolog
             if(!damarPhone)yield break;
             var position=damarPhone.transform.position;var rotation=damarPhone.transform.rotation;
             yield return moments.Install(damarPhone);
+            if(!moments.InstallationCompleted)yield break;
             if(!Commit("MATABATIN_APK","PROLOG_MATABATIN_ACQUIRED",()=>Campaign.Data.upgrades.Add("MATABATIN_AR")))
             {damarPhone.transform.SetPositionAndRotation(position,rotation);damarPhone.SetActive(true);yield break;}
             Phone.arModuleUnlocked=true;Stage=AtmajaStage.DamarPhone;

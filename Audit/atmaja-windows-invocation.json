@@ -17,14 +17,14 @@
     "LayarTerakhir.Editor.WindowsDevelopmentBuild.Build",
     "-quit",
     "-logFile",
-    "Builds/Logs/raka-lighting-windows-build.log"
+    "Builds/Logs/prolog-review-windows-build.log"
   ],
-  "startedUtc": "2026-10-26T12:27:54.309873+00:00",
+  "startedUtc": "2026-10-26T13:54:30.863879+00:00",
   "status": "Finished",
-  "unit": "lt-unity-20261026-122754-368647",
+  "unit": "lt-unity-20261026-135430-372459",
   "memoryLimitBytes": 5905580032,
   "memoryHighBytes": 5100273664,
-  "endedUtc": "2026-10-26T12:30:00.750118+00:00",
+  "endedUtc": "2026-10-26T13:56:02.328719+00:00",
   "exitCode": 0,
   "systemdServiceResult": "success"
 }

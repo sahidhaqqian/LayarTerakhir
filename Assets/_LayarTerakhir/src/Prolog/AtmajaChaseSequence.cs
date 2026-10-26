@@ -32,6 +32,8 @@ namespace LayarTerakhir.Prolog
         public bool IsFinalFlash => run == Run.FinalFlash;
         public bool IsStunned => run == Run.Stunned || run == Run.GateRun && Time.time < stunEndsAt;
         public bool IsGateRun => run == Run.GateRun;
+        public bool ThreatDefeated => run==Run.EscapeReady||run==Run.GateRun||run==Run.Ending||run==Run.Complete||
+            run==Run.FinalFlash&&chaserFigure&&!chaserFigure.activeInHierarchy;
         public int PhotosTaken => photosTaken;
         public bool Traversing { get; private set; }
         public bool IsPursuing => run == Run.Pursuit;
@@ -142,7 +144,7 @@ namespace LayarTerakhir.Prolog
         {
             if (run == Run.WindowStandoff) return $"FOTO NYONYA [{Key(GameAction.CaptureOrBlitz)}] • {photosTaken}/{RequiredPhotos}";
             if (run == Run.EscapeReady || run == Run.Stunned) return $"[{Key(GameAction.Vault)}] Terobos jendela dapur!";
-            if (run == Run.GateRun) return "Lari ke gerbang! Merunduk melewati dahan kamboja.";
+            if (run == Run.GateRun) return "Keluar menuju gerbang. Merunduk melewati dahan kamboja.";
             if (run == Run.Ending || run == Run.Complete) return "Malam pertama selesai. Damar masih di balik cermin.";
             if (!climbedOut) return "LARI! Kembali ke tangga batu di sudut ruang jahit!";
             return "Turuni tangga tengah! Kembali ke jendela dapur!";
@@ -318,7 +320,7 @@ namespace LayarTerakhir.Prolog
                 {
                     new[]{"FOTO PERTAMA KENA BANG!","ASAPNYA MULAI TEBEL!","DIA MUNDUR SEDIKIT!"},
                     new[]{"LAGI BANG SATU LAGI!","KAMERA JANGAN TURUN!","TUBUHNYA UDAH NGEROKOK!"},
-                    new[]{"FOTO KETIGA! HABIS DIA!","DIA ILANG BANG!","LARI KE JENDELA SEKARANG!"}
+                    new[]{"FOTO KETIGA! HABIS DIA!","DIA ILANG BANG!","JALUR KE JENDELA SUDAH KOSONG!"}
                 };
                 director.phoneView.AddChatBurst(new[]{"@rizky_pratama_","@kopi_susu99","@bocil_kematian"},lines[Mathf.Clamp(photosTaken-1,0,lines.Length-1)]);
             }

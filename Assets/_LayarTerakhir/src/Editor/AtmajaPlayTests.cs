@@ -66,6 +66,8 @@ namespace LayarTerakhir.Editor.Tests
         [UnityTest] public IEnumerator InterruptedHandycamCanBePlayedAgainAfterContinue()=>Run(InterruptedRecording());
         [UnityTest] public IEnumerator FinishedPrologRestoresTheTitleWithoutAnotherDonation()=>Run(FinishedProlog());
         [UnityTest] public IEnumerator PhotoRitualRequiresThreeShotsThenNyonyaVanishes()=>Run(PhotoRitual());
+        [UnityTest] public IEnumerator SeatedARScareLastsThreeSecondsWithoutRemovingTheClockClue()=>Run(ShortARScare());
+        [UnityTest] public IEnumerator BlockedCardInstallationRestoresPhoneAndPlayerControl()=>Run(BlockedCardInstallation());
         [UnityTest] public IEnumerator MasterCellarAndClosingTrapdoorHaveConnectedCapsuleRoutes()=>Run(FinaleGeometry());
         [UnityTest] public IEnumerator HybridCameraUsesRemappedInputAndPreservesChoiceDuringForcedCloseups()=>Run(HybridCamera());
         [UnityTest] public IEnumerator EveryOpenedDocumentPersistsItsFullTextInPhoneNotes()=>Run(DocumentArchive());
@@ -442,6 +444,7 @@ namespace LayarTerakhir.Editor.Tests
         private IEnumerator PhotoRitual()
         {
             yield return new WaitForSeconds(2);Time.timeScale=1;var d=SeedBasement();var c=CampaignState.Instance;var phone=SmartphoneController.Instance;
+            phone.isBroadcastConnected=true;
             foreach(var id in new[]{"EVENT_P0_BASEMENT_ENTERED","EVENT_P0_CHASE_STARTED","EVENT_P0_HANDYCAM_PLAYED","EVENT_P0_POWERBANK_TAKEN",AtmajaBasementHorror.HandycamId})c.AddInventoryItem(id);
             c.Data.battery=80;Assert.That(c.SaveCheckpointAtomic(AtmajaChaseSequence.ChaseCheckpoint),Is.True);d.RestoreWorld();
             phone.batteryPercent=80;yield return new WaitForSeconds(1.8f);
@@ -477,6 +480,7 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(d.chase.TryPhoto(),Is.True);Assert.That(d.chase.PhotosTaken,Is.EqualTo(2));
             Assert.That(d.chase.chaserFigure.activeSelf,Is.True);
             yield return new WaitForSecondsRealtime(.35f);
+            d.phoneView.AddChat("@old_queue","LARI BANG JANGAN NENGOK!");
             Assert.That(d.chase.TryPhoto(),Is.True);Assert.That(d.chase.PhotosTaken,Is.EqualTo(3));
             Assert.That(d.chase.IsFinalFlash,Is.True,"The third photo fires the Flash Beam");
             Assert.That(phone.batteryPercent,Is.EqualTo(10f),"The Flash Beam drains the battery to ten percent");
@@ -486,9 +490,15 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(GameObject.Find("FinalFlashBeamWindow"),Is.Not.Null,"The window side is lit too");
             yield return new WaitForSecondsRealtime(1.5f);
             Assert.That(d.chase.chaserFigure.activeSelf,Is.False,"The third photo makes Nyonya vanish");
+            Assert.That(d.chase.ThreatDefeated,Is.True);
+            var chat=Object.FindObjectsByType<UnityEngine.UI.Text>(FindObjectsSortMode.None).Single(t=>t.name=="AtmajaLiveChat");
+            Assert.That(chat.text,Does.Not.Contain("LARI"),"Displayed panic must clear after the hunter vanishes");
+            var pending=(Queue<string>)typeof(AtmajaPhoneView).GetField("pendingMessages",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(d.phoneView);
+            Assert.That(pending.Any(m=>m.Contains("LARI")),Is.False,"Old queued panic must not return while escaping");
             Assert.That(d.chase.AwaitingPhotos,Is.False);Assert.That(d.chase.IsFinalFlash,Is.False);Assert.That(Time.timeScale,Is.EqualTo(1));
             d.PlacePlayer(d.vaultInside.position,d.vaultInside.rotation);yield return Press(Key.Space);yield return new WaitForSeconds(1.2f);
             Assert.That(d.chase.IsGateRun,Is.True,"Space still carries Raka through the window");
+            Assert.That(d.chase.Objective(),Does.Not.Contain("Lari"),"After defeat, exit guidance must not invent another chase");
             var hiddenHunter=d.chase.chaserFigure;
             hiddenHunter.transform.position=d.player.transform.position+d.east*.15f;Physics.SyncTransforms();
             Assert.That(d.basement.CanSeePlayer(2),Is.True,"Exercise an unobstructed close hunter rather than a wall-blocked false result");
@@ -701,7 +711,32 @@ namespace LayarTerakhir.Editor.Tests
             yield return WalkCapsule(p,d.P(4.6f,6.2f,.54f),.7f);
             var eye=p.GetComponent<InteractionInteractor>().playerCamera;eye.transform.LookAt(d.damarPhone.transform.position);yield return null;yield return null;
             Assert.That(p.GetComponent<InteractionInteractor>().CurrentTarget,Is.SameAs(Item(AtmajaAction.DamarPhone)),"Backpack phone must be reachable from the side without a tabletop pose");
-            yield return Press(Key.E);yield return new WaitUntil(()=>!d.Busy);Assert.That(CampaignState.Instance.HasInventoryItem("MATABATIN_APK"),Is.True);
+            yield return Press(Key.E);
+            float installDeadline=Time.time+18;
+            var tabletop=GameObject.Find("DiningTableTopCollision").GetComponent<Collider>().bounds;
+            int installFrame=0;var installMesh=new Mesh();
+            while(d.Busy&&Time.time<installDeadline)
+            {
+                var avatar=p.GetComponent<ShoulderCameraRig>().Avatar.GetComponent<AnimatedRakaAvatar>();
+                if(avatar.Installing)
+                {
+                    Assert.That(p.CanStandUp(),Is.True,"The standing card animation must never start beneath the tabletop");
+                    Assert.That(p.GetComponent<CharacterController>().height,Is.GreaterThan(p.standingHeight-.01f));
+                    if(installFrame++%4==0)
+                    {
+                        foreach(var skin in avatar.GetComponentsInChildren<SkinnedMeshRenderer>())
+                        {
+                            skin.BakeMesh(installMesh,true);
+                            Assert.That(installMesh.vertices.Any(v=>tabletop.Contains(skin.transform.TransformPoint(v))),Is.False,"The rendered card pose must stay outside the solid tabletop");
+                            installMesh.Clear();
+                        }
+                        Assert.That(tabletop.Contains(d.damarPhone.transform.position),Is.False,"The carried phone must also clear the tabletop");
+                    }
+                }
+                yield return null;
+            }
+            Object.Destroy(installMesh);
+            Assert.That(d.Busy,Is.False);Assert.That(CampaignState.Instance.HasInventoryItem("MATABATIN_APK"),Is.True);
             yield return WalkCapsule(p,d.P(5.35f,6.2f,.54f),.7f);InputSystem.QueueStateEvent(keyboard,new KeyboardState());p.enabled=true;yield return new WaitForSeconds(.6f);p.enabled=false;
             foreach(var point in new[]{d.P(5.35f,1.3f,.54f),d.P(2.1f,1.3f,.54f),d.P(2.1f,4.1f,.54f),d.P(.8f,4.1f,.54f),d.P(-1.4f,4.1f,.54f),d.P(-1.4f,3.3f,.54f)})yield return WalkCapsule(p,point,.7f);
             GameObject.Find("FrontSittingDoor").GetComponent<HingedDoor>().Interact();yield return new WaitForSeconds(1.2f);
@@ -833,6 +868,37 @@ namespace LayarTerakhir.Editor.Tests
         private static UnityEngine.UI.Button Button(string name)=>FoundationAuditTests.Button(HudController.Instance,name);
         private static void CloseDocument()=>HudController.Instance.documentCloseButton.onClick.Invoke();
         // Execute waits on the player loop, while forwarding NUnit assertion failures to the Editor runner.
+        private IEnumerator ShortARScare()
+        {
+            yield return new WaitForSeconds(2);Time.timeScale=1;
+            var d=Find<AtmajaDirector>();var c=CampaignState.Instance;var phone=SmartphoneController.Instance;
+            foreach(var id in new[]{AtmajaDirector.SurveyId,"EVENT_P0_LIVE_STARTED","EVENT_P0_KITCHEN_ENTERED","EVENT_P0_DINING_OPEN","MATABATIN_APK"})c.AddInventoryItem(id);
+            c.Data.upgrades.Add("MATABATIN_AR");Assert.That(c.SaveCheckpointAtomic("PROLOG_MATABATIN_ACQUIRED"),Is.True);d.RestoreWorld();
+            phone.arModuleUnlocked=true;phone.isPhoneRaised=phone.isScreenOn=true;d.phoneView.Apps.Open(PhoneApp.Camera);phone.currentScanMode=ScanVisualMode.AR;
+            yield return new WaitForSeconds(.12f);Assert.That(d.arFigure.activeSelf,Is.True);Assert.That(c.HasInventoryItem("EVENT_P0_AR_REVEALED"),Is.True);
+            yield return new WaitForSeconds(2.5f);Assert.That(d.arFigure.activeSelf,Is.True,"The apparition remains visible during its three-second beat");
+            yield return new WaitForSeconds(.6f);Assert.That(d.arFigure.activeSelf,Is.False);Assert.That(d.arClue.activeSelf,Is.True,"The clock clue must remain usable");
+            phone.currentScanMode=ScanVisualMode.Normal;yield return null;phone.currentScanMode=ScanVisualMode.AR;yield return null;yield return null;
+            Assert.That(d.arFigure.activeSelf,Is.False,"Toggling AR must not respawn the seated figure");
+            Assert.That(c.LoadCheckpoint(),Is.True);d.RestoreWorld();phone.currentScanMode=ScanVisualMode.AR;yield return null;yield return null;
+            Assert.That(d.arFigure.activeSelf,Is.False,"Continue preserves the one-shot scare receipt");
+        }
+        private IEnumerator BlockedCardInstallation()
+        {
+            yield return new WaitForSeconds(2);var d=Find<AtmajaDirector>();var c=CampaignState.Instance;
+            foreach(var id in new[]{AtmajaDirector.SurveyId,"EVENT_P0_LIVE_STARTED","EVENT_P0_KITCHEN_ENTERED","EVENT_P0_DINING_OPEN"})c.AddInventoryItem(id);
+            d.RestoreWorld();d.PlacePlayer(d.P(5.35f,6.2f,.54f),Quaternion.identity);
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftCtrl));yield return new WaitForSeconds(.6f);
+            d.PlacePlayer(d.P(3.86f,6.17f,.54f),Quaternion.identity);
+            var obstruction=GameObject.CreatePrimitive(PrimitiveType.Cube);obstruction.name="FixtureBlockedInstallCeiling";
+            obstruction.transform.SetPositionAndRotation(d.P(3.7f,6.2f,1.62f),Quaternion.LookRotation(d.north));obstruction.transform.localScale=new Vector3(6,.1f,4);Physics.SyncTransforms();
+            var original=d.damarPhone.transform.position;Item(AtmajaAction.DamarPhone).Interact();float deadline=Time.time+12;
+            while(d.Busy&&Time.time<deadline)yield return null;
+            Assert.That(d.Busy,Is.False);Assert.That(c.HasInventoryItem("MATABATIN_APK"),Is.False);Assert.That(d.damarPhone.activeSelf,Is.True);
+            Assert.That(Vector3.Distance(original,d.damarPhone.transform.position),Is.LessThan(.001f));Assert.That(d.damarPhone.GetComponent<Collider>().enabled,Is.True);
+            Assert.That(UiFocus.Cinematic||d.player.MovementLocked,Is.False,"An obstructed pickup must be retryable");
+            Object.Destroy(obstruction);
+        }
         private static IEnumerator Run(IEnumerator scenario)
         {
             var go=new GameObject("AtmajaTestHost");Object.DontDestroyOnLoad(go);var host=go.AddComponent<FoundationAuditCoroutineHost>();bool done=false;Exception failure=null;

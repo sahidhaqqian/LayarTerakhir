@@ -3275,7 +3275,7 @@ Dialog chat dipertahankan di dokumen yang sama agar pesan penonton/antagonis tid
 
   **Sumber:** [AtmajaChaseSequence.cs:321](Assets/_LayarTerakhir/src/Prolog/AtmajaChaseSequence.cs#L321).
 
-- **LTCHAT_782978dc6d9c — Penonton — chat beruntun:** "LARI KE JENDELA SEKARANG!"
+- **LTCHAT_782978dc6d9c — Penonton — chat beruntun:** "JALUR KE JENDELA SUDAH KOSONG!"
 
   **Sumber:** [AtmajaChaseSequence.cs:321](Assets/_LayarTerakhir/src/Prolog/AtmajaChaseSequence.cs#L321).
 
@@ -3611,3 +3611,17 @@ Dialog chat dipertahankan di dokumen yang sama agar pesan penonton/antagonis tid
 
   **Sumber:** [AtmajaUpperDirector.cs:321](Assets/_LayarTerakhir/src/Prolog/AtmajaUpperDirector.cs#L321).
 
+
+## Revisi komentar setelah Nyonya kalah — 26 Oktober 2026
+
+Komentar berikut adalah teks chat layar, tidak wajib direkam sebagai VO. Penggantian teks LTCHAT_782978dc6d9c mempertahankan ID cue yang sudah ada. Reaksi ending tentang Damar tetap mengikuti adegan ending.
+
+| ID | Penonton | Teks |
+| --- | --- | --- |
+| LTCHAT_P0_RELIEF_01 | @maya_sari | Udah hilang... tarik napas dulu, Bang. |
+| LTCHAT_P0_RELIEF_02 | Penonton | Udah tenang sekarang... |
+| LTCHAT_P0_RELIEF_03 | Penonton | Jalur keluarnya sudah kosong, Bang. |
+| LTCHAT_P0_RELIEF_04 | Penonton | Kita masih di sini. Pelan-pelan aja. |
+| LTCHAT_P0_RELIEF_05 | Penonton | Tarik napas dulu, tadi serem banget. |
+
+Sumber: `AtmajaPhoneView.ReliefComments` dan transisi chat setelah `AtmajaChaseSequence.ThreatDefeated`.

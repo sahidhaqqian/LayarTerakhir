@@ -23,8 +23,10 @@ namespace LayarTerakhir.Editor
                 Box("HallDoorHeader",new Vector3(x,y+2.55f,(gap.x+gap.y)*.5f),new Vector3(.18f,.7f,gap.y-gap.x),wall);
                 from=gap.y;
             }
-            float end=y<1?11:13;
-            if(end>from)Box("HallWallEndPier",new Vector3(x,y+1.45f,(from+end)*.5f),new Vector3(.18f,2.9f,end-from),wall);
+            // The rear ground rooms end at z=12. Stopping at 11 left a
+            // walkable breach beside rooms 4/8; z=12..13 is the stair access.
+            float end=y<1?12:13;
+            if(end>from)Box(y<1?(x<0?"GroundHallEndWall_West":"GroundHallEndWall_East"):"HallWallEndPier",new Vector3(x,y+1.45f,(from+end)*.5f),new Vector3(.18f,2.9f,end-from),wall);
         }
         private static void CompleteBuilding()
         {
