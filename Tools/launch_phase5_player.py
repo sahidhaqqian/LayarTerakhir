@@ -8,6 +8,7 @@ assert sys.argv[1:]
 unit='lt-p5-native-'+datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
 if sys.argv[1:]==['--crash-probes']:command=[sys.executable,str(ROOT/'Tools/check_phase5_crash_probes.py')]
 elif sys.argv[1:]==['--ending-suite']:command=[sys.executable,str(ROOT/'Tools/check_phase5_endings.py')]
+elif sys.argv[1:]==['--lighting-suite']:command=[sys.executable,str(ROOT/'Tools/check_abandoned_lighting.py')]
 else:command=[sys.executable,str(ROOT/'Tools/run_phase5_player.py'),*sys.argv[1:]]
 args=['systemd-run','--user','--collect','--unit='+unit,'--property=MemoryMax=4608M','--property=MemorySwapMax=64M','--property=TasksMax=256','--property=CPUQuota=250%','--property=OOMPolicy=stop','--property=WorkingDirectory='+str(ROOT),*command]
 subprocess.run(args,check=True)

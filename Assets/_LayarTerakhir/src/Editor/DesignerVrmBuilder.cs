@@ -60,6 +60,7 @@ namespace LayarTerakhir.Editor
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
             AssetDatabase.SaveAssets();
+            RakaPresentationRevisionBuilder.ApplyAndMeasure();
             Debug.Log("DESIGNER_VRM_APPLIED Raka body/phone hand, Nyonya hunter/apparitions; Damar authoring prefab prepared");
         }
 

@@ -1,0 +1,144 @@
+{
+  "sourceVrm": "Assets/_LayarTerakhir/assets/LayarTerakhir/Raka.vrm",
+  "sourceVrmSha256": "4d74346ab8232a1bdcb97b2d547300b0c47896d812e9312fc13fe7c374c0da0e",
+  "sourceMotion": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Animations/QuaterniusHumanMotion.fbx",
+  "sourceMotionSha256": "42f16a4ed61d1e9f5fc7c2526894c5487148ac6ba82b64281ceb7943570f3c37",
+  "license": "CC0-1.0 (Quaternius Universal Animation Library)",
+  "originalTriangles": 793072,
+  "gameTriangles": 96000,
+  "originalMotionPerformance": false,
+  "clips": [
+    {
+      "clip": "Idle",
+      "source": "Idle_Loop",
+      "frames": 76,
+      "fps": 30,
+      "estimatedHeadTop": 1.6918878507614137,
+      "minAnkle": 0.07795694470405579
+    },
+    {
+      "clip": "Walk",
+      "source": "Walk_Loop",
+      "frames": 41,
+      "fps": 30,
+      "estimatedHeadTop": 1.7256671142578126,
+      "minAnkle": 0.07795709371566772
+    },
+    {
+      "clip": "Run",
+      "source": "Sprint_Loop",
+      "frames": 21,
+      "fps": 30,
+      "estimatedHeadTop": 1.6407539796829225,
+      "minAnkle": 0.09128144383430481
+    },
+    {
+      "clip": "Crouch",
+      "source": "Crouch_Idle_Loop",
+      "frames": 89,
+      "fps": 30,
+      "estimatedHeadTop": 0.9845113706588745,
+      "minAnkle": 0.07795703411102295
+    },
+    {
+      "clip": "CrouchWalk",
+      "source": "Crouch_Fwd_Loop",
+      "frames": 61,
+      "fps": 30,
+      "estimatedHeadTop": 0.9849516105651855,
+      "minAnkle": 0.07795724272727966
+    },
+    {
+      "clip": "LowCrouch",
+      "source": "Crouch_Idle_Loop",
+      "frames": 89,
+      "fps": 30,
+      "estimatedHeadTop": 0.7646006298065186,
+      "minAnkle": 0.07795700430870056
+    },
+    {
+      "clip": "LowCrouchWalk",
+      "source": "Crouch_Fwd_Loop",
+      "frames": 61,
+      "fps": 30,
+      "estimatedHeadTop": 0.7646731686592102,
+      "minAnkle": 0.07795697450637817
+    },
+    {
+      "clip": "PhoneIdle",
+      "source": "Idle_Loop",
+      "frames": 76,
+      "fps": 30,
+      "estimatedHeadTop": 1.6918878507614137,
+      "minAnkle": 0.07795694470405579
+    },
+    {
+      "clip": "PhoneWalk",
+      "source": "Walk_Loop",
+      "frames": 41,
+      "fps": 30,
+      "estimatedHeadTop": 1.7256671142578126,
+      "minAnkle": 0.07795709371566772
+    },
+    {
+      "clip": "PhoneRun",
+      "source": "Sprint_Loop",
+      "frames": 21,
+      "fps": 30,
+      "estimatedHeadTop": 1.6407539796829225,
+      "minAnkle": 0.09128144383430481
+    },
+    {
+      "clip": "PhoneCrouch",
+      "source": "Crouch_Idle_Loop",
+      "frames": 89,
+      "fps": 30,
+      "estimatedHeadTop": 0.9845113706588745,
+      "minAnkle": 0.07795703411102295
+    },
+    {
+      "clip": "PhoneCrouchWalk",
+      "source": "Crouch_Fwd_Loop",
+      "frames": 61,
+      "fps": 30,
+      "estimatedHeadTop": 0.9849516105651855,
+      "minAnkle": 0.07795724272727966
+    },
+    {
+      "clip": "PhoneLowCrouch",
+      "source": "Crouch_Idle_Loop",
+      "frames": 89,
+      "fps": 30,
+      "estimatedHeadTop": 0.7646006298065186,
+      "minAnkle": 0.07795700430870056
+    },
+    {
+      "clip": "PhoneLowCrouchWalk",
+      "source": "Crouch_Fwd_Loop",
+      "frames": 61,
+      "fps": 30,
+      "estimatedHeadTop": 0.7646731686592102,
+      "minAnkle": 0.07795697450637817
+    }
+  ],
+  "output": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/RakaDesigner.fbx",
+  "outputSha256": "f4df95b3caad558747cf8ec3b539576bbf35aeba3f681988e1eef3ee19c1e5fb",
+  "operations": "Read-only supplied artwork; 96k geometry derivative, authored CC0 locomotion retarget, clearance/foot/hand IK; existing Riding and InstallCard retained",
+  "gripCalibration": {
+    "worldOffsetMetres": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "originalThicknessMetres": 0.014000493129992691,
+    "worldHandsetThicknessMetres": 0.011,
+    "maximumPenetrationMetres": 0.00029239737584011577,
+    "fingerContactGapsMetres": [
+      0.0032145856919294376,
+      0.0,
+      0.0005503438278975648,
+      0.002043692316716278,
+      0.0013674226881669658
+    ]
+  }
+}

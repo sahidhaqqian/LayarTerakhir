@@ -24,14 +24,15 @@ namespace LayarTerakhir.Phase5
                 {
                     if(!shared[i])continue;var material=local[i]=new Material(shared[i]);playerMaterials.Add(material);
                     if(material.HasProperty("_Metallic")){material.SetFloat("_Metallic",0);material.DisableKeyword("_METALLICSPECGLOSSMAP");}
-                    if(material.HasProperty("_Smoothness"))material.SetFloat("_Smoothness",.27f);
-                    if(material.HasProperty("_Glossiness"))material.SetFloat("_Glossiness",.27f);
+                    if(material.HasProperty("_Smoothness"))material.SetFloat("_Smoothness",.20f);
+                    if(material.HasProperty("_Glossiness"))material.SetFloat("_Glossiness",.20f);
                 }
                 renderer.sharedMaterials=local;
             }
         }
         public void Apply(bool dawn=false)
         {
+            if(dawn)FindFirstObjectByType<LayarTerakhir.Player.AbandonedLocationLighting>()?.EnterDawn();
             Color ambient=dawn?new Color(.39f,.38f,.35f):new Color(.23f,.20f,.24f);
             Color sky=dawn?new Color(.28f,.31f,.32f):new Color(.12f,.037f,.052f);
             RenderSettings.skybox=null;RenderSettings.ambientMode=AmbientMode.Flat;

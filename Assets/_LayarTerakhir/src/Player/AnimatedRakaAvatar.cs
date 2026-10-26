@@ -8,14 +8,18 @@ namespace LayarTerakhir.Player
     {
         public Animation motion;
         public GameObject handset;
+        public bool sourcedLocomotion;
+        public float walkStrideSpeed=1.42f,runStrideSpeed=3.81f,crouchStrideSpeed=.52f,lowCrouchStrideSpeed=.405f;
         public bool Installing {get;set;}
         public bool CinematicCrouch {get;set;}
         private string current;
         private Renderer[] jacket,shirt;
+        private Renderer handsetScreen;
         private float playbackSpeed = 1;
         private float handsetVisible;
         private bool handsetGraspVisible;
         private Transform[] thighs, shins, feet;
+        private Transform pelvis;
         private float[] soleHeights;
         private Quaternion[] flatFootRotations;
         private void Awake()
@@ -23,6 +27,7 @@ namespace LayarTerakhir.Player
             var renderers=GetComponentsInChildren<Renderer>(true);
             jacket=System.Array.FindAll(renderers,r=>r.name=="RakaJacketOutfit");
             shirt=System.Array.FindAll(renderers,r=>r.name.StartsWith("RakaTShirt"));
+            handsetScreen=System.Array.Find(renderers,r=>r.name=="HandsetScreen");
             PrepareFootContacts();
         }
 
@@ -30,6 +35,7 @@ namespace LayarTerakhir.Player
         {
             if(feet!=null)return;
             var bones=GetComponentsInChildren<Transform>(true);
+            pelvis=System.Array.Find(bones,b=>b.name=="Hips");
             thighs=new Transform[2];shins=new Transform[2];feet=new Transform[2];
             soleHeights=new float[2];flatFootRotations=new Quaternion[2];
             for(int i=0;i<2;i++)
@@ -55,6 +61,16 @@ namespace LayarTerakhir.Player
                 if(state.enabled&&state.weight>.001f&&state.name.Contains("Crouch"))blendingCrouch=true;
             if(!blendingCrouch)return;
             PrepareFootContacts();
+            if(sourcedLocomotion&&pelvis&&feet[0]&&feet[1])
+            {
+                // A crouch has no aerial phase. Retargeting heel/toe contacts
+                // and blending loops can lift both flat soles at once. Settle
+                // only the visual pelvis onto the lower supporting foot;
+                // leave the CharacterController/root and headroom unchanged.
+                float supportLift=float.PositiveInfinity;
+                for(int i=0;i<2;i++)supportLift=Mathf.Min(supportLift,feet[i].position.y-(transform.position.y+soleHeights[i]*transform.lossyScale.y));
+                if(supportLift>0)pelvis.position-=Vector3.up*Mathf.Min(supportLift,.12f);
+            }
             for(int i=0;i<2;i++)
             {
                 if(!thighs[i]||!shins[i]||!feet[i])continue;
@@ -65,8 +81,9 @@ namespace LayarTerakhir.Player
                 Vector3 pole=shins[i].position;
                 if(Vector3.ProjectOnPlane(pole-thighs[i].position,target-thighs[i].position).sqrMagnitude<.000001f)
                     pole=transform.TransformPoint(new Vector3(i==0?.18f:-.18f,lowCrouch?1:.524f,1.2f));
+                Quaternion authoredFootRotation=feet[i].rotation;
                 MotorcycleRiderAlignment.Solve(thighs[i],shins[i],feet[i],target,pole);
-                feet[i].rotation=transform.rotation*flatFootRotations[i];
+                feet[i].rotation=sourcedLocomotion?authoredFootRotation:transform.rotation*flatFootRotations[i];
             }
         }
 
@@ -82,6 +99,7 @@ namespace LayarTerakhir.Player
             bool graspReady = current != null && current.StartsWith("Phone") && motion[current] != null && motion[current].weight > .98f;
             handsetGraspVisible = heldPose && !riding && (handsetGraspVisible || graspReady);
             if (handset) handset.SetActive(handsetGraspVisible);
+            if (handsetScreen) handsetScreen.gameObject.SetActive(handsetGraspVisible);
             bool moving = speed > (IsLocomotion(current) ? .055f : .12f) && speed < 12;
             bool running = speed > (current != null && current.EndsWith("Run") ? 2.9f : 3.25f);
             string clip = Installing ? "InstallCard" : riding ? "Riding" : crouching ? (moving ? "CrouchWalk" : "Crouch") : moving ? (running ? "Run" : "Walk") : "Idle";
@@ -89,7 +107,7 @@ namespace LayarTerakhir.Player
             if (heldPose && !riding && !Installing) clip = "Phone" + clip;
             var state = motion[clip]; if (!state) return;
             float strideScale = Mathf.Max(.1f, Mathf.Abs(transform.localScale.x));
-            float targetSpeed = !moving || riding || Installing ? 1 : Mathf.Clamp(speed / ((crouching ? lowCrouch ? .405f : .52f : running ? 3.81f : 1.42f) * strideScale), .12f, 2.2f);
+            float targetSpeed = !moving || riding || Installing ? 1 : Mathf.Clamp(speed / ((crouching ? lowCrouch ? lowCrouchStrideSpeed : crouchStrideSpeed : running ? runStrideSpeed : walkStrideSpeed) * strideScale), .12f, 2.2f);
             if (moving && direction.y < -.0001f) targetSpeed = -targetSpeed;
             playbackSpeed = Mathf.MoveTowards(playbackSpeed, targetSpeed, 12 * Time.deltaTime);
             state.speed = playbackSpeed;

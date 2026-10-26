@@ -163,6 +163,8 @@ namespace LayarTerakhir.Prolog
                     {
                         var material=new Material(renderer.sharedMaterial);material.name="PhoneGripSurface_Runtime";
                         material.SetFloat("_Smoothness",.22f);material.SetFloat("_BumpScale",.45f);
+                        if(material.HasProperty("_Metallic"))material.SetFloat("_Metallic",0);
+                        material.DisableKeyword("_METALLICSPECGLOSSMAP");
                         renderer.sharedMaterial=material;handMaterials.Add(material);
                     }
                 var gripView=new GameObject("RakaPhoneGripCamera",typeof(Camera));gripView.transform.SetParent(playerCamera.transform,false);

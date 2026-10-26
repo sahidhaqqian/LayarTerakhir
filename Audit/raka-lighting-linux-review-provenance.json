@@ -1,0 +1,6 @@
+{
+  "purpose": "Final generated Linux review player, removed after completed native QA to reserve Windows packaging space",
+  "nativeAssemblySha256": "d8bd45649703fc02a9332b23cf922b0f2e8fc0141eed7d7b1775d36fea9dee2b",
+  "rebuild": "LayarTerakhir.Editor.Phase5SceneBuilder.BuildLinuxReview",
+  "sourceSnapshot": "Audit/raka-lighting-phase5-build-sources.json"
+}

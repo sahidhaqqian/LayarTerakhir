@@ -1,0 +1,24 @@
+{
+    "clips": [
+        {
+            "clip": "Walk",
+            "plantedFootSpeed": 0.9016493558883667,
+            "signedSpeed": 0.9016493558883667
+        },
+        {
+            "clip": "Run",
+            "plantedFootSpeed": 4.4539313316345219,
+            "signedSpeed": 4.4539313316345219
+        },
+        {
+            "clip": "CrouchWalk",
+            "plantedFootSpeed": 0.43977275490760805,
+            "signedSpeed": 0.43977275490760805
+        },
+        {
+            "clip": "LowCrouchWalk",
+            "plantedFootSpeed": 0.36352381110191347,
+            "signedSpeed": 0.36352381110191347
+        }
+    ]
+}

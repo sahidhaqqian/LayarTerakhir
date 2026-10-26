@@ -1,0 +1,156 @@
+{
+  "completed": true,
+  "scope": "Six isolated posed rendering reviews; paused directors; not gameplay/navigation or hardware FPS validation",
+  "locations": [
+    {
+      "completed": true,
+      "scope": "Posed standalone lighting review; directors paused, private save; not a traversal or FPS test",
+      "frames": [
+        {
+          "scene": "Prolog_RumahAtmaja",
+          "screenshot": "Prolog_RumahAtmaja-phone-off.png",
+          "phone": false,
+          "beamEnabled": false,
+          "unpoweredFixtures": 16,
+          "meanLuminance": 0.015845298767089844
+        },
+        {
+          "scene": "Prolog_RumahAtmaja",
+          "screenshot": "Prolog_RumahAtmaja-phone-on.png",
+          "phone": true,
+          "beamEnabled": true,
+          "unpoweredFixtures": 16,
+          "meanLuminance": 0.05807343125343323
+        }
+      ],
+      "errors": [],
+      "fixtureNotes": []
+    },
+    {
+      "completed": true,
+      "scope": "Posed standalone lighting review; directors paused, private save; not a traversal or FPS test",
+      "frames": [
+        {
+          "scene": "Babak1_Rusunawa",
+          "screenshot": "Babak1_Rusunawa-phone-off.png",
+          "phone": false,
+          "beamEnabled": false,
+          "unpoweredFixtures": 32,
+          "meanLuminance": 0.0042720031924545765
+        },
+        {
+          "scene": "Babak1_Rusunawa",
+          "screenshot": "Babak1_Rusunawa-phone-on.png",
+          "phone": true,
+          "beamEnabled": true,
+          "unpoweredFixtures": 32,
+          "meanLuminance": 0.012011772021651268
+        }
+      ],
+      "errors": [],
+      "fixtureNotes": []
+    },
+    {
+      "completed": true,
+      "scope": "Posed standalone lighting review; directors paused, private save; not a traversal or FPS test",
+      "frames": [
+        {
+          "scene": "Babak2_RSUD",
+          "screenshot": "Babak2_RSUD-phone-off.png",
+          "phone": false,
+          "beamEnabled": false,
+          "unpoweredFixtures": 33,
+          "meanLuminance": 0.0004980413359589875
+        },
+        {
+          "scene": "Babak2_RSUD",
+          "screenshot": "Babak2_RSUD-phone-on.png",
+          "phone": true,
+          "beamEnabled": true,
+          "unpoweredFixtures": 33,
+          "meanLuminance": 0.14688383042812347
+        }
+      ],
+      "errors": [],
+      "fixtureNotes": [
+        "Failed to create agent because there is no valid NavMesh (paused story fixture; navigation is not under test)"
+      ]
+    },
+    {
+      "completed": true,
+      "scope": "Posed standalone lighting review; directors paused, private save; not a traversal or FPS test",
+      "frames": [
+        {
+          "scene": "Babak3_PabrikGula",
+          "screenshot": "Babak3_PabrikGula-phone-off.png",
+          "phone": false,
+          "beamEnabled": false,
+          "unpoweredFixtures": 11,
+          "meanLuminance": 0.00729438615962863
+        },
+        {
+          "scene": "Babak3_PabrikGula",
+          "screenshot": "Babak3_PabrikGula-phone-on.png",
+          "phone": true,
+          "beamEnabled": true,
+          "unpoweredFixtures": 11,
+          "meanLuminance": 0.03255617246031761
+        }
+      ],
+      "errors": [],
+      "fixtureNotes": []
+    },
+    {
+      "completed": true,
+      "scope": "Posed standalone lighting review; directors paused, private save; not a traversal or FPS test",
+      "frames": [
+        {
+          "scene": "Babak4_KarangSetra",
+          "screenshot": "Babak4_KarangSetra-phone-off.png",
+          "phone": false,
+          "beamEnabled": false,
+          "unpoweredFixtures": 3,
+          "meanLuminance": 0.011874417774379253
+        },
+        {
+          "scene": "Babak4_KarangSetra",
+          "screenshot": "Babak4_KarangSetra-phone-on.png",
+          "phone": true,
+          "beamEnabled": true,
+          "unpoweredFixtures": 3,
+          "meanLuminance": 0.03319617733359337
+        }
+      ],
+      "errors": [],
+      "fixtureNotes": [
+        "Failed to create agent because there is no valid NavMesh (paused story fixture; navigation is not under test)"
+      ]
+    },
+    {
+      "completed": true,
+      "scope": "Posed standalone lighting review; directors paused, private save; not a traversal or FPS test",
+      "frames": [
+        {
+          "scene": "Babak5_PasarSetan",
+          "screenshot": "Babak5_PasarSetan-phone-off.png",
+          "phone": false,
+          "beamEnabled": false,
+          "unpoweredFixtures": 49,
+          "meanLuminance": 0.00658814562484622
+        },
+        {
+          "scene": "Babak5_PasarSetan",
+          "screenshot": "Babak5_PasarSetan-phone-on.png",
+          "phone": true,
+          "beamEnabled": true,
+          "unpoweredFixtures": 49,
+          "meanLuminance": 0.01267358846962452
+        }
+      ],
+      "errors": [],
+      "fixtureNotes": []
+    }
+  ],
+  "policySourceSha256": "ccc9ada1091a2ee9f59d82b7be764c810256bbdbdef9e831f9124f65906cc01a",
+  "worldLightingUnchangedBySubsequentActorOnlyFill": true
+}

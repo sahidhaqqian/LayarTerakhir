@@ -12,6 +12,21 @@ namespace LayarTerakhir.Editor.Tests
 {
     public sealed class PlayerFeelTests
     {
+        [Test] public void StowingTheActualHandsetHidesItsSeparateGlassMesh()
+        {
+            var actor=Object.Instantiate(Resources.Load<GameObject>("RakaCharacter"));
+            try
+            {
+                var avatar=actor.GetComponent<AnimatedRakaAvatar>();
+                typeof(AnimatedRakaAvatar).GetMethod("Awake",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(avatar,null);
+                var parts=actor.GetComponentsInChildren<Renderer>(true).Where(r=>r.name=="HandheldPhone"||r.name=="HandsetScreen").ToArray();
+                Assert.That(parts.Length,Is.EqualTo(2),"Validate both real mesh names, not an empty name filter");
+                foreach(var part in parts)part.gameObject.SetActive(true);
+                avatar.Present(0,false,false,false);
+                Assert.That(parts.All(p=>!p.gameObject.activeSelf),Is.True,"A stored phone must not leave its glass floating beside the hand");
+            }
+            finally{Object.DestroyImmediate(actor);}
+        }
         [Test] public void SourcedLandscapeGraspWrapsTheBezelAtRealHandsetScale()
         {
             var grasp=Object.Instantiate(Resources.Load<GameObject>("RakaCameraGrip"));
@@ -60,8 +75,8 @@ namespace LayarTerakhir.Editor.Tests
                 var avatar=actor.GetComponent<AnimatedRakaAvatar>();avatar.PrepareFootContacts();avatar.handset.SetActive(false);
                 var body=actor.GetComponentsInChildren<SkinnedMeshRenderer>().Single(r=>r.name=="VisibleSkin");
                 foreach(bool low in new[]{false,true})
-                foreach(float phase in new[]{0f,.05f,.12f,.25f,.5f,.75f})
-                foreach(float blend in new[]{.16f,.33f,.5f,.66f,.83f})
+                foreach(float phase in Enumerable.Range(0,24).Select(i=>i/24f))
+                foreach(float blend in new[]{.16f,.33f,.5f,.66f,.83f,1f})
                 {
                     foreach(AnimationState state in avatar.motion){state.enabled=false;state.weight=0;}
                     var idle=avatar.motion[low?"LowCrouch":"Crouch"];var walk=avatar.motion[low?"LowCrouchWalk":"CrouchWalk"];
@@ -153,6 +168,7 @@ namespace LayarTerakhir.Editor.Tests
                 {
                     var clip=avatar.motion.GetClip(name);Assert.That(clip,Is.Not.Null);
                     avatar.handset.SetActive(name.StartsWith("Phone"));
+                    actor.GetComponentsInChildren<Transform>(true).Single(t=>t.name=="HandsetScreen").gameObject.SetActive(name.StartsWith("Phone"));
                     for(int phase=0;phase<8;phase++)
                     {
                         clip.SampleAnimation(actor,clip.length*phase/8);

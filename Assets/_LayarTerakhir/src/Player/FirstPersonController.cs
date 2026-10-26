@@ -69,6 +69,7 @@ namespace LayarTerakhir.Player
             _controller.height = standingHeight;
             _controller.center = new Vector3(0f, standingHeight * 0.5f, 0f);
             if (!GetComponent<ShoulderCameraRig>()) gameObject.AddComponent<ShoulderCameraRig>();
+            AbandonedLocationLighting.Install(gameObject);
         }
 
         private void Start()

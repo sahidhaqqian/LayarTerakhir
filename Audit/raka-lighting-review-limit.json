@@ -1,0 +1,10 @@
+{
+  "scope": "Opt-in posed lighting capture, six scenes in one llvmpipe process; not a Windows GPU benchmark",
+  "unit": "lt-p5-native-20261026-114633",
+  "endedUtc": "2026-10-26T11:53:58Z",
+  "systemdServiceResult": "oom-kill",
+  "memoryLimitBytes": 4831838208,
+  "completed": false,
+  "evidence": "systemd user journal: A process of this unit has been killed by the OOM killer; memory peak 4.5G",
+  "remedy": "One fresh bounded player process per scene through --lighting-suite; final results are recorded separately"
+}

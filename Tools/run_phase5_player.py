@@ -4,7 +4,7 @@ Never touches campaign saves; the player creates a fresh fixture per output.
 import argparse,datetime,json,os,subprocess,tempfile,time
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',required=True);p.add_argument('--visual',action='store_true');p.add_argument('--headless',action='store_true');p.add_argument('--final',choices=['BAD','NORMAL','TRUE','SECRET']);p.add_argument('--resume');p.add_argument('--probe',choices=['core','ending']);p.add_argument('--point',choices=['temp-flushed','replaced']);p.add_argument('--verify',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',required=True);p.add_argument('--visual',action='store_true');p.add_argument('--headless',action='store_true');p.add_argument('--player-feel',action='store_true');p.add_argument('--lighting-review',action='store_true');p.add_argument('--lighting-scene',choices=['Prolog_RumahAtmaja','Babak1_Rusunawa','Babak2_RSUD','Babak3_PabrikGula','Babak4_KarangSetra','Babak5_PasarSetan']);p.add_argument('--final',choices=['BAD','NORMAL','TRUE','SECRET']);p.add_argument('--resume');p.add_argument('--probe',choices=['core','ending']);p.add_argument('--point',choices=['temp-flushed','replaced']);p.add_argument('--verify',action='store_true');a=p.parse_args()
 out=(ROOT/a.output).resolve();out.mkdir(parents=True,exist_ok=True)
 assert out.is_relative_to(ROOT/'Builds'),out
 binary=ROOT/'Builds/LinuxPhase5/LayarTerakhir.x86_64';assert binary.is_file()
@@ -17,6 +17,13 @@ with tempfile.TemporaryDirectory(prefix='lt-p5-audio-') as tmp:
    time.sleep(.05)
   assert sock.exists()
   cmd=['xvfb-run','-a','-s','-screen 0 1280x720x24',str(binary),'-screen-width','1280','-screen-height','720','-screen-fullscreen','0','-force-glcore','-phase5Audit',str(out),'-logFile',str(out/'player.log')]
+  if a.player_feel or a.lighting_review:
+   assert not (a.probe or a.final or a.resume or a.visual)
+   assert not (a.player_feel and a.lighting_review)
+   cmd[cmd.index('-phase5Audit')]='-feelAudit' if a.player_feel else '-lightingAudit'
+  if a.lighting_scene:
+   assert a.lighting_review
+   cmd+=['-lightingScene',a.lighting_scene]
   if a.probe:
    assert a.point
    pos=cmd.index('-phase5Audit');cmd[pos:pos+2]=['-phase5Probe',str(out),'-phase5CrashAction',a.probe,'-phase5CrashPoint',a.point]

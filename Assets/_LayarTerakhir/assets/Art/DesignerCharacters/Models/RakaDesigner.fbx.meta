@@ -36,7 +36,7 @@ ModelImporter:
       takeName: CharacterRig|Crouch
       internalID: -5708794737731535269
       firstFrame: 0
-      lastFrame: 48
+      lastFrame: 88
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
@@ -65,7 +65,7 @@ ModelImporter:
       takeName: CharacterRig|CrouchWalk
       internalID: 6122109672390236341
       firstFrame: 0
-      lastFrame: 26
+      lastFrame: 60
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
@@ -94,7 +94,7 @@ ModelImporter:
       takeName: CharacterRig|Idle
       internalID: 1462021494730937107
       firstFrame: 0
-      lastFrame: 67
+      lastFrame: 75
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
@@ -123,7 +123,7 @@ ModelImporter:
       takeName: CharacterRig|InstallCard
       internalID: 617650880545627436
       firstFrame: 0
-      lastFrame: 163
+      lastFrame: 204
       wrapMode: 8
       orientationOffsetY: 0
       level: 0
@@ -152,7 +152,7 @@ ModelImporter:
       takeName: CharacterRig|LowCrouch
       internalID: -2278565481530804551
       firstFrame: 0
-      lastFrame: 48
+      lastFrame: 88
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
@@ -181,7 +181,7 @@ ModelImporter:
       takeName: CharacterRig|LowCrouchWalk
       internalID: 2837011065915250268
       firstFrame: 0
-      lastFrame: 26
+      lastFrame: 60
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
@@ -210,7 +210,7 @@ ModelImporter:
       takeName: CharacterRig|PhoneCrouch
       internalID: 4571207013004225108
       firstFrame: 0
-      lastFrame: 48
+      lastFrame: 88
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
@@ -239,7 +239,7 @@ ModelImporter:
       takeName: CharacterRig|PhoneCrouchWalk
       internalID: 5294006360493913834
       firstFrame: 0
-      lastFrame: 26
+      lastFrame: 60
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
@@ -268,7 +268,7 @@ ModelImporter:
       takeName: CharacterRig|PhoneIdle
       internalID: 1275206557126989608
       firstFrame: 0
-      lastFrame: 67
+      lastFrame: 75
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
@@ -297,7 +297,7 @@ ModelImporter:
       takeName: CharacterRig|PhoneLowCrouch
       internalID: -2079837859989632211
       firstFrame: 0
-      lastFrame: 48
+      lastFrame: 88
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
@@ -326,7 +326,7 @@ ModelImporter:
       takeName: CharacterRig|PhoneLowCrouchWalk
       internalID: 5831962323675779146
       firstFrame: 0
-      lastFrame: 26
+      lastFrame: 60
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
@@ -355,7 +355,7 @@ ModelImporter:
       takeName: CharacterRig|PhoneRun
       internalID: 3369122323282086415
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 20
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
@@ -384,7 +384,7 @@ ModelImporter:
       takeName: CharacterRig|PhoneWalk
       internalID: 3986034422244777760
       firstFrame: 0
-      lastFrame: 20
+      lastFrame: 40
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
@@ -413,7 +413,7 @@ ModelImporter:
       takeName: CharacterRig|Riding
       internalID: -8922343799269270970
       firstFrame: 0
-      lastFrame: 48
+      lastFrame: 60
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
@@ -442,7 +442,7 @@ ModelImporter:
       takeName: CharacterRig|Run
       internalID: -7799225247399967932
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 20
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
@@ -471,7 +471,7 @@ ModelImporter:
       takeName: CharacterRig|Walk
       internalID: 780286865638568093
       firstFrame: 0
-      lastFrame: 20
+      lastFrame: 40
       wrapMode: 2
       orientationOffsetY: 0
       level: 0

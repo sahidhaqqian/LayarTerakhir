@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using LayarTerakhir.Core;
 using LayarTerakhir.Player;
 using LayarTerakhir.Prolog;
@@ -35,6 +36,8 @@ namespace LayarTerakhir.Diagnostics
             public int width,height;public string[] screenshots,checks;public Sample[] samples;
         }
         private static string output;
+        private float measuredSupportY;
+        private string measuredLowestBone;
         private readonly List<string> checks=new List<string>(),shots=new List<string>();
         private readonly List<Sample> samples=new List<Sample>();
         private FirstPersonController player;private ShoulderCameraRig rig;private AtmajaPhoneView view;
@@ -73,7 +76,10 @@ namespace LayarTerakhir.Diagnostics
             var phone=SmartphoneController.Instance;phone.hasSmartphoneInInventory=true;phone.isPhoneRaised=false;phone.isScreenOn=true;phone.SyncVisualState();view.Apps.Open(PhoneApp.Camera);
             previous=player.transform.position;
             yield return Frames("settle",12);
+            var handsetParts=rig.Avatar.GetComponentsInChildren<Renderer>(true).Where(r=>r.name=="HandheldPhone"||r.name=="HandsetScreen").ToArray();
+            Check(handsetParts.Length==2&&handsetParts.All(r=>!r.gameObject.activeInHierarchy),"Stowed handset hides both actual case and glass; no floating phone part beside the empty hand");
             standingBottom=VisibleBodyBounds().x;
+            yield return Portrait("00-raka-standing-front-review-light",false);
             Check(Mathf.Abs(standingBottom)<.025f,"Standing avatar feet meet the actual road surface without moving the capsule");
             yield return Frames("walk-start",3,Key.W);yield return Shot("01-walk-start");
             yield return Frames("walk",25,Key.W);
@@ -83,6 +89,7 @@ namespace LayarTerakhir.Diagnostics
             yield return Frames("run",30,Key.W,Key.LeftShift);yield return Shot("04-running");
             yield return Frames("run-stop",9);
             yield return Frames("crouch-down",15,Key.LeftCtrl);yield return Shot("05-crouch-settled");
+            yield return Portrait("05b-raka-crouch-front-review-light",true);
             var normalBody=VisibleBodyBounds();normalBodyHeight=normalBody.y;normalBottom=normalBody.x;
             Check(normalBodyHeight>.6f&&normalBodyHeight<measuredHeadroom+.005f&&Mathf.Abs(normalBottom)<.025f,"Normal crouch mesh fits its actual capsule headroom and road surface");
             yield return Frames("crouch-walk",25,Key.LeftCtrl,Key.W);yield return Shot("06-crouch-stride");
@@ -109,22 +116,26 @@ namespace LayarTerakhir.Diagnostics
             yield return Frames("phone-hold",12);yield return Shot("09-phone-shoulder");
             Check(phone.isPhoneRaised&&view.RaiseAmount>.99f&&view.FeedCamera.enabled,"Phone reaches its held pose and keeps the camera feed");
             Check(rig.Avatar.GetComponent<AnimatedRakaAvatar>().handset.activeInHierarchy,"World handset is visible once the authored grasp has settled");
+            Check(handsetParts.All(r=>r.gameObject.activeInHierarchy),"Held handset shows its case and glass together");
             Check(Vector3.Cross(view.FeedCamera.transform.forward,(rig.AimPoint-view.FeedCamera.transform.position).normalized).magnitude<.01f,"Shoulder framing and phone share the physical aim line");
             yield return Frames("perspective",1,Key.V);yield return Frames("phone-first-person",10);yield return Shot("10-phone-first-person");
             Check(rig.IsFirstPerson&&Vector3.Distance(player.GetComponent<InteractionInteractor>().playerCamera.transform.position,player.cameraPivot.position)<.01f,"First-person still uses the player's eyes");
-            var hand=player.GetComponent<InteractionInteractor>().playerCamera.transform.Find("RakaPhoneHand(Clone)");
+            var hand=player.GetComponent<InteractionInteractor>().playerCamera.transform.Find("ExistingHandsetDepthMask");
             Check(hand&&hand.gameObject.activeInHierarchy,"First-person displays the authored Raka hand");
             // The supplied VRM has one combined forearm/skin surface instead of
             // the previous model's separate jacket sleeve renderer.
             var sleeve=Array.Find(hand.GetComponentsInChildren<Renderer>(),r=>r.enabled&&(r.name.Contains("Jacket")||r.name=="PhoneHand_VisibleSkin"));
-            var sleevePosition=sleeve?player.GetComponent<InteractionInteractor>().playerCamera.WorldToViewportPoint(sleeve.bounds.center):Vector3.zero;
-            Check(sleeve&&sleevePosition.z>0&&sleevePosition.x>.82f&&sleevePosition.y<.5f,"First-person sleeve enters from the lower right and leaves the sightline clear");
+            var gripCamera=player.GetComponent<InteractionInteractor>().playerCamera.transform.Find("RakaPhoneGripCamera").GetComponent<Camera>();
+            var sleevePosition=sleeve?gripCamera.WorldToViewportPoint(sleeve.bounds.center):Vector3.zero;
+            Check(sleeve&&sleevePosition.z>0&&sleevePosition.x>.65f&&sleevePosition.y<.7f,"First-person sleeve enters from the lower right and leaves the sightline clear");
             view.Apps.Open(PhoneApp.Journal);
             InputSystem.QueueStateEvent(mouse,new MouseState{buttons=2});
-            yield return Frames("hold-focus",12);yield return Shot("10a-held-fullscreen-viewfinder");
+            yield return Frames("hold-focus",12);yield return Shot("10a-held-landscape-viewfinder");
             Check(view.ViewfinderActive&&view.IsCameraApp,"Held right mouse forces the open journal into the camera");
             var focusRect=view.Panel.GetComponent<RectTransform>();
-            Check(focusRect.anchorMin==Vector2.zero&&focusRect.anchorMax==Vector2.one&&Mathf.Abs(view.FeedCamera.aspect-(float)Screen.width/Screen.height)<.01f,"Focused camera fills the screen without stretching the feed");
+            float framedWidth=(focusRect.anchorMax.x-focusRect.anchorMin.x)*Screen.width;
+            float framedHeight=(focusRect.anchorMax.y-focusRect.anchorMin.y)*Screen.height;
+            Check(framedWidth>Screen.width*.5f&&focusRect.anchorMin.x>0&&focusRect.anchorMax.x<1&&Mathf.Abs(framedWidth/framedHeight-AtmajaPhoneView.LandscapeHandsetAspect)<.03f,"Focused camera has a readable landscape frame and space for the physical hands without stretching the handset");
             view.Apps.Open(PhoneApp.Inventory);yield return Frames("focus-overrides-menu",2);
             Check(view.IsCameraApp&&view.ViewfinderActive,"Held aim remains authoritative over app changes");
             InputSystem.QueueStateEvent(mouse,new MouseState());yield return Frames("release-focus",4);yield return Shot("10b-release-restores-journal");
@@ -153,6 +164,7 @@ namespace LayarTerakhir.Diagnostics
                 {
                     var body=VisibleBodyBounds();normalWalkFootError=Mathf.Max(normalWalkFootError,Mathf.Abs(body.x));
                     normalWalkHeadroomOverage=Mathf.Max(normalWalkHeadroomOverage,body.y-measuredHeadroom);
+                    if(Mathf.Abs(body.x)>.02f)Debug.Log($"CROUCH_CONTACT frame={i} bottom={body.x} bone={measuredLowestBone} rootY={player.transform.position.y} supportY={measuredSupportY} visualOffset={rig.VisualGroundOffset} scale={rig.Avatar.lossyScale.y}");
                 }
                 var cc=player.GetComponent<CharacterController>();Vector3 delta=player.transform.position-previous;delta.y=0;previous=player.transform.position;
                 string clip="";float weight=-1,phase=0;var anim=rig.Avatar.GetComponent<Animation>();
@@ -168,6 +180,28 @@ namespace LayarTerakhir.Diagnostics
             File.WriteAllBytes(Path.Combine(output,name+".png"),image.EncodeToPNG());Destroy(image);
             shots.Add(name+".png");yield return null;yield return new WaitForEndOfFrame();previous=player.transform.position;
         }
+        private IEnumerator Portrait(string name,bool crouched)
+        {
+            // Opt-in geometry review only; the normal route captures retain
+            // real gameplay lighting. Never install this light in normal play.
+            var camera=Camera.main;var position=camera.transform.position;var rotation=camera.transform.rotation;
+            bool active=rig.enabled,locked=player.MovementLocked;
+            var canvases=FindObjectsByType<Canvas>(FindObjectsSortMode.None);
+            var states=canvases.Select(c=>c.enabled).ToArray();
+            rig.enabled=false;player.MovementLocked=true;
+            foreach(var canvas in canvases)canvas.enabled=false;
+            Vector3 focus=rig.Avatar.position+Vector3.up*(crouched?.55f:1.05f);
+            camera.transform.position=focus+rig.Avatar.forward*(crouched?2.0f:2.7f)+rig.Avatar.right*.45f+Vector3.up*.12f;
+            camera.transform.LookAt(focus);
+            var lightObject=new GameObject("FixtureOnly_RakaPortraitKey");var light=lightObject.AddComponent<Light>();
+            light.transform.position=camera.transform.position;light.type=LightType.Point;light.intensity=1.5f;light.range=4;
+            yield return new WaitForEndOfFrame();yield return new WaitForEndOfFrame();
+            var image=ScreenCapture.CaptureScreenshotAsTexture();File.WriteAllBytes(Path.Combine(output,name+".png"),image.EncodeToPNG());Destroy(image);shots.Add(name+".png");
+            Destroy(lightObject);camera.transform.SetPositionAndRotation(position,rotation);
+            for(int i=0;i<canvases.Length;i++)canvases[i].enabled=states[i];
+            rig.enabled=active;player.MovementLocked=locked;previous=player.transform.position;
+        }
+
         private Vector2 VisibleBodyBounds()
         {
             // Use the actual support surface, not the capsule root (which includes skin clearance).
@@ -175,22 +209,27 @@ namespace LayarTerakhir.Diagnostics
             foreach(var hit in Physics.RaycastAll(player.transform.position+Vector3.up*.25f,Vector3.down,2,~0,QueryTriggerInteraction.Ignore))
                 if(!hit.transform.IsChildOf(player.transform)&&hit.normal.y>.5f&&(!found||hit.distance<ground.distance)){ground=hit;found=true;}
             if(!found)throw new InvalidOperationException("No support surface under player-feel fixture");
-            measuredHeadroom=player.GetComponent<CharacterController>().bounds.max.y-ground.point.y;
+            measuredSupportY=ground.point.y;measuredHeadroom=player.GetComponent<CharacterController>().bounds.max.y-ground.point.y;
             float top=0,bottom=float.PositiveInfinity;var baked=new Mesh();
+            SkinnedMeshRenderer lowestRenderer=null;int lowestVertex=0;
             foreach(var renderer in rig.Avatar.GetComponentsInChildren<SkinnedMeshRenderer>())
             {
                 if(!renderer.enabled||!renderer.gameObject.activeInHierarchy)continue;
                 // Compensate imported FBX renderer scale before TransformPoint.
                 renderer.BakeMesh(baked,true);
-                foreach(var vertex in baked.vertices){float y=renderer.transform.TransformPoint(vertex).y-ground.point.y;top=Mathf.Max(top,y);bottom=Mathf.Min(bottom,y);}
+                var vertices=baked.vertices;
+                for(int i=0;i<vertices.Length;i++){float y=renderer.transform.TransformPoint(vertices[i]).y-ground.point.y;top=Mathf.Max(top,y);if(y<bottom){bottom=y;lowestRenderer=renderer;lowestVertex=i;}}
                 baked.Clear();
             }
+            if(lowestRenderer)measuredLowestBone=lowestRenderer.bones[lowestRenderer.sharedMesh.boneWeights[lowestVertex].boneIndex0].name;
             Destroy(baked);return new Vector2(bottom,top);
         }
-        private void Check(bool passed,string text){checks.Add((passed?"PASS ":"FAIL ")+text);if(!passed){Finish(false);throw new InvalidOperationException(text);}}
+        // Collect independent presentation failures in one route. A failed
+        // check still fails the receipt/exit code; fatal exceptions stop early.
+        private void Check(bool passed,string text){checks.Add((passed?"PASS ":"FAIL ")+text);}
         private void Finish(bool success)
         {
-            if(done)return;done=true;
+            if(done)return;success=success&&!checks.Any(c=>c.StartsWith("FAIL "));done=true;
             File.WriteAllText(Path.Combine(output,"player-audit.json"),JsonUtility.ToJson(new Receipt{utc=DateTime.UtcNow.ToString("o"),gpu=SystemInfo.graphicsDeviceName,completed=success,actualStandalonePlayer=!Application.isEditor,checkpointSaved=success,standingFootClearance=standingBottom,crouchBodyHeight=normalBodyHeight,crouchBottom=normalBottom,crouchWalkMaximumFootError=normalWalkFootError,crouchWalkMaximumHeadroomOverage=normalWalkHeadroomOverage,lowCrouchBodyHeight=lowBodyHeight,lowWalkBodyHeight=lowWalkHeight,lowPhoneBodyHeight=lowPhoneHeight,lowCrouchBottom=lowBottom,lowWalkBottom=lowWalkBottom,lowPhoneBottom=lowPhoneBottom,width=Screen.width,height=Screen.height,screenshots=shots.ToArray(),checks=checks.ToArray(),samples=samples.ToArray()},true)+"\n");
             Time.captureDeltaTime=0;Application.Quit(success?0:1);
         }

@@ -70,12 +70,20 @@ yang bisa di-remap; binding selfie V lama dipindah ke X. Pilihan tersimpan pada
 `LT.Perspective` dan dibaca setiap scene; fixture audit tidak membaca/menulis preferensi
 pemain. Kamera bahu memakai spherecast dan menyembunyikan tubuh saat jarak <0,9 m;
 first-person tetap menganimasikan bayangan tubuh. Layer 26 mengisolasi avatar dari feed
-HP dan membatasi cahaya pantul tanpa shadow ke tubuh Raka; fill mati di first-person
-atau saat tubuh tersembunyi. Cutscene dan modal memiliki kamera/input.
-`Resources/RakaCharacter` menyediakan mesh skinned 55 tulang dan 16 klip Legacy;
-empat varian `LowCrouch` mengikuti collider Atmaja .78 m, sementara jongkok kos
+HP dan membatasi cahaya pantul tanpa shadow ke tubuh/tangan Raka. Saat HP aktif,
+first-person mendapat fill layar .55 hanya pada layer karakter; lingkungan tetap
+gelap sesuai outage. Tubuh first-person sendiri tetap shadow-only. Cutscene dan modal memiliki kamera/input.
+`Resources/RakaCharacter` memakai turunan 96k segitiga dari VRM Raka milik desainer,
+material non-metalik, 55 tulang dan 16 klip Legacy. `Tools/retarget_raka_presentation.py`
+memindahkan performa gerak CC0 Quaternius ke rig existing; `Riding`/`InstallCard` tetap
+menggunakan klip proyek. `RakaPresentationRevisionBuilder.ApplyAndMeasure` mengimpor
+klip dan mengukur kecepatan kaki saat menapak untuk sinkronisasi playback. Tidak ada
+root motion, controller, atau sistem animasi gameplay paralel.
+Empat varian `LowCrouch` mengikuti collider Atmaja .78 m, sementara jongkok kos
 memakai pose 1 m. `AnimatedRakaAvatar` meneruskan fase langkah, memperhalus playback,
-dan memilih gerak visual tanpa root motion atau collider tambahan. Tubuh mengikuti
+dan memilih gerak visual tanpa root motion atau collider tambahan. Case dan kaca HP
+disembunyikan bersama saat disimpan; IK kontak kaki mempertahankan orientasi telapak
+sumber setelah menyelesaikan rantai lutut. Tubuh mengikuti
 arah gerak secara terbatas; posisi duduk motor tetap mengikuti anchor existing.
 Kamera bahu mengarah ke garis bidik pivot/feed HP, menutup jarak segera saat terhalang,
 dan memperhalus jarak kembali pada `LateUpdate`; `RefreshCameraPose()` eksplisit tetap
@@ -526,3 +534,18 @@ Status penerimaan: `Audit/PHASE1_IMPLEMENTATION_REVIEW.md`.
 ### Phase 1 playtest revisions
 
 `Phase1Director.PrepareNextNight` charges the first Prolog→P1 transition to 100% atomically; chapter guards prevent recharge on Continue/retry. `Phase1AdditionalDressing` places thirty additional downloaded prop models with preserved proportions and support surfaces; source and placement manifests remain in Audit. `AtmajaPhoneView` keeps the existing hold/release input and handset apps, adds a temporary `ShoulderCameraRig.PhoneAimOverride`, and presents a landscape handset with two mirrored grasps baked from the existing clothed CC0 Raka rig using the shared offline geometry fitter. A transparent grasp render and colorless handset depth pass preserve foreground fingers without replacing the shared camera/AR/photo logic. No parallel save, inventory, AR or event system is introduced.
+
+## Revisi presentasi Raka dan bangunan terbengkalai (26 Oktober 2026)
+
+`AbandonedLocationLighting` dipasang oleh `FirstPersonController`, mengatur outage
+presentasi pada Rumah Atmaja dan Babak 1–5. Lampu listrik dekoratif dipaksa mati di
+LateUpdate; referensi lampu puzzle/ritual tetap dimiliki director masing-masing.
+Kos berpenghuni, lingkungan kos, lampu motor, rekaman handycam, api/lentera dan set
+epilog tidak dianggap instalasi listrik bangunan kosong. `Phase5Lighting.Apply(true)`
+melepas kondisi malam untuk fajar. Ambient rendah dan body fill mengikuti HP;
+lampu dekoratif tidak meminta shadow map yang menghabiskan anggaran senter HP.
+Baterai, Sanity, deteksi AI, save/checkpoint dan input tidak diubah oleh kebijakan ini.
+
+`LocationLightingAudit` (`-lightingAudit`) hanya pada Editor/Development: private save,
+director dipause, kamera diposisikan pada titik review, dan pasangan render HP mati/
+menyala. Ini bukti presentasi, bukan bukti traversal atau performa GPU Windows.

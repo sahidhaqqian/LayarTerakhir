@@ -59,7 +59,7 @@ namespace LayarTerakhir.Player
             eye.cullingMask|=1<<AvatarLayer;
             var bounce=new GameObject("RakaSoftBounce",typeof(Light));bounce.transform.SetParent(transform,false);
             bounce.transform.localPosition=new Vector3(.55f,1.85f,-.9f);avatarBounce=bounce.GetComponent<Light>();
-            avatarBounce.type=LightType.Point;avatarBounce.range=2.8f;avatarBounce.intensity=2.5f;
+            avatarBounce.type=LightType.Point;avatarBounce.range=2.2f;avatarBounce.intensity=.55f;
             avatarBounce.color=new Color(.62f,.68f,.76f);avatarBounce.shadows=LightShadows.None;avatarBounce.cullingMask=(1<<AvatarLayer)|(1<<PhoneGripLayer);
             avatarBounce.renderMode=LightRenderMode.ForcePixel;
             avatarBounce.GetUniversalAdditionalLightData().renderingLayers=(RenderingLayerMask)AvatarRenderingLayer;
@@ -88,7 +88,7 @@ namespace LayarTerakhir.Player
             if(authoredAvatar)authoredAvatar.RefreshOutfit(!UiFocus.Cinematic||CinematicVisible);
             if (UiFocus.Cinematic)
             {
-                avatarBounce.intensity=2.5f;
+                avatarBounce.intensity=BodyFill();
                 avatarBounce.enabled=CinematicVisible;
                 if(CinematicVisible)
                 {
@@ -113,7 +113,7 @@ namespace LayarTerakhir.Player
                 cameraDistance = -1;
                 var heldPhone=SmartphoneController.Instance;
                 avatarBounce.enabled=PhoneAimOverride||heldPhone&&heldPhone.isPhoneRaised&&heldPhone.hasSmartphoneInInventory;
-                avatarBounce.intensity=.25f;
+                avatarBounce.intensity=BodyFill(true);
                 CurrentDistance=0;
                 eye.transform.SetPositionAndRotation(pivot.position, pivot.rotation);
                 AnimateRaka();
@@ -160,7 +160,7 @@ namespace LayarTerakhir.Player
             else if (advance)
                 cameraDistance = Mathf.SmoothDamp(cameraDistance, distance, ref distanceVelocity, .12f, Mathf.Infinity, Time.deltaTime);
             CurrentDistance = Mathf.Min(distance, cameraDistance);
-            avatarBounce.enabled=CurrentDistance>.35f;avatarBounce.intensity=2.5f;
+            avatarBounce.enabled=CurrentDistance>.35f;avatarBounce.intensity=BodyFill();
             Vector3 position = anchor + direction.normalized * CurrentDistance;
             eye.transform.SetPositionAndRotation(position, Quaternion.LookRotation(AimPoint - position, pivot.up));
             AnimateRaka();
@@ -280,6 +280,15 @@ namespace LayarTerakhir.Player
             handset.gameObject.SetActive(phone);
             Avatar.localScale = new Vector3(1,Mathf.Clamp(GetComponent<CharacterController>().height/player.standingHeight,.35f,1),1);
             torso.localRotation = Quaternion.Euler(player.IsCrouching ? 18 : 0, 0, 0);
+        }
+
+        private float BodyFill(bool firstPerson=false)
+        {
+            var night=GetComponent<AbandonedLocationLighting>();
+            var phone=SmartphoneController.Instance;
+            if(night&&night.NightActive)
+                return phone&&phone.isPhoneRaised&&phone.isScreenOn&&phone.HasCameraPower ? (firstPerson?.55f:.14f) : .035f;
+            return .55f;
         }
 
         private Material ColorMaterial(string name, Color color)
