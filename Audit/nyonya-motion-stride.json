@@ -1,0 +1,22 @@
+{
+    "clips": [
+        {
+            "clip": "Walk",
+            "strideSpeed": 0.9650453925132752,
+            "lowFootMedian": 0.9650453925132752,
+            "forwardRange": 0.6048733592033386,
+            "stanceSamples": 48,
+            "backwardSamples": 136
+        },
+        {
+            "clip": "Run",
+            "strideSpeed": 1.791420340538025,
+            "lowFootMedian": 0.6859442591667175,
+            "forwardRange": 0.8359962105751038,
+            "stanceSamples": 44,
+            "backwardSamples": 116
+        }
+    ],
+    "vertices": 25973,
+    "bones": 56
+}

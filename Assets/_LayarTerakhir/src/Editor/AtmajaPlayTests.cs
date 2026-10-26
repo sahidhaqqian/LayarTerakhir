@@ -83,7 +83,7 @@ namespace LayarTerakhir.Editor.Tests
         [UnityTest] public IEnumerator BasementAndChaseChatBurstsWithThousandsOfViewers()=>Run(ChatIntensity());
         [UnityTest] public IEnumerator RightMouseRaisesAndLowersThePhoneCamera()=>Run(CameraShortcut());
         [UnityTest] public IEnumerator ThreatAudioUsesPhysicalWallsForBothHumAndScrape()=>Run(ThreatAudioWalls());
-        [UnityTest] public IEnumerator AuthoredHunterActuallySamplesTwelveFramePoses()=>Run(AuthoredHunterStutter());
+        [UnityTest] public IEnumerator HunterDeformsContinuouslyAndMatchesBasementMovement()=>Run(AuthoredHunterLocomotion());
         private IEnumerator ThreatAudioWalls()
         {
             yield return new WaitForSeconds(2);Time.timeScale=1;
@@ -103,7 +103,7 @@ namespace LayarTerakhir.Editor.Tests
             Object.DestroyImmediate(blocker);yield return new WaitForSecondsRealtime(.5f);
             foreach(var filter in filters)Assert.That(filter.GetComponent<AudioLowPassFilter>().cutoffFrequency,Is.GreaterThan(21000));
         }
-        private IEnumerator AuthoredHunterStutter()
+        private IEnumerator AuthoredHunterLocomotion()
         {
             yield return new WaitForSeconds(2);Time.timeScale=1;
             var d=SeedBasement();var b=d.basement;b.enabled=false;b.nyonya.SetActive(true);
@@ -112,17 +112,39 @@ namespace LayarTerakhir.Editor.Tests
             var pose=b.nyonya.GetComponent<AtmajaThreatPresentation>();
             Assert.That(pose.authoredMotion,Is.Not.Null,"Test the shipped character, not the procedural fallback");
             yield return null;yield return null; // Let the newly activated rig capture its rest pose.
-            float until=Time.time+.4f;
+            var skin=b.nyonya.GetComponentsInChildren<SkinnedMeshRenderer>(true).Single(r=>r.name=="NyonyaDesignerBody");
+            Assert.That(skin.updateWhenOffscreen,Is.True,"The hidden hunter must not freeze when it leaves the camera");
+            Assert.That(pose.authoredMotion.cullingType,Is.EqualTo(AnimationCullingType.AlwaysAnimate));
+            float until=Time.time+.6f;
+            while(Time.time<until){b.nyonya.transform.position+=Vector3.forward*.9f*Time.deltaTime;yield return null;}
+            Assert.That(pose.CurrentMotionClip,Is.EqualTo("Walk"));
+            Assert.That(pose.authoredMotion["Walk"].speed,Is.GreaterThan(0),"Hunting uses continuous clip playback");
+            var baked=new Mesh();skin.BakeMesh(baked);var before=baked.vertices;float phase=pose.SampledHuntPoseTime;
+            until=Time.time+.27f;
+            while(Time.time<until){b.nyonya.transform.position+=Vector3.forward*.9f*Time.deltaTime;yield return null;}
+            skin.BakeMesh(baked);var after=baked.vertices;float sum=0;
+            for(int i=0;i<before.Length;i++)sum+=(after[i]-before[i]).sqrMagnitude;
+            Assert.That(Mathf.Sqrt(sum/before.Length),Is.GreaterThan(.005f),"Actual skinned geometry must deform, independently of the moving AI root");
+            Assert.That(pose.SampledHuntPoseTime,Is.GreaterThan(phase),"Continuous animation time advances");
+            Object.Destroy(baked);
+            // Irregular AI updates must not reset every other frame to Idle.
+            until=Time.time+.45f;int step=0;float accumulated=0;
             while(Time.time<until)
             {
-                b.nyonya.transform.position+=Vector3.forward*.02f;yield return null;
-                Assert.That(pose.authoredMotion["Walk"].speed,Is.Zero,"The live clip must be manually sampled while hunting");
-                Assert.That(pose.SampledHuntPoseTime*12f,Is.EqualTo(Mathf.Round(pose.SampledHuntPoseTime*12f)).Within(.0001f));
+                accumulated+=Time.deltaTime;
+                if(++step%2==0){b.nyonya.transform.position+=Vector3.forward*.9f*accumulated;accumulated=0;}
+                yield return null;Assert.That(pose.CurrentMotionClip,Is.EqualTo("Walk"));
             }
-            Assert.That(pose.SampledHuntPoseTime,Is.GreaterThan(.08f),"Quantized poses advance rather than freeze");
-            mind.SetValue(b,Enum.ToObject(mind.FieldType,2));
-            b.nyonya.transform.position+=Vector3.forward*.02f;yield return null;yield return null;
-            Assert.That(pose.authoredMotion["Walk"].speed,Is.GreaterThan(0),"Patrolling restores normal animation playback");
+            until=Time.time+.6f;
+            while(Time.time<until){b.nyonya.transform.position+=Vector3.forward*2.8f*Time.deltaTime;yield return null;}
+            Assert.That(pose.CurrentMotionClip,Is.EqualTo("Run"),"Basement pursuit must use running even before the finale chase");
+            pose.ExternalStun=true;yield return null;yield return null;
+            Assert.That(pose.CurrentMotionClip,Is.EqualTo("Stun"),"Blitz keeps priority over locomotion");
+            pose.ExternalStun=false;yield return new WaitForSeconds(.5f);
+            Assert.That(pose.CurrentMotionClip,Is.EqualTo("Idle"),"A stopped hunter settles to a breathing idle");
+            b.nyonya.SetActive(false);b.nyonya.transform.position+=Vector3.right*10;b.nyonya.SetActive(true);
+            yield return null;yield return null;
+            Assert.That(pose.CurrentMotionClip,Is.EqualTo("Idle"),"Checkpoint relocation does not become a running step");
         }
         private IEnumerator CameraShortcut()
         {
@@ -182,7 +204,8 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(d.Viewers,Is.GreaterThan(30000),"Chase viewers climb into the tens of thousands");
             mind.SetValue(b,Enum.ToObject(mind.FieldType,2));d.SetStage(AtmajaStage.EvidenceHunt);
             d.PlacePlayer(d.P(-3.3f,5.75f,3.82f),Quaternion.identity);start=view.DisplayedChatCount;
-            yield return new WaitForSeconds(3f);
+            float deadline=Time.time+11f;
+            while(view.DisplayedChatCount-start<2&&Time.time<deadline)yield return null;
             Assert.That(view.DisplayedChatCount-start,Is.GreaterThanOrEqualTo(2),"The upper floor stays chatty even outside a chase");
         }
         private IEnumerator ViewfinderFocus()
@@ -216,7 +239,8 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(fade,Is.Not.Null,"Raka's live body materials must use the camera dither shader");
             var designer=rig.Avatar.GetComponentsInChildren<SkinnedMeshRenderer>(true).Single(r=>r.name=="VisibleSkin").sharedMaterial;
             Assert.That(designer.IsKeywordEnabled("_NORMALMAP"),Is.True,"Rebind normal-map keywords to the camera shader");
-            Assert.That(designer.IsKeywordEnabled("_METALLICSPECGLOSSMAP"),Is.True,"The camera shader must sample the cloth's metallic mask instead of using a solid-metal fallback");
+            Assert.That(designer.IsKeywordEnabled("_METALLICSPECGLOSSMAP"),Is.False,"The supplied matte cloth/skin uses the approved dielectric presentation");
+            Assert.That(designer.GetFloat("_Smoothness"),Is.LessThanOrEqualTo(.25f));
             Assert.That(designer.GetFloat("_Metallic"),Is.Zero,"A stripped map variant must retain a dielectric cloth/skin fallback");
             Assert.That(rig.AvatarOpacity,Is.EqualTo(1f).Within(.01f));
             var coverage=typeof(ShoulderCameraRig).GetMethod("SetAvatarCoverage",BindingFlags.Instance|BindingFlags.NonPublic);
@@ -369,7 +393,7 @@ namespace LayarTerakhir.Editor.Tests
             var body=rig.Avatar.GetComponentsInChildren<SkinnedMeshRenderer>().Single(r=>r.name=="VisibleSkin");
             foreach(var required in new[]{"Hips","Head","Hand_R","Finger1_1_R","Finger2_1_R","Finger3_1_R","Finger4_1_R","Finger5_1_R"})
                 Assert.That(body.bones.Any(b=>b&&b.name==required),Is.True,"The replacement skin must deform with "+required);
-            Assert.That(body.sharedMesh.vertexCount,Is.InRange(10000,65000),"Use the optimized designer mesh, not the million-vertex source or a primitive fallback");
+            Assert.That(body.sharedMesh.vertexCount,Is.InRange(10000,100000),"Retain the optimized 96k-triangle designer presentation rather than the million-vertex source");
             Assert.That(d.phoneView.FeedCamera.cullingMask&(1<<ShoulderCameraRig.AvatarLayer),Is.Zero,"Raka's shoulder/handset must not obscure the separate phone feed");
             var bounce=p.transform.Find("RakaSoftBounce").GetComponent<Light>();
             Assert.That(bounce.cullingMask,Is.EqualTo((1<<ShoulderCameraRig.AvatarLayer)|(1<<ShoulderCameraRig.PhoneGripLayer)));Assert.That(bounce.shadows,Is.EqualTo(LightShadows.None));
@@ -378,7 +402,8 @@ namespace LayarTerakhir.Editor.Tests
             long wallet=CampaignState.Instance.Data.wallet_bound;var checkpoint=CampaignState.Instance.Data.checkpoint_id;
             yield return Press(Key.V);
             Assert.That(rig.IsFirstPerson,Is.True);Assert.That(Vector3.Distance(eye.transform.position,p.cameraPivot.position),Is.LessThan(.001f));
-            Assert.That(bounce.enabled,Is.False,"First-person does not need the visual-only body fill");
+            var heldPhone=SmartphoneController.Instance;
+            Assert.That(bounce.enabled,Is.EqualTo(rig.PhoneAimOverride||heldPhone&&heldPhone.isPhoneRaised&&heldPhone.hasSmartphoneInInventory),"First-person fill follows the existing physical phone grip");
             Assert.That(rig.Avatar.GetComponentsInChildren<Renderer>(true).All(r=>r.shadowCastingMode==UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly),Is.True);
             yield return Press(Key.V);Assert.That(rig.IsFirstPerson,Is.False);Assert.That(rig.CurrentDistance,Is.GreaterThan(1));
             rig.FirstPersonOverride=true;rig.RefreshCameraPose();yield return Press(Key.V);

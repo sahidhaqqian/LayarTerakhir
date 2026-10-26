@@ -64697,6 +64697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LayarTerakhir.Prolog.AtmajaWorldText
   materialTemplate: {fileID: 2100000, guid: c7d4a0dfef4aca9b2bd4fc57b36ae30f, type: 2}
+  includeARText: 0
 --- !u!114 &867488028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102448,6 +102449,8 @@ MonoBehaviour:
   head: {fileID: 2046852701}
   blitzSmoke: {fileID: 1686054209}
   authoredMotion: {fileID: 2046852699}
+  walkStrideSpeed: 0.9650454
+  runStrideSpeed: 1.7914203
 --- !u!1 &1462704752
 GameObject:
   m_ObjectHideFlags: 0
@@ -141657,12 +141660,36 @@ PrefabInstance:
       value: NyonyaDesigner
       objectReference: {fileID: 0}
     - target: {fileID: 2223639932434330405, guid: 8d40829a440f9dca482b7ff692d07236, type: 3}
+      propertyPath: m_CullingType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223639932434330405, guid: 8d40829a440f9dca482b7ff692d07236, type: 3}
       propertyPath: m_PlayAutomatically
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2223639932434330405, guid: 8d40829a440f9dca482b7ff692d07236, type: 3}
+      propertyPath: 'm_Animations.Array.data[0]'
+      value:
+      objectReference: {fileID: -7799225247399967932, guid: 8d40829a440f9dca482b7ff692d07236, type: 3}
+    - target: {fileID: 2223639932434330405, guid: 8d40829a440f9dca482b7ff692d07236, type: 3}
+      propertyPath: 'm_Animations.Array.data[1]'
+      value:
+      objectReference: {fileID: -7520112243822402593, guid: 8d40829a440f9dca482b7ff692d07236, type: 3}
+    - target: {fileID: 2223639932434330405, guid: 8d40829a440f9dca482b7ff692d07236, type: 3}
+      propertyPath: 'm_Animations.Array.data[2]'
+      value:
+      objectReference: {fileID: 780286865638568093, guid: 8d40829a440f9dca482b7ff692d07236, type: 3}
+    - target: {fileID: 2223639932434330405, guid: 8d40829a440f9dca482b7ff692d07236, type: 3}
+      propertyPath: 'm_Animations.Array.data[3]'
+      value:
+      objectReference: {fileID: 1462021494730937107, guid: 8d40829a440f9dca482b7ff692d07236, type: 3}
     - target: {fileID: 4995988508922297723, guid: 8d40829a440f9dca482b7ff692d07236, type: 3}
       propertyPath: m_Quality
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4995988508922297723, guid: 8d40829a440f9dca482b7ff692d07236, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4995988508922297723, guid: 8d40829a440f9dca482b7ff692d07236, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

@@ -13,6 +13,8 @@ namespace LayarTerakhir.Prolog
         public bool ExternalStun { get; set; }
         public ParticleSystem blitzSmoke;
         public Animation authoredMotion;
+        [Min(.1f)] public float walkStrideSpeed=.9f, runStrideSpeed=2f;
+        public string CurrentMotionClip=>currentClip;
         public void EmitPhotoSmoke(int count)
         {
             if(!blitzSmoke)return;
@@ -30,15 +32,25 @@ namespace LayarTerakhir.Prolog
         private bool ready, wasStunned;
         private Quaternion leftArmBase,rightArmBase,leftLegBase,rightLegBase,headBase;
         private string currentClip;
-        private float huntPoseClock;
+        private float movementSpeed, movementHold;
+        private bool running;
         public float SampledHuntPoseTime {get;private set;}
         private readonly List<Material> woundMaterials=new List<Material>();
+        private void OnEnable()
+        {
+            previous=transform.position;movementSpeed=movementHold=0;running=false;currentClip=null;
+        }
         private void Start()
         {
             ApplyBloodWounds();
-            if (!body || !weapon) return;
-            bodyBase = body.localRotation; weaponBase = weapon.localRotation;
-            bodyPosition = body.localPosition; weaponPosition = weapon.localPosition;
+            if (!body) return;
+            bodyBase = body.localRotation;bodyPosition = body.localPosition;
+            if(weapon){weaponBase = weapon.localRotation;weaponPosition = weapon.localPosition;}
+            if(authoredMotion)
+            {
+                authoredMotion.cullingType=AnimationCullingType.AlwaysAnimate;
+                foreach(var skin in authoredMotion.GetComponentsInChildren<SkinnedMeshRenderer>(true))skin.updateWhenOffscreen=true;
+            }
             previous = transform.position; ready = true;
             if(HasCharacterRig){leftArmBase=leftArm.localRotation;rightArmBase=rightArm.localRotation;leftLegBase=leftLeg.localRotation;rightLegBase=rightLeg.localRotation;headBase=head.localRotation;}
         }
@@ -74,32 +86,38 @@ namespace LayarTerakhir.Prolog
             var chase = director.chase;
             bool windup = chase.AwaitingBlitz, recoil = chase.IsStunned || ExternalStun;
             bool hunting = director.basement && director.basement.IsHunting || chase.IsPursuing;
-            float moved = Vector3.Distance(previous, transform.position); previous = transform.position;
+            Vector3 displacement=transform.position-previous;displacement.y=0;previous=transform.position;
+            float moved=displacement.magnitude,dt=Time.deltaTime;
+            // Checkpoint relocation is not a step. Keep navigation and collision
+            // entirely owned by the existing AI; only read its planar movement.
+            if(moved>.6f){moved=0;movementSpeed=movementHold=0;}
+            float velocity=dt>.0001f?moved/dt:0;
+            movementSpeed=Mathf.Lerp(movementSpeed,velocity,1-Mathf.Exp(-12*dt));
+            if(moved>.0001f)movementHold=.18f;else movementHold=Mathf.Max(0,movementHold-dt);
+            bool moving=movementHold>0&&movementSpeed>.08f;
+            running=moving&&(running?movementSpeed>1.55f:movementSpeed>1.8f);
             if (moved < .6f) stride += moved * 9;
-            float motion = moved > .001f ? 1 : 0;
-            // Her body advances in 12 fps steps with an asymmetric shears arm.
-            float poseTime = hunting ? Mathf.Floor(Time.unscaledTime * 12f) / 12f : Time.unscaledTime;
+            float motion = moving ? 1 : 0;
+            float poseTime = Time.time;
             if(authoredMotion)
             {
-                string clip=recoil?"Stun":windup?"Windup":motion>0?(chase.IsPursuing||chase.IsGateRun?"Run":"Walk"):"Idle";
+                string clip=recoil?"Stun":windup?"Windup":moving?(running?"Run":"Walk"):"Idle";
                 var state=authoredMotion[clip];
                 if(state)
                 {
-                    if(weapon)weapon.localRotation=weaponBase;
                     state.wrapMode=recoil||windup?WrapMode.ClampForever:WrapMode.Loop;
-                    float speed=clip=="Walk"||clip=="Run"?Mathf.Clamp(moved/Mathf.Max(.001f,Time.deltaTime)/(clip=="Run"?3.2f:.9f),.65f,1.5f):1f;
-                    if(currentClip!=clip||!authoredMotion.IsPlaying(clip)){authoredMotion.CrossFade(clip,.18f);currentClip=clip;huntPoseClock=0;}
-                    if(hunting&&!recoil&&!windup)
+                    bool gait=clip=="Walk"||clip=="Run";
+                    float speed=gait?Mathf.Clamp(movementSpeed/Mathf.Max(.1f,clip=="Run"?runStrideSpeed:walkStrideSpeed),.35f,2.4f):1f;
+                    if(currentClip!=clip||!authoredMotion.IsPlaying(clip))
                     {
-                        huntPoseClock+=Time.deltaTime*speed;
-                        SampledHuntPoseTime=Mathf.Floor(huntPoseClock*12f)/12f;
-                        state.speed=0;state.time=SampledHuntPoseTime;
-                        authoredMotion.Sample();
-                        // Authored clips already contain the tilted head. Sample
-                        // their pose without doubling that bend on the live rig.
-                        if(weapon)weapon.localRotation*=Quaternion.Euler(0,0,Mathf.Sin(poseTime*4.6f)*17f);
+                        var old=string.IsNullOrEmpty(currentClip)?null:authoredMotion[currentClip];
+                        bool oldGait=currentClip=="Walk"||currentClip=="Run";
+                        float phase=oldGait&&old?Mathf.Repeat(old.normalizedTime,1):0;
+                        authoredMotion.CrossFade(clip,recoil||windup?.07f:.2f);
+                        state.normalizedTime=gait&&oldGait?phase:0;currentClip=clip;
                     }
-                    else state.speed=speed;
+                    state.speed=speed;
+                    SampledHuntPoseTime=state.time;
                 }
                 if(blitzSmoke&&recoil&&!wasStunned)blitzSmoke.Play();wasStunned=recoil;
                 return;
@@ -116,9 +134,9 @@ namespace LayarTerakhir.Prolog
                 leftLeg.localRotation=leftLegBase*Quaternion.Euler(swing,0,0);rightLeg.localRotation=rightLegBase*Quaternion.Euler(-swing,0,0);
                 float headTilt=hunting?68f+Mathf.Sin(poseTime*2.1f)*11f:0;
                 head.localRotation=headBase*Quaternion.Euler(Mathf.Sin(poseTime*2.5f)*.8f,0,headTilt+Mathf.Sin(stride*.5f)*.7f);
-                weapon.localPosition=weaponPosition;weapon.localRotation=weaponBase*Quaternion.Euler(0,0,shear);
+                if(weapon){weapon.localPosition=weaponPosition;weapon.localRotation=weaponBase*Quaternion.Euler(0,0,shear);}
             }
-            else
+            else if(weapon)
             {
                 weapon.localPosition = Vector3.Lerp(weapon.localPosition, weaponPosition + (windup ? Vector3.up * .65f : recoil ? Vector3.down * .2f : Vector3.zero), Time.unscaledDeltaTime * 5);
                 weapon.localRotation = Quaternion.Slerp(weapon.localRotation, weaponBase * Quaternion.Euler(windup ? -105 : recoil ? 35 : Mathf.Sin(stride) * 8, 0, windup ? -25 : 0), Time.unscaledDeltaTime * 5);

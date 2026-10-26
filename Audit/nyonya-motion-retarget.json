@@ -1,0 +1,40 @@
+{
+  "baselineCommit": "073a0ab4bf1f83bea69c72875ca83cbd743c0794",
+  "baselineSha256": "d307ad0d637504cbcaf8baff91391a12dddc7cebf5600a8669b1e62c00d4847b",
+  "sourceMotion": "Assets/_LayarTerakhir/assets/Art/Phase5/Imported/Animations/QuaterniusHumanMotion.fbx",
+  "sourceSha256": "42f16a4ed61d1e9f5fc7c2526894c5487148ac6ba82b64281ceb7943570f3c37",
+  "license": "CC0-1.0, Quaternius Universal Animation Library",
+  "sourcePage": "https://quaternius.com/packs/universalanimationlibrary.html",
+  "meshTriangles": 21999,
+  "meshAndTextureUnchanged": true,
+  "repairedRobeWeights": 5555,
+  "rigidShearsVertices": 435,
+  "retainedClips": [
+    "Windup",
+    "Stun"
+  ],
+  "clips": [
+    {
+      "clip": "Idle",
+      "source": "Idle_Loop",
+      "frames": 76,
+      "fps": 30,
+      "maxRobeSupportCorrectionMetres": 0.001421691500581801
+    },
+    {
+      "clip": "Walk",
+      "source": "Walk_Loop",
+      "frames": 41,
+      "fps": 30,
+      "maxRobeSupportCorrectionMetres": 0.04024852439761162
+    },
+    {
+      "clip": "Run",
+      "source": "Jog_Fwd_Loop",
+      "frames": 29,
+      "fps": 30,
+      "maxRobeSupportCorrectionMetres": 0.14401157200336456
+    }
+  ],
+  "outputSha256": "863d3843180372c10b3ed6d41dc8655a1d4f4570d1d2c18882c64e7692eec606"
+}

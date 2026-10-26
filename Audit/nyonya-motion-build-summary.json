@@ -1,0 +1,41 @@
+{
+  "verifiedUtc": "2026-10-26T17:04:34.696657+00:00",
+  "unityExitCode": 0,
+  "result": "Succeeded",
+  "target": "StandaloneWindows64",
+  "scriptingBackend": "Mono2x",
+  "development": true,
+  "startupScene": "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity",
+  "executable": "/root/Projects/LayarTerakhir-main/Builds/Windows/LayarTerakhir.exe",
+  "unityReportedFilesVerified": 318,
+  "scriptingAssembliesVerified": 112,
+  "unityReportedSizeBytes": 4837710883,
+  "buildFileCount": 359,
+  "totalBuildSizeBytes": 4838337850,
+  "archivePath": "/root/Projects/LayarTerakhir-main/Builds/LayarTerakhir-Windows-x86_64-Development.zip",
+  "archiveSizeBytes": 3024372126,
+  "archiveSha256": "16cb33bdcecfb45de06accd2a291b6f99d83dceb858b03c00dd31ff13b5f7723",
+  "zipCrcVerified": true,
+  "zipContainsAllBuildFiles": true,
+  "windowsRuntimeTested": false,
+  "sourceSceneSha256": "468daa5c40bb2cdc2d520151b84a4cac60364db85e0d4163244cf76fd8c14ac8",
+  "atmajaSceneSha256": "af817f3f2ee58e593c5deab35b2f3af7385fe41d3d252907b804384577d8a403",
+  "openingProtection": {
+    "method": "Historic approved structure; camera presentation may change",
+    "sha256": "468daa5c40bb2cdc2d520151b84a4cac60364db85e0d4163244cf76fd8c14ac8",
+    "structureSha256": "8829d1989c6f093c76abcd9409fd3957be21affd87afe5c6f4701c0a8989302a",
+    "historicSha256": "4b73b117b832fb753b92d3de885c163bc1dd3f6225101867f7b4e2437c8b793a",
+    "baseCommit": "30d9e7e93b82870bec3f8f03f8465b5b0b8c9d63"
+  },
+  "developmentScreenshotUtilityIncluded": true,
+  "includedScenes": [
+    "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Prolog_RumahAtmaja.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Prolog_KoridorKos.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Babak1_Rusunawa.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Babak2_RSUD.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Babak3_PabrikGula.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Babak4_KarangSetra.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Babak5_PasarSetan.unity"
+  ]
+}

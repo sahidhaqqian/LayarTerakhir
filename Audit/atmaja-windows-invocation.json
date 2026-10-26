@@ -17,14 +17,14 @@
     "LayarTerakhir.Editor.WindowsDevelopmentBuild.Build",
     "-quit",
     "-logFile",
-    "Builds/Logs/prolog-review-windows-build.log"
+    "Builds/Logs/nyonya-motion-windows-build.log"
   ],
-  "startedUtc": "2026-10-26T13:54:30.863879+00:00",
+  "startedUtc": "2026-10-26T16:55:37.103314+00:00",
   "status": "Finished",
-  "unit": "lt-unity-20261026-135430-372459",
+  "unit": "lt-unity-20261026-165537-379429",
   "memoryLimitBytes": 5905580032,
   "memoryHighBytes": 5100273664,
-  "endedUtc": "2026-10-26T13:56:02.328719+00:00",
+  "endedUtc": "2026-10-26T16:57:14.202854+00:00",
   "exitCode": 0,
   "systemdServiceResult": "success"
 }
