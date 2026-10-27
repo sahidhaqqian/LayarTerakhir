@@ -44,7 +44,13 @@ namespace LayarTerakhir.Diagnostics
                 // progression, handoffs and isolated saves behave like a manual click.
                 if (ReviewPhaseFor(Environment.GetCommandLineArgs()) > 0 &&
                     GameShell.Instance && GameShell.AwaitingStart && CampaignState.Instance)
+                {
                     GameShell.Instance.Continue();
+                    // Freeze the review start state (post-handoff live data) so the
+                    // pause-menu RESTART returns here. Never overwrite an existing
+                    // entry: relaunches preserve progress and keep the true start.
+                    CampaignState.Instance.SnapshotPhaseEntry(false);
+                }
             }
             finally
             {

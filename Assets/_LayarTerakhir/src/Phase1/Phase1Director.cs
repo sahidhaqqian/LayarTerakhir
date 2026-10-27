@@ -66,7 +66,7 @@ namespace LayarTerakhir.Phase1
         public static bool PrepareNextNight(CampaignState campaign)
         {
             if (!campaign || campaign.Data.chapter_id != 0 || campaign.Data.checkpoint_id != "PROLOG_COMPLETE") return false;
-            return campaign.TryCommit("PHASE1_CP1", d =>
+            bool entered = campaign.TryCommit("PHASE1_CP1", d =>
             {
                 d.chapter_id = 1; d.phase1 = new Phase1Data(); d.phase1.Add("P1_ARRIVAL");
                 // Designer revision: charge once overnight on the Prolog -> P1 transition.
@@ -74,6 +74,8 @@ namespace LayarTerakhir.Phase1
                 d.battery=100;
                 // Keep actual sanity, money, upgrades and inventory; no starter powerbank.
             });
+            if (entered) campaign.SnapshotPhaseEntry();
+            return entered;
         }
         public bool Completed(string id) => Campaign && Campaign.Data.phase1.Completed(id);
         public bool Commit(string id, Action<CampaignData> mutate = null, string checkpoint = null, string anchor = null)

@@ -19,11 +19,13 @@ namespace LayarTerakhir.Phase5
         public static bool Enter(CampaignState c)
         {
             if (!c || !Phase5Ids.Eligible(c.Data)) return false;
-            return c.TryCommit("PHASE5_CP1", d =>
+            bool entered = c.TryCommit("PHASE5_CP1", d =>
             {
                 d.chapter_id = 5; d.phase5 = new Phase5Data(); d.phase5.Add("P5_ARRIVE_GATE");
                 // Battery, Sanity, all inventories, ledgers and four seals carry over unchanged.
             });
+            if (entered) c.SnapshotPhaseEntry();
+            return entered;
         }
         private static bool Active(CampaignState c) => c && CampaignRouting.IsPhase5(c.Data) && c.Data.ending == EndingId.NONE;
         public static bool Receipt(CampaignState c, string id, string anchor = null, Action<CampaignData> mutation = null)

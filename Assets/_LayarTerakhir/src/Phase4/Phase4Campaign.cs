@@ -25,7 +25,9 @@ namespace LayarTerakhir.Phase4
         public static bool EnterHub(CampaignState c)
         {
             if (!c || c.Data.chapter_id != 3 || !Phase4Ids.Eligible(c.Data)) return false;
-            return c.TryCommit("PHASE4_HUB", d => { d.chapter_id = 4; d.phase4 = new Phase4Data(); d.phase4.Add("P4_ARRIVE_KOS"); });
+            bool entered = c.TryCommit("PHASE4_HUB", d => { d.chapter_id = 4; d.phase4 = new Phase4Data(); d.phase4.Add("P4_ARRIVE_KOS"); });
+            if (entered) c.SnapshotPhaseEntry();
+            return entered;
         }
         public static void Unlock(CampaignData d)
         {

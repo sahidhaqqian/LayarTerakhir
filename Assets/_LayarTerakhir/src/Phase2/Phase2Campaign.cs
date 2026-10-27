@@ -13,10 +13,12 @@ namespace LayarTerakhir.Phase2
         {
             if (!campaign || campaign.Data.chapter_id != 1 || !campaign.Data.phase1.Completed("P1_COMPLETE") ||
                 !campaign.Data.location_seals.Contains(Phase1Ids.Seal)) return false;
-            return campaign.TryCommit("PHASE2_HUB", d =>
+            bool entered = campaign.TryCommit("PHASE2_HUB", d =>
             {
                 d.chapter_id = 2; d.phase2 = new Phase2Data(); d.phase2.Add("P2_ARRIVE_KOS");
             });
+            if (entered) campaign.SnapshotPhaseEntry();
+            return entered;
         }
         public static void Unlock(CampaignData d)
         {

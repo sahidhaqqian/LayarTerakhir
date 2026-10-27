@@ -94,6 +94,58 @@ namespace LayarTerakhir.Core
         private string SaveFilePath => Path.Combine(SaveDirectory, "layar_terakhir_save.json");
         private string TempSaveFilePath => SaveFilePath + ".tmp";
         private string BackupSaveFilePath => SaveFilePath + ".bak";
+        private string PhaseEntryPath(int chapter) => Path.Combine(SaveDirectory, "phase_entry_" + chapter + ".json");
+
+        // Restart support: freeze the exact campaign state at each phase entry.
+        // Normal flow never reads these files; only the pause-menu RESTART does.
+        // The isolated test/review save directory is honored automatically.
+        public void SnapshotPhaseEntry(bool overwrite = true)
+        {
+            try
+            {
+                string path = PhaseEntryPath(Data.chapter_id);
+                if (!overwrite && File.Exists(path)) return;
+                string json = JsonUtility.ToJson(Data, true);
+                string temp = path + ".tmp";
+                Directory.CreateDirectory(SaveDirectory);
+                using (var stream = new FileStream(temp, FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    byte[] bytes = System.Text.Encoding.UTF8.GetBytes(json);
+                    stream.Write(bytes, 0, bytes.Length);
+                    stream.Flush(true);
+                }
+                if (File.Exists(path)) File.Replace(temp, path, null);
+                else File.Move(temp, path);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[CampaignState] Snapshot awal fase gagal disimpan: {ex.Message}");
+            }
+        }
+        public bool HasPhaseEntry()
+        {
+            try { return File.Exists(PhaseEntryPath(Data.chapter_id)); }
+            catch { return false; }
+        }
+        // Revert live progress to the current phase entry, then persist it so the
+        // scene reload boots from entry state. Earlier phases are untouched because
+        // the snapshot was frozen at entry time.
+        public bool RestorePhaseEntry()
+        {
+            try
+            {
+                if (!TryReadCheckpoint(PhaseEntryPath(Data.chapter_id), out CampaignData loaded))
+                    return false;
+                Data = loaded;
+                checkpointAttemptOwner = null;
+                return SaveAtomic(Data.checkpoint_id);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[CampaignState] Restart fase gagal dimuat: {ex.Message}");
+                return false;
+            }
+        }
 
         private void Awake()
         {
@@ -251,7 +303,7 @@ namespace LayarTerakhir.Core
                     var archive=Path.Combine(SaveDirectory,"ArchivedCampaigns");Directory.CreateDirectory(archive);
                     File.Copy(SaveFilePath,Path.Combine(archive,"campaign-"+DateTime.UtcNow.ToString("yyyyMMdd-HHmmss")+"-"+Guid.NewGuid().ToString("N")+".json"));
                 }
-                StartNewGame();if(SaveCheckpointAtomic("PROLOG_KOS_START"))return true;
+                StartNewGame();if(SaveCheckpointAtomic("PROLOG_KOS_START")){SnapshotPhaseEntry();return true;}
             }
             catch(Exception e){Debug.LogWarning("New Game tidak dapat mengarsipkan save: "+e.Message);}
             Data=previous;return false;

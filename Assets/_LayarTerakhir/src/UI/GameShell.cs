@@ -126,7 +126,9 @@ namespace LayarTerakhir.UI
             else
             {
                 MenuButton("Resume","LANJUTKAN",.52f,Resume);MenuButton("Settings","SETTINGS",.41f,()=>{settings=true;Draw();});
-                MenuButton("MainMenu","MENU UTAMA",.30f,()=>{OpenMain();StartCoroutine(LoadKos(true));});MenuButton("Exit","EXIT",.19f,Exit);
+                var restart=MenuButton("Restart","RESTART",.30f,Restart);
+                restart.interactable=CampaignState.Instance&&CampaignState.Instance.HasPhaseEntry();
+                MenuButton("MainMenu","MENU UTAMA",.19f,()=>{OpenMain();StartCoroutine(LoadKos(true));});
                 UiWidgets.Text("CheckpointHint",page.transform,"Continue melanjutkan checkpoint tersimpan, bukan posisi kamera saat ini.",new Vector2(.4f,.18f),new Vector2(.9f,.36f),21);
             }
         }
@@ -156,8 +158,19 @@ namespace LayarTerakhir.UI
             }
             string scene=CampaignRouting.ContinueScene(CampaignState.Instance.Data);
             if(string.IsNullOrEmpty(scene)||!Application.CanStreamedLevelBeLoaded(scene)){error="Babak checkpoint ini belum tersedia. Save tetap disimpan.";Draw();return;}
-            error="";loading=true;awaiting=false;Resume();StartCoroutine(LoadSavedScene(scene));
+            BeginSceneLoad(scene);
         }
+        public void Restart()
+        {
+            if(loading)return;
+            var campaign=CampaignState.Instance;
+            if(!campaign||!campaign.RestorePhaseEntry()){error="Restart tidak tersedia untuk babak ini. Progres tersimpan tetap utuh.";Draw();return;}
+            string scene=CampaignRouting.ContinueScene(campaign.Data);
+            if(string.IsNullOrEmpty(scene)||!Application.CanStreamedLevelBeLoaded(scene)){error="Babak awal fase ini belum tersedia. Progres tersimpan tetap utuh.";Draw();return;}
+            BeginSceneLoad(scene);
+        }
+        private void BeginSceneLoad(string scene)
+        {error="";loading=true;awaiting=false;Resume();StartCoroutine(LoadSavedScene(scene));}
         private IEnumerator LoadSavedScene(string scene)
         {if(scene==CampaignRouting.FactoryScene||scene==CampaignRouting.VillageScene||scene==CampaignRouting.MarketScene){SceneManager.LoadScene(scene);yield return null;}else{var op=SceneManager.LoadSceneAsync(scene);while(!op.isDone)yield return null;}loading=false;}
         private IEnumerator LoadKos(bool keepMenu)
