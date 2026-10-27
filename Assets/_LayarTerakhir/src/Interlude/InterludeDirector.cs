@@ -54,7 +54,8 @@ namespace LayarTerakhir.Interlude
             if (corridor == null || Campaign == null) { Destroy(this); return; }
             Campaign.LoadCheckpoint();
             if (!InterludeIds.IsInterludeData(Campaign.Data)) { Destroy(this); return; }
-            corridor.StopAllCoroutines();
+            // The host Start coroutine ends itself with yield break right after
+            // AddComponent returns, so no StopAllCoroutines self-stop is needed.
             corridor.enabled = false;
             foreach (var n in FindObjectsByType<MelatiNeighborhood>(FindObjectsSortMode.None)) n.enabled = false;
             foreach (var dep in FindObjectsByType<MelatiDeparture>(FindObjectsSortMode.None)) dep.enabled = false;
@@ -89,6 +90,7 @@ namespace LayarTerakhir.Interlude
             if (!savedGround) Campaign.SaveCheckpointAtomic(InterludeIds.MorningCheckpoint);
 
             DressYard();
+            InterludeExterior.DressStreet(corridor);
             SpawnResidents();
             BindWorldItems();
             BuildZones();
@@ -288,6 +290,10 @@ namespace LayarTerakhir.Interlude
                 "Raka", "(ketuk) Mas Eko? Berangkat bareng?", 3f, InterludeIds.NeighborTalk);
             AddZone("INTERLUDE_STREET", new Vector3(0, 1, -30), new Vector3(10, 4, 10),
                 "SFX", "[ Samar-samar... tembang Jawa dari arah gang? ] Radio tetangga, mungkin. Pagi-pagi sudah nyetel gending.", 6f, InterludeIds.AnomalySeen);
+            AddZone("INTERLUDE_WARTEG", new Vector3(4.6f, 1, -28.5f), new Vector3(4.5f, 2.5f, 3.5f),
+                "Raka", "Warteg Bahari buka... Nasi bungkus lima belas ribu. Nanti aja, perut masih kenyang.", 4.5f);
+            AddZone("INTERLUDE_GEROBAK", new Vector3(-4.4f, 1, -20f), new Vector3(3f, 2.5f, 3f),
+                "Raka", "Gorengan anget... bau minyaknya khas banget. Khas Indonesia.", 4f);
         }
 
         private void BindWorldItems()
@@ -317,7 +323,7 @@ namespace LayarTerakhir.Interlude
             npc.transform.SetParent(corridor.buildingRoot, false);
             npc.transform.localPosition = localPos;
             npc.transform.localRotation = Quaternion.Euler(0, yaw, 0);
-            foreach (var old in npc.GetComponentsInChildren<Prolog.MelatiShopkeeper>(true)) Object.Destroy(old);
+            foreach (var old in npc.GetComponentsInChildren<Prolog.MelatiShopkeeper>(true)) InterludeExterior.Drop(old);
             foreach (var renderer in npc.GetComponentsInChildren<Renderer>())
             {
                 var mats = renderer.sharedMaterials;
@@ -381,7 +387,7 @@ namespace LayarTerakhir.Interlude
                 cloth.transform.localScale = new Vector3(.04f, .55f, .5f);
                 var mat = new Material(Shader.Find("Universal Render Pipeline/Lit")) { color = cloths[i] };
                 cloth.GetComponent<Renderer>().sharedMaterial = mat;
-                Object.Destroy(cloth.GetComponent<Collider>());
+                InterludeExterior.DropCollider(cloth);
             }
             var sandalMat = new Material(Shader.Find("Universal Render Pipeline/Lit")) { color = new Color(.12f, .10f, .09f) };
             foreach (var spot in new[] { new Vector3(-1.0f, .03f, 2.1f), new Vector3(1.0f, .03f, 8.0f), new Vector3(-1.0f, .03f, 10.9f) })
@@ -393,7 +399,7 @@ namespace LayarTerakhir.Interlude
                     sandal.transform.localPosition = spot + new Vector3(s * .09f, 0, 0);
                     sandal.transform.localScale = new Vector3(.11f, .05f, .28f);
                     sandal.GetComponent<Renderer>().sharedMaterial = sandalMat;
-                    Object.Destroy(sandal.GetComponent<Collider>());
+                    InterludeExterior.DropCollider(sandal);
                 }
             var galon = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             galon.name = "InterludeGalon";
@@ -402,14 +408,14 @@ namespace LayarTerakhir.Interlude
             galon.transform.localScale = new Vector3(.32f, .8f, .32f);
             var aqua = new Material(Shader.Find("Universal Render Pipeline/Lit")) { color = new Color(.45f, .70f, .85f, .75f) };
             galon.GetComponent<Renderer>().sharedMaterial = aqua;
-            Object.Destroy(galon.GetComponent<Collider>());
+            InterludeExterior.DropCollider(galon);
             var broom = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             broom.name = "InterludeBroom";
             broom.transform.SetParent(root, false);
             broom.transform.localPosition = new Vector3(-2.3f, .7f, 5.6f);
             broom.transform.localScale = new Vector3(.04f, 1.4f, .04f);
             broom.GetComponent<Renderer>().sharedMaterial = poleMat;
-            Object.Destroy(broom.GetComponent<Collider>());
+            InterludeExterior.DropCollider(broom);
         }
 
         private void ApplyDay()

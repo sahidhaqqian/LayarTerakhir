@@ -129,7 +129,7 @@ namespace LayarTerakhir.Editor.Tests
         }
         [Test]public void CorridorSceneKeepsEveryObjectTheDaytimeDirectorNeeds()
         {
-            UnityEditor.SceneManagement.EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);
+            UnityEditor.SceneManagement.EditorSceneManager.OpenScene(LayarTerakhir.Editor.KosCorridorBuilder.ScenePath);
             var corridor=UnityEngine.Object.FindFirstObjectByType<LayarTerakhir.Prolog.KosCorridorDirector>();
             Assert.That(corridor,Is.Not.Null);
             Assert.That(corridor.player,Is.Not.Null);
@@ -151,7 +151,7 @@ namespace LayarTerakhir.Editor.Tests
         }
         [Test]public void KosRoomSceneKeepsEveryObjectTheMorningHubNeeds()
         {
-            UnityEditor.SceneManagement.EditorSceneManager.OpenScene(PrologKosSceneBuilder.ScenePath);
+            UnityEditor.SceneManagement.EditorSceneManager.OpenScene(LayarTerakhir.Editor.PrologKosSceneBuilder.ScenePath);
             var prolog=UnityEngine.Object.FindFirstObjectByType<LayarTerakhir.Prolog.KamarKosPrologDirector>();
             Assert.That(prolog,Is.Not.Null);
             Assert.That(prolog.pcMonitorItem,Is.Not.Null);
@@ -159,6 +159,52 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(GameObject.Find("Golden_Workstation"),Is.Not.Null);
             Assert.That(GameObject.Find("vintage_day_bed"),Is.Not.Null);
             Assert.That(GameObject.Find("PhoneCharger") ?? GameObject.Find("OldWallSocket"),Is.Not.Null);
+        }
+        [Test]public void ExteriorDressingBuildsCompleteStreetComposition()
+        {
+            UnityEditor.SceneManagement.EditorSceneManager.OpenScene(LayarTerakhir.Editor.KosCorridorBuilder.ScenePath);
+            var corridor=UnityEngine.Object.FindFirstObjectByType<LayarTerakhir.Prolog.KosCorridorDirector>();
+            Assert.That(corridor,Is.Not.Null);
+            LayarTerakhir.Interlude.InterludeExterior.DressStreet(corridor);
+            try
+            {
+                Assert.That(GameObject.Find("InterludeGapuraBeam"),Is.Not.Null,"gapura arch anchors the lane entrance");
+                Assert.That(GameObject.Find("InterludeSpandukUtama"),Is.Not.Null,"RT spanduk spans the road");
+                Assert.That(GameObject.Find("InterludeWartegSign"),Is.Not.Null,"warteg sign present");
+                Assert.That(GameObject.Find("InterludeWartegCaseBase"),Is.Not.Null,"warteg etalase present");
+                int carts=0,parked=0,signs=0,labels=0;
+                foreach(var t in UnityEngine.Object.FindObjectsByType<Transform>(FindObjectsInactive.Include,FindObjectsSortMode.None))
+                {
+                    if(t.name=="CartSign")carts++;
+                    if(t.name.StartsWith("InterludeParkedMotor"))parked++;
+                    if(t.name.StartsWith("InterludeSign")&&!t.name.EndsWith("Text"))signs++;
+                    var label=t.GetComponent<TextMesh>();
+                    if(label&&t.name.StartsWith("Interlude")){labels++;Assert.That(label.font,Is.Not.Null,"label resolves scene font: "+t.name);Assert.That(label.text.Length,Is.GreaterThan(0));}
+                }
+                Assert.That(carts,Is.EqualTo(2),"two PKL carts with signs");
+                Assert.That(parked,Is.EqualTo(3),"parked motorbike row");
+                Assert.That(signs,Is.GreaterThanOrEqualTo(4),"shop boards on facades");
+                Assert.That(labels,Is.GreaterThanOrEqualTo(8),"all exterior text resolves a font");
+                var gapura=GameObject.Find("InterludeGapuraPillar");
+                Assert.That(gapura.GetComponent<Collider>(),Is.Not.Null,"landmark blocks walking");
+            }
+            finally
+            {
+                var residue = new System.Collections.Generic.List<GameObject>();
+                foreach (var t in UnityEngine.Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                {
+                    if (t == null) continue;
+                    string n;
+                    try { n = t.name; } catch { continue; }
+                    if (!n.StartsWith("Interlude")) continue;
+                    var p = t.parent;
+                    bool parentKept = false;
+                    try { parentKept = p != null && p.name.StartsWith("Interlude"); } catch { }
+                    if (!parentKept) residue.Add(t.gameObject);
+                }
+                foreach (var go in residue) UnityEngine.Object.DestroyImmediate(go);
+            }
+            Assert.That(GameObject.Find("InterludeGapuraBeam"),Is.Null,"dressing leaves no residue in the authored scene");
         }
     }
 }

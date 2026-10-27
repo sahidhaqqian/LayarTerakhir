@@ -6,7 +6,7 @@ Satu baris per babak. Status = bukti terakhir, bukan target. Detail ada di
 | Babak | Status | Bukti terakhir |
 |---|---|---|
 | Prolog | done | Batch 15 isu + follow-up standoff (`c131d6ab`, `fd370245`); AtmajaPlayTests 34/34; R2 upload `verified` |
-| Interlude (Prolog→P1) | implemented, acceptance pending | Daytime hub+director; finale→INTERLUDE_MORNING→READY→P1; InterludeCampaignTests 10/10; visual/playtest manusia belum |
+| Interlude (Prolog→P1) | implemented, acceptance pending | Daytime hub+director; finale→INTERLUDE_MORNING→READY→P1; InterludeCampaignTests 11/11; exterior pass: gapura, spanduk, warteg, 2 gerobak, motor row, signage, clutter (runtime dressing, no scene edits); in-engine street tour blocked by llvmpipe corridor-load cost — room daylight render verified live, street shots pending real GPU |
 | Phase 1 | in-progress | Review batch 6 isu diimplementasikan; EditMode 45/45; native smoke parsial (parkir→K102→mailbox 207, 28 checks) lolos; L3 encounter/L4/boss/return belum tervalidasi in-game (audit dihentikan atas permintaan) |
 | Phase 2 | implemented, acceptance pending | Sesi 1–2 implemented; Windows candidate + R2 verified; lihat `Phase2.MD` §status |
 | Phase 3 | implemented, acceptance pending | Main route native CP7 lulus; QA matrix di `Audit/phase3-qa-matrix.md` |

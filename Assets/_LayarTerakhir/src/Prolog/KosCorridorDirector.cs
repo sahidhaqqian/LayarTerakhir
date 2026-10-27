@@ -24,8 +24,7 @@ namespace LayarTerakhir.Prolog
         {
             var boot=CampaignState.Instance;boot.LoadCheckpoint();
             if(LayarTerakhir.Interlude.InterludeIds.IsInterludeData(boot.Data))
-            {gameObject.AddComponent<LayarTerakhir.Interlude.InterludeDirector>();enabled=false;yield break;}
-            PlayerFootsteps.Install(player,audioProfile);
+            {gameObject.AddComponent<LayarTerakhir.Interlude.InterludeDirector>();enabled=false;yield break;}            PlayerFootsteps.Install(player,audioProfile);
             PracticalLightPresentation.ConfigureBeam(motorHeadlight);
             PrologSceneFlow.RestoreBindings();var c=CampaignState.Instance;c.LoadCheckpoint();
             if(!c.HasInventoryItem("SMARTPHONE_RAKA"))
