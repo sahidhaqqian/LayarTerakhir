@@ -232,6 +232,78 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(hits.Length,Is.GreaterThan(0));
             Assert.That(hits[0].collider.transform.IsChildOf(relic.transform),Is.True,"A decorative rack/stove must not block the required relic: "+hits[0].collider.name);
         }
+        private static bool PassageBlocked(Vector3 centre, Vector3 half)
+        {
+            Physics.SyncTransforms();
+            return Physics.OverlapBox(centre, half, Quaternion.identity, ~0, QueryTriggerInteraction.Ignore).Length > 0;
+        }
+        [Test] public void ArchiveRoomDoorwayStaysPassable()
+        {
+            EditorSceneManager.OpenScene(Phase1SceneBuilder.ScenePath);
+            Assert.That(GameObject.Find("RoomDoorLeaf_203"),Is.Null,"The 203 doorway must not carry a leaf slab");
+            Assert.That(PassageBlocked(new Vector3(3,5.3f,13.08f),new Vector3(.7f,1.1f,.5f)),Is.False,"A capsule must fit the archive doorway to reach the Tari secret");
+        }
+        [Test] public void ServiceEntryRouteStaysPassable()
+        {
+            EditorSceneManager.OpenScene(Phase1SceneBuilder.ScenePath);
+            Assert.That(PassageBlocked(new Vector3(-24.1f,1.3f,-11),new Vector3(.5f,1.1f,.8f)),Is.False,"Facade service doorway");
+            Assert.That(PassageBlocked(new Vector3(-19,1.3f,-9),new Vector3(.8f,1.1f,.5f)),Is.False,"Lobby partition doorway on the walked line");
+            Assert.That(PassageBlocked(new Vector3(-17,1.3f,-11),new Vector3(.5f,1.1f,.8f)),Is.False,"Lobby mouth into the south gallery");
+        }
+        [Test] public void StairArrivalDoorwayStaysPassable()
+        {
+            EditorSceneManager.OpenScene(Phase1SceneBuilder.ScenePath);
+            Assert.That(PassageBlocked(new Vector3(-17,5.3f,8),new Vector3(.5f,1.1f,.8f)),Is.False,"L2 stair arrival must keep its cased opening");
+        }
+        [Test] public void ClosedRoomDoorsSealTheirDoorways()
+        {
+            EditorSceneManager.OpenScene(Phase1SceneBuilder.ScenePath);
+            Assert.That(GameObject.Find("RoomDoorLeaf_105"),Is.Not.Null);
+            Assert.That(PassageBlocked(new Vector3(-12,1.3f,-13),new Vector3(.7f,1.1f,.4f)),Is.True,"105 must read as a real front door");
+            Assert.That(PassageBlocked(new Vector3(3,5.3f,-13),new Vector3(.7f,1.1f,.4f)),Is.True,"207 (RT) stays chained shut");
+            Assert.That(GameObject.Find("RoomDoorChain_207"),Is.Not.Null);
+        }
+        [Test] public void StairShaftHasGuardsAndFilledSides()        {
+            EditorSceneManager.OpenScene(Phase1SceneBuilder.ScenePath);
+            foreach (string name in new[] { "ShaftFillWest", "ShaftFillEast", "ShaftCurbLandingWest", "ShaftCurbLandingEast", "ShaftCurbSouthWest", "ShaftCurbSouthEast" })
+                Assert.That(GameObject.Find(name), Is.Not.Null, name + " must guard the L4 stairwell");
+            Physics.SyncTransforms();
+            foreach (float x in new[] { 18f, 22.5f })
+            {
+                Assert.That(Physics.Raycast(new Vector3(x, 13, -6), Vector3.down, out var hit, 5, ~0, QueryTriggerInteraction.Ignore), Is.True, "Filled strip beside the flight at x=" + x);
+                Assert.That(hit.point.y, Is.GreaterThan(11.5f).And.LessThan(12.5f), "Strip floor at L4 level, not a pit");
+            }
+            Assert.That(Physics.Raycast(new Vector3(20, 13, -6), Vector3.down, out var flight, 5, ~0, QueryTriggerInteraction.Ignore), Is.True, "The flight itself stays open inside the shaft");
+            Assert.That(flight.point.y, Is.GreaterThan(8.5f).And.LessThan(11f), "Ray lands on the stair incline, not the storey below");
+        }
+        [Test] public void ServiceDynamoItemExistsOnTheL3Landing()
+        {
+            EditorSceneManager.OpenScene(Phase1SceneBuilder.ScenePath);
+            var panel = GameObject.Find("DYNAMO_L3_PANEL");
+            Assert.That(panel, Is.Not.Null);
+            Assert.That(panel.GetComponent<Phase1WorldItem>(), Is.Not.Null);
+            Assert.That(panel.GetComponent<Phase1WorldItem>().id, Is.EqualTo("DYNAMO_L3_PANEL"));
+        }
+        [Test] public void KuntiStunWindowIsOneSecond()
+        {
+            var balance = AssetDatabase.LoadAssetAtPath<Phase1Balance>("Assets/_LayarTerakhir/assets/Art/Phase1/Phase1Balance.asset");
+            Assert.That(balance, Is.Not.Null);
+            Assert.That(balance.kuntiPhotoStunSeconds, Is.EqualTo(1));
+            Assert.That(balance.kuntiPhotoRangeM, Is.EqualTo(5));
+        }
+        [TestCase("LiftPanel_L1", -15f, 1.4f, -8.5f)]
+        [TestCase("LiftPanel_L2", -15f, 5.4f, -8.5f)]
+        [TestCase("LiftPanel_L3", -15f, 9.4f, -10f)]
+        public void LiftPanelsHaveUnobstructedHandReachFromGallery(string name, float x, float y, float z)
+        {
+            EditorSceneManager.OpenScene(Phase1SceneBuilder.ScenePath);
+            var panel = GameObject.Find(name); Assert.That(panel, Is.Not.Null);
+            Vector3 eye = new Vector3(x, y, z), delta = panel.transform.position - eye;
+            Physics.SyncTransforms();
+            var hits = Physics.RaycastAll(eye, delta.normalized, delta.magnitude + .1f, ~0, QueryTriggerInteraction.Ignore).OrderBy(h => h.distance).ToArray();
+            Assert.That(hits.Length, Is.GreaterThan(0));
+            Assert.That(hits[0].collider.transform.IsChildOf(panel.transform), Is.True, "A door leaf/jamb must not block " + name + ": " + hits[0].collider.name);
+        }
     }
 }
 #endif

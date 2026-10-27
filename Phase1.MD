@@ -224,18 +224,14 @@ Sebelum melanjutkan, pemain dapat memeriksa **Negatif Foto Tari**. Ruang arsip p
 
 **Kondisi Awal:** Lift barang berhenti dengan hentakan keras di **Lantai 3** akibat rem pengaman terkunci dan panel yang diganggu anomali gaib (Raka semula menyangka kabel sling macet). Pintu besi terbuka memperlihatkan koridor panjang lurus sejauh 40 meter dengan lampu neon yang berkedip-kedip hampir mati.
 
-#### 1. Mekanik Kuntilanak: Jangan Pernah Membelakangi! (Gimmick Hantu #2)
+#### 1. Mekanik Kuntilanak: dengar dulu, balik, tatap (Gimmick Hantu #2)
 
-Di tengah koridor Lantai 3, terdengar suara tangisan perempuan yang justru terdengar **semakin pelan ketika posisinya semakin dekat**.
+Koridor Lantai 3 dibuka dengan **audio terlebih dahulu**: tangisan perempuan lirih terdengar dari ujung koridor begitu lift berhenti — tanpa label nama entitas, tanpa peringatan sistem. Panel daya servis di landing dapat dipakai sebelum bergerak (mekanisme dinamo manual yang sama dengan §8.0).
 
-* Saat pemain berjalan mencapai tengah lorong, sesosok **Kuntilanak Putih** bergaun hangus muncul di sisi lift yang baru dilewati. Pintu tangga Lantai 4 berada pada ujung berlawanan, di belakang pemain saat kamera menghadap hantu.
-
-**Peringatan Sistem di Layar HP (`MataBatin.apk`):**
-
-> **`[PERINGATAN ENTITAS: KUNTILANAK TERDETEKSI! JANGAN MEMBELAKANGINYA — PANTAU BAYANGANNYA LEWAT LAYAR KAMERA SAMBIL BERJALAN MUNDUR!]`**
-
-
-**Eksekusi Gameplay:**
+* Saat pemain mencapai tengah lorong, sosok **bergauun putih hangus muncul TEPAT DI BELAKANG pemain** (±8 m di belakang arah hadap, diklem ke dalam koridor). Raka refleks mengangkat kamera HP ke arahnya; pemain membalik badan dan mendapatkan momen *look-back* orang-pertama. Pintu tangga Lantai 4 berada pada ujung seberang.
+* Setelah terungkap, aturan berlaku: **tahan kamera HP ke arahnya**; memalingkan kamera atau menurunkan HP lebih dari **1,5 detik** saat pengejaran dimulai menyebabkan *warp-attack* (Game Over). Tidak ada teks yang membocorkan nama atau ancaman sebelum momen terungkap.
+* **Jendela bertahan yang adil:** foto jarak dekat (≤5 m, biaya foto normal 1%) **mengejutkan sosok itu ±1 detik** — gerak, timer lepas-pandang, dan tangkapan berhenti — sehingga pemain dapat mundur menjauh. Stun ini defensif seperti stun Prolog, bukan damage.
+* Pengejaran dimulai saat pemotong besi diambil; potong rantai (E radius tangan ≤1,6 m, animasi 2 detik membekukan AI) mengunci `RESOLVED` permanen.
 
 * Pintu tangga ke Lantai 4 digembok rantai, dan alat pemotong besinya (*bolt cutter*) ada di **ceruk Ruang Kebersihan di samping jalur menuju tangga**. **[BASELINE UJI]** Sesaat setelah lift berhenti, slot daya cadangan panel lift mengangkat baterai HP menjadi minimal **20% sekali** (tidak menambah powerbank, tidak dapat dipakai ulang). Ketika baterai tetap turun ke 0% selama encounter, mode pengawasan kamera darurat di L3 masih memungkinkan pemain menatap Kuntilanak; AR/EVP/Flash tetap tidak berfungsi pada 0% (§8.0).
 * Begitu Raka mengambil pemotong besi dan Kuntilanak mulai bergerak mendekat dari ujung koridor, pemain **wajib berjalan mundur (`[S]`) sambil terus menatap Kuntilanak lewat layar kamera HP** menuju pintu tangga Lantai 4.
@@ -245,7 +241,7 @@ Di tengah koridor Lantai 3, terdengar suara tangisan perempuan yang justru terde
 
 **Rentetan Live Chat #3:**
 
-* `@bambang_gentolet`: *"JANGAN BALIK BADAN BANG! MUNDUR PELAN-PELAN SAMBIL SOROT KAMERANYA!"*
+* `@bambang_gentolet`: *"Bang... kok gue ikut denger suara nangis?"*
 
 * `@putri_melati`: *"Tangannya udah panjang banget mau nyekik dari depan itu ya Allah!"*
 * `Penonton_Terakhir` **[SAWER Rp3.000.000]**: *"Bagus. Tetap buka matamu. Tapi ingat, di lantai atas nanti bukan dia penguasa utamanya."*
@@ -522,21 +518,22 @@ L4: Koridor loop 4 sisi; K401 (spawn boss) -- K402 (cakaran+catatan Tari)
 
 ### 3.3 Lantai 3: tata letak Kuntilanak agar masuk akal
 
-- **[KANON]** Koridor lurus **40 meter**. Pemain keluar dari lift, maju ke tengah; Kuntilanak Putih muncul di **sisi lift yang baru dilewati**. Tangga ke L4 ada pada **ujung seberang**. Saat kamera diarahkan ke hantu yang ada di sisi lift, tujuan ada **di belakang karakter**.
-- **[KANON]** Setelah alat dipungut, Kuntilanak mendekat; pemain mundur `S` dengan kamera HP terus mengarah ke hantu. Berpaling atau menurunkan kamera lebih dari **1,5 detik** menyebabkan instant-warp/Game Over. Bolt cutter berada **di ceruk Ruang Kebersihan samping jalur menuju tangga**, bukan di balik hantu.
+- **[KANON]** Koridor lurus **40 meter**. Pemain keluar dari lift, maju ke tengah; **tangisan lirih terdengar lebih dulu** dari ujung koridor. Pada pemicu tengah, sosok bergaun hangus muncul **di belakang pemain** dan Raka refleks mengangkat kamera. Tangga ke L4 ada pada **ujung seberang**. Saat kamera diarahkan ke sosok yang ada di belakang, tujuan ada **di belakang karakter**.
+- **[KANON]** Setelah alat dipungut, sosok itu mendekat; pemain mundur `S` dengan kamera HP terus mengarah ke sosok itu. Berpaling atau menurunkan kamera lebih dari **1,5 detik** menyebabkan instant-warp/Game Over. Foto jarak dekat (≤5 m) mengejutkannya **±1 detik** sebagai jendela mundur. Bolt cutter berada **di ceruk Ruang Kebersihan samping jalur menuju tangga**, bukan di balik sosok itu.
 - **[KLARIFIKASI]** Buat akses ceruk dan jangkauan `E` sebagai **interaksi radius tangan ≤1,3 m ke cutter dan ≤1,6 m ke rantai**, tanpa mewajibkan reticle/kamera menghadap item; gerakan pemain tetap menjaga kamera menghadap hantu. Pickup tidak boleh membutuhkan menutup HP. Bila animasi pemotongan rantai memaksa sudut kamera berpindah, *suspend* evaluasi 1,5 detik selama interaksi wajib, atau gunakan framing kamera yang tetap menampilkan hantu. Di luar animasi wajib, aturan keras tetap berlaku.
 - **[KLARIFIKASI]** Pemotong rantai tidak boleh menghasilkan kondisi “hantu dekat pintu, durasi animasi lebih lama dari sisa waktu aman”. Kontrak rinci: `CHAIN_INTERACT` membekukan gerak dan damage hantu tepat selama animasi wajib 2 detik, setelah pemain berhasil menekan E sebelum jarak tangkap (§3.3A). Pastikan jalur mundur tidak memiliki meja/objek yang menghalangi kontrol hingga mustahil dilalui.
 - **[USUL BARU]** Telegraph kejadian sebelum instakill: suara tangis yang makin lirih saat mendekat, lampu makin tidak stabil, frame kamera berembun/siluet. Berikan checkpoint tepat sebelum memulai encounter agar retry tidak mengulang puzzle 644.
 
 ### 3.3A Koreksi blocking Kuntilanak (BASELINE UJI)
 
-Koridor panjang **40 m** memakai koordinat lokal *blockout*: lift `x=0`, trigger kemunculan `x=19`, Kuntilanak `x=9`, ceruk bolt cutter `x=22`, dan pintu tangga `x=40`. Ceruk cutter ada di sisi jalur ke tangga (tidak melewati tubuh hantu). Dari cutter ke rantai ada **18 m** gerak mundur. Durasi target **5 menit termasuk pengenalan, lift, inspeksi, alat, dan escape**; pengejaran murni ±10 detik, bukan 5 menit pemain dipaksa mundur.
+Koridor panjang **40 m** memakai koordinat lokal *blockout*: lift `x=0`, trigger kemunculan `x=19`, sosok **muncul ±8 m di belakang pemain lalu statis** sampai cutter diambil, ceruk bolt cutter `x=22`, dan pintu tangga `x=40`. Ceruk cutter ada di sisi jalur ke tangga (tidak melewati tubuh sosok itu). Dari cutter ke rantai ada **18 m** gerak mundur. Durasi target **5 menit termasuk pengenalan, lift, inspeksi, alat, dan escape**; pengejaran murni ±10 detik, bukan 5 menit pemain dipaksa mundur.
 
 ```text
-DORMANT → MANIFEST (petunjuk kamera) → WATCHED_IDLE
-       → CUTTER_PICKUP → PURSUIT → CHAIN_INTERACT → RESOLVED
-                                  ↳ UNWATCHED >1,5 s → WARP_ATTACK
-                                  ↳ COLLISION_CLOSE → WARP_ATTACK
+DORMANT → HEARD (tangis, tanpa visual) → REVEAL (di belakang pemain + kamera refleks)
+        → MANIFEST/WATCHED_IDLE → CUTTER_PICKUP → PURSUIT → CHAIN_INTERACT → RESOLVED
+                                   ↳ UNWATCHED >1,5 s → WARP_ATTACK
+                                   ↳ COLLISION_CLOSE → WARP_ATTACK (dijeda stun foto ±1 dtk)
+                                   ↳ PHOTO_≤5m → STUNNED_1s → PURSUIT
 ```
 
 **Timer 1,5 detik hanya berjalan setelah animasi pickup cutter selesai**. Selama `WATCHED_IDLE`, Kuntilanak **dipakukan di x=9 (movement speed=0)**; pemain boleh menginspeksi ceruk. Pickup alat mengambil waktu interaksi tanpa memulai pursuit sampai animasinya selesai, sehingga waktu diam saat pickup tidak memakan buffer. Pada `PURSUIT`, kamera harus mengawasi; berpaling >1,5 detik memicu Game Over. Jika hantu benar-benar mencapai Raka, **kontak tetap fatal meskipun sedang ditatap**, sehingga pemain harus mundur, bukan hanya menatap diam. Telegraphed flicker dan jeda tangis boleh memvariasikan tekanan, tetapi teleport acak yang tiba-tiba muncul di belakang pemain tidak dianjurkan.
@@ -602,7 +599,7 @@ DORMANT -> TEASING_AUDIO -> DRAINING [2%/detik + timer <=10 s]
 
 ### 4.2 Kuntilanak Putih: pengawasan dan gerakan mundur
 
-**[KANON]** Tangisan melemah saat makin dekat; bergaun hangus; tidak sama dengan Kuntilanak Merah Lastri di Babak 2. View kamera HP + mundur; lebih dari **1,5 detik** membelakangi atau menurunkan HP ketika pengejaran sudah dimulai = Game Over. [KLARIFIKASI] Pengejaran dimulai setelah cutter diambil (§3.3A).
+**[KANON]** Tangisan melemah saat makin dekat; bergaun hangus; tidak sama dengan Kuntilanak Merah Lastri di Babak 2. Tidak ada peringatan nama/entitas sebelum momen terungkap. View kamera HP + mundur; lebih dari **1,5 detik** membelakangi atau menurunkan HP ketika pengejaran sudah dimulai = Game Over. Foto jarak dekat (≤5 m) mengejutkan **±1 detik** (gerak, timer, dan tangkapan berhenti). [KLARIFIKASI] Pengejaran dimulai setelah cutter diambil (§3.3A).
 
 ```text
 WAIT_IN_LIFT_SIDE -> MANIFEST_AFTER_MIDPOINT -> WATCHED_IDLE (x=9 static)
@@ -1054,7 +1051,7 @@ Urutan akhir **wajib tunggal**: `P1_BOSS_WIN` (Raka tetap K404) → `P1_DAMAR_CL
 
 | ID | Skenario | Hasil wajib |
 |---|---|---|
-| QA-45 | Hitung simulasi posisi L3: x hantu 9, cutter x22, pintu x40, kecepatan 2,4/1,8m/s | Perhitungan 1,8m/s = 10s/x33/2,42s benar sebagai model; controller aktual dibatasi 1,7m/s, sehingga ulangi dengan kecepatan efektif, akselerasi, radius E dan collider sebelum mengunci tuning |
+| QA-45 | Hitung simulasi posisi L3: spawn ±8 m di belakang pemain (trigger x19 → x≈11), cutter x22, pintu x40, kecepatan 2,4/1,8m/s | Model: 18 m = 10 s; hantu mencapai x≈35; celah ≈5 m; margin reaksi ≈(5−1,2)/2,4 ≈ 1,58 s sebelum E, ditambah stun foto ±1 detik sebagai jendela adil |
 | QA-46 | Hantu diam sebelum cutter diambil dan sesudah 1 menit inspeksi | `WATCHED_IDLE` tetap x9; tidak menghabiskan waktu pengejaran |
 | QA-47 | E ditekan di depan rantai sebelum radius tangkap; animasi 2s | `CHAIN_INTERACT` mengunci input, freeze AI/damage/watch timer 2s, lalu `RESOLVED` pada frame chain-cut; tidak mati di tengah animasi wajib |
 | QA-48 | Balik lewat L3 sesudah rantai dipotong tetapi **sebelum boss dikalahkan** | Kuntilanak tetap `RESOLVED`; `P1_BOSS_WIN` tidak diperlukan untuk menonaktifkan ancaman L3 |
@@ -1159,7 +1156,7 @@ Sediakan debug overlay khusus developer dengan `stage`, `completedEvents`, `evid
 - [ ] Tiga dinamo: 1 full-charge +25%/8s tiap lokasi, emergency jika **<10%**, 45s **akumulatif**, cooldown 120s, cap 10%; stop/pause progres saat terancam. **Tidak ada dinamo di arena boss.**
 - [ ] CP3 pertama dibuat setelah panel lift darurat menetapkan `battery=max(current,20%)` satu kali; retry memuat snapshot dan tidak memicu recharge baru.
 - [ ] Kamera Kuntilanak `WATCH_ONLY` tetap aktif saat 0%, **hanya di L3 selama encounter**; AR/EVP/Flash tidak gratis, baterai tidak bertambah.
-- [ ] Kuntilanak memakai posisi awal x=9 statis pra-cutter, speed 2,4m/s saat pursuit, 1,5s unwatched, dan radius kontak 1,2m; interaksi cutter/rantai memakai **proximity E tanpa reticle**.
+- [ ] Kuntilanak memakai spawn di belakang pemain (±8 m, statis pra-cutter), speed 2,4m/s saat pursuit, 1,5s unwatched, radius kontak 1,2m, dan stun foto ±1 detik ≤5 m; interaksi cutter/rantai memakai **proximity E tanpa reticle**.
 - [ ] `CHAIN_INTERACT` 2s membekukan AI/watch timer/damage, satu-satunya `RESOLVED` = `P1_CUT_CHAIN`, dan CP3 menangani pickup cutter yang belum jadi commit.
 - [ ] Implementasikan patroli Genderuwo, cover di 403/402/kamar mandi, 3 bukti unik, clue EVP, jeda ambush 3,5s dan dua status terpisah untuk scan keris vs ambil keris.
 - [ ] Pintu K404 **benar-benar terbuka** setelah keris dimiliki, tapi altar tetap butuh 3 bukti; dinding hanya jebol saat `P1_ALTAR_INTERACT`.

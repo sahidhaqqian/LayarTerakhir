@@ -5,6 +5,7 @@ namespace LayarTerakhir.Phase1
     public sealed class Phase1Balance : UnityEngine.ScriptableObject
     {
         public float kuntilanakSpeed = 2.4f, kuntilanakCatchRadius = 1.2f, unwatchedGrace = 1.5f, chainSeconds = 2;
+        public float kuntiPhotoStunSeconds = 1, kuntiPhotoRangeM = 5;
         public float patrolSpeed = 1.3f, chaseSpeed = 3, emergencyStunSeconds = 3;
         public float exposedSeconds = 5, flashRange = 8, beamRadius = 2.5f;
         public float evpSeconds = 7, bathroomGraceSeconds = 3.5f, bathroomSearchSeconds = 9;

@@ -80,7 +80,9 @@ namespace LayarTerakhir.Diagnostics
             d.phoneView.LiveButton.onClick.Invoke();Check(d.Completed("P1_START_LIVE"),"Live uses existing handset button");
             yield return Walk(new Vector3(-8,.06f,-28));yield return Walk(new Vector3(-26,.06f,-28));yield return Walk(new Vector3(-28,.06f,-16));yield return Walk(new Vector3(-28,.06f,-11));yield return Walk(new Vector3(-22,.06f,-11));
             Check(d.Completed("P1_ENTER_PUMP"),"Pump entry checkpoint and optional challenge expiration");
-            yield return Walk(new Vector3(-22,.06f,-8.8f));yield return Walk(new Vector3(-19,.06f,-8.8f));yield return Walk(new Vector3(-19,.06f,-11));yield return Walk(new Vector3(-15,.06f,-11));yield return Walk(new Vector3(-15,.06f,2));
+            // The pump side enters through the serviced facade doorway, lobby and
+            // partition doorway; the old detour through the open shell no longer exists.
+            yield return Walk(new Vector3(-19,.06f,-11));yield return Walk(new Vector3(-15,.06f,-11));yield return Walk(new Vector3(-15,.06f,2));
             CameraOn();Aim(new Vector3(-17,1.3f,2));yield return null;Check((d.phoneView.FeedCamera.cullingMask&(1<<30))!=0,"Normal handset retains concrete illusion veil");yield return Press(Key.Q);yield return new WaitForSeconds(.5f);
             yield return Shot("02-k102-ar-passage");Check(!d.world.passageWall.activeSelf&&(d.phoneView.FeedCamera.cullingMask&(1<<30))==0,"AR reveals physical passage independently of normal-eye veil");
             yield return Walk(new Vector3(-18.2f,.06f,2));yield return Walk(new Vector3(-18.2f,.06f,-1.6f));yield return Walk(new Vector3(-20,.06f,-1.6f));yield return Walk(new Vector3(-20,4.06f,7.3f));yield return Walk(new Vector3(-20,4.06f,8.4f));

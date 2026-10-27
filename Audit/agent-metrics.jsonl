@@ -104,3 +104,4 @@
 {"kind": "validation", "label": "?:vps-editmode-invocation.json", "seconds": 1481.1, "detail": "", "source": "receipt", "utc": "2026-10-27T13:37:15.661460+00:00"}
 {"kind": "validation", "label": "?:vps-playmode-invocation.json", "seconds": 32.1, "detail": "", "source": "receipt", "utc": "2026-10-27T13:37:15.674412+00:00"}
 {"kind": "validation", "label": "?:vps-runtime-invocation.json", "seconds": 535.6, "detail": "", "source": "receipt", "utc": "2026-10-27T13:37:15.674623+00:00"}
+{"kind": "test", "label": "Phase1CampaignTests-45", "seconds": 139.0, "detail": "lift panel ray fix", "source": "agent", "utc": "2026-10-27T14:38:51.219081+00:00"}

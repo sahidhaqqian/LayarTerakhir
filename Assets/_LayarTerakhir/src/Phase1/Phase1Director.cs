@@ -28,7 +28,7 @@ namespace LayarTerakhir.Phase1
         public bool CanBeginLive => Ready && !Busy && !Dead && !Completed("P1_START_LIVE");
         public int Viewers => Completed("P1_EPILOGUE") ? 142000 : Completed("P1_CUT_CHAIN") ? 82700 : 18500;
         public Phase1Stage Stage => Phase1Ids.Stage(Campaign.Data, BossActive);
-        public string CameraStatus => CameraLocked ? "JANGAN BERPALING • MUNDUR KE TANGGA" : recordingEVP ?
+        public string CameraStatus => CameraLocked ? "TETAP TATAP • MUNDUR KE TANGGA" : recordingEVP ?
             $"EVP  •  MEREKAM {evpProgress:0.0}/{balance.evpSeconds:0}s" : BossActive ? threats.BossStatus :
             Phone.currentScanMode == ScanVisualMode.AR ? "MATA BATIN / AR  •  [C] EVP" : "KAMERA  •  [Q] AR  [C] EVP";
         public bool OwnsInteraction => Ready && (Hidden || threats && threats.KuntiManifested && !Completed("P1_CUT_CHAIN"));
@@ -115,6 +115,7 @@ namespace LayarTerakhir.Phase1
         {
             if (!Ready || Dead || UiFocus.HardModal || UiFocus.Cinematic || Busy || Hud.IsModalOpen) return;
             Campaign.Data.phase1.elapsed_gameplay_seconds += Time.deltaTime;
+            RescueFromPit();
             if (!Completed("P1_CROSS_102"))
             {
                 bool reveal = CameraCanScan && Phone.currentScanMode == ScanVisualMode.AR && Aim(world.passageWall.transform.position, 5, .08f);
@@ -147,6 +148,22 @@ namespace LayarTerakhir.Phase1
                     }
                 }
             }
+        }
+        private void RescueFromPit()
+        {
+            // No shaft or courtyard fall may strand the player below their current level.
+            // The L4 stair shaft rect excludes the flight itself (x 18.8..21.2) so normal
+            // climbs and the epilogue descent never trigger a rescue.
+            Vector3 p = player.transform.position;
+            bool inShaftPit = p.x > 17 && p.x < 24 && p.z > -10 && p.z < -2 && !(p.x > 18.8f && p.x < 21.2f);
+            bool shaftFall = inShaftPit && p.y < 11.5f &&
+                (Stage == Phase1Stage.Investigation || Stage == Phase1Stage.Boss || Stage == Phase1Stage.Epilogue);
+            bool courtyardFall = (Stage == Phase1Stage.Kuntilanak || Stage == Phase1Stage.Investigation ||
+                Stage == Phase1Stage.Boss || Stage == Phase1Stage.Epilogue) && p.y < 2f;
+            bool fellThroughWorld = p.y < -2f;
+            if (!shaftFall && !courtyardFall && !fellThroughWorld) return;
+            MovePlayer(world.Anchor(Campaign.Data.phase1.safe_anchor));
+            Hud.ShowBroadcastNotification("Raka memanjat kembali ke jalur aman.", 3);
         }
         public bool CameraCanScan => Ready && !Dead && !Busy && Phone && Phone.isPhoneRaised && Phone.isScreenOn && Phone.batteryPercent > 0 &&
             phoneView && phoneView.IsCameraApp && !UiFocus.Phone && !UiFocus.HardModal && !Hud.IsModalOpen;
@@ -292,6 +309,9 @@ namespace LayarTerakhir.Phase1
             if (!threats || !threats.KuntiManifested) return null;
             Phase1WorldItem item = cutterInAttempt ? world.chainItem : world.cutterItem;
             if (CanInteract(item) && InHandRange(item, cutterInAttempt ? 1.6f : 1.3f)) return item;
+            // The service dynamo stays usable until the pursuit starts; the panel
+            // is on the escape path side, so reaching it never turns the camera.
+            if (!cutterInAttempt && world.servicePanelItem && CanInteract(world.servicePanelItem) && InHandRange(world.servicePanelItem, 2.5f)) return world.servicePanelItem;
             return null;
         }
         public bool InHandRange(Phase1WorldItem item, float radius)
@@ -331,7 +351,7 @@ namespace LayarTerakhir.Phase1
             Phone.isPhoneRaised = true; Phone.isScreenOn = Phone.batteryPercent > 0; Phone.currentScanMode = ScanVisualMode.Normal; Phone.SyncVisualState();
             phoneView.Apps.Open(PhoneApp.Camera);
             Busy = false; player.MovementLocked = false; threats.BeginKuntiPursuit();
-            Chat("@bambang_gentolet", "MUNDUR! Tetap sorot wajahnya. E potong rantai di belakangmu!");
+            Chat("@bambang_gentolet", "Bang... kok gue ikut denger suara nangis?");
         }
         private IEnumerator CutChain()
         {
@@ -368,7 +388,7 @@ namespace LayarTerakhir.Phase1
                 Phase1Stage.Passage102 => "Periksa anomali Kamar 102 dengan lensa AR.",
                 Phase1Stage.Mailbox => "Temukan kode kotak surat 207 dari papan status, log, dan denah.",
                 Phase1Stage.Lift => "Gunakan kunci kontak pada lift barang.",
-                Phase1Stage.Kuntilanak => "Isi daya di panel lift bila perlu. Cari pemotong besi; pantau hantu sambil mundur.",
+                Phase1Stage.Kuntilanak => "Isi daya di panel bila perlu. Telusuri koridor dan ambil pemotong besi.",
                 Phase1Stage.Investigation => $"Bukti {Phase1Ids.EvidenceCount(Campaign.Data)}/3. Selidiki 402, kamar mandi, dan tungku. Konfirmasi Jurnal sebelum ritual.",
                 Phase1Stage.Boss => "Pancing Genderuwo ke halogen. Tarik tuas, bidik kepala, Blitz dalam 5 detik.",
                 Phase1Stage.Epilogue => "Periksa kain jaket dan kaset di altar Kamar 404.",

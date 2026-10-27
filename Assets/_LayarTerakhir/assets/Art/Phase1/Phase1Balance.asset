@@ -16,6 +16,8 @@ MonoBehaviour:
   kuntilanakCatchRadius: 1.2
   unwatchedGrace: 1.5
   chainSeconds: 2
+  kuntiPhotoStunSeconds: 1
+  kuntiPhotoRangeM: 5
   patrolSpeed: 1.3
   chaseSpeed: 3
   emergencyStunSeconds: 3

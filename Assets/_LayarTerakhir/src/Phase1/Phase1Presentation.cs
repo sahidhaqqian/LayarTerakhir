@@ -102,7 +102,8 @@ namespace LayarTerakhir.Phase1
             world.liftCabin.position = new Vector3(world.liftCabin.position.x, y, world.liftCabin.position.z);
             MovePlayer(world.Anchor(anchor));
             Hud.SetFadeAlpha(0); UiFocus.Cinematic = false; Busy = false; player.MovementLocked = false;
-            if (y == 8 && !Completed("P1_CUT_CHAIN")) Hud.ShowBroadcastNotification("LIFT MACET — panel daya servis tersedia di landing. Isi daya sebelum mengambil cutter.", 5);
+            if (y == 8 && !Completed("P1_CUT_CHAIN")) Hud.ShowBroadcastNotification("LIFT MACET — panel daya servis tersedia di landing. Isi daya sebelum mengambil alat.", 5);
+            if (y == 8 && !Completed("P1_CUT_CHAIN")) threats.BeginHaunting();
         }
         private void ShowLiftDestinations()
         {

@@ -7,15 +7,15 @@ Untuk menilai Rusunawa tanpa mengulang Prolog, jalankan **Review-Phase1.cmd**, l
 ## Kontrol
 
 - WASD bergerak, Shift lari, Ctrl jongkok, E interaksi; beberapa panel daya perlu **menahan E**.
-- Klik kanan ditahan: viewfinder HP; lepaskan untuk kembali. TAB membuka HP/aplikasi, F layar, Q AR, C EVP, LMB foto/Blitz, B powerbank, V perspektif.
-- Pada pengejaran Kuntilanak, kamera tetap terkunci ke viewfinder; mundur sambil menjaga sosok dalam bingkai. E mengambil alat/memotong rantai di jangkauan tangan tanpa memutar kamera.
+- Klik kanan ditahan: viewfinder HP; lepaskan untuk kembali. TAB HP/aplikasi, F layar, Q AR, C EVP, LMB foto/Blitz, B powerbank, V perspektif.
+- Di koridor L3: dengarkan tangisan lebih dulu, balik dan tahan kamera ke arah sosok. Mundur sambil menjaga sosok dalam bingkai; foto jarak dekat mengejutkannya sesaat. E mengambil alat/memotong rantai di jangkauan tangan tanpa memutar kamera.
 
 ## Jalur uji
 
 1. Periksa log satpam, mulai Live di aplikasi Kamera, temukan ruang pompa di sisi barat. Charger manual di pompa dapat dipakai bila baterai habis.
 2. Scan tembok K102 dalam AR. Masuk melalui pintu, belok ke kaki tangga dan naik. Jalur menjadi terbuka dua arah. Hindari Tuyul lewat AR + Blitz atau terima kehilangan daya/item yang tersedia.
-3. Kotak 207 memakai kode 644; panel status dan dokumen memberi petunjuk. Hadiah kunci/powerbank hanya satu kali. Periksa arsip penghuni dengan AR untuk rahasia Tari.
-4. Gunakan lift barang. Di L3 tersedia panel daya sebelum cutter. Ambil alat sambil memantau Kuntilanak; mundur ke ujung timur, E rantai lalu naik tangga tertutup.
+3. Kotak 207 memakai kode 644; panel status dan dokumen memberi petunjuk. Hadiah kunci/powerbank hanya satu kali. Pintu 203 (ARSIP PENGHUNI) terbuka — periksa arsip dengan AR untuk rahasia Tari.
+4. Gunakan lift barang. Dengarkan tangisan di koridor L3 sebelum bergerak; panel daya di landing tetap dapat dipakai sampai alat diambil. Ambil alat, mundur ke ujung timur, E rantai lalu naik tangga tertutup.
 5. Di L4: foto cakaran 402, rekam EVP 7 detik di kamar mandi, foto aura AR tungku dan ambil keris. Gunakan lemari/bilik; layar menyala membocorkan persembunyian. Konfirmasi identitas di Jurnal.
 6. Aktifkan altar 404. Pancing tubuh Genderuwo ke tiga titik halogen, gunakan tuas, Blitz ke kepala dalam 5 detik. Blitz 15% / cooldown 6 detik. Panel daya arena hanya aman saat recovery. Kalah memuat ulang CP5 persis, tanpa grant.
 7. Setelah segel, periksa kain dan kaset. Transmisi Damar berlangsung di HP; bila daya habis gunakan panel arena lalu coba kembali. Setelah epilog, turun ke L3 lalu lift ke L1 atau L2 (opsional arsip). Motor menampilkan konfirmasi sebelum CP7. Babak 2 belum tersedia.

@@ -19,7 +19,7 @@ namespace LayarTerakhir.Phase1
         public bool Exposed => activeLight >= 0 && exposedRemaining > 0;
         public int SealHits { get; private set; }
         public string BossStatus => Exposed ? $"PERISAI PECAH — BIDIK KEPALA {exposedRemaining:0.0}s" : Recovering ? "RECOVERY — TITIK DAYA AMAN" : $"SEGEL {SealHits}/3 — PANCING KE HALOGEN";
-        private float unwatched, stun, reactionGrace, sensorTick, searchTime, recovery, attackTimer, exposedRemaining;
+        private float unwatched, stun, reactionGrace, sensorTick, searchTime, recovery, attackTimer, exposedRemaining, kuntiStun;
         private float bathroomTimer = -1, tuyulTime = -1, nextTuyul, lastFoot;
         private bool tuyulBoss, bathroomReached;
         private int patrolIndex, activeLight = -1;
@@ -45,22 +45,40 @@ namespace LayarTerakhir.Phase1
             navigation.Configure(World.patrolPoints, World.genderuwo.transform,director.player.transform);
             patrolIndex = 0; reactionGrace = 6; attackTimer = 8;
         }
+        public void BeginHaunting()
+        {
+            // The cry arrives before any visual: the L3 beat starts as audio, never a warning label.
+            if (Kunti != KuntiState.Dormant || !World.kuntilanak) return;
+            director.soundscape?.Play("Kunti", World.kuntilanakSpawn.position);
+        }
         public void ManifestKunti()
         {
             if (Kunti != KuntiState.Dormant) return;
-            Kunti = KuntiState.Manifested; World.kuntilanak.transform.position = World.kuntilanakSpawn.position;
+            Kunti = KuntiState.Manifested;
+            // Look-back reveal: she stands behind the player's current heading, inside the corridor.
+            Vector3 flat = director.player.transform.forward; flat.y = 0;
+            if (flat.sqrMagnitude < .01f) flat = Vector3.back;
+            flat.Normalize();
+            Vector3 behind = director.player.transform.position - flat * 8;
+            behind.x = Mathf.Clamp(behind.x, -19, 19); behind.y = World.kuntilanakSpawn.position.y; behind.z = -11;
+            World.kuntilanak.transform.position = behind;
             director.Commit("P1_KUNTI_SAWER",data=>Phase1Ids.Donation(data,"P1_KUNTI_SAWER",3000000,true));
             World.kuntilanak.SetActive(true);
             Motion(World.kuntilanak,"Idle");
-            HudController.Instance.ShowBroadcastNotification("KUNTILANAK — jangan membelakangi saat pengejaran. Kamera tetap menghadap hantu; mundur ke tangga.", 8);
-            director.soundscape?.Play("Kunti", World.kuntilanak.transform.position);
+            // Raka hurriedly raises the camera toward her; the player still turns on their own.
+            var phone = director.Phone;
+            phone.isPhoneRaised = true; phone.isScreenOn = phone.batteryPercent > 0; phone.currentScanMode = ScanVisualMode.Normal; phone.SyncVisualState();
+            director.phoneView.Apps.Open(LayarTerakhir.UI.PhoneApp.Camera);
+            HudController.Instance.EnqueueSubtitle("Raka", "...di belakang gue. Jangan bergerak...", 4);
+            HudController.Instance.ShowBroadcastNotification("Tahan kamera ke arahnya.", 5);
+            director.soundscape?.Play("Manifest", behind);
         }
         public void BeginKuntiPursuit() { Kunti = KuntiState.Pursuit; unwatched = 0; }
         public void ResolveKunti()
-        { Kunti = KuntiState.Resolved; FreezeKunti = false; World.kuntilanak.SetActive(false); director.soundscape?.StopKunti(); }
+        {             Kunti = KuntiState.Resolved; FreezeKunti = false; World.kuntilanak.SetActive(false); director.soundscape?.StopKunti(); kuntiStun = 0; }
         public bool CheckKuntiCatch()
         {
-            if (!KuntiPursuing || FreezeKunti) return false;
+            if (!KuntiPursuing || FreezeKunti || kuntiStun > 0) return false;
             if (Vector3.Distance(World.kuntilanak.transform.position, PlayerPosition) > Balance.kuntilanakCatchRadius) return false;
             if (!director.ClearLine(World.kuntilanak.transform.position+Vector3.up,PlayerPosition+Vector3.up)) return false;
             director.Die("Kuntilanak sudah menjangkau Raka."); return true;
@@ -98,6 +116,8 @@ namespace LayarTerakhir.Phase1
             Vector3 face = PlayerPosition - pos; face.y = 0;
             if (face.sqrMagnitude > .01f) World.kuntilanak.transform.rotation = Quaternion.Slerp(World.kuntilanak.transform.rotation, Quaternion.LookRotation(face), dt * 6);
             director.soundscape?.SetKuntiDistance(Vector3.Distance(pos, PlayerPosition));
+            kuntiStun = Mathf.Max(0, kuntiStun - dt);
+            if (kuntiStun > 0) { Motion(World.kuntilanak, "Stun"); return; }
             if (!KuntiPursuing || FreezeKunti) return;
             if (CheckKuntiCatch()) return;
             bool watched = director.CameraCanScan &&
@@ -187,6 +207,16 @@ namespace LayarTerakhir.Phase1
             {
                 if (!Phone.TryCaptureEnergy(true)) { InsufficientFlash(); return true; }
                 director.phoneView.CaptureFlash(); FinishTuyul(false); return true;
+            }
+            // A close-range photograph startles her briefly: a fair window to back away.
+            if (KuntiManifested && kuntiStun <= 0 && director.Aim(World.kuntilanak.transform.position + Vector3.up * 1.5f, Balance.kuntiPhotoRangeM, .18f))
+            {
+                if (!Phone.TryCaptureEnergy(false)) { InsufficientFlash(); return true; }
+                director.phoneView.CaptureFlash();
+                kuntiStun = Balance.kuntiPhotoStunSeconds;
+                Motion(World.kuntilanak, "Stun");
+                HudController.Instance.ShowBroadcastNotification("Dia terkejut — mundur sekarang.", 2);
+                return true;
             }
             if (!World.genderuwo.activeSelf || !director.Aim(World.genderuwo.transform.position + Vector3.up * 2.13f, Balance.flashRange, .22f)) return false;
             if (!Phone.TryCaptureEnergy(true)) { InsufficientFlash(); return true; }

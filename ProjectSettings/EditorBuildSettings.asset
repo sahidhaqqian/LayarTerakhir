@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Assets/_LayarTerakhir/assets/Scenes/Prolog_KoridorKos.unity
     guid: 8ee214c16cd07c7a195e4d8281be1cf2
   - enabled: 1
-    path: Assets/_LayarTerakhir/assets/Scenes/Babak1_Rusunawa.unity
-    guid: 6e79154b06d0fce0fb4752dc96e16473
-  - enabled: 1
     path: Assets/_LayarTerakhir/assets/Scenes/Babak2_RSUD.unity
     guid: cb1c337d232186e7485845d74077f0ed
   - enabled: 1
@@ -29,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_LayarTerakhir/assets/Scenes/Babak5_PasarSetan.unity
     guid: 1c5a8068540d3ec49bdb30ac5f091382
+  - enabled: 1
+    path: Assets/_LayarTerakhir/assets/Scenes/Babak1_Rusunawa.unity
+    guid: 6e79154b06d0fce0fb4752dc96e16473
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

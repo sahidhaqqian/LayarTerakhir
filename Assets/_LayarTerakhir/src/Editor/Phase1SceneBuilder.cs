@@ -72,7 +72,7 @@ namespace LayarTerakhir.Editor
             current = environment; anchors.Clear(); pathNodes.Clear(); meshes.Clear(); Materials(); ImportExternalSurfaces();
             Exterior();
             for (int floor = 0; floor < 4; floor++) Floor(floor);
-            StoryObjects(); EnvironmentDressing(); AdditionalDressing(); Threats(); Lighting(sourceProfile);
+            StoryObjects(); EnvironmentDressing(); AdditionalDressing(); RoomDressing(); Threats(); Lighting(sourceProfile);
             d.world.anchors = anchors.ToArray(); d.world.patrolPoints = pathNodes.ToArray();
             if(!MonoScript.FromScriptableObject(d.balance))throw new InvalidOperationException("Phase1Balance has no serializable Unity script");
             foreach(var behaviour in scene.GetRootGameObjects().SelectMany(go=>go.GetComponentsInChildren<MonoBehaviour>(true)))
@@ -284,7 +284,9 @@ namespace LayarTerakhir.Editor
             int number = floor * 100 + 101;
             foreach (float x in floor == 3 ? new[] { -10f, -2f, 7f } : new[] { -12f, -5f, 3f, 11f })
             {
-                bool open = floor == 3;
+                // The L2 archive room keeps a real open doorway: the Tari secret
+                // must be reachable without a battery, a key, or a collider hack.
+                bool open = floor == 3 || (floor == 1 && Mathf.Approximately(x, 3f));
                 DoorFacade(number++, new Vector3(x, y, 13.08f), true, open);
             }
             for (int side = -1; side <= 1; side += 2)
@@ -349,11 +351,11 @@ namespace LayarTerakhir.Editor
             light.shadows = shadows ? LightShadows.Soft : LightShadows.None; light.shadowBias = .025f; light.shadowNormalBias = .12f;
             var lightData=new SerializedObject(light.GetUniversalAdditionalLightData());lightData.FindProperty("m_AdditionalLightsShadowResolutionTier").intValue=0;lightData.ApplyModifiedPropertiesWithoutUndo();
         }
-        private static void Dynamo(string id, Vector3 p)
+        private static Phase1WorldItem Dynamo(string id, Vector3 p)
         {
             var body = SourceProp("portable_generator",id,p-.39f*Vector3.up,.8f);
             Label(id + "ServiceLabel", "DINAMO\nTAHAN E", p + new Vector3(0, .35f, -.38f), Quaternion.Euler(0, 180, 0), .065f);
-            Item(body, id, "Putar dinamo manual");
+            return Item(body, id, "Putar dinamo manual");
         }
         private static void AssignImportedMaterials(GameObject model)
         {

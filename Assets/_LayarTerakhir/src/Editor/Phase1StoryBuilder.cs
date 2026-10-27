@@ -62,16 +62,26 @@ namespace LayarTerakhir.Editor
             {
                 float y = floor * 4;
                 Box("LiftLandingFloor", new Vector3(-19, y - .1f, -11), new Vector3(4, .2f, 3.8f), darkMetal);
-                var panel = Box("LiftPanel_L" + (floor + 1), new Vector3(-17.1f, y + 1.15f, -10), new Vector3(.18f, .6f, .3f), rust);
+                // L1/L2 panels sit clear of the west doorway spans so the
+                // interaction ray never lands on a door leaf or jamb first,
+                // and proud of the solid wall so the wall itself is not first.
+                float pz = floor == 2 ? -10f : -8.5f;
+                float px = floor == 2 ? -17.1f : -16.85f;
+                var panel = Box("LiftPanel_L" + (floor + 1), new Vector3(px, y + 1.15f, pz), new Vector3(.18f, .6f, .3f), rust);
                 Item(panel, "LIFT", "Gunakan panel lift barang");
-                Label("LiftPanelLabel", "LIFT BARANG\nKONTAK KUNCI", new Vector3(-16.99f, y + 1.65f, -10), Quaternion.Euler(0, 90, 0), .065f);
+                Label("LiftPanelLabel", "LIFT BARANG\nKONTAK KUNCI", new Vector3(px + .11f, y + 1.65f, pz), Quaternion.Euler(0, 90, 0), .065f);
             }
-            var cabin = new GameObject("FreightLiftCabin"); cabin.transform.SetParent(current, false); cabin.transform.position = new Vector3(-20, 0, -11); d.world.liftCabin = cabin.transform;
-            Box("CabinRearPlate", new Vector3(-20.9f, 1.4f, -11), new Vector3(.15f, 2.8f, 3.2f), rust, true, cabin.transform);
+            var cabin = new GameObject("FreightLiftCabin"); cabin.transform.SetParent(current, false);
+            // The jammed cabin waits at L3, not in the L1 lobby: the pump-side
+            // service entry stays walkable, and the shaft reads as a real shaft.
+            cabin.transform.position = new Vector3(-20, 8, -11); d.world.liftCabin = cabin.transform;
+            // The rear plate is a child of the cabin: position it in cabin space
+            // (Box places world coordinates), or it stays behind at L1 forever.
+            Box("CabinRearPlate", new Vector3(-20.9f, 9.4f, -11), new Vector3(.15f, 2.8f, 3.2f), rust, true, cabin.transform);
             Anchor("L3", new Vector3(-18.3f, 8.06f, -11), Vector3.right);
             current = Group("L3_KuntilanakChamber");
-            Dynamo("DYNAMO_L3_PANEL", new Vector3(-18.5f, 8.85f, -12.5f));
-            Label("L3_Notice", "SEBELUM MENGAMBIL ALAT:\nISI DAYA KAMERA\nPANTAU ENTITAS, LALU MUNDUR", new Vector3(-18, 9.8f, -12.84f), Quaternion.identity, .09f);
+            d.world.servicePanelItem = Dynamo("DYNAMO_L3_PANEL", new Vector3(-18.5f, 8.85f, -12.5f));
+            Label("L3_Notice", "PANEL DAYA SERVIS\nTAHAN E UNTUK MENGISI\nAMBIL ALAT, LALU KE TANGGA", new Vector3(-18, 9.8f, -12.84f), Quaternion.identity, .09f);
             Zone("KUNTI", new Vector3(-1, 9.1f, -11), new Vector3(1, 2.2f, 4));
             var trolley = Box("CleanerServiceTrolley", new Vector3(2, 8.65f, -12.1f), new Vector3(1.1f, .08f, .65f), darkMetal);
             foreach (float x in new[] { 1.55f, 2.45f }) foreach (float z in new[] { -12.35f, -11.85f }) Pipe("TrolleyLeg", new Vector3(x, 8.1f, z), new Vector3(x, 8.6f, z), .025f, rust);
@@ -154,8 +164,70 @@ namespace LayarTerakhir.Editor
             Label("ArenaPowerLabel", "DAYA DARURAT\nGUNAKAN SAAT RECOVERY", new Vector3(8, 13.65f, -12.36f), Quaternion.identity, .08f);
             var debris = Box("ConcreteDebrisTemplate", new Vector3(0, -100, 0), new Vector3(.32f, .27f, .4f), concrete, false); debris.SetActive(false);
             anchors.Add(new Phase1Anchor { id = "DEBRIS_TEMPLATE", point = debris.transform });
+            RoomDoorsAndEntry();
             DressRooms();
             HospitalTransmissionSet();
+        }
+        private enum RoomDoorState { Closed, CasedOpen, Chained, DebrisBlocked }
+        private static void RoomDoor(int number, Vector3 centre, Vector3 facing, RoomDoorState state, string note = null)
+        {
+            bool alongX = Mathf.Abs(facing.z) > .5f;
+            Vector3 side = alongX ? Vector3.right : Vector3.forward;
+            foreach (float s in new[] { -1.03f, 1.03f })
+                Box("RoomDoorJamb", centre + side * s + Vector3.up * 1.32f, alongX ? new Vector3(.09f, 2.64f, .14f) : new Vector3(.14f, 2.64f, .09f), darkMetal);
+            Box("RoomDoorHeader", centre + Vector3.up * 2.62f, alongX ? new Vector3(2.2f, .14f, .14f) : new Vector3(.14f, .14f, 2.2f), darkMetal);
+            if (state != RoomDoorState.CasedOpen)
+                SourceProp("DoorsWindows", "RoomDoorLeaf_" + number, centre + Vector3.up * 1.3f, 2.6f, true,
+                    alongX ? new Vector3(1.97f, 2.6f, .12f) : new Vector3(.12f, 2.6f, 1.97f), null,
+                    Imported + "DoorsWindows/Door_DoorFrame_Double.fbx");
+            if (state == RoomDoorState.Chained)
+                SourceProp("DoorsWindows", "RoomDoorChain_" + number, centre + Vector3.up * 1.45f, 1.3f, false,
+                    alongX ? new Vector3(1.95f, 1.3f, .3f) : new Vector3(.3f, 1.3f, 1.95f), darkMetal, Imported + "DoorsWindows/SafetyChain.fbx");
+            Quaternion faceRot = facing.z > .5f ? Quaternion.identity : facing.z < -.5f ? Quaternion.Euler(0, 180, 0) :
+                facing.x > .5f ? Quaternion.Euler(0, 90, 0) : Quaternion.Euler(0, -90, 0);
+            if (number > 0)
+                Label("RoomPlate_" + number, number.ToString(), centre + Vector3.up * 2.95f + facing * .18f, faceRot, .13f);
+            if (!string.IsNullOrEmpty(note))
+                Label("RoomNote_" + number, note, centre + Vector3.up * 1.7f + facing * .14f, faceRot, .065f);
+        }
+        private static void RoomDoorsAndEntry()
+        {
+            current = Group("L1_ServiceEntryAndRoomDoors");
+            // The pump side finally reads as an entrance: a real facade doorway,
+            // a short lobby, and a partition so the route never crosses an open shell.
+            // DoorWall gaps are local offsets from the centre, not world coordinates.
+            DoorWall(new Vector3(-24.1f, 0, -11), 4, false, new[] { 0f }, plaster);
+            RoomDoor(0, new Vector3(-24.1f, 0, -11), Vector3.left, RoomDoorState.CasedOpen);
+            Label("ServiceEntrySign", "PINTU SERVIS\nRUANG POMPA", new Vector3(-23.85f, 3.0f, -11), Quaternion.Euler(0, -90, 0), .1f);
+            Box("EntryCorridorCeiling", new Vector3(-20.5f, 3.65f, -11), new Vector3(7.5f, .25f, 4.5f), concrete);
+            DoorWall(new Vector3(-20.5f, 0, -9), 7, true, new[] { 1.5f }, plaster);
+            RoomDoor(0, new Vector3(-19, 0, -9), Vector3.back, RoomDoorState.CasedOpen);
+            RoomDoor(0, new Vector3(-17, 0, -11), Vector3.right, RoomDoorState.CasedOpen);
+            // L1 rooms open off the galleries with real front doors, not rear gaps.
+            RoomDoor(105, new Vector3(-12, 0, -13), Vector3.forward, RoomDoorState.Closed);
+            RoomDoor(106, new Vector3(-5, 0, -13), Vector3.forward, RoomDoorState.DebrisBlocked);
+            RoomDoor(107, new Vector3(3, 0, -13), Vector3.forward, RoomDoorState.Closed);
+            RoomDoor(108, new Vector3(11, 0, -13), Vector3.forward, RoomDoorState.Chained, "DIGEMBOK\nWARGA");
+            RoomDoor(109, new Vector3(-17, 0, 8), Vector3.right, RoomDoorState.Closed);
+            RoomDoor(110, new Vector3(17, 0, 4), Vector3.left, RoomDoorState.Closed);
+            // L2 rooms; 207 belongs to the RT head, 203 stays open as the archive room.
+            RoomDoor(205, new Vector3(-12, 4, -13), Vector3.forward, RoomDoorState.Closed);
+            RoomDoor(206, new Vector3(-5, 4, -13), Vector3.forward, RoomDoorState.DebrisBlocked);
+            RoomDoor(207, new Vector3(3, 4, -13), Vector3.forward, RoomDoorState.Chained, "KETUA RT — 207");
+            RoomDoor(208, new Vector3(11, 4, -13), Vector3.forward, RoomDoorState.Closed);
+            RoomDoor(209, new Vector3(-17, 4, -11), Vector3.right, RoomDoorState.Closed);
+            RoomDoor(210, new Vector3(-17, 4, 2), Vector3.right, RoomDoorState.Closed);
+            RoomDoor(0, new Vector3(-17, 4, 8), Vector3.right, RoomDoorState.CasedOpen);
+            RoomDoor(211, new Vector3(17, 4, 4), Vector3.left, RoomDoorState.Closed);
+            Label("ArchiveRoomSign", "ARSIP\nPENGHUNI", new Vector3(3, 6.9f, 12.80f), Quaternion.Euler(0, 180, 0), .08f);
+            // L4 stairwell: solid floor around a proper opening, curbs on every exposed edge.
+            current = Group("L4_StairwellGuards");
+            Box("ShaftFillWest", new Vector3(18, 11.88f, -6), new Vector3(2, .24f, 8), concrete);
+            Box("ShaftFillEast", new Vector3(22.5f, 11.88f, -6), new Vector3(3, .24f, 8), concrete);
+            Box("ShaftCurbLandingWest", new Vector3(18, 12.55f, -2), new Vector3(2, 1.1f, .25f), concrete);
+            Box("ShaftCurbLandingEast", new Vector3(22.5f, 12.55f, -2), new Vector3(3, 1.1f, .25f), concrete);
+            Box("ShaftCurbSouthWest", new Vector3(18, 12.55f, -10.2f), new Vector3(2, 1.1f, .25f), concrete);
+            Box("ShaftCurbSouthEast", new Vector3(22.5f, 12.55f, -10.2f), new Vector3(3, 1.1f, .25f), concrete);
         }
         private static void HospitalTransmissionSet()
         {
@@ -201,6 +273,21 @@ namespace LayarTerakhir.Editor
                     var foot = start + new Vector3(side * (width/2-.08f), rise*i/6, run*i/6);
                     Pipe(id + "Baluster", foot, foot + Vector3.up * .95f, .022f, rust);
                 }
+            }
+            // Enclosed service stair: stepped parapet cheeks and newel posts read
+            // as solid concrete. The smooth collision flight underneath is untouched.
+            Material cheek = start.y > 6 ? soot : concrete;
+            foreach (int side in new[] { -1, 1 })
+            {
+                const int steps = 5;
+                for (int i = 0; i < steps; i++)
+                {
+                    float t = (i + .5f) / steps;
+                    Box(id + "_Cheek", start + new Vector3(side * (width / 2 + .11f), rise * t + .35f, run * t),
+                        new Vector3(.22f, 1.1f, run / steps + .06f), cheek);
+                }
+                Box(id + "_NewelBase", start + new Vector3(side * (width / 2 + .11f), .55f, -.1f), new Vector3(.3f, 1.1f, .3f), cheek);
+                Box(id + "_NewelTop", start + new Vector3(side * (width / 2 + .11f), rise + .55f, run + .1f), new Vector3(.3f, 1.1f, .3f), cheek);
             }
         }
         private static void HideLocker(string id, Vector3 p)

@@ -208,6 +208,89 @@ namespace LayarTerakhir.Editor
             SourceProp("worn_metal_rack","KitchenUtensilRack",new Vector3(23,12.9f,7),1.8f);
             current=environment;
         }
+        [Serializable] private sealed class RoomDressingPlacement
+        {
+            public string id, role;
+            public Vector3 supportPoint, centre, size;
+        }
+        [Serializable] private sealed class RoomDressingReceipt
+        {
+            public int placements; public string utc; public RoomDressingPlacement[] items;
+        }
+        private static readonly List<RoomDressingPlacement> roomDressing = new List<RoomDressingPlacement>();
+        private static void RoomDress(string id, string role, Vector3 support, float maxSize, bool collision = false, float yaw = 0, Vector3? normal = null, float pitch = 0)
+        {
+            var n = normal ?? Vector3.up;
+            var root = SourceProp(id, "P1Room_" + id + "__" + role, support, 1, collision, maxDimension: maxSize);
+            root.transform.rotation = Quaternion.Euler(pitch, yaw, 0);
+            var renderers = root.GetComponentsInChildren<Renderer>(); var bounds = renderers[0].bounds;
+            foreach (var renderer in renderers) bounds.Encapsulate(renderer.bounds);
+            float extent = Vector3.Dot(new Vector3(Mathf.Abs(n.x), Mathf.Abs(n.y), Mathf.Abs(n.z)), bounds.extents);
+            root.transform.position += n * (extent + .006f);
+            roomDressing.Add(new RoomDressingPlacement { id = id, role = role, supportPoint = support, centre = root.transform.position, size = bounds.size });
+        }
+        private static void RoomDressing()
+        {
+            roomDressing.Clear(); current = Group("RusunawaRoomDressing");
+            // L1 service lobby corner.
+            RoomDress("metal_trash_can", "EntryLobbyBin", new Vector3(-23, 0, -12.4f), .9f, true);
+            // Threshold traces outside closed doors: sandals, plants, laundry, crates.
+            RoomDress("rubber_boots", "ThresholdSandals105", new Vector3(-12.9f, 0, -12.5f), .32f, false, 20);
+            RoomDress("plastic_crate_02", "ThresholdCrate106", new Vector3(-4.1f, 0, -12.5f), .55f, true);
+            RoomDress("potted_plant_04", "ThresholdPlant107", new Vector3(2.2f, 0, -12.5f), .58f);
+            RoomDress("wicker_basket_01", "ThresholdLaundry108", new Vector3(11.9f, 0, -12.5f), .5f, true);
+            RoomDress("rubber_boots", "ThresholdSandals109", new Vector3(-16.4f, 0, 7.2f), .32f, false, -15);
+            RoomDress("potted_plant_04", "ThresholdPlant110", new Vector3(16.4f, 0, 3.2f), .58f);
+            RoomDress("rubber_boots", "ThresholdSandals205", new Vector3(-12.9f, 4, -12.5f), .32f, false, 35);
+            RoomDress("plastic_crate_02", "ThresholdCrate206", new Vector3(-4.1f, 4, -12.5f), .55f, true);
+            RoomDress("medical_box", "ThresholdFirstAid207", new Vector3(2.2f, 4, -12.5f), .38f, true);
+            RoomDress("potted_plant_04", "ThresholdPlant208", new Vector3(11.9f, 4, -12.5f), .58f);
+            RoomDress("rubber_boots", "ThresholdSandals209", new Vector3(-16.4f, 4, -10.2f), .32f, false, -30);
+            RoomDress("wicker_basket_01", "ThresholdLaundry210", new Vector3(-16.4f, 4, 2.8f), .5f, true);
+            RoomDress("potted_plant_04", "ThresholdPlant211", new Vector3(16.4f, 4, 4.8f), .58f);
+            RoomDress("cardboard_box_01", "ArchiveHallBox", new Vector3(4.3f, 4, 12.4f), .6f, true);
+            // Archive room interior: the open 203 doorway leads somewhere used.
+            RoomDress("folding_wooden_stool", "ArchiveStool", new Vector3(2.2f, 4, 14.5f), .46f);
+            RoomDress("cardboard_box_01", "ArchiveBoxA", new Vector3(8, 4, 18), .6f, true);
+            RoomDress("trashbag", "ArchiveRefuse", new Vector3(9, 4, 17.5f), .5f, true);
+            RoomDress("small_plastic_torch", "ArchiveTorch", new Vector3(5.5f, 5.4f, 18.9f), .22f);
+            RoomDress("stationery_supplies", "ArchiveStationery", new Vector3(5, 5.4f, 18.9f), .24f);
+            RoomDress("wall_clock", "ArchiveClock", new Vector3(7, 6.2f, 19.97f), .34f, false, 180, Vector3.back);
+            // K403 stays a usable stealth room: edges dressed, centre and desk clear.
+            RoomDress("worn_metal_rack", "K403Wardrobe", new Vector3(5.8f, 12, 19), 1.8f, true);
+            RoomDress("wicker_basket_01", "K403Laundry", new Vector3(8.2f, 12, 18.6f), .5f, true);
+            RoomDress("cardboard_box_01", "K403StoredBox", new Vector3(8.3f, 12, 15.5f), .6f, true);
+            RoomDress("metal_trash_can", "K403Bin", new Vector3(5.4f, 12, 14), .9f, true);
+            RoomDress("wall_clock", "K403Clock", new Vector3(11.36f, 14, 16.7f), .34f, false, -90, Vector3.left);
+            // Bathroom: water jars and a crate outside the EVP centre and stall path.
+            RoomDress("metal_jug", "BathroomWaterJarA", new Vector3(-21.8f, 12, 3.5f), .3f);
+            RoomDress("metal_jug", "BathroomWaterJarB", new Vector3(-21.4f, 12, 3.9f), .3f);
+            RoomDress("plastic_crate_02", "BathroomCrate", new Vector3(-18.5f, 12, 4.5f), .55f, true);
+            RoomDress("trashbag", "BathroomRefuse", new Vector3(-17.2f, 12, -.5f), .5f, true);
+            // Kitchen corners, away from the kiln sightline and approach.
+            RoomDress("plastic_crate_02", "KitchenCrate", new Vector3(18, 12, 7.2f), .55f, true);
+            RoomDress("cardboard_box_01", "KitchenBox", new Vector3(23, 12, 7.4f), .6f, true);
+            RoomDress("metal_trash_can", "KitchenBin", new Vector3(17.6f, 12, 6.8f), .9f, true);
+            RoomDress("wall_clock", "KitchenClock", new Vector3(19, 14.2f, 7.88f), .34f, false, 180, Vector3.back);
+            // Guard radio on the desk, pump clock on the back wall, lobby props.
+            RoomDress("vintage_radio_transceiver", "GuardRadio", new Vector3(-7.6f, .93f, -23.3f), .33f);
+            RoomDress("wall_clock", "PumpClock", new Vector3(-27, 2.2f, -8.17f), .34f, false, 180, Vector3.back);
+            RoomDress("metal_trash_can", "PumpBin", new Vector3(-26.5f, 0, -13), .9f, true);
+            RoomDress("utility_box_01", "LiftLandingBoxL1", new Vector3(-17.6f, 0, -12.5f), .5f, true);
+            RoomDress("cardboard_box_01", "LiftLandingBoxL2", new Vector3(-17.6f, 4, -12.5f), .6f, true);
+            // L4 gallery rubble near the claw door, laundry baskets by the lines.
+            RoomDress("trashbag", "L4GalleryRefuse", new Vector3(10, 12, 12.3f), .5f, true);
+            RoomDress("cement_bag", "L4GalleryRubble", new Vector3(-8.8f, 12, -9.7f), .65f, true);
+            RoomDress("wicker_basket_01", "LaundryBasketL1A", new Vector3(-6.5f, 0, 9.6f), .5f, true);
+            RoomDress("wicker_basket_01", "LaundryBasketL1B", new Vector3(4.5f, 0, 9.6f), .5f, true);
+            RoomDress("wicker_basket_01", "LaundryBasketL2A", new Vector3(-1.5f, 4, 9.6f), .5f, true);
+            RoomDress("wicker_basket_01", "LaundryBasketL2B", new Vector3(8.5f, 4, 9.6f), .5f, true);
+            File.WriteAllText("Audit/phase1-room-dressing.json", JsonUtility.ToJson(new RoomDressingReceipt
+            {
+                placements = roomDressing.Count, utc = DateTime.UtcNow.ToString("o"), items = roomDressing.ToArray()
+            }, true) + "\n");
+            current = environment;
+        }
     }
 }
 #endif

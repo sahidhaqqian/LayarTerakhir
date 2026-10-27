@@ -15,6 +15,7 @@ namespace LayarTerakhir.Phase1
         public GameObject keris, secret, cloth, cassette, tuyul, kuntilanak, genderuwo;
         public Transform clawAim, auraAim, evpPoint;
         public Phase1WorldItem cutterItem, chainItem;
+        public Phase1WorldItem servicePanelItem;
         public Camera transmissionCamera;
         public LayarTerakhir.Prolog.HingedDoor safeRoomDoor;
         public GameObject victimEcho;
