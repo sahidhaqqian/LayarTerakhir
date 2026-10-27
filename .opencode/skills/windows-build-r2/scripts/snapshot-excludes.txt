@@ -1,0 +1,19 @@
+# rsync excludes for the isolated Windows-build snapshot (anchored to project root).
+# Everything NOT listed here is copied — including git-ignored build inputs
+# (*.vrm authoring models, Madduck Phase2 art) and every .meta sidecar.
+# Only outputs, caches, VCS data and crash dumps are skipped.
+/Library/
+/Temp/
+/Obj/
+/Build/
+/Builds/
+/Logs/
+/UserSettings/
+/.git/
+/graphify-out/
+/.opencode/
+/.utmp/
+mono_crash.*
+__pycache__/
+Audit/Visuals/**/IsolatedSave-*/
+ArtSources/Scene2_Atmaja_Assets/.cache/

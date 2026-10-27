@@ -9,9 +9,9 @@
 - Jaga cache Unity Library dan hindari restart Editor yang tidak perlu.
 - Jangan jalankan lebih dari satu instance Unity Editor pada project yang sama.
 - Jika targeted test gagal, investigasi dan perbaiki sebelum commit.
-- Windows build TIDAK wajib setiap task; hanya buat jika pengguna memintanya secara eksplisit.
-- Upload ke Cloudflare R2 hanya jika pengguna memintanya secara eksplisit:
-  rclone copy Builds/LayarTerakhir-Windows-x86_64-Development.zip r2:layarterakhir/Layarterakhir/ -P
+- Windows build TIDAK wajib setiap task; hanya buat jika pengguna memintanya secara eksplisit, dan hanya melalui skill `windows-build-r2` (`.opencode/skills/windows-build-r2/`).
+- Upload ke Cloudflare R2 hanya jika pengguna memintanya secara eksplisit, dan hanya melalui skill `windows-build-r2` (upload otomatis hanya setelah build dan validasi ZIP sukses; skill mencegah overwrite rilis).
+- Jangan menjalankan build Windows langsung di direktori kerja aktif atau mengunggah manual via `rclone`; snapshot terisolasi + sesi tmux detached wajib agar development bisa lanjut.
 - Jika upload diminta, pastikan upload berhasil sebelum melaporkan selesai.
 - Jangan upload ulang jika tidak ada build baru.
 
