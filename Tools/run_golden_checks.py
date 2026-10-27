@@ -44,11 +44,16 @@ else:
     methods['designer-models']='DesignerVrmBuilder.Apply'
     if stage in ['linux','windows']:command+=['-buildTarget','Linux64' if stage=='linux' else 'Win64']
     if stage=='windows':
-        prior=ROOT/'Builds/Previous'/('before-golden-'+datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S'))
-        prior.mkdir(parents=True,exist_ok=False)
-        for name in ['Windows','LayarTerakhir-Windows-x86_64-Development.zip','LayarTerakhir-Windows-x86_64-Development.zip.sha256']:
-            old=ROOT/'Builds'/name
-            if old.exists():shutil.move(str(old),str(prior/name))
+        # The windows-build-r2 skill reuses one persistent workspace across
+        # runs. WINDOWS_KEEP_PREVIOUS=1 keeps the previous player output in
+        # place as the base for a scripts-only build; otherwise the previous
+        # output is moved aside before building, as before.
+        if os.environ.get('WINDOWS_KEEP_PREVIOUS')!='1':
+            prior=ROOT/'Builds/Previous'/('before-golden-'+datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S'))
+            prior.mkdir(parents=True,exist_ok=False)
+            for name in ['Windows','LayarTerakhir-Windows-x86_64-Development.zip','LayarTerakhir-Windows-x86_64-Development.zip.sha256']:
+                old=ROOT/'Builds'/name
+                if old.exists():shutil.move(str(old),str(prior/name))
         record_path=ROOT/'Builds/Logs/windows-build-invocation.json';log=ROOT/'Builds/Logs/windows-development.log'
     command+=['-quit','-executeMethod','LayarTerakhir.Editor.'+methods[stage],'-logFile',str(log)]
 if stage=='test':command+=['-logFile',str(log)]

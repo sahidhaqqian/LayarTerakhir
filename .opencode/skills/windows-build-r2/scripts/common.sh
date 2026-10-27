@@ -14,10 +14,21 @@ fi
 # WINBUILD_BASE / WINBUILD_SESSION overrides exist for isolated testing only.
 BASE="${WINBUILD_BASE:-/tmp/opencode/windows-build-r2}"
 SESSION="${WINBUILD_SESSION:-lt-winbuild}"
+# Persistent incremental workspace: synced from the live tree every run,
+# keeping its own Unity Library/Bee cache and previous player output so
+# scripts-only and incremental builds stay fast. Never deleted by the skill.
+WORKSPACE="$BASE/workspace"
+# Last known-good player output + build metadata. Refreshed only after a
+# successful build AND package; used to restore the workspace base if a
+# build fails, and to decide scripts-only eligibility for the next run.
+LASTGOOD="$BASE/last-good"
+LASTGOOD_META="$LASTGOOD/meta.json"
 R2DIR="r2:layarterakhir/Layarterakhir/"
 ZIP_NAME="LayarTerakhir-Windows-x86_64-Development.zip"
 UNITY_BIN="${UNITY_EDITOR:-/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity}"
-# Snapshot (~8 GB) + fresh Library import (~13 GB) + player output (~5 GB) + ZIP (~3 GB).
+# Workspace (~18 GB Library seed + ~5 GB player output + work files) plus
+# per-run results (logs + ~3 GB ZIP). The workspace Library/Bee cache and
+# last-good output are build caches: this skill never deletes them.
 MIN_FREE_BYTES=$((50 * 1024 * 1024 * 1024))
 
 utc_now() { date -u +%Y-%m-%dT%H:%M:%SZ; }

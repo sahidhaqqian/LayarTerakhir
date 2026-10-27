@@ -10,13 +10,16 @@ usage() {
   cat <<'EOF'
 Usage: clean.sh [--run <id>] [--purge] [--force]
 
-  (default)  Remove snapshot/ of every finished run (keeps logs/result/status).
+  (default)  Remove legacy per-run snapshot/ copies (keeps logs/result/status).
   --run <id> Restrict to one run.
   --purge    Remove the whole run directory (logs + result too). Finished runs only.
   --force    Also stop a running build: kills the tmux session and clears the
              active-run marker. Requires --run. Use only when the run is stuck.
 
 The live project, its Library and its Builds/ output are never modified.
+The persistent workspace ($BASE/workspace) and last-good output
+($BASE/last-good) are build caches and are never touched by clean.sh —
+there is intentionally no flag to delete them.
 EOF
 }
 

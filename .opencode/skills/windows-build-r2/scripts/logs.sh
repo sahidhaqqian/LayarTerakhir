@@ -12,8 +12,10 @@ Usage: logs.sh [--run <id>] [--list] [-f] [name] [-n N]
   (no args)  Tail of pipeline.log for the active/latest run.
   --list     List available log files with sizes.
   -f         Follow the log (like tail -f).
-  name       One of: pipeline snapshot build unity package upload
-             (build = stage wrapper, unity = Unity editor log).
+  name       One of: pipeline sync snapshot build unity package upload
+              (snapshot = legacy per-run copy; sync = workspace sync log.
+              build = effective attempt; per-attempt logs are
+              stage-windows-scripts-only.log / stage-windows-full.log.)
   -n N       Tail lines (default 100).
 
 Examples:
@@ -50,7 +52,7 @@ fi
 
 case "$NAME" in
   pipeline) FILE="$LOGS/pipeline.log" ;;
-  snapshot) FILE="$LOGS/snapshot.log" ;;
+  snapshot|sync) FILE="$LOGS/sync.log"; [ -f "$FILE" ] || FILE="$LOGS/snapshot.log" ;;
   build) FILE="$LOGS/stage-windows.log" ;;
   unity) FILE="$LOGS/windows-development.log" ;;
   package) FILE="$LOGS/package.log" ;;

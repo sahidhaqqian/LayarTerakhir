@@ -1,0 +1,22 @@
+# rsync excludes for the persistent incremental Windows-build workspace
+# (anchored to project root). Same as snapshot-excludes.txt EXCEPT Library/
+# is synced (additively, never with --delete) so the Unity Library/Bee
+# cache is reused across runs instead of reimported every time.
+# Everything NOT listed here is copied — including git-ignored build inputs
+# (*.vrm authoring models, Madduck Phase2 art) and every .meta sidecar.
+# /Builds/ stays excluded: the workspace owns its Builds/ output (previous
+# player = scripts-only base, protected by the last-good copy).
+/Temp/
+/Obj/
+/Build/
+/Builds/
+/Logs/
+/UserSettings/
+/.git/
+/graphify-out/
+/.opencode/
+/.utmp/
+mono_crash.*
+__pycache__/
+Audit/Visuals/**/IsolatedSave-*/
+ArtSources/Scene2_Atmaja_Assets/.cache/

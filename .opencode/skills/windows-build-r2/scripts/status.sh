@@ -64,20 +64,23 @@ st = json.load(open(sys.argv[1]))
 up = st.get("upload", {})
 arc = st.get("archive", {})
 bld = st.get("build", {})
+plan = st.get("buildPlan", {})
 print("run      : %s [%s]" % (st.get("runId"), st.get("status")))
 print("source   : %s%s %s" % (st.get("sourceShort"), " (dirty)" if st.get("sourceDirty") else "", st.get("sourceCommit", "")))
+if plan: print("plan     : %s (%s)" % (plan.get("mode"), plan.get("reason", "")))
 print("started  : %s   finished: %s" % (st.get("startedUtc"), st.get("finishedUtc") or "-"))
 print("tmux live: %s (session %s)" % (os.environ["ALIVE"], st.get("session")))
 print("steps    :")
-order = ["snapshot", "record-prebuild", "unity-build", "record-sources", "package", "upload"]
+order = ["workspace", "record-prebuild", "unity-build", "record-sources", "package", "upload"]
 steps = st.get("steps", {})
 for name in order:
     s = steps.get(name)
     if s is None: print("  %-15s pending" % name)
     elif s.get("exit") == 0: print("  %-15s ok" % name)
     else: print("  %-15s EXIT %s: %s" % (name, s.get("exit"), (s.get("error") or "")[:160]))
-if bld: print("build    : %s errors=%s warnings=%s scenes=%s" % (
-    bld.get("result"), bld.get("totalErrors"), bld.get("totalWarnings"), bld.get("sceneCount")))
+if bld: print("build    : %s mode=%s%s errors=%s warnings=%s scenes=%s" % (
+    bld.get("result"), bld.get("mode"), " (auto fallback from scripts-only)" if bld.get("fallback") else "",
+    bld.get("totalErrors"), bld.get("totalWarnings"), bld.get("sceneCount")))
 if arc: print("archive  : %s bytes=%s sha256=%s" % (
     arc.get("name"), arc.get("sizeBytes"), (arc.get("sha256") or "")[:16] + "..."))
 print("upload   : %s %s" % (up.get("status"), up.get("remote", "")))

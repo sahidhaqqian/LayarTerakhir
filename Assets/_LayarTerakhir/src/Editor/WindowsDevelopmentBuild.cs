@@ -16,6 +16,19 @@ namespace LayarTerakhir.Editor
 
         public static void Build()
         {
+            BuildInternal(BuildOptions.Development);
+        }
+
+        // Fast path for code-only iterations: rebuilds scripts and patches
+        // them into the previous player at the same output path instead of
+        // rebuilding scenes and assets. Enabled by setting the environment
+        // variable WINDOWS_BUILD_SCRIPTS_ONLY=1 before invoking Build()
+        // (see the windows-build-r2 skill, which decides eligibility and
+        // falls back to a full build automatically on failure).
+        // Requires a previous successful full build at the same location;
+        // anything else (scenes, prefabs, assets, settings) needs Build().
+        private static void BuildInternal(BuildOptions options)
+        {
             const BuildTarget target = BuildTarget.StandaloneWindows64;
             if (!BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Standalone, target))
                 throw new BuildFailedException("Windows x86_64 build support is unavailable.");
@@ -53,7 +66,13 @@ namespace LayarTerakhir.Editor
             string reportPath = Path.Combine(projectRoot, "Builds/Logs/windows-development-build-report.json");
             Directory.CreateDirectory(Path.GetDirectoryName(output));
             Directory.CreateDirectory(Path.GetDirectoryName(reportPath));
-            Debug.Log("WINDOWS_BUILD Target=" + target + " Backend=Mono2x Options=Development");
+            if (Environment.GetEnvironmentVariable("WINDOWS_BUILD_SCRIPTS_ONLY") == "1")
+            {
+                if (!File.Exists(output))
+                    throw new BuildFailedException("Scripts-only build requested but no previous player exists at " + output + "; run a full build first.");
+                options |= BuildOptions.BuildScriptsOnly;
+            }
+            Debug.Log("WINDOWS_BUILD Target=" + target + " Backend=Mono2x Options=" + options);
             Debug.Log("WINDOWS_BUILD Scenes=" + string.Join(",", scenes));
             Debug.Log("WINDOWS_BUILD Output=" + output);
 
@@ -65,7 +84,7 @@ namespace LayarTerakhir.Editor
                 locationPathName = output,
                 target = target,
                 subtarget = (int)StandaloneBuildSubtarget.Player,
-                options = BuildOptions.Development
+                options = options
             });
             var summary = report.summary;
             var record = new BuildRecord

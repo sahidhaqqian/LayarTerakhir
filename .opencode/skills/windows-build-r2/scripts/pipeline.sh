@@ -9,10 +9,10 @@ export WINBUILD_BASE="$BASE" WINBUILD_SESSION="$SESSION"
 # shellcheck disable=SC1091
 . "$SKILL_DIR/scripts/common.sh"
 
-SNAP="$RUN_DIR/snapshot"
+SNAP="$WORKSPACE"
 LOGS="$RUN_DIR/logs"
 RESULT="$RUN_DIR/result"
-mkdir -p "$LOGS" "$RESULT/receipts"
+mkdir -p "$LOGS" "$RESULT/receipts" "$WORKSPACE" "$LASTGOOD"
 exec > >(tee -a "$LOGS/pipeline.log") 2>&1
 set -x
 
@@ -44,23 +44,30 @@ step_ok() { # <step>
   jset "$RUN_DIR" "steps.$1.exit" 0
 }
 
-echo "windows-build-r2 pipeline $RUN_ID (commit $SHORT, dirty=$DIRTY)"
+echo "windows-build-r2 pipeline $RUN_ID (commit $SHORT, dirty=$DIRTY, mode=${BUILD_MODE:-full})"
 
-# 1. Isolated snapshot. The live tree is only READ (rsync source).
-STEP="snapshot"
-if ! rsync -a --exclude-from="$SKILL_DIR/scripts/snapshot-excludes.txt" "$LIVE_ROOT/" "$SNAP/" >"$LOGS/snapshot.log" 2>&1; then
-  die 2 "rsync snapshot failed; see logs/snapshot.log"
+# 1. Persistent incremental workspace. Synced from the live tree every run;
+# the workspace keeps its own Unity Library/Bee cache and previous player
+# output across runs. Caches are additive-only here — never deleted.
+STEP="workspace"
+if ! rsync -a --delete --exclude-from="$SKILL_DIR/scripts/workspace-excludes.txt" "$LIVE_ROOT/" "$WORKSPACE/" >"$LOGS/sync.log" 2>&1; then
+  die 2 "workspace sync failed; see logs/sync.log"
 fi
-[ -f "$SNAP/Tools/package_windows_build.py" ] || die 2 "snapshot missing Tools/pipeline"
-[ -f "$SNAP/ProjectSettings/EditorBuildSettings.asset" ] || die 2 "snapshot missing ProjectSettings"
-[ -n "$(ls "$SNAP"/Assets/_LayarTerakhir/assets/LayarTerakhir/*.vrm 2>/dev/null | head -n 1)" ] \
-  || die 2 "snapshot lost git-ignored .vrm build inputs"
-[ -d "$SNAP/Assets/_LayarTerakhir/assets/Art/Phase2/Imported/Madduck" ] \
-  || die 2 "snapshot lost git-ignored Madduck build inputs"
-jset_str "$RUN_DIR" steps.snapshot.files "$(grep -c . "$LOGS/snapshot.log" 2>/dev/null || echo 0)"
-step_ok snapshot
+if [ -d "$LIVE_ROOT/Library" ]; then
+  if ! rsync -a "$LIVE_ROOT/Library/" "$WORKSPACE/Library/" >"$LOGS/library-sync.log" 2>&1; then
+    die 2 "workspace Library sync failed; see logs/library-sync.log"
+  fi
+fi
+[ -f "$WORKSPACE/Tools/package_windows_build.py" ] || die 2 "workspace missing Tools/pipeline"
+[ -f "$WORKSPACE/ProjectSettings/EditorBuildSettings.asset" ] || die 2 "workspace missing ProjectSettings"
+[ -n "$(ls "$WORKSPACE"/Assets/_LayarTerakhir/assets/LayarTerakhir/*.vrm 2>/dev/null | head -n 1)" ] \
+  || die 2 "workspace lost git-ignored .vrm build inputs"
+[ -d "$WORKSPACE/Assets/_LayarTerakhir/assets/Art/Phase2/Imported/Madduck" ] \
+  || die 2 "workspace lost git-ignored Madduck build inputs"
+jset_str "$RUN_DIR" steps.workspace.files "$(grep -c . "$LOGS/sync.log" 2>/dev/null || echo 0)"
+step_ok workspace
 
-# Snapshot has no .git (excluded); point git at the live repo for provenance only.
+# Workspace has no .git (excluded); point git at the live repo for provenance only.
 export GIT_DIR="$LIVE_ROOT/.git"
 
 # 2. Pre-build source record: proves the GIT_DIR trick and freezes pre-build identity.
@@ -70,16 +77,56 @@ if ! (cd "$SNAP" && python3 Tools/record_designer_sources.py --output Audit/winb
 fi
 step_ok record-prebuild
 
-# 3. Unity Windows build via the existing pipeline (fresh Library import inside snapshot).
+# 3. Unity Windows build via the existing pipeline.
+# The workspace Library/Bee cache and previous player output persist across
+# runs, so incremental (and scripts-only) builds stay fast.
+# Safety: WINDOWS_KEEP_PREVIOUS=1 keeps the previous player in place as the
+# scripts-only base (the run_golden_checks move-aside is skipped); the
+# last-good copy below is the real protection, restored if a build fails.
 STEP="unity-build"
-build_code=0
-(cd "$SNAP" && python3 Tools/run_golden_checks.py --stage windows >"$LOGS/stage-windows.log" 2>&1) || build_code=$?
+export WINDOWS_KEEP_PREVIOUS=1
+PLAYER_EXE="$WORKSPACE/Builds/Windows/LayarTerakhir.exe"
+LASTGOOD_EXE="$LASTGOOD/Builds/Windows/LayarTerakhir.exe"
+EFFECTIVE_MODE="${BUILD_MODE:-full}"
+if [ "$EFFECTIVE_MODE" = "scripts-only" ] && [ ! -f "$PLAYER_EXE" ]; then
+  if [ -f "$LASTGOOD_EXE" ]; then
+    echo "workspace player base missing; restoring from last-good"
+    mkdir -p "$WORKSPACE/Builds/Windows"
+    rsync -a --delete "$LASTGOOD/Builds/Windows/" "$WORKSPACE/Builds/Windows/" >"$LOGS/lastgood-restore.log" 2>&1 \
+      || die 2 "last-good restore failed; see logs/lastgood-restore.log"
+  else
+    echo "no previous player output anywhere; falling back to full build"
+    EFFECTIVE_MODE="full"
+    jset_str "$RUN_DIR" build.planFallback "no player base for scripts-only"
+  fi
+fi
+attempt_build() { # <mode: scripts-only|full>
+  if [ "$1" = "scripts-only" ]; then export WINDOWS_BUILD_SCRIPTS_ONLY=1
+  else unset WINDOWS_BUILD_SCRIPTS_ONLY; fi
+  (cd "$WORKSPACE" && python3 Tools/run_golden_checks.py --stage windows >"$LOGS/stage-windows-$1.log" 2>&1)
+}
+build_code=0; FALLBACK=0
+if [ "$EFFECTIVE_MODE" = "scripts-only" ]; then
+  attempt_build scripts-only || build_code=$?
+  cp "$LOGS/stage-windows-scripts-only.log" "$LOGS/stage-windows.log"
+  if [ "$build_code" -ne 0 ]; then
+    echo "scripts-only attempt failed (exit $build_code); falling back to full incremental build (cache kept)"
+    FALLBACK=1; build_code=0
+    attempt_build full || build_code=$?
+    cp "$LOGS/stage-windows-full.log" "$LOGS/stage-windows.log"
+  fi
+else
+  attempt_build full || build_code=$?
+  cp "$LOGS/stage-windows-full.log" "$LOGS/stage-windows.log"
+fi
 for f in windows-build-invocation.json windows-development.log windows-development.console.log windows-development-build-report.json; do
-  [ -f "$SNAP/Builds/Logs/$f" ] && cp "$SNAP/Builds/Logs/$f" "$LOGS/" || true
+  [ -f "$WORKSPACE/Builds/Logs/$f" ] && cp "$WORKSPACE/Builds/Logs/$f" "$LOGS/" || true
 done
-python3 - "$RUN_DIR" <<'EOF' || true
+FINAL_MODE="$EFFECTIVE_MODE"
+if [ "$FALLBACK" -eq 1 ]; then FINAL_MODE="full"; fi
+python3 - "$RUN_DIR" "$FINAL_MODE" "$FALLBACK" <<'EOF' || true
 import json,sys
-run = sys.argv[1]
+run, mode, fallback = sys.argv[1], sys.argv[2], sys.argv[3] == "1"
 try:
     rep = json.load(open(run + "/logs/windows-development-build-report.json"))
     st = json.load(open(run + "/status.json"))
@@ -87,11 +134,27 @@ try:
         ("result", "target", "scriptingBackend", "options", "totalErrors",
          "totalWarnings", "totalSizeBytes", "durationSeconds")}
     st["build"]["sceneCount"] = len(rep.get("scenes", []))
+    st["build"]["mode"] = mode
+    st["build"]["fallback"] = fallback
+    st["build"]["cacheReused"] = True
+    st["build"]["unityVersion"] = rep.get("unityVersion", "")
+    # The report must show the mechanism that actually ran.
+    if mode == "scripts-only" and "ScriptsOnly" not in str(st["build"]["options"]):
+        st["build"]["mode"] = "full"
+        st["build"]["note"] = "report shows full options; treated as full build"
     open(run + "/status.json", "w").write(json.dumps(st, indent=2))
 except Exception as e:
     print("build report parse skipped:", e)
 EOF
-[ "$build_code" -eq 0 ] || die 2 "Unity Windows build failed (exit $build_code); see logs/stage-windows.log and logs/windows-development.log"
+FINAL_MODE="$(jget "$RUN_DIR" build.mode)"; [ -n "$FINAL_MODE" ] || FINAL_MODE="$EFFECTIVE_MODE"
+if [ "$build_code" -ne 0 ]; then
+  if [ -f "$LASTGOOD_EXE" ]; then
+    echo "build failed; restoring workspace player base from last-good"
+    rsync -a --delete "$LASTGOOD/Builds/Windows/" "$WORKSPACE/Builds/Windows/" >"$LOGS/lastgood-restore.log" 2>&1 || true
+  fi
+  [ "$FALLBACK" -eq 1 ] && extra=" (after scripts-only -> full fallback)" || extra=""
+  die 2 "Unity Windows build failed$extra (exit $build_code); see logs/stage-windows.log and logs/windows-development.log. Last-good output preserved."
+fi
 step_ok unity-build
 
 # 4. Post-build source record: the build stamps PlayerSettings, so the
@@ -122,6 +185,28 @@ open(run + "/status.json", "w").write(json.dumps(st, indent=2))
 EOF
 step_ok package
 
+# 5b. The build AND package both succeeded: refresh the last-good player
+# copy and its metadata. This is the ONLY write to last-good, so a failed
+# build can never overwrite a working player.
+if ! rsync -a --delete "$WORKSPACE/Builds/Windows/" "$LASTGOOD/Builds/Windows/" >"$LOGS/lastgood-refresh.log" 2>&1; then
+  die 2 "last-good refresh failed; see logs/lastgood-refresh.log"
+fi
+python3 - "$RUN_DIR" "$LASTGOOD_META" <<'EOF' || true
+import datetime,json,sys
+run, meta = sys.argv[1], sys.argv[2]
+st = json.load(open(run + "/status.json"))
+bld = st.get("build", {})
+open(meta, "w").write(json.dumps({
+    "commit": st.get("sourceCommit", ""),
+    "dirty": bool(st.get("sourceDirty")),
+    "runId": st.get("runId", ""),
+    "utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    "mode": bld.get("mode", ""),
+    "unityVersion": bld.get("unityVersion", ""),
+}, indent=2) + "\n")
+EOF
+[ -f "$LASTGOOD_META" ] || die 2 "last-good metadata was not written"
+
 # 6. Upload (skipped on request, blocked on existing release without --overwrite-r2).
 STEP="upload"
 if [ "$SKIP_UPLOAD" -eq 1 ]; then
@@ -144,10 +229,10 @@ else
     jset "$RUN_DIR" upload.status '"failed"'
     die 3 "R2 upload/readback verification failed; see logs/upload.log"
   fi
-  python3 - "$RUN_DIR" <<'EOF' || true
+  python3 - "$RUN_DIR" "$WORKSPACE" <<'EOF' || true
 import json,sys
-run = sys.argv[1]
-rec = json.load(open(run + "/snapshot/Audit/r2-windows-build-upload.json"))
+run, ws = sys.argv[1], sys.argv[2]
+rec = json.load(open(ws + "/Audit/r2-windows-build-upload.json"))
 st = json.load(open(run + "/status.json"))
 st["upload"] = {"status": "verified", "remote": rec["remote"],
                 "sizeBytes": rec["sizeBytes"], "sha256": rec["sha256"],

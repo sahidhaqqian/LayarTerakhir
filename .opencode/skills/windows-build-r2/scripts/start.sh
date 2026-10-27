@@ -8,22 +8,92 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 usage() {
   cat <<'EOF'
-Usage: start.sh [--overwrite-r2] [--skip-upload] [--dry-run]
+Usage: start.sh [--overwrite-r2] [--skip-upload] [--full-build] [--dry-run]
 
   --overwrite-r2  Allow replacing the existing R2 release object.
                   Without it, the run stops before upload if a release exists.
   --skip-upload   Build + package only; skip the R2 upload step.
+  --full-build    Force a full incremental build even when a scripts-only
+                  build would be eligible (e.g. after a Unity upgrade or a
+                  suspicious incremental state).
   --dry-run       Check prerequisites and print the plan; start nothing.
+
+Build mode is chosen automatically: scripts-only (BuildOptions.BuildScriptsOnly,
+code changes only) when every change since the last successful build is
+compatible C# (or build-irrelevant files); otherwise a full incremental build.
+Scripts-only reuses the persistent workspace Library/Bee cache and the
+previous player output, and falls back to a full build automatically if the
+scripts-only attempt fails.
 
 Manual use only: run when the user explicitly requests a Windows build / R2 upload.
 EOF
 }
 
-OVERWRITE_R2=0; SKIP_UPLOAD=0; DRY_RUN=0
+# path_eligible_scripts_only <path> — exit 0 when a change to this path can
+# be covered by a scripts-only rebuild. Conservative by design: anything not
+# explicitly known-safe forces a full build, so no generated build can ever
+# silently miss a change.
+path_eligible_scripts_only() {
+  local lower="${1,,}"
+  case "$1" in
+    ProjectSettings/*|Packages/*) return 1 ;;
+  esac
+  case "$1" in
+    Assets/*.cs|Assets/*.cs.meta|Assets/*.asmdef) return 0 ;;
+  esac
+  case "$1" in
+    Assets/*) return 1 ;;
+  esac
+  # Outside Assets/ the player build only sees compiled C#; everything else
+  # is either ignored or provably build-irrelevant.
+  case "$1" in
+    Audit/*|Docs/*|Tools/*|.opencode/*|graphify-out/*|ArtSources/*|Builds/*) return 0 ;;
+  esac
+  case "$1" in
+    .gitignore|.gitattributes|.editorconfig) return 0 ;;
+  esac
+  case "$lower" in
+    *.md|*.markdown|*.txt|*.json|*.py|*.sh|*.yml|*.yaml|*.toml|*.cfg|*.ini|*.docx|*.pdf|*.xlsx|*.pptx|*.csv) return 0 ;;
+  esac
+  return 1
+}
+
+# decide_build_mode — prints "<mode>|<reason>" and returns 0.
+# mode is "full" unless every change since the last good build is eligible.
+decide_build_mode() {
+  if [ ! -f "$LASTGOOD_META" ]; then echo "full|no previous successful build in $LASTGOOD"; return 0; fi
+  local base unity_required unity_built
+  base=$(python3 -c 'import json,sys;print(json.load(open(sys.argv[1])).get("commit",""))' "$LASTGOOD_META" 2>/dev/null)
+  [ -n "$base" ] || { echo "full|last-good metadata has no commit"; return 0; }
+  git -C "$LIVE_ROOT" merge-base --is-ancestor "$base" HEAD 2>/dev/null \
+    || { echo "full|$base is not an ancestor of HEAD (history changed)"; return 0; }
+  unity_built=$(python3 -c 'import json,sys;print(json.load(open(sys.argv[1])).get("unityVersion",""))' "$LASTGOOD_META" 2>/dev/null)
+  unity_required=$(grep -m1 m_EditorVersion "$LIVE_ROOT/ProjectSettings/ProjectVersion.txt" 2>/dev/null | sed 's/.*: //;s/[^0-9a-zA-Z.+-]//g')
+  if [ -n "$unity_built" ] && [ -n "$unity_required" ] && [ "$unity_built" != "$unity_required" ]; then
+    echo "full|Unity version changed ($unity_built -> $unity_required)"; return 0
+  fi
+  local changed ineligible
+  changed=$( { git -C "$LIVE_ROOT" diff --name-only "$base" HEAD 2>/dev/null
+    git -C "$LIVE_ROOT" status --porcelain=v1 -uall --no-renames 2>/dev/null | sed 's/^.\{3\}//; s/^"//; s/"$//'; } | sed '/^$/d' | sort -u )
+  ineligible=""
+  while IFS= read -r f; do
+    [ -n "$f" ] || continue
+    path_eligible_scripts_only "$f" || ineligible="${ineligible}${ineligible:+, }$f"
+  done <<<"$changed"
+  if [ -n "$ineligible" ]; then
+    echo "full|non-code changes since $base: $(echo "$ineligible" | tr ' ' '\n' | head -n 5 | tr '\n' ' ')..."
+  else
+    echo "scripts-only|only compatible C# / build-irrelevant files changed since $base"
+  fi
+  return 0
+}
+
+OVERWRITE_R2=0; SKIP_UPLOAD=0; DRY_RUN=0; FULL_BUILD=0
 for a in "$@"; do
   case "$a" in
     --overwrite-r2) OVERWRITE_R2=1 ;;
     --skip-upload) SKIP_UPLOAD=1 ;;
+    --full-build) FULL_BUILD=1 ;;
     --dry-run) DRY_RUN=1 ;;
     -h|--help) usage; exit 0 ;;
     *) echo "Unknown flag: $a" >&2; usage >&2; exit 1 ;;
@@ -69,7 +139,7 @@ SHORT=$(git -C "$LIVE_ROOT" rev-parse --short HEAD)
 DIRTY=0; STATUS_TXT=""
 if [ -n "$(git -C "$LIVE_ROOT" status --porcelain)" ]; then
   DIRTY=1
-  STATUS_TXT=$(git -C "$LIVE_ROOT" status --porcelain | head -n 20)
+  STATUS_TXT=$(git -C "$LIVE_ROOT" status --porcelain | sed -n '1,20p')
 fi
 
 if [ "$DRY_RUN" -eq 1 ]; then
@@ -78,13 +148,26 @@ if [ "$DRY_RUN" -eq 1 ]; then
   echo "  commit    : $SHORT (dirty=$DIRTY)"
   echo "  unity     : $UNITY_BIN"
   echo "  session   : $SESSION (detached tmux)"
-  echo "  runs dir  : $BASE/runs"
-  echo "  flags     : overwrite-r2=$OVERWRITE_R2 skip-upload=$SKIP_UPLOAD"
+  echo "  workspace : $WORKSPACE (persistent Library/Bee cache + player base)"
+  echo "  last-good : $([ -f "$LASTGOOD_META" ] && cat "$LASTGOOD_META" || echo "(none yet)")"
+  echo "  flags     : overwrite-r2=$OVERWRITE_R2 skip-upload=$SKIP_UPLOAD full-build=$FULL_BUILD"
+  decision="$(decide_build_mode)"
+  if [ "$FULL_BUILD" -eq 1 ]; then
+    echo "  build mode: full (forced by --full-build; auto choice was: $decision)"
+  else
+    echo "  build mode: $decision"
+  fi
   empty="$(mktemp -d)"
-  rsync -a --dry-run --stats --exclude-from="$SCRIPT_DIR/snapshot-excludes.txt" "$LIVE_ROOT/" "$empty/" 2>/dev/null | grep -E "^(Number of files|Total file size)" || true
+  rsync -a --dry-run --stats --exclude-from="$SCRIPT_DIR/workspace-excludes.txt" "$LIVE_ROOT/" "$empty/" 2>/dev/null | grep -E "^(Number of files|Total file size)" || true
   rmdir "$empty"
-  echo "  plan      : snapshot -> Unity build -> record sources -> package+ZIP -> R2 upload"
+  echo "  plan      : sync workspace -> Unity build -> record sources -> package+ZIP -> R2 upload"
   exit 0
+fi
+
+BUILD_MODE="full"; BUILD_REASON="forced by --full-build"
+if [ "$FULL_BUILD" -eq 0 ]; then
+  decision="$(decide_build_mode)"
+  BUILD_MODE="${decision%%|*}"; BUILD_REASON="${decision#*|}"
 fi
 
 STAMP=$(date -u +%Y%m%d-%H%M%S)
@@ -105,9 +188,11 @@ SKIP_UPLOAD="$SKIP_UPLOAD"
 HEAD="$HEAD"
 SHORT="$SHORT"
 DIRTY="$DIRTY"
+BUILD_MODE="$BUILD_MODE"
+BUILD_REASON="$BUILD_REASON"
 EOF
 HEAD="$HEAD" SHORT="$SHORT" DIRTY="$DIRTY" RUN_ID="$RUN_ID" SESSION="$SESSION" \
-LIVE_ROOT="$LIVE_ROOT" STATUS_TXT="$STATUS_TXT" python3 - "$RUN_DIR" <<'EOF'
+LIVE_ROOT="$LIVE_ROOT" STATUS_TXT="$STATUS_TXT" BUILD_MODE="$BUILD_MODE" BUILD_REASON="$BUILD_REASON" python3 - "$RUN_DIR" <<'EOF'
 import json,os,sys,datetime
 run = sys.argv[1]
 now = datetime.datetime.now(datetime.timezone.utc).isoformat()
@@ -117,6 +202,7 @@ st = {
     "sourceCommit": os.environ["HEAD"], "sourceShort": os.environ["SHORT"],
     "sourceDirty": os.environ["DIRTY"] == "1",
     "sourceStatus": os.environ.get("STATUS_TXT", ""),
+    "buildPlan": {"mode": os.environ["BUILD_MODE"], "reason": os.environ["BUILD_REASON"]},
     "startedUtc": now, "finishedUtc": None, "status": "Running",
     "steps": {}, "build": {}, "archive": {},
     "upload": {"status": "pending"},
@@ -134,7 +220,8 @@ if ! tmux new-session -d -s "$SESSION" -c "$RUN_DIR" "$SKILL_DIR/scripts/pipelin
   exit 1
 fi
 
-echo "windows-build-r2 started: $RUN_ID (commit $SHORT, dirty=$DIRTY)"
+echo "windows-build-r2 started: $RUN_ID (commit $SHORT, dirty=$DIRTY, mode=$BUILD_MODE)"
+echo "  mode reason: $BUILD_REASON"
 echo "  status: $SCRIPT_DIR/status.sh"
 echo "  logs:   $SCRIPT_DIR/logs.sh"
 echo "Development can continue; the live tree and Library are untouched."
