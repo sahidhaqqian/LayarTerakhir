@@ -71,7 +71,7 @@ for marker in ['Spawn_KosFloor2','StairA_9','StairB_9','DAPUR BERSAMA','KAMAR MA
 for blocker in ['MelatiDistrictBoundary','MelatiStreetEnd','MelatiCrossroadEnd','StreetEndBoundary','KosGateBoundary']:
  assert blocker.encode() not in corridor_data,'Removed pedestrian barrier still packaged: '+blocker
 runtime=(out/'LayarTerakhir_Data/Managed/Assembly-CSharp.dll').read_bytes()
-for marker in ['GameShell','PhoneDesktop','PhoneSkin','KosRoomCorrections','ClockPuzzleView','ClockAmbience','KosCorridorDirector','KosTravelItem','ReviewPlayerAudit','ShoulderCameraRig','ExplorationCommentary','StoryMapGraphic','DoubleLeafGate','TryPayFamilyBill','DisplayPreferences','AtmajaUpperDirector','AtmajaBasementHorror','AtmajaChaseSequence','AtmajaReviewMoments','ARPhotoGlimmer','MelatiNeighborhood','MelatiShop','NeighborhoodRain','MotorcycleRiderAlignment','ArchiveDocument']:
+for marker in ['GameShell','PhoneDesktop','PhoneSkin','KosRoomCorrections','ClockPuzzleView','ClockAmbience','KosCorridorDirector','KosTravelItem','ReviewPlayerAudit','ReviewDirectBoot','ShoulderCameraRig','ExplorationCommentary','StoryMapGraphic','DoubleLeafGate','TryPayFamilyBill','DisplayPreferences','AtmajaUpperDirector','AtmajaBasementHorror','AtmajaChaseSequence','AtmajaReviewMoments','ARPhotoGlimmer','MelatiNeighborhood','MelatiShop','NeighborhoodRain','MotorcycleRiderAlignment','ArchiveDocument']:
  assert marker.encode() in runtime,marker
 if 'presentation' in args.source_record.lower():
  for marker in ['PlayerPerspective','TogglePerspective','AnimatedRakaAvatar']:
@@ -93,7 +93,7 @@ if any(chapter in args.source_record.lower() for chapter in ('phase1','phase2','
  fixture={'schema_version':2,'chapter_id':1,'checkpoint_id':'PHASE1_CP1','battery':100,'sanity':100,
           'inventory':['SMARTPHONE_RAKA','JAKET_RAKA','MATABATIN_APK'], 'phase1':{'completed_event_ids':['P1_ARRIVAL'],'safe_anchor':'ARRIVAL'}}
  (out/'Phase1Review-Start.json').write_text(json.dumps(fixture,indent=2)+'\n')
- (out/'Review-Phase1.cmd').write_text('@echo off\nsetlocal\nset "LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY=%~dp0ReviewSaves\\Phase1"\nif not exist "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%" mkdir "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%"\nif not exist "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%\\layar_terakhir_save.json" copy /Y "%~dp0Phase1Review-Start.json" "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%\\layar_terakhir_save.json" >nul\nstart "" /D "%~dp0" "%~dp0LayarTerakhir.exe"\nendlocal\n')
+ (out/'Review-Phase1.cmd').write_text('@echo off\nsetlocal\nset "LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY=%~dp0ReviewSaves\\Phase1"\nif not exist "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%" mkdir "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%"\nif not exist "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%\\layar_terakhir_save.json" copy /Y "%~dp0Phase1Review-Start.json" "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%\\layar_terakhir_save.json" >nul\nstart "" /D "%~dp0" "%~dp0LayarTerakhir.exe" -phase1Review\nendlocal\n')
 
 if any(chapter in args.source_record.lower() for chapter in ('phase2','phase3','phase4','phase5')):
  assert report['scenes'][4]=='Assets/_LayarTerakhir/assets/Scenes/Babak2_RSUD.unity','RSUD Session 1 scene is missing or reordered'
