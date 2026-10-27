@@ -1,30 +1,21 @@
 {
+  "stage": "windows",
   "command": [
-    "xvfb-run",
-    "-a",
-    "-s",
-    "-screen 0 1280x720x24",
     "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
     "-batchmode",
-    "-job-worker-count",
-    "1",
-    "-projectPath",
-    "/root/Projects/LayarTerakhir-main",
     "-nographics",
+    "-projectPath",
+    "/root/projects/LayarTerakhir",
     "-buildTarget",
     "Win64",
+    "-quit",
     "-executeMethod",
     "LayarTerakhir.Editor.WindowsDevelopmentBuild.Build",
-    "-quit",
     "-logFile",
-    "Builds/Logs/nyonya-motion-windows-build.log"
+    "/root/projects/LayarTerakhir/Builds/Logs/windows-development.log"
   ],
-  "startedUtc": "2026-10-26T16:55:37.103314+00:00",
+  "startedUtc": "2026-10-27T04:36:45.892452+00:00",
   "status": "Finished",
-  "unit": "lt-unity-20261026-165537-379429",
-  "memoryLimitBytes": 5905580032,
-  "memoryHighBytes": 5100273664,
-  "endedUtc": "2026-10-26T16:57:14.202854+00:00",
-  "exitCode": 0,
-  "systemdServiceResult": "success"
+  "endedUtc": "2026-10-27T04:50:01.587737+00:00",
+  "exitCode": 0
 }
