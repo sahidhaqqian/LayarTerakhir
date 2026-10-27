@@ -35,7 +35,8 @@ namespace LayarTerakhir.Editor.Tests
         private void Enter() { Assert.That(Phase5Campaign.Enter(c), Is.True); }
         private void Stage()
         {
-            Enter(); Assert.That(Phase5Campaign.EnterSectors(c), Is.True); Assert.That(Phase5Campaign.ClearSector(c, 1), Is.True);
+            Enter(); Assert.That(Phase5Campaign.EnterSectors(c), Is.True); Assert.That(Phase5Campaign.ClearSector(c, 1), Is.False);
+            Assert.That(Phase5Campaign.Receipt(c, "P5_S1_THERMO_OK"), Is.True); Assert.That(Phase5Campaign.ClearSector(c, 1), Is.True);
             Assert.That(Phase5Campaign.EnsureVessel(c), Is.True); c.Data.phase4.water_units = 1; Assert.That(Phase5Campaign.Pour(c), Is.True);
             Assert.That(Phase5Campaign.ClearSector(c, 2), Is.True); Assert.That(Phase5Campaign.ClearSector(c, 3), Is.True);
         }
@@ -86,18 +87,21 @@ namespace LayarTerakhir.Editor.Tests
             Enter(); Assert.That(Phase5Campaign.Buy(c,"POWERBANK"),Is.False);
             Assert.That(Phase5Campaign.Recover(c,"DYNAMO_GATE","GATE",true,20),Is.True); Assert.That(c.Data.battery,Is.EqualTo(25));
             Assert.That(Phase5Campaign.Recover(c,"PRAYER_GATE","GATE",false,30),Is.True); Assert.That(c.Data.sanity,Is.EqualTo(15));
-            Assert.That(Phase5Campaign.EnterSectors(c),Is.True); Assert.That(Phase5Campaign.ClearSector(c,1),Is.True);
+            Assert.That(Phase5Campaign.EnterSectors(c),Is.True); Assert.That(Phase5Campaign.ClearSector(c,1),Is.False);
+            Assert.That(Phase5Campaign.Receipt(c,"P5_S1_THERMO_OK"),Is.True); Assert.That(Phase5Campaign.ClearSector(c,1),Is.True);
             Assert.That(Phase5Campaign.EnsureVessel(c),Is.True); c.Data.phase4.water_units=0; Assert.That(Phase5Campaign.Pour(c),Is.False); Assert.That(Phase5Campaign.Refill(c),Is.True); Assert.That(Phase5Campaign.Pour(c),Is.True);
             Assert.That(Phase5Campaign.ClearSector(c,2),Is.True); Assert.That(Phase5Campaign.ClearSector(c,3),Is.True); Assert.That(c.Data.wallet_legitimate,Is.Zero);
         }
         [Test] public void FailedPurchaseRollsBackLedgerMoneyAndAllInstances()
         { Enter(); c.Data.wallet_legitimate=1000000; string before=JsonUtility.ToJson(c.Data); FailWrite(()=>Assert.That(Phase5Campaign.Buy(c,"FLARE"),Is.False)); Assert.That(JsonUtility.ToJson(c.Data),Is.EqualTo(before)); }
         [Test] public void SectorOrderingAndCheckpointsNeverRegressOnBacktrackReceipts()
-        { Enter(); Assert.That(Phase5Campaign.ClearSector(c,3),Is.False); Phase5Campaign.EnterSectors(c); Assert.That(c.Data.checkpoint_id,Is.EqualTo("PHASE5_CP2")); Phase5Campaign.ClearSector(c,1); Assert.That(c.Data.checkpoint_id,Is.EqualTo("PHASE5_CP3")); Phase5Campaign.Receipt(c,"P5_SECRET_CHAIR_SILENCE","GATE"); Assert.That(c.Data.checkpoint_id,Is.EqualTo("PHASE5_CP3")); Assert.That(c.LoadCheckpoint(),Is.True); Assert.That(c.Data.phase5.Completed("P5_S1_CLEAR"),Is.True); }
+        { Enter(); Assert.That(Phase5Campaign.ClearSector(c,3),Is.False); Phase5Campaign.EnterSectors(c); Assert.That(c.Data.checkpoint_id,Is.EqualTo("PHASE5_CP2")); Assert.That(Phase5Campaign.ClearSector(c,1),Is.False); Phase5Campaign.Receipt(c,"P5_S1_THERMO_OK"); Phase5Campaign.ClearSector(c,1); Assert.That(c.Data.checkpoint_id,Is.EqualTo("PHASE5_CP3")); Phase5Campaign.Receipt(c,"P5_SECRET_CHAIR_SILENCE","GATE"); Assert.That(c.Data.checkpoint_id,Is.EqualTo("PHASE5_CP3")); Assert.That(c.LoadCheckpoint(),Is.True); Assert.That(c.Data.phase5.Completed("P5_S1_CLEAR"),Is.True); }
+        [Test] public void SectorOneRequiresThermoVerificationBeforeClear()
+        { Enter(); Assert.That(Phase5Campaign.EnterSectors(c),Is.True); Assert.That(Phase5Campaign.ClearSector(c,1),Is.False); Assert.That(c.Data.phase5.Completed("P5_S1_CLEAR"),Is.False); Assert.That(Phase5Campaign.Receipt(c,"P5_S1_THERMO_OK"),Is.True); Assert.That(Phase5Campaign.ClearSector(c,1),Is.True); Assert.That(c.Data.phase5.Completed("P5_S1_CLEAR"),Is.True); }
         [Test] public void KendiAndVolumeHaveOneOwnerWithNoFallbackDuplicate()
-        { Enter(); Phase5Campaign.EnterSectors(c); Phase5Campaign.ClearSector(c,1); c.Data.phase4.water_units=2; Assert.That(Phase5Campaign.EnsureVessel(c),Is.True); Assert.That(c.Data.inventory.Count(x=>x==Phase4Ids.Kendi),Is.EqualTo(1)); Assert.That(c.Data.inventory,Does.Not.Contain(Phase5Ids.Cup)); Assert.That(Phase5Campaign.Pour(c),Is.True); Assert.That(c.Data.phase4.water_units,Is.EqualTo(1)); Assert.That(Phase5Campaign.Pour(c),Is.False); Assert.That(c.Data.phase4.water_units,Is.EqualTo(1)); }
+        { Enter(); Phase5Campaign.EnterSectors(c); Phase5Campaign.Receipt(c,"P5_S1_THERMO_OK"); Phase5Campaign.ClearSector(c,1); c.Data.phase4.water_units=2; Assert.That(Phase5Campaign.EnsureVessel(c),Is.True); Assert.That(c.Data.inventory.Count(x=>x==Phase4Ids.Kendi),Is.EqualTo(1)); Assert.That(c.Data.inventory,Does.Not.Contain(Phase5Ids.Cup)); Assert.That(Phase5Campaign.Pour(c),Is.True); Assert.That(c.Data.phase4.water_units,Is.EqualTo(1)); Assert.That(Phase5Campaign.Pour(c),Is.False); Assert.That(c.Data.phase4.water_units,Is.EqualTo(1)); }
         [Test] public void MissingKendiGetsOneFreeCupAndSameWaterCounter()
-        { Enter(); Phase5Campaign.EnterSectors(c); Phase5Campaign.ClearSector(c,1); c.Data.inventory.Remove(Phase4Ids.Kendi); Assert.That(Phase5Campaign.EnsureVessel(c),Is.True); Assert.That(Phase5Campaign.EnsureVessel(c),Is.True); Assert.That(c.Data.inventory.Count(x=>x==Phase5Ids.Cup),Is.EqualTo(1)); Assert.That(Phase5Campaign.Refill(c),Is.True); Assert.That(Phase5Campaign.Pour(c),Is.True); Assert.That(c.Data.phase4.water_units,Is.EqualTo(2)); }
+        { Enter(); Phase5Campaign.EnterSectors(c); Phase5Campaign.Receipt(c,"P5_S1_THERMO_OK"); Phase5Campaign.ClearSector(c,1); c.Data.inventory.Remove(Phase4Ids.Kendi); Assert.That(Phase5Campaign.EnsureVessel(c),Is.True); Assert.That(Phase5Campaign.EnsureVessel(c),Is.True); Assert.That(c.Data.inventory.Count(x=>x==Phase5Ids.Cup),Is.EqualTo(1)); Assert.That(Phase5Campaign.Refill(c),Is.True); Assert.That(Phase5Campaign.Pour(c),Is.True); Assert.That(c.Data.phase4.water_units,Is.EqualTo(2)); }
         [Test] public void FailedPourDoesNotSpendWaterOrOpenGate()
         { Stage(); c.Data.phase5.completed_event_ids.Remove("P5_BRIDGE_TORCH_OFF"); c.Data.phase5.completed_event_ids.Remove("P5_S2_CLEAR"); c.Data.phase5.completed_event_ids.Remove("P5_S3_CLEAR"); c.Data.phase4.water_units=2; string before=JsonUtility.ToJson(c.Data); FailWrite(()=>Assert.That(Phase5Campaign.Pour(c),Is.False)); Assert.That(JsonUtility.ToJson(c.Data),Is.EqualTo(before)); }
         [Test] public void ContractNeedsBothSubobservationsAndEvidenceCannotDuplicate()

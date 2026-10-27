@@ -40,6 +40,8 @@ namespace LayarTerakhir.Phase5
             }
             if (thermalTarget != looking) { thermalTarget = looking; thermalDwell = 0; }
             if (looking) thermalDwell += dt;
+            if (thermalDwell >= balance.thermalDwell && Zone == "S1" && looking != null && world.doors.Length > 2 && looking == world.doors[1] && !Completed("P5_S1_THERMO_OK"))
+                Receipt("P5_S1_THERMO_OK");
             if (thermalDwell >= balance.thermalDwell && looking == world.contract && !Completed("P5_CONTRACT_THERMO_OK"))
                 Receipt("P5_CONTRACT_THERMO_OK", "STAGE");
             bool uv = rear && Phone.currentScanMode == ScanVisualMode.UV && Completed("P5_S3_CLEAR") && Aim(world.contract, balance.opticalRange, 25);

@@ -12,7 +12,9 @@ namespace LayarTerakhir.Phase5
             if (Elapsed < nextSectorCommit) return;
             nextSectorCommit = Elapsed + .4f;
             // Sector exits are actual authored crossings, never arbitrary chat receipts.
-            if (Zone == "S2" && !Completed("P5_S1_CLEAR") && Completed("P5_ENTER_SECTORS"))
+            // S1 additionally requires Thermo verification of the middle door; do not auto-clear
+            // on zone entry without it (prevents bypassing the Thermo/Selfie puzzle).
+            if (Zone == "S2" && !Completed("P5_S1_CLEAR") && Completed("P5_ENTER_SECTORS") && Completed("P5_S1_THERMO_OK"))
             { if (Phase5Campaign.ClearSector(Campaign, 1)) { RefreshWorld(); SectorChat(2); } else SaveError(); }
             if (Zone == "S3" && !Completed("P5_S2_CLEAR") && Completed("P5_BRIDGE_TORCH_OFF"))
             { if (Phase5Campaign.ClearSector(Campaign, 2)) { RefreshWorld(); SectorChat(3); } else SaveError(); }

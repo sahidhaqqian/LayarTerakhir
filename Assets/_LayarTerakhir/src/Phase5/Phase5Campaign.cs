@@ -62,6 +62,7 @@ namespace LayarTerakhir.Phase5
         {
             if (!Active(c) || sector < 1 || sector > 3 || !c.Data.phase5.Completed("P5_ENTER_SECTORS") ||
                 (sector > 1 && !c.Data.phase5.Completed("P5_S" + (sector - 1) + "_CLEAR")) ||
+                (sector == 1 && !c.Data.phase5.Completed("P5_S1_THERMO_OK")) ||
                 (sector == 2 && !c.Data.phase5.Completed("P5_BRIDGE_TORCH_OFF"))) return false;
             if (c.Data.phase5.Completed("P5_S" + sector + "_CLEAR")) return true;
             return Transaction(c, d => { d.phase5.Add("P5_S" + sector + "_CLEAR"); d.phase5.safe_anchor = sector == 1 ? "S2" : sector == 2 ? "S3" : "STAGE"; });

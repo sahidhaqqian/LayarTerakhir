@@ -49,6 +49,7 @@ namespace LayarTerakhir.Phase5
                     else SaveError(); break;
                 case "DOOR_0": case "DOOR_2": StartCoroutine(HotDoor()); break;
                 case "DOOR_1":
+                    if (!Completed("P5_S1_THERMO_OK")) { Hud.ShowBroadcastNotification("Pintu Tengah −22°C belum terverifikasi. Stabilkan Thermo pada tiga pintu; Selfie menahan replika.", 5); break; }
                     if (Phase5Campaign.ClearSector(Campaign, 1)) { RefreshWorld(); SectorChat(2); }
                     else SaveError(); break;
                 case "CUP":
