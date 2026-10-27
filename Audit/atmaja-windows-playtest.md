@@ -1,9 +1,11 @@
-# Guideline Playtest Lengkap — Prolog hingga Babak 3
-Diperbarui 24 Oktober 2026.
+# Guideline Playtest Lengkap — Prolog hingga Babak 5 (Tamat)
+Diperbarui 27 Oktober 2026.
 
-Build Development ini memuat Prolog, Babak 1 Rusunawa, Babak 2 RSUD, dan Babak 3 Pabrik Gula.
-Dokumen ini menggabungkan rute playtest keempat bagian. File `phase1-windows-playtest.md`,
-`phase2-session1-review.md`, dan `phase3-windows-review.md` tetap disertakan sebagai rujukan terpisah.
+Build Development ini memuat Prolog, Babak 1 Rusunawa, Babak 2 RSUD, Babak 3 Pabrik Gula,
+Babak 4 Karang Setra, dan Babak 5 Pasar Setan sampai credits.
+Dokumen ini menggabungkan rute playtest keenam bagian. File `phase1-windows-playtest.md`,
+`phase2-session1-review.md`, `phase3-windows-review.md`, `phase4-windows-review.md`, dan
+`phase5-windows-review.md` tetap disertakan sebagai rujukan terpisah per babak.
 
 ## Persiapan
 
@@ -11,7 +13,7 @@ Jalankan `LayarTerakhir.exe` tanpa flag audit. Main menu: NEW GAME (save lama di
 CONTINUE (checkpoint terakhir), SETTINGS, EXIT. ESC saat bermain membuka pause menu.
 Jangan menghapus save untuk mengulang: gunakan NEW GAME. Arsip tetap ada di ArchivedCampaigns.
 
-Alur normal memakai satu campaign dan checkpoint yang sama dari Prolog sampai Babak 3.
+Alur normal memakai satu campaign dan checkpoint yang sama dari Prolog sampai Babak 5.
 Kehilangan fokus jendela saat bermain otomatis membuka pause; Alt-Tab tidak membiarkan
 karakter berjalan sendiri.
 
@@ -21,6 +23,11 @@ Launcher memakai slot save terpisah dan tidak mengubah campaign normal:
 - `Review-Phase2.cmd`: slot `Phase2Review`, fixture sesudah Babak 1 dengan saldo belanja nol.
 - `Review-Phase3.cmd`: slot `Phase3Review`, fixture P2 selesai, HP 37%, saldo uji Rp2.100.000;
   saldo fixture bukan hadiah pada campaign asli.
+- `Review-Phase4.cmd`: slot `Phase4Review`, run baru dimulai di Kos sore dengan 37% baterai,
+  Sanity 23 dan saldo 0 untuk menguji jalur gratis (tanpa belanja tetap tamat).
+- `Review-Phase5.cmd`: slot `Phase5Review`, fixture PHASE4_CP8 dari route native Phase 4;
+  untuk campaign sendiri jalankan `LayarTerakhir.exe` dan Continue dari CP4 sah. Tidak perlu
+  kembali ke Kos — Babak 5 dimulai malam yang sama di tangga bawah Pendopo.
 
 Fixture review bukan bukti carry-over campaign dan bukan perubahan aturan New Game.
 Untuk mengulang Phase3, cadangkan lalu hapus folder `Phase3Review` di lokasi save aplikasi.
@@ -37,10 +44,12 @@ Untuk mengulang Phase3, cadangkan lalu hapus folder `Phase3Review` di lokasi sav
   **B** powerbank, **G** flare, **H** kemenyan.
 - **Q** AR, **R** UV, **X** Selfie, **T** ThermoKlenik, **C** EVP (pada Babak 3: C singkat
   mengganti analyzer, C ditahan merekam EVP), **LMB** foto/Blitz. Ketersediaan modul mengikuti
-  babak; label aktual ada di HP dan Pengaturan.
+  babak; label aktual ada di HP dan Pengaturan. Selfie selalu **X**, bukan V (V = perspektif).
 - **V** mengganti perspektif first-person/over-the-shoulder. Saat kamera terdesak dinding,
   tubuh disembunyikan sementara agar kepala/punggung tidak menutup pandangan. Pada pengejaran
   Kuntilanak di Babak 1, kamera tetap terkunci ke viewfinder; mundur sambil menjaga sosok dalam bingkai.
+- **G** flare: **ditolak di Babak 4** ("Api asing ditolak desa", stok tidak berkurang, tetap
+  terbawa ke Babak 5) dan **aktif lagi di Babak 5** (stok 0 → turunkan Lentera Panggung reusable).
 - Settings menyediakan volume, sensitivitas, subtitle, reduksi glitch, pilihan kamera, mode layar,
   dan remap sembilan aksi utama. M/Z/ESC adalah shortcut UI tetap. F12 mengambil screenshot.
   Alt+Enter/Setelan mengganti fullscreen borderless/windowed; pilihan tersimpan antar-launch.
@@ -270,8 +279,10 @@ sebelumnya; Babak 3 tidak menciptakannya sendiri.
 7. Rak daya manual tersedia selama jeda. Jika jatahnya habis, masuk alcove, tutup pintu dari dalam,
    tahan engkol reset, lalu gunakan rak daya. Tidak perlu menang satu hit agar bisa pulih setelah miss.
 8. Sesudah segel, tunggu pesan. Jika HP habis, gunakan pengisian manual. Jelajah kembali tetap tersedia.
-   Gerbang servis Timur dan lorong lori mengarah ke motor; panel motor bisa dibatalkan. CP7 disimpan
-   sebelum fade, dan menyimpan tujuan Karang Setra. **Babak 4 belum playable.**
+    Gerbang servis Timur dan lorong lori mengarah ke motor; panel motor bisa dibatalkan. CP7 disimpan
+    sebelum fade, dan menyimpan tujuan Karang Setra. **Lanjutkan — Kamar Kos** membuka persiapan Babak 4:
+    Kos sore 16:45, buka PC (forum tragedi 1997), pasang modul Sanity + UV v2 gratis, toko opsional,
+    colokan mengisi 100% sekali, lalu berangkat 23:45 dari kunci motor.
 
 Batas Babak 3: periksa rasa kontrol, genggaman HP, tangga, keterbacaan UV, pengejaran/loker, luring
 tiga lampu, serta rute pulang. Ukur FPS/1% low dan memori pada Windows/Iris Xe; render Linux software
@@ -281,6 +292,137 @@ presentasi final naskah. Kesetaraan kualitas DreadOut belum dinyatakan lulus. St
 case ada di `phase3-qa-matrix.md`; 146 baris bukan berarti 146 PASS. Sumber, pembuat, lisensi serta
 perubahan konversi tercantum pada dua file kredit di paket.
 
+## Babak 4 — Karang Setra (Bara di Karang Setra)
+
+Alur normal: setelah segel Pabrik Gula, pilih **Lanjutkan — Kamar Kos**. Kos sore 16:45 dipakai
+untuk persiapan malam keempat: baca forum tragedi 1997 di PC, pasang modul Sanity + UV Rajah v2
+gratis, cek toko opsional (Kemenyan/Powerbank/Garam — semua opsional, jalur gratis tetap tamat),
+gunakan colokan (satu pengisian 100% persiapan), lalu berangkat 23:45 dari kunci motor. Tiba di
+Hutan Bambu 23:53. Sanity aktif pertama kali di babak ini; nilai awal = nilai save Babak 3
+(tidak direset diam-diam).
+
+Untuk review langsung, jalankan **`Review-Phase4.cmd`** lalu **Continue**. Launcher memakai save
+terpisah `Phase4Review`; save kampanye utama tidak ditimpa. Fixture: Kos sore, baterai 37%,
+Sanity 23, saldo 0 — untuk menguji jalur gratis.
+
+Estimasi 78 menit jalur utama (bukan timer paksa).
+
+1. Hutan Bambu — 3 simpang. Kabut menguras Sanity 1 poin/10 detik (tidak di bawah 35% hanya
+   karena waktu). Chat disusupi akun hantu: J1 mengarahkan ke jalur kiri (batu nisan), J2 meniru
+   username penonton (`@rizky_pratama_`), J3 menyamar sebagai `[PERINGATAN MATABATIN]`.
+   Jangan percaya chat: sorot jalan dengan **UV [R]** — tengkorak ungu = bahaya, jejak kaki
+   Damar = aman. Dinamo engkol darurat ada sebelum J1 (baterai 0 tetap bisa menyalakan UV).
+   Sanity 70 = denyut tepi + bisik; 40 = Banaspati tertarik rasa takut; 0 = hunt intens tapi
+   **bukan Game Over** — shelter fisik, shrine gratis, dan dinamo selalu bisa dicapai.
+2. Pendopo. Ambil Kacamata Damar + Kitab Rajah di meja. Banaspati + arwah Mbah Suro reveal
+   (100% kebal — jangan tembak, jangan pakai Flare). Tiga sektor investigasi bebas urutan:
+   Utara/Kuburan Tua — **Thermo [T]** anomali **+66°C** stabil 2 detik → Bukti 1/3, ambil
+   **Kendi** (Pusaka 1, kapasitas 3, isi ulang gratis di Sumur Barat); Timur/Gubuk — **AR [Q]**
+   aura altar → Bukti 2/3, ambil **Belati** + baca Sobekan Buku Damar; Barat/Sumur — **EVP [C]**
+   mantra 6 detik radius 3 m → Bukti 3/3, ambil **Kantong Tanah**. Buka Jurnal →
+   **[KONFIRMASI IDENTITAS]** (wajib 3 bukti, eksplisit, tidak otomatis).
+3. Rahasia opsional: Keping Cermin Saksi di relung kering Sumur Barat — matikan layar saat
+   patroli lewat, rekam ketukan autentik (EVP 1,5 dtk), sorot simbol mata tertutup (UV),
+   putar roda sumur, ambil dari laci. Tidak perlu menyiram obor. Jurnal menampilkan
+   Arsip Babak 4 (0/1 atau 1/1) dan Arsip Global N/5 dari ID unik aktual.
+4. Ritual: letakkan tiga pusaka di batu ritual, konfirmasi, interaksi batu mulai (CP5 tersimpan
+   dulu — boss tidak mulai sebelum save sukses). Tiap penjuru N/E/W/S punya 3 obor
+   (1 asli + 2 palsu; default N=Tengah, E=Kiri, W=Kanan, S=Kiri). **UV [R]** 2 detik: lingkar
+   segel inti ungu = asli, silang merah = palsu. Siram obor asli dengan Air Kendi **[E]**,
+   lalu **Blitz [LMB]** inti yang exposed (baterai ≥ 15, 5 detik jendela). N/E/W bebas urutan
+   (tepat 3 Blitz sektoral); Selatan hanya disiram (tanpa Blitz lokal) setelah ketiganya sukses;
+   inti gabungan di Pendopo → **Blitz keempat sekaligus terakhir**. Total tepat 4 Blitz —
+   tidak ada tembakan kelima. Miss = obor menyala lagi, isi air ulang gratis, ulangi tanpa
+   kehilangan sektor yang sudah committed (CP6 rolling, survive mati/reload).
+5. Salah siram palsu = −40 Sanity + semburan telegraph (bukan instakill); Kendi isi ulang gratis.
+   Kemenyan [H] = ke 100% (cooldown 12 dtk), opsional — shelter/shrine/dinamo gratis selalu ada.
+   G ditekan = "Api asing ditolak desa", stok utuh untuk Babak 5.
+6. Setelah Blitz inti: viewer 999.999, overlay `Rp999.999.999 [ERROR]` (bukan saldo),
+   pesan `Penonton_Terakhir`, tangga batu terbuka di bawah Pendopo. Panel Arsip → pilih
+   **Kembali Menjelajah** (ambil Cermin bila terlewat, boss tetap mati) atau **Turun ke Pasar
+   Setan** (CP8 atomik, malam yang sama, tanpa Kos; baterai/Sanity/inventori terbawa apa adanya).
+   P5 menyediakan charger + pemulihan di pintu masuk bila datang dengan 0%.
+
+Batas Babak 4: dialog/EVP manusia belum direkam; subtitle + cue berlisensi bukan pengganti
+acting final. Durasi 78 menit, framing UV 720p Low, dua-hit Banaspati, pacing shelter, seluruh
+180 QA (`phase4-qa-matrix.md`), GPU Windows, dan target FPS/1% low perlu playtest manusia.
+Tes otomatis serta ZIP yang berhasil dibuka tidak membuktikan 180 PASS.
+
+## Babak 5 — Pasar Setan (Layar Terakhir)
+
+Alur normal: dari CP8 Babak 4, turuni tangga batu — langsung di gerbang Pasar Setan malam yang
+sama, tanpa Kos. Syarat masuk: `P4_COMPLETE` + 4 segel valid. Baterai/Sanity/inventori/segel
+terbawa apa adanya; dinamo + Altar Doa gratis ada di gerbang (baterai/Sanity 0 tetap tidak
+softlock di frame pertama).
+
+Untuk review langsung, jalankan **`Review-Phase5.cmd`** lalu **Continue**. Launcher memakai slot
+`Phase5Review` terpisah dengan fixture PHASE4_CP8 route native; save utama tidak diganti.
+Untuk campaign sendiri, `LayarTerakhir.exe` → Continue dari CP8 sah.
+
+Estimasi 75 menit jalur utama (bukan timer paksa). Satu campaign mengunci **satu ending**;
+Continue sesudah crash mengulang cutscene yang sama; CP9 setelah selesai. Jangan edit JSON
+untuk mencoba ending lain di save utama — tamatkan, lalu ulangi dari save relevan.
+
+1. Gerbang + Kios. Viewer terkunci **1.000.000** (overlay), donasi Rp66.666.666 masuk dana
+   terikat (bukan saldo belanja). Kios Tumbal opsional (saldo sah saja; Full Charge/Powerbank/
+   Flare/Kemenyan — semua ada pengganti gratis: dinamo +25/8 dtk, Altar Doa +15/10 dtk,
+   Lentera Panggung reusable). Kios Arsip Bisu (kanan, gratis, terpisah): matikan layar 3 detik
+   di depan kursi → AR lihat laci → rekam EVP asli "Saksi tidak membeli korban" 6 detik →
+   ambil **Pita Rekaman Pertama** [E]. Bukan bukti/boss; Jurnal tampil 0/1 atau 1/1 + N/5.
+2. Sektor 1 — Koridor Beku (**Selfie [X]** × Thermo). Replika Kuntilanak menempel di punggung
+   (1,3 m/s): tahan dalam frame Selfie 1 detik → jeda tatap 4 detik untuk pindah ke Thermo.
+   Tiga Pintu Cermin: kiri/kanan **+50°C** jebakan, **tengah −22°C** asli (bidik stabil 2 detik
+   tiap pintu). **Pintu Tengah −22°C wajib terverifikasi Thermo sebelum bisa dibuka** —
+   menebak tanpa Thermo tidak diterima. Pintu panas = semburan telegraph + −25 Sanity, kembali
+   ke awal koridor (bukan instakill).
+3. Sektor 2 — Jembatan Gilingan (**EVP** × UV × Kendi). Kiri = merah bergerigi TIRUAN (Wewe,
+   "menyerupai Damar"); kanan = hijau Morse ASLI (`R-A-K-A`). UV: papan Rajah Ungu tengkorak
+   = lantai runtuh (jatuh ke anchor, −10). Satu Obor Santet menghalangi pintu: siram dengan
+   Kendi carry-over Babak 4 (atau Cawan Air Pasar bila Kendi hilang) — titik isi ulang gratis
+   di samping gerbang sektor. Chat serempak ke kiri boleh diabaikan; verifikasi dengan dunia.
+4. Sektor 3 — Ruang Jahit Cermin (**[F]** × AR). Gelap total: **F** matikan layar + jongkok di
+   lemari/kolong meja untuk memutus LOS (cahaya layar terdeteksi 12 m). Replika Sri Atmaja
+   (1,4 m/s) + Genderuwo (1,8 m/s) patroli lorong 'U'. Cermin Rias hanya terbuka lewat **AR
+   [Q]** (permukaan cair hijau) → tembus → Panggung. Kontak = −25 Sanity + knockback + i-frame
+   3 dtk; dua kontak 10 detik = retry sektor (bukan seluruh babak); sektor clear tidak diulang.
+5. Panggung Lelang. Damar di kurungan lensa; dialog bisa diulang. Tiga bukti bebas urutan:
+   Server Batu + Kabel Urat (**AR** + foto 1%), Kontrak Darah (**Thermo `-- °C`** stabil 2 dtk
+   **dan UV** Rajah Mata Terbuka — dua sub-pengamatan, satu ID), Pilar Layar (**EVP** bisikan
+   Authentic 6 dtk radius 3 m). Buka Jurnal → **[KONFIRMASI]** (wajib 3 bukti + 4 segel,
+   eksplisit). Ruang Cermin Saksi: cek Arsip N/5, Cermin Jalan Pulang ke gerbang (ambil Pita
+   bila terlewat). Panel arena memberi peringatan "Arena akan terkunci" — CP6 tersimpan dulu,
+   boss tidak mulai sebelum save sukses; Cermin Jalan Pulang menutup sesudahnya.
+6. Boss — `Penonton_Terakhir`, 3 inti, tepat **3 Blitz inti** (bukan HP bar; hanya rentan di
+   jendela). Fase 1: 4 sosok — UV cari **benang kontinu berdenyut ke kurungan** (bayangan =
+   putus-putus, sentuh −15 lalu larut); pancing asli ke Zona Generator, nyalakan sakelar,
+   Blitz kepala lensa (jendela 5 dtk; miss = cooldown generator 12 dtk, ulangi). Fase 2:
+   arena gelap; Selfie [X] lihat rahang terbuka di belakang + Thermo **−30°C** ≤2,2 m;
+   jatuhkan **Flare [G]** (stok 0 → Lentera Panggung, reusable) lalu Blitz via Selfie.
+   Fase 3: 3 gelombang api (telegraph 2 dtk, berlindung di peti — cover dihitung collider/LOS,
+   bukan invulnerability); AR lihat 3 Kabel Roh, tahan **E** 2 dtk tiap kabel; kurungan terbuka
+   → Blitz inti dada → berlutut → FINAL_CHOICE (CP8). Mati = mulai awal fase berjalan, inti/
+   kabel committed (CP7 rolling) tidak diulang.
+7. FINAL_CHOICE — tanpa timer fatal. Angka 5% = **Kapasitor Ritual** (satu aksi LMB), bukan
+   baterai persisten (tidak diubah diam-diam). Tiga aksi dasar selalu tersedia; Secret hanya
+   bila 5 ID Arsip unik + validasi Cermin Saksi:
+   - **BAD** "Tuan Rumah Baru": kamera belakang ke Damar, dwell kontrak 2 dtk sampai label
+     TUMBAL tampil, **LMB**. Epilog kos-studio + Rp500.000.000 (sinematik, bukan wallet).
+   - **NORMAL** "Siaran Terputus": ke tepi panggung, **tahan F 5 detik penuh** (lepas = batal),
+     tanpa LMB. Raka tertinggal; Damar + penonton selamat.
+   - **TRUE** "Jepretan Terakhir": papah Damar (E) ke portal → **X** Selfie → **Q** AR stabil
+     1,5 dtk → **R** UV stabil 1,5 dtk (urutan wajib; salah = gauge reset) → LMB inti di layar
+     Selfie. Epilog 05:30 + Rp125.000.000 donasi tulus (narasi).
+   - **SECRET** "Saksi Tanpa Layar": 5 arsip + validasi cermin + Damar di portal → **tahan E
+     3 dtk** di Cermin Saksi (mode Arsip) → LMB cermin berbidikan emas (Damar bukan target).
+     Nama korban dari data arsip kanon; tidak ada nama baru.
+   Input ending hanya hidup di state FINAL_CHOICE; dua cutscene tidak pernah bersamaan
+   (satu enum + kunci atomik).
+
+Batas Babak 5: subtitle/ambience/SFX tersedia; VO manusia belum final. Penilaian artistik,
+durasi 75 menit, seluruh 180 QA (`phase5-qa-matrix.md`), dan FPS GPU Windows tetap perlu
+playtest manusia. Screenshot dev F12; cantumkan lokasi, checkpoint, baterai/Sanity/air,
+input (OTS/FP), dan langkah reproduksi agar bug dapat ditelusuri.
+
 ## Batas umum dan pelaporan
 
 Build ini adalah review implementasi, bukan visual/audio freeze. Voice acting manusia belum final;
@@ -288,8 +430,23 @@ dialog memakai suara sintetis/subtitle. Beberapa model, properti, animasi sinema
 genggaman HP masih prototipe dan memerlukan penilaian visual desainer. Tes otomatis, directed smoke,
 dan capture Linux tidak membuktikan seluruh QA, playtest manusia, atau performa Windows.
 
-Catat checkpoint, baterai, mode kamera, lokasi, dan langkah reproduksi saat menemukan masalah.
-Sertakan `Player.log` dan screenshot F12. Bandingkan performa pada Windows Iris Xe 1280×720;
-Linux software-rendering bukan bukti performa target. Untuk detail acceptance per babak, gunakan
-`phase1-windows-playtest.md`, `phase2-session1-review.md`, `phase3-windows-review.md`, dan
-`phase3-qa-matrix.md`; untuk kredit aset gunakan file kredit yang disertakan di paket.
+Catat checkpoint, baterai/Sanity/air, mode kamera (OTS/FP), lokasi, dan langkah reproduksi
+saat menemukan masalah. Sertakan `Player.log` dan screenshot F12. Bandingkan performa pada
+Windows Iris Xe 1280×720; Linux software-rendering bukan bukti performa target. Untuk detail
+acceptance per babak, gunakan `phase1-windows-playtest.md`, `phase2-session1-review.md`,
+`phase3-windows-review.md`, `phase4-windows-review.md`, `phase5-windows-review.md`, dan
+`phase3/phase4/phase5-qa-matrix.md`; untuk kredit aset gunakan file kredit yang disertakan di paket.
+
+## Format laporan run tamat (isi setelah main sampai credits)
+
+Salin template ini per babak + ending, lalu kirim sebagai review:
+
+- Babak + checkpoint terakhir (mis. PHASE4_CP6 / PHASE5_CP8 / CP9 + ending):
+- Baterai / Sanity / air Kendi saat momen penting:
+- Kamera (OTS/FP), modul yang dipakai (AR/UV/Thermo/EVP/Selfie), Flare/Kemenyan bawa-berapa:
+- Rute yang diambil (urutan sektor N/E/W, urutan bukti, urutan inti), rahasia dapat/terlewat (N/5):
+- Ending yang dicapai (Bad/Normal/True/Secret) + cara memicu yang dilakukan:
+- Bug/softlock (lokasi persis, langkah reproduksi, `Player.log`, screenshot F12):
+- Performa (GPU/CPU/RAM, resolusi, preset, FPS rata-rata + 1% low bila sempat ukur):
+- Cerita/pacing/emosi/VO per babak (bebas, jujur — bagian ini murni selera desainer):
+- Skor sementara per babak (opsional, 1–10) + satu hal yang paling mengganggu:
