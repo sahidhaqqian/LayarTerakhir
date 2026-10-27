@@ -1,16 +1,16 @@
 {
   "artifacts_sha256": {
-    "GRAPH_REPORT.md": "0df2c3c83d99c83606f0547a143adc3635f6e26b14b880fb72fbb9c29d608541",
-    "graph.html": "3d14cebfca57cf6baed062996f8c7248e2f5695c5fc9acd041a9af7a6a3c2fd8",
-    "graph.json": "42aa680113aca044e66c71c177ed374410f3c78567cc3ba503af6fb8db642619"
+    "GRAPH_REPORT.md": "3b807f219832e3b2be381e92e78345ad9c4ede48001eae2f6abf6ddba3382b87",
+    "graph.html": "67eaa74f7a1be0330803ec847f97c01c9d4c16e6c3d3523de23a10127dd32736",
+    "graph.json": "0a85e176c84865909b3c1ad6f1e1d04b83a5539a1e26f1226a63e4c69e567112"
   },
   "asset_file_count": 0,
   "code_file_count": 363,
-  "edge_count": 16626,
+  "edge_count": 16814,
   "graphify_version": "graphify 0.9.92",
   "ignore_sha256": "05660cd7b7a81591931d5661fb73b7124598a04c44f843eda7a7ac2107f20e17",
   "mode": "local-code-only; no LLM/community labeling",
-  "node_count": 4550,
+  "node_count": 4426,
   "referenced_source_count": 363,
   "sources_sha256": {
     "Assets/_LayarTerakhir/src/Audio/AmbientAudioLoop.cs": "7de60fa68d2b45ec199754e8c16b8ac4827306cc38d7ad32a708d93a78e83514",

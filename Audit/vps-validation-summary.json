@@ -1,0 +1,134 @@
+{
+  "validatedUtc": "2026-10-27T03:09:02.414663+00:00",
+  "status": "BlockedByExistingTriangleBudget",
+  "unityVersion": "6000.3.26f1",
+  "sourceCommit": "af85402da421fdbb477d628bf25f016f3feba29a",
+  "previousRequestedBaseline": {
+    "editMode": 23,
+    "playMode": 9
+  },
+  "tests": {
+    "editmode": {
+      "result": "Failed(Child)",
+      "total": 466,
+      "passed": 465,
+      "failed": 1,
+      "skipped": 0,
+      "startedUtc": "2026-10-27T02:32:27.842692+00:00",
+      "endedUtc": "2026-10-27T02:57:08.918980+00:00",
+      "exitCode": 2,
+      "logFile": "/root/unity-logs/vps-validation-20261027/editmode.log"
+    },
+    "playmode": {
+      "result": "Passed",
+      "total": 0,
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "startedUtc": "2026-10-27T02:57:36.054374+00:00",
+      "endedUtc": "2026-10-27T02:58:08.199193+00:00",
+      "exitCode": 0,
+      "logFile": "/root/unity-logs/vps-validation-20261027/playmode.log"
+    },
+    "runtime": {
+      "result": "Passed",
+      "total": 46,
+      "passed": 46,
+      "failed": 0,
+      "skipped": 0,
+      "startedUtc": "2026-10-27T02:58:20.102382+00:00",
+      "endedUtc": "2026-10-27T03:07:15.728191+00:00",
+      "exitCode": 0,
+      "logFile": "/root/unity-logs/vps-validation-20261027/runtime.log"
+    }
+  },
+  "failures": [
+    {
+      "test": "LayarTerakhir.Editor.Tests.AtmajaSceneTests.AtmajaSceneKeepsGoldenAndHasPhysicalTraversalAndCompleteMaterials",
+      "message": "System.Exception : Atmaja scene validation failed: 1"
+    }
+  ],
+  "runtimeFixturesDiscoveredUnderEditMode": true,
+  "uniqueTests": 466,
+  "uniqueNonRuntimeTests": 420,
+  "uniqueRuntimeTests": 46,
+  "baselineFoundationTestsNow": {
+    "editMode": 28,
+    "playMode": 12
+  },
+  "assetPreservation": {
+    "originalAssetFiles": 13116,
+    "currentAssetFiles": 13116,
+    "changedFiles": [],
+    "addedFiles": [],
+    "removedFiles": [],
+    "metaFiles": 6867,
+    "allOriginalAssetsByteIdentical": true
+  },
+  "staleLockRemoved": true,
+  "libraryCachePreserved": true,
+  "initialRefreshSeconds": 579.383,
+  "initialRefreshImports": {
+    "actual": 7922,
+    "localCache": 4826
+  },
+  "observedServiceMemoryPeakBytes": 7762317312,
+  "rootCause": {
+    "type": "Existing authored geometry budget mismatch",
+    "actualTriangles": 376235,
+    "limitExclusive": 350000,
+    "staticTriangles": 258222,
+    "sceneSkinnedTriangles": 21999,
+    "runtimeRakaTriangles": 96014,
+    "rakaBodyTrianglesIntentional": 96000,
+    "rakaAuthoringCommit": "936951b1",
+    "rakaSha256": "f4df95b3caad558747cf8ec3b539576bbf35aeba3f681988e1eef3ee19c1e5fb",
+    "matchesOctober26Commit": true,
+    "budgetChangeApplied": false,
+    "proposedPatch": "/root/unity-logs/vps-validation-20261027/proposed-triangle-budget.patch"
+  },
+  "windows": {
+    "pipeline": "LayarTerakhir.Editor.WindowsDevelopmentBuild.Build",
+    "moduleFiles": [
+      {
+        "path": "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/win64_player_development_mono/UnityPlayer.dll",
+        "exists": true,
+        "sizeBytes": 84489640,
+        "machine": "0x8664",
+        "amd64": true
+      },
+      {
+        "path": "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/win64_player_development_mono/WindowsPlayer.exe",
+        "exists": true,
+        "sizeBytes": 667136,
+        "machine": "0x8664",
+        "amd64": true
+      },
+      {
+        "path": "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/win64_player_development_mono/MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll",
+        "exists": true,
+        "sizeBytes": 7828912,
+        "machine": "0x8664",
+        "amd64": true
+      }
+    ],
+    "pipelineTarget": "StandaloneWindows64",
+    "pipelineBackend": "Mono2x",
+    "pipelineOptions": "Development",
+    "buildExecuted": false,
+    "reason": "Requested gate requires all tests to pass; existing triangle-budget failure requires a design budget decision",
+    "newZipCreated": false,
+    "r2UploadPerformed": false,
+    "windowsRuntimeTested": false
+  },
+  "graphify": {
+    "version": "0.9.92",
+    "codeFiles": 363,
+    "nodes": 4426,
+    "edges": 16814,
+    "assetFiles": 0,
+    "regenerationPassed": true,
+    "sourceScopeAndFreshnessCheckPassed": true,
+    "environmentRepair": "Installed project-pinned version in isolated venv; explicitly allowed one derived-graph deduplication shrink, then ran required updater and --check"
+  }
+}

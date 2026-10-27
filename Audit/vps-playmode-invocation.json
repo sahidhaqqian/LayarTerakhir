@@ -1,0 +1,30 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-job-worker-count",
+    "1",
+    "-projectPath",
+    "/root/projects/LayarTerakhir",
+    "-nographics",
+    "-runTests",
+    "-testPlatform",
+    "PlayMode",
+    "-testResults",
+    "/root/unity-logs/vps-validation-20261027/playmode.xml",
+    "-logFile",
+    "/root/unity-logs/vps-validation-20261027/playmode.log"
+  ],
+  "startedUtc": "2026-10-27T02:57:36.054374+00:00",
+  "status": "Finished",
+  "unit": "lt-unity-20261027-025735-30630",
+  "memoryLimitBytes": 12884901888,
+  "memoryHighBytes": 10737418240,
+  "endedUtc": "2026-10-27T02:58:08.199193+00:00",
+  "exitCode": 0,
+  "systemdServiceResult": "success"
+}

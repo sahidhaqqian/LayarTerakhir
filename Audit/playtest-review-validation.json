@@ -1,5 +1,5 @@
 {
-    "utc": "2026-10-25T18:34:11.6756390Z",
+    "utc": "2026-10-27T02:57:01.4920040Z",
     "failures": 0,
     "checks": [
         "PASS Tree geometry stays outside the east wall; no root plate in dining chairs",
@@ -891,6 +891,8 @@
         "PASS No missing corridor scripts: KosGateMasonryReturn",
         "PASS No missing corridor scripts: KosYardSideMasonry",
         "PASS No missing corridor scripts: KosGateMasonryReturn",
+        "PASS No missing corridor scripts: GroundHallEndWall_West",
+        "PASS No missing corridor scripts: GroundHallEndWall_East",
         "PASS No missing corridor scripts: KosCorridorPost",
         "PASS No missing corridor scripts: KampungMelati",
         "PASS No missing corridor scripts: MelatiStreetSpawn",
