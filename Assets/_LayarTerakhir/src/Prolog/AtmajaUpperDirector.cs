@@ -371,7 +371,7 @@ namespace LayarTerakhir.Prolog
         public Vector3[] CellarDescentPath()
         {
             var steps=new List<Transform>();
-            foreach(var t in UnityEngine.Object.FindObjectsOfType<Transform>())
+            foreach(var t in UnityEngine.Object.FindObjectsByType<Transform>(FindObjectsSortMode.None))
                 if(t.name=="CellarStep")steps.Add(t);
             if(steps.Count==0)return null;
             steps.Sort((a,b)=>b.position.y.CompareTo(a.position.y));

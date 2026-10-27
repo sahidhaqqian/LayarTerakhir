@@ -170,14 +170,16 @@ namespace LayarTerakhir.Editor.Tests
             view.Apps.Open(PhoneApp.Inventory);yield return null;yield return null;
             Assert.That(view.IsCameraApp,Is.True,"An app menu cannot displace a held camera");
             InputSystem.QueueStateEvent(mouse,new MouseState{buttons=0});yield return null;yield return null;
-            Assert.That(phone.isPhoneRaised,Is.False,"Releasing the aim button lowers the camera");
+            Assert.That(phone.isPhoneRaised,Is.True,"Releasing aim returns to the raised smartphone menu");
+            Assert.That(phone.isScreenOn,Is.True,"Releasing aim leaves the menu screen active");
             Assert.That(view.ViewfinderActive,Is.False);Assert.That(view.Apps.CurrentApp,Is.EqualTo(PhoneApp.Home));
             phone.isPhoneRaised=true;phone.SyncVisualState();view.Apps.Open(PhoneApp.Journal);yield return null;
             InputSystem.QueueStateEvent(mouse,new MouseState{buttons=2});yield return new WaitForSecondsRealtime(.3f);
             Assert.That(view.IsCameraApp&&view.ViewfinderActive,Is.True,"Holding aim forces an already-open menu into the camera");
             InputSystem.QueueStateEvent(mouse,new MouseState{buttons=0});yield return null;yield return null;
             Assert.That(view.ViewfinderActive,Is.False,"Releasing aim never leaves a toggled viewfinder");
-            Assert.That(phone.isPhoneRaised,Is.True);Assert.That(view.Apps.CurrentApp,Is.EqualTo(PhoneApp.Journal),"Releasing aim restores the previous handset state");
+            Assert.That(phone.isPhoneRaised,Is.True);Assert.That(phone.isScreenOn,Is.True);
+            Assert.That(view.Apps.CurrentApp,Is.EqualTo(PhoneApp.Home),"Releasing aim returns to the smartphone menu with its screen active");
             var rig=d.player.GetComponent<ShoulderCameraRig>();rig.SetPerspective(PlayerPerspective.FirstPerson);
             yield return new WaitForSecondsRealtime(.3f);
             var portraitSkin=view.playerCamera.transform.Find("ExistingHandsetDepthMask").GetComponentsInChildren<Renderer>(true).Single(r=>r.name=="PhoneHand_VisibleSkin");
@@ -186,7 +188,7 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(view.FocusHandsVisible,Is.True);Assert.That(portraitSkin.enabled,Is.False,"Portrait and landscape skin must not overlap");
             InputSystem.QueueStateEvent(mouse,new MouseState());yield return new WaitForSecondsRealtime(.3f);
             Assert.That(rig.SelectedPerspective,Is.EqualTo(PlayerPerspective.FirstPerson),"Aim release preserves the chosen first-person view too");
-            Assert.That(view.Apps.CurrentApp,Is.EqualTo(PhoneApp.Journal));Assert.That(portraitSkin.enabled,Is.True);
+            Assert.That(view.Apps.CurrentApp,Is.EqualTo(PhoneApp.Home));Assert.That(portraitSkin.enabled,Is.True);
             Assert.That(GameInputConfig.Instance.GetKeyForAction(GameAction.Vault),Is.EqualTo(KeyCode.Space),"The window escape stays on Space");
         }
         private IEnumerator ChatIntensity()
@@ -485,6 +487,11 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(Time.timeScale,Is.EqualTo(.5f),"Photo ritual runs in slow motion");
             Assert.That(d.player.MovementLocked,Is.False,"Raka can still move, just slowly");
             Assert.That(phone.isPhoneRaised&&d.phoneView.IsCameraApp,Is.True);
+            // The ghost glides in from the pursuit instead of teleporting onto
+            // the window: wait until she halts at the block spot, then track
+            // her live position for every shot like a player would.
+            float arriveDeadline=Time.realtimeSinceStartup+12;
+            while(Vector3.Distance(d.chase.chaserFigure.transform.position,d.chase.windowBlockSpot.position)>.6f&&Time.realtimeSinceStartup<arriveDeadline)yield return null;
             var lens=d.phoneView.FeedCamera;var aim=lens.transform.rotation;
             lens.transform.rotation=aim*Quaternion.Euler(0,180,0);
             Assert.That(d.chase.TryPhoto(),Is.False,"Photographing behind Raka cannot advance the ritual");Assert.That(d.chase.PhotosTaken,Is.Zero);
@@ -495,6 +502,7 @@ namespace LayarTerakhir.Editor.Tests
             barrier.transform.localScale=Vector3.one*.2f;Physics.SyncTransforms();
             Assert.That(d.chase.TryPhoto(),Is.False,"An opaque wall blocks the photograph");Assert.That(d.chase.PhotosTaken,Is.Zero);
             Object.DestroyImmediate(barrier);Physics.SyncTransforms();
+            target=d.chase.chaserFigure.transform.position+Vector3.up*1.45f;lens.transform.LookAt(target);
             Assert.That(d.chase.TryPhoto(),Is.True);Assert.That(d.chase.PhotosTaken,Is.EqualTo(1));
             Assert.That(d.chase.chaserFigure.activeSelf,Is.True,"One photo must not remove Nyonya");
             yield return null;
@@ -502,10 +510,12 @@ namespace LayarTerakhir.Editor.Tests
             var smokeSystem=smoke.GetComponent<ParticleSystem>();Assert.That(smokeSystem.particleCount,Is.GreaterThan(0),"Each photo emits a thick puff");
             Assert.That(smoke.GetComponent<ParticleSystemRenderer>().sharedMaterial.mainTexture.name,Is.EqualTo("whitePuff06"),"Smoke uses the Kenney CC0 puff");
             yield return new WaitForSecondsRealtime(.35f);
+            target=d.chase.chaserFigure.transform.position+Vector3.up*1.45f;lens.transform.LookAt(target);
             Assert.That(d.chase.TryPhoto(),Is.True);Assert.That(d.chase.PhotosTaken,Is.EqualTo(2));
             Assert.That(d.chase.chaserFigure.activeSelf,Is.True);
             yield return new WaitForSecondsRealtime(.35f);
             d.phoneView.AddChat("@old_queue","LARI BANG JANGAN NENGOK!");
+            target=d.chase.chaserFigure.transform.position+Vector3.up*1.45f;lens.transform.LookAt(target);
             Assert.That(d.chase.TryPhoto(),Is.True);Assert.That(d.chase.PhotosTaken,Is.EqualTo(3));
             Assert.That(d.chase.IsFinalFlash,Is.True,"The third photo fires the Flash Beam");
             Assert.That(phone.batteryPercent,Is.EqualTo(10f),"The Flash Beam drains the battery to ten percent");
@@ -766,6 +776,11 @@ namespace LayarTerakhir.Editor.Tests
             foreach(var point in new[]{d.P(5.35f,1.3f,.54f),d.P(2.1f,1.3f,.54f),d.P(2.1f,4.1f,.54f),d.P(.8f,4.1f,.54f),d.P(-1.4f,4.1f,.54f),d.P(-1.4f,3.3f,.54f)})yield return WalkCapsule(p,point,.7f);
             GameObject.Find("FrontSittingDoor").GetComponent<HingedDoor>().Interact();yield return new WaitForSeconds(1.2f);
             yield return WalkCapsule(p,d.P(-1.4f,1.5f,.54f),.7f);yield return WalkCapsule(p,d.P(-4.4f,1.5f,.54f),.7f);
+            // Turn Raka toward the target like a player would, let the rig
+            // settle the eye behind the new facing, then aim the lens.
+            var toClock=d.clockHands.transform.position-p.transform.position;toClock.y=0;
+            if(toClock.sqrMagnitude>.001f)p.transform.rotation=Quaternion.LookRotation(toClock);
+            p.enabled=true;yield return null;yield return null;p.enabled=false;
             eye.transform.LookAt(d.clockHands.transform.position);yield return null;yield return null;
             Assert.That(p.GetComponent<InteractionInteractor>().CurrentTarget,Is.SameAs(Item(AtmajaAction.ClockHands)));yield return Press(Key.E);
             Assert.That(CampaignState.Instance.HasInventoryItem("ITEM_P0_CLOCK_HANDS"),Is.True);

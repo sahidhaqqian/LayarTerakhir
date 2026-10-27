@@ -300,7 +300,7 @@ namespace LayarTerakhir.Prolog
             cc.enabled = true; director.player.MovementLocked = false; director.SetBusy(false); Traversing = false; climbedOut = true;
             // The real low slab requires crouching/slide to leave the shaft.
             finale.Prompt($"[{Key(GameAction.Crouch)}] MERUNDUK! PINTU JEBAKAN MENUTUP");
-            railDistance = ClosestProgress(top) - 14; dangerGrace = 4; director.Objective(); Physics.SyncTransforms();
+            railDistance = ClosestProgress(director.upper.trapdoorTop.position) - 14; dangerGrace = 4; director.Objective(); Physics.SyncTransforms();
         }
         private IEnumerator VaultTable()
         {
@@ -323,12 +323,13 @@ namespace LayarTerakhir.Prolog
             director.player.MovementLocked = false;
             if (chaserFigure)
             {
-                // No blink-teleport onto the window: she drifts in from the yard
-                // side and halts at the block spot while Raka steels himself.
+                // No blink-teleport onto the window: she glides in from where
+                // the pursuit left her (always inside, on the room side of the
+                // slammed kitchen shutter) and halts at the block spot while
+                // Raka steels himself. Staying on the room side keeps her framed
+                // in the window opening for the whole approach.
                 var pose=chaserFigure.GetComponent<AtmajaThreatPresentation>();if(pose)pose.ExternalStun=false;
-                Vector3 outward=windowBlockSpot.forward;outward.y=0;
-                if(outward.sqrMagnitude<.01f)outward=Vector3.back;outward=-outward.normalized;
-                Vector3 loom=windowBlockSpot.position+outward*2.5f;
+                Vector3 loom=chaserFigure.transform.position;
                 chaserFigure.transform.SetPositionAndRotation(loom,windowBlockSpot.rotation);
                 StartCoroutine(StandoffApproach(windowBlockSpot.position));
             }
