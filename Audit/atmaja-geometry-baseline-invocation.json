@@ -1,0 +1,32 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-job-worker-count",
+    "1",
+    "-projectPath",
+    "/root/projects/LayarTerakhir",
+    "-nographics",
+    "-runTests",
+    "-testPlatform",
+    "EditMode",
+    "-testFilter",
+    "LayarTerakhir.Editor.Tests.AtmajaSceneTests.AtmajaSceneKeepsGoldenAndHasPhysicalTraversalAndCompleteMaterials",
+    "-testResults",
+    "/root/unity-logs/atmaja-geometry-20261027/baseline.xml",
+    "-logFile",
+    "/root/unity-logs/atmaja-geometry-20261027/baseline.log"
+  ],
+  "startedUtc": "2026-10-27T03:25:38.744240+00:00",
+  "status": "Finished",
+  "unit": "lt-unity-20261027-032538-34691",
+  "memoryLimitBytes": 12884901888,
+  "memoryHighBytes": 10737418240,
+  "endedUtc": "2026-10-27T03:26:04.474174+00:00",
+  "exitCode": 2,
+  "systemdServiceResult": "exit-code"
+}

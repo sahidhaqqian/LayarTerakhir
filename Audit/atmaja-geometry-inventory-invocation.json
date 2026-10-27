@@ -1,0 +1,30 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-job-worker-count",
+    "1",
+    "-projectPath",
+    "/root/projects/LayarTerakhir",
+    "-nographics",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.AtmajaGeometryAudit.Run",
+    "-geometryReport",
+    "Audit/atmaja-geometry-before.json",
+    "-logFile",
+    "/root/unity-logs/atmaja-geometry-20261027/inventory.log"
+  ],
+  "startedUtc": "2026-10-27T03:24:52.211842+00:00",
+  "status": "Finished",
+  "unit": "lt-unity-20261027-032452-34158",
+  "memoryLimitBytes": 12884901888,
+  "memoryHighBytes": 10737418240,
+  "endedUtc": "2026-10-27T03:25:23.225278+00:00",
+  "exitCode": 0,
+  "systemdServiceResult": "success"
+}

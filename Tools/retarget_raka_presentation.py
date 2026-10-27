@@ -23,6 +23,7 @@ BASELINE = OUT / 'Baseline/RakaDesigner.fbx'
 BASELINE_COMMIT = '1bcb2152c459e9da4a35bef3d64a1527a9f4fa1a'
 sys.path.insert(0, str(ROOT / 'Tools'))
 from prepare_designer_vrm import skeleton, simplify, repair_raka_thumb, export_fbx
+from optimize_raka_geometry import reduce_body
 
 
 def digest(path):
@@ -260,10 +261,13 @@ def build():
     bpy.context.scene.frame_set(1);update()
     bpy.ops.wm.save_as_mainfile(filepath=str(OUT/'Raka-calibration.blend'))
     grip=calibrate_phone(target,skin,asset_objects)
+    topology=reduce_body(skin)
     target.animation_data.action=next(a for a in actions if a.name=='Idle');bpy.context.scene.frame_set(1);update()
     export_fbx(MODEL,list(asset_objects),True)
-    report_data=dict(sourceVrm=str(ORIGINAL.relative_to(ROOT)),sourceVrmSha256=digest(ORIGINAL),sourceMotion=str(SOURCE.relative_to(ROOT)),sourceMotionSha256=digest(SOURCE),license='CC0-1.0 (Quaternius Universal Animation Library)',originalTriangles=original_triangles,gameTriangles=len(skin.data.polygons),originalMotionPerformance=False,clips=report,output=str(MODEL.relative_to(ROOT)),outputSha256=digest(MODEL),operations='Read-only supplied artwork; 96k geometry derivative, authored CC0 locomotion retarget, clearance/foot/hand IK; existing Riding and InstallCard retained')
+    report_data=dict(sourceVrm=str(ORIGINAL.relative_to(ROOT)),sourceVrmSha256=digest(ORIGINAL),sourceMotion=str(SOURCE.relative_to(ROOT)),sourceMotionSha256=digest(SOURCE),license='CC0-1.0 (Quaternius Universal Animation Library)',originalTriangles=original_triangles,gameTriangles=len(skin.data.polygons),originalMotionPerformance=False,clips=report,output=str(MODEL.relative_to(ROOT)),outputSha256=digest(MODEL),operations='Read-only supplied artwork; protected high-detail geometry derivative, authored CC0 locomotion retarget, clearance/foot/hand IK; existing Riding and InstallCard retained')
     report_data['gripCalibration']=grip
+    report_data['geometryOptimization']=topology
+    report_data['operations']+='; clothing topology reduced with exact protected head/hand/foot geometry'
     (ROOT/'Audit/raka-presentation-retarget.json').write_text(json.dumps(report_data,indent=2)+'\n')
     bpy.ops.wm.save_as_mainfile(filepath=str(OUT/'Raka-revised.blend'))
     print('RAKA_RETARGET_COMPLETE',MODEL,flush=True)
@@ -338,10 +342,12 @@ if __name__=='__main__':
         skin=next(o for o in bpy.context.scene.objects if o.type=='MESH' and o.name=='VisibleSkin')
         objects=set(bpy.context.scene.objects)
         result=calibrate_phone(rig,skin,objects)
+        topology=reduce_body(skin)
         rig.animation_data.action=next(a for a in bpy.data.actions if a.name=='Idle');bpy.context.scene.frame_set(1);update()
         export_fbx(MODEL,list(objects),True)
         path=ROOT/'Audit/raka-presentation-retarget.json';record=json.loads(path.read_text())
         record['outputSha256']=digest(MODEL);record['gripCalibration']=result;record['plantedFootRotationCorrected']=True
+        record['gameTriangles']=len(skin.data.polygons);record['geometryOptimization']=topology
         path.write_text(json.dumps(record,indent=2)+'\n');bpy.ops.wm.save_as_mainfile(filepath=str(OUT/'Raka-revised.blend'))
         print('RAKA_CALIBRATION_COMPLETE',flush=True)
     else:build()

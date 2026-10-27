@@ -1,0 +1,27 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-job-worker-count",
+    "1",
+    "-projectPath",
+    "/root/projects/LayarTerakhir",
+    "-nographics",
+    "-runTests",
+    "-testPlatform",
+    "EditMode",
+    "-testResults",
+    "/root/unity-logs/atmaja-geometry-20261027/regression.xml",
+    "-logFile",
+    "/root/unity-logs/atmaja-geometry-20261027/regression.log"
+  ],
+  "startedUtc": "2026-10-27T03:38:53.828927+00:00",
+  "status": "Running",
+  "unit": "lt-unity-20261027-033853-36046",
+  "memoryLimitBytes": 12884901888,
+  "memoryHighBytes": 10737418240
+}
