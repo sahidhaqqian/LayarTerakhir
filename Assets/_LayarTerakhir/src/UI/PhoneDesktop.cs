@@ -46,7 +46,7 @@ namespace LayarTerakhir.UI
             CurrentApp=app;TravelSelection=false;if(page){page.SetActive(false);Destroy(page);}if(!root)return;
             root.SetActive(app!=PhoneApp.Camera);page=PhoneSkin.Card("App_"+app,root.transform,Vector2.zero,Vector2.one,app==PhoneApp.Home?new Color(.045f,.09f,.14f):PhoneSkin.Ink);
             if(app==PhoneApp.Camera)return;if(app==PhoneApp.Home){Home();return;}if(app==PhoneApp.Call){CallScreen();return;}
-            string title=app==PhoneApp.Map?"Peta":app==PhoneApp.Messages?"Pesan":app==PhoneApp.Bank?"Bank":app==PhoneApp.Journal?"Jurnal":"Tas";
+            string title=app==PhoneApp.Map?"Peta":app==PhoneApp.Messages?"Pesan":app==PhoneApp.Bank?"Bank":app==PhoneApp.Journal?"Jurnal & Dokumen":"Tas";
             UiWidgets.Text("AppTitle",page.transform,title,new Vector2(.075f,.91f),new Vector2(.93f,.99f),34);
             PhoneSkin.Button("BackHome",page.transform,"‹  Aplikasi",new Vector2(.06f,.015f),new Vector2(.94f,.085f),()=>Open(PhoneApp.Home));
             if(Phone.ChapterContent!=null&&Phone.ChapterContent.PopulateApp(app,page.transform))return;
@@ -213,7 +213,7 @@ namespace LayarTerakhir.UI
             var c=CampaignState.Instance;var entries=new System.Collections.Generic.List<(string title,string body)>();
             if(c.Data.documents!=null)foreach(var document in c.Data.documents)
                 entries.Add((document.title,document.body));
-            if(c.HasInventoryItem("DOC_PROLOG_01_SURAT_KOS"))entries.Add(("Surat peringatan kos","Tunggakan Rp3.500.000. Bu Haji Ratna meminta kepastian sebelum besok pukul 08:00."));
+            if(c.HasInventoryItem("DOC_PROLOG_01_SURAT_KOS")&&(c.Data.documents==null||!c.Data.documents.Exists(d=>d.title.Contains("SURAT PERINGATAN"))))entries.Add(("Surat peringatan kos","Tunggakan Rp3.500.000. Bu Haji Ratna meminta kepastian sebelum besok pukul 08:00."));
             if(ContractReceived)entries.Add(("Pesan Penonton_Terakhir",KosDialogue.Contract));
             if(c.HasInventoryItem("DIARY_RAKA"))entries.Add(("Buku harian Raka",KosDialogue.Diary));
             if(c.HasInventoryItem(AtmajaDirector.SurveyId))entries.Add(("Catatan survei Damar",AtmajaDirector.SurveyText));

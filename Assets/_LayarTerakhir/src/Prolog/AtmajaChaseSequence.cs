@@ -142,7 +142,7 @@ namespace LayarTerakhir.Prolog
         }
         public string Objective()
         {
-            if (run == Run.WindowStandoff) return $"FOTO NYONYA [{Key(GameAction.CaptureOrBlitz)}] • {photosTaken}/{RequiredPhotos}";
+            if (run == Run.WindowStandoff) return "Hadapi dia dengan kamera!";
             if (run == Run.EscapeReady || run == Run.Stunned) return $"[{Key(GameAction.Vault)}] Terobos jendela dapur!";
             if (run == Run.GateRun) return "Keluar menuju gerbang. Merunduk melewati dahan kamboja.";
             if (run == Run.Ending || run == Run.Complete) return "Malam pertama selesai. Damar masih di balik cermin.";
@@ -178,6 +178,24 @@ namespace LayarTerakhir.Prolog
             ResumeChase();
         }
         private IEnumerator BreakBeat() { yield return new WaitForSeconds(1.7f); if (run == Run.Breaking) { run = Run.Pursuit; director.Objective(); } }
+        private IEnumerator StandoffApproach(Vector3 spot)
+        {
+            const float duration=2.5f;
+            Vector3 start=chaserFigure!=null?chaserFigure.transform.position:spot;
+            for(float t=0;t<duration;t+=Time.unscaledDeltaTime)
+            {
+                if(run!=Run.WindowStandoff)yield break;
+                float k=Mathf.SmoothStep(0,1,Mathf.Clamp01(t/duration));
+                if(chaserFigure)
+                {
+                    chaserFigure.transform.position=Vector3.Lerp(start,spot,k);
+                    Vector3 face=director.player.transform.position-chaserFigure.transform.position;face.y=0;
+                    if(face.sqrMagnitude>.001f)chaserFigure.transform.rotation=Quaternion.Slerp(chaserFigure.transform.rotation,Quaternion.LookRotation(face),Time.unscaledDeltaTime*4);
+                }
+                yield return null;
+            }
+            if(run==Run.WindowStandoff&&chaserFigure)chaserFigure.transform.position=spot;
+        }
         private void Update()
         {
             if (!director || !director.player || !Campaign || !Hud || director.Busy || UiFocus.HardModal || Hud.IsModalOpen || Time.timeScale<=0) return;
@@ -243,12 +261,41 @@ namespace LayarTerakhir.Prolog
         {
             Traversing = true; director.SetBusy(true); director.player.MovementLocked = true; finale.Prompt(null);
             var cc = director.player.GetComponent<CharacterController>(); cc.enabled = false;
-            Vector3 start = director.player.transform.position, top = director.upper.trapdoorTop.position;
             if (slideGate) slideGate.SetActive(true);
             if(cellarEgressFloor)cellarEgressFloor.SetActive(true);
-            for (float t = 0; t < 1; t += Time.deltaTime / 2.2f)
-            { director.player.transform.position = Vector3.Lerp(start, top, Mathf.SmoothStep(0, 1, t)); yield return null; }
-            director.player.transform.position = top;
+            var ascent = director.upper!=null ? director.upper.CellarAscentPath() : null;
+            if (ascent != null && ascent.Length > 1)
+            {
+                // Climb the same visible flight Raka came down: tread by tread
+                // with the camera tilted up, never a straight-line teleport.
+                // Chase pace is urgent, so the ascent stays quicker than the descent.
+                Hud.EnqueueSubtitle("Raka","Naik... naik... jangan nengok!",3);
+                float bob = 0, pitch = 0;
+                for (int seg = 0; seg < ascent.Length; seg++)
+                {
+                    Vector3 target = ascent[seg];
+                    while (Vector3.Distance(director.player.transform.position, target) > .08f)
+                    {
+                        float step = 4.5f * Time.deltaTime;
+                        Vector3 pos = Vector3.MoveTowards(director.player.transform.position, target, step);
+                        bob += step * 7f;
+                        director.player.transform.position = pos + Vector3.up * Mathf.Abs(Mathf.Sin(bob)) * .045f;
+                        Vector3 look = seg + 1 < ascent.Length ? ascent[seg + 1] : director.upper.trapdoorTop.position + Vector3.up * 1.2f;
+                        Vector3 flat = look - pos; flat.y = 0;
+                        if (flat.sqrMagnitude > .01f) director.player.transform.rotation = Quaternion.Slerp(director.player.transform.rotation, Quaternion.LookRotation(flat), Time.deltaTime * 6);
+                        pitch = Mathf.MoveTowards(pitch, seg < ascent.Length - 1 ? 18 : 5, 40 * Time.deltaTime);
+                        director.player.SetViewPitch(pitch);
+                        yield return null;
+                    }
+                }
+            }
+            else
+            {
+                Vector3 start = director.player.transform.position, top = director.upper.trapdoorTop.position;
+                for (float t = 0; t < 1; t += Time.deltaTime / 2.2f)
+                { director.player.transform.position = Vector3.Lerp(start, top, Mathf.SmoothStep(0, 1, t)); yield return null; }
+            }
+            director.player.transform.position = director.upper.trapdoorTop.position;
             director.player.transform.rotation=director.upper.trapdoorTop.rotation;director.player.SetViewPitch(7);
             cc.enabled = true; director.player.MovementLocked = false; director.SetBusy(false); Traversing = false; climbedOut = true;
             // The real low slab requires crouching/slide to leave the shaft.
@@ -276,15 +323,22 @@ namespace LayarTerakhir.Prolog
             director.player.MovementLocked = false;
             if (chaserFigure)
             {
-                chaserFigure.transform.SetPositionAndRotation(windowBlockSpot.position, windowBlockSpot.rotation);
+                // No blink-teleport onto the window: she drifts in from the yard
+                // side and halts at the block spot while Raka steels himself.
                 var pose=chaserFigure.GetComponent<AtmajaThreatPresentation>();if(pose)pose.ExternalStun=false;
+                Vector3 outward=windowBlockSpot.forward;outward.y=0;
+                if(outward.sqrMagnitude<.01f)outward=Vector3.back;outward=-outward.normalized;
+                Vector3 loom=windowBlockSpot.position+outward*2.5f;
+                chaserFigure.transform.SetPositionAndRotation(loom,windowBlockSpot.rotation);
+                StartCoroutine(StandoffApproach(windowBlockSpot.position));
             }
             Vector3 direction=windowBlockSpot.position+Vector3.up*1.45f-director.player.cameraPivot.position;
             Vector3 flat=direction;flat.y=0;
             if(flat.sqrMagnitude>.001f)director.player.transform.rotation=Quaternion.LookRotation(flat);
             director.player.SetViewPitch(-Mathf.Atan2(direction.y,flat.magnitude)*Mathf.Rad2Deg);
             var rig=director.player.GetComponent<ShoulderCameraRig>();if(rig){rig.FirstPersonOverride=true;rig.RefreshCameraPose();}
-            finale.Prompt($"FOTO NYONYA 3x [{Key(GameAction.CaptureOrBlitz)}]");
+            Hud.PlayPriorityDialogue("Raka","Gue harus lawan dia.",3);
+            finale.Prompt($"HADAPI DIA [{Key(GameAction.CaptureOrBlitz)}]");
             Ui(AtmajaSynth.Tone(2.8f, 400, 2200, .2f), .5f);
             if(director.phoneView)director.phoneView.AddChatBurst(new[]{"@maya_sari","@rudi_tabuti","@intan_permata"},new[]{"FOTO DIA BANG!","JANGAN BERHENTI MOTRET!","ASAPNYA NUTUPIN KAMERA!"});
             director.Objective();

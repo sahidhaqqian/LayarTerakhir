@@ -172,7 +172,7 @@ namespace LayarTerakhir.Editor
             Center("ChildDiaryBook",-5.32f,.62f,4.587f);Center("ChildDeskLamp",-5.65f,.48f,4.76f);
             Remove("ChildNotebook");DressChildCup();DrapeChildQuilt();
             Remove("ChildToyBlocks","ChildToyBall");
-            for(int i=0;i<3;i++)Box("BimaToyTrainCar",P(-4.12f+i*.16f,3.75f,3.90f),new Vector3(.13f,.11f,.08f),Mat(i==0?"House_MAT_WoodDoor":"Upper_BookCover"),false);
+            for(int i=0;i<3;i++)Box("BimaToyTrainCar",P(-4.12f+i*.16f,3.75f,3.875f),new Vector3(.13f,.11f,.08f),Mat(i==0?"House_MAT_WoodDoor":"Upper_BookCover"),false);
             // Replace the written solution on the vent with broken plaster around the opening.
             var vent=d.upper.ventHoleAR;if(vent){foreach(var text in vent.GetComponentsInChildren<TextMesh>(true))Object.DestroyImmediate(text);foreach(var renderer in vent.GetComponents<Renderer>())Object.DestroyImmediate(renderer);}
             Remove("ARVentFracture");

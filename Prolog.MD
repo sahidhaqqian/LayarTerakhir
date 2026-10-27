@@ -171,7 +171,7 @@ Pemain membuka pintu penghubung menuju **Ruang Makan Panjang** yang dipenuhi pir
 4. Laci bawah jam bandul berbunyi *"KLIK"* dan terbuka, berisi **Kunci Pintu Tangga Tengah** serta **Catatan Koran Tahun 1998 (Item Dokumen #3)**:
 
 > **TEKS DOKUMEN (KLIPING KORAN 1998):**
-> *"TRAGEDI KELUARGA ATMAJA: Satu Keluarga Ditemukan Tewas Mengenaskan. Polisi menduga sang ibu, Nyonya Sri Atmaja (38), mengalami depresi berat dan gangguan jiwa akibat mengikuti aliran klenik sebelum meracuni anak-anaknya dan mengakhiri hidupnya sendiri di lantai dua pada tengah malam."*
+> *"TRAGEDI KELUARGA ATMAJA: Satu Keluarga Ditemukan Tewas Mengenaskan. Polisi menduga sang ibu, Nyonya Sri Atmaja (38), mengalami depresi berat dan gangguan jiwa akibat mengikuti aliran klenik sebelum meracuni anak-anaknya dan mengakhiri hidupnya sendiri dengan seutas tali di ruang tengah rumah pada tengah malam."*
 > 
 
 ---
@@ -205,7 +205,7 @@ Di ujung koridor Lantai 2, terdengar suara senandung perempuan dari balik pintu 
 * Di atas meja belajar anak, terdapat **Buku Harian Anak (Item Dokumen #4)**:
 
 > **TEKS DOKUMEN (BUKU HARIAN BIMA - ANAK BUNGSU):**
-> *"Ibu akhir-akhir ini sering bicara sendiri di ruang jahit bawah tanah sambil memegang gunting taman. Malam ini Ibu membuatkan aku susu hangat, tapi baunya menyengat seperti kapur barus dan karat. Ibu bilang kalau aku minum ini, kami semua tidak akan pernah sakit lagi."*
+> *"Ibu sekarang sering ngomong sendiri di ruang jahit bawah tanah. Tangannya selalu megang gunting taman. Tadi malam Ibu bikinin aku susu. Baunya aneh, kayak kapur barus campur karat. Kata Ibu, kalau aku minum, kami nggak bakal sakit-sakit lagi."*
 
 * Di sebelah buku harian, terdapat **Cangkir Susu Retak** yang mengeluarkan aura merah di layar AR. Pemain menekan **`[Klik Kiri]`** untuk memotret cangkir tersebut → **Rantai Pertama di pintu Kamar Utama terdengar putus!** (Pintu kamar anak kini bisa dibuka dari dalam lewat slot grendel).
 
@@ -226,7 +226,7 @@ Di ujung koridor Lantai 2, terdengar suara senandung perempuan dari balik pintu 
 * Di pagar balkon terdapat **Surat Wasiat Nyonya Sri Atmaja (Item Dokumen #5)**:
 
 > **TEKS DOKUMEN (SURAT NYONYA ATMAJA):**
-> *"Suamiku berbohong. Utang keluarga kita tidak pernah lunas, dan Mbah Suro bilang rumah ini adalah pintu cermin yang menghubungkan rumah ini ke lima gerbang Panca-Sengkala. Aku sudah menyelamatkan anak-anakku lebih dulu. Sekarang giliranku menjaga rumah ini sampai Penonton Terakhir datang menjemput."*
+> *"Suamiku berbohong. Utang keluarga ini tidak pernah lunas, dan Mbah Suro bilang rumah ini adalah pintu cermin yang menghubungkan rumah ini ke lima gerbang Panca-Sengkala. Anak-anakku sudah lebih dulu kuselamatkan. Sekarang giliranku menjaga rumah ini sampai Penonton Terakhir datang menjemput."*
 
 * Pemain mengaktifkan mode AR dan mengarahkan kamera ke atas tiang lampu gantung tempat **seutas tali tambang gantung diri** masih menjuntai dan berayun sendiri.
 
@@ -315,11 +315,13 @@ Pemain mengambil Handycam tersebut dan memutar video terakhir di layarnya:
 
 #### 3. Momen "Blitz Darurat" di Jendela Dapur
 
-* Saat Raka tinggal berjarak 3 meter dari jendela dapur tempat ia masuk di awal, lampu berkedip dan **Nyonya Sri Atmaja melakukan *teleport/blink* menghadang tepat di depan jendela sambil mengangkat gunting besarnya siap menebas leher Raka**!
+* Saat Raka tinggal berjarak 3 meter dari jendela dapur tempat ia masuk di awal, lampu berkedip dan **Nyonya Sri Atmaja melayang mendekat dari sisi halaman dan berhenti tepat di depan jendela sambil mengangkat gunting besarnya**!
 
-* **Efek Slow-Motion (3 Detik):** Waktu melambat drastis. Layar HP di tangan kiri Raka otomatis terangkat dan mengeluarkan bunyi pengisian daya *capacitor blitz* (`"NGIIIIING!"`).
+* **Efek Slow-Motion:** Waktu melambat drastis. Layar HP di tangan kiri Raka otomatis terangkat dan mengeluarkan bunyi pengisian daya *capacitor blitz* (`"NGIIIIING!"`).
 
-* **Instruksi Layar Besar:** **`[TEKAN KLIK KIRI MOUSE — TEMBAKKAN FLASH KAMERA SEKARANG!]`**
+* **Raka (Dialog Suara — menatap lurus ke depan):** *"Gue harus lawan dia."*
+
+* **Instruksi Layar:** **`[HADAPI DIA — Jepret dengan kamera!]`**
 
 * **Eksekusi:** Pemain menekan Klik Kiri → kilatan cahaya putih *Blitz* yang sangat terang meledak mengenai wajah Nyonya Atmaja!
 

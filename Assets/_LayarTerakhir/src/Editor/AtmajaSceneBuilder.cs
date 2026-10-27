@@ -226,6 +226,7 @@ namespace LayarTerakhir.Editor
             Box("DiningDividerLintel",P(1.6f,3.9f,3.45f),new Vector3(.18f,.9f,1.4f),wall);
             var hinge=new GameObject("KitchenDoorHinge").transform;hinge.SetParent(environment,false);hinge.position=P(3.4f,9, .35f);
             var leaf=Box("KitchenDiningDoor",P(4,9,1.50f),new Vector3(1.2f,2.3f,.10f),Mat("House_MAT_WoodDoor"));leaf.transform.SetParent(hinge,true);director.kitchenDoor=hinge;Item(leaf,AtmajaAction.KitchenDoor,"Buka pintu ruang makan");
+            var diningHinge=hinge.gameObject.AddComponent<LayarTerakhir.Prolog.HingedDoor>();diningHinge.hinge=hinge;diningHinge.angle=-95;diningHinge.label="Buka pintu ruang makan";
             var well=GameObject.CreatePrimitive(PrimitiveType.Cylinder);well.name="OldChainedKitchenWell";well.transform.SetParent(environment,false);well.transform.position=P(2.85f,11.2f,.72f);well.transform.localScale=new Vector3(1.05f,.36f,1.05f);well.GetComponent<Renderer>().sharedMaterial=Mat("House_MAT_BrickBase");
             Item(well,AtmajaAction.Well,"Periksa sumur tua");
             for(int i=0;i<4;i++)Box("RottenWellBoard",P(2.85f+(i-1.5f)*.23f,11.2f,1.09f),new Vector3(.21f,.045f,1.10f),Mat("House_MAT_WoodDoor"));

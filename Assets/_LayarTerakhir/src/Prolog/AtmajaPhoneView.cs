@@ -320,8 +320,12 @@ namespace LayarTerakhir.Prolog
                 bool scriptedCamera=Phone.CameraLocked||director&&director.chase&&(director.chase.AwaitingPhotos||director.chase.IsFinalFlash);
                 if(!scriptedCamera)
                 {
-                    Phone.isPhoneRaised=phoneRaisedBeforeFocus;Phone.SyncVisualState();
-                    Apps.Open(appBeforeFocus);
+                    // Releasing aim returns to the smartphone menu with the
+                    // screen active, never to a dark or stowed handset.
+                    Phone.isPhoneRaised=true;
+                    if(Phone.HasCameraPower)Phone.isScreenOn=true;
+                    Phone.SyncVisualState();
+                    Apps.Open(PhoneApp.Home);
                 }
                 return;
             }
@@ -551,7 +555,10 @@ namespace LayarTerakhir.Prolog
             depth=Mathf.Max((gripCamera?gripCamera.nearClipPlane:.03f)+.025f,depth);
             Vector3 phoneCentre=presentationCamera.ViewportToWorldPoint(new Vector3(centre.x/Screen.width,centre.y/Screen.height,depth));
             float physicalWidth=physicalHeight*pixelWidth/Mathf.Max(1,pixelHeight);
-            float gripOffset=physicalWidth*.5f;
+            // Seat the grasp on the bezel instead of floating outside it: the
+            // baked grasp origin is the handset edge, so pull both hands
+            // slightly inward until the fingers overlap the frame.
+            float gripOffset=physicalWidth*.5f*.88f;
             Quaternion handRotation=playerCamera.transform.rotation*handsetRect.localRotation;
             Vector3 edge=handRotation*Vector3.right*gripOffset;
             firstPersonHand.transform.position=phoneCentre+edge;

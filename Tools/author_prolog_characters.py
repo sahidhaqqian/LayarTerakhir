@@ -319,11 +319,13 @@ def set_pose(rig,defs,kind,phase,female):
                 swing=(cycle-stance)/(1-stance)
                 foot.y+=amplitude*(1-2*(swing*swing*(3-2*swing)))
                 foot.z+=math.sin(swing*math.pi)*(.14 if run else .028 if crouch and not female else .045 if crouch else .085)
-        if crouch:foot.x=sign*(.115 if not female and not installing else .13);foot.y-=.08 if not female and not installing else .14
+        if crouch:foot.x=sign*(.13 if not female and not installing else .13);foot.y-=.08 if not female and not installing else .14
         if riding or seated:foot=Vector((sign*.23,-.20,.27 if riding else .08))
         # Deep squat knees must bend upward even while the planted foot travels
         # behind the pelvis; the standing pole can fold the shin below the floor.
-        limb('Thigh_'+side,'Shin_'+side,'Foot_'+side,foot,Vector((sign*.18,-1.2,1.0 if low or crouch and not female and not installing else .65-sink*.2)))
+        # Playtest: keep the walk/run knee plane outward (wider than the feet)
+        # so the gait never reads knock-kneed from the chase camera.
+        limb('Thigh_'+side,'Shin_'+side,'Foot_'+side,foot,Vector((sign*.22,-1.2,1.0 if low or crouch and not female and not installing else .65-sink*.2)))
         bpy.context.view_layer.update();shoulder=rig.pose.bones['UpperArm_'+side].head.copy()
         hand=Vector((shoulder.x+sign*.045,shoulder.y-.035,.83-sink))
         if walk or run:
@@ -347,7 +349,9 @@ def set_pose(rig,defs,kind,phase,female):
         elbow=Vector((sign*.36,-.16,.94-sink*.35))
         if not female and run:elbow=Vector((sign*.27,shoulder.y+.12,1.14-sink))
         if not female and crouch and not installing:elbow=Vector((sign*.27,-.02,.40 if low else .65))
-        if not female and phone and side=='R':elbow=Vector((sign*.29,shoulder.y+.08 if low else .035,.44 if low else 1.04-sink*.55))
+        # Playtest: tuck the phone elbow toward the torso so the raised arm
+        # never flares outward; calls are additionally re-posed at runtime.
+        if not female and phone and side=='R':elbow=Vector((sign*.20,shoulder.y+.08 if low else .035,.44 if low else 1.04-sink*.55))
         limb('UpperArm_'+side,'Forearm_'+side,'Hand_'+side,hand,elbow)
         grip=(phone and side=='R') or (female and side=='R') or riding
         longitudinal,palm,sideways=hand_frame(defs,side)

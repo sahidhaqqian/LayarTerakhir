@@ -112,11 +112,14 @@ namespace LayarTerakhir.Smartphone
 
             if (GameInputConfig.Instance.GetActionDown(GameAction.ToggleScreen))
             {
-                if (HasCameraPower)
-                {
-                    isScreenOn = !isScreenOn;
-                    SyncVisualState();
-                }
+                // F immediately brings the phone up with light: raise a stowed
+                // handset first, then ensure the screen (and flashlight) is on.
+                // A lit screen toggles back off so stealth (lockers, patrols)
+                // keeps its explicit off-switch.
+                if (!isPhoneRaised && hasSmartphoneInInventory) isPhoneRaised = true;
+                if (isPhoneRaised && isScreenOn && HasCameraPower) isScreenOn = false;
+                else if (HasCameraPower) isScreenOn = true;
+                SyncVisualState();
             }
 
             // Recharging must remain possible after battery depletion or while the phone is stored.

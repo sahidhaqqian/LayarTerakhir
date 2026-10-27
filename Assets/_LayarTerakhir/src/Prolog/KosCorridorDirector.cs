@@ -72,6 +72,12 @@ namespace LayarTerakhir.Prolog
             {camera.position=Vector3.Lerp(mountStart,mountEnd,Mathf.SmoothStep(0,1,t))+Vector3.up*Mathf.Sin(t*Mathf.PI)*.18f;camera.LookAt(motor.position+Vector3.up*.8f);yield return null;}
             player.transform.SetParent(motor,true);player.transform.localRotation=Quaternion.identity;player.transform.localPosition=new Vector3(0,-.45f,0);if(shoulder)shoulder.Riding=true;
             camera.position=mountEnd;camera.LookAt(motor.position+Vector3.up*.8f);
+            // First-person riding: the OTS chase cam is replaced by Raka's own
+            // viewpoint with his jacket sleeves on the handlebar. The authored
+            // riding pose reads unnaturally from behind; from the saddle only
+            // the road, the headlight cone and his hands stay visible.
+            if(shoulder){shoulder.FirstPersonOverride=true;shoulder.RefreshCameraPose();}
+            AddRiderArms(camera);
             if(motorHeadlight)motorHeadlight.enabled=true;if(engine){engine.transform.SetParent(motor,true);engine.transform.position=motor.position;engine.clip=audioProfile.departureEngine;engine.loop=true;engine.pitch=.8f;engine.Play();}
             var pairedGate=gateHinge.GetComponent<DoubleLeafGate>();
             if(pairedGate)yield return pairedGate.Open();
@@ -84,9 +90,15 @@ namespace LayarTerakhir.Prolog
                 while(segment<route.Length-1&&distance>Vector3.Distance(route[segment-1],route[segment])){distance-=Vector3.Distance(route[segment-1],route[segment]);segment++;}
                 Vector3 direction=route[segment]-route[segment-1];motor.position=Vector3.Lerp(route[segment-1],route[segment],distance/Mathf.Max(.001f,direction.magnitude));
                 motor.rotation=Quaternion.Slerp(motor.rotation,Quaternion.LookRotation(direction.normalized),Time.deltaTime*4);
-                camera.position=motor.TransformPoint(new Vector3(-1.1f,1.7f,-2.35f));camera.LookAt(motor.position+Vector3.up*.8f);
+                camera.position=motor.TransformPoint(new Vector3(-.55f,1.62f,.55f));camera.LookAt(motor.TransformPoint(new Vector3(-.55f,1.0f,10f)));
                 if(engine)engine.pitch=Mathf.Lerp(.8f,1.35f,t);yield return null;
             }
+            for(float t=0;t<1;t+=Time.deltaTime/.6f){camera.position=Vector3.Lerp(camera.position,motor.TransformPoint(new Vector3(-.55f,1.62f,.55f)),t);camera.LookAt(motor.TransformPoint(new Vector3(-.55f,1.0f,10f)));yield return null;}
+            foreach(Transform child in camera.transform)
+            {
+                if(child.name=="RakaJacketSleeve"||child.name=="RakaHandOnHandlebar")Object.Destroy(child.gameObject);
+            }
+            if(shoulder){shoulder.FirstPersonOverride=false;shoulder.Riding=false;shoulder.RefreshCameraPose();}
             CampaignState.Instance.SaveCheckpointAtomic("PROLOG_TRAVEL_ATMAJA");
             yield return HudController.Instance.FadeBlack(0,1,1.1f);
             yield return PrologSceneFlow.LoadAtmaja();

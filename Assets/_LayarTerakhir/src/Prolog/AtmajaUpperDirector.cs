@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using LayarTerakhir.Core;
 using LayarTerakhir.Player;
 using LayarTerakhir.Smartphone;
@@ -135,9 +136,9 @@ namespace LayarTerakhir.Prolog
     public sealed class AtmajaUpperDirector:MonoBehaviour
     {
         public const string DiaryId="DOC_PROLOG_04_DIARY_BIMA";
-        public const string DiaryText="Buku harian Bima, anak bungsu. Tulisannya gemetar.\n\n\"Ibu akhir-akhir ini sering bicara sendiri di ruang jahit bawah tanah sambil memegang gunting taman. Malam ini Ibu membuatkan aku susu hangat, tapi baunya menyengat seperti kapur barus dan karat. Ibu bilang kalau aku minum ini, kami semua tidak akan pernah sakit lagi.\"";
+        public const string DiaryText="Buku harian Bima, anak bungsu. Tulisannya gemetar.\n\n\"Ibu sekarang sering ngomong sendiri di ruang jahit bawah tanah. Tangannya selalu megang gunting taman. Tadi malam Ibu bikinin aku susu. Baunya aneh, kayak kapur barus campur karat. Kata Ibu, kalau aku minum, kami nggak bakal sakit-sakit lagi.\"";
         public const string WillId="DOC_PROLOG_05_WASIAT_NYONYA";
-        public const string WillText="Surat wasiat Nyonya Sri Atmaja, tinta cokelat kehitaman.\n\n\"Suamiku berbohong. Utang keluarga kita tidak pernah lunas, dan Mbah Suro bilang rumah ini adalah pintu cermin yang menghubungkan rumah ini ke lima gerbang Panca-Sengkala. Aku sudah menyelamatkan anak-anakku lebih dulu. Sekarang giliranku menjaga rumah ini sampai Penonton Terakhir datang menjemput.\"";
+        public const string WillText="Surat wasiat Nyonya Sri Atmaja, tinta cokelat kehitaman.\n\n\"Suamiku berbohong. Utang keluarga ini tidak pernah lunas, dan Mbah Suro bilang rumah ini adalah pintu cermin yang menghubungkan rumah ini ke lima gerbang Panca-Sengkala. Anak-anakku sudah lebih dulu kuselamatkan. Sekarang giliranku menjaga rumah ini sampai Penonton Terakhir datang menjemput.\"";
         public AtmajaDirector director;
         public Transform spawnUpper,trapdoorTop;
         public HingedDoor childDoor,bathDoor,masterDoor;
@@ -324,11 +325,78 @@ namespace LayarTerakhir.Prolog
         {
             var basement=director.basement;
             if(!basement||!basement.spawnBasement)yield break;
+            var path=CellarDescentPath();
+            if(path==null||path.Length<2)
+            {
+                // Fallback only when the stair geometry cannot be resolved.
+                director.SetBusy(true);director.player.MovementLocked=true;
+                yield return Hud.FadeBlack(0,1,.5f);
+                director.PlacePlayer(basement.spawnBasement.position,basement.spawnBasement.rotation);
+                yield return Hud.FadeBlack(1,0,.8f);
+                director.SetBusy(false);director.player.MovementLocked=false;
+                yield break;
+            }
+            // Walk the visible CellarStep flight: no fade cut, the shaft walls
+            // and treads stay in view while Raka climbs down step by step.
             director.SetBusy(true);director.player.MovementLocked=true;
-            yield return Hud.FadeBlack(0,1,.5f);
-            director.PlacePlayer(basement.spawnBasement.position,basement.spawnBasement.rotation);
-            yield return Hud.FadeBlack(1,0,.8f);
+            var rig=director.player.GetComponent<ShoulderCameraRig>();if(rig)rig.FirstPersonOverride=true;
+            var cc=director.player.GetComponent<CharacterController>();cc.enabled=false;
+            Hud.EnqueueSubtitle("Raka","Pelan-pelan... anak tangganya licin.",3);
+            float bob=0,pitch=0;
+            for(int seg=0;seg<path.Length;seg++)
+            {
+                Vector3 target=path[seg];
+                while(Vector3.Distance(director.player.transform.position,target)>.06f)
+                {
+                    float step=1.6f*Time.deltaTime;
+                    Vector3 pos=Vector3.MoveTowards(director.player.transform.position,target,step);
+                    bob+=step*7f;
+                    director.player.transform.position=pos+Vector3.up*Mathf.Abs(Mathf.Sin(bob))*.035f;
+                    Vector3 look=seg+1<path.Length?path[seg+1]:target+Vector3.down*2f;
+                    Vector3 flat=look-pos;flat.y=0;
+                    if(flat.sqrMagnitude>.01f)director.player.transform.rotation=Quaternion.Slerp(director.player.transform.rotation,Quaternion.LookRotation(flat),Time.deltaTime*5);
+                    pitch=Mathf.MoveTowards(pitch,-32,30*Time.deltaTime);
+                    director.player.SetViewPitch(pitch);
+                    if(rig)rig.RefreshCameraPose();
+                    yield return null;
+                }
+            }
+            cc.enabled=true;
+            if(rig){rig.FirstPersonOverride=false;rig.RefreshCameraPose();}
             director.SetBusy(false);director.player.MovementLocked=false;
+        }
+
+        // Waypoints over the built CellarStep treads, top first. Resolved from
+        // the live scene so the walk always matches the visible staircase.
+        public Vector3[] CellarDescentPath()
+        {
+            var steps=new List<Transform>();
+            foreach(var t in UnityEngine.Object.FindObjectsOfType<Transform>())
+                if(t.name=="CellarStep")steps.Add(t);
+            if(steps.Count==0)return null;
+            steps.Sort((a,b)=>b.position.y.CompareTo(a.position.y));
+            var pts=new List<Vector3>();
+            if(trapdoorTop!=null)pts.Add(trapdoorTop.position);
+            foreach(var s in steps)
+            {
+                var col=s.GetComponent<Collider>();
+                float topY=col!=null?col.bounds.max.y+.06f:s.position.y+.06f;
+                pts.Add(new Vector3(s.position.x,topY,s.position.z));
+            }
+            if(steps.Count>1)
+            {
+                var dir=steps[steps.Count-1].position-steps[steps.Count-2].position;dir.y=0;
+                if(dir.sqrMagnitude>.001f)pts.Add(pts[pts.Count-1]+dir.normalized*.7f+Vector3.down*.15f);
+            }
+            return pts.ToArray();
+        }
+
+        public Vector3[] CellarAscentPath()
+        {
+            var down=CellarDescentPath();
+            if(down==null)return null;
+            Array.Reverse(down);
+            return down;
         }
         public void HandleEvidence(AtmajaItem item)
         {

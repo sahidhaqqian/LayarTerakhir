@@ -13,13 +13,14 @@ namespace LayarTerakhir.Prolog
     public sealed class AtmajaDirector:MonoBehaviour
     {
         public const string SurveyId="DOC_PROLOG_02_SURVEI_DAMAR";
-        public const string NewspaperText="TRAGEDI KELUARGA ATMAJA: Satu Keluarga Ditemukan Tewas Mengenaskan. Polisi menduga sang ibu, Nyonya Sri Atmaja (38), mengalami depresi berat dan gangguan jiwa akibat mengikuti aliran klenik sebelum meracuni anak-anaknya dan mengakhiri hidupnya sendiri di lantai dua pada tengah malam.";
-        public const string SurveyText="Catatan Damar, terlipat di dekat tasnya.\n\n23:17 — Gue sudah masuk. Kayu jendela tua itu ternyata masih bisa digeser.\n\n23:24 — Dari dapur kedengaran kursi diseret. Gue panggil, nggak ada jawaban.\n\n23:31 — Aplikasi MataBatin.apk bereaksi ke sesuatu yang nggak kelihatan oleh mata. Kalau Raka baca ini, jangan percaya semua yang kelihatan kosong.";
+        public const string NewspaperText="TRAGEDI KELUARGA ATMAJA: Satu Keluarga Ditemukan Tewas Mengenaskan. Polisi menduga sang ibu, Nyonya Sri Atmaja (38), mengalami depresi berat dan gangguan jiwa akibat mengikuti aliran klenik sebelum meracuni anak-anaknya dan mengakhiri hidupnya sendiri dengan seutas tali di ruang tengah rumah pada tengah malam.";
+        public const string SurveyText="Catatan Damar, terlipat di dekat tasnya.\n\n23:17 — Gue sudah di dalam. Kayu jendela tua di samping ternyata masih bisa digeser.\n\n23:24 — Dari arah dapur kedengaran kursi diseret. Gue panggil, nggak ada yang jawab.\n\n23:31 — Aplikasi MataBatin.apk bereaksi ke sesuatu yang nggak kelihatan. Ka, kalau lo baca ini: jangan percaya semua yang kelihatan kosong.";
         public const string LiveIntro="Oke... tes, satu dua. Malam semuanya, balik lagi di Malam Keramat. Malam ini gue nggak sendirian... maksudnya, gue lagi nyusulin Damar yang hilang kontak di Rumah Tua Atmaja. Buat yang baru gabung, bantu pantau layar ya.";
         public FirstPersonController player;
         public Transform gateHinge,kitchenDoor,spawnCourtyard,spawnKitchen,spawnDining,spawnStairs,vaultOutside,vaultInside;
         public GameObject kitchenShutter,damarPhone,clockHands,arFigure,arClue,stairDoorLeaf;
         public HingedDoor stairDoorMotion;
+        private HingedDoor kitchenDoorMotion;
         public AtmajaUpperDirector upper;public AtmajaBasementHorror basement;public AtmajaChaseSequence chase;
         public Transform clockHour,clockMinute,clockDrawer;
         public Vector3 clockDialCentre;
@@ -90,7 +91,9 @@ namespace LayarTerakhir.Prolog
             if(doubleGate)doubleGate.SetImmediate(Has("EVENT_P0_GATE_OPEN"));
             else gateHinge.localRotation=Quaternion.Euler(0,Has("EVENT_P0_GATE_OPEN")?-95:0,0);
             bool inside=Has("EVENT_P0_KITCHEN_ENTERED");kitchenShutter.SetActive(inside);
-            if(kitchenDoor)kitchenDoor.localRotation=Quaternion.Euler(0,Has("EVENT_P0_DINING_OPEN")?-95:0,0);
+            EnsureKitchenDoor();
+            if(kitchenDoorMotion!=null)kitchenDoorMotion.SetOpenImmediate(Has("EVENT_P0_DINING_OPEN"));
+            else if(kitchenDoor)kitchenDoor.localRotation=Quaternion.Euler(0,Has("EVENT_P0_DINING_OPEN")?-95:0,0);
             if(damarPhone)damarPhone.SetActive(!Has("MATABATIN_APK"));
             if(stairDoorMotion)stairDoorMotion.SetOpenImmediate(Has("EVENT_P0_STAIRS_UNLOCKED"));
             if(clockHands)clockHands.SetActive(!Has("ITEM_P0_CLOCK_HANDS"));
@@ -153,7 +156,12 @@ namespace LayarTerakhir.Prolog
                     },SurveyId);break;
                 case AtmajaAction.FrontDoor:StartCoroutine(TryFrontDoor(item.transform));break;
                 case AtmajaAction.KitchenDoor:
-                    if(Commit("EVENT_P0_DINING_OPEN","PROLOG_ATMAJA_KITCHEN")){StartCoroutine(Swing(kitchenDoor,-95));Objective();}break;
+                    EnsureKitchenDoor();
+                    if(kitchenDoorMotion==null)break;
+                    if(!Has("EVENT_P0_DINING_OPEN"))
+                    {if(Commit("EVENT_P0_DINING_OPEN","PROLOG_ATMAJA_KITCHEN")){kitchenDoorMotion.Interact();Objective();}}
+                    else kitchenDoorMotion.Interact();
+                    break;
                 case AtmajaAction.DamarPhone:TakeDamarPhone();break;
                 case AtmajaAction.Well:StartCoroutine(moments.OpenWell());break;
                 case AtmajaAction.ClockHands:
@@ -203,6 +211,17 @@ namespace LayarTerakhir.Prolog
         }
         private IEnumerator Swing(Transform hinge,float angle)
         {var gate=hinge.GetComponent<DoubleLeafGate>();if(gate){yield return gate.Open();yield break;}var from=hinge.localRotation;var to=Quaternion.Euler(0,angle,0);float t=0;while(t<1){t+=Time.deltaTime;hinge.localRotation=Quaternion.Slerp(from,to,Mathf.SmoothStep(0,1,t));yield return null;}}
+        // The dining door is a real two-way HingedDoor: opening it never traps
+        // Raka because the same handle closes it again. Wired at runtime so
+        // both veteran and freshly built scenes behave identically.
+        private void EnsureKitchenDoor()
+        {
+            if(kitchenDoorMotion!=null||!kitchenDoor)return;
+            kitchenDoorMotion=kitchenDoor.GetComponent<HingedDoor>();
+            if(kitchenDoorMotion==null)kitchenDoorMotion=kitchenDoor.gameObject.AddComponent<HingedDoor>();
+            kitchenDoorMotion.hinge=kitchenDoor;kitchenDoorMotion.angle=-95;
+            kitchenDoorMotion.label="Buka pintu ruang makan";
+        }
         private IEnumerator TryFrontDoor(Transform door)
         {
             if(Busy)yield break;Busy=true;player.MovementLocked=true;
@@ -229,8 +248,9 @@ namespace LayarTerakhir.Prolog
         }
         private void TakeDamarPhone()
         {
-            if(!player.IsCrouching){Hud.ShowBroadcastNotification("Merunduk untuk meraih HP Damar di kolong meja.",4);return;}
             if(Busy||Has("MATABATIN_APK"))return;
+            // No crouch gate: Raka crouches visually during the scripted grab
+            // whether the player approached standing or crouched.
             Hud.PlayPriorityDialogue("Raka","Ini HP-nya Damar... Layarnya pecah, tapi kartu memorinya masih kebaca. Gue pindahin dulu aplikasinya ke HP gue.",7);
             StartCoroutine(ChipTransferSequence());
         }
@@ -248,6 +268,13 @@ namespace LayarTerakhir.Prolog
                 Campaign.AddInventoryItem("EVENT_P0_AR_TUTORIAL");Campaign.SaveCheckpointAtomic(Campaign.Data.checkpoint_id);
                 Hud.ShowBroadcastNotification("MataBatin terhubung • ["+GameInputConfig.Instance.GetActionLabel(GameAction.ModeAR)+"] Lensa AR • Daya terkuras lebih cepat",6);
             }
+            // Scripted beat: Raka steps back with the phone, raises it and points
+            // it toward the far end of the table, cueing the AR apparition.
+            Phone.isPhoneRaised=true;
+            if(Phone.batteryPercent>0)Phone.isScreenOn=true;
+            Phone.currentScanMode=ScanVisualMode.AR;Phone.SyncVisualState();
+            phoneView.Apps.Open(PhoneApp.Camera);
+            Hud.EnqueueSubtitle("Raka","Aplikasinya nyala... gue arahin ke ujung meja.",4);
         }
         private void RevealAR()
         {

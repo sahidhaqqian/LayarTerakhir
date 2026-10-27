@@ -266,7 +266,8 @@ namespace LayarTerakhir.Prolog
                     {
                         StartCoroutine(AfterSuratReadRoutine());
                     }
-                }
+                },
+                "DOC_PROLOG_01_SURAT_KOS"
             );
         }
 
@@ -449,11 +450,12 @@ namespace LayarTerakhir.Prolog
         {
             if (currentStage < KosPrologStage.ReadyToDepart)
             {
-                HudController.Instance.EnqueueSubtitle(
-                    "Raka",
-                    "Gue belum siap berangkat.",
-                    3.2f
-                );
+                // Before the message is read the player has no reason to leave;
+                // after packing starts the blocker is simply being unprepared.
+                if (currentStage <= KosPrologStage.WaitPickupSmartphone)
+                    HudController.Instance.EnqueueSubtitle("Raka","Ngapain gue keluar tengah malam gini?",3.2f);
+                else
+                    HudController.Instance.EnqueueSubtitle("Raka","Gue belum siap berangkat.",3.2f);
                 CheckPreparationComplete();
                 return;
             }

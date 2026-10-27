@@ -1,5 +1,6 @@
 using UnityEngine;
 using LayarTerakhir.Core;
+using LayarTerakhir.UI;
 
 namespace LayarTerakhir.Player
 {
@@ -20,6 +21,8 @@ namespace LayarTerakhir.Player
         private bool handsetGraspVisible;
         private Transform[] thighs, shins, feet;
         private Transform pelvis;
+        private Transform upperArmR, forearmR, handR, headBone;
+        private PhoneDesktop phoneDesktop;
         private float[] soleHeights;
         private Quaternion[] flatFootRotations;
         private void Awake()
@@ -31,22 +34,35 @@ namespace LayarTerakhir.Player
             PrepareFootContacts();
         }
 
+        private bool armBonesCached;
+
         public void PrepareFootContacts()
         {
-            if(feet!=null)return;
-            var bones=GetComponentsInChildren<Transform>(true);
-            pelvis=System.Array.Find(bones,b=>b.name=="Hips");
-            thighs=new Transform[2];shins=new Transform[2];feet=new Transform[2];
-            soleHeights=new float[2];flatFootRotations=new Quaternion[2];
-            for(int i=0;i<2;i++)
+            if(feet==null)
             {
-                string side=i==0?"L":"R";
-                thighs[i]=System.Array.Find(bones,b=>b.name=="Thigh_"+side);
-                shins[i]=System.Array.Find(bones,b=>b.name=="Shin_"+side);
-                feet[i]=System.Array.Find(bones,b=>b.name=="Foot_"+side);
-                if(!feet[i])continue;
-                soleHeights[i]=transform.InverseTransformPoint(feet[i].position).y;
-                flatFootRotations[i]=Quaternion.Inverse(transform.rotation)*feet[i].rotation;
+                var bones=GetComponentsInChildren<Transform>(true);
+                pelvis=System.Array.Find(bones,b=>b.name=="Hips");
+                thighs=new Transform[2];shins=new Transform[2];feet=new Transform[2];
+                soleHeights=new float[2];flatFootRotations=new Quaternion[2];
+                for(int i=0;i<2;i++)
+                {
+                    string side=i==0?"L":"R";
+                    thighs[i]=System.Array.Find(bones,b=>b.name=="Thigh_"+side);
+                    shins[i]=System.Array.Find(bones,b=>b.name=="Shin_"+side);
+                    feet[i]=System.Array.Find(bones,b=>b.name=="Foot_"+side);
+                    if(!feet[i])continue;
+                    soleHeights[i]=transform.InverseTransformPoint(feet[i].position).y;
+                    flatFootRotations[i]=Quaternion.Inverse(transform.rotation)*feet[i].rotation;
+                }
+            }
+            if(!armBonesCached)
+            {
+                armBonesCached=true;
+                var bones=GetComponentsInChildren<Transform>(true);
+                upperArmR=System.Array.Find(bones,b=>b.name=="UpperArm_R");
+                forearmR=System.Array.Find(bones,b=>b.name=="Forearm_R")??System.Array.Find(bones,b=>b.name=="LowerArm_R");
+                handR=System.Array.Find(bones,b=>b.name=="Hand_R");
+                headBone=System.Array.Find(bones,b=>b.name=="Head");
             }
         }
 
@@ -85,6 +101,54 @@ namespace LayarTerakhir.Player
                 MotorcycleRiderAlignment.Solve(thighs[i],shins[i],feet[i],target,pole);
                 feet[i].rotation=sourcedLocomotion?authoredFootRotation:transform.rotation*flatFootRotations[i];
             }
+        }
+
+        // Post-clip corrections run after legacy animation sampling (LateUpdate)
+        // and before the rig's own LateUpdate adjustments.
+        private void LateUpdate()
+        {
+            if(!motion||current==null)return;
+            bool locomotion=current.EndsWith("Walk")||current.EndsWith("Run");
+            bool crouchBlend=false;
+            if(locomotion)
+                foreach(AnimationState state in motion)
+                    if(state.enabled&&state.weight>.001f&&state.name.Contains("Crouch")){crouchBlend=true;break;}
+            // Walk/run knee plane: keep the baked stride and foot plants, but pin
+            // the knee pole outward so knock-kneed clips read as a natural gait.
+            // Crouch blending stays owned by AlignCrouchFootContacts.
+            if(locomotion&&!crouchBlend)SpreadKnees();
+            ApplyCallPose();
+        }
+
+        private void SpreadKnees()
+        {
+            PrepareFootContacts();
+            if(pelvis==null)return;
+            for(int i=0;i<2;i++)
+            {
+                if(!thighs[i]||!shins[i]||!feet[i])continue;
+                Vector3 target=feet[i].position;
+                Vector3 pole=thighs[i].position+transform.right*(i==0?-1f:1f)*.45f+transform.forward*.25f+transform.up*.1f;
+                Quaternion authoredFootRotation=feet[i].rotation;
+                MotorcycleRiderAlignment.Solve(thighs[i],shins[i],feet[i],target,pole);
+                feet[i].rotation=sourcedLocomotion?authoredFootRotation:transform.rotation*flatFootRotations[i];
+            }
+        }
+
+        // Phone calls hold the handset to the ear instead of the generic
+        // hold-up-to-look clip: solve the right arm to the character's own
+        // ear side with a down-back elbow so the elbow stops flaring out.
+        private void ApplyCallPose()
+        {
+            if(phoneDesktop==null)phoneDesktop=Object.FindFirstObjectByType<PhoneDesktop>();
+            if(phoneDesktop==null||!phoneDesktop.CallActive||current==null||!current.StartsWith("Phone"))return;
+            if(!armBonesCached)PrepareFootContacts();
+            if(!upperArmR||!forearmR||!handR||!headBone)return;
+            float sideSign=Mathf.Sign(transform.InverseTransformPoint(handR.position).x);
+            if(sideSign==0)sideSign=1;
+            Vector3 ear=headBone.position+headBone.right*sideSign*.09f+headBone.up*.02f+transform.forward*.04f;
+            Vector3 pole=upperArmR.position+transform.up*-.35f-transform.right*sideSign*.15f+transform.forward*-.15f;
+            MotorcycleRiderAlignment.Solve(upperArmR,forearmR,handR,ear,pole);
         }
 
         public void Present(float speed, bool crouching, bool phone, bool riding, Vector2 direction = default, bool lowCrouch = false)

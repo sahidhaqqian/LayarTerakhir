@@ -6,13 +6,18 @@ using UnityEngine.Rendering;
 namespace LayarTerakhir.Prolog
 {
     // A small, depth-tested glint belongs to the photographable object in the AR feed.
+    // A slow dark wisp drifts behind it so players can tell which object the
+    // ghost leaves its mark on: blink for attention, smoke for dread.
     public sealed class ARPhotoGlimmer : MonoBehaviour
     {
         public AtmajaUpperDirector upper;
         public string completedFlag;
         private MeshRenderer glow;
+        private MeshRenderer wisp;
         private Material material;
+        private Material wispMaterial;
         private Mesh mesh;
+        private Mesh wispMesh;
         public static void Attach(Transform anchor,AtmajaUpperDirector upper,string flag)
         {
             if(!anchor||anchor.GetComponentInChildren<ARPhotoGlimmer>(true))return;
@@ -27,16 +32,39 @@ namespace LayarTerakhir.Prolog
             GetComponent<MeshFilter>().sharedMesh=mesh;glow=GetComponent<MeshRenderer>();
             material=new Material(Shader.Find("Universal Render Pipeline/Unlit"));material.SetFloat("_Cull",0);glow.sharedMaterial=material;
             glow.shadowCastingMode=ShadowCastingMode.Off;glow.receiveShadows=false;
+            // Dark smoke wisp: a soft quad behind the glint, same layer, unlit.
+            wispMesh=new Mesh{name="AR wisp"};wispMesh.vertices=new[]{new Vector3(-.05f,.09f,0),new Vector3(.05f,.09f,0),new Vector3(.05f,-.09f,0),new Vector3(-.05f,-.09f,0)};
+            wispMesh.triangles=new[]{0,1,2,0,2,3};wispMesh.RecalculateNormals();wispMesh.RecalculateBounds();
+            var wispGo=new GameObject("ARPhotoWisp",typeof(MeshFilter),typeof(MeshRenderer));
+            wispGo.transform.SetParent(transform,false);wispGo.transform.localPosition=Vector3.zero;wispGo.layer=AtmajaPhoneView.ARLayer;
+            wispGo.GetComponent<MeshFilter>().sharedMesh=wispMesh;wisp=wispGo.GetComponent<MeshRenderer>();
+            // Sprites/Default is an always-included unlit alpha-blended shader,
+            // so the smoke body blends reliably without URP keyword setup.
+            var spriteShader=Shader.Find("Sprites/Default")??Shader.Find("Universal Render Pipeline/Unlit");
+            wispMaterial=new Material(spriteShader);
+            wisp.sharedMaterial=wispMaterial;
+            wisp.shadowCastingMode=ShadowCastingMode.Off;wisp.receiveShadows=false;
         }
         private void LateUpdate()
         {
-            if(!glow||!upper)return;var phone=SmartphoneController.Instance;var campaign=CampaignState.Instance;
+            if(!glow||!upper){return;}var phone=SmartphoneController.Instance;var campaign=CampaignState.Instance;
             bool show=phone&&phone.isPhoneRaised&&phone.isScreenOn&&phone.currentScanMode==ScanVisualMode.AR&&campaign&&!campaign.HasInventoryItem(completedFlag);
-            glow.enabled=show;if(!show)return;
+            glow.enabled=show;if(wisp)wisp.enabled=show;if(!show)return;
             var camera=upper.director.phoneView.FeedCamera;if(camera)transform.rotation=camera.transform.rotation;
-            float pulse=Mathf.Pow(Mathf.Max(0,Mathf.Sin(Time.time*3.1f)),8);
-            transform.localScale=Vector3.one*(.26f+pulse*.74f);material.SetColor("_BaseColor",new Color(.19f,.4f,.29f)*(1+pulse*3));
+            float t=Time.time;
+            // Subtle 2 Hz blink so the mark reads as supernatural, not static UI.
+            float blink=(Mathf.Sin(t*Mathf.PI*2*2f)>0)?1f:.25f;
+            float pulse=Mathf.Pow(Mathf.Max(0,Mathf.Sin(t*3.1f)),8);
+            transform.localScale=Vector3.one*(.26f+pulse*.74f);material.SetColor("_BaseColor",new Color(.19f,.4f,.29f)*(1+pulse*3)*blink);
+            // Dark smoke: slow rise, sideways drift and breathing opacity.
+            if(wisp)
+            {
+                wisp.transform.localPosition=new Vector3(Mathf.Sin(t*1.3f)*.03f,.04f+Mathf.Sin(t*.9f)*.02f,.012f);
+                wisp.transform.localScale=new Vector3(1+Mathf.Sin(t*1.7f)*.15f,1.2f+Mathf.Sin(t*1.1f)*.2f,1);
+                float smoke=.16f+.10f*Mathf.Sin(t*1.1f+1f);
+                wispMaterial.color=new Color(.02f,.015f,.03f,Mathf.Clamp01(smoke)*blink);
+            }
         }
-        private void OnDestroy(){if(material)Destroy(material);if(mesh)Destroy(mesh);}
+        private void OnDestroy(){if(material)Destroy(material);if(mesh)Destroy(mesh);if(wispMaterial)Destroy(wispMaterial);if(wispMesh)Destroy(wispMesh);}
     }
 }
