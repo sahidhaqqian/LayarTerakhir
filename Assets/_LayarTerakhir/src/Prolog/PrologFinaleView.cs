@@ -83,15 +83,15 @@ namespace LayarTerakhir.Prolog
             UiWidgets.Text("PrologEyebrow", page.transform, "MALAM PERTAMA DI RUMAH ATMAJA", new Vector2(.12f, .68f), new Vector2(.88f, .74f), 23, TextAnchor.MiddleCenter).color = new Color(.52f, .49f, .44f);
             UiWidgets.Text("TitleDrop", page.transform, "LAYAR TERAKHIR", new Vector2(.05f, .47f), new Vector2(.95f, .66f), 104, TextAnchor.MiddleCenter).color = new Color(.64f, .045f, .035f);
             UiWidgets.Text("PrologStatus", page.transform, saved ? "PROLOG SELESAI" : "PENYIMPANAN BELUM BERHASIL", new Vector2(.15f, .38f), new Vector2(.85f, .44f), 25, TextAnchor.MiddleCenter);
-            UiWidgets.Text("NextNight", page.transform, "Damar masih di balik cermin.\nMalam berikutnya: Rusunawa Griya Asri • 23:59", new Vector2(.15f, .24f), new Vector2(.85f, .35f), 26, TextAnchor.MiddleCenter);
+            UiWidgets.Text("NextNight", page.transform, "Damar masih di balik cermin.\nPagi berikutnya: kos — hirup udara pagi sebelum malam Rusunawa", new Vector2(.15f, .24f), new Vector2(.85f, .35f), 26, TextAnchor.MiddleCenter);
             UiWidgets.Text("StreamTotals", page.transform, "54.820 PENONTON   /   TOTAL SAWERAN Rp25.450.000", new Vector2(.1f, .76f), new Vector2(.9f, .82f), 19, TextAnchor.MiddleCenter).color = new Color(.44f, .45f, .44f);
             UiWidgets.Button("PrologMainMenu", page.transform, "MENU UTAMA", new Vector2(.37f, .12f), new Vector2(.63f, .195f), () => GameShell.Instance.OpenMain()).interactable = saved;
-            if(saved&&UnityEngine.Application.CanStreamedLevelBeLoaded(LayarTerakhir.Core.CampaignRouting.RusunawaScene))
-                UiWidgets.Button("ContinuePhase1",page.transform,"MALAM BERIKUTNYA — RUSUNAWA",new Vector2(.25f,.025f),new Vector2(.75f,.10f),()=>
+            if(saved&&UnityEngine.Application.CanStreamedLevelBeLoaded("Prolog_KamarKos"))
+                UiWidgets.Button("ContinuePhase1",page.transform,"PAGI BERIKUTNYA — KEMBALI KE KOS",new Vector2(.25f,.025f),new Vector2(.75f,.10f),()=>
                 {
-                    if(!LayarTerakhir.Phase1.Phase1Director.PrepareNextNight(LayarTerakhir.Core.CampaignState.Instance))return;
+                    if(!LayarTerakhir.Interlude.InterludeCampaign.EnterInterlude(LayarTerakhir.Core.CampaignState.Instance))return;
                     Time.timeScale=1;AudioListener.pause=false;LayarTerakhir.Core.UiFocus.Cinematic=LayarTerakhir.Core.UiFocus.Phone=false;
-                    UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(LayarTerakhir.Core.CampaignRouting.RusunawaScene);
+                    UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Prolog_KamarKos");
                 });
             if (!saved) UiWidgets.Button("RetryFinalSave", page.transform, "COBA SIMPAN LAGI", new Vector2(.37f, .025f), new Vector2(.63f, .10f), () => {
                 var campaign = CampaignState.Instance; campaign.AddInventoryItem("PROLOG_COMPLETE");

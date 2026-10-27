@@ -51,6 +51,8 @@ namespace LayarTerakhir.Prolog
             { LayarTerakhir.Phase3.Phase3Hub.Install(this); return; }
             if (CampaignState.Instance && CampaignState.Instance.LoadCheckpoint() && CampaignRouting.IsPhase2(CampaignState.Instance.Data))
             { LayarTerakhir.Phase2.Phase2Hub.Install(this); return; }
+            if (CampaignState.Instance && CampaignState.Instance.LoadCheckpoint() && LayarTerakhir.Interlude.InterludeIds.IsInterludeData(CampaignState.Instance.Data))
+            { LayarTerakhir.Interlude.InterludeHub.Install(this); return; }
             KosRoomCorrections.Apply(this);
             if(suratKosItem){suratKosItem.isInteractable=false;suratKosItem.gameObject.SetActive(false);}
         }

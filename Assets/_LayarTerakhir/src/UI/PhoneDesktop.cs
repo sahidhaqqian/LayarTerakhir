@@ -85,7 +85,7 @@ namespace LayarTerakhir.UI
             PhoneSkin.Button("MapZoomIn",map.transform,"+",new Vector2(.81f,.12f),new Vector2(.97f,.24f),()=>content.sizeDelta=Vector2.Min(scroll.viewport.rect.size*1.2f,content.sizeDelta+scroll.viewport.rect.size*.2f));
             PhoneSkin.Button("MapZoomOut",map.transform,"−",new Vector2(.81f,.005f),new Vector2(.97f,.12f),()=>content.sizeDelta=Vector2.Max(Vector2.zero,content.sizeDelta-scroll.viewport.rect.size*.2f));
             UiWidgets.Text("MapCredit",map.transform,"Peta cerita • luring • geser untuk menjelajah",new Vector2(.025f,.005f),new Vector2(.78f,.08f),12).color=PhoneSkin.Ink;
-            var corridor=FindFirstObjectByType<KosCorridorDirector>();bool ready=corridor&&corridor.CanDepart;
+            var corridor=FindFirstObjectByType<KosCorridorDirector>();bool ready=corridor&&corridor.enabled&&corridor.CanDepart;
             UiWidgets.Text("DestinationLabel",page.transform,"RUMAH KELUARGA ATMAJA\n"+(ready?"Motor siap di gerbang kos":"Pilih keberangkatan di gerbang kos"),new Vector2(.07f,.24f),new Vector2(.93f,.33f),22);
             var button=PhoneSkin.Button("AtmajaDestination",page.transform,ready?"Berangkat ke Atmaja  →":"Pergi ke gerbang untuk berangkat",new Vector2(.06f,.145f),new Vector2(.94f,.23f),()=>{if(corridor&&ready)corridor.RequestDeparture();},PhoneSkin.Blue);button.interactable=ready;
             var future=PhoneSkin.Button("LockedDestinations",page.transform,"5 tujuan berikutnya  ›",new Vector2(.06f,.09f),new Vector2(.94f,.14f),ShowFutureDestinations);future.GetComponentInChildren<Text>().fontSize=17;TravelSelection=ready;

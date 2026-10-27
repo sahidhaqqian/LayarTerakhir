@@ -65,7 +65,9 @@ namespace LayarTerakhir.Phase1
 
         public static bool PrepareNextNight(CampaignState campaign)
         {
-            if (!campaign || campaign.Data.chapter_id != 0 || campaign.Data.checkpoint_id != "PROLOG_COMPLETE") return false;
+            if (!campaign || campaign.Data.chapter_id != 0 ||
+                (campaign.Data.checkpoint_id != "PROLOG_COMPLETE" &&
+                 campaign.Data.checkpoint_id != LayarTerakhir.Interlude.InterludeIds.ReadyCheckpoint)) return false;
             bool entered = campaign.TryCommit("PHASE1_CP1", d =>
             {
                 d.chapter_id = 1; d.phase1 = new Phase1Data(); d.phase1.Add("P1_ARRIVAL");

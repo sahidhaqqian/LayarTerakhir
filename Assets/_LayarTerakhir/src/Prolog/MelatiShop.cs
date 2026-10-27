@@ -30,12 +30,26 @@ namespace LayarTerakhir.Prolog
             feedback=UiWidgets.Text("ShopFeedback",menu.transform,"Malam, Mas. Mau bekal apa?",new Vector2(.06f,.13f),new Vector2(.94f,.25f),23);
             PhoneSkin.Button("ShopClose",menu.transform,"SELESAI BELANJA",new Vector2(.06f,.025f),new Vector2(.94f,.115f),Close);
             UpdateBalance();Cursor.lockState=CursorLockMode.None;Cursor.visible=true;
-            hud.EnqueueSubtitle("Bu Sri","Malam, Mas Raka. Hujan begini masih mau keluar?",4);
+            if(LayarTerakhir.Interlude.InterludeIds.IsInterludeData(CampaignState.Instance.Data))
+            {
+                LayarTerakhir.Interlude.InterludeCampaign.NoteBeat(CampaignState.Instance,LayarTerakhir.Interlude.InterludeIds.WarungVisit);
+                feedback.text="Pagi, Mas. Mau sarapan apa?";
+                hud.EnqueueSubtitle("Bu Sri","Pagi, Mas Raka! Tumben pagi-pagi nongol. Biasanya baru kelihatan kalau lapar tengah malam.",5);
+            }
+            else hud.EnqueueSubtitle("Bu Sri","Malam, Mas Raka. Hujan begini masih mau keluar?",4);
         }
         public void AskAtmaja()
         {
             if(!IsOpen)return;
             var hud=HudController.Instance;
+            if(LayarTerakhir.Interlude.InterludeIds.IsInterludeData(CampaignState.Instance.Data))
+            {
+                hud.EnqueueSubtitle("Raka","Bu, semalam... rumah Atmaja itu...",4);
+                hud.EnqueueSubtitle("Bu Sri","Sudah, sudah. Ibu lihat siaranmu semalam. Temanmu... semoga ketemu. Sekarang makan dulu, istirahat. Nanti malam jangan ke mana-mana lagi, ya?",7);
+                feedback.text="Bu Sri: Makan dulu, istirahat. Jaga badanmu, Mas.";
+                LayarTerakhir.Interlude.InterludeCampaign.NoteBeat(CampaignState.Instance,LayarTerakhir.Interlude.InterludeIds.WarungVisit);
+                return;
+            }
             hud.EnqueueSubtitle("Raka","Bu, teman saya belum pulang dari rumah Atmaja. Ibu lihat dia lewat?",5);
             hud.EnqueueSubtitle("Bu Sri","Yang bawa kamera? Sore tadi lewat sini. Saya sudah bilang, rumah itu lama kosong.",6);
             hud.EnqueueSubtitle("Bu Sri","Lurus sampai ujung jalan, lalu belok kanan. Kalau dengar orang manggil dari dalam, jangan jawab sembarangan, Mas.",7);
