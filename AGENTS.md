@@ -1,5 +1,14 @@
 - Setiap selesai wajib git commit dan push.
 - Testing di akhir atau background, prioritaskan syntax check, validasi ringan, dan tes yang relevan.
+- Optimasi iterasi Unity: utamakan syntax check, kompilasi, dan validasi ringan.
+- Gunakan `-testFilter` Unity untuk menjalankan hanya tes yang relevan dengan fungsi yang diubah.
+- Jalankan targeted test sekali setelah perubahan terkait selesai, bukan setiap edit kecil.
+- Hindari regresi EditMode/PlayMode penuh kecuali milestone besar, perubahan sistem kritis bersama, atau diminta eksplisit.
+- Tes mahal boleh di background bila tepat, dengan exit code dan hasil tes yang andal.
+- Pakai ulang hasil tes yang ada bila kode relevan tidak berubah.
+- Jaga cache Unity Library dan hindari restart Editor yang tidak perlu.
+- Jangan jalankan lebih dari satu instance Unity Editor pada project yang sama.
+- Jika targeted test gagal, investigasi dan perbaiki sebelum commit.
 - Windows build TIDAK wajib setiap task; hanya buat jika pengguna memintanya secara eksplisit.
 - Upload ke Cloudflare R2 hanya jika pengguna memintanya secara eksplisit:
   rclone copy Builds/LayarTerakhir-Windows-x86_64-Development.zip r2:layarterakhir/Layarterakhir/ -P
