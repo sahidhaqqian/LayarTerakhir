@@ -91,10 +91,14 @@ namespace LayarTerakhir.Editor
             mat.SetColor("_BaseColor", Color.white);
             mat.SetTexture("_BaseMap", Texture("Albedo"));
             mat.SetTexture("_BumpMap", Texture("Normal", true));
-            mat.SetFloat("_BumpScale", .65f);
+            // Nyonya's kebaya/skin blow out to white under the blitz/flash and
+            // her compressed normal map reads harshly faceted; keep her matte
+            // while other roles retain their reviewed response.
+            bool nyonya = role == "Nyonya";
+            mat.SetFloat("_BumpScale", nyonya ? .4f : .65f);
             mat.EnableKeyword("_NORMALMAP");
             mat.SetTexture("_MetallicGlossMap", Texture("MetalSmooth", false, true));
-            mat.SetFloat("_Smoothness", .65f);
+            mat.SetFloat("_Smoothness", nyonya ? .32f : .65f);
             // Cloth/skin stay dielectric if a platform strips a map variant.
             // The metallic mask still supplies the small zipper/tool details.
             mat.SetFloat("_Metallic", 0);

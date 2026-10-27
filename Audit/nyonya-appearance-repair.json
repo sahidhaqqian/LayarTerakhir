@@ -1,0 +1,40 @@
+{
+  "hunter": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/NyonyaDesigner.fbx",
+  "hunterSha256Before": "863d3843180372c10b3ed6d41dc8655a1d4f4570d1d2c18882c64e7692eec606",
+  "hunterSha256After": "d8be5a8e4adbff9dc9ea3e30508e494bbb6baa7238dbb083b7a2b7f9e4b62589",
+  "echoSha256": "78980e3a61aac5207254736b75b4b2495dc13241463405391a94a5b66fc67ced",
+  "seatedSha256": "b55e5b328988d90f4768cc7dd54184c4dacfada9f47fe14b109cb061807f12ca",
+  "membraneFacesDeleted": 424,
+  "membranePass1": 80,
+  "membranePass2": 344,
+  "holesFilled": 179,
+  "patchTriangles": 1164,
+  "hemVertsReweighted": 101,
+  "hunterTriangles": 22739,
+  "echoTriangles": 5000,
+  "seatedTriangles": 5000,
+  "windupPeakDegrees": {
+    "Forearm_R": 20.8,
+    "Hand_R": 77.0,
+    "Head": 16.0,
+    "UpperArm_R": 13.0
+  },
+  "stunPeakDegrees": {
+    "Spine": 30.8,
+    "Head": 35.2,
+    "UpperArm_R": 44.0
+  },
+  "refloorLiftedFrames": {
+    "walk": 41,
+    "run": 29
+  },
+  "bones": 56,
+  "clips": [
+    "Idle",
+    "Run",
+    "Stun",
+    "Walk",
+    "Windup"
+  ],
+  "budgetsUnchanged": true
+}

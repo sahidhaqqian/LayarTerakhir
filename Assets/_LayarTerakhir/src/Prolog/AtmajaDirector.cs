@@ -73,6 +73,7 @@ namespace LayarTerakhir.Prolog
             LayarTerakhir.Audio.PlayerFootsteps.Install(player,audioProfile,stepsSource);
             PracticalLightPresentation.AddThreatRim(arFigure);
             if(basement)PracticalLightPresentation.AddThreatRim(basement.nyonya);
+            if(upper){PracticalLightPresentation.AddThreatRim(upper.mirrorFlashFigure);PracticalLightPresentation.AddThreatRim(upper.hangedFlashFigure);}
             if(chase){PracticalLightPresentation.AddThreatRim(chase.chaserFigure);PracticalLightPresentation.AddThreatRim(chase.streetFigure);}
             if(!Has("EVENT_P0_ATMAJA_ARRIVED"))Commit("EVENT_P0_ATMAJA_ARRIVED","PROLOG_ATMAJA_COURTYARD");
             Hud.SetFadeAlpha(1);yield return Hud.FadeBlack(1,0,1.4f);
