@@ -1,8 +1,9 @@
 - Setiap selesai wajib git commit dan push.
-- Testing di akhir atau background, prioritaskan syntax check.
-- Setiap build ZIP baru wajib upload ke Cloudflare R2:
+- Testing di akhir atau background, prioritaskan syntax check, validasi ringan, dan tes yang relevan.
+- Windows build TIDAK wajib setiap task; hanya buat jika pengguna memintanya secara eksplisit.
+- Upload ke Cloudflare R2 hanya jika pengguna memintanya secara eksplisit:
   rclone copy Builds/LayarTerakhir-Windows-x86_64-Development.zip r2:layarterakhir/Layarterakhir/ -P
-- Pastikan upload berhasil sebelum melaporkan selesai.
+- Jika upload diminta, pastikan upload berhasil sebelum melaporkan selesai.
 - Jangan upload ulang jika tidak ada build baru.
 
 ## Pembagian peran dan pelaksanaan revisi
