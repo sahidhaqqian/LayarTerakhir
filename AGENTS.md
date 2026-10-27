@@ -22,6 +22,7 @@
 - Dalam konteks melanjutkan revisi game, permintaan "baca goal.md" berarti baca versi terbaru lalu terapkan instruksinya, bukan sekadar membalas bahwa file sudah dibaca. Jika pengguna secara eksplisit meminta diskusi, review, atau rencana saja, ikuti batasan tersebut tanpa mengubah game.
 - Kerjakan pilihan teknis yang wajar secara mandiri, pertahankan maksud desain pengguna, dan verifikasi perubahan. Jangan meminta persetujuan ulang untuk perubahan yang sudah diminta; klarifikasi hanya jika ada konflik atau keputusan penting yang benar-benar belum ditentukan.
 - Folder `Bugs` sudah dihapus (17 Oktober 2026) karena tidak dipakai lagi; gunakan catatan playtest terbaru di `goal.md` sebagai referensi.
+- Aturan produktivitas agen (validasi berlapis, delegasi subagent, eksplorasi terarah, pelestarian cache, regression test, pencatatan durasi): `.opencode/skills/dev-workflow/SKILL.md`. Status ringkas per babak: `PROGRESS.md`.
 - Laporan akhir harus membedakan perubahan yang benar-benar diterapkan dan diverifikasi dari hal yang masih tertunda. Jangan mengaku selesai hanya karena sudah membuat daftar rencana.
 
 ## Graphify — wajib setiap sesi sebelum commit dan push
