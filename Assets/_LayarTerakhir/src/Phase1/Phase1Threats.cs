@@ -40,6 +40,7 @@ namespace LayarTerakhir.Phase1
             World.kuntilanak.SetActive(false); World.tuyul.SetActive(false); tuyulTime = -1; bathroomTimer = -1;
             World.genderuwo.transform.position = World.genderuwoSpawn.position;
             World.genderuwo.SetActive(director.Completed("P1_GENDER_MANIFEST") && !director.Completed("P1_BOSS_WIN"));
+            HudController.Instance.SetThreatBar(null);
             navigation = GetComponent<Phase1Navigator>();
             if (!navigation) navigation = gameObject.AddComponent<Phase1Navigator>();
             navigation.Configure(World.patrolPoints, World.genderuwo.transform,director.player.transform);
@@ -132,6 +133,12 @@ namespace LayarTerakhir.Phase1
         private void TickStealth(float dt)
         {
             if (stun > 0) { Motion(World.genderuwo, "Stun"); return; }
+            if (director.Hidden)
+            {
+                float distance = World.genderuwo.activeSelf ? Vector3.Distance(World.genderuwo.transform.position, PlayerPosition) : 99f;
+                HudController.Instance.SetThreatBar(LayarTerakhir.Core.HidingAwareness.ProximityFill(IsChasing, distance, 7f, 18f));
+            }
+            else HudController.Instance.SetThreatBar(null);
             if (bathroomTimer >= 0)
             {
                 bathroomTimer += dt;

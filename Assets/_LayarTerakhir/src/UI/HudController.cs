@@ -33,6 +33,12 @@ namespace LayarTerakhir.UI
 
         public Image blackFadeImage;
 
+        [Header("Threat Bar")]
+        public Image threatBarFill;
+        public Text threatExitKeyText;
+        private GameObject threatBarRoot;
+        private float _lastThreatFill = -2f;
+
         public bool IsDocumentOpen => documentPanel != null && documentPanel.activeSelf;
 
         public bool IsModalOpen =>
@@ -262,6 +268,122 @@ namespace LayarTerakhir.UI
             {
                 interactionPromptText.text = prompt;
             }
+        }
+
+        // Threat proximity bar for hiding spots. Null hides everything.
+        // Fill = danger: full red = threat at the locker, green sliver = far,
+        // bar gone = quiet = all-clear. The E keycap below always shows while
+        // hidden so the exit key is never forgotten. HUD-owned, never the
+        // phone screen — visible with the handset lowered or off.
+        public void SetThreatBar(float? fill)
+        {
+            if (!fill.HasValue) { if (threatBarRoot) threatBarRoot.SetActive(false); _lastThreatFill = -2f; return; }
+            if (!EnsureThreatBarBuilt()) return;
+            float v = Mathf.Clamp01(fill.Value);
+            if (Mathf.Approximately(v, _lastThreatFill) && threatBarRoot.activeSelf) return;
+            _lastThreatFill = v;
+            threatBarRoot.SetActive(true);
+            if (threatBarFill) { threatBarFill.gameObject.SetActive(v > 0.001f); threatBarFill.fillAmount = v; threatBarFill.color = ThreatBarColor(v); }
+            RefreshThreatExitKey();
+        }
+
+        private static Color ThreatBarColor(float v)
+        {
+            Color green = new Color(0.25f, 0.75f, 0.25f, 0.92f);
+            Color yellow = new Color(0.95f, 0.8f, 0.15f, 0.92f);
+            Color red = new Color(0.78f, 0.07f, 0.06f, 0.95f);
+            if (v < 0.5f) return Color.Lerp(green, yellow, v * 2f);
+            return Color.Lerp(yellow, red, (v - 0.5f) * 2f);
+        }
+
+        private void RefreshThreatExitKey()
+        {
+            if (threatExitKeyText == null) return;
+            string label = "E";
+            var input = GameInputConfig.Instance;
+            if (input != null)
+            {
+                try { string key = input.GetActionLabel(GameAction.Interact); if (!string.IsNullOrEmpty(key)) label = key; }
+                catch { }
+            }
+            if (threatExitKeyText.text != label) threatExitKeyText.text = label;
+        }
+
+        private bool EnsureThreatBarBuilt()
+        {
+            if (threatBarRoot) return true;
+            Canvas canvas = GetComponentInChildren<Canvas>();
+            if (canvas == null) return false;
+            Transform existing = canvas.transform.Find("ThreatBar");
+            if (existing != null)
+            {
+                threatBarRoot = existing.gameObject;
+                Transform fillT = existing.Find("ThreatBarFill");
+                if (fillT != null) threatBarFill = fillT.GetComponent<Image>();
+                Transform keyT = existing.Find("ThreatExitKeyFrame/ThreatExitKeyInner/ThreatExitKey");
+                if (keyT != null) threatExitKeyText = keyT.GetComponent<Text>();
+                return threatBarFill != null;
+            }
+            threatBarRoot = CreateUIObject("ThreatBar", canvas.transform);
+            RectTransform rootRect = threatBarRoot.GetComponent<RectTransform>();
+            rootRect.anchorMin = new Vector2(0.5f, 0f);
+            rootRect.anchorMax = new Vector2(0.5f, 0f);
+            rootRect.pivot = new Vector2(0.5f, 0f);
+            rootRect.anchoredPosition = new Vector2(0f, 196f);
+            rootRect.sizeDelta = new Vector2(340f, 76f);
+            GameObject barBg = CreateUIObject("ThreatBarBg", threatBarRoot.transform);
+            RectTransform bgRect = barBg.GetComponent<RectTransform>();
+            bgRect.anchorMin = new Vector2(0f, 1f);
+            bgRect.anchorMax = new Vector2(1f, 1f);
+            bgRect.pivot = new Vector2(0.5f, 1f);
+            bgRect.anchoredPosition = Vector2.zero;
+            bgRect.sizeDelta = new Vector2(340f, 16f);
+            Image bg = barBg.AddComponent<Image>();
+            bg.color = new Color(0f, 0f, 0f, 0.45f);
+            bg.raycastTarget = false;
+            GameObject fillObj = CreateUIObject("ThreatBarFill", threatBarRoot.transform);
+            RectTransform fillRect = fillObj.GetComponent<RectTransform>();
+            fillRect.anchorMin = new Vector2(0f, 1f);
+            fillRect.anchorMax = new Vector2(1f, 1f);
+            fillRect.pivot = new Vector2(0.5f, 1f);
+            fillRect.anchoredPosition = new Vector2(0f, -2f);
+            fillRect.sizeDelta = new Vector2(336f, 12f);
+            threatBarFill = fillObj.AddComponent<Image>();
+            threatBarFill.type = Image.Type.Filled;
+            threatBarFill.fillMethod = Image.FillMethod.Horizontal;
+            threatBarFill.fillOrigin = (int)Image.OriginHorizontal.Left;
+            threatBarFill.color = new Color(0.78f, 0.07f, 0.06f, 0.95f);
+            threatBarFill.raycastTarget = false;
+            threatBarFill.fillAmount = 0f;
+            GameObject keyFrame = CreateUIObject("ThreatExitKeyFrame", threatBarRoot.transform);
+            RectTransform keyFrameRect = keyFrame.GetComponent<RectTransform>();
+            keyFrameRect.anchorMin = new Vector2(0.5f, 0f);
+            keyFrameRect.anchorMax = new Vector2(0.5f, 0f);
+            keyFrameRect.pivot = new Vector2(0.5f, 0f);
+            keyFrameRect.anchoredPosition = new Vector2(0f, 0f);
+            keyFrameRect.sizeDelta = new Vector2(46f, 46f);
+            Image keyBg = keyFrame.AddComponent<Image>();
+            keyBg.color = new Color(0.55f, 0.42f, 0.22f, 0.9f);
+            keyBg.raycastTarget = false;
+            GameObject keyInner = CreateUIObject("ThreatExitKeyInner", keyFrame.transform);
+            RectTransform keyInnerRect = keyInner.GetComponent<RectTransform>();
+            keyInnerRect.anchorMin = Vector2.zero;
+            keyInnerRect.anchorMax = Vector2.one;
+            keyInnerRect.offsetMin = new Vector2(3f, 3f);
+            keyInnerRect.offsetMax = new Vector2(-3f, -3f);
+            Image keyInnerBg = keyInner.AddComponent<Image>();
+            keyInnerBg.color = new Color(0.05f, 0.05f, 0.07f, 0.95f);
+            keyInnerBg.raycastTarget = false;
+            threatExitKeyText = CreateText("ThreatExitKey", keyInner.transform, LoadSafeFont(), 26, TextAnchor.MiddleCenter);
+            RectTransform keyTextRect = threatExitKeyText.GetComponent<RectTransform>();
+            keyTextRect.anchorMin = Vector2.zero;
+            keyTextRect.anchorMax = Vector2.one;
+            keyTextRect.offsetMin = Vector2.zero;
+            keyTextRect.offsetMax = Vector2.zero;
+            threatExitKeyText.color = new Color(1f, 0.92f, 0.65f);
+            threatExitKeyText.text = "E";
+            threatBarRoot.SetActive(false);
+            return true;
         }
 
         public float EnqueueSubtitle(string speaker, string text, float duration = 4.5f)

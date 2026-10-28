@@ -89,6 +89,7 @@ namespace LayarTerakhir.Prolog
             if(nyonya){var pose=nyonya.GetComponent<AtmajaThreatPresentation>();if(pose)pose.ExternalStun=false;}
             bool entered = Has("EVENT_P0_BASEMENT_ENTERED"), chased = Has("EVENT_P0_CHASE_STARTED");
             hiddenIn = hiddenAnchor = null; lockerCheckRunning = lockerCleared = false;
+            if (Hud) Hud.SetThreatBar(null);
             mind = !entered ? Mind.Dormant : chased ? Mind.Done : Mind.Patrol;
             waypointIndex = 0; detect = 0; waypointPause = 1.4f; connections = null;
             if (nyonya) nyonya.SetActive(entered && !chased);
@@ -191,6 +192,7 @@ namespace LayarTerakhir.Prolog
             if (wardrobeCol1) wardrobeCol1.enabled = true; if (wardrobeCol2) wardrobeCol2.enabled = true;
             hiddenIn = hiddenAnchor = null; director.player.MovementLocked = false;
             lockerCheckRunning = false; hiddenWasSeen = false;
+            if (Hud) Hud.SetThreatBar(null);
             // The interactor also sees this E press. Do not immediately enter again
             // when its Update runs after the wardrobe's exit handler.
             nextHideTime = Time.time + .75f;
@@ -217,7 +219,10 @@ namespace LayarTerakhir.Prolog
             if(director.Stage>=AtmajaStage.Chase)return;
             if (mind == Mind.Dormant || mind == Mind.Done || mind == Mind.Emerge || !nyonya || !nyonya.activeSelf) return;
             float dt = Time.deltaTime; dragTimer -= dt;
-            if (dragTimer <= 0) { dragTimer = mind == Mind.Pursue ? .35f : .95f; if (!scrapeClip) scrapeClip = AtmajaSynth.Scrape(.42f); PlayThreatScrape(scrapeClip, .3f); }
+            if (dragTimer <= 0) { dragTimer = mind == Mind.Pursue ? .35f : .95f; if (!scrapeClip) scrapeClip = AtmajaSynth.Scrape(.42f);
+                // Distance-scaled: loud when she is close, silent when she has left the area.
+                float scrapeGain = HidingAwareness.ThreatGain(Vector3.Distance(nyonya.transform.position, director.player.transform.position), 12f, .5f);
+                if (scrapeGain > .01f) PlayThreatScrape(scrapeClip, scrapeGain); }
             var pose = nyonya.GetComponent<AtmajaThreatPresentation>(); if (pose) pose.ExternalStun = IsBlitzStunned;
             if (IsBlitzStunned) return;
             if (humSource) humSource.volume = Mathf.Clamp01(1.2f - Vector3.Distance(nyonya.transform.position, director.player.transform.position) / 9) * .35f;
@@ -363,6 +368,9 @@ namespace LayarTerakhir.Prolog
                 if(director.phoneView)director.phoneView.AddChatBurst(new[]{"@maya_sari","@dinda_ayu","@rudi_tabuti"},new[]{"DIA DEKET LEMARI BANG!","MATIIN LAYAR SEKARANG!","JANGAN NAFAS BANG PLIS!"});
                 Hud.ShowBroadcastNotification($"Dia mendekat ke lemari. Matikan layar [{Key(GameAction.ToggleScreen)}] sekarang!", 5); director.Objective();
             }
+            // Threat bar: full red while she inspects, draining as she leaves,
+            // gone when quiet. HUD-owned so it works with the screen off.
+            Hud.SetThreatBar(lockerCheckRunning ? 1f : HidingAwareness.ProximityFill(false, distance, 2.5f, 10f));
             if (lockerCheckRunning)
             {
                 inspectElapsed += dt; Vector3 toward = hiddenAnchor.position - nyonya.transform.position; toward.y = 0;
@@ -383,8 +391,9 @@ namespace LayarTerakhir.Prolog
         }
         private void LateUpdate()
         {
+            // Exit is shown on the threat bar keycap while hidden.
             if (IsHidden && Hud && !UiFocus.HardModal && !Hud.IsModalOpen)
-                Hud.SetInteractionPrompt("[" + Key(GameAction.Interact) + "] Keluar lemari");
+                Hud.SetInteractionPrompt("");
         }
     }
 }
