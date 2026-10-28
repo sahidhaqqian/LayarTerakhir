@@ -270,10 +270,14 @@ namespace LayarTerakhir.Editor
             else Box("WestGalleryCeiling", new Vector3(-20, y + 3.65f, 0), new Vector3(10, .25f, 20), concrete);
             Box("EastGalleryCeiling", new Vector3(20, y + 3.65f, 0), new Vector3(10, .25f, 20), concrete);
             // Inner balustrades show the O plan; collision follows the visible concrete.
+            // Reference (real rusunawa galleries): a solid parapet capped by a
+            // continuous dark steel handrail pipe, not a bare concrete edge.
             foreach (int side in new[] { -1, 1 })
             {
                 Box("VoidNorthParapet", new Vector3(0, y + .5f, side * 9), new Vector3(26, 1, .18f), wall);
                 Box("VoidSideParapet", new Vector3(side * 13, y + .5f, 0), new Vector3(.18f, 1, 18), wall);
+                Pipe("VoidHandrailNorthSouth", new Vector3(-13, y + 1.07f, side * 9), new Vector3(13, y + 1.07f, side * 9), .035f, darkMetal);
+                Pipe("VoidHandrailSide", new Vector3(side * 13, y + 1.07f, -9), new Vector3(side * 13, y + 1.07f, 9), .035f, darkMetal);
                 for (int i = 0; i < 7; i++)
                     Box("GalleryConcretePier", new Vector3(-12 + i * 4, y + 1.8f, side * 9.2f), new Vector3(.26f, 3.6f, .28f), concrete);
             }
@@ -342,6 +346,8 @@ namespace LayarTerakhir.Editor
                     new Vector3(1.97f,2.6f,.14f),null,Imported+"DoorsWindows/Door_DoorFrame_Double.fbx");
             }
             Label("RoomNumber_" + number, number.ToString(), p + new Vector3(0, 2.9f, north ? -.15f : .15f), Quaternion.Euler(0, north ? 180 : 0, 0), .14f);
+            // Tall dark side window beside the door (real rusunawa unit fronts).
+            Box("FacadeSideWindow_" + number, p + new Vector3(1.72f, 1.58f, north ? -.1f : .1f), new Vector3(.92f, 1.5f, .07f), glass, false);
         }
         private static void Fixture(string id, Vector3 p, Color color, float intensity, float range, bool shadows)
         {

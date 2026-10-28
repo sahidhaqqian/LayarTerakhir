@@ -66,6 +66,14 @@ namespace LayarTerakhir.Diagnostics
         {
             yield return Wait(()=>FindFirstObjectByType<Phase1Director>()&&FindFirstObjectByType<Phase1Director>().Ready,120,"P1 Continue routes safely from startup");
             d=FindFirstObjectByType<Phase1Director>();yield return new WaitForSeconds(1);
+            // A real desktop delivers an initial focus-gain when the window is
+            // shown; Xvfb without a window manager never does, and the HEAD
+            // Alt+Tab guard then gates every keyboard action for the whole run.
+            // Simulate that OS gain exactly like the Prolog PlayMode tests do.
+            UiFocus.ApplicationFocused=true;
+            d.phoneView.SendMessage("OnApplicationFocus",true,SendMessageOptions.DontRequireReceiver);
+            d.player.SendMessage("OnApplicationFocus",true,SendMessageOptions.DontRequireReceiver);
+            yield return null;
             d.player.enabled=false;
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-phase1VisualReview")>=0)
             {

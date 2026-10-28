@@ -28,7 +28,7 @@ namespace LayarTerakhir.Phase1
         public bool CanBeginLive => Ready && !Busy && !Dead && !Completed("P1_START_LIVE");
         public int Viewers => Completed("P1_EPILOGUE") ? 142000 : Completed("P1_CUT_CHAIN") ? 82700 : 18500;
         public Phase1Stage Stage => Phase1Ids.Stage(Campaign.Data, BossActive);
-        public string CameraStatus => CameraLocked ? "TETAP TATAP • MUNDUR KE TANGGA" : recordingEVP ?
+        public string CameraStatus => CameraLocked ? "KAMERA  •  MEREKAM" : recordingEVP ?
             $"EVP  •  MEREKAM {evpProgress:0.0}/{balance.evpSeconds:0}s" : BossActive ? threats.BossStatus :
             Phone.currentScanMode == ScanVisualMode.AR ? "MATA BATIN / AR  •  [C] EVP" : "KAMERA  •  [Q] AR  [C] EVP";
         public bool OwnsInteraction => Ready && (Hidden || threats && threats.KuntiManifested && !Completed("P1_CUT_CHAIN"));
@@ -229,6 +229,8 @@ namespace LayarTerakhir.Phase1
             if (Hidden && item == hidingItem) return "Keluar dari persembunyian";
             if (item.id.StartsWith("DYNAMO")) return "Tahan E — putar dinamo manual";
             if (item.id == "ARENA_POWER") return "Tahan E — sambungkan daya darurat";
+            if (item.id == "CUTTER") return "Ambil pemotong besi";
+            if (item.id == "CHAIN") return "Potong rantai tangga";
             return item.prompt;
         }
         public void Interact(Phase1WorldItem item)
@@ -300,9 +302,16 @@ namespace LayarTerakhir.Phase1
                 case "KUNTI": if (Completed("P1_LIFT_RIDE") && !Completed("P1_CUT_CHAIN")) threats.ManifestKunti(); break;
                 case "GENDER":
                     if (Completed("P1_CUT_CHAIN") && !Completed("P1_GENDER_MANIFEST") && Commit("P1_GENDER_MANIFEST"))
-                    { world.wall401.SetActive(false); threats.ManifestGender(); Chat("@siska_eee", "MATIIN LAYAR KALAU DIA DEKAT. Ada lemari di kamar 403!"); }
+                    {
+                        // Emergence is staged, not a silent wall toggle: impact,
+                        // falling masonry audio and Raka's reaction precede the chat panic.
+                        soundscape?.Play("Impact", world.wall401.transform.position);
+                        world.wall401.SetActive(false); threats.ManifestGender();
+                        Hud.EnqueueSubtitle("Raka", "Tembok 401 jebol... ada yang keluar. Gede banget—", 5);
+                        Chat("@siska_eee", "BANG!! ADA YANG KELUAR DARI 401!! BESAR BANGET ITU!!");
+                    }
                     break;
-                case "EVP_HINT": if (!Campaign.Data.evidence_ids.Contains(Phase1Ids.EVP)) Hud.ShowBroadcastNotification("Statis dari kamar mandi. [C] aktifkan EVP di dekat radio.", 4); break;
+                case "EVP_HINT": if (!Campaign.Data.evidence_ids.Contains(Phase1Ids.EVP)) Hud.EnqueueSubtitle("Raka", "Statis radio itu... bukan dari stasiun mana pun.", 4); break;
             }
         }
         public IInteractable ResolveContextInteraction()
@@ -329,7 +338,7 @@ namespace LayarTerakhir.Phase1
                 "Damar masih terjebak di balik cermin sialan itu... Empat segel harus gue kumpulin. Kalau gue mundur malam ini, Damar mati.";
             Hud.EnqueueSubtitle("Raka", opening, 9);
             yield return new WaitForSeconds(9);
-            if (Commit("P1_APP_PATCH",data=>Phase1Ids.Donation(data,"P1_APP_PATCH",10000000,true))) { Hud.ShowBroadcastNotification("23:58 — JURNAL KLENIK v2.0 terpasang. Dana kontrak Rp10.000.000 tercatat sekali.", 6); Chat("Penonton_Terakhir", "Empat belas penghuni terbakar pada 2004. Cari tiga bukti kematiannya. Cahaya meruntuhkan perisainya."); }
+            if (Commit("P1_APP_PATCH",data=>Phase1Ids.Donation(data,"P1_APP_PATCH",10000000,true))) { Hud.ShowBroadcastNotification("23:58 — JURNAL KLENIK v2.0 terpasang. Dana kontrak Rp10.000.000 tercatat sekali.", 6); Chat("Penonton_Terakhir", "Empat belas nama hilang dari daftar penghuni pada 2004. Lantai paling atas tidak suka ditonton, Raka."); }
             // Only authored transactions enter the ledger. Never top the wallet up to the narrative milestone.
         }
         public void StartLive()
@@ -390,9 +399,9 @@ namespace LayarTerakhir.Phase1
                 Phase1Stage.Passage102 => "Periksa anomali Kamar 102 dengan lensa AR.",
                 Phase1Stage.Mailbox => "Temukan kode kotak surat 207 dari papan status, log, dan denah.",
                 Phase1Stage.Lift => "Gunakan kunci kontak pada lift barang.",
-                Phase1Stage.Kuntilanak => "Isi daya di panel bila perlu. Telusuri koridor dan ambil pemotong besi.",
-                Phase1Stage.Investigation => $"Bukti {Phase1Ids.EvidenceCount(Campaign.Data)}/3. Selidiki 402, kamar mandi, dan tungku. Konfirmasi Jurnal sebelum ritual.",
-                Phase1Stage.Boss => "Pancing Genderuwo ke halogen. Tarik tuas, bidik kepala, Blitz dalam 5 detik.",
+                Phase1Stage.Kuntilanak => "Telusuri koridor Lantai 3.",
+                Phase1Stage.Investigation => $"Bukti teridentifikasi {Phase1Ids.EvidenceCount(Campaign.Data)}/3. Ikuti catatan dan rekaman yang kamu temukan sendiri.",
+                Phase1Stage.Boss => "Hadapi Genderuwo Arang di koridor Lantai 4.",
                 Phase1Stage.Epilogue => "Periksa kain jaket dan kaset di altar Kamar 404.",
                 Phase1Stage.Return => "Turun lewat lift ke L1. Opsional: ambil arsip Tari di L2. Kembali ke motor.",
                 _ => "Babak 1 selesai. Tujuan tersimpan: RSUD Lama Sido Waras."

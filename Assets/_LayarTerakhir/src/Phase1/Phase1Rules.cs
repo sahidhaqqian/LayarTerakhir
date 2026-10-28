@@ -42,6 +42,23 @@ namespace LayarTerakhir.Phase1
             if (bound) data.wallet_bound += amount; else data.wallet_legitimate += amount;
         }
         public static bool InWindow(float now, float opened, float duration = 5) => now >= opened && now - opened < duration;
+        // A full dynamo cycle must never be consumed for no energy (QA-31/52).
+        public static bool FullChargeWasted(float batteryPercent) => batteryPercent >= 99f;
+        public static float EmergencyChargeResult(float batteryPercent) => UnityEngine.Mathf.Min(10f, UnityEngine.Mathf.Max(batteryPercent, 10f));
+        // The journal is a deduction tool, not a walkthrough: locations and the
+        // weakness are only written down after Raka has actually found them.
+        public static string JournalText(CampaignData data)
+        {
+            string Check(string id, string found, string missing) => (data.evidence_ids.Contains(id) ? "[✓] " + found : "[ ] " + missing) + "\n";
+            return "JURNAL KLENIK v2.0\n" + (AllEvidence(data) ? "GENDERUWO ARANG" : "PENUNGGU LANTAI EMPAT — BELUM TERIDENTIFIKASI") + "\n\n" +
+                Check(Claw, "Jejak fisik — cakaran besar, Kamar 402", "Jejak fisik (cakaran) — belum ditemukan") +
+                Check(EVP, "Suara gaib — rekaman EVP kamar mandi", "Suara gaib (rekaman) — belum ditemukan") +
+                Check(Aura, "Aura kematian — tungku dapur umum", "Aura kematian (lensa AR) — belum ditemukan") + "\n" +
+                (AllEvidence(data) ? "GENDERUWO ARANG\nPerisai kabutnya runtuh oleh sorot lampu halogen koridor. Saat tubuhnya terekspos, bidik kepalanya dengan Blitz.\n\n" : "Tiga bukti berbeda diperlukan untuk identifikasi.\n\n") +
+                (data.phase1.Completed("P1_JOURNAL_CONFIRMED") ? "Identitas dikonfirmasi.\n" : "Identitas belum dikonfirmasi.\n") +
+                "\nARSIP SAKSI\nBabak ini: " + (data.secret_items.Contains(Secret) ? "1/1 — Negatif Tari" : "0/1 — belum ditemukan") +
+                "\nCampaign: " + Secrets.Count(data.secret_items.Contains) + "/5";
+        }
     }
 
     // All chapter-only tuning is explicit; the player/global phone defaults are unchanged.

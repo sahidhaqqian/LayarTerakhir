@@ -24,13 +24,7 @@ namespace LayarTerakhir.Phase1
             if (app == PhoneApp.Journal)
             {
                 var data = Campaign.Data;
-                string Check(string id, string text) => (data.evidence_ids.Contains(id) ? "[✓] " : "[ ] ") + text;
-                string status = "JURNAL KLENIK v2.0\nPENUNGGU LANTAI EMPAT\n\n" +
-                    Check(Phase1Ids.Claw, "Jejak fisik — Kamar 402") + "\n" + Check(Phase1Ids.EVP, "Suara gaib — kamar mandi") + "\n" + Check(Phase1Ids.Aura, "Aura kematian — tungku") + "\n\n" +
-                    (Phase1Ids.AllEvidence(data) ? "GENDERUWO ARANG\nHalogen memecah perisai. Saat tubuh terekspos, bidik kepala dengan Blitz.\n\n" : "Tiga bukti berbeda diperlukan untuk identifikasi.\n\n") +
-                    (Completed("P1_JOURNAL_CONFIRMED") ? "Identitas dikonfirmasi.\n" : "Identitas belum dikonfirmasi.\n") +
-                    "\nARSIP SAKSI\nBabak ini: " + (data.secret_items.Contains(Phase1Ids.Secret) ? "1/1 — Negatif Tari" : "0/1 — Periksa arsip di L2") +
-                    "\nCampaign: " + Phase1Ids.Secrets.Count(data.secret_items.Contains) + "/5";
+                string status = Phase1Ids.JournalText(data);
                 UiWidgets.ScrollText("P1Deduction", page, status, new Vector2(.06f, .42f), new Vector2(.94f, .89f), 23);
                 var confirm = PhoneSkin.Button("P1ConfirmIdentity", page, Completed("P1_JOURNAL_CONFIRMED") ? "IDENTITAS TERSIMPAN" : "Konfirmasi identitas", new Vector2(.06f, .31f), new Vector2(.94f, .40f), () =>
                 { if (Phase1Ids.AllEvidence(Campaign.Data) && Commit("P1_JOURNAL_CONFIRMED")) phoneView.Apps.Open(PhoneApp.Journal); });
@@ -85,7 +79,7 @@ namespace LayarTerakhir.Phase1
                 var spot = item.transform.Find("HideAnchor");
                 if (spot) MovePlayer(spot);
                 player.MovementLocked = true; player.GetComponent<ShoulderCameraRig>().FirstPersonOverride = true;
-                Hud.ShowBroadcastNotification("Tersembunyi. Matikan layar dengan F. E keluar saat aman.", 4);
+                Hud.EnqueueSubtitle("Raka", "Tahan napas... jangan sampai kedengaran.", 3);
             }
         }
         private IEnumerator RideLift(int y)
@@ -102,8 +96,7 @@ namespace LayarTerakhir.Phase1
             world.liftCabin.position = new Vector3(world.liftCabin.position.x, y, world.liftCabin.position.z);
             MovePlayer(world.Anchor(anchor));
             Hud.SetFadeAlpha(0); UiFocus.Cinematic = false; Busy = false; player.MovementLocked = false;
-            if (y == 8 && !Completed("P1_CUT_CHAIN")) Hud.ShowBroadcastNotification("LIFT MACET — panel daya servis tersedia di landing. Isi daya sebelum mengambil alat.", 5);
-            if (y == 8 && !Completed("P1_CUT_CHAIN")) threats.BeginHaunting();
+            if (y == 8 && !Completed("P1_CUT_CHAIN")) { Hud.EnqueueSubtitle("Raka", "Remnya ngunci di lantai ini... Kok sepi banget.", 4); threats.BeginHaunting(); }
         }
         private void ShowLiftDestinations()
         {
@@ -116,6 +109,8 @@ namespace LayarTerakhir.Phase1
             if (charging) yield break;
             bool arena = item.id == "ARENA_POWER";
             bool full = !arena && !Campaign.Data.phase1.dynamo_full_charge_used_ids.Contains(item.id);
+            if (full && Phase1Ids.FullChargeWasted(Phone.batteryPercent))
+            { Hud.ShowBroadcastNotification("Baterai sudah penuh. Putaran dinamo tidak terpakai.", 3); yield break; }
             var last = Campaign.Data.phase1.dynamo_emergency_last_uses.Find(e => e.id == item.id);
             float elapsed = Campaign.Data.phase1.elapsed_gameplay_seconds;
             if (!arena && !full && (Phone.batteryPercent >= 10 || last != null && elapsed - last.at_gameplay_seconds < balance.crankCooldownSeconds))
@@ -134,7 +129,7 @@ namespace LayarTerakhir.Phase1
                 if (shown != lastShown) { lastShown = shown; Hud.SetInteractionPrompt($"MEMUTAR DINAMO  {chargeProgress[item.id]:0}/{needed:0} detik • lepas untuk berhenti"); }
                 if (chargeProgress[item.id] >= needed)
                 {
-                    float amount = arena ? Mathf.Min(100, Phone.batteryPercent + balance.arenaChargeAmount) : full ? Mathf.Min(100, Phone.batteryPercent + balance.dynamoAmount) : Mathf.Min(10, Mathf.Max(Phone.batteryPercent, 10));
+                    float amount = arena ? Mathf.Min(100, Phone.batteryPercent + balance.arenaChargeAmount) : full ? Mathf.Min(100, Phone.batteryPercent + balance.dynamoAmount) : Phase1Ids.EmergencyChargeResult(Phone.batteryPercent);
                     if (arena) { Phone.RestoreBattery(amount); chargeProgress[item.id] = 0; }
                     else if (Campaign.TryCommit(Campaign.Data.checkpoint_id, d =>
                     {
@@ -162,7 +157,12 @@ namespace LayarTerakhir.Phase1
             { Hud.ShowBroadcastNotification("Checkpoint ritual gagal disimpan. Altar belum diaktifkan.", 4); return; }
             if (!Campaign.BeginCheckpointAttempt(this)) return;
             BossActive = true;
+            // The sealed room breaks open as the ritual starts: impact, dust-dark
+            // fog collapse and the predator's roar sell the breach, not a silent toggle.
+            soundscape?.Play("Impact", world.Anchor("ALTAR").position);
+            Hud.EnqueueSubtitle("Raka", "Kabutnya... pecah. Dia datang.", 4);
             world.wall404North.SetActive(false); world.wall404South.SetActive(false);
+            world.altarFog.SetActive(false);
             threats.BeginBoss(); RefreshObjective();
         }
         public void CommitBossVictory()

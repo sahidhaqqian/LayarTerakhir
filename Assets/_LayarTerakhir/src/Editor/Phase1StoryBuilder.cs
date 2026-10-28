@@ -81,17 +81,17 @@ namespace LayarTerakhir.Editor
             Anchor("L3", new Vector3(-18.3f, 8.06f, -11), Vector3.right);
             current = Group("L3_KuntilanakChamber");
             d.world.servicePanelItem = Dynamo("DYNAMO_L3_PANEL", new Vector3(-18.5f, 8.85f, -12.5f));
-            Label("L3_Notice", "PANEL DAYA SERVIS\nTAHAN E UNTUK MENGISI\nAMBIL ALAT, LALU KE TANGGA", new Vector3(-18, 9.8f, -12.84f), Quaternion.identity, .09f);
+            Label("L3_Notice", "PANEL DAYA SERVIS\nPUTAR DINAMO — TAHAN E", new Vector3(-18, 9.8f, -12.84f), Quaternion.identity, .09f);
             Zone("KUNTI", new Vector3(-1, 9.1f, -11), new Vector3(1, 2.2f, 4));
             var trolley = Box("CleanerServiceTrolley", new Vector3(2, 8.65f, -12.1f), new Vector3(1.1f, .08f, .65f), darkMetal);
             foreach (float x in new[] { 1.55f, 2.45f }) foreach (float z in new[] { -12.35f, -11.85f }) Pipe("TrolleyLeg", new Vector3(x, 8.1f, z), new Vector3(x, 8.6f, z), .025f, rust);
             var cutter=SourceProp("bolt_cutters_01","BoltCutter_HandReach",new Vector3(2,8.75f,-11.85f),.12f,true,new Vector3(.35f,.12f,.75f));
-            d.world.cutter = cutter; d.world.cutterItem = Item(cutter, "CUTTER", "Ambil pemotong besi tanpa membalik kamera");
+            d.world.cutter = cutter; d.world.cutterItem = Item(cutter, "CUTTER", "Ambil pemotong besi");
             d.world.chain = Box("L3_ChainGate", new Vector3(20, 9.25f, -8.95f), new Vector3(1.95f, 2.5f, .15f), rust);
             d.world.chain.GetComponent<Renderer>().enabled = false;
             SourceProp("DoorsWindows","DownloadedSafetyChain",new Vector3(20,8.65f,-9.06f),1.3f,false,
                 new Vector3(1.95f,1.3f,.3f),darkMetal,Imported+"DoorsWindows/SafetyChain.fbx",d.world.chain.transform);
-            d.world.chainItem = Item(d.world.chain, "CHAIN", "Potong rantai tangga — tahan kamera ke hantu");
+            d.world.chainItem = Item(d.world.chain, "CHAIN", "Potong rantai tangga");
             Stair("L3ToL4_EnclosedStair", new Vector3(20, 8, -9), 4, 7, 2);
             Box("StairwellEastWall", new Vector3(21.3f, 10.4f, -5.5f), new Vector3(.25f, 5, 8), soot);
             Box("StairwellWestWall", new Vector3(18.7f, 10.4f, -5.5f), new Vector3(.25f, 5, 8), soot);
@@ -120,7 +120,7 @@ namespace LayarTerakhir.Editor
             Box("BathroomNorthWall", new Vector3(-20.5f, 13.6f, 5.4f), new Vector3(7, 3.2f, .18f), soot);
             Box("BathroomSouthWall", new Vector3(-20.5f, 13.6f, -1.4f), new Vector3(7, 3.2f, .18f), soot);
             var radio = SourceProp("vintage_radio_transceiver","BathroomDeadRadio",new Vector3(-20,13,4.8f),.33f);
-            Label("EVPStaticClue", "STASIUN TIDAK DIKENAL\n[C] EVP", new Vector3(-20, 13.2f, 4.64f), Quaternion.Euler(0, 180, 0), .06f);
+            Label("EVPStaticClue", "STASIUN TIDAK DIKENAL\nFREKUENSI MATI", new Vector3(-20, 13.2f, 4.64f), Quaternion.Euler(0, 180, 0), .06f);
             d.world.evpPoint = Anchor("EVP", new Vector3(-20, 12, 2.5f), Vector3.left);
             Anchor("BATH_ENTRY", new Vector3(-16, 12, 2), Vector3.left);
             Zone("EVP_HINT", new Vector3(-15.7f, 13, 2), new Vector3(3, 2.2f, 4));
@@ -160,8 +160,8 @@ namespace LayarTerakhir.Editor
             Halogen(1, "E", new Vector3(15, 12, 3), new Vector3(16.7f, 13.15f, 6));
             Halogen(2, "W", new Vector3(-15, 12, -3), new Vector3(-16.7f, 13.15f, -6));
             var power = SourceProp("power_box_01","ArenaEmergencyPower",new Vector3(8,13,-12.65f),.9f);
-            Item(power, "ARENA_POWER", "Brancher daya darurat saat boss recovery");
-            Label("ArenaPowerLabel", "DAYA DARURAT\nGUNAKAN SAAT RECOVERY", new Vector3(8, 13.65f, -12.36f), Quaternion.identity, .08f);
+            Item(power, "ARENA_POWER", "Sambungkan brancher daya darurat");
+            Label("ArenaPowerLabel", "DAYA DARURAT\nBRANCHER ARENA", new Vector3(8, 13.65f, -12.36f), Quaternion.identity, .08f);
             var debris = Box("ConcreteDebrisTemplate", new Vector3(0, -100, 0), new Vector3(.32f, .27f, .4f), concrete, false); debris.SetActive(false);
             anchors.Add(new Phase1Anchor { id = "DEBRIS_TEMPLATE", point = debris.transform });
             RoomDoorsAndEntry();
@@ -176,6 +176,14 @@ namespace LayarTerakhir.Editor
             foreach (float s in new[] { -1.03f, 1.03f })
                 Box("RoomDoorJamb", centre + side * s + Vector3.up * 1.32f, alongX ? new Vector3(.09f, 2.64f, .14f) : new Vector3(.14f, 2.64f, .09f), darkMetal);
             Box("RoomDoorHeader", centre + Vector3.up * 2.62f, alongX ? new Vector3(2.2f, .14f, .14f) : new Vector3(.14f, .14f, 2.2f), darkMetal);
+            // Real rusunawa units (reference photos): a tall dark-glass side
+            // window beside every front door, so doors read as homes, not slabs.
+            if (number > 0)
+            {
+                Vector3 windowCentre = centre + side * 1.72f + Vector3.up * 1.58f + facing * .1f;
+                Box("RoomSideWindow_" + number, windowCentre, alongX ? new Vector3(.92f, 1.5f, .07f) : new Vector3(.07f, 1.5f, .92f), glass, false);
+                Box("RoomSideWindowFrame_" + number, windowCentre + Vector3.up * .78f, alongX ? new Vector3(1f, .06f, .09f) : new Vector3(.09f, .06f, 1f), darkMetal, false);
+            }
             if (state != RoomDoorState.CasedOpen)
                 SourceProp("DoorsWindows", "RoomDoorLeaf_" + number, centre + Vector3.up * 1.3f, 2.6f, true,
                     alongX ? new Vector3(1.97f, 2.6f, .12f) : new Vector3(.12f, 2.6f, 1.97f), null,

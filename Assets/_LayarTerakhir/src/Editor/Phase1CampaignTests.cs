@@ -276,6 +276,70 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(Physics.Raycast(new Vector3(20, 13, -6), Vector3.down, out var flight, 5, ~0, QueryTriggerInteraction.Ignore), Is.True, "The flight itself stays open inside the shaft");
             Assert.That(flight.point.y, Is.GreaterThan(8.5f).And.LessThan(11f), "Ray lands on the stair incline, not the storey below");
         }
+        // Regression (overhaul): encounters must be taught by play, audio and
+        // Raka's reactions — never by system text that names the threat, its
+        // rule, its weakness, or the hiding place before the player experiences it.
+        [Test] public void UserFacingPhase1TextDoesNotSpoilEncounters()
+        {
+            string[] sources = { "Phase1Director.cs", "Phase1Presentation.cs", "Phase1Threats.cs" };
+            string all = string.Join("\n", sources.Select(name =>
+                File.ReadAllText(Path.Combine(Application.dataPath, "_LayarTerakhir/src/Phase1", name))));
+            foreach (string spoiler in new[]
+            {
+                "Ada Kuntilanak", "Jangan membelakangi", "Foto hantu tiga kali",
+                "Cari tiga bukti", "Cahaya meruntuhkan perisainya",
+                "Tahan kamera ke arahnya", "TETAP TATAP",
+                "Ada lemari di kamar 403", "Sembunyi di bilik dan matikan layar",
+                "Cari lewat AR, lalu Blitz", "Selidiki 402, kamar mandi, dan tungku",
+                "Pancing Genderuwo ke halogen. Tarik tuas"
+            })
+                Assert.That(all, Does.Not.Contain(spoiler), "Spoiler text regressed: " + spoiler);
+        }
+        [Test] public void JournalHidesUnexploredLocationsAndWeakness()
+        {
+            campaign.Data.phase1 = new Phase1Data();
+            string before = Phase1Ids.JournalText(campaign.Data);
+            Assert.That(before, Does.Contain("BELUM TERIDENTIFIKASI"));
+            Assert.That(before, Does.Not.Contain("Kamar 402"));
+            Assert.That(before, Does.Not.Contain("kamar mandi"));
+            Assert.That(before, Does.Not.Contain("tungku"));
+            Assert.That(before, Does.Not.Contain("halogen"));
+            Assert.That(before, Does.Not.Contain("Periksa arsip di L2"));
+            campaign.Data.evidence_ids.Add(Phase1Ids.Claw);
+            string afterClaw = Phase1Ids.JournalText(campaign.Data);
+            Assert.That(afterClaw, Does.Contain("Kamar 402"), "Found evidence may record where it was found");
+            Assert.That(afterClaw, Does.Not.Contain("halogen"), "Weakness stays hidden until identification is complete");
+            campaign.Data.evidence_ids.Add(Phase1Ids.EVP); campaign.Data.evidence_ids.Add(Phase1Ids.Aura);
+            string complete = Phase1Ids.JournalText(campaign.Data);
+            Assert.That(complete, Does.Contain("GENDERUWO ARANG"));
+            Assert.That(complete, Does.Contain("halogen"), "Canonical MataBatin reveal happens only after all three evidence");
+        }
+        [TestCase(100f, true)][TestCase(99f, true)][TestCase(98.9f, false)][TestCase(40f, false)]
+        public void FullDynamoChargeIsNeverConsumedAtFullBattery(float battery, bool wasted)
+        { Assert.That(Phase1Ids.FullChargeWasted(battery), Is.EqualTo(wasted)); }
+        [TestCase(0f, 10f)][TestCase(3f, 10f)][TestCase(9.5f, 10f)]
+        public void EmergencyCrankNeverExceedsTenPercent(float battery, float expected)
+        { Assert.That(Phase1Ids.EmergencyChargeResult(battery), Is.EqualTo(expected)); }
+        // Regression QA-21: turning to the chain is a forced camera move; the
+        // unwatched warp timer must not punish it (catch radius still applies).
+        [Test] public void ChainEscapeTurnDoesNotRunTheWarpTimer()
+        {
+            string threats = File.ReadAllText(Path.Combine(Application.dataPath, "_LayarTerakhir/src/Phase1/Phase1Threats.cs"));
+            Assert.That(threats, Does.Contain("InHandRange(World.chainItem, 1.6f)"),
+                "The escape interaction at the chain must hold the warp timer");
+            Assert.That(threats, Does.Contain("unwatched = watched || atEscape ? 0 : unwatched + dt;"));
+        }
+        [Test] public void PatrolCyclesTheFullAuthoredFloor4Loop()
+        {
+            string threats = File.ReadAllText(Path.Combine(Application.dataPath, "_LayarTerakhir/src/Phase1/Phase1Threats.cs"));
+            Assert.That(threats, Does.Not.Contain("Mathf.Min(8, World.patrolPoints.Length)"),
+                "Genderuwo must patrol the full authored loop, not the first eight gallery nodes");
+            EditorSceneManager.OpenScene(Phase1SceneBuilder.ScenePath);
+            var world = UnityEngine.Object.FindFirstObjectByType<Phase1World>();
+            Assert.That(world, Is.Not.Null);
+            Assert.That(world.patrolPoints.Length, Is.GreaterThan(8), "Scene must author more than the gallery-only nodes");
+            Assert.That(world.patrolPoints.Select(p => p.position.y).Distinct().Count(), Is.EqualTo(1), "All patrol nodes stay on L4");
+        }
         [Test] public void ServiceDynamoItemExistsOnTheL3Landing()
         {
             EditorSceneManager.OpenScene(Phase1SceneBuilder.ScenePath);

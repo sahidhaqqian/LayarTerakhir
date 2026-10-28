@@ -18,8 +18,11 @@ namespace LayarTerakhir.Phase1
         public bool Recovering => director.BossActive && recovery > 0;
         public bool Exposed => activeLight >= 0 && exposedRemaining > 0;
         public int SealHits { get; private set; }
-        public string BossStatus => Exposed ? $"PERISAI PECAH — BIDIK KEPALA {exposedRemaining:0.0}s" : Recovering ? "RECOVERY — TITIK DAYA AMAN" : $"SEGEL {SealHits}/3 — PANCING KE HALOGEN";
+        public string BossStatus => Exposed ? $"PERISAI PECAH  {exposedRemaining:0.0}s" : Recovering ? "DIA TERHUYUNG" : $"SEGEL {SealHits}/3";
         private float unwatched, stun, reactionGrace, sensorTick, searchTime, recovery, attackTimer, exposedRemaining, kuntiStun;
+        private float hearingTime, catchWindup;
+        private bool warnedLookAway;
+        private Vector3 hearingPoint;
         private float bathroomTimer = -1, tuyulTime = -1, nextTuyul, lastFoot;
         private bool tuyulBoss, bathroomReached;
         private int patrolIndex, activeLight = -1;
@@ -34,7 +37,7 @@ namespace LayarTerakhir.Phase1
         public void Restore()
         {
             Kunti = director.Completed("P1_CUT_CHAIN") ? KuntiState.Resolved : KuntiState.Dormant;
-            FreezeKunti = IsChasing = false; unwatched = stun = searchTime = 0;
+            FreezeKunti = IsChasing = false; unwatched = stun = searchTime = 0; hearingTime = catchWindup = 0;
             SealHits = 0; activeLight = -1; exposedRemaining = 0;
             for (int i = 0; i < 3; i++) { lightsCompleted[i] = false; lampCooldown[i] = 0; World.halogenLights[i].enabled = false; }
             World.kuntilanak.SetActive(false); World.tuyul.SetActive(false); tuyulTime = -1; bathroomTimer = -1;
@@ -70,11 +73,13 @@ namespace LayarTerakhir.Phase1
             var phone = director.Phone;
             phone.isPhoneRaised = true; phone.isScreenOn = phone.batteryPercent > 0; phone.currentScanMode = ScanVisualMode.Normal; phone.SyncVisualState();
             director.phoneView.Apps.Open(LayarTerakhir.UI.PhoneApp.Camera);
-            HudController.Instance.EnqueueSubtitle("Raka", "...di belakang gue. Jangan bergerak...", 4);
-            HudController.Instance.ShowBroadcastNotification("Tahan kamera ke arahnya.", 5);
+            // Teaching is diegetic: Raka's reflex (auto-raised camera) and his
+            // whispered reaction. No system text names her or explains the rule;
+            // the player learns it by keeping her framed and watching her stop.
+            HudController.Instance.EnqueueSubtitle("Raka", "...di belakang gue. Jangan bergerak... jangan palingkan kamera...", 4);
             director.soundscape?.Play("Manifest", behind);
         }
-        public void BeginKuntiPursuit() { Kunti = KuntiState.Pursuit; unwatched = 0; }
+        public void BeginKuntiPursuit() { Kunti = KuntiState.Pursuit; unwatched = 0; warnedLookAway = false; }
         public void ResolveKunti()
         {             Kunti = KuntiState.Resolved; FreezeKunti = false; World.kuntilanak.SetActive(false); director.soundscape?.StopKunti(); kuntiStun = 0; }
         public bool CheckKuntiCatch()
@@ -91,7 +96,7 @@ namespace LayarTerakhir.Phase1
             if (director.Completed("P1_EVP_AMBUSH_DONE") || bathroomTimer >= 0) return;
             bathroomTimer = 0; bathroomReached = false;
             director.soundscape?.Play("Impact", World.evpPoint.position);
-            HudController.Instance.ShowBroadcastNotification("PINTU KAMAR MANDI DIDOBRAK! Sembunyi di bilik dan matikan layar HP.", 5);
+            HudController.Instance.EnqueueSubtitle("Raka", "Pintu luar didobrak—! Ada yang masuk!", 4);
         }
         public void BeginBoss()
         {
@@ -119,11 +124,28 @@ namespace LayarTerakhir.Phase1
             director.soundscape?.SetKuntiDistance(Vector3.Distance(pos, PlayerPosition));
             kuntiStun = Mathf.Max(0, kuntiStun - dt);
             if (kuntiStun > 0) { Motion(World.kuntilanak, "Stun"); return; }
-            if (!KuntiPursuing || FreezeKunti) return;
+            if (!KuntiPursuing)
+            {
+                // QA-35 without QA-34's instakill: before the cutter she never
+                // warps, but walking into her outstretched hands is still fatal.
+                if (!FreezeKunti && Vector3.Distance(pos, PlayerPosition) <= Balance.kuntilanakCatchRadius &&
+                    director.ClearLine(pos + Vector3.up, PlayerPosition + Vector3.up))
+                    director.Die("Kuntilanak sudah menjangkau Raka.");
+                return;
+            }
+            if (FreezeKunti) return;
             if (CheckKuntiCatch()) return;
             bool watched = director.CameraCanScan &&
                 (director.Aim(pos + Vector3.up * 1.55f, 45, .05f) || director.Aim(pos + Vector3.up * 1.1f, 45, .05f));
-            unwatched = watched ? 0 : unwatched + dt;
+            // QA-21: reaching the chain forces the camera off her for the escape
+            // action itself. That forced turn must not run the warp timer; the
+            // physical catch radius (QA-64) still applies at the chain.
+            bool atEscape = World.chainItem && director.InHandRange(World.chainItem, 1.6f);
+            unwatched = watched || atEscape ? 0 : unwatched + dt;
+            // One diegetic self-warning at half the grace window; the rule was
+            // already shown by her freezing under the lens, never announced.
+            if (!warnedLookAway && unwatched > Balance.unwatchedGrace * .5f)
+            { warnedLookAway = true; HudController.Instance.EnqueueSubtitle("Raka", "Jangan lepasin dia dari kamera—!", 2); }
             if (unwatched > Balance.unwatchedGrace)
             { director.Die("Pandangan kamera terputus terlalu lama. Mundur sambil pantau Kuntilanak."); return; }
             pos.x = Mathf.MoveTowards(pos.x, PlayerPosition.x, Balance.kuntilanakSpeed * dt);
@@ -149,7 +171,10 @@ namespace LayarTerakhir.Phase1
                     bathroomReached = Vector3.Distance(World.genderuwo.transform.position, World.Anchor("BATH_ENTRY").position) < 1;
                     if (!bathroomReached) return;
                 }
-                if (director.Hidden && Phone.isPhoneRaised && Phone.isScreenOn && Phone.batteryPercent > 0)
+                // Light only betrays the stall when he is close enough for the
+                // spill under the door to reach him; he must sweep past the stalls.
+                if (director.Hidden && Phone.isPhoneRaised && Phone.isScreenOn && Phone.batteryPercent > 0 &&
+                    Vector3.Distance(World.genderuwo.transform.position, PlayerPosition) < 4.5f)
                 { director.Die("Cahaya layar membocorkan bilik persembunyian."); return; }
                 if (!director.Hidden && Vector3.Distance(PlayerPosition, World.evpPoint.position) < 4 && reactionGrace <= 0)
                 {
@@ -158,7 +183,7 @@ namespace LayarTerakhir.Phase1
                 if(IsChasing&&!director.Hidden)
                 {
                     MoveGender(lastKnown,Balance.chaseSpeed,dt);
-                    if(ContactReachesPlayer()) { director.Die("Genderuwo menangkap Raka di kamar mandi.");return; }
+                    if(TryContactKill(dt,"Genderuwo menangkap Raka di kamar mandi."))return;
                 }
                 if (bathroomTimer > Balance.bathroomGraceSeconds + Balance.bathroomSearchSeconds)
                 { if (director.Commit("P1_EVP_AMBUSH_DONE")) { bathroomTimer = -1; IsChasing = false; searchTime = 0; patrolIndex = 2; } }
@@ -176,22 +201,48 @@ namespace LayarTerakhir.Phase1
                 bool inFront = Vector3.Angle(World.genderuwo.transform.forward, target - eye) < 58;
                 if (reactionGrace <= 0 && distance < range && director.ClearLine(eye, target) &&
                     (!director.Hidden || screen) && (inFront || screen && distance < 9 || director.player.IsSprinting && distance < 6)) DetectPlayer();
+                // Hearing is a real stimulus: sprinting feet carry through the
+                // concrete loop. Close sprinting is located outright; farther
+                // sprinting only draws an investigation to the noise point.
+                if (reactionGrace <= 0 && director.player.IsSprinting && !director.Hidden && distance < 9)
+                {
+                    hearingPoint = PlayerPosition; hearingTime = 4;
+                    if (distance < 4.5f) DetectPlayer();
+                }
             }
+            hearingTime = Mathf.Max(0, hearingTime - dt);
             if (IsChasing)
             {
                 searchTime -= dt;
                 if (director.Hidden && (!Phone.isScreenOn || !Phone.isPhoneRaised)) searchTime = Mathf.Min(searchTime, 2.5f);
                 MoveGender(lastKnown, Balance.chaseSpeed, dt);
-                if (ContactReachesPlayer())
-                { director.Die("Genderuwo menangkap Raka. Matikan layar dan putuskan garis pandangnya."); return; }
+                if (TryContactKill(dt, "Genderuwo menangkap Raka.")) return;
                 if (searchTime <= 0) IsChasing = false;
+            }
+            else if (hearingTime > 0)
+            {
+                MoveGender(hearingPoint, Balance.patrolSpeed * 1.5f, dt);
+                if (Vector3.Distance(World.genderuwo.transform.position, hearingPoint) < .9f) hearingTime = 0;
             }
             else
             {
+                // Full authored L4 loop: galleries, room mouths, bathroom and
+                // kitchen approaches — not just the first eight gallery nodes.
                 Vector3 target = World.patrolPoints[patrolIndex].position;
                 MoveGender(target, Balance.patrolSpeed, dt);
-                if (Vector3.Distance(World.genderuwo.transform.position, target) < .75f) patrolIndex = (patrolIndex + 1) % Mathf.Min(8, World.patrolPoints.Length);
+                if (Vector3.Distance(World.genderuwo.transform.position, target) < .75f) patrolIndex = (patrolIndex + 1) % World.patrolPoints.Length;
             }
+        }
+        // Contact is fatal, but never frame-instant: a raised-arm windup gives a
+        // readable last moment to break away before the kill lands.
+        private bool TryContactKill(float dt, string reason)
+        {
+            if (!ContactReachesPlayer()) { catchWindup = 0; return false; }
+            if (catchWindup <= 0) director.soundscape?.Play("Windup", World.genderuwo.transform.position);
+            Motion(World.genderuwo, "Windup");
+            catchWindup += dt;
+            if (catchWindup < .45f) return false;
+            catchWindup = 0; director.Die(reason); return true;
         }
         private bool ContactReachesPlayer()=>reactionGrace<=0&&!director.Hidden&&
             Vector3.Distance(World.genderuwo.transform.position,PlayerPosition)<1.25f&&
@@ -222,14 +273,14 @@ namespace LayarTerakhir.Phase1
                 director.phoneView.CaptureFlash();
                 kuntiStun = Balance.kuntiPhotoStunSeconds;
                 Motion(World.kuntilanak, "Stun");
-                HudController.Instance.ShowBroadcastNotification("Dia terkejut — mundur sekarang.", 2);
+                director.soundscape?.Play("Manifest", World.kuntilanak.transform.position);
                 return true;
             }
             if (!World.genderuwo.activeSelf || !director.Aim(World.genderuwo.transform.position + Vector3.up * 2.13f, Balance.flashRange, .22f)) return false;
             if (!Phone.TryCaptureEnergy(true)) { InsufficientFlash(); return true; }
             director.phoneView.CaptureFlash();
             if (!director.BossActive) { stun = Balance.emergencyStunSeconds; IsChasing = false; return true; }
-            if (!Exposed || lightsCompleted[activeLight]) { HudController.Instance.ShowBroadcastNotification("PERISAI UTUH — pancing ke halogen dahulu.", 3); return true; }
+            if (!Exposed || lightsCompleted[activeLight]) { HudController.Instance.ShowBroadcastNotification("Kabut hitam menelan blitz itu.", 3); return true; }
             lightsCompleted[activeLight] = true; World.halogenLights[activeLight].enabled = false;
             director.soundscape?.Play("Glass", World.halogenLights[activeLight].transform.position);
             activeLight = -1; exposedRemaining = 0; SealHits++; recovery = Balance.bossRecoverySeconds;
@@ -245,7 +296,7 @@ namespace LayarTerakhir.Phase1
             Vector3 beam = World.halogenTargets[index].position;
             Vector3 delta = World.genderuwo.transform.position - beam; delta.y = 0;
             if (delta.magnitude > Balance.beamRadius || !director.ClearLine(World.halogenLights[index].transform.position, World.genderuwo.transform.position + Vector3.up * 1.4f))
-            { HudController.Instance.ShowBroadcastNotification("Pancing tubuh Genderuwo ke kerucut sorotan, lalu tarik tuas.", 3); return; }
+            { HudController.Instance.ShowBroadcastNotification("Sorotan belum mengenainya.", 3); return; }
             activeLight = index; exposedRemaining = Balance.exposedSeconds; World.halogenLights[index].enabled = true;
             director.soundscape?.Play("Halogen", beam); Motion(World.genderuwo, "Stun");
         }
@@ -263,10 +314,8 @@ namespace LayarTerakhir.Phase1
             if (attackTimer <= 0)
             { attackTimer = 8; StartCoroutine(ThrowDebris()); return; }
             if (nextTuyul <= 0 && tuyulTime < 0) { nextTuyul = 30; BeginTuyul(true); }
-            float distance = Vector3.Distance(World.genderuwo.transform.position, PlayerPosition);
             MoveGender(PlayerPosition, Balance.chaseSpeed, dt);
-            if (reactionGrace <= 0 && distance < 1.25f && director.ClearLine(World.genderuwo.transform.position + Vector3.up, PlayerPosition + Vector3.up))
-                director.Die("Genderuwo menangkap Raka di arena. Jaga jarak dan gunakan koridor loop.");
+            TryContactKill(dt, "Genderuwo menangkap Raka di arena.");
         }
         private IEnumerator ThrowDebris()
         {
@@ -289,7 +338,7 @@ namespace LayarTerakhir.Phase1
             World.tuyul.transform.position = pos; World.tuyul.SetActive(true);
             Motion(World.tuyul,"Idle");
             director.soundscape?.Play("Tuyul", pos);
-            HudController.Instance.ShowBroadcastNotification("Baterai turun! Cekikikan dari dekat kaki. Cari lewat AR, lalu Blitz.", 5);
+            HudController.Instance.EnqueueSubtitle("Raka", "Baterai gue kesedot... ada yang ketawa di dekat kaki.", 4);
         }
         private void TickTuyul(float dt)
         {

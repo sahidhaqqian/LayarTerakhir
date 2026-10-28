@@ -13,6 +13,7 @@ namespace LayarTerakhir.Phase1
         public Light[] externallyControlledLights;
         private Light[] fixtures;
         private bool[] authoredShadows;
+        private float[] baseIntensity;
         private float next;
         private readonly List<Material> localMaterials=new List<Material>();
         private void Start()
@@ -20,6 +21,7 @@ namespace LayarTerakhir.Phase1
             fixtures=FindObjectsByType<Light>(FindObjectsSortMode.None).Where(l=>l.name.EndsWith("Light")&&l.type==LightType.Point&&
                 (externallyControlledLights==null||!externallyControlledLights.Contains(l))).ToArray();
             authoredShadows=fixtures.Select(l=>l.shadows!=LightShadows.None).ToArray();
+            baseIntensity=fixtures.Select(l=>l.intensity).ToArray();
             foreach(var renderer in player.GetComponentsInChildren<SkinnedMeshRenderer>())
             {
                 // Scene-local tuning of the supplied VRM; never overwrite the designer asset.
@@ -29,7 +31,19 @@ namespace LayarTerakhir.Phase1
         }
         private void Update()
         {
-            if(!player||Time.unscaledTime<next||fixtures==null)return;next=Time.unscaledTime+.5f;
+            if(!player||fixtures==null)return;
+            // The L3 corridor neon is authored "nearly dead": a failing-ballast
+            // flicker (dropouts + uneven hum) sells the sealed floor before any
+            // threat appears. Deterministic per-fixture hash, no allocation.
+            for(int i=0;i<fixtures.Length;i++)
+            {
+                var light=fixtures[i];
+                if(!light||!light.enabled||!light.name.StartsWith("L3FailingFluorescent"))continue;
+                float step=Mathf.Floor(Time.unscaledTime*9f);
+                float n=Mathf.Abs(Mathf.Sin(i*127.1f+step*311.7f)*43758.5453f)%1f;
+                light.intensity=baseIntensity[i]*(n<.16f?.22f:.72f+.28f*n);
+            }
+            if(Time.unscaledTime<next)return;next=Time.unscaledTime+.5f;
             for(int i=0;i<fixtures.Length;i++)
             {
                 var light=fixtures[i];if(!light)continue;
