@@ -160,51 +160,55 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(GameObject.Find("vintage_day_bed"),Is.Not.Null);
             Assert.That(GameObject.Find("PhoneCharger") ?? GameObject.Find("OldWallSocket"),Is.Not.Null);
         }
-        [Test]public void ExteriorDressingBuildsCompleteStreetComposition()
+        [Test]public void AuthoredStreetCompositionIsComplete()
         {
+            // Zone A/B/C are authored into the scene file by
+            // MelatiInterludeAlleyBuilder; runtime only adds NPCs/traffic.
             UnityEditor.SceneManagement.EditorSceneManager.OpenScene(LayarTerakhir.Editor.KosCorridorBuilder.ScenePath);
-            var corridor=UnityEngine.Object.FindFirstObjectByType<LayarTerakhir.Prolog.KosCorridorDirector>();
-            Assert.That(corridor,Is.Not.Null);
-            LayarTerakhir.Interlude.InterludeExterior.DressStreet(corridor);
-            try
+            var corridor = UnityEngine.Object.FindFirstObjectByType<LayarTerakhir.Prolog.KosCorridorDirector>();
+            Assert.That(corridor, Is.Not.Null);
+            int alley = 0, warteg = 0, carts = 0, parked = 0, wires = 0, labels = 0;
+            foreach (var t in UnityEngine.Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None))
             {
-                Assert.That(GameObject.Find("InterludeGapuraBeam"),Is.Not.Null,"gapura arch anchors the lane entrance");
-                Assert.That(GameObject.Find("InterludeSpandukUtama"),Is.Not.Null,"RT spanduk spans the road");
-                Assert.That(GameObject.Find("InterludeWartegSign"),Is.Not.Null,"warteg sign present");
-                Assert.That(GameObject.Find("InterludeWartegCaseBase"),Is.Not.Null,"warteg etalase present");
-                int carts=0,parked=0,signs=0,labels=0;
-                foreach(var t in UnityEngine.Object.FindObjectsByType<Transform>(FindObjectsInactive.Include,FindObjectsSortMode.None))
-                {
-                    if(t.name=="CartSign")carts++;
-                    if(t.name.StartsWith("InterludeParkedMotor"))parked++;
-                    if(t.name.StartsWith("InterludeSign")&&!t.name.EndsWith("Text"))signs++;
-                    var label=t.GetComponent<TextMesh>();
-                    if(label&&t.name.StartsWith("Interlude")){labels++;Assert.That(label.font,Is.Not.Null,"label resolves scene font: "+t.name);Assert.That(label.text.Length,Is.GreaterThan(0));}
-                }
-                Assert.That(carts,Is.EqualTo(2),"two PKL carts with signs");
-                Assert.That(parked,Is.EqualTo(3),"parked motorbike row");
-                Assert.That(signs,Is.GreaterThanOrEqualTo(4),"shop boards on facades");
-                Assert.That(labels,Is.GreaterThanOrEqualTo(8),"all exterior text resolves a font");
-                var gapura=GameObject.Find("InterludeGapuraPillar");
-                Assert.That(gapura.GetComponent<Collider>(),Is.Not.Null,"landmark blocks walking");
+                if (t == null) continue;
+                string n; try { n = t.name; } catch { continue; }
+                if (n.StartsWith("AlleyHouse")) alley++;
+                if (n == "WartegBanner") warteg++;
+                if (n == "GerobakSign") carts++;
+                if (n.StartsWith("StreetParkedMotor") || n == "StreetParkedSedan" || n == "StreetAngkot") parked++;
+                if (n == "InterludeWire") wires++;
+                var label = t.GetComponent<TextMesh>();
+                if (label && (n.StartsWith("Alley") || n.StartsWith("Warteg") || n.StartsWith("Gerobak") || n.StartsWith("Street")))
+                { labels++; Assert.That(label.font, Is.Not.Null, "authored label resolves a font: " + n); }
             }
-            finally
+            Assert.That(alley, Is.GreaterThanOrEqualTo(8), "Zone A gang has authored facades on both sides");
+            Assert.That(warteg, Is.EqualTo(1), "Zone C warteg banner facade present");
+            Assert.That(carts, Is.EqualTo(2), "two PKL carts with painted signs");
+            Assert.That(parked, Is.GreaterThanOrEqualTo(6), "parked motors, sedan and angkot on the street");
+            Assert.That(wires, Is.GreaterThanOrEqualTo(8), "catenary wiring grounds the street");
+            Assert.That(labels, Is.GreaterThanOrEqualTo(6), "authored signage resolves fonts");
+        }
+        [Test]public void KosToStreetRouteStaysWalkable()
+        {
+            // No-trap regression: sample the interlude walking route and fail
+            // if any environmental collider swallows a standing capsule.
+            UnityEditor.SceneManagement.EditorSceneManager.OpenScene(LayarTerakhir.Editor.KosCorridorBuilder.ScenePath);
+            Vector3[] route =
             {
-                var residue = new System.Collections.Generic.List<GameObject>();
-                foreach (var t in UnityEngine.Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None))
-                {
-                    if (t == null) continue;
-                    string n;
-                    try { n = t.name; } catch { continue; }
-                    if (!n.StartsWith("Interlude")) continue;
-                    var p = t.parent;
-                    bool parentKept = false;
-                    try { parentKept = p != null && p.name.StartsWith("Interlude"); } catch { }
-                    if (!parentKept) residue.Add(t.gameObject);
-                }
-                foreach (var go in residue) UnityEngine.Object.DestroyImmediate(go);
+                // Gate, south around the new north facades, east along the
+                // kos street into the authored alley mouth, then to the road.
+                new Vector3(-16.5f, 1f, -6.5f), new Vector3(-17.5f, 1f, -9f), new Vector3(-16f, 1f, -12f),
+                new Vector3(-11f, 1f, -11.75f),
+                new Vector3(-7f, 1f, -11.75f), new Vector3(-4f, 1f, -11.75f), new Vector3(-1f, 1f, -13f),
+                new Vector3(0f, 1f, -17f), new Vector3(2f, 1f, -21f), new Vector3(5.4f, 1f, -24f),
+                new Vector3(4.6f, 1f, -28f), new Vector3(0f, 1f, -33f)
+            };
+            Physics.SyncTransforms();
+            foreach (var p in route)
+            {
+                var hits = Physics.OverlapCapsule(p + Vector3.up * .4f, p + Vector3.up * 1.4f, .3f);
+                Assert.That(hits.Length, Is.EqualTo(0), "route blocked at " + p);
             }
-            Assert.That(GameObject.Find("InterludeGapuraBeam"),Is.Null,"dressing leaves no residue in the authored scene");
         }
     }
 }

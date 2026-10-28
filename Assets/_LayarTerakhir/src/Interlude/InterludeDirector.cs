@@ -89,10 +89,10 @@ namespace LayarTerakhir.Interlude
             cc.enabled = true;
             if (!savedGround) Campaign.SaveCheckpointAtomic(InterludeIds.MorningCheckpoint);
 
-            DressYard();
-            InterludeExterior.DressStreet(corridor);
+            InterludeExterior.DressYard(corridor);
             SpawnResidents();
             BindWorldItems();
+            InterludeTraffic.Install(corridor);
             BuildZones();
             if (Stage == "READY") ApplyDusk(); else ApplyDay();
 
@@ -121,6 +121,7 @@ namespace LayarTerakhir.Interlude
             if (!CanUse(id)) return;
             if (id == "RATNA") StartCoroutine(RatnaTalk());
             else if (id == "SARI") StartCoroutine(SariTalk());
+            else if (id == "VENDOR") StartCoroutine(VendorTalk());
             else if (id == "MOTOR") MotorInteract();
             else if (id == "ROOM") StartCoroutine(ReturnToRoom());
         }
@@ -161,6 +162,16 @@ namespace LayarTerakhir.Interlude
 
         private void Say(string speaker, string line, float duration) =>
             Hud.EnqueueSubtitle(speaker, line, duration);
+
+        private IEnumerator VendorTalk()
+        {
+            Busy = true;
+            Say("Bang Siomay", "Siomay, Mas? Panas masih. Batagor juga ada.", 4f);
+            yield return new WaitForSeconds(4.1f);
+            Say("Raka", "Nanti, Bang. Masih kenyang.", 2.5f);
+            yield return new WaitForSeconds(2.6f);
+            Busy = false;
+        }
 
         private void MotorInteract()
         {
@@ -290,7 +301,7 @@ namespace LayarTerakhir.Interlude
                 "Raka", "(ketuk) Mas Eko? Berangkat bareng?", 3f, InterludeIds.NeighborTalk);
             AddZone("INTERLUDE_STREET", new Vector3(0, 1, -30), new Vector3(10, 4, 10),
                 "SFX", "[ Samar-samar... tembang Jawa dari arah gang? ] Radio tetangga, mungkin. Pagi-pagi sudah nyetel gending.", 6f, InterludeIds.AnomalySeen);
-            AddZone("INTERLUDE_WARTEG", new Vector3(4.6f, 1, -28.5f), new Vector3(4.5f, 2.5f, 3.5f),
+            AddZone("INTERLUDE_WARTEG", new Vector3(8f, 1, -30f), new Vector3(4.5f, 2.5f, 3.5f),
                 "Raka", "Warteg Bahari buka... Nasi bungkus lima belas ribu. Nanti aja, perut masih kenyang.", 4.5f);
             AddZone("INTERLUDE_GEROBAK", new Vector3(-4.4f, 1, -20f), new Vector3(3f, 2.5f, 3f),
                 "Raka", "Gorengan anget... bau minyaknya khas banget. Khas Indonesia.", 4f);
@@ -354,116 +365,20 @@ namespace LayarTerakhir.Interlude
             SpawnNpc("MbakSari", new Vector3(2.7f, 0, -5.0f), -60,
                 new Color(.16f, .42f, .40f), new Color(.35f, .25f, .18f),
                 "SARI", "Bicara dengan Mbak Sari");
+            SpawnNpc("BangSiomay", new Vector3(6.8f, 0, -22.8f), -90,
+                new Color(.20f, .30f, .38f), new Color(.30f, .26f, .20f),
+                "VENDOR", "Beli siomay");
         }
 
-        private void DressYard()
-        {
-            var root = corridor.buildingRoot;
-            var poleMat = new Material(Shader.Find("Universal Render Pipeline/Lit")) { color = new Color(.30f, .24f, .16f) };
-            foreach (float z in new[] { -6.5f, -1.5f })
-            {
-                var pole = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-                pole.name = "InterludeClothesPole";
-                pole.transform.SetParent(root, false);
-                pole.transform.localPosition = new Vector3(3.8f, .9f, z);
-                pole.transform.localScale = new Vector3(.07f, 1.8f, .07f);
-                pole.GetComponent<Renderer>().sharedMaterial = poleMat;
-            }
-            var line = new GameObject("InterludeClothesLine").AddComponent<LineRenderer>();
-            line.transform.SetParent(root, false);
-            line.transform.localPosition = Vector3.zero;
-            line.startWidth = line.endWidth = .015f;
-            line.positionCount = 2;
-            line.useWorldSpace = false;
-            line.SetPositions(new[] { new Vector3(3.8f, 1.75f, -6.5f), new Vector3(3.8f, 1.75f, -1.5f) });
-            line.sharedMaterial = poleMat;
-            Color[] cloths = { new Color(.75f, .78f, .80f), new Color(.55f, .30f, .28f), new Color(.30f, .45f, .55f), new Color(.80f, .72f, .55f) };
-            for (int i = 0; i < cloths.Length; i++)
-            {
-                var cloth = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cloth.name = "InterludeLaundry";
-                cloth.transform.SetParent(root, false);
-                cloth.transform.localPosition = new Vector3(3.8f, 1.45f, -5.6f + i * 1.1f);
-                cloth.transform.localScale = new Vector3(.04f, .55f, .5f);
-                var mat = new Material(Shader.Find("Universal Render Pipeline/Lit")) { color = cloths[i] };
-                cloth.GetComponent<Renderer>().sharedMaterial = mat;
-                InterludeExterior.DropCollider(cloth);
-            }
-            var sandalMat = new Material(Shader.Find("Universal Render Pipeline/Lit")) { color = new Color(.12f, .10f, .09f) };
-            foreach (var spot in new[] { new Vector3(-1.0f, .03f, 2.1f), new Vector3(1.0f, .03f, 8.0f), new Vector3(-1.0f, .03f, 10.9f) })
-                for (int s = -1; s <= 1; s += 2)
-                {
-                    var sandal = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    sandal.name = "InterludeSandals";
-                    sandal.transform.SetParent(root, false);
-                    sandal.transform.localPosition = spot + new Vector3(s * .09f, 0, 0);
-                    sandal.transform.localScale = new Vector3(.11f, .05f, .28f);
-                    sandal.GetComponent<Renderer>().sharedMaterial = sandalMat;
-                    InterludeExterior.DropCollider(sandal);
-                }
-            var galon = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-            galon.name = "InterludeGalon";
-            galon.transform.SetParent(root, false);
-            galon.transform.localPosition = new Vector3(-2.2f, .55f, 2.6f);
-            galon.transform.localScale = new Vector3(.32f, .8f, .32f);
-            var aqua = new Material(Shader.Find("Universal Render Pipeline/Lit")) { color = new Color(.45f, .70f, .85f, .75f) };
-            galon.GetComponent<Renderer>().sharedMaterial = aqua;
-            InterludeExterior.DropCollider(galon);
-            var broom = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-            broom.name = "InterludeBroom";
-            broom.transform.SetParent(root, false);
-            broom.transform.localPosition = new Vector3(-2.3f, .7f, 5.6f);
-            broom.transform.localScale = new Vector3(.04f, 1.4f, .04f);
-            broom.GetComponent<Renderer>().sharedMaterial = poleMat;
-            InterludeExterior.DropCollider(broom);
-        }
 
         private void ApplyDay()
         {
-            foreach (var light in FindObjectsByType<Light>(FindObjectsSortMode.None))
-            {
-                if (light.type == LightType.Directional)
-                {
-                    light.color = new Color(1f, .96f, .88f);
-                    light.intensity = 1.6f;
-                    light.transform.rotation = Quaternion.Euler(50, -30, 0);
-                }
-                else light.enabled = false;
-            }
-            RenderSettings.fog = true;
-            RenderSettings.fogMode = FogMode.ExponentialSquared;
-            RenderSettings.fogDensity = .0025f;
-            RenderSettings.fogColor = new Color(.62f, .68f, .74f);
-            RenderSettings.ambientMode = AmbientMode.Trilight;
-            RenderSettings.ambientSkyColor = new Color(.55f, .60f, .66f);
-            RenderSettings.ambientEquatorColor = new Color(.38f, .40f, .42f);
-            RenderSettings.ambientGroundColor = new Color(.22f, .21f, .20f);
-            var cam = corridor.player.GetComponent<InteractionInteractor>().playerCamera;
-            if (cam) cam.backgroundColor = new Color(.62f, .68f, .74f);
+            InterludeExterior.ApplyDay(corridor.player.GetComponent<InteractionInteractor>().playerCamera);
         }
 
         private void ApplyDusk()
         {
-            foreach (var light in FindObjectsByType<Light>(FindObjectsSortMode.None))
-            {
-                if (light.type == LightType.Directional)
-                {
-                    light.color = new Color(.95f, .45f, .30f);
-                    light.intensity = .5f;
-                    light.transform.rotation = Quaternion.Euler(12, -70, 0);
-                }
-                else if (light.name.Contains("StreetLight") || light.name.Contains("WarungWarmLight")) light.enabled = true;
-            }
-            RenderSettings.fog = true;
-            RenderSettings.fogMode = FogMode.ExponentialSquared;
-            RenderSettings.fogDensity = .008f;
-            RenderSettings.fogColor = new Color(.30f, .22f, .20f);
-            RenderSettings.ambientMode = AmbientMode.Trilight;
-            RenderSettings.ambientSkyColor = new Color(.22f, .16f, .15f);
-            RenderSettings.ambientEquatorColor = new Color(.15f, .12f, .11f);
-            RenderSettings.ambientGroundColor = new Color(.09f, .08f, .07f);
-            var cam = corridor.player.GetComponent<InteractionInteractor>().playerCamera;
-            if (cam) cam.backgroundColor = new Color(.30f, .22f, .20f);
+            InterludeExterior.ApplyDusk(corridor.player.GetComponent<InteractionInteractor>().playerCamera);
         }
 
         private void OnDestroy()
