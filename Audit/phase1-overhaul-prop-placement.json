@@ -1,0 +1,2735 @@
+{
+    "minimumDistinctModels": 100,
+    "distinctModels": 124,
+    "utc": "2026-10-28T10:58:20.0079270Z",
+    "placements": [
+        {
+            "id": "concrete_road_barrier",
+            "role": "ParkingBarrierWest",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/concrete_road_barrier",
+            "supportPoint": {
+                "x": -18.0,
+                "y": 0.0,
+                "z": -28.0
+            },
+            "centre": {
+                "x": -18.0,
+                "y": 0.6005600094795227,
+                "z": -28.0
+            },
+            "size": {
+                "x": 2.3603858947753908,
+                "y": 1.1891200542449952,
+                "z": 1.4504413604736329
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "concrete_road_barrier_02",
+            "role": "ParkingBarrierEast",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/concrete_road_barrier_02",
+            "supportPoint": {
+                "x": 24.0,
+                "y": 0.0,
+                "z": -26.0
+            },
+            "centre": {
+                "x": 24.0,
+                "y": 0.7866014242172241,
+                "z": -26.0
+            },
+            "size": {
+                "x": 2.27398681640625,
+                "y": 1.561202883720398,
+                "z": 0.99322509765625
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "large_iron_gate",
+            "role": "CompoundIronGate",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/large_iron_gate",
+            "supportPoint": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -36.79999923706055
+            },
+            "centre": {
+                "x": 0.0,
+                "y": 1.3461899757385255,
+                "z": -36.79999923706055
+            },
+            "size": {
+                "x": 2.700000047683716,
+                "y": 2.680379867553711,
+                "z": 0.08908462524414063
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "street_lamp_01",
+            "role": "ParkingLampWest",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/street_lamp_01",
+            "supportPoint": {
+                "x": -22.0,
+                "y": 0.0,
+                "z": -33.0
+            },
+            "centre": {
+                "x": -22.0,
+                "y": 2.305999994277954,
+                "z": -33.0
+            },
+            "size": {
+                "x": 0.8370742797851563,
+                "y": 4.599999904632568,
+                "z": 0.4593353271484375
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "street_lamp_02",
+            "role": "ParkingLampEast",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/street_lamp_02",
+            "supportPoint": {
+                "x": 19.0,
+                "y": 0.0,
+                "z": -36.0
+            },
+            "centre": {
+                "x": 19.0,
+                "y": 2.305999994277954,
+                "z": -36.0
+            },
+            "size": {
+                "x": 1.0613861083984376,
+                "y": 4.599999904632568,
+                "z": 2.215606689453125
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "fire_hydrant",
+            "role": "HydrantByFacade",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/fire_hydrant",
+            "supportPoint": {
+                "x": 12.0,
+                "y": 0.0,
+                "z": -23.5
+            },
+            "centre": {
+                "x": 12.0,
+                "y": 0.3716227412223816,
+                "z": -23.5
+            },
+            "size": {
+                "x": 0.7999992370605469,
+                "y": 0.7312454581260681,
+                "z": 0.2906341552734375
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "old_tyre",
+            "role": "AbandonedTyre",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/old_tyre",
+            "supportPoint": {
+                "x": 28.0,
+                "y": 0.0,
+                "z": -18.0
+            },
+            "centre": {
+                "x": 28.0,
+                "y": 0.3810000419616699,
+                "z": -18.0
+            },
+            "size": {
+                "x": 0.7071075439453125,
+                "y": 0.7500000596046448,
+                "z": 0.6400871276855469
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "rusted_wheel_rim_01",
+            "role": "RustedWheelRim",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/rusted_wheel_rim_01",
+            "supportPoint": {
+                "x": 26.799999237060548,
+                "y": 0.0,
+                "z": -19.5
+            },
+            "centre": {
+                "x": 26.799999237060548,
+                "y": 0.28099995851516726,
+                "z": -19.5
+            },
+            "size": {
+                "x": 0.5499992370605469,
+                "y": 0.5499998927116394,
+                "z": 0.20936203002929688
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "Barrel_02",
+            "role": "EastYardBarrel",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/Barrel_02",
+            "supportPoint": {
+                "x": 33.0,
+                "y": 0.0,
+                "z": -30.0
+            },
+            "centre": {
+                "x": 33.0,
+                "y": 0.5059999823570252,
+                "z": -30.0
+            },
+            "size": {
+                "x": 0.55474853515625,
+                "y": 0.9999999403953552,
+                "z": 0.5507011413574219
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "barrel_03",
+            "role": "WestYardBarrel",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/barrel_03",
+            "supportPoint": {
+                "x": -35.0,
+                "y": 0.0,
+                "z": -6.0
+            },
+            "centre": {
+                "x": -35.0,
+                "y": 0.5060000419616699,
+                "z": -6.0
+            },
+            "size": {
+                "x": 0.6813125610351563,
+                "y": 1.0000001192092896,
+                "z": 0.6863164901733398
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "planter_box_01",
+            "role": "SignPlanterA",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/planter_box_01",
+            "supportPoint": {
+                "x": 8.5,
+                "y": 0.0,
+                "z": -22.600000381469728
+            },
+            "centre": {
+                "x": 8.5,
+                "y": 0.26211413741111758,
+                "z": -22.600000381469728
+            },
+            "size": {
+                "x": 1.1000003814697266,
+                "y": 0.51222825050354,
+                "z": 0.4986076354980469
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "planter_box_02",
+            "role": "SignPlanterB",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/planter_box_02",
+            "supportPoint": {
+                "x": -1.0,
+                "y": 0.0,
+                "z": -22.600000381469728
+            },
+            "centre": {
+                "x": -1.0,
+                "y": 0.20523276925086976,
+                "z": -22.600000381469728
+            },
+            "size": {
+                "x": 1.0999999046325684,
+                "y": 0.3984655439853668,
+                "z": 0.41060638427734377
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "modular_electricity_poles",
+            "role": "YardPowerPole",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/modular_electricity_poles",
+            "supportPoint": {
+                "x": 34.0,
+                "y": 0.0,
+                "z": -38.0
+            },
+            "centre": {
+                "x": 34.0,
+                "y": 1.740107536315918,
+                "z": -38.0
+            },
+            "size": {
+                "x": 6.5,
+                "y": 3.468214988708496,
+                "z": 0.9697418212890625
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "security_light",
+            "role": "GuardSecurityLight",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/security_light",
+            "supportPoint": {
+                "x": -5.400000095367432,
+                "y": 2.9000000953674318,
+                "z": -23.0
+            },
+            "centre": {
+                "x": -5.197558879852295,
+                "y": 2.9000000953674318,
+                "z": -23.0
+            },
+            "size": {
+                "x": 0.3928823471069336,
+                "y": 0.5,
+                "z": 0.3042945861816406
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "covered_car",
+            "role": "CoveredAbandonedCar",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/covered_car",
+            "supportPoint": {
+                "x": 22.0,
+                "y": 0.0,
+                "z": -31.5
+            },
+            "centre": {
+                "x": 22.0,
+                "y": 0.714737057685852,
+                "z": -31.5
+            },
+            "size": {
+                "x": 4.399997711181641,
+                "y": 1.4174741506576539,
+                "z": 1.797027587890625
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "garden_hose_wall_mounted_01",
+            "role": "GuardGardenHose",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/garden_hose_wall_mounted_01",
+            "supportPoint": {
+                "x": -10.420000076293946,
+                "y": 1.5,
+                "z": -25.5
+            },
+            "centre": {
+                "x": -10.078828811645508,
+                "y": 1.5,
+                "z": -25.5
+            },
+            "size": {
+                "x": 0.6703433990478516,
+                "y": 0.7999999523162842,
+                "z": 0.3595085144042969
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "planter_box_03",
+            "role": "SignPlanterC",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/planter_box_03",
+            "supportPoint": {
+                "x": -8.0,
+                "y": 0.0,
+                "z": -22.600000381469728
+            },
+            "centre": {
+                "x": -8.0,
+                "y": 0.5203863382339478,
+                "z": -22.600000381469728
+            },
+            "size": {
+                "x": 1.1000003814697266,
+                "y": 1.0287727117538453,
+                "z": 0.7886848449707031
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "planter_pot_clay",
+            "role": "FacadeClayPlanter",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/planter_pot_clay",
+            "supportPoint": {
+                "x": 2.5,
+                "y": 0.0,
+                "z": -22.299999237060548
+            },
+            "centre": {
+                "x": 2.5,
+                "y": 0.2353799194097519,
+                "z": -22.299999237060548
+            },
+            "size": {
+                "x": 0.5499997138977051,
+                "y": 0.4587598443031311,
+                "z": 0.5447616577148438
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "seeding_tray_01",
+            "role": "PlanterSeedTray",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/seeding_tray_01",
+            "supportPoint": {
+                "x": 8.5,
+                "y": 0.550000011920929,
+                "z": -22.600000381469728
+            },
+            "centre": {
+                "x": 8.5,
+                "y": 0.6249861717224121,
+                "z": -22.600000381469728
+            },
+            "size": {
+                "x": 0.5,
+                "y": 0.13797235488891602,
+                "z": 0.5
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "old_military_crate",
+            "role": "PumpYardCrate",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/old_military_crate",
+            "supportPoint": {
+                "x": -33.5,
+                "y": 0.0,
+                "z": -16.5
+            },
+            "centre": {
+                "x": -33.5,
+                "y": 0.08888410031795502,
+                "z": -16.5
+            },
+            "size": {
+                "x": 1.125579833984375,
+                "y": 0.16576820611953736,
+                "z": 0.6656723022460938
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "wooden_military_crate",
+            "role": "WestYardCrate",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/wooden_military_crate",
+            "supportPoint": {
+                "x": -34.5,
+                "y": 0.0,
+                "z": 3.0
+            },
+            "centre": {
+                "x": -34.5,
+                "y": 0.19311384856700898,
+                "z": 3.0
+            },
+            "size": {
+                "x": 1.0742340087890626,
+                "y": 0.37422770261764529,
+                "z": 0.6630392074584961
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "compost_bag_02",
+            "role": "CourtyardCompostBag",
+            "area": "exterior",
+            "source": "https://polyhaven.com/a/compost_bag_02",
+            "supportPoint": {
+                "x": 11.5,
+                "y": 0.0,
+                "z": 7.800000190734863
+            },
+            "centre": {
+                "x": 11.5,
+                "y": 0.28741857409477236,
+                "z": 7.800000190734863
+            },
+            "size": {
+                "x": 0.7000007629394531,
+                "y": 0.5628371238708496,
+                "z": 0.6106958389282227
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "modular_pipes_plastic_01",
+            "role": "PumpPlasticPipes",
+            "area": "floor1",
+            "source": "https://polyhaven.com/a/modular_pipes_plastic_01",
+            "supportPoint": {
+                "x": -26.0,
+                "y": 0.4000000059604645,
+                "z": -8.5
+            },
+            "centre": {
+                "x": -26.0,
+                "y": 0.4898885488510132,
+                "z": -8.5
+            },
+            "size": {
+                "x": 1.8000030517578126,
+                "y": 0.16777706146240235,
+                "z": 0.8014297485351563
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "modular_airduct_circular_01",
+            "role": "PumpRoundDuct",
+            "area": "floor1",
+            "source": "https://polyhaven.com/a/modular_airduct_circular_01",
+            "supportPoint": {
+                "x": -25.899999618530275,
+                "y": 2.799999952316284,
+                "z": -9.0
+            },
+            "centre": {
+                "x": -25.899999618530275,
+                "y": 2.476512908935547,
+                "z": -9.0
+            },
+            "size": {
+                "x": 2.0,
+                "y": 0.6349740028381348,
+                "z": 0.7017898559570313
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "old_military_compressor",
+            "role": "PumpCompressor",
+            "area": "floor1",
+            "source": "https://polyhaven.com/a/old_military_compressor",
+            "supportPoint": {
+                "x": -30.200000762939454,
+                "y": 0.0,
+                "z": -9.600000381469727
+            },
+            "centre": {
+                "x": -30.200000762939454,
+                "y": 0.428222119808197,
+                "z": -9.600000381469727
+            },
+            "size": {
+                "x": 1.2000007629394532,
+                "y": 0.844444215297699,
+                "z": 0.4284820556640625
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "portable_welding_cart",
+            "role": "PumpWeldingCart",
+            "area": "floor1",
+            "source": "https://polyhaven.com/a/portable_welding_cart",
+            "supportPoint": {
+                "x": -25.700000762939454,
+                "y": 0.0,
+                "z": -13.600000381469727
+            },
+            "centre": {
+                "x": -25.700000762939454,
+                "y": 0.5559999942779541,
+                "z": -13.600000381469727
+            },
+            "size": {
+                "x": 0.7119483947753906,
+                "y": 1.100000023841858,
+                "z": 0.6348209381103516
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "bench_vice_01",
+            "role": "WorkbenchVice",
+            "area": "floor1",
+            "source": "https://polyhaven.com/a/bench_vice_01",
+            "supportPoint": {
+                "x": -29.200000762939454,
+                "y": 0.8799999952316284,
+                "z": -8.949999809265137
+            },
+            "centre": {
+                "x": -29.200000762939454,
+                "y": 1.00656259059906,
+                "z": -8.949999809265137
+            },
+            "size": {
+                "x": 0.17728805541992188,
+                "y": 0.24112510681152345,
+                "z": 0.3500022888183594
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "drill_press_01",
+            "role": "PumpDrillPress",
+            "area": "floor1",
+            "source": "https://polyhaven.com/a/drill_press_01",
+            "supportPoint": {
+                "x": -30.600000381469728,
+                "y": 0.0,
+                "z": -11.800000190734864
+            },
+            "centre": {
+                "x": -30.600000381469728,
+                "y": 0.8060000538825989,
+                "z": -11.800000190734864
+            },
+            "size": {
+                "x": 1.0626602172851563,
+                "y": 1.6000001430511475,
+                "z": 0.6492958068847656
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "metal_tool_chest",
+            "role": "PumpToolChest",
+            "area": "floor1",
+            "source": "https://polyhaven.com/a/metal_tool_chest",
+            "supportPoint": {
+                "x": -27.0,
+                "y": 0.0,
+                "z": -14.550000190734864
+            },
+            "centre": {
+                "x": -27.0,
+                "y": 0.5290762782096863,
+                "z": -14.550000190734864
+            },
+            "size": {
+                "x": 1.1000022888183594,
+                "y": 1.0461525917053223,
+                "z": 0.6534547805786133
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "tool_cart",
+            "role": "PumpToolCart",
+            "area": "floor1",
+            "source": "https://polyhaven.com/a/tool_cart",
+            "supportPoint": {
+                "x": -24.899999618530275,
+                "y": 0.0,
+                "z": -13.800000190734864
+            },
+            "centre": {
+                "x": -24.899999618530275,
+                "y": 0.42263564467430117,
+                "z": -13.800000190734864
+            },
+            "size": {
+                "x": 1.2310066223144532,
+                "y": 0.8332712650299072,
+                "z": 0.91351318359375
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "hand_truck",
+            "role": "PumpHandTruck",
+            "area": "floor1",
+            "source": "https://polyhaven.com/a/hand_truck",
+            "supportPoint": {
+                "x": -31.200000762939454,
+                "y": 0.0,
+                "z": -14.600000381469727
+            },
+            "centre": {
+                "x": -31.200000762939454,
+                "y": 0.656000018119812,
+                "z": -14.600000381469727
+            },
+            "size": {
+                "x": 0.7276458740234375,
+                "y": 1.3000000715255738,
+                "z": 0.6530036926269531
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "wooden_ladder",
+            "role": "PumpWallLadder",
+            "area": "floor1",
+            "source": "https://polyhaven.com/a/wooden_ladder",
+            "supportPoint": {
+                "x": -24.700000762939454,
+                "y": 0.0,
+                "z": -14.699999809265137
+            },
+            "centre": {
+                "x": -24.700000762939454,
+                "y": 1.3059998750686646,
+                "z": -14.699999809265137
+            },
+            "size": {
+                "x": 1.8681564331054688,
+                "y": 2.5999996662139894,
+                "z": 0.9738388061523438
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "ladder_sectioned_01",
+            "role": "GalleryLadderL1",
+            "area": "floor1",
+            "source": "https://polyhaven.com/a/ladder_sectioned_01",
+            "supportPoint": {
+                "x": -16.200000762939454,
+                "y": 0.0,
+                "z": 12.350000381469727
+            },
+            "centre": {
+                "x": -16.200000762939454,
+                "y": 1.405999779701233,
+                "z": 12.350000381469727
+            },
+            "size": {
+                "x": 0.8677253723144531,
+                "y": 2.799999475479126,
+                "z": 0.23299407958984376
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "crowbar_01",
+            "role": "WorkbenchCrowbar",
+            "area": "floor1",
+            "source": "https://polyhaven.com/a/crowbar_01",
+            "supportPoint": {
+                "x": -28.600000381469728,
+                "y": 0.8799999952316284,
+                "z": -8.550000190734864
+            },
+            "centre": {
+                "x": -28.600000381469728,
+                "y": 0.9376912117004395,
+                "z": -8.550000190734864
+            },
+            "size": {
+                "x": 0.25335693359375,
+                "y": 0.10338246822357178,
+                "z": 0.4060840606689453
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "pipe_wrench",
+            "role": "WorkbenchPipeWrench",
+            "area": "floor1",
+            "source": "https://polyhaven.com/a/pipe_wrench",
+            "supportPoint": {
+                "x": -29.5,
+                "y": 0.8799999952316284,
+                "z": -8.5
+            },
+            "centre": {
+                "x": -29.5,
+                "y": 1.0859999656677247,
+                "z": -8.5
+            },
+            "size": {
+                "x": 0.08301162719726563,
+                "y": 0.3999999761581421,
+                "z": 0.03394889831542969
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "sledgehammer_01",
+            "role": "PumpSledgehammer",
+            "area": "floor1",
+            "source": "https://polyhaven.com/a/sledgehammer_01",
+            "supportPoint": {
+                "x": -27.399999618530275,
+                "y": 0.0,
+                "z": -8.350000381469727
+            },
+            "centre": {
+                "x": -27.399999618530275,
+                "y": 0.5059999823570252,
+                "z": -8.350000381469727
+            },
+            "size": {
+                "x": 0.169158935546875,
+                "y": 0.9999999403953552,
+                "z": 0.225921630859375
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "steel_frame_shelves_01",
+            "role": "PumpPartsShelves",
+            "area": "floor1",
+            "source": "https://polyhaven.com/a/steel_frame_shelves_01",
+            "supportPoint": {
+                "x": -30.799999237060548,
+                "y": 0.0,
+                "z": -6.5
+            },
+            "centre": {
+                "x": -30.799999237060548,
+                "y": 0.9559999704360962,
+                "z": -6.5
+            },
+            "size": {
+                "x": 0.44570159912109377,
+                "y": 1.899999976158142,
+                "z": 0.9741125106811523
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "metal_stool_01",
+            "role": "PumpStool",
+            "area": "floor1",
+            "source": "https://polyhaven.com/a/metal_stool_01",
+            "supportPoint": {
+                "x": -28.200000762939454,
+                "y": 0.0,
+                "z": -10.199999809265137
+            },
+            "centre": {
+                "x": -28.200000762939454,
+                "y": 0.2809999883174896,
+                "z": -10.199999809265137
+            },
+            "size": {
+                "x": 0.21930313110351563,
+                "y": 0.5499999523162842,
+                "z": 0.22090911865234376
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "watering_can_metal_01",
+            "role": "PumpWateringCan",
+            "area": "floor1",
+            "source": "https://polyhaven.com/a/watering_can_metal_01",
+            "supportPoint": {
+                "x": -26.399999618530275,
+                "y": 0.0,
+                "z": -14.800000190734864
+            },
+            "centre": {
+                "x": -26.399999618530275,
+                "y": 0.09302331507205963,
+                "z": -14.800000190734864
+            },
+            "size": {
+                "x": 0.16891860961914063,
+                "y": 0.17404663562774659,
+                "z": 0.40000152587890627
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "plastic_monobloc_chair_01",
+            "role": "CorridorMonoblocChair",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/plastic_monobloc_chair_01",
+            "supportPoint": {
+                "x": -14.0,
+                "y": 4.0,
+                "z": -12.300000190734864
+            },
+            "centre": {
+                "x": -14.0,
+                "y": 4.430999755859375,
+                "z": -12.300000190734864
+            },
+            "size": {
+                "x": 0.7900638580322266,
+                "y": 0.8499999046325684,
+                "z": 0.7818241119384766
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "painted_wooden_chair_01",
+            "role": "GalleryChairNorth",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/painted_wooden_chair_01",
+            "supportPoint": {
+                "x": 13.0,
+                "y": 4.0,
+                "z": 12.300000190734864
+            },
+            "centre": {
+                "x": 13.0,
+                "y": 4.455999851226807,
+                "z": 12.300000190734864
+            },
+            "size": {
+                "x": 0.6058006286621094,
+                "y": 0.8999996185302734,
+                "z": 0.6430225372314453
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "painted_wooden_chair_02",
+            "role": "GalleryChairWest",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/painted_wooden_chair_02",
+            "supportPoint": {
+                "x": -6.0,
+                "y": 4.0,
+                "z": 12.350000381469727
+            },
+            "centre": {
+                "x": -6.0,
+                "y": 4.455999851226807,
+                "z": 12.350000381469727
+            },
+            "size": {
+                "x": 0.45534420013427737,
+                "y": 0.8999996185302734,
+                "z": 0.4715156555175781
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "painted_wooden_table",
+            "role": "GallerySideTable",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/painted_wooden_table",
+            "supportPoint": {
+                "x": 14.199999809265137,
+                "y": 4.0,
+                "z": 12.199999809265137
+            },
+            "centre": {
+                "x": 14.199999809265137,
+                "y": 4.175363540649414,
+                "z": 12.199999809265137
+            },
+            "size": {
+                "x": 0.8500003814697266,
+                "y": 0.3387269973754883,
+                "z": 0.4017448425292969
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "painted_wooden_sofa",
+            "role": "ArchiveSofa",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/painted_wooden_sofa",
+            "supportPoint": {
+                "x": 7.5,
+                "y": 4.0,
+                "z": 15.199999809265137
+            },
+            "centre": {
+                "x": 7.5,
+                "y": 4.2933783531188969,
+                "z": 15.199999809265137
+            },
+            "size": {
+                "x": 1.1000003814697266,
+                "y": 0.5747566223144531,
+                "z": 0.3532428741455078
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "painted_wooden_cabinet",
+            "role": "ArchiveCabinetPainted",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/painted_wooden_cabinet",
+            "supportPoint": {
+                "x": 0.6000000238418579,
+                "y": 4.0,
+                "z": 19.299999237060548
+            },
+            "centre": {
+                "x": 0.6000000238418579,
+                "y": 4.846889972686768,
+                "z": 19.299999237060548
+            },
+            "size": {
+                "x": 1.7000000476837159,
+                "y": 1.6817798614501954,
+                "z": 0.8774642944335938
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "painted_wooden_cabinet_02",
+            "role": "ArchiveCabinetSecond",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/painted_wooden_cabinet_02",
+            "supportPoint": {
+                "x": 9.600000381469727,
+                "y": 4.0,
+                "z": 19.200000762939454
+            },
+            "centre": {
+                "x": 9.600000381469727,
+                "y": 4.855999946594238,
+                "z": 19.200000762939454
+            },
+            "size": {
+                "x": 0.6598167419433594,
+                "y": 1.6999998092651368,
+                "z": 0.4827728271484375
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "painted_wooden_shelves",
+            "role": "ArchiveWallShelves",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/painted_wooden_shelves",
+            "supportPoint": {
+                "x": -1.5,
+                "y": 5.199999809265137,
+                "z": 19.899999618530275
+            },
+            "centre": {
+                "x": -1.5,
+                "y": 5.199999809265137,
+                "z": 19.698226928710939
+            },
+            "size": {
+                "x": 0.5451550483703613,
+                "y": 1.1999998092651368,
+                "z": 0.3915443420410156
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "painted_wooden_nightstand",
+            "role": "ArchiveNightstand",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/painted_wooden_nightstand",
+            "supportPoint": {
+                "x": 4.599999904632568,
+                "y": 4.0,
+                "z": 14.600000381469727
+            },
+            "centre": {
+                "x": 4.599999904632568,
+                "y": 4.330999851226807,
+                "z": 14.600000381469727
+            },
+            "size": {
+                "x": 0.5328283309936523,
+                "y": 0.6499996185302734,
+                "z": 0.5372123718261719
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "wooden_bookshelf_worn",
+            "role": "ArchiveBookshelf",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/wooden_bookshelf_worn",
+            "supportPoint": {
+                "x": 8.199999809265137,
+                "y": 4.0,
+                "z": 19.450000762939454
+            },
+            "centre": {
+                "x": 8.199999809265137,
+                "y": 4.906000137329102,
+                "z": 19.450000762939454
+            },
+            "size": {
+                "x": 1.198537826538086,
+                "y": 1.8000001907348633,
+                "z": 0.5070877075195313
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "vintage_day_bed",
+            "role": "ArchiveDayBed",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/vintage_day_bed",
+            "supportPoint": {
+                "x": -0.5,
+                "y": 4.0,
+                "z": 14.199999809265137
+            },
+            "centre": {
+                "x": -0.5,
+                "y": 4.291758060455322,
+                "z": 14.199999809265137
+            },
+            "size": {
+                "x": 0.43333476781845095,
+                "y": 0.5715160369873047,
+                "z": 1.0
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "old_bed_frame",
+            "role": "AbandonedBedFrame203",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/old_bed_frame",
+            "supportPoint": {
+                "x": 6.199999809265137,
+                "y": 4.0,
+                "z": 17.799999237060548
+            },
+            "centre": {
+                "x": 6.199999809265137,
+                "y": 4.336122989654541,
+                "z": 17.799999237060548
+            },
+            "size": {
+                "x": 1.0999994277954102,
+                "y": 0.6602458953857422,
+                "z": 0.49713134765625
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "television_02",
+            "role": "ArchiveOldTelevision",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/television_02",
+            "supportPoint": {
+                "x": 9.199999809265137,
+                "y": 4.0,
+                "z": 13.800000190734864
+            },
+            "centre": {
+                "x": 9.199999809265137,
+                "y": 4.405999660491943,
+                "z": 13.800000190734864
+            },
+            "size": {
+                "x": 1.0331668853759766,
+                "y": 0.7999997138977051,
+                "z": 1.0212898254394532
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "boombox",
+            "role": "ArchiveBoombox",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/boombox",
+            "supportPoint": {
+                "x": 6.300000190734863,
+                "y": 5.400000095367432,
+                "z": 18.899999618530275
+            },
+            "centre": {
+                "x": 6.300000190734863,
+                "y": 5.5359015464782719,
+                "z": 18.899999618530275
+            },
+            "size": {
+                "x": 0.39999961853027346,
+                "y": 0.25980281829833987,
+                "z": 0.10305023193359375
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "wicker_basket_02",
+            "role": "GalleryBasketWest",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/wicker_basket_02",
+            "supportPoint": {
+                "x": -16.350000381469728,
+                "y": 4.0,
+                "z": 6.0
+            },
+            "centre": {
+                "x": -16.350000381469728,
+                "y": 4.166121482849121,
+                "z": 6.0
+            },
+            "size": {
+                "x": 0.5500030517578125,
+                "y": 0.32024288177490237,
+                "z": 0.3973426818847656
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "plastic_crate_01",
+            "role": "GalleryCrateEast",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/plastic_crate_01",
+            "supportPoint": {
+                "x": 16.399999618530275,
+                "y": 4.0,
+                "z": 9.0
+            },
+            "centre": {
+                "x": 16.399999618530275,
+                "y": 4.184053421020508,
+                "z": 9.0
+            },
+            "size": {
+                "x": 0.40171051025390627,
+                "y": 0.3561067581176758,
+                "z": 0.5499992370605469
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "plastic_crate_03",
+            "role": "GalleryCrateWest",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/plastic_crate_03",
+            "supportPoint": {
+                "x": -16.399999618530275,
+                "y": 4.0,
+                "z": -9.0
+            },
+            "centre": {
+                "x": -16.399999618530275,
+                "y": 4.158004283905029,
+                "z": -9.0
+            },
+            "size": {
+                "x": 0.5499992370605469,
+                "y": 0.30400848388671877,
+                "z": 0.30291748046875
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "sungka_board",
+            "role": "NightstandSungka",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/sungka_board",
+            "supportPoint": {
+                "x": 4.599999904632568,
+                "y": 4.679999828338623,
+                "z": 14.600000381469727
+            },
+            "centre": {
+                "x": 4.599999904632568,
+                "y": 4.699197292327881,
+                "z": 14.600000381469727
+            },
+            "size": {
+                "x": 0.1048727035522461,
+                "y": 0.02639484405517578,
+                "z": 0.4499988555908203
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "SchoolChair_01",
+            "role": "CorridorSchoolChair",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/SchoolChair_01",
+            "supportPoint": {
+                "x": 16.350000381469728,
+                "y": 4.0,
+                "z": -2.0
+            },
+            "centre": {
+                "x": 16.350000381469728,
+                "y": 4.430999755859375,
+                "z": -2.0
+            },
+            "size": {
+                "x": 0.5705223083496094,
+                "y": 0.8499994277954102,
+                "z": 0.4780898094177246
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "SchoolDesk_01",
+            "role": "ArchiveSchoolDesk",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/SchoolDesk_01",
+            "supportPoint": {
+                "x": 2.200000047683716,
+                "y": 4.0,
+                "z": 16.5
+            },
+            "centre": {
+                "x": 2.200000047683716,
+                "y": 4.406000137329102,
+                "z": 16.5
+            },
+            "size": {
+                "x": 0.4948558807373047,
+                "y": 0.8000006675720215,
+                "z": 0.6451416015625
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "steel_frame_shelves_02",
+            "role": "ArchiveSteelShelves",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/steel_frame_shelves_02",
+            "supportPoint": {
+                "x": -4.5,
+                "y": 4.0,
+                "z": 19.200000762939454
+            },
+            "centre": {
+                "x": -4.5,
+                "y": 4.955999851226807,
+                "z": 19.200000762939454
+            },
+            "size": {
+                "x": 0.5263681411743164,
+                "y": 1.9000000953674317,
+                "z": 0.44570159912109377
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "round_wooden_table_01",
+            "role": "GalleryRoundTable",
+            "area": "floor2",
+            "source": "https://polyhaven.com/a/round_wooden_table_01",
+            "supportPoint": {
+                "x": -14.5,
+                "y": 4.0,
+                "z": 12.199999809265137
+            },
+            "centre": {
+                "x": -14.5,
+                "y": 4.293282508850098,
+                "z": 12.199999809265137
+            },
+            "size": {
+                "x": 0.7999992370605469,
+                "y": 0.5745649337768555,
+                "z": 0.7999992370605469
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "WetFloorSign_01",
+            "role": "WetFloorSign",
+            "area": "floor3",
+            "source": "https://polyhaven.com/a/WetFloorSign_01",
+            "supportPoint": {
+                "x": -10.0,
+                "y": 8.0,
+                "z": -12.199999809265137
+            },
+            "centre": {
+                "x": -10.0,
+                "y": 8.331000328063965,
+                "z": -12.199999809265137
+            },
+            "size": {
+                "x": 0.4177227020263672,
+                "y": 0.6500015258789063,
+                "z": 0.4537944793701172
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "dustpan",
+            "role": "CleaningDustpan",
+            "area": "floor3",
+            "source": "https://polyhaven.com/a/dustpan",
+            "supportPoint": {
+                "x": 4.300000190734863,
+                "y": 8.0,
+                "z": -12.600000381469727
+            },
+            "centre": {
+                "x": 4.300000190734863,
+                "y": 8.053704261779786,
+                "z": -12.600000381469727
+            },
+            "size": {
+                "x": 0.31587982177734377,
+                "y": 0.09540939331054688,
+                "z": 0.35000038146972659
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "plunger",
+            "role": "CleaningPlunger",
+            "area": "floor3",
+            "source": "https://polyhaven.com/a/plunger",
+            "supportPoint": {
+                "x": 5.900000095367432,
+                "y": 8.0,
+                "z": -12.600000381469727
+            },
+            "centre": {
+                "x": 5.900000095367432,
+                "y": 8.281000137329102,
+                "z": -12.600000381469727
+            },
+            "size": {
+                "x": 0.22471332550048829,
+                "y": 0.5500011444091797,
+                "z": 0.22471237182617188
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "all_purpose_cleaner",
+            "role": "TrolleyCleanerBottle",
+            "area": "floor3",
+            "source": "https://polyhaven.com/a/all_purpose_cleaner",
+            "supportPoint": {
+                "x": 1.7999999523162842,
+                "y": 8.779999732971192,
+                "z": -12.050000190734864
+            },
+            "centre": {
+                "x": 1.7999999523162842,
+                "y": 8.92599868774414,
+                "z": -12.050000190734864
+            },
+            "size": {
+                "x": 0.13733458518981934,
+                "y": 0.279998779296875,
+                "z": 0.10281944274902344
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "multi_cleaner_bottle",
+            "role": "TrolleyCleanerSecond",
+            "area": "floor3",
+            "source": "https://polyhaven.com/a/multi_cleaner_bottle",
+            "supportPoint": {
+                "x": 2.25,
+                "y": 8.779999732971192,
+                "z": -12.25
+            },
+            "centre": {
+                "x": 2.25,
+                "y": 8.92599868774414,
+                "z": -12.25
+            },
+            "size": {
+                "x": 0.1083822250366211,
+                "y": 0.279998779296875,
+                "z": 0.10994911193847656
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "multi_cleaner_5_litre",
+            "role": "CleaningCanister",
+            "area": "floor3",
+            "source": "https://polyhaven.com/a/multi_cleaner_5_litre",
+            "supportPoint": {
+                "x": 6.599999904632568,
+                "y": 8.0,
+                "z": -12.550000190734864
+            },
+            "centre": {
+                "x": 6.599999904632568,
+                "y": 8.256000518798829,
+                "z": -12.550000190734864
+            },
+            "size": {
+                "x": 0.36507701873779299,
+                "y": 0.5000019073486328,
+                "z": 0.1761016845703125
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "drain_cleaner",
+            "role": "CorridorDrainCleaner",
+            "area": "floor3",
+            "source": "https://polyhaven.com/a/drain_cleaner",
+            "supportPoint": {
+                "x": -14.0,
+                "y": 8.0,
+                "z": -12.550000190734864
+            },
+            "centre": {
+                "x": -14.0,
+                "y": 8.156000137329102,
+                "z": -12.550000190734864
+            },
+            "size": {
+                "x": 0.2778968811035156,
+                "y": 0.3000011444091797,
+                "z": 0.09465408325195313
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "cleaner_tin_01",
+            "role": "CorridorCleanerTin",
+            "area": "floor3",
+            "source": "https://polyhaven.com/a/cleaner_tin_01",
+            "supportPoint": {
+                "x": 12.0,
+                "y": 8.0,
+                "z": -12.550000190734864
+            },
+            "centre": {
+                "x": 12.0,
+                "y": 8.155999183654786,
+                "z": -12.550000190734864
+            },
+            "size": {
+                "x": 0.20140647888183595,
+                "y": 0.29999828338623049,
+                "z": 0.2013835906982422
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "wooden_broom",
+            "role": "CleaningWoodenBroom",
+            "area": "floor3",
+            "source": "https://polyhaven.com/a/wooden_broom",
+            "supportPoint": {
+                "x": 8.199999809265137,
+                "y": 8.0,
+                "z": -12.619999885559082
+            },
+            "centre": {
+                "x": 8.199999809265137,
+                "y": 8.705999374389649,
+                "z": -12.619999885559082
+            },
+            "size": {
+                "x": 0.48438262939453127,
+                "y": 1.3999996185302735,
+                "z": 0.20417022705078126
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "spray_paint_bottles",
+            "role": "LiftSprayPaint",
+            "area": "floor3",
+            "source": "https://polyhaven.com/a/spray_paint_bottles",
+            "supportPoint": {
+                "x": -18.5,
+                "y": 8.0,
+                "z": -12.5
+            },
+            "centre": {
+                "x": -18.5,
+                "y": 8.180999755859375,
+                "z": -12.5
+            },
+            "size": {
+                "x": 0.24211883544921876,
+                "y": 0.35000038146972659,
+                "z": 0.10048675537109375
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "industrial_storage_cart",
+            "role": "CleaningStorageCart",
+            "area": "floor3",
+            "source": "https://polyhaven.com/a/industrial_storage_cart",
+            "supportPoint": {
+                "x": 16.0,
+                "y": 8.0,
+                "z": -12.350000381469727
+            },
+            "centre": {
+                "x": 16.0,
+                "y": 8.521440505981446,
+                "z": -12.350000381469727
+            },
+            "size": {
+                "x": 1.2000007629394532,
+                "y": 1.0308818817138672,
+                "z": 0.8253326416015625
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "hanging_industrial_lamp",
+            "role": "CorridorIndustrialLamp",
+            "area": "floor3",
+            "source": "https://polyhaven.com/a/hanging_industrial_lamp",
+            "supportPoint": {
+                "x": -4.0,
+                "y": 11.350000381469727,
+                "z": -11.0
+            },
+            "centre": {
+                "x": -4.0,
+                "y": 10.844000816345215,
+                "z": -11.0
+            },
+            "size": {
+                "x": 0.40550899505615237,
+                "y": 1.0,
+                "z": 0.40550804138183596
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "industrial_caged_sconce",
+            "role": "CorridorCagedSconce",
+            "area": "floor3",
+            "source": "https://polyhaven.com/a/industrial_caged_sconce",
+            "supportPoint": {
+                "x": 0.0,
+                "y": 10.399999618530274,
+                "z": -9.180000305175782
+            },
+            "centre": {
+                "x": 0.0,
+                "y": 10.399999618530274,
+                "z": -9.266448974609375
+            },
+            "size": {
+                "x": 0.4999999701976776,
+                "y": 0.3771476745605469,
+                "z": 0.16089820861816407
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "pull_chain_light_socket",
+            "role": "CorridorPullSocket",
+            "area": "floor3",
+            "source": "https://polyhaven.com/a/pull_chain_light_socket",
+            "supportPoint": {
+                "x": 8.0,
+                "y": 11.319999694824219,
+                "z": -11.0
+            },
+            "centre": {
+                "x": 8.0,
+                "y": 11.114001274108887,
+                "z": -11.0
+            },
+            "size": {
+                "x": 0.266632080078125,
+                "y": 0.3999977111816406,
+                "z": 0.266632080078125
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "lightbulb_led",
+            "role": "CorridorBareBulb",
+            "area": "floor3",
+            "source": "https://polyhaven.com/a/lightbulb_led",
+            "supportPoint": {
+                "x": 8.0,
+                "y": 11.020000457763672,
+                "z": -11.0
+            },
+            "centre": {
+                "x": 8.0,
+                "y": 10.924001693725586,
+                "z": -11.0
+            },
+            "size": {
+                "x": 0.11031723022460938,
+                "y": 0.17999839782714845,
+                "z": 0.11031723022460938
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "security_camera_01",
+            "role": "LiftSecurityCamera",
+            "area": "floor3",
+            "source": "https://polyhaven.com/a/security_camera_01",
+            "supportPoint": {
+                "x": -20.200000762939454,
+                "y": 11.0,
+                "z": -9.399999618530274
+            },
+            "centre": {
+                "x": -20.200000762939454,
+                "y": 11.0,
+                "z": -9.590734481811524
+            },
+            "size": {
+                "x": 0.3694725036621094,
+                "y": 0.20665359497070313,
+                "z": 0.36947059631347659
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "metal_stool_02",
+            "role": "CleaningStoolL3",
+            "area": "floor3",
+            "source": "https://polyhaven.com/a/metal_stool_02",
+            "supportPoint": {
+                "x": 9.5,
+                "y": 8.0,
+                "z": -12.5
+            },
+            "centre": {
+                "x": 9.5,
+                "y": 8.272298812866211,
+                "z": -12.5
+            },
+            "size": {
+                "x": 0.5209465026855469,
+                "y": 0.5325984954833984,
+                "z": 0.5499992370605469
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "GothicCabinet_01",
+            "role": "K404GothicCabinet",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/GothicCabinet_01",
+            "supportPoint": {
+                "x": -3.5999999046325685,
+                "y": 12.0,
+                "z": -19.200000762939454
+            },
+            "centre": {
+                "x": -3.5999999046325685,
+                "y": 13.006000518798829,
+                "z": -19.200000762939454
+            },
+            "size": {
+                "x": 1.456345558166504,
+                "y": 2.0,
+                "z": 0.9561309814453125
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "GothicBed_01",
+            "role": "K401GothicBed",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/GothicBed_01",
+            "supportPoint": {
+                "x": -12.5,
+                "y": 12.0,
+                "z": 17.5
+            },
+            "centre": {
+                "x": -12.5,
+                "y": 12.532317161560059,
+                "z": 17.5
+            },
+            "size": {
+                "x": 1.3999996185302735,
+                "y": 1.0526351928710938,
+                "z": 1.0251235961914063
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "GothicCommode_01",
+            "role": "K402Commode",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/GothicCommode_01",
+            "supportPoint": {
+                "x": 0.20000000298023225,
+                "y": 12.0,
+                "z": 19.200000762939454
+            },
+            "centre": {
+                "x": 0.20000000298023225,
+                "y": 12.555999755859375,
+                "z": 19.200000762939454
+            },
+            "size": {
+                "x": 1.0903443098068238,
+                "y": 1.1000003814697266,
+                "z": 0.5269851684570313
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "gothic_coffee_table",
+            "role": "K404RitualTable",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/gothic_coffee_table",
+            "supportPoint": {
+                "x": 2.5999999046325685,
+                "y": 12.0,
+                "z": -15.399999618530274
+            },
+            "centre": {
+                "x": 2.5999999046325685,
+                "y": 12.122160911560059,
+                "z": -15.399999618530274
+            },
+            "size": {
+                "x": 0.7690277099609375,
+                "y": 0.23232269287109376,
+                "z": 0.7690277099609375
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "wooden_candlestick",
+            "role": "AltarCandlestick",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/wooden_candlestick",
+            "supportPoint": {
+                "x": 0.550000011920929,
+                "y": 13.100000381469727,
+                "z": -17.549999237060548
+            },
+            "centre": {
+                "x": 0.550000011920929,
+                "y": 13.345999717712403,
+                "z": -17.549999237060548
+            },
+            "size": {
+                "x": 0.21245110034942628,
+                "y": 0.4799995422363281,
+                "z": 0.2156219482421875
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "brass_diya_lantern",
+            "role": "AltarDiyaLantern",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/brass_diya_lantern",
+            "supportPoint": {
+                "x": 0.0,
+                "y": 13.100000381469727,
+                "z": -18.100000381469728
+            },
+            "centre": {
+                "x": 0.0,
+                "y": 13.296000480651856,
+                "z": -18.100000381469728
+            },
+            "size": {
+                "x": 0.12273865938186646,
+                "y": 0.3800010681152344,
+                "z": 0.12273788452148438
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "vintage_oil_lamp",
+            "role": "K402OilLamp",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/vintage_oil_lamp",
+            "supportPoint": {
+                "x": -3.200000047683716,
+                "y": 12.470000267028809,
+                "z": 18.200000762939454
+            },
+            "centre": {
+                "x": -3.200000047683716,
+                "y": 12.651000022888184,
+                "z": 18.200000762939454
+            },
+            "size": {
+                "x": 0.0960536003112793,
+                "y": 0.35000038146972659,
+                "z": 0.0960540771484375
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "ornate_mirror_01",
+            "role": "K404OrnateMirror",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/ornate_mirror_01",
+            "supportPoint": {
+                "x": 3.200000047683716,
+                "y": 13.699999809265137,
+                "z": -19.8799991607666
+            },
+            "centre": {
+                "x": 3.200000047683716,
+                "y": 13.699999809265137,
+                "z": -19.8513240814209
+            },
+            "size": {
+                "x": 0.849881649017334,
+                "y": 1.2999992370605469,
+                "z": 0.04534912109375
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "hanging_picture_frame_01",
+            "role": "L4FrameNorth",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/hanging_picture_frame_01",
+            "supportPoint": {
+                "x": -14.0,
+                "y": 13.899999618530274,
+                "z": 12.859999656677246
+            },
+            "centre": {
+                "x": -14.0,
+                "y": 13.899999618530274,
+                "z": 12.846508979797364
+            },
+            "size": {
+                "x": 0.5650424957275391,
+                "y": 0.8000011444091797,
+                "z": 0.014982223510742188
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "hanging_picture_frame_02",
+            "role": "L4FrameSouth",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/hanging_picture_frame_02",
+            "supportPoint": {
+                "x": 14.0,
+                "y": 13.899999618530274,
+                "z": -12.859999656677246
+            },
+            "centre": {
+                "x": 14.0,
+                "y": 13.899999618530274,
+                "z": -12.836402893066407
+            },
+            "size": {
+                "x": 0.7999992370605469,
+                "y": 0.5320472717285156,
+                "z": 0.03519439697265625
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "hanging_picture_frame_03",
+            "role": "BathroomFrame",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/hanging_picture_frame_03",
+            "supportPoint": {
+                "x": -19.5,
+                "y": 13.899999618530274,
+                "z": 5.300000190734863
+            },
+            "centre": {
+                "x": -19.5,
+                "y": 13.899999618530274,
+                "z": 5.271876335144043
+            },
+            "size": {
+                "x": 0.5364341735839844,
+                "y": 0.6999988555908203,
+                "z": 0.044248104095458987
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "standing_picture_frame_01",
+            "role": "K403StandingFrame",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/standing_picture_frame_01",
+            "supportPoint": {
+                "x": 6.0,
+                "y": 12.0,
+                "z": 14.100000381469727
+            },
+            "centre": {
+                "x": 6.0,
+                "y": 12.405999183654786,
+                "z": 14.100000381469727
+            },
+            "size": {
+                "x": 0.7178964614868164,
+                "y": 0.7999992370605469,
+                "z": 0.5999946594238281
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "fancy_picture_frame_01",
+            "role": "K402FancyFrame",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/fancy_picture_frame_01",
+            "supportPoint": {
+                "x": -2.0,
+                "y": 13.899999618530274,
+                "z": 19.899999618530275
+            },
+            "centre": {
+                "x": -2.0,
+                "y": 13.899999618530274,
+                "z": 19.8807373046875
+            },
+            "size": {
+                "x": 0.8000001907348633,
+                "y": 0.6157264709472656,
+                "z": 0.026523590087890626
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "antique_ceramic_vase_01",
+            "role": "K404AntiqueVase",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/antique_ceramic_vase_01",
+            "supportPoint": {
+                "x": -1.899999976158142,
+                "y": 12.0,
+                "z": -18.600000381469728
+            },
+            "centre": {
+                "x": -1.899999976158142,
+                "y": 12.305999755859375,
+                "z": -18.600000381469728
+            },
+            "size": {
+                "x": 0.34812235832214358,
+                "y": 0.6000003814697266,
+                "z": 0.34812164306640627
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "ceramic_vase_01",
+            "role": "K401Vase",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/ceramic_vase_01",
+            "supportPoint": {
+                "x": -7.0,
+                "y": 12.0,
+                "z": 19.200000762939454
+            },
+            "centre": {
+                "x": -7.0,
+                "y": 12.280999183654786,
+                "z": 19.200000762939454
+            },
+            "size": {
+                "x": 0.27980995178222659,
+                "y": 0.5499992370605469,
+                "z": 0.2798118591308594
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "ceramic_vase_02",
+            "role": "K403Vase",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/ceramic_vase_02",
+            "supportPoint": {
+                "x": 11.0,
+                "y": 12.0,
+                "z": 19.299999237060548
+            },
+            "centre": {
+                "x": 11.0,
+                "y": 12.280999183654786,
+                "z": 19.299999237060548
+            },
+            "size": {
+                "x": 0.3884696960449219,
+                "y": 0.5499992370605469,
+                "z": 0.3884735107421875
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "brass_vase_01",
+            "role": "K404BrassVase",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/brass_vase_01",
+            "supportPoint": {
+                "x": 1.5,
+                "y": 12.0,
+                "z": -18.700000762939454
+            },
+            "centre": {
+                "x": 1.5,
+                "y": 12.280999183654786,
+                "z": -18.700000762939454
+            },
+            "size": {
+                "x": 0.18054938316345216,
+                "y": 0.5499992370605469,
+                "z": 0.18054962158203126
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "carved_wooden_elephant",
+            "role": "CommodeElephant",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/carved_wooden_elephant",
+            "supportPoint": {
+                "x": 0.20000000298023225,
+                "y": 13.0,
+                "z": 19.200000762939454
+            },
+            "centre": {
+                "x": 0.20000000298023225,
+                "y": 13.138094902038575,
+                "z": 19.200000762939454
+            },
+            "size": {
+                "x": 0.30000001192092898,
+                "y": 0.264190673828125,
+                "z": 0.15814590454101563
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "tea_set_01",
+            "role": "KitchenTeaSet",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/tea_set_01",
+            "supportPoint": {
+                "x": 20.100000381469728,
+                "y": 12.859999656677246,
+                "z": 7.0
+            },
+            "centre": {
+                "x": 20.100000381469728,
+                "y": 12.897435188293457,
+                "z": 7.0
+            },
+            "size": {
+                "x": 0.34999847412109377,
+                "y": 0.06287193298339844,
+                "z": 0.1843891143798828
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "pot_enamel_01",
+            "role": "KitchenEnamelPot",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/pot_enamel_01",
+            "supportPoint": {
+                "x": 19.549999237060548,
+                "y": 12.859999656677246,
+                "z": 7.599999904632568
+            },
+            "centre": {
+                "x": 19.549999237060548,
+                "y": 12.967696189880371,
+                "z": 7.599999904632568
+            },
+            "size": {
+                "x": 0.2999992370605469,
+                "y": 0.20339393615722657,
+                "z": 0.2059173583984375
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "electric_stove",
+            "role": "KitchenElectricStove",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/electric_stove",
+            "supportPoint": {
+                "x": 18.100000381469728,
+                "y": 12.0,
+                "z": 4.199999809265137
+            },
+            "centre": {
+                "x": 18.100000381469728,
+                "y": 12.330999374389649,
+                "z": 4.199999809265137
+            },
+            "size": {
+                "x": 0.49022483825683596,
+                "y": 0.649998664855957,
+                "z": 0.3804445266723633
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "brass_pot_01",
+            "role": "KitchenBrassPot",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/brass_pot_01",
+            "supportPoint": {
+                "x": 23.100000381469728,
+                "y": 12.0,
+                "z": 3.799999952316284
+            },
+            "centre": {
+                "x": 23.100000381469728,
+                "y": 12.22280502319336,
+                "z": 3.799999952316284
+            },
+            "size": {
+                "x": 0.4500007629394531,
+                "y": 0.4336109161376953,
+                "z": 0.44962406158447268
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "brass_pot_02",
+            "role": "KilnBrassPot",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/brass_pot_02",
+            "supportPoint": {
+                "x": 20.899999618530275,
+                "y": 12.720000267028809,
+                "z": 6.25
+            },
+            "centre": {
+                "x": 20.899999618530275,
+                "y": 12.78520679473877,
+                "z": 6.25
+            },
+            "size": {
+                "x": 0.40000152587890627,
+                "y": 0.11841392517089844,
+                "z": 0.3297691345214844
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "jug_01",
+            "role": "BathroomJug",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/jug_01",
+            "supportPoint": {
+                "x": -19.0,
+                "y": 12.0,
+                "z": 4.5
+            },
+            "centre": {
+                "x": -19.0,
+                "y": 12.159502029418946,
+                "z": 4.5
+            },
+            "size": {
+                "x": 0.3999977111816406,
+                "y": 0.3070049285888672,
+                "z": 0.24339008331298829
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "wooden_bowl_01",
+            "role": "KitchenBowl",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/wooden_bowl_01",
+            "supportPoint": {
+                "x": 20.649999618530275,
+                "y": 12.859999656677246,
+                "z": 7.550000190734863
+            },
+            "centre": {
+                "x": 20.649999618530275,
+                "y": 12.903407096862793,
+                "z": 7.550000190734863
+            },
+            "size": {
+                "x": 0.25,
+                "y": 0.07481575012207031,
+                "z": 0.2468557357788086
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "wooden_bowl_02",
+            "role": "RitualTableBowl",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/wooden_bowl_02",
+            "supportPoint": {
+                "x": 2.5999999046325685,
+                "y": 12.5,
+                "z": -15.399999618530274
+            },
+            "centre": {
+                "x": 2.5999999046325685,
+                "y": 12.575901985168457,
+                "z": -15.399999618530274
+            },
+            "size": {
+                "x": 0.25,
+                "y": 0.13980484008789063,
+                "z": 0.2381916046142578
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "WoodenChair_01",
+            "role": "K403WoodenChair",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/WoodenChair_01",
+            "supportPoint": {
+                "x": 10.800000190734864,
+                "y": 12.0,
+                "z": 16.200000762939454
+            },
+            "centre": {
+                "x": 10.800000190734864,
+                "y": 12.455999374389649,
+                "z": 16.200000762939454
+            },
+            "size": {
+                "x": 0.3619499206542969,
+                "y": 0.8999996185302734,
+                "z": 0.3662528991699219
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "small_wooden_table_01",
+            "role": "K401SideTable",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/small_wooden_table_01",
+            "supportPoint": {
+                "x": -8.600000381469727,
+                "y": 12.0,
+                "z": 19.200000762939454
+            },
+            "centre": {
+                "x": -8.600000381469727,
+                "y": 12.209648132324219,
+                "z": 19.200000762939454
+            },
+            "size": {
+                "x": 0.7000007629394531,
+                "y": 0.40729713439941409,
+                "z": 0.3361473083496094
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "drawer_cabinet",
+            "role": "K402DrawerCabinet",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/drawer_cabinet",
+            "supportPoint": {
+                "x": 1.7999999523162842,
+                "y": 12.0,
+                "z": 19.299999237060548
+            },
+            "centre": {
+                "x": 1.7999999523162842,
+                "y": 12.555999755859375,
+                "z": 19.299999237060548
+            },
+            "size": {
+                "x": 0.6672067642211914,
+                "y": 1.1000003814697266,
+                "z": 0.28539276123046877
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "side_table_01",
+            "role": "K404SideTable",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/side_table_01",
+            "supportPoint": {
+                "x": -2.200000047683716,
+                "y": 12.0,
+                "z": -15.600000381469727
+            },
+            "centre": {
+                "x": -2.200000047683716,
+                "y": 12.330999374389649,
+                "z": -15.600000381469727
+            },
+            "size": {
+                "x": 0.6492176055908203,
+                "y": 0.6499996185302734,
+                "z": 0.5311775207519531
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "dining_table",
+            "role": "KitchenDiningTable",
+            "area": "floor4",
+            "source": "https://polyhaven.com/a/dining_table",
+            "supportPoint": {
+                "x": 19.5,
+                "y": 12.0,
+                "z": 2.200000047683716
+            },
+            "centre": {
+                "x": 19.5,
+                "y": 12.190657615661621,
+                "z": 2.200000047683716
+            },
+            "size": {
+                "x": 0.5854530334472656,
+                "y": 0.36931610107421877,
+                "z": 0.9499995708465576
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "modular_metal_gutter",
+            "role": "RoofGutterRun",
+            "area": "shared",
+            "source": "https://polyhaven.com/a/modular_metal_gutter",
+            "supportPoint": {
+                "x": 0.0,
+                "y": 15.75,
+                "z": -20.450000762939454
+            },
+            "centre": {
+                "x": 0.0,
+                "y": 18.598926544189454,
+                "z": -20.450000762939454
+            },
+            "size": {
+                "x": 6.999999523162842,
+                "y": 5.68585205078125,
+                "z": 4.67401123046875
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "modular_electric_cables",
+            "role": "FacadeCableRun",
+            "area": "shared",
+            "source": "https://polyhaven.com/a/modular_electric_cables",
+            "supportPoint": {
+                "x": -20.0,
+                "y": 1.2000000476837159,
+                "z": -20.450000762939454
+            },
+            "centre": {
+                "x": -20.0,
+                "y": 1.2000000476837159,
+                "z": -20.58511734008789
+            },
+            "size": {
+                "x": 2.4999923706054689,
+                "y": 0.9116325378417969,
+                "z": 0.25823211669921877
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "rollershutter_door",
+            "role": "PumpRollerShutter",
+            "area": "shared",
+            "source": "https://polyhaven.com/a/rollershutter_door",
+            "supportPoint": {
+                "x": -33.5,
+                "y": 0.0,
+                "z": -14.0
+            },
+            "centre": {
+                "x": -33.5,
+                "y": 1.0189753770828248,
+                "z": -14.0
+            },
+            "size": {
+                "x": 0.25331878662109377,
+                "y": 2.0259506702423097,
+                "z": 2.5999984741210939
+            },
+            "physicalCollider": true
+        },
+        {
+            "id": "rollershutter_window_01",
+            "role": "FacadeShutterWindow",
+            "area": "shared",
+            "source": "https://polyhaven.com/a/rollershutter_window_01",
+            "supportPoint": {
+                "x": -16.0,
+                "y": 1.600000023841858,
+                "z": -20.299999237060548
+            },
+            "centre": {
+                "x": -16.0,
+                "y": 1.600000023841858,
+                "z": -20.34718894958496
+            },
+            "size": {
+                "x": 1.3999977111816407,
+                "y": 0.5080418586730957,
+                "z": 0.08237838745117188
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "security_camera_02",
+            "role": "GuardExteriorCamera",
+            "area": "shared",
+            "source": "https://polyhaven.com/a/security_camera_02",
+            "supportPoint": {
+                "x": -10.399999618530274,
+                "y": 2.8499999046325685,
+                "z": -21.25
+            },
+            "centre": {
+                "x": -10.399999618530274,
+                "y": 2.8499999046325685,
+                "z": -21.432435989379884
+            },
+            "size": {
+                "x": 0.3528861999511719,
+                "y": 0.21187353134155274,
+                "z": 0.3528709411621094
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "industrial_wall_lamp",
+            "role": "StairwellWallLamp",
+            "area": "shared",
+            "source": "https://polyhaven.com/a/industrial_wall_lamp",
+            "supportPoint": {
+                "x": 21.25,
+                "y": 10.600000381469727,
+                "z": -5.5
+            },
+            "centre": {
+                "x": 21.084976196289064,
+                "y": 10.600000381469727,
+                "z": -5.5
+            },
+            "size": {
+                "x": 0.31804656982421877,
+                "y": 0.5,
+                "z": 0.16326618194580079
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "industrial_wall_sconce",
+            "role": "K102StairSconce",
+            "area": "shared",
+            "source": "https://polyhaven.com/a/industrial_wall_sconce",
+            "supportPoint": {
+                "x": -20.899999618530275,
+                "y": 2.5999999046325685,
+                "z": 5.0
+            },
+            "centre": {
+                "x": -20.784025192260743,
+                "y": 2.5999999046325685,
+                "z": 5.0
+            },
+            "size": {
+                "x": 0.21994781494140626,
+                "y": 0.4999995231628418,
+                "z": 0.36803531646728518
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "modern_ceiling_lamp_01",
+            "role": "L2CeilingLamp",
+            "area": "shared",
+            "source": "https://polyhaven.com/a/modern_ceiling_lamp_01",
+            "supportPoint": {
+                "x": 0.0,
+                "y": 7.550000190734863,
+                "z": -11.0
+            },
+            "centre": {
+                "x": 0.0,
+                "y": 7.194000244140625,
+                "z": -11.0
+            },
+            "size": {
+                "x": 0.3175387978553772,
+                "y": 0.6999998092651367,
+                "z": 0.3175468444824219
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "mantel_clock_01",
+            "role": "ArchiveMantelClock",
+            "area": "shared",
+            "source": "https://polyhaven.com/a/mantel_clock_01",
+            "supportPoint": {
+                "x": 4.699999809265137,
+                "y": 5.400000095367432,
+                "z": 18.899999618530275
+            },
+            "centre": {
+                "x": 4.699999809265137,
+                "y": 5.488035202026367,
+                "z": 18.899999618530275
+            },
+            "size": {
+                "x": 0.34999942779541018,
+                "y": 0.16407012939453126,
+                "z": 0.12899017333984376
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "alarm_clock_01",
+            "role": "K403AlarmClock",
+            "area": "shared",
+            "source": "https://polyhaven.com/a/alarm_clock_01",
+            "supportPoint": {
+                "x": 9.0,
+                "y": 12.869999885559082,
+                "z": 16.399999618530275
+            },
+            "centre": {
+                "x": 9.0,
+                "y": 12.975998878479004,
+                "z": 16.399999618530275
+            },
+            "size": {
+                "x": 0.1511859893798828,
+                "y": 0.1999988555908203,
+                "z": 0.07665252685546875
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "binder_notebook",
+            "role": "GuardDeskBinder",
+            "area": "shared",
+            "source": "https://polyhaven.com/a/binder_notebook",
+            "supportPoint": {
+                "x": -8.100000381469727,
+                "y": 0.9700000286102295,
+                "z": -23.350000381469728
+            },
+            "centre": {
+                "x": -8.100000381469727,
+                "y": 0.9814127087593079,
+                "z": -23.350000381469728
+            },
+            "size": {
+                "x": 0.2500004768371582,
+                "y": 0.010825395584106446,
+                "z": 0.08559417724609375
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "clipboard",
+            "role": "PumpWorkbenchClipboard",
+            "area": "shared",
+            "source": "https://polyhaven.com/a/clipboard",
+            "supportPoint": {
+                "x": -28.75,
+                "y": 0.8899999856948853,
+                "z": -8.949999809265137
+            },
+            "centre": {
+                "x": -28.75,
+                "y": 1.0210001468658448,
+                "z": -8.949999809265137
+            },
+            "size": {
+                "x": 0.17023849487304688,
+                "y": 0.25000035762786868,
+                "z": 0.08738899230957031
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "postcard_set_01",
+            "role": "NoticeboardPostcards",
+            "area": "shared",
+            "source": "https://polyhaven.com/a/postcard_set_01",
+            "supportPoint": {
+                "x": 1.0,
+                "y": 5.449999809265137,
+                "z": -12.65999984741211
+            },
+            "centre": {
+                "x": 1.0,
+                "y": 5.449999809265137,
+                "z": -12.653969764709473
+            },
+            "size": {
+                "x": 0.3000001907348633,
+                "y": 0.2416210174560547,
+                "z": 0.00006103515625
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "gate_latch_01",
+            "role": "EntryGateLatch",
+            "area": "shared",
+            "source": "https://polyhaven.com/a/gate_latch_01",
+            "supportPoint": {
+                "x": -3.0999999046325685,
+                "y": 1.25,
+                "z": -36.650001525878909
+            },
+            "centre": {
+                "x": -3.0999999046325685,
+                "y": 1.25,
+                "z": -36.589332580566409
+            },
+            "size": {
+                "x": 0.3000001907348633,
+                "y": 0.1249537467956543,
+                "z": 0.10933685302734375
+            },
+            "physicalCollider": false
+        },
+        {
+            "id": "water_manhole_cover",
+            "role": "ParkingManhole",
+            "area": "shared",
+            "source": "https://polyhaven.com/a/water_manhole_cover",
+            "supportPoint": {
+                "x": -2.0,
+                "y": 0.009999999776482582,
+                "z": -25.0
+            },
+            "centre": {
+                "x": -2.0,
+                "y": 0.06494445353746414,
+                "z": -25.0
+            },
+            "size": {
+                "x": 0.9999982118606567,
+                "y": 0.09788890182971955,
+                "z": 1.0
+            },
+            "physicalCollider": false
+        }
+    ]
+}

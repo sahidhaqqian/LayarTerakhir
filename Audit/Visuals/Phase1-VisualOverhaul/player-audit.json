@@ -1,0 +1,41 @@
+{
+    "completed": true,
+    "actualStandalonePlayer": true,
+    "checkpointSaved": false,
+    "platform": "LinuxPlayer",
+    "gpu": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "utc": "2026-10-28T10:59:28.7473290Z",
+    "method": "Standalone visual review only: arranged camera positions, no route/puzzle/FPS acceptance. Isolated save. AI remains active.",
+    "walkedMeters": 0.0,
+    "checks": [
+        "PASS P1 Continue routes safely from startup",
+        "PASS Held RMB raises the landscape camera with two physical grips",
+        "PASS Held RMB overrides a handset app menu",
+        "PASS RMB release restores the portrait camera and raised phone",
+        "PASS Twenty-two native views captured; only the RMB checks use production input, arranged views are not route acceptance"
+    ],
+    "screenshots": [
+        "01-exterior-parking-facade.png",
+        "02-pump-room.png",
+        "03-floor1-corridor.png",
+        "04-k102-supernatural-passage.png",
+        "05-floor2-corridor-mailboxes.png",
+        "06-floor2-archive-interior.png",
+        "07-floor3-kuntilanak-corridor.png",
+        "08-floor3-stair-and-lift.png",
+        "09-floor4-void-loop.png",
+        "10-rooms-401-402-claw.png",
+        "11-room403-hideout.png",
+        "12-bathroom-stalls.png",
+        "13-kitchen-furnace.png",
+        "14-room404-altar.png",
+        "15-boss-arena-halogen-north.png",
+        "16-k102-stair-flight.png",
+        "17-floor4-east-gallery-loop.png",
+        "18-boss-arena-404-mouth.png",
+        "19-exterior-guard-post.png",
+        "20-floor1-service-lobby.png",
+        "09-rmb-held-two-handed-camera.png",
+        "10-rmb-release-restores-perspective.png"
+    ]
+}

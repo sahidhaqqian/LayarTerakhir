@@ -222,6 +222,36 @@ namespace LayarTerakhir.Editor.Tests
                 }
             }
         }
+        [Test] public void RusunawaVisualOverhaulCoversEveryFloor()
+        {
+            EditorSceneManager.OpenScene(Phase1SceneBuilder.ScenePath);
+            var environment=GameObject.Find("Rusunawa_GriyaAsri_Environment");Assert.That(environment,Is.Not.Null);
+            var all=environment.GetComponentsInChildren<Transform>(true);
+            // Reference post-and-panel parapets on every gallery edge.
+            Assert.That(all.Count(t=>t.name=="VoidParapetPost"),Is.GreaterThanOrEqualTo(120),"Every floor needs the parapet post rhythm");
+            Assert.That(all.Count(t=>t.name.StartsWith("CorridorConduit")),Is.GreaterThanOrEqualTo(12),"Exposed ceiling conduit on all floors");
+            Assert.That(all.Any(t=>t.name=="ParkingPuddle"),Is.True,"Wet parking surfaces");
+            Assert.That(all.Any(t=>t.name=="EntryGatePillar"),Is.True,"Gated compound entrance");
+            Assert.That(all.Any(t=>t.name=="RoofParapetSouth"),Is.True,"Finished roofline silhouette");
+            Assert.That(all.Any(t=>t.name=="WCStallDoor"),Is.True,"Bathroom stall doors");
+            Assert.That(all.Any(t=>t.name=="KitchenStoveFlue"),Is.True,"Kitchen furnace flue");
+            Assert.That(all.Any(t=>t.name=="K401_BrokenDoorLeaf"),Is.True,"Broken 401 door leaf");
+            Assert.That(all.Any(t=>t.name=="K404RitualScorch"),Is.True,"404 ritual floor traces");
+            Assert.That(all.Any(t=>t.name=="L3FallenFluorescent"),Is.True,"Fallen L3 fluorescent housing");
+            // Two-tone walls: wainscot panels exist beside upper plaster panels.
+            var renderers=environment.GetComponentsInChildren<MeshRenderer>(true);
+            Assert.That(renderers.Count(r=>r.name=="SourcePanel_Wall"&&r.sharedMaterial&&r.sharedMaterial.name.StartsWith("DampWainscot")),Is.GreaterThan(0),"L1 damp wainscot identity");
+            Assert.That(renderers.Count(r=>r.name=="SourcePanel_Wall"&&r.sharedMaterial&&r.sharedMaterial.name.StartsWith("CharredWainscot")),Is.GreaterThan(0),"L4 charred wainscot identity");
+            // Per-floor gallery tile identity: L1 rain-wet vs L4 burnt.
+            var lowFloor=renderers.Where(r=>r.name=="SourcePanel_Floor"&&r.transform.position.y<2).Select(r=>r.sharedMaterial.name).Distinct().ToArray();
+            var topFloor=renderers.Where(r=>r.name=="SourcePanel_Floor"&&r.transform.position.y>11).Select(r=>r.sharedMaterial.name).Distinct().ToArray();
+            var overhaul=GameObject.Find("Phase1VisualOverhaulAssets");Assert.That(overhaul,Is.Not.Null);
+            var overhaulIds=overhaul.GetComponentsInChildren<Transform>(true).Where(t=>t.parent==overhaul.transform&&t.name.StartsWith("P1Overhaul_"))
+                .Select(t=>t.name.Substring("P1Overhaul_".Length).Split(new[]{"__"},StringSplitOptions.None)[0]).Distinct().ToArray();
+            Assert.That(overhaulIds.Length,Is.GreaterThanOrEqualTo(100),"At least 100 distinct downloaded overhaul models must be visibly placed, actual: "+overhaulIds.Length);
+            Assert.That(lowFloor.Any(n=>n.StartsWith("WetDampTile")),Is.True,"L1 wet tile identity: "+string.Join(",",lowFloor));
+            Assert.That(topFloor.Any(n=>n.StartsWith("BurntTile")),Is.True,"L4 burnt tile identity: "+string.Join(",",topFloor));
+        }
         [Test] public void KitchenRelicHasAnUnobstructedHandReachFromItsApproach()
         {
             EditorSceneManager.OpenScene(Phase1SceneBuilder.ScenePath);

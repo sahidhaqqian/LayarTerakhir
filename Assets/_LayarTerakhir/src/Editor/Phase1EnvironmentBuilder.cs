@@ -62,7 +62,7 @@ namespace LayarTerakhir.Editor
                 importer.wrapMode=TextureWrapMode.Repeat;importer.SaveAndReimport();
                 material.SetTexture(channel.Item2,AssetDatabase.LoadAssetAtPath<Texture2D>(path));
             }
-            material.SetFloat("_BumpScale",.7f);material.SetFloat("_OcclusionStrength",.7f);
+            material.SetFloat("_BumpScale",1.05f);material.SetFloat("_OcclusionStrength",.85f);
             if(material.GetTexture("_BumpMap"))material.EnableKeyword("_NORMALMAP");
             if(material.GetTexture("_MetallicGlossMap"))material.EnableKeyword("_METALLICSPECGLOSSMAP");
             if(material.GetTexture("_OcclusionMap"))material.EnableKeyword("_OCCLUSIONMAP");
@@ -77,13 +77,23 @@ namespace LayarTerakhir.Editor
                 if(parts.Length>=3&&int.TryParse(parts[parts.Length-1],out _)&&int.TryParse(parts[parts.Length-2],out _))AssetDatabase.DeleteAsset(path);
             }
             concrete=EnvironmentSurface("StructuralConcrete",Imported+"ConcreteInterior","Wall",new Color(.78f,.8f,.77f));
-            plaster=EnvironmentSurface("DampPlaster",Imported+"ConcreteInterior","Wall",new Color(.72f,.76f,.7f));
+            // Peeling, mottled plaster (licensed worn scan) instead of the clean
+            // modular wall print: DreadOut-reference walls are heavily stained.
+            plaster=EnvironmentSurface("DampPlaster",Imported+"Surfaces/worn_cracked_plaster","worn_cracked_plaster",new Color(.50f,.55f,.51f));
             soot=EnvironmentSurface("CharredLimewash",Imported+"Surfaces/worn_cracked_plaster","worn_cracked_plaster",new Color(.27f,.29f,.27f));
             tiles=EnvironmentSurface("WetCorridorTile",Imported+"Surfaces/blue_floor_tiles_01","blue_floor_tiles_01",new Color(.63f,.71f,.65f),.48f);
             rust=EnvironmentSurface("CorrodedPaintedMetal",Imported+"ConcreteInterior","Metal",new Color(.67f,.57f,.46f),.4f);
             darkMetal=EnvironmentSurface("WornSteel",Imported+"Surfaces/rust_coarse_01","rust_coarse_01",new Color(.2f,.24f,.23f),.4f);
             timber=EnvironmentSurface("ScorchedWood",Imported+"DoorsWindows","Door",new Color(.55f,.48f,.37f),.22f);
             moss=EnvironmentSurface("DampMoss",Imported+"Surfaces/worn_mossy_plasterwall","worn_mossy_plasterwall",new Color(.5f,.56f,.43f));
+            // Per-floor visual identities from the same licensed Poly Haven scans:
+            // rain-soaked L1 tile, fire-blackened L4 tile, and two-tone wainscot
+            // bands (dark lower wall, as in the rusunawa/DreadOut references).
+            tilesWet=EnvironmentSurface("WetDampTile",Imported+"Surfaces/blue_floor_tiles_01","blue_floor_tiles_01",new Color(.45f,.53f,.56f),.62f);
+            tilesBurnt=EnvironmentSurface("BurntTile",Imported+"Surfaces/blue_floor_tiles_01","blue_floor_tiles_01",new Color(.20f,.19f,.17f),.30f);
+            bandDamp=EnvironmentSurface("DampWainscot",Imported+"Surfaces/worn_mossy_plasterwall","worn_mossy_plasterwall",new Color(.30f,.37f,.28f),.42f);
+            bandStd=EnvironmentSurface("WornWainscot",Imported+"ConcreteInterior","Wall",new Color(.36f,.41f,.39f),.38f);
+            bandChar=EnvironmentSurface("CharredWainscot",Imported+"Surfaces/worn_cracked_plaster","worn_cracked_plaster",new Color(.11f,.11f,.105f),.26f);
             parkingSurface=EnvironmentSurface("ParkingAsphalt",Imported+"Surfaces/asphalt_02","asphalt_02",new Color(.71f,.75f,.76f),.28f);
             EnvironmentSurface("External_DoorsWindows",Imported+"DoorsWindows","Door",Color.white,.35f);
             paper=Plain("OldPaper",new Color(.64f,.61f,.48f));
@@ -94,7 +104,7 @@ namespace LayarTerakhir.Editor
         {
             if(parent&&parent!=current)return false;
             if(name.StartsWith("K102_")||name=="K401_BreakawayPanel"||name.StartsWith("K404_")||name.Contains("WaterStain"))return false;
-            return (material==concrete||material==plaster||material==soot||material==tiles||material==parkingSurface) &&
+            return (material==concrete||material==plaster||material==soot||material==tiles||material==parkingSurface||material==moss||material==tilesWet||material==tilesBurnt||material==bandDamp||material==bandStd||material==bandChar) &&
                    (size.y<.5f&&size.x>=2&&size.z>=2||size.y>=.7f&&(size.x<1&&size.z>=2||size.z<1&&size.x>=2));
         }
         // Repeated publisher panels retain their original topology and UVs.
@@ -272,6 +282,27 @@ namespace LayarTerakhir.Editor
             RoomDress("cardboard_box_01", "KitchenBox", new Vector3(23, 12, 7.4f), .6f, true);
             RoomDress("metal_trash_can", "KitchenBin", new Vector3(17.6f, 12, 6.8f), .9f, true);
             RoomDress("wall_clock", "KitchenClock", new Vector3(19, 14.2f, 7.88f), .34f, false, 180, Vector3.back);
+            // Overhaul dressing: every floor/room gets a functional identity.
+            RoomDress("cassette_player", "GuardDeskCassette", new Vector3(-9.35f, .93f, -23.2f), .3f);
+            RoomDress("metal_jerrycan_green", "PumpSpareFuel", new Vector3(-31, 0, -13.5f), .48f, true);
+            RoomDress("plastic_broom", "L1LobbyBroom", new Vector3(-23.4f, 0, -12.55f), 1.15f, false, 12);
+            RoomDress("cardboard_box_01", "ArchiveBoxB", new Vector3(6.8f, 4, 17.2f), .6f, true);
+            RoomDress("plastic_broom", "L3CleaningBroom", new Vector3(4.6f, 8, -12.55f), 1.15f, false, 15);
+            RoomDress("rubber_boots", "L3CleanerBoots", new Vector3(5.4f, 8, -12.5f), .32f);
+            RoomDress("metal_jug", "L3CleaningJug", new Vector3(3.4f, 8, -12.55f), .3f);
+            RoomDress("trashbag", "L3CorridorRefuse", new Vector3(-6, 8, -12.5f), .5f, true);
+            RoomDress("cement_bag", "L3RepairBag", new Vector3(14, 8, -12.5f), .65f, true);
+            RoomDress("trashbag", "K401CharredRefuse", new Vector3(-11.2f, 12, 18.2f), .5f, true);
+            RoomDress("cardboard_box_01", "K401StoredBox", new Vector3(-8.4f, 12, 18.6f), .6f, true);
+            RoomDress("folding_wooden_stool", "K402Stool", new Vector3(-3.2f, 12, 18.2f), .46f);
+            RoomDress("wicker_basket_01", "K402Basket", new Vector3(-.4f, 12, 18.6f), .5f, true);
+            RoomDress("ceramic_pot", "BathroomBucketPot", new Vector3(-18, 12, -.9f), .28f);
+            RoomDress("carved_wooden_plate", "AltarOfferingPlate", new Vector3(-.95f, 13.1f, -17.5f), .32f);
+            RoomDress("ceramic_pot", "AltarClayPot", new Vector3(.95f, 13.1f, -17.9f), .42f);
+            RoomDress("brass_pan_01", "AltarBrassPan", new Vector3(.25f, 13.1f, -18.15f), .4f);
+            RoomDress("metal_jerrycan_green", "AltarFuelCan", new Vector3(1.9f, 12, -16.1f), .48f, true);
+            RoomDress("potted_plant_04", "CourtyardDeadPlant", new Vector3(-12.5f, 0, 8.6f), .58f);
+            RoomDress("plastic_crate_02", "CourtyardStorageCrate", new Vector3(12.6f, 4, 8.6f), .55f, true);
             // Guard radio on the desk, pump clock on the back wall, lobby props.
             RoomDress("vintage_radio_transceiver", "GuardRadio", new Vector3(-7.6f, .93f, -23.3f), .33f);
             RoomDress("wall_clock", "PumpClock", new Vector3(-27, 2.2f, -8.17f), .34f, false, 180, Vector3.back);

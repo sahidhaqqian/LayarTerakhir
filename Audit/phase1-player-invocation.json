@@ -1,6 +1,6 @@
 {
   "stage": "player",
-  "startedUtc": "2026-10-28T08:11:49.989180+00:00",
+  "startedUtc": "2026-10-28T10:59:24.600527+00:00",
   "command": [
     "xvfb-run",
     "-a",
@@ -15,12 +15,10 @@
     "-screen-height",
     "720",
     "-phase1Audit",
-    "/tmp/opencode/LayarTerakhir-p1overhaul/Audit/Visuals/Phase1-Overhaul-Visual",
+    "/tmp/opencode/LayarTerakhir-p1overhaul/Audit/Visuals/Phase1-VisualOverhaul",
     "-logFile",
     "/tmp/opencode/LayarTerakhir-p1overhaul/Audit/phase1-player.log",
     "-phase1VisualReview"
   ],
-  "status": "Finished",
-  "endedUtc": "2026-10-28T08:13:09.042872+00:00",
-  "exitCode": 2
+  "status": "Running"
 }

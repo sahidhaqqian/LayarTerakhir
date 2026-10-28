@@ -15,7 +15,7 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('stage', choices=['build-scene', 'build-linux', 'player', 'test'])
 parser.add_argument('--seed', type=Path, help='Explicit existing checkpoint fixture, copied into a new isolated audit save')
 parser.add_argument('--fast', action='store_true', help='3x synthetic smoke clock, never a feel/FPS/pacing measurement')
-parser.add_argument('--visual-review', action='store_true', help='Eight arranged views only; does not pass route/puzzle acceptance')
+parser.add_argument('--visual-review', action='store_true', help='Fifteen arranged views only; does not pass route/puzzle acceptance')
 parser.add_argument('--output', default='Audit/Visuals/Phase1-Linux')
 args = parser.parse_args()
 output = (ROOT / args.output).resolve()
@@ -86,7 +86,7 @@ try:
         assert data['completed'] and data['actualStandalonePlayer'] and data['checkpointSaved']
         assert all(check.startswith('PASS ') for check in data['checks'])
         if args.visual_review:
-            assert len(data['screenshots'])==10 and 'visual review only' in data['method']
+            assert len(data['screenshots'])==22 and 'visual review only' in data['method']
         else:
             assert data['walkedMeters'] > 100
         assert all((output/shot).stat().st_mtime>=datetime.fromisoformat(record['startedUtc']).timestamp() and (output/shot).stat().st_size>1000 for shot in data['screenshots'])

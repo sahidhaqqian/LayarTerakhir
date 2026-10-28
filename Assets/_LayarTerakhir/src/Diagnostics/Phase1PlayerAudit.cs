@@ -178,30 +178,52 @@ namespace LayarTerakhir.Diagnostics
         private IEnumerator VisualReview()
         {
             var views=new[]{
-                ("01-revised-exterior",new Vector3(1,.06f,-33),new Vector3(0,6,-20)),
-                ("02-revised-pump",new Vector3(-27,.06f,-14),new Vector3(-29,1.5f,-9)),
-                ("03-revised-gallery",new Vector3(14,4.06f,-11),new Vector3(-8,5.5f,-11)),
-                ("04-revised-courtyard",new Vector3(14,4.06f,4),new Vector3(-12,6,10)),
-                ("05-revised-stairs",new Vector3(-20,.06f,-1.6f),new Vector3(-20,2.6f,4)),
-                ("06-revised-l3",new Vector3(-17,8.06f,-11),new Vector3(2,9.5f,-11)),
-                ("07-revised-l4",new Vector3(14,12.06f,10.5f),new Vector3(-5,13.4f,11)),
-                ("08-revised-kitchen",new Vector3(19,12.06f,3.2f),new Vector3(22,13.2f,6))};
+                ("01-exterior-parking-facade",new Vector3(1,.06f,-33),new Vector3(0,6,-20)),
+                ("02-pump-room",new Vector3(-27,.06f,-14),new Vector3(-29,1.5f,-9)),
+                ("03-floor1-corridor",new Vector3(14,.06f,-11),new Vector3(-8,1.6f,-11)),
+                ("04-k102-supernatural-passage",new Vector3(-14,.06f,2),new Vector3(-17,1.5f,2)),
+                ("05-floor2-corridor-mailboxes",new Vector3(6,4.06f,-8.6f),new Vector3(-1,5.2f,-12.7f)),
+                ("06-floor2-archive-interior",new Vector3(5.5f,4.06f,13.6f),new Vector3(4.5f,4.9f,19)),
+                ("07-floor3-kuntilanak-corridor",new Vector3(-17,8.06f,-11),new Vector3(2,9.5f,-11)),
+                ("08-floor3-stair-and-lift",new Vector3(16.5f,8.06f,-4),new Vector3(20,10.5f,-9)),
+                ("09-floor4-void-loop",new Vector3(-9,12.06f,-11),new Vector3(9,12.8f,9)),
+                ("10-rooms-401-402-claw",new Vector3(-2,12.06f,10.1f),new Vector3(-2,13.4f,13.05f)),
+                ("11-room403-hideout",new Vector3(7,12.06f,14.2f),new Vector3(9,13,19)),
+                ("12-bathroom-stalls",new Vector3(-16.5f,12.06f,2),new Vector3(-22.5f,13,0)),
+                ("13-kitchen-furnace",new Vector3(19,12.06f,3.2f),new Vector3(22,13.2f,6)),
+                ("14-room404-altar",new Vector3(0,12.06f,-14.2f),new Vector3(0,12.9f,-17.7f)),
+                ("15-boss-arena-halogen-north",new Vector3(0,12.06f,4),new Vector3(-3.3f,13.4f,12.8f)),
+                ("16-k102-stair-flight",new Vector3(-20,.06f,-1.6f),new Vector3(-20,2.6f,4)),
+                ("17-floor4-east-gallery-loop",new Vector3(15,12.06f,-8),new Vector3(15,12.9f,11)),
+                ("18-boss-arena-404-mouth",new Vector3(0,12.06f,-7),new Vector3(0,13.2f,-13.2f)),
+                ("19-exterior-guard-post",new Vector3(-3.5f,.06f,-27.5f),new Vector3(-8.5f,1.7f,-23)),
+                ("20-floor1-service-lobby",new Vector3(-14,.06f,-11),new Vector3(-24,1.6f,-11))};
             foreach(var view in views)
             {
                 var capsule=d.player.GetComponent<CharacterController>();capsule.enabled=false;
                 d.player.transform.position=view.Item2;capsule.enabled=true;
-                Aim(view.Item3);yield return new WaitForSeconds(.4f);yield return Shot(view.Item1);
+                // The phone is the authored main light in the abandoned building
+                // (Rancangan.MD lighting revision); review views raise it so the
+                // captures show real gameplay lighting, and wait long enough for
+                // the fixture light-budget to enable nearby practicals.
+                CameraOn();Aim(view.Item3);yield return new WaitForSeconds(1.3f);yield return Shot(view.Item1);
             }
-            d.Phone.isPhoneRaised=false;d.Phone.SyncVisualState();d.phoneView.Apps.Open(PhoneApp.Home);
-            InputSystem.QueueStateEvent(mouse,new MouseState{buttons=2});yield return null;yield return null;yield return new WaitForSecondsRealtime(.7f);
+            d.phoneView.SetViewfinder(false);d.Phone.isPhoneRaised=false;d.Phone.SyncVisualState();d.phoneView.Apps.Open(PhoneApp.Home);
+            InputSystem.QueueStateEvent(mouse,new MouseState{buttons=2});yield return null;yield return null;yield return new WaitForSecondsRealtime(1.6f);
             Check(d.Phone.isPhoneRaised&&d.phoneView.ViewfinderActive&&d.phoneView.FocusHandsVisible,"Held RMB raises the landscape camera with two physical grips");
             yield return Shot("09-rmb-held-two-handed-camera");
             d.phoneView.Apps.Open(PhoneApp.Inventory);yield return null;yield return null;
             Check(d.phoneView.IsCameraApp,"Held RMB overrides a handset app menu");
-            InputSystem.QueueStateEvent(mouse,new MouseState());yield return null;yield return null;yield return new WaitForSecondsRealtime(.4f);
-            Check(!d.phoneView.ViewfinderActive&&!d.player.GetComponent<ShoulderCameraRig>().PhoneAimOverride&&!d.Phone.isPhoneRaised,"RMB release restores the previous camera and stored phone");
+            InputSystem.QueueStateEvent(mouse,new MouseState());yield return null;yield return null;
+            // Software rendering runs at a few FPS; poll until the release
+            // animation actually settles instead of assuming a fixed wait.
+            float releaseDeadline=Time.realtimeSinceStartup+10;
+            while((d.phoneView.ViewfinderActive||d.player.GetComponent<ShoulderCameraRig>().PhoneAimOverride||!d.Phone.isPhoneRaised||d.phoneView.FocusHandsVisible)&&Time.realtimeSinceStartup<releaseDeadline)yield return null;
+            // Production contract (AtmajaPlayTests.PhoneFocusRecovery): releasing
+            // RMB leaves the aim pose and returns to a raised portrait handset.
+            Check(!d.phoneView.ViewfinderActive&&!d.player.GetComponent<ShoulderCameraRig>().PhoneAimOverride&&d.Phone.isPhoneRaised&&!d.phoneView.FocusHandsVisible,"RMB release restores the portrait camera and raised phone");
             yield return Shot("10-rmb-release-restores-perspective");
-            Check(true,"Ten native views captured; only the RMB checks use production input, arranged views are not route acceptance");
+            Check(true,"Twenty-two native views captured; only the RMB checks use production input, arranged views are not route acceptance");
             receipt.checkpointSaved=d.Campaign.HasValidCheckpoint;
         }
         private void CameraOn()

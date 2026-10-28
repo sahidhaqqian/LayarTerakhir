@@ -27,6 +27,7 @@ namespace LayarTerakhir.Editor
         private static Phase1Director d;
         private static Transform environment, current;
         private static Material concrete, plaster, soot, tiles, rust, darkMetal, timber, paper, glass, emissive, moss;
+        private static Material tilesWet, tilesBurnt, bandDamp, bandStd, bandChar;
         private static readonly List<Phase1Anchor> anchors = new List<Phase1Anchor>();
         private static readonly List<Transform> pathNodes = new List<Transform>();
         private static readonly Dictionary<string, Mesh> meshes = new Dictionary<string, Mesh>();
@@ -72,7 +73,7 @@ namespace LayarTerakhir.Editor
             current = environment; anchors.Clear(); pathNodes.Clear(); meshes.Clear(); Materials(); ImportExternalSurfaces();
             Exterior();
             for (int floor = 0; floor < 4; floor++) Floor(floor);
-            StoryObjects(); EnvironmentDressing(); AdditionalDressing(); RoomDressing(); Threats(); Lighting(sourceProfile);
+            StoryObjects(); EnvironmentDressing(); AdditionalDressing(); RoomDressing(); OverhaulDressing(); Threats(); Lighting(sourceProfile);
             d.world.anchors = anchors.ToArray(); d.world.patrolPoints = pathNodes.ToArray();
             if(!MonoScript.FromScriptableObject(d.balance))throw new InvalidOperationException("Phase1Balance has no serializable Unity script");
             foreach(var behaviour in scene.GetRootGameObjects().SelectMany(go=>go.GetComponentsInChildren<MonoBehaviour>(true)))
@@ -191,13 +192,43 @@ namespace LayarTerakhir.Editor
             {
                 float x = -21 + i * 5.5f;
                 Box("ParkingPaintLine", new Vector3(x, .012f, -32), new Vector3(.07f, .01f, 4), paper, false);
+                Box("ParkingWheelStop", new Vector3(x + 2.7f, .09f, -34.4f), new Vector3(1.7f, .18f, .2f), concrete, false);
             }
+            // Rain puddles and a dark oil stain: wet, glossy, collider-free.
+            foreach (var puddle in new[] { new Vector3(-6, .012f, -27), new Vector3(9, .012f, -34.5f), new Vector3(-20, .012f, -19), new Vector3(15, .012f, -25), new Vector3(-27, .012f, -18) })
+                Box("ParkingPuddle", puddle, new Vector3(4.6f, .02f, 3f), glass, false);
+            Box("ParkingOilStain", new Vector3(3.5f, .013f, -29), new Vector3(2.4f, .02f, 1.8f), darkMetal, false);
+            // Compound entrance behind the spawn: concrete gate pillars and a
+            // rusted bar gate, so arrival reads as a gated rusunawa yard.
+            foreach (int side in new[] { -1, 1 }) Box("EntryGatePillar", new Vector3(side * 3.2f, 1.4f, -37), new Vector3(.55f, 2.8f, .55f), concrete);
+            for (int bar = -5; bar <= 5; bar++) Pipe("EntryGateBar", new Vector3(bar * .55f, .15f, -37), new Vector3(bar * .55f, 2.25f, -37), .024f, rust);
+            Pipe("EntryGateRail", new Vector3(-3, 2.3f, -37), new Vector3(3, 2.3f, -37), .03f, rust);
+            // One dead-street lamp pole with a live warm head over the parking rows.
+            Pipe("StreetLampPole", new Vector3(-14, 0, -35), new Vector3(-14, 5, -35), .06f, darkMetal);
+            Pipe("StreetLampArm", new Vector3(-14, 5, -35), new Vector3(-12.8f, 5.1f, -35), .04f, darkMetal);
+            Fixture("StreetLamp", new Vector3(-12.8f, 4.95f, -35), new Color(1, .66f, .34f), 2.4f, 11, false);
+            SourceProp("caged_hanging_light", "GuardCagedLamp", new Vector3(-8, 2.55f, -23), .45f, false);
+            SourceProp("caged_hanging_light", "PumpCagedLamp", new Vector3(-28, 2.6f, -11.5f), .45f, false);
+            // Ground-floor canopy over the south entrances: horizontal shadow
+            // line and shelter depth on the otherwise flat facade.
+            Box("FacadeGroundCanopy", new Vector3(0, 3.25f, -19.3f), new Vector3(34, .16f, 1.9f), concrete);
+            foreach (float cx in new[] { -15f, -5f, 5f, 15f }) Pipe("CanopyStrut", new Vector3(cx, 2.2f, -18.6f), new Vector3(cx, 3.25f, -19.9f), .03f, rust);
+            // Rooftop silhouette: parapet ring, antenna mast and a utility box.
+            Box("RoofParapetSouth", new Vector3(0, 16.2f, -20), new Vector3(48.5f, .9f, .3f), concrete);
+            Box("RoofParapetNorth", new Vector3(0, 16.2f, 20.1f), new Vector3(48.5f, .9f, .3f), concrete);
+            foreach (int side in new[] { -1, 1 }) Box("RoofParapetSide", new Vector3(side * 24.2f, 16.2f, 0), new Vector3(.3f, .9f, 40.5f), concrete);
+            Pipe("RoofAntenna", new Vector3(18, 15.8f, -18), new Vector3(18, 18.6f, -18), .035f, rust);
+            Box("RoofUtilityBox", new Vector3(15, 16.4f, -18), new Vector3(1.4f, 1.3f, .9f), rust, false);
             // Downloaded weathered frames and broken glazing replace the stylized palette kit.
             for(int floor=0;floor<4;floor++)for(int unit=0;unit<8;unit++)
             {
                 float x=-21+unit*6;
+                int variant=(unit*3+floor)%5;
+                string windowFile=variant==0?"Windows_BrokenWindow_1":variant==1?"Windows_BrokenWindow_2":variant==2?"Windows_Window_2":"Windows_Window_1";
                 SourceProp("DoorsWindows","WeatheredFacadeWindow",new Vector3(x,floor*4+1.8f,-20.32f),1.45f,false,
-                    new Vector3(1.8f,1.45f,.24f),null,Imported+"DoorsWindows/"+((unit+floor)%4==0?"Windows_BrokenWindow_1":"Windows_Window_1")+".fbx");
+                    new Vector3(1.8f,1.45f,.24f),null,Imported+"DoorsWindows/"+windowFile+".fbx");
+                // Rain streak staining under every facade window.
+                Box("FacadeRainStain", new Vector3(x, floor * 4 + .5f, -20.26f), new Vector3(1f, 1f, .04f), floor == 3 ? soot : moss, false);
             }
         }
 
@@ -206,6 +237,8 @@ namespace LayarTerakhir.Editor
             float y = floor * 4;
             current = Group("L" + (floor + 1) + "_ConcreteRoomsAndLoop");
             Material wall = floor == 3 ? soot : plaster;
+            Material band = floor == 0 ? bandDamp : floor == 3 ? bandChar : bandStd;
+            Material galleryTile = floor == 0 ? tilesWet : floor == 3 ? tilesBurnt : tiles;
             if (floor == 2)
             {
                 // The investigation route is a sealed 40m corridor. The rest of
@@ -222,8 +255,14 @@ namespace LayarTerakhir.Editor
                 Box("L3_NorthRoomFacade",new Vector3(0,y+1.8f,13),new Vector3(34,3.6f,.22f),wall);
                 Box("L3_NorthParapet",new Vector3(0,y+.5f,9),new Vector3(26,1,.18f),wall);
                 for(int pier=0;pier<7;pier++)Box("L3_NorthPier",new Vector3(-12+pier*4,y+1.8f,9.2f),new Vector3(.26f,3.6f,.28f),concrete);
+                for(int post=0;post<=8;post++)Box("VoidParapetPost",new Vector3(-12+post*3,y+.5f,8.86f),new Vector3(.22f,1,.1f),concrete,false);
+                foreach(int side in new[]{-1,1})for(int post=0;post<=8;post++)Box("VoidParapetPost",new Vector3(side*12.86f,y+.5f,-8+post*2),new Vector3(.1f,1,.22f),concrete,false);
                 Box("L3_SouthApartmentFacade",new Vector3(0,y+1.8f,-20.1f),new Vector3(48,3.6f,.25f),wall);
-                Box("L3_40mCorridorFloor", new Vector3(0, y - .12f, -11), new Vector3(42, .24f, 4), tiles);
+                Box("L3_40mCorridorFloor", new Vector3(0, y - .12f, -11), new Vector3(42, .24f, 4), tilesWet);
+                Box("L3CorridorBandNorth", new Vector3(-1.5f, y + .55f, -9.14f), new Vector3(39, 1.1f, .05f), bandChar, false);
+                Box("L3CorridorBandSouth", new Vector3(0, y + .55f, -12.86f), new Vector3(42, 1.1f, .05f), bandChar, false);
+                Pipe("L3CeilingConduit", new Vector3(-20, y + 3.3f, -12.5f), new Vector3(20, y + 3.3f, -12.5f), .04f, darkMetal);
+                Pipe("L3CeilingConduitRun", new Vector3(-20, y + 3.3f, -9.5f), new Vector3(20, y + 3.3f, -9.5f), .03f, rust);
                 Box("L3_NorthWall", new Vector3(-1.5f, y + 1.8f, -9), new Vector3(39, 3.6f, .22f), wall);
                 Box("L3_EastEndWall", new Vector3(21, y + 1.7f, -11), new Vector3(.25f, 3.4f, 4), wall);
                 Box("L3_SouthWall", new Vector3(0, y + 1.8f, -13), new Vector3(42, 3.6f, .22f), wall);
@@ -233,10 +272,10 @@ namespace LayarTerakhir.Editor
                 for (int i = 0; i < 6; i++) Fixture("L3FailingFluorescent", new Vector3(-17 + i * 6.5f, y + 3.35f, -11), new Color(.6f, .75f, .70f), .8f, 5, i == 3);
                 return;
             }
-            Box("NorthGalleryFloor", new Vector3(0, y - .12f, 11), new Vector3(34, .24f, 4), tiles);
-            Box("SouthGalleryFloor", new Vector3(0, y - .12f, -11), new Vector3(34, .24f, 4), tiles);
-            Box("WestGalleryFloor", new Vector3(-15, y - .12f, 0), new Vector3(4, .24f, 18), tiles);
-            Box("EastGalleryFloor", new Vector3(15, y - .12f, 0), new Vector3(4, .24f, 18), tiles);
+            Box("NorthGalleryFloor", new Vector3(0, y - .12f, 11), new Vector3(34, .24f, 4), galleryTile);
+            Box("SouthGalleryFloor", new Vector3(0, y - .12f, -11), new Vector3(34, .24f, 4), galleryTile);
+            Box("WestGalleryFloor", new Vector3(-15, y - .12f, 0), new Vector3(4, .24f, 18), galleryTile);
+            Box("EastGalleryFloor", new Vector3(15, y - .12f, 0), new Vector3(4, .24f, 18), galleryTile);
             Box("NorthRoomsFloor", new Vector3(0, y - .12f, 16.5f), new Vector3(48, .24f, 7), concrete);
             // The hidden L1→L2 stair occupies a real slab opening, not a slab you walk through.
             Box("WestRoomsFloorA", new Vector3(-20.5f, y - .12f, -7.5f), new Vector3(7, .24f, 11), concrete);
@@ -278,13 +317,39 @@ namespace LayarTerakhir.Editor
                 Box("VoidSideParapet", new Vector3(side * 13, y + .5f, 0), new Vector3(.18f, 1, 18), wall);
                 Pipe("VoidHandrailNorthSouth", new Vector3(-13, y + 1.07f, side * 9), new Vector3(13, y + 1.07f, side * 9), .035f, darkMetal);
                 Pipe("VoidHandrailSide", new Vector3(side * 13, y + 1.07f, -9), new Vector3(side * 13, y + 1.07f, 9), .035f, darkMetal);
+                Pipe("VoidMidRailNorthSouth", new Vector3(-13, y + .58f, side * 9), new Vector3(13, y + .58f, side * 9), .022f, rust);
+                Pipe("VoidMidRailSide", new Vector3(side * 13, y + .58f, -9), new Vector3(side * 13, y + .58f, 9), .022f, rust);
+                // Vertical parapet posts on the void face: the post-and-panel
+                // rhythm of the real rusunawa galleries (reference photos).
+                for (int post = 0; post <= 8; post++)
+                {
+                    Box("VoidParapetPost", new Vector3(-12 + post * 3, y + .5f, side * 8.86f), new Vector3(.22f, 1, .1f), concrete, false);
+                    Box("VoidParapetPost", new Vector3(side * 12.86f, y + .5f, -9 + post * 2.25f), new Vector3(.1f, 1, .22f), concrete, false);
+                }
                 for (int i = 0; i < 7; i++)
                     Box("GalleryConcretePier", new Vector3(-12 + i * 4, y + 1.8f, side * 9.2f), new Vector3(.26f, 3.6f, .28f), concrete);
             }
-            DoorWall(new Vector3(0, y, 13), 34, true, floor == 3 ? new[] { -10f, -2f, 7f } : new[] { -12f, -5f, 3f, 11f }, wall);
-            DoorWall(new Vector3(0, y, -13), 34, true, floor == 3 ? new[] { 0f } : new[] { -12f, -5f, 3f, 11f }, wall);
-            DoorWall(new Vector3(-17, y, 0), 26, false, new[] { -11f, 2f, 8f }, wall);
-            DoorWall(new Vector3(17, y, 0), 26, false, new[] { 4f }, wall);
+            DoorWall(new Vector3(0, y, 13), 34, true, floor == 3 ? new[] { -10f, -2f, 7f } : new[] { -12f, -5f, 3f, 11f }, wall, band);
+            DoorWall(new Vector3(0, y, -13), 34, true, floor == 3 ? new[] { 0f } : new[] { -12f, -5f, 3f, 11f }, wall, band);
+            DoorWall(new Vector3(-17, y, 0), 26, false, new[] { -11f, 2f, 8f }, wall, band);
+            DoorWall(new Vector3(17, y, 0), 26, false, new[] { 4f }, wall, band);
+            // Exposed ceiling services along the room wall, as in the reference
+            // corridors: conduit runs, a cable tray and junction boxes.
+            Pipe("CorridorConduitNorth", new Vector3(-16, y + 3.3f, 12.5f), new Vector3(16, y + 3.3f, 12.5f), .04f, darkMetal);
+            Pipe("CorridorConduitSouth", new Vector3(-16, y + 3.3f, -12.5f), new Vector3(16, y + 3.3f, -12.5f), .04f, darkMetal);
+            Pipe("CorridorConduitWest", new Vector3(-16.5f, y + 3.3f, -8), new Vector3(-16.5f, y + 3.3f, 8), .04f, darkMetal);
+            Pipe("CorridorConduitEast", new Vector3(16.5f, y + 3.3f, -8), new Vector3(16.5f, y + 3.3f, 8), .04f, darkMetal);
+            Box("CorridorCableTrayNorth", new Vector3(0, y + 3.46f, 12.5f), new Vector3(34, .07f, .34f), darkMetal, false);
+            Box("CorridorCableTraySouth", new Vector3(0, y + 3.46f, -12.5f), new Vector3(34, .07f, .34f), darkMetal, false);
+            foreach (float jx in new[] { -12f, -4f, 4f, 12f })
+            {
+                Box("ConduitJunction", new Vector3(jx, y + 3.16f, 12.5f), new Vector3(.3f, .22f, .18f), rust, false);
+                Box("ConduitJunction", new Vector3(jx, y + 3.16f, -12.5f), new Vector3(.3f, .22f, .18f), rust, false);
+            }
+            // Standing rainwater where the roof and galleries leak: thin, glossy,
+            // no collider, kept off the exact walking line.
+            Box("GalleryPuddle", new Vector3(-7 + floor * 3, y + .005f, 12.2f), new Vector3(2.6f, .015f, 1.1f), glass, false);
+            Box("GalleryPuddle", new Vector3(6 - floor * 2, y + .005f, -12.2f), new Vector3(2.2f, .015f, 1f), glass, false);
             int number = floor * 100 + 101;
             foreach (float x in floor == 3 ? new[] { -10f, -2f, 7f } : new[] { -12f, -5f, 3f, 11f })
             {
@@ -313,8 +378,11 @@ namespace LayarTerakhir.Editor
                 Node(new Vector3(0,y,-12));Node(new Vector3(0,y,-14));
             }
         }
-        private static void DoorWall(Vector3 centre, float span, bool alongX, float[] gaps, Material mat)
+        private static void DoorWall(Vector3 centre, float span, bool alongX, float[] gaps, Material mat, Material band = null)
         {
+            // Two-tone corridor walls: a dark, scuffed wainscot band to 1.1 m
+            // with lighter plaster above (reference corridors / DreadOut grime).
+            band = band ?? mat;
             // gaps use world x/z. Keep room shells closed except their actual openings.
             float cursor = -span * .5f;
             foreach (float gap in gaps.OrderBy(v => v))
@@ -323,7 +391,8 @@ namespace LayarTerakhir.Editor
                 if (left > cursor)
                 {
                     var p = centre + (alongX ? Vector3.right : Vector3.forward) * ((cursor + left) * .5f);
-                    Box("ApartmentWallPanel", p + Vector3.up * 1.8f, alongX ? new Vector3(left - cursor, 3.6f, .22f) : new Vector3(.22f, 3.6f, left - cursor), mat);
+                    Box("ApartmentWallPanelLow", p + Vector3.up * .55f, alongX ? new Vector3(left - cursor, 1.1f, .22f) : new Vector3(.22f, 1.1f, left - cursor), band);
+                    Box("ApartmentWallPanel", p + Vector3.up * 2.35f, alongX ? new Vector3(left - cursor, 2.5f, .22f) : new Vector3(.22f, 2.5f, left - cursor), mat);
                 }
                 var lintel = centre + (alongX ? Vector3.right : Vector3.forward) * gap;
                 Box("DoorLintel", lintel + Vector3.up * 3.1f, alongX ? new Vector3(2.1f, 1, .22f) : new Vector3(.22f, 1, 2.1f), mat);
@@ -333,7 +402,8 @@ namespace LayarTerakhir.Editor
             {
                 float length = span * .5f - cursor;
                 var p = centre + (alongX ? Vector3.right : Vector3.forward) * (cursor + length * .5f);
-                Box("ApartmentWallPanel", p + Vector3.up * 1.8f, alongX ? new Vector3(length, 3.6f, .22f) : new Vector3(.22f, 3.6f, length), mat);
+                Box("ApartmentWallPanelLow", p + Vector3.up * .55f, alongX ? new Vector3(length, 1.1f, .22f) : new Vector3(.22f, 1.1f, length), band);
+                Box("ApartmentWallPanel", p + Vector3.up * 2.35f, alongX ? new Vector3(length, 2.5f, .22f) : new Vector3(.22f, 2.5f, length), mat);
             }
         }
         private static void DoorFacade(int number, Vector3 p, bool north, bool open)
@@ -346,8 +416,13 @@ namespace LayarTerakhir.Editor
                     new Vector3(1.97f,2.6f,.14f),null,Imported+"DoorsWindows/Door_DoorFrame_Double.fbx");
             }
             Label("RoomNumber_" + number, number.ToString(), p + new Vector3(0, 2.9f, north ? -.15f : .15f), Quaternion.Euler(0, north ? 180 : 0, 0), .14f);
-            // Tall dark side window beside the door (real rusunawa unit fronts).
-            Box("FacadeSideWindow_" + number, p + new Vector3(1.72f, 1.58f, north ? -.1f : .1f), new Vector3(.92f, 1.5f, .07f), glass, false);
+            // Tall dark side window beside the door (real rusunawa unit fronts),
+            // now framed with a mullion cross so it reads as joinery, not a slab.
+            float wz = north ? -.1f : .1f;
+            Box("FacadeSideWindow_" + number, p + new Vector3(1.72f, 1.58f, wz), new Vector3(.92f, 1.5f, .07f), glass, false);
+            Box("FacadeSideWindowMullionV_" + number, p + new Vector3(1.72f, 1.58f, wz * 1.6f), new Vector3(.055f, 1.5f, .09f), darkMetal, false);
+            Box("FacadeSideWindowMullionH_" + number, p + new Vector3(1.72f, 1.58f, wz * 1.6f), new Vector3(.92f, .055f, .09f), darkMetal, false);
+            Box("FacadeSideWindowSill_" + number, p + new Vector3(1.72f, .8f, wz * 1.6f), new Vector3(1f, .07f, .1f), concrete, false);
         }
         private static void Fixture(string id, Vector3 p, Color color, float intensity, float range, bool shadows)
         {
@@ -381,8 +456,8 @@ namespace LayarTerakhir.Editor
             RenderSettings.ambientMode = AmbientMode.Trilight;
             RenderSettings.skybox=null;
             RenderSettings.ambientSkyColor = new Color(.12f, .16f, .20f); RenderSettings.ambientEquatorColor = new Color(.065f, .085f, .10f); RenderSettings.ambientGroundColor = new Color(.035f, .04f, .04f);
-            RenderSettings.fog = true; RenderSettings.fogMode = FogMode.ExponentialSquared; RenderSettings.fogDensity = .0085f; RenderSettings.fogColor = new Color(.035f, .05f, .06f);
-            var moon = new GameObject("OvercastMoon", typeof(Light)); moon.transform.rotation = Quaternion.Euler(55, -25, 0); var light = moon.GetComponent<Light>(); light.type = LightType.Directional; light.intensity = .4f; light.color = new Color(.62f, .72f, .8f); light.shadows = LightShadows.Soft;
+            RenderSettings.fog = true; RenderSettings.fogMode = FogMode.ExponentialSquared; RenderSettings.fogDensity = .0075f; RenderSettings.fogColor = new Color(.035f, .05f, .06f);
+            var moon = new GameObject("OvercastMoon", typeof(Light)); moon.transform.rotation = Quaternion.Euler(50, -35, 0); var light = moon.GetComponent<Light>(); light.type = LightType.Directional; light.intensity = .55f; light.color = new Color(.62f, .72f, .8f); light.shadows = LightShadows.Soft;
             if (source)
             {
                 string path = Art + "RusunawaVolume.asset";
@@ -392,7 +467,7 @@ namespace LayarTerakhir.Editor
                 profile.components.Clear();
                 foreach(var original in source.components)
                 {var component=Object.Instantiate(original);component.name=original.name;profile.components.Add(component);AssetDatabase.AddObjectToAsset(component,profile);}
-                if (profile.TryGet<ColorAdjustments>(out var grade)) { grade.postExposure.value = .2f; grade.contrast.value = 12; grade.saturation.value = -15; }
+                if (profile.TryGet<ColorAdjustments>(out var grade)) { grade.postExposure.value = .45f; grade.contrast.value = 18; grade.saturation.value = -20; }
                 if(profile.TryGet<MotionBlur>(out var blur))blur.active=false;
                 if(profile.TryGet<FilmGrain>(out var grain))grain.intensity.value=.12f;
                 EditorUtility.SetDirty(profile);

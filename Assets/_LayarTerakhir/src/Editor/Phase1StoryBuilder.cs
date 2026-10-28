@@ -92,6 +92,11 @@ namespace LayarTerakhir.Editor
             SourceProp("DoorsWindows","DownloadedSafetyChain",new Vector3(20,8.65f,-9.06f),1.3f,false,
                 new Vector3(1.95f,1.3f,.3f),darkMetal,Imported+"DoorsWindows/SafetyChain.fbx",d.world.chain.transform);
             d.world.chainItem = Item(d.world.chain, "CHAIN", "Potong rantai tangga");
+            // A fallen fluorescent housing on the L3 floor sells the failing
+            // corridor before the encounter; kept against the south wall.
+            var fallen = SourceProp("mounted_fluorescent_lights", "L3FallenFluorescent", new Vector3(-6, 8.12f, -12.55f), .16f, false, new Vector3(1.05f, .16f, .24f));
+            fallen.transform.rotation = Quaternion.Euler(9, 38, 3);
+            SourceProp("caged_hanging_light", "StairwellCagedLamp", new Vector3(20, 11.9f, -5.5f), .45f, false);
             Stair("L3ToL4_EnclosedStair", new Vector3(20, 8, -9), 4, 7, 2);
             Box("StairwellEastWall", new Vector3(21.3f, 10.4f, -5.5f), new Vector3(.25f, 5, 8), soot);
             Box("StairwellWestWall", new Vector3(18.7f, 10.4f, -5.5f), new Vector3(.25f, 5, 8), soot);
@@ -99,9 +104,20 @@ namespace LayarTerakhir.Editor
             current = Group("L4_Investigation_Ritual");
             foreach (float x in new[] { -6f, 2.5f, 11.5f }) Box("RoomPartition", new Vector3(x, 13.8f, 16.5f), new Vector3(.22f, 3.6f, 7), soot);
             d.world.wall401 = Box("K401_BreakawayPanel", new Vector3(-10, 13.3f, 13.03f), new Vector3(1.95f, 2.6f, .14f), soot);
+            // Fire-gutted 401 threshold: a broken downloaded door leaf leans in
+            // the room mouth and charred debris spills from the emergence hole.
+            var broken401 = SourceProp("DoorsWindows", "K401_BrokenDoorLeaf", new Vector3(-8.1f, 13f, 12.5f), 2.4f, false,
+                new Vector3(1.9f, 2.4f, .18f), null, Imported + "DoorsWindows/Door_DoorFrame_Broken_Double.fbx");
+            broken401.transform.rotation = Quaternion.Euler(0, 18, 5);
+            var debris401 = Box("K401CharredDebris", new Vector3(-11, 12.25f, 14.6f), new Vector3(1.5f, .5f, .85f), soot, false);
+            debris401.transform.rotation = Quaternion.Euler(0, 31, 0);
+            Box("K401SootStain", new Vector3(-10, 14.6f, 12.9f), new Vector3(2.6f, 1.6f, .05f), bandChar, false);
             Zone("GENDER", new Vector3(14, 13, 4), new Vector3(5, 2.2f, 2));
             d.world.clawAim = Anchor("CLAW", new Vector3(-2, 13.45f, 13.05f), Vector3.back);
-            Box("K402_ScratchedIronDoor",new Vector3(-2,13.3f,13.03f),new Vector3(1.95f,2.6f,.12f),darkMetal);
+            // Real downloaded door leaf with a worn-steel surface, not a cube:
+            // the claw evidence must read as an iron door in the phone feed.
+            SourceProp("DoorsWindows","K402_ScratchedIronDoor",new Vector3(-2,13.3f,13.03f),2.6f,true,
+                new Vector3(1.97f,2.6f,.12f),darkMetal,Imported+"DoorsWindows/Door_DoorFrame_Double.fbx");
             for (int i = 0; i < 5; i++)
             {
                 var slash = Box("K402_FiveFingerGouge", new Vector3(-2.3f + i * .14f, 13.55f - Mathf.Abs(i - 2) * .08f, 12.94f), new Vector3(.04f, .9f, .035f), rust, false);
@@ -129,11 +145,21 @@ namespace LayarTerakhir.Editor
             {
                 Box("WCStallPartition", new Vector3(-22.3f, 13.05f, -1 + i * 2.1f), new Vector3(3, 2.1f, .12f), plaster);
                 Box("WCBase", new Vector3(-23.1f, 12.22f, -.1f + i * 2.1f), new Vector3(.48f, .44f, .7f), concrete);
+                // Timber stall doors on the open face. The hiding stall's door
+                // hangs fully open flat against its partition, so the authored
+                // hide entry capsule path stays physically clear.
+                if (i == 1) Box("WCStallDoor", new Vector3(-21.6f, 13.05f, 1.16f), new Vector3(1.45f, 2.1f, .05f), timber);
+                else Box("WCStallDoor", new Vector3(-20.82f, 13.05f, -.1f + i * 2.1f), new Vector3(.05f, 2.1f, 1.45f), timber);
+                Pipe("WCStallPlumbing", new Vector3(-23.9f, 12.1f, -.1f + i * 2.1f), new Vector3(-23.9f, 13.4f, -.1f + i * 2.1f), .035f, rust);
             }
+            Box("BathroomMirrorGlass", new Vector3(-17.2f, 13.7f, 5.32f), new Vector3(1.6f, .9f, .04f), glass, false);
+            Pipe("BathroomFeedPipe", new Vector3(-17.2f, 12.1f, 5.2f), new Vector3(-17.2f, 14.8f, 5.2f), .045f, rust);
             // Kitchen stove is a fixed masonry kiln; the keris cannot roll under physics clutter.
             Box("KitchenNorthWall", new Vector3(20.5f, 13.6f, 8), new Vector3(7, 3.2f, .18f), soot);
             Box("KitchenKilnBase", new Vector3(21.7f, 12.35f, 5.5f), new Vector3(2.8f, .7f, 1.5f), concrete);
             SourceProp("barrel_stove","ExistingRusunawaStove",new Vector3(21.7f,12.92f,5.8f),.65f);
+            Pipe("KitchenStoveFlue", new Vector3(21.7f, 13.3f, 5.8f), new Vector3(21.7f, 15.55f, 5.8f), .14f, rust);
+            Box("KitchenAshBed", new Vector3(21.7f, 12.74f, 5.5f), new Vector3(2f, .08f, 1.1f), soot, false);
             d.world.auraAim = Anchor("AURA", new Vector3(21.7f, 12.82f, 4.95f), Vector3.back);
             d.world.keris = Keris(new Vector3(21.7f, 12.76f, 4.95f));
             Item(d.world.keris, "KERIS", "Ambil Pecahan Keris Penumbal");
@@ -148,6 +174,17 @@ namespace LayarTerakhir.Editor
             d.world.wall404South = Box("K404_EastBreakaway", new Vector3(5, 13.8f, -16.5f), new Vector3(.22f, 3.6f, 7), soot);
             d.world.altarFog = Box("K404_SealedThreshold", new Vector3(0, 13.3f, -13.05f), new Vector3(2.08f, 2.6f, .22f), darkMetal);
             Label("K404_RoomLabel", "404", new Vector3(0, 14.9f, -12.82f), Quaternion.identity, .2f);
+            // Ritual floor traces in 404 reuse the licensed blood/scorch decal
+            // material already shipped for the signboard (no authored artwork).
+            foreach (var scorch in new[] { new Vector3(.4f, 12.06f, -16.2f), new Vector3(-1.3f, 12.06f, -18.6f) })
+            {
+                var quad = GameObject.CreatePrimitive(PrimitiveType.Quad); quad.name = "K404RitualScorch";
+                quad.transform.SetParent(current, false); quad.transform.position = scorch + Vector3.up * .02f;
+                quad.transform.rotation = Quaternion.Euler(90, 0, 0); quad.transform.localScale = new Vector3(.8f, .65f, 1);
+                quad.GetComponent<Renderer>().sharedMaterial = AssetDatabase.LoadAssetAtPath<Material>(Art + "Materials/External_ExileBlood.mat");
+                Object.DestroyImmediate(quad.GetComponent<Collider>());
+            }
+            Box("K404CharredBeam", new Vector3(2.6f, 12.3f, -18.8f), new Vector3(.28f, .6f, 3.2f), bandChar, false).transform.rotation = Quaternion.Euler(0, -24, 0);
             var altar = Box("AltarArang", new Vector3(0, 12.55f, -17.7f), new Vector3(2.4f, 1.1f, 1.15f), soot);
             Item(altar, "ALTAR", "Tancapkan Pecahan Keris / mulai ritual");
             Anchor("ALTAR", new Vector3(0, 12.06f, -16), Vector3.back); Anchor("AFTER_BOSS", new Vector3(0, 12.06f, -16), Vector3.back);
@@ -187,7 +224,7 @@ namespace LayarTerakhir.Editor
             if (state != RoomDoorState.CasedOpen)
                 SourceProp("DoorsWindows", "RoomDoorLeaf_" + number, centre + Vector3.up * 1.3f, 2.6f, true,
                     alongX ? new Vector3(1.97f, 2.6f, .12f) : new Vector3(.12f, 2.6f, 1.97f), null,
-                    Imported + "DoorsWindows/Door_DoorFrame_Double.fbx");
+                    Imported + "DoorsWindows/" + (state == RoomDoorState.DebrisBlocked ? "Door_DoorFrame_Broken_Double.fbx" : "Door_DoorFrame_Double.fbx"));
             if (state == RoomDoorState.Chained)
                 SourceProp("DoorsWindows", "RoomDoorChain_" + number, centre + Vector3.up * 1.45f, 1.3f, false,
                     alongX ? new Vector3(1.95f, 1.3f, .3f) : new Vector3(.3f, 1.3f, 1.95f), darkMetal, Imported + "DoorsWindows/SafetyChain.fbx");
