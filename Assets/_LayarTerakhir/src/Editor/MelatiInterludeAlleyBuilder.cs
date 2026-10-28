@@ -14,7 +14,7 @@ namespace LayarTerakhir.Editor
     // Runtime keeps only NPCs, moving traffic, lighting and interactions.
     public static class MelatiInterludeAlleyBuilder
     {
-        private static Transform root;
+        private static Transform root, group;
         private static Material concrete, wood, metal, roof;
         private static Material plasterA, plasterB, plasterC, brick, zinc, tarpBlue, tarpOrange, glassCase;
         private static Material kenneyCar, kenneyFood;
@@ -90,7 +90,7 @@ namespace LayarTerakhir.Editor
         private static GameObject Box(string name, Vector3 p, Vector3 size, Material material, bool collision = true)
         {
             var g = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            g.name = name; g.transform.SetParent(root, false); g.transform.position = p; g.transform.localScale = size;
+            g.name = name; g.transform.SetParent(group, false); g.transform.position = p; g.transform.localScale = size;
             g.GetComponent<Renderer>().sharedMaterial = material;
             if (!collision) Object.DestroyImmediate(g.GetComponent<Collider>());
             return g;
@@ -99,7 +99,7 @@ namespace LayarTerakhir.Editor
         private static void Label(string name, string text, Vector3 pos, Vector3 facing, float size, Color color)
         {
             var go = new GameObject(name, typeof(TextMesh));
-            go.transform.SetParent(root, false); go.transform.SetPositionAndRotation(pos, Quaternion.LookRotation(facing));
+            go.transform.SetParent(group, false); go.transform.SetPositionAndRotation(pos, Quaternion.LookRotation(facing));
             var label = go.GetComponent<TextMesh>();
             label.font = AssetDatabase.LoadAssetAtPath<Font>("Assets/_LayarTerakhir/assets/UI/Fonts/Barlow-Regular.ttf");
             label.text = text; label.fontSize = 48; label.characterSize = size / 10;
@@ -110,7 +110,7 @@ namespace LayarTerakhir.Editor
         private static void Wire(Vector3 a, Vector3 b, float sag = .5f)
         {
             var wire = new GameObject("InterludeWire", typeof(LineRenderer));
-            wire.transform.SetParent(root, false);
+            wire.transform.SetParent(group, false);
             var line = wire.GetComponent<LineRenderer>();
             line.sharedMaterial = metal; line.startWidth = line.endWidth = .02f; line.positionCount = 5;
             for (int i = 0; i < 5; i++)
@@ -124,6 +124,13 @@ namespace LayarTerakhir.Editor
         {
             var scene = EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);
             root = GameObject.Find("KampungMelati").transform;
+            // Idempotent: rebuild the interlude-only group from scratch.
+            // It stays OFF in the saved scene so the night prolog route is
+            // untouched; InterludeDirector activates it in daytime.
+            var old = root.Find("InterludeAlley");
+            if (old) Object.DestroyImmediate(old.gameObject);
+            group = new GameObject("InterludeAlley").transform;
+            group.SetParent(root, false);
             // Idempotent: clear previous authored pass before rebuilding.
             var residue = new List<GameObject>();
             foreach (var t in Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None))
@@ -155,6 +162,9 @@ namespace LayarTerakhir.Editor
             foreach (var r in root.GetComponentsInChildren<MeshRenderer>())
                 if (r.gameObject.name.StartsWith("Alley") || r.gameObject.name.StartsWith("Warteg") || r.gameObject.name.StartsWith("Gerobak") || r.gameObject.name.StartsWith("StreetDress"))
                     GameObjectUtility.SetStaticEditorFlags(r.gameObject, StaticEditorFlags.BatchingStatic);
+            // Night prolog must never see this: leave the group OFF in the
+            // saved scene. InterludeDirector activates it in daytime only.
+            group.gameObject.SetActive(false);
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
             AssetDatabase.SaveAssets();
@@ -219,7 +229,7 @@ namespace LayarTerakhir.Editor
             Box("AlleyGalon", new Vector3(-6.5f, .4f, -12.9f), new Vector3(.32f, .8f, .32f), Tint("InterludeGalon", new Color(.45f, .7f, .85f)), false);
             // Jemuran line high across the gang (visual only).
             var jemur = new GameObject("AlleyJemuran", typeof(LineRenderer));
-            jemur.transform.SetParent(root, false);
+            jemur.transform.SetParent(group, false);
             var jl = jemur.GetComponent<LineRenderer>();
             jl.sharedMaterial = metal; jl.startWidth = jl.endWidth = .015f; jl.positionCount = 2;
             jl.SetPositions(new[] { new Vector3(-11f, 2.1f, -10.3f), new Vector3(-11f, 2.1f, -13.2f) });
@@ -259,7 +269,7 @@ namespace LayarTerakhir.Editor
             Box("WartegCaseBack", new Vector3(p.x - 1.12f, 1.62f, -30f), new Vector3(.06f, .9f, 3.2f), glassCase, false);
             Box("WartegShelfMid", p + new Vector3(-1.5f, 1.62f, 0), new Vector3(.8f, .05f, 3.2f), glassCase, false);
             var caseLamp = new GameObject("WartegCaseLight", typeof(Light));
-            caseLamp.transform.SetParent(root, false);
+            caseLamp.transform.SetParent(group, false);
             caseLamp.transform.position = p + new Vector3(-1.5f, 2.3f, 0);
             var caseLight = caseLamp.GetComponent<Light>();
             caseLight.type = LightType.Point; caseLight.range = 3.5f; caseLight.intensity = 1.2f;
@@ -274,7 +284,7 @@ namespace LayarTerakhir.Editor
                     if (!f) continue;
                     PaintKit(f, kenneyFood);
                     f.name = "WartegFood";
-                    f.transform.SetParent(root, false);
+                    f.transform.SetParent(group, false);
                     f.transform.position = p + new Vector3(-1.5f, 1.32f + tier * .42f, -1.32f + i * .38f);
                     f.transform.localScale = Vector3.one * 2.2f;
                     fi++;
@@ -301,7 +311,7 @@ namespace LayarTerakhir.Editor
         private static void BuildGerobak(Vector3 p, float yaw, string sign, Color trim)
         {
             var cart = new GameObject("Gerobak" + sign.Replace(" ", ""));
-            cart.transform.SetParent(root, false);
+            cart.transform.SetParent(group, false);
             cart.transform.position = p; cart.transform.rotation = Quaternion.Euler(0, yaw, 0);
             Transform t = cart.transform;
             System.Func<string, Vector3, Vector3, Material, bool, GameObject> cbox = (name, pos, size, mat, collision) =>
@@ -369,7 +379,7 @@ namespace LayarTerakhir.Editor
             {
                 var bike = (GameObject)PrefabUtility.InstantiatePrefab(scooter);
                 bike.name = "StreetParkedMotor" + i;
-                bike.transform.SetParent(root, false);
+                bike.transform.SetParent(group, false);
                 bike.transform.position = spots[i];
                 bike.transform.rotation = Quaternion.Euler(0, yaws[i], 0);
                 foreach (var r in bike.GetComponentsInChildren<Renderer>())
@@ -385,7 +395,7 @@ namespace LayarTerakhir.Editor
             {
                 PaintKit(sedan, kenneyCar);
                 sedan.name = "StreetParkedSedan";
-                sedan.transform.SetParent(root, false);
+                sedan.transform.SetParent(group, false);
                 sedan.transform.position = new Vector3(2.7f, .1f, -38f);
                 sedan.transform.rotation = Quaternion.Euler(0, 180, 0);
                 var col = sedan.AddComponent<BoxCollider>(); col.center = Vector3.up * .5f; col.size = new Vector3(1.9f, 1.1f, 4.2f);
@@ -395,7 +405,7 @@ namespace LayarTerakhir.Editor
             {
                 PaintKit(van, kenneyCar);
                 van.name = "StreetAngkot";
-                van.transform.SetParent(root, false);
+                van.transform.SetParent(group, false);
                 van.transform.position = new Vector3(2.7f, .1f, -48f);
                 van.transform.rotation = Quaternion.Euler(0, 180, 0);
                 van.transform.localScale = Vector3.one * 1.15f;

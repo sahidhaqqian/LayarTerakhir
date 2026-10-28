@@ -167,6 +167,11 @@ namespace LayarTerakhir.Editor.Tests
             UnityEditor.SceneManagement.EditorSceneManager.OpenScene(LayarTerakhir.Editor.KosCorridorBuilder.ScenePath);
             var corridor = UnityEngine.Object.FindFirstObjectByType<LayarTerakhir.Prolog.KosCorridorDirector>();
             Assert.That(corridor, Is.Not.Null);
+            // Transform.Find: GameObject.Find skips the inactive group.
+            var kampung = GameObject.Find("KampungMelati");
+            var alleyGroup = kampung ? kampung.transform.Find("InterludeAlley") : null;
+            Assert.That(alleyGroup, Is.Not.Null, "daytime dressing must live under one group");
+            Assert.That(alleyGroup.gameObject.activeSelf, Is.False, "group stays OFF in the saved scene so the night prolog route is untouched");
             int alley = 0, warteg = 0, carts = 0, parked = 0, wires = 0, labels = 0;
             foreach (var t in UnityEngine.Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None))
             {
@@ -193,6 +198,10 @@ namespace LayarTerakhir.Editor.Tests
             // No-trap regression: sample the interlude walking route and fail
             // if any environmental collider swallows a standing capsule.
             UnityEditor.SceneManagement.EditorSceneManager.OpenScene(LayarTerakhir.Editor.KosCorridorBuilder.ScenePath);
+            var kampung = GameObject.Find("KampungMelati");
+            var alleyGroup = kampung ? kampung.transform.Find("InterludeAlley") : null;
+            Assert.That(alleyGroup, Is.Not.Null, "daytime group must exist before testing the daytime route");
+            alleyGroup.gameObject.SetActive(true);
             Vector3[] route =
             {
                 // Gate, south around the new north facades, east along the

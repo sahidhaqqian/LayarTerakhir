@@ -27,6 +27,13 @@ namespace LayarTerakhir.Editor
                 EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);
                 var corridor = Object.FindFirstObjectByType<KosCorridorDirector>();
                 if (!corridor) throw new Exception("KosCorridorDirector missing");
+                // Daytime dressing is authored OFF for the night prolog;
+                // the capture reviews the daytime state, like the director.
+                var kampung = GameObject.Find("KampungMelati");
+                var alley = kampung ? kampung.transform.Find("InterludeAlley") : null;
+                if (!alley) throw new Exception("InterludeAlley group missing");
+                alley.gameObject.SetActive(true);
+                Physics.SyncTransforms();
                 var cam = new GameObject("InterludeCaptureCamera").AddComponent<Camera>();
                 cam.farClipPlane = 130;
                 cam.nearClipPlane = .1f;
