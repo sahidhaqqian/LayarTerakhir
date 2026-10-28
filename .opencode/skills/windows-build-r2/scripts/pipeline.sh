@@ -167,6 +167,15 @@ step_ok record-sources
 
 # 5. Package + ZIP validation (asserts runtime markers, scene order, CRC).
 STEP="package"
+# WINDOWS_KEEP_PREVIOUS retains the previous run's archive in the persistent
+# workspace, but the packager refuses to overwrite an existing archive. Move
+# the stale files into this run dir first (the authoritative copy already
+# lives in the previous run's result/).
+if [ -e "$WORKSPACE/Builds/$ZIP_NAME" ] || [ -e "$WORKSPACE/Builds/$ZIP_NAME.sha256" ]; then
+  mkdir -p "$RUN_DIR/stale-archive"
+  mv -f "$WORKSPACE/Builds/$ZIP_NAME" "$WORKSPACE/Builds/$ZIP_NAME.sha256" "$RUN_DIR/stale-archive/" 2>/dev/null || true
+  echo "moved stale workspace archive to $RUN_DIR/stale-archive"
+fi
 if ! (cd "$SNAP" && python3 Tools/package_windows_build.py >"$LOGS/package.log" 2>&1); then
   die 2 "packaging/ZIP validation failed; see logs/package.log"
 fi
