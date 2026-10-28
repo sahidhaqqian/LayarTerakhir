@@ -188,6 +188,7 @@ step_ok package
 # 5b. The build AND package both succeeded: refresh the last-good player
 # copy and its metadata. This is the ONLY write to last-good, so a failed
 # build can never overwrite a working player.
+mkdir -p "$LASTGOOD/Builds/Windows"
 if ! rsync -a --delete "$WORKSPACE/Builds/Windows/" "$LASTGOOD/Builds/Windows/" >"$LOGS/lastgood-refresh.log" 2>&1; then
   die 2 "last-good refresh failed; see logs/lastgood-refresh.log"
 fi
