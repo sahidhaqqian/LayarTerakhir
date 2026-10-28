@@ -12,6 +12,40 @@ namespace LayarTerakhir.Editor.Tests
 {
     public sealed class PlayerFeelTests
     {
+        [Test] public void PhoneEarContactProfileIsBakedWithoutMakingThePlayerMeshReadable()
+        {
+            var actor=Object.Instantiate(Resources.Load<GameObject>("RakaCharacter"));
+            try
+            {
+                var avatar=actor.GetComponent<AnimatedRakaAvatar>();var data=new UnityEditor.SerializedObject(avatar);
+                Assert.That(data.FindProperty("callContactCached").boolValue,Is.True);
+                Assert.That(data.FindProperty("headHalfWidth").floatValue,Is.InRange(.05f,.16f),"Ear contact must use the skull, not hanging hair/hood bounds");
+                var body=actor.GetComponentsInChildren<SkinnedMeshRenderer>().Single(r=>r.name=="VisibleSkin");
+                Assert.That(body.sharedMesh.isReadable,Is.False,"Keep CPU mesh copies out of the shipped player");
+            }
+            finally{Object.DestroyImmediate(actor);}
+        }
+        [Test] public void RuntimeLocomotionPreservesRetargetedKneePlanesAndFootRotations()
+        {
+            var actor=Object.Instantiate(Resources.Load<GameObject>("RakaCharacter"));
+            try
+            {
+                var avatar=actor.GetComponent<AnimatedRakaAvatar>();
+                typeof(AnimatedRakaAvatar).GetMethod("Awake",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(avatar,null);
+                var bones=actor.GetComponentsInChildren<Transform>(true);
+                var knees=bones.Where(b=>b.name=="Shin_L"||b.name=="Shin_R").ToArray();
+                foreach(string clip in new[]{"Walk","Run","PhoneWalk","PhoneRun"})
+                for(int frame=0;frame<24;frame++)
+                {
+                    avatar.motion.GetClip(clip).SampleAnimation(actor,avatar.motion.GetClip(clip).length*frame/24f);
+                    typeof(AnimatedRakaAvatar).GetField("current",BindingFlags.Instance|BindingFlags.NonPublic).SetValue(avatar,clip);
+                    var expected=knees.Select(k=>k.position).ToArray();
+                    typeof(AnimatedRakaAvatar).GetMethod("LateUpdate",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(avatar,null);
+                    for(int i=0;i<knees.Length;i++)Assert.That(Vector3.Distance(knees[i].position,expected[i]),Is.LessThan(.001f),clip+" must retain its authored knee plane at phase "+frame);
+                }
+            }
+            finally{Object.DestroyImmediate(actor);}
+        }
         [Test] public void StowingTheActualHandsetHidesItsSeparateGlassMesh()
         {
             var actor=Object.Instantiate(Resources.Load<GameObject>("RakaCharacter"));

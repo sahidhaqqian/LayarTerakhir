@@ -17,7 +17,7 @@ namespace LayarTerakhir.Editor
         private static Transform root, group;
         private static Material concrete, wood, metal, roof;
         private static Material plasterA, plasterB, plasterC, brick, zinc, tarpBlue, tarpOrange, glassCase;
-        private static Material kenneyCar, kenneyFood;
+        private static Material kenneyFood;
         private static readonly List<string> notes = new List<string>();
 
         private static Material Mat(string name) => AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/assets/Art/Atmaja/Materials/" + name + ".mat");
@@ -32,8 +32,11 @@ namespace LayarTerakhir.Editor
             fresh.SetFloat("_Smoothness", .45f);
             var m = AssetDatabase.LoadAssetAtPath<Material>(path);
             if (!m) { AssetDatabase.CreateAsset(fresh, path); return fresh; }
-            EditorUtility.CopySerialized(fresh, m);
-            EditorUtility.SetDirty(m);
+            if(m.GetColor("_BaseColor")!=color||m.GetFloat("_Smoothness")!=.45f)
+            {
+                m.SetColor("_BaseColor",color);if(m.HasProperty("_Color"))m.SetColor("_Color",color);
+                m.SetFloat("_Smoothness",.45f);EditorUtility.SetDirty(m);
+            }
             Object.DestroyImmediate(fresh);
             return m;
         }
@@ -60,7 +63,6 @@ namespace LayarTerakhir.Editor
 
         private static void FixKitMaterials()
         {
-            kenneyCar = KitMaterial("kenney-car-kit");
             kenneyFood = KitMaterial("kenney-food-kit");
         }
 
@@ -156,7 +158,7 @@ namespace LayarTerakhir.Editor
             BuildAlley();
             BuildWarteg();
             BuildGerobak(new Vector3(-4.4f, 0, -20f), 90f, "BATAGOR", new Color(.75f, .25f, .12f));
-            BuildGerobak(new Vector3(5.6f, 0, -22.5f), -90f, "SIOMAY", new Color(.12f, .38f, .30f));
+            BuildGerobak(new Vector3(5.6f, 0, -17f), -90f, "SIOMAY", new Color(.12f, .38f, .30f));
             ParkedVehicles();
             StreetWires();
             foreach (var r in root.GetComponentsInChildren<MeshRenderer>())
@@ -183,6 +185,9 @@ namespace LayarTerakhir.Editor
                 float outward = side == 0 ? 1 : -1;
                 for (int i = 0; i < 4; i++)
                 {
+                    // The kos gate opens south at x=-16. Keep its straight
+                    // approach connected to the gang, including visual geometry.
+                    if(side==0&&i==0)continue;
                     float x0 = edges[i], x1 = edges[i + 1], cx = (x0 + x1) / 2, w = x1 - x0;
                     bool twoFloor = (i + side) % 2 == 0;
                     float h = twoFloor ? 6.4f : 3.6f;
@@ -232,11 +237,11 @@ namespace LayarTerakhir.Editor
             jemur.transform.SetParent(group, false);
             var jl = jemur.GetComponent<LineRenderer>();
             jl.sharedMaterial = metal; jl.startWidth = jl.endWidth = .015f; jl.positionCount = 2;
-            jl.SetPositions(new[] { new Vector3(-11f, 2.1f, -10.3f), new Vector3(-11f, 2.1f, -13.2f) });
+            jl.SetPositions(new[] { new Vector3(-11f, 2.6f, -10.3f), new Vector3(-11f, 2.6f, -13.2f) });
             float[] jz = { -11f, -11.8f, -12.6f };
             Color[] jc = { new Color(.25f, .45f, .65f), new Color(.75f, .3f, .25f), new Color(.85f, .82f, .72f) };
             for (int ji = 0; ji < 3; ji++)
-                Box("AlleyJemuranCloth", new Vector3(-11f, 1.8f - ji * .06f, jz[ji]), new Vector3(.04f, .42f, .3f), Tint("InterludeCloth" + jz[ji], jc[ji]), false);
+                Box("AlleyJemuranCloth", new Vector3(-11f, 2.39f, jz[ji]), new Vector3(.04f, .42f, .3f), Tint("InterludeCloth" + jz[ji], jc[ji]), false);
         }
 
         // Zone C: warteg storefront with banner facade, etalase, stools.
@@ -260,17 +265,17 @@ namespace LayarTerakhir.Editor
             foreach (float z in new[] { -31.9f, -28.1f })
                 Box("WartegTarpPole", new Vector3(4.1f, 1.3f, z), new Vector3(.07f, 2.6f, .07f), wood);
             // Etalase along the front: aluminum frame, 2 glass shelves, food rows.
-            Box("WartegCounter", p + new Vector3(-1.5f, .55f, 0), new Vector3(.9f, 1.1f, 3.4f), wood);
-            Box("WartegCounterTop", p + new Vector3(-1.5f, 1.13f, 0), new Vector3(1f, .06f, 3.5f), concrete, false);
-            Box("WartegCaseBase", p + new Vector3(-1.5f, 1.2f, 0), new Vector3(.8f, .08f, 3.2f), metal, false);
-            Box("WartegCaseTop", p + new Vector3(-1.5f, 2.05f, 0), new Vector3(.8f, .08f, 3.2f), metal, false);
-            foreach (float z in new[] { -31.56f, -28.44f })
+            Box("WartegCounter", p + new Vector3(-1.5f, .55f, -.55f), new Vector3(.9f, 1.1f, 2f), wood);
+            Box("WartegCounterTop", p + new Vector3(-1.5f, 1.13f, -.55f), new Vector3(1f, .06f, 2.1f), concrete, false);
+            Box("WartegCaseBase", p + new Vector3(-1.5f, 1.2f, -.55f), new Vector3(.8f, .08f, 1.9f), metal, false);
+            Box("WartegCaseTop", p + new Vector3(-1.5f, 2.05f, -.55f), new Vector3(.8f, .08f, 1.9f), metal, false);
+            foreach (float z in new[] { -31.46f, -29.64f })
                 Box("WartegCaseSide", new Vector3(p.x - 1.5f, 1.62f, z), new Vector3(.8f, .9f, .08f), glassCase, false);
-            Box("WartegCaseBack", new Vector3(p.x - 1.12f, 1.62f, -30f), new Vector3(.06f, .9f, 3.2f), glassCase, false);
-            Box("WartegShelfMid", p + new Vector3(-1.5f, 1.62f, 0), new Vector3(.8f, .05f, 3.2f), glassCase, false);
+            Box("WartegCaseBack", new Vector3(p.x - 1.12f, 1.62f, -30.55f), new Vector3(.06f, .9f, 1.9f), glassCase, false);
+            Box("WartegShelfMid", p + new Vector3(-1.5f, 1.62f, -.55f), new Vector3(.8f, .05f, 1.9f), glassCase, false);
             var caseLamp = new GameObject("WartegCaseLight", typeof(Light));
             caseLamp.transform.SetParent(group, false);
-            caseLamp.transform.position = p + new Vector3(-1.5f, 2.3f, 0);
+            caseLamp.transform.position = p + new Vector3(-1.5f, 2.3f, -.55f);
             var caseLight = caseLamp.GetComponent<Light>();
             caseLight.type = LightType.Point; caseLight.range = 3.5f; caseLight.intensity = 1.2f;
             caseLight.color = new Color(1f, .9f, .75f); caseLight.shadows = LightShadows.None;
@@ -278,20 +283,33 @@ namespace LayarTerakhir.Editor
             string[] foods = { "bowl", "bowl-soup", "rice-ball", "sausage", "meat-sausage", "bowl-broth", "plate", "plate-deep", "bread", "banana", "pineapple", "apple", "plate-dinner" };
             int fi = 0;
             for (int tier = 0; tier < 2; tier++)
-                for (int i = 0; i < 8; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     var f = Prefab("kenney-food-kit", foods[fi % foods.Length]);
                     if (!f) continue;
                     PaintKit(f, kenneyFood);
                     f.name = "WartegFood";
                     f.transform.SetParent(group, false);
-                    f.transform.position = p + new Vector3(-1.5f, 1.32f + tier * .42f, -1.32f + i * .38f);
-                    f.transform.localScale = Vector3.one * 2.2f;
+                    // Imported food uses different source units. Fit actual bounds
+                    // to a serving on the shelf, never a uniform kit multiplier.
+                    f.transform.localScale=Vector3.one;
+                    Bounds FoodBounds()
+                    {
+                        var rs=f.GetComponentsInChildren<Renderer>(true);var b=rs[0].bounds;
+                        for(int j=1;j<rs.Length;j++)b.Encapsulate(rs[j].bounds);
+                        return b;
+                    }
+                    var bounds=FoodBounds();
+                    float scale=Mathf.Min(.26f/Mathf.Max(.001f,bounds.size.x,bounds.size.z),.24f/Mathf.Max(.001f,bounds.size.y));
+                    f.transform.localScale*=scale;bounds=FoodBounds();
+                    Vector3 seat=p+new Vector3(-1.5f,1.26f+tier*.39f,-1.27f+i*.36f);
+                    f.transform.position+=seat-new Vector3(bounds.center.x,bounds.min.y,bounds.center.z);
                     fi++;
                 }
-            // Rice cooker + dandang behind the counter.
-            Box("WartegRiceCooker", p + new Vector3(-.5f, 1.35f, -31.2f), new Vector3(.6f, .5f, .6f), Tint("WartegCooker", new Color(.85f, .85f, .86f)));
-            Box("WartegDandang", p + new Vector3(-.5f, 1.4f, -28.8f), new Vector3(.7f, .6f, .7f), metal);
+            // A supported prep counter behind the display, clear of the doorway.
+            Box("WartegPrepCounter",p+new Vector3(.7f,.67f,-.9f),new Vector3(1.5f,1.1f,.8f),wood);
+            Box("WartegRiceCooker", p + new Vector3(.3f, 1.47f, -.9f), new Vector3(.6f, .5f, .6f), Tint("WartegCooker", new Color(.85f, .85f, .86f)));
+            Box("WartegDandang", p + new Vector3(1.05f, 1.52f, -.9f), new Vector3(.7f, .6f, .7f), metal);
             // Hanging rentengan strips near the front.
             foreach (float z in new[] { -31.2f, -30.8f, -30.4f })
                 Box("WartegRenteng", new Vector3(p.x - 1.8f, 2.5f, z), new Vector3(.02f, 1.1f, .16f), Tint("WartegRenteng" + z, new Color(.75f, .2f, .15f)), false);
@@ -303,8 +321,8 @@ namespace LayarTerakhir.Editor
                     Box("WartegStool", new Vector3(4.3f, .15f, z + dz), new Vector3(.3f, .3f, .3f), Tint("WartegStool", new Color(.7f, .15f, .12f)), false);
             }
             Box("WartegBench", new Vector3(4.5f, .3f, -30f), new Vector3(.35f, .08f, 2.4f), wood, false);
-            Box("WartegMenuBoard", new Vector3(p.x - 2.18f, 1.6f, -28.6f), new Vector3(.05f, .8f, 1.6f), Tint("WartegMenuBoard", new Color(.08f, .12f, .1f)), false);
-            Label("WartegMenu", "NASI 10K • AYAM 12K\nTEMPE 3K • POCI 5K", new Vector3(p.x - 2.24f, 1.6f, -28.6f), Vector3.right, .09f, new Color(.95f, .95f, .9f));
+            Box("WartegMenuBoard", new Vector3(p.x - 2.18f, 1.6f, -30.55f), new Vector3(.05f, .8f, 1.6f), Tint("WartegMenuBoard", new Color(.08f, .12f, .1f)), false);
+            Label("WartegMenu", "NASI 10K • AYAM 12K\nTEMPE 3K • POCI 5K", new Vector3(p.x - 2.24f, 1.6f, -30.55f), Vector3.right, .09f, new Color(.95f, .95f, .9f));
         }
 
         // Gerobak PKL: wood cart, glass case with painted text, roof, counter clutter.
@@ -372,7 +390,7 @@ namespace LayarTerakhir.Editor
             Vector3[] spots =
             {
                 new Vector3(4.6f, 0, -19.5f), new Vector3(4.75f, 0, -21f), new Vector3(4.55f, 0, -22.5f),
-                new Vector3(5.5f, 0, -31.5f), new Vector3(-7.5f, 0, -10.7f), new Vector3(-5.6f, 0, -12.9f)
+                new Vector3(5.2f, 0, -35.5f), new Vector3(-7.5f, 0, -10.7f), new Vector3(-5.6f, 0, -12.9f)
             };
             float[] yaws = { 168f, 203f, 177f, 160f, 95f, 80f };
             for (int i = 0; i < spots.Length; i++)
@@ -389,34 +407,51 @@ namespace LayarTerakhir.Editor
             }
             // Covered bike (sarung motor drape).
             Box("StreetMotorCover", new Vector3(4.6f, .55f, -26.6f), new Vector3(.75f, 1.1f, 1.9f), Tint("MotorCover", new Color(.25f, .28f, .32f)));
-            // Sedan + angkot van on the road edge.
-            var sedan = Prefab("kenney-car-kit", "sedan");
-            if (sedan)
+            // A full-scale licensed sedan replaces the toy-proportioned kit
+            // sedan/van. One useful parked vehicle leaves more clear frontage.
+            var sedanAsset=AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_LayarTerakhir/assets/Art/Imported/NeighborhoodVehicles/NeighborhoodSedan.fbx");
+            if(!sedanAsset){notes.Add("NeighborhoodSedan.fbx");return;}
+            // Preserve the imported FBX basis beneath a placement-only root.
+            // Replacing its corrective X rotation with a yaw stands it upright.
+            var sedan=new GameObject("StreetParkedSedan");sedan.transform.SetParent(group,false);
+            sedan.transform.SetPositionAndRotation(new Vector3(2.7f,.08f,-38f),Quaternion.Euler(0,180,0));
+            var visual=(GameObject)PrefabUtility.InstantiatePrefab(sedanAsset);visual.name="NeighborhoodSedanVisual";
+            visual.transform.SetParent(sedan.transform,false);
+            foreach(var renderer in sedan.GetComponentsInChildren<Renderer>())
             {
-                PaintKit(sedan, kenneyCar);
-                sedan.name = "StreetParkedSedan";
-                sedan.transform.SetParent(group, false);
-                sedan.transform.position = new Vector3(2.7f, .1f, -38f);
-                sedan.transform.rotation = Quaternion.Euler(0, 180, 0);
-                var col = sedan.AddComponent<BoxCollider>(); col.center = Vector3.up * .5f; col.size = new Vector3(1.9f, 1.1f, 4.2f);
+                var mats=renderer.sharedMaterials;
+                for(int i=0;i<mats.Length;i++)
+                {
+                    string role=mats[i].name.Replace("StreetSedan_","").Split('.')[0];
+                    Color color;float metallic=0,smooth=.35f;
+                    switch(role)
+                    {
+                        case "paint":color=new Color(.25f,.28f,.30f);metallic=.45f;smooth=.55f;break;
+                        case "chrome":color=new Color(.45f,.47f,.48f);metallic=.8f;smooth=.7f;break;
+                        case "steel":color=new Color(.21f,.23f,.24f);metallic=.7f;smooth=.5f;break;
+                        case "glass":color=new Color(.025f,.045f,.055f);metallic=.25f;smooth=.88f;break;
+                        case "clearlens":color=new Color(.43f,.46f,.47f);metallic=.35f;smooth=.8f;break;
+                        case "redlens":color=new Color(.26f,.025f,.02f);smooth=.7f;break;
+                        case "white":color=new Color(.66f,.65f,.61f);break;
+                        default:color=new Color(.018f,.02f,.022f);smooth=.15f;break;
+                    }
+                    var material=Tint("StreetSedan_"+role,color);material.SetFloat("_Metallic",metallic);material.SetFloat("_Smoothness",smooth);
+                    mats[i]=material;
+                }
+                renderer.sharedMaterials=mats;
             }
-            var van = Prefab("kenney-car-kit", "van");
-            if (van)
+            var bounds=new Bounds();bool first=true;
+            foreach(var filter in sedan.GetComponentsInChildren<MeshFilter>())
             {
-                PaintKit(van, kenneyCar);
-                van.name = "StreetAngkot";
-                van.transform.SetParent(group, false);
-                van.transform.position = new Vector3(2.7f, .1f, -48f);
-                van.transform.rotation = Quaternion.Euler(0, 180, 0);
-                van.transform.localScale = Vector3.one * 1.15f;
-                var col = van.AddComponent<BoxCollider>(); col.center = Vector3.up * .8f; col.size = new Vector3(2f, 1.9f, 4.6f);
-                Label("StreetAngkotRoute", "D.01", new Vector3(2.7f, 1.5f, -50.2f), Vector3.back, .16f, Color.white);
+                var b=filter.sharedMesh.bounds;
+                for(int x=-1;x<=1;x+=2)for(int y=-1;y<=1;y+=2)for(int z=-1;z<=1;z+=2)
+                {
+                    Vector3 point=sedan.transform.InverseTransformPoint(filter.transform.TransformPoint(b.center+Vector3.Scale(b.extents,new Vector3(x,y,z))));
+                    if(first){bounds=new Bounds(point,Vector3.zero);first=false;}else bounds.Encapsulate(point);
+                }
             }
+            var collider=sedan.AddComponent<BoxCollider>();collider.center=bounds.center;collider.size=bounds.size;
         }
-
-
-
-
 
         // Extra catenary wires along the main road + drops to houses.
         private static void StreetWires()

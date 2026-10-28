@@ -1,0 +1,32 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-job-worker-count",
+    "1",
+    "-projectPath",
+    "/root/projects/LayarTerakhir-recovery",
+    "-force-glcore",
+    "-runTests",
+    "-testPlatform",
+    "EditMode",
+    "-testFilter",
+    "PhoneMenuRecoversItsAspectAndControlsAfterAimAndFocus;GameplayRecoveryRuntimeTests;PhoneEarContactProfileIsBakedWithoutMakingThePlayerMeshReadable;ParkedSedanRetainsItsImportedUpAxisAndRealScale;AlleyLaundryLeavesClearanceAboveTheWalkingPlayer",
+    "-testResults",
+    "/root/unity-logs/recovery-visual.xml",
+    "-logFile",
+    "/root/unity-logs/recovery-visual.log"
+  ],
+  "startedUtc": "2026-10-28T04:53:01.450380+00:00",
+  "status": "Finished",
+  "unit": "lt-unity-20261028-045301-325075",
+  "memoryLimitBytes": 11811160064,
+  "memoryHighBytes": 9663676416,
+  "endedUtc": "2026-10-28T04:54:32.577860+00:00",
+  "exitCode": 0,
+  "systemdServiceResult": "success"
+}

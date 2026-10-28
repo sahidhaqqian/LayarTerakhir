@@ -1,0 +1,28 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-job-worker-count",
+    "1",
+    "-projectPath",
+    "/root/projects/LayarTerakhir-recovery",
+    "-nographics",
+    "-executeMethod",
+    "LayarTerakhir.Editor.RakaPresentationRevisionBuilder.BakeCallContacts",
+    "-quit",
+    "-logFile",
+    "/root/unity-logs/recovery-contact-bake.log"
+  ],
+  "startedUtc": "2026-10-28T04:35:16.346548+00:00",
+  "status": "Finished",
+  "unit": "lt-unity-20261028-043516-323050",
+  "memoryLimitBytes": 11811160064,
+  "memoryHighBytes": 9663676416,
+  "endedUtc": "2026-10-28T04:35:46.706110+00:00",
+  "exitCode": 0,
+  "systemdServiceResult": "success"
+}

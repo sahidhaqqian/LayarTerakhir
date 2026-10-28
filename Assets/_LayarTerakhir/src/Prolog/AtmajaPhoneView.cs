@@ -45,6 +45,7 @@ namespace LayarTerakhir.Prolog
         // A stowed handset rises and lowers in its aiming pose. It must not
         // first appear as a portrait app panel and then stretch across the eye.
         private bool landscapeFromStowed;
+        public const float PortraitHandsetAspect=.078f/.165f;
         public const float LandscapeHandsetWidth=.165f;
         public const float LandscapeHandsetAspect=1.9f;
         private const float HandPresentationFieldOfView=28f;
@@ -177,7 +178,7 @@ namespace LayarTerakhir.Prolog
                 gripCamera.GetUniversalAdditionalCameraData().renderShadows=false;
                 int width=Mathf.Clamp(Screen.width,640,960),height=Mathf.RoundToInt(width*(float)Screen.height/Mathf.Max(1,Screen.width));
                 gripTexture=new RenderTexture(width,height,16,RenderTextureFormat.ARGB32){name="ExistingRakaGripPresentation"};
-                if(HasGraphicsDevice)gripTexture.Create();gripCamera.targetTexture=gripTexture;gripCamera.enabled=false;
+                if(HasGraphicsDevice)gripTexture.Create();gripCamera.targetTexture=gripTexture;gripCamera.aspect=(float)width/height;gripCamera.enabled=false;
                 var overlay=UiWidgets.Rect("PhoneGripForeground",canvas,Vector2.zero,Vector2.one);
                 gripOverlay=overlay.AddComponent<RawImage>();gripOverlay.texture=gripTexture;gripOverlay.raycastTarget=false;gripOverlay.enabled=false;
                 playerCamera.cullingMask&=~(1<<GripLayer);
@@ -208,7 +209,7 @@ namespace LayarTerakhir.Prolog
         }
         private void Update()
         {
-            if(!Phone||!Apps||!Hud||UiFocus.HardModal||Hud.IsModalOpen)return;
+            if(!UiFocus.ApplicationFocused||!Phone||!Apps||!Hud||UiFocus.HardModal||Hud.IsModalOpen)return;
             HandleCameraShortcut();
             if(!UiFocus.Cinematic&&Phone.isPhoneRaised&&Phone.isScreenOn&&IsCameraApp&&(!UiFocus.Phone||ViewfinderActive)&&(!director||!director.Busy&&director.Stage<AtmajaStage.Chase)
                 &&GameInputConfig.Instance.GetActionDown(GameAction.CaptureOrBlitz)){if(Chapter!=null)Chapter.Capture();else CaptureFlash();}
@@ -306,27 +307,20 @@ namespace LayarTerakhir.Prolog
         }
         private void HandleCameraShortcut()
         {
-            if(UiFocus.Menu||UiFocus.HardModal||Hud.IsModalOpen||UiFocus.Cinematic||(director&&director.Busy))return;
             bool held=LensFocusHeld();
+            if(!UiFocus.ApplicationFocused||GameInputConfig.SystemShortcutHeld||UiFocus.HardModal||Hud.IsModalOpen||UiFocus.Cinematic||(director&&director.Busy))
+            {
+                if(cameraHeldRaise){EndCameraHold(true);suppressHeldUntilRelease=true;}
+                return;
+            }
             // Screen-off / stow is explicit and must beat a held aiming shortcut.
             if (held && GameInputConfig.Instance &&
                 (GameInputConfig.Instance.GetActionDown(GameAction.ToggleScreen) || GameInputConfig.Instance.GetActionDown(GameAction.TogglePhone)))
-            { suppressHeldUntilRelease = true; cameraHeldRaise = false; return; }
+            { suppressHeldUntilRelease = true; EndCameraHold(false); return; }
             if (suppressHeldUntilRelease) { if (!held) suppressHeldUntilRelease = false; return; }
             if(!held)
             {
-                if(!cameraHeldRaise)return;
-                cameraHeldRaise=false;
-                bool scriptedCamera=Phone.CameraLocked||director&&director.chase&&(director.chase.AwaitingPhotos||director.chase.IsFinalFlash);
-                if(!scriptedCamera)
-                {
-                    // Releasing aim returns to the smartphone menu with the
-                    // screen active, never to a dark or stowed handset.
-                    Phone.isPhoneRaised=true;
-                    if(Phone.HasCameraPower)Phone.isScreenOn=true;
-                    Phone.SyncVisualState();
-                    Apps.Open(PhoneApp.Home);
-                }
+                EndCameraHold(true);
                 return;
             }
             if(!Phone.hasSmartphoneInInventory||!Phone.isScreenOn||!Phone.HasCameraPower)return;
@@ -339,6 +333,31 @@ namespace LayarTerakhir.Prolog
             if(!Phone.isPhoneRaised){Phone.isPhoneRaised=true;Phone.SyncVisualState();}
             if(!IsCameraApp)Apps.Open(PhoneApp.Camera);
         }
+        private void EndCameraHold(bool restoreMenu)
+        {
+            bool wasHeld=cameraHeldRaise;
+            cameraHeldRaise=false;
+            // This flag owns only the rise from the pocket, never the app layout.
+            landscapeFromStowed=false;
+            bool scripted=Phone&&(Phone.CameraLocked||director&&director.chase&&(director.chase.AwaitingPhotos||director.chase.IsFinalFlash));
+            if(!wasHeld||!restoreMenu||scripted||!Phone||!Apps)return;
+            Phone.isPhoneRaised=true;
+            if(Phone.HasCameraPower)Phone.isScreenOn=true;
+            Phone.SyncVisualState();
+            Apps.Open(phoneRaisedBeforeFocus&&appBeforeFocus!=PhoneApp.Camera?appBeforeFocus:PhoneApp.Home);
+        }
+        private void OnApplicationFocus(bool focused)
+        {
+            UiFocus.ApplicationFocused=focused;
+            if(focused)return;
+            EndCameraHold(true);
+            suppressHeldUntilRelease=true;
+            focusOverride=false;ViewfinderActive=false;UiFocus.PhoneAiming=false;viewfinderBlend=0;
+            var rig=owner?owner.GetComponent<ShoulderCameraRig>():null;
+            if(rig){rig.PhoneAimOverride=false;if(!UiFocus.Cinematic)rig.RefreshCameraPose();}
+            if(handsetInput){handsetInput.interactable=false;handsetInput.blocksRaycasts=false;}
+        }
+        private void OnApplicationPause(bool paused)=>OnApplicationFocus(!paused);
         private void LateUpdate()
         {
             if(!Panel||!Phone||!Apps)return;
@@ -351,8 +370,8 @@ namespace LayarTerakhir.Prolog
             if(raiseAmount<=0)landscapeFromStowed=false;
             bool loweringAim=landscapeFromStowed&&!active&&raiseAmount>0;
             Panel.SetActive(raiseAmount>0);bool screen=raiseAmount>0&&Phone.isScreenOn&&Phone.HasCameraPower;
-            bool canFocus=screen&&IsCameraApp&&!Hud.IsModalOpen&&!UiFocus.HardModal&&!UiFocus.Menu&&(!UiFocus.Cinematic||CinematicHandsetVisible)&&(focusOverride||cameraHeldRaise&&LensFocusHeld());
-            ViewfinderActive=canFocus;
+            bool canFocus=UiFocus.ApplicationFocused&&!GameInputConfig.SystemShortcutHeld&&screen&&IsCameraApp&&!Hud.IsModalOpen&&!UiFocus.HardModal&&!UiFocus.Menu&&(!UiFocus.Cinematic||CinematicHandsetVisible)&&(focusOverride||cameraHeldRaise&&LensFocusHeld());
+            ViewfinderActive=canFocus;UiFocus.PhoneAiming=canFocus;
             viewfinderBlend=Mathf.MoveTowards(viewfinderBlend,canFocus?1:0,Time.unscaledDeltaTime/.18f);
             var perspective=owner?owner.GetComponent<ShoulderCameraRig>():null;
             if(perspective){bool aimPose=viewfinderBlend>.01f||loweringAim;bool changed=perspective.PhoneAimOverride!=aimPose;perspective.PhoneAimOverride=aimPose;if(changed)perspective.RefreshCameraPose();}
@@ -365,27 +384,32 @@ namespace LayarTerakhir.Prolog
                 if(targetOnScreen){chapterReticle.rectTransform.anchorMin=chapterReticle.rectTransform.anchorMax=new Vector2(v.x,v.y);chapterReticle.rectTransform.anchoredPosition=Vector2.zero;}
             }
             float eased=raiseAmount*raiseAmount*(3-2*raiseAmount);
+            // Derive handset proportions in the canvas coordinate system. CanvasScaler
+            // reference pixels and the OS window size are not interchangeable.
+            var canvasRect=(RectTransform)handsetRect.parent;
+            float canvasAspect=canvasRect.rect.width/Mathf.Max(1,canvasRect.rect.height);
+            var portraitMin=new Vector2(panelMax.x-(panelMax.y-panelMin.y)*PortraitHandsetAspect/canvasAspect,panelMin.y);
             if(viewfinderBlend>.001f||landscapeFromStowed)
             {
-                float screenAspect=(float)Screen.width/Mathf.Max(1,Screen.height);
+                float screenAspect=canvasAspect;
                 float width=Mathf.Min(.62f,.68f*LandscapeHandsetAspect/screenAspect);
                 float halfHeight=width*screenAspect/LandscapeHandsetAspect*.5f;
                 float t=landscapeFromStowed?1:viewfinderBlend*viewfinderBlend*(3-2*viewfinderBlend);
-                handsetRect.anchorMin=Vector2.Lerp(panelMin,new Vector2(.5f-width*.5f,.47f-halfHeight),t);
+                handsetRect.anchorMin=Vector2.Lerp(portraitMin,new Vector2(.5f-width*.5f,.47f-halfHeight),t);
                 handsetRect.anchorMax=Vector2.Lerp(panelMax,new Vector2(.5f+width*.5f,.47f+halfHeight),t);
                 float sway=owner?Mathf.Clamp01(owner.PlanarVelocity.magnitude/4.2f):0;
                 handsetRect.anchoredPosition=new Vector2(Mathf.Sin(Time.time*3.5f)*sway*1.3f,
-                    landscapeFromStowed?-(Screen.height*.75f)*(1-eased):-35*(1-t));
+                    landscapeFromStowed?-(canvasRect.rect.height*.75f)*(1-eased):-35*(1-t));
                 handsetRect.localRotation=Quaternion.Euler(0,0,landscapeFromStowed?-5*(1-eased):-4*(1-t));
             }
             else
             {
-                handsetRect.anchorMin=panelMin;handsetRect.anchorMax=panelMax;
+                handsetRect.anchorMin=portraitMin;handsetRect.anchorMax=panelMax;
                 float sway=owner&&IsCameraApp&&!Hud.IsModalOpen?Mathf.Clamp01(owner.PlanarVelocity.magnitude/4.2f):0;
                 handsetRect.anchoredPosition=new Vector2(Mathf.Sin(Time.time*3.5f)*sway*1.8f,-(handsetRect.rect.height+85)*(1-eased));
                 handsetRect.localRotation=Quaternion.Euler(0,0,(1-eased)*-7+Mathf.Sin(Time.time*3.5f)*sway*.35f);
             }
-            handsetInput.interactable=active&&!Hud.IsModalOpen&&!ViewfinderActive;handsetInput.blocksRaycasts=active&&!Hud.IsModalOpen&&!ViewfinderActive;
+            handsetInput.interactable=active&&UiFocus.ApplicationFocused&&!UiFocus.HardModal&&!Hud.IsModalOpen&&!ViewfinderActive;handsetInput.blocksRaycasts=handsetInput.interactable;
             cameraRoot.SetActive(screen&&(IsCameraApp||loweringAim));Apps.SetScreenVisible(screen&&!loweringAim);FeedCamera.enabled=screen&&(IsCameraApp||loweringAim)&&HasGraphicsDevice;cameraImage.enabled=FeedCamera.enabled;
             var cameraRect=cameraRoot.GetComponent<RectTransform>();
             bool landscapeFeed=ViewfinderActive||loweringAim;
@@ -435,7 +459,7 @@ namespace LayarTerakhir.Prolog
             mode.text=screen&&IsCameraApp?(Chapter!=null?Chapter.CameraStatus:(Phone.currentScanMode==ScanVisualMode.AR?"MATA BATIN / AR":"KAMERA")+$" • {Phone.DisplayBatteryPercent:0}%\n[Z] Aplikasi   [M] Peta"):"";
             LiveButton.gameObject.SetActive(screen&&IsCameraApp&&(director||Chapter!=null)&&!Phone.isBroadcastConnected&&!landscapeFeed);LiveButton.interactable=Chapter!=null?Chapter.CanBeginLive:director&&director.CanBeginLive&&!director.Busy&&!Hud.IsModalOpen;
             UiFocus.Phone=active&&screen&&!Hud.IsModalOpen&&(!IsCameraApp||((director||Chapter!=null)&&!Phone.isBroadcastConnected));
-            if(owner&&!UiFocus.HardModal&&!Hud.IsModalOpen&&!UiFocus.Cinematic)owner.SetCursorLock(!UiFocus.Phone||FirstPersonController.PhoneLookHeld);
+            if(owner&&!UiFocus.HardModal&&!Hud.IsModalOpen&&!UiFocus.Cinematic)owner.SetCursorLock(!UiFocus.Phone||ViewfinderActive);
             walkHint.enabled=UiFocus.Phone&&!UiFocus.Cinematic&&!Hud.IsModalOpen&&!ViewfinderActive;
             chat.enabled=(director||Chapter!=null)&&Phone.isBroadcastConnected&&!Hud.IsModalOpen&&(!UiFocus.Cinematic||CinematicHandsetVisible)&&!ViewfinderActive;
         }
@@ -516,7 +540,9 @@ namespace LayarTerakhir.Prolog
         {
             RenderPipelineManager.beginCameraRendering -= BeforeFeedRender; RenderPipelineManager.endCameraRendering -= AfterFeedRender;
             if (owner) owner.GetComponent<ShoulderCameraRig>()?.SetSelfieFeedCoverage(false);
-            cameraHeldRaise = false; suppressHeldUntilRelease = LensFocusHeld();
+            EndCameraHold(true);ViewfinderActive=false;UiFocus.PhoneAiming=false;viewfinderBlend=0;focusOverride=false;
+            var rig=owner?owner.GetComponent<ShoulderCameraRig>():null;if(rig)rig.PhoneAimOverride=false;
+            suppressHeldUntilRelease = LensFocusHeld();
         }
         private void BeforeFeedRender(ScriptableRenderContext context, Camera camera)
         { if (camera == FeedCamera && Phone && Phone.isSelfieCamera && owner) owner.GetComponent<ShoulderCameraRig>()?.SetSelfieFeedCoverage(true); }
@@ -534,6 +560,16 @@ namespace LayarTerakhir.Prolog
             if(gripCamera){gripCamera.enabled=visible&&HasGraphicsDevice;gripCamera.fieldOfView=HandPresentationFieldOfView;}
             if(gripOverlay)gripOverlay.enabled=visible&&HasGraphicsDevice;
             if(!visible)return;
+            if(gripCamera&&gripTexture)
+            {
+                int w=Mathf.Clamp(Screen.width,640,960),h=Mathf.Max(1,Mathf.RoundToInt(w*(float)Screen.height/Mathf.Max(1,Screen.width)));
+                if(gripTexture.width!=w||gripTexture.height!=h)
+                {
+                    gripCamera.targetTexture=null;gripTexture.Release();Destroy(gripTexture);
+                    gripTexture=new RenderTexture(w,h,16,RenderTextureFormat.ARGB32){name="ExistingRakaGripPresentation"};
+                    if(HasGraphicsDevice)gripTexture.Create();gripCamera.targetTexture=gripTexture;gripCamera.aspect=(float)w/h;gripOverlay.texture=gripTexture;
+                }
+            }
             bool jacket=CampaignState.Instance&&CampaignState.Instance.HasInventoryItem("JAKET_RAKA");
             // Keep the previously validated portrait grasp for apps/documents.
             // The landscape source pose cannot wrap a handset twice as tall.
@@ -573,6 +609,6 @@ namespace LayarTerakhir.Prolog
             for(int i=0;i<limit;i++)AddChat(authors[i],lines[i]);
         }
         public void LabelClockModal(){}
-        private void OnDestroy(){if(hudPresentation)hudPresentation.SetViewfinderFraming(false);UiFocus.Phone=false;var rig=owner?owner.GetComponent<ShoulderCameraRig>():null;if(rig)rig.PhoneAimOverride=false;if(firstPersonHand)Destroy(firstPersonHand);if(supportHand)Destroy(supportHand);if(gripOccluder)Destroy(gripOccluder);if(gripDepthMaterial)Destroy(gripDepthMaterial);foreach(var material in handMaterials)if(material)Destroy(material);if(gripCamera)Destroy(gripCamera.gameObject);if(gripOverlay)Destroy(gripOverlay.gameObject);if(gripTexture){gripTexture.Release();Destroy(gripTexture);}if(feed){feed.Release();Destroy(feed);}if(runtimeFeedMaterial)Destroy(runtimeFeedMaterial);if(shutterClip)Destroy(shutterClip);if(switchClip&&switchClip.name.Contains("AtmajaSynth"))Destroy(switchClip);if(vignetteTexture)Destroy(vignetteTexture);}
+        private void OnDestroy(){UiFocus.PhoneAiming=false;if(hudPresentation)hudPresentation.SetViewfinderFraming(false);UiFocus.Phone=false;var rig=owner?owner.GetComponent<ShoulderCameraRig>():null;if(rig)rig.PhoneAimOverride=false;if(firstPersonHand)Destroy(firstPersonHand);if(supportHand)Destroy(supportHand);if(gripOccluder)Destroy(gripOccluder);if(gripDepthMaterial)Destroy(gripDepthMaterial);foreach(var material in handMaterials)if(material)Destroy(material);if(gripCamera)Destroy(gripCamera.gameObject);if(gripOverlay)Destroy(gripOverlay.gameObject);if(gripTexture){gripTexture.Release();Destroy(gripTexture);}if(feed){feed.Release();Destroy(feed);}if(runtimeFeedMaterial)Destroy(runtimeFeedMaterial);if(shutterClip)Destroy(shutterClip);if(switchClip&&switchClip.name.Contains("AtmajaSynth"))Destroy(switchClip);if(vignetteTexture)Destroy(vignetteTexture);}
     }
 }

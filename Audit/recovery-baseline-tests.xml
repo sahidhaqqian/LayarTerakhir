@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-28 03:37:50Z" end-time="2026-10-28 03:37:52Z" duration="2.0509838">
+  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="516" result="Failed" site="Child" start-time="2026-10-28 03:37:50Z" end-time="2026-10-28 03:37:52Z" duration="2.050984" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1597" name="Assembly-CSharp-Editor.dll" fullname="/root/projects/LayarTerakhir-recovery/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="516" result="Failed" site="Child" start-time="2026-10-28 03:37:51Z" end-time="2026-10-28 03:37:52Z" duration="1.958122" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="312959" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1598" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="516" result="Failed" site="Child" start-time="2026-10-28 03:37:51Z" end-time="2026-10-28 03:37:52Z" duration="1.914360" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1599" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="516" result="Failed" site="Child" start-time="2026-10-28 03:37:51Z" end-time="2026-10-28 03:37:52Z" duration="1.911302" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestSuite" id="1600" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="516" result="Failed" site="Child" start-time="2026-10-28 03:37:51Z" end-time="2026-10-28 03:37:52Z" duration="1.909448" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestFixture" id="1011" name="AtmajaPlayTests" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-10-28 03:37:51Z" end-time="2026-10-28 03:37:52Z" duration="1.850612" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1043" name="PhoneMenuRecoversItsAspectAndControlsAfterAimAndFocus" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.PhoneMenuRecoversItsAspectAndControlsAfterAimAndFocus" methodname="PhoneMenuRecoversItsAspectAndControlsAfterAimAndFocus" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="954372789" result="Failed" start-time="2026-10-28 03:37:42Z" end-time="2026-10-28 03:37:52Z" duration="10.822528" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  RMB release must restore a portrait menu, including an aim begun with the phone stowed
+  Expected: less than 0.649999976f
+  But was:  1.89999974f
+]]></message>
+                  <stack-trace><![CDATA[at LayarTerakhir.Editor.Tests.AtmajaPlayTests+<Run>d__81.MoveNext () [0x0010c] in /root/projects/LayarTerakhir-recovery/Assets/_LayarTerakhir/src/Editor/AtmajaPlayTests.cs:979
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@0bd5c5194236/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1551" name="PlayerFeelTests" fullname="LayarTerakhir.Editor.Tests.PlayerFeelTests" classname="LayarTerakhir.Editor.Tests.PlayerFeelTests" runstate="Runnable" testcasecount="22" result="Failed" site="Child" start-time="2026-10-28 03:37:52Z" end-time="2026-10-28 03:37:52Z" duration="0.036620" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1552" name="RuntimeLocomotionPreservesRetargetedKneePlanesAndFootRotations" fullname="LayarTerakhir.Editor.Tests.PlayerFeelTests.RuntimeLocomotionPreservesRetargetedKneePlanesAndFootRotations" methodname="RuntimeLocomotionPreservesRetargetedKneePlanesAndFootRotations" classname="LayarTerakhir.Editor.Tests.PlayerFeelTests" runstate="Runnable" seed="1305210529" result="Failed" start-time="2026-10-28 03:37:52Z" end-time="2026-10-28 03:37:52Z" duration="0.031565" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Walk must retain its authored knee plane at phase 0
+  Expected: less than 0.00100000005f
+  But was:  0.0185764059f
+]]></message>
+                  <stack-trace><![CDATA[at LayarTerakhir.Editor.Tests.PlayerFeelTests.RuntimeLocomotionPreservesRetargetedKneePlanesAndFootRotations () [0x0013f] in /root/projects/LayarTerakhir-recovery/Assets/_LayarTerakhir/src/Editor/PlayerFeelTests.cs:31
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[Saving results to: /root/.config/unity3d/DefaultCompany/LayarTerakhir/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -32,6 +32,7 @@ namespace LayarTerakhir.Editor.Tests
         {
             SessionState.SetString("AtmajaAudit.PreviousSave",Environment.GetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY")??"");
             Environment.SetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY",Path.Combine(Path.GetTempPath(),"AtmajaPlayTest-"+Guid.NewGuid()));
+            RecoveryTestInputSettings.Prepare("AtmajaAudit.Input");
             EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
             yield return new EnterPlayMode();
             SessionState.SetString("AtmajaAudit.Input",JsonUtility.ToJson(InputSystem.settings));
@@ -40,14 +41,18 @@ namespace LayarTerakhir.Editor.Tests
             settings.editorInputBehaviorInPlayMode=InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
             InputSystem.settings=settings;keyboard=InputSystem.AddDevice<Keyboard>();mouse=InputSystem.AddDevice<Mouse>();Time.timeScale=5;
             yield return null;
+            // Xvfb batch mode has no focused GameView. Virtual input explicitly
+            // models a focused player; individual recovery tests drive loss/regain.
+            Object.FindFirstObjectByType<FirstPersonController>().SendMessage("OnApplicationFocus",true);
         }
         [UnityTearDown] public IEnumerator TearDown()
         {
             if(keyboard!=null)InputSystem.RemoveDevice(keyboard);
             if(mouse!=null)InputSystem.RemoveDevice(mouse);
-            var old=InputSystem.settings;var settings=ScriptableObject.CreateInstance<InputSettings>();
-            JsonUtility.FromJsonOverwrite(SessionState.GetString("AtmajaAudit.Input","{}"),settings);InputSystem.settings=settings;Object.Destroy(old);
+            RecoveryTestInputSettings.Restore("AtmajaAudit.Input");
             Time.timeScale=1;yield return new ExitPlayMode();
+            RecoveryTestInputSettings.RestoreEditorConfiguration("AtmajaAudit.Input");
+            UiFocus.ApplicationFocused=true;UiFocus.PhoneAiming=false;
             var directory=Environment.GetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY");
             Environment.SetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY",SessionState.GetString("AtmajaAudit.PreviousSave",""));
             if(!string.IsNullOrEmpty(directory)&&Directory.Exists(directory))Directory.Delete(directory,true);
@@ -84,6 +89,86 @@ namespace LayarTerakhir.Editor.Tests
         [UnityTest] public IEnumerator RightMouseRaisesAndLowersThePhoneCamera()=>Run(CameraShortcut());
         [UnityTest] public IEnumerator ThreatAudioUsesPhysicalWallsForBothHumAndScrape()=>Run(ThreatAudioWalls());
         [UnityTest] public IEnumerator HunterDeformsContinuouslyAndMatchesBasementMovement()=>Run(AuthoredHunterLocomotion());
+        [UnityTest] public IEnumerator PhoneMenuRecoversItsAspectAndControlsAfterAimAndFocus()=>Run(PhoneFocusRecovery());
+        private IEnumerator PhoneFocusRecovery()
+        {
+            yield return new WaitForSeconds(2);Time.timeScale=1;
+            var d=Find<AtmajaDirector>();var phone=SmartphoneController.Instance;var view=d.phoneView;
+            phone.hasSmartphoneInInventory=true;phone.isPhoneRaised=false;phone.isScreenOn=true;phone.SyncVisualState();
+            view.Apps.Open(PhoneApp.Home);yield return null;
+            InputSystem.QueueStateEvent(mouse,new MouseState{buttons=2});yield return new WaitForSeconds(.4f);
+            Assert.That(view.ViewfinderActive,Is.True);
+            yield return RecoveryVisualEvidence.CaptureFrame(view.playerCamera,"01-phone-aim-from-pocket");
+            InputSystem.QueueStateEvent(mouse,new MouseState());yield return new WaitForSeconds(.4f);
+            var rect=view.Panel.GetComponent<RectTransform>();
+            Assert.That(rect.rect.width/rect.rect.height,Is.LessThan(.65f),"RMB release must restore a portrait menu, including an aim begun with the phone stowed");
+            Assert.That(d.player.GetComponent<ShoulderCameraRig>().PhoneAimOverride,Is.False);
+            Assert.That(view.FocusHandsVisible,Is.False);
+            Assert.That(rect.rect.width/rect.rect.height,Is.EqualTo(AtmajaPhoneView.PortraitHandsetAspect).Within(.01f));
+            yield return RecoveryVisualEvidence.CaptureFrame(view.playerCamera,"02-phone-menu-after-release");
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftAlt,Key.Tab));yield return null;yield return null;
+            Assert.That(phone.isPhoneRaised,Is.True,"OS Alt+Tab must never be interpreted as the in-game Tab shortcut");
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());yield return null;yield return null;
+            view.Apps.Open(PhoneApp.Journal);yield return null;
+            InputSystem.QueueStateEvent(mouse,new MouseState{buttons=2});yield return new WaitForSeconds(.3f);
+            GameShell.Instance.Pause();
+            view.SendMessage("OnApplicationFocus",false,SendMessageOptions.DontRequireReceiver);
+            d.player.SendMessage("OnApplicationFocus",false,SendMessageOptions.DontRequireReceiver);
+            yield return null;
+            Assert.That(view.ViewfinderActive,Is.False,"Focus loss must cancel the held aim even if the mouse release was lost");
+            view.SendMessage("OnApplicationFocus",true,SendMessageOptions.DontRequireReceiver);
+            d.player.SendMessage("OnApplicationFocus",true,SendMessageOptions.DontRequireReceiver);
+            GameShell.Instance.Resume();
+            yield return new WaitForSeconds(.3f);
+            Assert.That(view.ViewfinderActive,Is.False,"Regaining focus must wait for a fresh RMB press");
+            Assert.That(view.Apps.CurrentApp,Is.EqualTo(PhoneApp.Journal),"The menu active before aiming must survive focus loss");
+            Assert.That(Cursor.lockState,Is.EqualTo(CursorLockMode.None));
+            yield return RecoveryVisualEvidence.CaptureFrame(view.playerCamera,"03-phone-after-focus-restored");
+            InputSystem.QueueStateEvent(mouse,new MouseState());yield return null;yield return null;
+            InputSystem.QueueStateEvent(mouse,new MouseState{buttons=2});yield return new WaitForSeconds(.3f);
+            Assert.That(view.ViewfinderActive,Is.True);
+            InputSystem.QueueStateEvent(mouse,new MouseState());yield return new WaitForSeconds(.3f);
+            Assert.That(view.Apps.CurrentApp,Is.EqualTo(PhoneApp.Journal));
+            for(int i=0;i<3;i++)
+            {
+                InputSystem.QueueStateEvent(mouse,new MouseState{buttons=2});yield return new WaitForSeconds(.25f);
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.Tab));yield return null;yield return null;
+                Assert.That(phone.isPhoneRaised,Is.False,"Tab must stow even while RMB remains held");
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState());yield return null;
+                InputSystem.QueueStateEvent(mouse,new MouseState());yield return new WaitForSeconds(.3f);
+                Assert.That(phone.isPhoneRaised,Is.False,"Releasing a suppressed hold must not reopen the phone");
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.Tab));yield return null;yield return null;
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState());yield return new WaitForSeconds(.3f);
+                Assert.That(phone.isPhoneRaised,Is.True);Assert.That(view.ViewfinderActive,Is.False);
+            }
+            view.Apps.BeginDamarCall();yield return new WaitForSeconds(.7f);
+            yield return RecoveryVisualEvidence.AfterPresentation(()=>
+            {
+            var actor=d.player.GetComponent<ShoulderCameraRig>().Avatar;
+            var glass=actor.GetComponentsInChildren<Renderer>(true).Single(r=>r.name=="HandsetScreen");
+            var head=actor.GetComponentsInChildren<Transform>().Single(t=>t.name=="Head");
+            var mesh=new Mesh();Vector3[] glassVertices;
+            if(glass is SkinnedMeshRenderer skinnedGlass){skinnedGlass.BakeMesh(mesh,true);glassVertices=mesh.vertices;}
+            else glassVertices=glass.GetComponent<MeshFilter>().sharedMesh.vertices;
+            Vector3 screenCentre=Vector3.zero;
+            foreach(var vertex in glassVertices)screenCentre+=glass.transform.TransformPoint(vertex)/glassVertices.Length;
+            Object.Destroy(mesh);
+            var avatar=actor.GetComponent<AnimatedRakaAvatar>();
+            object State(string name)=>typeof(AnimatedRakaAvatar).GetField(name,BindingFlags.Instance|BindingFlags.NonPublic).GetValue(avatar);
+            var cached=State("phoneDesktop") as PhoneDesktop;
+            Debug.Log("CALL_POSE_STATE current="+State("current")+" blend="+State("callBlend")+" cached="+State("callContactCached")+" active="+(cached&&cached.CallActive)+" ownerMatch="+(cached==view.Apps)+" frontOffset="+Vector3.Dot(screenCentre-head.position,actor.forward));
+            Assert.That(Vector3.Distance(screenCentre,head.position),Is.LessThan(.22f),"The handset itself, rather than only the wrist, must reach the ear");
+            Assert.That(Mathf.Abs(Vector3.Dot(screenCentre-head.position,actor.forward)),Is.LessThan(.10f),"A call rests beside the head rather than remaining in the camera hold in front of it");
+            });
+            yield return RecoveryVisualEvidence.CaptureFrame(view.playerCamera,"04-phone-call-contact");
+            view.Apps.EndDamarCall();yield return new WaitForSeconds(.4f);
+            phone.isPhoneRaised=false;phone.SyncVisualState();yield return new WaitForSeconds(.4f);
+            Assert.That(d.player.GetComponent<ShoulderCameraRig>().PhoneAimOverride,Is.False);
+            Assert.That(d.player.CursorLockRequested,Is.True,"Gameplay must request pointer capture after stowing");
+            Directory.CreateDirectory("Audit/Visuals/Recovery");
+            File.WriteAllText("Audit/Visuals/Recovery/cursor-observation.json","{\"batchMode\":"+Application.isBatchMode.ToString().ToLowerInvariant()+",\"requestedLock\":true,\"nativeReadback\":\""+Cursor.lockState+"\",\"physicalDesktopAltTabPerformed\":false}\n");
+            if(!Application.isBatchMode)Assert.That(Cursor.lockState,Is.EqualTo(CursorLockMode.Locked));
+        }
         private IEnumerator ThreatAudioWalls()
         {
             yield return new WaitForSeconds(2);Time.timeScale=1;
@@ -179,7 +264,7 @@ namespace LayarTerakhir.Editor.Tests
             InputSystem.QueueStateEvent(mouse,new MouseState{buttons=0});yield return null;yield return null;
             Assert.That(view.ViewfinderActive,Is.False,"Releasing aim never leaves a toggled viewfinder");
             Assert.That(phone.isPhoneRaised,Is.True);Assert.That(phone.isScreenOn,Is.True);
-            Assert.That(view.Apps.CurrentApp,Is.EqualTo(PhoneApp.Home),"Releasing aim returns to the smartphone menu with its screen active");
+            Assert.That(view.Apps.CurrentApp,Is.EqualTo(PhoneApp.Journal),"Releasing aim restores the active smartphone menu with its screen active");
             var rig=d.player.GetComponent<ShoulderCameraRig>();rig.SetPerspective(PlayerPerspective.FirstPerson);
             yield return new WaitForSecondsRealtime(.3f);
             var portraitSkin=view.playerCamera.transform.Find("ExistingHandsetDepthMask").GetComponentsInChildren<Renderer>(true).Single(r=>r.name=="PhoneHand_VisibleSkin");
@@ -188,7 +273,7 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(view.FocusHandsVisible,Is.True);Assert.That(portraitSkin.enabled,Is.False,"Portrait and landscape skin must not overlap");
             InputSystem.QueueStateEvent(mouse,new MouseState());yield return new WaitForSecondsRealtime(.3f);
             Assert.That(rig.SelectedPerspective,Is.EqualTo(PlayerPerspective.FirstPerson),"Aim release preserves the chosen first-person view too");
-            Assert.That(view.Apps.CurrentApp,Is.EqualTo(PhoneApp.Home));Assert.That(portraitSkin.enabled,Is.True);
+            Assert.That(view.Apps.CurrentApp,Is.EqualTo(PhoneApp.Journal));Assert.That(portraitSkin.enabled,Is.True);
             Assert.That(GameInputConfig.Instance.GetKeyForAction(GameAction.Vault),Is.EqualTo(KeyCode.Space),"The window escape stays on Space");
         }
         private IEnumerator ChatIntensity()

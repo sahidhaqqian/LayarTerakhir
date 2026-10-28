@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-28 05:01:38Z" end-time="2026-10-28 05:01:45Z" duration="7.3498951">
+  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="521" result="Passed" start-time="2026-10-28 05:01:38Z" end-time="2026-10-28 05:01:45Z" duration="7.349895" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1603" name="Assembly-CSharp-Editor.dll" fullname="/root/projects/LayarTerakhir-recovery/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="521" result="Passed" start-time="2026-10-28 05:01:38Z" end-time="2026-10-28 05:01:45Z" duration="7.220999" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="326099" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1604" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="521" result="Passed" start-time="2026-10-28 05:01:38Z" end-time="2026-10-28 05:01:45Z" duration="7.217220" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1605" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="521" result="Passed" start-time="2026-10-28 05:01:38Z" end-time="2026-10-28 05:01:45Z" duration="7.214478" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1606" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="521" result="Passed" start-time="2026-10-28 05:01:38Z" end-time="2026-10-28 05:01:45Z" duration="7.212209" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1011" name="AtmajaPlayTests" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" testcasecount="35" result="Passed" start-time="2026-10-28 05:01:38Z" end-time="2026-10-28 05:01:45Z" duration="7.199708" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1043" name="PhoneMenuRecoversItsAspectAndControlsAfterAimAndFocus" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.PhoneMenuRecoversItsAspectAndControlsAfterAimAndFocus" methodname="PhoneMenuRecoversItsAspectAndControlsAfterAimAndFocus" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="2110040410" result="Passed" start-time="2026-10-28 05:01:31Z" end-time="2026-10-28 05:01:45Z" duration="14.290947" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CALL_POSE_STATE current=PhoneIdle blend=1 cached=True active=True ownerMatch=True frontOffset=0.06684113
+Saving results to: /root/.config/unity3d/DefaultCompany/LayarTerakhir/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

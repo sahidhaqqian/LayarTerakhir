@@ -138,3 +138,10 @@ MonoBehaviour:
   runStrideSpeed: 4.4539313
   crouchStrideSpeed: 0.43977275
   lowCrouchStrideSpeed: 0.3635238
+  callContactCached: 1
+  phoneFrameInHand: {x: 0.12408178, y: -0.1240951, z: 0.69613516, w: -0.6961324}
+  headFrameInBone: {x: -0.120613486, y: -0.01973809, z: 0.026773296, w: 0.9921422}
+  screenOffsetInHand: {x: 0.015173299, y: 0.060727283, z: 0.043148108}
+  headCentreInBone: {x: 0.00003250014, y: 0.0011813338, z: -0.00025540765}
+  headHalfWidth: 0.12807108
+  callSide: 1

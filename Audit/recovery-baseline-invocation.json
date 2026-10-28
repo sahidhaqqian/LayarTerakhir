@@ -1,0 +1,32 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-job-worker-count",
+    "1",
+    "-projectPath",
+    "/root/projects/LayarTerakhir-recovery",
+    "-nographics",
+    "-runTests",
+    "-testPlatform",
+    "EditMode",
+    "-testFilter",
+    "PhoneMenuRecoversItsAspectAndControlsAfterAimAndFocus;RuntimeLocomotionPreservesRetargetedKneePlanesAndFootRotations",
+    "-testResults",
+    "/root/unity-logs/recovery-baseline.xml",
+    "-logFile",
+    "/root/unity-logs/recovery-baseline.log"
+  ],
+  "startedUtc": "2026-10-28T03:36:55.141773+00:00",
+  "status": "Finished",
+  "unit": "lt-unity-20261028-033655-312920",
+  "memoryLimitBytes": 11811160064,
+  "memoryHighBytes": 9663676416,
+  "endedUtc": "2026-10-28T03:38:01.703974+00:00",
+  "exitCode": 2,
+  "systemdServiceResult": "exit-code"
+}

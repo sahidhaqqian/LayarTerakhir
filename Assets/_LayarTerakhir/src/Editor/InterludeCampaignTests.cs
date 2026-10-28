@@ -177,7 +177,7 @@ namespace LayarTerakhir.Editor.Tests
             {
                 if (t == null) continue;
                 string n; try { n = t.name; } catch { continue; }
-                if (n.StartsWith("AlleyHouse")) alley++;
+                if (n=="AlleyHouse") alley++;
                 if (n == "WartegBanner") warteg++;
                 if (n == "GerobakSign") carts++;
                 if (n.StartsWith("StreetParkedMotor") || n == "StreetParkedSedan" || n == "StreetAngkot") parked++;
@@ -186,10 +186,10 @@ namespace LayarTerakhir.Editor.Tests
                 if (label && (n.StartsWith("Alley") || n.StartsWith("Warteg") || n.StartsWith("Gerobak") || n.StartsWith("Street")))
                 { labels++; Assert.That(label.font, Is.Not.Null, "authored label resolves a font: " + n); }
             }
-            Assert.That(alley, Is.GreaterThanOrEqualTo(8), "Zone A gang has authored facades on both sides");
+            Assert.That(alley, Is.EqualTo(7), "Retain both sides of the gang with a gap at the kos gate");
             Assert.That(warteg, Is.EqualTo(1), "Zone C warteg banner facade present");
             Assert.That(carts, Is.EqualTo(2), "two PKL carts with painted signs");
-            Assert.That(parked, Is.GreaterThanOrEqualTo(6), "parked motors, sedan and angkot on the street");
+            Assert.That(parked, Is.GreaterThanOrEqualTo(6), "parked motors and the full-scale sedan on the street");
             Assert.That(wires, Is.GreaterThanOrEqualTo(8), "catenary wiring grounds the street");
             Assert.That(labels, Is.GreaterThanOrEqualTo(6), "authored signage resolves fonts");
         }
@@ -204,19 +204,54 @@ namespace LayarTerakhir.Editor.Tests
             alleyGroup.gameObject.SetActive(true);
             Vector3[] route =
             {
-                // Gate, south around the new north facades, east along the
-                // kos street into the authored alley mouth, then to the road.
-                new Vector3(-16.5f, 1f, -6.5f), new Vector3(-17.5f, 1f, -9f), new Vector3(-16f, 1f, -12f),
-                new Vector3(-11f, 1f, -11.75f),
-                new Vector3(-7f, 1f, -11.75f), new Vector3(-4f, 1f, -11.75f), new Vector3(-1f, 1f, -13f),
-                new Vector3(0f, 1f, -17f), new Vector3(2f, 1f, -21f), new Vector3(5.4f, 1f, -24f),
-                new Vector3(4.6f, 1f, -28f), new Vector3(0f, 1f, -33f)
+                new Vector3(-16f,.28f,-4.5f),new Vector3(-16f,.28f,-7f),new Vector3(-16f,.28f,-11.75f),
+                new Vector3(-11f,.28f,-11.75f),new Vector3(-7f,.28f,-11.75f),new Vector3(-4f,.28f,-11.75f),
+                new Vector3(0f,.28f,-14.5f),new Vector3(0f,.28f,-24f),new Vector3(5.25f,.28f,-24f),
+                new Vector3(0f,.28f,-24f),new Vector3(0f,.28f,-28.9f),new Vector3(5.4f,.28f,-28.9f),new Vector3(7.8f,.28f,-28.9f)
             };
+            var player=UnityEngine.Object.FindFirstObjectByType<LayarTerakhir.Player.FirstPersonController>();
+            player.GetComponent<CharacterController>().enabled=false;
             Physics.SyncTransforms();
-            foreach (var p in route)
+            for(int i=1;i<route.Length;i++)
             {
-                var hits = Physics.OverlapCapsule(p + Vector3.up * .4f, p + Vector3.up * 1.4f, .3f);
-                Assert.That(hits.Length, Is.EqualTo(0), "route blocked at " + p);
+                Vector3 delta=route[i]-route[i-1];
+                var hits=Physics.CapsuleCastAll(route[i-1]+Vector3.up*.32f,route[i-1]+Vector3.up*(1.75f-.32f),.32f,delta.normalized,delta.magnitude,~0,QueryTriggerInteraction.Ignore);
+                foreach(var hit in hits)
+                    Assert.That(hit.transform.IsChildOf(player.transform),Is.True,"Continuous full-height player route blocked by "+hit.collider.name+" on segment "+i+" at "+hit.point);
+            }
+        }
+        [Test]public void AlleyLaundryLeavesClearanceAboveTheWalkingPlayer()
+        {
+            EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);
+            var group=GameObject.Find("KampungMelati").transform.Find("InterludeAlley");group.gameObject.SetActive(true);
+            foreach(var renderer in group.GetComponentsInChildren<Renderer>())
+                if(renderer.name=="AlleyJemuranCloth")Assert.That(renderer.bounds.min.y,Is.GreaterThan(2.05f));
+        }
+        [Test]public void ParkedSedanRetainsItsImportedUpAxisAndRealScale()
+        {
+            EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);
+            GameObject.Find("KampungMelati").transform.Find("InterludeAlley").gameObject.SetActive(true);
+            var sedan=GameObject.Find("StreetParkedSedan");var collider=sedan.GetComponent<BoxCollider>();
+            Assert.That(collider.bounds.size.y,Is.InRange(1.2f,1.8f),"The sedan must sit on its wheels, not its nose");
+            Assert.That(collider.bounds.size.z,Is.InRange(4.3f,5.2f));
+            Assert.That(collider.bounds.size.x,Is.InRange(1.7f,2.4f));
+            Assert.That(collider.bounds.min.y,Is.EqualTo(.08f).Within(.02f));
+        }
+        [Test]public void WartegFoodHasServingScaleAndCookwareStaysInTheShop()
+        {
+            EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);
+            var group=GameObject.Find("KampungMelati").transform.Find("InterludeAlley");group.gameObject.SetActive(true);
+            foreach(var t in group.GetComponentsInChildren<Transform>())
+            {
+                if(t.name=="WartegFood")
+                {
+                    var rs=t.GetComponentsInChildren<Renderer>();var b=rs[0].bounds;
+                    foreach(var r in rs)b.Encapsulate(r.bounds);
+                    Assert.That(Mathf.Max(b.size.x,b.size.z),Is.LessThanOrEqualTo(.261f));
+                    Assert.That(b.size.y,Is.LessThanOrEqualTo(.241f));
+                }
+                if(t.name=="WartegRiceCooker"||t.name=="WartegDandang")
+                    Assert.That(t.position.z,Is.InRange(-31.5f,-28.5f),"World depth must not be added to the local shop origin twice");
             }
         }
     }

@@ -1,0 +1,49 @@
+newmtl black.001
+Kd 0.025 0.028 0.03
+Pm 0.08
+Pr 0.65
+
+newmtl chrome
+Kd 0.45 0.47 0.48
+Pm 0.8
+Pr 0.3
+
+newmtl clearlens
+Kd 0.43 0.46 0.47
+Pm 0.35
+Pr 0.2
+
+newmtl glass.001
+Kd 0.025 0.045 0.055
+Pm 0.25
+Pr 0.12
+
+newmtl interior
+Kd 0.045 0.042 0.038
+Pm 0
+Pr 0.85
+
+newmtl paint
+Kd 0.25 0.28 0.3
+Pm 0.45
+Pr 0.45
+
+newmtl redlens
+Kd 0.26 0.025 0.02
+Pm 0.1
+Pr 0.3
+
+newmtl rubber.001
+Kd 0.018 0.02 0.022
+Pm 0
+Pr 0.85
+
+newmtl steel.001
+Kd 0.21 0.23 0.24
+Pm 0.7
+Pr 0.5
+
+newmtl white
+Kd 0.66 0.65 0.61
+Pm 0
+Pr 0.65

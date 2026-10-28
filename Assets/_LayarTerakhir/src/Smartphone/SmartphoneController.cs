@@ -73,7 +73,7 @@ namespace LayarTerakhir.Smartphone
             if (_blitzCooldownTimer > 0f)
                 _blitzCooldownTimer -= Time.deltaTime;
 
-            if (!hasSmartphoneInInventory || UiFocus.Cinematic || UiFocus.HardModal)
+            if (!UiFocus.ApplicationFocused || !hasSmartphoneInInventory || UiFocus.Cinematic || UiFocus.HardModal)
                 return;
 
             if (HudController.Instance != null && HudController.Instance.IsModalOpen)

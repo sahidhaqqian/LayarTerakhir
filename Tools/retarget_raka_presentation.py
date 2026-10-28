@@ -60,6 +60,23 @@ def solve(rig, upper, lower, end, goal, pole):
     world_rotation(b, q@b.matrix.to_quaternion()); update()
 
 
+def source_leg_bend(source, side, thigh, goal, previous):
+    a,b,c=[source.pose.bones['DEF-'+n+'.'+side].head.copy() for n in ['thigh','shin','foot']]
+    axis=(c-a).normalized();bend=b-a-axis*(b-a).dot(axis)
+    if bend.length<.002:bend=previous.get(side,Vector((0,-1,0))).copy()
+    else:bend.normalize();previous[side]=bend.copy()
+    axis=(goal-thigh).normalized();bend-=axis*bend.dot(axis)
+    return bend.normalized()
+
+
+def sole_height(skin, side):
+    groups={skin.vertex_groups[n].index for n in ['Foot_'+side,'Toes_'+side]}
+    indices=[v.index for v in skin.data.vertices if sum(g.weight for g in v.groups if g.group in groups)>.5]
+    evaluated=skin.evaluated_get(bpy.context.evaluated_depsgraph_get());mesh=evaluated.to_mesh()
+    height=min((evaluated.matrix_world@mesh.vertices[i].co).z for i in indices)
+    evaluated.to_mesh_clear();return height
+
+
 def build():
     if not BASELINE.exists():
         BASELINE.parent.mkdir(parents=True,exist_ok=True)
@@ -155,7 +172,7 @@ def build():
             for sample in range(frames+1):
                 bpy.context.scene.frame_set(int(src.frame_range.x)+sample);update()
                 for side in floor_by_side:floor_by_side[side]=min(floor_by_side[side],source.pose.bones['DEF-foot.'+side].head.z)
-        maximum=0; minima=[]
+        maximum=0; minima=[];previous_bends={}
         for frame in range(frames+1):
             bpy.context.scene.frame_set(int(src.frame_range.x)+frame);update()
             for b in target.pose.bones:b.matrix_basis=Matrix.Identity(4)
@@ -205,11 +222,9 @@ def build():
                 foot_rotation=target.pose.bones['Foot_'+side].matrix.to_quaternion().copy()
                 toe_offset=target.data.bones['Foot_'+side].matrix_local.to_3x3().inverted()@(target.data.bones['Toes_'+side].head_local-target.data.bones['Foot_'+side].head_local)
                 toe_height=goal.z+(foot_rotation@toe_offset).z
-                grounded=crouch or toe_height<.025
+                grounded=crouch
                 if grounded:foot_rotation=target_rests['Foot_'+side]
-                source_knee=source.pose.bones['DEF-shin.'+side].head
-                source_pelvis=source.pose.bones['DEF-hips'].head
-                pole=target.pose.bones['Hips'].head+(source_knee-source_pelvis)*scale
+                pole=target.pose.bones['Thigh_'+side].head+source_leg_bend(source,side,target.pose.bones['Thigh_'+side].head,goal,previous_bends)
                 if crouch:
                     # A very low capsule requires knees forward/up, not a
                     # source knee pole below the target's shorter pelvis.
@@ -217,6 +232,14 @@ def build():
                 solve(target,'Thigh_'+side,'Shin_'+side,'Foot_'+side,goal,pole)
                 world_rotation(target.pose.bones['Foot_'+side],foot_rotation);update()
                 if grounded:world_rotation(target.pose.bones['Toes_'+side],target_rests['Toes_'+side]);update()
+                else:
+                    # Preserve source heel/toe roll. Fit the actual sole above
+                    # the floor rather than resetting all axes at a threshold.
+                    lift=max(0,-sole_height(skin,side))
+                    if lift:
+                        goal.z+=lift
+                        solve(target,'Thigh_'+side,'Shin_'+side,'Foot_'+side,goal,pole)
+                        world_rotation(target.pose.bones['Foot_'+side],foot_rotation);update()
             if name.startswith('Phone'):
                 head=target.pose.bones['Head'].head
                 goal=Vector((-.18,head.y-.35,head.z-.16))

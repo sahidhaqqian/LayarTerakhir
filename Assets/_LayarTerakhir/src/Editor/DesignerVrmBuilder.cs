@@ -28,6 +28,7 @@ namespace LayarTerakhir.Editor
             avatar.handset = Bone(raka, "HandheldPhone").gameObject;
             PrefabUtility.SaveAsPrefabAsset(raka, "Assets/Resources/RakaCharacter.prefab");
             Object.DestroyImmediate(raka);
+            RakaPresentationRevisionBuilder.BakeCallContacts();
             var hand = Actor("RakaDesignerPhoneHand", false);
             hand.name = "RakaPhoneHand";
             PrefabUtility.SaveAsPrefabAsset(hand, "Assets/Resources/RakaPhoneHand.prefab");

@@ -135,9 +135,21 @@ namespace LayarTerakhir.Core
             };
         }
 
-        public bool GetActionDown(GameAction action) => ReadKeyDown(GetKeyForAction(action));
-        public bool GetActionHeld(GameAction action) => ReadKeyHeld(GetKeyForAction(action));
-        public bool GetActionUp(GameAction action) => ReadKeyUp(GetKeyForAction(action));
+        public static bool SystemShortcutHeld
+        {
+            get
+            {
+#if ENABLE_INPUT_SYSTEM
+                var keys=Keyboard.current;
+                return keys!=null&&(keys.leftAltKey.isPressed||keys.rightAltKey.isPressed);
+#else
+                return Input.GetKey(KeyCode.LeftAlt)||Input.GetKey(KeyCode.RightAlt);
+#endif
+            }
+        }
+        public bool GetActionDown(GameAction action) => UiFocus.ApplicationFocused&&!SystemShortcutHeld&&ReadKeyDown(GetKeyForAction(action));
+        public bool GetActionHeld(GameAction action) => UiFocus.ApplicationFocused&&!SystemShortcutHeld&&ReadKeyHeld(GetKeyForAction(action));
+        public bool GetActionUp(GameAction action) => UiFocus.ApplicationFocused&&!SystemShortcutHeld&&ReadKeyUp(GetKeyForAction(action));
         public string GetActionLabel(GameAction action) => GetKeyForAction(action) switch
         {
             KeyCode.Mouse0 => "KLIK KIRI",
@@ -163,6 +175,7 @@ namespace LayarTerakhir.Core
 
         public Vector2 GetLookDelta()
         {
+            if(!UiFocus.ApplicationFocused||SystemShortcutHeld)return Vector2.zero;
 #if ENABLE_INPUT_SYSTEM
             if (Mouse.current != null)
             {

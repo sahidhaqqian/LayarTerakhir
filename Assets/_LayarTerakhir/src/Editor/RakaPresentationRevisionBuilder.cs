@@ -56,6 +56,21 @@ namespace LayarTerakhir.Editor
             File.WriteAllText("Audit/raka-presentation-stride.json",JsonUtility.ToJson(new StrideMetrics{clips=metrics.ToArray()},true)+"\n");AssetDatabase.SaveAssets();
         }
 
+        public static void BakeCallContacts()
+        {
+            const string path="Assets/Resources/RakaCharacter.prefab";
+            var root=PrefabUtility.LoadPrefabContents(path);GameObject sample=null;
+            try
+            {
+                sample=UnityEngine.Object.Instantiate(root);
+                if(!sample.GetComponent<AnimatedRakaAvatar>().BakeCallContactProfile(root.GetComponent<AnimatedRakaAvatar>()))
+                    throw new InvalidOperationException("Cannot derive handset/head contact frames from the actual Raka meshes");
+                PrefabUtility.SaveAsPrefabAsset(root,path);
+            }
+            finally{if(sample)UnityEngine.Object.DestroyImmediate(sample);PrefabUtility.UnloadPrefabContents(root);}
+            AssetDatabase.SaveAssets();Debug.Log("RAKA_CALL_CONTACTS_BAKED nonReadablePlayerMeshes=true");
+        }
+
         public static void Apply()
         {
             AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
@@ -92,6 +107,7 @@ namespace LayarTerakhir.Editor
             material.SetFloat("_Metallic",0);material.SetFloat("_Smoothness",.20f);material.SetFloat("_BumpScale",.50f);
             material.DisableKeyword("_METALLICSPECGLOSSMAP");EditorUtility.SetDirty(material);
             AssetDatabase.SaveAssets();
+            BakeCallContacts();
             Debug.Log("RAKA_PRESENTATION_APPLIED sourceMotion=Quaternius_CC0 clips=16 suppliedVRM=true gameplayControllerUnchanged=true");
         }
     }

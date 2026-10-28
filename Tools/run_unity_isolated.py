@@ -25,12 +25,15 @@ def main():
     parser.add_argument('--memory-mib', type=int, default=5120)
     parser.add_argument('--memory-high-mib', type=int, default=4096)
     parser.add_argument('--unity', default=os.environ.get('UNITY_EDITOR', '/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity'))
+    parser.add_argument('--timeout-seconds', type=int, help='Optional hard service deadline, including editor startup; omit for unbounded imports')
     parser.add_argument('--child', action='store_true', help=argparse.SUPPRESS)
     parser.add_argument('--finalize', action='store_true', help=argparse.SUPPRESS)
     parser.add_argument('arguments', nargs=argparse.REMAINDER)
     args = parser.parse_args()
     if not 1024 <= args.memory_high_mib < args.memory_mib:
         parser.error('Memory high must be at least 1024 MiB and below the hard limit')
+    if args.timeout_seconds is not None and args.timeout_seconds <= 0:
+        parser.error('Timeout must be positive')
     arguments = args.arguments[1:] if args.arguments[:1] == ['--'] else args.arguments
     record = (ROOT / args.record).resolve()
     if not record.is_relative_to(ROOT):
@@ -61,6 +64,8 @@ def main():
                    sys.executable, str(Path(__file__).resolve()), '--child', '--record', str(record),
                     '--memory-mib', str(args.memory_mib), '--memory-high-mib', str(args.memory_high_mib),
                    '--unity', args.unity, '--'] + arguments
+        if args.timeout_seconds is not None:
+            command.insert(5, '--property=RuntimeMaxSec=' + str(args.timeout_seconds))
         subprocess.run(command, check=True)
         print('Unity isolated service:', unit, '\nInvocation record:', record)
         return 0

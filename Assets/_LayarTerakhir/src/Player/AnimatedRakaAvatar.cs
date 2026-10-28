@@ -108,47 +108,110 @@ namespace LayarTerakhir.Player
         private void LateUpdate()
         {
             if(!motion||current==null)return;
-            bool locomotion=current.EndsWith("Walk")||current.EndsWith("Run");
-            bool crouchBlend=false;
-            if(locomotion)
-                foreach(AnimationState state in motion)
-                    if(state.enabled&&state.weight>.001f&&state.name.Contains("Crouch")){crouchBlend=true;break;}
-            // Walk/run knee plane: keep the baked stride and foot plants, but pin
-            // the knee pole outward so knock-kneed clips read as a natural gait.
-            // Crouch blending stays owned by AlignCrouchFootContacts.
-            if(locomotion&&!crouchBlend)SpreadKnees();
+            // Standing locomotion is retargeted offline using each leg's bend
+            // plane. Re-solving it against a fixed lateral pole twists the knees.
             ApplyCallPose();
         }
 
-        private void SpreadKnees()
-        {
-            PrepareFootContacts();
-            if(pelvis==null)return;
-            for(int i=0;i<2;i++)
-            {
-                if(!thighs[i]||!shins[i]||!feet[i])continue;
-                Vector3 target=feet[i].position;
-                Vector3 pole=thighs[i].position+transform.right*(i==0?-1f:1f)*.45f+transform.forward*.25f+transform.up*.1f;
-                Quaternion authoredFootRotation=feet[i].rotation;
-                MotorcycleRiderAlignment.Solve(thighs[i],shins[i],feet[i],target,pole);
-                feet[i].rotation=sourcedLocomotion?authoredFootRotation:transform.rotation*flatFootRotations[i];
-            }
-        }
+        [SerializeField,HideInInspector]private bool callContactCached;
+        [SerializeField,HideInInspector]private Quaternion phoneFrameInHand,headFrameInBone;
+        [SerializeField,HideInInspector]private Vector3 screenOffsetInHand,headCentreInBone;
+        [SerializeField,HideInInspector]private float headHalfWidth,callSide;
+        private float callBlend;
 
-        // Phone calls hold the handset to the ear instead of the generic
-        // hold-up-to-look clip: solve the right arm to the character's own
-        // ear side with a down-back elbow so the elbow stops flaring out.
+        // Derive contact frames from the actual skinned handset/head. Moving the
+        // wrist to an assumed ear point ignores the grip offset and twists it.
+#if UNITY_EDITOR
+        // Bake metadata in the editor; imported body meshes stay non-readable in
+        // players. No CPU mesh copies or bone-weight reads are needed at runtime.
+        public bool BakeCallContactProfile(AnimatedRakaAvatar recipient)
+        {
+            Awake();
+            var clip=motion?motion.GetClip("PhoneIdle"):null;if(!clip)return false;
+            clip.SampleAnimation(gameObject,0);handset.SetActive(true);
+            callContactCached=false;if(!CacheCallContact())return false;
+            recipient.callContactCached=true;recipient.phoneFrameInHand=phoneFrameInHand;recipient.headFrameInBone=headFrameInBone;
+            recipient.screenOffsetInHand=screenOffsetInHand;recipient.headCentreInBone=headCentreInBone;
+            recipient.headHalfWidth=headHalfWidth;recipient.callSide=callSide;return true;
+        }
+        private bool CacheCallContact()
+        {
+            if(!handset||!handR||!headBone)return false;
+            var phone=handset.GetComponent<SkinnedMeshRenderer>();
+            var glass=handsetScreen;
+            var skin=System.Array.Find(GetComponentsInChildren<SkinnedMeshRenderer>(),r=>r.name=="VisibleSkin");
+            if(!phone||!glass||!skin)return false;
+            var mesh=new Mesh();
+            try
+            {
+                phone.BakeMesh(mesh,true);var corners=new System.Collections.Generic.List<Vector3>();
+                foreach(var v in mesh.vertices)
+                {
+                    Vector3 point=phone.transform.TransformPoint(v);
+                    if(!corners.Exists(p=>(p-point).sqrMagnitude<1e-10f))corners.Add(point);
+                }
+                if(corners.Count!=8)return false;
+                var edges=new System.Collections.Generic.List<Vector3>();
+                var candidates=corners.GetRange(1,7);candidates.Sort((a,b)=>(a-corners[0]).sqrMagnitude.CompareTo((b-corners[0]).sqrMagnitude));
+                foreach(var point in candidates)
+                {
+                    Vector3 edge=point-corners[0];
+                    if(edges.TrueForAll(e=>Mathf.Abs(Vector3.Dot(e.normalized,edge.normalized))<.01f))edges.Add(edge);
+                }
+                if(edges.Count!=3)return false;
+                edges.Sort((a,b)=>a.sqrMagnitude.CompareTo(b.sqrMagnitude));
+                Vector3 centre=Vector3.zero;foreach(var point in corners)centre+=point/8;
+                mesh.Clear();Vector3[] glassVertices;
+                if(glass is SkinnedMeshRenderer skinnedGlass){skinnedGlass.BakeMesh(mesh,true);glassVertices=mesh.vertices;}
+                else{var filter=glass.GetComponent<MeshFilter>();if(!filter||!filter.sharedMesh)return false;glassVertices=filter.sharedMesh.vertices;}
+                Vector3 screen=Vector3.zero;
+                foreach(var v in glassVertices)screen+=glass.transform.TransformPoint(v)/glassVertices.Length;
+                Vector3 normal=edges[0].normalized,up=edges[2].normalized;
+                if(Vector3.Dot(normal,screen-centre)<0)normal=-normal;
+                if(Vector3.Dot(up,transform.up)<0)up=-up;
+                phoneFrameInHand=Quaternion.Inverse(handR.rotation)*Quaternion.LookRotation(normal,up);
+                screenOffsetInHand=Quaternion.Inverse(handR.rotation)*(screen-handR.position)/Mathf.Abs(transform.lossyScale.x);
+                mesh.Clear();skin.BakeMesh(mesh,true);var vertices=mesh.vertices;var weights=skin.sharedMesh.boneWeights;
+                int headIndex=System.Array.IndexOf(skin.bones,headBone);if(headIndex<0)return false;
+                Bounds bounds=default;bool found=false;
+                for(int i=0;i<vertices.Length;i++)
+                {
+                    var w=weights[i];float headWeight=(w.boneIndex0==headIndex?w.weight0:0)+(w.boneIndex1==headIndex?w.weight1:0)+(w.boneIndex2==headIndex?w.weight2:0)+(w.boneIndex3==headIndex?w.weight3:0);
+                    if(headWeight<.5f)continue;
+                    var point=transform.InverseTransformPoint(skin.transform.TransformPoint(vertices[i]));
+                    // Head weights also own hanging hair/hood geometry below
+                    // the skull. Ear contact uses the skull above its bone pivot.
+                    if(point.y<transform.InverseTransformPoint(headBone.position).y)continue;
+                    if(!found){bounds=new Bounds(point,Vector3.zero);found=true;}else bounds.Encapsulate(point);
+                }
+                if(!found)return false;
+                headCentreInBone=headBone.InverseTransformPoint(transform.TransformPoint(bounds.center));
+                headHalfWidth=bounds.extents.x;
+                headFrameInBone=Quaternion.Inverse(headBone.rotation)*transform.rotation;
+                callSide=Mathf.Sign(transform.InverseTransformPoint(upperArmR.position).x);
+                callContactCached=true;return true;
+            }
+            finally{DestroyImmediate(mesh);}
+        }
+#endif
         private void ApplyCallPose()
         {
             if(phoneDesktop==null)phoneDesktop=Object.FindFirstObjectByType<PhoneDesktop>();
-            if(phoneDesktop==null||!phoneDesktop.CallActive||current==null||!current.StartsWith("Phone"))return;
+            bool calling=phoneDesktop&&phoneDesktop.CallActive&&current!=null&&current.StartsWith("Phone");
+            callBlend=Mathf.MoveTowards(callBlend,calling?1:0,Time.deltaTime/.24f);
+            if(callBlend<=0)return;
             if(!armBonesCached)PrepareFootContacts();
-            if(!upperArmR||!forearmR||!handR||!headBone)return;
-            float sideSign=Mathf.Sign(transform.InverseTransformPoint(handR.position).x);
-            if(sideSign==0)sideSign=1;
-            Vector3 ear=headBone.position+headBone.right*sideSign*.09f+headBone.up*.02f+transform.forward*.04f;
-            Vector3 pole=upperArmR.position+transform.up*-.35f-transform.right*sideSign*.15f+transform.forward*-.15f;
-            MotorcycleRiderAlignment.Solve(upperArmR,forearmR,handR,ear,pole);
+            if(!upperArmR||!forearmR||!handR||!headBone||!callContactCached)return;
+            Quaternion headFrame=headBone.rotation*headFrameInBone;
+            Vector3 right=headFrame*Vector3.right,up=headFrame*Vector3.up;
+            float scale=Mathf.Abs(transform.lossyScale.x);
+            Vector3 ear=headBone.TransformPoint(headCentreInBone)+right*callSide*(headHalfWidth*scale+.004f);
+            Quaternion handRotation=Quaternion.LookRotation(-right*callSide,up)*Quaternion.Inverse(phoneFrameInHand);
+            Vector3 wrist=ear-handRotation*(screenOffsetInHand*scale);
+            Vector3 pole=upperArmR.position-up*.35f+(headFrame*Vector3.forward)*.15f+right*callSide*.1f;
+            var rotation=Quaternion.Slerp(handR.rotation,handRotation,callBlend);
+            MotorcycleRiderAlignment.Solve(upperArmR,forearmR,handR,Vector3.Lerp(handR.position,wrist,callBlend),pole);
+            handR.rotation=rotation;
         }
 
         public void Present(float speed, bool crouching, bool phone, bool riding, Vector2 direction = default, bool lowCrouch = false)

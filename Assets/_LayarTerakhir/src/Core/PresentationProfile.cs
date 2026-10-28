@@ -23,12 +23,13 @@ namespace LayarTerakhir.Core
     // Separate hard modals from phone browsing: TAB/F remain usable while browsing apps.
     public static class UiFocus
     {
-        public static bool Menu,Clock,Phone,Cinematic;
+        public static bool Menu,Clock,Phone,Cinematic,PhoneAiming;
+        public static bool ApplicationFocused = true;
         public static bool HardModal=>Menu||Clock;
         // Apps own the pointer, not the player's legs. World-object clicks still stay isolated.
-        public static bool BlocksMovement=>HardModal||Cinematic;
-        public static bool BlocksWorld=>HardModal||Phone||Cinematic;
+        public static bool BlocksMovement=>!ApplicationFocused||HardModal||Cinematic;
+        public static bool BlocksWorld=>!ApplicationFocused||HardModal||Phone||Cinematic;
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void Reset(){Menu=Clock=Phone=Cinematic=false;}
+        private static void Reset(){Menu=Clock=Phone=Cinematic=PhoneAiming=false;ApplicationFocused=true;}
     }
 }

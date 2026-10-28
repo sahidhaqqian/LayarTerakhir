@@ -17,6 +17,7 @@ namespace LayarTerakhir.Player
             // Sample the current legacy blend before fitting, so capture/pause
             // frames cannot accumulate an extra torso bend on the previous fit.
             var animation=GetComponent<Animation>();if(animation)animation.Sample();
+            var head=Bone("Head");var authoredHead=head?head.rotation:Quaternion.identity;
             if(motor!=vehicle)
             {
                 motor=vehicle;var contacts=vehicle.GetComponentsInChildren<Transform>(true).Where(t=>!t.IsChildOf(transform)).ToArray();
@@ -46,6 +47,9 @@ namespace LayarTerakhir.Player
                     if(reachable)break;
                 }
             }
+            // Fitting the torso to handlebars must retain the clip's head
+            // direction; otherwise the extra lean points the face at the floor.
+            if(head)head.rotation=authoredHead;
             foreach(string side in new[]{"L","R"})
             {
                 var hand=Bone("Hand_"+side);var foot=Bone("Foot_"+side);if(!hand||!foot)continue;

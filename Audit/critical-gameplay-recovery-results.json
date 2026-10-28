@@ -1,0 +1,301 @@
+{
+  "dateUtc": "2026-10-28T05:10:33.200195+00:00",
+  "baseCommit": "eea7812a7b504faf6a33046c598871bd533f9b8e",
+  "unity": "6000.3.26f1",
+  "tests": {
+    "baseline": {
+      "total": 2,
+      "passed": 0,
+      "failed": 2,
+      "skipped": 0,
+      "fixtures": {
+        "LayarTerakhir.Editor.Tests.AtmajaPlayTests": {
+          "passed": 0,
+          "failed": 1,
+          "other": 0
+        },
+        "LayarTerakhir.Editor.Tests.PlayerFeelTests": {
+          "passed": 0,
+          "failed": 1,
+          "other": 0
+        }
+      },
+      "xml": "Audit/recovery-baseline-tests.xml",
+      "sourceLog": "/root/unity-logs/recovery-baseline.log"
+    },
+    "targeted": {
+      "total": 124,
+      "passed": 124,
+      "failed": 0,
+      "skipped": 0,
+      "fixtures": {
+        "LayarTerakhir.Editor.Tests.AtmajaPlayTests": {
+          "passed": 11,
+          "failed": 0,
+          "other": 0
+        },
+        "LayarTerakhir.Editor.Tests.AtmajaSceneTests": {
+          "passed": 1,
+          "failed": 0,
+          "other": 0
+        },
+        "LayarTerakhir.Editor.Tests.FoundationAuditTests": {
+          "passed": 28,
+          "failed": 0,
+          "other": 0
+        },
+        "LayarTerakhir.Editor.Tests.GameplayRecoveryRuntimeTests": {
+          "passed": 1,
+          "failed": 0,
+          "other": 0
+        },
+        "LayarTerakhir.Editor.Tests.InterludeCampaignTests": {
+          "passed": 15,
+          "failed": 0,
+          "other": 0
+        },
+        "LayarTerakhir.Editor.Tests.Phase1CampaignTests": {
+          "passed": 45,
+          "failed": 0,
+          "other": 0
+        },
+        "LayarTerakhir.Editor.Tests.PlayerFeelTests": {
+          "passed": 23,
+          "failed": 0,
+          "other": 0
+        }
+      },
+      "xml": "Audit/recovery-targeted-tests.xml",
+      "sourceLog": "/root/unity-logs/recovery-tests-final.log"
+    },
+    "graphics": {
+      "total": 5,
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0,
+      "fixtures": {
+        "LayarTerakhir.Editor.Tests.AtmajaPlayTests": {
+          "passed": 1,
+          "failed": 0,
+          "other": 0
+        },
+        "LayarTerakhir.Editor.Tests.GameplayRecoveryRuntimeTests": {
+          "passed": 1,
+          "failed": 0,
+          "other": 0
+        },
+        "LayarTerakhir.Editor.Tests.InterludeCampaignTests": {
+          "passed": 2,
+          "failed": 0,
+          "other": 0
+        },
+        "LayarTerakhir.Editor.Tests.PlayerFeelTests": {
+          "passed": 1,
+          "failed": 0,
+          "other": 0
+        }
+      },
+      "xml": "Audit/recovery-graphics-tests.xml",
+      "sourceLog": "/root/unity-logs/recovery-visual.log"
+    },
+    "call": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "fixtures": {
+        "LayarTerakhir.Editor.Tests.AtmajaPlayTests": {
+          "passed": 1,
+          "failed": 0,
+          "other": 0
+        }
+      },
+      "xml": "Audit/recovery-call-tests.xml",
+      "sourceLog": "/root/unity-logs/recovery-call.log"
+    },
+    "fixtureCleanup": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "graphics": {
+    "renderer": "llvmpipe (LLVM 20.1.2, 256 bits), OpenGL 4.5 Mesa 25.2.8",
+    "realEditorPlayMode": true,
+    "actualStandalonePlayer": false,
+    "captureMethod": "LateUpdate order 10000, after gameplay camera/avatar updates; synchronous Unity render request with HUD canvases temporarily associated with the camera",
+    "physicalDesktopAltTabPerformed": false,
+    "screenshots": [
+      {
+        "file": "01-phone-aim-from-pocket.png",
+        "sha256": "d9a81e3d9096e528b654e4b86483f2e237674e34af95efb232f90b2f88cb9e0f",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": false
+      },
+      {
+        "file": "02-phone-menu-after-release.png",
+        "sha256": "815a51253a06d0826095279e4ba4d28c9cc5a4026627edd786f9b179db5c5474",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": false
+      },
+      {
+        "file": "03-phone-after-focus-restored.png",
+        "sha256": "253aabd58e6a0fb5ea87eb6ffb121487eab179e25febbd776a7521d081bd6a12",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": false
+      },
+      {
+        "file": "04-phone-call-contact.png",
+        "sha256": "ae67802ba6bd43a050ddae56e72241f0c789eb8f3e75b931ffa726d3e93c81a5",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": false
+      },
+      {
+        "file": "04a-open-kos-gate-runtime.png",
+        "sha256": "5809a9797eefaed512fe13b4572e15ddce6f2e14609d4055cd89cddea16b37f6",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": true
+      },
+      {
+        "file": "05-warung-customer-approach.png",
+        "sha256": "936aa03a130369858dfd107f636162710201a8f8a07409f1ef4ccf8fab596ef2",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": false
+      },
+      {
+        "file": "06-warteg-doorway-interior.png",
+        "sha256": "f2a9e9948a7fd2ea6019aadf37a6575c290aed40a1a246f76e0e24156fff880e",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": false
+      },
+      {
+        "file": "07-gerobak-and-reachable-vendor.png",
+        "sha256": "c0ba0d7e2dd85dd2a1e0f8e5619c1ac903e26b69b36154e26eaaefbb08deb1f5",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": false
+      },
+      {
+        "file": "08-traffic-motor-with-rider.png",
+        "sha256": "eee7c854ea523138128ef9306834d3d8e2cc716d7862eca9846b5c3a856ae015",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": true
+      },
+      {
+        "file": "08b-full-scale-sedan.png",
+        "sha256": "a72b5554d85ea3498a52440cdb02f6b31f34460c98d7c78d18075e8232d3ba4c",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": true
+      },
+      {
+        "file": "09-walk-fullbody-0.png",
+        "sha256": "286d7242148851ac631242ab0652064b410680743ee76fecd73dbcb8216a268d",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": true
+      },
+      {
+        "file": "09-walk-fullbody-1.png",
+        "sha256": "c2d7d235c1dbb5ba921618817bd76e2c9a45a0e35d864c7b11350953ef38a823",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": true
+      },
+      {
+        "file": "09-walk-fullbody-2.png",
+        "sha256": "bf3d6499d0303faeccf4fec61bd894316d65ea5e3ac908b9fff8954b0d8142dc",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": true
+      },
+      {
+        "file": "09-walk-fullbody-3.png",
+        "sha256": "153539dd0941fb76f95e1b0f863277eff5dff05a6827c398943c4d432da60af8",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": true
+      },
+      {
+        "file": "09-walk-phase-0.png",
+        "sha256": "08e609f3ca7f17c12b93e01df37855907fb09854d2fdaccca7a6d6ef60064a8c",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": false
+      },
+      {
+        "file": "09-walk-phase-1.png",
+        "sha256": "6a973a6cea406eb48bd60ebbe5dee9fc1f72cf3a09686271d50b2d81fa91bbaa",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": false
+      },
+      {
+        "file": "09-walk-phase-2.png",
+        "sha256": "21556158827c7c6c29e65208afbb284bac24a65b18342abf788f85184191c924",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": false
+      },
+      {
+        "file": "09-walk-phase-3.png",
+        "sha256": "b012c2a343e39c339eda7a5cb80491062ef9529eacb7ff8e0d124db004fac71d",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": false
+      },
+      {
+        "file": "10-running.png",
+        "sha256": "782a1a8c0f1232a16de71b0fe7b213eee5b04cfa21c811cf7fcb3c84b22f1da6",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": false
+      },
+      {
+        "file": "11-turning.png",
+        "sha256": "3cd8b9e175654f9ab4be309bc9377fd4729b481743593109040436ed9db56d01",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": false
+      },
+      {
+        "file": "12-stopped.png",
+        "sha256": "7888cec4bafe1c45cc481a42b4e4097679588f5619e6478d6af954a90de4615e",
+        "width": 1280,
+        "height": 720,
+        "inspectionView": false
+      }
+    ]
+  },
+  "cursor": {
+    "batchMode": true,
+    "requestedLock": true,
+    "nativeReadback": "None",
+    "physicalDesktopAltTabPerformed": false
+  },
+  "atmajaBudget": {
+    "actual": 348175,
+    "limitExclusive": 350000,
+    "static": 258222,
+    "skinned": 22739,
+    "runtimeRaka": 67214
+  },
+  "windowsBuildProduced": false,
+  "r2UploadPerformed": false,
+  "nativeHardwarePerformanceMeasured": false,
+  "graphify": {
+    "files": 390,
+    "nodes": 4831,
+    "edges": 18226,
+    "assetFiles": 0
+  }
+}

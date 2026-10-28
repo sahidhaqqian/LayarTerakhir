@@ -40,6 +40,7 @@ namespace LayarTerakhir.Player
         public float minPitch = -80f;
         public float maxPitch = 80f;
 
+        public bool CursorLockRequested {get;private set;}
         public bool MovementLocked { get; set; }
         public bool IsCrouching { get; private set; }
         public bool IsSprinting { get; private set; }
@@ -56,7 +57,8 @@ namespace LayarTerakhir.Player
         private Vector3 _horizontalVelocity;
         private float _cameraHeightVelocity;
         private readonly Collider[] _headroomHits = new Collider[24];
-        public static bool PhoneLookHeld => UiFocus.Phone && Mouse.current != null && Mouse.current.rightButton.isPressed;
+        private int ignoreLookThroughFrame;
+        public static bool PhoneLookHeld => UiFocus.ApplicationFocused && UiFocus.Phone && UiFocus.PhoneAiming;
 
         private void Awake()
         {
@@ -113,8 +115,19 @@ namespace LayarTerakhir.Player
             return Vector3.MoveTowards(current, target, Mathf.Max(0, rate) * Mathf.Max(0, dt));
         }
 
+        private void OnApplicationFocus(bool focused)
+        {
+            UiFocus.ApplicationFocused=focused;
+            _horizontalVelocity=Vector3.zero;
+            // Discard the window-system pointer delta from focus/cursor recapture.
+            ignoreLookThroughFrame=Time.frameCount+1;
+            SetCursorLock(focused&&!UiFocus.BlocksWorld);
+        }
+        private void OnApplicationPause(bool paused)=>OnApplicationFocus(!paused);
         public void SetCursorLock(bool locked)
         {
+            locked &= UiFocus.ApplicationFocused&&!UiFocus.HardModal&&!UiFocus.Cinematic;
+            CursorLockRequested=locked;
             Cursor.lockState = locked ? CursorLockMode.Locked : CursorLockMode.None;
             Cursor.visible = !locked;
         }
@@ -126,7 +139,7 @@ namespace LayarTerakhir.Player
 
         private void HandleMouseLook()
         {
-            if (GameInputConfig.Instance == null || cameraPivot == null)
+            if (GameInputConfig.Instance == null || cameraPivot == null || !UiFocus.ApplicationFocused || Time.frameCount<=ignoreLookThroughFrame)
                 return;
 
             Vector2 look = GameInputConfig.Instance.GetLookDelta();

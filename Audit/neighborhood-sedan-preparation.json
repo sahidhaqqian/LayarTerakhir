@@ -1,0 +1,24 @@
+{
+  "source": "ArtSources/NeighborhoodVehicles/InnersceneSedan/red-four-door-sedan.obj",
+  "output": "Assets/_LayarTerakhir/assets/Art/Imported/NeighborhoodVehicles/NeighborhoodSedan.fbx",
+  "inputTriangles": 116258,
+  "outputTriangles": 12000,
+  "dimensionsMetres": [
+    2.180814266204834,
+    4.839577674865723,
+    1.5451351404190063
+  ],
+  "surfaceRoles": [
+    "StreetSedan_chrome",
+    "StreetSedan_steel",
+    "StreetSedan_rubber",
+    "StreetSedan_interior",
+    "StreetSedan_black",
+    "StreetSedan_paint",
+    "StreetSedan_clearlens",
+    "StreetSedan_redlens",
+    "StreetSedan_white",
+    "StreetSedan_glass"
+  ],
+  "staticOnly": true
+}

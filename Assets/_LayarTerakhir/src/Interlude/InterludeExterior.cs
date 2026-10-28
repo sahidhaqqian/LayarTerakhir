@@ -21,7 +21,7 @@ namespace LayarTerakhir.Interlude
                 pole.name = "InterludeClothesPole";
                 pole.transform.SetParent(root, false);
                 pole.transform.localPosition = new Vector3(3.8f, .9f, z);
-                pole.transform.localScale = new Vector3(.07f, 1.8f, .07f);
+                pole.transform.localScale = new Vector3(.07f, .9f, .07f);
                 pole.GetComponent<Renderer>().sharedMaterial = poleMat;
             }
             var line = new GameObject("InterludeClothesLine").AddComponent<LineRenderer>();
@@ -59,8 +59,8 @@ namespace LayarTerakhir.Interlude
             var galon = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             galon.name = "InterludeGalon";
             galon.transform.SetParent(root, false);
-            galon.transform.localPosition = new Vector3(-2.2f, .55f, 2.6f);
-            galon.transform.localScale = new Vector3(.32f, .8f, .32f);
+            galon.transform.localPosition = new Vector3(-2.2f, .3f, 2.6f);
+            galon.transform.localScale = new Vector3(.32f, .3f, .32f);
             var aqua = new Material(Shader.Find("Universal Render Pipeline/Lit")) { color = new Color(.45f, .70f, .85f, .75f) };
             galon.GetComponent<Renderer>().sharedMaterial = aqua;
             DropCollider(galon);
@@ -68,7 +68,7 @@ namespace LayarTerakhir.Interlude
             broom.name = "InterludeBroom";
             broom.transform.SetParent(root, false);
             broom.transform.localPosition = new Vector3(-2.3f, .7f, 5.6f);
-            broom.transform.localScale = new Vector3(.04f, 1.4f, .04f);
+            broom.transform.localScale = new Vector3(.04f, .7f, .04f);
             broom.GetComponent<Renderer>().sharedMaterial = poleMat;
             DropCollider(broom);
         }

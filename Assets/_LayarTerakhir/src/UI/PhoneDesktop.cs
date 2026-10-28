@@ -29,7 +29,7 @@ namespace LayarTerakhir.UI
         {
             if(banner&&Time.unscaledTime>bannerUntil){Destroy(banner);banner=null;}
             if(callTimer&&IsCalling){int seconds=Mathf.FloorToInt(Time.time-callStarted);callTimer.text=dialing&&!outgoingConnected?"Memanggil…":$"{seconds/60:00}:{seconds%60:00}  •  Tersambung";}
-            if(!Phone||!Phone.hasSmartphoneInInventory||!root||UiFocus.Cinematic||UiFocus.HardModal||HudController.Instance.IsModalOpen||Phone.CameraLocked)return;
+            if(!UiFocus.ApplicationFocused||GameInputConfig.SystemShortcutHeld||!Phone||!Phone.hasSmartphoneInInventory||!root||UiFocus.Cinematic||UiFocus.HardModal||HudController.Instance.IsModalOpen||Phone.CameraLocked)return;
             if(Keyboard.current!=null)
             {
                 if(Keyboard.current.zKey.wasPressedThisFrame&&Phone.isPhoneRaised)Open(CurrentApp==PhoneApp.Home?PhoneApp.Camera:PhoneApp.Home);

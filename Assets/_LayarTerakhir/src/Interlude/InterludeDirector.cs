@@ -89,6 +89,7 @@ namespace LayarTerakhir.Interlude
             cc.enabled = true;
             if (!savedGround) Campaign.SaveCheckpointAtomic(InterludeIds.MorningCheckpoint);
 
+            corridor.gateHinge.GetComponent<DoubleLeafGate>()?.SetImmediate(true);
             InterludeExterior.DressYard(corridor);
             // Daytime street dressing lives in the scene but stays OFF for
             // the night prolog; only the interlude switches it on.
@@ -307,7 +308,7 @@ namespace LayarTerakhir.Interlude
                 "Raka", "(ketuk) Mas Eko? Berangkat bareng?", 3f, InterludeIds.NeighborTalk);
             AddZone("INTERLUDE_STREET", new Vector3(0, 1, -30), new Vector3(10, 4, 10),
                 "SFX", "[ Samar-samar... tembang Jawa dari arah gang? ] Radio tetangga, mungkin. Pagi-pagi sudah nyetel gending.", 6f, InterludeIds.AnomalySeen);
-            AddZone("INTERLUDE_WARTEG", new Vector3(8f, 1, -30f), new Vector3(4.5f, 2.5f, 3.5f),
+            AddZone("INTERLUDE_WARTEG", new Vector3(5.25f, 1, -30f), new Vector3(2f, 2.5f, 3.5f),
                 "Raka", "Warteg Bahari buka... Nasi bungkus lima belas ribu. Nanti aja, perut masih kenyang.", 4.5f);
             AddZone("INTERLUDE_GEROBAK", new Vector3(-4.4f, 1, -20f), new Vector3(3f, 2.5f, 3f),
                 "Raka", "Gorengan anget... bau minyaknya khas banget. Khas Indonesia.", 4f);
@@ -326,7 +327,7 @@ namespace LayarTerakhir.Interlude
             stairs.transform.SetParent(corridor.buildingRoot, false);
             stairs.transform.localPosition = new Vector3(1.8f, .9f, 12.3f);
             var box = stairs.AddComponent<BoxCollider>();
-            box.size = new Vector3(.9f, 1.8f, .9f);
+            box.size = new Vector3(.9f, 1.8f, .9f);box.isTrigger=true;
             var room = stairs.AddComponent<InterludeWorldItem>();
             room.director = this; room.id = "ROOM"; room.prompt = "Naik ke kamar kos";
         }
@@ -371,7 +372,7 @@ namespace LayarTerakhir.Interlude
             SpawnNpc("MbakSari", new Vector3(2.7f, 0, -5.0f), -60,
                 new Color(.16f, .42f, .40f), new Color(.35f, .25f, .18f),
                 "SARI", "Bicara dengan Mbak Sari");
-            SpawnNpc("BangSiomay", new Vector3(6.8f, 0, -22.8f), -90,
+            SpawnNpc("BangSiomay", corridor.buildingRoot.InverseTransformPoint(new Vector3(6.8f, 0, -17f)), -90,
                 new Color(.20f, .30f, .38f), new Color(.30f, .26f, .20f),
                 "VENDOR", "Beli siomay");
         }
