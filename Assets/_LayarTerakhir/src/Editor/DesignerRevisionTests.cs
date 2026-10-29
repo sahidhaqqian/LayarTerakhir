@@ -93,7 +93,7 @@ namespace LayarTerakhir.Editor.Tests
         private void CheckKosFacilities()
         {
             EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);
-            foreach(string name in new[]{"SharedDiningJambL","BathroomWANITADoor","BathroomPRIADoor","KosCommunalDiningTable","Stove","KitchenSink"})Assert.That(GameObject.Find(name),Is.Not.Null,name);
+            foreach(string name in new[]{"SharedDiningJambL","BathroomWANITADoor","BathroomPRIADoor","KosCommunalDiningTable","KosDiningWoodChair","RealStove","RealKitchenSink","RealToiletW","RealToiletP","RealBathSink","RealFridge","RealShowerW","RealShowerP"})Assert.That(GameObject.Find(name),Is.Not.Null,name);
             Assert.That(Object.FindObjectsByType<Transform>(FindObjectsSortMode.None).Count(t=>t.name=="KosFrontWindowGlass"),Is.EqualTo(8));
             Assert.That(RenderSettings.skybox.shader.name,Is.EqualTo("LayarTerakhir/NightSky"));
             var d=Object.FindFirstObjectByType<KosCorridorDirector>();var gate=d.gateHinge.GetComponent<DoubleLeafGate>();

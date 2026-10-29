@@ -131,10 +131,10 @@ namespace LayarTerakhir.Editor
             Box("SharedDiningJambR",new Vector3(-1.45f,1.07f,7.98f),new Vector3(.10f,2.14f,.10f),wood);
             Box("SharedDiningHeader",new Vector3(-1.45f,2.20f,7.5f),new Vector3(.10f,.12f,1.06f),wood);
             Label("SharedDiningSign","DAPUR & RUANG MAKAN",new Vector3(-1.36f,2.45f,7.5f),Vector3.right,.13f);
-            var table=Model("LongDiningTable","KosCommunalDiningTable",new Vector3(1.12f,.78f,1.65f),new Vector3(-3.8f,.39f,7.5f));
+            var table=RealModel("dining_table.fbx","KosCommunalDiningTable",new Vector3(1.12f,.78f,1.65f),new Vector3(-3.8f,.39f,7.5f),0,_=>PhReal("dining_table"));
             foreach(float x in new[]{-2.85f,-4.75f})foreach(float z in new[]{7.0f,8.0f})
             {
-                var chair=Model("WornWoodChair","KosDiningWoodChair",new Vector3(.43f,.85f,.44f),new Vector3(x,.425f,z));chair.transform.rotation=Quaternion.LookRotation(new Vector3(-3.8f-x,0,0));
+                var chair=RealModel("dining_chair_02.fbx","KosDiningWoodChair",new Vector3(.43f,.85f,.44f),new Vector3(x,.425f,z),0,_=>PhReal("dining_chair_02"));chair.transform.rotation=Quaternion.LookRotation(new Vector3(-3.8f-x,0,0));
             }
             Practical(new Vector3(-3.8f,2.7f,7.5f),new Color(.90f,.79f,.58f),1.45f,4.5f);
             var dish=Material("KosEnamelDish",new Color(.68f,.72f,.67f));
@@ -152,8 +152,7 @@ namespace LayarTerakhir.Editor
             var outerDoor=GameObject.Find("KAMAR MANDIDoor").GetComponent<HingedDoor>();outerDoor.slides=true;outerDoor.slideOffset=Vector3.forward*1.6f;
             Box("BathPocketDoorTrack",new Vector3(1.40f,2.25f,5.0f),new Vector3(.06f,.055f,3.1f),metal);
             GameObject.Find("BathroomWaterTank").transform.position=new Vector3(5.7f,.55f,5.5f);
-            GameObject.Find("SquatToiletBase").transform.position=new Vector3(4.8f,.09f,3.2f);
-            GameObject.Find("ToiletBowl").transform.position=new Vector3(4.8f,.19f,3.2f);
+            // Kloset, wastafel, dan shower kini aset internet realistis (SharedRoom).
             Box("GenderBathroomPartition",new Vector3(4.575f,1.3f,4.25f),new Vector3(3.35f,2.6f,.10f),wall);
             foreach(float z in new[]{3.30f,5.20f})
             {
@@ -164,10 +163,7 @@ namespace LayarTerakhir.Editor
                 // Plang gender anti-melayang: papan menempel + ikon, bukan TextMesh offset.
                 GenderBathroomSign(title,z,women);
                 Box("CubicleDoorHeader",new Vector3(2.82f,2.43f,z),new Vector3(.10f,.5f,1.0f),wall);
-                if(women)Box("SecondSquatToilet",new Vector3(4.8f,.09f,5.2f),new Vector3(.52f,.18f,.65f),dish);
-                else Box("SecondWaterTank",new Vector3(5.7f,.50f,3.8f),new Vector3(.72f,1,.72f),floor);
-                Box("ShowerRiser",new Vector3(6.15f,1.55f,z),new Vector3(.025f,1.6f,.025f),metal);
-                Box("ShowerHead",new Vector3(6.02f,2.28f,z),new Vector3(.24f,.035f,.16f),metal);
+                // Fixture realistis sudah di SharedRoom; kubikel hanya butuh sekat.
             }
             foreach(var segment in new[]{new Vector2(2.5f,2.84f),new Vector2(3.76f,4.74f),new Vector2(5.66f,6f)})
                 Box("BathroomFrontPartition",new Vector3(2.82f,1.3f,(segment.x+segment.y)*.5f),new Vector3(.1f,2.6f,segment.y-segment.x),wall);

@@ -30,6 +30,7 @@ namespace LayarTerakhir.Editor
             wood=AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/assets/Art/Atmaja/Materials/House_MAT_WoodDoor.mat");metal=Material("KosCorridorMetal",new Color(.07f,.08f,.085f));
             // Pintu kost modern (panel datar + kusen gelap), bukan kayu renyot.
             doorMat=Material("KosModernDoor",new Color(.24f,.28f,.31f));doorMat.SetFloat("_Smoothness",.5f);EditorUtility.SetDirty(doorMat);
+            ConfigureRealImports();
             Box("UpperHallFloor",new Vector3(0,3.23f,6),new Vector3(2.8f,.14f,14),floor);
             Box("GroundHallFloor",new Vector3(0,-.07f,6),new Vector3(2.8f,.14f,14),floor);
             Box("UpperHallCeiling",new Vector3(0,6.2f,6),new Vector3(2.9f,.13f,14),wall);
@@ -137,6 +138,50 @@ namespace LayarTerakhir.Editor
             foreach(var r in o.GetComponentsInChildren<Renderer>()){string n=r.name;var mat=AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/assets/Art/Atmaja/Materials/"+n.Substring(n.IndexOf("__",System.StringComparison.Ordinal)+2)+".mat");r.sharedMaterials=Enumerable.Repeat(mat?mat:wood,r.sharedMaterials.Length).ToArray();}
             if(size!=Vector3.zero)KosVisualV2.Resize(o,size);KosVisualV2.SetCenter(o,center);KosVisualV2.FitBox(o.AddComponent<BoxCollider>(),KosVisualV2.BoundsOf(o));return o;
         }
+        private const string RealArt="Assets/_LayarTerakhir/assets/Art/Imported/KosRealWorld/";
+        // Aset internet realistis (CC0): OpenGameArt + PolyHaven, bukan primitif box.
+        private static void ConfigureRealImports()
+        {
+            foreach(var path in System.IO.Directory.GetFiles(RealArt,"*",System.IO.SearchOption.AllDirectories))
+            {
+                if(path.EndsWith(".meta"))continue;
+                if(AssetImporter.GetAtPath(path) is TextureImporter ti)
+                {
+                    ti.maxTextureSize=1024;ti.mipmapEnabled=true;ti.anisoLevel=2;
+                    ti.textureCompression=TextureImporterCompression.Compressed;
+                    bool data=path.Contains("_nor_gl_")||path.Contains("_arm_")||path.Contains("Roughness")||path.Contains("Metalness")||path.Contains("AoRM")||path.Contains("Ambient Occlusion")||path.Contains("_Normal_");
+                    ti.textureType=data?TextureImporterType.NormalMap:TextureImporterType.Default;
+                    ti.sRGBTexture=!data;ti.SaveAndReimport();continue;
+                }
+                if(AssetImporter.GetAtPath(path) is ModelImporter mi)
+                {
+                    mi.importCameras=false;mi.importLights=false;mi.importAnimation=false;
+                    mi.addCollider=false;mi.meshCompression=ModelImporterMeshCompression.Low;
+                    // .blend exports keep their authored colors; PBR sets get wired manually.
+                    if(path.Contains("fridge.fbx")||path.Contains("kos_appliances.fbx")||path.Contains("ToiletPaper.obj"))continue;
+                    mi.materialImportMode=ModelImporterMaterialImportMode.None;mi.SaveAndReimport();
+                }
+            }
+        }
+        private static Material PbrReal(string name,string baseMap,string bumpMap,string maskMap,Color tint,float smooth=.5f)
+        {
+            string path="Assets/_LayarTerakhir/assets/Art/Atmaja/Materials/"+name+".mat";var mat=AssetDatabase.LoadAssetAtPath<Material>(path);
+            if(!mat){mat=new Material(Shader.Find("Universal Render Pipeline/Lit"));AssetDatabase.CreateAsset(mat,path);}
+            mat.SetTexture("_BaseMap",AssetDatabase.LoadAssetAtPath<Texture2D>(RealArt+baseMap));
+            mat.SetTexture("_BumpMap",AssetDatabase.LoadAssetAtPath<Texture2D>(RealArt+bumpMap));
+            var mask=AssetDatabase.LoadAssetAtPath<Texture2D>(RealArt+maskMap);
+            mat.SetTexture("_MetallicGlossMap",mask);mat.SetTexture("_OcclusionMap",mask);mat.SetFloat("_OcclusionStrength",.8f);
+            mat.EnableKeyword("_NORMALMAP");mat.EnableKeyword("_METALLICSPECGLOSSMAP");mat.EnableKeyword("_OCCLUSIONMAP");
+            mat.SetColor("_BaseColor",tint);mat.SetFloat("_Smoothness",smooth);EditorUtility.SetDirty(mat);return mat;
+        }
+        private static Material PhReal(string slug)=>PbrReal("Real_"+slug,"Textures/"+slug+"_diff_1k.jpg","Textures/"+slug+"_nor_gl_1k.jpg","Textures/"+slug+"_arm_1k.jpg",Color.white,.45f);
+        private static GameObject RealModel(string file,string name,Vector3 size,Vector3 center,float yaw,System.Func<string,Material> slots)
+        {
+            var o=new GameObject(name);o.transform.SetParent(root,false);o.transform.rotation=Quaternion.Euler(0,yaw,0);
+            var model=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(RealArt+"Models/"+file));model.transform.SetParent(o.transform,false);
+            if(slots!=null)foreach(var r in o.GetComponentsInChildren<Renderer>())r.sharedMaterials=Enumerable.Repeat(slots(r.name),r.sharedMaterials.Length).ToArray();
+            if(size!=Vector3.zero)KosVisualV2.Resize(o,size);KosVisualV2.SetCenter(o,center);KosVisualV2.FitBox(o.AddComponent<BoxCollider>(),KosVisualV2.BoundsOf(o));return o;
+        }
         private static void ClosedDoor(string name,Vector3 center,int number,Vector3 normal,bool raka)
         {
             // Daun pintu kost modern: panel datar + kick plate, bukan kayu lapuk.
@@ -179,28 +224,47 @@ namespace LayarTerakhir.Editor
             Practical(new Vector3(x,2.72f,4.25f),new Color(.83f,.84f,.73f),1.1f,4);
             if(side<0)
             {
-                // Dapur kost lengkap: counter + kompor + bak cuci + tabung gas + rak piring.
+                // Dapur kost dengan aset internet realistis (CC0: PolyHaven + OGA).
                 Box("SharedKitchenCounter",new Vector3(-4.2f,.45f,4.5f),new Vector3(.7f,.9f,2.3f),doorMat??wood);
                 Box("KitchenCounterTop",new Vector3(-4.2f,.92f,4.5f),new Vector3(.78f,.05f,2.4f),metal);
-                Box("Stove",new Vector3(-4.2f,.97f,4.3f),new Vector3(.6f,.06f,.9f),metal);
-                foreach(float bz in new[]{4.1f,4.5f}){var burner=GameObject.CreatePrimitive(PrimitiveType.Cylinder);burner.name="StoveBurner";burner.transform.SetParent(root,false);burner.transform.position=new Vector3(-4.2f,1.01f,bz);burner.transform.localScale=new Vector3(.18f,.02f,.18f);burner.GetComponent<Renderer>().sharedMaterial=metal;Object.DestroyImmediate(burner.GetComponent<Collider>());}
-                var pot=GameObject.CreatePrimitive(PrimitiveType.Cylinder);pot.name="KitchenPot";pot.transform.SetParent(root,false);pot.transform.position=new Vector3(-4.2f,1.12f,4.1f);pot.transform.localScale=new Vector3(.28f,.16f,.28f);pot.GetComponent<Renderer>().sharedMaterial=metal;Object.DestroyImmediate(pot.GetComponent<Collider>());
-                Box("KitchenSink",new Vector3(-4.2f,.97f,5.2f),new Vector3(.5f,.08f,.5f),metal);
-                Box("KitchenSinkBasin",new Vector3(-4.2f,.94f,5.2f),new Vector3(.4f,.06f,.4f),wall);
-                var gas=GameObject.CreatePrimitive(PrimitiveType.Cylinder);gas.name="KitchenGasTube";gas.transform.SetParent(root,false);gas.transform.position=new Vector3(-4.2f,.35f,3.6f);gas.transform.localScale=new Vector3(.28f,.7f,.28f);var gasMat=Material("KosGasGreen",new Color(.12f,.38f,.18f));gas.GetComponent<Renderer>().sharedMaterial=gasMat;Object.DestroyImmediate(gas.GetComponent<Collider>());
-                Box("KitchenDishRack",new Vector3(-2.4f,1.1f,5.6f),new Vector3(.9f,.04f,.4f),doorMat??wood);
-                for(int p=0;p<3;p++){var plate=GameObject.CreatePrimitive(PrimitiveType.Cylinder);plate.name="KitchenRackPlate";plate.transform.SetParent(root,false);plate.transform.position=new Vector3(-2.65f+p*.25f,1.18f,5.6f);plate.transform.localScale=new Vector3(.18f,.015f,.18f);plate.transform.rotation=Quaternion.Euler(0,0,75);plate.GetComponent<Renderer>().sharedMaterial=wall;Object.DestroyImmediate(plate.GetComponent<Collider>());}
+                var ceramic=PbrReal("RealCeramic","Textures/Sink_A/Sink_A_Diffuse_1K.png","Textures/Sink_A/Sink_A_Normal_1K.png","Textures/Sink_A/Sink_A_Ambient Occlusion_1K.png",Color.white,.6f);
+                RealModel("electric_stove.fbx","RealStove",new Vector3(.65f,.95f,.7f),new Vector3(-4.2f,.475f,4.15f),0,_=>PhReal("electric_stove"));
+                RealModel("pot_enamel_01.fbx","RealPot",new Vector3(.3f,.18f,.3f),new Vector3(-4.25f,1.04f,4.15f),15,_=>PhReal("pot_enamel_01"));
+                RealModel("vintage_electric_kettle.fbx","RealKettle",new Vector3(.22f,.26f,.22f),new Vector3(-4.3f,1.075f,4.95f),-20,_=>PhReal("vintage_electric_kettle"));
+                RealModel("toaster.fbx","RealToaster",new Vector3(.28f,.2f,.18f),new Vector3(-4.05f,1.045f,5.25f),90,null);
+                RealModel("kblender.fbx","RealBlender",new Vector3(.25f,.4f,.25f),new Vector3(-4.35f,1.145f,5.35f),0,null);
+                RealModel("Sink_A.fbx","RealKitchenSink",new Vector3(.55f,.85f,.5f),new Vector3(-2.6f,.425f,5.3f),90,_=>ceramic);
+                RealModel("wooden_cutting_board.fbx","RealCuttingBoard",new Vector3(.35f,.03f,.25f),new Vector3(-4.05f,.96f,4.7f),25,_=>PhReal("wooden_cutting_board"));
+                RealModel("wooden_spoon.fbx","RealSpoon",new Vector3(.3f,.03f,.07f),new Vector3(-4.05f,.975f,4.85f),-30,_=>PhReal("wooden_spoon"));
+                RealModel("steel_frame_shelves_01.fbx","RealDishRack",new Vector3(.95f,1.8f,.4f),new Vector3(-2.4f,.9f,5.6f),0,_=>PhReal("steel_frame_shelves_01"));
+                RealModel("fridge.fbx","RealFridge",new Vector3(.65f,1.5f,.65f),new Vector3(-2.3f,.75f,2.95f),0,null);
+                RealModel("veggiesbox.fbx","RealVeggieBox",new Vector3(.4f,.25f,.3f),new Vector3(-4.2f,1.07f,4.5f),10,null);
+                var gas=GameObject.CreatePrimitive(PrimitiveType.Cylinder);gas.name="KitchenGasTube";gas.transform.SetParent(root,false);gas.transform.position=new Vector3(-4.2f,.35f,3.55f);gas.transform.localScale=new Vector3(.28f,.7f,.28f);var gasMat=Material("KosGasGreen",new Color(.12f,.38f,.18f));gas.GetComponent<Renderer>().sharedMaterial=gasMat;Object.DestroyImmediate(gas.GetComponent<Collider>());
+                RealModel("metal_trash_can.fbx","RealTrashCan",new Vector3(.4f,.7f,.4f),new Vector3(-1.85f,.35f,5.7f),0,_=>PhReal("metal_trash_can"));
+                RealModel("metal_jug.fbx","RealGayung",new Vector3(.16f,.2f,.16f),new Vector3(-2.1f,.5f,5.4f),0,_=>PhReal("metal_jug"));
                 Model("wooden_bucket_01","SharedWaterBucket",new Vector3(.35f,.45f,.35f),new Vector3(-2.1f,.225f,5.4f));
-                var dipper=GameObject.CreatePrimitive(PrimitiveType.Cylinder);dipper.name="KitchenGayung";dipper.transform.SetParent(root,false);dipper.transform.position=new Vector3(-2.1f,.5f,5.4f);dipper.transform.localScale=new Vector3(.12f,.1f,.12f);dipper.GetComponent<Renderer>().sharedMaterial=metal;Object.DestroyImmediate(dipper.GetComponent<Collider>());
+                RealModel("drain_cleaner.fbx","RealCleaner",new Vector3(.12f,.3f,.12f),new Vector3(-3.55f,.15f,5.65f),0,_=>PhReal("drain_cleaner"));
+                RealModel("plunger.fbx","RealPlunger",new Vector3(.15f,.5f,.15f),new Vector3(-3.35f,.25f,5.65f),0,_=>PhReal("plunger"));
             }
             else
             {
-                // Kamar mandi lengkap: toren + closet jongkok + cermin + gayung + shower.
+                // Kamar mandi dengan aset internet realistis (CC0: OGA + PolyHaven).
                 Box("BathroomWaterTank",new Vector3(4.1f,.55f,5.25f),new Vector3(.9f,1.1f,.9f),roomFloor);
                 Box("BathroomTankLid",new Vector3(4.1f,1.12f,5.25f),new Vector3(.95f,.05f,.95f),metal);
                 Box("BathroomMirror",new Vector3(4.75f,1.6f,3.0f),new Vector3(.03f,.5f,.4f),metal);
-                Box("SquatToiletBase",new Vector3(3.1f,.09f,3.3f),new Vector3(.55f,.18f,.7f),roomFloor);var bowl=GameObject.CreatePrimitive(PrimitiveType.Cylinder);bowl.name="ToiletBowl";bowl.transform.SetParent(root,false);bowl.transform.position=new Vector3(3.1f,.19f,3.3f);bowl.transform.localScale=new Vector3(.25f,.015f,.35f);bowl.GetComponent<Renderer>().sharedMaterial=metal;
+                var ceramic=PbrReal("RealCeramic","Textures/Sink_A/Sink_A_Diffuse_1K.png","Textures/Sink_A/Sink_A_Normal_1K.png","Textures/Sink_A/Sink_A_Ambient Occlusion_1K.png",Color.white,.6f);
+                var toiletMat=PbrReal("RealToilet","Textures/Toilet_Round/Toilet_Round_Diffuse_1K.png","Textures/Toilet_Round/Toilet_Round_Normal_1K.png","Textures/Toilet_Round/Toilet_Round_Ambient Occlusion_1K.png",Color.white,.55f);
+                RealModel("Toilet_Round_A.fbx","RealToiletW",new Vector3(.62f,.8f,.7f),new Vector3(4.8f,.4f,5.2f),-90,_=>toiletMat);
+                RealModel("Toilet_Round_A.fbx","RealToiletP",new Vector3(.62f,.8f,.7f),new Vector3(4.8f,.4f,3.2f),-90,_=>toiletMat);
+                RealModel("Sink_A.fbx","RealBathSink",new Vector3(.55f,.85f,.5f),new Vector3(3.4f,.425f,5.55f),-90,_=>ceramic);
+                var showerMat=PbrReal("RealShower","Textures/chuveiro.jpg","Textures/chuveiro.jpg","Textures/chuveiro.jpg",Color.white,.4f);
+                RealModel("chuveiro.obj","RealShowerW",new Vector3(.22f,.18f,.22f),new Vector3(6.0f,2.05f,5.2f),-90,_=>showerMat);
+                RealModel("chuveiro.obj","RealShowerP",new Vector3(.22f,.18f,.22f),new Vector3(6.0f,2.05f,3.3f),-90,_=>showerMat);
+                RealModel("ToiletPaper.obj","RealTissueW",new Vector3(.15f,.12f,.12f),new Vector3(4.3f,1.0f,5.2f),0,null);
+                RealModel("ToiletPaper.obj","RealTissueP",new Vector3(.15f,.12f,.12f),new Vector3(4.3f,1.0f,3.2f),0,null);
+                RealModel("metal_jug.fbx","RealGayungBath",new Vector3(.16f,.2f,.16f),new Vector3(4.0f,.3f,4.3f),0,_=>PhReal("metal_jug"));
                 Model("wooden_bucket_01","BathroomEmber",new Vector3(.35f,.4f,.35f),new Vector3(3.9f,.2f,4.4f));
+                RealModel("garden_hose_wall_mounted_01.fbx","YardWaterTap",new Vector3(.5f,.7f,.3f),new Vector3(-7.85f,.6f,-4f),90,_=>PhReal("garden_hose_wall_mounted_01"));
             }
         }
         private static void Practical(Vector3 pos,Color color,float intensity,float range)
