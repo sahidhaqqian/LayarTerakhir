@@ -7,7 +7,7 @@ Foto sumber: sembilan PNG dari `r2:layarterakhir/Layarterakhir/bug/`, dibaca lok
 | 28 | Hapus komentar live tentang mainan dan boneka yang tidak ada. |
 | 29–30 | Buku harian tetap dapat dibaca dengan visual binder notebook unduhan; putar lampu belajar dan arahkan sorotan ke buku. |
 | 31–32 | Ganti rakitan kasur/bantal/selimut dengan set Vintage Day Bed; hapus lemari/rak yang rusak dan tempatkan tempat tidur di sudut itu. |
-| 33 | Ganti mug prosedural dengan cangkir CC0 unduhan yang diadaptasi memakai serpihan bibir dan retakan halus. Ini bukan hasil scan cangkir retak asli. |
+| 33 | Revisi lanjutan sesuai arahan pengguna: model cangkir asli dibuat dari nol di Blender, dengan dinding keramik, rongga, gagang terbuka, retakan geometri dan serpihan bibir. Sumber editable di `ArtSources/Prolog/CrackedPorcelainCup.blend`; lihat `PROLOG_BUG_33_BLENDER.md`. |
 | 34 | Hapus bilah kubus bekas cakar, gunakan foto cakaran asli pada dinding bangunan dari Katmai National Park (PD-US-NPS), diproyeksikan melalui UV crop di dinding kamar mandi. Target foto tidak mengikuti pintu. |
 | 35 | Pangkas permukaan atas plafon bawah yang koplanar dengan lantai 3,82m; pisahkan finish kayu dari ubin kamar mandi, pertahankan collider/plafon bawah. |
 | 36 | Bak berkaki berongga unduhan, orientasi tegak, permukaan darah oval di bawah bibir bak; dibuka lewat tirai. |
@@ -25,7 +25,7 @@ Foto sumber: sembilan PNG dari `r2:layarterakhir/Layarterakhir/bug/`, dibaca lok
 ## Sumber aset
 
 - [Poly Haven binder notebook](https://polyhaven.com/a/binder_notebook), [Vintage Day Bed](https://polyhaven.com/a/vintage_day_bed), CC0.
-- [OpenGameArt Bath Tube — plaggy](https://opengameart.org/content/bath-tube), [Free Mug Pack #1 — rubberduck](https://opengameart.org/content/free-mug-pack-1), [Metal ladder — nublet](https://opengameart.org/content/metal-ladder-low-poly), CC0.
+- [OpenGameArt Bath Tube — plaggy](https://opengameart.org/content/bath-tube), [Metal ladder — nublet](https://opengameart.org/content/metal-ladder-low-poly), CC0.
 - [Foto cakaran pada dinding bangunan — Katmai National Park](https://commons.wikimedia.org/wiki/File:Bear_damage_to_fish_freezing_building_at_Brooks_Camp_(20529901541).jpg), Public Domain / PD-US-NPS. Foto asli dipertahankan; shader mengambil area bekas cakar dan menyesuaikan warna AR.
 - URL unduhan, SHA-256, checksum penerbit, dan lisensi: `prolog-revision-asset-sources.json`; keluaran lokal: `prolog-revision-derived-assets.json`.
 
@@ -34,6 +34,6 @@ Foto sumber: sembilan PNG dari `r2:layarterakhir/Layarterakhir/bug/`, dibaca lok
 - Syntax Python dan kompilasi authoring Unity: lulus.
 - Delapan render Editor dari scene aktual diperiksa untuk orientasi aset, lantai, ruang, sajian, dan tangga. Ini bukan capture standalone atau bukti performa Windows.
 - Tes akhir terarah **24/24 lulus**, exit code 0; XML `prolog-review-final-tests.xml`, receipt `prolog-review-final-invocation.json`. Total 26 tes unik berstatus lulus setelah mengambil hasil terbaru tiap tes; dua hasil terdahulu dipakai ulang untuk live chat dan daun pintu yang kodenya tidak berubah. Pemeriksaan geometri terakhir setelah memindahkan kabinet: **7/7 lulus**, `prolog-review-shaft-tests.xml`. Rincian semua percobaan dan capture: `prolog-review-validation.json`.
-- Penerimaan visual/desain dan playtest manusia belum dilakukan. Model cangkir yang sudah retak dari sumber aslinya belum tersedia bebas unduh; pengganti adaptasi dinyatakan apa adanya. Kandidat berbayar: https://free3d.com/3d-model/ceramic-cup-scratched-cracked-vintage-5362.html (Scyrus, harga halaman saat diperiksa US$19). Keputusan aset bug 33 menunggu pengguna.
+- Bug 33 dilanjutkan dengan model original Blender sesuai instruksi pengguna; status aset berbayar sebelumnya tidak berlaku. Penerimaan visual/desain dan playtest manusia belum dilakukan.
 
 Temuan tambahan yang diperbaiki saat validasi: bob visual tangga sebelumnya menambah posisi tubuh setiap frame; sekarang hanya memengaruhi pitch kamera. Peti yang memotong rute diperlebar dipindahkan ke tepi. Kabinet radio di lantai dasar digeser keluar dari volume lintasan tangga agar tidak menembusnya. Capture ambush tetap memeriksa penghalang.

@@ -141,12 +141,67 @@ namespace LayarTerakhir.Editor
                 light.transform.position=P(-5.6f,.57f,4.91f);light.transform.LookAt(P(-5.3f,.65f,4.54f));
                 var l=light.GetComponent<Light>();l.type=LightType.Spot;l.spotAngle=70;l.range=1.6f;l.intensity=.65f;l.color=new Color(1,.84f,.63f);l.shadows=LightShadows.None;
             }
+            ReplaceChildCup();
+        }
+        private static void ReplaceChildCup()
+        {
+            const string path=Art+"Models/CrackedPorcelainCup.fbx";
+            var importer=AssetImporter.GetAtPath(path) as ModelImporter;
+            if(!importer)throw new Exception("Run Tools/author_cracked_porcelain_cup.py in Blender first");
+            importer.importAnimation=importer.importCameras=importer.importLights=false;
+            importer.isReadable=true;importer.meshCompression=ModelImporterMeshCompression.Off;
+            importer.materialImportMode=ModelImporterMaterialImportMode.ImportStandard;importer.SaveAndReimport();
             Remove("BimaMilkCupVisual","BimaMilkCupMesh","BimaCrackedCup");
             var cup=d.upper.childCup;if(cup.GetComponent<Renderer>())cup.GetComponent<Renderer>().enabled=false;
-            var glaze=Material("CupCeramic",new Color(.88f,.85f,.74f),"mug2.png","mug2_norm.png",.26f);
-            var mug=Model("BimaCrackedCup","ChippedCeramicCup",P(-5.02f,.62f,4.615f),new Vector3(.124f,.102f,.105f),glaze,0,false);
-            foreach(var crack in mug.GetComponentsInChildren<Renderer>().Where(r=>r.name.Contains("Hairline")))crack.sharedMaterial=Material("CupHairline",new Color(.07f,.04f,.02f));
-            mug.transform.SetParent(cup.transform,true);d.upper.cupAim.position=KosVisualV2.BoundsOf(mug).center;Fit(cup);
+            var materials=new System.Collections.Generic.Dictionary<string,Material>{
+                {"CeramicGlaze",Material("BimaPorcelainGlaze",new Color(.78f,.76f,.69f),null,null,.70f)},
+                {"CeramicCore",Material("BimaPorcelainCore",new Color(.59f,.53f,.43f),null,null,.20f)},
+                {"CeramicFracture",Material("BimaPorcelainFracture",new Color(.095f,.061f,.037f),null,null,.08f)},
+                {"SpoiledMilk",Material("BimaSpoiledMilk",new Color(.68f,.66f,.53f),null,null,.50f)}};
+            var mug=new GameObject("BimaCrackedCup");mug.transform.SetParent(root,false);mug.transform.rotation=Quaternion.LookRotation(d.north);
+            var body=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(path));body.transform.SetParent(mug.transform,false);
+            foreach(var renderer in body.GetComponentsInChildren<Renderer>())
+                renderer.sharedMaterials=renderer.sharedMaterials.Select(m=>materials.TryGetValue(m.name,out var material)?material:throw new Exception("Unknown original cup material "+m.name)).ToArray();
+            // Preserve authored proportions. Independently fitting X/Y/Z would
+            // distort the thin wall, circular opening and sub-millimetre fracture.
+            mug.transform.localScale*=.095f/KosVisualV2.BoundsOf(mug).size.y;
+            KosVisualV2.SetCenter(mug,P(-5.02f,.62f,4.6085f));
+            mug.transform.SetParent(cup.transform,true);
+            var shell=mug.GetComponentsInChildren<MeshRenderer>().Single(r=>r.name=="PorcelainShell");
+            d.upper.cupAim.position=shell.bounds.center;Fit(cup);
+        }
+        [MenuItem("LayarTerakhir/Prolog/Apply original Blender cup (bug 33)")]
+        public static void ApplyCupOnly()
+        {
+            Directory.CreateDirectory(Art+"Materials");AssetDatabase.Refresh();
+            var scene=EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);d=Object.FindFirstObjectByType<AtmajaDirector>();
+            root=Find("PrologReviewRevision").transform;ReplaceChildCup();
+            Physics.SyncTransforms();EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene);AssetDatabase.SaveAssets();
+            Debug.Log("PROLOG_ORIGINAL_CUP_APPLIED");
+        }
+        public static void ApplyCupOnlyAndCapture()
+        {
+            ApplyCupOnly();
+            var atmosphere=d.GetComponent<AtmajaEvidenceAtmosphere>();if(atmosphere&&atmosphere.cupAura)atmosphere.cupAura.enabled=false;
+            string folder="Audit/Visuals/Prolog-Cup-Unity";Directory.CreateDirectory(folder);
+            var go=new GameObject("CupSceneReviewCamera",typeof(Camera),typeof(Light));var camera=go.GetComponent<Camera>();
+            camera.fieldOfView=44;camera.nearClipPlane=.004f;camera.farClipPlane=25;
+            var light=go.GetComponent<Light>();light.type=LightType.Spot;light.range=3;light.spotAngle=85;light.shadows=LightShadows.None;
+            var frames=new[]{("cup-close",P(-5.0f,.94f,4.79f),P(-5.02f,.62f,4.615f)),
+                ("cup-crack",P(-5.065f,.80f,4.71f),P(-5.02f,.655f,4.635f)),
+                ("desk-context",P(-4.6f,1.95f,5.4f),P(-5.32f,.60f,4.60f))};
+            var target=new RenderTexture(960,720,24);camera.targetTexture=target;
+            foreach(var frame in frames)
+            {
+                go.transform.position=frame.Item2;go.transform.LookAt(frame.Item3);
+                light.intensity=.45f*(frame.Item3-frame.Item2).sqrMagnitude;
+                camera.Render();camera.Render();
+                var prior=RenderTexture.active;RenderTexture.active=target;var pixels=new Texture2D(960,720,TextureFormat.RGB24,false);
+                pixels.ReadPixels(new Rect(0,0,960,720),0,0);pixels.Apply();File.WriteAllBytes(folder+"/"+frame.Item1+".png",pixels.EncodeToPNG());
+                RenderTexture.active=prior;Object.DestroyImmediate(pixels);
+            }
+            camera.targetTexture=null;Object.DestroyImmediate(target);Object.DestroyImmediate(go);
+            Debug.Log("PROLOG_ORIGINAL_CUP_CAPTURES "+frames.Length);
         }
         private static void Bathroom()
         {

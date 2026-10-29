@@ -1,7 +1,6 @@
 """Blender 4 import of selected CC0 props. Run after fetch_prolog_revision_assets.py.
 
-Mug is an adaptation of rubberduck's cup, with a small chipped rim and hairline
-fracture; it is not a photogrammetry scan of an already broken cup.
+The evidence cup is authored from scratch by author_cracked_porcelain_cup.py.
 """
 from pathlib import Path
 import json
@@ -71,34 +70,11 @@ def main():
         ladder.append(o)
     export('CellarAccessLadder', ladder)
 
-    bpy.ops.wm.open_mainfile(filepath=str(CACHE / 'Mugs/mugs-1.blend'))
-    cup = bpy.data.objects['mug_2']
-    cup.data = cup.data.copy()
-    for modifier in list(cup.modifiers):
-        cup.modifiers.remove(modifier)
-    normalize([cup], (.124, .105, .102))
-    # A millimetre-scale chip is part of the mesh silhouette, not giant black bars.
-    bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=2, radius=1, location=(.013,-.046,.102))
-    cutter = bpy.context.object;cutter.scale=(.004,.009,.006)
-    bpy.context.view_layer.objects.active=cup
-    chip=cup.modifiers.new('Chipped porcelain rim', 'BOOLEAN');chip.operation='DIFFERENCE';chip.object=cutter
-    bpy.ops.object.modifier_apply(modifier=chip.name)
-    bpy.data.objects.remove(cutter,do_unlink=True)
-    # Follow the actual outer ceramic surface for a fine, uneven fracture.
-    curve=bpy.data.curves.new('HairlineFracture','CURVE');curve.dimensions='3D';curve.bevel_depth=.00022;curve.bevel_resolution=1
-    points=[]
-    for x,z in [(.012,.100),(.011,.094),(.014,.086),(.013,.078),(.016,.069),(.015,.058)]:
-        hit,position,normal,_=cup.ray_cast(Vector((x,-1,z)),Vector((0,1,0)))
-        if hit:points.append(position+normal*.00012)
-    if len(points)>1:
-        spline=curve.splines.new('POLY');spline.points.add(len(points)-1)
-        for p,co in zip(spline.points,points):p.co=(*co,1)
-    fracture=bpy.data.objects.new('HairlineFracture',curve);bpy.context.collection.objects.link(fracture)
-    glaze=bpy.data.materials.new('CupHairline');glaze.diffuse_color=(.07,.04,.02,1);curve.materials.append(glaze)
-    bpy.ops.object.select_all(action='DESELECT');fracture.select_set(True);bpy.context.view_layer.objects.active=fracture;bpy.ops.object.convert(target='MESH')
-    export('ChippedCeramicCup', [cup,fracture])
-    for name in ['mug2.png','mug2_norm.png']:
-        shutil.copy2(CACHE / 'Mugs' / name, OUT / 'Textures' / name)
+    # The designer requested an original Blender cup instead of a downloaded mug.
+    import sys
+    sys.path.insert(0, str(ROOT / 'Tools'))
+    from author_cracked_porcelain_cup import build_cup
+    build_cup(previews=False)
     outputs=[]
     for path in sorted(OUT.rglob('*')):
         if path.is_file() and path.suffix != '.meta':

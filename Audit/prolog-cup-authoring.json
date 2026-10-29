@@ -1,0 +1,41 @@
+{
+  "originalModel": true,
+  "externalModelSources": [],
+  "units": "metres",
+  "nominalHeight": 0.095,
+  "nominalWallThickness": 0.0028,
+  "fractureDepth": 0.00034,
+  "fractureMaxWidth": 0.00036,
+  "rimChipDepth": 0.00145,
+  "milkHeight": 0.073,
+  "meshes": [
+    {
+      "name": "PorcelainShell",
+      "vertices": 5182,
+      "triangles": 10360,
+      "boundaryEdges": 0,
+      "nonManifoldEdges": 0
+    },
+    {
+      "name": "PorcelainHandle",
+      "vertices": 248,
+      "triangles": 492,
+      "boundaryEdges": 0,
+      "nonManifoldEdges": 0
+    },
+    {
+      "name": "SpoiledMilk",
+      "vertices": 129,
+      "triangles": 192,
+      "boundaryEdges": 64,
+      "nonManifoldEdges": 64
+    }
+  ],
+  "triangles": 11044,
+  "source": "ArtSources/Prolog/CrackedPorcelainCup.blend",
+  "fbx": "Assets/_LayarTerakhir/assets/Art/PrologRevision/Models/CrackedPorcelainCup.fbx",
+  "sourceSha256": "9b766e15c3baf9bec316ce7882a9675d221edf31298fcc8ba54c8d1f2c8d6d13",
+  "fbxSha256": "9b18ecc03bdea34384b1c9886e01b9a98cae8ec19ed0fd94cef5888e8ce6fc0a",
+  "previewsRendered": true,
+  "elapsedSeconds": 68.86436711100396
+}

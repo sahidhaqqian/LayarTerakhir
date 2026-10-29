@@ -10,14 +10,24 @@
     "sha256": "7ef8867fa373b1ac539bb03daba052d170c7d7807f467b99f21b33df22ae26fd"
   },
   {
-    "file": "Assets/_LayarTerakhir/assets/Art/PrologRevision/Materials/CupCeramic.mat",
-    "bytes": 4003,
-    "sha256": "c32ca4b876cf11b3a3930ad42df15e5e77a5e0bd0dfb44f3b1fcfc673f9bd6d4"
+    "file": "Assets/_LayarTerakhir/assets/Art/PrologRevision/Materials/BimaPorcelainCore.mat",
+    "bytes": 3834,
+    "sha256": "756adb1fcb3513b220db8d5cea267d9c7945e0e21afa28ba2cd4404eb57abb28"
   },
   {
-    "file": "Assets/_LayarTerakhir/assets/Art/PrologRevision/Materials/CupHairline.mat",
-    "bytes": 3829,
-    "sha256": "bea6f0ba773c526e8c669863788a171bda2bf0ff5ea4157e1cd3767efe5539c0"
+    "file": "Assets/_LayarTerakhir/assets/Art/PrologRevision/Materials/BimaPorcelainFracture.mat",
+    "bytes": 3851,
+    "sha256": "680fa62f6537be448a341088ffbc5a06017fa62444e4c64569fd1327ab3866ac"
+  },
+  {
+    "file": "Assets/_LayarTerakhir/assets/Art/PrologRevision/Materials/BimaPorcelainGlaze.mat",
+    "bytes": 3830,
+    "sha256": "e3bfc357a5482ea53a9d03990ef2aca689eedb26854a045d138a1b2fe3769d09"
+  },
+  {
+    "file": "Assets/_LayarTerakhir/assets/Art/PrologRevision/Materials/BimaSpoiledMilk.mat",
+    "bytes": 3832,
+    "sha256": "ea61874b3d230881420a9c50d79139aeed351d50f15bf45d9f0052842f59e4aa"
   },
   {
     "file": "Assets/_LayarTerakhir/assets/Art/PrologRevision/Materials/Notebook.mat",
@@ -45,14 +55,14 @@
     "sha256": "289682a70d1edfc1b76dfeb818e68b96cd786a207cf7c60a86d35104eae9aab7"
   },
   {
-    "file": "Assets/_LayarTerakhir/assets/Art/PrologRevision/Models/ChippedCeramicCup.fbx",
-    "bytes": 29564,
-    "sha256": "e2c10eb131f1a2e7853ed22821ba11dd92963966cdf5af108997641ab14dcbc5"
-  },
-  {
     "file": "Assets/_LayarTerakhir/assets/Art/PrologRevision/Models/ClawfootBathtub.fbx",
     "bytes": 141548,
     "sha256": "0b7a563556633c36566bcb7d69238cf738d4c7de2f57017d982ebd65558371c8"
+  },
+  {
+    "file": "Assets/_LayarTerakhir/assets/Art/PrologRevision/Models/CrackedPorcelainCup.fbx",
+    "bytes": 281180,
+    "sha256": "9b18ecc03bdea34384b1c9886e01b9a98cae8ec19ed0fd94cef5888e8ce6fc0a"
   },
   {
     "file": "Assets/_LayarTerakhir/assets/Art/PrologRevision/Models/GroundFloorCeiling_0_NoTop.asset",
@@ -168,16 +178,6 @@
     "file": "Assets/_LayarTerakhir/assets/Art/PrologRevision/Textures/binder_notebook_nor_gl_1k.jpg",
     "bytes": 319694,
     "sha256": "24b18d9792c3816337d7d09b30aed400a887747ea6beb04b23612b6e1210a29e"
-  },
-  {
-    "file": "Assets/_LayarTerakhir/assets/Art/PrologRevision/Textures/mug2.png",
-    "bytes": 1499404,
-    "sha256": "ce81a04e764b3e162551228f2b65d67ba9aa087324258f6bb053783443e88ec5"
-  },
-  {
-    "file": "Assets/_LayarTerakhir/assets/Art/PrologRevision/Textures/mug2_norm.png",
-    "bytes": 859305,
-    "sha256": "b76aaa0b3557d54d48a67988761c7f94caf960f8a0f61dfd08a296c4ef948b9b"
   },
   {
     "file": "Assets/_LayarTerakhir/assets/Art/PrologRevision/Textures/vintage_day_bed_arm_1k.jpg",

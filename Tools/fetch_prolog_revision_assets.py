@@ -1,4 +1,4 @@
-"""Selected public CC0 inputs for prolog review 28–43; no credentials required."""
+"""Selected public-domain inputs for prolog review 28–43; no credentials required."""
 import hashlib
 import json
 import subprocess
@@ -41,8 +41,7 @@ def main():
         sources = list(pool.map(polyhaven, ['binder_notebook', 'vintage_day_bed']))
     for name, page, url in [
         ('BathTube', 'bath-tube', 'BathTube.zip'),
-        ('CellarLadder', 'metal-ladder-low-poly', 'ladder3_0.blend'),
-        ('Mugs', 'free-mug-pack-1', 'free-mug-pack-1.zip')]:
+        ('CellarLadder', 'metal-ladder-low-poly', 'ladder3_0.blend')]:
         dest = CACHE / url.replace('%20', ' ')
         record = fetch('https://opengameart.org/sites/default/files/' + url, dest)
         if dest.suffix == '.zip':
