@@ -4,12 +4,12 @@
 - cluster-only mode — file stats not available
 
 ## Summary
-- 5123 nodes · 19375 edges · 163 communities (122 shown, 41 thin omitted)
+- 5123 nodes · 19374 edges · 163 communities (122 shown, 41 thin omitted)
 - Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 1273 edges (avg confidence: 0.84)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3408209b`
+- Built from commit: `92d24122`
 - Commit above is the pre-commit base, not a freshness check. Verify source/artifact hashes with `python3 Tools/update_graphify.py --check`.
 - Regenerate safely with `python3 Tools/update_graphify.py` before commit/push.
 
@@ -698,7 +698,7 @@ Nodes (4): ScanVisualMode, AR, Normal, UV
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `AtmajaPhoneView` connect `Community 37` to `Community 1`, `Community 3`, `Community 4`, `Community 7`, `Community 10`, `Community 12`, `Community 13`, `Community 15`, `Community 16`, `Community 17`, `Community 18`, `Community 19`, `Community 20`, `Community 21`, `Community 22`, `Community 24`, `Community 25`, `Community 26`, `Community 28`, `Community 29`, `Community 30`, `Community 157`, `Community 32`, `Community 34`, `Community 162`, `Community 38`, `Community 39`, `Community 42`, `Community 44`, `Community 47`, `Community 49`, `Community 51`, `Community 62`, `Community 71`, `Community 74`, `Community 78`, `Community 80`, `Community 82`, `Community 83`, `Community 85`, `Community 92`, `Community 100`, `Community 102`, `Community 103`?**
-  _High betweenness centrality (0.184) - this node is a cross-community bridge._
+  _High betweenness centrality (0.183) - this node is a cross-community bridge._
 - **What connects `Campaign`, `Detection`, `Hud` to the rest of the system?**
   _674 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**

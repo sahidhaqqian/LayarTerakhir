@@ -93,9 +93,9 @@ namespace LayarTerakhir.Editor
             Apply();
             string folder="Audit/Visuals/Prolog-28-46";Directory.CreateDirectory(folder);
             d.upper.bathWater.SetActive(true);d.upper.bathCurtain.SetActive(false);d.upper.bathScratchesAR.SetActive(true);
-            var go=new GameObject("RevisionReviewCamera",typeof(Camera),typeof(Light));var camera=go.GetComponent<Camera>();
-            camera.fieldOfView=65;camera.nearClipPlane=.04f;camera.farClipPlane=60;
-            var light=go.GetComponent<Light>();light.type=LightType.Spot;light.range=16;light.spotAngle=95;light.intensity=3;light.shadows=LightShadows.Soft;
+            var camera=Camera.main;if(!camera)throw new Exception("The actual Prolog gameplay camera is missing");
+            var originalPosition=camera.transform.position;var originalRotation=camera.transform.rotation;var originalFov=camera.fieldOfView;
+            camera.fieldOfView=65;
             var frames=new[]{
                 ("child-bed",P(-5.35f,4.3f,5.6f),P(-3.2f,1.5f,4.45f)),
                 ("notebook-lamp-cup",P(-5.05f,1.25f,4.88f),P(-5.30f,.62f,4.60f)),
@@ -108,7 +108,7 @@ namespace LayarTerakhir.Editor
             var target=new RenderTexture(960,720,24);camera.targetTexture=target;
             foreach(var frame in frames)
             {
-                go.transform.position=frame.Item2;go.transform.LookAt(frame.Item3);camera.Render();
+                camera.transform.SetPositionAndRotation(frame.Item2,Quaternion.LookRotation(frame.Item3-frame.Item2));camera.Render();
                 var prior=RenderTexture.active;RenderTexture.active=target;var pixels=new Texture2D(960,720,TextureFormat.RGB24,false);
                 pixels.ReadPixels(new Rect(0,0,960,720),0,0);pixels.Apply();File.WriteAllBytes(folder+"/"+frame.Item1+".png",pixels.EncodeToPNG());
                 RenderTexture.active=prior;Object.DestroyImmediate(pixels);
@@ -128,13 +128,16 @@ namespace LayarTerakhir.Editor
                     {Debug.Log("REVISION_FLOOR "+f.name+" y="+a.y+" asset="+AssetDatabase.GetAssetPath(f.sharedMesh));break;}
                 }
             }
-            camera.targetTexture=null;Object.DestroyImmediate(target);Object.DestroyImmediate(go);
-            Debug.Log("PROLOG_REVIEW_EDITOR_CAPTURES "+frames.Length);
+            camera.targetTexture=null;camera.fieldOfView=originalFov;camera.transform.SetPositionAndRotation(originalPosition,originalRotation);Object.DestroyImmediate(target);
+            Debug.Log("PROLOG_REVIEW_GAMEPLAY_CAMERA_CAPTURES "+frames.Length);
         }
         private static void ChildRoom()
         {
             Remove("ChildWardrobe","ChildShelf","ChildBooks","ChildBed","ChildMattress","ChildPillow","ChildBlanket","ChildBedSet","BimaToyTrainCar","ChildToyBlocks","ChildToyBall","BimaPrintedPageLeft","BimaPrintedPageRight");
-            ImportedModel("ChildBedSet","PrologSingleBedWithBedding",P(-3.12f,.78f,4.405f),new Vector3(1.08f,1.27f,2.06f));
+            var bed=ImportedModel("ChildBedSet","PrologSingleBedWithBedding",P(-3.12f,.78f,4.405f),new Vector3(1.08f,1.27f,2.06f));
+            var pillow=bed.GetComponentsInChildren<Transform>(true).First(t=>t.name=="Plump pillow with closed seams");
+            var pillowCenter=KosVisualV2.BoundsOf(pillow.gameObject).center;pillow.localScale*=1.35f;
+            KosVisualV2.SetCenter(pillow.gameObject,pillowCenter);
             // Preserve the diary's interaction root; replace only the block visual.
             var book=Find("ChildDiaryBook");var r=book.GetComponent<Renderer>();if(r)r.enabled=false;
             Remove("BimaNotebookVisual");

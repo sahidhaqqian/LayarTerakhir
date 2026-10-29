@@ -1,12 +1,12 @@
 {
   "artifacts_sha256": {
-    "GRAPH_REPORT.md": "c7a9b3d46e5aeb1543f4985f76ab2e8b3bbc299d407958e2f0b68404dea7d5f9",
-    "graph.html": "78a9faa10924f62f4fc472f3ea47468f31ca844bd4017012be959a64914b50a9",
-    "graph.json": "1e4ae76191138fc25d14eb96ed8a6e33190d57fa6496d1c5f9b73956f6ee0237"
+    "GRAPH_REPORT.md": "082fd31d43e2a78c1287ced1be7c2f7bc5636b4b575102d47f60cbfafd9104ae",
+    "graph.html": "ab7f2ed5830df6d2b2fc5836135f4ea1032d95ef3f4fc70f388364c63943f297",
+    "graph.json": "ce0a55f2de4b62c2a13b670e4320f12cac4777fa12e692a6a98eb7947af59f7d"
   },
   "asset_file_count": 0,
   "code_file_count": 407,
-  "edge_count": 19375,
+  "edge_count": 19374,
   "graphify_version": "graphify 0.9.92",
   "ignore_sha256": "05660cd7b7a81591931d5661fb73b7124598a04c44f843eda7a7ac2107f20e17",
   "mode": "local-code-only; no LLM/community labeling",
@@ -141,7 +141,7 @@
     "Assets/_LayarTerakhir/src/Editor/PrologKosSceneBuilder.cs": "fc635254cf149df53080430c8ce8d908abee3c99f83a42b0bd87edbfa2327e38",
     "Assets/_LayarTerakhir/src/Editor/PrologMilestoneValidator.cs": "c40bee5623d17b0c4472931ae29b856129393040ab7231e5a94ff24c8be3ef03",
     "Assets/_LayarTerakhir/src/Editor/PrologPresentationBuilder.cs": "a95a23a9dbfbc3e801f80189cf6a2ce80bff7a2cb34c8c43ba73e93b11a1f6f0",
-    "Assets/_LayarTerakhir/src/Editor/PrologReviewRevision.cs": "2b6963502f7435ceb396944612ba713bbbeab710ffab30657013b6745956ff8c",
+    "Assets/_LayarTerakhir/src/Editor/PrologReviewRevision.cs": "e55454ea730fe8371915d58c4501a2a5e2e8efea802942da920c28f1af9c12dd",
     "Assets/_LayarTerakhir/src/Editor/PrologReviewRevisionTests.cs": "ef478ef49f0e3358a0ea8d2a95e1700ca6a939fa335c913956b61c8b7d7bcd2e",
     "Assets/_LayarTerakhir/src/Editor/RakaPresentationRevisionBuilder.cs": "4a0d6117399e59a657050c973ff52e54bb376c027143a976a66808056c0f4b84",
     "Assets/_LayarTerakhir/src/Editor/RecoveryVisualEvidence.cs": "1863b739bf71db3c7e09a8343dc8c1f49a89ba2f7fbcb9a0a8911ce885280314",
