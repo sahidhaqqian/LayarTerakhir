@@ -77,6 +77,38 @@ namespace LayarTerakhir.Editor.Tests
         {
             CheckKosFacilities();
         }
+        [Test] public void KosDiningIsOpenPlatesHaveFoodPlaquesRideDoorsAndMotorsDiffer()
+        {
+            EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);
+            Physics.SyncTransforms();
+            // Bug 7 + designer re-report: no dining door leaf that can vanish.
+            Assert.That(GameObject.Find("SharedDiningDoor"),Is.Null,"dining doorway stays permanently open");
+            Assert.That(Object.FindObjectsByType<Transform>(FindObjectsSortMode.None).Count(t=>t.name=="SharedDiningFood"),Is.GreaterThanOrEqualTo(6),"each dining plate carries food");
+            foreach(string title in new[]{"WANITA","PRIA"})
+            {
+                var plaque=GameObject.Find("Bathroom"+title+"Plaque");
+                Assert.That(plaque,Is.Not.Null,title+" plaque");
+                Assert.That(plaque.GetComponentInParent<HingedDoor>(),Is.Not.Null,title+" plaque rides the door leaf");
+                Assert.That(plaque.GetComponent<Renderer>().bounds.size.y,Is.LessThanOrEqualTo(.40f),title+" plaque stays small");
+            }
+            var meshes=new System.Collections.Generic.HashSet<string>();
+            for(int i=0;i<4;i++)
+            {
+                var motor=GameObject.Find("TenantMotor_"+i);
+                Assert.That(motor,Is.Not.Null,"TenantMotor_"+i);
+                foreach(var f in motor.GetComponentsInChildren<MeshFilter>())if(f.sharedMesh)meshes.Add(f.sharedMesh.name);
+            }
+            Assert.That(meshes.Count,Is.GreaterThanOrEqualTo(3),"tenant motors use distinct models, not one clone");
+        }
+        [Test] public void ClockHandsSitAboveTheCornerTableSoThePickupRayHitsThemFirst()
+        {
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            Physics.SyncTransforms();
+            var d=Object.FindFirstObjectByType<LayarTerakhir.Prolog.AtmajaDirector>();
+            var origin=d.clockHands.transform.position+Vector3.up*1.2f;
+            Assert.That(Physics.Raycast(origin,Vector3.down,out var hit,2f),Is.True,"ray above clock hands hits something");
+            Assert.That(hit.collider.gameObject,Is.SameAs(d.clockHands),"clock hands, not the table, are the first hit from above");
+        }
         [Test] public void FullscreenPreferenceNeverOverridesTestsOrExplicitLaunchDimensions()
         {
             Assert.That(DisplayPreferences.ShouldRestore(false,new[]{"Game.exe"},false),Is.True);

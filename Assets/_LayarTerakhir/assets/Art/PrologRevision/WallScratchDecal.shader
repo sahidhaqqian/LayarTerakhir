@@ -28,12 +28,20 @@ Shader "LayarTerakhir/Wall Scratch Decal"
             {
                 // Crop the original photo in the material; preserve its irregular
                 // real gouges and discard the darker, undamaged wood background.
-                float2 photoUV=i.uv*float2(.17,.12)+float2(.50,.54);
+                // The source photograph's four parallel gouges sit below and
+                // to the right of its center. Crop the actual mark cluster,
+                // leaving most of the unbroken timber outside the decal.
+                // Tight crop around the photographed gouges in the middle of
+                // the source plank; avoid the pale wood grain elsewhere.
+                float2 photoUV=i.uv*float2(.20,.20)+float2(.50,.40);
                 half3 photo=SAMPLE_TEXTURE2D(_BaseMap,sampler_BaseMap,photoUV).rgb;
                 half light=min(photo.r,min(photo.g,photo.b));
                 half edge=saturate(min(min(i.uv.x,1-i.uv.x),min(i.uv.y,1-i.uv.y))*20);
-                half coverage=saturate((light-.28)*6)*edge;
-                return half4(_BaseColor.rgb*(.5+light),coverage*_BaseColor.a);
+                // The real gouges expose pale fibers. Restrict coverage to
+                // those highlights so the timber photograph reads as scratches
+                // instead of scattered red dots over the wall.
+                half coverage=smoothstep(.22,.40,light)*edge;
+                return half4(lerp(photo,_BaseColor.rgb,.12),coverage*_BaseColor.a);
 
             }
             ENDHLSL

@@ -15,6 +15,8 @@ namespace LayarTerakhir.Editor
     public static class PrologReviewRevision
     {
         public const string Art = "Assets/_LayarTerakhir/assets/Art/PrologRevision/";
+        private const string ImportedArt = "Assets/_LayarTerakhir/assets/Art/Imported/KosRealWorld/Models/";
+        private const string ImportedTexture = "Assets/_LayarTerakhir/assets/Art/Imported/KosRealWorld/Textures/";
         private static AtmajaDirector d;
         private static Transform root;
         private static Transform[] Objects() => SceneManager.GetActiveScene().GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<Transform>(true)).ToArray();
@@ -55,6 +57,14 @@ namespace LayarTerakhir.Editor
             foreach(var r in mesh.GetComponentsInChildren<Renderer>())r.sharedMaterials=r.sharedMaterials.Select(_=>material).ToArray();
             KosVisualV2.Resize(go,size);KosVisualV2.SetCenter(go,center);if(solid)Fit(go);return go;
         }
+        private static GameObject ImportedModel(string name,string asset,Vector3 center,Vector3 size,float yaw=0,bool solid=true)
+        {
+            var go=new GameObject(name);go.transform.SetParent(root,false);go.transform.rotation=Quaternion.LookRotation(d.north)*Quaternion.Euler(0,yaw,0);
+            var prefab=AssetDatabase.LoadAssetAtPath<GameObject>(ImportedArt+asset+".fbx");
+            if(!prefab)throw new Exception("Missing imported prolog model "+asset);
+            var mesh=(GameObject)PrefabUtility.InstantiatePrefab(prefab);mesh.transform.SetParent(go.transform,false);
+            KosVisualV2.Resize(go,size);KosVisualV2.SetCenter(go,center);if(solid)Fit(go);return go;
+        }
         [MenuItem("LayarTerakhir/Prolog/Apply playtest bugs 28–46")]
         public static void Apply()
         {
@@ -88,7 +98,7 @@ namespace LayarTerakhir.Editor
             var light=go.GetComponent<Light>();light.type=LightType.Spot;light.range=16;light.spotAngle=95;light.intensity=3;light.shadows=LightShadows.Soft;
             var frames=new[]{
                 ("child-bed",P(-5.35f,4.3f,5.6f),P(-3.2f,1.5f,4.45f)),
-                ("notebook-lamp-cup",P(-4.6f,1.95f,5.4f),P(-5.32f,.60f,4.60f)),
+                ("notebook-lamp-cup",P(-5.05f,1.25f,4.88f),P(-5.30f,.62f,4.60f)),
                 ("bathroom",P(-.8f,3.5f,5.5f),P(-1.1f,.9f,4.3f)),
                 ("wall-scratches",P(-.9f,3.7f,5f),P(-2.29f,3.95f,4.9f)),
                 ("master",P(1.2f,4.65f,5.65f),P(3.3f,1.65f,4.65f)),
@@ -123,25 +133,48 @@ namespace LayarTerakhir.Editor
         }
         private static void ChildRoom()
         {
-            Remove("ChildWardrobe","ChildShelf","ChildBooks","ChildBed","ChildMattress","ChildPillow","ChildBlanket","BimaToyTrainCar","ChildToyBlocks","ChildToyBall");
-            var bedding=Material("VintageBedding",Color.white,"vintage_day_bed_diff_1k.jpg","vintage_day_bed_nor_gl_1k.jpg");
-            Model("ChildBedSet","vintage_day_bed",P(-3.12f,1.43f,4.405f),new Vector3(1.12f,1.13f,2.10f),bedding,270);
+            Remove("ChildWardrobe","ChildShelf","ChildBooks","ChildBed","ChildMattress","ChildPillow","ChildBlanket","ChildBedSet","BimaToyTrainCar","ChildToyBlocks","ChildToyBall","BimaPrintedPageLeft","BimaPrintedPageRight");
+            ImportedModel("ChildBedSet","PrologSingleBedWithBedding",P(-3.12f,.78f,4.405f),new Vector3(1.08f,1.27f,2.06f));
             // Preserve the diary's interaction root; replace only the block visual.
             var book=Find("ChildDiaryBook");var r=book.GetComponent<Renderer>();if(r)r.enabled=false;
             Remove("BimaNotebookVisual");
-            var notebook=Material("Notebook",Color.white,"binder_notebook_diff_1k.jpg","binder_notebook_nor_gl_1k.jpg");
-            var visual=Model("BimaNotebookVisual","binder_notebook",P(-5.3f,.6f,4.59f),new Vector3(.25f,.045f,.32f),notebook,0,false);
+            var visual=ImportedModel("BimaNotebookVisual","PrologOpenBimaDiary",P(-5.3f,.625f,4.59f),new Vector3(.30f,.024f,.21f),0,false);
+            var page1=Material("BimaDiaryPageLeft",Color.white);page1.SetTexture("_BaseMap",AssetDatabase.LoadAssetAtPath<Texture2D>(ImportedTexture+"BimaDiaryPage1.png"));
+            var page2=Material("BimaDiaryPageRight",Color.white);page2.SetTexture("_BaseMap",AssetDatabase.LoadAssetAtPath<Texture2D>(ImportedTexture+"BimaDiaryPage2.png"));
+            page1.shader=page2.shader=Shader.Find("Universal Render Pipeline/Unlit");
+            page1.SetFloat("_Cull",0);page2.SetFloat("_Cull",0);
+            foreach(var page in visual.GetComponentsInChildren<Renderer>())
+            {
+                if(page.name=="Gently curved blank notebook pages")page.sharedMaterial=page1;
+                else if(page.name=="Gently curved blank notebook pages.001")page.sharedMaterial=page2;
+            }
+            // The imported page mesh uses curved FBX UVs that reduce the small
+            // writing below gameplay readability. Keep the real curved paper
+            // underneath and add two paper-thin, correctly mapped printed faces.
+            var notebookCenter=P(-5.3f,.625f,4.59f);
+            MakePrintedPage(book.transform,"BimaPrintedPageLeft",page1,notebookCenter-d.east*.067f+Vector3.up*.022f);
+            MakePrintedPage(book.transform,"BimaPrintedPageRight",page2,notebookCenter+d.east*.067f+Vector3.up*.022f);
             visual.transform.SetParent(book.transform,true);Fit(book);
             var lamp=Find("ChildDeskLamp");
             if(lamp)
             {
                 var center=KosVisualV2.BoundsOf(lamp).center;
-                lamp.transform.rotation=Quaternion.LookRotation(d.north);KosVisualV2.SetCenter(lamp,center);
+                // Bug 30 audit: head must face the notebook on the desk, not the corner/wall.
+                var toBook=P(-5.3f,.6f,4.59f)-center;toBook.y=0;
+                lamp.transform.rotation=Quaternion.LookRotation(toBook.normalized);KosVisualV2.SetCenter(lamp,center);
                 var light=Find("ChildStudyPool")??new GameObject("ChildStudyPool",typeof(Light));light.transform.SetParent(lamp.transform,true);
                 light.transform.position=P(-5.6f,.57f,4.91f);light.transform.LookAt(P(-5.3f,.65f,4.54f));
                 var l=light.GetComponent<Light>();l.type=LightType.Spot;l.spotAngle=70;l.range=1.6f;l.intensity=.65f;l.color=new Color(1,.84f,.63f);l.shadows=LightShadows.None;
             }
             ReplaceChildCup();
+        }
+        private static GameObject MakePrintedPage(Transform parent,string name,Material material,Vector3 position)
+        {
+            var page=GameObject.CreatePrimitive(PrimitiveType.Quad);page.name=name;
+            Object.DestroyImmediate(page.GetComponent<Collider>());page.transform.SetParent(parent,false);
+            page.transform.position=position;page.transform.rotation=Quaternion.LookRotation(Vector3.up,d.north);
+            page.transform.localScale=new Vector3(.126f,.18f,1);page.GetComponent<Renderer>().sharedMaterial=material;
+            return page;
         }
         private static void ReplaceChildCup()
         {
@@ -242,8 +275,11 @@ namespace LayarTerakhir.Editor
             var porcelain=Material("BathtubEnamel",new Color(.79f,.78f,.70f),"BathTubeP1.jpg",null,.32f);
             Model("BathTub","ClawfootBathtub",P(-1.1f,.87f,4.15f),new Vector3(1.8f,.64f,.88f),porcelain);
             var water=d.upper.bathWater;
-            water.transform.SetParent(Find("Atmaja_Environment_Art").transform,true);water.transform.SetPositionAndRotation(P(-1.1f,.87f,4.34f),Quaternion.LookRotation(d.north));
-            water.transform.localScale=new Vector3(1.55f,.018f,.67f);
+            water.transform.SetParent(Find("Atmaja_Environment_Art").transform,true);water.transform.SetPositionAndRotation(P(-1.1f,.91f,4.34f),Quaternion.LookRotation(d.north));
+            // Keep the blood surface below the rolled rim and inside the basin.
+            // The old broad ellipse intersected the thin front shell and leaked
+            // through it as a red stripe in the gameplay view.
+            water.transform.localScale=new Vector3(1.22f,.018f,.43f);
             const string surfacePath=Art+"Models/BloodWaterSurface.asset";
             var surface=AssetDatabase.LoadAssetAtPath<Mesh>(surfacePath);
             if(!surface)
@@ -267,32 +303,31 @@ namespace LayarTerakhir.Editor
             foreach(var r in scratches.GetComponents<Renderer>())Object.DestroyImmediate(r);
             scratches.transform.localScale=Vector3.one;
             scratches.transform.SetPositionAndRotation(P(-2.275f,3.95f,4.9f),Quaternion.LookRotation(-d.east));
-            var material=Material("WallClawMarks",new Color(.27f,.014f,.008f));
+            var material=Material("WallClawMarks",new Color(.72f,.61f,.43f));
             material.shader=Shader.Find("LayarTerakhir/Wall Scratch Decal");material.SetTexture("_BaseMap",AssetDatabase.LoadAssetAtPath<Texture2D>(Art+"Textures/RealWallClawPhoto.jpg"));
             EditorUtility.SetDirty(material);
-            for(int i=0;i<3;i++)
-            {
-                var quad=GameObject.CreatePrimitive(PrimitiveType.Quad);quad.name="WallClawDecal";Object.DestroyImmediate(quad.GetComponent<Collider>());
-                quad.transform.SetParent(scratches.transform,false);quad.transform.localPosition=new Vector3((i-1)*.18f,(i%2)*.21f,0);
-                quad.transform.localScale=new Vector3(.29f,.43f,1);quad.transform.localRotation=Quaternion.Euler(0,0,-17+i*13);
-                quad.layer=AtmajaPhoneView.ARLayer;quad.GetComponent<Renderer>().sharedMaterial=material;
-            }
+            var quad=GameObject.CreatePrimitive(PrimitiveType.Quad);quad.name="WallClawDecal";Object.DestroyImmediate(quad.GetComponent<Collider>());
+            quad.transform.SetParent(scratches.transform,false);quad.transform.localPosition=new Vector3(0,0,.02f);
+            quad.transform.localScale=new Vector3(.62f,.48f,1);quad.transform.localRotation=Quaternion.Euler(0,0,-7);
+            quad.layer=AtmajaPhoneView.ARLayer;quad.GetComponent<Renderer>().sharedMaterial=material;
             d.upper.bathScratchesOnWall=true;d.upper.scratchAim.SetParent(scratches.transform,false);d.upper.scratchAim.localPosition=Vector3.zero;
             var target=Find("BathScratchTarget");target.transform.SetPositionAndRotation(scratches.transform.position,scratches.transform.rotation);
             var item=target.GetComponent<AtmajaItem>();item.label="Periksa bekas cakaran di dinding";
         }
         private static void MasterRoom()
         {
-            Remove("MasterEastWall","MasterBed","MasterMattress","MasterPillow","CorrLintelN");
+            Remove("MasterEastWall","MasterEastWallExpanded","MasterBalconySeparation","MasterEntrySideWall","MasterBed","MasterMattress","MasterPillow","CorrLintelN");
             var plaster=OldMat("House_MAT_PlasterDamaged");
-            Box("MasterEastWallExpanded",4.85f,1.68f,5.325f,new Vector3(.16f,3.01f,3.36f),plaster);
-            Box("MasterBalconySeparation",3.625f,3.32f,5.325f,new Vector3(2.45f,3.01f,.16f),plaster);
-            Box("MasterEntrySideWall",2.4f,4.3f,5.325f,new Vector3(.16f,3.01f,1.8f),plaster);
+            Box("MasterEastWallExpanded",5.38f,2.45f,5.325f,new Vector3(.16f,3.01f,4.90f),plaster);
+            Box("MasterBalconySeparation",3.89f,4.90f,5.325f,new Vector3(2.98f,3.01f,.16f),plaster);
+            // Keep a short return at the far side; the previous full partition
+            // leg blocked the entrance and made the room read as a cubicle.
+            Box("MasterEntrySideWall",2.4f,5.05f,5.325f,new Vector3(.16f,3.01f,.55f),plaster);
             var bedding=AssetDatabase.LoadAssetAtPath<Material>(Art+"Materials/VintageBedding.mat");
             Model("MasterBedSet","vintage_day_bed",P(3.55f,1.43f,4.405f),new Vector3(1.7f,1.13f,2.15f),bedding,270);
             Place(Find("MasterNightstand"),P(2.30f,.65f,4.13f));Place(Find("MasterAlarmClock"),P(2.3f,.65f,4.53f));
-            Place(Find("MasterDresser"),P(4.43f,2.9f,4.45f));Place(Find("MasterCandle"),P(4.43f,2.9f,4.85f));
-            var chair=Find("MasterRocker");chair.transform.rotation=Quaternion.LookRotation(-d.north);Place(chair,P(2.02f,3.8f,4.32f));
+            Place(Find("MasterDresser"),P(4.93f,2.9f,4.45f));Place(Find("MasterCandle"),P(4.93f,2.9f,4.85f));
+            var chair=Find("MasterRocker");Place(chair,P(2.80f,2.85f,4.32f));var toBed=Find("MasterBedSet").transform.position-chair.transform.position;toBed.y=0;chair.transform.rotation=Quaternion.LookRotation(toBed);
             Place(Find("MasterPortrait"),P(4.75f,1.45f,5.4f));
             Place(Find("MasterToolChest"),P(4.3f,.42f,4.05f));
             // The rolled carpet belongs over the trapdoor, away from the bed.
@@ -316,6 +351,9 @@ namespace LayarTerakhir.Editor
             }
             foreach(var t in Objects().Where(t=>t.name.StartsWith("RottenDinner_")).ToArray())
                 for(int i=0;i<2;i++){var food=Object.Instantiate(i==0?bread:apple,foodRoot);food.name="DinnerSideFood";KosVisualV2.SetCenter(food,KosVisualV2.BoundsOf(t.gameObject).center+d.north*((i==0?-1:1)*.07f)-d.east*.09f);}
+            // Arahan desainer (revisi audit): makanan asli TIDAK diganti
+            // material/tampilannya; revisi hanya MENAMBAH piring & sajian
+            // dengan material bawaan yang sama seperti sajian aslinya.
         }
         private static void Basement()
         {

@@ -1,0 +1,11 @@
+{
+  "purpose": "Distinct tenant motorcycles in Kos parking (designer feedback 2026-10-29: all parked motors looked identical)",
+  "license": "CC0 (public domain dedication, no attribution required)",
+  "source": "Innerscene 3D Parts Library, original unbranded models",
+  "models": [
+    {"file": "Assets/_LayarTerakhir/assets/Art/Imported/KosRealWorld/Models/Motor_UrbanScooter.fbx", "page": "https://www.innerscene.com/tools/library/3d-parts/urban-motor-scooter-9dd945f9", "type": "urban matic scooter", "conversion": "GLB -> FBX via Blender 4.0.2 (Tools equivalent: bpy.ops.import_scene.gltf/export_scene.fbx)"},
+    {"file": "Assets/_LayarTerakhir/assets/Art/Imported/KosRealWorld/Models/Motor_DirtMotorcycle.fbx", "page": "https://www.innerscene.com/tools/library/3d-parts/dirt-motorcycle-0a9c8589", "type": "trail/dirt motorcycle", "conversion": "GLB -> FBX via Blender 4.0.2"},
+    {"file": "Assets/_LayarTerakhir/assets/Art/Imported/KosRealWorld/Models/Motor_RoadMotorcycle.fbx", "page": "https://www.innerscene.com/tools/library/3d-parts/road-motorcycle-f2519759", "type": "road/sport motorcycle", "conversion": "GLB -> FBX via Blender 4.0.2"},
+    {"file": "existing DamarScooter.fbx with red-brown tint", "type": "bebek (4th tenant motor, distinct from the 3 downloads)"}
+  ]
+}

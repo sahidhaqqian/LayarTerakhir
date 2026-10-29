@@ -52,7 +52,11 @@ namespace LayarTerakhir.Editor
             Box("FrontSittingDoorLintel",P(-1.4f,2.5f,2.85f),new Vector3(1.25f,.7f,.16f),plaster);
             Door("FrontSittingDoor",P(-2,2.5f,.52f),P(-1.4f,2.5f,1.62f),new Vector3(1.2f,2.2f,.09f),"Buka ruang tamu depan");
             var corner=Model("CornerSideTable","CornerSideTable",P(-5.05f,1.15f,.52f));FitCollider(corner);
-            director.clockHands=Box("BrassClockHands",P(-5.05f,1.15f,1.30f),new Vector3(.18f,.025f,.03f),Mat("Detail_AgedBrass"));Item(director.clockHands,AtmajaAction.ClockHands,"Ambil Jarum Jam Kuningan");
+            // Jarum ditaruh DI ATAS permukaan meja (bukan tenggelam di dalam
+            // collider meja) dan digeser ke tepi depan agar sinar interaksi
+            // mengenai jarum lebih dulu, bukan meja (laporan desainer).
+            float handsY=KosVisualV2.SurfaceHeight(corner,P(-5.05f,1.0f,0).x,P(-5.05f,1.0f,0).z)+.035f;
+            director.clockHands=Box("BrassClockHands",P(-5.05f,1.0f,handsY),new Vector3(.22f,.03f,.05f),Mat("Detail_AgedBrass"));Item(director.clockHands,AtmajaAction.ClockHands,"Ambil Jarum Jam Kuningan");
             var ashtray=GameObject.CreatePrimitive(PrimitiveType.Cylinder);ashtray.name="OldAshtray";ashtray.transform.SetParent(environment,false);ashtray.transform.position=P(-4.85f,1.1f,1.30f);ashtray.transform.localScale=new Vector3(.12f,.015f,.12f);ashtray.GetComponent<Renderer>().sharedMaterial=Mat("House_MAT_Concrete");Object.DestroyImmediate(ashtray.GetComponent<Collider>());
             Chair("FrontRoomWoodChair",P(-4.25f,.8f,.52f),P(-4.25f,2,.52f));Existing("wooden_bookshelf_worn","FrontRoomBookcase",P(-3.35f,.45f,1.25f),new Vector3(1.0f,1.45f,.35f));
             // Small storage room off the lounge, not another mandatory story key.

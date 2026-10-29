@@ -15,6 +15,40 @@ namespace LayarTerakhir.Editor
     public static partial class KosCorridorBuilder
     {
         public const string ScenePath="Assets/_LayarTerakhir/assets/Scenes/Prolog_KoridorKos.unity";
+        // Editor-only audit captures for the designer-feedback pass (dining,
+        // bathroom plaques, tenant parking). Software render, not Windows proof.
+        public static void CaptureAudit()
+        {
+            EditorSceneManager.OpenScene(ScenePath);
+            // Show one bathroom door open: its plaque must ride the leaf.
+            var door=GameObject.Find("BathroomWANITADoor");if(door&&door.GetComponent<HingedDoor>())door.GetComponent<HingedDoor>().SetOpenImmediate(true);
+            string folder="Audit/Visuals/Prolog-Audit-Kos";System.IO.Directory.CreateDirectory(folder);
+            var go=new GameObject("KosAuditCamera",typeof(Camera),typeof(Light));var camera=go.GetComponent<Camera>();
+            camera.fieldOfView=65;camera.nearClipPlane=.04f;camera.farClipPlane=60;
+            var light=go.GetComponent<Light>();light.type=LightType.Spot;light.range=16;light.spotAngle=95;light.intensity=3;light.shadows=LightShadows.Soft;
+            // Anchor every frame to the real object's world position: the Kos
+            // building is offset from the origin, raw builder coords misframe.
+            Vector3 At(string name)=>GameObject.Find(name).transform.position;
+            var table=At("KosCommunalDiningTable");var plaque=At("BathroomWANITAPlaque");
+            var motorL=At("TenantMotor_0");var motorR=At("TenantMotor_2");var raka=At("RakaMotor");
+            var frames=new[]{
+                ("kos-dining",table+new Vector3(1.05f,1.35f,.9f),table+Vector3.up*.45f),
+                ("kos-bathroom-doors",plaque+new Vector3(-1.7f,.15f,1.1f),plaque),
+                ("kos-parking-left",motorL+new Vector3(2.6f,1.5f,2.6f),motorL+Vector3.up*.45f),
+                ("kos-parking-right",motorR+new Vector3(-2.6f,1.5f,2.6f),motorR+Vector3.up*.45f),
+                ("kos-parking-raka",raka+new Vector3(2.6f,1.5f,2.6f),raka+Vector3.up*.45f)};
+            var target=new RenderTexture(960,720,24);camera.targetTexture=target;
+            foreach(var frame in frames)
+            {
+                go.transform.position=frame.Item2;go.transform.LookAt(frame.Item3);light.transform.SetPositionAndRotation(frame.Item2,go.transform.rotation);
+                camera.Render();
+                var prior=RenderTexture.active;RenderTexture.active=target;var pixels=new Texture2D(960,720,TextureFormat.RGB24,false);
+                pixels.ReadPixels(new Rect(0,0,960,720),0,0);pixels.Apply();System.IO.File.WriteAllBytes(folder+"/"+frame.Item1+".png",pixels.EncodeToPNG());
+                RenderTexture.active=prior;Object.DestroyImmediate(pixels);
+            }
+            camera.targetTexture=null;Object.DestroyImmediate(target);Object.DestroyImmediate(go);
+            Debug.Log("KOS_AUDIT_CAPTURES "+frames.Length);
+        }
         private static Transform root;private static KosCorridorDirector d;private static Material wall,floor,wood,metal,doorMat;
         public static void Build()
         {
@@ -80,12 +114,34 @@ namespace LayarTerakhir.Editor
             var motor=Model("DamarScooter","RakaMotor",Vector3.zero,Vector3.zero);motor.transform.rotation=Quaternion.Euler(0,180,0);KosVisualV2.SetCenter(motor,new Vector3(2.25f,.56f,-4.5f));d.motor=motor.transform;
             // Motor tetangga: parkiran terasa seperti kost beneran, jalur tengah tetap lega.
             var parked=new[]{new Vector3(-5.2f,.56f,-4.2f),new Vector3(-3.4f,.56f,-4.8f),new Vector3(4.4f,.56f,-4.3f),new Vector3(6.0f,.56f,-4.9f)};
+            // Motor tetangga beda model khas Indonesia (CC0 Innerscene, lihat
+            // Audit/kos-tenant-motor-sources.json): matic, trail, road, bebek.
+            var tenantModels=new[]{"Motor_UrbanScooter.fbx","Motor_DirtMotorcycle.fbx","Motor_RoadMotorcycle.fbx",null};
             for(int bi=0;bi<parked.Length;bi++)
             {
-                var neighbour=Model("DamarScooter","TenantMotor_"+bi,Vector3.zero,Vector3.zero);
-                neighbour.transform.rotation=Quaternion.Euler(0,180+(bi%2==0?-8:8),0);KosVisualV2.SetCenter(neighbour,parked[bi]);
-                var coverTint=new Color(.16f+.03f*bi,.18f,.20f);var coverMat=Material("TenantMotorCover_"+bi,coverTint);
-                foreach(var r in neighbour.GetComponentsInChildren<Renderer>())if(r.name.Contains("Body")||r.name.Contains("Cover"))r.sharedMaterials=Enumerable.Repeat(coverMat,r.sharedMaterials.Length).ToArray();
+                GameObject neighbour;
+                if(tenantModels[bi]!=null){neighbour=RealModel(tenantModels[bi],"TenantMotor_"+bi,Vector3.zero,parked[bi],180+(bi%2==0?-8:8),null);
+                    // GLB->FBX loses the authored colours for these two models
+                    // (they render white). Rebuild believable per-part colours
+                    // from the part names: body panels, rubber, seat, metal.
+                    if(bi<2)
+                    {
+                        var bodyMat=Material("TenantMotorBody_"+bi,bi==0?new Color(.10f,.32f,.44f):new Color(.15f,.27f,.13f));
+                        var rubberMat=Material("TenantMotorRubber",new Color(.03f,.03f,.035f));
+                        var seatMat=Material("TenantMotorSeat",new Color(.05f,.04f,.04f));
+                        var metalMat=Material("TenantMotorMetal",new Color(.22f,.23f,.25f));
+                        foreach(var r in neighbour.GetComponentsInChildren<Renderer>())
+                        {
+                            string n=r.name.ToLowerInvariant();
+                            var chosen=n.Contains("tire")||n.Contains("tyre")||n.Contains("wheel")?rubberMat
+                                :n.Contains("seat")||n.Contains("saddle")?seatMat
+                                :n.Contains("panel")||n.Contains("tank")||n.Contains("fender")||n.Contains("mudguard")||n.Contains("cover")||n.Contains("shroud")||n.Contains("fairing")||n.Contains("body")?bodyMat:metalMat;
+                            r.sharedMaterials=Enumerable.Repeat(chosen,r.sharedMaterials.Length).ToArray();
+                        }
+                    }}
+                else{neighbour=Model("DamarScooter","TenantMotor_"+bi,Vector3.zero,Vector3.zero);neighbour.transform.rotation=Quaternion.Euler(0,180+8,0);KosVisualV2.SetCenter(neighbour,parked[bi]);
+                    var coverTint=new Color(.30f,.16f,.12f);var coverMat=Material("TenantMotorCover_"+bi,coverTint);
+                    foreach(var r in neighbour.GetComponentsInChildren<Renderer>())if(r.name.Contains("Body")||r.name.Contains("Cover"))r.sharedMaterials=Enumerable.Repeat(coverMat,r.sharedMaterials.Length).ToArray();}
             }
             var m=motor.AddComponent<KosTravelItem>();m.director=d;m.label="Naik motor • pilih tujuan";
             var lamp=new GameObject("RakaMotorHeadlight",typeof(Light));lamp.transform.SetParent(motor.transform,false);
@@ -159,6 +215,8 @@ namespace LayarTerakhir.Editor
                     mi.addCollider=false;mi.meshCompression=ModelImporterMeshCompression.Low;
                     // .blend exports keep their authored colors; PBR sets get wired manually.
                     if(path.Contains("fridge.fbx")||path.Contains("kos_appliances.fbx")||path.Contains("ToiletPaper.obj"))continue;
+                    // Downloaded tenant motorcycles keep their authored materials.
+                    if(path.Contains("Motor_")){mi.materialImportMode=ModelImporterMaterialImportMode.ImportStandard;mi.SaveAndReimport();continue;}
                     mi.materialImportMode=ModelImporterMaterialImportMode.None;mi.SaveAndReimport();
                 }
             }
@@ -218,7 +276,9 @@ namespace LayarTerakhir.Editor
                 // parkir terbuka di sisi dan tetap dapat dikenali sebagai pintu.
                 Box(title+"Lintel",new Vector3(side*1.5f,2.62f,4.25f),new Vector3(.15f,.36f,3.5f),wall);
                 foreach(float z in new[]{2.65f,5.85f})Box(title+"Jamb",new Vector3(side*1.5f,1.4f,z),new Vector3(.15f,2.8f,.3f),wall);
-                var hinge=new GameObject("SharedDiningDoorHinge").transform;hinge.SetParent(root,false);hinge.position=new Vector3(side*1.5f,0,2.75f);var leaf=Box("SharedDiningDoor",new Vector3(side*1.5f,1.07f,3.5f),new Vector3(.09f,2.14f,1.5f),doorMat??wood);leaf.transform.SetParent(hinge,true);var door=leaf.AddComponent<HingedDoor>();door.hinge=hinge;door.label="Buka "+title;door.angle=-95;door.SetOpenImmediate(true);
+                // Tanpa daun pintu sama sekali (arahan desainer bug 7): bukaan
+                // terbuka permanen. Daun parkir sebelumnya terlihat hilang
+                // menembus dinding saat pemain ke ruang makan.
             }
             Label(title+"Sign",title,new Vector3(side*1.38f,2.44f,4.25f),side<0?Vector3.right:Vector3.left,.12f);
             Practical(new Vector3(x,2.72f,4.25f),new Color(.83f,.84f,.73f),1.1f,4);

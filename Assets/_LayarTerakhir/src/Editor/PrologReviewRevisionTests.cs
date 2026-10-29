@@ -82,11 +82,18 @@ namespace LayarTerakhir.Editor.Tests
             foreach(string name in new[]{"ChildWardrobe","ChildMattress","ChildPillow","ChildBlanket","ChildToyBlocks","ChildToyBall"})Assert.That(objects.Any(t=>t.name==name),Is.False,name);
             var bed=Find("ChildBedSet");var b=KosVisualV2.BoundsOf(bed);
             Assert.That(b.size.y,Is.GreaterThan(.9f));Assert.That(b.size.z,Is.GreaterThan(1.9f));
-            Assert.That(bed.GetComponentsInChildren<MeshFilter>().Any(f=>AssetDatabase.GetAssetPath(f.sharedMesh).Contains("vintage_day_bed")),Is.True);
+            Assert.That(bed.GetComponentsInChildren<MeshFilter>().Any(f=>AssetDatabase.GetAssetPath(f.sharedMesh).Contains("PrologSingleBedWithBedding")),Is.True);
+            Assert.That(bed.GetComponentsInChildren<Transform>().Any(t=>t.name.Contains("mattress")),Is.True,"Keep the fitted mattress in the set");
+            Assert.That(bed.GetComponentsInChildren<Transform>().Any(t=>t.name.Contains("pillow")),Is.True,"Keep the pillow in the set");
+            Assert.That(bed.GetComponentsInChildren<Transform>().Any(t=>t.name.Contains("duvet")),Is.True,"Keep the duvet in the set");
             var diary=Find("ChildDiaryBook");Assert.That(diary.GetComponent<AtmajaItem>().action,Is.EqualTo(AtmajaAction.Diary));
             Assert.That(diary.GetComponent<Renderer>().enabled,Is.False);
-            Assert.That(Find("BimaNotebookVisual").GetComponentsInChildren<MeshFilter>().Sum(f=>f.sharedMesh.vertexCount),Is.GreaterThan(100));
-            Assert.That(Quaternion.Angle(Find("ChildDeskLamp").transform.rotation,Quaternion.LookRotation(d.north)),Is.LessThan(.1f),"Repeated authoring must retain the corrected lamp direction");
+            var notebook=Find("BimaNotebookVisual");Assert.That(notebook.GetComponentsInChildren<MeshFilter>().Sum(f=>f.sharedMesh.vertexCount),Is.GreaterThan(100));
+            var printedPages=objects.Where(t=>t.name.StartsWith("BimaPrintedPage")).Select(t=>t.GetComponent<Renderer>()).ToArray();
+            Assert.That(printedPages.Length,Is.EqualTo(2),"Both pages must carry visible writing");
+            Assert.That(printedPages.All(r=>r.sharedMaterial.mainTexture&&r.sharedMaterial.mainTexture.name.StartsWith("BimaDiaryPage")),Is.True,"The physical diary pages must show Bima's note, not blank paper");
+            Vector3 lampToBook=Find("ChildDiaryBook").transform.position-Find("ChildDeskLamp").transform.position;lampToBook.y=0;
+            Assert.That(Vector3.Dot(Find("ChildDeskLamp").transform.forward,lampToBook.normalized),Is.GreaterThan(.95f),"Repeated authoring must keep the lamp aimed toward the notebook");
             var pool=Find("ChildStudyPool").GetComponent<Light>();
             Assert.That(Vector3.Dot(pool.transform.forward,(Find("ChildDiaryBook").transform.position-pool.transform.position).normalized),Is.GreaterThan(.5f));
         }
@@ -101,7 +108,7 @@ namespace LayarTerakhir.Editor.Tests
             typeof(AtmajaUpperDirector).GetMethod("SyncScratchTarget",BindingFlags.NonPublic|BindingFlags.Instance).Invoke(d.upper,null);
             Assert.That(Vector3.Distance(before,d.upper.scratchAim.position),Is.LessThan(.001f));
             Assert.That(Find("BathScratchTarget").GetComponent<AtmajaItem>().label,Does.Contain("dinding"));
-            Assert.That(d.upper.bathScratchesAR.GetComponentsInChildren<MeshRenderer>(true).Count(),Is.EqualTo(3));
+            Assert.That(d.upper.bathScratchesAR.GetComponentsInChildren<MeshRenderer>(true).Count(),Is.EqualTo(1));
         }
         [Test]public void TubHasAnOpenBasinWithBloodInsideTheRim()
         {
@@ -128,6 +135,10 @@ namespace LayarTerakhir.Editor.Tests
             var wall=d.LocalPosition(KosVisualV2.BoundsOf(Find("MasterEastWallExpanded")).center);
             Assert.That(wall.x,Is.GreaterThan(4.7f));
             Assert.That(KosVisualV2.BoundsOf(Find("MasterBedSet")).size.x,Is.GreaterThan(1.5f));
+            var back=d.LocalPosition(KosVisualV2.BoundsOf(Find("MasterBalconySeparation")).center);
+            Assert.That(back.y,Is.GreaterThan(4.2f),"The room's back wall must leave a larger, usable bedroom depth");
+            var chair=Find("MasterRocker");var towardBed=Find("MasterBedSet").transform.position-chair.transform.position;towardBed.y=0;
+            Assert.That(Vector3.Dot(chair.transform.forward,towardBed.normalized),Is.GreaterThan(.9f),"The chair must face into the room toward the bed");
             foreach(string name in new[]{"CellarSpineNorth","CellarSpineSouth","CellarReturnPartition"})Assert.That(objects.Any(t=>t.name==name),Is.False);
             Assert.That(KosVisualV2.BoundsOf(Find("CellarFloor")).size.x,Is.GreaterThan(11));
             Assert.That(d.LocalPosition(KosVisualV2.BoundsOf(Find("FamilyRadioCabinet")).center).x,Is.LessThan(.2f),"Furniture must stay outside the vertical ladder shaft");
