@@ -901,7 +901,11 @@ namespace LayarTerakhir.Editor.Tests
         {
             yield return new WaitForSeconds(2);
             var d=Find<AtmajaDirector>();var phone=SmartphoneController.Instance;var campaign=CampaignState.Instance;
-            Assert.That(d.StartLive(),Is.False,"Cannot broadcast before attempting the locked front door");
+            Assert.That(d.StartLive(),Is.False,"Phone must be raised before broadcasting");
+            yield return Press(Key.Tab);Assert.That(phone.isPhoneRaised,Is.True);
+            d.phoneView.Apps.Open(PhoneApp.Camera);
+            Assert.That(d.StartLive(),Is.True,"Live bisa langsung dimulai tanpa mencoba pintu depan dulu");
+            yield return Press(Key.Tab);Assert.That(phone.isPhoneRaised,Is.False);
             Item(AtmajaAction.FrontDoor).Interact();yield return new WaitForSeconds(2);
             Assert.That(campaign.HasInventoryItem("EVENT_P0_FRONT_DOOR_TRIED"),Is.True);Assert.That(d.HasSurvey,Is.False);
             yield return Press(Key.Tab);Assert.That(phone.isPhoneRaised,Is.True);

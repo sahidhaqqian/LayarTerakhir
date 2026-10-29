@@ -34,7 +34,7 @@ namespace LayarTerakhir.Prolog
         public int CheckpointRestores {get;private set;}
         public bool TreeCleared=>Has("EVENT_P0_TREE_CROUCHED");
         public bool HasSurvey=>Has(SurveyId);
-        public bool CanBeginLive=>Has("EVENT_P0_FRONT_DOOR_TRIED")||HasSurvey;
+        public bool CanBeginLive=>true;
         public bool LiveConnected=>Has("EVENT_P0_LIVE_STARTED");
         public int Viewers
         {

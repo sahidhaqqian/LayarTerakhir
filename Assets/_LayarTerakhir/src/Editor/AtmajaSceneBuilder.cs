@@ -274,13 +274,15 @@ namespace LayarTerakhir.Editor
         }
         internal static void Chain(Vector3 pos,float length,bool horizontal)
         {
-            // Eight linked, low-poly native torus rings, one combined static mesh/material.
+            // Rantai mungil proporsional: ~3cm, dirajut rapat mengikuti panjang.
+            int rings=Mathf.Max(9,Mathf.RoundToInt(length/.075f));
+            float pitch=rings>1?length/(rings-1):0;
             var verts=new System.Collections.Generic.List<Vector3>();var tris=new System.Collections.Generic.List<int>();
-            for(int ring=0;ring<9;ring++)for(int i=0;i<12;i++)for(int j=0;j<5;j++)
+            for(int ring=0;ring<rings;ring++)for(int i=0;i<12;i++)for(int j=0;j<5;j++)
             {
-                float a=i*Mathf.PI/6,b=j*Mathf.PI*2/5;var v=new Vector3((.065f+.012f*Mathf.Cos(b))*Mathf.Cos(a),.012f*Mathf.Sin(b),(.10f+.012f*Mathf.Cos(b))*Mathf.Sin(a));
+                float a=i*Mathf.PI/6,b=j*Mathf.PI*2/5;var v=new Vector3((.030f+.007f*Mathf.Cos(b))*Mathf.Cos(a),.007f*Mathf.Sin(b),(.045f+.007f*Mathf.Cos(b))*Mathf.Sin(a));
                 if(ring%2==1)v=Quaternion.Euler(0,0,70)*v;
-                v+=Vector3.right*(ring-4)*length/8;
+                v+=Vector3.right*(ring-(rings-1)/2f)*pitch;
                 verts.Add(v);int n=ring*60+i*5+j,ni=ring*60+((i+1)%12)*5+j,nj=ring*60+i*5+(j+1)%5,nij=ring*60+((i+1)%12)*5+(j+1)%5;
                 tris.AddRange(new[]{n,ni,nj,ni,nij,nj});
             }

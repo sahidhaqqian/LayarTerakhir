@@ -247,7 +247,8 @@ namespace LayarTerakhir.Editor
             var well=Find("OldChainedKitchenWell");if(well){var renderer=well.GetComponent<Renderer>();if(renderer)renderer.enabled=false;var collider=well.GetComponent<Collider>();if(collider)collider.enabled=false;}
             var cover=new GameObject("WellCover");cover.transform.SetParent(root,false);cover.transform.SetPositionAndRotation(P(2.85f,11.73f,1.09f),Quaternion.LookRotation(d.north));
             Remove("RottenWellBoard","WellRustChain");
-            for(int i=0;i<4;i++){var board=Box("RottenWellBoard",P(2.85f+(i-1.5f)*.23f,11.2f,1.09f),new Vector3(.21f,.045f,1.10f),Mat("House_MAT_WoodDoor"));board.transform.SetParent(cover.transform,true);}
+            // Tutup bulat pas lingkaran sumur, bukan papan kotak yang melewati bibir.
+            var lid=GameObject.CreatePrimitive(PrimitiveType.Cylinder);lid.name="WellRoundCover";lid.transform.SetParent(cover.transform,true);lid.transform.SetPositionAndRotation(P(2.85f,11.2f,1.09f),Quaternion.LookRotation(d.north));lid.transform.localScale=new Vector3(1.1f,.03f,1.1f);lid.GetComponent<Renderer>().sharedMaterial=Mat("House_MAT_WoodDoor");
             var chain=new GameObject("WellRustChain",typeof(MeshFilter),typeof(MeshRenderer));chain.transform.SetParent(cover.transform,true);chain.transform.SetPositionAndRotation(P(2.85f,11.2f,1.14f),Quaternion.LookRotation(d.north));chain.GetComponent<MeshFilter>().sharedMesh=AssetDatabase.LoadAssetAtPath<Mesh>("Assets/_LayarTerakhir/assets/Art/Atmaja/Models/WellChain.asset");chain.GetComponent<MeshRenderer>().sharedMaterial=Mat("House_MAT_RustMetal");
             for(int i=0;i<20;i++)
             {
