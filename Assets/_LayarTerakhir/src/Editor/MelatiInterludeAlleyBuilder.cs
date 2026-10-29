@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 
 namespace LayarTerakhir.Editor
 {
-    // Authors the daytime interlude exterior into Prolog_KoridorKos:
+    // Authors permanent neighborhood scenery into Prolog_KoridorKos:
     // Zone A narrow gang, Zone C warteg + gerobak, parked vehicles, wires.
     // Runtime keeps only NPCs, moving traffic, lighting and interactions.
     public static class MelatiInterludeAlleyBuilder
@@ -69,9 +69,16 @@ namespace LayarTerakhir.Editor
         private static Material KitMaterial(string kit)
         {
             var tex = AssetDatabase.LoadAssetAtPath<Texture2D>($"Assets/_LayarTerakhir/assets/Art/Imported/InterludeStreet/{kit}/Textures/colormap.png");
-            var mat = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = "Interlude" + kit };
+            string path = "Assets/_LayarTerakhir/assets/Art/Atmaja/Materials/Interlude" + kit + ".mat";
+            var mat = AssetDatabase.LoadAssetAtPath<Material>(path);
+            if (!mat)
+            {
+                mat = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = "Interlude" + kit };
+                AssetDatabase.CreateAsset(mat, path);
+            }
             if (tex) mat.SetTexture("_BaseMap", tex);
             mat.SetFloat("_Smoothness", .35f);
+            EditorUtility.SetDirty(mat);
             return mat;
         }
 
@@ -124,11 +131,11 @@ namespace LayarTerakhir.Editor
 
         public static void Apply()
         {
+            notes.Clear();
             var scene = EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);
             root = GameObject.Find("KampungMelati").transform;
-            // Idempotent: rebuild the interlude-only group from scratch.
-            // It stays OFF in the saved scene so the night prolog route is
-            // untouched; InterludeDirector activates it in daytime.
+            // Idempotent: rebuild the permanent street scenery. Buildings,
+            // shops and parked vehicles must also exist during the prolog.
             var old = root.Find("InterludeAlley");
             if (old) Object.DestroyImmediate(old.gameObject);
             group = new GameObject("InterludeAlley").transform;
@@ -164,9 +171,9 @@ namespace LayarTerakhir.Editor
             foreach (var r in root.GetComponentsInChildren<MeshRenderer>())
                 if (r.gameObject.name.StartsWith("Alley") || r.gameObject.name.StartsWith("Warteg") || r.gameObject.name.StartsWith("Gerobak") || r.gameObject.name.StartsWith("StreetDress"))
                     GameObjectUtility.SetStaticEditorFlags(r.gameObject, StaticEditorFlags.BatchingStatic);
-            // Night prolog must never see this: leave the group OFF in the
-            // saved scene. InterludeDirector activates it in daytime only.
-            group.gameObject.SetActive(false);
+            group.gameObject.SetActive(true);
+            PrefabUtility.SaveAsPrefabAssetAndConnect(group.gameObject,
+                "Assets/Resources/MelatiPermanentStreet.prefab", InteractionMode.AutomatedAction);
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
             AssetDatabase.SaveAssets();

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="22" result="Passed" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-29 09:22:23Z" end-time="2026-10-29 09:22:35Z" duration="11.6541027">
+  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="567" result="Passed" start-time="2026-10-29 09:22:23Z" end-time="2026-10-29 09:22:35Z" duration="11.654103" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1655" name="Assembly-CSharp-Editor.dll" fullname="/root/projects/LayarTerakhir-prolog-28-43/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="567" result="Passed" start-time="2026-10-29 09:22:23Z" end-time="2026-10-29 09:22:35Z" duration="11.550432" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="520419" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1656" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="567" result="Passed" start-time="2026-10-29 09:22:23Z" end-time="2026-10-29 09:22:35Z" duration="11.539742" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1657" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="567" result="Passed" start-time="2026-10-29 09:22:23Z" end-time="2026-10-29 09:22:35Z" duration="11.529873" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1658" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="567" result="Passed" start-time="2026-10-29 09:22:23Z" end-time="2026-10-29 09:22:35Z" duration="11.518541" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1134" name="GameplayRecoveryRuntimeTests" fullname="LayarTerakhir.Editor.Tests.GameplayRecoveryRuntimeTests" classname="LayarTerakhir.Editor.Tests.GameplayRecoveryRuntimeTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-29 09:22:23Z" end-time="2026-10-29 09:22:26Z" duration="2.920278" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1135" name="DaytimeCapsuleReachesShopsAndTrafficHasSeatedRiders" fullname="LayarTerakhir.Editor.Tests.GameplayRecoveryRuntimeTests.DaytimeCapsuleReachesShopsAndTrafficHasSeatedRiders" methodname="DaytimeCapsuleReachesShopsAndTrafficHasSeatedRiders" classname="LayarTerakhir.Editor.Tests.GameplayRecoveryRuntimeTests" runstate="Runnable" seed="365962543" result="Passed" start-time="2026-10-29 09:22:16Z" end-time="2026-10-29 09:22:26Z" duration="10.039770" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TRAFFIC_HAND_CONTACT side=L surfaceGap=0.01710988 wristGap=0.1173765
+TRAFFIC_HAND_CONTACT side=R surfaceGap=0.01685341 wristGap=0.1173758
+TRAFFIC_HAND_CONTACT side=L surfaceGap=0.01711018 wristGap=0.1173781
+TRAFFIC_HAND_CONTACT side=R surfaceGap=0.01685401 wristGap=0.1173783
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1144" name="InterludeCampaignTests" fullname="LayarTerakhir.Editor.Tests.InterludeCampaignTests" classname="LayarTerakhir.Editor.Tests.InterludeCampaignTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-29 09:22:26Z" end-time="2026-10-29 09:22:31Z" duration="4.902719" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1157" name="AlleyLaundryLeavesClearanceAboveTheWalkingPlayer" fullname="LayarTerakhir.Editor.Tests.InterludeCampaignTests.AlleyLaundryLeavesClearanceAboveTheWalkingPlayer" methodname="AlleyLaundryLeavesClearanceAboveTheWalkingPlayer" classname="LayarTerakhir.Editor.Tests.InterludeCampaignTests" runstate="Runnable" seed="1003901299" result="Passed" start-time="2026-10-29 09:22:26Z" end-time="2026-10-29 09:22:27Z" duration="0.600127" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1155" name="AuthoredStreetCompositionIsComplete" fullname="LayarTerakhir.Editor.Tests.InterludeCampaignTests.AuthoredStreetCompositionIsComplete" methodname="AuthoredStreetCompositionIsComplete" classname="LayarTerakhir.Editor.Tests.InterludeCampaignTests" runstate="Runnable" seed="1553847460" result="Passed" start-time="2026-10-29 09:22:27Z" end-time="2026-10-29 09:22:27Z" duration="0.608786" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1147" name="BeatsAreIdempotentAndGateRest" fullname="LayarTerakhir.Editor.Tests.InterludeCampaignTests.BeatsAreIdempotentAndGateRest" methodname="BeatsAreIdempotentAndGateRest" classname="LayarTerakhir.Editor.Tests.InterludeCampaignTests" runstate="Runnable" seed="84211273" result="Passed" start-time="2026-10-29 09:22:27Z" end-time="2026-10-29 09:22:27Z" duration="0.084987" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1153" name="CorridorSceneKeepsEveryObjectTheDaytimeDirectorNeeds" fullname="LayarTerakhir.Editor.Tests.InterludeCampaignTests.CorridorSceneKeepsEveryObjectTheDaytimeDirectorNeeds" methodname="CorridorSceneKeepsEveryObjectTheDaytimeDirectorNeeds" classname="LayarTerakhir.Editor.Tests.InterludeCampaignTests" runstate="Runnable" seed="2132063805" result="Passed" start-time="2026-10-29 09:22:27Z" end-time="2026-10-29 09:22:28Z" duration="0.599344" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1149" name="DepartFromReadyEntersPhase1WithFullBattery" fullname="LayarTerakhir.Editor.Tests.InterludeCampaignTests.DepartFromReadyEntersPhase1WithFullBattery" methodname="DepartFromReadyEntersPhase1WithFullBattery" classname="LayarTerakhir.Editor.Tests.InterludeCampaignTests" runstate="Runnable" seed="2004892338" result="Passed" start-time="2026-10-29 09:22:28Z" end-time="2026-10-29 09:22:28Z" duration="0.085827" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1145" name="EnterInterludeKeepsChapterZeroAndPreservesCarryOver" fullname="LayarTerakhir.Editor.Tests.InterludeCampaignTests.EnterInterludeKeepsChapterZeroAndPreservesCarryOver" methodname="EnterInterludeKeepsChapterZeroAndPreservesCarryOver" classname="LayarTerakhir.Editor.Tests.InterludeCampaignTests" runstate="Runnable" seed="2036889012" result="Passed" start-time="2026-10-29 09:22:28Z" end-time="2026-10-29 09:22:28Z" duration="0.068890" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1146" name="EnterInterludeRejectsWrongCheckpointWithoutMutation" fullname="LayarTerakhir.Editor.Tests.InterludeCampaignTests.EnterInterludeRejectsWrongCheckpointWithoutMutation" methodname="EnterInterludeRejectsWrongCheckpointWithoutMutation" classname="LayarTerakhir.Editor.Tests.InterludeCampaignTests" runstate="Runnable" seed="462393536" result="Passed" start-time="2026-10-29 09:22:28Z" end-time="2026-10-29 09:22:28Z" duration="0.069658" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1151" name="HubChargeIsExplicitOnceAndSurvivesReload" fullname="LayarTerakhir.Editor.Tests.InterludeCampaignTests.HubChargeIsExplicitOnceAndSurvivesReload" methodname="HubChargeIsExplicitOnceAndSurvivesReload" classname="LayarTerakhir.Editor.Tests.InterludeCampaignTests" runstate="Runnable" seed="1088735152" result="Passed" start-time="2026-10-29 09:22:28Z" end-time="2026-10-29 09:22:28Z" duration="0.080126" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1154" name="KosRoomSceneKeepsEveryObjectTheMorningHubNeeds" fullname="LayarTerakhir.Editor.Tests.InterludeCampaignTests.KosRoomSceneKeepsEveryObjectTheMorningHubNeeds" methodname="KosRoomSceneKeepsEveryObjectTheMorningHubNeeds" classname="LayarTerakhir.Editor.Tests.InterludeCampaignTests" runstate="Runnable" seed="810973113" result="Passed" start-time="2026-10-29 09:22:28Z" end-time="2026-10-29 09:22:29Z" duration="0.484716" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1156" name="KosToStreetRouteStaysWalkable" fullname="LayarTerakhir.Editor.Tests.InterludeCampaignTests.KosToStreetRouteStaysWalkable" methodname="KosToStreetRouteStaysWalkable" classname="LayarTerakhir.Editor.Tests.InterludeCampaignTests" runstate="Runnable" seed="39572318" result="Passed" start-time="2026-10-29 09:22:29Z" end-time="2026-10-29 09:22:29Z" duration="0.590497" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1158" name="ParkedSedanRetainsItsImportedUpAxisAndRealScale" fullname="LayarTerakhir.Editor.Tests.InterludeCampaignTests.ParkedSedanRetainsItsImportedUpAxisAndRealScale" methodname="ParkedSedanRetainsItsImportedUpAxisAndRealScale" classname="LayarTerakhir.Editor.Tests.InterludeCampaignTests" runstate="Runnable" seed="683874057" result="Passed" start-time="2026-10-29 09:22:29Z" end-time="2026-10-29 09:22:30Z" duration="0.710693" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1150" name="PrologDirectHandoffStillWorksForLegacySaves" fullname="LayarTerakhir.Editor.Tests.InterludeCampaignTests.PrologDirectHandoffStillWorksForLegacySaves" methodname="PrologDirectHandoffStillWorksForLegacySaves" classname="LayarTerakhir.Editor.Tests.InterludeCampaignTests" runstate="Runnable" seed="1342495977" result="Passed" start-time="2026-10-29 09:22:30Z" end-time="2026-10-29 09:22:30Z" duration="0.102472" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1152" name="ReloadDuringInterludeRestoresBeatProgress" fullname="LayarTerakhir.Editor.Tests.InterludeCampaignTests.ReloadDuringInterludeRestoresBeatProgress" methodname="ReloadDuringInterludeRestoresBeatProgress" classname="LayarTerakhir.Editor.Tests.InterludeCampaignTests" runstate="Runnable" seed="454460483" result="Passed" start-time="2026-10-29 09:22:30Z" end-time="2026-10-29 09:22:30Z" duration="0.096831" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1148" name="RestUntilNightSnapshotsEveningAndRefillsBattery" fullname="LayarTerakhir.Editor.Tests.InterludeCampaignTests.RestUntilNightSnapshotsEveningAndRefillsBattery" methodname="RestUntilNightSnapshotsEveningAndRefillsBattery" classname="LayarTerakhir.Editor.Tests.InterludeCampaignTests" runstate="Runnable" seed="1096439584" result="Passed" start-time="2026-10-29 09:22:30Z" end-time="2026-10-29 09:22:30Z" duration="0.083239" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1159" name="WartegFoodHasServingScaleAndCookwareStaysInTheShop" fullname="LayarTerakhir.Editor.Tests.InterludeCampaignTests.WartegFoodHasServingScaleAndCookwareStaysInTheShop" methodname="WartegFoodHasServingScaleAndCookwareStaysInTheShop" classname="LayarTerakhir.Editor.Tests.InterludeCampaignTests" runstate="Runnable" seed="844583539" result="Passed" start-time="2026-10-29 09:22:30Z" end-time="2026-10-29 09:22:31Z" duration="0.628068" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1624" name="PrologEnvironmentContinuityTests" fullname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests" classname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-29 09:22:31Z" end-time="2026-10-29 09:22:35Z" duration="3.656208" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1630" name="MorningRoomAndYardShareTheCampaignSky" fullname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests.MorningRoomAndYardShareTheCampaignSky" classname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-29 09:22:31Z" end-time="2026-10-29 09:22:32Z" duration="0.829707" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1628" name="MorningRoomAndYardShareTheCampaignSky(False)" fullname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests.MorningRoomAndYardShareTheCampaignSky(False)" methodname="MorningRoomAndYardShareTheCampaignSky" classname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests" runstate="Runnable" seed="616445563" result="Passed" start-time="2026-10-29 09:22:31Z" end-time="2026-10-29 09:22:31Z" duration="0.414628" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1629" name="MorningRoomAndYardShareTheCampaignSky(True)" fullname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests.MorningRoomAndYardShareTheCampaignSky(True)" methodname="MorningRoomAndYardShareTheCampaignSky" classname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests" runstate="Runnable" seed="1109694966" result="Passed" start-time="2026-10-29 09:22:31Z" end-time="2026-10-29 09:22:32Z" duration="0.413904" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1626" name="NextMorningReplacesTheAuthoredNightSkyAndResetsAfterDusk" fullname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests.NextMorningReplacesTheAuthoredNightSkyAndResetsAfterDusk" methodname="NextMorningReplacesTheAuthoredNightSkyAndResetsAfterDusk" classname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests" runstate="Runnable" seed="896706859" result="Passed" start-time="2026-10-29 09:22:32Z" end-time="2026-10-29 09:22:33Z" duration="1.047921" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1625" name="NightPrologLoadsTheSamePermanentStreetAsMorning" fullname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests.NightPrologLoadsTheSamePermanentStreetAsMorning" methodname="NightPrologLoadsTheSamePermanentStreetAsMorning" classname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests" runstate="Runnable" seed="470409040" result="Passed" start-time="2026-10-29 09:22:33Z" end-time="2026-10-29 09:22:34Z" duration="0.621891" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1631" name="NightStreetSceneryLeavesTheDepartureRoadClear" fullname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests.NightStreetSceneryLeavesTheDepartureRoadClear" methodname="NightStreetSceneryLeavesTheDepartureRoadClear" classname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests" runstate="Runnable" seed="191918198" result="Passed" start-time="2026-10-29 09:22:34Z" end-time="2026-10-29 09:22:34Z" duration="0.567418" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1627" name="RebuiltKosSceneRecoversItsPermanentSceneryExactlyOnce" fullname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests.RebuiltKosSceneRecoversItsPermanentSceneryExactlyOnce" methodname="RebuiltKosSceneRecoversItsPermanentSceneryExactlyOnce" classname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests" runstate="Runnable" seed="219841595" result="Passed" start-time="2026-10-29 09:22:34Z" end-time="2026-10-29 09:22:35Z" duration="0.584866" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: /root/.config/unity3d/DefaultCompany/LayarTerakhir/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -66,6 +66,10 @@ namespace LayarTerakhir.Editor.Tests
             while((!director||!director.Ready)&&Time.realtimeSinceStartup<deadline){director=Object.FindFirstObjectByType<InterludeDirector>();yield return null;}
             Assert.That(director&&director.Ready,Is.True,"Daytime startup must finish within the bounded fixture");
             var corridor=Object.FindFirstObjectByType<KosCorridorDirector>();var player=corridor.player;var cc=player.GetComponent<CharacterController>();
+            Assert.That(RenderSettings.skybox,Is.SameAs(Resources.Load<Material>("InterludeDaySky")),"Bug 47: runtime daytime must replace the authored night sky");
+            Assert.That(GameObject.Find("KampungMelati").transform.Find("InterludeAlley").gameObject.activeInHierarchy,Is.True);
+            Assert.That(corridor.buildingRoot.Find("KosYardLife"),Is.Not.Null);
+
             var rig=player.GetComponent<ShoulderCameraRig>();var camera=player.GetComponent<InteractionInteractor>().playerCamera;
             player.SendMessage("OnApplicationFocus",true);player.enabled=false;
             Place(cc,new Vector3(-16,.22f,-4.5f));

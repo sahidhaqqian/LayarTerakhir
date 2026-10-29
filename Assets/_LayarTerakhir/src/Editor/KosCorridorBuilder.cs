@@ -24,7 +24,7 @@ namespace LayarTerakhir.Editor
             if(events&&!events.transform.IsChildOf(systems.transform)){var ev=Object.Instantiate(events.gameObject);ev.name="EventSystem";}
             EditorSceneManager.CloseScene(golden,true);
             d=sys.AddComponent<KosCorridorDirector>();d.player=p.GetComponent<FirstPersonController>();d.audioProfile=AssetDatabase.LoadAssetAtPath<SceneAudioProfile>("Assets/_LayarTerakhir/assets/Audio/KosAudioProfile.asset");
-            root=new GameObject("Kos_Building_Corridors").transform;
+            root=new GameObject("Kos_Building_Corridors").transform;d.buildingRoot=root;
             wall=Material("KosCorridorPlaster",new Color(.64f,.62f,.53f),"Assets/_LayarTerakhir/assets/Art/Generated/Materials/OldLimewash.mat");
             floor=Material("KosCorridorTile",new Color(.55f,.54f,.48f),"Assets/_LayarTerakhir/assets/Art/Generated/Materials/CeramicTiles.mat");
             wood=AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/assets/Art/Atmaja/Materials/House_MAT_WoodDoor.mat");metal=Material("KosCorridorMetal",new Color(.07f,.08f,.085f));

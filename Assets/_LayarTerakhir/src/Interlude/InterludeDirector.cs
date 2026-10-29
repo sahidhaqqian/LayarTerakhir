@@ -90,13 +90,7 @@ namespace LayarTerakhir.Interlude
             if (!savedGround) Campaign.SaveCheckpointAtomic(InterludeIds.MorningCheckpoint);
 
             corridor.gateHinge.GetComponent<DoubleLeafGate>()?.SetImmediate(true);
-            InterludeExterior.DressYard(corridor);
-            // Daytime street dressing lives in the scene but stays OFF for
-            // the night prolog; only the interlude switches it on.
-            // (Transform.Find: GameObject.Find skips inactive objects.)
-            var kampung = GameObject.Find("KampungMelati");
-            var alley = kampung ? kampung.transform.Find("InterludeAlley") : null;
-            if (alley) alley.gameObject.SetActive(true);
+            InterludeExterior.EnsureNeighborhood(corridor);
             SpawnResidents();
             BindWorldItems();
             InterludeTraffic.Install(corridor);

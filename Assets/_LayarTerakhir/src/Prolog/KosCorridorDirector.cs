@@ -20,6 +20,7 @@ namespace LayarTerakhir.Prolog
         public bool CanDepart=>!Busy&&player&&player.transform.position.y<.8f&&
             (Vector3.Distance(player.transform.position,motor.position)<3.2f||Vector3.Distance(player.transform.position,BuildingPoint(new Vector3(0,0,-7)))<3.2f)&&
             CampaignState.Instance.HasInventoryItem("KUNCI_MOTOR")&&CampaignState.Instance.HasInventoryItem("JAKET_RAKA");
+        private void Awake()=>LayarTerakhir.Interlude.InterludeExterior.EnsureNeighborhood(this);
         private IEnumerator Start()
         {
             var boot=CampaignState.Instance;boot.LoadCheckpoint();
