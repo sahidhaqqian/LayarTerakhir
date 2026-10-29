@@ -247,7 +247,7 @@ namespace LayarTerakhir.Editor
             var bag = Spawn("Original/Models/KosBackpack.fbx", "KosBackpack", new Vector3(-2.65f, .23f, .19f), new Vector3(.31f, .44f, .25f), -22, Mat("FadedGreenJacket"));
             Ground(bag); AddSolid(bag);
             AssignSlots(bag, name => name.Contains("Metal") ? Mat("DarkOxidisedMetal") : Mat("FadedGreenJacket"));
-            var fan = Spawn("Original/Models/KosDeskFan.fbx", "KosDeskFan", new Vector3(1.65f, 1.71f, 2.04f), new Vector3(.24f, .42f, .18f), -18, Plain("FanEnamelV2", new Color(.40f, .49f, .44f), .25f));
+            var fan = Spawn("Original/Models/KosDeskFan.fbx", "KosDeskFan", new Vector3(1.65f, 1.71f, 2.04f), new Vector3(.24f, .42f, .18f), 162, Plain("FanEnamelV2", new Color(.40f, .49f, .44f), .25f));
             // Use a shallow wall shelf beside the calendar; the cupboard top is already in use by books.
             var fanShelf = DetailBox("FanWallShelf", new Vector3(.06f, 1.31f, 2.02f), new Vector3(.50f, .035f, .34f), Mat("DoorAndWardrobeWood"));
             RestOn(fan, fanShelf, .06f, 2.02f);

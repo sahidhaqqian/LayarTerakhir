@@ -126,10 +126,11 @@ namespace LayarTerakhir.Editor
         {
             // The third left ground-floor room becomes a dedicated communal dining room.
             var old=GameObject.Find("KosGroundDoor_-1.5_2");if(old)Object.DestroyImmediate(old);
-            var hinge=new GameObject("SharedDiningDoorHinge").transform;hinge.SetParent(root,false);hinge.position=new Vector3(-1.45f,0,7.0f);
-            var leaf=Box("SharedDiningDoor",new Vector3(-1.45f,1.07f,7.5f),new Vector3(.07f,2.14f,.96f),wood);leaf.transform.SetParent(hinge,true);
-            var door=leaf.AddComponent<HingedDoor>();door.hinge=hinge;door.label="Buka ruang makan bersama";door.angle=-95;
-            Label("SharedDiningSign","RUANG MAKAN",new Vector3(-1.36f,2.45f,7.5f),Vector3.right,.13f);
+            // Ruang makan + dapur dijadikan satu area terbuka tanpa pintu (desainer).
+            Box("SharedDiningJambL",new Vector3(-1.45f,1.07f,7.02f),new Vector3(.10f,2.14f,.10f),wood);
+            Box("SharedDiningJambR",new Vector3(-1.45f,1.07f,7.98f),new Vector3(.10f,2.14f,.10f),wood);
+            Box("SharedDiningHeader",new Vector3(-1.45f,2.20f,7.5f),new Vector3(.10f,.12f,1.06f),wood);
+            Label("SharedDiningSign","DAPUR & RUANG MAKAN",new Vector3(-1.36f,2.45f,7.5f),Vector3.right,.13f);
             var table=Model("LongDiningTable","KosCommunalDiningTable",new Vector3(1.12f,.78f,1.65f),new Vector3(-3.8f,.39f,7.5f));
             foreach(float x in new[]{-2.85f,-4.75f})foreach(float z in new[]{7.0f,8.0f})
             {
@@ -158,9 +159,10 @@ namespace LayarTerakhir.Editor
             {
                 bool women=z>4;string title=women?"WANITA":"PRIA";
                 var h=new GameObject("Bathroom"+title+"Hinge").transform;h.SetParent(root,false);h.position=new Vector3(2.82f,0,z-.46f);
-                var panel=Box("Bathroom"+title+"Door",new Vector3(2.82f,1.06f,z),new Vector3(.065f,2.12f,.9f),wood);panel.transform.SetParent(h,true);
+                var panel=Box("Bathroom"+title+"Door",new Vector3(2.82f,1.06f,z),new Vector3(.065f,2.12f,.9f),doorMat??wood);panel.transform.SetParent(h,true);
                 var hd=panel.AddComponent<HingedDoor>();hd.hinge=h;hd.angle=95;hd.label="Buka kamar mandi "+title.ToLowerInvariant();
-                Label("Bathroom"+title+"Sign","KM/WC\n"+title,new Vector3(2.76f,1.78f,z),Vector3.left,.10f);
+                // Plang gender anti-melayang: papan menempel + ikon, bukan TextMesh offset.
+                GenderBathroomSign(title,z,women);
                 Box("CubicleDoorHeader",new Vector3(2.82f,2.43f,z),new Vector3(.10f,.5f,1.0f),wall);
                 if(women)Box("SecondSquatToilet",new Vector3(4.8f,.09f,5.2f),new Vector3(.52f,.18f,.65f),dish);
                 else Box("SecondWaterTank",new Vector3(5.7f,.50f,3.8f),new Vector3(.72f,1,.72f),floor);
@@ -187,6 +189,25 @@ namespace LayarTerakhir.Editor
             foreach(var h in new[]{d.gateHinge.GetComponent<DoubleLeafGate>().leftLeaf,d.gateHinge.GetComponent<DoubleLeafGate>().rightLeaf})
             {var travel=h.gameObject.AddComponent<KosTravelItem>();travel.director=d;travel.label="Pilih tujuan di gerbang kos";}
             DesignerWorldRevision.NightSky(d.player.GetComponent<InteractionInteractor>().playerCamera);
+        }
+        private static void GenderBathroomSign(string title,float z,bool women)
+        {
+            // Papan plang menempel di sekat depan (bukan teks melayang di bukaan pintu).
+            var plateMat=Material(women?"BathroomSignPink":"BathroomSignBlue",women?new Color(.75f,.35f,.45f):new Color(.25f,.45f,.70f));
+            Box("Bathroom"+title+"Plaque",new Vector3(2.76f,1.80f,z),new Vector3(.03f,.44f,.58f),plateMat);
+            Box("Bathroom"+title+"PlaqueTrim",new Vector3(2.745f,1.80f,z),new Vector3(.015f,.48f,.62f),trim);
+            // Ikon sederhana: kepala (silinder) + badan (kotak); rok untuk wanita.
+            var iconMat=Material("BathroomIconWhite",new Color(.92f,.92f,.90f));
+            var head=GameObject.CreatePrimitive(PrimitiveType.Cylinder);head.name="Bathroom"+title+"IconHead";head.transform.SetParent(root,false);head.transform.position=new Vector3(2.72f,1.92f,z);head.transform.localScale=new Vector3(.09f,.03f,.09f);head.GetComponent<Renderer>().sharedMaterial=iconMat;Object.DestroyImmediate(head.GetComponent<Collider>());
+            if(women)
+            {
+                var skirt=GameObject.CreatePrimitive(PrimitiveType.Cylinder);skirt.name="Bathroom"+title+"IconSkirt";skirt.transform.SetParent(root,false);skirt.transform.position=new Vector3(2.72f,1.68f,z);skirt.transform.localScale=new Vector3(.16f,.14f,.05f);skirt.GetComponent<Renderer>().sharedMaterial=iconMat;Object.DestroyImmediate(skirt.GetComponent<Collider>());
+            }
+            else
+            {
+                Box("Bathroom"+title+"IconBody",new Vector3(2.72f,1.68f,z),new Vector3(.02f,.20f,.12f),iconMat);
+                Box("Bathroom"+title+"IconLegs",new Vector3(2.72f,1.55f,z),new Vector3(.02f,.10f,.10f),iconMat);
+            }
         }
     }
 }

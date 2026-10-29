@@ -151,7 +151,13 @@ namespace LayarTerakhir.UI
                 CampaignState.Instance.AddInventoryItem(contact=="Ibu"?"EVENT_CALLED_IBU":"EVENT_CALLED_RATNA");
                 string checkpoint=CampaignState.Instance.Data.checkpoint_id;
                 CampaignState.Instance.SaveCheckpointAtomic(checkpoint=="PROLOG_KOS_START"?"PROLOG_KOS_PREPARATION":checkpoint);
-                if(result)result.text=contact+"\nPanggilan selesai • tagihan tersedia di Bank";
+                if(result)result.text=contact+"\nPanggilan selesai • pesan baru masuk";
+                // Bug: telepon kedua selesai harus langsung memicu notif + pindah ke Pesan.
+                dialing=false;
+                if(Phone) { Phone.isPhoneRaised=true; Phone.isScreenOn=Phone.batteryPercent>0; Phone.SyncVisualState(); }
+                Notify(contact=="Ibu"?"Ibu: Makasih, Nak. Transfernya Ibu tunggu, ya.":"Bu Haji Ratna: Masuk malam ini, kamarmu aman.");
+                Open(PhoneApp.Messages);
+                yield break;
             }
             else if(result)result.text=contact+"\nTidak dapat dihubungi";
             dialing=false;

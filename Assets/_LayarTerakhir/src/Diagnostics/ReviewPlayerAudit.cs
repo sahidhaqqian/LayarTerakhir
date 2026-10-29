@@ -163,14 +163,12 @@ namespace LayarTerakhir.Diagnostics
             yield return Walk(corridor.BuildingPoint(new Vector3(1.75f,0,12.6f)));yield return Walk(corridor.BuildingPoint(new Vector3(0,0,12.6f)));yield return Walk(corridor.BuildingPoint(new Vector3(0,0,11.5f)));
             Check(player.transform.position.y<.15f,"Both complete stair flights are physically descended without teleporting");
             yield return Walk(corridor.BuildingPoint(new Vector3(0,0,7.5f)));
-            var dining=GameObject.Find("SharedDiningDoor").GetComponent<HingedDoor>();yield return Use(dining,dining.GetComponent<Collider>().bounds.center);
-            yield return new WaitForSeconds(1.2f);yield return Walk(corridor.BuildingPoint(new Vector3(-2.4f,0,7.5f)));Aim(corridor.BuildingPoint(new Vector3(-3.8f,.9f,7.5f)));yield return Shot("10a-kos-communal-dining");
+            foreach(var openName in new[]{"DAPUR BERSAMADoor","KAMAR MANDIDoor"}){var od=GameObject.Find(openName)?.GetComponent<HingedDoor>();if(od&&!od.IsOpen){yield return Use(od,od.GetComponent<Collider>().bounds.center);yield return new WaitForSeconds(1.2f);}}
+            yield return Walk(corridor.BuildingPoint(new Vector3(-2.4f,0,7.5f)));Aim(corridor.BuildingPoint(new Vector3(-3.8f,.9f,7.5f)));yield return Shot("10a-kos-communal-dining");
             yield return Walk(corridor.BuildingPoint(new Vector3(0,0,7.5f)));
             yield return Walk(corridor.BuildingPoint(new Vector3(0,0,4.25f)));
-            var kitchen=GameObject.Find("DAPUR BERSAMADoor").GetComponent<HingedDoor>();yield return Use(kitchen,kitchen.GetComponent<Collider>().bounds.center);
-            yield return new WaitForSeconds(1.2f);yield return Walk(corridor.BuildingPoint(new Vector3(-2.7f,0,4.25f)));Aim(corridor.BuildingPoint(new Vector3(-4.2f,1,4.8f)));yield return Shot("10-kos-shared-kitchen");
-            yield return Walk(corridor.BuildingPoint(new Vector3(0,0,4.25f)));var bath=GameObject.Find("KAMAR MANDIDoor").GetComponent<HingedDoor>();yield return Use(bath,bath.GetComponent<Collider>().bounds.center);
-            yield return new WaitForSeconds(1.2f);yield return Walk(corridor.BuildingPoint(new Vector3(2.1f,0,4.25f)));Aim(corridor.BuildingPoint(new Vector3(2.82f,1.4f,5.2f)));yield return Shot("11-kos-shared-bathroom");
+            yield return Walk(corridor.BuildingPoint(new Vector3(-2.7f,0,4.25f)));Aim(corridor.BuildingPoint(new Vector3(-4.2f,1,4.8f)));yield return Shot("10-kos-shared-kitchen");
+            yield return Walk(corridor.BuildingPoint(new Vector3(0,0,4.25f)));yield return Walk(corridor.BuildingPoint(new Vector3(2.1f,0,4.25f)));Aim(corridor.BuildingPoint(new Vector3(2.82f,1.4f,5.2f)));yield return Shot("11-kos-shared-bathroom");
             yield return Walk(corridor.BuildingPoint(new Vector3(2.1f,0,5.2f)));var women=GameObject.Find("BathroomWANITADoor").GetComponent<HingedDoor>();yield return Use(women,women.GetComponent<Collider>().bounds.center);
             yield return new WaitForSeconds(1.2f);yield return Walk(corridor.BuildingPoint(new Vector3(3.45f,0,5.2f)));Aim(corridor.BuildingPoint(new Vector3(5.7f,1.2f,5.2f)));yield return Shot("11c-kos-womens-bathroom");
             yield return Walk(corridor.BuildingPoint(new Vector3(2.1f,0,5.2f)));yield return Walk(corridor.BuildingPoint(new Vector3(2.1f,0,4.25f)));yield return Walk(corridor.BuildingPoint(new Vector3(2.1f,0,3.3f)));

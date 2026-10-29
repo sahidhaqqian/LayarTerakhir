@@ -801,11 +801,10 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(p.transform.position.y,Is.GreaterThan(3));Assert.That(corridor.CanDepart,Is.False);
             foreach(var point in new[]{new Vector3(-.6f,3.3f,12.7f),new Vector3(-.6f,1.65f,16.4f),new Vector3(1.75f,1.65f,16.4f),new Vector3(1.75f,0,12.6f),new Vector3(0,0,12.6f),new Vector3(0,0,11.5f),new Vector3(0,0,7.5f)})yield return WalkCapsule(p,corridor.BuildingPoint(point));
             Assert.That(p.transform.position.y,Is.LessThan(.15f));
-            GameObject.Find("SharedDiningDoor").GetComponent<HingedDoor>().Interact();yield return new WaitForSeconds(1.2f);
+            foreach(var openName in new[]{"DAPUR BERSAMADoor","KAMAR MANDIDoor"}){var od=GameObject.Find(openName)?.GetComponent<HingedDoor>();if(od&&!od.IsOpen){od.Interact();yield return new WaitForSeconds(1.2f);}}
             yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(-2.4f,0,7.5f)));yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(0,0,7.5f)));yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(0,0,4.25f)));
-            GameObject.Find("DAPUR BERSAMADoor").GetComponent<HingedDoor>().Interact();yield return new WaitForSeconds(1.2f);
             yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(-2.7f,0,4.25f)));yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(0,0,4.25f)));
-            GameObject.Find("KAMAR MANDIDoor").GetComponent<HingedDoor>().Interact();yield return new WaitForSeconds(1.2f);
+            {var bathOuter=GameObject.Find("KAMAR MANDIDoor").GetComponent<HingedDoor>();if(!bathOuter.IsOpen){bathOuter.Interact();yield return new WaitForSeconds(1.2f);}}
             yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(2.1f,0,4.25f)));
             foreach(var cubicle in new[]{("WANITA",5.2f),("PRIA",3.3f)})
             {

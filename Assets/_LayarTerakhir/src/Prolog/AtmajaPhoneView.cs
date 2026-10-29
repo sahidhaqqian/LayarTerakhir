@@ -139,9 +139,10 @@ namespace LayarTerakhir.Prolog
                 foreach(var part in firstPersonHand.GetComponentsInChildren<Transform>(true))part.gameObject.layer=GripLayer;
                 foreach(var r in handRenderers){r.shadowCastingMode=ShadowCastingMode.Off;r.renderingLayerMask=ShoulderCameraRig.AvatarRenderingLayer;}
                 firstPersonHand.SetActive(false);
-                // Mirror the existing grasp by transform only; no authored/exported hand asset.
+                // Tangan kiri memegang dari sisi berlawanan: putar 180 agar telapak
+                // menghadap ponsel, bukan cermin skala negatif (winding terbalik).
                 supportHand=Instantiate(handPrefab,playerCamera.transform,false);supportHand.name="RakaPhoneLeftGrip";
-                supportScale=Vector3.Scale(supportHand.transform.localScale,new Vector3(-1,1,1));supportHand.transform.localScale=supportScale;
+                supportScale=handScale;supportHand.transform.localScale=supportScale;
                 supportRenderers=supportHand.GetComponentsInChildren<Renderer>(true);
                 foreach(var part in supportHand.GetComponentsInChildren<Transform>(true))part.gameObject.layer=GripLayer;
                 foreach(var r in supportRenderers){r.shadowCastingMode=ShadowCastingMode.Off;r.renderingLayerMask=ShoulderCameraRig.AvatarRenderingLayer;}
@@ -599,7 +600,7 @@ namespace LayarTerakhir.Prolog
             // Source grasp origin is the edge, in metres. Mirror around the
             // handset centre; never enlarge the hand to fill a stretched UI.
             firstPersonHand.transform.rotation=handRotation;
-            if(both){supportHand.transform.position=phoneCentre-edge;supportHand.transform.rotation=handRotation;supportHand.transform.localScale=supportScale;}
+            if(both){supportHand.transform.position=phoneCentre-edge;supportHand.transform.rotation=handRotation*Quaternion.Euler(0,180,0);supportHand.transform.localScale=supportScale;}
             if(gripOccluder){gripOccluder.transform.SetPositionAndRotation(phoneCentre,firstPersonHand.transform.rotation*Quaternion.Euler(0,180,0));gripOccluder.transform.localScale=Vector3.Scale(depthMaskScale,new Vector3(physicalWidth/.078f,physicalHeight/.165f,Mathf.Lerp(1,.008f/.014f,t)));}
         }
         public void AddChat(string author,string text){if(ChatFrozen)return;pendingMessages.Enqueue($"<color=#C0AA7A>{author}</color> {text}");while(pendingMessages.Count>18)pendingMessages.Dequeue();}
