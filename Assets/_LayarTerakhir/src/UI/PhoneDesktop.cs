@@ -43,6 +43,8 @@ namespace LayarTerakhir.UI
         public void Open(PhoneApp app)
         {
             if(Phone&&Phone.CameraLocked&&app!=PhoneApp.Camera)return;
+            // Kembali ke menu aplikasi = mode AR mati (bug 19).
+            if(app!=PhoneApp.Camera&&Phone&&Phone.currentScanMode==ScanVisualMode.AR){Phone.currentScanMode=ScanVisualMode.Normal;Phone.SyncVisualState();}
             CurrentApp=app;TravelSelection=false;if(page){page.SetActive(false);Destroy(page);}if(!root)return;
             root.SetActive(app!=PhoneApp.Camera);page=PhoneSkin.Card("App_"+app,root.transform,Vector2.zero,Vector2.one,app==PhoneApp.Home?new Color(.045f,.09f,.14f):PhoneSkin.Ink);
             if(app==PhoneApp.Camera)return;if(app==PhoneApp.Home){Home();return;}if(app==PhoneApp.Call){CallScreen();return;}

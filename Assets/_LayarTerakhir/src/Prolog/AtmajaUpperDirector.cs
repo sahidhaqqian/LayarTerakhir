@@ -151,7 +151,7 @@ namespace LayarTerakhir.Prolog
         private bool ropeInit;
         private AudioClip creakClip,dripClip;
         private float creakTimer,dripTimer;
-        public GameObject ventHoleAR,bathScratchesAR;
+        public GameObject ventHoleAR,bathScratchesAR,ventBlink;
         public AudioSource doorSong;
         public GameObject[] portraitBloodAR=new GameObject[3];
         public Transform cupAim,scratchAim,ropeAim,ventMouth,mirrorSpot,ropeSpot;
@@ -213,6 +213,8 @@ namespace LayarTerakhir.Prolog
             }
             bool ar=ArActive;
             if(ventHoleAR)ventHoleAR.SetActive(ar&&!Has("EVENT_P0_CHAIN1_BROKEN"));
+            // Titik putih kecil berkedip di lubang ventilasi saat AR menyala (bug 24).
+            if(ventBlink)ventBlink.SetActive(ar&&!Has("EVENT_P0_CHAIN1_BROKEN")&&Mathf.Repeat(Time.time,1f)<.55f);
             if(bathScratchesAR)bathScratchesAR.SetActive(ar&&Has("EVENT_P0_CHAIN1_BROKEN")&&!Has("EVENT_P0_CHAIN2_BROKEN"));
             if(ar)SyncScratchTarget();
             for(int i=0;i<portraitBloodAR.Length;i++)if(portraitBloodAR[i])portraitBloodAR[i].SetActive(ar);

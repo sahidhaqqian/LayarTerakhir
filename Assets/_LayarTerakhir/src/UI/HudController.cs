@@ -26,6 +26,7 @@ namespace LayarTerakhir.UI
         public Text documentTitleText;
         public Text documentBodyText;
         public Button documentCloseButton;
+        private Sprite documentPaperSprite;
 
         public GameObject padlockPanel;
         public Text padlockDigitsText;
@@ -186,6 +187,8 @@ namespace LayarTerakhir.UI
             docTitleRect.anchoredPosition = new Vector2(0f, 200f);
             docTitleRect.sizeDelta = new Vector2(800f, 50f);
             documentTitleText.color = new Color(1f, 0.85f, 0.4f);
+            // Kertas asli (CC0 ambientCG) sebagai latar catatan, bukan panel blank (bug 20).
+            documentPaperSprite = Resources.Load<Sprite>("Paper/DocumentPaper");
 
             documentBodyText = CreateText("DocumentBody", documentPanel.transform, defaultFont, 21, TextAnchor.MiddleLeft);
             RectTransform docBodyRect = documentBodyText.GetComponent<RectTransform>();
@@ -464,6 +467,13 @@ namespace LayarTerakhir.UI
             _onDocumentClosed = onClosed;
             documentTitleText.text = title;
             documentBodyText.text = body;
+            if (documentPaperSprite != null)
+            {
+                var bg = documentPanel.GetComponent<Image>();
+                if (bg != null) { bg.sprite = documentPaperSprite; bg.color = Color.white; }
+                documentTitleText.color = new Color(0.23f, 0.16f, 0.10f);
+                documentBodyText.color = new Color(0.16f, 0.13f, 0.10f);
+            }
             var closeLabel=documentCloseButton.GetComponentInChildren<Text>();if(closeLabel)closeLabel.text="TUTUP DOKUMEN";
             var documentRect=(RectTransform)documentPanel.transform;
             bool holdingPhone=SmartphoneController.Instance&&SmartphoneController.Instance.isPhoneRaised;

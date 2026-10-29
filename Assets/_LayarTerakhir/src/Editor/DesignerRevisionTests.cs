@@ -100,6 +100,30 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(gate.leftLeaf.localPosition.x,Is.LessThan(0));Assert.That(gate.rightLeaf.localPosition.x,Is.GreaterThan(0));
             gate.SetImmediate(true);Assert.That(Quaternion.Angle(gate.leftLeaf.localRotation,gate.rightLeaf.localRotation),Is.GreaterThan(100));
         }
+        [Test] public void AtmajaOpenDoorsStayVisibleInsteadOfVanishing()
+        {
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            Physics.SyncTransforms();
+            var doors=Object.FindObjectsByType<HingedDoor>(FindObjectsSortMode.None).Where(door=>!door.slides).ToArray();
+            Assert.That(doors.Length,Is.GreaterThan(0),"Atmaja scene has hinged doors to check");
+            foreach(var door in doors)door.SetOpenImmediate(true);
+            Physics.SyncTransforms();
+            var player=Object.FindFirstObjectByType<FirstPersonController>();
+            foreach(var door in doors)
+            {
+                var leafObj=door.transform;
+                // Daun + trim kaku (panel/gagang) ikut diuji; proxy interaksi
+                // (AtmajaItem) dan objek AR nonaktif dikecualikan dari bounds.
+                var renderers=leafObj.GetComponentsInChildren<Renderer>(true).Where(r=>r.enabled&&r.gameObject.activeInHierarchy&&!(r is LineRenderer)&&(r.transform==leafObj||r.gameObject.GetComponent<LayarTerakhir.Prolog.AtmajaItem>()==null)).ToArray();
+                Assert.That(renderers.Length>0,door.name+" keeps a visible leaf after opening");
+                var bounds=renderers[0].bounds;
+                foreach(var r in renderers.Skip(1))bounds.Encapsulate(r.bounds);
+                var hits=Physics.OverlapBox(bounds.center,bounds.extents*.85f,Quaternion.identity,~0,QueryTriggerInteraction.Ignore);
+                var swallowers=hits.Where(h=>h&&!h.isTrigger&&!h.transform.IsChildOf(leafObj)&&!(h is CharacterController)&&!(player&&h.transform.IsChildOf(player.transform))&&h.GetComponentInParent<HingedDoor>()==null).Select(h=>h.name).Distinct().ToArray();
+                if(swallowers.Length>0)Debug.LogWarning("DOORDEBUG "+door.name+" bounds="+bounds+" hits="+string.Join(",",hits.Where(h=>h).Select(h=>h.name+":"+h.bounds.ToString("F3"))));
+                Assert.That(swallowers.Length,Is.EqualTo(0),door.name+" leaf ends up inside "+string.Join(",",swallowers));
+            }
+        }
         [Test] public void AtmajaNoteIsInsideAndTheOrdinaryChairStaysEmpty()
         {
             EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);var d=Object.FindFirstObjectByType<AtmajaDirector>();

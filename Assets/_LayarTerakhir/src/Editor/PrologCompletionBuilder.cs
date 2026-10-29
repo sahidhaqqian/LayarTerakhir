@@ -100,35 +100,22 @@ namespace LayarTerakhir.Editor
             const string photoPath="Assets/_LayarTerakhir/assets/Art/Atmaja/Textures/AtmajaFamilyScratched-v1.png";
             var importer=(TextureImporter)AssetImporter.GetAtPath(photoPath);importer.textureType=TextureImporterType.Default;importer.sRGBTexture=true;importer.maxTextureSize=1024;importer.mipmapEnabled=true;importer.anisoLevel=2;importer.textureCompression=TextureImporterCompression.Compressed;importer.SaveAndReimport();
             var photograph=Mat("CompletionAtmajaFamilyPhoto",new Color(.60f,.58f,.52f));photograph.SetTexture("_BaseMap",AssetDatabase.LoadAssetAtPath<Texture2D>(photoPath));EditorUtility.SetDirty(photograph);
-            for(int i=0;i<3;i++)
-            {
-                float x=i==0?-2.05f:i==1?.1f:2.12f;
-                Move(Find("PortraitDosa"+(i+1)),P(x,5.325f,5.35f));
-                var image=Part("ScratchedFamilyPhotograph"+(i+1),root,Vector3.zero,new Vector3(i==2?.38f:.49f,i==2?.50f:.60f,1),photograph,PrimitiveType.Quad);image.transform.SetPositionAndRotation(P(x,5.365f,5.35f),Quaternion.LookRotation(-d.north));
-                var backing=Find("PortraitDosa"+(i+1)+"_PlaqueBack");if(backing)backing.transform.position=P(x,5.295f,i==2?4.88f:4.82f);
-                for(int gouge=0;gouge<3;gouge++){var oldGouge=Find("PortraitDosa"+(i+1)+"_Gouge"+gouge);if(oldGouge)Object.DestroyImmediate(oldGouge);}
-                var plaque=Find("PortraitDosa"+(i+1)+"_Plaque");if(plaque)
-                {
-                    plaque.transform.position=P(x,5.31f,i==2?4.88f:4.82f);
-                    var bounds=plaque.GetComponent<Renderer>().bounds;var text=plaque.GetComponent<TextMesh>();
-                    if(bounds.size.x>.001f&&bounds.size.y>.001f)text.characterSize*=Mathf.Min((i==2?.38f:.47f)/bounds.size.x,.14f/bounds.size.y);
-                }
-                var ar=u.portraitBloodAR[i];if(ar)
-                {
-                    ar.transform.position=P(x,5.375f,4.42f);var bounds=ar.GetComponent<Renderer>().bounds;var text=ar.GetComponent<TextMesh>();
-                    if(bounds.size.x>.001f&&bounds.size.y>.001f)text.characterSize*=Mathf.Min(.55f/bounds.size.x,.30f/bounds.size.y);
-                    foreach(var child in ar.GetComponentsInChildren<Transform>(true))if(child.name.Contains("ClosedEye")){var pos=child.localPosition;pos.y=.23f;child.localPosition=pos;}
-                }
-            }
+            // Satu foto keluarga (bug 25): hanya bingkai tengah yang dipertahankan.
+            foreach(var dead in new[]{"PortraitDosa1","PortraitDosa3"})
+                foreach(var t in root.GetComponentsInChildren<Transform>(true).Where(t=>t.name==dead||t.name.StartsWith(dead+"_")).ToArray())
+                    Object.DestroyImmediate(t.gameObject);
+            Move(Find("PortraitDosa2"),P(.1f,5.325f,5.35f));
+            var image=Part("ScratchedFamilyPhotograph",root,Vector3.zero,new Vector3(.49f,.60f,1),photograph,PrimitiveType.Quad);image.transform.SetPositionAndRotation(P(.1f,5.365f,5.35f),Quaternion.LookRotation(-d.north));
             var worldText=Component<AtmajaWorldText>();var fontMaterial=Mat("CompletionWorldText",Color.white);
             fontMaterial.shader=Shader.Find("LayarTerakhir/WorldText");fontMaterial.shaderKeywords=Array.Empty<string>();fontMaterial.SetColor("_Color",Color.white);EditorUtility.SetDirty(fontMaterial);worldText.materialTemplate=fontMaterial;
-            // Replace explanatory world text with actual scratches and a broken vent outline.
+            // Kisi ventilasi + titik putih AR dibangun di DesignerReviewBuilder; di sini
+            // hanya pastikan tidak ada sisa teks/lath X.
             if (u.ventHoleAR)
             {
                 var text = u.ventHoleAR.GetComponent<TextMesh>(); if (text) Object.DestroyImmediate(text);
                 var renderer = u.ventHoleAR.GetComponent<MeshRenderer>(); if (renderer) Object.DestroyImmediate(renderer);
-                for (int i = 0; i < 5; i++)
-                { var strip = Part("VentBrokenLath", root, Vector3.zero, new Vector3(.045f, .14f, .055f), wood); strip.transform.position = P(-3.35f + i * .17f, 5.2f, 4.93f); strip.transform.rotation = Quaternion.LookRotation(d.north) * Quaternion.Euler(0, 0, i * 13 - 24); }
+                foreach(var old in u.ventHoleAR.GetComponentsInChildren<Transform>(true).Where(t=>t.name=="VentBrokenLath").ToArray())
+                    Object.DestroyImmediate(old.gameObject);
             }
             var scratch = u.bathScratchesAR;
             if (scratch)
@@ -166,11 +153,12 @@ namespace LayarTerakhir.Editor
             Move(Find("MasterRocker"),P(2.0f,1.1f,4.32f));Move(Find("MasterDresser"),P(2.05f,.35f,4.45f));Move(Find("MasterCandle"),P(2.05f,.35f,4.85f));
             // Open into the rooms. The old leaves spanned the entire 1.1m corridor,
             // making the return chase impassable after exploring the bathroom/master.
-            u.masterDoor.hinge.SetPositionAndRotation(P(1.85f,5.2f,3.82f),Quaternion.identity);
-            u.masterDoor.transform.SetPositionAndRotation(P(1.3f,5.2f,4.92f),Quaternion.LookRotation(d.north));u.masterDoor.angle=-95;
-            u.bathDoor.hinge.SetPositionAndRotation(P(-.65f,5.2f,3.82f),Quaternion.identity);
-            u.bathDoor.transform.SetPositionAndRotation(P(-1.1f,5.2f,4.82f),Quaternion.LookRotation(d.north));u.bathDoor.angle=-95;
-            u.childDoor.angle=95;
+            // Pivot digeser 9cm ke dalam bukaan agar sudut daun tak menancap dinding saat dibuka (bug 21).
+            u.masterDoor.hinge.SetPositionAndRotation(P(1.76f,5.2f,3.82f),Quaternion.identity);
+            u.masterDoor.transform.SetPositionAndRotation(P(1.3f,5.2f,4.92f),Quaternion.LookRotation(d.north));u.masterDoor.angle=-80;
+            u.bathDoor.hinge.SetPositionAndRotation(P(-.74f,5.2f,3.82f),Quaternion.identity);
+            u.bathDoor.transform.SetPositionAndRotation(P(-1.1f,5.2f,4.82f),Quaternion.LookRotation(d.north));u.bathDoor.angle=-80;
+            u.childDoor.angle=80;
             Move(Find("BathSink"),P(-.05f,3.5f,4.35f));Move(Find("BathMirror"),P(.1f,3.5f,5.0f));
             // A shaped enamel cup replaces the old solid cube while retaining its interaction root.
             if (u.childCup)
