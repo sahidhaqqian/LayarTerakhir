@@ -214,11 +214,11 @@ namespace LayarTerakhir.Editor
             }
             else
             {
-                // Dapur bersama terbuka tanpa pintu: bukaan penuh + header, daun
-                // diparkir terbuka agar tes lama (DAPUR BERSAMADoor) tetap valid.
+                // Dapur bersama terbuka tanpa daun melintang di bukaan; daun
+                // parkir terbuka di sisi dan tetap dapat dikenali sebagai pintu.
                 Box(title+"Lintel",new Vector3(side*1.5f,2.62f,4.25f),new Vector3(.15f,.36f,3.5f),wall);
                 foreach(float z in new[]{2.65f,5.85f})Box(title+"Jamb",new Vector3(side*1.5f,1.4f,z),new Vector3(.15f,2.8f,.3f),wall);
-                var hinge=new GameObject(title+"Hinge").transform;hinge.SetParent(root,false);hinge.position=new Vector3(side*1.5f,0,2.75f);var leaf=Box(title+"Door",new Vector3(side*1.5f,1.07f,3.5f),new Vector3(.09f,2.14f,1.5f),doorMat??wood);leaf.transform.SetParent(hinge,true);var door=leaf.AddComponent<HingedDoor>();door.hinge=hinge;door.label="Buka "+title;door.angle=-95;door.SetOpenImmediate(true);
+                var hinge=new GameObject("SharedDiningDoorHinge").transform;hinge.SetParent(root,false);hinge.position=new Vector3(side*1.5f,0,2.75f);var leaf=Box("SharedDiningDoor",new Vector3(side*1.5f,1.07f,3.5f),new Vector3(.09f,2.14f,1.5f),doorMat??wood);leaf.transform.SetParent(hinge,true);var door=leaf.AddComponent<HingedDoor>();door.hinge=hinge;door.label="Buka "+title;door.angle=-95;door.SetOpenImmediate(true);
             }
             Label(title+"Sign",title,new Vector3(side*1.38f,2.44f,4.25f),side<0?Vector3.right:Vector3.left,.12f);
             Practical(new Vector3(x,2.72f,4.25f),new Color(.83f,.84f,.73f),1.1f,4);
