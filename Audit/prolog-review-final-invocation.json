@@ -1,0 +1,30 @@
+{
+  "stage": "test",
+  "command": [
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/root/projects/LayarTerakhir-prolog-28-43",
+    "-runTests",
+    "-testPlatform",
+    "EditMode",
+    "-testFilter",
+    "LayarTerakhir.Editor.Tests.PrologReviewRevisionTests;LayarTerakhir.Editor.Tests.HidingAwarenessTests;LayarTerakhir.Editor.Tests.AtmajaPlayTests.PhotoRitualRequiresThreeShotsThenNyonyaVanishes;LayarTerakhir.Editor.Tests.AtmajaPlayTests.VisibleCellarLadderDescentCannotAccumulateVerticalBob;LayarTerakhir.Editor.Tests.AtmajaPlayTests.WindowAmbushNeverCapturesRakaThroughKitchenGeometry;LayarTerakhir.Editor.Tests.AtmajaPlayTests.PostRecordingBlitzStunsWithoutAdvancingTheWindowRitual;LayarTerakhir.Editor.Tests.AtmajaPlayTests.BasementEmergencyBlitzCostsBatteryAndStunsHunter;LayarTerakhir.Editor.Tests.AtmajaPlayTests.HunterDeformsContinuouslyAndMatchesBasementMovement;LayarTerakhir.Editor.Tests.AtmajaPlayTests.PracticalBeamThreatRimAndCameraDitherAreLive;LayarTerakhir.Editor.Tests.AtmajaPlayTests.UpperEvidenceUsesPhoneLensAndAcceptsTargetSurface;LayarTerakhir.Editor.Tests.AtmajaPlayTests.LockerWarningAllowsScreenInputAndSafeManualExit;LayarTerakhir.Editor.Tests.AtmajaPlayTests.InterruptedHandycamCanBePlayedAgainAfterContinue;LayarTerakhir.Editor.Tests.AtmajaPlayTests.ExpandedCellarHasRunnableConnectedCorridors;LayarTerakhir.Editor.Tests.AtmajaPlayTests.MasterCellarAndClosingTrapdoorHaveConnectedCapsuleRoutes;LayarTerakhir.Editor.Tests.AtmajaPlayTests.HunterSeesThePlayerButNeverThroughArchiveShelves",
+    "-testResults",
+    "/root/projects/LayarTerakhir-prolog-28-43/Audit/golden-tests.xml",
+    "-logFile",
+    "/root/projects/LayarTerakhir-prolog-28-43/Audit/golden-test.log"
+  ],
+  "startedUtc": "2026-10-29T08:19:12.742875+00:00",
+  "audioBackend": "Private clocked PulseAudio null sink; headless test audio device, no physical audio hardware",
+  "status": "Finished",
+  "endedUtc": "2026-10-29T08:22:17.939599+00:00",
+  "exitCode": 0,
+  "testsVerified": {
+    "total": 24,
+    "passed": 24,
+    "failed": 0,
+    "skipped": 0
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "baseCommit": "8a397abfe97111327949c961c3077d62105d6f0f",
+  "testRuns": [
+    {
+      "name": "initial",
+      "total": 21,
+      "passed": 18,
+      "failed": 3
+    },
+    {
+      "name": "retest",
+      "total": 12,
+      "passed": 11,
+      "failed": 1
+    },
+    {
+      "name": "ladder",
+      "total": 3,
+      "passed": 2,
+      "failed": 1
+    },
+    {
+      "name": "final",
+      "total": 24,
+      "passed": 24,
+      "failed": 0
+    },
+    {
+      "name": "shaft",
+      "total": 7,
+      "passed": 7,
+      "failed": 0
+    }
+  ],
+  "latestPerTest": {
+    "LayarTerakhir.Editor.Tests.AtmajaPlayTests.BasementEmergencyBlitzCostsBatteryAndStunsHunter": {
+      "result": "Passed",
+      "run": "final"
+    },
+    "LayarTerakhir.Editor.Tests.AtmajaPlayTests.ExpandedCellarHasRunnableConnectedCorridors": {
+      "result": "Passed",
+      "run": "final"
+    },
+    "LayarTerakhir.Editor.Tests.AtmajaPlayTests.InterruptedHandycamCanBePlayedAgainAfterContinue": {
+      "result": "Passed",
+      "run": "final"
+    },
+    "LayarTerakhir.Editor.Tests.AtmajaPlayTests.LiveCommentsArriveIndividuallyWithinOneToFiveSeconds": {
+      "result": "Passed",
+      "run": "initial"
+    },
+    "LayarTerakhir.Editor.Tests.AtmajaPlayTests.LockerWarningAllowsScreenInputAndSafeManualExit": {
+      "result": "Passed",
+      "run": "final"
+    },
+    "LayarTerakhir.Editor.Tests.AtmajaPlayTests.MasterCellarAndClosingTrapdoorHaveConnectedCapsuleRoutes": {
+      "result": "Passed",
+      "run": "final"
+    },
+    "LayarTerakhir.Editor.Tests.AtmajaPlayTests.PhotoRitualRequiresThreeShotsThenNyonyaVanishes": {
+      "result": "Passed",
+      "run": "final"
+    },
+    "LayarTerakhir.Editor.Tests.AtmajaPlayTests.PostRecordingBlitzStunsWithoutAdvancingTheWindowRitual": {
+      "result": "Passed",
+      "run": "final"
+    },
+    "LayarTerakhir.Editor.Tests.AtmajaPlayTests.UpperEvidenceUsesPhoneLensAndAcceptsTargetSurface": {
+      "result": "Passed",
+      "run": "final"
+    },
+    "LayarTerakhir.Editor.Tests.DesignerRevisionTests.AtmajaOpenDoorsStayVisibleInsteadOfVanishing": {
+      "result": "Passed",
+      "run": "initial"
+    },
+    "LayarTerakhir.Editor.Tests.HidingAwarenessTests.ContactRangeReadsFull": {
+      "result": "Passed",
+      "run": "final"
+    },
+    "LayarTerakhir.Editor.Tests.HidingAwarenessTests.GoneRangeReadsEmpty": {
+      "result": "Passed",
+      "run": "final"
+    },
+    "LayarTerakhir.Editor.Tests.HidingAwarenessTests.MidRangeDrainsLinearly": {
+      "result": "Passed",
+      "run": "final"
+    },
+    "LayarTerakhir.Editor.Tests.HidingAwarenessTests.ThreatGainLoudNearSilentFar": {
+      "result": "Passed",
+      "run": "final"
+    },
+    "LayarTerakhir.Editor.Tests.HidingAwarenessTests.UrgentPinsBarFullRegardlessOfDistance": {
+      "result": "Passed",
+      "run": "final"
+    },
+    "LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.BathroomHasOneFloorFinishAndScratchesStayOnTheWall": {
+      "result": "Passed",
+      "run": "shaft"
+    },
+    "LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.ChildCommentsDoNotInventToysOrDolls": {
+      "result": "Passed",
+      "run": "shaft"
+    },
+    "LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.ChildRoomHasAnImportedCompleteBedAndReadableBookGeometry": {
+      "result": "Passed",
+      "run": "shaft"
+    },
+    "LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.HidingMeterUsesSmallCumulativeGreenYellowRedSegments": {
+      "result": "Passed",
+      "run": "shaft"
+    },
+    "LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.MasterAndCellarHaveClearSpaceAndVisibleAscent": {
+      "result": "Passed",
+      "run": "shaft"
+    },
+    "LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.TubHasAnOpenBasinWithBloodInsideTheRim": {
+      "result": "Passed",
+      "run": "shaft"
+    },
+    "LayarTerakhir.Editor.Tests.AtmajaPlayTests.WindowAmbushNeverCapturesRakaThroughKitchenGeometry": {
+      "result": "Passed",
+      "run": "final"
+    },
+    "LayarTerakhir.Editor.Tests.AtmajaPlayTests.VisibleCellarLadderDescentCannotAccumulateVerticalBob": {
+      "result": "Passed",
+      "run": "shaft"
+    },
+    "LayarTerakhir.Editor.Tests.AtmajaPlayTests.HunterDeformsContinuouslyAndMatchesBasementMovement": {
+      "result": "Passed",
+      "run": "final"
+    },
+    "LayarTerakhir.Editor.Tests.AtmajaPlayTests.HunterSeesThePlayerButNeverThroughArchiveShelves": {
+      "result": "Passed",
+      "run": "final"
+    },
+    "LayarTerakhir.Editor.Tests.AtmajaPlayTests.PracticalBeamThreatRimAndCameraDitherAreLive": {
+      "result": "Passed",
+      "run": "final"
+    }
+  },
+  "latestPassed": 26,
+  "editorCaptures": {
+    "standalone": false,
+    "width": 960,
+    "height": 720,
+    "files": [
+      {
+        "file": "Audit/Visuals/Prolog-28-46/bathroom.png",
+        "sha256": "25797335029783fd4174d92a458b21ea08cd4252a1e629688d48914d3ff94df0",
+        "bytes": 864378
+      },
+      {
+        "file": "Audit/Visuals/Prolog-28-46/cellar-ladder.png",
+        "sha256": "6873d7ee85e4f13d03dbe5ebe6305eb32b2f4d7cf0330f34e267eaa05453b2fe",
+        "bytes": 943794
+      },
+      {
+        "file": "Audit/Visuals/Prolog-28-46/cellar-open-space.png",
+        "sha256": "f3e8833496ce1c3684b88f518cb54edc74614005d59cec813fb91edabe5debcf",
+        "bytes": 712497
+      },
+      {
+        "file": "Audit/Visuals/Prolog-28-46/child-bed.png",
+        "sha256": "70cec96ea79b6ea0b60668d340bb2758bd5248a476e2a24cd794888b9a7af015",
+        "bytes": 443387
+      },
+      {
+        "file": "Audit/Visuals/Prolog-28-46/dining.png",
+        "sha256": "1143a0205f2a5a8d15e3a28bf6a0ffe2313576dc7b94b245268dd60e05f01455",
+        "bytes": 895021
+      },
+      {
+        "file": "Audit/Visuals/Prolog-28-46/master.png",
+        "sha256": "867a7b46f4cabe1a198bb2ad4cc70bda050d2e099c67cc87962f55aa69071462",
+        "bytes": 900561
+      },
+      {
+        "file": "Audit/Visuals/Prolog-28-46/notebook-lamp-cup.png",
+        "sha256": "7d059128817bdd6be74dc1006806bfe63826c5ca355cc64279579943d77587e6",
+        "bytes": 1068854
+      },
+      {
+        "file": "Audit/Visuals/Prolog-28-46/wall-scratches.png",
+        "sha256": "614d5782fbf75731f19a4db3e7dd507250025258dffc497f9340f5cfb9f21e9d",
+        "bytes": 787218
+      }
+    ]
+  },
+  "asset33": "Adapted downloaded CC0 cup installed; original cracked cup model awaits user decision",
+  "graphify": {
+    "codeFiles": 404,
+    "assetFiles": 0,
+    "verified": true
+  }
+}

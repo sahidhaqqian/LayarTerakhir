@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Failed(Child)" total="12" passed="11" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-29 08:11:27Z" end-time="2026-10-29 08:11:35Z" duration="8.1792583">
+  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="558" result="Failed" site="Child" start-time="2026-10-29 08:11:27Z" end-time="2026-10-29 08:11:35Z" duration="8.179258" total="12" passed="11" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1644" name="Assembly-CSharp-Editor.dll" fullname="/root/projects/LayarTerakhir-prolog-28-43/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="558" result="Failed" site="Child" start-time="2026-10-29 08:11:27Z" end-time="2026-10-29 08:11:35Z" duration="8.089335" total="12" passed="11" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="510554" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1645" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="558" result="Failed" site="Child" start-time="2026-10-29 08:11:27Z" end-time="2026-10-29 08:11:35Z" duration="8.080103" total="12" passed="11" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1646" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="558" result="Failed" site="Child" start-time="2026-10-29 08:11:27Z" end-time="2026-10-29 08:11:35Z" duration="8.069905" total="12" passed="11" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestSuite" id="1647" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="558" result="Failed" site="Child" start-time="2026-10-29 08:11:27Z" end-time="2026-10-29 08:11:35Z" duration="8.059491" total="12" passed="11" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestFixture" id="1011" name="AtmajaPlayTests" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" testcasecount="37" result="Failed" site="Child" start-time="2026-10-29 08:11:27Z" end-time="2026-10-29 08:11:31Z" duration="4.113261" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1033" name="ExpandedCellarHasRunnableConnectedCorridors" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.ExpandedCellarHasRunnableConnectedCorridors" methodname="ExpandedCellarHasRunnableConnectedCorridors" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1354282106" result="Passed" start-time="2026-10-29 08:10:30Z" end-time="2026-10-29 08:10:38Z" duration="7.893777" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+              </test-case>
+              <test-case id="1027" name="MasterCellarAndClosingTrapdoorHaveConnectedCapsuleRoutes" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.MasterCellarAndClosingTrapdoorHaveConnectedCapsuleRoutes" methodname="MasterCellarAndClosingTrapdoorHaveConnectedCapsuleRoutes" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1353398552" result="Passed" start-time="2026-10-29 08:10:38Z" end-time="2026-10-29 08:10:47Z" duration="8.706217" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+              </test-case>
+              <test-case id="1024" name="PhotoRitualRequiresThreeShotsThenNyonyaVanishes" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.PhotoRitualRequiresThreeShotsThenNyonyaVanishes" methodname="PhotoRitualRequiresThreeShotsThenNyonyaVanishes" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="675070685" result="Failed" start-time="2026-10-29 08:10:47Z" end-time="2026-10-29 08:11:01Z" duration="14.209972" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The visible ladder ascent must finish before the next action: (-1.02, 85.75, -1.70)
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at LayarTerakhir.Editor.Tests.AtmajaPlayTests+<PhotoRitual>d__59.MoveNext () [0x00216] in /root/projects/LayarTerakhir-prolog-28-43/Assets/_LayarTerakhir/src/Editor/AtmajaPlayTests.cs:610
+at LayarTerakhir.Editor.Tests.AtmajaPlayTests+<Drive>d__86.MoveNext () [0x00041] in /root/projects/LayarTerakhir-prolog-28-43/Assets/_LayarTerakhir/src/Editor/AtmajaPlayTests.cs:1092
+--- End of stack trace from previous location where exception was thrown ---
+
+at LayarTerakhir.Editor.Tests.AtmajaPlayTests+<Run>d__85.MoveNext () [0x00100] in /root/projects/LayarTerakhir-prolog-28-43/Assets/_LayarTerakhir/src/Editor/AtmajaPlayTests.cs:1084
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@0bd5c5194236/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1038" name="PostRecordingBlitzStunsWithoutAdvancingTheWindowRitual" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.PostRecordingBlitzStunsWithoutAdvancingTheWindowRitual" methodname="PostRecordingBlitzStunsWithoutAdvancingTheWindowRitual" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1792244753" result="Passed" start-time="2026-10-29 08:11:01Z" end-time="2026-10-29 08:11:13Z" duration="11.834445" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+              </test-case>
+              <test-case id="1017" name="UpperEvidenceUsesPhoneLensAndAcceptsTargetSurface" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.UpperEvidenceUsesPhoneLensAndAcceptsTargetSurface" methodname="UpperEvidenceUsesPhoneLensAndAcceptsTargetSurface" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="917217671" result="Passed" start-time="2026-10-29 08:11:13Z" end-time="2026-10-29 08:11:21Z" duration="7.521658" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+              </test-case>
+              <test-case id="1039" name="WindowAmbushNeverCapturesRakaThroughKitchenGeometry" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.WindowAmbushNeverCapturesRakaThroughKitchenGeometry" methodname="WindowAmbushNeverCapturesRakaThroughKitchenGeometry" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1322051517" result="Passed" start-time="2026-10-29 08:11:21Z" end-time="2026-10-29 08:11:31Z" duration="10.656660" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1623" name="PrologReviewRevisionTests" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-29 08:11:31Z" end-time="2026-10-29 08:11:35Z" duration="3.871377" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1626" name="BathroomHasOneFloorFinishAndScratchesStayOnTheWall" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.BathroomHasOneFloorFinishAndScratchesStayOnTheWall" methodname="BathroomHasOneFloorFinishAndScratchesStayOnTheWall" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" seed="1770210438" result="Passed" start-time="2026-10-29 08:11:31Z" end-time="2026-10-29 08:11:32Z" duration="0.616746" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1624" name="ChildCommentsDoNotInventToysOrDolls" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.ChildCommentsDoNotInventToysOrDolls" methodname="ChildCommentsDoNotInventToysOrDolls" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" seed="1183436224" result="Passed" start-time="2026-10-29 08:11:32Z" end-time="2026-10-29 08:11:32Z" duration="0.614642" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1625" name="ChildRoomHasAnImportedCompleteBedAndReadableBookGeometry" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.ChildRoomHasAnImportedCompleteBedAndReadableBookGeometry" methodname="ChildRoomHasAnImportedCompleteBedAndReadableBookGeometry" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" seed="1140821782" result="Passed" start-time="2026-10-29 08:11:32Z" end-time="2026-10-29 08:11:33Z" duration="0.688386" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1629" name="HidingMeterUsesSmallCumulativeGreenYellowRedSegments" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.HidingMeterUsesSmallCumulativeGreenYellowRedSegments" methodname="HidingMeterUsesSmallCumulativeGreenYellowRedSegments" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" seed="1604740098" result="Passed" start-time="2026-10-29 08:11:33Z" end-time="2026-10-29 08:11:34Z" duration="0.637633" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1628" name="MasterAndCellarHaveClearSpaceAndVisibleAscent" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.MasterAndCellarHaveClearSpaceAndVisibleAscent" methodname="MasterAndCellarHaveClearSpaceAndVisibleAscent" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" seed="1885186393" result="Passed" start-time="2026-10-29 08:11:34Z" end-time="2026-10-29 08:11:34Z" duration="0.672998" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1627" name="TubHasAnOpenBasinWithBloodInsideTheRim" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.TubHasAnOpenBasinWithBloodInsideTheRim" methodname="TubHasAnOpenBasinWithBloodInsideTheRim" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" seed="823884504" result="Passed" start-time="2026-10-29 08:11:34Z" end-time="2026-10-29 08:11:35Z" duration="0.636777" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: /root/.config/unity3d/DefaultCompany/LayarTerakhir/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

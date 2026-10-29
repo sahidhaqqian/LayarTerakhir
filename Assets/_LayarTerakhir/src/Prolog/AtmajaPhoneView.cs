@@ -266,7 +266,7 @@ namespace LayarTerakhir.Prolog
         {
             switch(room)
             {
-                case "child":return new[]{"Mainannya masih ada semua...","Itu kamar anaknya ya? Sedih banget lihatnya.","Aku denger sesuatu kayak anak kecil tadi.","Jangan sentuh mainan itu bang...","Bonekanya kayak baru dipindahin."};
+                case "child":return new[]{"Itu kamar anaknya ya? Sedih banget lihatnya.","Aku denger sesuatu kayak anak kecil tadi."};
                 case "bath":return new[]{"Kok lantainya basah bang?","Di sini suaranya kayak menggema ya.","Airnya warnanya aneh, jangan disentuh bang.","Tirai itu tadi gerak sendiri kan?","Gue nggak berani lihat cerminnya."};
                 case "hall":return new[]{"Lantai atas bikin merinding asli.","Bang pelan-pelan, langkah siapa itu?","Lukisan keluarganya serem juga dilihat malam-malam.","Jangan lewat kamar anak itu bang.","Kayaknya ada yang ngikutin dari ujung lorong."};
                 case "master":return new[]{"Kamarnya gede tapi sunyi banget.","Ada suara kain diseret nggak sih?","Gue masih mantau bang, jangan panik.","Itu pintu kamar utama ketutup sendiri?","Wanginya kayak kapur barus banget."};

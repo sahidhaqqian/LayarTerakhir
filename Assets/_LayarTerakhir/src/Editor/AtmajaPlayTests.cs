@@ -84,6 +84,9 @@ namespace LayarTerakhir.Editor.Tests
         [UnityTest] public IEnumerator HunterDoesNotAbandonStationaryRakaForTheWindow()=>Run(HunterTracksRaka());
         [UnityTest] public IEnumerator PracticalBeamThreatRimAndCameraDitherAreLive()=>Run(PracticalPresentation());
         [UnityTest] public IEnumerator BasementEmergencyBlitzCostsBatteryAndStunsHunter()=>Run(BasementBlitz());
+        [UnityTest] public IEnumerator PostRecordingBlitzStunsWithoutAdvancingTheWindowRitual()=>Run(PostRecordingBlitz());
+        [UnityTest] public IEnumerator WindowAmbushNeverCapturesRakaThroughKitchenGeometry()=>Run(WindowAmbushOcclusion());
+        [UnityTest] public IEnumerator VisibleCellarLadderDescentCannotAccumulateVerticalBob()=>Run(LadderDescent());
         [UnityTest] public IEnumerator ViewfinderFocusFillsPhoneAndRestoresChrome()=>Run(ViewfinderFocus());
         [UnityTest] public IEnumerator BasementAndChaseChatBurstsWithThousandsOfViewers()=>Run(ChatIntensity());
         [UnityTest] public IEnumerator RightMouseRaisesAndLowersThePhoneCamera()=>Run(CameraShortcut());
@@ -364,6 +367,64 @@ namespace LayarTerakhir.Editor.Tests
             yield return new WaitForSeconds(2.2f);Assert.That(b.IsBlitzStunned,Is.False,"The stun lasts about two seconds");
             Assert.That(b.TryEmergencyBlitz(),Is.True);b.RestoreWorld();Assert.That(b.IsBlitzStunned,Is.False,"Checkpoint restores clear transient stuns");
         }
+        private IEnumerator PostRecordingBlitz()
+        {
+            yield return new WaitForSeconds(2);Time.timeScale=1;
+            var d=SeedBasement();var c=CampaignState.Instance;var phone=SmartphoneController.Instance;
+            foreach(var id in new[]{"EVENT_P0_BASEMENT_ENTERED","EVENT_P0_CHASE_STARTED","EVENT_P0_HANDYCAM_PLAYED","EVENT_P0_POWERBANK_TAKEN",AtmajaBasementHorror.HandycamId})c.AddInventoryItem(id);
+            c.Data.battery=80;Assert.That(c.SaveCheckpointAtomic(AtmajaChaseSequence.ChaseCheckpoint),Is.True);d.RestoreWorld();
+            yield return new WaitForSeconds(1.8f);
+            d.chase.enabled=false;d.basement.enabled=false;d.player.enabled=false;
+            d.PlacePlayer(d.P(1.4f,5.1f,-2.79f),Quaternion.LookRotation(-d.north));
+            d.chase.chaserFigure.transform.position=d.P(1.4f,4.3f,-2.79f);
+            phone.hasSmartphoneInInventory=true;phone.isPhoneRaised=phone.isScreenOn=true;phone.batteryPercent=80;phone.SyncVisualState();
+            d.phoneView.Apps.Open(PhoneApp.Camera);yield return null;
+            var lens=d.phoneView.FeedCamera;lens.transform.LookAt(d.chase.chaserFigure.transform.position+Vector3.up*1.45f);Physics.SyncTransforms();
+            Assert.That(d.chase.IsPursuing,Is.True);
+            var facing=lens.transform.rotation;lens.transform.rotation=facing*Quaternion.Euler(0,180,0);
+            Assert.That(d.chase.TryEmergencyBlitz(),Is.False);Assert.That(phone.batteryPercent,Is.EqualTo(80).Within(.01f));lens.transform.rotation=facing;
+            Assert.That(d.chase.TryEmergencyBlitz(),Is.True);float after=phone.batteryPercent;
+            Assert.That(after,Is.EqualTo(80-phone.blitzCostPercent).Within(.01f));
+            Assert.That(d.chase.IsStunned,Is.True);Assert.That(d.chase.CanCatchPlayer(),Is.False);
+            Assert.That(d.chase.TryEmergencyBlitz(),Is.False);Assert.That(phone.batteryPercent,Is.EqualTo(after).Within(.01f));Assert.That(d.chase.PhotosTaken,Is.Zero);
+            Vector3 stopped=d.chase.chaserFigure.transform.position;
+            d.chase.enabled=true;yield return new WaitForSeconds(.6f);
+            Assert.That(Vector3.Distance(stopped,d.chase.chaserFigure.transform.position),Is.LessThan(.01f));
+            yield return new WaitForSeconds(1.5f);Assert.That(d.chase.IsStunned,Is.False);Assert.That(d.chase.IsPursuing,Is.True);
+        }
+        private IEnumerator LadderDescent()
+        {
+            yield return new WaitForSeconds(2);var d=SeedBasement();d.basement.enabled=false;d.basement.nyonya.SetActive(false);d.player.enabled=false;
+            d.PlacePlayer(d.upper.trapdoorTop.position,d.upper.trapdoorTop.rotation);
+            var routine=(IEnumerator)typeof(AtmajaUpperDirector).GetMethod("DescendToBasement",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(d.upper,null);
+            d.upper.StartCoroutine(routine);yield return null;float deadline=Time.time+8;
+            while(d.Busy&&Time.time<deadline)
+            {
+                Assert.That(d.player.transform.position.y,Is.InRange(-2.9f,3.9f),"Visual bob must not accumulate into actual vertical displacement");
+                yield return null;
+            }
+            Assert.That(d.Busy,Is.False,"The complete visible descent finishes in bounded time");
+            Assert.That(Vector3.Distance(d.player.transform.position,d.upper.CellarDescentPath().Last()),Is.LessThan(.1f));
+            Assert.That(d.player.GetComponent<CharacterController>().enabled,Is.True);
+        }
+        private IEnumerator WindowAmbushOcclusion()
+        {
+            yield return new WaitForSeconds(2);Time.timeScale=1;var d=SeedBasement();var c=CampaignState.Instance;
+            foreach(var id in new[]{"EVENT_P0_BASEMENT_ENTERED","EVENT_P0_CHASE_STARTED","EVENT_P0_HANDYCAM_PLAYED","EVENT_P0_POWERBANK_TAKEN",AtmajaBasementHorror.HandycamId})c.AddInventoryItem(id);
+            Assert.That(c.SaveCheckpointAtomic(AtmajaChaseSequence.ChaseCheckpoint),Is.True);d.RestoreWorld();
+            d.chase.enabled=false;d.basement.enabled=false;d.player.enabled=false;
+            d.PlacePlayer(d.chase.windowBlockSpot.position-d.east*.7f,Quaternion.LookRotation(d.east));
+            typeof(AtmajaChaseSequence).GetMethod("BeginStandoff",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(d.chase,null);
+            var wall=GameObject.CreatePrimitive(PrimitiveType.Cube);wall.name="AmbushOcclusionWall";
+            wall.transform.position=(d.player.transform.position+d.chase.chaserFigure.transform.position)*.5f+Vector3.up;
+            wall.transform.localScale=new Vector3(.06f,2.4f,1.5f);Physics.SyncTransforms();
+            Assert.That(d.chase.CanCatchPlayer(),Is.False,"A wall must block a close-range ambush");
+            Vector3 playerBefore=d.player.transform.position;d.chase.enabled=true;yield return new WaitForSecondsRealtime(3);
+            Assert.That(d.chase.AwaitingPhotos,Is.True,"Occluded proximity must not trigger death after the grace period");
+            Assert.That(Vector2.Distance(d.LocalPosition(d.player.transform.position),d.LocalPosition(playerBefore)),Is.LessThan(.02f));
+            d.chase.enabled=false;Object.DestroyImmediate(wall);Physics.SyncTransforms();
+            Assert.That(d.chase.CanCatchPlayer(),Is.True,"Removing the obstruction restores the close-range threat");
+        }
         private IEnumerator HunterTracksRaka()
         {
             yield return new WaitForSeconds(2);var d=SeedBasement();var c=CampaignState.Instance;
@@ -562,9 +623,9 @@ namespace LayarTerakhir.Editor.Tests
             phone.batteryPercent=80;yield return new WaitForSeconds(1.8f);
             d.PlacePlayer(d.chase.cellarExitApproach.position,Quaternion.identity);d.player.enabled=true;
             InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftShift));yield return null;yield return new WaitForSeconds(2.6f);
-            InputSystem.QueueStateEvent(keyboard,new KeyboardState());Assert.That(d.chase.Traversing,Is.False);
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());Assert.That(d.chase.Traversing,Is.False,"The visible ladder ascent must finish before the next action: "+d.player.transform.position);
             d.PlacePlayer(d.chase.diningVaultStart.position,Quaternion.identity);yield return Press(Key.Space);yield return new WaitForSeconds(1);
-            d.PlacePlayer(d.vaultInside.position,d.vaultInside.rotation);yield return null;yield return null;
+            d.PlacePlayer(d.vaultInside.position-d.east*1.5f,d.vaultInside.rotation);yield return null;yield return null;
             Assert.That(d.chase.AwaitingPhotos,Is.True);Assert.That(d.chase.PhotosTaken,Is.Zero);
             var body=d.basement.nyonya.GetComponentsInChildren<SkinnedMeshRenderer>(true).Single(r=>r.name=="NyonyaDesignerBody");
             Assert.That(body.sharedMaterial.GetTexture("_BaseMap"),Is.EqualTo(AssetDatabase.LoadAssetAtPath<Texture2D>(DesignerVrmBuilder.Root+"Textures/NyonyaAlbedo.png")),"Retain the designer's weathered/bloodied artwork instead of stamping the old model's unrelated wound UV map over it");
@@ -572,11 +633,15 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(Time.timeScale,Is.EqualTo(.5f),"Photo ritual runs in slow motion");
             Assert.That(d.player.MovementLocked,Is.False,"Raka can still move, just slowly");
             Assert.That(phone.isPhoneRaised&&d.phoneView.IsCameraApp,Is.True);
-            // The ghost glides in from the pursuit instead of teleporting onto
-            // the window: wait until she halts at the block spot, then track
-            // her live position for every shot like a player would.
-            float arriveDeadline=Time.realtimeSinceStartup+12;
-            while(Vector3.Distance(d.chase.chaserFigure.transform.position,d.chase.windowBlockSpot.position)>.6f&&Time.realtimeSinceStartup<arriveDeadline)yield return null;
+            Assert.That(Vector3.Distance(d.chase.chaserFigure.transform.position,d.chase.windowBlockSpot.position),Is.LessThan(.1f),"Nyonya appears at the window immediately");
+            Vector3 playerBefore=d.player.transform.position,ghostBefore=d.chase.chaserFigure.transform.position;
+            float gapBefore=Vector3.Distance(playerBefore,ghostBefore);
+            yield return new WaitForSecondsRealtime(1f);
+            Assert.That(Vector3.Distance(d.chase.chaserFigure.transform.position,playerBefore),Is.LessThan(gapBefore-.1f),"She slowly corners the player instead of waiting passively");
+            Assert.That(Vector2.Distance(d.LocalPosition(d.player.transform.position),d.LocalPosition(playerBefore)),Is.LessThan(.08f),"The ambush must not slide Raka into a corner");
+            Assert.That(d.chase.Objective(),Is.Empty);
+            var escapePrompt=Object.FindObjectsByType<UnityEngine.UI.Text>(FindObjectsSortMode.None).FirstOrDefault(t=>t.name=="EscapePrompt");
+            Assert.That(!escapePrompt||!escapePrompt.gameObject.activeInHierarchy||string.IsNullOrEmpty(escapePrompt.text),Is.True,"No HADAPI DIA key overlay");
             var lens=d.phoneView.FeedCamera;var aim=lens.transform.rotation;
             lens.transform.rotation=aim*Quaternion.Euler(0,180,0);
             Assert.That(d.chase.TryPhoto(),Is.False,"Photographing behind Raka cannot advance the ritual");Assert.That(d.chase.PhotosTaken,Is.Zero);
@@ -784,7 +849,7 @@ namespace LayarTerakhir.Editor.Tests
             Transform[] targets={d.upper.cupAim,d.upper.scratchAim,d.upper.ropeAim};
             for(int i=0;i<3;i++)
             {
-                var target=targets[i];Vector3 side=i==0?d.north:-d.north;
+                var target=targets[i];Vector3 side=i==0?d.north:i==1?d.east:-d.north;
                 lens.transform.position=target.position+side*1.2f+Vector3.up*(i==0?.7f:i==2?-.5f:.1f);
                 lens.transform.LookAt(target);Physics.SyncTransforms();d.upper.TryPhotoTick();
                 var delta=target.position-lens.transform.position;
@@ -1032,7 +1097,7 @@ namespace LayarTerakhir.Editor.Tests
             var go=new GameObject("AtmajaTestHost");Object.DontDestroyOnLoad(go);var host=go.AddComponent<FoundationAuditCoroutineHost>();bool done=false;Exception failure=null;
             host.StartCoroutine(Drive(scenario,e=>{failure=e;done=true;}));float deadline=Time.realtimeSinceStartup+60;
             while(!done&&Time.realtimeSinceStartup<deadline)yield return null;
-            Object.Destroy(go);Assert.That(done,Is.True,"Atmaja runtime scenario timeout");if(failure!=null)throw failure;
+            Object.Destroy(go);Assert.That(done,Is.True,"Atmaja runtime scenario timeout");if(failure!=null)System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(failure).Throw();
         }
         private static IEnumerator Drive(IEnumerator scenario,Action<Exception> complete)
         {

@@ -42,6 +42,18 @@ namespace LayarTerakhir.Editor
 
             var scene = EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
             var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            ApplyNyonya(d);
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            AssetDatabase.SaveAssets();
+            RakaPresentationRevisionBuilder.ApplyAndMeasure();
+            Debug.Log("DESIGNER_VRM_APPLIED Raka body/phone hand, Nyonya hunter/apparitions; Damar authoring prefab prepared");
+        }
+
+        // Restore the existing supplied hunter and apparitions without rebuilding
+        // Raka, his handset or unrelated character authoring outputs.
+        public static void ApplyNyonya(AtmajaDirector d)
+        {
             if (!d || !d.basement || !d.basement.nyonya) throw new Exception("Missing existing Atmaja actor bindings");
             var hunter = Replace(d.basement.nyonya, "NyonyaDesigner", true, 0);
             var visual = d.basement.nyonya.GetComponent<AtmajaThreatPresentation>();
@@ -58,11 +70,6 @@ namespace LayarTerakhir.Editor
             Replace(d.upper.mirrorFlashFigure, "NyonyaDesignerEcho", false, AtmajaMirrorReflection.ReflectionLayer);
             Replace(d.upper.hangedFlashFigure, "NyonyaDesignerEcho", false, 0);
             Replace(d.arFigure, "NyonyaDesignerSeated", false, AtmajaPhoneView.ARLayer);
-            EditorSceneManager.MarkSceneDirty(scene);
-            EditorSceneManager.SaveScene(scene);
-            AssetDatabase.SaveAssets();
-            RakaPresentationRevisionBuilder.ApplyAndMeasure();
-            Debug.Log("DESIGNER_VRM_APPLIED Raka body/phone hand, Nyonya hunter/apparitions; Damar authoring prefab prepared");
         }
 
         private static Transform Bone(GameObject model, string name) =>
