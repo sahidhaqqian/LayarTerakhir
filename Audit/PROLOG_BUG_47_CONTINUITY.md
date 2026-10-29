@@ -27,3 +27,11 @@ Validasi yang benar-benar dijalankan:
 Bukti: `prolog-continuity-tests.xml`, `prolog-continuity-test-invocation.json`, `prolog-continuity-author-invocation.json`, `prolog-continuity-capture-invocation.json`, `prolog-continuity-visual-validation.json`, `prolog-continuity-graphify-invocation.json`, dan `prolog-continuity-metrics.jsonl` di folder ini. Receipt tes melaporkan 45.07 detik termasuk startup Editor; authoring 24.87 detik, capture 30.28 detik, Graphify 24.84 detik.
 
 Batas bukti: render menggunakan GPU software Editor; tidak mengukur performa GPU target. Belum ada penerimaan playtest manusia untuk revisi ini. Tidak ada build Windows atau upload rilis pada task ini.
+
+Windows build dan upload R2 lanjutan (29 Okt 2026):
+
+- Tahap awal gagal karena worktree kehilangan 9 model VRM dan 111 file asset Madduck yang diabaikan Git. Saya pulihkan sebagai hardlink dari checkout utama ke snapshot terisolasi; kedua checkout dan input aslinya tidak berubah.
+- Setelah itu build Windows berhasil, target `StandaloneWindows64`, backend `Mono2x`, 8 scene, 0 error, 12 warning. ZIP lolos verifikasi isi serta CRC; paket berukuran 3,033,586,751 byte.
+- Pemeriksaan paket menemukan generator menamai daun pintu dapur bersama `DAPUR BERSAMADoor`, sementara validasi paket mengharapkan `SharedDiningDoor`. Generator dan scene diperbaiki lalu dikomit pada `5e13b5d0`; build dan kemasan ulang akhirnya lulus.
+- Overwrite R2 terverifikasi: `r2:layarterakhir/Layarterakhir/LayarTerakhir-Windows-x86_64-Development.zip`, ukuran 3,033,586,751 byte, SHA-256 `d0a726da641aa89121330d5c63d93ed8259f54d168415febe9f4b14bb387d13f`. Pipeline membaca ulang objek dari R2 dan SHA-256 cocok.
+- Salinan ZIP ada di `Builds/LayarTerakhir-Windows-x86_64-Development.zip` pada worktree build. Receipt upload terverifikasi tersimpan di `Audit/r2-windows-build-upload.json`.
