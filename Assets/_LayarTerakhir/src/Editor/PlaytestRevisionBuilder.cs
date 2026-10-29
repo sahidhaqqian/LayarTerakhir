@@ -21,6 +21,7 @@ namespace LayarTerakhir.Editor
             if(map){map.maxTextureSize=1024;map.mipmapEnabled=false;map.wrapMode=TextureWrapMode.Clamp;map.textureCompression=TextureImporterCompression.Compressed;map.SaveAndReimport();}
             AtmajaSceneBuilder.Build();
             ImportPresentation();KosCorridorBuilder.Build();
+            PrologAcceptanceRepair.RestoreStreet();
             Debug.Log("PLAYTEST_REVISION_BUILD complete; Golden room scene preserved");
         }
         [MenuItem("LayarTerakhir/Prolog/Refine Kos only (preserve both approved scenes)")]

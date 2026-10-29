@@ -377,3 +377,26 @@ models. Optimized meshes/textures and baked first-party animation derivatives
 are under `Art/DesignerCharacters`. These replacements are not attributed to
 MakeHuman/CC0. Source hashes and conversion details: `designer-vrm-authoring.json`
 and `../Docs/DESIGNER_VRM_MODELS.md`. Original files are preserved locally.
+
+## Prolog acceptance continuation — 29/30 October 2026
+
+The Indonesian flip-flop mesh, bevels and Y straps were authored for this
+project in Blender, with no third-party model: editable source
+`ArtSources/Prolog/IndonesianFlipFlop.blend`, exported model
+`Art/Original/Models/IndonesianFlipFlop.fbx`, reproducible authoring script
+`../Tools/author_indonesian_flipflops.py`. The two bathroom pictograms are
+original simple vector drawings; SVG sources and raster exports are in
+`Art/PrologRevision/Textures/Bathroom{Woman,Man}.{svg,png}`.
+
+Kos breakfast plates reuse the existing Poly Haven CC0 hamburger-bun and
+apple scans (`Art/Review/Models/MoldyBread.fbx`, `RottenApple.fbx`), with
+Kos-only fresh materials. Their sources remain documented in
+`designer-review-asset-sources.json`. Atmaja's approved dinner materials
+were preserved. No new external asset license was introduced.
+
+The louvered ventilation grille is also project-authored Blender geometry:
+`ArtSources/Prolog/PrologVentilation.blend`, exported
+`Art/PrologRevision/Models/PrologVentilation.fbx`; source script
+`../Tools/author_prolog_vent.py`. Its fixed frame, folded louvers, fasteners
+and pull tab are meshes; it reuses the project's existing metal material
+texture where available.

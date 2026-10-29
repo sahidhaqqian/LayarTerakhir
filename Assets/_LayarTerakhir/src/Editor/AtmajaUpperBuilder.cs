@@ -41,9 +41,11 @@ namespace LayarTerakhir.Editor
         }
         private static Material Decal(string name,string texturePath)
         {
-            var m=Plain(name,Color.white,.6f);
+            var m=Plain(name,new Color(.48f,.025f,.025f),0);
+            m.SetFloat("_SpecularHighlights",0);m.SetFloat("_EnvironmentReflections",0);m.EnableKeyword("_SPECULARHIGHLIGHTS_OFF");m.EnableKeyword("_ENVIRONMENTREFLECTIONS_OFF");
             m.SetTexture("_BaseMap",AssetDatabase.LoadAssetAtPath<Texture2D>(texturePath));
             m.SetFloat("_AlphaClip",1);m.SetFloat("_Cutoff",.05f);
+            m.SetFloat("_Cull",0);
             m.SetOverrideTag("RenderType","TransparentCutout");m.renderQueue=2450;
             m.EnableKeyword("_ALPHATEST_ON");EditorUtility.SetDirty(m);return m;
         }

@@ -57,10 +57,10 @@ namespace LayarTerakhir.Prolog
         private Camera gripCamera;
         private RenderTexture gripTexture;
         private RawImage gripOverlay;
-        private GameObject gripOccluder;
+        private GameObject gripOccluder,portraitHand;
+        private Transform gripDepthBox;private Vector3 portraitScale;
         private Renderer[] portraitRenderers;
         private Material gripDepthMaterial;
-        private Vector3 depthMaskScale;
         public bool FocusHandsVisible=>firstPersonHand&&supportHand&&firstPersonHand.activeSelf&&supportHand.activeSelf;
         private readonly Vector3[] panelCorners = new Vector3[4];
         public float RaiseAmount => raiseAmount;
@@ -139,8 +139,7 @@ namespace LayarTerakhir.Prolog
                 foreach(var part in firstPersonHand.GetComponentsInChildren<Transform>(true))part.gameObject.layer=GripLayer;
                 foreach(var r in handRenderers){r.shadowCastingMode=ShadowCastingMode.Off;r.renderingLayerMask=ShoulderCameraRig.AvatarRenderingLayer;}
                 firstPersonHand.SetActive(false);
-                // Tangan kiri memegang dari sisi berlawanan: putar 180 agar telapak
-                // menghadap ponsel, bukan cermin skala negatif (winding terbalik).
+                // Keep a second copy for the reflected left-side grasp.
                 supportHand=Instantiate(handPrefab,playerCamera.transform,false);supportHand.name="RakaPhoneLeftGrip";
                 supportScale=handScale;supportHand.transform.localScale=supportScale;
                 supportRenderers=supportHand.GetComponentsInChildren<Renderer>(true);
@@ -149,25 +148,29 @@ namespace LayarTerakhir.Prolog
                 supportHand.SetActive(false);
                 // The existing handset supplies depth so fingers behind its body
                 // stay hidden, while front fingers can cover the UI bezel naturally.
-                gripOccluder=Instantiate(Resources.Load<GameObject>("RakaPhoneHand"),playerCamera.transform,false);gripOccluder.name="ExistingHandsetDepthMask";
-                depthMaskScale=gripOccluder.transform.localScale;
-                portraitRenderers=gripOccluder.GetComponentsInChildren<Renderer>(true);
+                // The old mask reused a posed hand asset whose phone was offset
+                // from its origin. Its depth never covered the actual UI screen.
+                gripOccluder=new GameObject("ExistingHandsetDepthMask");gripOccluder.transform.SetParent(playerCamera.transform,false);
+                var depthBox=GameObject.CreatePrimitive(PrimitiveType.Cube);depthBox.name="PhoneHand_HandheldPhone";depthBox.transform.SetParent(gripOccluder.transform,false);Destroy(depthBox.GetComponent<Collider>());
+                gripDepthBox=depthBox.transform;
+                portraitHand=Instantiate(Resources.Load<GameObject>("RakaPhoneHand"),gripOccluder.transform,false);portraitScale=portraitHand.transform.localScale;
+                portraitRenderers=portraitHand.GetComponentsInChildren<Renderer>(true);
                 gripDepthMaterial=new Material(Resources.Load<Shader>("PhoneGripDepth"));
                 foreach(var part in gripOccluder.GetComponentsInChildren<Transform>(true))part.gameObject.layer=GripLayer;
+                depthBox.GetComponent<Renderer>().sharedMaterial=gripDepthMaterial;depthBox.GetComponent<Renderer>().shadowCastingMode=ShadowCastingMode.Off;
                 foreach(var renderer in portraitRenderers)
                 {
-                    renderer.renderingLayerMask=ShoulderCameraRig.AvatarRenderingLayer;
-                    renderer.enabled=renderer.name.Contains("HandheldPhone");renderer.shadowCastingMode=ShadowCastingMode.Off;
-                    if(renderer.enabled)renderer.sharedMaterial=gripDepthMaterial;
+                    renderer.renderingLayerMask=ShoulderCameraRig.AvatarRenderingLayer;renderer.shadowCastingMode=ShadowCastingMode.Off;
+                    renderer.enabled=!renderer.name.Contains("HandheldPhone")&&!renderer.name.Contains("HandsetScreen");
                 }
                 gripOccluder.SetActive(false);
-                foreach(var renderer in handRenderers.Concat(supportRenderers))
-                    if(renderer.name.Contains("VisibleSkin"))
+                foreach(var renderer in handRenderers.Concat(supportRenderers).Concat(portraitRenderers))
                     {
                         var material=new Material(renderer.sharedMaterial);material.name="PhoneGripSurface_Runtime";
                         material.SetFloat("_Smoothness",.22f);material.SetFloat("_BumpScale",.45f);
                         if(material.HasProperty("_Metallic"))material.SetFloat("_Metallic",0);
                         material.DisableKeyword("_METALLICSPECGLOSSMAP");
+                        material.SetFloat("_Cull",0);
                         renderer.sharedMaterial=material;handMaterials.Add(material);
                     }
                 var gripView=new GameObject("RakaPhoneGripCamera",typeof(Camera));gripView.transform.SetParent(playerCamera.transform,false);
@@ -225,7 +228,7 @@ namespace LayarTerakhir.Prolog
                 if(resolved)AddChat("@maya_sari","Udah hilang... tarik napas dulu, Bang.");
             }
             var p=director.LocalPosition(director.player.transform.position);float y=director.player.transform.position.y-director.origin.y;
-            string room=y<-.5f?"cellar":y>3.3f?(p.y>5.1f?"hall":p.x< -2.5f?"child":p.x<.25f?"bath":p.x<2.3f?"master":"balcony"):
+            string room=y<-.5f?"cellar":y>3.3f?(p.y>5.1f?"hall":p.x< -2.5f?"child":p.x<.25f?"bath":"master"):
                 p.y>9?"kitchen":p.x>1.6f&&p.x<6.1f&&p.y>1?"dining":p.y>0&&p.x<1.6f?"lounge":"yard";
             bool danger=!resolved&&director.basement&&director.basement.IsHunting;
             bool chase=!resolved&&director.Stage>=AtmajaStage.Chase;
@@ -575,7 +578,7 @@ namespace LayarTerakhir.Prolog
             // Keep the previously validated portrait grasp for apps/documents.
             // The landscape source pose cannot wrap a handset twice as tall.
             if(portraitRenderers!=null)foreach(var r in portraitRenderers)
-                r.enabled=r.name.Contains("HandheldPhone")||!both&&!r.name.Contains("HandsetScreen")&&(r.name.Contains("Jacket")?jacket:!r.name.Contains("TShirt")||!jacket);
+                r.enabled=!both&&!r.name.Contains("HandheldPhone")&&!r.name.Contains("HandsetScreen")&&(r.name.Contains("Jacket")?jacket:!r.name.Contains("TShirt")||!jacket);
             foreach(var r in handRenderers)
                 r.enabled=(!r.name.Contains("HandheldPhone")&&!r.name.Contains("HandsetScreen"))&&(r.name.Contains("Jacket")?jacket:!r.name.Contains("TShirt")||!jacket);
             if(supportRenderers!=null)foreach(var r in supportRenderers)r.enabled=(!r.name.Contains("HandheldPhone")&&!r.name.Contains("HandsetScreen"))&&(r.name.Contains("Jacket")?jacket:!r.name.Contains("TShirt")||!jacket);
@@ -600,8 +603,17 @@ namespace LayarTerakhir.Prolog
             // Source grasp origin is the edge, in metres. Mirror around the
             // handset centre; never enlarge the hand to fill a stretched UI.
             firstPersonHand.transform.rotation=handRotation;
-            if(both){supportHand.transform.position=phoneCentre-edge;supportHand.transform.rotation=handRotation*Quaternion.Euler(0,180,0);supportHand.transform.localScale=supportScale;}
-            if(gripOccluder){gripOccluder.transform.SetPositionAndRotation(phoneCentre,firstPersonHand.transform.rotation*Quaternion.Euler(0,180,0));gripOccluder.transform.localScale=Vector3.Scale(depthMaskScale,new Vector3(physicalWidth/.078f,physicalHeight/.165f,Mathf.Lerp(1,.008f/.014f,t)));}
+            // Reflect the grasp across X to obtain a left hand while retaining
+            // the fingers behind the handset. A 180-degree turn put its palm
+            // in front of the screen and covered the entire viewfinder.
+            if(both){supportHand.transform.position=phoneCentre-edge;supportHand.transform.rotation=handRotation;supportHand.transform.localScale=new Vector3(-supportScale.x,supportScale.y,supportScale.z);}
+            if(gripOccluder)
+            {
+                gripOccluder.transform.SetPositionAndRotation(phoneCentre,handRotation);
+                gripDepthBox.localScale=new Vector3(physicalWidth,physicalHeight,Mathf.Lerp(.014f,.008f,t));
+                portraitHand.transform.localPosition=Vector3.zero;portraitHand.transform.localRotation=Quaternion.identity;
+                portraitHand.transform.localScale=Vector3.Scale(portraitScale,new Vector3(-physicalWidth/.078f,physicalHeight/.165f,1));
+            }
         }
         public void AddChat(string author,string text){if(ChatFrozen)return;pendingMessages.Enqueue($"<color=#C0AA7A>{author}</color> {text}");while(pendingMessages.Count>18)pendingMessages.Dequeue();}
         public void AddChatBurst(string[] authors,string[] lines,int count=3)

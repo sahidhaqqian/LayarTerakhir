@@ -79,7 +79,7 @@ namespace LayarTerakhir.Editor
             var scene=EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);d=Object.FindFirstObjectByType<AtmajaDirector>();
             // Revision objects with serialized gameplay references are recreated below.
             Remove("PrologReviewRevision");root=new GameObject("PrologReviewRevision").transform;
-            ChildRoom();Bathroom();MasterRoom();Dining();Basement();
+            ChildRoom();Bathroom();MasterRoom();Dining();Basement();RepairGroundHeaderAndBlood();Ventilation();
             if(!d.basement.nyonya.GetComponentsInChildren<SkinnedMeshRenderer>(true).Any(r=>r.name=="NyonyaDesignerBody"))DesignerVrmBuilder.ApplyNyonya(d);
             Physics.SyncTransforms();EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene);AssetDatabase.SaveAssets();
             File.WriteAllText("Audit/prolog-review-authoring.json",JsonUtility.ToJson(new Receipt{
@@ -99,6 +99,7 @@ namespace LayarTerakhir.Editor
             var frames=new[]{
                 ("child-bed",P(-5.35f,4.3f,5.6f),P(-3.2f,1.5f,4.45f)),
                 ("notebook-lamp-cup",P(-5.05f,1.25f,4.88f),P(-5.30f,.62f,4.60f)),
+                ("cup-inspection",P(-5.065f,.80f,4.71f),P(-5.02f,.655f,4.635f)),
                 ("bathroom",P(-.8f,3.5f,5.5f),P(-1.1f,.9f,4.3f)),
                 ("wall-scratches",P(-.9f,3.7f,5f),P(-2.29f,3.95f,4.9f)),
                 ("master",P(1.2f,4.65f,5.65f),P(3.3f,1.65f,4.65f)),
@@ -241,6 +242,7 @@ namespace LayarTerakhir.Editor
         }
         private static void Bathroom()
         {
+            CutBathTimber();
             // Concrete slabs keep collision; the single finish above owns rendering.
             foreach(var t in Objects().Where(t=>t.name.StartsWith("UpperSlab_")))
                 foreach(var r in t.GetComponents<Renderer>())r.enabled=false;
@@ -305,13 +307,13 @@ namespace LayarTerakhir.Editor
             foreach(var child in scratches.transform.Cast<Transform>().Where(t=>t!=d.upper.scratchAim).ToArray())Object.DestroyImmediate(child.gameObject);
             foreach(var r in scratches.GetComponents<Renderer>())Object.DestroyImmediate(r);
             scratches.transform.localScale=Vector3.one;
-            scratches.transform.SetPositionAndRotation(P(-2.275f,3.95f,4.9f),Quaternion.LookRotation(-d.east));
+            scratches.transform.SetPositionAndRotation(P(-2.20f,3.95f,4.9f),Quaternion.LookRotation(d.east));
             var material=Material("WallClawMarks",new Color(.72f,.61f,.43f));
             material.shader=Shader.Find("LayarTerakhir/Wall Scratch Decal");material.SetTexture("_BaseMap",AssetDatabase.LoadAssetAtPath<Texture2D>(Art+"Textures/RealWallClawPhoto.jpg"));
             EditorUtility.SetDirty(material);
             var quad=GameObject.CreatePrimitive(PrimitiveType.Quad);quad.name="WallClawDecal";Object.DestroyImmediate(quad.GetComponent<Collider>());
             quad.transform.SetParent(scratches.transform,false);quad.transform.localPosition=new Vector3(0,0,.02f);
-            quad.transform.localScale=new Vector3(.62f,.48f,1);quad.transform.localRotation=Quaternion.Euler(0,0,-7);
+            quad.transform.localScale=new Vector3(.55f,.70f,1);quad.transform.localRotation=Quaternion.Euler(0,0,-7);
             quad.layer=AtmajaPhoneView.ARLayer;quad.GetComponent<Renderer>().sharedMaterial=material;
             d.upper.bathScratchesOnWall=true;d.upper.scratchAim.SetParent(scratches.transform,false);d.upper.scratchAim.localPosition=Vector3.zero;
             var target=Find("BathScratchTarget");target.transform.SetPositionAndRotation(scratches.transform.position,scratches.transform.rotation);
@@ -319,6 +321,20 @@ namespace LayarTerakhir.Editor
         }
         private static void MasterRoom()
         {
+            // The expanded bedroom occupies the former balcony. Retire its
+            // old visible rails and invisible guards rather than trapping Raka.
+            Remove("BalconyVoidGuardS","BalconyVoidGuardE","BalconyVoidGuardW","VoidBeam");
+            foreach(var rail in Objects().Where(t=>t.name=="RailTop"||t.name=="RailBaluster"||t.name=="RailPost").ToArray())
+            {
+                var at=d.LocalPosition(rail.position);
+                if(at.x>2.25f&&at.x<5.55f&&at.y>3.25f&&at.y<5.3f)Object.DestroyImmediate(rail.gameObject);
+            }
+            foreach(var clue in new[]{"RopePivot","RopeAim","RopeSpot","HangedApparition","VoidChandelier","ChandelierLight","BalconyLight"})
+            {
+                var go=Find(clue);if(go)go.transform.position+=d.north*(5.6f-d.LocalPosition(go.transform.position).y);
+            }
+            Place(Find("BalconyRocker"),P(4.55f,5.6f,4.32f));
+            Place(Find("WillLetterPaper"),P(4.55f,5.6f,4.29f));
             Remove("MasterEastWall","MasterEastWallExpanded","MasterBalconySeparation","MasterEntrySideWall","MasterBed","MasterMattress","MasterPillow","CorrLintelN");
             var plaster=OldMat("House_MAT_PlasterDamaged");
             Box("MasterEastWallExpanded",5.38f,2.45f,5.325f,new Vector3(.16f,3.01f,4.90f),plaster);
@@ -395,6 +411,74 @@ namespace LayarTerakhir.Editor
             d.upper.cellarClimbPath=points.ToArray();
             var light=new GameObject("CellarLadderBeacon",typeof(Light));light.transform.SetParent(root,false);light.transform.position=P(1.02f,1.5f,-.8f);
             var l=light.GetComponent<Light>();l.type=LightType.Point;l.range=4;l.intensity=.8f;l.color=new Color(.84f,.68f,.40f);l.shadows=LightShadows.None;
+        }
+        public static void RepairVentAndCapture()
+        {
+            var scene=EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);d=Object.FindFirstObjectByType<AtmajaDirector>();root=Find("PrologReviewRevision").transform;
+            Ventilation();EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene);AssetDatabase.SaveAssets();
+            var camera=Camera.main;var eye=P(-3,6.10f,4.65f);camera.transform.SetPositionAndRotation(eye,Quaternion.LookRotation(P(-3,5.4f,4.5f)-eye));
+            KosRenderDiagnosis.Capture(camera,"bug24-authored-vent-cover",false,"Audit/Visuals/Prolog-Acceptance");
+        }
+        private static void Ventilation()
+        {
+            Remove("VentCabinet","ChildVentilationGrille","VentSlat","VentHoleDark");
+            var shell=new GameObject("ChildVentilationGrille").transform;shell.SetParent(root,false);shell.SetPositionAndRotation(P(-3,5.35f,4.5f),Quaternion.LookRotation(-d.north));
+            var asset=AssetDatabase.LoadAssetAtPath<GameObject>(Art+"Models/PrologVentilation.fbx");if(!asset)throw new Exception("Authored ventilation mesh not imported");
+            var model=(GameObject)PrefabUtility.InstantiatePrefab(asset);model.transform.SetParent(shell,false);PrefabUtility.UnpackPrefabInstance(model,PrefabUnpackMode.Completely,InteractionMode.AutomatedAction);
+            var paint=Material("VentAgedEnamel",new Color(.42f,.44f,.38f),smooth:.18f);var old=OldMat("House_MAT_RustMetal");if(old&&old.mainTexture)paint.SetTexture("_BaseMap",old.mainTexture);paint.SetFloat("_Metallic",.15f);
+            var steel=Material("VentScrewSteel",new Color(.13f,.15f,.14f),smooth:.28f);steel.SetFloat("_Metallic",.5f);
+            foreach(var renderer in model.GetComponentsInChildren<Renderer>())renderer.sharedMaterials=renderer.sharedMaterials.Select(m=>m.name.Contains("Screw")?steel:paint).ToArray();
+            var leaf=model.GetComponentsInChildren<Transform>().Single(t=>t.name=="VentLeaf");var hinge=new GameObject("ChildVentHinge").transform;hinge.SetParent(shell,false);hinge.localPosition=new Vector3(-.41f,0,-.05f);leaf.SetParent(hinge,true);
+            d.upper.ventCabinet=hinge.gameObject;d.upper.ventUsesHingedCover=true;
+            var ar=d.upper.ventHoleAR;ar.transform.SetPositionAndRotation(P(-3,5.44f,4.5f),Quaternion.LookRotation(-d.north));ar.transform.localScale=Vector3.one;
+            foreach(var child in ar.GetComponentsInChildren<Transform>(true).Where(t=>t!=ar.transform).ToArray())if(child)Object.DestroyImmediate(child.gameObject);
+            var blink=new GameObject("VentBlinkAR").transform;blink.SetParent(ar.transform,false);
+            var dot=GameObject.CreatePrimitive(PrimitiveType.Quad);dot.name="VentBlinkDot";dot.transform.SetParent(blink,false);dot.transform.localScale=new Vector3(.015f,.015f,1);dot.layer=AtmajaPhoneView.ARLayer;Object.DestroyImmediate(dot.GetComponent<Collider>());
+            var glow=Material("VentBlinkWhite",Color.white,smooth:0);glow.EnableKeyword("_EMISSION");glow.SetColor("_EmissionColor",Color.white*2.5f);glow.SetFloat("_Cull",0);dot.GetComponent<Renderer>().sharedMaterial=glow;d.upper.ventBlink=blink.gameObject;ar.SetActive(false);
+        }
+        private static void RepairGroundHeaderAndBlood()
+        {
+            var header=Find("FrontSittingDoorLintel");
+            if(header)
+            {
+                var bounds=KosVisualV2.BoundsOf(header);var point=d.LocalPosition(bounds.center);float bottom=bounds.max.y-.0125f,top=3.80f,height=top-bottom;
+                if(height>.02f)Box("FrontSittingDoorUpperInfill",point.x,point.y,(bottom+top)*.5f,new Vector3(bounds.size.x,height,bounds.size.z),OldMat("House_MAT_PlasterDamaged"));
+            }
+            foreach(var decal in Objects().Where(t=>t.name=="BloodHandprintF2"||t.name=="BloodHandprintFloor"||t.name=="BloodStainFloor"))
+            {
+                var renderer=decal.GetComponent<Renderer>();if(!renderer)continue;renderer.sharedMaterial.SetFloat("_Cull",0);EditorUtility.SetDirty(renderer.sharedMaterial);
+                renderer.sharedMaterial.color=new Color(.48f,.025f,.025f);
+                renderer.sharedMaterial.SetFloat("_Smoothness",0);renderer.sharedMaterial.SetFloat("_SpecularHighlights",0);renderer.sharedMaterial.SetFloat("_EnvironmentReflections",0);
+                renderer.sharedMaterial.EnableKeyword("_SPECULARHIGHLIGHTS_OFF");renderer.sharedMaterial.EnableKeyword("_ENVIRONMENTREFLECTIONS_OFF");
+                if(decal.name=="BloodHandprintF2")decal.position+=d.north*(5.32f-d.LocalPosition(decal.position).y);
+            }
+        }
+        private static void CutBathTimber()
+        {
+            var filter=Objects().Select(t=>t.GetComponent<MeshFilter>()).First(f=>f&&f.name=="Static__House_MAT_TrimTeak");
+            const string path=Art+"Models/BathTimberClearance.asset";
+            var saved=AssetDatabase.LoadAssetAtPath<Mesh>(path);
+            if(saved){filter.sharedMesh=saved;return;}
+            var source=filter.sharedMesh;var p=source.vertices;var n=source.normals;var uv=source.uv;var tangents=source.tangents;
+            var output=new System.Collections.Generic.List<CutVertex>();var submeshes=new System.Collections.Generic.List<int[]>();int clipped=0;
+            for(int sub=0;sub<source.subMeshCount;sub++)
+            {
+                var indices=new System.Collections.Generic.List<int>();var input=source.GetTriangles(sub);
+                for(int i=0;i<input.Length;i+=3)
+                {
+                    var polygon=new System.Collections.Generic.List<CutVertex>();
+                    for(int j=0;j<3;j++){int k=input[i+j];polygon.Add(new CutVertex{p=filter.transform.TransformPoint(p[k]),n=n[k],uv=uv.Length==p.Length?uv[k]:Vector2.zero,tangent=tangents.Length==p.Length?tangents[k]:new Vector4(1,0,0,1)});}
+                    if(polygon.All(v=>{var at=d.LocalPosition(v.p);return at.x> -1.23f&&at.x< -1.0f&&v.p.y>4.19f&&v.p.y<4.36f;}))
+                    {polygon=Clip(polygon,v=>.05f-d.LocalPosition(v.p).y);clipped++;}
+                    for(int j=1;j<polygon.Count-1;j++)foreach(var vertex in new[]{polygon[0],polygon[j],polygon[j+1]}){indices.Add(output.Count);output.Add(vertex);}
+                }
+                submeshes.Add(indices.ToArray());
+            }
+            if(clipped==0)throw new Exception("Bathroom timber intrusion was not found; keep the original mesh for investigation");
+            saved=new Mesh{name="BathTimberClearance",indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};
+            saved.vertices=output.Select(v=>filter.transform.InverseTransformPoint(v.p)).ToArray();saved.normals=output.Select(v=>v.n).ToArray();saved.uv=output.Select(v=>v.uv).ToArray();saved.tangents=output.Select(v=>v.tangent).ToArray();saved.subMeshCount=submeshes.Count;
+            for(int i=0;i<submeshes.Count;i++)saved.SetTriangles(submeshes[i],i);saved.RecalculateBounds();AssetDatabase.CreateAsset(saved,path);filter.sharedMesh=saved;
+            Debug.Log("BATH_TIMBER_CUT triangles="+clipped);
         }
         private struct CutVertex
         {

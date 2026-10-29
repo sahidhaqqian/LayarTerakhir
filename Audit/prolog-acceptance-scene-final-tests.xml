@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="20" result="Passed" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-29 21:36:53Z" end-time="2026-10-29 21:37:07Z" duration="13.9744126">
+  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="580" result="Passed" start-time="2026-10-29 21:36:53Z" end-time="2026-10-29 21:37:07Z" duration="13.974413" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1668" name="Assembly-CSharp-Editor.dll" fullname="/root/projects/LayarTerakhir-prolog-28-43/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="580" result="Passed" start-time="2026-10-29 21:36:54Z" end-time="2026-10-29 21:37:07Z" duration="13.947516" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="608504" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1669" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="580" result="Passed" start-time="2026-10-29 21:36:54Z" end-time="2026-10-29 21:37:07Z" duration="13.931704" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1670" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="580" result="Passed" start-time="2026-10-29 21:36:54Z" end-time="2026-10-29 21:37:07Z" duration="13.919219" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1671" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="580" result="Passed" start-time="2026-10-29 21:36:54Z" end-time="2026-10-29 21:37:07Z" duration="13.905259" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1631" name="PrologEnvironmentContinuityTests" fullname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests" classname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-29 21:36:54Z" end-time="2026-10-29 21:36:59Z" duration="5.405435" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1635" name="MissingNeighborhoodRecoversTheSamePermanentHousesAndBindings" fullname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests.MissingNeighborhoodRecoversTheSamePermanentHousesAndBindings" methodname="MissingNeighborhoodRecoversTheSamePermanentHousesAndBindings" classname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests" runstate="Runnable" seed="268287139" result="Passed" start-time="2026-10-29 21:36:54Z" end-time="2026-10-29 21:36:55Z" duration="0.987471" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1638" name="MorningRoomAndYardShareTheCampaignSky" fullname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests.MorningRoomAndYardShareTheCampaignSky" classname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-29 21:36:55Z" end-time="2026-10-29 21:36:55Z" duration="0.822351" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1636" name="MorningRoomAndYardShareTheCampaignSky(False)" fullname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests.MorningRoomAndYardShareTheCampaignSky(False)" methodname="MorningRoomAndYardShareTheCampaignSky" classname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests" runstate="Runnable" seed="2079557959" result="Passed" start-time="2026-10-29 21:36:55Z" end-time="2026-10-29 21:36:55Z" duration="0.415418" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1637" name="MorningRoomAndYardShareTheCampaignSky(True)" fullname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests.MorningRoomAndYardShareTheCampaignSky(True)" methodname="MorningRoomAndYardShareTheCampaignSky" classname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests" runstate="Runnable" seed="1893186824" result="Passed" start-time="2026-10-29 21:36:55Z" end-time="2026-10-29 21:36:55Z" duration="0.401019" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1633" name="NextMorningReplacesTheAuthoredNightSkyAndResetsAfterDusk" fullname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests.NextMorningReplacesTheAuthoredNightSkyAndResetsAfterDusk" methodname="NextMorningReplacesTheAuthoredNightSkyAndResetsAfterDusk" classname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests" runstate="Runnable" seed="951688000" result="Passed" start-time="2026-10-29 21:36:55Z" end-time="2026-10-29 21:36:57Z" duration="1.247796" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1632" name="NightPrologLoadsTheSamePermanentStreetAsMorning" fullname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests.NightPrologLoadsTheSamePermanentStreetAsMorning" methodname="NightPrologLoadsTheSamePermanentStreetAsMorning" classname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests" runstate="Runnable" seed="1949865686" result="Passed" start-time="2026-10-29 21:36:57Z" end-time="2026-10-29 21:36:57Z" duration="0.769540" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1639" name="NightStreetSceneryLeavesTheDepartureRoadClear" fullname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests.NightStreetSceneryLeavesTheDepartureRoadClear" methodname="NightStreetSceneryLeavesTheDepartureRoadClear" classname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests" runstate="Runnable" seed="1428141212" result="Passed" start-time="2026-10-29 21:36:57Z" end-time="2026-10-29 21:36:58Z" duration="0.747883" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1634" name="RebuiltKosSceneRecoversItsPermanentSceneryExactlyOnce" fullname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests.RebuiltKosSceneRecoversItsPermanentSceneryExactlyOnce" methodname="RebuiltKosSceneRecoversItsPermanentSceneryExactlyOnce" classname="LayarTerakhir.Editor.Tests.PrologEnvironmentContinuityTests" runstate="Runnable" seed="657785607" result="Passed" start-time="2026-10-29 21:36:58Z" end-time="2026-10-29 21:36:59Z" duration="0.811115" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1640" name="PrologReviewRevisionTests" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-29 21:36:59Z" end-time="2026-10-29 21:37:07Z" duration="8.477767" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1646" name="BathroomBasinHasNoInheritedTimberAcrossTheBloodSurface" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.BathroomBasinHasNoInheritedTimberAcrossTheBloodSurface" methodname="BathroomBasinHasNoInheritedTimberAcrossTheBloodSurface" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" seed="1720291249" result="Passed" start-time="2026-10-29 21:36:59Z" end-time="2026-10-29 21:37:00Z" duration="0.605220" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1645" name="BathroomHasOneFloorFinishAndScratchesStayOnTheWall" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.BathroomHasOneFloorFinishAndScratchesStayOnTheWall" methodname="BathroomHasOneFloorFinishAndScratchesStayOnTheWall" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" seed="1963961914" result="Passed" start-time="2026-10-29 21:37:00Z" end-time="2026-10-29 21:37:00Z" duration="0.583509" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1641" name="ChildCommentsDoNotInventToysOrDolls" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.ChildCommentsDoNotInventToysOrDolls" methodname="ChildCommentsDoNotInventToysOrDolls" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" seed="1047618657" result="Passed" start-time="2026-10-29 21:37:00Z" end-time="2026-10-29 21:37:01Z" duration="0.563906" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1644" name="ChildRoomHasAnImportedCompleteBedAndReadableBookGeometry" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.ChildRoomHasAnImportedCompleteBedAndReadableBookGeometry" methodname="ChildRoomHasAnImportedCompleteBedAndReadableBookGeometry" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" seed="798079560" result="Passed" start-time="2026-10-29 21:37:01Z" end-time="2026-10-29 21:37:01Z" duration="0.563570" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1649" name="ChildVentHasAnAuthoredCoverVisibleWithoutAR" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.ChildVentHasAnAuthoredCoverVisibleWithoutAR" methodname="ChildVentHasAnAuthoredCoverVisibleWithoutAR" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" seed="176611195" result="Passed" start-time="2026-10-29 21:37:01Z" end-time="2026-10-29 21:37:02Z" duration="0.616232" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1647" name="GroundDoorHeaderReachesTheCeilingAboveItsOpening" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.GroundDoorHeaderReachesTheCeilingAboveItsOpening" methodname="GroundDoorHeaderReachesTheCeilingAboveItsOpening" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" seed="70040094" result="Passed" start-time="2026-10-29 21:37:02Z" end-time="2026-10-29 21:37:03Z" duration="0.605791" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1653" name="HidingMeterUsesSmallCumulativeGreenYellowRedSegments" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.HidingMeterUsesSmallCumulativeGreenYellowRedSegments" methodname="HidingMeterUsesSmallCumulativeGreenYellowRedSegments" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" seed="513914494" result="Passed" start-time="2026-10-29 21:37:03Z" end-time="2026-10-29 21:37:03Z" duration="0.677788" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1652" name="MasterAndCellarHaveClearSpaceAndVisibleAscent" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.MasterAndCellarHaveClearSpaceAndVisibleAscent" methodname="MasterAndCellarHaveClearSpaceAndVisibleAscent" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" seed="890469812" result="Passed" start-time="2026-10-29 21:37:03Z" end-time="2026-10-29 21:37:04Z" duration="0.628770" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1648" name="MasterExpansionRetiresBalconyGuardsAndKeepsRopeOutsideTheSeparation" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.MasterExpansionRetiresBalconyGuardsAndKeepsRopeOutsideTheSeparation" methodname="MasterExpansionRetiresBalconyGuardsAndKeepsRopeOutsideTheSeparation" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" seed="634855184" result="Passed" start-time="2026-10-29 21:37:04Z" end-time="2026-10-29 21:37:04Z" duration="0.585944" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1642" name="OriginalCupHasARealCavityRecessedFractureAndOpenHandle" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.OriginalCupHasARealCavityRecessedFractureAndOpenHandle" methodname="OriginalCupHasARealCavityRecessedFractureAndOpenHandle" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" seed="1175027804" result="Passed" start-time="2026-10-29 21:37:04Z" end-time="2026-10-29 21:37:05Z" duration="0.576295" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1643" name="OriginalCupRestsOnDeskAndRetainsItsEvidenceTarget" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.OriginalCupRestsOnDeskAndRetainsItsEvidenceTarget" methodname="OriginalCupRestsOnDeskAndRetainsItsEvidenceTarget" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" seed="839934788" result="Passed" start-time="2026-10-29 21:37:05Z" end-time="2026-10-29 21:37:06Z" duration="0.512595" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1650" name="SharedKitchenHasNoResidualDoorPanelsOrPrimitiveSlippers" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.SharedKitchenHasNoResidualDoorPanelsOrPrimitiveSlippers" methodname="SharedKitchenHasNoResidualDoorPanelsOrPrimitiveSlippers" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" seed="2137672258" result="Passed" start-time="2026-10-29 21:37:06Z" end-time="2026-10-29 21:37:07Z" duration="1.333439" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1651" name="TubHasAnOpenBasinWithBloodInsideTheRim" fullname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests.TubHasAnOpenBasinWithBloodInsideTheRim" methodname="TubHasAnOpenBasinWithBloodInsideTheRim" classname="LayarTerakhir.Editor.Tests.PrologReviewRevisionTests" runstate="Runnable" seed="982141140" result="Passed" start-time="2026-10-29 21:37:07Z" end-time="2026-10-29 21:37:07Z" duration="0.615327" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: /root/.config/unity3d/DefaultCompany/LayarTerakhir/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

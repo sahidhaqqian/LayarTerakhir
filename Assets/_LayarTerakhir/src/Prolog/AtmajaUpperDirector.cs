@@ -145,7 +145,7 @@ namespace LayarTerakhir.Prolog
         public Collider ventGate;
         public GameObject[] chainLinks=new GameObject[3];
         public GameObject childCup,bathCurtain,bathWater,mirrorFlashFigure,hangedFlashFigure,carpetRoll,trapdoorLid;
-        public GameObject ventCabinet;
+        public GameObject ventCabinet;public bool ventUsesHingedCover;
         public Transform ropePivot;
         private Quaternion ropeBase;
         private bool ropeInit;
@@ -190,6 +190,7 @@ namespace LayarTerakhir.Prolog
             if(carpetRoll)carpetRoll.SetActive(!Has("EVENT_P0_CARPET_LIFTED"));
             if(trapdoorLid)trapdoorLid.SetActive(Has("EVENT_P0_CARPET_LIFTED")&&!Has("EVENT_P0_TRAPDOOR_OPEN"));
             if(ventGate)ventGate.enabled=true;
+            if(ventUsesHingedCover&&ventCabinet){ventCabinet.SetActive(true);ventCabinet.transform.localRotation=Quaternion.identity;}
             if(mirrorFlashFigure)mirrorFlashFigure.SetActive(false);
             if(hangedFlashFigure)hangedFlashFigure.SetActive(false);
             if(ventHoleAR)ventHoleAR.SetActive(false);
@@ -232,7 +233,15 @@ namespace LayarTerakhir.Prolog
                 bool near=Vector3.Distance(director.player.transform.position,ventMouth.position)<2.1f;
                 bool pass=ar&&director.player.IsCrouching&&near&&childDoor&&!childDoor.IsOpen;
                 ventGate.enabled=!pass;
-                if(ventCabinet)ventCabinet.SetActive(!pass);
+                if(ventCabinet)
+                {
+                    if(ventUsesHingedCover)
+                    {
+                        ventCabinet.SetActive(true);
+                        ventCabinet.transform.localRotation=Quaternion.RotateTowards(ventCabinet.transform.localRotation,Quaternion.Euler(0,pass?-105:0,0),200*Time.deltaTime);
+                    }
+                    else ventCabinet.SetActive(!pass);
+                }
             }
             if(!Has("EVENT_P0_MIRROR_SCARE")&&mirrorSpot&&mirrorFlashFigure)
             {

@@ -144,7 +144,7 @@ namespace LayarTerakhir.Editor
             {
                 float px=i%2==0?-4.02f:-3.58f,pz=6.95f+(i/2)*.55f;
                 var plate=GameObject.CreatePrimitive(PrimitiveType.Cylinder);plate.name="SharedDiningPlate";plate.transform.SetParent(root,false);plate.transform.position=new Vector3(px,.80f,pz);plate.transform.localScale=new Vector3(.23f,.008f,.23f);plate.GetComponent<Renderer>().sharedMaterial=dish;Object.DestroyImmediate(plate.GetComponent<Collider>());
-                RealModel("veggiesbox.fbx","SharedDiningFood",new Vector3(.17f,.09f,.17f),new Vector3(px,.845f,pz),i*37,null);
+                ServeKosBreakfast(root,new Vector3(px,.84f,pz),i*37);
             }
             RealModel("pot_enamel_01.fbx","SharedDiningPot",new Vector3(.34f,.20f,.34f),new Vector3(-3.8f,.90f,7.5f),10,_=>PhReal("pot_enamel_01"));
             RealModel("vintage_electric_kettle.fbx","SharedDiningKettle",new Vector3(.20f,.24f,.20f),new Vector3(-3.8f,.92f,7.85f),-15,_=>PhReal("vintage_electric_kettle"));
@@ -157,7 +157,6 @@ namespace LayarTerakhir.Editor
             var back=GameObject.Find("KAMAR MANDIBack");back.transform.position=new Vector3(6.25f,1.4f,4.25f);
             var outerDoor=GameObject.Find("KAMAR MANDIDoor").GetComponent<HingedDoor>();outerDoor.slides=true;outerDoor.slideOffset=Vector3.forward*1.6f;
             Box("BathPocketDoorTrack",new Vector3(1.40f,2.25f,5.0f),new Vector3(.06f,.055f,3.1f),metal);
-            GameObject.Find("BathroomWaterTank").transform.position=new Vector3(5.7f,.55f,5.5f);
             // Kloset, wastafel, dan shower kini aset internet realistis (SharedRoom).
             Box("GenderBathroomPartition",new Vector3(4.575f,1.3f,4.25f),new Vector3(3.35f,2.6f,.10f),wall);
             foreach(float z in new[]{3.30f,5.20f})
@@ -174,6 +173,7 @@ namespace LayarTerakhir.Editor
             }
             foreach(var segment in new[]{new Vector2(2.5f,2.84f),new Vector2(3.76f,4.74f),new Vector2(5.66f,6f)})
                 Box("BathroomFrontPartition",new Vector3(2.82f,1.3f,(segment.x+segment.y)*.5f),new Vector3(.1f,2.6f,segment.y-segment.x),wall);
+            GameObject.Find("KAMAR MANDITiledWainscot").transform.position=new Vector3(6.14f,.55f,4.25f);
             // Properly coloured street-facing finish and visible windows for both floors.
             var paint=Material("KosExteriorWarmIvory",new Color(.66f,.58f,.42f));
             foreach(int side in new[]{-1,1})foreach(float y in new[]{0,3.3f})
@@ -193,6 +193,29 @@ namespace LayarTerakhir.Editor
             {var travel=h.gameObject.AddComponent<KosTravelItem>();travel.director=d;travel.label="Pilih tujuan di gerbang kos";}
             DesignerWorldRevision.NightSky(d.player.GetComponent<InteractionInteractor>().playerCamera);
         }
+        public static void ServeKosBreakfast(Transform parent,Vector3 centre,float yaw)
+        {
+            const string folder="Assets/_LayarTerakhir/assets/Art/Review/Materials/";
+            var bread=DesignerReviewBuilder.ReviewModel("SharedDiningFood","MoldyBread",parent,centre+Vector3.left*.035f,new Vector3(.13f,.065f,.10f),false);
+            var mat=Material("KosBreakfastBread",Color.white,folder+"Review_hamburger_buns.mat");
+            mat.color=Color.white;mat.SetFloat("_Smoothness",.22f);EditorUtility.SetDirty(mat);
+            foreach(var r in bread.GetComponentsInChildren<Renderer>())r.sharedMaterials=Enumerable.Repeat(mat,r.sharedMaterials.Length).ToArray();
+            bread.transform.Rotate(Vector3.up,yaw);KosVisualV2.SetCenter(bread,centre+Vector3.left*.035f);
+            var apple=DesignerReviewBuilder.ReviewModel("SharedDiningFruit","RottenApple",parent,centre+Vector3.right*.065f,new Vector3(.065f,.075f,.065f),false);
+            var fresh=AssetDatabase.LoadAssetAtPath<Material>(folder+"Review_FreshApple.mat");
+            foreach(var r in apple.GetComponentsInChildren<Renderer>())r.sharedMaterials=Enumerable.Repeat(fresh,r.sharedMaterials.Length).ToArray();
+        }
+        public static void AttachBathroomPictogram(string title,Transform parent,Vector3 position,Quaternion rotation)
+        {
+            string label=title=="WANITA"?"Woman":"Man";
+            string texturePath=PrologReviewRevision.Art+"Textures/Bathroom"+label+".png";
+            var importer=(TextureImporter)AssetImporter.GetAtPath(texturePath);importer.alphaIsTransparency=true;importer.textureCompression=TextureImporterCompression.Uncompressed;importer.SaveAndReimport();
+            string path=PrologReviewRevision.Art+"Materials/Bathroom"+label+"Pictogram.mat";
+            var material=AssetDatabase.LoadAssetAtPath<Material>(path);
+            if(!material){material=new Material(Shader.Find("Universal Render Pipeline/Unlit"));AssetDatabase.CreateAsset(material,path);}
+            material.SetTexture("_BaseMap",AssetDatabase.LoadAssetAtPath<Texture2D>(texturePath));material.color=Color.white;material.SetFloat("_AlphaClip",1);material.SetFloat("_Cutoff",.1f);material.EnableKeyword("_ALPHATEST_ON");material.SetFloat("_Cull",0);EditorUtility.SetDirty(material);
+            var icon=GameObject.CreatePrimitive(PrimitiveType.Quad);icon.name="Bathroom"+title+"Pictogram";icon.transform.SetPositionAndRotation(position,rotation);icon.transform.localScale=new Vector3(.19f,.29f,1);icon.transform.SetParent(parent,true);Object.DestroyImmediate(icon.GetComponent<Collider>());icon.GetComponent<Renderer>().sharedMaterial=material;
+        }
         private static void GenderBathroomSign(string title,float z,bool women,Transform doorPanel)
         {
             // Plang kecil (.26 x .34) menempel di muka daun pintu sisi koridor
@@ -200,19 +223,8 @@ namespace LayarTerakhir.Editor
             var plateMat=Material(women?"BathroomSignPink":"BathroomSignBlue",women?new Color(.75f,.35f,.45f):new Color(.25f,.45f,.70f));
             var plaque=Box("Bathroom"+title+"Plaque",new Vector3(2.765f,1.78f,z),new Vector3(.02f,.34f,.26f),plateMat);plaque.transform.SetParent(doorPanel,true);
             var trimPlaque=Box("Bathroom"+title+"PlaqueTrim",new Vector3(2.752f,1.78f,z),new Vector3(.012f,.37f,.29f),trim);trimPlaque.transform.SetParent(doorPanel,true);
-            // Ikon sederhana: kepala (silinder) + badan (kotak); rok untuk wanita.
-            var iconMat=Material("BathroomIconWhite",new Color(.92f,.92f,.90f));
-            var head=GameObject.CreatePrimitive(PrimitiveType.Cylinder);head.name="Bathroom"+title+"IconHead";head.transform.position=new Vector3(2.75f,1.86f,z);head.transform.localScale=new Vector3(.055f,.02f,.055f);head.GetComponent<Renderer>().sharedMaterial=iconMat;Object.DestroyImmediate(head.GetComponent<Collider>());head.transform.SetParent(doorPanel,true);
-            if(women)
-            {
-                var skirt=GameObject.CreatePrimitive(PrimitiveType.Cylinder);skirt.name="Bathroom"+title+"IconSkirt";skirt.transform.position=new Vector3(2.75f,1.72f,z);skirt.transform.localScale=new Vector3(.10f,.085f,.03f);skirt.GetComponent<Renderer>().sharedMaterial=iconMat;Object.DestroyImmediate(skirt.GetComponent<Collider>());skirt.transform.SetParent(doorPanel,true);
-            }
-            else
-            {
-                var body=Box("Bathroom"+title+"IconBody",new Vector3(2.75f,1.735f,z),new Vector3(.015f,.11f,.07f),iconMat);body.transform.SetParent(doorPanel,true);
-                var legs=Box("Bathroom"+title+"IconLegs",new Vector3(2.75f,1.655f,z),new Vector3(.015f,.055f,.06f),iconMat);legs.transform.SetParent(doorPanel,true);
-            }
-            foreach(var t in doorPanel.GetComponentsInChildren<Transform>())if(t.name.StartsWith("Bathroom"+title))foreach(var c in t.GetComponents<Collider>())Object.DestroyImmediate(c);
+            AttachBathroomPictogram(title,doorPanel,new Vector3(2.733f,1.78f,z),Quaternion.Euler(0,90,0));
+            foreach(var t in doorPanel.GetComponentsInChildren<Transform>())if(t!=doorPanel&&t.name.StartsWith("Bathroom"+title))foreach(var c in t.GetComponents<Collider>())Object.DestroyImmediate(c);
         }
     }
 }

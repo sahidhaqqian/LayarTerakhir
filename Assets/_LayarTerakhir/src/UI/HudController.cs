@@ -419,10 +419,13 @@ namespace LayarTerakhir.UI
             _onDocumentClosed = onClosed;
             documentTitleText.text = title;
             documentBodyText.text = body;
+            // Authored HUD prefabs bypass runtime UI creation; resolve the paper
+            // here as well so the reader never falls back to a flat cream panel.
+            if (!documentPaperSprite) documentPaperSprite = Resources.Load<Sprite>("Paper/DocumentPaper");
             if (documentPaperSprite != null)
             {
                 var bg = documentPanel.GetComponent<Image>();
-                if (bg != null) { bg.sprite = documentPaperSprite; bg.color = Color.white; }
+                if (bg != null) { bg.type = Image.Type.Simple; bg.sprite = documentPaperSprite; bg.color = Color.white; }
                 documentTitleText.color = new Color(0.23f, 0.16f, 0.10f);
                 documentBodyText.color = new Color(0.16f, 0.13f, 0.10f);
             }

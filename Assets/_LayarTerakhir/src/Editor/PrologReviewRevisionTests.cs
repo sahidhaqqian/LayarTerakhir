@@ -110,6 +110,48 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(Find("BathScratchTarget").GetComponent<AtmajaItem>().label,Does.Contain("dinding"));
             Assert.That(d.upper.bathScratchesAR.GetComponentsInChildren<MeshRenderer>(true).Count(),Is.EqualTo(1));
         }
+        [Test]public void BathroomBasinHasNoInheritedTimberAcrossTheBloodSurface()
+        {
+            var filter=Find("Static__House_MAT_TrimTeak").GetComponent<MeshFilter>();var vertices=filter.sharedMesh.vertices;var triangles=filter.sharedMesh.triangles;
+            for(int i=0;i<triangles.Length;i+=3)
+            {
+                var centre=filter.transform.TransformPoint((vertices[triangles[i]]+vertices[triangles[i+1]]+vertices[triangles[i+2]])/3);var at=d.LocalPosition(centre);
+                Assert.That(at.x> -1.23f&&at.x< -1f&&at.y>.06f&&at.y<1.13f&&centre.y>4.19f&&centre.y<4.36f,Is.False,"Original house timber still intersects the bathtub basin");
+            }
+        }
+        [Test]public void GroundDoorHeaderReachesTheCeilingAboveItsOpening()
+        {
+            var bounds=KosVisualV2.BoundsOf(Find("FrontSittingDoorLintel"));var at=d.LocalPosition(bounds.center);Physics.SyncTransforms();
+            Assert.That(KosVisualV2.BoundsOf(Find("FrontSittingDoorUpperInfill")).max.y,Is.LessThan(3.815f),"The ground-floor repair must not protrude through the upper bathroom tile");
+            foreach(float height in new[]{Mathf.Lerp(bounds.max.y+.01f,3.79f,.1f),Mathf.Lerp(bounds.max.y+.01f,3.79f,.5f),Mathf.Lerp(bounds.max.y+.01f,3.79f,.9f)})
+            {
+                var ray=new Ray(d.P(at.x,at.y+.6f,height),-d.north);
+                Assert.That(Physics.RaycastAll(ray,1.2f,~0,QueryTriggerInteraction.Ignore).Any(h=>h.collider.name=="FrontSittingDoorUpperInfill"),Is.True,"Unsealed wall above the ground-floor door at "+height);
+            }
+        }
+        [Test]public void MasterExpansionRetiresBalconyGuardsAndKeepsRopeOutsideTheSeparation()
+        {
+            Assert.That(objects.Any(t=>t.name.StartsWith("BalconyVoidGuard")),Is.False);
+            Assert.That(objects.Where(t=>t.name=="RailTop"||t.name=="RailBaluster").Any(t=>{var at=d.LocalPosition(t.position);return at.x>2.25f&&at.x<5.55f&&at.y>3.25f&&at.y<5.3f;}),Is.False);
+            Assert.That(d.LocalPosition(d.upper.ropeAim.position).y,Is.GreaterThan(5.45f),"The rope clue must remain on the accessible corridor side of the expanded room");
+        }
+        [Test]public void ChildVentHasAnAuthoredCoverVisibleWithoutAR()
+        {
+            Assert.That(d.upper.ventUsesHingedCover,Is.True);Assert.That(d.upper.ventCabinet.activeInHierarchy,Is.True);
+            var mesh=d.upper.ventCabinet.GetComponentInChildren<MeshFilter>();Assert.That(AssetDatabase.GetAssetPath(mesh.sharedMesh),Does.EndWith("PrologVentilation.fbx"));
+            Assert.That(d.upper.ventCabinet.GetComponentsInChildren<Renderer>().All(r=>r.gameObject.layer!=AtmajaPhoneView.ARLayer),Is.True);
+            foreach(var dot in d.upper.ventBlink.GetComponentsInChildren<MeshFilter>(true))Assert.That(dot.GetComponent<Renderer>().bounds.size.magnitude,Is.LessThan(.04f),"AR cue must be a small dot, not a screen-sized quad");
+        }
+        [Test]public void SharedKitchenHasNoResidualDoorPanelsOrPrimitiveSlippers()
+        {
+            EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);
+            var all=UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects().SelectMany(g=>g.GetComponentsInChildren<Transform>(true)).ToArray();
+            Assert.That(all.Select(t=>t.GetComponent<TextMesh>()).Where(t=>t).Any(t=>t.text.Contains("KAMAR MANDI")||t.text=="WANITA"||t.text=="PRIA"),Is.False,"Bathroom signs must use attached pictograms, with no leftover floating titles");
+            Assert.That(all.Any(t=>t.name.StartsWith("KosGroundDoor_-1.5_2")&&!t.name.EndsWith("Frame")&&!t.name.EndsWith("Lintel")),Is.False);
+            var slippers=all.Where(t=>t.name=="TenantSlipper"||t.name=="InterludeSandals").ToArray();Assert.That(slippers.Length,Is.GreaterThan(10));
+            foreach(var slipper in slippers)foreach(var mesh in slipper.GetComponentsInChildren<MeshFilter>())Assert.That(AssetDatabase.GetAssetPath(mesh.sharedMesh),Does.EndWith("IndonesianFlipFlop.fbx"),"Primitive sandal remained at "+slipper.position);
+            Assert.That(all.Any(t=>t.name=="BathroomWaterTank"||t.name=="BathroomTankLid"),Is.False,"The old crates must not hide the actual bathroom fixtures");
+        }
         [Test]public void TubHasAnOpenBasinWithBloodInsideTheRim()
         {
             var tub=Find("BathTub");var bounds=KosVisualV2.BoundsOf(tub);

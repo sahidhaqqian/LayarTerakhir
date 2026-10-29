@@ -48,7 +48,11 @@ namespace LayarTerakhir.Editor
                 Box("RoomFloor",new Vector3(x,y-.065f,z),new Vector3(4.7f,.13f,3),floor);
                 Box("RoomCeiling",new Vector3(x,y+2.97f,z),new Vector3(4.7f,.14f,3.15f),wall);
                 Box("RoomOuterWall",new Vector3(side*6.25f,y+1.45f,z),new Vector3(.18f,2.9f,3.15f),wall);
-                foreach(float edge in new[]{z-1.5f,z+1.5f})Box("RoomPartition",new Vector3(x,y+1.45f,edge),new Vector3(4.8f,2.9f,.15f),wall);
+                foreach(float edge in new[]{z-1.5f,z+1.5f})
+                {
+                    if(level==0&&side<0&&i==2&&edge==6)continue; // Kitchen and dining share one open room.
+                    Box("RoomPartition",new Vector3(x,y+1.45f,edge),new Vector3(4.8f,2.9f,.15f),wall);
+                }
                 root=parent;
             }
             // Ground slab under the entire stairwell: no hole into the skybox even below flights.
@@ -133,13 +137,15 @@ namespace LayarTerakhir.Editor
                     // Sendal jepit khas Indonesia: sol karet gelap + tali Y, bukan balok metal.
                     if(i%2==0)for(int foot=0;foot<2;foot++)
                     {
-                        var slipper=Box("TenantSlipper",new Vector3(side*1.15f,y+.022f,z+.65f+foot*.17f),new Vector3(.26f,.035f,.11f),metal);
-                        var strapBase=slipper.transform.position+Vector3.up*.026f+Vector3.forward*.035f;
-                        var strapL=Box("SlipperStrapL",strapBase,new Vector3(.018f,.014f,.10f),trim);
-                        strapL.transform.rotation=Quaternion.Euler(0,28,0);
-                        var strapR=Box("SlipperStrapR",strapBase,new Vector3(.018f,.014f,.10f),trim);
-                        strapR.transform.rotation=Quaternion.Euler(0,-28,0);
-                        Box("SlipperToePost",slipper.transform.position+Vector3.up*.026f-Vector3.forward*.012f,new Vector3(.016f,.03f,.016f),trim);
+                        var slipper=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_LayarTerakhir/assets/Art/Original/Models/IndonesianFlipFlop.fbx"));
+                        slipper.name="TenantSlipper";slipper.transform.SetParent(root,false);slipper.transform.localRotation=Quaternion.Euler(0,90,0);
+                        foreach(var renderer in slipper.GetComponentsInChildren<Renderer>())
+                        {
+                            var materials=renderer.sharedMaterials;
+                            for(int slot=0;slot<materials.Length;slot++)materials[slot]=AssetDatabase.LoadAssetAtPath<Material>(PrologReviewRevision.Art+"Materials/"+(materials[slot].name.Contains("BlueStrap")?"FlipFlopBlueStrap":materials[slot].name.Contains("Edge")?"FlipFlopEdge":"FlipFlopRubber")+".mat");
+                            renderer.sharedMaterials=materials;
+                        }
+                        KosVisualV2.Resize(slipper,new Vector3(.27f,.045f,.10f));KosVisualV2.SetCenter(slipper,root.TransformPoint(new Vector3(side*1.15f,y+.027f,z+.65f+foot*.17f)));
                     }
                     Box("RoomVentFrame",new Vector3(side*1.39f,y+2.48f,z),new Vector3(.08f,.22f,.79f),metal);
                     for(int l=0;l<3;l++)Box("RoomVentLouvre",new Vector3(side*1.34f,y+2.42f+l*.06f,z),new Vector3(.025f,.023f,.71f),trim);

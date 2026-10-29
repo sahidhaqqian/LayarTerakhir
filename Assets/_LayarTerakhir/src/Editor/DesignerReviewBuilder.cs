@@ -190,7 +190,7 @@ namespace LayarTerakhir.Editor
                 for(int b=0;b<3;b++)
                 {
                     var dot=GameObject.CreatePrimitive(PrimitiveType.Quad);dot.name="VentBlinkDot";dot.transform.SetParent(blink.transform,false);
-                    dot.transform.localPosition=new Vector3((b-1)*.2f,.1f,-.02f);dot.transform.localRotation=Quaternion.identity;
+                    dot.transform.localPosition=new Vector3((b-1)*.2f,.1f,-.02f);dot.transform.localRotation=Quaternion.identity;dot.transform.localScale=new Vector3(.015f,.015f,1);
                     dot.GetComponent<Renderer>().sharedMaterial=glowMat;Object.DestroyImmediate(dot.GetComponent<Collider>());
                     foreach(var t in dot.GetComponentsInChildren<Transform>(true))t.gameObject.layer=AtmajaPhoneView.ARLayer;
                 }

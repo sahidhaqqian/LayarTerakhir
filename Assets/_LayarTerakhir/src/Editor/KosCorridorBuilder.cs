@@ -78,7 +78,7 @@ namespace LayarTerakhir.Editor
                 {
                     float z=1.5f+i*3;
                     ClosedDoor("KosUpperDoor_"+x+"_"+i,new Vector3(x-Mathf.Sign(x)*.13f,4.38f,z),(x<0?21:25)+i,x<0?Vector3.right:Vector3.left,i==0&&x<0);
-                    if(i!=1)ClosedDoor("KosGroundDoor_"+x+"_"+i,new Vector3(x-Mathf.Sign(x)*.13f,1.08f,z),(x<0?1:5)+i,x<0?Vector3.right:Vector3.left,false);
+                    if(i!=1&&!(x<0&&i==2))ClosedDoor("KosGroundDoor_"+x+"_"+i,new Vector3(x-Mathf.Sign(x)*.13f,1.08f,z),(x<0?1:5)+i,x<0?Vector3.right:Vector3.left,false);
                 }
             }
             Box("HallRearWall",new Vector3(0,3.1f,17.2f),new Vector3(5.2f,6.2f,.18f),wall);
@@ -264,7 +264,11 @@ namespace LayarTerakhir.Editor
             Box(title+"Back",new Vector3(side*4.8f,1.4f,4.25f),new Vector3(.15f,2.8f,3.6f),wall);
             // Dinding keramik setengah badan agar tidak polos kotak semen.
             Box(title+"TiledWainscot",new Vector3(side*4.7f,.55f,4.25f),new Vector3(.04f,1.1f,3.5f),roomFloor);
-            foreach(float z in new[]{2.5f,6f})Box(title+"Side",new Vector3(x,1.4f,z),new Vector3(3.4f,2.8f,.15f),wall);
+            foreach(float z in new[]{2.5f,6f})
+            {
+                if(side<0&&z==6)continue; // Continuous kitchen/dining space, no separating wall.
+                Box(title+"Side",new Vector3(x,1.4f,z),new Vector3(3.4f,2.8f,.15f),wall);
+            }
             if(side>0)
             {
                 Box(title+"FrontLow",new Vector3(side*1.5f,1.4f,3.0f),new Vector3(.15f,2.8f,1.0f),wall);Box(title+"FrontHigh",new Vector3(side*1.5f,1.4f,5.5f),new Vector3(.15f,2.8f,1.0f),wall);Box(title+"Lintel",new Vector3(side*1.5f,2.55f,4.25f),new Vector3(.15f,.5f,1.5f),wall);
@@ -280,13 +284,15 @@ namespace LayarTerakhir.Editor
                 // terbuka permanen. Daun parkir sebelumnya terlihat hilang
                 // menembus dinding saat pemain ke ruang makan.
             }
-            Label(title+"Sign",title,new Vector3(side*1.38f,2.44f,4.25f),side<0?Vector3.right:Vector3.left,.12f);
+            if(side<0)Label(title+"Sign",title,new Vector3(side*1.38f,2.44f,4.25f),Vector3.right,.12f);
             Practical(new Vector3(x,2.72f,4.25f),new Color(.83f,.84f,.73f),1.1f,4);
             if(side<0)
             {
                 // Dapur kost dengan aset internet realistis (CC0: PolyHaven + OGA).
-                Box("SharedKitchenCounter",new Vector3(-4.2f,.45f,4.5f),new Vector3(.7f,.9f,2.3f),doorMat??wood);
-                Box("KitchenCounterTop",new Vector3(-4.2f,.92f,4.5f),new Vector3(.78f,.05f,2.4f),metal);
+                Box("SharedKitchenCounter",new Vector3(-4.2f,.45f,5.075f),new Vector3(.7f,.9f,1.15f),wood);
+                Box("SharedKitchenCounterFront",new Vector3(-4.2f,.45f,3.575f),new Vector3(.7f,.9f,.45f),wood);
+                Box("KitchenCounterTop",new Vector3(-4.2f,.92f,5.075f),new Vector3(.78f,.05f,1.15f),metal);
+                Box("KitchenCounterTopFront",new Vector3(-4.2f,.92f,3.575f),new Vector3(.78f,.05f,.45f),metal);
                 var ceramic=PbrReal("RealCeramic","Textures/Sink_A/Sink_A_Diffuse_1K.png","Textures/Sink_A/Sink_A_Normal_1K.png","Textures/Sink_A/Sink_A_Ambient Occlusion_1K.png",Color.white,.6f);
                 RealModel("electric_stove.fbx","RealStove",new Vector3(.65f,.95f,.7f),new Vector3(-4.2f,.475f,4.15f),0,_=>PhReal("electric_stove"));
                 RealModel("pot_enamel_01.fbx","RealPot",new Vector3(.3f,.18f,.3f),new Vector3(-4.25f,1.04f,4.15f),15,_=>PhReal("pot_enamel_01"));
@@ -298,30 +304,27 @@ namespace LayarTerakhir.Editor
                 RealModel("wooden_spoon.fbx","RealSpoon",new Vector3(.3f,.03f,.07f),new Vector3(-4.05f,.975f,4.85f),-30,_=>PhReal("wooden_spoon"));
                 RealModel("steel_frame_shelves_01.fbx","RealDishRack",new Vector3(.95f,1.8f,.4f),new Vector3(-2.4f,.9f,5.6f),0,_=>PhReal("steel_frame_shelves_01"));
                 RealModel("fridge.fbx","RealFridge",new Vector3(.65f,1.5f,.65f),new Vector3(-2.3f,.75f,2.95f),0,null);
-                RealModel("veggiesbox.fbx","RealVeggieBox",new Vector3(.4f,.25f,.3f),new Vector3(-4.2f,1.07f,4.5f),10,null);
                 var gas=GameObject.CreatePrimitive(PrimitiveType.Cylinder);gas.name="KitchenGasTube";gas.transform.SetParent(root,false);gas.transform.position=new Vector3(-4.2f,.35f,3.55f);gas.transform.localScale=new Vector3(.28f,.7f,.28f);var gasMat=Material("KosGasGreen",new Color(.12f,.38f,.18f));gas.GetComponent<Renderer>().sharedMaterial=gasMat;Object.DestroyImmediate(gas.GetComponent<Collider>());
                 RealModel("metal_trash_can.fbx","RealTrashCan",new Vector3(.4f,.7f,.4f),new Vector3(-1.85f,.35f,5.7f),0,_=>PhReal("metal_trash_can"));
                 RealModel("metal_jug.fbx","RealGayung",new Vector3(.16f,.2f,.16f),new Vector3(-2.1f,.5f,5.4f),0,_=>PhReal("metal_jug"));
                 Model("wooden_bucket_01","SharedWaterBucket",new Vector3(.35f,.45f,.35f),new Vector3(-2.1f,.225f,5.4f));
-                RealModel("drain_cleaner.fbx","RealCleaner",new Vector3(.12f,.3f,.12f),new Vector3(-3.55f,.15f,5.65f),0,_=>PhReal("drain_cleaner"));
-                RealModel("plunger.fbx","RealPlunger",new Vector3(.15f,.5f,.15f),new Vector3(-3.35f,.25f,5.65f),0,_=>PhReal("plunger"));
+                RealModel("drain_cleaner.fbx","RealCleaner",new Vector3(.12f,.3f,.12f),new Vector3(-4.6f,.15f,5.85f),0,_=>PhReal("drain_cleaner"));
+                RealModel("plunger.fbx","RealPlunger",new Vector3(.15f,.5f,.15f),new Vector3(-4.6f,.25f,6.08f),0,_=>PhReal("plunger"));
             }
             else
             {
                 // Kamar mandi dengan aset internet realistis (CC0: OGA + PolyHaven).
-                Box("BathroomWaterTank",new Vector3(4.1f,.55f,5.25f),new Vector3(.9f,1.1f,.9f),roomFloor);
-                Box("BathroomTankLid",new Vector3(4.1f,1.12f,5.25f),new Vector3(.95f,.05f,.95f),metal);
-                Box("BathroomMirror",new Vector3(4.75f,1.6f,3.0f),new Vector3(.03f,.5f,.4f),metal);
+                Box("BathroomMirror",new Vector3(3.8f,1.6f,5.89f),new Vector3(.4f,.5f,.03f),metal);
                 var ceramic=PbrReal("RealCeramic","Textures/Sink_A/Sink_A_Diffuse_1K.png","Textures/Sink_A/Sink_A_Normal_1K.png","Textures/Sink_A/Sink_A_Ambient Occlusion_1K.png",Color.white,.6f);
-                var toiletMat=PbrReal("RealToilet","Textures/Toilet_Round/Toilet_Round_Diffuse_1K.png","Textures/Toilet_Round/Toilet_Round_Normal_1K.png","Textures/Toilet_Round/Toilet_Round_Ambient Occlusion_1K.png",Color.white,.55f);
-                RealModel("Toilet_Round_A.fbx","RealToiletW",new Vector3(.62f,.8f,.7f),new Vector3(4.8f,.4f,5.2f),-90,_=>toiletMat);
-                RealModel("Toilet_Round_A.fbx","RealToiletP",new Vector3(.62f,.8f,.7f),new Vector3(4.8f,.4f,3.2f),-90,_=>toiletMat);
-                RealModel("Sink_A.fbx","RealBathSink",new Vector3(.55f,.85f,.5f),new Vector3(3.4f,.425f,5.55f),-90,_=>ceramic);
+                var toiletMat=Material("RealToilet",new Color(.84f,.83f,.79f));toiletMat.SetTexture("_BaseMap",null);toiletMat.SetTexture("_BumpMap",null);toiletMat.DisableKeyword("_NORMALMAP");toiletMat.SetFloat("_Smoothness",.48f);
+                RealModel("Toilet_Round_A.fbx","RealToiletW",new Vector3(.62f,.8f,.7f),new Vector3(5.65f,.4f,5.2f),90,_=>toiletMat);
+                RealModel("Toilet_Round_A.fbx","RealToiletP",new Vector3(.62f,.8f,.7f),new Vector3(5.65f,.4f,3.2f),90,_=>toiletMat);
+                RealModel("Sink_A.fbx","RealBathSink",new Vector3(.55f,.85f,.3f),new Vector3(3.8f,.425f,5.75f),-90,_=>ceramic);
                 var showerMat=PbrReal("RealShower","Textures/chuveiro.jpg","Textures/chuveiro.jpg","Textures/chuveiro.jpg",Color.white,.4f);
                 RealModel("chuveiro.obj","RealShowerW",new Vector3(.22f,.18f,.22f),new Vector3(6.0f,2.05f,5.2f),-90,_=>showerMat);
                 RealModel("chuveiro.obj","RealShowerP",new Vector3(.22f,.18f,.22f),new Vector3(6.0f,2.05f,3.3f),-90,_=>showerMat);
-                RealModel("ToiletPaper.obj","RealTissueW",new Vector3(.15f,.12f,.12f),new Vector3(4.3f,1.0f,5.2f),0,null);
-                RealModel("ToiletPaper.obj","RealTissueP",new Vector3(.15f,.12f,.12f),new Vector3(4.3f,1.0f,3.2f),0,null);
+                RealModel("ToiletPaper.obj","RealTissueW",new Vector3(.15f,.12f,.12f),new Vector3(5.15f,.85f,5.88f),0,null);
+                RealModel("ToiletPaper.obj","RealTissueP",new Vector3(.15f,.12f,.12f),new Vector3(5.15f,.85f,4.70f),0,null);
                 RealModel("metal_jug.fbx","RealGayungBath",new Vector3(.16f,.2f,.16f),new Vector3(4.0f,.3f,4.3f),0,_=>PhReal("metal_jug"));
                 Model("wooden_bucket_01","BathroomEmber",new Vector3(.35f,.4f,.35f),new Vector3(3.9f,.2f,4.4f));
                 RealModel("garden_hose_wall_mounted_01.fbx","YardWaterTap",new Vector3(.5f,.7f,.3f),new Vector3(-7.85f,.6f,-4f),90,_=>PhReal("garden_hose_wall_mounted_01"));

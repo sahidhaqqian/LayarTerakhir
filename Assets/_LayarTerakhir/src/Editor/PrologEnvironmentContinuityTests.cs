@@ -68,6 +68,17 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(kampung.Find("InterludeAlley").GetComponentsInChildren<Renderer>().Length, Is.EqualTo(renderers));
         }
 
+        [Test] public void MissingNeighborhoodRecoversTheSamePermanentHousesAndBindings()
+        {
+            EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);
+            var corridor=Object.FindFirstObjectByType<KosCorridorDirector>();var original=GameObject.Find("KampungMelati");
+            int renderers=original.GetComponentsInChildren<Renderer>(true).Length;Object.DestroyImmediate(original);
+            InterludeExterior.EnsureNeighborhood(corridor);InterludeExterior.EnsureNeighborhood(corridor);
+            var restored=GameObject.Find("KampungMelati");Assert.That(restored.GetComponentsInChildren<Renderer>(true).Length,Is.EqualTo(renderers));
+            Assert.That(Object.FindObjectsByType<MelatiNeighborhood>(FindObjectsSortMode.None).Length,Is.EqualTo(1));
+            Assert.That(restored.GetComponent<MelatiNeighborhood>().corridor,Is.SameAs(corridor));Assert.That(corridor.rideExit,Is.SameAs(restored.GetComponent<MelatiNeighborhood>().parkedMotor));
+        }
+
         [TestCase(false)] [TestCase(true)]
         public void MorningRoomAndYardShareTheCampaignSky(bool dusk)
         {

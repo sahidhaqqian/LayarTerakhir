@@ -12,6 +12,16 @@ namespace LayarTerakhir.Interlude
         public static void EnsureNeighborhood(KosCorridorDirector corridor)
         {
             var kampung = GameObject.Find("KampungMelati");
+            if(!kampung)
+            {
+                var permanent=Resources.Load<GameObject>("MelatiPermanentNeighborhood");
+                if(permanent){kampung=Object.Instantiate(permanent);kampung.name="KampungMelati";}
+            }
+            if(kampung)
+            {
+                var street=kampung.GetComponent<MelatiNeighborhood>();
+                if(street){street.corridor=corridor;corridor.rideExit=street.parkedMotor;}
+            }
             var alley = kampung ? kampung.transform.Find("InterludeAlley") : null;
             // Kos scene revisions can rebuild the base neighborhood. Keep
             // its permanent extension available independently of that pass.
@@ -63,17 +73,15 @@ namespace LayarTerakhir.Interlude
                 cloth.GetComponent<Renderer>().sharedMaterial = mat;
                 DropCollider(cloth);
             }
-            var sandalMat = new Material(Shader.Find("Universal Render Pipeline/Lit")) { color = new Color(.12f, .10f, .09f) };
             foreach (var spot in new[] { new Vector3(-1.0f, .03f, 2.1f), new Vector3(1.0f, .03f, 8.0f), new Vector3(-1.0f, .03f, 10.9f) })
                 for (int s = -1; s <= 1; s += 2)
                 {
-                    var sandal = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    var sandalPrefab=Resources.Load<GameObject>("IndonesianFlipFlop");
+                    if(!sandalPrefab)continue;
+                    var sandal = Object.Instantiate(sandalPrefab);
                     sandal.name = "InterludeSandals";
                     sandal.transform.SetParent(root, false);
                     sandal.transform.localPosition = spot + new Vector3(s * .09f, 0, 0);
-                    sandal.transform.localScale = new Vector3(.11f, .05f, .28f);
-                    sandal.GetComponent<Renderer>().sharedMaterial = sandalMat;
-                    DropCollider(sandal);
                 }
             var galon = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             galon.name = "InterludeGalon";
@@ -96,6 +104,7 @@ namespace LayarTerakhir.Interlude
         {
             SetExposure(.45f);
             ApplyAtmosphere(eye, false);
+            EnsureStreetSun();
             foreach (var light in Object.FindObjectsByType<Light>(FindObjectsSortMode.None))
             {
                 if (light.type == LightType.Directional)
@@ -114,6 +123,7 @@ namespace LayarTerakhir.Interlude
         {
             SetExposure(.45f);
             ApplyAtmosphere(eye, true);
+            EnsureStreetSun();
             foreach (var light in Object.FindObjectsByType<Light>(FindObjectsSortMode.None))
             {
                 if (light.type == LightType.Directional)
@@ -126,6 +136,14 @@ namespace LayarTerakhir.Interlude
                 }
                 else light.enabled = light.name.Contains("StreetLight") || light.name.Contains("WarungWarmLight") || light.name == "WartegCaseLight";
             }
+        }
+
+        private static void EnsureStreetSun()
+        {
+            foreach(var light in Object.FindObjectsByType<Light>(FindObjectsSortMode.None))
+                if(light.type==LightType.Directional){RenderSettings.sun=light;return;}
+            var sun=new GameObject("InterludeStreetSun").AddComponent<Light>();
+            sun.type=LightType.Directional;sun.shadows=LightShadows.Soft;RenderSettings.sun=sun;
         }
 
         // The room keeps its practical lamps, but shares the exterior's time

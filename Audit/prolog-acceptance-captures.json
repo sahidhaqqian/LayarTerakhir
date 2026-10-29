@@ -1,0 +1,1235 @@
+[
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug01-fan-context.png",
+    "sha256": "f40bb0cae1fda4ff0ca7275b3efd1ee070827d52a63e5c5c17e305d287c8503b",
+    "name": "bug01-fan-context",
+    "cameraPosition": {
+      "x": 0.8700000047683716,
+      "y": 1.649999976158142,
+      "z": -0.8199999928474426
+    },
+    "cameraForward": {
+      "x": -0.22293134033679962,
+      "y": -0.04360847547650337,
+      "z": 0.9738582372665405
+    },
+    "mean": 0.14886793494224548,
+    "contrast": 0.14269770681858063,
+    "darkRatio": 0.3680099844932556,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug01-fan-detail.png",
+    "sha256": "7be391eab216bbb6a208782219b7e2825e4038c70fa8e83a7fd9b6d8dd687901",
+    "name": "bug01-fan-detail",
+    "cameraPosition": {
+      "x": 0.30000007152557373,
+      "y": 1.6385000944137573,
+      "z": 0.4699999690055847
+    },
+    "cameraForward": {
+      "x": -5.955315174333009e-08,
+      "y": -0.08304548263549805,
+      "z": 0.9965457320213318
+    },
+    "mean": 0.2224951535463333,
+    "contrast": 0.13363498449325562,
+    "darkRatio": 0.1181347668170929,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug02-call-2-messages.png",
+    "sha256": "7ae4e68cba9ab1d3290eddfda0da7aadc984ebaede9e84982a0668f87ce6a291",
+    "name": "bug02-call-2-messages",
+    "cameraPosition": {
+      "x": -0.36000001430511475,
+      "y": 1.71999990940094,
+      "z": 13.619999885559082
+    },
+    "cameraForward": {
+      "x": 0.10017863661050797,
+      "y": -0.016696425154805183,
+      "z": -0.994829535484314
+    },
+    "mean": 0.06782787293195724,
+    "contrast": 0.10002453625202179,
+    "darkRatio": 0.6696690320968628,
+    "sourceLog": "prolog-acceptance-retest.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug03-06-upper-doors.png",
+    "sha256": "07fc6fbda14ceedf2f6432358113a5b8ce68639f5524af3bbeece8bf565273b0",
+    "name": "bug03-06-upper-doors",
+    "cameraPosition": {
+      "x": -16.0,
+      "y": 4.949999809265137,
+      "z": 2.799999952316284
+    },
+    "cameraForward": {
+      "x": -0.7165413498878479,
+      "y": -0.2717913091182709,
+      "z": -0.6424160003662109
+    },
+    "mean": 0.21324147284030914,
+    "contrast": 0.09038989245891571,
+    "darkRatio": 0.021791448816657066,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug04-corridor-slippers.png",
+    "sha256": "e5b11f0d17139dba3be25f5f42694e1539abefa07c014aa108911ee6525b4b4b",
+    "name": "bug04-corridor-slippers",
+    "cameraPosition": {
+      "x": -16.699996948242188,
+      "y": 0.9269998073577881,
+      "z": 2.700000047683716
+    },
+    "cameraForward": {
+      "x": -0.3924192488193512,
+      "y": -0.7848371267318726,
+      "z": -0.47962263226509094
+    },
+    "mean": 0.14765335619449615,
+    "contrast": 0.03221385180950165,
+    "darkRatio": 0.04737521708011627,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug05-06-stair-landing.png",
+    "sha256": "c648eb37641c9b40449e0cb0b8f923817b1ebb89a6ecd253f932e44af6693b2a",
+    "name": "bug05-06-stair-landing",
+    "cameraPosition": {
+      "x": -15.449999809265137,
+      "y": 4.949999809265137,
+      "z": 14.800000190734863
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": -0.06802372634410858,
+      "z": 0.9976837038993835
+    },
+    "mean": 0.14619894325733185,
+    "contrast": 0.07788951694965363,
+    "darkRatio": 0.10645833611488342,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug06-lower-exit.png",
+    "sha256": "e36567199982abfe7e3657d305386ff8e2fa02a76bbe942d5a0c087c4eebe4e5",
+    "name": "bug06-lower-exit",
+    "cameraPosition": {
+      "x": -15.449999809265137,
+      "y": 1.7000001668930054,
+      "z": 14.800000190734863
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": -0.045407675206661224,
+      "z": 0.9989685416221619
+    },
+    "mean": 0.08886673301458359,
+    "contrast": 0.04940905049443245,
+    "darkRatio": 0.30608072876930237,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug10-kitchen.png",
+    "sha256": "9e276f8aa3d04a20cb18696931389a5f772ccd9c9d3349c8f2dd4589460a76ce",
+    "name": "bug10-kitchen",
+    "cameraPosition": {
+      "x": -17.950000762939453,
+      "y": 1.7000001668930054,
+      "z": 3.4000000953674316
+    },
+    "cameraForward": {
+      "x": -0.8180437088012695,
+      "y": -0.27268144488334656,
+      "z": 0.5064082145690918
+    },
+    "mean": 0.17185576260089874,
+    "contrast": 0.10298120975494385,
+    "darkRatio": 0.16369248926639557,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug07-kitchen-to-dining.png",
+    "sha256": "5bcf9e411815e49e39969006047c78028b23ceb511babd2471ec52bced9dc12f",
+    "name": "bug07-kitchen-to-dining",
+    "cameraPosition": {
+      "x": -19.0,
+      "y": 1.7000001668930054,
+      "z": 5.099999904632568
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": -0.12033142149448395,
+      "z": 0.9927337765693665
+    },
+    "mean": 0.16481105983257294,
+    "contrast": 0.11333905160427094,
+    "darkRatio": 0.17548827826976776,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug08-wanita-before-input.png",
+    "sha256": "39cbf30479aef67a791ce82c889b74cb227a2f7eb9d95e013cf6d263257452aa",
+    "name": "bug08-wanita-before-input",
+    "cameraPosition": {
+      "x": -13.899999618530273,
+      "y": 1.6799999475479126,
+      "z": 5.199999809265137
+    },
+    "cameraForward": {
+      "x": 0.9888820052146912,
+      "y": 0.14870411157608032,
+      "z": -2.8219074010849e-07
+    },
+    "mean": 0.12253829836845398,
+    "contrast": 0.08825397491455078,
+    "darkRatio": 0.10572699457406998,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug08-pria-before-input.png",
+    "sha256": "f1467afc6cf29aa8bdfc06f46cbeb971100b65ceecedfe582448ae3ca6e069ad",
+    "name": "bug08-pria-before-input",
+    "cameraPosition": {
+      "x": -13.899999618530273,
+      "y": 1.6799999475479126,
+      "z": 3.299999952316284
+    },
+    "cameraForward": {
+      "x": 0.9888820052146912,
+      "y": 0.14870411157608032,
+      "z": -2.8219074010849e-07
+    },
+    "mean": 0.1529179811477661,
+    "contrast": 0.09080531448125839,
+    "darkRatio": 0.06825846433639526,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug08-wanita-open-input.png",
+    "sha256": "08a4e365c147538491ebf59402c5ae06c077d1ca74d7f9f7ee4a7c6f96fafed4",
+    "name": "bug08-wanita-open-input",
+    "cameraPosition": {
+      "x": -13.899999618530273,
+      "y": 1.6799999475479126,
+      "z": 5.199999809265137
+    },
+    "cameraForward": {
+      "x": 0.9888820052146912,
+      "y": 0.14870411157608032,
+      "z": -2.8219074010849e-07
+    },
+    "mean": 0.1150268092751503,
+    "contrast": 0.057468805462121964,
+    "darkRatio": 0.22928167879581451,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug08-outer-bathroom-no-floating-title.png",
+    "sha256": "94cb6b64a3fb5782ce47358e5fa525f4885bf469e1795bbb6146f1d837747b79",
+    "name": "bug08-outer-bathroom-no-floating-title",
+    "cameraPosition": {
+      "x": -15.850000381469727,
+      "y": 1.7000001668930054,
+      "z": 4.25
+    },
+    "cameraForward": {
+      "x": 0.9984256029129028,
+      "y": -0.05609136074781418,
+      "z": 1.8742866814136505e-08
+    },
+    "mean": 0.14528699219226837,
+    "contrast": 0.06593813002109528,
+    "darkRatio": 0.14146701991558075,
+    "sourceLog": "prolog-acceptance-bathroom-title.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug09-bathroom.png",
+    "sha256": "9b442141bf9170e6647ab708549ce894eb14db89fa5e168a40144468c6f6b716",
+    "name": "bug09-bathroom",
+    "cameraPosition": {
+      "x": -12.600000381469727,
+      "y": 1.649999976158142,
+      "z": 5.199999809265137
+    },
+    "cameraForward": {
+      "x": 0.890434741973877,
+      "y": -0.455111026763916,
+      "z": 9.685754776000977e-08
+    },
+    "mean": 0.0572921559214592,
+    "contrast": 0.04672553762793541,
+    "darkRatio": 0.7188172936439514,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug11-12-TenantMotor_0.png",
+    "sha256": "c4d42832017f7d3a7215230aa0f39dfd31bd3611c6f5f2f081df13494271a64a",
+    "name": "bug11-12-TenantMotor_0",
+    "cameraPosition": {
+      "x": -18.600000381469727,
+      "y": 2.059999942779541,
+      "z": -1.5999999046325684
+    },
+    "cameraForward": {
+      "x": -0.6799274682998657,
+      "y": -0.2745860517024994,
+      "z": -0.6799273490905762
+    },
+    "mean": 0.08883063495159149,
+    "contrast": 0.03917904570698738,
+    "darkRatio": 0.33755749464035034,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug11-12-TenantMotor_2.png",
+    "sha256": "d7406ebe2783e1729b93b4a74365616d0d37f9261b8d462f8811e776acbe9196",
+    "name": "bug11-12-TenantMotor_2",
+    "cameraPosition": {
+      "x": -14.200000762939453,
+      "y": 2.059999942779541,
+      "z": -1.700000286102295
+    },
+    "cameraForward": {
+      "x": 0.6799274682998657,
+      "y": -0.2745860517024994,
+      "z": -0.6799273490905762
+    },
+    "mean": 0.07756133377552032,
+    "contrast": 0.05793476477265358,
+    "darkRatio": 0.6333116292953491,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug11-12-RakaMotor.png",
+    "sha256": "40a87256b8d0caac5ed8ad69367a4de925efd9b3cfe192e5ef0d7e8e085c43ca",
+    "name": "bug11-12-RakaMotor",
+    "cameraPosition": {
+      "x": -11.149999618530273,
+      "y": 2.059999942779541,
+      "z": -1.9000000953674316
+    },
+    "cameraForward": {
+      "x": -0.6799274682998657,
+      "y": -0.2745860517024994,
+      "z": -0.6799273490905762
+    },
+    "mean": 0.10474637150764465,
+    "contrast": 0.0676812157034874,
+    "darkRatio": 0.4037066102027893,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug13-phone-hands-runtime.png",
+    "sha256": "dfd7b201029ac3d93d4817a51a751644544c0024a29adf740fac3b3bb51c953e",
+    "name": "bug13-phone-hands-runtime",
+    "cameraPosition": {
+      "x": 0.0,
+      "y": 1.659999966621399,
+      "z": 12.199999809265137
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -1.0
+    },
+    "mean": 0.04000264033675194,
+    "contrast": 0.05856012925505638,
+    "darkRatio": 0.8215484023094177,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug13-portrait-phone-hands.png",
+    "sha256": "b0c1a371c0dffcb7061fc1e8e45cb71d580d5e36e99b6d64ef5337c80de703a2",
+    "name": "bug13-portrait-phone-hands",
+    "cameraPosition": {
+      "x": 0.0,
+      "y": 1.659999966621399,
+      "z": 12.199999809265137
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -1.0
+    },
+    "mean": 0.05504849553108215,
+    "contrast": 0.08551008254289627,
+    "darkRatio": 0.7778493762016296,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/04-phone-call-contact.png",
+    "sha256": "e8a3dfc12fbe35f482ab15f5da4851e875a032c104d3e21903a1c2a6ad01cdfd",
+    "name": "04-phone-call-contact",
+    "cameraPosition": {
+      "x": -0.36000001430511475,
+      "y": 1.71999990940094,
+      "z": 13.619999885559082
+    },
+    "cameraForward": {
+      "x": 0.10017863661050797,
+      "y": -0.016696425154805183,
+      "z": -0.994829535484314
+    },
+    "mean": 0.05247972905635834,
+    "contrast": 0.08072620630264282,
+    "darkRatio": 0.7601616978645325,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug14-phone-menu-drag.png",
+    "sha256": "30366ce3aaa89299c5d54e61c7cade25b1a112c62de9386ed4a2b606ab23e48c",
+    "name": "bug14-phone-menu-drag",
+    "cameraPosition": {
+      "x": 0.01978975534439087,
+      "y": 1.71999990940094,
+      "z": 13.664789199829102
+    },
+    "cameraForward": {
+      "x": -0.16276508569717407,
+      "y": -0.016352251172065735,
+      "z": -0.9865294098854065
+    },
+    "mean": 0.07093184441328049,
+    "contrast": 0.11300908029079437,
+    "darkRatio": 0.7173079252243042,
+    "sourceLog": "prolog-acceptance-runtime-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug15-live-before-front-door.png",
+    "sha256": "472d8aa34c60697b6508364a37856dcf890d1e70d2b0195116d16581b99dd257",
+    "name": "bug15-live-before-front-door",
+    "cameraPosition": {
+      "x": -0.36000001430511475,
+      "y": 1.71999990940094,
+      "z": 13.619999885559082
+    },
+    "cameraForward": {
+      "x": 0.10017863661050797,
+      "y": -0.016696425154805183,
+      "z": -0.994829535484314
+    },
+    "mean": 0.06213061884045601,
+    "contrast": 0.09848909825086594,
+    "darkRatio": 0.7120236754417419,
+    "sourceLog": "prolog-acceptance-verified-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug16-window-blink-no-key-prompt.png",
+    "sha256": "9db4d5012e8f023368af7baf281616bae23a3f814808e00aead3aa7bd495d1bf",
+    "name": "bug16-window-blink-no-key-prompt",
+    "cameraPosition": {
+      "x": -9.020000457763672,
+      "y": 0.8046389222145081,
+      "z": -11.335000038146973
+    },
+    "cameraForward": {
+      "x": 0.9639298319816589,
+      "y": 0.23993805050849915,
+      "z": 0.11519145965576172
+    },
+    "mean": 0.11347919702529907,
+    "contrast": 0.212017223238945,
+    "darkRatio": 0.7185286283493042,
+    "sourceLog": "prolog-acceptance-verified-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug17-well-chain.png",
+    "sha256": "202e64d7497ab215d76465d68b8b6bd679d95742df093ff26b91d6a71c2f177a",
+    "name": "bug17-well-chain",
+    "cameraPosition": {
+      "x": -4.199999809265137,
+      "y": 2.0,
+      "z": -9.800000190734863
+    },
+    "cameraForward": {
+      "x": 0.6324105858802795,
+      "y": -0.4122380316257477,
+      "z": -0.6558330655097961
+    },
+    "mean": 0.0473288930952549,
+    "contrast": 0.01931406557559967,
+    "darkRatio": 0.9526323676109314,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug17-front-door-chain.png",
+    "sha256": "fb4977a9cb838f53380af5091e79a7608a4cf4d31b42f6664fe6e7143357c7a7",
+    "name": "bug17-front-door-chain",
+    "cameraPosition": {
+      "x": 0.00987184327095747,
+      "y": 1.9500000476837158,
+      "z": 1.7300004959106445
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": -0.19611617922782898,
+      "z": -0.9805806875228882
+    },
+    "mean": 0.043083224445581436,
+    "contrast": 0.015669777989387512,
+    "darkRatio": 0.9992068409919739,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug18-ground-header.png",
+    "sha256": "3c0a3ce23a4b93113ae56307cf0beec21bb3c9225538a17052dbcfd599187909",
+    "name": "bug18-ground-header",
+    "cameraPosition": {
+      "x": 1.399999976158142,
+      "y": 2.1500000953674316,
+      "z": -3.59999942779541
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": 0.44721364974975586,
+      "z": 0.8944271802902222
+    },
+    "mean": 0.08510886877775192,
+    "contrast": 0.041563160717487335,
+    "darkRatio": 0.45152994990348816,
+    "sourceLog": "prolog-acceptance-final-batch.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug19-before-ar-home.png",
+    "sha256": "7dba7dd8ad0f5429ef3b53cfacd71263b0ff6b35d6c813efe7d6ebfe25cd46fb",
+    "name": "bug19-before-ar-home",
+    "cameraPosition": {
+      "x": 0.01978975534439087,
+      "y": 1.71999990940094,
+      "z": 13.664789199829102
+    },
+    "cameraForward": {
+      "x": -0.16276508569717407,
+      "y": -0.016352251172065735,
+      "z": -0.9865294098854065
+    },
+    "mean": 0.07343544811010361,
+    "contrast": 0.1117655411362648,
+    "darkRatio": 0.6535720229148865,
+    "sourceLog": "prolog-acceptance-runtime-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug19-home-ar-disabled.png",
+    "sha256": "92886dcc2661393d0315d015b7835055810e7c79cff05005a78fbd022d9f7a33",
+    "name": "bug19-home-ar-disabled",
+    "cameraPosition": {
+      "x": 0.01978975534439087,
+      "y": 1.71999990940094,
+      "z": 13.664789199829102
+    },
+    "cameraForward": {
+      "x": -0.16276508569717407,
+      "y": -0.016352251172065735,
+      "z": -0.9865294098854065
+    },
+    "mean": 0.07141466438770294,
+    "contrast": 0.11347457021474838,
+    "darkRatio": 0.717613935470581,
+    "sourceLog": "prolog-acceptance-runtime-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug20-survey-paper-top.png",
+    "sha256": "828517f993683b19fec65781eeb264637b3e25527c1bbbde3b0d2133d867493a",
+    "name": "bug20-survey-paper-top",
+    "cameraPosition": {
+      "x": -0.47999995946884155,
+      "y": 1.7599999904632568,
+      "z": 14.050000190734863
+    },
+    "cameraForward": {
+      "x": 0.11896201223134995,
+      "y": -0.02478376217186451,
+      "z": -0.9925893545150757
+    },
+    "mean": 0.2615576386451721,
+    "contrast": 0.3662494421005249,
+    "darkRatio": 0.6679654717445374,
+    "sourceLog": "prolog-acceptance-verified-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug20-survey-paper-bottom.png",
+    "sha256": "f4a8669fe10c0be1033e38e4dbca9ee29b7bdd855a807a378ee512a74a2b88a6",
+    "name": "bug20-survey-paper-bottom",
+    "cameraPosition": {
+      "x": -0.47999995946884155,
+      "y": 1.7599999904632568,
+      "z": 14.050000190734863
+    },
+    "cameraForward": {
+      "x": 0.11896201223134995,
+      "y": -0.02478376217186451,
+      "z": -0.9925893545150757
+    },
+    "mean": 0.260886013507843,
+    "contrast": 0.36703431606292725,
+    "darkRatio": 0.6735253930091858,
+    "sourceLog": "prolog-acceptance-verified-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug21-bath-door-before.png",
+    "sha256": "f9a8f446beffa1016764ca08a10d6fb6a8c0e327edd1b0c00a013b2dc1ee1bc8",
+    "name": "bug21-bath-door-before",
+    "cameraPosition": {
+      "x": 1.100000023841858,
+      "y": 5.429999828338623,
+      "z": -5.900000095367432
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": -0.6569778919219971,
+      "z": 0.7539098262786865
+    },
+    "mean": 0.23935289680957794,
+    "contrast": 0.272757351398468,
+    "darkRatio": 0.35892143845558167,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug21-bath-door-open.png",
+    "sha256": "f5f035edd57ace2b60831cbf83c8883d0da76d8fc8918395b2f60212cf7919c1",
+    "name": "bug21-bath-door-open",
+    "cameraPosition": {
+      "x": 1.100000023841858,
+      "y": 5.429999828338623,
+      "z": -5.900000095367432
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": -0.6569778919219971,
+      "z": 0.7539098262786865
+    },
+    "mean": 0.10866276919841766,
+    "contrast": 0.14652389287948608,
+    "darkRatio": 0.5685807466506958,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug22-blood-trail.png",
+    "sha256": "72a86d709305824ec092bada9c82cd0267bb7312e92b7e191d6f46fd1e251990",
+    "name": "bug22-blood-trail",
+    "cameraPosition": {
+      "x": 2.799999952316284,
+      "y": 5.449999809265137,
+      "z": -6.050000190734863
+    },
+    "cameraForward": {
+      "x": -0.9045339822769165,
+      "y": -0.301511287689209,
+      "z": 0.3015115261077881
+    },
+    "mean": 0.22628635168075562,
+    "contrast": 0.09346011281013489,
+    "darkRatio": 0.025224609300494194,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug22-handprint-detail.png",
+    "sha256": "1fbf286ee89cc74c416a1794e8286a29310ee66b4628ed2ce62efd6c41720d40",
+    "name": "bug22-handprint-detail",
+    "cameraPosition": {
+      "x": 2.200000047683716,
+      "y": 4.700000286102295,
+      "z": -6.419999122619629
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": -0.13511329889297485,
+      "z": 0.9908301830291748
+    },
+    "mean": 0.1667955219745636,
+    "contrast": 0.07555844634771347,
+    "darkRatio": 0.08394422382116318,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug22-floor-blood.png",
+    "sha256": "53b3fd17df4c10b80632c26efd9e6b70513be235e517004794af5cdac97515f1",
+    "name": "bug22-floor-blood",
+    "cameraPosition": {
+      "x": -0.10000000149011612,
+      "y": 5.026000022888184,
+      "z": -6.59999942779541
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": -0.8637790083885193,
+      "z": 0.5038709044456482
+    },
+    "mean": 0.30979159474372864,
+    "contrast": 0.11174279451370239,
+    "darkRatio": 0.0053515625186264515,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug23-child-header.png",
+    "sha256": "5e35c2f14259e5b9416dcef8647338b99ebd5f0543557a600e8482c82917dbc6",
+    "name": "bug23-child-header",
+    "cameraPosition": {
+      "x": 3.0,
+      "y": 5.449999809265137,
+      "z": -5.949999809265137
+    },
+    "cameraForward": {
+      "x": 0.8547875285148621,
+      "y": 0.24422505497932434,
+      "z": 0.4579218029975891
+    },
+    "mean": 0.376283198595047,
+    "contrast": 0.11514024436473846,
+    "darkRatio": 0.002170138992369175,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug23-bath-header.png",
+    "sha256": "f697f3f3a7cc490a599dcd432feff49c1581e8d15e8dbcf29fa982f68c1f2e27",
+    "name": "bug23-bath-header",
+    "cameraPosition": {
+      "x": 1.100000023841858,
+      "y": 5.449999809265137,
+      "z": -6.000000953674316
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": 0.44721364974975586,
+      "z": 0.8944271802902222
+    },
+    "mean": 0.22123020887374878,
+    "contrast": 0.07509417086839676,
+    "darkRatio": 0.01126844622194767,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug24-authored-vent-cover.png",
+    "sha256": "95eeb9528d95f9f11a14c923df5936ddf102dceabe9ad6e32afc0b92c7a16f41",
+    "name": "bug24-authored-vent-cover",
+    "cameraPosition": {
+      "x": 3.0,
+      "y": 4.650000095367432,
+      "z": -6.09999942779541
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": -0.20952926576137543,
+      "z": 0.9778023958206177
+    },
+    "mean": 0.13872851431369781,
+    "contrast": 0.10059763491153717,
+    "darkRatio": 0.4065212607383728,
+    "sourceLog": "prolog-acceptance-vent-authoring.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug24-vent-normal.png",
+    "sha256": "ed46611fce0bfc55b8ec4c3866f624864426bd8310057845e26df90dec3396bc",
+    "name": "bug24-vent-normal",
+    "cameraPosition": {
+      "x": 3.0,
+      "y": 5.499999523162842,
+      "z": -5.75
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": -0.9848078489303589,
+      "z": 0.17364811897277832
+    },
+    "mean": 0.12105973064899445,
+    "contrast": 0.19419480860233307,
+    "darkRatio": 0.6422569155693054,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug24-vent-ar.png",
+    "sha256": "a4d2ec8a6b59823f70e262527897c8c61b5a0f103b3e476081a547b8b86a8393",
+    "name": "bug24-vent-ar",
+    "cameraPosition": {
+      "x": 3.0,
+      "y": 5.499999523162842,
+      "z": -5.75
+    },
+    "cameraForward": {
+      "x": -0.3813062012195587,
+      "y": -0.756075382232666,
+      "z": 0.5319358110427856
+    },
+    "mean": 0.1985623985528946,
+    "contrast": 0.284917414188385,
+    "darkRatio": 0.5595627427101135,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug24-vent-ar-blink-off.png",
+    "sha256": "246d1ba736c29aff2f906a0237fb1c0dadf99837d59661a1f71c2b306be166bc",
+    "name": "bug24-vent-ar-blink-off",
+    "cameraPosition": {
+      "x": 3.0,
+      "y": 5.499999523162842,
+      "z": -5.75
+    },
+    "cameraForward": {
+      "x": -0.7884312868118286,
+      "y": -0.4459931552410126,
+      "z": 0.4236345887184143
+    },
+    "mean": 0.2360541671514511,
+    "contrast": 0.2971123158931732,
+    "darkRatio": 0.4768424332141876,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug24-inside-after-crawl.png",
+    "sha256": "4d00b9bf0bedca1399d0b9fde1260988eaffb557bac08aa1a90872472115926b",
+    "name": "bug24-inside-after-crawl",
+    "cameraPosition": {
+      "x": 3.0,
+      "y": 4.599999904632568,
+      "z": -4.7507548332214355
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": -0.445993036031723,
+      "z": 0.8950364589691162
+    },
+    "mean": 0.18767614662647247,
+    "contrast": 0.1735842525959015,
+    "darkRatio": 0.3429383635520935,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug25-27-family-photo.png",
+    "sha256": "30dc2741f4eeadcf37dd8b5d8323a68d60ae421a1e77ca8245e88994dc06f8d3",
+    "name": "bug25-27-family-photo",
+    "cameraPosition": {
+      "x": -0.10000000149011612,
+      "y": 5.449999809265137,
+      "z": -6.000000953674316
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": -0.15556295216083527,
+      "z": 0.9878259897232056
+    },
+    "mean": 0.2691745162010193,
+    "contrast": 0.1423494517803192,
+    "darkRatio": 0.026303168386220932,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug25-27-family-photo-ar.png",
+    "sha256": "d6b80ceb52fc92fdc95b47e02a955d43df40a102185de94ec8dd43b7a5447e59",
+    "name": "bug25-27-family-photo-ar",
+    "cameraPosition": {
+      "x": -0.10000000149011612,
+      "y": 4.529999732971191,
+      "z": -6.0
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": 0.7906484007835388,
+      "z": 0.6122705340385437
+    },
+    "mean": 0.19669967889785767,
+    "contrast": 0.22661130130290985,
+    "darkRatio": 0.4521256387233734,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug45-46-window-approach-no-prompt.png",
+    "sha256": "e2fcf133684d43f48da4cad6de92a1c8b778951aacaff452acc834bad361be84",
+    "name": "bug45-46-window-approach-no-prompt",
+    "cameraPosition": {
+      "x": -3.811324119567871,
+      "y": 2.0319998264312744,
+      "z": -10.922582626342773
+    },
+    "cameraForward": {
+      "x": -0.9926289916038513,
+      "y": -0.11764980107545853,
+      "z": -0.02908927947282791
+    },
+    "mean": 0.18157771229743958,
+    "contrast": 0.23957012593746185,
+    "darkRatio": 0.514246940612793,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug28-child-live-comments.png",
+    "sha256": "8ea71169ad5f3f4c79baaa97ce7c7bdfb3851d2dc6177d8916f6ab737faadde0",
+    "name": "bug28-child-live-comments",
+    "cameraPosition": {
+      "x": 3.0,
+      "y": 4.599999904632568,
+      "z": -4.7507548332214355
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": -0.445993036031723,
+      "z": 0.8950364589691162
+    },
+    "mean": 0.18926024436950684,
+    "contrast": 0.17482635378837585,
+    "darkRatio": 0.3431488573551178,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-28-46/notebook-lamp-cup.png",
+    "sha256": "8889a94fc8bb402631a1904a54d21f4068a8501d3b17efdf1615f371b50ab980"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-28-46/child-bed.png",
+    "sha256": "8e7e198bcde11b73af8b8df1b047ffc86e1d285396d3a761058da24174903ce3"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug32-child-corner.png",
+    "sha256": "aa25da03be80457d99ca690373e28ed095bce4c359cb0e5074b06febc20444f6",
+    "name": "bug32-child-corner",
+    "cameraPosition": {
+      "x": 5.099999904632568,
+      "y": 5.449999809265137,
+      "z": -3.90000057220459
+    },
+    "cameraForward": {
+      "x": -0.5865490436553955,
+      "y": -0.300794392824173,
+      "z": 0.751986026763916
+    },
+    "mean": 0.16394875943660736,
+    "contrast": 0.06881073117256165,
+    "darkRatio": 0.1271202266216278,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-28-46/cup-inspection.png",
+    "sha256": "6df545971cef911bac2c20287f26b87a4ee4f967d2e9d5d44b22310327aa2ec9"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-28-46/wall-scratches.png",
+    "sha256": "de3be4c1ac06ec47bfd2ac2e8dfef112e37e69ab6f8aa1fc7691ed7695d70a3a"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug35-floor-light-off.png",
+    "sha256": "acdfcf632066cd5e7b700a02776acdd9fd10e7f5950ad5620e4438ff70247ea1",
+    "name": "bug35-floor-light-off",
+    "cameraPosition": {
+      "x": 0.800000011920929,
+      "y": 5.429999828338623,
+      "z": -3.5999999046325684
+    },
+    "cameraForward": {
+      "x": 0.15708181262016296,
+      "y": -0.7225762605667114,
+      "z": 0.6732078194618225
+    },
+    "mean": 0.010800614953041077,
+    "contrast": 0.05778517574071884,
+    "darkRatio": 0.9575043320655823,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug35-floor-light-on.png",
+    "sha256": "4ca5b420bbe4c723a07f0b2a58015e1954e75f93ecedb063c1d7e933c20223e8",
+    "name": "bug35-floor-light-on",
+    "cameraPosition": {
+      "x": 0.800000011920929,
+      "y": 5.429999828338623,
+      "z": -3.5999999046325684
+    },
+    "cameraForward": {
+      "x": 0.15708182752132416,
+      "y": -0.7225762605667114,
+      "z": 0.6732078194618225
+    },
+    "mean": 0.05715380981564522,
+    "contrast": 0.0904187262058258,
+    "darkRatio": 0.7560069561004639,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-28-46/bathroom.png",
+    "sha256": "cf2020f2eaf5aea3e37b03e2faf33003a2dffb210b0184a908efaef29505fd82"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-28-46/master.png",
+    "sha256": "d438b7f3721c5941aa2e3e14debde996a5d0c1c179b66884ec1bb674ad1c9143"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug37-master-player-route.png",
+    "sha256": "71c1dcef5bdc10f522f4b7a8fb3d5ed10c6b9a0a82b32b027f2e99a1056a306c",
+    "name": "bug37-master-player-route",
+    "cameraPosition": {
+      "x": -1.875460147857666,
+      "y": 5.940276622772217,
+      "z": -4.402946472167969
+    },
+    "cameraForward": {
+      "x": -0.46907034516334534,
+      "y": -0.4133678376674652,
+      "z": 0.7804486751556396
+    },
+    "mean": 0.11637013405561447,
+    "contrast": 0.2043624371290207,
+    "darkRatio": 0.7373307347297668,
+    "sourceLog": "prolog-acceptance-repaired-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug38-noose-lamp.png",
+    "sha256": "899fc177408ea3549c8a895b797813beaed1b205d4fa70606ea562a1e26f5766",
+    "name": "bug38-noose-lamp",
+    "cameraPosition": {
+      "x": -1.7999999523162842,
+      "y": 5.449999809265137,
+      "z": -5.84999942779541
+    },
+    "cameraForward": {
+      "x": -0.910980224609375,
+      "y": 0.335624635219574,
+      "z": 0.23973165452480316
+    },
+    "mean": 0.35435038805007935,
+    "contrast": 0.14447636902332306,
+    "darkRatio": 0.0011707899393513799,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-28-46/dining.png",
+    "sha256": "bb2e6d491f53bbff4c593fdb3aa2bdfc26d767f6a00619eddbb92df245e533f2"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug40-wardrobe-near.png",
+    "sha256": "c01cb79552b3f62dce7bd905d4e902011fe697ebcb6085ddf1476178ed4b95b4",
+    "name": "bug40-wardrobe-near",
+    "cameraPosition": {
+      "x": 1.2000006437301636,
+      "y": -1.0899999141693115,
+      "z": -2.3199996948242188
+    },
+    "cameraForward": {
+      "x": -0.9925895929336548,
+      "y": -0.024783767759799957,
+      "z": -0.11896217614412308
+    },
+    "mean": 0.02801291085779667,
+    "contrast": 0.08927998691797256,
+    "darkRatio": 0.9364258050918579,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug40-wardrobe-medium.png",
+    "sha256": "3274c8c08cdd59d2f45089181af55ffa87300233e9fd5b49cd667c6957eddc57",
+    "name": "bug40-wardrobe-medium",
+    "cameraPosition": {
+      "x": 1.2000011205673218,
+      "y": -1.0899999141693115,
+      "z": -2.3199996948242188
+    },
+    "cameraForward": {
+      "x": -0.9925895929336548,
+      "y": -0.024783767759799957,
+      "z": -0.11896217614412308
+    },
+    "mean": 0.005521145183593035,
+    "contrast": 0.04106827452778816,
+    "darkRatio": 0.9906607866287231,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug40-wardrobe-safe.png",
+    "sha256": "a1f52ebfee3fa9fe810e0f1bb1b66fdbef855aa86ebd392a814a77917415b9fe",
+    "name": "bug40-wardrobe-safe",
+    "cameraPosition": {
+      "x": 1.20000159740448,
+      "y": -1.0899999141693115,
+      "z": -2.3199996948242188
+    },
+    "cameraForward": {
+      "x": -0.9925895929336548,
+      "y": -0.024783767759799957,
+      "z": -0.11896217614412308
+    },
+    "mean": 0.005385331343859434,
+    "contrast": 0.03947225585579872,
+    "darkRatio": 0.9907128810882568,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug41-before-cctv-input-blitz.png",
+    "sha256": "d8968a05a0352dd89aa2d712598b6149a460550a3b2959709534d0d77cfa829f",
+    "name": "bug41-before-cctv-input-blitz",
+    "cameraPosition": {
+      "x": -1.2809975147247314,
+      "y": -1.0840011835098267,
+      "z": -5.557703495025635
+    },
+    "cameraForward": {
+      "x": -0.11054963618516922,
+      "y": -0.20123685896396637,
+      "z": 0.9732843637466431
+    },
+    "mean": 0.23798000812530518,
+    "contrast": 0.2577228844165802,
+    "darkRatio": 0.436175137758255,
+    "sourceLog": "prolog-acceptance-repaired-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug41-post-cctv-input-blitz.png",
+    "sha256": "899442e2562e407aa41760d3c1b738f8f9afdb7f400c3f209266d9c27581ffad",
+    "name": "bug41-post-cctv-input-blitz",
+    "cameraPosition": {
+      "x": -0.9200000166893005,
+      "y": -0.7507786750793457,
+      "z": -6.899885177612305
+    },
+    "cameraForward": {
+      "x": -0.11896201223134995,
+      "y": -0.2072821706533432,
+      "z": 0.9710211753845215
+    },
+    "mean": 0.2544998824596405,
+    "contrast": 0.2493569254875183,
+    "darkRatio": 0.350970059633255,
+    "sourceLog": "prolog-acceptance-repaired-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-28-46/cellar-open-space.png",
+    "sha256": "9b850b1a8e26bc6f3fb803d5f240c6c6cc9fa5780caf5d7fb3eb54ccca7b7f4d"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug42-basement-run-corner.png",
+    "sha256": "fe3c715f0faa0d3d3f5b706f33f46c1aecc36c6fbf80f824d760174da4e059b9",
+    "name": "bug42-basement-run-corner",
+    "cameraPosition": {
+      "x": -10.22905158996582,
+      "y": -1.0354796648025513,
+      "z": -12.206974029541016
+    },
+    "cameraForward": {
+      "x": 0.44729530811309814,
+      "y": -0.07960771024227142,
+      "z": 0.8908364176750183
+    },
+    "mean": 0.10117752850055695,
+    "contrast": 0.16572095453739166,
+    "darkRatio": 0.639857828617096,
+    "sourceLog": "prolog-acceptance-verified-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-28-46/cellar-ladder.png",
+    "sha256": "d7a1d0f128907c221cd499dcf69653cff71f1d5460add1beb402e915cef10178"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug43-ladder-before-ascent.png",
+    "sha256": "7b65cd2368a9adf465343b9da4dd82281fac68ce0b1e85639600a6bc1e9383ca",
+    "name": "bug43-ladder-before-ascent",
+    "cameraPosition": {
+      "x": -0.9741318225860596,
+      "y": -1.182355284690857,
+      "z": -2.1309242248535156
+    },
+    "cameraForward": {
+      "x": -0.005023285746574402,
+      "y": 0.9733378887176514,
+      "z": 0.22932104766368866
+    },
+    "mean": 0.15570494532585144,
+    "contrast": 0.167361319065094,
+    "darkRatio": 0.43196073174476624,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug43-ladder-after-ascent.png",
+    "sha256": "c7ad5a6f2ba698973c52db19cb7a7799c6af517e6b1d26cd76251a932fee3162",
+    "name": "bug43-ladder-after-ascent",
+    "cameraPosition": {
+      "x": -1.1470245122909546,
+      "y": 5.524997234344482,
+      "z": -0.3773789405822754
+    },
+    "cameraForward": {
+      "x": 0.02495582029223442,
+      "y": -0.12595871090888977,
+      "z": -0.9917219877243042
+    },
+    "mean": 0.15914641320705414,
+    "contrast": 0.15434029698371887,
+    "darkRatio": 0.40387803316116333,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Recovery/bug44-window-teleport.png",
+    "sha256": "45902b2e125365031017d35025b2799bdae2f10460869261cf30ea9f3a6349e0",
+    "name": "bug44-window-teleport",
+    "cameraPosition": {
+      "x": -3.811324119567871,
+      "y": 2.0320000648498535,
+      "z": -10.922582626342773
+    },
+    "cameraForward": {
+      "x": -0.9926289916038513,
+      "y": -0.11764980107545853,
+      "z": -0.02908927947282791
+    },
+    "mean": 0.18153823912143707,
+    "contrast": 0.23402173817157745,
+    "darkRatio": 0.5010948181152344,
+    "sourceLog": "prolog-acceptance-visual-final-tests.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug47-night-street.png",
+    "sha256": "c7eaaca39ae244b7429a9a8885d8936f6798779f9e01787d8c304085b12a8432",
+    "name": "bug47-night-street",
+    "cameraPosition": {
+      "x": 0.0,
+      "y": 1.600000023841858,
+      "z": -30.0
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": 0.05989229679107666,
+      "z": -0.9982048273086548
+    },
+    "mean": 0.13911230862140656,
+    "contrast": 0.08171558380126953,
+    "darkRatio": 0.2257194072008133,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug47-morning-street.png",
+    "sha256": "cf0e5e94428d7253d08656d0bc16ea65e395e4b051c4ee556282a9ce846a407b",
+    "name": "bug47-morning-street",
+    "cameraPosition": {
+      "x": 0.0,
+      "y": 1.600000023841858,
+      "z": -30.0
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": 0.05989229679107666,
+      "z": -0.9982048273086548
+    },
+    "mean": 0.4536573886871338,
+    "contrast": 0.19479933381080627,
+    "darkRatio": 0.012523871846497059,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  },
+  {
+    "path": "Audit/Visuals/Prolog-Acceptance/bug47-dusk-street.png",
+    "sha256": "374356d3bbcd16b3e7f8cccf3181550af8689ba6ce81ecac72b556129c25db87",
+    "name": "bug47-dusk-street",
+    "cameraPosition": {
+      "x": 0.0,
+      "y": 1.600000023841858,
+      "z": -30.0
+    },
+    "cameraForward": {
+      "x": 0.0,
+      "y": 0.05989229679107666,
+      "z": -0.9982048273086548
+    },
+    "mean": 0.35164716839790344,
+    "contrast": 0.23032431304454803,
+    "darkRatio": 0.10539496690034866,
+    "sourceLog": "prolog-acceptance-facilities-final.log"
+  }
+]
