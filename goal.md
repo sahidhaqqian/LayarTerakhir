@@ -1,3 +1,200 @@
+# Goal — daftar 47 bug Prolog (30 Oktober 2026)
+
+Daftar dari pesan desainer pada 30 Oktober 2026. Nomor 1–47 dipertahankan. Foto asli diunduh dari `r2:layarterakhir/Layarterakhir/bug/` dan tersedia di [folder foto](Audit/Visuals/Prolog-PlayerBugs-2026-10-30/README.md).
+
+## Bug 1
+
+di kamar raka kipasnya kebalik malah hadap tembok
+
+## Bug 2
+
+aku mau pas telepon kedua sudah selesai langsung ada notif di hpnya lalu aplikasi hpnya pindah ke pesan
+
+## Bug 3
+
+pintu ruangannya terlalu jelek untuk kost kostan masa pintu kayu renyot ganti pakai pintu yang lain
+
+## Bug 4
+
+sendal disetiap samping pintu itu jelek pakai asset sendal asli khas Indonesia lah
+
+## Bug 5
+
+tulisan 02 / turun tolong dihapus jelek itu
+
+## Bug 6
+
+01 / keluar juga dihapus
+
+## Bug 7
+
+apaan ruangan makan sama ruangan dapur di jadiin kamar terpisah dijaddiin satu woy terus jangan pakai pintu biarin terbuka
+
+## Bug 8
+
+pas pintu kamar mandi dibuka ada tulisan melayang mending dihapus aja deh terus pakai logo kamar mandi cewek sama cowok
+
+## Bug 9
+
+kuliat kamar mandi dalamnya itu masih kotak kotak tolong pakai asset asli kamar mandi
+
+## Bug 10
+
+dapur juga kuliat juga masih kotak kotak aku mau pakai asset asli yang di internet sama kayak bug 9 lengkap dengan segala peralatan dapur lainnya
+
+## Bug 11
+
+kuliat di kostannya masa cuma ada motor raka emang yang punya motor raka doang ? tolong banyakin lagi motornya kalua bisa diperluas lagi biar bisa nampung banyak motor
+
+## Bug 12
+
+kayak asset lantai tabrakan didepan kost tolong kau perbaiki yah
+
+## Bug 13
+
+tanganya masih unnatural tolong kau fix juga
+
+## Bug 14
+
+saat aku tab kan nanti ada menu aplikasi di hp aku gak bisa liat kiri kanan aku mau kalau di mode hp ini bisa liat kiri kanan by klik kiri ditahan terus arahin ke arah yang kita mau
+
+## Bug 15
+
+saat mulai live gak bisa langsung dilakuin harus nyoba buka pintu depan dulu. harusnya bisa live saat
+
+## Bug 16
+
+tulisanya disuruh pencet E Hapus aja tulisan itu weh. ganti jadi blink blink kecil nanti pemain pasti tahu pencet spasi buat masuk ke jendela gak usah diarahin
+
+## Bug 17
+
+rantai pada pintu dan rantai pada sumur itu unnatural ukuranya terus juga penutup sumurnya juga kotak melewati sumur yang berbentuk lingkaran
+
+## Bug 18
+
+ada celah celah yang gak tertutup rapi pada dinding dilantai satu pada bagian prolog
+
+## Bug 19
+
+saat kembali ke menu aplikasi mode AR masih nyala harusnya mode AR mati saat ke mode
+
+## Bug 20
+
+saat ini catetan kayak kertas blank terus dikasih tulisan aku mau kau download buku catetan atau paper asli terus kau tulis catetannya ke dalam situ
+
+## Bug 21
+
+saat aku buka pintu aku nemu kalau pintunya langsung ilang
+
+## Bug 22
+
+jejak tangan merah semua yah tuhan?? masa ada dialog gitu padahal gak ada loh jejak tangan merah gak konsisten kalau mau itu beneran ada kau kasih atuh jejak tangan merah dari internet sama noda noda darah di lantai dua
+
+## Bug 23
+
+dilantai dua juga sama yah di bagian pintu yang atas ada celah yang gak ketutup
+
+## Bug 24
+
+ada tanda silang X 4 biji gak jelas aku mau itu diganti sama lubang ventilasi... nah nanti pemain kalau pakai kamera AR nanti bakal ada blink blink putih kecil pas jongkok pemain bisa buka ventilasi udaranya terus masuk
+
+## Bug 25
+
+ada tiga foto keluarga atmaja sekarang aku mau kau sisakan satu aja.
+
+## Bug 26
+
+DIA MELIHAT KAU MEMOTRET itu hapus aja tulisannya
+
+## Bug 27
+
+dosa 1-3 di papan hapus juga jelek tulisannya menurunkan kualitas game
+
+## Bug 28
+
+ada tulisan dari komentar live jangan sentuh mainan itu bang sama bonekanya baru dipindahin aneh bet.. padahal di ruangannya gak ada mainan adanya buku catetan terus juga gak ada bonek... itu dihapus aja yah.
+
+## Bug 29
+
+buku catetan masih pakai kotak kotak gak jelas kau download buku asli buat gantiin buku yang sekarang
+
+## Bug 30
+
+lampu penempatanya kebalik arahnya ketembok yang lampu belajar
+
+## Bug 31
+
+bantal tidurnya kekecilan dan jujur kasurnya jelek ganti dan hapus cari yang udah satu set bantal selimut sama Kasur
+
+## Bug 32
+
+ada asset yang menempatanya gak jelas kau hapus aja assetnya yah. pindahin kasurnya dipojok ruangan situ tempat asset yang dihapus
+
+## Bug 33
+
+cangkir retaknya terlalu dibuat buat cari model cangkir yang retak yang sebenarnya
+
+## Bug 34
+
+cakaran di pintu terlalu kaku. bukan cakaran asli. tolong pindahin cakarannya di dinding terus cari cakaran asli di internet
+
+## Bug 35
+
+saat senter menyorot lantai tekstur asli lantainya keliatan aku mau kau fix itu biar gak ganti ganti gitu tekstur lantainnya
+
+## Bug 36
+
+bak mandinya bukan bak mandi asli masih assetnya jelek. kau ganti assetnya dengan bak mandi asli. soalnya yang sekarang gak ada airnya terus kayak kebalik lagi penempatanya. aku kan expectnya air darah
+
+## Bug 37
+
+penempatan kamarnya jelek weh dikamar Utama. kamar terlalu sempit. kursi menghadap tembok ada kayak yang dari luar nembus ke kamar aku maunya ini kan kamar Utama ruanganya lebih gede
+
+## Bug 38
+
+ada blok satu acak dilampu deket tali gantung yang harus dihapus itu merusak estetika entah kenapa ada blok gituan
+
+## Bug 39
+
+aku mau makanan di meja makan di prolog itu dibanyakin weh jangan cuma dikit doang
+
+## Bug 40
+
+tolong dong perbaiki saat sembunyi di lemari barnya bar vertical kayak bar suara gitu
+aku maunya nanti hijau kuning merah nanti kalau hantunya deket semua barnya active kalau menjauh bar kuningnya active sama hijau kalau udah aman baru bar hijau doang yang active terus barnya kecil aja yah dipojok kanan
+
+## Bug 41
+
+saat belum nyentuh cctv nona atmaja masih bisa kena stun tapi pas udah scene cctv sih raka udah gak bisa lagi buat potret sih hantunya
+
+## Bug 42
+
+ruangan di Bawah tanahnya masih kecil weh aku gak bisa berkeliaran bebas
+
+## Bug 43
+
+aku gak nemu tangga yang mengarahkanku ke arah atas tolong kau cari asset tangga untuk aku tahu tempatnya keatas
+
+## Bug 44
+
+saat udah mau kabur lewat jendela. bukanya teleport eh malah langsung jalan ke tempat posisi depan jendela ngegeser karakterku ke pojokan kan gak jelas. aku maunya dia tiba tiba muncul menghadang kita di depan jendela
+
+## Bug 45
+
+masa dikasih Tahu HADAPI DIA klik Kanan Terus Terobos jendela Spasi kan aneh hapus itu gak usah ada gituan pemain juga pasti tahu harus apa
+
+## Bug 46
+
+pas dia udah di depan jendela hantunya diem aja pasrah. aku expectnya dia jalan pelan ke pemain mojokin pemain
+
+## Bug 47
+
+aku menyadari bahwa pas pagi dan malam sebelum prolog... ada asset tambahan rumah dan lainnya yang gak ke load itu menyebabkan inconsistent. aku mau kau perbaiki itu
+
+---
+
+# Catatan sebelumnya
+
 Dari isi `repomix-output.xml`, arsitektur kode, spesifikasi teknis di `GOLDEN_SCENE_STANDARD.md`, rangkaian audit otomatis di `Diagnostics/`, hingga desain lengkap Babak 0–5 di `Docs/` sudah terbaca secara utuh.
 
 Secara rekayasa perangkat lunak, fondasi yang kamu bangun sudah sangat disiplin: sistem penyimpanan `CampaignState` sudah menggunakan *atomic file replacement* (`.tmp` dan `.bak`), kamera OTS (`ShoulderCameraRig`) sudah memisahkan `AvatarRenderingLayer` untuk lampu *fill* karakter (`RakaSoftBounce`), dan sistem AR sudah mengisolasi *culling mask* `ARLayer` hanya ke `FeedCamera` di HP.
