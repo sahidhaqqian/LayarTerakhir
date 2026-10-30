@@ -48,11 +48,7 @@ namespace LayarTerakhir.Editor
                 Box("RoomFloor",new Vector3(x,y-.065f,z),new Vector3(4.7f,.13f,3),floor);
                 Box("RoomCeiling",new Vector3(x,y+2.97f,z),new Vector3(4.7f,.14f,3.15f),wall);
                 Box("RoomOuterWall",new Vector3(side*6.25f,y+1.45f,z),new Vector3(.18f,2.9f,3.15f),wall);
-                foreach(float edge in new[]{z-1.5f,z+1.5f})
-                {
-                    if(level==0&&side<0&&i==2&&edge==6)continue; // Kitchen and dining share one open room.
-                    Box("RoomPartition",new Vector3(x,y+1.45f,edge),new Vector3(4.8f,2.9f,.15f),wall);
-                }
+                foreach(float edge in new[]{z-1.5f,z+1.5f})Box("RoomPartition",new Vector3(x,y+1.45f,edge),new Vector3(4.8f,2.9f,.15f),wall);
                 root=parent;
             }
             // Ground slab under the entire stairwell: no hole into the skybox even below flights.
@@ -79,7 +75,8 @@ namespace LayarTerakhir.Editor
             Box("UpperLandingGuard",new Vector3(1.32f,3.85f,13.03f),new Vector3(2.52f,1.1f,.13f),lowerPaint);
             Box("UpperLandingCap",new Vector3(1.32f,4.42f,13.03f),new Vector3(2.58f,.045f,.19f),trim);
             Box("LandingInnerReturn",new Vector3(.57f,2.18f,15.82f),new Vector3(.92f,1.06f,.12f),lowerPaint);
-            // Plang wayfinding 02/TURUN & 01/KELUAR dihapus (desainer: jelek, teks melayang).
+            Label("FloorTwoWayfinding","02  /  TURUN",new Vector3(-1.44f,4.95f,12.15f),Vector3.right,.20f);
+            Label("GroundWayfinding","01  /  KELUAR",new Vector3(2.54f,1.85f,12.05f),Vector3.left,.18f);
             Box("StairRearWindowFrame",new Vector3(.55f,4.45f,17.07f),new Vector3(2.8f,1.35f,.08f),metal);
             Box("StairRearNightWindow",new Vector3(.55f,4.45f,17.01f),new Vector3(2.64f,1.20f,.025f),glass);
             for(int i=-2;i<=2;i++)Box("StairWindowBars",new Vector3(.55f+i*.45f,4.45f,16.98f),new Vector3(.024f,1.22f,.025f),trim);
@@ -134,18 +131,11 @@ namespace LayarTerakhir.Editor
                     if(y<1&&i==1)continue;
                     float z=1.5f+i*3;
                     Box("DoorThreshold",new Vector3(side*1.36f,y+.012f,z),new Vector3(.19f,.025f,.92f),trim);
-                    // Sendal jepit khas Indonesia: sol karet gelap + tali Y, bukan balok metal.
+                    // A pair of slippers deliberately stays outside the clear centre aisle.
                     if(i%2==0)for(int foot=0;foot<2;foot++)
                     {
-                        var slipper=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_LayarTerakhir/assets/Art/Original/Models/IndonesianFlipFlop.fbx"));
-                        slipper.name="TenantSlipper";slipper.transform.SetParent(root,false);slipper.transform.localRotation=Quaternion.Euler(0,90,0);
-                        foreach(var renderer in slipper.GetComponentsInChildren<Renderer>())
-                        {
-                            var materials=renderer.sharedMaterials;
-                            for(int slot=0;slot<materials.Length;slot++)materials[slot]=AssetDatabase.LoadAssetAtPath<Material>(PrologReviewRevision.Art+"Materials/"+(materials[slot].name.Contains("BlueStrap")?"FlipFlopBlueStrap":materials[slot].name.Contains("Edge")?"FlipFlopEdge":"FlipFlopRubber")+".mat");
-                            renderer.sharedMaterials=materials;
-                        }
-                        KosVisualV2.Resize(slipper,new Vector3(.27f,.045f,.10f));KosVisualV2.SetCenter(slipper,root.TransformPoint(new Vector3(side*1.15f,y+.027f,z+.65f+foot*.17f)));
+                        var slipper=Box("TenantSlipper",new Vector3(side*1.15f,y+.035f,z+.65f+foot*.16f),new Vector3(.23f,.05f,.115f),metal);
+                        Box("SlipperStrap",slipper.transform.position+Vector3.up*.035f,new Vector3(.07f,.026f,.12f),lowerPaint);
                     }
                     Box("RoomVentFrame",new Vector3(side*1.39f,y+2.48f,z),new Vector3(.08f,.22f,.79f),metal);
                     for(int l=0;l<3;l++)Box("RoomVentLouvre",new Vector3(side*1.34f,y+2.42f+l*.06f,z),new Vector3(.025f,.023f,.71f),trim);
@@ -183,8 +173,7 @@ namespace LayarTerakhir.Editor
             }
             Box("KosRoofRidge",new Vector3(0,7.56f,5.9f),new Vector3(.25f,.12f,15.2f),roofing);
             // Wider foundation closes the front recess behind the external face.
-            // Pondasi dibuat lebih rendah dari halaman agar tidak satu bidang (z-fight).
-            Box("KosFrontFoundation",new Vector3(0,-.18f,-.55f),new Vector3(12.7f,.26f,1),floor);
+            Box("KosFrontFoundation",new Vector3(0,-.13f,-.55f),new Vector3(12.7f,.26f,1),floor);
             foreach(float x in new[]{-1.7f,1.7f})
             {
                 var pot=Model("planter_pot_clay","PorchClayPlanter",new Vector3(.36f,.40f,.36f),new Vector3(x,.20f,-3.18f));
@@ -193,8 +182,7 @@ namespace LayarTerakhir.Editor
             }
             Box("YardDrainChannel",new Vector3(0,.006f,-3.15f),new Vector3(2.8f,.012f,.12f),metal);
             for(int i=-10;i<=10;i++)Box("DrainGrille",new Vector3(i*.12f,.016f,-3.15f),new Vector3(.018f,.014f,.12f),trim);
-            // Jalur setapak diturunkan 1cm dari halaman agar tidak tabrakan bidang.
-            Box("YardPath",new Vector3(0,-.04f,-4),new Vector3(1.8f,.03f,5.5f),floor);
+            Box("YardPath",new Vector3(0,-.015f,-4),new Vector3(1.8f,.03f,5.5f),floor);
             // Low-cost neighbouring masses and a curb, rather than a gate opening onto empty space.
             foreach(int side in new[]{-1,1})
             {

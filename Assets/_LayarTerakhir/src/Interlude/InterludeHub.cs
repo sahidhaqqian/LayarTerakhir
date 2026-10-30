@@ -81,7 +81,30 @@ namespace LayarTerakhir.Interlude
 
         private void ApplyLighting()
         {
-            InterludeExterior.ApplyRoom(Camera.main, Stage == "READY");
+            bool dusk = Stage == "READY";
+            foreach (var light in FindObjectsByType<Light>(FindObjectsSortMode.None))
+                if (light.type == LightType.Directional)
+                {
+                    light.color = dusk ? new Color(.95f, .55f, .38f) : new Color(1f, .94f, .83f);
+                    light.intensity = dusk ? .55f : 1.4f;
+                    light.transform.rotation = dusk
+                        ? Quaternion.Euler(18, -60, 0)
+                        : Quaternion.Euler(46, -35, 0);
+                }
+            if (dusk)
+            {
+                RenderSettings.ambientLight = new Color(.16f, .13f, .12f);
+                RenderSettings.ambientSkyColor = new Color(.20f, .15f, .14f);
+                RenderSettings.ambientEquatorColor = new Color(.12f, .11f, .10f);
+                RenderSettings.ambientGroundColor = new Color(.07f, .06f, .06f);
+            }
+            else
+            {
+                RenderSettings.ambientLight = new Color(.42f, .43f, .43f);
+                RenderSettings.ambientSkyColor = new Color(.40f, .44f, .48f);
+                RenderSettings.ambientEquatorColor = new Color(.25f, .27f, .28f);
+                RenderSettings.ambientGroundColor = new Color(.14f, .13f, .12f);
+            }
         }
 
         private void RefreshObjective()

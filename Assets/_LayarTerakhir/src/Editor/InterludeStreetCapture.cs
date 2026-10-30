@@ -27,7 +27,8 @@ namespace LayarTerakhir.Editor
                 EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);
                 var corridor = Object.FindFirstObjectByType<KosCorridorDirector>();
                 if (!corridor) throw new Exception("KosCorridorDirector missing");
-                // Permanent street scenery is shared with the night prolog.
+                // Daytime dressing is authored OFF for the night prolog;
+                // the capture reviews the daytime state, like the director.
                 var kampung = GameObject.Find("KampungMelati");
                 var alley = kampung ? kampung.transform.Find("InterludeAlley") : null;
                 if (!alley) throw new Exception("InterludeAlley group missing");

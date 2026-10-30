@@ -23,8 +23,9 @@ namespace LayarTerakhir.Editor
             Box("DiningDividerSouth",P(1.6f,1.6f,2.2f),new Vector3(.18f,3.4f,3.2f),plaster);
             Box("DiningDividerNorth",P(1.6f,6.7f,2.2f),new Vector3(.18f,3.4f,4.2f),plaster);
             Box("DiningDividerLintel",P(1.6f,3.9f,3.45f),new Vector3(.18f,.9f,1.4f),plaster);
-            // Daun pintu dapur tunggal dari AtmajaSceneBuilder dipakai ulang di sini;
-            // duplikat coplanar dihapus (menyebabkan flicker dan interaksi ganda).
+            var hinge=new GameObject("KitchenDoorHinge").transform;hinge.SetParent(environment,false);hinge.position=P(3.4f,9,.35f);
+            var leaf=Box("KitchenDiningDoor",P(4,9,1.5f),new Vector3(1.2f,2.3f,.10f),wood);leaf.transform.SetParent(hinge,true);director.kitchenDoor=hinge;Item(leaf,AtmajaAction.KitchenDoor,"Buka pintu ruang makan");
+            var diningHinge=hinge.gameObject.AddComponent<LayarTerakhir.Prolog.HingedDoor>();diningHinge.hinge=hinge;diningHinge.angle=-95;diningHinge.label="Buka pintu ruang makan";
             var well=GameObject.CreatePrimitive(PrimitiveType.Cylinder);well.name="OldChainedKitchenWell";well.transform.SetParent(environment,false);well.transform.position=P(2.85f,11.2f,.72f);well.transform.localScale=new Vector3(1.05f,.36f,1.05f);well.GetComponent<Renderer>().sharedMaterial=Mat("House_MAT_BrickBase");Item(well,AtmajaAction.Well,"Periksa sumur tua");
             for(int i=0;i<4;i++)Box("RottenWellBoard",P(2.85f+(i-1.5f)*.23f,11.2f,1.09f),new Vector3(.21f,.045f,1.10f),wood);
             Chain(P(2.85f,11.2f,1.14f),1.1f,true);var bucket=Model("wooden_bucket_01","KitchenBucket",P(3.6f,11.9f,.35f));Ground(bucket,.35f);FitCollider(bucket);
@@ -48,15 +49,10 @@ namespace LayarTerakhir.Editor
             // Vestibule/front sitting room is a real side exploration space; main circulation stays clear.
             Box("FrontSittingPartitionWest",P(-4,2.5f,2.1f),new Vector3(4,3.2f,.16f),plaster);
             Box("FrontSittingPartitionEast",P(.35f,2.5f,2.1f),new Vector3(2.3f,3.2f,.16f),plaster);
-            // Lintel diturunkan menutup celah 23cm di atas daun pintu (bug 18).
-            Box("FrontSittingDoorLintel",P(-1.4f,2.5f,2.85f),new Vector3(1.25f,.7f,.16f),plaster);
+            Box("FrontSittingDoorLintel",P(-1.4f,2.5f,3.3f),new Vector3(1.25f,.7f,.16f),plaster);
             Door("FrontSittingDoor",P(-2,2.5f,.52f),P(-1.4f,2.5f,1.62f),new Vector3(1.2f,2.2f,.09f),"Buka ruang tamu depan");
             var corner=Model("CornerSideTable","CornerSideTable",P(-5.05f,1.15f,.52f));FitCollider(corner);
-            // Jarum ditaruh DI ATAS permukaan meja (bukan tenggelam di dalam
-            // collider meja) dan digeser ke tepi depan agar sinar interaksi
-            // mengenai jarum lebih dulu, bukan meja (laporan desainer).
-            float handsY=KosVisualV2.SurfaceHeight(corner,P(-5.05f,1.0f,0).x,P(-5.05f,1.0f,0).z)+.035f;
-            director.clockHands=Box("BrassClockHands",P(-5.05f,1.0f,handsY),new Vector3(.22f,.03f,.05f),Mat("Detail_AgedBrass"));Item(director.clockHands,AtmajaAction.ClockHands,"Ambil Jarum Jam Kuningan");
+            director.clockHands=Box("BrassClockHands",P(-5.05f,1.15f,1.30f),new Vector3(.18f,.025f,.03f),Mat("Detail_AgedBrass"));Item(director.clockHands,AtmajaAction.ClockHands,"Ambil Jarum Jam Kuningan");
             var ashtray=GameObject.CreatePrimitive(PrimitiveType.Cylinder);ashtray.name="OldAshtray";ashtray.transform.SetParent(environment,false);ashtray.transform.position=P(-4.85f,1.1f,1.30f);ashtray.transform.localScale=new Vector3(.12f,.015f,.12f);ashtray.GetComponent<Renderer>().sharedMaterial=Mat("House_MAT_Concrete");Object.DestroyImmediate(ashtray.GetComponent<Collider>());
             Chair("FrontRoomWoodChair",P(-4.25f,.8f,.52f),P(-4.25f,2,.52f));Existing("wooden_bookshelf_worn","FrontRoomBookcase",P(-3.35f,.45f,1.25f),new Vector3(1.0f,1.45f,.35f));
             // Small storage room off the lounge, not another mandatory story key.

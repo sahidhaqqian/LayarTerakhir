@@ -173,28 +173,13 @@ namespace LayarTerakhir.Editor
             Remove("ChildNotebook");DressChildCup();DrapeChildQuilt();
             Remove("ChildToyBlocks","ChildToyBall");
             for(int i=0;i<3;i++)Box("BimaToyTrainCar",P(-4.12f+i*.16f,3.75f,3.875f),new Vector3(.13f,.11f,.08f),Mat(i==0?"House_MAT_WoodDoor":"Upper_BookCover"),false);
-            // Ventilasi berlubang asli + titik putih berkedip saat AR (bug 24).
+            // Replace the written solution on the vent with broken plaster around the opening.
             var vent=d.upper.ventHoleAR;if(vent){foreach(var text in vent.GetComponentsInChildren<TextMesh>(true))Object.DestroyImmediate(text);foreach(var renderer in vent.GetComponents<Renderer>())Object.DestroyImmediate(renderer);}
-            Remove("ARVentFracture","VentBlinkAR");
-            if(vent)
+            Remove("ARVentFracture");
+            if(vent)for(int i=0;i<8;i++)
             {
-                // Kisi horizontal dengan celah udara sungguhan, bukan tanda X.
-                for(int s=0;s<5;s++)
-                {
-                    var slat=Box("VentSlat",vent.transform.position,new Vector3(.7f,.07f,.03f),Mat("House_MAT_WoodFrameWhite"),false);
-                    slat.transform.SetParent(vent.transform,false);slat.transform.localPosition=new Vector3(0,-.36f+s*.18f,0);
-                }
-                // Titik putih kecil berkedip (AR): logika kedip di AtmajaUpperDirector.
-                var glowMat=Surface("VentBlinkWhite",Color.white);glowMat.EnableKeyword("_EMISSION");glowMat.SetColor("_EmissionColor",Color.white*2.5f);EditorUtility.SetDirty(glowMat);
-                var blink=new GameObject("VentBlinkAR");blink.transform.SetParent(vent.transform,false);blink.transform.localPosition=Vector3.zero;
-                for(int b=0;b<3;b++)
-                {
-                    var dot=GameObject.CreatePrimitive(PrimitiveType.Quad);dot.name="VentBlinkDot";dot.transform.SetParent(blink.transform,false);
-                    dot.transform.localPosition=new Vector3((b-1)*.2f,.1f,-.02f);dot.transform.localRotation=Quaternion.identity;dot.transform.localScale=new Vector3(.015f,.015f,1);
-                    dot.GetComponent<Renderer>().sharedMaterial=glowMat;Object.DestroyImmediate(dot.GetComponent<Collider>());
-                    foreach(var t in dot.GetComponentsInChildren<Transform>(true))t.gameObject.layer=AtmajaPhoneView.ARLayer;
-                }
-                d.upper.ventBlink=blink;
+                var crack=Box("ARVentFracture",vent.transform.position,new Vector3(i%2==0?.21f:.012f,i%2==0?.012f:.18f,.004f),Mat("ARSecretInk"),false);
+                crack.transform.SetParent(vent.transform,false);crack.transform.localPosition=new Vector3((i<4?-1:1)*.29f,((i%4)<2?-1:1)*.24f,-.015f);crack.transform.localRotation=Quaternion.Euler(0,0,(i%3-1)*13);crack.layer=AtmajaPhoneView.ARLayer;
             }
             var scratches=d.upper.bathScratchesAR;
             if(scratches)
@@ -262,8 +247,7 @@ namespace LayarTerakhir.Editor
             var well=Find("OldChainedKitchenWell");if(well){var renderer=well.GetComponent<Renderer>();if(renderer)renderer.enabled=false;var collider=well.GetComponent<Collider>();if(collider)collider.enabled=false;}
             var cover=new GameObject("WellCover");cover.transform.SetParent(root,false);cover.transform.SetPositionAndRotation(P(2.85f,11.73f,1.09f),Quaternion.LookRotation(d.north));
             Remove("RottenWellBoard","WellRustChain");
-            // Tutup bulat pas lingkaran sumur, bukan papan kotak yang melewati bibir.
-            var lid=GameObject.CreatePrimitive(PrimitiveType.Cylinder);lid.name="WellRoundCover";lid.transform.SetParent(cover.transform,true);lid.transform.SetPositionAndRotation(P(2.85f,11.2f,1.09f),Quaternion.LookRotation(d.north));lid.transform.localScale=new Vector3(1.1f,.03f,1.1f);lid.GetComponent<Renderer>().sharedMaterial=Mat("House_MAT_WoodDoor");
+            for(int i=0;i<4;i++){var board=Box("RottenWellBoard",P(2.85f+(i-1.5f)*.23f,11.2f,1.09f),new Vector3(.21f,.045f,1.10f),Mat("House_MAT_WoodDoor"));board.transform.SetParent(cover.transform,true);}
             var chain=new GameObject("WellRustChain",typeof(MeshFilter),typeof(MeshRenderer));chain.transform.SetParent(cover.transform,true);chain.transform.SetPositionAndRotation(P(2.85f,11.2f,1.14f),Quaternion.LookRotation(d.north));chain.GetComponent<MeshFilter>().sharedMesh=AssetDatabase.LoadAssetAtPath<Mesh>("Assets/_LayarTerakhir/assets/Art/Atmaja/Models/WellChain.asset");chain.GetComponent<MeshRenderer>().sharedMaterial=Mat("House_MAT_RustMetal");
             for(int i=0;i<20;i++)
             {

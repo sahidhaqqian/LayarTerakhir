@@ -84,7 +84,7 @@ namespace LayarTerakhir.Prolog
         {
             if (!ready || !director || !director.chase) return;
             var chase = director.chase;
-            bool windup = chase.AwaitingBlitz && movementSpeed < .08f, recoil = chase.IsStunned || ExternalStun;
+            bool windup = chase.AwaitingBlitz, recoil = chase.IsStunned || ExternalStun;
             bool hunting = director.basement && director.basement.IsHunting || chase.IsPursuing;
             Vector3 displacement=transform.position-previous;displacement.y=0;previous=transform.position;
             float moved=displacement.magnitude,dt=Time.deltaTime;

@@ -5,25 +5,29 @@
     "-batchmode",
     "-nographics",
     "-projectPath",
-    "/root/projects/LayarTerakhir-prolog-28-43",
+    "/root/Projects/LayarTerakhir-review",
     "-runTests",
     "-testPlatform",
     "EditMode",
     "-testFilter",
-    "PrologReviewRevisionTests",
+    "LayarTerakhir.Editor.Tests",
     "-testResults",
-    "/root/projects/LayarTerakhir-prolog-28-43/Audit/golden-tests.xml",
+    "/root/Projects/LayarTerakhir-review/Audit/golden-tests.xml",
     "-logFile",
-    "/root/projects/LayarTerakhir-prolog-28-43/Audit/golden-test.log"
+    "/root/Projects/LayarTerakhir-review/Audit/golden-test.log"
   ],
-  "startedUtc": "2026-10-29T16:48:53.512389+00:00",
+  "startedUtc": "2026-10-22T11:06:58.395557+00:00",
+  "hostEnvironmentOverrides": {
+    "UNITY_BURST_DISABLE_COMPILATION": "1",
+    "LD_BIND_NOW": "1"
+  },
   "audioBackend": "Private clocked PulseAudio null sink; headless test audio device, no physical audio hardware",
   "status": "Finished",
-  "endedUtc": "2026-10-29T16:49:23.520471+00:00",
+  "endedUtc": "2026-10-22T11:14:08.133093+00:00",
   "exitCode": 0,
   "testsVerified": {
-    "total": 8,
-    "passed": 8,
+    "total": 114,
+    "passed": 114,
     "failed": 0,
     "skipped": 0
   }

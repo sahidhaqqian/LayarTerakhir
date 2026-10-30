@@ -29,7 +29,6 @@ namespace LayarTerakhir.Editor
             var avatar=model.AddComponent<AnimatedRakaAvatar>();avatar.motion=BindMotion(model,"RakaRigged");
             avatar.handset=model.GetComponentsInChildren<Transform>(true).First(t=>t.name=="HandheldPhone").gameObject;
             PrefabUtility.SaveAsPrefabAsset(model,"Assets/Resources/RakaCharacter.prefab");Object.DestroyImmediate(model);AssetDatabase.SaveAssets();
-            RakaPresentationRevisionBuilder.BakeCallContacts();
             if(File.Exists(Root+"Models/RakaPhoneHand.fbx"))
             {
                 ImportModel("RakaPhoneHand",false);
@@ -85,7 +84,6 @@ namespace LayarTerakhir.Editor
             ApplyMaterials(raka);raka.name="RakaCharacter";var rakaMotion=BindMotion(raka,"RakaRigged");
             var avatar=raka.AddComponent<AnimatedRakaAvatar>();avatar.motion=rakaMotion;avatar.handset=raka.GetComponentsInChildren<Transform>(true).First(t=>t.name=="HandheldPhone").gameObject;
             PrefabUtility.SaveAsPrefabAsset(raka,"Assets/Resources/RakaCharacter.prefab");Object.DestroyImmediate(raka);
-            RakaPresentationRevisionBuilder.BakeCallContacts();
             EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene);AssetDatabase.SaveAssets();
             if(kos!=Hash(PrologKosSceneBuilder.ScenePath)||corridor!=Hash(KosCorridorBuilder.ScenePath))throw new Exception("Character presentation modified approved Kos scene bytes");
             File.WriteAllText("Audit/character-presentation-authoring.json",JsonUtility.ToJson(new Receipt{utc=DateTime.UtcNow.ToString("o"),kosSha256=kos,corridorSha256=corridor,atmajaSha256=Hash(AtmajaSceneBuilder.ScenePath),rakaClips=11,nyonyaClips=5,approvedSceneBytesPreserved=true},true)+"\n");

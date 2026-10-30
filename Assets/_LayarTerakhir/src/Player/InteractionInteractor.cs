@@ -78,14 +78,6 @@ namespace LayarTerakhir.Player
                     CurrentTarget = interactable;
                     if (HudController.Instance != null)
                     {
-                        // Jendela dapur: tanpa teks [E], hanya titik kecil berkedip (vault = Spasi).
-                        if (interactable is LayarTerakhir.Prolog.AtmajaItem atmajaItem &&
-                            atmajaItem.action == LayarTerakhir.Prolog.AtmajaAction.Window)
-                        {
-                            bool on = Mathf.Repeat(Time.unscaledTime, 1f) < .6f;
-                            HudController.Instance.SetInteractionPrompt(on ? "●" : "");
-                            return;
-                        }
                         string source=interactable.GetInteractionPrompt();
                         var key=GameInputConfig.Instance?GameInputConfig.Instance.interactKey:KeyCode.E;
                         if(source!=_lastPromptSource||key!=_lastPromptKey)

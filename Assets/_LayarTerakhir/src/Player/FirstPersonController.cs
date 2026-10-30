@@ -59,7 +59,6 @@ namespace LayarTerakhir.Player
         private readonly Collider[] _headroomHits = new Collider[24];
         private int ignoreLookThroughFrame;
         public static bool PhoneLookHeld => UiFocus.ApplicationFocused && UiFocus.Phone && UiFocus.PhoneAiming;
-        private bool phoneDragHeld;
 
         private void Awake()
         {
@@ -98,12 +97,7 @@ namespace LayarTerakhir.Player
                 return;
             }
 
-            // Mode HP: tahan klik kiri + arahkan untuk melihat kiri/kanan.
-            bool phoneDrag = UiFocus.Phone && !PhoneLookHeld && Mouse.current != null && Mouse.current.leftButton.isPressed;
-            if (!UiFocus.Phone || PhoneLookHeld || phoneDrag) HandleMouseLook();
-            if (phoneDrag && !phoneDragHeld) { Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false; }
-            else if (!phoneDrag && phoneDragHeld) { SetCursorLock(!UiFocus.BlocksWorld); }
-            phoneDragHeld = phoneDrag;
+            if (!UiFocus.Phone || PhoneLookHeld) HandleMouseLook();
             HandleMovementAndPosture();
         }
 

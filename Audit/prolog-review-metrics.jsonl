@@ -1,6 +1,0 @@
-{"kind": "test", "label": "Prolog 28-46 initial targeted run: 18 passed, 3 failures investigated", "seconds": 135.141168, "detail": "", "source": "agent", "utc": "2026-10-29T08:14:59.059438+00:00"}
-{"kind": "test", "label": "Prolog 28-46 focused retest: 11 passed, ladder bob failure investigated", "seconds": 90.351264, "detail": "", "source": "agent", "utc": "2026-10-29T08:14:59.120177+00:00"}
-{"kind": "validation", "label": "Prolog 28-46 Graphify portable code map refresh", "seconds": 38.385382204985945, "detail": "", "source": "agent", "utc": "2026-10-29T08:19:29.595590+00:00"}
-{"kind": "test", "label": "Prolog visible ladder and window tests: bob fixed, missing actor binding investigated", "seconds": 75.170772, "detail": "", "source": "agent", "utc": "2026-10-29T08:23:46.143363+00:00"}
-{"kind": "test", "label": "Prolog 28-46 final targeted run: 24 of 24 passed", "seconds": 185.196724, "detail": "", "source": "agent", "utc": "2026-10-29T08:23:46.226116+00:00"}
-{"kind": "test", "label": "Prolog final geometry check after clearing ladder shaft: 7 of 7 passed", "seconds": 45.371149, "detail": "", "source": "agent", "utc": "2026-10-29T08:32:00.511348+00:00"}

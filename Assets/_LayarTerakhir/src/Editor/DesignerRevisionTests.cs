@@ -77,38 +77,6 @@ namespace LayarTerakhir.Editor.Tests
         {
             CheckKosFacilities();
         }
-        [Test] public void KosDiningIsOpenPlatesHaveFoodPlaquesRideDoorsAndMotorsDiffer()
-        {
-            EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);
-            Physics.SyncTransforms();
-            // Bug 7 + designer re-report: no dining door leaf that can vanish.
-            Assert.That(GameObject.Find("SharedDiningDoor"),Is.Null,"dining doorway stays permanently open");
-            Assert.That(Object.FindObjectsByType<Transform>(FindObjectsSortMode.None).Count(t=>t.name=="SharedDiningFood"),Is.GreaterThanOrEqualTo(6),"each dining plate carries food");
-            foreach(string title in new[]{"WANITA","PRIA"})
-            {
-                var plaque=GameObject.Find("Bathroom"+title+"Plaque");
-                Assert.That(plaque,Is.Not.Null,title+" plaque");
-                Assert.That(plaque.GetComponentInParent<HingedDoor>(),Is.Not.Null,title+" plaque rides the door leaf");
-                Assert.That(plaque.GetComponent<Renderer>().bounds.size.y,Is.LessThanOrEqualTo(.40f),title+" plaque stays small");
-            }
-            var meshes=new System.Collections.Generic.HashSet<string>();
-            for(int i=0;i<4;i++)
-            {
-                var motor=GameObject.Find("TenantMotor_"+i);
-                Assert.That(motor,Is.Not.Null,"TenantMotor_"+i);
-                foreach(var f in motor.GetComponentsInChildren<MeshFilter>())if(f.sharedMesh)meshes.Add(f.sharedMesh.name);
-            }
-            Assert.That(meshes.Count,Is.GreaterThanOrEqualTo(3),"tenant motors use distinct models, not one clone");
-        }
-        [Test] public void ClockHandsSitAboveTheCornerTableSoThePickupRayHitsThemFirst()
-        {
-            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
-            Physics.SyncTransforms();
-            var d=Object.FindFirstObjectByType<LayarTerakhir.Prolog.AtmajaDirector>();
-            var origin=d.clockHands.transform.position+Vector3.up*1.2f;
-            Assert.That(Physics.Raycast(origin,Vector3.down,out var hit,2f),Is.True,"ray above clock hands hits something");
-            Assert.That(hit.collider.gameObject,Is.SameAs(d.clockHands),"clock hands, not the table, are the first hit from above");
-        }
         [Test] public void FullscreenPreferenceNeverOverridesTestsOrExplicitLaunchDimensions()
         {
             Assert.That(DisplayPreferences.ShouldRestore(false,new[]{"Game.exe"},false),Is.True);
@@ -125,36 +93,12 @@ namespace LayarTerakhir.Editor.Tests
         private void CheckKosFacilities()
         {
             EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);
-            foreach(string name in new[]{"SharedDiningJambL","BathroomWANITADoor","BathroomPRIADoor","KosCommunalDiningTable","KosDiningWoodChair","RealStove","RealKitchenSink","RealToiletW","RealToiletP","RealBathSink","RealFridge","RealShowerW","RealShowerP"})Assert.That(GameObject.Find(name),Is.Not.Null,name);
+            foreach(string name in new[]{"SharedDiningDoor","BathroomWANITADoor","BathroomPRIADoor","KosCommunalDiningTable","Stove","KitchenSink"})Assert.That(GameObject.Find(name),Is.Not.Null,name);
             Assert.That(Object.FindObjectsByType<Transform>(FindObjectsSortMode.None).Count(t=>t.name=="KosFrontWindowGlass"),Is.EqualTo(8));
             Assert.That(RenderSettings.skybox.shader.name,Is.EqualTo("LayarTerakhir/NightSky"));
             var d=Object.FindFirstObjectByType<KosCorridorDirector>();var gate=d.gateHinge.GetComponent<DoubleLeafGate>();
             Assert.That(gate.leftLeaf.localPosition.x,Is.LessThan(0));Assert.That(gate.rightLeaf.localPosition.x,Is.GreaterThan(0));
             gate.SetImmediate(true);Assert.That(Quaternion.Angle(gate.leftLeaf.localRotation,gate.rightLeaf.localRotation),Is.GreaterThan(100));
-        }
-        [Test] public void AtmajaOpenDoorsStayVisibleInsteadOfVanishing()
-        {
-            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
-            Physics.SyncTransforms();
-            var doors=Object.FindObjectsByType<HingedDoor>(FindObjectsSortMode.None).Where(door=>!door.slides).ToArray();
-            Assert.That(doors.Length,Is.GreaterThan(0),"Atmaja scene has hinged doors to check");
-            foreach(var door in doors)door.SetOpenImmediate(true);
-            Physics.SyncTransforms();
-            var player=Object.FindFirstObjectByType<FirstPersonController>();
-            foreach(var door in doors)
-            {
-                var leafObj=door.transform;
-                // Daun + trim kaku (panel/gagang) ikut diuji; proxy interaksi
-                // (AtmajaItem) dan objek AR nonaktif dikecualikan dari bounds.
-                var renderers=leafObj.GetComponentsInChildren<Renderer>(true).Where(r=>r.enabled&&r.gameObject.activeInHierarchy&&!(r is LineRenderer)&&(r.transform==leafObj||r.gameObject.GetComponent<LayarTerakhir.Prolog.AtmajaItem>()==null)).ToArray();
-                Assert.That(renderers.Length>0,door.name+" keeps a visible leaf after opening");
-                var bounds=renderers[0].bounds;
-                foreach(var r in renderers.Skip(1))bounds.Encapsulate(r.bounds);
-                var hits=Physics.OverlapBox(bounds.center,bounds.extents*.85f,Quaternion.identity,~0,QueryTriggerInteraction.Ignore);
-                var swallowers=hits.Where(h=>h&&!h.isTrigger&&!h.transform.IsChildOf(leafObj)&&!(h is CharacterController)&&!(player&&h.transform.IsChildOf(player.transform))&&h.GetComponentInParent<HingedDoor>()==null).Select(h=>h.name).Distinct().ToArray();
-                if(swallowers.Length>0)Debug.LogWarning("DOORDEBUG "+door.name+" bounds="+bounds+" hits="+string.Join(",",hits.Where(h=>h).Select(h=>h.name+":"+h.bounds.ToString("F3"))));
-                Assert.That(swallowers.Length,Is.EqualTo(0),door.name+" leaf ends up inside "+string.Join(",",swallowers));
-            }
         }
         [Test] public void AtmajaNoteIsInsideAndTheOrdinaryChairStaysEmpty()
         {

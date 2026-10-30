@@ -5,44 +5,15 @@ using UnityEngine.Rendering.Universal;
 
 namespace LayarTerakhir.Interlude
 {
-    // Permanent kos scenery is shared by night and day. Only lighting,
-    // residents and moving traffic change with the campaign time.
+    // Daytime presentation helpers for the interlude. Street architecture
+    // lives authored in the corridor scene (MelatiInterludeAlleyBuilder);
+    // this keeps runtime kos-yard dressing, lighting profiles, and
+    // edit-mode-safe destroy helpers.
     public static class InterludeExterior
     {
-        public static void EnsureNeighborhood(KosCorridorDirector corridor)
+        public static void DressYard(KosCorridorDirector corridor)
         {
-            var kampung = GameObject.Find("KampungMelati");
-            if(!kampung)
-            {
-                var permanent=Resources.Load<GameObject>("MelatiPermanentNeighborhood");
-                if(permanent){kampung=Object.Instantiate(permanent);kampung.name="KampungMelati";}
-            }
-            if(kampung)
-            {
-                var street=kampung.GetComponent<MelatiNeighborhood>();
-                if(street){street.corridor=corridor;corridor.rideExit=street.parkedMotor;}
-            }
-            var alley = kampung ? kampung.transform.Find("InterludeAlley") : null;
-            // Kos scene revisions can rebuild the base neighborhood. Keep
-            // its permanent extension available independently of that pass.
-            if (kampung && !alley)
-            {
-                var prefab = Resources.Load<GameObject>("MelatiPermanentStreet");
-                if (prefab)
-                {
-                    alley = Object.Instantiate(prefab, kampung.transform, false).transform;
-                    alley.name = "InterludeAlley";
-                }
-            }
-            if (alley) alley.gameObject.SetActive(true);
-            DressYard(corridor);
-        }
-
-        private static void DressYard(KosCorridorDirector corridor)
-        {
-            if (!corridor || !corridor.buildingRoot || corridor.buildingRoot.Find("KosYardLife")) return;
-            var root = new GameObject("KosYardLife").transform;
-            root.SetParent(corridor.buildingRoot, false);
+            var root = corridor.buildingRoot;
             var poleMat = new Material(Shader.Find("Universal Render Pipeline/Lit")) { color = new Color(.30f, .24f, .16f) };
             foreach (float z in new[] { -6.5f, -1.5f })
             {
@@ -73,15 +44,17 @@ namespace LayarTerakhir.Interlude
                 cloth.GetComponent<Renderer>().sharedMaterial = mat;
                 DropCollider(cloth);
             }
+            var sandalMat = new Material(Shader.Find("Universal Render Pipeline/Lit")) { color = new Color(.12f, .10f, .09f) };
             foreach (var spot in new[] { new Vector3(-1.0f, .03f, 2.1f), new Vector3(1.0f, .03f, 8.0f), new Vector3(-1.0f, .03f, 10.9f) })
                 for (int s = -1; s <= 1; s += 2)
                 {
-                    var sandalPrefab=Resources.Load<GameObject>("IndonesianFlipFlop");
-                    if(!sandalPrefab)continue;
-                    var sandal = Object.Instantiate(sandalPrefab);
+                    var sandal = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     sandal.name = "InterludeSandals";
                     sandal.transform.SetParent(root, false);
                     sandal.transform.localPosition = spot + new Vector3(s * .09f, 0, 0);
+                    sandal.transform.localScale = new Vector3(.11f, .05f, .28f);
+                    sandal.GetComponent<Renderer>().sharedMaterial = sandalMat;
+                    DropCollider(sandal);
                 }
             var galon = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             galon.name = "InterludeGalon";
@@ -103,88 +76,49 @@ namespace LayarTerakhir.Interlude
         public static void ApplyDay(Camera eye)
         {
             SetExposure(.45f);
-            ApplyAtmosphere(eye, false);
-            EnsureStreetSun();
             foreach (var light in Object.FindObjectsByType<Light>(FindObjectsSortMode.None))
             {
                 if (light.type == LightType.Directional)
                 {
-                    light.enabled = true;
-                    RenderSettings.sun = light;
                     light.color = new Color(1f, .96f, .88f);
                     light.intensity = 1.15f;
                     light.transform.rotation = Quaternion.Euler(50, -30, 0);
                 }
                 else light.enabled = light.name == "WartegCaseLight";
             }
+            RenderSettings.fog = true;
+            RenderSettings.fogMode = FogMode.ExponentialSquared;
+            RenderSettings.fogDensity = .0025f;
+            RenderSettings.fogColor = new Color(.62f, .68f, .74f);
+            RenderSettings.ambientMode = AmbientMode.Trilight;
+            RenderSettings.ambientSkyColor = new Color(.55f, .60f, .66f);
+            RenderSettings.ambientEquatorColor = new Color(.38f, .40f, .42f);
+            RenderSettings.ambientGroundColor = new Color(.22f, .21f, .20f);
+            if (eye) eye.backgroundColor = new Color(.62f, .68f, .74f);
         }
 
         public static void ApplyDusk(Camera eye)
         {
             SetExposure(.45f);
-            ApplyAtmosphere(eye, true);
-            EnsureStreetSun();
             foreach (var light in Object.FindObjectsByType<Light>(FindObjectsSortMode.None))
             {
                 if (light.type == LightType.Directional)
                 {
-                    light.enabled = true;
-                    RenderSettings.sun = light;
                     light.color = new Color(.95f, .45f, .30f);
                     light.intensity = .5f;
                     light.transform.rotation = Quaternion.Euler(12, -70, 0);
                 }
-                else light.enabled = light.name.Contains("StreetLight") || light.name.Contains("WarungWarmLight") || light.name == "WartegCaseLight";
-            }
-        }
-
-        private static void EnsureStreetSun()
-        {
-            foreach(var light in Object.FindObjectsByType<Light>(FindObjectsSortMode.None))
-                if(light.type==LightType.Directional){RenderSettings.sun=light;return;}
-            var sun=new GameObject("InterludeStreetSun").AddComponent<Light>();
-            sun.type=LightType.Directional;sun.shadows=LightShadows.Soft;RenderSettings.sun=sun;
-        }
-
-        // The room keeps its practical lamps, but shares the exterior's time
-        // of day. Its scene has no authored sun, so provide window daylight.
-        public static void ApplyRoom(Camera eye, bool dusk)
-        {
-            ApplyAtmosphere(eye, dusk);
-            Light sun = null;
-            foreach (var light in Object.FindObjectsByType<Light>(FindObjectsSortMode.None))
-                if (light.type == LightType.Directional) { sun = light; break; }
-            if (!sun || sun.type != LightType.Directional)
-            {
-                sun = new GameObject("InterludeRoomSun").AddComponent<Light>();
-                sun.type = LightType.Directional;
-                sun.shadows = LightShadows.Soft;
-            }
-            sun.enabled = true;
-            sun.color = dusk ? new Color(.95f, .45f, .30f) : new Color(1f, .96f, .88f);
-            sun.intensity = dusk ? .5f : 1.15f;
-            sun.transform.rotation = dusk ? Quaternion.Euler(12, -70, 0) : Quaternion.Euler(50, -30, 0);
-            RenderSettings.sun = sun;
-        }
-
-        private static void ApplyAtmosphere(Camera eye, bool dusk)
-        {
-            // A camera's backgroundColor is ignored while the authored night
-            // skybox is assigned. Replace both the sky and camera clear mode.
-            RenderSettings.skybox = Resources.Load<Material>(dusk ? "InterludeDuskSky" : "InterludeDaySky");
-            if (eye)
-            {
-                eye.clearFlags = RenderSettings.skybox ? CameraClearFlags.Skybox : CameraClearFlags.SolidColor;
-                eye.backgroundColor = dusk ? new Color(.30f, .22f, .20f) : new Color(.62f, .68f, .74f);
+                else if (light.name.Contains("StreetLight") || light.name.Contains("WarungWarmLight") || light.name == "WartegCaseLight") light.enabled = true;
             }
             RenderSettings.fog = true;
             RenderSettings.fogMode = FogMode.ExponentialSquared;
-            RenderSettings.fogDensity = dusk ? .008f : .0025f;
-            RenderSettings.fogColor = dusk ? new Color(.30f, .22f, .20f) : new Color(.62f, .68f, .74f);
+            RenderSettings.fogDensity = .008f;
+            RenderSettings.fogColor = new Color(.30f, .22f, .20f);
             RenderSettings.ambientMode = AmbientMode.Trilight;
-            RenderSettings.ambientSkyColor = dusk ? new Color(.22f, .16f, .15f) : new Color(.55f, .60f, .66f);
-            RenderSettings.ambientEquatorColor = dusk ? new Color(.15f, .12f, .11f) : new Color(.38f, .40f, .42f);
-            RenderSettings.ambientGroundColor = dusk ? new Color(.09f, .08f, .07f) : new Color(.22f, .21f, .20f);
+            RenderSettings.ambientSkyColor = new Color(.22f, .16f, .15f);
+            RenderSettings.ambientEquatorColor = new Color(.15f, .12f, .11f);
+            RenderSettings.ambientGroundColor = new Color(.09f, .08f, .07f);
+            if (eye) eye.backgroundColor = new Color(.30f, .22f, .20f);
         }
 
         internal static void DropCollider(GameObject go)

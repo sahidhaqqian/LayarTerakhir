@@ -43,8 +43,6 @@ namespace LayarTerakhir.UI
         public void Open(PhoneApp app)
         {
             if(Phone&&Phone.CameraLocked&&app!=PhoneApp.Camera)return;
-            // Kembali ke menu aplikasi = mode AR mati (bug 19).
-            if(app!=PhoneApp.Camera&&Phone&&Phone.currentScanMode==ScanVisualMode.AR){Phone.currentScanMode=ScanVisualMode.Normal;Phone.SyncVisualState();}
             CurrentApp=app;TravelSelection=false;if(page){page.SetActive(false);Destroy(page);}if(!root)return;
             root.SetActive(app!=PhoneApp.Camera);page=PhoneSkin.Card("App_"+app,root.transform,Vector2.zero,Vector2.one,app==PhoneApp.Home?new Color(.045f,.09f,.14f):PhoneSkin.Ink);
             if(app==PhoneApp.Camera)return;if(app==PhoneApp.Home){Home();return;}if(app==PhoneApp.Call){CallScreen();return;}
@@ -153,13 +151,7 @@ namespace LayarTerakhir.UI
                 CampaignState.Instance.AddInventoryItem(contact=="Ibu"?"EVENT_CALLED_IBU":"EVENT_CALLED_RATNA");
                 string checkpoint=CampaignState.Instance.Data.checkpoint_id;
                 CampaignState.Instance.SaveCheckpointAtomic(checkpoint=="PROLOG_KOS_START"?"PROLOG_KOS_PREPARATION":checkpoint);
-                if(result)result.text=contact+"\nPanggilan selesai • pesan baru masuk";
-                // Bug: telepon kedua selesai harus langsung memicu notif + pindah ke Pesan.
-                dialing=false;
-                if(Phone) { Phone.isPhoneRaised=true; Phone.isScreenOn=Phone.batteryPercent>0; Phone.SyncVisualState(); }
-                Notify(contact=="Ibu"?"Ibu: Makasih, Nak. Transfernya Ibu tunggu, ya.":"Bu Haji Ratna: Masuk malam ini, kamarmu aman.");
-                Open(PhoneApp.Messages);
-                yield break;
+                if(result)result.text=contact+"\nPanggilan selesai • tagihan tersedia di Bank";
             }
             else if(result)result.text=contact+"\nTidak dapat dihubungi";
             dialing=false;

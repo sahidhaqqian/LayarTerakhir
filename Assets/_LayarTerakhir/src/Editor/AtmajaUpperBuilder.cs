@@ -23,7 +23,7 @@ namespace LayarTerakhir.Editor
             director.chase=systems.AddComponent<AtmajaChaseSequence>();director.chase.director=director;director.chase.basement=director.basement;
             director.basement.chase=director.chase;
             director.stairDoorLeaf=GameObject.Find("LockedCentralStairDoor");
-            BuildStairs();BuildUpperShell();DressCorridor();DressChildRoom();DressBathroom();DressBalcony();DressMasterRoom();DressBloodTrail();BuildBasement();BuildChaseMods();WireDirector();
+            BuildStairs();BuildUpperShell();DressCorridor();DressChildRoom();DressBathroom();DressBalcony();DressMasterRoom();BuildBasement();BuildChaseMods();WireDirector();
         }
         private static Material Textured(string name,string tex,float rough,float metal=0)
         {
@@ -38,44 +38,6 @@ namespace LayarTerakhir.Editor
         private static Material Glow(string name,Color color,float intensity)
         {
             var m=Plain(name,color,.9f);m.EnableKeyword("_EMISSION");m.SetColor("_EmissionColor",color*intensity);EditorUtility.SetDirty(m);return m;
-        }
-        private static Material Decal(string name,string texturePath)
-        {
-            var m=Plain(name,new Color(.48f,.025f,.025f),0);
-            m.SetFloat("_SpecularHighlights",0);m.SetFloat("_EnvironmentReflections",0);m.EnableKeyword("_SPECULARHIGHLIGHTS_OFF");m.EnableKeyword("_ENVIRONMENTREFLECTIONS_OFF");
-            m.SetTexture("_BaseMap",AssetDatabase.LoadAssetAtPath<Texture2D>(texturePath));
-            m.SetFloat("_AlphaClip",1);m.SetFloat("_Cutoff",.05f);
-            m.SetFloat("_Cull",0);
-            m.SetOverrideTag("RenderType","TransparentCutout");m.renderQueue=2450;
-            m.EnableKeyword("_ALPHATEST_ON");EditorUtility.SetDirty(m);return m;
-        }
-        private static void DressBloodTrail()
-        {
-            // Jejak tangan + noda darah internet (CC0) berlanjut ke lantai 2 (bug 22).
-            var hand=Decal("Upper_Handprint","Assets/_LayarTerakhir/assets/Art/Atmaja/Textures/BloodyHandprint.png");
-            var stain=Decal("Upper_BloodFloor","Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ExileBlood/blood.png");
-            // Tapak di dinding koridor utara (sisi koridor), mengarah ke pintu utama.
-            float[] wallX={-2.2f,-1.2f,-0.2f,.9f};
-            for(int i=0;i<wallX.Length;i++)
-            {
-                var go=GameObject.CreatePrimitive(PrimitiveType.Quad);go.name="BloodHandprintF2";
-                go.transform.SetParent(environment,false);
-                go.transform.SetPositionAndRotation(P(wallX[i],5.29f,4.55f+i*.18f),Quaternion.LookRotation(north));
-                go.transform.localScale=new Vector3(.28f,.34f,1);
-                go.GetComponent<Renderer>().sharedMaterial=hand;
-                Object.DestroyImmediate(go.GetComponent<Collider>());
-            }
-            // Noda + tapak di lantai menyusuri tepi koridor sampai pintu utama.
-            Vector3[] trail={new Vector3(-2.4f,6.05f,0),new Vector3(-1.6f,5.95f,1),new Vector3(-.8f,6.05f,0),new Vector3(.1f,5.9f,1),new Vector3(.8f,5.7f,0),new Vector3(1.35f,5.5f,1)};
-            for(int i=0;i<trail.Length;i++)
-            {
-                var go=GameObject.CreatePrimitive(PrimitiveType.Quad);go.name=i%2==0?"BloodHandprintFloor":"BloodStainFloor";
-                go.transform.SetParent(environment,false);
-                go.transform.SetPositionAndRotation(P(trail[i].x,trail[i].y,F2+.006f),Quaternion.Euler(-90,i*47f,0));
-                float s=i%2==0?.26f:.34f+(i%3)*.04f;go.transform.localScale=new Vector3(s,s,1);
-                go.GetComponent<Renderer>().sharedMaterial=i%2==0?hand:stain;
-                Object.DestroyImmediate(go.GetComponent<Collider>());
-            }
         }
         private static void Materials()
         {
@@ -292,11 +254,6 @@ namespace LayarTerakhir.Editor
             WallD("CorrWallN_D",5.2f,1.85f,2.4f,F2,C2,plaster);
             foreach(float c in new[]{4.4f,1.1f})WallD("CorrLintelN",5.2f,c-.5f,c+.5f,5.95f,C2,plaster);
             WallD("CorrLintelMaster",5.2f,.75f,1.85f,5.95f,C2,plaster);
-            // Lintel di atas bukaan pintu anak & mandi: tidak ada celah menganga (bug 23).
-            // Tanpa kusen samping: daun terbuka menyapu area kusen dan kusen
-            // dekoratif justru menjepit daun (bug 21).
-            WallD("CorrLintelChild",5.2f,-4.9f,-3.9f,5.95f,C2,plaster);
-            WallD("CorrLintelBath",5.2f,-1.55f,-.65f,5.95f,C2,plaster);
             WallD("CorrWallS_A",6.3f,-6,-4.0f,F2,C2,plaster);
             WallD("CorrWallS_B",6.3f,-2.5f,2.4f,F2,C2,plaster);
             Box("CorridorRunner",P(-1.8f,5.75f,3.825f),new Vector3(8.0f,.012f,.8f),Mat("Upper_RedCarpet"),false);
@@ -309,23 +266,17 @@ namespace LayarTerakhir.Editor
         {
             var frame=ExistingMapped(id,name,center,size,Mat("House_MAT_WoodDoor"),Mat("Upper_PortraitCanvas"));
             frame.transform.rotation=Facing(-north);
-            if(!string.IsNullOrEmpty(plaqueText))
-            {
-                var plaque=Plaque(name+"_Plaque",plaqueText,plaquePos,.30f,new Color(.55f,.42f,.18f));
-                plaque.transform.rotation=Facing(-north);
-                Box(name+"_PlaqueBack",plaquePos+north*.012f,new Vector3(size.x*.8f,.16f,.02f),Mat("Upper_BrassPlaque"));
-            }
+            var plaque=Plaque(name+"_Plaque",plaqueText,plaquePos,.30f,new Color(.55f,.42f,.18f));
+            plaque.transform.rotation=Facing(-north);
+            Box(name+"_PlaqueBack",plaquePos+north*.012f,new Vector3(size.x*.8f,.16f,.02f),Mat("Upper_BrassPlaque"));
             for(int i=0;i<3;i++)
                 Box(name+"_Gouge"+i,center-north*.05f+east*((i-1)*.09f)+Vector3.up*.02f,new Vector3(.035f,size.y*.5f,.02f),Mat("Upper_BookPaper"),false);
-            // Tulisan AR "DIA MELIHAT KAU MEMOTRET" dihapus (bug 26): BloodAR hanya
-            // dibuat bila arText eksplisit diberikan.
+            var blood=Plaque(name+"_BloodAR",arText??"DIA MELIHAT\nKAU MEMOTRET",center-north*.1f+Vector3.up*-.55f,.22f,new Color(.5f,.02f,.01f));
+            blood.transform.rotation=Facing(-north);
+            Layer(blood,AtmajaPhoneView.ARLayer);blood.SetActive(false);bloodSlot[bloodIndex]=blood;
             if(arText!=null)
             {
-                var blood=Plaque(name+"_BloodAR",arText,center-north*.1f+Vector3.up*-.55f,.22f,new Color(.5f,.02f,.01f));
-                blood.transform.rotation=Facing(-north);
-                Layer(blood,AtmajaPhoneView.ARLayer);blood.SetActive(false);
-                if(bloodSlot!=null&&bloodIndex>=0&&bloodIndex<bloodSlot.Length)bloodSlot[bloodIndex]=blood;
-                // GDD foreshadowing: closed-eye Arsip Saksi mark behind the frame, AR-visible only.
+                // GDD foreshadowing: closed-eye Arsip Saksi mark behind the third frame, AR-visible only.
                 var ink=Mat("ARSecretInk");
                 if(ink)
                 {
@@ -336,9 +287,10 @@ namespace LayarTerakhir.Editor
         }
         private static void DressCorridor()
         {
-            // Satu foto keluarga Atmaja (bug 25); tanpa plakat dosa (bug 27), tanpa tulisan AR (bug 26).
-            var blood=new GameObject[1];director.upper.portraitBloodAR=blood;
-            Portrait("fancy_picture_frame_01","PortraitDosa2",P(.1f,5.10f,5.35f),new Vector3(.62f,.78f,.07f),null,P(.1f,5.10f,4.82f),blood,-1);
+            var blood=new GameObject[3];director.upper.portraitBloodAR=blood;
+            Portrait("hanging_picture_frame_01","PortraitDosa1",P(-2.5f,5.10f,5.35f),new Vector3(.62f,.78f,.07f),"DOSA PERTAMA — 19:15\nRACUN DI DALAM KASIH",P(-2.5f,5.10f,4.82f),blood,0);
+            Portrait("fancy_picture_frame_01","PortraitDosa2",P(.1f,5.10f,5.35f),new Vector3(.62f,.78f,.07f),"DOSA KEDUA — 21:40\nCAKARAN DI BALIK AIR",P(.1f,5.10f,4.82f),blood,1);
+            Portrait("hanging_picture_frame_03","PortraitDosa3",P(2.12f,5.10f,5.35f),new Vector3(.5f,.66f,.07f),"DOSA KETIGA — 23:59\nTALI PENUTUP USIA",P(2.12f,5.10f,4.88f),blood,2,"SAKSI MENYIMPAN NAMA\nPENONTON HANYA\nMENYIMPAN WAJAH");
             foreach(float x in new[]{-4.6f,.9f})
             {
                 var lamp=Existing("Lantern_01","CorridorLantern",P(x,5.75f,6.1f),new Vector3(.3f,.42f,.3f),"Upper_ChandelierBrass");
@@ -374,7 +326,7 @@ namespace LayarTerakhir.Editor
             Box("ChildToyBlocks",P(-3.9f,3.1f,3.92f),new Vector3(.3f,.12f,.3f),Mat("Upper_BookCover"),false);
             Box("ChildToyBall",P(-4.4f,2.4f,3.95f),new Vector3(.16f,.16f,.16f),Mat("Upper_RedCarpet"),false);
             Box("ChildCarpet",P(-4.3f,2.6f,3.83f),new Vector3(1.6f,.03f,2.2f),Mat("Upper_RedCarpet"),false);
-            director.upper.childDoor=Door("ChildBedroomDoor",P(-4.81f,5.2f,F2),P(-4.4f,5.2f,F2+1.05f),new Vector3(1.0f,2.1f,.09f),"Pintu kamar anak (gagang rusak)",true);
+            director.upper.childDoor=Door("ChildBedroomDoor",P(-4.9f,5.2f,F2),P(-4.4f,5.2f,F2+1.05f),new Vector3(1.0f,2.1f,.09f),"Pintu kamar anak (gagang rusak)",true);
             var holeBack=Box("VentHoleDark",P(-3.0f,5.2f,4.5f),new Vector3(.7f,.9f,.1f),Mat("Upper_CurtainDirty"),false);
             var ventAR=Plaque("VentHoleAR","LUBANG VENTILASI\nJEBOL — MERANGKAK\nDENGAN AR MENYALA",P(-3.0f,5.45f,4.5f),.20f,new Color(.5f,.02f,.01f));
             ventAR.transform.rotation=Facing(-north);

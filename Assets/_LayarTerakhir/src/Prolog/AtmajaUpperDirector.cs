@@ -145,13 +145,13 @@ namespace LayarTerakhir.Prolog
         public Collider ventGate;
         public GameObject[] chainLinks=new GameObject[3];
         public GameObject childCup,bathCurtain,bathWater,mirrorFlashFigure,hangedFlashFigure,carpetRoll,trapdoorLid;
-        public GameObject ventCabinet;public bool ventUsesHingedCover;
+        public GameObject ventCabinet;
         public Transform ropePivot;
         private Quaternion ropeBase;
         private bool ropeInit;
         private AudioClip creakClip,dripClip;
         private float creakTimer,dripTimer;
-        public GameObject ventHoleAR,bathScratchesAR,ventBlink;
+        public GameObject ventHoleAR,bathScratchesAR;
         public AudioSource doorSong;
         public GameObject[] portraitBloodAR=new GameObject[3];
         public Transform cupAim,scratchAim,ropeAim,ventMouth,mirrorSpot,ropeSpot;
@@ -190,7 +190,6 @@ namespace LayarTerakhir.Prolog
             if(carpetRoll)carpetRoll.SetActive(!Has("EVENT_P0_CARPET_LIFTED"));
             if(trapdoorLid)trapdoorLid.SetActive(Has("EVENT_P0_CARPET_LIFTED")&&!Has("EVENT_P0_TRAPDOOR_OPEN"));
             if(ventGate)ventGate.enabled=true;
-            if(ventUsesHingedCover&&ventCabinet){ventCabinet.SetActive(true);ventCabinet.transform.localRotation=Quaternion.identity;}
             if(mirrorFlashFigure)mirrorFlashFigure.SetActive(false);
             if(hangedFlashFigure)hangedFlashFigure.SetActive(false);
             if(ventHoleAR)ventHoleAR.SetActive(false);
@@ -214,8 +213,6 @@ namespace LayarTerakhir.Prolog
             }
             bool ar=ArActive;
             if(ventHoleAR)ventHoleAR.SetActive(ar&&!Has("EVENT_P0_CHAIN1_BROKEN"));
-            // Titik putih kecil berkedip di lubang ventilasi saat AR menyala (bug 24).
-            if(ventBlink)ventBlink.SetActive(ar&&!Has("EVENT_P0_CHAIN1_BROKEN")&&Mathf.Repeat(Time.time,1f)<.55f);
             if(bathScratchesAR)bathScratchesAR.SetActive(ar&&Has("EVENT_P0_CHAIN1_BROKEN")&&!Has("EVENT_P0_CHAIN2_BROKEN"));
             if(ar)SyncScratchTarget();
             for(int i=0;i<portraitBloodAR.Length;i++)if(portraitBloodAR[i])portraitBloodAR[i].SetActive(ar);
@@ -233,15 +230,7 @@ namespace LayarTerakhir.Prolog
                 bool near=Vector3.Distance(director.player.transform.position,ventMouth.position)<2.1f;
                 bool pass=ar&&director.player.IsCrouching&&near&&childDoor&&!childDoor.IsOpen;
                 ventGate.enabled=!pass;
-                if(ventCabinet)
-                {
-                    if(ventUsesHingedCover)
-                    {
-                        ventCabinet.SetActive(true);
-                        ventCabinet.transform.localRotation=Quaternion.RotateTowards(ventCabinet.transform.localRotation,Quaternion.Euler(0,pass?-105:0,0),200*Time.deltaTime);
-                    }
-                    else ventCabinet.SetActive(!pass);
-                }
+                if(ventCabinet)ventCabinet.SetActive(!pass);
             }
             if(!Has("EVENT_P0_MIRROR_SCARE")&&mirrorSpot&&mirrorFlashFigure)
             {
@@ -302,10 +291,8 @@ namespace LayarTerakhir.Prolog
             else if(Has("EVENT_P0_CHAIN1_BROKEN")&&Has("EVENT_P0_CURTAIN_OPEN")&&!Has("EVENT_P0_CHAIN2_BROKEN")&&Aimed(scratchAim,2.6f,.88f))BreakChain(2,"Cakaran puluhan jari kecil terpindai jelas.","EVENT_P0_CHAIN2_BROKEN");
             else if(Has("EVENT_P0_CHAIN2_BROKEN")&&!Has("EVENT_P0_CHAIN3_BROKEN")&&Aimed(ropeAim,4.5f,.88f))BreakChain(3,"Tali tambang berayun terpindai. Sesuatu tergantung di sana...","EVENT_P0_CHAIN3_BROKEN");
         }
-        public bool bathScratchesOnWall;
         private void SyncScratchTarget()
         {
-            if(bathScratchesOnWall)return;
             if(!bathDoor||!bathScratchesAR||!scratchAim||!director.phoneView||!director.phoneView.FeedCamera)return;
             // Project the AR trace onto the visible face of the door. Its own wood
             // must not hide the clue/aim anchor when a right-hinged leaf swings inward.
@@ -364,12 +351,12 @@ namespace LayarTerakhir.Prolog
                     float step=1.6f*Time.deltaTime;
                     Vector3 pos=Vector3.MoveTowards(director.player.transform.position,target,step);
                     bob+=step*7f;
-                    director.player.transform.position=pos;
+                    director.player.transform.position=pos+Vector3.up*Mathf.Abs(Mathf.Sin(bob))*.035f;
                     Vector3 look=seg+1<path.Length?path[seg+1]:target+Vector3.down*2f;
                     Vector3 flat=look-pos;flat.y=0;
                     if(flat.sqrMagnitude>.01f)director.player.transform.rotation=Quaternion.Slerp(director.player.transform.rotation,Quaternion.LookRotation(flat),Time.deltaTime*5);
                     pitch=Mathf.MoveTowards(pitch,-32,30*Time.deltaTime);
-                    director.player.SetViewPitch(pitch+Mathf.Sin(bob)*.45f);
+                    director.player.SetViewPitch(pitch);
                     if(rig)rig.RefreshCameraPose();
                     yield return null;
                 }
@@ -381,10 +368,8 @@ namespace LayarTerakhir.Prolog
 
         // Waypoints over the built CellarStep treads, top first. Resolved from
         // the live scene so the walk always matches the visible staircase.
-        public Transform[] cellarClimbPath = Array.Empty<Transform>();
         public Vector3[] CellarDescentPath()
         {
-            if(cellarClimbPath!=null&&cellarClimbPath.Length>1)return Array.ConvertAll(cellarClimbPath,t=>t.position);
             var steps=new List<Transform>();
             foreach(var t in UnityEngine.Object.FindObjectsByType<Transform>(FindObjectsSortMode.None))
                 if(t.name=="CellarStep")steps.Add(t);

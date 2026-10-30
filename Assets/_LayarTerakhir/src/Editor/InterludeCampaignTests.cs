@@ -167,11 +167,11 @@ namespace LayarTerakhir.Editor.Tests
             UnityEditor.SceneManagement.EditorSceneManager.OpenScene(LayarTerakhir.Editor.KosCorridorBuilder.ScenePath);
             var corridor = UnityEngine.Object.FindFirstObjectByType<LayarTerakhir.Prolog.KosCorridorDirector>();
             Assert.That(corridor, Is.Not.Null);
-            // Buildings and parked props are present at every time of day.
+            // Transform.Find: GameObject.Find skips the inactive group.
             var kampung = GameObject.Find("KampungMelati");
             var alleyGroup = kampung ? kampung.transform.Find("InterludeAlley") : null;
-            Assert.That(alleyGroup, Is.Not.Null, "permanent street dressing must live under one group");
-            Assert.That(alleyGroup.gameObject.activeSelf, Is.True, "Bug 47: permanent houses must also be loaded in the night prolog");
+            Assert.That(alleyGroup, Is.Not.Null, "daytime dressing must live under one group");
+            Assert.That(alleyGroup.gameObject.activeSelf, Is.False, "group stays OFF in the saved scene so the night prolog route is untouched");
             int alley = 0, warteg = 0, carts = 0, parked = 0, wires = 0, labels = 0;
             foreach (var t in UnityEngine.Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None))
             {

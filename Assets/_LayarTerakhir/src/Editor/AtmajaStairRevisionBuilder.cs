@@ -82,7 +82,7 @@ namespace LayarTerakhir.Editor
                 {
                     var panel=Box("StairDoorRecessedPanel",P(-3.55f,6.31f+side,y),new Vector3(.96f,.67f,.035f),wood,false);panel.transform.SetParent(leaf.transform,true);
                 }
-                var handle=Box("StairDoorBrassHandle",P(-3.06f,6.31f+side*.9f,1.55f),new Vector3(.14f,.035f,.055f),Mat("Upper_ChandelierBrass"),false);handle.transform.SetParent(leaf.transform,true);
+                var handle=Box("StairDoorBrassHandle",P(-3.06f,6.31f+side*1.5f,1.55f),new Vector3(.14f,.035f,.055f),Mat("Upper_ChandelierBrass"),false);handle.transform.SetParent(leaf.transform,true);
             }
             foreach(float x in new[]{-4.205f,-2.895f})Box("StairDoorFrame",P(x,6.22f,1.665f),new Vector3(.10f,2.33f,.12f),trim);
             Box("StairDoorFrameHeader",P(-3.55f,6.22f,2.82f),new Vector3(1.41f,.10f,.12f),trim);

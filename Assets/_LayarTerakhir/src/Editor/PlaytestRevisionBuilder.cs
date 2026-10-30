@@ -16,12 +16,10 @@ namespace LayarTerakhir.Editor
         public static void Build()
         {
             AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
-            ConfigureDocumentPaper();
             var map=(TextureImporter)AssetImporter.GetAtPath("Assets/Resources/Phone/JakartaStreetMap.png");
             if(map){map.maxTextureSize=1024;map.mipmapEnabled=false;map.wrapMode=TextureWrapMode.Clamp;map.textureCompression=TextureImporterCompression.Compressed;map.SaveAndReimport();}
             AtmajaSceneBuilder.Build();
             ImportPresentation();KosCorridorBuilder.Build();
-            PrologAcceptanceRepair.RestoreStreet();
             Debug.Log("PLAYTEST_REVISION_BUILD complete; Golden room scene preserved");
         }
         [MenuItem("LayarTerakhir/Prolog/Refine Kos only (preserve both approved scenes)")]
@@ -31,24 +29,8 @@ namespace LayarTerakhir.Editor
             ImportPresentation();KosCorridorBuilder.Build();
             Debug.Log("KOS_REFINEMENT_BUILD complete; Golden and Atmaja source scenes not rewritten");
         }
-        private static void ConfigureDocumentPaper()
-        {
-            // Kertas catatan asli (CC0 ambientCG Paper001) sebagai Sprite UI (bug 20).
-            const string path = "Assets/Resources/Paper/DocumentPaper.jpg";
-            if (AssetImporter.GetAtPath(path) is TextureImporter ti)
-            {
-                ti.textureType = TextureImporterType.Sprite;
-                ti.spriteImportMode = SpriteImportMode.Single;
-                ti.sRGBTexture = true;
-                ti.maxTextureSize = 1024;
-                ti.mipmapEnabled = true;
-                ti.textureCompression = TextureImporterCompression.Compressed;
-                ti.SaveAndReimport();
-            }
-        }
         private static void ImportPresentation()
         {
-            ConfigureDocumentPaper();
             foreach(var path in Directory.GetFiles("Assets/Resources/KosAudio","*.wav"))
             {
                 var importer=(AudioImporter)AssetImporter.GetAtPath(path);importer.forceToMono=true;var settings=importer.defaultSampleSettings;settings.loadType=AudioClipLoadType.DecompressOnLoad;settings.compressionFormat=AudioCompressionFormat.ADPCM;importer.defaultSampleSettings=settings;importer.SaveAndReimport();

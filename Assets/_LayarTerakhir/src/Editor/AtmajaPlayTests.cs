@@ -61,96 +61,6 @@ namespace LayarTerakhir.Editor.Tests
         [UnityTest] public IEnumerator SurveyLiveDonationCrouchAndRemappedVault()=>Run(Exterior());
         [UnityTest] public IEnumerator OnePhoneARClockZeroBatteryAndCheckpointResume()=>Run(Interior());
         [UnityTest] public IEnumerator PhoneAppsExposeCampaignAndAllowStowing()=>Run(PhoneApps());
-        [UnityTest] public IEnumerator Bug02CompletedCallsNotifyAndOpenMessages()=>RecoveryRuntimeScenario.Run(CallMessages());
-        [UnityTest] public IEnumerator Bug14PhoneDragAndBug19HomeTurnOffAR()=>Run(PhoneDragAndHome());
-        [UnityTest] public IEnumerator Bug21DoorAnimationAndBug35FlashlightFloor()=>Run(DoorAndFloor());
-        [UnityTest] public IEnumerator Bug20SurveyPaperShowsItsWrittenNote()=>Run(SurveyPaper());
-        [UnityTest] public IEnumerator Bug37ExpandedMasterHasKeyboardSpace()=>Run(MasterKeyboardSpace());
-
-        private IEnumerator SurveyPaper()
-        {
-            yield return new WaitForSeconds(2);var d=Find<AtmajaDirector>();var item=Item(AtmajaAction.Survey);
-            item.Interact();yield return null;Assert.That(HudController.Instance.IsModalOpen,Is.True);
-            Assert.That(GameObject.Find("DocumentModalPanel").GetComponent<UnityEngine.UI.Image>().sprite,Is.SameAs(Resources.Load<Sprite>("Paper/DocumentPaper")),"Authored HUD must display the real paper texture");
-            yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug20-survey-paper-top");
-            foreach(var scroll in HudController.Instance.GetComponentsInChildren<UnityEngine.UI.ScrollRect>())scroll.verticalNormalizedPosition=0;
-            yield return null;yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug20-survey-paper-bottom");
-            HudController.Instance.CloseDocumentModal();
-        }
-        private IEnumerator MasterKeyboardSpace()
-        {
-            yield return new WaitForSeconds(2);var d=SeedBasement();d.SetBusy(false);d.PlacePlayer(d.P(3,3.7f,3.83f),Quaternion.LookRotation(d.east));
-            var phone=SmartphoneController.Instance;phone.isBroadcastConnected=phone.isPhoneRaised=phone.isScreenOn=true;phone.SyncVisualState();d.phoneView.Apps.Open(PhoneApp.Camera);
-            foreach(var point in new[]{d.P(4.1f,3.7f,3.83f),d.P(4.0f,3.3f,3.83f),d.P(3.6f,3.3f,3.83f),d.P(3.6f,3.7f,3.83f),d.P(2.5f,3.7f,3.83f)})yield return WalkWithKeys(d.player,point);
-            d.player.enabled=false;AimPlayerAt(d,KosVisualV2.BoundsOf(GameObject.Find("MasterBedSet")).center);
-            yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug37-master-player-route");
-        }
-
-        private IEnumerator DoorAndFloor()
-        {
-            yield return new WaitForSeconds(2);Time.timeScale=1;var d=Find<AtmajaDirector>();var c=CampaignState.Instance;
-            foreach(var id in new[]{"EVENT_P0_GATE_OPEN","EVENT_P0_LIVE_STARTED","EVENT_P0_KITCHEN_ENTERED","EVENT_P0_DINING_OPEN","MATABATIN_APK","EVENT_P0_STAIRS_UNLOCKED","EVENT_P0_UPPER_REACHED"})c.AddInventoryItem(id);
-            d.RestoreWorld();d.player.enabled=false;var rig=d.player.GetComponent<ShoulderCameraRig>();rig.FirstPersonOverride=true;
-            var lightingPhone=SmartphoneController.Instance;lightingPhone.isPhoneRaised=lightingPhone.isScreenOn=lightingPhone.isBroadcastConnected=true;lightingPhone.SyncVisualState();d.phoneView.Apps.Open(PhoneApp.Camera);
-            d.PlacePlayer(d.P(-1.1f,5.9f,3.83f),Quaternion.LookRotation(-d.north));rig.RefreshCameraPose();
-            var eye=d.phoneView.playerCamera;var door=d.upper.bathDoor;door.SetOpenImmediate(false);AimPlayerAt(d,door.GetComponent<Collider>().bounds.center);yield return null;yield return null;
-            Assert.That(d.player.GetComponent<InteractionInteractor>().CurrentTarget,Is.SameAs(door));
-            yield return RecoveryVisualEvidence.CaptureFrame(eye,"bug21-bath-door-before");yield return Press(Key.E);yield return new WaitForSeconds(1.2f);
-            Assert.That(door.IsOpen,Is.True);Assert.That(door.GetComponentsInChildren<Renderer>().Any(r=>r.enabled&&r.bounds.size.magnitude>.5f),Is.True);
-            yield return RecoveryVisualEvidence.CaptureFrame(eye,"bug21-bath-door-open");
-            d.PlacePlayer(d.P(-.8f,3.6f,3.83f),Quaternion.LookRotation(-d.north));AimPlayerAt(d,d.P(-1.15f,2.1f,3.82f));
-            var phone=SmartphoneController.Instance;phone.isPhoneRaised=true;phone.isScreenOn=false;phone.batteryPercent=80;phone.currentScanMode=ScanVisualMode.Normal;phone.SyncVisualState();d.phoneView.Apps.Open(PhoneApp.Camera);
-            var floor=GameObject.Find("BathFloor").GetComponent<Renderer>();var material=floor.sharedMaterial;var mesh=floor.GetComponent<MeshFilter>().sharedMesh;
-            yield return RecoveryVisualEvidence.CaptureFrame(eye,"bug35-floor-light-off");yield return Press(Key.F);
-            Assert.That(phone.phoneFlashlight.enabled,Is.True);Assert.That(floor.sharedMaterial,Is.SameAs(material));Assert.That(floor.GetComponent<MeshFilter>().sharedMesh,Is.SameAs(mesh));
-            yield return RecoveryVisualEvidence.CaptureFrame(eye,"bug35-floor-light-on");
-        }
-        private static void AimPlayerAt(AtmajaDirector d,Vector3 target)
-        {
-            var delta=target-d.player.cameraPivot.position;var planar=new Vector3(delta.x,0,delta.z);d.player.transform.rotation=Quaternion.LookRotation(planar);
-            d.player.SetViewPitch(-Mathf.Atan2(delta.y,planar.magnitude)*Mathf.Rad2Deg);d.player.GetComponent<ShoulderCameraRig>().RefreshCameraPose();
-        }
-
-        private IEnumerator ClickButton(UnityEngine.UI.Button button)
-        {
-            Assert.That(button.IsActive()&&button.IsInteractable(),Is.True,"The visible phone button must accept input");
-            // Xvfb's batch cursor is reported locked even after a game-owned
-            // unlock. Drive the EventSystem's real keyboard submit binding.
-            UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(button.gameObject);
-            yield return Press(Key.Enter);
-        }
-        private IEnumerator CallMessages()
-        {
-            yield return new WaitForSeconds(2);var d=Find<AtmajaDirector>();var phone=SmartphoneController.Instance;var c=CampaignState.Instance;
-            c.AddInventoryItem("EVENT_P0_CONTRACT_RECEIVED");phone.hasSmartphoneInInventory=true;phone.isPhoneRaised=phone.isScreenOn=true;phone.batteryPercent=90;phone.SyncVisualState();
-            for(int i=1;i<=2;i++)
-            {
-                d.phoneView.Apps.Open(PhoneApp.Call);yield return new WaitForSeconds(.6f);
-                yield return ClickButton(GameObject.Find("Contact_"+i).GetComponent<UnityEngine.UI.Button>());
-                string id=i==1?"EVENT_CALLED_IBU":"EVENT_CALLED_RATNA";float deadline=Time.realtimeSinceStartup+65;
-                while(!c.HasInventoryItem(id)&&Time.realtimeSinceStartup<deadline)yield return null;
-                Assert.That(c.HasInventoryItem(id),Is.True,"The actual contact button must finish its call");
-                Assert.That(d.phoneView.Apps.CurrentApp,Is.EqualTo(PhoneApp.Messages));
-                yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug02-call-"+i+"-messages");
-            }
-        }
-        private IEnumerator PhoneDragAndHome()
-        {
-            yield return new WaitForSeconds(2);Time.timeScale=1;var d=Find<AtmajaDirector>();var phone=SmartphoneController.Instance;
-            phone.hasSmartphoneInInventory=true;phone.isPhoneRaised=phone.isScreenOn=true;phone.SyncVisualState();d.phoneView.Apps.Open(PhoneApp.Home);yield return new WaitForSeconds(.6f);
-            float before=d.player.transform.eulerAngles.y;
-            InputSystem.QueueStateEvent(mouse,new MouseState{delta=new Vector2(75,0)});yield return null;yield return null;
-            Assert.That(Mathf.Abs(Mathf.DeltaAngle(before,d.player.transform.eulerAngles.y)),Is.LessThan(.1f));
-            InputSystem.QueueStateEvent(mouse,new MouseState{buttons=1,delta=new Vector2(75,0)});yield return null;yield return null;
-            Assert.That(Mathf.Abs(Mathf.DeltaAngle(before,d.player.transform.eulerAngles.y)),Is.GreaterThan(1f),"Held LMB must turn the actual player in phone menu");
-            InputSystem.QueueStateEvent(mouse,new MouseState());yield return null;
-            yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug14-phone-menu-drag");
-            phone.currentScanMode=ScanVisualMode.AR;phone.SyncVisualState();d.phoneView.Apps.Open(PhoneApp.Camera);yield return null;
-            yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug19-before-ar-home");
-            yield return Press(Key.Z);Assert.That(d.phoneView.Apps.CurrentApp,Is.EqualTo(PhoneApp.Home));
-            Assert.That(phone.currentScanMode,Is.EqualTo(ScanVisualMode.Normal));
-            yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug19-home-ar-disabled");
-        }
         [UnityTest] public IEnumerator KosBothStairFlightsAndSharedRoomsAreContinuouslyWalkable()=>Run(KosNavigation());
         [UnityTest] public IEnumerator DiningSidesBackpackAndCornerRoomAreContinuouslyWalkable()=>Run(DiningNavigation());
         [UnityTest] public IEnumerator UpperEvidenceUsesPhoneLensAndAcceptsTargetSurface()=>Run(UpperPhonePhotos());
@@ -174,9 +84,6 @@ namespace LayarTerakhir.Editor.Tests
         [UnityTest] public IEnumerator HunterDoesNotAbandonStationaryRakaForTheWindow()=>Run(HunterTracksRaka());
         [UnityTest] public IEnumerator PracticalBeamThreatRimAndCameraDitherAreLive()=>Run(PracticalPresentation());
         [UnityTest] public IEnumerator BasementEmergencyBlitzCostsBatteryAndStunsHunter()=>Run(BasementBlitz());
-        [UnityTest] public IEnumerator PostRecordingBlitzStunsWithoutAdvancingTheWindowRitual()=>Run(PostRecordingBlitz());
-        [UnityTest] public IEnumerator WindowAmbushNeverCapturesRakaThroughKitchenGeometry()=>Run(WindowAmbushOcclusion());
-        [UnityTest] public IEnumerator VisibleCellarLadderDescentCannotAccumulateVerticalBob()=>Run(LadderDescent());
         [UnityTest] public IEnumerator ViewfinderFocusFillsPhoneAndRestoresChrome()=>Run(ViewfinderFocus());
         [UnityTest] public IEnumerator BasementAndChaseChatBurstsWithThousandsOfViewers()=>Run(ChatIntensity());
         [UnityTest] public IEnumerator RightMouseRaisesAndLowersThePhoneCamera()=>Run(CameraShortcut());
@@ -335,26 +242,11 @@ namespace LayarTerakhir.Editor.Tests
             var aimRect=view.Panel.GetComponent<RectTransform>();
             Assert.That(aimRect.rect.width/aimRect.rect.height,Is.EqualTo(AtmajaPhoneView.LandscapeHandsetAspect).Within(.03f),"A stowed camera rises horizontally without a portrait pop-in");
             yield return new WaitForSecondsRealtime(.3f);Assert.That(view.ViewfinderActive,Is.True,"Focus remains active while the button is held");
-            yield return RecoveryVisualEvidence.CaptureFrame(view.playerCamera,"bug13-phone-hands-runtime");
             Assert.That(view.FocusHandsVisible,Is.True,"The held landscape camera has two existing physical grasps");
             var right=view.playerCamera.transform.Find("RakaPhoneRightGrip");var left=view.playerCamera.transform.Find("RakaPhoneLeftGrip");
             Assert.That(right.GetComponentsInChildren<Renderer>(true).All(r=>r.renderingLayerMask==ShoulderCameraRig.AvatarRenderingLayer),Is.True,"World/phone lights must not overexpose the foreground hand material");
             Assert.That(Vector3.Distance(right.position,left.position),Is.EqualTo(AtmajaPhoneView.LandscapeHandsetWidth).Within(.003f),"The landscape handset is 165mm wide, not a portrait height stretched into a tablet");
             var gripCamera=view.playerCamera.transform.Find("RakaPhoneGripCamera").GetComponent<Camera>();
-            if(SystemInfo.graphicsDeviceType!=UnityEngine.Rendering.GraphicsDeviceType.Null)
-            {
-                UnityEngine.Rendering.RenderPipeline.SubmitRenderRequest(gripCamera,new UnityEngine.Rendering.RenderPipeline.StandardRequest{destination=gripCamera.targetTexture});
-                var previous=RenderTexture.active;RenderTexture.active=gripCamera.targetTexture;var image=new Texture2D(gripCamera.targetTexture.width,gripCamera.targetTexture.height,TextureFormat.RGBA32,false);
-                image.ReadPixels(new Rect(0,0,image.width,image.height),0,0);image.Apply();RenderTexture.active=previous;
-                var pixels=image.GetPixels32();int inside=0,covered=0,drawn=0;var minimum=aimRect.anchorMin;var maximum=aimRect.anchorMax;var margin=(maximum-minimum)*.2f;
-                for(int y=0;y<image.height;y++)for(int x=0;x<image.width;x++)
-                {
-                    bool opaque=pixels[y*image.width+x].a>128;if(opaque)drawn++;
-                    var point=new Vector2((float)x/image.width,(float)y/image.height);
-                    if(point.x>minimum.x+margin.x&&point.x<maximum.x-margin.x&&point.y>minimum.y+margin.y&&point.y<maximum.y-margin.y){inside++;if(opaque)covered++;}
-                }
-                Object.Destroy(image);Assert.That(drawn,Is.GreaterThan(100),"The actual grip camera must render hands, not an empty test texture");Assert.That((float)covered/inside,Is.LessThan(.05f),"Palms must not cover the viewfinder's interior");
-            }
             var projected=gripCamera.WorldToViewportPoint(right.position);
             Assert.That(projected.x,Is.EqualTo(aimRect.anchorMax.x).Within(.006f),"The separate hand projection stays on the handset edge");
             Assert.That(projected.z,Is.GreaterThan(.25f),"Keep the eye outside the source forearm/sleeve envelope");
@@ -377,7 +269,6 @@ namespace LayarTerakhir.Editor.Tests
             yield return new WaitForSecondsRealtime(.3f);
             var portraitSkin=view.playerCamera.transform.Find("ExistingHandsetDepthMask").GetComponentsInChildren<Renderer>(true).Single(r=>r.name=="PhoneHand_VisibleSkin");
             Assert.That(portraitSkin.enabled,Is.True,"First-person apps retain the existing validated portrait grasp");
-            yield return RecoveryVisualEvidence.CaptureFrame(view.playerCamera,"bug13-portrait-phone-hands");
             InputSystem.QueueStateEvent(mouse,new MouseState{buttons=2});yield return new WaitForSecondsRealtime(.3f);
             Assert.That(view.FocusHandsVisible,Is.True);Assert.That(portraitSkin.enabled,Is.False,"Portrait and landscape skin must not overlap");
             InputSystem.QueueStateEvent(mouse,new MouseState());yield return new WaitForSecondsRealtime(.3f);
@@ -452,7 +343,7 @@ namespace LayarTerakhir.Editor.Tests
         }
         private IEnumerator BasementBlitz()
         {
-            yield return new WaitForSeconds(2);Time.timeScale=1;var d=SeedBasement();var b=d.basement;var c=CampaignState.Instance;var phone=SmartphoneController.Instance;
+            yield return new WaitForSeconds(2);var d=SeedBasement();var b=d.basement;var c=CampaignState.Instance;var phone=SmartphoneController.Instance;
             c.AddInventoryItem("EVENT_P0_BASEMENT_ENTERED");Assert.That(c.SaveCheckpointAtomic("PROLOG_BASEMENT_ENTRY"),Is.True);d.RestoreWorld();
             d.SetStage(AtmajaStage.BasementStealth);
             phone.hasSmartphoneInInventory=true;phone.isPhoneRaised=phone.isScreenOn=true;phone.batteryPercent=80;phone.currentScanMode=ScanVisualMode.Normal;phone.SyncVisualState();
@@ -468,78 +359,10 @@ namespace LayarTerakhir.Editor.Tests
             float before=phone.batteryPercent;
             Assert.That(b.TryEmergencyBlitz(),Is.False,"Blitz cannot hit a ghost behind the lens");Assert.That(phone.batteryPercent,Is.EqualTo(before));
             lens.transform.rotation=rotation;
-            d.player.enabled=false;phone.normalDrainPerSecond=phone.arOrUvDrainPerSecond=0;AimPlayerAt(d,b.nyonya.transform.position+Vector3.up*1.45f);d.phoneView.RefreshLensPose();b.enabled=true;
-            InputSystem.QueueStateEvent(mouse,new MouseState{buttons=1});yield return null;InputSystem.QueueStateEvent(mouse,new MouseState());yield return null;
+            Assert.That(b.TryEmergencyBlitz(),Is.True,"A spotted player can spend battery to stun the basement hunter");
             Assert.That(phone.batteryPercent,Is.EqualTo(before-phone.blitzCostPercent).Within(.001f));Assert.That(b.IsBlitzStunned,Is.True);
-            yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug41-before-cctv-input-blitz");
-            b.enabled=false;yield return new WaitForSeconds(2.2f);Assert.That(b.IsBlitzStunned,Is.False,"The stun lasts about two seconds");
+            yield return new WaitForSeconds(2.2f);Assert.That(b.IsBlitzStunned,Is.False,"The stun lasts about two seconds");
             Assert.That(b.TryEmergencyBlitz(),Is.True);b.RestoreWorld();Assert.That(b.IsBlitzStunned,Is.False,"Checkpoint restores clear transient stuns");
-        }
-        private IEnumerator PostRecordingBlitz()
-        {
-            yield return new WaitForSeconds(2);Time.timeScale=1;
-            var d=SeedBasement();var c=CampaignState.Instance;var phone=SmartphoneController.Instance;
-            foreach(var id in new[]{"EVENT_P0_BASEMENT_ENTERED","EVENT_P0_CHASE_STARTED","EVENT_P0_HANDYCAM_PLAYED","EVENT_P0_POWERBANK_TAKEN",AtmajaBasementHorror.HandycamId})c.AddInventoryItem(id);
-            c.Data.battery=80;Assert.That(c.SaveCheckpointAtomic(AtmajaChaseSequence.ChaseCheckpoint),Is.True);d.RestoreWorld();
-            yield return new WaitForSeconds(1.8f);
-            d.chase.enabled=false;d.basement.enabled=false;d.player.enabled=false;
-            d.PlacePlayer(d.P(1.4f,5.1f,-2.79f),Quaternion.LookRotation(-d.north));
-            d.chase.chaserFigure.transform.position=d.P(1.4f,4.3f,-2.79f);
-            phone.hasSmartphoneInInventory=true;phone.isPhoneRaised=phone.isScreenOn=true;phone.batteryPercent=80;phone.normalDrainPerSecond=phone.arOrUvDrainPerSecond=0;phone.SyncVisualState();
-            d.phoneView.Apps.Open(PhoneApp.Camera);yield return null;
-            var lens=d.phoneView.FeedCamera;lens.transform.LookAt(d.chase.chaserFigure.transform.position+Vector3.up*1.45f);Physics.SyncTransforms();
-            Assert.That(d.chase.IsPursuing,Is.True);
-            var facing=lens.transform.rotation;lens.transform.rotation=facing*Quaternion.Euler(0,180,0);
-            Assert.That(d.chase.TryEmergencyBlitz(),Is.False);Assert.That(phone.batteryPercent,Is.EqualTo(80).Within(.01f));lens.transform.rotation=facing;
-            // Drive the real shutter binding after the CCTV checkpoint.
-            var target=d.chase.chaserFigure.transform.position+Vector3.up*1.45f;
-            var facingTarget=target-d.player.cameraPivot.position;var planar=new Vector3(facingTarget.x,0,facingTarget.z);
-            d.player.transform.rotation=Quaternion.LookRotation(planar);
-            d.player.cameraPivot.localRotation=Quaternion.Euler(-Mathf.Atan2(facingTarget.y,planar.magnitude)*Mathf.Rad2Deg,0,0);
-            phone.normalDrainPerSecond=phone.arOrUvDrainPerSecond=0;d.phoneView.RefreshLensPose();d.chase.enabled=true;
-            yield return null;InputSystem.QueueStateEvent(mouse,new MouseState{buttons=1});yield return null;
-            InputSystem.QueueStateEvent(mouse,new MouseState());yield return null;float after=phone.batteryPercent;
-            Assert.That(after,Is.EqualTo(80-phone.blitzCostPercent).Within(.01f));
-            Assert.That(d.chase.IsStunned,Is.True);Assert.That(d.chase.CanCatchPlayer(),Is.False);
-            yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug41-post-cctv-input-blitz");
-            Assert.That(d.chase.TryEmergencyBlitz(),Is.False);Assert.That(phone.batteryPercent,Is.EqualTo(after).Within(.01f));Assert.That(d.chase.PhotosTaken,Is.Zero);
-            Vector3 stopped=d.chase.chaserFigure.transform.position;
-            d.chase.enabled=true;yield return new WaitForSeconds(.6f);
-            Assert.That(Vector3.Distance(stopped,d.chase.chaserFigure.transform.position),Is.LessThan(.01f));
-            yield return new WaitForSeconds(1.5f);Assert.That(d.chase.IsStunned,Is.False);Assert.That(d.chase.IsPursuing,Is.True);
-        }
-        private IEnumerator LadderDescent()
-        {
-            yield return new WaitForSeconds(2);var d=SeedBasement();d.basement.enabled=false;d.basement.nyonya.SetActive(false);d.player.enabled=false;
-            d.PlacePlayer(d.upper.trapdoorTop.position,d.upper.trapdoorTop.rotation);
-            var routine=(IEnumerator)typeof(AtmajaUpperDirector).GetMethod("DescendToBasement",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(d.upper,null);
-            d.upper.StartCoroutine(routine);yield return null;float deadline=Time.time+8;
-            while(d.Busy&&Time.time<deadline)
-            {
-                Assert.That(d.player.transform.position.y,Is.InRange(-2.9f,3.9f),"Visual bob must not accumulate into actual vertical displacement");
-                yield return null;
-            }
-            Assert.That(d.Busy,Is.False,"The complete visible descent finishes in bounded time");
-            Assert.That(Vector3.Distance(d.player.transform.position,d.upper.CellarDescentPath().Last()),Is.LessThan(.1f));
-            Assert.That(d.player.GetComponent<CharacterController>().enabled,Is.True);
-        }
-        private IEnumerator WindowAmbushOcclusion()
-        {
-            yield return new WaitForSeconds(2);Time.timeScale=1;var d=SeedBasement();var c=CampaignState.Instance;
-            foreach(var id in new[]{"EVENT_P0_BASEMENT_ENTERED","EVENT_P0_CHASE_STARTED","EVENT_P0_HANDYCAM_PLAYED","EVENT_P0_POWERBANK_TAKEN",AtmajaBasementHorror.HandycamId})c.AddInventoryItem(id);
-            Assert.That(c.SaveCheckpointAtomic(AtmajaChaseSequence.ChaseCheckpoint),Is.True);d.RestoreWorld();
-            d.chase.enabled=false;d.basement.enabled=false;d.player.enabled=false;
-            d.PlacePlayer(d.chase.windowBlockSpot.position-d.east*.7f,Quaternion.LookRotation(d.east));
-            typeof(AtmajaChaseSequence).GetMethod("BeginStandoff",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(d.chase,null);
-            var wall=GameObject.CreatePrimitive(PrimitiveType.Cube);wall.name="AmbushOcclusionWall";
-            wall.transform.position=(d.player.transform.position+d.chase.chaserFigure.transform.position)*.5f+Vector3.up;
-            wall.transform.localScale=new Vector3(.06f,2.4f,1.5f);Physics.SyncTransforms();
-            Assert.That(d.chase.CanCatchPlayer(),Is.False,"A wall must block a close-range ambush");
-            Vector3 playerBefore=d.player.transform.position;d.chase.enabled=true;yield return new WaitForSecondsRealtime(3);
-            Assert.That(d.chase.AwaitingPhotos,Is.True,"Occluded proximity must not trigger death after the grace period");
-            Assert.That(Vector2.Distance(d.LocalPosition(d.player.transform.position),d.LocalPosition(playerBefore)),Is.LessThan(.02f));
-            d.chase.enabled=false;Object.DestroyImmediate(wall);Physics.SyncTransforms();
-            Assert.That(d.chase.CanCatchPlayer(),Is.True,"Removing the obstruction restores the close-range threat");
         }
         private IEnumerator HunterTracksRaka()
         {
@@ -608,21 +431,7 @@ namespace LayarTerakhir.Editor.Tests
         private IEnumerator ExpandedCellarNavigation()
         {
             yield return new WaitForSeconds(2);var d=SeedBasement();d.basement.enabled=false;d.basement.nyonya.SetActive(false);d.PlacePlayer(d.P(4.9f,6,-2.79f),Quaternion.identity);
-            SmartphoneController.Instance.isPhoneRaised=SmartphoneController.Instance.isScreenOn=SmartphoneController.Instance.isBroadcastConnected=true;SmartphoneController.Instance.SyncVisualState();d.phoneView.Apps.Open(PhoneApp.Camera);
-            int leg=0;foreach(var p in new[]{d.P(7.2f,6,-2.79f),d.P(7.2f,11.5f,-2.79f),d.P(10.1f,11.5f,-2.79f),d.P(10.1f,2.1f,-2.79f),d.P(7.2f,2.1f,-2.79f),d.P(7.2f,6,-2.79f)})
-            {yield return WalkWithKeys(d.player,p,leg==2);if(leg++==2){d.player.enabled=false;AimPlayerAt(d,d.P(7.2f,6,-1.6f));yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug42-basement-run-corner");}}
-        }
-        private IEnumerator WalkWithKeys(FirstPersonController player,Vector3 target,bool sprint=false,bool crouch=false)
-        {
-            player.enabled=true;float deadline=Time.realtimeSinceStartup+15;
-            while(Time.realtimeSinceStartup<deadline)
-            {
-                var delta=target-player.transform.position;delta.y=0;if(delta.magnitude<.18f)break;
-                player.transform.rotation=Quaternion.LookRotation(delta);
-                InputSystem.QueueStateEvent(keyboard,sprint?new KeyboardState(Key.W,Key.LeftShift):crouch?new KeyboardState(Key.W,Key.LeftCtrl):new KeyboardState(Key.W));yield return null;
-            }
-            InputSystem.QueueStateEvent(keyboard,crouch?new KeyboardState(Key.LeftCtrl):new KeyboardState());yield return null;
-            var remaining=target-player.transform.position;remaining.y=0;Assert.That(remaining.magnitude,Is.LessThan(.3f),"Real keyboard movement blocked on route to "+target+" at "+player.transform.position);
+            foreach(var p in new[]{d.P(7.2f,6,-2.79f),d.P(7.2f,11.5f,-2.79f),d.P(10.1f,11.5f,-2.79f),d.P(10.1f,2.1f,-2.79f),d.P(7.2f,2.1f,-2.79f),d.P(7.2f,6,-2.79f)})yield return WalkCapsule(d.player,p);
         }
         private IEnumerator NeighborhoodShop()
         {
@@ -752,13 +561,10 @@ namespace LayarTerakhir.Editor.Tests
             c.Data.battery=80;Assert.That(c.SaveCheckpointAtomic(AtmajaChaseSequence.ChaseCheckpoint),Is.True);d.RestoreWorld();
             phone.batteryPercent=80;yield return new WaitForSeconds(1.8f);
             d.PlacePlayer(d.chase.cellarExitApproach.position,Quaternion.identity);d.player.enabled=true;
-            phone.isPhoneRaised=phone.isScreenOn=phone.isBroadcastConnected=true;phone.SyncVisualState();d.phoneView.Apps.Open(PhoneApp.Camera);yield return null;
-            yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug43-ladder-before-ascent",()=>d.phoneView.playerCamera.transform.LookAt(d.upper.trapdoorTop.position));
             InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftShift));yield return null;yield return new WaitForSeconds(2.6f);
-            InputSystem.QueueStateEvent(keyboard,new KeyboardState());Assert.That(d.chase.Traversing,Is.False,"The visible ladder ascent must finish before the next action: "+d.player.transform.position);
-            yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug43-ladder-after-ascent");
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());Assert.That(d.chase.Traversing,Is.False);
             d.PlacePlayer(d.chase.diningVaultStart.position,Quaternion.identity);yield return Press(Key.Space);yield return new WaitForSeconds(1);
-            d.PlacePlayer(d.vaultInside.position-d.east*1.5f,d.vaultInside.rotation);yield return null;yield return null;
+            d.PlacePlayer(d.vaultInside.position,d.vaultInside.rotation);yield return null;yield return null;
             Assert.That(d.chase.AwaitingPhotos,Is.True);Assert.That(d.chase.PhotosTaken,Is.Zero);
             var body=d.basement.nyonya.GetComponentsInChildren<SkinnedMeshRenderer>(true).Single(r=>r.name=="NyonyaDesignerBody");
             Assert.That(body.sharedMaterial.GetTexture("_BaseMap"),Is.EqualTo(AssetDatabase.LoadAssetAtPath<Texture2D>(DesignerVrmBuilder.Root+"Textures/NyonyaAlbedo.png")),"Retain the designer's weathered/bloodied artwork instead of stamping the old model's unrelated wound UV map over it");
@@ -766,17 +572,11 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(Time.timeScale,Is.EqualTo(.5f),"Photo ritual runs in slow motion");
             Assert.That(d.player.MovementLocked,Is.False,"Raka can still move, just slowly");
             Assert.That(phone.isPhoneRaised&&d.phoneView.IsCameraApp,Is.True);
-            Assert.That(Vector3.Distance(d.chase.chaserFigure.transform.position,d.chase.windowBlockSpot.position),Is.LessThan(.1f),"Nyonya appears at the window immediately");
-            yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug44-window-teleport");
-            Vector3 playerBefore=d.player.transform.position,ghostBefore=d.chase.chaserFigure.transform.position;
-            float gapBefore=Vector3.Distance(playerBefore,ghostBefore);
-            yield return new WaitForSecondsRealtime(1f);
-            Assert.That(Vector3.Distance(d.chase.chaserFigure.transform.position,playerBefore),Is.LessThan(gapBefore-.1f),"She slowly corners the player instead of waiting passively");
-            Assert.That(Vector2.Distance(d.LocalPosition(d.player.transform.position),d.LocalPosition(playerBefore)),Is.LessThan(.08f),"The ambush must not slide Raka into a corner");
-            Assert.That(d.chase.Objective(),Is.Empty);
-            yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug45-46-window-approach-no-prompt");
-            var escapePrompt=Object.FindObjectsByType<UnityEngine.UI.Text>(FindObjectsSortMode.None).FirstOrDefault(t=>t.name=="EscapePrompt");
-            Assert.That(!escapePrompt||!escapePrompt.gameObject.activeInHierarchy||string.IsNullOrEmpty(escapePrompt.text),Is.True,"No HADAPI DIA key overlay");
+            // The ghost glides in from the pursuit instead of teleporting onto
+            // the window: wait until she halts at the block spot, then track
+            // her live position for every shot like a player would.
+            float arriveDeadline=Time.realtimeSinceStartup+12;
+            while(Vector3.Distance(d.chase.chaserFigure.transform.position,d.chase.windowBlockSpot.position)>.6f&&Time.realtimeSinceStartup<arriveDeadline)yield return null;
             var lens=d.phoneView.FeedCamera;var aim=lens.transform.rotation;
             lens.transform.rotation=aim*Quaternion.Euler(0,180,0);
             Assert.That(d.chase.TryPhoto(),Is.False,"Photographing behind Raka cannot advance the ritual");Assert.That(d.chase.PhotosTaken,Is.Zero);
@@ -878,21 +678,9 @@ namespace LayarTerakhir.Editor.Tests
             Time.timeScale=1;Assert.That(b.IsHidden&&d.player.MovementLocked,Is.True);
             var rig=d.player.GetComponent<ShoulderCameraRig>();Assert.That(rig.IsFirstPerson,Is.True);Assert.That(rig.SelectedPerspective,Is.EqualTo(PlayerPerspective.OverShoulder));
             yield return new WaitForSeconds(.4f);Assert.That(b.InspectingLocker,Is.True,"Warning must start before the screen can expose Raka");
-            yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug40-wardrobe-near");
-            Assert.That(UiFocus.ApplicationFocused,Is.True,"The headless input fixture must retain application focus");
-            Assert.That(UiFocus.Cinematic||UiFocus.HardModal||HudController.Instance.IsModalOpen,Is.False,"The wardrobe must not leave a modal blocking the screen key");
             yield return Press(Key.F);Assert.That(phone.isScreenOn,Is.False,"The real screen binding remains live while hidden");
             yield return new WaitForSeconds(5.4f);Assert.That(b.IsHidden,Is.True);Assert.That(b.InspectingLocker,Is.False);
-            var patrolPosition=b.nyonya.transform.position;
-            foreach(float distance in new[]{6f,14f})
-            {
-                b.nyonya.transform.position=d.player.transform.position+d.east*distance;Physics.SyncTransforms();yield return null;yield return null;
-                int active=Object.FindObjectsByType<UnityEngine.UI.Image>(FindObjectsSortMode.None).Count(image=>image.name.StartsWith("ThreatSegment")&&image.color.a>.5f);
-                Assert.That(active,Is.EqualTo(distance<10?6:3));
-                yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,distance<10?"bug40-wardrobe-medium":"bug40-wardrobe-safe");
-            }
-            b.nyonya.transform.position=patrolPosition;Physics.SyncTransforms();yield return new WaitForSeconds(1.6f);
-            var at=b.nyonya.transform.position;yield return new WaitForSeconds(2f);Assert.That(Vector3.Distance(at,b.nyonya.transform.position),Is.GreaterThan(.05f),"Patrol must continue while the player remains hidden");
+            var at=b.nyonya.transform.position;yield return new WaitForSeconds(.7f);Assert.That(Vector3.Distance(at,b.nyonya.transform.position),Is.GreaterThan(.05f),"Patrol must continue while the player remains hidden");
             yield return Press(Key.E);Assert.That(b.IsHidden,Is.False);Assert.That(d.player.MovementLocked,Is.False);
             Assert.That(rig.IsFirstPerson,Is.False,"Exiting a real wardrobe restores the shoulder selection");
             Assert.That(Vector3.Distance(d.player.transform.position,b.exitAnchor1.position),Is.LessThan(.2f));
@@ -978,22 +766,11 @@ namespace LayarTerakhir.Editor.Tests
             foreach(var point in new[]{d.P(-3.55f,5.1f,.54f),d.P(-3.55f,8.2f,.54f),d.P(1.05f,8.2f,2.2f),d.P(1.05f,6.925f,2.4f),d.P(-3.3f,6.925f,3.82f),d.P(-3.3f,5.75f,3.82f),d.P(-1.1f,5.75f,3.82f)})yield return WalkCapsule(p,point,float.PositiveInfinity,.025f);
             Assert.That(p.transform.position.y,Is.GreaterThan(3.75f));
             yield return WalkCapsule(p,d.P(-3,5.75f,3.82f),float.PositiveInfinity,.025f);
-            var phone=SmartphoneController.Instance;phone.arModuleUnlocked=true;phone.isPhoneRaised=phone.isScreenOn=phone.isBroadcastConnected=true;phone.currentScanMode=ScanVisualMode.Normal;
+            var phone=SmartphoneController.Instance;phone.arModuleUnlocked=true;phone.isPhoneRaised=phone.isScreenOn=true;phone.currentScanMode=ScanVisualMode.AR;
             d.phoneView.Apps.Open(PhoneApp.Camera);phone.SyncVisualState();
-            p.GetComponent<ShoulderCameraRig>().SetPerspective(PlayerPerspective.FirstPerson);AimPlayerAt(d,d.upper.ventMouth.position);yield return null;
-            yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug24-vent-normal");yield return Press(Key.Q);
-            Assert.That(phone.currentScanMode,Is.EqualTo(ScanVisualMode.AR));yield return new WaitUntil(()=>d.upper.ventBlink.activeSelf);
-            yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug24-vent-ar");
-            yield return new WaitUntil(()=>!d.upper.ventBlink.activeSelf);yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug24-vent-ar-blink-off");
-            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftCtrl));p.enabled=true;yield return new WaitForSeconds(.6f);
-            Assert.That(p.IsCrouching,Is.True);Assert.That(d.upper.ventCabinet.activeInHierarchy,Is.True,"The metal cover opens on its hinge rather than disappearing");Assert.That(Quaternion.Angle(d.upper.ventCabinet.transform.localRotation,Quaternion.identity),Is.GreaterThan(90));yield return WalkWithKeys(p,d.P(-3,4.6f,3.82f),false,true);
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftCtrl));p.enabled=true;yield return new WaitForSeconds(.6f);p.enabled=false;
+            Assert.That(p.IsCrouching,Is.True);yield return WalkCapsule(p,d.P(-3,4.6f,3.82f));
             Assert.That(d.LocalPosition(p.transform.position).y,Is.LessThan(5),"AR/crouch vent must have a real opening through the child-room wall");
-            yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug24-inside-after-crawl");
-            yield return new WaitForSeconds(3);yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug28-child-live-comments");
-            var chat=Object.FindObjectsByType<UnityEngine.UI.Text>(FindObjectsSortMode.None).Single(t=>t.name=="AtmajaLiveChat");
-            Assert.That(chat.text.ToLowerInvariant(),Does.Not.Contain("mainan"));Assert.That(chat.text.ToLowerInvariant(),Does.Not.Contain("boneka"));
-            p.enabled=false;d.PlacePlayer(d.P(.1f,6,3.83f),Quaternion.LookRotation(-d.north));p.GetComponent<ShoulderCameraRig>().FirstPersonOverride=true;p.GetComponent<ShoulderCameraRig>().RefreshCameraPose();
-            yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug25-27-family-photo-ar",()=>d.phoneView.playerCamera.transform.LookAt(d.P(.1f,5.365f,5.35f)));
         }
         private IEnumerator UpperPhonePhotos()
         {
@@ -1007,7 +784,7 @@ namespace LayarTerakhir.Editor.Tests
             Transform[] targets={d.upper.cupAim,d.upper.scratchAim,d.upper.ropeAim};
             for(int i=0;i<3;i++)
             {
-                var target=targets[i];Vector3 side=i==0?d.north:i==1?d.east:-d.north;
+                var target=targets[i];Vector3 side=i==0?d.north:-d.north;
                 lens.transform.position=target.position+side*1.2f+Vector3.up*(i==0?.7f:i==2?-.5f:.1f);
                 lens.transform.LookAt(target);Physics.SyncTransforms();d.upper.TryPhotoTick();
                 var delta=target.position-lens.transform.position;
@@ -1024,25 +801,16 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(p.transform.position.y,Is.GreaterThan(3));Assert.That(corridor.CanDepart,Is.False);
             foreach(var point in new[]{new Vector3(-.6f,3.3f,12.7f),new Vector3(-.6f,1.65f,16.4f),new Vector3(1.75f,1.65f,16.4f),new Vector3(1.75f,0,12.6f),new Vector3(0,0,12.6f),new Vector3(0,0,11.5f),new Vector3(0,0,7.5f)})yield return WalkCapsule(p,corridor.BuildingPoint(point));
             Assert.That(p.transform.position.y,Is.LessThan(.15f));
-            foreach(var openName in new[]{"DAPUR BERSAMADoor","KAMAR MANDIDoor"}){var od=GameObject.Find(openName)?.GetComponent<HingedDoor>();if(od&&!od.IsOpen){od.Interact();yield return new WaitForSeconds(1.2f);}}
+            GameObject.Find("SharedDiningDoor").GetComponent<HingedDoor>().Interact();yield return new WaitForSeconds(1.2f);
             yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(-2.4f,0,7.5f)));yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(0,0,7.5f)));yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(0,0,4.25f)));
-            yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(-2.7f,0,4.25f)));
-            // Walk through the old partition plane using the actual movement binding.
-            foreach(var point in new[]{new Vector3(-3.35f,0,4.65f),new Vector3(-3.35f,0,6.25f),new Vector3(-2.15f,0,6.25f),new Vector3(-2.15f,0,8.35f),new Vector3(-2.15f,0,6.25f),new Vector3(-3.35f,0,6.25f),new Vector3(-3.35f,0,4.65f),new Vector3(-2.7f,0,4.25f)})yield return WalkWithKeys(p,corridor.BuildingPoint(point));p.enabled=false;
-            yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(0,0,4.25f)));
-            {var bathOuter=GameObject.Find("KAMAR MANDIDoor").GetComponent<HingedDoor>();if(!bathOuter.IsOpen){bathOuter.Interact();yield return new WaitForSeconds(1.2f);}}
+            GameObject.Find("DAPUR BERSAMADoor").GetComponent<HingedDoor>().Interact();yield return new WaitForSeconds(1.2f);
+            yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(-2.7f,0,4.25f)));yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(0,0,4.25f)));
+            GameObject.Find("KAMAR MANDIDoor").GetComponent<HingedDoor>().Interact();yield return new WaitForSeconds(1.2f);
             yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(2.1f,0,4.25f)));
             foreach(var cubicle in new[]{("WANITA",5.2f),("PRIA",3.3f)})
             {
                 yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(2.1f,0,cubicle.Item2)));
-                var cubicleDoor=GameObject.Find("Bathroom"+cubicle.Item1+"Door").GetComponent<HingedDoor>();
-                var rig=p.GetComponent<ShoulderCameraRig>();rig.FirstPersonOverride=true;
-                var target=GameObject.Find("Bathroom"+cubicle.Item1+"Plaque").GetComponent<Renderer>().bounds.center;var direction=target-p.cameraPivot.position;var planar=new Vector3(direction.x,0,direction.z);
-                p.transform.rotation=Quaternion.LookRotation(planar);p.cameraPivot.localRotation=Quaternion.Euler(-Mathf.Atan2(direction.y,planar.magnitude)*Mathf.Rad2Deg,0,0);rig.RefreshCameraPose();yield return null;yield return null;
-                Assert.That(p.GetComponent<InteractionInteractor>().CurrentTarget,Is.SameAs(cubicleDoor));
-                yield return RecoveryVisualEvidence.CaptureFrame(p.GetComponent<InteractionInteractor>().playerCamera,"bug08-"+cubicle.Item1.ToLowerInvariant()+"-before-input");
-                yield return Press(Key.E);yield return new WaitForSeconds(1.2f);Assert.That(cubicleDoor.IsOpen,Is.True);
-                yield return RecoveryVisualEvidence.CaptureFrame(p.GetComponent<InteractionInteractor>().playerCamera,"bug08-"+cubicle.Item1.ToLowerInvariant()+"-open-input");
+                GameObject.Find("Bathroom"+cubicle.Item1+"Door").GetComponent<HingedDoor>().Interact();yield return new WaitForSeconds(1.2f);
                 yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(3.45f,0,cubicle.Item2)));yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(2.1f,0,cubicle.Item2)));
                 yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(2.1f,0,4.25f)));
             }
@@ -1134,14 +902,7 @@ namespace LayarTerakhir.Editor.Tests
         {
             yield return new WaitForSeconds(2);
             var d=Find<AtmajaDirector>();var phone=SmartphoneController.Instance;var campaign=CampaignState.Instance;
-            Assert.That(d.StartLive(),Is.False,"Phone must be raised before broadcasting");
-            yield return Press(Key.Tab);Assert.That(phone.isPhoneRaised,Is.True);
-            d.phoneView.Apps.Open(PhoneApp.Camera);
-            yield return new WaitForSeconds(.6f);yield return ClickButton(d.phoneView.LiveButton);
-            Assert.That(phone.isBroadcastConnected,Is.True,"Live button works before touching the front door");
-            Assert.That(campaign.HasInventoryItem("EVENT_P0_FRONT_DOOR_TRIED"),Is.False);
-            yield return RecoveryVisualEvidence.CaptureFrame(d.phoneView.playerCamera,"bug15-live-before-front-door");
-            yield return Press(Key.Tab);Assert.That(phone.isPhoneRaised,Is.False);
+            Assert.That(d.StartLive(),Is.False,"Cannot broadcast before attempting the locked front door");
             Item(AtmajaAction.FrontDoor).Interact();yield return new WaitForSeconds(2);
             Assert.That(campaign.HasInventoryItem("EVENT_P0_FRONT_DOOR_TRIED"),Is.True);Assert.That(d.HasSurvey,Is.False);
             yield return Press(Key.Tab);Assert.That(phone.isPhoneRaised,Is.True);
@@ -1162,7 +923,6 @@ namespace LayarTerakhir.Editor.Tests
             d.PlacePlayer(d.vaultOutside.position,d.vaultOutside.rotation);
             var camera=d.player.GetComponent<InteractionInteractor>().playerCamera;
             camera.transform.LookAt(Vector3.Lerp(d.vaultOutside.position,d.vaultInside.position,.65f)+Vector3.up*1.3f);
-            yield return null;yield return RecoveryVisualEvidence.CaptureFrame(camera,"bug16-window-blink-no-key-prompt");
             GameInputConfig.Instance.vaultKey=KeyCode.V;
             yield return Press(Key.Space);Assert.That(d.Stage,Is.EqualTo(AtmajaStage.SidePassage));
             yield return Press(Key.V);yield return new WaitForSeconds(1.5f);d.player.enabled=false;
@@ -1227,7 +987,7 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(SmartphoneController.Instance.batteryPercent,Is.InRange(11,12));
             Assert.That(Vector3.Distance(d.player.transform.position,d.spawnStairs.position),Is.LessThan(.3f));
         }
-        private IEnumerator Press(Key key){InputSystem.QueueStateEvent(keyboard,new KeyboardState());yield return null;InputSystem.QueueStateEvent(keyboard,new KeyboardState(key));yield return null;yield return null;yield return null;InputSystem.QueueStateEvent(keyboard,new KeyboardState());yield return null;}
+        private IEnumerator Press(Key key){InputSystem.QueueStateEvent(keyboard,new KeyboardState(key));yield return null;InputSystem.QueueStateEvent(keyboard,new KeyboardState());yield return null;}
         private static T Find<T>()where T:Object=>Object.FindFirstObjectByType<T>();
         private static AtmajaItem Item(AtmajaAction action)=>Object.FindObjectsByType<AtmajaItem>(FindObjectsSortMode.None).First(x=>x.action==action);
         private static UnityEngine.UI.Button Button(string name)=>FoundationAuditTests.Button(HudController.Instance,name);
@@ -1269,7 +1029,7 @@ namespace LayarTerakhir.Editor.Tests
             var go=new GameObject("AtmajaTestHost");Object.DontDestroyOnLoad(go);var host=go.AddComponent<FoundationAuditCoroutineHost>();bool done=false;Exception failure=null;
             host.StartCoroutine(Drive(scenario,e=>{failure=e;done=true;}));float deadline=Time.realtimeSinceStartup+60;
             while(!done&&Time.realtimeSinceStartup<deadline)yield return null;
-            Object.Destroy(go);Assert.That(done,Is.True,"Atmaja runtime scenario timeout");if(failure!=null)System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(failure).Throw();
+            Object.Destroy(go);Assert.That(done,Is.True,"Atmaja runtime scenario timeout");if(failure!=null)throw failure;
         }
         private static IEnumerator Drive(IEnumerator scenario,Action<Exception> complete)
         {

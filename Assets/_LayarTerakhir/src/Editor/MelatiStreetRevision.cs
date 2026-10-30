@@ -15,13 +15,6 @@ namespace LayarTerakhir.Editor
         {
             MelatiNeighborhoodBuilder.Apply();
             var scene=EditorSceneManager.GetActiveScene();var d=Object.FindFirstObjectByType<KosCorridorDirector>();
-            RestoreKosLot(d);
-            EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene);AssetDatabase.SaveAssets();Validate();
-        }
-        // Reapply the approved lot without rebuilding the neighborhood or
-        // deleting its permanent street extension.
-        public static void RestoreKosLot(KosCorridorDirector d)
-        {
             var building=GameObject.Find("Kos_Building_Corridors").transform;
             var offset=new Vector3(-16,0,0)-building.position;building.position+=offset;d.buildingRoot=building;
             foreach(var anchor in new[]{d.spawnLanding,d.spawnGround,d.motor,d.gateHinge,d.rideAnchor})
@@ -42,6 +35,7 @@ namespace LayarTerakhir.Editor
             foreach(var renderer in building.GetComponentsInChildren<MeshRenderer>(true))
                 if(renderer.name.Contains("Wall")||renderer.name.Contains("Partition")||renderer.name.Contains("Pier")||renderer.name.Contains("Header"))
                 {renderer.enabled=true;renderer.forceRenderingOff=false;renderer.gameObject.SetActive(true);}
+            EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene);AssetDatabase.SaveAssets();Validate();
         }
         public static void Validate()
         {
