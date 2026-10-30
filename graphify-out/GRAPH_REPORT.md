@@ -4,12 +4,12 @@
 - cluster-only mode — file stats not available
 
 ## Summary
-- 5038 nodes · 18791 edges · 153 communities (127 shown, 26 thin omitted)
-- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 1250 edges (avg confidence: 0.84)
+- 5038 nodes · 18792 edges · 153 communities (127 shown, 26 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 1251 edges (avg confidence: 0.84)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3016189b`
+- Built from commit: `1f5620c6`
 - Commit above is the pre-commit base, not a freshness check. Verify source/artifact hashes with `python3 Tools/update_graphify.py --check`.
 - Regenerate safely with `python3 Tools/update_graphify.py` before commit/push.
 
@@ -168,8 +168,8 @@
 
 ## God Nodes (most connected - your core abstractions)
 1. `CampaignState` - 141 edges
-2. `LayarTerakhir.Core` - 130 edges
-3. `Phase5Director` - 129 edges
+2. `Phase5Director` - 129 edges
+3. `LayarTerakhir.Core` - 129 edges
 4. `AtmajaDirector` - 123 edges
 5. `Phase4Director` - 122 edges
 6. `Phase2Director` - 116 edges
@@ -712,16 +712,16 @@ Nodes (5): Phase3FloorKind, FragileDrop, FragileFatal, IllusionVoid, Solid
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `AtmajaPhoneView` connect `Community 40` to `Community 0`, `Community 131`, `Community 4`, `Community 3`, `Community 7`, `Community 8`, `Community 11`, `Community 12`, `Community 13`, `Community 14`, `Community 17`, `Community 18`, `Community 20`, `Community 21`, `Community 22`, `Community 23`, `Community 24`, `Community 26`, `Community 27`, `Community 28`, `Community 29`, `Community 30`, `Community 32`, `Community 33`, `Community 34`, `Community 35`, `Community 36`, `Community 37`, `Community 44`, `Community 50`, `Community 62`, `Community 64`, `Community 66`, `Community 67`, `Community 69`, `Community 73`, `Community 76`, `Community 77`, `Community 78`, `Community 86`, `Community 89`, `Community 91`, `Community 97`, `Community 104`, `Community 120`, `Community 125`?**
-  _High betweenness centrality (0.177) - this node is a cross-community bridge._
+  _High betweenness centrality (0.175) - this node is a cross-community bridge._
 - **What connects `Campaign`, `Detection`, `Hud` to the rest of the system?**
   _674 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.03745905141717704 - nodes in this community are weakly interconnected._
 - **Why does `Phase3Director` connect `Community 50` to `Community 1`, `Community 131`, `Community 3`, `Community 8`, `Community 10`, `Community 12`, `Community 15`, `Community 17`, `Community 21`, `Community 26`, `Community 28`, `Community 29`, `Community 30`, `Community 33`, `Community 36`, `Community 38`, `Community 39`, `Community 40`, `Community 44`, `Community 47`, `Community 57`, `Community 75`, `Community 78`, `Community 86`, `Community 89`, `Community 95`, `Community 98`, `Community 99`, `Community 109`, `Community 113`?**
-  _High betweenness centrality (0.090) - this node is a cross-community bridge._
+  _High betweenness centrality (0.078) - this node is a cross-community bridge._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.045103324348607365 - nodes in this community are weakly interconnected._
 - **Why does `CampaignState` connect `Community 15` to `Community 0`, `Community 5`, `Community 6`, `Community 7`, `Community 9`, `Community 10`, `Community 18`, `Community 21`, `Community 23`, `Community 29`, `Community 31`, `Community 37`, `Community 50`, `Community 56`, `Community 61`, `Community 75`, `Community 86`, `Community 89`, `Community 91`, `Community 104`, `Community 126`?**
-  _High betweenness centrality (0.049) - this node is a cross-community bridge._
+  _High betweenness centrality (0.050) - this node is a cross-community bridge._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.04802631578947368 - nodes in this community are weakly interconnected._

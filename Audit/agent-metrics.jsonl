@@ -108,3 +108,5 @@
 {"kind": "test", "label": "Phase1CampaignTests targeted 55/55 (overhaul)", "seconds": 100.0, "detail": "", "source": "agent", "utc": "2026-10-28T06:32:34.423860+00:00"}
 {"kind": "test", "label": "Phase1CampaignTests final 56/56 + scene/build-linux/player-audit overhaul", "seconds": 1500.0, "detail": "", "source": "agent", "utc": "2026-10-28T08:17:14.221170+00:00"}
 {"kind": "build", "label": "windows-build-r2 full 182695a4 + R2 verified", "seconds": 1770.0, "detail": "", "source": "agent", "utc": "2026-10-28T09:02:42.125118+00:00"}
+{"kind": "build", "label": "Windows rollback6ba full build (8 scenes)", "seconds": 141.217703, "detail": "", "source": "agent", "utc": "2026-10-30T04:57:14.003228+00:00"}
+{"kind": "upload", "label": "R2 rollback6ba overwrite plus readback", "seconds": 398.749213, "detail": "", "source": "agent", "utc": "2026-10-30T04:57:14.054463+00:00"}

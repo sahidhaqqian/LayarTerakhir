@@ -1,0 +1,71 @@
+{
+  "runId": "20261030-043503-1f5620c6",
+  "session": "lt-winbuild",
+  "liveRoot": "/root/projects/LayarTerakhir",
+  "sourceCommit": "1f5620c642c0552f352a8bc5d90799f6ed2bced6",
+  "sourceShort": "1f5620c6",
+  "sourceDirty": false,
+  "sourceStatus": "",
+  "buildPlan": {
+    "mode": "full",
+    "reason": "forced by --full-build"
+  },
+  "startedUtc": "2026-10-30T04:35:03.688072+00:00",
+  "finishedUtc": "2026-10-30T04:55:15Z",
+  "status": "Succeeded",
+  "steps": {
+    "workspace": {
+      "files": "0\n0",
+      "exit": 0
+    },
+    "record-prebuild": {
+      "exit": 0
+    },
+    "unity-build": {
+      "exit": 0
+    },
+    "record-sources": {
+      "exit": 0
+    },
+    "package": {
+      "exit": 0
+    },
+    "upload": {
+      "exit": 0
+    }
+  },
+  "build": {
+    "result": "Succeeded",
+    "target": "StandaloneWindows64",
+    "scriptingBackend": "Mono2x",
+    "options": "ForceOptimizeScriptCompilation, Il2CPP, CompressTextures, StripDebugSymbols, ShaderLivelinkSupport, Development",
+    "totalErrors": 0,
+    "totalWarnings": 12,
+    "totalSizeBytes": 4837402643,
+    "durationSeconds": 141.217703,
+    "sceneCount": 8,
+    "mode": "full",
+    "fallback": false,
+    "cacheReused": true,
+    "unityVersion": "6000.3.26f1"
+  },
+  "archive": {
+    "name": "LayarTerakhir-Windows-x86_64-Development.zip",
+    "sizeBytes": 3023988260,
+    "sha256": "794597e43ca2b2d46dd398cf13480a566a3e6ecd9f9a7371c203d5453c33d22e"
+  },
+  "upload": {
+    "status": "verified",
+    "remote": "r2:layarterakhir/Layarterakhir/LayarTerakhir-Windows-x86_64-Development.zip",
+    "sizeBytes": 3023988260,
+    "sha256": "794597e43ca2b2d46dd398cf13480a566a3e6ecd9f9a7371c203d5453c33d22e",
+    "verifiedUtc": "2026-10-30T04:55:15.425169+00:00"
+  },
+  "overwriteR2": true,
+  "skipUpload": false,
+  "requestedBaseline": "6ba80ea0535ced2e969767af17cbb03c77a2bc17",
+  "gameInputsDifferFromBaseline": [],
+  "prePostSourceRecordsIdentical": true,
+  "sourceRecordCount": 13394,
+  "visualAcceptance": "Windows GPU gameplay not tested; user playtest pending."
+}
