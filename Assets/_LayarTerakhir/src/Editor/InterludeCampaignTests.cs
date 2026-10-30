@@ -171,7 +171,7 @@ namespace LayarTerakhir.Editor.Tests
             var kampung = GameObject.Find("KampungMelati");
             var alleyGroup = kampung ? kampung.transform.Find("InterludeAlley") : null;
             Assert.That(alleyGroup, Is.Not.Null, "daytime dressing must live under one group");
-            Assert.That(alleyGroup.gameObject.activeSelf, Is.False, "group stays OFF in the saved scene so the night prolog route is untouched");
+            Assert.That(alleyGroup.gameObject.activeSelf, Is.True, "physical scenery persists through night, morning and dusk");
             int alley = 0, warteg = 0, carts = 0, parked = 0, wires = 0, labels = 0;
             foreach (var t in UnityEngine.Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None))
             {

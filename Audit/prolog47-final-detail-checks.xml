@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Passed" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-30 11:47:56Z" end-time="2026-10-30 11:48:04Z" duration="7.3682191">
+  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="565" result="Passed" start-time="2026-10-30 11:47:56Z" end-time="2026-10-30 11:48:04Z" duration="7.368219" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1652" name="Assembly-CSharp-Editor.dll" fullname="/root/projects/LayarTerakhir/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="565" result="Passed" start-time="2026-10-30 11:47:56Z" end-time="2026-10-30 11:48:04Z" duration="7.265729" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="683055" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1653" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="565" result="Passed" start-time="2026-10-30 11:47:56Z" end-time="2026-10-30 11:48:04Z" duration="7.258335" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1654" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="565" result="Passed" start-time="2026-10-30 11:47:56Z" end-time="2026-10-30 11:48:04Z" duration="7.251598" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1655" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="565" result="Passed" start-time="2026-10-30 11:47:56Z" end-time="2026-10-30 11:48:04Z" duration="7.245043" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1011" name="AtmajaPlayTests" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" testcasecount="41" result="Passed" start-time="2026-10-30 11:47:45Z" end-time="2026-10-30 11:47:49Z" duration="4.399714" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1037" name="BasementEmergencyBlitzCostsBatteryAndStunsHunter" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.BasementEmergencyBlitzCostsBatteryAndStunsHunter" methodname="BasementEmergencyBlitzCostsBatteryAndStunsHunter" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="186946666" result="Passed" start-time="2026-10-30 11:47:37Z" end-time="2026-10-30 11:47:49Z" duration="12.340214" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1626" name="Prolog47VisualTests" fullname="LayarTerakhir.Editor.Tests.Prolog47VisualTests" classname="LayarTerakhir.Editor.Tests.Prolog47VisualTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-30 11:47:56Z" end-time="2026-10-30 11:48:04Z" duration="7.208471" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1629" name="AtmajaChainAndCupDetails" fullname="LayarTerakhir.Editor.Tests.Prolog47VisualTests.AtmajaChainAndCupDetails" methodname="AtmajaChainAndCupDetails" classname="LayarTerakhir.Editor.Tests.Prolog47VisualTests" runstate="Runnable" seed="1524907060" result="Passed" start-time="2026-10-30 11:47:49Z" end-time="2026-10-30 11:48:04Z" duration="14.534283" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[KOS_V2_CAPTURE {"name":"17-front-door-chain","cameraPosition":{"x":0.0,"y":2.130000114440918,"z":1.649999976158142},"cameraForward":{"x":0.0,"y":-0.035189516842365268,"z":-0.9993808269500732},"mean":0.12948369979858399,"contrast":0.19290901720523835,"darkRatio":0.674281656742096}
+KOS_V2_CAPTURE {"name":"33-cup-aim-closeup","cameraPosition":{"x":4.199999809265137,"y":5.499999523162842,"z":-0.8999999761581421},"cameraForward":{"x":0.7182301878929138,"y":-0.6604229211807251,"z":0.21905942261219026},"mean":0.19213049113750459,"contrast":0.23491789400577546,"darkRatio":0.45032986998558047}
+KOS_V2_CAPTURE {"name":"33-ceramic-fracture-detail","cameraPosition":{"x":4.746640682220459,"y":4.6880011558532719,"z":-0.7667024731636047},"cameraForward":{"x":0.7955232262611389,"y":-0.2873477637767792,"z":0.533454954624176},"mean":0.33296483755111697,"contrast":0.248912051320076,"darkRatio":0.12664279341697694}
+KOS_V2_CAPTURE {"name":"22-blood-stain-on-upper-wood-floor","cameraPosition":{"x":-3.0999999046325685,"y":5.429999828338623,"z":-6.099999904632568},"cameraForward":{"x":0.11765281856060028,"y":-0.9388697147369385,"z":0.32354536652565},"mean":0.18618401885032655,"contrast":0.2478066086769104,"darkRatio":0.5884873867034912}
+Saving results to: /root/.config/unity3d/DefaultCompany/LayarTerakhir/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

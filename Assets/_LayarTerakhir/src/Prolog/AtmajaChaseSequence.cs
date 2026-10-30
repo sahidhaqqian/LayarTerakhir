@@ -30,7 +30,7 @@ namespace LayarTerakhir.Prolog
         public bool AwaitingBlitz => run == Run.WindowStandoff;
         public bool AwaitingPhotos => run == Run.WindowStandoff;
         public bool IsFinalFlash => run == Run.FinalFlash;
-        public bool IsStunned => run == Run.Stunned || run == Run.GateRun && Time.time < stunEndsAt;
+        public bool IsStunned => run == Run.Stunned || run == Run.GateRun && Time.time < stunEndsAt || run==Run.Pursuit&&Time.time<pursuitStunUntil;
         public bool IsGateRun => run == Run.GateRun;
         public bool ThreatDefeated => run==Run.EscapeReady||run==Run.GateRun||run==Run.Ending||run==Run.Complete||
             run==Run.FinalFlash&&chaserFigure&&!chaserFigure.activeInHierarchy;
@@ -38,13 +38,14 @@ namespace LayarTerakhir.Prolog
         public bool Traversing { get; private set; }
         public bool IsPursuing => run == Run.Pursuit;
         public bool FollowsPlayerInBasement => run == Run.Pursuit && !climbedOut;
-        public bool CanCatchPlayer() => chaserFigure && chaserFigure.activeInHierarchy && director && director.player && basement
+        public bool CanCatchPlayer() => !IsStunned && chaserFigure && chaserFigure.activeInHierarchy && director && director.player && basement
             && Vector3.Distance(chaserFigure.transform.position,director.player.transform.position)<.95f
             && basement.CanSeePlayer(2);
         private Run run;
         private float stunEndsAt, railDistance, dangerGrace, dragTimer;
         private int photosTaken;
         private float photoReadyAt;
+        private float pursuitStunUntil,standoffGrace;
         private ParticleSystem photoSmoke;
         private Material photoSmokeMaterial;
         private bool climbedOut, vaultedTable;
@@ -73,7 +74,8 @@ namespace LayarTerakhir.Prolog
         {
             StopAllCoroutines(); if (recording) recording.StopPlayback(); if (finale) finale.ResetView();
             bool started = Has("EVENT_P0_CHASE_STARTED"), done = Has("PROLOG_COMPLETE");
-            run = Run.Idle; Traversing = false; vaultedTable = false; climbedOut = false; railDistance = -6; stunEndsAt=0;
+            run = Run.Idle; Traversing = false; vaultedTable = false; climbedOut = false; railDistance = -6; stunEndsAt=pursuitStunUntil=0;
+            SetPlayerCollision(false);
             if (Time.timeScale > 0) Time.timeScale = 1;
             if (slideGate) slideGate.SetActive(false);
             if(cellarEgressFloor)cellarEgressFloor.SetActive(started&&!done);
@@ -142,8 +144,7 @@ namespace LayarTerakhir.Prolog
         }
         public string Objective()
         {
-            if (run == Run.WindowStandoff) return string.Empty;
-            if (run == Run.EscapeReady || run == Run.Stunned) return string.Empty;
+            if (run == Run.WindowStandoff || run == Run.EscapeReady || run == Run.Stunned) return string.Empty;
             if (run == Run.GateRun) return "Keluar menuju gerbang. Merunduk melewati dahan kamboja.";
             if (run == Run.Ending || run == Run.Complete) return "Malam pertama selesai. Damar masih di balik cermin.";
             if (!climbedOut) return "LARI! Kembali ke tangga batu di sudut ruang jahit!";
@@ -178,24 +179,6 @@ namespace LayarTerakhir.Prolog
             ResumeChase();
         }
         private IEnumerator BreakBeat() { yield return new WaitForSeconds(1.7f); if (run == Run.Breaking) { run = Run.Pursuit; director.Objective(); } }
-        private IEnumerator StandoffApproach(Vector3 spot)
-        {
-            const float duration=2.5f;
-            Vector3 start=chaserFigure!=null?chaserFigure.transform.position:spot;
-            for(float t=0;t<duration;t+=Time.unscaledDeltaTime)
-            {
-                if(run!=Run.WindowStandoff)yield break;
-                float k=Mathf.SmoothStep(0,1,Mathf.Clamp01(t/duration));
-                if(chaserFigure)
-                {
-                    chaserFigure.transform.position=Vector3.Lerp(start,spot,k);
-                    Vector3 face=director.player.transform.position-chaserFigure.transform.position;face.y=0;
-                    if(face.sqrMagnitude>.001f)chaserFigure.transform.rotation=Quaternion.Slerp(chaserFigure.transform.rotation,Quaternion.LookRotation(face),Time.unscaledDeltaTime*4);
-                }
-                yield return null;
-            }
-            if(run==Run.WindowStandoff&&chaserFigure)chaserFigure.transform.position=spot;
-        }
         private void Update()
         {
             if (!director || !director.player || !Campaign || !Hud || director.Busy || UiFocus.HardModal || Hud.IsModalOpen || Time.timeScale<=0) return;
@@ -207,6 +190,12 @@ namespace LayarTerakhir.Prolog
                 return;
             }
             if (run != Run.Pursuit && run != Run.GateRun) return;
+            if(run==Run.Pursuit&&GameInputConfig.Instance.GetActionDown(GameAction.CaptureOrBlitz))TryPursuitBlitz();
+            if(chaserFigure)
+            {
+                var presentation=chaserFigure.GetComponent<AtmajaThreatPresentation>();
+                if(presentation)presentation.ExternalStun=IsStunned;
+            }
             float dt = Time.deltaTime; dangerGrace = Mathf.Max(0, dangerGrace - dt);
             if (chaserFigure && chaserFigure.activeInHierarchy && rail.Length > 1 && !IsStunned)
             {
@@ -279,12 +268,13 @@ namespace LayarTerakhir.Prolog
                         float step = 4.5f * Time.deltaTime;
                         Vector3 pos = Vector3.MoveTowards(director.player.transform.position, target, step);
                         bob += step * 7f;
-                        director.player.transform.position = pos + Vector3.up * Mathf.Abs(Mathf.Sin(bob)) * .045f;
+                        director.player.transform.position = pos;
                         Vector3 look = seg + 1 < ascent.Length ? ascent[seg + 1] : director.upper.trapdoorTop.position + Vector3.up * 1.2f;
                         Vector3 flat = look - pos; flat.y = 0;
+                        if(director.upper.cellarLadderRoute.Length>1&&seg>0&&seg<ascent.Length-1)flat=-director.north;
                         if (flat.sqrMagnitude > .01f) director.player.transform.rotation = Quaternion.Slerp(director.player.transform.rotation, Quaternion.LookRotation(flat), Time.deltaTime * 6);
-                        pitch = Mathf.MoveTowards(pitch, seg < ascent.Length - 1 ? 18 : 5, 40 * Time.deltaTime);
-                        director.player.SetViewPitch(pitch);
+                        pitch = Mathf.MoveTowards(pitch, seg < ascent.Length - 1 ? -22 : 5, 40 * Time.deltaTime);
+                        director.player.SetViewPitch(pitch+Mathf.Sin(bob)*.6f);
                         yield return null;
                     }
                 }
@@ -318,20 +308,16 @@ namespace LayarTerakhir.Prolog
         private void BeginStandoff()
         {
             run = Run.WindowStandoff; photosTaken = 0; photoReadyAt = 0; Time.timeScale = .5f;
+            standoffGrace=Time.unscaledTime+3;
             Phone.isPhoneRaised = Phone.isScreenOn = true; Phone.currentScanMode = ScanVisualMode.Normal; Phone.SyncVisualState();
             director.phoneView.Apps.Open(PhoneApp.Camera);
             director.player.MovementLocked = false;
             if (chaserFigure)
             {
-                // No blink-teleport onto the window: she glides in from where
-                // the pursuit left her (always inside, on the room side of the
-                // slammed kitchen shutter) and halts at the block spot while
-                // Raka steels himself. Staying on the room side keeps her framed
-                // in the window opening for the whole approach.
                 var pose=chaserFigure.GetComponent<AtmajaThreatPresentation>();if(pose)pose.ExternalStun=false;
-                Vector3 loom=chaserFigure.transform.position;
-                chaserFigure.transform.SetPositionAndRotation(loom,windowBlockSpot.rotation);
-                StartCoroutine(StandoffApproach(windowBlockSpot.position));
+                SetPlayerCollision(true);
+                chaserFigure.transform.SetPositionAndRotation(windowBlockSpot.position,windowBlockSpot.rotation);
+                Physics.SyncTransforms();
             }
             Vector3 direction=windowBlockSpot.position+Vector3.up*1.45f-director.player.cameraPivot.position;
             Vector3 flat=direction;flat.y=0;
@@ -348,8 +334,38 @@ namespace LayarTerakhir.Prolog
         {
             if(!Phone.isPhoneRaised||!Phone.isScreenOn){Phone.isPhoneRaised=Phone.isScreenOn=true;Phone.SyncVisualState();}
             if(director.phoneView&&!director.phoneView.IsCameraApp)director.phoneView.Apps.Open(PhoneApp.Camera);
+            var pose=chaserFigure?chaserFigure.GetComponent<AtmajaThreatPresentation>():null;
+            if(chaserFigure&&(!pose||!pose.ExternalStun))
+            {
+                Vector3 direction=director.player.transform.position-chaserFigure.transform.position;direction.y=0;
+                if(direction.sqrMagnitude>.01f)
+                {
+                    chaserFigure.transform.rotation=Quaternion.Slerp(chaserFigure.transform.rotation,Quaternion.LookRotation(direction),Time.deltaTime*4);
+                    float step=Mathf.Min(.55f*Time.deltaTime,Mathf.Max(0,direction.magnitude-.65f));
+                    bool clear=true;
+                    foreach(var hit in Physics.CapsuleCastAll(chaserFigure.transform.position+Vector3.up*.3f,chaserFigure.transform.position+Vector3.up*1.4f,.23f,direction.normalized,step,~((1<<29)|(1<<2)),QueryTriggerInteraction.Ignore))
+                        if(!hit.transform.IsChildOf(chaserFigure.transform)&&!hit.transform.IsChildOf(director.player.transform)){clear=false;break;}
+                    if(clear)chaserFigure.transform.position+=direction.normalized*step;
+                }
+                if(Time.unscaledTime>standoffGrace&&Vector3.Distance(chaserFigure.transform.position,director.player.transform.position)<.75f&&CanCatchPlayer()){Fail("Nyonya Atmaja menangkapmu di dekat jendela.");return;}
+            }
             if (Time.unscaledTime < photoReadyAt) return;
             if (GameInputConfig.Instance.GetActionDown(GameAction.CaptureOrBlitz)) TryPhoto();
+        }
+        private void SetPlayerCollision(bool ignore)
+        {
+            if(!chaserFigure||!director||!director.player)return;
+            var playerCollider=director.player.GetComponent<CharacterController>();
+            foreach(var collider in chaserFigure.GetComponentsInChildren<Collider>(true))Physics.IgnoreCollision(playerCollider,collider,ignore);
+        }
+        public bool TryPursuitBlitz()
+        {
+            if(run!=Run.Pursuit||IsStunned||!Phone||!Phone.isPhoneRaised||!Phone.isScreenOn||Phone.batteryPercent<Phone.blitzCostPercent)return false;
+            if(!director.phoneView||!director.phoneView.IsCameraApp||!director.phoneView.FramesTarget(chaserFigure,8))return false;
+            Phone.ConsumeBattery(Phone.blitzCostPercent);pursuitStunUntil=Time.time+2;dangerGrace=Mathf.Max(dangerGrace,2);
+            var pose=chaserFigure.GetComponent<AtmajaThreatPresentation>();
+            if(pose){pose.ExternalStun=true;if(pose.blitzSmoke)pose.blitzSmoke.Play();}
+            director.phoneView.CaptureFlash();return true;
         }
         public bool TryPhoto()
         {
@@ -359,7 +375,7 @@ namespace LayarTerakhir.Prolog
             if (!director.phoneView.FramesTarget(chaserFigure,10f)) return false;
             if (Time.unscaledTime < photoReadyAt) return false;
             photoReadyAt = Time.unscaledTime + .3f;
-            photosTaken++;
+            photosTaken++;standoffGrace=Mathf.Max(standoffGrace,Time.unscaledTime+1.25f);
             director.phoneView.CaptureFlash();
             var pose = chaserFigure ? chaserFigure.GetComponent<AtmajaThreatPresentation>() : null;
             PuffSmoke(photosTaken >= RequiredPhotos ? 70 : 34);
@@ -367,7 +383,7 @@ namespace LayarTerakhir.Prolog
             {
                 pose.ExternalStun = true;
                 pose.EmitPhotoSmoke(photosTaken >= RequiredPhotos ? 40 : 18);
-                StartCoroutine(ReleasePhotoStun(pose));
+                StartCoroutine(ReleasePhotoStun(pose,photosTaken));
             }
             if (director.phoneView)
             {
@@ -383,10 +399,10 @@ namespace LayarTerakhir.Prolog
             else director.Objective();
             return true;
         }
-        private IEnumerator ReleasePhotoStun(AtmajaThreatPresentation pose)
+        private IEnumerator ReleasePhotoStun(AtmajaThreatPresentation pose,int shot)
         {
             yield return new WaitForSeconds(.28f);
-            if (pose) pose.ExternalStun = false;
+            if (pose&&photosTaken==shot&&run==Run.WindowStandoff) pose.ExternalStun = false;
         }
         private IEnumerator CompletePhotoRitual()
         {

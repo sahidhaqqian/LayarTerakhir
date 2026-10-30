@@ -9,13 +9,19 @@ namespace LayarTerakhir.Prolog
     {
         public Transform hinge;public string label="Buka pintu";public bool locked;public float angle=95;private bool opened,moving;
         public string lockedDialogue;
+        public bool requiresCrouchAndAR;
         public bool slides;public Vector3 slideOffset=Vector3.forward*1.6f;
-        private Vector3 closedPosition;private bool positionCaptured;
+        private Vector3 closedPosition;private Quaternion closedRotation;private bool positionCaptured;
         public bool IsOpen=>opened;
         private AudioSource source;
         public string InteractableId=>name;
-        public bool CanInteract()=>!moving&&!UiFocus.HardModal&&!UiFocus.Cinematic&&!(HudController.Instance&&HudController.Instance.IsModalOpen);
-        public string GetInteractionPrompt()=>locked?"Pintu kamar tertutup":opened?"Tutup pintu":label;
+        public bool CanInteract()=>!moving&&!UiFocus.HardModal&&!UiFocus.Cinematic&&!(HudController.Instance&&HudController.Instance.IsModalOpen)&&(!requiresCrouchAndAR||VentReady());
+        private bool VentReady()
+        {
+            var player=FindFirstObjectByType<FirstPersonController>();var phone=LayarTerakhir.Smartphone.SmartphoneController.Instance;
+            return player&&player.IsCrouching&&phone&&phone.isPhoneRaised&&phone.isScreenOn&&phone.currentScanMode==LayarTerakhir.Smartphone.ScanVisualMode.AR;
+        }
+        public string GetInteractionPrompt()=>requiresCrouchAndAR?string.Empty:locked?"Pintu kamar tertutup":opened?"Tutup pintu":label;
         public void Interact()
         {
             if(!CanInteract())return;
@@ -32,17 +38,17 @@ namespace LayarTerakhir.Prolog
                 if(!source){source=gameObject.AddComponent<AudioSource>();source.playOnAwake=false;source.spatialBlend=.9f;source.minDistance=1.5f;source.maxDistance=8;source.outputAudioMixerGroup=profile.effectsBus;source.dopplerLevel=0;}
                 if(profile.latch)source.PlayOneShot(profile.latch,.55f);
             }
-            var from=hinge.localRotation;var to=Quaternion.Euler(0,opened?angle:0,0);
+            var from=hinge.localRotation;var to=closedRotation*Quaternion.Euler(0,opened?angle:0,0);
             var start=hinge.localPosition;var end=closedPosition+(opened?slideOffset:Vector3.zero);
             for(float t=0;t<1;t+=Time.deltaTime){float k=Mathf.SmoothStep(0,1,t);if(slides)hinge.localPosition=Vector3.Lerp(start,end,k);else hinge.localRotation=Quaternion.Slerp(from,to,k);yield return null;}
             if(slides)hinge.localPosition=end;else hinge.localRotation=to;moving=false;
         }
-        private void CapturePosition(){if(!positionCaptured&&hinge){closedPosition=hinge.localPosition;positionCaptured=true;}}
+        private void CapturePosition(){if(!positionCaptured&&hinge){closedPosition=hinge.localPosition;closedRotation=hinge.localRotation;positionCaptured=true;}}
         public void SetOpenImmediate(bool open)
         {
             CapturePosition();opened=open;moving=false;
             if(slides)hinge.localPosition=closedPosition+(open?slideOffset:Vector3.zero);
-            else hinge.localRotation=Quaternion.Euler(0,open?angle:0,0);
+            else hinge.localRotation=closedRotation*Quaternion.Euler(0,open?angle:0,0);
         }
         public void SetOpenAnimated(bool open)
         {

@@ -143,6 +143,8 @@ namespace LayarTerakhir.Prolog
         public Transform spawnUpper,trapdoorTop;
         public HingedDoor childDoor,bathDoor,masterDoor;
         public Collider ventGate;
+        public HingedDoor ventDoor;
+        public Transform[] cellarLadderRoute=Array.Empty<Transform>();
         public GameObject[] chainLinks=new GameObject[3];
         public GameObject childCup,bathCurtain,bathWater,mirrorFlashFigure,hangedFlashFigure,carpetRoll,trapdoorLid;
         public GameObject ventCabinet;
@@ -228,9 +230,9 @@ namespace LayarTerakhir.Prolog
             if(ventGate&&ventMouth)
             {
                 bool near=Vector3.Distance(director.player.transform.position,ventMouth.position)<2.1f;
-                bool pass=ar&&director.player.IsCrouching&&near&&childDoor&&!childDoor.IsOpen;
+                bool pass=ar&&director.player.IsCrouching&&near&&childDoor&&!childDoor.IsOpen&&(!ventDoor||ventDoor.IsOpen);
                 ventGate.enabled=!pass;
-                if(ventCabinet)ventCabinet.SetActive(!pass);
+                if(ventCabinet&&!ventDoor)ventCabinet.SetActive(!pass);
             }
             if(!Has("EVENT_P0_MIRROR_SCARE")&&mirrorSpot&&mirrorFlashFigure)
             {
@@ -293,15 +295,8 @@ namespace LayarTerakhir.Prolog
         }
         private void SyncScratchTarget()
         {
-            if(!bathDoor||!bathScratchesAR||!scratchAim||!director.phoneView||!director.phoneView.FeedCamera)return;
-            // Project the AR trace onto the visible face of the door. Its own wood
-            // must not hide the clue/aim anchor when a right-hinged leaf swings inward.
-            Vector3 centre=bathDoor.transform.position-Vector3.up*.12f;
-            Vector3 normal=bathDoor.transform.forward;
-            if(Vector3.Dot(director.phoneView.FeedCamera.transform.position-centre,normal)<0)normal=-normal;
-            Vector3 surface=centre+normal*.061f;
-            bathScratchesAR.transform.SetPositionAndRotation(surface,Quaternion.LookRotation(normal));
-            scratchAim.position=surface;
+            // The evidence is on the wall, independent of the swinging door.
+            if(bathScratchesAR&&scratchAim)scratchAim.position=bathScratchesAR.transform.position;
         }
         private void BreakChain(int n,string toast,string flag)
         {
@@ -351,12 +346,13 @@ namespace LayarTerakhir.Prolog
                     float step=1.6f*Time.deltaTime;
                     Vector3 pos=Vector3.MoveTowards(director.player.transform.position,target,step);
                     bob+=step*7f;
-                    director.player.transform.position=pos+Vector3.up*Mathf.Abs(Mathf.Sin(bob))*.035f;
+                    director.player.transform.position=pos;
                     Vector3 look=seg+1<path.Length?path[seg+1]:target+Vector3.down*2f;
                     Vector3 flat=look-pos;flat.y=0;
+                    if(cellarLadderRoute.Length>1&&seg>0&&seg<path.Length-1)flat=-director.north;
                     if(flat.sqrMagnitude>.01f)director.player.transform.rotation=Quaternion.Slerp(director.player.transform.rotation,Quaternion.LookRotation(flat),Time.deltaTime*5);
-                    pitch=Mathf.MoveTowards(pitch,-32,30*Time.deltaTime);
-                    director.player.SetViewPitch(pitch);
+                    pitch=Mathf.MoveTowards(pitch,28,30*Time.deltaTime);
+                    director.player.SetViewPitch(pitch+Mathf.Sin(bob)*.5f);
                     if(rig)rig.RefreshCameraPose();
                     yield return null;
                 }
@@ -370,6 +366,7 @@ namespace LayarTerakhir.Prolog
         // the live scene so the walk always matches the visible staircase.
         public Vector3[] CellarDescentPath()
         {
+            if(cellarLadderRoute!=null&&cellarLadderRoute.Length>1)return Array.ConvertAll(cellarLadderRoute,t=>t.position);
             var steps=new List<Transform>();
             foreach(var t in UnityEngine.Object.FindObjectsByType<Transform>(FindObjectsSortMode.None))
                 if(t.name=="CellarStep")steps.Add(t);

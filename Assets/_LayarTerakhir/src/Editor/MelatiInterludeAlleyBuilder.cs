@@ -166,7 +166,7 @@ namespace LayarTerakhir.Editor
                     GameObjectUtility.SetStaticEditorFlags(r.gameObject, StaticEditorFlags.BatchingStatic);
             // Night prolog must never see this: leave the group OFF in the
             // saved scene. InterludeDirector activates it in daytime only.
-            group.gameObject.SetActive(false);
+            group.gameObject.SetActive(true);
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
             AssetDatabase.SaveAssets();

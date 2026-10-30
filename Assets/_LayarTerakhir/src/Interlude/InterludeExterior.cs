@@ -75,6 +75,7 @@ namespace LayarTerakhir.Interlude
 
         public static void ApplyDay(Camera eye)
         {
+            SetSky(eye,"PrologDaySky");
             SetExposure(.45f);
             foreach (var light in Object.FindObjectsByType<Light>(FindObjectsSortMode.None))
             {
@@ -99,6 +100,7 @@ namespace LayarTerakhir.Interlude
 
         public static void ApplyDusk(Camera eye)
         {
+            SetSky(eye,"PrologDuskSky");
             SetExposure(.45f);
             foreach (var light in Object.FindObjectsByType<Light>(FindObjectsSortMode.None))
             {
@@ -119,6 +121,12 @@ namespace LayarTerakhir.Interlude
             RenderSettings.ambientEquatorColor = new Color(.15f, .12f, .11f);
             RenderSettings.ambientGroundColor = new Color(.09f, .08f, .07f);
             if (eye) eye.backgroundColor = new Color(.30f, .22f, .20f);
+        }
+
+        private static void SetSky(Camera eye,string name)
+        {
+            RenderSettings.skybox=Resources.Load<Material>(name);
+            if(eye)eye.clearFlags=RenderSettings.skybox?CameraClearFlags.Skybox:CameraClearFlags.SolidColor;
         }
 
         internal static void DropCollider(GameObject go)

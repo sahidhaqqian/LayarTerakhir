@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Passed" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-30 11:29:58Z" end-time="2026-10-30 11:30:39Z" duration="41.0058195">
+  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="565" result="Passed" start-time="2026-10-30 11:29:58Z" end-time="2026-10-30 11:30:39Z" duration="41.005820" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1652" name="Assembly-CSharp-Editor.dll" fullname="/root/projects/LayarTerakhir/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="565" result="Passed" start-time="2026-10-30 11:29:58Z" end-time="2026-10-30 11:30:39Z" duration="40.909517" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="680501" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1653" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="565" result="Passed" start-time="2026-10-30 11:29:58Z" end-time="2026-10-30 11:30:39Z" duration="40.901001" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1654" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="565" result="Passed" start-time="2026-10-30 11:29:58Z" end-time="2026-10-30 11:30:39Z" duration="40.892929" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1655" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="565" result="Passed" start-time="2026-10-30 11:29:58Z" end-time="2026-10-30 11:30:39Z" duration="40.885765" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1011" name="AtmajaPlayTests" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" testcasecount="41" result="Passed" start-time="2026-10-30 11:29:09Z" end-time="2026-10-30 11:29:12Z" duration="2.440847" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1043" name="PhoneMenuRecoversItsAspectAndControlsAfterAimAndFocus" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.PhoneMenuRecoversItsAspectAndControlsAfterAimAndFocus" methodname="PhoneMenuRecoversItsAspectAndControlsAfterAimAndFocus" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1853821313" result="Passed" start-time="2026-10-30 11:28:40Z" end-time="2026-10-30 11:29:02Z" duration="22.224596" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+                <output><![CDATA[KOS_V2_CAPTURE {"name":"01-phone-aim-from-pocket","cameraPosition":{"x":0.0,"y":1.659999966621399,"z":12.199999809265137},"cameraForward":{"x":0.0,"y":0.0,"z":-1.0},"mean":0.047030895948410037,"contrast":0.06378280371427536,"darkRatio":0.7650162577629089}
+KOS_V2_CAPTURE {"name":"02-phone-menu-after-release","cameraPosition":{"x":-0.36000001430511477,"y":1.71999990940094,"z":13.619999885559082},"cameraForward":{"x":0.10017863661050797,"y":-0.016696425154805185,"z":-0.994829535484314},"mean":0.07173988223075867,"contrast":0.10313849151134491,"darkRatio":0.6772211194038391}
+KOS_V2_CAPTURE {"name":"03-phone-after-focus-restored","cameraPosition":{"x":-0.36000001430511477,"y":1.71999990940094,"z":13.619999885559082},"cameraForward":{"x":0.10017863661050797,"y":-0.016696425154805185,"z":-0.994829535484314},"mean":0.05947873741388321,"contrast":0.08179700374603272,"darkRatio":0.6898621916770935}
+CALL_POSE_STATE current=PhoneIdle blend=1 cached=True active=True ownerMatch=True frontOffset=-0.00401783
+KOS_V2_CAPTURE {"name":"04-phone-call-contact","cameraPosition":{"x":-0.36000001430511477,"y":1.71999990940094,"z":13.619999885559082},"cameraForward":{"x":0.10017863661050797,"y":-0.016696425154805185,"z":-0.994829535484314},"mean":0.060355596244335178,"contrast":0.08729202300310135,"darkRatio":0.7018446326255798}
+]]></output>
+              </test-case>
+              <test-case id="1017" name="UpperEvidenceUsesPhoneLensAndAcceptsTargetSurface" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.UpperEvidenceUsesPhoneLensAndAcceptsTargetSurface" methodname="UpperEvidenceUsesPhoneLensAndAcceptsTargetSurface" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="432602046" result="Passed" start-time="2026-10-30 11:29:02Z" end-time="2026-10-30 11:29:12Z" duration="9.359547" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1626" name="Prolog47VisualTests" fullname="LayarTerakhir.Editor.Tests.Prolog47VisualTests" classname="LayarTerakhir.Editor.Tests.Prolog47VisualTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-30 11:29:58Z" end-time="2026-10-30 11:30:39Z" duration="40.833862" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1629" name="AtmajaChainAndCupDetails" fullname="LayarTerakhir.Editor.Tests.Prolog47VisualTests.AtmajaChainAndCupDetails" methodname="AtmajaChainAndCupDetails" classname="LayarTerakhir.Editor.Tests.Prolog47VisualTests" runstate="Runnable" seed="1021610436" result="Passed" start-time="2026-10-30 11:29:12Z" end-time="2026-10-30 11:29:23Z" duration="11.298455" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+                <output><![CDATA[KOS_V2_CAPTURE {"name":"17-front-door-chain","cameraPosition":{"x":0.0,"y":2.130000114440918,"z":1.649999976158142},"cameraForward":{"x":0.0,"y":-0.035189516842365268,"z":-0.9993808269500732},"mean":0.13443394005298615,"contrast":0.1967787742614746,"darkRatio":0.6672590970993042}
+KOS_V2_CAPTURE {"name":"33-cup-aim-closeup","cameraPosition":{"x":4.199999809265137,"y":5.499999523162842,"z":-0.8999999761581421},"cameraForward":{"x":0.7182301878929138,"y":-0.6604229211807251,"z":0.21905942261219026},"mean":0.30253303050994875,"contrast":0.2543905973434448,"darkRatio":0.21880316734313966}
+]]></output>
+              </test-case>
+              <test-case id="1627" name="AtmajaGameplayCameraReview" fullname="LayarTerakhir.Editor.Tests.Prolog47VisualTests.AtmajaGameplayCameraReview" methodname="AtmajaGameplayCameraReview" classname="LayarTerakhir.Editor.Tests.Prolog47VisualTests" runstate="Runnable" seed="614124775" result="Passed" start-time="2026-10-30 11:29:23Z" end-time="2026-10-30 11:29:51Z" duration="27.963926" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+                <output><![CDATA[KOS_V2_CAPTURE {"name":"16-kitchen-window","cameraPosition":{"x":-6.900000095367432,"y":1.6399999856948853,"z":-10.399999618530274},"cameraForward":{"x":0.993263304233551,"y":-0.11588067561388016,"z":-1.701992005109787e-7},"mean":0.12464713305234909,"contrast":0.13962465524673463,"darkRatio":0.468731552362442}
+KOS_V2_CAPTURE {"name":"20-damar-notebook","cameraPosition":{"x":-2.299999952316284,"y":2.140000104904175,"z":-8.0},"cameraForward":{"x":0.0,"y":-0.903388261795044,"z":0.42882347106933596},"mean":0.2122579663991928,"contrast":0.26663073897361758,"darkRatio":0.5640299320220947}
+KOS_V2_CAPTURE {"name":"17-well-and-kitchen","cameraPosition":{"x":-4.599999904632568,"y":1.9600000381469727,"z":-9.800000190734864},"cameraForward":{"x":0.7119117379188538,"y":-0.4108748435974121,"z":-0.5695292949676514},"mean":0.17080329358577729,"contrast":0.21339908242225648,"darkRatio":0.5975672602653503}
+KOS_V2_CAPTURE {"name":"18-dining-room","cameraPosition":{"x":-5.25,"y":2.140000104904175,"z":-7.800000190734863},"cameraForward":{"x":0.44386187195777895,"y":-0.2548627257347107,"z":0.8590876460075378},"mean":0.0941038578748703,"contrast":0.13360124826431275,"darkRatio":0.6418207287788391}
+KOS_V2_CAPTURE {"name":"18-ground-doorways","cameraPosition":{"x":2.700000047683716,"y":2.191999912261963,"z":-2.0199999809265138},"cameraForward":{"x":0.3407067060470581,"y":0.1843823790550232,"z":-0.9219123125076294},"mean":0.22788681089878083,"contrast":0.22978021204471589,"darkRatio":0.39948350191116335}
+KOS_V2_CAPTURE {"name":"23-upper-corridor","cameraPosition":{"x":4.800000190734863,"y":5.429999828338623,"z":-5.75},"cameraForward":{"x":-0.9938787221908569,"y":-0.015902044251561166,"z":0.10932668298482895},"mean":0.2164313793182373,"contrast":0.22886429727077485,"darkRatio":0.37821507453918459}
+KOS_V2_CAPTURE {"name":"24-ar-vent","cameraPosition":{"x":3.0,"y":5.429999828338623,"z":-5.949999809265137},"cameraForward":{"x":-0.12024199962615967,"y":-0.7284879684448242,"z":0.6744236946105957},"mean":0.24868090450763703,"contrast":0.2925882339477539,"darkRatio":0.43391600251197817}
+KOS_V2_CAPTURE {"name":"25-family-photo","cameraPosition":{"x":2.0999999046325685,"y":5.429999828338623,"z":-5.900000095367432},"cameraForward":{"x":0.0,"y":-0.2195119559764862,"z":0.9756098389625549},"mean":0.24905139207839967,"contrast":0.22322776913642884,"darkRatio":0.24189236760139466}
+KOS_V2_CAPTURE {"name":"31-child-bedroom","cameraPosition":{"x":4.800000190734863,"y":5.429999828338623,"z":-4.650000095367432},"cameraForward":{"x":-0.34374818205833437,"y":-0.33687320351600649,"z":0.8765578269958496},"mean":0.10606498271226883,"contrast":0.1408543437719345,"darkRatio":0.6479210257530212}
+KOS_V2_CAPTURE {"name":"33-cup-detail","cameraPosition":{"x":4.673584461212158,"y":5.499999523162842,"z":-1.2366409301757813},"cameraForward":{"x":0.015786346048116685,"y":-0.8426173329353333,"z":0.5382815003395081},"mean":0.23661810159683228,"contrast":0.28426235914230349,"darkRatio":0.4363899827003479}
+KOS_V2_CAPTURE {"name":"29-notebook-lamp-cup","cameraPosition":{"x":5.25,"y":5.499999523162842,"z":-2.1599998474121095},"cameraForward":{"x":0.0,"y":-0.5531612038612366,"z":0.8330742120742798},"mean":0.2270260453224182,"contrast":0.26098689436912539,"darkRatio":0.4634244740009308}
+KOS_V2_CAPTURE {"name":"34-bathroom-scratches","cameraPosition":{"x":0.699999988079071,"y":5.429999828338623,"z":-3.25},"cameraForward":{"x":0.95538729429245,"y":-0.2953561842441559,"z":-6.891787052154541e-8},"mean":0.19416366517543794,"contrast":0.24644066393375398,"darkRatio":0.5006250143051148}
+KOS_V2_CAPTURE {"name":"36-blood-bathtub","cameraPosition":{"x":1.100000023841858,"y":5.429999828338623,"z":-2.799999952316284},"cameraForward":{"x":0.0,"y":-0.5238597989082336,"z":0.8518044948577881},"mean":0.17690515518188477,"contrast":0.2501017153263092,"darkRatio":0.521778404712677}
+KOS_V2_CAPTURE {"name":"37-master-room","cameraPosition":{"x":-1.2000000476837159,"y":5.429999828338623,"z":-2.5},"cameraForward":{"x":-0.9323549270629883,"y":-0.2763766050338745,"z":0.23308870196342469},"mean":0.13617581129074098,"contrast":0.14882110059261323,"darkRatio":0.4724251329898834}
+KOS_V2_CAPTURE {"name":"38-balcony-lamp","cameraPosition":{"x":-4.300000190734863,"y":5.499999523162842,"z":-5.369229793548584},"cameraForward":{"x":0.851486086845398,"y":0.5186323523521423,"z":-0.07740768790245056},"mean":0.19106625020503999,"contrast":0.23358213901519776,"darkRatio":0.49981552362442019}
+KOS_V2_CAPTURE {"name":"35-floor-with-flashlight","cameraPosition":{"x":1.100000023841858,"y":5.429999828338623,"z":-3.700000047683716},"cameraForward":{"x":0.0,"y":-0.6853647232055664,"z":0.7281999588012695},"mean":0.07756355404853821,"contrast":0.15890076756477357,"darkRatio":0.7650846242904663}
+KOS_V2_CAPTURE {"name":"35-same-floor-without-flashlight","cameraPosition":{"x":1.100000023841858,"y":5.429999828338623,"z":-3.700000047683716},"cameraForward":{"x":0.0,"y":-0.6853647232055664,"z":0.7281999588012695},"mean":0.00940380897372961,"contrast":0.047259557992219928,"darkRatio":0.9684179425239563}
+KOS_V2_CAPTURE {"name":"42-cellar-room","cameraPosition":{"x":-1.399999976158142,"y":-1.1899999380111695,"z":-4.199999809265137},"cameraForward":{"x":-0.9336255788803101,"y":-0.030205532908439637,"z":-0.35697439312934878},"mean":0.08373553305864334,"contrast":0.13981612026691438,"darkRatio":0.6902430653572083}
+KOS_V2_CAPTURE {"name":"43-cellar-exit","cameraPosition":{"x":-1.350000023841858,"y":-1.1899999380111695,"z":-3.0},"cameraForward":{"x":0.12824907898902894,"y":0.39066633582115176,"z":0.9115546941757202},"mean":0.22493493556976319,"contrast":0.21496549248695374,"darkRatio":0.37125542759895327}
+]]></output>
+              </test-case>
+              <test-case id="1628" name="KosGameplayCameraReview" fullname="LayarTerakhir.Editor.Tests.Prolog47VisualTests.KosGameplayCameraReview" methodname="KosGameplayCameraReview" classname="LayarTerakhir.Editor.Tests.Prolog47VisualTests" runstate="Runnable" seed="1105293437" result="Passed" start-time="2026-10-30 11:29:51Z" end-time="2026-10-30 11:30:39Z" duration="47.423520" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[KOS_V2_CAPTURE {"name":"01-bedroom-fan","cameraPosition":{"x":0.5,"y":1.600000023841858,"z":-0.800000011920929},"cameraForward":{"x":-0.08068263530731201,"y":-0.024809908121824266,"z":0.9964309930801392},"mean":0.05392146110534668,"contrast":0.07369975000619888,"darkRatio":0.7730056643486023}
+KOS_V2_CAPTURE {"name":"03-kos-door-slippers","cameraPosition":{"x":-16.0,"y":4.980000019073486,"z":5.400000095367432},"cameraForward":{"x":-0.7882604002952576,"y":-0.3490869700908661,"z":-0.5067389607429504},"mean":0.2744218409061432,"contrast":0.22705526649951936,"darkRatio":0.13840819895267487}
+KOS_V2_CAPTURE {"name":"04-sandal-detail","cameraPosition":{"x":-16.149999618530275,"y":4.980000019073486,"z":2.799999952316284},"cameraForward":{"x":-0.5285091400146484,"y":-0.7874786257743836,"z":-0.31710541248321535},"mean":0.22945621609687806,"contrast":0.16753581166267396,"darkRatio":0.20004774630069734}
+KOS_V2_CAPTURE {"name":"05-stair-sign","cameraPosition":{"x":-16.0,"y":4.980000019073486,"z":11.199999809265137},"cameraForward":{"x":-0.825043797492981,"y":0.07661101222038269,"z":0.559851348400116},"mean":0.27139684557914736,"contrast":0.2194538563489914,"darkRatio":0.22517795860767365}
+KOS_V2_CAPTURE {"name":"06-exit-sign","cameraPosition":{"x":-16.0,"y":1.6200000047683716,"z":10.5},"cameraForward":{"x":0.851075291633606,"y":0.07706587761640549,"z":0.5193570256233215},"mean":0.2329406887292862,"contrast":0.25055626034736636,"darkRatio":0.32732856273651125}
+KOS_V2_CAPTURE {"name":"07-kitchen-dining","cameraPosition":{"x":-18.0,"y":1.6200000047683716,"z":4.5},"cameraForward":{"x":-0.9763511419296265,"y":-0.2161920666694641,"z":-2.60770320892334e-7},"mean":0.2223237007856369,"contrast":0.21037329733371736,"darkRatio":0.26800456643104555}
+KOS_V2_CAPTURE {"name":"08-bathroom-sign","cameraPosition":{"x":-13.899999618530274,"y":1.6200000047683716,"z":4.300000190734863},"cameraForward":{"x":0.6213363409042358,"y":-0.10355615615844727,"z":0.7766706347465515},"mean":0.2622860074043274,"contrast":0.23401428759098054,"darkRatio":0.19095486402511598}
+KOS_V2_CAPTURE {"name":"09-bathroom-fixtures","cameraPosition":{"x":-12.399999618530274,"y":1.6200000047683716,"z":3.200000047683716},"cameraForward":{"x":0.9207850694656372,"y":-0.3872019052505493,"z":0.04721962660551071},"mean":0.19188262522220612,"contrast":0.1953176110982895,"darkRatio":0.3242936134338379}
+KOS_V2_CAPTURE {"name":"10-kitchen-fixtures","cameraPosition":{"x":-18.200000762939454,"y":1.6200000047683716,"z":4.800000190734863},"cameraForward":{"x":-0.8624829649925232,"y":-0.2957085967063904,"z":-0.4107065498828888},"mean":0.223946675658226,"contrast":0.18655070662498475,"darkRatio":0.22359266877174378}
+KOS_V2_CAPTURE {"name":"11-parking-night","cameraPosition":{"x":-16.0,"y":1.6200000047683716,"z":-2.4000000953674318},"cameraForward":{"x":-0.7036790251731873,"y":-0.21370986104011537,"z":-0.6776165962219238},"mean":0.10878147184848786,"contrast":0.09616676717996597,"darkRatio":0.41710394620895388}
+KOS_V2_CAPTURE {"name":"47-parking-morning","cameraPosition":{"x":-16.0,"y":1.6200000047683716,"z":-2.4000000953674318},"cameraForward":{"x":-0.7036790251731873,"y":-0.21370986104011537,"z":-0.6776165962219238},"mean":0.29129287600517275,"contrast":0.2173652946949005,"darkRatio":0.2176898866891861}
+KOS_V2_CAPTURE {"name":"47-street-morning","cameraPosition":{"x":-16.0,"y":1.6200000047683716,"z":-7.5},"cameraForward":{"x":0.0,"y":0.18096217513084413,"z":-0.9834901094436646},"mean":0.3046669363975525,"contrast":0.22708116471767426,"darkRatio":0.1918717473745346}
+KOS_V2_CAPTURE {"name":"47-street-dusk","cameraPosition":{"x":-16.0,"y":1.6200000047683716,"z":-7.5},"cameraForward":{"x":0.0,"y":0.18096217513084413,"z":-0.9834901094436646},"mean":0.1459771692752838,"contrast":0.17293395102024079,"darkRatio":0.6786414980888367}
+KOS_V2_CAPTURE {"name":"47-street-next-morning","cameraPosition":{"x":-16.0,"y":1.6200000047683716,"z":-7.5},"cameraForward":{"x":0.0,"y":0.18096217513084413,"z":-0.9834901094436646},"mean":0.3047042191028595,"contrast":0.22705723345279694,"darkRatio":0.1917881965637207}
+Saving results to: /root/.config/unity3d/DefaultCompany/LayarTerakhir/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

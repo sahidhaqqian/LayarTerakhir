@@ -27,7 +27,7 @@ namespace LayarTerakhir.Editor.Tests
     public sealed class PrologEasyPlayTests
     {
         private Keyboard keys;private Mouse mouse;
-        private const string Folder="Audit/Visuals/PrologEasy-2026-10-30";
+        private const string Folder="Audit/Visuals/Prolog47-2026-10-30/Regression";
         [UnitySetUp] public IEnumerator SetUp()
         {
             SessionState.SetString("Easy.PreviousSave",Environment.GetEnvironmentVariable("LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY")??"");

@@ -555,10 +555,15 @@ namespace LayarTerakhir.Prolog
             var rig=owner?owner.GetComponent<ShoulderCameraRig>():null;
             bool visible=Panel.activeSelf&&rig&&rig.IsFirstPerson&&(!UiFocus.Cinematic||CinematicHandsetVisible);
             bool both=visible&&(viewfinderBlend>.01f||landscapeFromStowed);
-            firstPersonHand.SetActive(both);if(supportHand)supportHand.SetActive(both);
+            firstPersonHand.SetActive(visible);if(supportHand)supportHand.SetActive(both);
             if(gripOccluder)gripOccluder.SetActive(visible);
             if(gripCamera){gripCamera.enabled=visible&&HasGraphicsDevice;gripCamera.fieldOfView=HandPresentationFieldOfView;}
             if(gripOverlay)gripOverlay.enabled=visible&&HasGraphicsDevice;
+            if(gripOverlay)
+            {
+                int panelIndex=Panel.transform.GetSiblingIndex(),gripIndex=gripOverlay.transform.GetSiblingIndex();
+                if(both&&gripIndex<panelIndex||!both&&gripIndex>panelIndex)gripOverlay.transform.SetSiblingIndex(panelIndex);
+            }
             if(!visible)return;
             if(gripCamera&&gripTexture)
             {
@@ -571,10 +576,9 @@ namespace LayarTerakhir.Prolog
                 }
             }
             bool jacket=CampaignState.Instance&&CampaignState.Instance.HasInventoryItem("JAKET_RAKA");
-            // Keep the previously validated portrait grasp for apps/documents.
-            // The landscape source pose cannot wrap a handset twice as tall.
-            if(portraitRenderers!=null)foreach(var r in portraitRenderers)
-                r.enabled=r.name.Contains("HandheldPhone")||!both&&!r.name.Contains("HandsetScreen")&&(r.name.Contains("Jacket")?jacket:!r.name.Contains("TShirt")||!jacket);
+            // Keep the centred handset as depth; use the compact existing edge
+            // grasp for portrait too. The old portrait forearm crossed the world.
+            if(portraitRenderers!=null)foreach(var r in portraitRenderers)r.enabled=r.name.Contains("HandheldPhone");
             foreach(var r in handRenderers)
                 r.enabled=(!r.name.Contains("HandheldPhone")&&!r.name.Contains("HandsetScreen"))&&(r.name.Contains("Jacket")?jacket:!r.name.Contains("TShirt")||!jacket);
             if(supportRenderers!=null)foreach(var r in supportRenderers)r.enabled=(!r.name.Contains("HandheldPhone")&&!r.name.Contains("HandsetScreen"))&&(r.name.Contains("Jacket")?jacket:!r.name.Contains("TShirt")||!jacket);
@@ -594,13 +598,13 @@ namespace LayarTerakhir.Prolog
             float gripOffset=physicalWidth*.5f;
             Quaternion handRotation=playerCamera.transform.rotation*handsetRect.localRotation;
             Vector3 edge=handRotation*Vector3.right*gripOffset;
-            firstPersonHand.transform.position=phoneCentre+edge;
+            firstPersonHand.transform.position=phoneCentre+edge+handRotation*(new Vector3(-.0050251f,-.0325639f,-.0083271f)*(1-t));
             firstPersonHand.transform.localScale=handScale;
             // Source grasp origin is the edge, in metres. Mirror around the
             // handset centre; never enlarge the hand to fill a stretched UI.
-            firstPersonHand.transform.rotation=handRotation;
+            firstPersonHand.transform.rotation=handRotation*Quaternion.Euler(0,80*(1-t),0);
             if(both){supportHand.transform.position=phoneCentre-edge;supportHand.transform.rotation=handRotation;supportHand.transform.localScale=supportScale;}
-            if(gripOccluder){gripOccluder.transform.SetPositionAndRotation(phoneCentre,firstPersonHand.transform.rotation*Quaternion.Euler(0,180,0));gripOccluder.transform.localScale=Vector3.Scale(depthMaskScale,new Vector3(physicalWidth/.078f,physicalHeight/.165f,Mathf.Lerp(1,.008f/.014f,t)));}
+            if(gripOccluder){gripOccluder.transform.SetPositionAndRotation(phoneCentre,handRotation);gripOccluder.transform.localScale=Vector3.Scale(depthMaskScale,new Vector3(physicalWidth/.078f,physicalHeight/.165f,Mathf.Lerp(1,.008f/.014f,t)));}
         }
         public void AddChat(string author,string text){if(ChatFrozen)return;pendingMessages.Enqueue($"<color=#C0AA7A>{author}</color> {text}");while(pendingMessages.Count>18)pendingMessages.Dequeue();}
         public void AddChatBurst(string[] authors,string[] lines,int count=3)

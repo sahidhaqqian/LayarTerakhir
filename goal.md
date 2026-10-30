@@ -2,7 +2,7 @@
 
 Daftar dari pesan desainer pada 30 Oktober 2026. Nomor 1–47 dipertahankan. Foto asli diunduh dari `r2:layarterakhir/Layarterakhir/bug/` dan tersedia di [folder foto](Audit/Visuals/Prolog-PlayerBugs-2026-10-30/README.md).
 
-Status batch ringan 30 Oktober 2026: **20 PASS sementara (Linux Editor), 1 FAIL, 26 UNVERIFIED**. Bukti dan rincian per nomor ada di [laporan audit](Audit/PROLOG_EASY_2026-10-30.md). Windows belum diverifikasi; sisa 27 issue masih terbuka.
+Status revisi lengkap 30 Oktober 2026: **47/47 PASS sementara di Linux Editor; 0 FAIL; 0 UNVERIFIED dalam lingkup Linux**. Rincian perubahan, capture dan tes per nomor ada di [laporan penerimaan 47 bug](Audit/PROLOG_47_ACCEPTANCE_2026-10-30.md). Regresi utama 20/20, detail/fokus 5/5, render akhir 3/3, pemeriksaan akhir 2/2, dan render ulang mesh cangkir 1/1 lulus; 15/15 tes Interlude dipakai ulang. **GPU Windows dan penerimaan manusia belum diverifikasi.** Tidak ada build Windows/upload baru pada revisi ini. [Audit batch ringan sebelumnya](Audit/PROLOG_EASY_2026-10-30.md) dipertahankan sebagai riwayat.
 
 ## Bug 1
 

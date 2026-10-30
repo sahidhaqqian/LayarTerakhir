@@ -1,0 +1,4761 @@
+{
+    "gpu": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "platform": "LinuxEditor",
+    "windowsConfirmed": false,
+    "objects": [
+        {
+            "name": "ReachableJacketHook",
+            "path": "GameSystems/ReachableJacketHook",
+            "position": {
+                "x": 1.399999976158142,
+                "y": 1.6699999570846558,
+                "z": -1.7949999570846558
+            },
+            "size": {
+                "x": 1.0,
+                "y": 1.0199999809265137,
+                "z": 1.2300000190734864
+            },
+            "materials": [
+                "DarkOxidisedMetal"
+            ]
+        },
+        {
+            "name": "FanLead",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/FanLead",
+            "position": {
+                "x": -0.4399999678134918,
+                "y": 0.8100000023841858,
+                "z": 1.815000057220459
+            },
+            "size": {
+                "x": 1.4830000400543213,
+                "y": 1.0630000829696656,
+                "z": 0.13300000131130219
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "LoosePhoneChargeLead",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/LoosePhoneChargeLead",
+            "position": {
+                "x": -2.2350001335144045,
+                "y": 0.1875,
+                "z": 0.030000008642673494
+            },
+            "size": {
+                "x": 0.3730001151561737,
+                "y": 0.34800001978874209,
+                "z": 0.203000009059906
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "WebcamUSBLead",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Compact_Kos_Details/WebcamUSBLead",
+            "position": {
+                "x": -0.3799999952316284,
+                "y": 0.6482500433921814,
+                "z": 1.4893569946289063
+            },
+            "size": {
+                "x": 0.1420000195503235,
+                "y": 1.1384999752044678,
+                "z": 0.323285847902298
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "LockShackle",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/Interactable_LaciMejaTerkunci/CombinationPadlock/FourWheelDrawerLock/LockShackle",
+            "position": {
+                "x": -0.09999996423721314,
+                "y": 0.6414999961853027,
+                "z": 0.9579998254776001
+            },
+            "size": {
+                "x": 1.057999849319458,
+                "y": 1.034999966621399,
+                "z": 1.0
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "CeilingFlex",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/CeilingFlex",
+            "position": {
+                "x": -0.15000000596046449,
+                "y": 2.6599998474121095,
+                "z": -0.05000000074505806
+            },
+            "size": {
+                "x": 0.007000000216066837,
+                "y": 0.28699997067451479,
+                "z": 0.007000000216066837
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "KeyRing",
+            "path": "GameSystems/MotorKeyOnDesk/KeyRing",
+            "position": {
+                "x": -0.9110000133514404,
+                "y": 0.7840002775192261,
+                "z": 1.1349999904632569
+            },
+            "size": {
+                "x": 1.0360000133514405,
+                "y": 1.0,
+                "z": 1.0360000133514405
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "ComputerPowerCable",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/ComputerPowerCable",
+            "position": {
+                "x": -0.934999942779541,
+                "y": 0.21899999678134919,
+                "z": 1.7450001239776612
+            },
+            "size": {
+                "x": 0.49699994921684267,
+                "y": 0.4089999794960022,
+                "z": 0.2569998800754547
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "plastic_thermos_1k",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Compact_Kos_Details/BedsidePlasticThermos/plastic_thermos_1k",
+            "position": {
+                "x": -1.5800000429153443,
+                "y": 0.5889993906021118,
+                "z": 0.5099999904632568
+            },
+            "size": {
+                "x": 0.14000000059604646,
+                "y": 0.3199999928474426,
+                "z": 0.10999999195337296
+            },
+            "materials": [
+                "Refined_plastic_thermos"
+            ]
+        },
+        {
+            "name": "geo_arm_1_b",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_arm_1_b",
+            "position": {
+                "x": -0.9977833032608032,
+                "y": 0.9035528898239136,
+                "z": 1.3945586681365967
+            },
+            "size": {
+                "x": 0.1331048309803009,
+                "y": 0.17316694557666779,
+                "z": 0.16692984104156495
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "PowerPlug",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/PowerPlug",
+            "position": {
+                "x": -1.149999976158142,
+                "y": 0.06400000303983689,
+                "z": 1.763000249862671
+            },
+            "size": {
+                "x": 0.03799999877810478,
+                "y": 0.03999999910593033,
+                "z": 0.04500000178813934
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "office_notepads_a4_stack",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Compact_Kos_Details/ReadingPadOnStool/office_notepads_a4_stack",
+            "position": {
+                "x": -1.600000023841858,
+                "y": 0.42299970984458926,
+                "z": 0.49000000953674319
+            },
+            "size": {
+                "x": 0.20999999344348908,
+                "y": 0.009999998845160008,
+                "z": 0.28999999165534975
+            },
+            "materials": [
+                "Refined_office_notepads"
+            ]
+        },
+        {
+            "name": "Floor_4x3m",
+            "path": "KamarKos_4x3m/Floor_4x3m",
+            "position": {
+                "x": 0.0,
+                "y": -0.05000000074505806,
+                "z": 0.0
+            },
+            "size": {
+                "x": 5.0,
+                "y": 0.10000000149011612,
+                "z": 3.799999952316284
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "PhoneCharger",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/PhoneCharger",
+            "position": {
+                "x": -2.440000057220459,
+                "y": 0.36000001430511477,
+                "z": -0.05000000074505806
+            },
+            "size": {
+                "x": 0.05000000074505806,
+                "y": 0.05000000074505806,
+                "z": 0.03999999910593033
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "Wall_North",
+            "path": "KamarKos_4x3m/Wall_North",
+            "position": {
+                "x": 0.0,
+                "y": 1.399999976158142,
+                "z": 1.9500000476837159
+            },
+            "size": {
+                "x": 5.0,
+                "y": 2.799999952316284,
+                "z": 0.10000000149011612
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "cur_middle_wire",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/cur_middle_wire",
+            "position": {
+                "x": -0.8737042546272278,
+                "y": 1.0183322429656983,
+                "z": 1.558519959449768
+            },
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "FanBlade",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/KosDeskFan/KosDeskFan/FanBlade",
+            "position": {
+                "x": 0.28451624512672427,
+                "y": 1.6201951503753663,
+                "z": 1.6642858982086182
+            },
+            "size": {
+                "x": 0.15973986685276032,
+                "y": 0.22100631892681123,
+                "z": 0.05716574564576149
+            },
+            "materials": [
+                "FanEnamelV2"
+            ]
+        },
+        {
+            "name": "SouthRightLimewash",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/SouthRightLimewash",
+            "position": {
+                "x": 2.119999885559082,
+                "y": 1.9199999570846558,
+                "z": -1.8980000019073487
+            },
+            "size": {
+                "x": 0.7599999904632568,
+                "y": 1.7599999904632569,
+                "z": 6.644130934319037e-8
+            },
+            "materials": [
+                "OldLimewash"
+            ]
+        },
+        {
+            "name": "CeilingCrossBeam_South",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/CeilingCrossBeam_South",
+            "position": {
+                "x": 0.0,
+                "y": 2.765000104904175,
+                "z": -0.949999988079071
+            },
+            "size": {
+                "x": 5.0,
+                "y": 0.05999999865889549,
+                "z": 0.05999999865889549
+            },
+            "materials": [
+                "WornSkirting"
+            ]
+        },
+        {
+            "name": "Air vent.005",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Air vent.005",
+            "position": {
+                "x": -0.6899999976158142,
+                "y": 0.18991978466510774,
+                "z": 1.247562289237976
+            },
+            "size": {
+                "x": 0.12999968230724336,
+                "y": 0.004087841138243675,
+                "z": 0.002836063504219055
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "DoorHinge",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/DoorHinge",
+            "position": {
+                "x": 0.7799999713897705,
+                "y": 1.809999942779541,
+                "z": -1.8100000619888306
+            },
+            "size": {
+                "x": 0.04500000178813934,
+                "y": 0.07500000298023224,
+                "z": 0.017999999225139619
+            },
+            "materials": [
+                "WornBrass"
+            ]
+        },
+        {
+            "name": "Brass padlock body",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/Interactable_LaciMejaTerkunci/CombinationPadlock/CombinationPadlock/Brass padlock body",
+            "position": {
+                "x": -0.09999996423721314,
+                "y": 0.5723780393600464,
+                "z": 0.9543708562850952
+            },
+            "size": {
+                "x": 0.05000000074505806,
+                "y": 0.04975610598921776,
+                "z": 0.017741980031132699
+            },
+            "materials": [
+                "WornBrass"
+            ]
+        },
+        {
+            "name": "BagCanvas",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/KosBackpack/KosBackpack/BagCanvas",
+            "position": {
+                "x": -2.191540479660034,
+                "y": 0.20704896748065949,
+                "z": 0.5289697051048279
+            },
+            "size": {
+                "x": 0.26931628584861758,
+                "y": 0.40009739995002749,
+                "z": 0.20107460021972657
+            },
+            "materials": [
+                "FadedGreenJacket"
+            ]
+        },
+        {
+            "name": "Interactable_SuratIbuKos",
+            "path": "KamarKos_4x3m/Interactable_SuratIbuKos",
+            "position": {
+                "x": 1.25,
+                "y": 0.019999999552965165,
+                "z": -1.7200000286102296
+            },
+            "size": {
+                "x": 0.2800000011920929,
+                "y": 0.019999999552965165,
+                "z": 0.2199999988079071
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "CeilingTimber_3",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/CeilingTimber_3",
+            "position": {
+                "x": 0.47000008821487429,
+                "y": 2.765000104904175,
+                "z": 0.0
+            },
+            "size": {
+                "x": 0.05999999865889549,
+                "y": 0.07000000029802323,
+                "z": 3.799999952316284
+            },
+            "materials": [
+                "WornSkirting"
+            ]
+        },
+        {
+            "name": "USB socket",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/USB socket",
+            "position": {
+                "x": -0.7159999012947083,
+                "y": 0.29926273226737978,
+                "z": 1.2418906688690186
+            },
+            "size": {
+                "x": 0.01199997216463089,
+                "y": 0.005109507590532303,
+                "z": 0.002835840918123722
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "WestDado",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/WestDado",
+            "position": {
+                "x": -2.497999906539917,
+                "y": 0.5199999809265137,
+                "z": 0.0
+            },
+            "size": {
+                "x": 4.5299529460862689e-7,
+                "y": 1.0399999618530274,
+                "z": 3.8000004291534426
+            },
+            "materials": [
+                "PeelingSeaGreenPaint"
+            ]
+        },
+        {
+            "name": "Zipper",
+            "path": "KamarKos_4x3m/Interactable_JaketDiBalikPintu/HangingJacket/HangingJacket/Zipper",
+            "position": {
+                "x": 1.399999976158142,
+                "y": 1.2903923988342286,
+                "z": -1.6359916925430298
+            },
+            "size": {
+                "x": 0.0018586487276479602,
+                "y": 0.507612407207489,
+                "z": 0.005710520315915346
+            },
+            "materials": [
+                "FadedGreenJacket"
+            ]
+        },
+        {
+            "name": "geo_top-spring_a_top-hook",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_top-spring_a_top-hook",
+            "position": {
+                "x": -0.9880826473236084,
+                "y": 1.0527069568634034,
+                "z": 1.3971940279006959
+            },
+            "size": {
+                "x": 0.005381093360483646,
+                "y": 0.00578582426533103,
+                "z": 0.007063379045575857
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "geo_lower-spring_b_top-hook",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_lower-spring_b_top-hook",
+            "position": {
+                "x": -0.9946735501289368,
+                "y": 0.900588870048523,
+                "z": 1.4129561185836793
+            },
+            "size": {
+                "x": 0.005081822630017996,
+                "y": 0.006962588056921959,
+                "z": 0.006630797870457172
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "WovenDoorMat",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/WovenDoorMat",
+            "position": {
+                "x": 1.25,
+                "y": 0.008999999612569809,
+                "z": -1.4199999570846558
+            },
+            "size": {
+                "x": 0.75,
+                "y": 5.0067900048134109e-8,
+                "z": 0.4200000464916229
+            },
+            "materials": [
+                "WovenMat"
+            ]
+        },
+        {
+            "name": "trashcan",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/trashcan/trashcan",
+            "position": {
+                "x": 0.49000000953674319,
+                "y": 0.15700027346611024,
+                "z": 1.6699999570846558
+            },
+            "size": {
+                "x": 0.2199999988079071,
+                "y": 0.30000001192092898,
+                "z": 0.2199999988079071
+            },
+            "materials": [
+                "DarkOxidisedMetal",
+                "DarkOxidisedMetal"
+            ]
+        },
+        {
+            "name": "PhysicalDigitWheel_3",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/Interactable_LaciMejaTerkunci/CombinationPadlock/FourWheelDrawerLock/PhysicalDigitWheel_3",
+            "position": {
+                "x": -0.06699997186660767,
+                "y": 0.5769999623298645,
+                "z": 0.9369997978210449
+            },
+            "size": {
+                "x": 0.01600000448524952,
+                "y": 0.027000010013580323,
+                "z": 0.027000006288290025
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "Ceiling_4x3m",
+            "path": "KamarKos_4x3m/Ceiling_4x3m",
+            "position": {
+                "x": 0.0,
+                "y": 2.8499999046325685,
+                "z": 0.0
+            },
+            "size": {
+                "x": 5.0,
+                "y": 0.10000000149011612,
+                "z": 3.799999952316284
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "NorthDado",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/NorthDado",
+            "position": {
+                "x": 0.0,
+                "y": 0.5199999809265137,
+                "z": 1.8980000019073487
+            },
+            "size": {
+                "x": 5.0,
+                "y": 1.0399999618530274,
+                "z": 0.0
+            },
+            "materials": [
+                "PeelingSeaGreenPaint"
+            ]
+        },
+        {
+            "name": "MejaKerjaPC",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/MejaKerjaPC",
+            "position": {
+                "x": -0.44999998807907107,
+                "y": 0.7200000286102295,
+                "z": 1.3299999237060547
+            },
+            "size": {
+                "x": 1.2999999523162842,
+                "y": 0.05999999865889549,
+                "z": 0.6499999761581421
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "SandalRubber",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/KosSandals/KosSandals/SandalRubber",
+            "position": {
+                "x": 0.6000000238418579,
+                "y": 0.018938632681965829,
+                "z": -1.5099999904632569
+            },
+            "size": {
+                "x": 0.2526003122329712,
+                "y": 0.0238767322152853,
+                "z": 0.26749011874198916
+            },
+            "materials": [
+                "SandalRubberV2"
+            ]
+        },
+        {
+            "name": "RouterPlastic",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/KosRouter/KosRouter/RouterPlastic",
+            "position": {
+                "x": 1.409999966621399,
+                "y": 1.2340266704559327,
+                "z": 1.6487791538238526
+            },
+            "size": {
+                "x": 0.17000000178813935,
+                "y": 0.15999998152256013,
+                "z": 0.10255831480026245
+            },
+            "materials": [
+                "RouterPlasticV2"
+            ]
+        },
+        {
+            "name": "RouterWallSocket",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/RouterWallSocket",
+            "position": {
+                "x": 1.4199999570846558,
+                "y": 0.3199999928474426,
+                "z": 1.875
+            },
+            "size": {
+                "x": 0.10000000149011612,
+                "y": 0.11999999731779099,
+                "z": 0.026000000536441804
+            },
+            "materials": [
+                "AgedSwitchPlastic"
+            ]
+        },
+        {
+            "name": "geo_top_wire",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_top_wire",
+            "position": {
+                "x": -0.9551526308059692,
+                "y": 1.2023124694824219,
+                "z": 1.3402557373046876
+            },
+            "size": {
+                "x": 0.023088259622454644,
+                "y": 0.018865585327148439,
+                "z": 0.05664127320051193
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "SockRib",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Compact_Kos_Details/DroppedSocksByBed/KosDroppedSocks/SockRib",
+            "position": {
+                "x": -1.1491961479187012,
+                "y": 0.054406069219112399,
+                "z": -1.2255903482437134
+            },
+            "size": {
+                "x": 0.20252130925655366,
+                "y": 0.016509735956788064,
+                "z": 0.12464562058448792
+            },
+            "materials": [
+                "CompactSockRib"
+            ]
+        },
+        {
+            "name": "SandalStrap",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/KosSandals/KosSandals/SandalStrap",
+            "position": {
+                "x": 0.612360954284668,
+                "y": 0.04673290625214577,
+                "z": -1.5298631191253663
+            },
+            "size": {
+                "x": 0.21007896959781648,
+                "y": 0.04453471302986145,
+                "z": 0.09724008291959763
+            },
+            "materials": [
+                "SandalStrapV2"
+            ]
+        },
+        {
+            "name": "Air vent.010",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Air vent.010",
+            "position": {
+                "x": -0.6899999976158142,
+                "y": 0.2512335777282715,
+                "z": 1.247562289237976
+            },
+            "size": {
+                "x": 0.12999968230724336,
+                "y": 0.004087841138243675,
+                "z": 0.002836063504219055
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "EastSkirting",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/EastSkirting",
+            "position": {
+                "x": 2.4700000286102297,
+                "y": 0.054999999701976779,
+                "z": 0.0
+            },
+            "size": {
+                "x": 0.03999999910593033,
+                "y": 0.10999999940395355,
+                "z": 3.799999952316284
+            },
+            "materials": [
+                "WornSkirting"
+            ]
+        },
+        {
+            "name": "Rubber foot",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Rubber foot",
+            "position": {
+                "x": -0.7549996972084045,
+                "y": 0.013131683692336083,
+                "z": 1.3175123929977418
+            },
+            "size": {
+                "x": 0.03199993446469307,
+                "y": 0.012262826785445214,
+                "z": 0.030248789116740228
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "geo_arm_2_b",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_arm_2_b",
+            "position": {
+                "x": -0.9822366833686829,
+                "y": 1.0569162368774415,
+                "z": 1.4038785696029664
+            },
+            "size": {
+                "x": 0.16276825964450837,
+                "y": 0.14331425726413728,
+                "z": 0.20681366324424745
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "KakiMejaKanan",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/KakiMejaKanan",
+            "position": {
+                "x": 0.15000003576278687,
+                "y": 0.3499999940395355,
+                "z": 1.3299999237060547
+            },
+            "size": {
+                "x": 0.07999999821186066,
+                "y": 0.699999988079071,
+                "z": 0.6000000238418579
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "RouterVent",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/KosRouter/KosRouter/RouterVent",
+            "position": {
+                "x": 1.409999966621399,
+                "y": 1.1922138929367066,
+                "z": 1.6487791538238526
+            },
+            "size": {
+                "x": 0.11299999058246613,
+                "y": 0.0010323614114895464,
+                "z": 0.05372106283903122
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "SouthSkirtingRight",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/SouthSkirtingRight",
+            "position": {
+                "x": 2.119999885559082,
+                "y": 0.054999999701976779,
+                "z": -1.8700000047683716
+            },
+            "size": {
+                "x": 0.7599999904632568,
+                "y": 0.10999999940395355,
+                "z": 0.03999999910593033
+            },
+            "materials": [
+                "WornSkirting"
+            ]
+        },
+        {
+            "name": "DarkNightBeyondWindow",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/DarkNightBeyondWindow",
+            "position": {
+                "x": 2.492000102996826,
+                "y": 1.649999976158142,
+                "z": -0.550000011920929
+            },
+            "size": {
+                "x": 1.3113022134803033e-7,
+                "y": 1.100000023841858,
+                "z": 1.1000001430511475
+            },
+            "materials": [
+                "NightWindowGlass"
+            ]
+        },
+        {
+            "name": "BagStrap",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/KosBackpack/KosBackpack/BagStrap",
+            "position": {
+                "x": -2.179715633392334,
+                "y": 0.23742985725402833,
+                "z": 0.499702513217926
+            },
+            "size": {
+                "x": 0.2918282151222229,
+                "y": 0.41914087533950808,
+                "z": 0.26692453026771548
+            },
+            "materials": [
+                "FadedGreenJacket"
+            ]
+        },
+        {
+            "name": "KasurKos",
+            "path": "KamarKos_4x3m/KasurKos",
+            "position": {
+                "x": -1.8899999856948853,
+                "y": 0.2199999988079071,
+                "z": -0.6499999761581421
+            },
+            "size": {
+                "x": 1.100000023841858,
+                "y": 0.4399999976158142,
+                "z": 1.7999999523162842
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "wicker_basket_02_lid",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/wicker_basket_02/wicker_basket_02/wicker_basket_02_lid",
+            "position": {
+                "x": 2.041318893432617,
+                "y": 0.23700028657913209,
+                "z": 0.10150394588708878
+            },
+            "size": {
+                "x": 0.25006312131881716,
+                "y": 0.46000003814697268,
+                "z": 0.3289285898208618
+            },
+            "materials": [
+                "wicker_basket_02"
+            ]
+        },
+        {
+            "name": "Air vent.008",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Air vent.008",
+            "position": {
+                "x": -0.6899999976158142,
+                "y": 0.2267080694437027,
+                "z": 1.247562289237976
+            },
+            "size": {
+                "x": 0.12999968230724336,
+                "y": 0.004087841138243675,
+                "z": 0.002836063504219055
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "ChannelPoster",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/ChannelPoster",
+            "position": {
+                "x": -2.484999895095825,
+                "y": 1.8600000143051148,
+                "z": -1.0499999523162842
+            },
+            "size": {
+                "x": 5.7220457705398078e-8,
+                "y": 0.6600000262260437,
+                "z": 0.4800000488758087
+            },
+            "materials": [
+                "ChannelPoster"
+            ]
+        },
+        {
+            "name": "RefillWaterLabel",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/RefillWaterLabel",
+            "position": {
+                "x": 2.0999999046325685,
+                "y": 0.23999999463558198,
+                "z": -1.284999966621399
+            },
+            "size": {
+                "x": 0.18000000715255738,
+                "y": 0.09000000357627869,
+                "z": 0.0
+            },
+            "materials": [
+                "WaterLabel"
+            ]
+        },
+        {
+            "name": "geo_pivot-holder",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_pivot-holder",
+            "position": {
+                "x": -0.9371961355209351,
+                "y": 0.7765190601348877,
+                "z": 1.3984086513519288
+            },
+            "size": {
+                "x": 0.018585560843348504,
+                "y": 0.037039801478385928,
+                "z": 0.024241408333182336
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "ShirtCotton",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Compact_Kos_Details/FoldedTshirtOnBed/KosFoldedTshirt/ShirtCotton",
+            "position": {
+                "x": -2.0999999046325685,
+                "y": 0.44515785574913027,
+                "z": -0.698161780834198
+            },
+            "size": {
+                "x": 0.33330586552619936,
+                "y": 0.0430000014603138,
+                "z": 0.2641044855117798
+            },
+            "materials": [
+                "CompactShirtCotton"
+            ]
+        },
+        {
+            "name": "MouseCable",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/MouseCable",
+            "position": {
+                "x": -0.1549999713897705,
+                "y": 0.7749999761581421,
+                "z": 1.399999976158142
+            },
+            "size": {
+                "x": 0.15484705567359925,
+                "y": 0.015187789686024189,
+                "z": 0.38185420632362368
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "plastic_bottle_gallon",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/plastic_bottle_gallon/plastic_bottle_gallon",
+            "position": {
+                "x": 2.190000057220459,
+                "y": 0.16200026869773866,
+                "z": -1.6200000047683716
+            },
+            "size": {
+                "x": 0.1599999964237213,
+                "y": 0.3100000023841858,
+                "z": 0.1300000101327896
+            },
+            "materials": [
+                "plastic_bottle_gallon"
+            ]
+        },
+        {
+            "name": "books",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/books/books",
+            "position": {
+                "x": 1.399999976158142,
+                "y": 0.7200852632522583,
+                "z": 1.7950000762939454
+            },
+            "size": {
+                "x": 0.25999999046325686,
+                "y": 0.07500000298023224,
+                "z": 0.10999999940395355
+            },
+            "materials": [
+                "FadedBookCovers",
+                "FadedBookCovers",
+                "FadedBookCovers",
+                "FadedBookCovers"
+            ]
+        },
+        {
+            "name": "SockCotton",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Compact_Kos_Details/DroppedSocksByBed/KosDroppedSocks/SockCotton",
+            "position": {
+                "x": -1.1762646436691285,
+                "y": 0.039500221610069278,
+                "z": -1.1370537281036378
+            },
+            "size": {
+                "x": 0.2315993458032608,
+                "y": 0.06499999016523361,
+                "z": 0.2499341070652008
+            },
+            "materials": [
+                "CompactSockCotton"
+            ]
+        },
+        {
+            "name": "Drive bay",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Drive bay",
+            "position": {
+                "x": -0.6899999976158142,
+                "y": 0.3248101770877838,
+                "z": 1.2456717491149903
+            },
+            "size": {
+                "x": 0.13499969244003297,
+                "y": 0.022481990978121759,
+                "z": 0.004726620391011238
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "Front camera",
+            "path": "Player_RakaWijaya/CameraPivot/MainCamera/HandSmartphoneRig/SmartphoneUpright/SmartphoneUpright/Front camera",
+            "position": {
+                "x": 0.8013042211532593,
+                "y": 1.5341378450393677,
+                "z": -0.37962910532951357
+            },
+            "size": {
+                "x": 0.0043034739792346958,
+                "y": 0.004137931391596794,
+                "z": 0.003785694483667612
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "geo_lower-spring_a_top-hook",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_lower-spring_a_top-hook",
+            "position": {
+                "x": -0.9955189228057861,
+                "y": 0.900588870048523,
+                "z": 1.3981519937515259
+            },
+            "size": {
+                "x": 0.005081786774098873,
+                "y": 0.006962565705180168,
+                "z": 0.006630634889006615
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "vintage_day_bed",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/vintage_day_bed/vintage_day_bed",
+            "position": {
+                "x": -1.8899999856948853,
+                "y": 0.4570002555847168,
+                "z": -0.6499999761581421
+            },
+            "size": {
+                "x": 1.0800000429153443,
+                "y": 0.8999999761581421,
+                "z": 1.7999999523162842
+            },
+            "materials": [
+                "vintage_day_bed"
+            ]
+        },
+        {
+            "name": "Phone case",
+            "path": "Player_RakaWijaya/CameraPivot/MainCamera/HandSmartphoneRig/SmartphoneUpright/SmartphoneUpright/Phone case",
+            "position": {
+                "x": 0.8262326121330261,
+                "y": 1.4700000286102296,
+                "z": -0.374155730009079
+            },
+            "size": {
+                "x": 0.07323125004768372,
+                "y": 0.15000000596046449,
+                "z": 0.06229604035615921
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "Sleeve",
+            "path": "KamarKos_4x3m/Interactable_JaketDiBalikPintu/HangingJacket/HangingJacket/Sleeve",
+            "position": {
+                "x": 1.2633769512176514,
+                "y": 1.3416236639022828,
+                "z": -1.6799999475479127
+            },
+            "size": {
+                "x": 0.14675390720367433,
+                "y": 0.4852735996246338,
+                "z": 0.10499994456768036
+            },
+            "materials": [
+                "FadedGreenJacket"
+            ]
+        },
+        {
+            "name": "DoorLintelPlaster",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/DoorLintelPlaster",
+            "position": {
+                "x": 1.25,
+                "y": 2.4600000381469728,
+                "z": -1.8980000019073487
+            },
+            "size": {
+                "x": 0.9800000190734863,
+                "y": 0.6800000071525574,
+                "z": 8.56743227473089e-8
+            },
+            "materials": [
+                "OldLimewash"
+            ]
+        },
+        {
+            "name": "FanShelfLeftBracket",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/FanShelfLeftBracket",
+            "position": {
+                "x": 0.14000001549720765,
+                "y": 1.2149999141693116,
+                "z": 1.7299998998641968
+            },
+            "size": {
+                "x": 0.024000003933906556,
+                "y": 0.1714661866426468,
+                "z": 0.31073322892189028
+            },
+            "materials": [
+                "DarkOxidisedMetal"
+            ]
+        },
+        {
+            "name": "geo_arm_1_c",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_arm_1_c",
+            "position": {
+                "x": -0.9964883327484131,
+                "y": 0.9035528302192688,
+                "z": 1.4171825647354127
+            },
+            "size": {
+                "x": 0.1336698681116104,
+                "y": 0.17316707968711854,
+                "z": 0.17267873883247376
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "WindowSecurityBar",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/WindowSecurityBar",
+            "position": {
+                "x": 2.4149999618530275,
+                "y": 1.649999976158142,
+                "z": -0.12000000476837158
+            },
+            "size": {
+                "x": 0.019999999552965165,
+                "y": 0.9599999785423279,
+                "z": 0.017999999225139619
+            },
+            "materials": [
+                "DarkOxidisedMetal"
+            ]
+        },
+        {
+            "name": "WindowSecurityBar",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/WindowSecurityBar",
+            "position": {
+                "x": 2.4149999618530275,
+                "y": 1.649999976158142,
+                "z": -0.7649999856948853
+            },
+            "size": {
+                "x": 0.019999999552965165,
+                "y": 0.9599999785423279,
+                "z": 0.017999999225139619
+            },
+            "materials": [
+                "DarkOxidisedMetal"
+            ]
+        },
+        {
+            "name": "wicker_basket_02_base",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/wicker_basket_02/wicker_basket_02/wicker_basket_02_base",
+            "position": {
+                "x": 2.1933984756469728,
+                "y": 0.2205425202846527,
+                "z": 0.1734267622232437
+            },
+            "size": {
+                "x": 0.2606281042098999,
+                "y": 0.42268943786621096,
+                "z": 0.2990671694278717
+            },
+            "materials": [
+                "wicker_basket_02"
+            ]
+        },
+        {
+            "name": "NorthEastDampPatch",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/NorthEastDampPatch",
+            "position": {
+                "x": 1.4500000476837159,
+                "y": 1.9500000476837159,
+                "z": 1.8860000371932984
+            },
+            "size": {
+                "x": 1.600000023841858,
+                "y": 1.5,
+                "z": 0.0
+            },
+            "materials": [
+                "DampStain"
+            ]
+        },
+        {
+            "name": "WindowSecurityBar",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/WindowSecurityBar",
+            "position": {
+                "x": 2.4149999618530275,
+                "y": 1.649999976158142,
+                "z": -0.33500000834465029
+            },
+            "size": {
+                "x": 0.019999999552965165,
+                "y": 0.9599999785423279,
+                "z": 0.017999999225139619
+            },
+            "materials": [
+                "DarkOxidisedMetal"
+            ]
+        },
+        {
+            "name": "NorthLimewash",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/NorthLimewash",
+            "position": {
+                "x": 0.0,
+                "y": 1.9199999570846558,
+                "z": 1.8980000019073487
+            },
+            "size": {
+                "x": 5.0,
+                "y": 1.7599999904632569,
+                "z": 0.0
+            },
+            "materials": [
+                "OldLimewash"
+            ]
+        },
+        {
+            "name": "geo_top-spring_b_bottom-hook",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_top-spring_b_bottom-hook",
+            "position": {
+                "x": -1.0615472793579102,
+                "y": 1.007526159286499,
+                "z": 1.4219776391983033
+            },
+            "size": {
+                "x": 0.005380910821259022,
+                "y": 0.005785679444670677,
+                "z": 0.007063116878271103
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "Loop handle",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/EnamelMug/EnamelMug/Loop handle",
+            "position": {
+                "x": 0.06031237542629242,
+                "y": 0.811190664768219,
+                "z": 1.4699417352676392
+            },
+            "size": {
+                "x": 0.030624764040112497,
+                "y": 0.08718473464250565,
+                "z": 0.011591187678277493
+            },
+            "materials": [
+                "StainedEnamel"
+            ]
+        },
+        {
+            "name": "Rubber foot.002",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Rubber foot.002",
+            "position": {
+                "x": -0.6250002980232239,
+                "y": 0.013131683692336083,
+                "z": 1.3175123929977418
+            },
+            "size": {
+                "x": 0.03199993446469307,
+                "y": 0.012262826785445214,
+                "z": 0.030248789116740228
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "KakiMejaKiri",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/KakiMejaKiri",
+            "position": {
+                "x": -1.0499999523162842,
+                "y": 0.3499999940395355,
+                "z": 1.3299999237060547
+            },
+            "size": {
+                "x": 0.07999999821186066,
+                "y": 0.699999988079071,
+                "z": 0.6000000238418579
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "Earpiece.003",
+            "path": "Player_RakaWijaya/CameraPivot/MainCamera/HandSmartphoneRig/SmartphoneUpright/SmartphoneUpright/Earpiece.003",
+            "position": {
+                "x": 0.8168484568595886,
+                "y": 1.5372412204742432,
+                "z": -0.36748459935188296
+            },
+            "size": {
+                "x": 0.0021445401944220068,
+                "y": 0.001034483895637095,
+                "z": 0.0020989482291042806
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "Wall_South",
+            "path": "KamarKos_4x3m/Wall_South",
+            "position": {
+                "x": 0.0,
+                "y": 1.399999976158142,
+                "z": -1.9500000476837159
+            },
+            "size": {
+                "x": 5.0,
+                "y": 2.799999952316284,
+                "z": 0.10000000149011612
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "painted_wooden_cabinet_02_drawer",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/painted_wooden_cabinet_02/painted_wooden_cabinet_02/painted_wooden_cabinet_02_drawer",
+            "position": {
+                "x": 1.4001199007034302,
+                "y": 0.4759504497051239,
+                "z": 1.7519919872283936
+            },
+            "size": {
+                "x": 0.41745394468307497,
+                "y": 0.10226680338382721,
+                "z": 0.21335653960704804
+            },
+            "materials": [
+                "painted_wooden_cabinet_02"
+            ]
+        },
+        {
+            "name": "Interactable_PintuKamarKos",
+            "path": "KamarKos_4x3m/Interactable_PintuKamarKos",
+            "position": {
+                "x": 1.25,
+                "y": 1.0499999523162842,
+                "z": -1.8799999952316285
+            },
+            "size": {
+                "x": 0.9200000166893005,
+                "y": 2.0999999046325685,
+                "z": 0.07999999821186066
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "Screw cap",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/RefillWaterGallon/RefillWaterGallon/Screw cap",
+            "position": {
+                "x": 2.100001573562622,
+                "y": 0.5283794403076172,
+                "z": -1.1300114393234254
+            },
+            "size": {
+                "x": 0.0982104018330574,
+                "y": 0.03724154457449913,
+                "z": 0.09821479022502899
+            },
+            "materials": [
+                "BlueRefillPlastic"
+            ]
+        },
+        {
+            "name": "cur_top_wire",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/cur_top_wire",
+            "position": {
+                "x": -0.946111261844635,
+                "y": 1.1938501596450806,
+                "z": 1.3662786483764649
+            },
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "BedContactShade",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/BedContactShade",
+            "position": {
+                "x": -1.8899999856948853,
+                "y": 0.00800000037997961,
+                "z": -0.6499999761581421
+            },
+            "size": {
+                "x": 1.25,
+                "y": 2.384185791015625e-7,
+                "z": 2.000000238418579
+            },
+            "materials": [
+                "ContactShade"
+            ]
+        },
+        {
+            "name": "PlugCable",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/PlugCable",
+            "position": {
+                "x": -1.0499999523162842,
+                "y": 0.04399999976158142,
+                "z": 1.702500343322754
+            },
+            "size": {
+                "x": 0.2073010951280594,
+                "y": 0.07497488707304001,
+                "z": 0.18361158668994904
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "geo_lower-spring_a",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_lower-spring_a",
+            "position": {
+                "x": -0.9641015529632568,
+                "y": 0.8785455226898193,
+                "z": 1.3939770460128785
+            },
+            "size": {
+                "x": 0.06087533384561539,
+                "y": 0.046963777393102649,
+                "z": 0.07844451814889908
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "SouthLeftLimewash",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/SouthLeftLimewash",
+            "position": {
+                "x": -0.8700000047683716,
+                "y": 1.9199999570846558,
+                "z": -1.8980000019073487
+            },
+            "size": {
+                "x": 3.259999990463257,
+                "y": 1.7599999904632569,
+                "z": 2.8499826498773475e-7
+            },
+            "materials": [
+                "OldLimewash"
+            ]
+        },
+        {
+            "name": "WebcamLens",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Compact_Kos_Details/BudgetStreamingWebcam/KosBudgetWebcam/WebcamLens",
+            "position": {
+                "x": -0.45000001788139346,
+                "y": 1.244499921798706,
+                "z": 1.3097729682922364
+            },
+            "size": {
+                "x": 0.01599999889731407,
+                "y": 0.01599997840821743,
+                "z": 0.0015462415758520365
+            },
+            "materials": [
+                "CompactWebcamLens"
+            ]
+        },
+        {
+            "name": "Air vent.002",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Air vent.002",
+            "position": {
+                "x": -0.6899999976158142,
+                "y": 0.15313151478767396,
+                "z": 1.247562289237976
+            },
+            "size": {
+                "x": 0.12999968230724336,
+                "y": 0.004087841138243675,
+                "z": 0.002836063504219055
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "NewsprintInk",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Compact_Kos_Details/OldNewspaperByDesk/KosOldNewspaper/NewsprintInk",
+            "position": {
+                "x": -0.8981810808181763,
+                "y": 0.011848258785903454,
+                "z": -0.2878786027431488
+            },
+            "size": {
+                "x": 0.3585614562034607,
+                "y": 0.0015715239569544793,
+                "z": 0.2512231767177582
+            },
+            "materials": [
+                "CompactNewsprintInk"
+            ]
+        },
+        {
+            "name": "Combination wheel",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/Interactable_LaciMejaTerkunci/CombinationPadlock/CombinationPadlock/Combination wheel",
+            "position": {
+                "x": -0.11333328485488892,
+                "y": 0.5703048706054688,
+                "z": 0.9648547172546387
+            },
+            "size": {
+                "x": 0.010000010952353478,
+                "y": 0.014512196183204651,
+                "z": 0.011290322057902813
+            },
+            "materials": [
+                "WornBrass"
+            ]
+        },
+        {
+            "name": "MicGrille",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/BudgetStreamingMicrophone/KosBudgetMicrophone/MicGrille",
+            "position": {
+                "x": -0.9399999976158142,
+                "y": 0.947456419467926,
+                "z": 1.059999942779541
+            },
+            "size": {
+                "x": 0.05130763724446297,
+                "y": 0.09108532965183258,
+                "z": 0.051307640969753268
+            },
+            "materials": [
+                "GoldenMicGrille"
+            ]
+        },
+        {
+            "name": "geo_arm_1_a",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_arm_1_a",
+            "position": {
+                "x": -1.0104236602783204,
+                "y": 0.913313627243042,
+                "z": 1.4076566696166993
+            },
+            "size": {
+                "x": 0.13471980392932893,
+                "y": 0.1753978580236435,
+                "z": 0.17147785425186158
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "painted_wooden_stool",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Dressing/BedsideWornStool/painted_wooden_stool",
+            "position": {
+                "x": -1.600000023841858,
+                "y": 0.21200025081634522,
+                "z": 0.49000000953674319
+            },
+            "size": {
+                "x": 0.3183608055114746,
+                "y": 0.4099999666213989,
+                "z": 0.3215535283088684
+            },
+            "materials": [
+                "GoldenStool"
+            ]
+        },
+        {
+            "name": "Window_wood",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/wallWindow/wallWindow/Window_wood",
+            "position": {
+                "x": 2.4649999141693117,
+                "y": 1.6500000953674317,
+                "z": -0.550000011920929
+            },
+            "size": {
+                "x": 0.11999964714050293,
+                "y": 1.119999885559082,
+                "z": 1.100000023841858
+            },
+            "materials": [
+                "DoorAndWardrobeWood"
+            ]
+        },
+        {
+            "name": "PhysicalDigitWheel_0",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/Interactable_LaciMejaTerkunci/CombinationPadlock/FourWheelDrawerLock/PhysicalDigitWheel_0",
+            "position": {
+                "x": -0.1329999566078186,
+                "y": 0.5769999623298645,
+                "z": 0.9369997978210449
+            },
+            "size": {
+                "x": 0.01600000448524952,
+                "y": 0.027000010013580323,
+                "z": 0.027000006288290025
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "painted_wooden_cabinet_02_door",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/painted_wooden_cabinet_02/painted_wooden_cabinet_02/painted_wooden_cabinet_02_door",
+            "position": {
+                "x": 1.3998479843139649,
+                "y": 0.20942158997058869,
+                "z": 1.8456392288208008
+            },
+            "size": {
+                "x": 0.25855666399002077,
+                "y": 0.38567057251930239,
+                "z": 0.04872177168726921
+            },
+            "materials": [
+                "painted_wooden_cabinet_02"
+            ]
+        },
+        {
+            "name": "KeyTooth",
+            "path": "GameSystems/MotorKeyOnDesk/KeyTooth",
+            "position": {
+                "x": -0.8040000200271606,
+                "y": 0.7840002775192261,
+                "z": 1.1260000467300416
+            },
+            "size": {
+                "x": 0.006000000052154064,
+                "y": 0.00800000037997961,
+                "z": 0.009999999776482582
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "EastAboveWindow",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/EastAboveWindow",
+            "position": {
+                "x": 2.497999906539917,
+                "y": 2.5,
+                "z": 0.0
+            },
+            "size": {
+                "x": 4.5299529460862689e-7,
+                "y": 0.6000000238418579,
+                "z": 3.8000004291534426
+            },
+            "materials": [
+                "OldLimewash"
+            ]
+        },
+        {
+            "name": "Earpiece.001",
+            "path": "Player_RakaWijaya/CameraPivot/MainCamera/HandSmartphoneRig/SmartphoneUpright/SmartphoneUpright/Earpiece.001",
+            "position": {
+                "x": 0.8220298886299133,
+                "y": 1.5372412204742432,
+                "z": -0.36343643069267275
+            },
+            "size": {
+                "x": 0.0021445401944220068,
+                "y": 0.001034483895637095,
+                "z": 0.0020989482291042806
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "KeyboardCable",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/KeyboardCable",
+            "position": {
+                "x": -0.5300000309944153,
+                "y": 0.7699999809265137,
+                "z": 1.4049999713897706
+            },
+            "size": {
+                "x": 0.024194080382585527,
+                "y": 0.004199610557407141,
+                "z": 0.3902152180671692
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "SocketPinHole",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/SocketPinHole",
+            "position": {
+                "x": -1.1629999876022339,
+                "y": 0.41999998688697817,
+                "z": 1.8519998788833619
+            },
+            "size": {
+                "x": 0.008999999612569809,
+                "y": 0.012000000104308129,
+                "z": 0.004999999888241291
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "wooden_bookshelf_worn",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/wooden_bookshelf_worn/wooden_bookshelf_worn",
+            "position": {
+                "x": -2.3399999141693117,
+                "y": 1.940000057220459,
+                "z": 0.550000011920929
+            },
+            "size": {
+                "x": 0.20999999344348908,
+                "y": 0.6399999856948853,
+                "z": 0.6800000071525574
+            },
+            "materials": [
+                "wooden_bookshelf_worn"
+            ]
+        },
+        {
+            "name": "geo_lamp-head-button",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_lamp-head-button",
+            "position": {
+                "x": -0.9026752710342407,
+                "y": 1.1841005086898804,
+                "z": 1.3656103610992432
+            },
+            "size": {
+                "x": 0.006230616010725498,
+                "y": 0.009075582027435303,
+                "z": 0.010887883603572846
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "CalendarAugust",
+            "path": "KamarKos_4x3m/Interactable_KalenderDinding/CalendarAugust",
+            "position": {
+                "x": 0.7699999809265137,
+                "y": 1.7899999618530274,
+                "z": 1.8799999952316285
+            },
+            "size": {
+                "x": 0.3800000548362732,
+                "y": 0.5199999213218689,
+                "z": 0.0
+            },
+            "materials": [
+                "CalendarAugust"
+            ]
+        },
+        {
+            "name": "bookcaseClosedDoors",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/bookcaseClosedDoors/bookcaseClosedDoors",
+            "position": {
+                "x": 2.119999885559082,
+                "y": 0.9820002317428589,
+                "z": 1.25
+            },
+            "size": {
+                "x": 0.5600000023841858,
+                "y": 1.9499999284744263,
+                "z": 0.9600000381469727
+            },
+            "materials": [
+                "DoorAndWardrobeWood",
+                "DoorAndWardrobeWood"
+            ]
+        },
+        {
+            "name": "Window_metalDark",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/wallWindow/wallWindow/Window_metalDark",
+            "position": {
+                "x": 2.498668670654297,
+                "y": 1.6500000953674317,
+                "z": -0.550000011920929
+            },
+            "size": {
+                "x": 0.000003735239261004608,
+                "y": 1.119999885559082,
+                "z": 1.100000023841858
+            },
+            "materials": [
+                "DarkOxidisedMetal"
+            ]
+        },
+        {
+            "name": "Front cloth",
+            "path": "KamarKos_4x3m/Interactable_JaketDiBalikPintu/HangingJacket/HangingJacket/Front cloth",
+            "position": {
+                "x": 1.399999976158142,
+                "y": 1.311930775642395,
+                "z": -1.6524622440338135
+            },
+            "size": {
+                "x": 0.22406260669231416,
+                "y": 0.5938614010810852,
+                "z": 0.041591495275497439
+            },
+            "materials": [
+                "FadedGreenJacket"
+            ]
+        },
+        {
+            "name": "DoorHinge",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/DoorHinge",
+            "position": {
+                "x": 0.7799999713897705,
+                "y": 1.0499999523162842,
+                "z": -1.8100000619888306
+            },
+            "size": {
+                "x": 0.04500000178813934,
+                "y": 0.07500000298023224,
+                "z": 0.017999999225139619
+            },
+            "materials": [
+                "WornBrass"
+            ]
+        },
+        {
+            "name": "geo_middle-pivot",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_middle-pivot",
+            "position": {
+                "x": -1.0653760433197022,
+                "y": 0.9967296719551086,
+                "z": 1.4197940826416016
+            },
+            "size": {
+                "x": 0.02924804389476776,
+                "y": 0.026725824922323228,
+                "z": 0.0445733517408371
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "books",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/books/books",
+            "position": {
+                "x": 1.399999976158142,
+                "y": 0.6554197072982788,
+                "z": 1.7950000762939454
+            },
+            "size": {
+                "x": 0.25999996066093447,
+                "y": 0.07500000298023224,
+                "z": 0.10999999940395355
+            },
+            "materials": [
+                "PaperEdges",
+                "PaperEdges",
+                "PaperEdges",
+                "PaperEdges"
+            ]
+        },
+        {
+            "name": "LemariPakaian",
+            "path": "KamarKos_4x3m/LemariPakaian",
+            "position": {
+                "x": 2.049999952316284,
+                "y": 1.0,
+                "z": 1.3199999332427979
+            },
+            "size": {
+                "x": 0.75,
+                "y": 2.0,
+                "z": 0.8999999761581421
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "Hanger hook",
+            "path": "KamarKos_4x3m/Interactable_JaketDiBalikPintu/HangingJacket/HangingJacket/Hanger hook",
+            "position": {
+                "x": 1.4068280458450318,
+                "y": 1.634230613708496,
+                "z": -1.6799999475479127
+            },
+            "size": {
+                "x": 0.01584290899336338,
+                "y": 0.061538808047771457,
+                "z": 0.003089237492531538
+            },
+            "materials": [
+                "FadedGreenJacket"
+            ]
+        },
+        {
+            "name": "KeyBlade",
+            "path": "GameSystems/MotorKeyOnDesk/KeyBlade",
+            "position": {
+                "x": -0.8250000476837158,
+                "y": 0.7840002775192261,
+                "z": 1.1349999904632569
+            },
+            "size": {
+                "x": 0.06499999761581421,
+                "y": 0.00800000037997961,
+                "z": 0.012000000104308129
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "FanMetal",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/KosDeskFan/KosDeskFan/FanMetal",
+            "position": {
+                "x": 0.3000001013278961,
+                "y": 1.5535876750946046,
+                "z": 1.6764737367630005
+            },
+            "size": {
+                "x": 0.2367972731590271,
+                "y": 0.38982465863227847,
+                "z": 0.14956510066986085
+            },
+            "materials": [
+                "DarkOxidisedMetal"
+            ]
+        },
+        {
+            "name": "Air vent.006",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Air vent.006",
+            "position": {
+                "x": -0.6899999976158142,
+                "y": 0.20218254625797273,
+                "z": 1.247562289237976
+            },
+            "size": {
+                "x": 0.12999968230724336,
+                "y": 0.004087841138243675,
+                "z": 0.002836063504219055
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "RentWarning",
+            "path": "KamarKos_4x3m/Interactable_SuratIbuKos/RentWarning",
+            "position": {
+                "x": 1.25,
+                "y": 0.032999999821186069,
+                "z": -1.7200000286102296
+            },
+            "size": {
+                "x": 0.3037424087524414,
+                "y": 0.0,
+                "z": 0.2379152625799179
+            },
+            "materials": [
+                "RentWarning"
+            ]
+        },
+        {
+            "name": "Earpiece",
+            "path": "KamarKos_4x3m/Interactable_SmartphoneDiKasur/Smartphone/Smartphone/Earpiece",
+            "position": {
+                "x": -1.6817810535430909,
+                "y": 0.4422362446784973,
+                "z": -0.6306895017623901
+            },
+            "size": {
+                "x": 0.002054790733382106,
+                "y": 0.001241370220668614,
+                "z": 0.0012413806980475784
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "PhoneHand_VisibleSkin",
+            "path": "Player_RakaWijaya/CameraPivot/MainCamera/ExistingHandsetDepthMask/PhoneHand_VisibleSkin",
+            "position": {
+                "x": 0.8493472337722778,
+                "y": 1.6059879064559937,
+                "z": -0.9041464924812317
+            },
+            "size": {
+                "x": 0.3536374270915985,
+                "y": 0.20466622710227967,
+                "z": 0.3535655438899994
+            },
+            "materials": [
+                "RakaDesignerSurface"
+            ]
+        },
+        {
+            "name": "DiscardedPaper2",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/DiscardedPaper2",
+            "position": {
+                "x": -0.8799999952316284,
+                "y": 0.009999999776482582,
+                "z": 1.7300000190734864
+            },
+            "size": {
+                "x": 0.3079890310764313,
+                "y": 0.0,
+                "z": 0.28036367893218996
+            },
+            "materials": [
+                "KosRules"
+            ]
+        },
+        {
+            "name": "Earpiece.004",
+            "path": "Player_RakaWijaya/CameraPivot/MainCamera/HandSmartphoneRig/SmartphoneUpright/SmartphoneUpright/Earpiece.004",
+            "position": {
+                "x": 0.8142577409744263,
+                "y": 1.5372412204742432,
+                "z": -0.36950868368148806
+            },
+            "size": {
+                "x": 0.0021445401944220068,
+                "y": 0.001034483895637095,
+                "z": 0.0020989482291042806
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "geo_lower-spring_top-bar",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_lower-spring_top-bar",
+            "position": {
+                "x": -0.9956129789352417,
+                "y": 0.9015973210334778,
+                "z": 1.4056715965270997
+            },
+            "size": {
+                "x": 0.015321744605898857,
+                "y": 0.004023207817226648,
+                "z": 0.026762735098600389
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "Earpiece.003",
+            "path": "KamarKos_4x3m/Interactable_SmartphoneDiKasur/Smartphone/Smartphone/Earpiece.003",
+            "position": {
+                "x": -1.6941097974777222,
+                "y": 0.4422362446784973,
+                "z": -0.6306895017623901
+            },
+            "size": {
+                "x": 0.002054790733382106,
+                "y": 0.001241370220668614,
+                "z": 0.0012413806980475784
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "DoorHandleLever",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/DoorHandleLever",
+            "position": {
+                "x": 1.5850000381469727,
+                "y": 0.9900000095367432,
+                "z": -1.7699998617172242
+            },
+            "size": {
+                "x": 0.09000004082918167,
+                "y": 0.022000014781951906,
+                "z": 0.022000005468726159
+            },
+            "materials": [
+                "WornBrass"
+            ]
+        },
+        {
+            "name": "CurtainRod",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/CurtainRod",
+            "position": {
+                "x": 2.299999952316284,
+                "y": 2.2899999618530275,
+                "z": -0.550000011920929
+            },
+            "size": {
+                "x": 0.028000004589557649,
+                "y": 0.028000175952911378,
+                "z": 1.380000114440918
+            },
+            "materials": [
+                "DarkOxidisedMetal"
+            ]
+        },
+        {
+            "name": "CurtainRodBracket",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/CurtainRodBracket",
+            "position": {
+                "x": 2.3899998664855959,
+                "y": 2.2899999618530275,
+                "z": -1.2400000095367432
+            },
+            "size": {
+                "x": 0.18000008165836335,
+                "y": 0.01600002683699131,
+                "z": 0.01600000448524952
+            },
+            "materials": [
+                "DoorAndWardrobeWood"
+            ]
+        },
+        {
+            "name": "PhoneHand_VisibleSkin",
+            "path": "Player_RakaWijaya/CameraPivot/MainCamera/RakaPhoneRightGrip/SourceUnits/SourceBasis/PhoneCameraGrip/PhoneHand_VisibleSkin",
+            "position": {
+                "x": 0.8738138675689697,
+                "y": 1.5699539184570313,
+                "z": -0.8717038035392761
+            },
+            "size": {
+                "x": 0.3518105447292328,
+                "y": 0.2564651072025299,
+                "z": 0.34832242131233218
+            },
+            "materials": [
+                "PhoneGripSurface_Runtime"
+            ]
+        },
+        {
+            "name": "USB socket.001",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/USB socket.001",
+            "position": {
+                "x": -0.6949999928474426,
+                "y": 0.29926273226737978,
+                "z": 1.2418906688690186
+            },
+            "size": {
+                "x": 0.01199997216463089,
+                "y": 0.005109507590532303,
+                "z": 0.002835840918123722
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "Wall_West",
+            "path": "KamarKos_4x3m/Wall_West",
+            "position": {
+                "x": -2.549999952316284,
+                "y": 1.399999976158142,
+                "z": 0.0
+            },
+            "size": {
+                "x": 0.10000000149011612,
+                "y": 2.799999952316284,
+                "z": 3.799999952316284
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "Rubber foot.001",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Rubber foot.001",
+            "position": {
+                "x": -0.7549996972084045,
+                "y": 0.013131683692336083,
+                "z": 1.5632833242416382
+            },
+            "size": {
+                "x": 0.03199993446469307,
+                "y": 0.012262826785445214,
+                "z": 0.030248789116740228
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "Power switch",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Power switch",
+            "position": {
+                "x": -0.6350002884864807,
+                "y": 0.29926273226737978,
+                "z": 1.2418906688690186
+            },
+            "size": {
+                "x": 0.015999965369701387,
+                "y": 0.01635037735104561,
+                "z": 0.00378112168982625
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "BagMetal",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/KosBackpack/KosBackpack/BagMetal",
+            "position": {
+                "x": -2.2014591693878176,
+                "y": 0.31744739413261416,
+                "z": 0.553519606590271
+            },
+            "size": {
+                "x": 0.24230626225471497,
+                "y": 0.19355739653110505,
+                "z": 0.16048039495944978
+            },
+            "materials": [
+                "DarkOxidisedMetal"
+            ]
+        },
+        {
+            "name": "books",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/books/books",
+            "position": {
+                "x": -2.3399999141693117,
+                "y": 2.305910587310791,
+                "z": 0.5500000715255737
+            },
+            "size": {
+                "x": 0.15000000596046449,
+                "y": 0.09000000357627869,
+                "z": 0.41999995708465578
+            },
+            "materials": [
+                "FadedBookCovers",
+                "FadedBookCovers",
+                "FadedBookCovers",
+                "FadedBookCovers"
+            ]
+        },
+        {
+            "name": "Rubber foot.003",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Rubber foot.003",
+            "position": {
+                "x": -0.6250002980232239,
+                "y": 0.013131683692336083,
+                "z": 1.5632833242416382
+            },
+            "size": {
+                "x": 0.03199993446469307,
+                "y": 0.012262826785445214,
+                "z": 0.030248789116740228
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "Steel shackle",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/Interactable_LaciMejaTerkunci/CombinationPadlock/CombinationPadlock/Steel shackle",
+            "position": {
+                "x": -0.09999996423721314,
+                "y": 0.6128047704696655,
+                "z": 0.9543708562850952
+            },
+            "size": {
+                "x": 0.040000129491090778,
+                "y": 0.03939037024974823,
+                "z": 0.004838861059397459
+            },
+            "materials": [
+                "WornBrass"
+            ]
+        },
+        {
+            "name": "Air vent.003",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Air vent.003",
+            "position": {
+                "x": -0.6899999976158142,
+                "y": 0.16539427638053895,
+                "z": 1.247562289237976
+            },
+            "size": {
+                "x": 0.12999968230724336,
+                "y": 0.004087841138243675,
+                "z": 0.002836063504219055
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "computerMouse",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/computerMouse/computerMouse",
+            "position": {
+                "x": -0.07999998331069946,
+                "y": 0.7754990458488464,
+                "z": 1.159999966621399
+            },
+            "size": {
+                "x": 0.054999999701976779,
+                "y": 0.03500000014901161,
+                "z": 0.0949999988079071
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "Glass display",
+            "path": "Player_RakaWijaya/CameraPivot/MainCamera/HandSmartphoneRig/SmartphoneUpright/SmartphoneUpright/Glass display",
+            "position": {
+                "x": 0.8207129240036011,
+                "y": 1.4700000286102296,
+                "z": -0.3670908808708191
+            },
+            "size": {
+                "x": 0.05610369145870209,
+                "y": 0.12931033968925477,
+                "z": 0.04468001797795296
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "PowerPlug",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/PowerPlug",
+            "position": {
+                "x": -1.149999976158142,
+                "y": 0.06400000303983689,
+                "z": 1.6150002479553223
+            },
+            "size": {
+                "x": 0.03799999877810478,
+                "y": 0.03999999910593033,
+                "z": 0.04500000178813934
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "books",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/books/books",
+            "position": {
+                "x": 1.399999976158142,
+                "y": 0.7847506999969482,
+                "z": 1.7950000762939454
+            },
+            "size": {
+                "x": 0.25999999046325686,
+                "y": 0.07500000298023224,
+                "z": 0.10999999940395355
+            },
+            "materials": [
+                "PaperEdges",
+                "PaperEdges",
+                "PaperEdges",
+                "PaperEdges"
+            ]
+        },
+        {
+            "name": "FanShelfRightBracket",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/FanShelfRightBracket",
+            "position": {
+                "x": 0.46000000834465029,
+                "y": 1.2149999141693116,
+                "z": 1.7299998998641968
+            },
+            "size": {
+                "x": 0.024000003933906556,
+                "y": 0.1714661866426468,
+                "z": 0.31073322892189028
+            },
+            "materials": [
+                "DarkOxidisedMetal"
+            ]
+        },
+        {
+            "name": "PhoneHand_HandsetScreen",
+            "path": "Player_RakaWijaya/CameraPivot/MainCamera/ExistingHandsetDepthMask/PhoneHand_HandsetScreen",
+            "position": {
+                "x": 0.8749254941940308,
+                "y": 1.649999976158142,
+                "z": -0.8263043165206909
+            },
+            "size": {
+                "x": 0.05358484387397766,
+                "y": 0.15000005066394807,
+                "z": 0.041865117847919467
+            },
+            "materials": [
+                "DesignerPhoneScreen"
+            ]
+        },
+        {
+            "name": "DiscardedPaper0",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/DiscardedPaper0",
+            "position": {
+                "x": 0.1899999976158142,
+                "y": 0.008999999612569809,
+                "z": 1.2400000095367432
+            },
+            "size": {
+                "x": 0.1899999976158142,
+                "y": 2.9802322387695315e-8,
+                "z": 0.2500000298023224
+            },
+            "materials": [
+                "KosRules"
+            ]
+        },
+        {
+            "name": "MicBody",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/BudgetStreamingMicrophone/KosBudgetMicrophone/MicBody",
+            "position": {
+                "x": -0.9399999976158142,
+                "y": 0.8728577494621277,
+                "z": 1.059999942779541
+            },
+            "size": {
+                "x": 0.11500000208616257,
+                "y": 0.22971729934215547,
+                "z": 0.11500000953674317
+            },
+            "materials": [
+                "GoldenMicBody"
+            ]
+        },
+        {
+            "name": "CeilingTimber_2",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/CeilingTimber_2",
+            "position": {
+                "x": -0.46999990940093996,
+                "y": 2.765000104904175,
+                "z": 0.0
+            },
+            "size": {
+                "x": 0.05999999865889549,
+                "y": 0.07000000029802323,
+                "z": 3.799999952316284
+            },
+            "materials": [
+                "WornSkirting"
+            ]
+        },
+        {
+            "name": "ShirtRib",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Compact_Kos_Details/FoldedTshirtOnBed/KosFoldedTshirt/ShirtRib",
+            "position": {
+                "x": -2.1021957397460939,
+                "y": 0.4617432951927185,
+                "z": -0.7084927558898926
+            },
+            "size": {
+                "x": 0.29531675577163699,
+                "y": 0.008512294851243496,
+                "z": 0.25079554319381716
+            },
+            "materials": [
+                "CompactShirtRib"
+            ]
+        },
+        {
+            "name": "computerScreen",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/Interactable_PCMonitor/computerScreen/computerScreen",
+            "position": {
+                "x": -0.45000001788139346,
+                "y": 0.9900000095367432,
+                "z": 1.399999976158142
+            },
+            "size": {
+                "x": 0.5699999928474426,
+                "y": 0.44999998807907107,
+                "z": 0.15000002086162568
+            },
+            "materials": [
+                "OldComputerPlastic",
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "cardboardBoxOpen",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/cardboardBoxOpen/cardboardBoxOpen",
+            "position": {
+                "x": 2.119999885559082,
+                "y": 0.13700026273727418,
+                "z": -0.48000001907348635
+            },
+            "size": {
+                "x": 0.44999998807907107,
+                "y": 0.25999999046325686,
+                "z": 0.30000001192092898
+            },
+            "materials": [
+                "Cardboard",
+                "Cardboard"
+            ]
+        },
+        {
+            "name": "CurtainRodBracket",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/CurtainRodBracket",
+            "position": {
+                "x": 2.3899998664855959,
+                "y": 2.2899999618530275,
+                "z": 0.14000000059604646
+            },
+            "size": {
+                "x": 0.18000008165836335,
+                "y": 0.01600002683699131,
+                "z": 0.01600000448524952
+            },
+            "materials": [
+                "DoorAndWardrobeWood"
+            ]
+        },
+        {
+            "name": "BackdropStand",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Compact_Kos_Details/StreamerGreenScreen/KosStoredGreenScreen/BackdropStand",
+            "position": {
+                "x": -1.6200001239776612,
+                "y": 0.8170002102851868,
+                "z": 1.6799999475479127
+            },
+            "size": {
+                "x": 0.5400000810623169,
+                "y": 1.6200000047683716,
+                "z": 0.23999999463558198
+            },
+            "materials": [
+                "DarkOxidisedMetal"
+            ]
+        },
+        {
+            "name": "TrackedFloorWear",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Compact_Kos_Details/TrackedFloorWear",
+            "position": {
+                "x": 0.3327609896659851,
+                "y": 0.0075002266094088558,
+                "z": -0.2813997268676758
+            },
+            "size": {
+                "x": 3.753584384918213,
+                "y": 8.568167686462403e-8,
+                "z": 2.6072003841400148
+            },
+            "materials": [
+                "CompactFloorTrackedDust"
+            ]
+        },
+        {
+            "name": "BareWarmBulb",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/BareWarmBulb",
+            "position": {
+                "x": -0.15000000596046449,
+                "y": 2.490000009536743,
+                "z": -0.05000000074505806
+            },
+            "size": {
+                "x": 0.07000000029802323,
+                "y": 0.10000000149011612,
+                "z": 0.07000000029802323
+            },
+            "materials": [
+                "WarmBulbGlass"
+            ]
+        },
+        {
+            "name": "DoorHandleStem",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/DoorHandleStem",
+            "position": {
+                "x": 1.6299999952316285,
+                "y": 0.9900000095367432,
+                "z": -1.7949999570846558
+            },
+            "size": {
+                "x": 0.024000003933906556,
+                "y": 0.02400001510977745,
+                "z": 0.05000020191073418
+            },
+            "materials": [
+                "WornBrass"
+            ]
+        },
+        {
+            "name": "Combination wheel.002",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/Interactable_LaciMejaTerkunci/CombinationPadlock/CombinationPadlock/Combination wheel.002",
+            "position": {
+                "x": -0.09999996423721314,
+                "y": 0.5703048706054688,
+                "z": 0.9648547172546387
+            },
+            "size": {
+                "x": 0.010000010952353478,
+                "y": 0.014512196183204651,
+                "z": 0.011290322057902813
+            },
+            "materials": [
+                "WornBrass"
+            ]
+        },
+        {
+            "name": "EastDado",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/EastDado",
+            "position": {
+                "x": 2.497999906539917,
+                "y": 0.550000011920929,
+                "z": 0.0
+            },
+            "size": {
+                "x": 4.5299529460862689e-7,
+                "y": 1.100000023841858,
+                "z": 3.8000004291534426
+            },
+            "materials": [
+                "PeelingSeaGreenPaint"
+            ]
+        },
+        {
+            "name": "WebcamShell",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Compact_Kos_Details/BudgetStreamingWebcam/KosBudgetWebcam/WebcamShell",
+            "position": {
+                "x": -0.45000001788139346,
+                "y": 1.2349998950958253,
+                "z": 1.3325796127319337
+            },
+            "size": {
+                "x": 0.08499999344348908,
+                "y": 0.054999999701976779,
+                "z": 0.04484039917588234
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "FanEnamel",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/KosDeskFan/KosDeskFan/FanEnamel",
+            "position": {
+                "x": 0.30210208892822268,
+                "y": 1.5004998445510865,
+                "z": 1.6699998378753663
+            },
+            "size": {
+                "x": 0.23032718896865846,
+                "y": 0.34399959444999697,
+                "z": 0.18667259812355042
+            },
+            "materials": [
+                "FanEnamelV2"
+            ]
+        },
+        {
+            "name": "BedsideSocket",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/BedsideSocket",
+            "position": {
+                "x": -2.4749999046325685,
+                "y": 0.36000001430511477,
+                "z": -0.05000000074505806
+            },
+            "size": {
+                "x": 0.026000000536441804,
+                "y": 0.11999999731779099,
+                "z": 0.10000000149011612
+            },
+            "materials": [
+                "AgedSwitchPlastic"
+            ]
+        },
+        {
+            "name": "RouterPowerCable",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/RouterPowerCable",
+            "position": {
+                "x": 1.4199999570846558,
+                "y": 0.7800000309944153,
+                "z": 1.7674999237060547
+            },
+            "size": {
+                "x": 0.006000000983476639,
+                "y": 0.9012706279754639,
+                "z": 0.20086389780044557
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "PhoneHand_RakaJacketOutfit",
+            "path": "Player_RakaWijaya/CameraPivot/MainCamera/RakaPhoneRightGrip/SourceUnits/SourceBasis/PhoneCameraGrip/PhoneHand_RakaJacketOutfit",
+            "position": {
+                "x": 0.9364217519760132,
+                "y": 1.5592211484909058,
+                "z": -0.826246976852417
+            },
+            "size": {
+                "x": 0.28790923953056338,
+                "y": 0.27235856652259829,
+                "z": 0.3071988523006439
+            },
+            "materials": [
+                "Raka_Clothes"
+            ]
+        },
+        {
+            "name": "gamepad_1k",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Compact_Kos_Details/WiredGamepadOnBed/gamepad_1k",
+            "position": {
+                "x": -1.840000033378601,
+                "y": 0.43435734510421755,
+                "z": -1.159999966621399
+            },
+            "size": {
+                "x": 0.4000000059604645,
+                "y": 0.01900000125169754,
+                "z": 0.4300000071525574
+            },
+            "materials": [
+                "Refined_gamepad"
+            ]
+        },
+        {
+            "name": "speakerSmall",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/speakerSmall/speakerSmall",
+            "position": {
+                "x": 0.04499976709485054,
+                "y": 0.8279991149902344,
+                "z": 1.5324996709823609
+            },
+            "size": {
+                "x": 0.09000000357627869,
+                "y": 0.14000000059604646,
+                "z": 0.08500000089406967
+            },
+            "materials": [
+                "OldComputerPlastic",
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "Air vent.001",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Air vent.001",
+            "position": {
+                "x": -0.6899999976158142,
+                "y": 0.14086875319480897,
+                "z": 1.247562289237976
+            },
+            "size": {
+                "x": 0.12999968230724336,
+                "y": 0.004087841138243675,
+                "z": 0.002836063504219055
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "geo_base_pivot",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_base_pivot",
+            "position": {
+                "x": -0.9376876950263977,
+                "y": 0.7923107743263245,
+                "z": 1.3982187509536744
+            },
+            "size": {
+                "x": 0.031161338090896608,
+                "y": 0.04141031205654144,
+                "z": 0.04332039877772331
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "binder_notebook",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/binder_notebook/binder_notebook/binder_notebook",
+            "position": {
+                "x": -0.8799999952316284,
+                "y": 0.767857015132904,
+                "z": 1.0909569263458253
+            },
+            "size": {
+                "x": 0.17575764656066895,
+                "y": 0.01971590518951416,
+                "z": 0.13705214858055116
+            },
+            "materials": [
+                "binder_notebook"
+            ]
+        },
+        {
+            "name": "Interactable_StickyNote",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/Interactable_StickyNote",
+            "position": {
+                "x": -0.06999999284744263,
+                "y": 0.757999062538147,
+                "z": 1.25
+            },
+            "size": {
+                "x": 0.14000000059604646,
+                "y": 0.019999999552965165,
+                "z": 0.14000000059604646
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "CupboardContactShade",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/CupboardContactShade",
+            "position": {
+                "x": 2.049999952316284,
+                "y": 0.00800000037997961,
+                "z": 1.3199999332427979
+            },
+            "size": {
+                "x": 0.949999988079071,
+                "y": 1.2516974834397843e-7,
+                "z": 1.0500000715255738
+            },
+            "materials": [
+                "ContactShade"
+            ]
+        },
+        {
+            "name": "PhoneHand_VisibleSkin",
+            "path": "Player_RakaWijaya/CameraPivot/MainCamera/RakaPhoneLeftGrip/SourceUnits/SourceBasis/PhoneCameraGrip/PhoneHand_VisibleSkin",
+            "position": {
+                "x": 0.9192453026771545,
+                "y": 1.5699539184570313,
+                "z": -0.8362088799476624
+            },
+            "size": {
+                "x": 0.3518105447292328,
+                "y": 0.2564651072025299,
+                "z": 0.34832242131233218
+            },
+            "materials": [
+                "PhoneGripSurface_Runtime"
+            ]
+        },
+        {
+            "name": "plastic_container",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/plastic_container/plastic_container",
+            "position": {
+                "x": -1.940000057220459,
+                "y": 0.15200026333332063,
+                "z": -1.690000057220459
+            },
+            "size": {
+                "x": 0.48000001907348635,
+                "y": 0.28999999165534975,
+                "z": 0.30000004172325137
+            },
+            "materials": [
+                "plastic_container"
+            ]
+        },
+        {
+            "name": "DoorHinge",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/DoorHinge",
+            "position": {
+                "x": 0.7799999713897705,
+                "y": 0.3199999928474426,
+                "z": -1.8100000619888306
+            },
+            "size": {
+                "x": 0.04500000178813934,
+                "y": 0.07500000298023224,
+                "z": 0.017999999225139619
+            },
+            "materials": [
+                "WornBrass"
+            ]
+        },
+        {
+            "name": "geo_arm_2_a",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_arm_2_a",
+            "position": {
+                "x": -0.9841594099998474,
+                "y": 1.0767323970794678,
+                "z": 1.404136300086975
+            },
+            "size": {
+                "x": 0.16326500475406648,
+                "y": 0.14420408010482789,
+                "z": 0.20743948221206666
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "SouthDampPatch",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/SouthDampPatch",
+            "position": {
+                "x": -1.149999976158142,
+                "y": 1.2999999523162842,
+                "z": -1.8869999647140504
+            },
+            "size": {
+                "x": 2.0999999046325685,
+                "y": 2.0999999046325685,
+                "z": 1.8358782938321384e-7
+            },
+            "materials": [
+                "DampStain"
+            ]
+        },
+        {
+            "name": "NorthDampPatch",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/NorthDampPatch",
+            "position": {
+                "x": -1.0,
+                "y": 1.5,
+                "z": 1.8869999647140504
+            },
+            "size": {
+                "x": 2.700000047683716,
+                "y": 2.450000047683716,
+                "z": 0.0
+            },
+            "materials": [
+                "DampStain"
+            ]
+        },
+        {
+            "name": "KeyboardKeycaps",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/KeyboardKeycaps",
+            "position": {
+                "x": -0.520000159740448,
+                "y": 0.7854990363121033,
+                "z": 1.1299999952316285
+            },
+            "size": {
+                "x": 0.3779999017715454,
+                "y": 0.004999995231628418,
+                "z": 0.1280001401901245
+            },
+            "materials": [
+                "GoldenKeycaps"
+            ]
+        },
+        {
+            "name": "Earpiece.004",
+            "path": "KamarKos_4x3m/Interactable_SmartphoneDiKasur/Smartphone/Smartphone/Earpiece.004",
+            "position": {
+                "x": -1.6982192993164063,
+                "y": 0.4422362446784973,
+                "z": -0.6306895017623901
+            },
+            "size": {
+                "x": 0.002054790733382106,
+                "y": 0.001241370220668614,
+                "z": 0.0012413806980475784
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "WestSkirting",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/WestSkirting",
+            "position": {
+                "x": -2.4700000286102297,
+                "y": 0.054999999701976779,
+                "z": 0.0
+            },
+            "size": {
+                "x": 0.03999999910593033,
+                "y": 0.10999999940395355,
+                "z": 3.799999952316284
+            },
+            "materials": [
+                "WornSkirting"
+            ]
+        },
+        {
+            "name": "SouthLeftDado",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/SouthLeftDado",
+            "position": {
+                "x": -0.8700000047683716,
+                "y": 0.5199999809265137,
+                "z": -1.8980000019073487
+            },
+            "size": {
+                "x": 3.259999990463257,
+                "y": 1.0399999618530274,
+                "z": 2.8499826498773475e-7
+            },
+            "materials": [
+                "PeelingSeaGreenPaint"
+            ]
+        },
+        {
+            "name": "PlugCable",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/PlugCable",
+            "position": {
+                "x": -1.1399999856948853,
+                "y": 0.04399999976158142,
+                "z": 1.7765002250671387
+            },
+            "size": {
+                "x": 0.029870348051190378,
+                "y": 0.06920168548822403,
+                "z": 0.035953469574451449
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "Air vent",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Air vent",
+            "position": {
+                "x": -0.6899999976158142,
+                "y": 0.2634963393211365,
+                "z": 1.247562289237976
+            },
+            "size": {
+                "x": 0.12999968230724336,
+                "y": 0.004087841138243675,
+                "z": 0.002836063504219055
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "Interactable_SmartphoneDiKasur",
+            "path": "KamarKos_4x3m/Interactable_SmartphoneDiKasur",
+            "position": {
+                "x": -1.6900001764297486,
+                "y": 0.43385693430900576,
+                "z": -0.550000011920929
+            },
+            "size": {
+                "x": 0.11999999731779099,
+                "y": 0.029999999329447748,
+                "z": 0.2199999988079071
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "SouthSkirtingLeft",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/SouthSkirtingLeft",
+            "position": {
+                "x": -0.8700000047683716,
+                "y": 0.054999999701976779,
+                "z": -1.8700000047683716
+            },
+            "size": {
+                "x": 3.259999990463257,
+                "y": 0.10999999940395355,
+                "z": 0.03999999910593033
+            },
+            "materials": [
+                "WornSkirting"
+            ]
+        },
+        {
+            "name": "CeilingCrossBeam_North",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/CeilingCrossBeam_North",
+            "position": {
+                "x": 0.0,
+                "y": 2.765000104904175,
+                "z": 0.949999988079071
+            },
+            "size": {
+                "x": 5.0,
+                "y": 0.05999999865889549,
+                "z": 0.05999999865889549
+            },
+            "materials": [
+                "WornSkirting"
+            ]
+        },
+        {
+            "name": "PhoneHand_RakaJacketOutfit",
+            "path": "Player_RakaWijaya/CameraPivot/MainCamera/RakaPhoneLeftGrip/SourceUnits/SourceBasis/PhoneCameraGrip/PhoneHand_RakaJacketOutfit",
+            "position": {
+                "x": 0.8599925637245178,
+                "y": 1.5592211484909058,
+                "z": -0.885960042476654
+            },
+            "size": {
+                "x": 0.28790923953056338,
+                "y": 0.27235856652259829,
+                "z": 0.3071988523006439
+            },
+            "materials": [
+                "Raka_Clothes"
+            ]
+        },
+        {
+            "name": "StickyNote",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/Interactable_StickyNote/StickyNote",
+            "position": {
+                "x": -0.06999999284744263,
+                "y": 0.757999062538147,
+                "z": 1.25
+            },
+            "size": {
+                "x": 0.15812177956104279,
+                "y": 0.0,
+                "z": 0.15812177956104279
+            },
+            "materials": [
+                "StickyNote"
+            ]
+        },
+        {
+            "name": "computerKeyboard",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/computerKeyboard/computerKeyboard",
+            "position": {
+                "x": -0.5199999809265137,
+                "y": 0.770499050617218,
+                "z": 1.1299999952316285
+            },
+            "size": {
+                "x": 0.4000000059604645,
+                "y": 0.02500000037252903,
+                "z": 0.14000000059604646
+            },
+            "materials": [
+                "OldComputerPlastic",
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "LimewashedCeiling",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/LimewashedCeiling",
+            "position": {
+                "x": 0.0,
+                "y": 2.7980000972747804,
+                "z": 0.0
+            },
+            "size": {
+                "x": 5.0,
+                "y": 4.5299529460862689e-7,
+                "z": 3.8000004291534426
+            },
+            "materials": [
+                "OldLimewash"
+            ]
+        },
+        {
+            "name": "CeilingTimber_1",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/CeilingTimber_1",
+            "position": {
+                "x": -1.4099998474121094,
+                "y": 2.765000104904175,
+                "z": 0.0
+            },
+            "size": {
+                "x": 0.05999999865889549,
+                "y": 0.07000000029802323,
+                "z": 3.799999952316284
+            },
+            "materials": [
+                "WornSkirting"
+            ]
+        },
+        {
+            "name": "WindowSecurityBar",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/WindowSecurityBar",
+            "position": {
+                "x": 2.4149999618530275,
+                "y": 1.649999976158142,
+                "z": -0.9800000190734863
+            },
+            "size": {
+                "x": 0.019999999552965165,
+                "y": 0.9599999785423279,
+                "z": 0.017999999225139619
+            },
+            "materials": [
+                "DarkOxidisedMetal"
+            ]
+        },
+        {
+            "name": "Phone case",
+            "path": "KamarKos_4x3m/Interactable_SmartphoneDiKasur/Smartphone/Smartphone/Phone case",
+            "position": {
+                "x": -1.6900001764297486,
+                "y": 0.43230530619621279,
+                "z": -0.550000011920929
+            },
+            "size": {
+                "x": 0.10000000894069672,
+                "y": 0.014896763488650322,
+                "z": 0.18000000715255738
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "JacketHook",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/JacketHook",
+            "position": {
+                "x": 2.1399998664855959,
+                "y": 1.7200000286102296,
+                "z": -1.8199999332427979
+            },
+            "size": {
+                "x": 0.014000002294778824,
+                "y": 0.014000019989907742,
+                "z": 0.12000013887882233
+            },
+            "materials": [
+                "DarkOxidisedMetal"
+            ]
+        },
+        {
+            "name": "CeramicTileFloor",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/CeramicTileFloor",
+            "position": {
+                "x": 0.0,
+                "y": 0.006000000052154064,
+                "z": 0.0
+            },
+            "size": {
+                "x": 5.0,
+                "y": 4.5299529460862689e-7,
+                "z": 3.8000004291534426
+            },
+            "materials": [
+                "CeramicTiles"
+            ]
+        },
+        {
+            "name": "geo_top-spring_b_top-hook",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_top-spring_b_top-hook",
+            "position": {
+                "x": -0.9872380495071411,
+                "y": 1.0527069568634034,
+                "z": 1.412000060081482
+            },
+            "size": {
+                "x": 0.005379600450396538,
+                "y": 0.00578587269410491,
+                "z": 0.007063330616801977
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "DiscardedPaper1",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/DiscardedPaper1",
+            "position": {
+                "x": 0.36000001430511477,
+                "y": 0.009999999776482582,
+                "z": 1.4800000190734864
+            },
+            "size": {
+                "x": 0.29360896348953249,
+                "y": 2.9802322387695315e-8,
+                "z": 0.3126966953277588
+            },
+            "materials": [
+                "NoodlePacket"
+            ]
+        },
+        {
+            "name": "books",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/books/books",
+            "position": {
+                "x": 1.399999976158142,
+                "y": 0.5907542705535889,
+                "z": 1.7949999570846558
+            },
+            "size": {
+                "x": 0.25999999046325686,
+                "y": 0.07500000298023224,
+                "z": 0.10999999940395355
+            },
+            "materials": [
+                "FadedBookCovers",
+                "FadedBookCovers",
+                "FadedBookCovers",
+                "FadedBookCovers"
+            ]
+        },
+        {
+            "name": "GreenFabric",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Compact_Kos_Details/StreamerGreenScreen/KosStoredGreenScreen/GreenFabric",
+            "position": {
+                "x": -1.6200000047683716,
+                "y": 0.9508920907974243,
+                "z": 1.6789562702178956
+            },
+            "size": {
+                "x": 0.43615487217903139,
+                "y": 1.280539870262146,
+                "z": 0.08556747436523438
+            },
+            "materials": [
+                "CompactGreenCloth"
+            ]
+        },
+        {
+            "name": "geo_top-spring_a",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_top-spring_a",
+            "position": {
+                "x": -1.0252844095230103,
+                "y": 1.0302042961120606,
+                "z": 1.4021105766296387
+            },
+            "size": {
+                "x": 0.07468272745609284,
+                "y": 0.0476779080927372,
+                "z": 0.0958961546421051
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "doorwayFront",
+            "path": "KamarKos_4x3m/Interactable_PintuKamarKos/doorwayFront/doorwayFront",
+            "position": {
+                "x": 1.25,
+                "y": 1.059999942779541,
+                "z": -1.8799999952316285
+            },
+            "size": {
+                "x": 0.9800000190734863,
+                "y": 2.119999885559082,
+                "z": 0.09999999403953552
+            },
+            "materials": [
+                "DoorAndWardrobeWood",
+                "DoorAndWardrobeWood",
+                "DoorAndWardrobeWood",
+                "DoorAndWardrobeWood"
+            ]
+        },
+        {
+            "name": "Combination wheel.001",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/Interactable_LaciMejaTerkunci/CombinationPadlock/CombinationPadlock/Combination wheel.001",
+            "position": {
+                "x": -0.08666664361953736,
+                "y": 0.5703048706054688,
+                "z": 0.9648547172546387
+            },
+            "size": {
+                "x": 0.010000010952353478,
+                "y": 0.014512196183204651,
+                "z": 0.011290322057902813
+            },
+            "materials": [
+                "WornBrass"
+            ]
+        },
+        {
+            "name": "PowerStrip",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/PowerStrip",
+            "position": {
+                "x": -1.149999976158142,
+                "y": 0.02800000086426735,
+                "z": 1.690000057220459
+            },
+            "size": {
+                "x": 0.10000000149011612,
+                "y": 0.041999999433755878,
+                "z": 0.25
+            },
+            "materials": [
+                "AgedSwitchPlastic"
+            ]
+        },
+        {
+            "name": "geo_lamp-head",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_lamp-head",
+            "position": {
+                "x": -0.8592500686645508,
+                "y": 1.1503492593765259,
+                "z": 1.4053856134414673
+            },
+            "size": {
+                "x": 0.11849991232156754,
+                "y": 0.17529979348182679,
+                "z": 0.21077100932598115
+            },
+            "materials": [
+                "desk_lamp_arm_01",
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "Pocket seam.001",
+            "path": "KamarKos_4x3m/Interactable_JaketDiBalikPintu/HangingJacket/HangingJacket/Pocket seam.001",
+            "position": {
+                "x": 1.4519166946411133,
+                "y": 1.1985574960708619,
+                "z": -1.637923002243042
+            },
+            "size": {
+                "x": 0.03924669325351715,
+                "y": 0.06708342581987381,
+                "z": 0.006017111707478762
+            },
+            "materials": [
+                "FadedGreenJacket"
+            ]
+        },
+        {
+            "name": "NorthSkirting",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/NorthSkirting",
+            "position": {
+                "x": 0.0,
+                "y": 0.054999999701976779,
+                "z": 1.8700000047683716
+            },
+            "size": {
+                "x": 5.0,
+                "y": 0.10999999940395355,
+                "z": 0.03999999910593033
+            },
+            "materials": [
+                "WornSkirting"
+            ]
+        },
+        {
+            "name": "Chipped enamel mug",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/EnamelMug/EnamelMug/Chipped enamel mug",
+            "position": {
+                "x": 0.11357389390468598,
+                "y": 0.8079991340637207,
+                "z": 1.46999990940094
+            },
+            "size": {
+                "x": 0.08285219222307205,
+                "y": 0.10000000149011612,
+                "z": 0.08499999344348908
+            },
+            "materials": [
+                "StainedEnamel"
+            ]
+        },
+        {
+            "name": "PowerPlug",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/PowerPlug",
+            "position": {
+                "x": -1.149999976158142,
+                "y": 0.06400000303983689,
+                "z": 1.689000129699707
+            },
+            "size": {
+                "x": 0.03799999877810478,
+                "y": 0.03999999910593033,
+                "z": 0.04500000178813934
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "Air vent.004",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Air vent.004",
+            "position": {
+                "x": -0.6899999976158142,
+                "y": 0.17765703797340394,
+                "z": 1.247562289237976
+            },
+            "size": {
+                "x": 0.12999968230724336,
+                "y": 0.004087841138243675,
+                "z": 0.002836063504219055
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "PhysicalDigitWheel_1",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/Interactable_LaciMejaTerkunci/CombinationPadlock/FourWheelDrawerLock/PhysicalDigitWheel_1",
+            "position": {
+                "x": -0.1109999418258667,
+                "y": 0.5769999623298645,
+                "z": 0.9369997978210449
+            },
+            "size": {
+                "x": 0.01600000448524952,
+                "y": 0.027000010013580323,
+                "z": 0.027000006288290025
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "KosBedMat",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Dressing/BedsideMat/KosBedMat",
+            "position": {
+                "x": -0.7200000286102295,
+                "y": 0.011000269092619419,
+                "z": -0.7799999713897705
+            },
+            "size": {
+                "x": 1.0499999523162842,
+                "y": 0.006000000052154064,
+                "z": 0.699999988079071
+            },
+            "materials": [
+                "GoldenBedMat"
+            ]
+        },
+        {
+            "name": "HandSmartphoneRig",
+            "path": "Player_RakaWijaya/CameraPivot/MainCamera/HandSmartphoneRig",
+            "position": {
+                "x": 0.8251712322235107,
+                "y": 1.4700000286102296,
+                "z": -0.3727971613407135
+            },
+            "size": {
+                "x": 0.07535408437252045,
+                "y": 0.15000000596046449,
+                "z": 0.06501313298940659
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "MonitorSignalCable",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/MonitorSignalCable",
+            "position": {
+                "x": -0.47999995946884158,
+                "y": 0.4749999940395355,
+                "z": 1.524999976158142
+            },
+            "size": {
+                "x": 0.06841263175010681,
+                "y": 0.8915198445320129,
+                "z": 0.1782933473587036
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "painted_wooden_chair_01",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/painted_wooden_chair_01/painted_wooden_chair_01",
+            "position": {
+                "x": -0.4999999403953552,
+                "y": 0.4370002746582031,
+                "z": 0.559999942779541
+            },
+            "size": {
+                "x": 0.4530782997608185,
+                "y": 0.8600000143051148,
+                "z": 0.5053188800811768
+            },
+            "materials": [
+                "painted_wooden_chair_01"
+            ]
+        },
+        {
+            "name": "Drive bay.001",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Drive bay.001",
+            "position": {
+                "x": -0.6899999976158142,
+                "y": 0.3605765104293823,
+                "z": 1.2456717491149903
+            },
+            "size": {
+                "x": 0.13499969244003297,
+                "y": 0.022481990978121759,
+                "z": 0.004726620391011238
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "MonitorDashboard",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/Interactable_PCMonitor/MonitorDashboard",
+            "position": {
+                "x": -0.44999998807907107,
+                "y": 1.0270313024520875,
+                "z": 1.3990086317062379
+            },
+            "size": {
+                "x": 0.4930499792098999,
+                "y": 0.2806183099746704,
+                "z": 0.00619887700304389
+            },
+            "materials": [
+                "MonitorDashboard"
+            ]
+        },
+        {
+            "name": "WindowSecurityBar",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/WindowSecurityBar",
+            "position": {
+                "x": 2.4149999618530275,
+                "y": 1.649999976158142,
+                "z": -0.550000011920929
+            },
+            "size": {
+                "x": 0.019999999552965165,
+                "y": 0.9599999785423279,
+                "z": 0.017999999225139619
+            },
+            "materials": [
+                "DarkOxidisedMetal"
+            ]
+        },
+        {
+            "name": "EastSouthOfWindow",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/EastSouthOfWindow",
+            "position": {
+                "x": 2.497999906539917,
+                "y": 1.649999976158142,
+                "z": -1.5
+            },
+            "size": {
+                "x": 9.536743306171047e-8,
+                "y": 1.100000023841858,
+                "z": 0.8000001311302185
+            },
+            "materials": [
+                "OldLimewash"
+            ]
+        },
+        {
+            "name": "Interactable_KalenderDinding",
+            "path": "KamarKos_4x3m/Interactable_KalenderDinding",
+            "position": {
+                "x": 0.7699999809265137,
+                "y": 1.7899999618530274,
+                "z": 1.902000069618225
+            },
+            "size": {
+                "x": 0.3799999952316284,
+                "y": 0.5199999809265137,
+                "z": 0.029999999329447748
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "KeyTooth",
+            "path": "GameSystems/MotorKeyOnDesk/KeyTooth",
+            "position": {
+                "x": -0.8160000443458557,
+                "y": 0.7840002775192261,
+                "z": 1.1260000467300416
+            },
+            "size": {
+                "x": 0.006000000052154064,
+                "y": 0.00800000037997961,
+                "z": 0.009999999776482582
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "Refillable water gallon",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/RefillWaterGallon/RefillWaterGallon/Refillable water gallon",
+            "position": {
+                "x": 2.0999999046325685,
+                "y": 0.2676902413368225,
+                "z": -1.1299999952316285
+            },
+            "size": {
+                "x": 0.28999999165534975,
+                "y": 0.5213799476623535,
+                "z": 0.28999999165534975
+            },
+            "materials": [
+                "BlueRefillPlastic"
+            ]
+        },
+        {
+            "name": "geo_lower-spring_b",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_lower-spring_b",
+            "position": {
+                "x": -0.9632549285888672,
+                "y": 0.8785455226898193,
+                "z": 1.4088047742843629
+            },
+            "size": {
+                "x": 0.06087534874677658,
+                "y": 0.04696378856897354,
+                "z": 0.07844454050064087
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "FanWallShelf",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/FanWallShelf",
+            "position": {
+                "x": 0.30000001192092898,
+                "y": 1.309999942779541,
+                "z": 1.6699999570846558
+            },
+            "size": {
+                "x": 0.5,
+                "y": 0.03500000014901161,
+                "z": 0.3400000035762787
+            },
+            "materials": [
+                "DoorAndWardrobeWood"
+            ]
+        },
+        {
+            "name": "RouterAdapter",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/RouterAdapter",
+            "position": {
+                "x": 1.4199999570846558,
+                "y": 0.3199999928474426,
+                "z": 1.8400001525878907
+            },
+            "size": {
+                "x": 0.04699999839067459,
+                "y": 0.05999999865889549,
+                "z": 0.05000000074505806
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "SocketPinHole",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/SocketPinHole",
+            "position": {
+                "x": -1.1959999799728394,
+                "y": 0.41999998688697817,
+                "z": 1.8519998788833619
+            },
+            "size": {
+                "x": 0.008999999612569809,
+                "y": 0.012000000104308129,
+                "z": 0.004999999888241291
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "KeyTooth",
+            "path": "GameSystems/MotorKeyOnDesk/KeyTooth",
+            "position": {
+                "x": -0.828000009059906,
+                "y": 0.7840002775192261,
+                "z": 1.1260000467300416
+            },
+            "size": {
+                "x": 0.006000000052154064,
+                "y": 0.00800000037997961,
+                "z": 0.009999999776482582
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "geo_top-pivot",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_top-pivot",
+            "position": {
+                "x": -0.8994706869125366,
+                "y": 1.1357206106185914,
+                "z": 1.3925849199295045
+            },
+            "size": {
+                "x": 0.02291492000222206,
+                "y": 0.02604471519589424,
+                "z": 0.03202313557267189
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "BoardingHouseRules",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/BoardingHouseRules",
+            "position": {
+                "x": 0.3799999952316284,
+                "y": 1.600000023841858,
+                "z": -1.8869999647140504
+            },
+            "size": {
+                "x": 0.30000001192092898,
+                "y": 0.3799999952316284,
+                "z": 2.622683403785686e-8
+            },
+            "materials": [
+                "KosRules"
+            ]
+        },
+        {
+            "name": "Earpiece",
+            "path": "Player_RakaWijaya/CameraPivot/MainCamera/HandSmartphoneRig/SmartphoneUpright/SmartphoneUpright/Earpiece",
+            "position": {
+                "x": 0.8246206045150757,
+                "y": 1.5372412204742432,
+                "z": -0.3614123463630676
+            },
+            "size": {
+                "x": 0.0021445401944220068,
+                "y": 0.001034483895637095,
+                "z": 0.0020989482291042806
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "Front panel",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Front panel",
+            "position": {
+                "x": -0.6899999976158142,
+                "y": 0.22262047231197358,
+                "z": 1.2560697793960572
+            },
+            "size": {
+                "x": 0.17399995028972627,
+                "y": 0.3760586977005005,
+                "z": 0.01134399138391018
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "Back cloth",
+            "path": "KamarKos_4x3m/Interactable_JaketDiBalikPintu/HangingJacket/HangingJacket/Back cloth",
+            "position": {
+                "x": 1.399999976158142,
+                "y": 1.311930775642395,
+                "z": -1.7074040174484254
+            },
+            "size": {
+                "x": 0.22406260669231416,
+                "y": 0.5938614010810852,
+                "z": 0.04098869115114212
+            },
+            "materials": [
+                "FadedGreenJacket"
+            ]
+        },
+        {
+            "name": "geo_lamp-base-pivot",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_lamp-base-pivot",
+            "position": {
+                "x": -0.9383451342582703,
+                "y": 0.8330463767051697,
+                "z": 1.401564121246338
+            },
+            "size": {
+                "x": 0.02962332032620907,
+                "y": 0.05004071444272995,
+                "z": 0.04479997232556343
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "PhysicalDigitWheel_2",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/Interactable_LaciMejaTerkunci/CombinationPadlock/FourWheelDrawerLock/PhysicalDigitWheel_2",
+            "position": {
+                "x": -0.08899998664855957,
+                "y": 0.5769999623298645,
+                "z": 0.9369997978210449
+            },
+            "size": {
+                "x": 0.01600000448524952,
+                "y": 0.027000010013580323,
+                "z": 0.027000006288290025
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "binder_notebook_closed",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/binder_notebook/binder_notebook/binder_notebook_closed",
+            "position": {
+                "x": -0.8890882730484009,
+                "y": 0.7820385098457336,
+                "z": 1.1792629957199097
+            },
+            "size": {
+                "x": 0.09182330220937729,
+                "y": 0.027922941371798517,
+                "z": 0.11661221086978913
+            },
+            "materials": [
+                "binder_notebook"
+            ]
+        },
+        {
+            "name": "CeilingTimber_5",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/CeilingTimber_5",
+            "position": {
+                "x": 2.3500001430511476,
+                "y": 2.765000104904175,
+                "z": 0.0
+            },
+            "size": {
+                "x": 0.05999999865889549,
+                "y": 0.07000000029802323,
+                "z": 3.799999952316284
+            },
+            "materials": [
+                "WornSkirting"
+            ]
+        },
+        {
+            "name": "Earpiece.002",
+            "path": "Player_RakaWijaya/CameraPivot/MainCamera/HandSmartphoneRig/SmartphoneUpright/SmartphoneUpright/Earpiece.002",
+            "position": {
+                "x": 0.819439172744751,
+                "y": 1.5372412204742432,
+                "z": -0.36546051502227785
+            },
+            "size": {
+                "x": 0.0021445401944220068,
+                "y": 0.001034483895637095,
+                "z": 0.0020989482291042806
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "PlugCable",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/PlugCable",
+            "position": {
+                "x": -1.09499990940094,
+                "y": 0.04399999976158142,
+                "z": 1.7395000457763672
+            },
+            "size": {
+                "x": 0.11750498414039612,
+                "y": 0.07438953965902329,
+                "z": 0.10945461690425873
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "wooden_table_02",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/wooden_table_02/wooden_table_02",
+            "position": {
+                "x": -0.44999998807907107,
+                "y": 0.38200026750564577,
+                "z": 1.2999999523162842
+            },
+            "size": {
+                "x": 1.3000000715255738,
+                "y": 0.75,
+                "z": 0.6499999761581421
+            },
+            "materials": [
+                "wooden_table_02"
+            ]
+        },
+        {
+            "name": "geo_lower-spring_b_bottom-hook",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_lower-spring_b_bottom-hook",
+            "position": {
+                "x": -0.9329633116722107,
+                "y": 0.8562608957290649,
+                "z": 1.405676245689392
+            },
+            "size": {
+                "x": 0.0038370885886251928,
+                "y": 0.007318069227039814,
+                "z": 0.005111262202262878
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "KosCurtains",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/KosCurtains/KosCurtains",
+            "position": {
+                "x": 2.2799999713897707,
+                "y": 1.5800000429153443,
+                "z": -0.550000011920929
+            },
+            "size": {
+                "x": 0.07999993860721588,
+                "y": 1.440000057220459,
+                "z": 1.2999999523162842
+            },
+            "materials": [
+                "CurtainCottonV2"
+            ]
+        },
+        {
+            "name": "RouterLED",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Kos_V2_Details/KosRouter/KosRouter/RouterLED",
+            "position": {
+                "x": 1.4399998188018799,
+                "y": 1.1767326593399048,
+                "z": 1.7015231847763062
+            },
+            "size": {
+                "x": 0.044999971985816959,
+                "y": 0.0030963316094130279,
+                "z": 0.0019535680767148735
+            },
+            "materials": [
+                "RouterPlasticV2"
+            ]
+        },
+        {
+            "name": "geo_lower-spring_a_bottom-hook",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_lower-spring_a_bottom-hook",
+            "position": {
+                "x": -0.9339157342910767,
+                "y": 0.8562608957290649,
+                "z": 1.3889977931976319
+            },
+            "size": {
+                "x": 0.0038372331764549019,
+                "y": 0.007318067830055952,
+                "z": 0.005111716687679291
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "CeilingTimber_0",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/CeilingTimber_0",
+            "position": {
+                "x": -2.3499999046325685,
+                "y": 2.765000104904175,
+                "z": 0.0
+            },
+            "size": {
+                "x": 0.05999999865889549,
+                "y": 0.07000000029802323,
+                "z": 3.799999952316284
+            },
+            "materials": [
+                "WornSkirting"
+            ]
+        },
+        {
+            "name": "Front camera",
+            "path": "KamarKos_4x3m/Interactable_SmartphoneDiKasur/Smartphone/Smartphone/Front camera",
+            "position": {
+                "x": -1.7187671661376954,
+                "y": 0.4422362446784973,
+                "z": -0.6269654035568237
+            },
+            "size": {
+                "x": 0.005479442421346903,
+                "y": 0.0012413767399266363,
+                "z": 0.004965517669916153
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "Newsprint",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Compact_Kos_Details/OldNewspaperByDesk/KosOldNewspaper/Newsprint",
+            "position": {
+                "x": -0.8999999761581421,
+                "y": 0.01350022666156292,
+                "z": -0.2800000011920929
+            },
+            "size": {
+                "x": 0.42053431272506716,
+                "y": 0.013000000268220902,
+                "z": 0.32240331172943118
+            },
+            "materials": [
+                "CompactNewsprint"
+            ]
+        },
+        {
+            "name": "Interactable_PCMonitor",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/Interactable_PCMonitor",
+            "position": {
+                "x": -0.44999998807907107,
+                "y": 0.9900000095367432,
+                "z": 1.399999976158142
+            },
+            "size": {
+                "x": 0.550000011920929,
+                "y": 0.36000001430511477,
+                "z": 0.05999999865889549
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "LockBody",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/Interactable_LaciMejaTerkunci/CombinationPadlock/FourWheelDrawerLock/LockBody",
+            "position": {
+                "x": -0.09999996423721314,
+                "y": 0.5949999690055847,
+                "z": 0.9579998254776001
+            },
+            "size": {
+                "x": 0.09999999403953552,
+                "y": 0.06499999761581421,
+                "z": 0.03400000184774399
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "SouthRightDado",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/SouthRightDado",
+            "position": {
+                "x": 2.119999885559082,
+                "y": 0.5199999809265137,
+                "z": -1.8980000019073487
+            },
+            "size": {
+                "x": 0.7599999904632568,
+                "y": 1.0399999618530274,
+                "z": 6.644130934319037e-8
+            },
+            "materials": [
+                "PeelingSeaGreenPaint"
+            ]
+        },
+        {
+            "name": "Earpiece.001",
+            "path": "KamarKos_4x3m/Interactable_SmartphoneDiKasur/Smartphone/Smartphone/Earpiece.001",
+            "position": {
+                "x": -1.685890555381775,
+                "y": 0.4422362446784973,
+                "z": -0.6306895017623901
+            },
+            "size": {
+                "x": 0.002054790733382106,
+                "y": 0.001241370220668614,
+                "z": 0.0012413806980475784
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "Interactable_JaketDiBalikPintu",
+            "path": "KamarKos_4x3m/Interactable_JaketDiBalikPintu",
+            "position": {
+                "x": 1.4000002145767213,
+                "y": 1.340000033378601,
+                "z": -1.6799999475479127
+            },
+            "size": {
+                "x": 0.3199999928474426,
+                "y": 0.6499999761581421,
+                "z": 0.10000000149011612
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "OldWallSocket",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/OldWallSocket",
+            "position": {
+                "x": -1.1799999475479127,
+                "y": 0.41999998688697817,
+                "z": 1.8700000047683716
+            },
+            "size": {
+                "x": 0.10499999672174454,
+                "y": 0.11999999731779099,
+                "z": 0.02500000037252903
+            },
+            "materials": [
+                "AgedSwitchPlastic"
+            ]
+        },
+        {
+            "name": "Air vent.007",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Air vent.007",
+            "position": {
+                "x": -0.6899999976158142,
+                "y": 0.2144453227519989,
+                "z": 1.247562289237976
+            },
+            "size": {
+                "x": 0.12999968230724336,
+                "y": 0.004087841138243675,
+                "z": 0.002836063504219055
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "EastNorthOfWindow",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/EastNorthOfWindow",
+            "position": {
+                "x": 2.497999906539917,
+                "y": 1.649999976158142,
+                "z": 0.949999988079071
+            },
+            "size": {
+                "x": 2.2649764730431344e-7,
+                "y": 1.100000023841858,
+                "z": 1.9000002145767213
+            },
+            "materials": [
+                "OldLimewash"
+            ]
+        },
+        {
+            "name": "Interactable_LaciMejaTerkunci",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/Interactable_LaciMejaTerkunci",
+            "position": {
+                "x": -0.10000002384185791,
+                "y": 0.6000000238418579,
+                "z": 1.1027499437332154
+            },
+            "size": {
+                "x": 0.41999998688697817,
+                "y": 0.2199999988079071,
+                "z": 0.07999999821186066
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "PhoneHand_HandheldPhone",
+            "path": "Player_RakaWijaya/CameraPivot/MainCamera/ExistingHandsetDepthMask/PhoneHand_HandheldPhone",
+            "position": {
+                "x": 0.8700002431869507,
+                "y": 1.6500000953674317,
+                "z": -0.8200002312660217
+            },
+            "size": {
+                "x": 0.07008428871631623,
+                "y": 0.16500011086463929,
+                "z": 0.05905396118760109
+            },
+            "materials": [
+                "LayarTerakhir/PhoneGripDepth"
+            ]
+        },
+        {
+            "name": "geo_top-spring_a_bottom-hook",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_top-spring_a_bottom-hook",
+            "position": {
+                "x": -1.062391757965088,
+                "y": 1.007526159286499,
+                "z": 1.4071714878082276
+            },
+            "size": {
+                "x": 0.005379397887736559,
+                "y": 0.005785644054412842,
+                "z": 0.007063037715852261
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "cabinetBedDrawer",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/Interactable_LaciMejaTerkunci/cabinetBedDrawer/cabinetBedDrawer",
+            "position": {
+                "x": -0.1000000387430191,
+                "y": 0.6000000238418579,
+                "z": 1.1200000047683716
+            },
+            "size": {
+                "x": 0.4199999272823334,
+                "y": 0.2199999839067459,
+                "z": 0.2800000011920929
+            },
+            "materials": [
+                "DoorAndWardrobeWood",
+                "DoorAndWardrobeWood",
+                "DoorAndWardrobeWood"
+            ]
+        },
+        {
+            "name": "speakerSmall",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/speakerSmall/speakerSmall",
+            "position": {
+                "x": -0.7650001645088196,
+                "y": 0.8279991149902344,
+                "z": 1.5324996709823609
+            },
+            "size": {
+                "x": 0.09000000357627869,
+                "y": 0.14000000059604646,
+                "z": 0.08500000089406967
+            },
+            "materials": [
+                "OldComputerPlastic",
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "geo_top-spring_b",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_top-spring_b",
+            "position": {
+                "x": -1.0244300365447999,
+                "y": 1.030204176902771,
+                "z": 1.4170722961425782
+            },
+            "size": {
+                "x": 0.07468274980783463,
+                "y": 0.04767795652151108,
+                "z": 0.09589618444442749
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "WindowSill",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/WindowSill",
+            "position": {
+                "x": 2.430000066757202,
+                "y": 1.090000033378601,
+                "z": -0.550000011920929
+            },
+            "size": {
+                "x": 0.23999999463558198,
+                "y": 0.03500000014901161,
+                "z": 1.2000000476837159
+            },
+            "materials": [
+                "DoorAndWardrobeWood"
+            ]
+        },
+        {
+            "name": "Glass display",
+            "path": "KamarKos_4x3m/Interactable_SmartphoneDiKasur/Smartphone/Smartphone/Glass display",
+            "position": {
+                "x": -1.6900001764297486,
+                "y": 0.4403741955757141,
+                "z": -0.550000011920929
+            },
+            "size": {
+                "x": 0.08630137890577316,
+                "y": 0.002483047777786851,
+                "z": 0.1551724076271057
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "WestLimewash",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/WestLimewash",
+            "position": {
+                "x": -2.497999906539917,
+                "y": 1.9199999570846558,
+                "z": 0.0
+            },
+            "size": {
+                "x": 4.5299529460862689e-7,
+                "y": 1.7599999904632569,
+                "z": 3.8000004291534426
+            },
+            "materials": [
+                "OldLimewash"
+            ]
+        },
+        {
+            "name": "Pocket seam",
+            "path": "KamarKos_4x3m/Interactable_JaketDiBalikPintu/HangingJacket/HangingJacket/Pocket seam",
+            "position": {
+                "x": 1.348083257675171,
+                "y": 1.1985574960708619,
+                "z": -1.637923002243042
+            },
+            "size": {
+                "x": 0.03924650698900223,
+                "y": 0.06708305329084397,
+                "z": 0.006016844417899847
+            },
+            "materials": [
+                "FadedGreenJacket"
+            ]
+        },
+        {
+            "name": "painted_wooden_cabinet_02",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/painted_wooden_cabinet_02/painted_wooden_cabinet_02/painted_wooden_cabinet_02",
+            "position": {
+                "x": 1.399999976158142,
+                "y": 0.6070002913475037,
+                "z": 1.7045749425888062
+            },
+            "size": {
+                "x": 0.44999998807907107,
+                "y": 1.2000000476837159,
+                "z": 0.2691497206687927
+            },
+            "materials": [
+                "painted_wooden_cabinet_02"
+            ]
+        },
+        {
+            "name": "Sleeve.001",
+            "path": "KamarKos_4x3m/Interactable_JaketDiBalikPintu/HangingJacket/HangingJacket/Sleeve.001",
+            "position": {
+                "x": 1.5366230010986329,
+                "y": 1.3416236639022828,
+                "z": -1.6799999475479127
+            },
+            "size": {
+                "x": 0.1467539370059967,
+                "y": 0.4852735996246338,
+                "z": 0.10499996691942215
+            },
+            "materials": [
+                "FadedGreenJacket"
+            ]
+        },
+        {
+            "name": "CeilingTimber_4",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/CeilingTimber_4",
+            "position": {
+                "x": 1.4100000858306885,
+                "y": 2.765000104904175,
+                "z": 0.0
+            },
+            "size": {
+                "x": 0.05999999865889549,
+                "y": 0.07000000029802323,
+                "z": 3.799999952316284
+            },
+            "materials": [
+                "WornSkirting"
+            ]
+        },
+        {
+            "name": "Earpiece.002",
+            "path": "KamarKos_4x3m/Interactable_SmartphoneDiKasur/Smartphone/Smartphone/Earpiece.002",
+            "position": {
+                "x": -1.6900001764297486,
+                "y": 0.4422362446784973,
+                "z": -0.6306895017623901
+            },
+            "size": {
+                "x": 0.002054790733382106,
+                "y": 0.001241370220668614,
+                "z": 0.0012413806980475784
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "Window_glass",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/wallWindow/wallWindow/Window_glass",
+            "position": {
+                "x": 2.4649999141693117,
+                "y": 1.719482421875,
+                "z": -0.550000011920929
+            },
+            "size": {
+                "x": 0.000002683415914361831,
+                "y": 0.4913102388381958,
+                "z": 0.3037621080875397
+            },
+            "materials": [
+                "NightWindowGlass"
+            ]
+        },
+        {
+            "name": "RubberFob",
+            "path": "GameSystems/MotorKeyOnDesk/RubberFob",
+            "position": {
+                "x": -0.875,
+                "y": 0.7840002775192261,
+                "z": 1.1349999904632569
+            },
+            "size": {
+                "x": 0.04399999976158142,
+                "y": 0.017999999225139619,
+                "z": 0.054999999701976779
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "Dark coffee",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/EnamelMug/EnamelMug/Dark coffee",
+            "position": {
+                "x": 0.11372959613800049,
+                "y": 0.8335310220718384,
+                "z": 1.4699417352676392
+            },
+            "size": {
+                "x": 0.06778808683156967,
+                "y": 0.0010639820247888566,
+                "z": 0.06954537332057953
+            },
+            "materials": [
+                "CoffeeSurface"
+            ]
+        },
+        {
+            "name": "WestDampPatch",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/WestDampPatch",
+            "position": {
+                "x": -2.484999895095825,
+                "y": 1.399999976158142,
+                "z": -0.3499999940395355
+            },
+            "size": {
+                "x": 3.2186508747145128e-7,
+                "y": 2.299999952316284,
+                "z": 2.700000286102295
+            },
+            "materials": [
+                "DampStain"
+            ]
+        },
+        {
+            "name": "Wall_East",
+            "path": "KamarKos_4x3m/Wall_East",
+            "position": {
+                "x": 2.549999952316284,
+                "y": 1.399999976158142,
+                "z": 0.0
+            },
+            "size": {
+                "x": 0.10000000149011612,
+                "y": 2.799999952316284,
+                "z": 3.799999952316284
+            },
+            "materials": [
+                "Universal Render Pipeline/Lit"
+            ]
+        },
+        {
+            "name": "geo_middle_wire",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/desk_lamp_arm_01/desk_lamp_arm_01/geo_middle_wire",
+            "position": {
+                "x": -0.8767619132995606,
+                "y": 1.028368592262268,
+                "z": 1.550431728363037
+            },
+            "size": {
+                "x": 0.008126946166157723,
+                "y": 0.021249830722808839,
+                "z": 0.019137050956487657
+            },
+            "materials": [
+                "desk_lamp_arm_01"
+            ]
+        },
+        {
+            "name": "Air vent.009",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Air vent.009",
+            "position": {
+                "x": -0.6899999976158142,
+                "y": 0.23897084593772889,
+                "z": 1.247562289237976
+            },
+            "size": {
+                "x": 0.12999968230724336,
+                "y": 0.004087841138243675,
+                "z": 0.002836063504219055
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "Steel computer case",
+            "path": "KamarKos_4x3m/Kos_Environment_Art/Golden_Workstation/OldPCTower/OldPCTower/Steel computer case",
+            "position": {
+                "x": -0.6899999976158142,
+                "y": 0.22262047231197358,
+                "z": 1.44039785861969
+            },
+            "size": {
+                "x": 0.1899999976158142,
+                "y": 0.40875953435897829,
+                "z": 0.35920441150665285
+            },
+            "materials": [
+                "OldComputerPlastic"
+            ]
+        },
+        {
+            "name": "HandsetScreen",
+            "path": "Player_RakaWijaya/Raka_AnimatedCharacter/HandsetScreen",
+            "position": {
+                "x": 3.12449312210083,
+                "y": 4.521058559417725,
+                "z": 32.451820373535159
+            },
+            "size": {
+                "x": 63.62432861328125,
+                "y": 61.28486633300781,
+                "z": 67.28956604003906
+            },
+            "materials": [
+                "DesignerPhoneScreen (camera fade)"
+            ]
+        },
+        {
+            "name": "VisibleSkin",
+            "path": "Player_RakaWijaya/Raka_AnimatedCharacter/VisibleSkin",
+            "position": {
+                "x": -25.759815216064454,
+                "y": 10.771977424621582,
+                "z": 23.611665725708009
+            },
+            "size": {
+                "x": 178.5164337158203,
+                "y": 172.80731201171876,
+                "z": 183.17837524414063
+            },
+            "materials": [
+                "RakaDesignerSurface (camera fade)"
+            ]
+        },
+        {
+            "name": "HandheldPhone",
+            "path": "Player_RakaWijaya/Raka_AnimatedCharacter/HandheldPhone",
+            "position": {
+                "x": 3.0682926177978517,
+                "y": 4.648867130279541,
+                "z": 32.96903610229492
+            },
+            "size": {
+                "x": 64.64077758789063,
+                "y": 62.329612731933597,
+                "z": 68.3575439453125
+            },
+            "materials": [
+                "DesignerPhone (camera fade)"
+            ]
+        }
+    ]
+}

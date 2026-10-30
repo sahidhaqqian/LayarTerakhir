@@ -1,0 +1,50 @@
+{
+  "platform": "LinuxEditor",
+  "renderer": "llvmpipe/OpenGL",
+  "windowsConfirmed": false,
+  "manualFullPlaythrough": false,
+  "issueCount": 47,
+  "provisionalLinuxPass": 47,
+  "fail": 0,
+  "unverifiedLinux": 0,
+  "unverifiedWindows": 47,
+  "captures": 78,
+  "tests": [
+    {
+      "path": "Audit/prolog47-regression-tests.xml",
+      "total": 20,
+      "passed": 20,
+      "durationSeconds": 10.6187346
+    },
+    {
+      "path": "Audit/prolog47-detail-tests.xml",
+      "total": 5,
+      "passed": 5,
+      "durationSeconds": 41.0058195
+    },
+    {
+      "path": "Audit/prolog47-final-visual-tests.xml",
+      "total": 3,
+      "passed": 3,
+      "durationSeconds": 41.3810219
+    },
+    {
+      "path": "Audit/prolog47-final-detail-checks.xml",
+      "total": 2,
+      "passed": 2,
+      "durationSeconds": 7.3682191
+    },
+    {
+      "path": "Audit/prolog47-cup-final-test.xml",
+      "total": 1,
+      "passed": 1,
+      "durationSeconds": 16.367156
+    }
+  ],
+  "rakaPrefabsIdenticalTo6ba80ea": {
+    "Assets/Resources/RakaCharacter.prefab": "6810eb2595e05310898f6bf96995bcdcf7ccac73d64230ee0542448ac2c39207",
+    "Assets/Resources/RakaPhoneHand.prefab": "02775b97e60a9ee447392080d7cc772c8d39f6c3b59ca9c6b0886f61c1d57c39",
+    "Assets/Resources/RakaCameraGrip.prefab": "f519f8931dd41b2ca6e22dea7d466097321740e6a2aae2b763f4701c773ed6c6"
+  },
+  "sourceBaseline": "0b76407c357d3d9f5936470a3ce1e19770a5395b"
+}

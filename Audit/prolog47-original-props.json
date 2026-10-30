@@ -1,0 +1,61 @@
+{
+  "author": "Layar Terakhir project \u2014 authored for this repair",
+  "license": "Project original",
+  "tool": "4.0.2",
+  "models": [
+    {
+      "name": "SingleBedSet",
+      "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/SingleBedSet.fbx",
+      "sha256": "0f406ef679b537881b5fbe8c08a5789b4fc57cca0793f80fbf5afc6c5b2b6fab",
+      "triangles": 14420
+    },
+    {
+      "name": "DoubleBedSet",
+      "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/DoubleBedSet.fbx",
+      "sha256": "7a8c28428eadcb268e425a0332aee64e05a28adff7947af1aeff0f6fd720c320",
+      "triangles": 17396
+    },
+    {
+      "name": "OpenDiary",
+      "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
+      "sha256": "1353468593607f5840bb42a3c1fa4fd0260f690b257bff1ca028167121f71926",
+      "triangles": 8296
+    },
+    {
+      "name": "CrackedMilkCup",
+      "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/CrackedMilkCup.fbx",
+      "sha256": "ac0c33f7ae28abb7c038d383954b29455c9ada7620efb6d62c827013eeb55d8d",
+      "triangles": 3904
+    },
+    {
+      "name": "BloodBathTub",
+      "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/BloodBathTub.fbx",
+      "sha256": "a9fe7b82cc451d277ca6363b75ab63b50521efbd24f8faaa8025744b96c9e7bc",
+      "triangles": 2988
+    },
+    {
+      "name": "VentGrille",
+      "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
+      "sha256": "8458add8a1ebe2a3a5d3bca71e1b2b70cc2510dc7fed8541828bbfc899109239",
+      "triangles": 3900
+    },
+    {
+      "name": "CellarLadder",
+      "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/CellarLadder.fbx",
+      "sha256": "7b5a5370c09bf13b7c3a5a5b960b714d79262d695ca9e6535c256ff66bf1f484",
+      "triangles": 3900
+    },
+    {
+      "name": "KosPanelDoor",
+      "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/KosPanelDoor.fbx",
+      "sha256": "23174aebf83403fd337c625065c1d5c8b8d2aff2ef08afcaec0841bbffe554b1",
+      "triangles": 2164
+    },
+    {
+      "name": "IndonesianFlipFlops",
+      "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/IndonesianFlipFlops.fbx",
+      "sha256": "28f50cfe1a67861f049bfb9819d7bc8b6a3a5e86fef5df48e48200a4b52200ea",
+      "triangles": 2864
+    }
+  ]
+}

@@ -24,7 +24,7 @@ using Object=UnityEngine.Object;
 
 namespace LayarTerakhir.Editor.Tests
 {
-    public sealed class AtmajaPlayTests
+    public sealed partial class AtmajaPlayTests
     {
         private Keyboard keyboard;
         private Mouse mouse;
@@ -533,7 +533,7 @@ namespace LayarTerakhir.Editor.Tests
         {
             yield return new WaitForSeconds(2);var d=SeedBasement();var p=d.player;var cc=p.GetComponent<CharacterController>();
             d.PlacePlayer(d.P(1.3f,5.75f,3.83f),Quaternion.identity);
-            foreach(var point in new[]{d.P(1.1f,4.25f,3.83f),d.P(.8f,4.25f,3.83f),d.P(.8f,2.6f,3.83f)})yield return WalkCapsule(p,point);
+            foreach(var point in new[]{d.P(1.1f,4.25f,3.83f),d.P(.8f,4.25f,3.83f),d.P(.8f,2.6f,3.83f),d.P(.8f,2.2f,3.83f),d.P(3.0f,2.2f,3.83f),d.P(3.0f,2.82f,3.83f),d.P(3.5f,2.82f,3.83f),d.P(3.0f,2.82f,3.83f),d.P(3.0f,2.2f,3.83f),d.P(.8f,2.2f,3.83f)})yield return WalkCapsule(p,point);
             d.PlacePlayer(d.basement.spawnBasement.position,d.basement.spawnBasement.rotation);yield return null;yield return null;
             // This test isolates physical clearance. Other tests exercise the live hunter/locker.
             d.basement.StopAllCoroutines();d.basement.enabled=false;d.basement.nyonya.SetActive(false);
@@ -565,18 +565,18 @@ namespace LayarTerakhir.Editor.Tests
             InputSystem.QueueStateEvent(keyboard,new KeyboardState());Assert.That(d.chase.Traversing,Is.False);
             d.PlacePlayer(d.chase.diningVaultStart.position,Quaternion.identity);yield return Press(Key.Space);yield return new WaitForSeconds(1);
             d.PlacePlayer(d.vaultInside.position,d.vaultInside.rotation);yield return null;yield return null;
-            Assert.That(d.chase.AwaitingPhotos,Is.True);Assert.That(d.chase.PhotosTaken,Is.Zero);
+            Assert.That(d.chase.AwaitingPhotos,Is.True,"Standoff must begin after the kitchen approach");Assert.That(d.chase.PhotosTaken,Is.Zero);
             var body=d.basement.nyonya.GetComponentsInChildren<SkinnedMeshRenderer>(true).Single(r=>r.name=="NyonyaDesignerBody");
             Assert.That(body.sharedMaterial.GetTexture("_BaseMap"),Is.EqualTo(AssetDatabase.LoadAssetAtPath<Texture2D>(DesignerVrmBuilder.Root+"Textures/NyonyaAlbedo.png")),"Retain the designer's weathered/bloodied artwork instead of stamping the old model's unrelated wound UV map over it");
             Assert.That(body.sharedMaterial.GetTexture("_BumpMap"),Is.EqualTo(AssetDatabase.LoadAssetAtPath<Texture2D>(DesignerVrmBuilder.Root+"Textures/NyonyaNormal.png")));
             Assert.That(Time.timeScale,Is.EqualTo(.5f),"Photo ritual runs in slow motion");
             Assert.That(d.player.MovementLocked,Is.False,"Raka can still move, just slowly");
             Assert.That(phone.isPhoneRaised&&d.phoneView.IsCameraApp,Is.True);
-            // The ghost glides in from the pursuit instead of teleporting onto
-            // the window: wait until she halts at the block spot, then track
-            // her live position for every shot like a player would.
-            float arriveDeadline=Time.realtimeSinceStartup+12;
-            while(Vector3.Distance(d.chase.chaserFigure.transform.position,d.chase.windowBlockSpot.position)>.6f&&Time.realtimeSinceStartup<arriveDeadline)yield return null;
+            Assert.That(Vector3.Distance(d.chase.chaserFigure.transform.position,d.chase.windowBlockSpot.position),Is.LessThan(.15f),"The interception appears immediately at the window");
+            // The new interception advances. Back away with the real movement
+            // input to frame it, as a player can during the window encounter.
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.S));yield return new WaitForSecondsRealtime(.7f);
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());yield return null;
             var lens=d.phoneView.FeedCamera;var aim=lens.transform.rotation;
             lens.transform.rotation=aim*Quaternion.Euler(0,180,0);
             Assert.That(d.chase.TryPhoto(),Is.False,"Photographing behind Raka cannot advance the ritual");Assert.That(d.chase.PhotosTaken,Is.Zero);
@@ -588,7 +588,7 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(d.chase.TryPhoto(),Is.False,"An opaque wall blocks the photograph");Assert.That(d.chase.PhotosTaken,Is.Zero);
             Object.DestroyImmediate(barrier);Physics.SyncTransforms();
             target=d.chase.chaserFigure.transform.position+Vector3.up*1.45f;lens.transform.LookAt(target);
-            Assert.That(d.chase.TryPhoto(),Is.True);Assert.That(d.chase.PhotosTaken,Is.EqualTo(1));
+            Assert.That(d.chase.TryPhoto(),Is.True,"Framed final ritual photo must succeed");Assert.That(d.chase.PhotosTaken,Is.EqualTo(1));
             Assert.That(d.chase.chaserFigure.activeSelf,Is.True,"One photo must not remove Nyonya");
             yield return null;
             var smoke=GameObject.Find("NyonyaPhotoSmoke");Assert.That(smoke,Is.Not.Null,"Photo ritual builds a dedicated smoke system");
@@ -596,12 +596,12 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(smoke.GetComponent<ParticleSystemRenderer>().sharedMaterial.mainTexture.name,Is.EqualTo("whitePuff06"),"Smoke uses the Kenney CC0 puff");
             yield return new WaitForSecondsRealtime(.35f);
             target=d.chase.chaserFigure.transform.position+Vector3.up*1.45f;lens.transform.LookAt(target);
-            Assert.That(d.chase.TryPhoto(),Is.True);Assert.That(d.chase.PhotosTaken,Is.EqualTo(2));
+            Assert.That(d.chase.TryPhoto(),Is.True,"Framed final ritual photo must succeed");Assert.That(d.chase.PhotosTaken,Is.EqualTo(2));
             Assert.That(d.chase.chaserFigure.activeSelf,Is.True);
             yield return new WaitForSecondsRealtime(.35f);
             d.phoneView.AddChat("@old_queue","LARI BANG JANGAN NENGOK!");
             target=d.chase.chaserFigure.transform.position+Vector3.up*1.45f;lens.transform.LookAt(target);
-            Assert.That(d.chase.TryPhoto(),Is.True);Assert.That(d.chase.PhotosTaken,Is.EqualTo(3));
+            Assert.That(d.chase.TryPhoto(),Is.True,"Framed final ritual photo must succeed");Assert.That(d.chase.PhotosTaken,Is.EqualTo(3));
             Assert.That(d.chase.IsFinalFlash,Is.True,"The third photo fires the Flash Beam");
             Assert.That(phone.batteryPercent,Is.EqualTo(10f),"The Flash Beam drains the battery to ten percent");
             Assert.That(CampaignState.Instance.Data.battery,Is.EqualTo(10f));
@@ -784,7 +784,7 @@ namespace LayarTerakhir.Editor.Tests
             Transform[] targets={d.upper.cupAim,d.upper.scratchAim,d.upper.ropeAim};
             for(int i=0;i<3;i++)
             {
-                var target=targets[i];Vector3 side=i==0?d.north:-d.north;
+                var target=targets[i];Vector3 side=i==0?d.north:i==1?d.east:-d.north;
                 lens.transform.position=target.position+side*1.2f+Vector3.up*(i==0?.7f:i==2?-.5f:.1f);
                 lens.transform.LookAt(target);Physics.SyncTransforms();d.upper.TryPhotoTick();
                 var delta=target.position-lens.transform.position;
@@ -801,10 +801,13 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(p.transform.position.y,Is.GreaterThan(3));Assert.That(corridor.CanDepart,Is.False);
             foreach(var point in new[]{new Vector3(-.6f,3.3f,12.7f),new Vector3(-.6f,1.65f,16.4f),new Vector3(1.75f,1.65f,16.4f),new Vector3(1.75f,0,12.6f),new Vector3(0,0,12.6f),new Vector3(0,0,11.5f),new Vector3(0,0,7.5f)})yield return WalkCapsule(p,corridor.BuildingPoint(point));
             Assert.That(p.transform.position.y,Is.LessThan(.15f));
-            GameObject.Find("SharedDiningDoor").GetComponent<HingedDoor>().Interact();yield return new WaitForSeconds(1.2f);
+            Assert.That(GameObject.Find("SharedDiningDoor"),Is.Null,"Dining opens directly to the corridor");
             yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(-2.4f,0,7.5f)));yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(0,0,7.5f)));yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(0,0,4.25f)));
-            GameObject.Find("DAPUR BERSAMADoor").GetComponent<HingedDoor>().Interact();yield return new WaitForSeconds(1.2f);
-            yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(-2.7f,0,4.25f)));yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(0,0,4.25f)));
+            Assert.That(GameObject.Find("DAPUR BERSAMADoor"),Is.Null,"Kitchen opens directly to the corridor");
+            yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(-2.1f,0,4.25f)));
+            yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(-2.1f,0,7.5f)));
+            yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(-2.1f,0,4.25f)));
+            yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(0,0,4.25f)));
             GameObject.Find("KAMAR MANDIDoor").GetComponent<HingedDoor>().Interact();yield return new WaitForSeconds(1.2f);
             yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(2.1f,0,4.25f)));
             foreach(var cubicle in new[]{("WANITA",5.2f),("PRIA",3.3f)})
@@ -902,7 +905,7 @@ namespace LayarTerakhir.Editor.Tests
         {
             yield return new WaitForSeconds(2);
             var d=Find<AtmajaDirector>();var phone=SmartphoneController.Instance;var campaign=CampaignState.Instance;
-            Assert.That(d.StartLive(),Is.False,"Cannot broadcast before attempting the locked front door");
+            Assert.That(d.StartLive(),Is.False,"A stowed phone cannot begin broadcasting");
             Item(AtmajaAction.FrontDoor).Interact();yield return new WaitForSeconds(2);
             Assert.That(campaign.HasInventoryItem("EVENT_P0_FRONT_DOOR_TRIED"),Is.True);Assert.That(d.HasSurvey,Is.False);
             yield return Press(Key.Tab);Assert.That(phone.isPhoneRaised,Is.True);
@@ -1029,7 +1032,7 @@ namespace LayarTerakhir.Editor.Tests
             var go=new GameObject("AtmajaTestHost");Object.DontDestroyOnLoad(go);var host=go.AddComponent<FoundationAuditCoroutineHost>();bool done=false;Exception failure=null;
             host.StartCoroutine(Drive(scenario,e=>{failure=e;done=true;}));float deadline=Time.realtimeSinceStartup+60;
             while(!done&&Time.realtimeSinceStartup<deadline)yield return null;
-            Object.Destroy(go);Assert.That(done,Is.True,"Atmaja runtime scenario timeout");if(failure!=null)throw failure;
+            Object.Destroy(go);Assert.That(done,Is.True,"Atmaja runtime scenario timeout");if(failure!=null)System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(failure).Throw();
         }
         private static IEnumerator Drive(IEnumerator scenario,Action<Exception> complete)
         {

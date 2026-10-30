@@ -1,0 +1,212 @@
+{
+  "source": "/root/projects/LayarTerakhir/Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/NyonyaDesigner.fbx",
+  "output": "/tmp/prolog-asset-scout/NyonyaPrologSurfaceRepair.fbx",
+  "fps": [
+    30,
+    1.0
+  ],
+  "meshName": "NyonyaDesignerBody",
+  "rigName": "CharacterRig",
+  "vertices": 88940,
+  "polygons": 180000,
+  "edges": 269998,
+  "uvLayers": [
+    "UVMap"
+  ],
+  "boneNames": [
+    "Hips",
+    "Spine",
+    "Chest",
+    "UpperChest",
+    "Neck",
+    "Head",
+    "Eye_L",
+    "Eye_R",
+    "Jaw",
+    "Shoulder_L",
+    "UpperArm_L",
+    "Forearm_L",
+    "Hand_L",
+    "Finger1_1_L",
+    "Finger1_2_L",
+    "Finger1_3_L",
+    "Finger2_1_L",
+    "Finger2_2_L",
+    "Finger2_3_L",
+    "Finger3_1_L",
+    "Finger3_2_L",
+    "Finger3_3_L",
+    "Finger4_1_L",
+    "Finger4_2_L",
+    "Finger4_3_L",
+    "Finger5_1_L",
+    "Finger5_2_L",
+    "Finger5_3_L",
+    "Shoulder_R",
+    "UpperArm_R",
+    "Forearm_R",
+    "Hand_R",
+    "Finger1_1_R",
+    "Finger1_2_R",
+    "Finger1_3_R",
+    "Finger2_1_R",
+    "Finger2_2_R",
+    "Finger2_3_R",
+    "Finger3_1_R",
+    "Finger3_2_R",
+    "Finger3_3_R",
+    "Finger4_1_R",
+    "Finger4_2_R",
+    "Finger4_3_R",
+    "Finger5_1_R",
+    "Finger5_2_R",
+    "Finger5_3_R",
+    "Shears",
+    "Thigh_L",
+    "Shin_L",
+    "Foot_L",
+    "Toes_L",
+    "Thigh_R",
+    "Shin_R",
+    "Foot_R",
+    "Toes_R"
+  ],
+  "takes": [
+    "CharacterRig|Idle",
+    "CharacterRig|Run",
+    "CharacterRig|Stun",
+    "CharacterRig|Walk",
+    "CharacterRig|Windup"
+  ],
+  "preservedClipWorldMatrixMaxError": {
+    "Idle": 3.1888484954833984e-06,
+    "Run": 2.4512410163879395e-05,
+    "Stun": 3.077089786529541e-06,
+    "Walk": 2.950429916381836e-06,
+    "Windup": 3.248453140258789e-06
+  },
+  "allFramesChecked": 207,
+  "clips": [
+    {
+      "clip": "Idle",
+      "frames": [
+        1.0,
+        76.0
+      ],
+      "maxEdgeMetres": 0.208807332503067,
+      "maxStretch": 1.6301375751511225,
+      "severeEdgeCount": 0,
+      "validEdgeCount": 241533,
+      "severeEdgePercent": 0.0,
+      "bounds": [
+        [
+          -0.5815184715342097,
+          -0.24536710731741054,
+          0.0011327783933282323
+        ],
+        [
+          0.5281463858533334,
+          0.22518044157579162,
+          1.6419757063109588
+        ]
+      ]
+    },
+    {
+      "clip": "Run",
+      "frames": [
+        1.0,
+        29.0
+      ],
+      "maxEdgeMetres": 0.41748336490646976,
+      "maxStretch": 25.168728986463275,
+      "severeEdgeCount": 2555,
+      "validEdgeCount": 241533,
+      "severeEdgePercent": 1.0578264667767965,
+      "bounds": [
+        [
+          -0.7713974717211152,
+          -0.661574129696337,
+          0.015359512695190794
+        ],
+        [
+          0.5203780528951117,
+          0.4723876970374454,
+          1.621774267449574
+        ]
+      ]
+    },
+    {
+      "clip": "Stun",
+      "frames": [
+        1.0,
+        37.0
+      ],
+      "maxEdgeMetres": 0.2772919133652521,
+      "maxStretch": 11.300285854920752,
+      "severeEdgeCount": 270,
+      "validEdgeCount": 241533,
+      "severeEdgePercent": 0.11178596713492567,
+      "bounds": [
+        [
+          -0.5736838582109965,
+          -0.23259505389896923,
+          -0.03791268550683923
+        ],
+        [
+          0.5279014703679519,
+          0.40826793184126303,
+          1.6526655544400946
+        ]
+      ]
+    },
+    {
+      "clip": "Walk",
+      "frames": [
+        1.0,
+        41.0
+      ],
+      "maxEdgeMetres": 0.3101832559380127,
+      "maxStretch": 23.048433294237718,
+      "severeEdgeCount": 1482,
+      "validEdgeCount": 241533,
+      "severeEdgePercent": 0.6135807529405919,
+      "bounds": [
+        [
+          -0.5793010595392752,
+          -0.606168160747719,
+          0.0010795129575612579
+        ],
+        [
+          0.5469115373540354,
+          0.402060414121157,
+          1.6384560552636238
+        ]
+      ]
+    },
+    {
+      "clip": "Windup",
+      "frames": [
+        1.0,
+        24.0
+      ],
+      "maxEdgeMetres": 0.2915976143837877,
+      "maxStretch": 11.097439626340435,
+      "severeEdgeCount": 305,
+      "validEdgeCount": 241533,
+      "severeEdgePercent": 0.126276740652416,
+      "bounds": [
+        [
+          -0.5736840966295769,
+          -1.0338588658179573,
+          -7.134610811788363e-05
+        ],
+        [
+          0.5279000398564766,
+          0.22017651264172639,
+          1.6400836170221773
+        ]
+      ]
+    }
+  ],
+  "seconds": 66.46613884100225
+}

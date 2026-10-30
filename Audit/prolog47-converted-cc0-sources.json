@@ -1,0 +1,70 @@
+[
+  {
+    "name": "Fridge",
+    "page": "https://opengameart.org/content/oven-and-fridge",
+    "author": "DREAM_SEARCH_REPEAT",
+    "license": "CC0-1.0",
+    "path": "Assets/_LayarTerakhir/assets/Art/Imported/Prolog47Facilities/Fridge/Fridge.fbx",
+    "sha256": "a9d0194f173e7788c2bdae16367acc903fc27fd876c7448c9cbc10f190afef05",
+    "materialColors": {
+      "FridgePaint": [
+        0.37124791741371155,
+        0.47161126136779785,
+        0.5488515496253967,
+        1.0
+      ],
+      "Rubber": [
+        0.044454511255025864,
+        0.044454511255025864,
+        0.044454511255025864,
+        1.0
+      ],
+      "FridgeHandle": [
+        0.20290948450565338,
+        0.21774359047412872,
+        0.24618567526340485,
+        1.0
+      ],
+      "FridgeFeets": [
+        0.025393681600689888,
+        0.025393681600689888,
+        0.025393681600689888,
+        1.0
+      ]
+    }
+  },
+  {
+    "name": "Shower",
+    "page": "https://opengameart.org/content/bathroom",
+    "author": "DREAM_SEARCH_REPEAT",
+    "license": "CC0-1.0",
+    "path": "Assets/_LayarTerakhir/assets/Art/Imported/Prolog47Facilities/Shower/Shower.fbx",
+    "sha256": "ee745aab42be13454018a3953778e4bfa307c9711c1194230c7d06b8cb914448",
+    "materialColors": {
+      "Ceramic": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "Metal": [
+        0.024255000054836273,
+        0.024255000054836273,
+        0.024255000054836273,
+        1.0
+      ],
+      "Glass": [
+        0.05828399956226349,
+        0.47267499566078186,
+        0.800000011920929,
+        1.0
+      ],
+      "Rubber": [
+        0.800000011920929,
+        0.7154889702796936,
+        0.1419450044631958,
+        1.0
+      ]
+    }
+  }
+]

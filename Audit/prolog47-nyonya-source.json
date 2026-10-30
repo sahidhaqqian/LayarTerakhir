@@ -1,0 +1,90 @@
+{
+  "input": {
+    "model": "/root/projects/LayarTerakhir/Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/NyonyaDesigner.fbx",
+    "modelSHA256": "d8be5a8e4adbff9dc9ea3e30508e494bbb6baa7238dbb083b7a2b7f9e4b62589",
+    "original": "/root/projects/LayarTerakhir/Assets/_LayarTerakhir/assets/LayarTerakhir/Nyonya.vrm",
+    "originalSHA256": "64230c3dbd3601def329df08b557c581d13b139fd5d31685acbac15e74f6ce75",
+    "currentVertices": 25145,
+    "currentPolygons": 22654,
+    "fps": 30,
+    "fpsBase": 1.0,
+    "bones": 56,
+    "actionSignatures": {
+      "Idle": "e7906e75c883bb51c27c43cd24a18e006aeeebcc1af45e004568f60b2a828bfd",
+      "Run": "f6d7a8dff7b4587bc9222a145e4e98e085335e095d36e52f698d0e8374bcff50",
+      "Stun": "d7c5c936e648a7fd835f05edcdda4451c060d8e4822d63c5cce29f835be8387b",
+      "Walk": "7bc9947a7e9d307b367dc61b739d2cab3e02dd520ef18303e52054cd1106ee21",
+      "Windup": "a48494ca1a1b528e45fe06243fa96d1d355b8f5817a7913aec2343767fb663fd"
+    }
+  },
+  "surface": {
+    "originalVertices": 1178058,
+    "originalPolygons": 2137712,
+    "normalizationScale": 0.851401425821267,
+    "normalizationCentreX": 0.1256442442536354,
+    "normalizationLowZ": 4.514731699600816e-09,
+    "weldedVertices": 1067795,
+    "weldedPolygons": 2137710,
+    "outputVertices": 88940,
+    "outputPolygons": 180000,
+    "transferDistanceMetres": {
+      "mean": 0.004665811174956283,
+      "p95": 0.012298322189599276,
+      "max": 0.07040216028690338
+    }
+  },
+  "output": {
+    "path": "/tmp/prolog-asset-scout/NyonyaPrologSurfaceRepair.fbx",
+    "sha256": "0bc52856ceb6db83dc8b57a23faa095b4e38651ed2b5a3e85467a55a3fb3c32c",
+    "bytes": 13075452,
+    "buildSeconds": 183.15606921195285,
+    "actions": [
+      {
+        "name": "Idle",
+        "frames": [
+          1.0,
+          76.0
+        ],
+        "channels": 569,
+        "signature": "e7906e75c883bb51c27c43cd24a18e006aeeebcc1af45e004568f60b2a828bfd"
+      },
+      {
+        "name": "Run",
+        "frames": [
+          1.0,
+          29.0
+        ],
+        "channels": 569,
+        "signature": "f6d7a8dff7b4587bc9222a145e4e98e085335e095d36e52f698d0e8374bcff50"
+      },
+      {
+        "name": "Stun",
+        "frames": [
+          1.0,
+          37.0
+        ],
+        "channels": 569,
+        "signature": "d7c5c936e648a7fd835f05edcdda4451c060d8e4822d63c5cce29f835be8387b"
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          1.0,
+          41.0
+        ],
+        "channels": 569,
+        "signature": "7bc9947a7e9d307b367dc61b739d2cab3e02dd520ef18303e52054cd1106ee21"
+      },
+      {
+        "name": "Windup",
+        "frames": [
+          1.0,
+          24.0
+        ],
+        "channels": 569,
+        "signature": "a48494ca1a1b528e45fe06243fa96d1d355b8f5817a7913aec2343767fb663fd"
+      }
+    ],
+    "rigidWeaponVertices": 453
+  }
+}
