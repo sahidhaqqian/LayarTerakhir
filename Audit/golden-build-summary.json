@@ -1,5 +1,5 @@
 {
-  "verifiedUtc": "2026-10-30T03:16:06.421535+00:00",
+  "verifiedUtc": "2026-10-30T03:49:05.379871+00:00",
   "unityExitCode": 0,
   "result": "Succeeded",
   "target": "StandaloneWindows64",
@@ -7,14 +7,14 @@
   "development": true,
   "startupScene": "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity",
   "executable": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows/LayarTerakhir.exe",
-  "unityReportedFilesVerified": 295,
+  "unityReportedFilesVerified": 318,
   "scriptingAssembliesVerified": 112,
-  "unityReportedSizeBytes": 404810315,
-  "buildFileCount": 308,
-  "totalBuildSizeBytes": 476311034,
+  "unityReportedSizeBytes": 4848686467,
+  "buildFileCount": 329,
+  "totalBuildSizeBytes": 4848995186,
   "archivePath": "/tmp/opencode/windows-build-r2/workspace/Builds/LayarTerakhir-Windows-x86_64-Development.zip",
-  "archiveSizeBytes": 248636645,
-  "archiveSha256": "647beb403fc1c687979dfef86205f359effcb485a538d8ae7daaf82205e4d0da",
+  "archiveSizeBytes": 3027149283,
+  "archiveSha256": "27dfd8ef5a9907f3917c9da48e3f2b5b4e7e4a1b6f358742039c5438856572a6",
   "zipCrcVerified": true,
   "zipContainsAllBuildFiles": true,
   "windowsRuntimeTested": false,
@@ -31,6 +31,11 @@
   "includedScenes": [
     "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity",
     "Assets/_LayarTerakhir/assets/Scenes/Prolog_RumahAtmaja.unity",
-    "Assets/_LayarTerakhir/assets/Scenes/Prolog_KoridorKos.unity"
+    "Assets/_LayarTerakhir/assets/Scenes/Prolog_KoridorKos.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Babak2_RSUD.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Babak3_PabrikGula.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Babak4_KarangSetra.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Babak5_PasarSetan.unity",
+    "Assets/_LayarTerakhir/assets/Scenes/Babak1_Rusunawa.unity"
   ]
 }
