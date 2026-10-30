@@ -142,8 +142,8 @@ namespace LayarTerakhir.Prolog
         }
         public string Objective()
         {
-            if (run == Run.WindowStandoff) return "Hadapi dia dengan kamera!";
-            if (run == Run.EscapeReady || run == Run.Stunned) return $"[{Key(GameAction.Vault)}] Terobos jendela dapur!";
+            if (run == Run.WindowStandoff) return string.Empty;
+            if (run == Run.EscapeReady || run == Run.Stunned) return string.Empty;
             if (run == Run.GateRun) return "Keluar menuju gerbang. Merunduk melewati dahan kamboja.";
             if (run == Run.Ending || run == Run.Complete) return "Malam pertama selesai. Damar masih di balik cermin.";
             if (!climbedOut) return "LARI! Kembali ke tangga batu di sudut ruang jahit!";
@@ -339,7 +339,7 @@ namespace LayarTerakhir.Prolog
             director.player.SetViewPitch(-Mathf.Atan2(direction.y,flat.magnitude)*Mathf.Rad2Deg);
             var rig=director.player.GetComponent<ShoulderCameraRig>();if(rig){rig.FirstPersonOverride=true;rig.RefreshCameraPose();}
             Hud.PlayPriorityDialogue("Raka","Gue harus lawan dia.",3);
-            finale.Prompt($"HADAPI DIA [{Key(GameAction.CaptureOrBlitz)}]");
+            finale.Prompt(null);
             Ui(AtmajaSynth.Tone(2.8f, 400, 2200, .2f), .5f);
             if(director.phoneView)director.phoneView.AddChatBurst(new[]{"@maya_sari","@rudi_tabuti","@intan_permata"},new[]{"FOTO DIA BANG!","JANGAN BERHENTI MOTRET!","ASAPNYA NUTUPIN KAMERA!"});
             director.Objective();
@@ -411,7 +411,7 @@ namespace LayarTerakhir.Prolog
             director.player.MovementLocked = false;
             var rig=director.player.GetComponent<ShoulderCameraRig>();if(rig)rig.FirstPersonOverride=false;
             run = Run.EscapeReady;
-            finale.Prompt($"[{Key(GameAction.Vault)}] TEROBOS JENDELA!");
+            finale.Prompt(null);
             director.Objective();
         }
         private IEnumerator FlashBeamLights()

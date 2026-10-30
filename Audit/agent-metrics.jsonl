@@ -110,3 +110,5 @@
 {"kind": "build", "label": "windows-build-r2 full 182695a4 + R2 verified", "seconds": 1770.0, "detail": "", "source": "agent", "utc": "2026-10-28T09:02:42.125118+00:00"}
 {"kind": "build", "label": "Windows rollback6ba full build (8 scenes)", "seconds": 141.217703, "detail": "", "source": "agent", "utc": "2026-10-30T04:57:14.003228+00:00"}
 {"kind": "upload", "label": "R2 rollback6ba overwrite plus readback", "seconds": 398.749213, "detail": "", "source": "agent", "utc": "2026-10-30T04:57:14.054463+00:00"}
+{"kind": "test", "label": "Prolog easy: 12 targeted Unity cases, NUnit runtime excluding Editor startup", "seconds": 10.2128273, "detail": "", "source": "agent", "utc": "2026-10-30T10:03:39.657402+00:00"}
+{"kind": "test", "label": "Prolog easy: 3 review follow-ups after caption correction and settled UI captures, NUnit runtime", "seconds": 9.9710275, "detail": "", "source": "agent", "utc": "2026-10-30T10:03:39.704134+00:00"}

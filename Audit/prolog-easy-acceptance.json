@@ -1,0 +1,94 @@
+{
+  "parentCommit": "5b4d6447b93d9cc5469eb535eba5baad0aa414e5",
+  "rollbackBaseline": "6ba80ea0535ced2e969767af17cbb03c77a2bc17",
+  "windowsConfirmed": false,
+  "newWindowsBuild": false,
+  "r2Uploaded": false,
+  "passIssueIds": [
+    1,
+    2,
+    5,
+    6,
+    8,
+    12,
+    14,
+    15,
+    16,
+    18,
+    19,
+    23,
+    25,
+    26,
+    27,
+    28,
+    30,
+    38,
+    40,
+    45
+  ],
+  "failIssueIds": [
+    13
+  ],
+  "unverifiedIssueIds": [
+    3,
+    4,
+    7,
+    9,
+    10,
+    11,
+    17,
+    20,
+    21,
+    22,
+    24,
+    29,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    39,
+    41,
+    42,
+    43,
+    44,
+    46,
+    47
+  ],
+  "tests": [
+    {
+      "path": "Audit/prolog-easy-tests.xml",
+      "total": 12,
+      "passed": 12,
+      "utcStart": "2026-10-30 09:52:05Z",
+      "utcEnd": "2026-10-30 09:52:15Z"
+    },
+    {
+      "path": "Audit/prolog-easy-review-tests.xml",
+      "total": 3,
+      "passed": 3,
+      "utcStart": "2026-10-30 09:58:33Z",
+      "utcEnd": "2026-10-30 09:58:43Z"
+    }
+  ],
+  "characterAssets": [
+    {
+      "path": "Assets/Resources/RakaCharacter.prefab",
+      "sha256": "6810eb2595e05310898f6bf96995bcdcf7ccac73d64230ee0542448ac2c39207",
+      "identicalToRollbackBaseline": true
+    },
+    {
+      "path": "Assets/Resources/RakaPhoneHand.prefab",
+      "sha256": "02775b97e60a9ee447392080d7cc772c8d39f6c3b59ca9c6b0886f61c1d57c39",
+      "identicalToRollbackBaseline": true
+    },
+    {
+      "path": "Assets/Resources/RakaCameraGrip.prefab",
+      "sha256": "f519f8931dd41b2ca6e22dea7d466097321740e6a2aae2b763f4701c773ed6c6",
+      "identicalToRollbackBaseline": true
+    }
+  ],
+  "prototypeArchive": "git stash 77401098622d6d1564e8d825b4c33603853ddb5a"
+}

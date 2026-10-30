@@ -37,6 +37,8 @@ namespace LayarTerakhir.UI
         public Image threatBarFill;
         public Text threatExitKeyText;
         private GameObject threatBarRoot;
+        private GameObject prologThreatMeter;
+        private Image[] prologThreatSegments;
         private float _lastThreatFill = -2f;
 
         public bool IsDocumentOpen => documentPanel != null && documentPanel.activeSelf;
@@ -267,6 +269,38 @@ namespace LayarTerakhir.UI
             if (interactionPromptText != null)
             {
                 interactionPromptText.text = prompt;
+            }
+        }
+
+        // Prolog wardrobe: cumulative green / yellow / red segments at lower right.
+        // Keep the existing bar API for other chapters.
+        public void SetPrologThreatMeter(float? danger)
+        {
+            if(!danger.HasValue){if(prologThreatMeter)prologThreatMeter.SetActive(false);return;}
+            if(!prologThreatMeter)
+            {
+                var canvas=GetComponentInChildren<Canvas>();if(!canvas)return;
+                prologThreatMeter=CreateUIObject("PrologThreatMeter",canvas.transform);
+                var rect=prologThreatMeter.GetComponent<RectTransform>();
+                rect.anchorMin=rect.anchorMax=new Vector2(1,0);rect.pivot=new Vector2(1,0);
+                rect.anchoredPosition=new Vector2(-38,42);rect.sizeDelta=new Vector2(22,104);
+                prologThreatSegments=new Image[12];
+                for(int i=0;i<12;i++)
+                {
+                    var go=CreateUIObject("ThreatSegment_"+i,prologThreatMeter.transform);
+                    var segment=go.GetComponent<RectTransform>();segment.anchorMin=segment.anchorMax=Vector2.zero;
+                    segment.pivot=Vector2.zero;segment.anchoredPosition=new Vector2(2,i*8.5f+2);segment.sizeDelta=new Vector2(18,6);
+                    prologThreatSegments[i]=go.AddComponent<Image>();prologThreatSegments[i].raycastTarget=false;
+                }
+            }
+            if(threatBarRoot)threatBarRoot.SetActive(false);
+            prologThreatMeter.SetActive(true);
+            float value=Mathf.Clamp01(danger.Value);
+            int active=value>=.7f?12:value>=.3f?8:4;
+            for(int i=0;i<12;i++)
+            {
+                Color color=i<4?new Color(.22f,.75f,.30f):i<8?new Color(.95f,.76f,.16f):new Color(.88f,.12f,.12f);
+                prologThreatSegments[i].color=i<active?color:new Color(color.r*.16f,color.g*.16f,color.b*.16f,.55f);
             }
         }
 

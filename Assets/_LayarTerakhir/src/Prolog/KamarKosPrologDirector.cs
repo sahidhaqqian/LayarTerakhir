@@ -323,6 +323,11 @@ namespace LayarTerakhir.Prolog
             yield return new WaitForSeconds(voice+.2f);
             if(environmentAudio)yield return environmentAudio.PlayCallPanic();
             view.Apps.EndDamarCall();
+            if(environmentAudio)environmentAudio.NotifyDonation();
+            CampaignState.Instance?.AddBoundDonation(5000000);
+            SmartphoneController.Instance.isPhoneRaised=SmartphoneController.Instance.isScreenOn=true;
+            SmartphoneController.Instance.SyncVisualState();
+            view.Apps.ReceiveContract();
             float response=HudController.Instance.PlayPriorityDialogue(
                 "Raka",
                 "Dam?! Halo, Damar?! Sial, nomornya nggak aktif!",
@@ -330,18 +335,7 @@ namespace LayarTerakhir.Prolog
             );
             yield return new WaitForSeconds(response+.2f);
 
-            yield return new WaitForSeconds(3.5f);
-
-            if(environmentAudio)environmentAudio.NotifyDonation();
-            if (CampaignState.Instance != null)
-            {
-                CampaignState.Instance.AddBoundDonation(5000000);
-            }
-
             currentStage=KosPrologStage.PreparationAndDrawerPuzzle;
-            SmartphoneController.Instance.isPhoneRaised=false;
-            SmartphoneController.Instance.SyncVisualState();
-            view.Apps.ReceiveContract();
             HudController.Instance.SetObjective("Periksa pesan masuk di HP.");
             while(!CampaignState.Instance.HasInventoryItem("EVENT_P0_CONTRACT_READ"))yield return null;
             yield return new WaitForSeconds(10f);

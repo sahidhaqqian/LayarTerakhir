@@ -26,7 +26,7 @@ namespace LayarTerakhir.UI
             UiWidgets.Text("Label",go.transform,text,new Vector2(.06f,.02f),new Vector2(.94f,.98f),23,TextAnchor.MiddleCenter).color=Paper;return button;
         }
         public static void Icon(string kind,Transform parent,Vector2 min,Vector2 max,Color? color=null)
-        {var go=UiWidgets.Rect("Icon_"+kind,parent,min,max);var glyph=go.AddComponent<PhoneGlyph>();glyph.kind=kind;glyph.color=color??Paper;glyph.raycastTarget=false;}
+        {var go=UiWidgets.Rect("Icon_"+kind,parent,min,max);go.AddComponent<CanvasRenderer>();var glyph=go.AddComponent<PhoneGlyph>();glyph.kind=kind;glyph.color=color??Paper;glyph.raycastTarget=false;}
     }
     public sealed class PhoneGlyph:MaskableGraphic
     {

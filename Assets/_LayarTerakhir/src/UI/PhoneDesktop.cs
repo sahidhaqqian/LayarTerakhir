@@ -43,6 +43,8 @@ namespace LayarTerakhir.UI
         public void Open(PhoneApp app)
         {
             if(Phone&&Phone.CameraLocked&&app!=PhoneApp.Camera)return;
+            if(Phone&&app!=PhoneApp.Camera&&Phone.currentScanMode==ScanVisualMode.AR)
+            {Phone.currentScanMode=ScanVisualMode.Normal;lastAR=false;Phone.SyncVisualState();}
             CurrentApp=app;TravelSelection=false;if(page){page.SetActive(false);Destroy(page);}if(!root)return;
             root.SetActive(app!=PhoneApp.Camera);page=PhoneSkin.Card("App_"+app,root.transform,Vector2.zero,Vector2.one,app==PhoneApp.Home?new Color(.045f,.09f,.14f):PhoneSkin.Ink);
             if(app==PhoneApp.Camera)return;if(app==PhoneApp.Home){Home();return;}if(app==PhoneApp.Call){CallScreen();return;}
@@ -76,6 +78,7 @@ namespace LayarTerakhir.UI
             var map=PhoneSkin.Card("CityMap",page.transform,new Vector2(.035f,.34f),new Vector2(.965f,.90f),new Color(.89f,.88f,.83f));map.AddComponent<RectMask2D>();
             var scroll=map.AddComponent<ScrollRect>();scroll.horizontal=scroll.vertical=true;scroll.scrollSensitivity=18;scroll.movementType=ScrollRect.MovementType.Clamped;
             var content=UiWidgets.Rect("NeighbourhoodMap",map.transform,Vector2.zero,Vector2.one).GetComponent<RectTransform>();
+            content.gameObject.AddComponent<CanvasRenderer>();
             content.gameObject.AddComponent<StoryMapGraphic>();scroll.viewport=map.GetComponent<RectTransform>();scroll.content=content;
             Canvas.ForceUpdateCanvases();content.sizeDelta=scroll.viewport.rect.size*.25f;
             Marker(content,"KosMarker",view.director?"Kos Raka":"Kos Raka • Kamu",new Vector2(.24f,.23f),new Color(.12f,.40f,.67f));Marker(content,"AtmajaMarker",view.director?"Atmaja • Kamu":"Rumah Atmaja",new Vector2(.68f,.76f),new Color(.64f,.20f,.16f));
@@ -157,7 +160,7 @@ namespace LayarTerakhir.UI
             dialing=false;
             if(CurrentApp==PhoneApp.Call)Open(PhoneApp.Call);
         }
-        public void ReceiveContract(){CampaignState.Instance.AddInventoryItem("EVENT_P0_CONTRACT_RECEIVED");Open(PhoneApp.Home);Notify("Rp5.000.000 diterima");}
+        public void ReceiveContract(){CampaignState.Instance.AddInventoryItem("EVENT_P0_CONTRACT_RECEIVED");Open(PhoneApp.Messages);Notify("Pesan baru • Penonton_Terakhir");}
         public void Notify(string message)
         {
             latestMessage=message;pendingNotification=true;

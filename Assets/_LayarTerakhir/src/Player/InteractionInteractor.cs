@@ -83,7 +83,7 @@ namespace LayarTerakhir.Player
                         if(source!=_lastPromptSource||key!=_lastPromptKey)
                         {
                             _lastPromptSource=source;_lastPromptKey=key;
-                            _cachedPrompt=$"[{key}] {source}";
+                            _cachedPrompt=string.IsNullOrEmpty(source)?string.Empty:$"[{key}] {source}";
                         }
                         HudController.Instance.SetInteractionPrompt(_cachedPrompt);
                     }

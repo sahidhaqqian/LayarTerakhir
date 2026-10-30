@@ -16,7 +16,7 @@ namespace LayarTerakhir.Prolog
             atmaja=FindFirstObjectByType<AtmajaDirector>();
             if(atmaja)
             {
-                zones.Add(new Zone("ATMAJA_CHILD","Mainan sama bukunya masih ditinggal begitu aja. Anak ini waktu itu sempat minta tolong?",new Vector3(-4.2f,4.6f,2.6f),new Vector3(3.4f,2.2f,4.8f)));
+                zones.Add(new Zone("ATMAJA_CHILD","Buku hariannya masih ditinggal begitu aja. Anak ini waktu itu sempat minta tolong?",new Vector3(-4.2f,4.6f,2.6f),new Vector3(3.4f,2.2f,4.8f)));
                 zones.Add(new Zone("ATMAJA_UPPER_BATH","Lantai basah... padahal kerannya mati. Gue nggak suka ruangan ini.",new Vector3(-1.1f,4.6f,2.6f),new Vector3(2.3f,2.2f,4.8f)));
                 zones.Add(new Zone("ATMAJA_MASTER","Bau kain tua di sini makin kuat. Damar sempat sampai kamar ini nggak, ya?",new Vector3(1.3f,4.6f,2.5f),new Vector3(1.8f,2.2f,4.7f)));
                 zones.Add(new Zone("ATMAJA_BALCONY","Anginnya kencang, tapi yang bergerak cuma tali itu...",new Vector3(3.7f,4.6f,4.3f),new Vector3(2.3f,2.2f,1.5f)));

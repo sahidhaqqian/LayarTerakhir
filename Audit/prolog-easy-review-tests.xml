@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-30 09:58:33Z" end-time="2026-10-30 09:58:43Z" duration="9.9710275">
+  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="556" result="Passed" start-time="2026-10-30 09:58:33Z" end-time="2026-10-30 09:58:43Z" duration="9.971028" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1642" name="Assembly-CSharp-Editor.dll" fullname="/root/projects/LayarTerakhir/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="556" result="Passed" start-time="2026-10-30 09:58:33Z" end-time="2026-10-30 09:58:43Z" duration="9.868385" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="668310" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1643" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="556" result="Passed" start-time="2026-10-30 09:58:33Z" end-time="2026-10-30 09:58:43Z" duration="9.855485" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1644" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="556" result="Passed" start-time="2026-10-30 09:58:33Z" end-time="2026-10-30 09:58:43Z" duration="9.845276" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1645" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="556" result="Passed" start-time="2026-10-30 09:58:33Z" end-time="2026-10-30 09:58:43Z" duration="9.833376" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1620" name="PrologEasyPlayTests" fullname="LayarTerakhir.Editor.Tests.PrologEasyPlayTests" classname="LayarTerakhir.Editor.Tests.PrologEasyPlayTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-30 09:58:33Z" end-time="2026-10-30 09:58:43Z" duration="9.791559" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1624" name="PhoneMenuLeftDragAndRelease" fullname="LayarTerakhir.Editor.Tests.PrologEasyPlayTests.PhoneMenuLeftDragAndRelease" methodname="PhoneMenuLeftDragAndRelease" classname="LayarTerakhir.Editor.Tests.PrologEasyPlayTests" runstate="Runnable" seed="2082051456" result="Passed" start-time="2026-10-30 09:57:56Z" end-time="2026-10-30 09:58:07Z" duration="10.888646" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+                <output><![CDATA[KOS_V2_CAPTURE {"name":"14-phone-home-after-left-drag","cameraPosition":{"x":-0.10795043408870697,"y":1.71999990940094,"z":13.660940170288086},"cameraForward":{"x":-0.07500966638326645,"y":-0.016544159501791,"z":-0.9970455765724182},"mean":0.05391639471054077,"contrast":0.09333296865224838,"darkRatio":0.845422089099884}
+]]></output>
+              </test-case>
+              <test-case id="1625" name="UpperHeadersPhotographLampAndChatReview" fullname="LayarTerakhir.Editor.Tests.PrologEasyPlayTests.UpperHeadersPhotographLampAndChatReview" methodname="UpperHeadersPhotographLampAndChatReview" classname="LayarTerakhir.Editor.Tests.PrologEasyPlayTests" runstate="Runnable" seed="1599059832" result="Passed" start-time="2026-10-30 09:58:07Z" end-time="2026-10-30 09:58:26Z" duration="18.999801" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+                <output><![CDATA[KOS_V2_CAPTURE {"name":"18-ground-door-header","cameraPosition":{"x":1.7599999904632569,"y":1.3952796459197999,"z":-4.910533428192139},"cameraForward":{"x":-0.1287921667098999,"y":0.5368916392326355,"z":0.833762526512146},"mean":0.119511179625988,"contrast":0.19751997292041779,"darkRatio":0.6344195008277893}
+KOS_V2_CAPTURE {"name":"23-child-and-bath-headers","cameraPosition":{"x":3.6070303916931154,"y":4.576400279998779,"z":-7.028836250305176},"cameraForward":{"x":-0.256752073764801,"y":0.6059554815292358,"z":0.7529252171516419},"mean":0.15289710462093354,"contrast":0.20920616388320924,"darkRatio":0.5184667706489563}
+KOS_V2_CAPTURE {"name":"23-child-door-upper-seal","cameraPosition":{"x":4.445089340209961,"y":5.348547458648682,"z":-6.0082831382751469},"cameraForward":{"x":-0.051518891006708148,"y":0.4865613281726837,"z":0.8721261024475098},"mean":0.2388608157634735,"contrast":0.2362876981496811,"darkRatio":0.2015451341867447}
+KOS_V2_CAPTURE {"name":"23-bath-door-upper-seal","cameraPosition":{"x":1.143399953842163,"y":5.360877990722656,"z":-6.00678014755249},"cameraForward":{"x":-0.051259271800518039,"y":0.43342289328575137,"z":0.8997316956520081},"mean":0.2423507571220398,"contrast":0.2327595055103302,"darkRatio":0.15858398377895356}
+KOS_V2_CAPTURE {"name":"25-single-family-photograph","cameraPosition":{"x":2.0956122875213625,"y":5.525689601898193,"z":-6.002431869506836},"cameraForward":{"x":-0.07037428021430969,"y":-0.11216360330581665,"z":0.9911946058273315},"mean":0.23421069979667664,"contrast":0.20068973302841187,"darkRatio":0.27898111939430239}
+KOS_V2_CAPTURE {"name":"26-27-ar-photograph-without-labels","cameraPosition":{"x":3.273453712463379,"y":6.225982666015625,"z":-6.178753852844238},"cameraForward":{"x":-0.7986767888069153,"y":-0.4894016981124878,"z":0.3501449227333069},"mean":0.1188867837190628,"contrast":0.18051715195178986,"darkRatio":0.5737717151641846}
+KOS_V2_CAPTURE {"name":"30-desk-lamp-facing-desk","cameraPosition":{"x":5.660000324249268,"y":6.302634239196777,"z":-3.332935333251953},"cameraForward":{"x":-0.11542779952287674,"y":-0.542072594165802,"z":0.8323663473129273},"mean":0.12553541362285615,"contrast":0.19555652141571046,"darkRatio":0.610509991645813}
+KOS_V2_CAPTURE {"name":"28-child-room-live-chat","cameraPosition":{"x":5.660000324249268,"y":6.302634239196777,"z":-3.332935333251953},"cameraForward":{"x":-0.11542779952287674,"y":-0.542072594165802,"z":0.8323663473129273},"mean":0.1341201364994049,"contrast":0.20127767324447633,"darkRatio":0.5988541841506958}
+KOS_V2_CAPTURE {"name":"38-no-floating-block-by-chandelier","cameraPosition":{"x":-2.22483491897583,"y":4.585526943206787,"z":-5.985483169555664},"cameraForward":{"x":-0.7379676103591919,"y":0.6106225848197937,"z":0.28730493783950808},"mean":0.10623526573181153,"contrast":0.17150798439979554,"darkRatio":0.6472265720367432}
+]]></output>
+              </test-case>
+              <test-case id="1627" name="WindowHasNoInstructionsAndStillAcceptsPhotosAndSpace" fullname="LayarTerakhir.Editor.Tests.PrologEasyPlayTests.WindowHasNoInstructionsAndStillAcceptsPhotosAndSpace" methodname="WindowHasNoInstructionsAndStillAcceptsPhotosAndSpace" classname="LayarTerakhir.Editor.Tests.PrologEasyPlayTests" runstate="Runnable" seed="1356747994" result="Passed" start-time="2026-10-30 09:58:26Z" end-time="2026-10-30 09:58:43Z" duration="16.929656" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[KOS_V2_CAPTURE {"name":"45-window-without-face-her-prompt","cameraPosition":{"x":-3.6500000953674318,"y":1.9700000286102296,"z":-10.975000381469727},"cameraForward":{"x":-0.9970546364784241,"y":-0.0766964927315712,"z":-1.6461126506328584e-7},"mean":0.1737956404685974,"contrast":0.22722049057483674,"darkRatio":0.4589257836341858}
+KOS_V2_CAPTURE {"name":"45-window-without-escape-key-prompt","cameraPosition":{"x":-3.6500000953674318,"y":1.9700000286102296,"z":-10.975000381469727},"cameraForward":{"x":-0.9970546364784241,"y":-0.0766964927315712,"z":-1.6437843441963197e-7},"mean":0.191002756357193,"contrast":0.23617269098758698,"darkRatio":0.47299912571907046}
+Saving results to: /root/.config/unity3d/DefaultCompany/LayarTerakhir/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

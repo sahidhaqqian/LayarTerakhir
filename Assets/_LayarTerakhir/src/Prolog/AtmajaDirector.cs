@@ -34,7 +34,7 @@ namespace LayarTerakhir.Prolog
         public int CheckpointRestores {get;private set;}
         public bool TreeCleared=>Has("EVENT_P0_TREE_CROUCHED");
         public bool HasSurvey=>Has(SurveyId);
-        public bool CanBeginLive=>Has("EVENT_P0_FRONT_DOOR_TRIED")||HasSurvey;
+        public bool CanBeginLive=>!Busy&&Stage<AtmajaStage.Chase;
         public bool LiveConnected=>Has("EVENT_P0_LIVE_STARTED");
         public int Viewers
         {
@@ -174,7 +174,7 @@ namespace LayarTerakhir.Prolog
                 case AtmajaAction.CarpetLift:case AtmajaAction.Trapdoor:if(upper)upper.HandleMaster(item);break;
                 case AtmajaAction.Powerbank:case AtmajaAction.Handycam:case AtmajaAction.WardrobeHide:if(basement)basement.Handle(item);break;
                 case AtmajaAction.Charge:if(Phone.batteryPercent<35)StartCoroutine(Charge());break;
-                case AtmajaAction.Window:Hud.ShowBroadcastNotification($"[{GameInputConfig.Instance.vaultKey}] Panjat jendela dapur\n"+(TreeCleared?"Dekati jendela dan hadap ke dalam.":"Mulai live dan cari jalan melewati kamboja."),4);break;
+                case AtmajaAction.Window:break;
             }
         }
         public bool StartLive()

@@ -2,6 +2,8 @@
 
 Daftar dari pesan desainer pada 30 Oktober 2026. Nomor 1–47 dipertahankan. Foto asli diunduh dari `r2:layarterakhir/Layarterakhir/bug/` dan tersedia di [folder foto](Audit/Visuals/Prolog-PlayerBugs-2026-10-30/README.md).
 
+Status batch ringan 30 Oktober 2026: **20 PASS sementara (Linux Editor), 1 FAIL, 26 UNVERIFIED**. Bukti dan rincian per nomor ada di [laporan audit](Audit/PROLOG_EASY_2026-10-30.md). Windows belum diverifikasi; sisa 27 issue masih terbuka.
+
 ## Bug 1
 
 di kamar raka kipasnya kebalik malah hadap tembok

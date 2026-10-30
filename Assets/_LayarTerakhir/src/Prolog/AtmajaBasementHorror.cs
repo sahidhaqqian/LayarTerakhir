@@ -89,7 +89,7 @@ namespace LayarTerakhir.Prolog
             if(nyonya){var pose=nyonya.GetComponent<AtmajaThreatPresentation>();if(pose)pose.ExternalStun=false;}
             bool entered = Has("EVENT_P0_BASEMENT_ENTERED"), chased = Has("EVENT_P0_CHASE_STARTED");
             hiddenIn = hiddenAnchor = null; lockerCheckRunning = lockerCleared = false;
-            if (Hud) Hud.SetThreatBar(null);
+            if (Hud) Hud.SetPrologThreatMeter(null);
             mind = !entered ? Mind.Dormant : chased ? Mind.Done : Mind.Patrol;
             waypointIndex = 0; detect = 0; waypointPause = 1.4f; connections = null;
             if (nyonya) nyonya.SetActive(entered && !chased);
@@ -192,7 +192,7 @@ namespace LayarTerakhir.Prolog
             if (wardrobeCol1) wardrobeCol1.enabled = true; if (wardrobeCol2) wardrobeCol2.enabled = true;
             hiddenIn = hiddenAnchor = null; director.player.MovementLocked = false;
             lockerCheckRunning = false; hiddenWasSeen = false;
-            if (Hud) Hud.SetThreatBar(null);
+            if (Hud) Hud.SetPrologThreatMeter(null);
             // The interactor also sees this E press. Do not immediately enter again
             // when its Update runs after the wardrobe's exit handler.
             nextHideTime = Time.time + .75f;
@@ -370,7 +370,7 @@ namespace LayarTerakhir.Prolog
             }
             // Threat bar: full red while she inspects, draining as she leaves,
             // gone when quiet. HUD-owned so it works with the screen off.
-            Hud.SetThreatBar(lockerCheckRunning ? 1f : HidingAwareness.ProximityFill(false, distance, 2.5f, 10f));
+            Hud.SetPrologThreatMeter(lockerCheckRunning ? 1f : HidingAwareness.ProximityFill(false, distance, 2.5f, 10f));
             if (lockerCheckRunning)
             {
                 inspectElapsed += dt; Vector3 toward = hiddenAnchor.position - nyonya.transform.position; toward.y = 0;

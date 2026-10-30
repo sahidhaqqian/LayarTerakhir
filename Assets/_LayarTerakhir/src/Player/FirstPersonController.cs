@@ -2,6 +2,9 @@ using LayarTerakhir.Core;
 using LayarTerakhir.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 namespace LayarTerakhir.Player
 {
@@ -59,6 +62,9 @@ namespace LayarTerakhir.Player
         private readonly Collider[] _headroomHits = new Collider[24];
         private int ignoreLookThroughFrame;
         public static bool PhoneLookHeld => UiFocus.ApplicationFocused && UiFocus.Phone && UiFocus.PhoneAiming;
+        private bool phoneDragCandidate, phoneDragLooking;
+        private Vector2 phoneDragStart;
+        private readonly List<RaycastResult> phonePointerHits = new List<RaycastResult>();
 
         private void Awake()
         {
@@ -92,16 +98,38 @@ namespace LayarTerakhir.Player
             bool modalOpen = HudController.Instance != null && HudController.Instance.IsModalOpen;
             if (modalOpen || MovementLocked || UiFocus.BlocksMovement)
             {
+                phoneDragCandidate=phoneDragLooking=false;
                 _horizontalVelocity = Vector3.zero;
                 ApplyGravityOnly();
                 return;
             }
 
-            if (!UiFocus.Phone || PhoneLookHeld) HandleMouseLook();
+            UpdatePhoneDrag();
+            if (!UiFocus.Phone || PhoneLookHeld || phoneDragLooking) HandleMouseLook();
             HandleMovementAndPosture();
         }
 
-        private void OnDisable() { _horizontalVelocity = Vector3.zero; }
+        private void OnDisable() { _horizontalVelocity = Vector3.zero; phoneDragCandidate=phoneDragLooking=false; }
+
+        private void UpdatePhoneDrag()
+        {
+            var mouse=Mouse.current;
+            if(!UiFocus.Phone||PhoneLookHeld||mouse==null||!mouse.leftButton.isPressed)
+            {phoneDragCandidate=phoneDragLooking=false;return;}
+            if(mouse.leftButton.wasPressedThisFrame)
+            {
+                phoneDragStart=mouse.position.ReadValue();phoneDragCandidate=true;
+                // A press begun on an app button/scrollbar belongs to that control.
+                if(EventSystem.current)
+                {
+                    phonePointerHits.Clear();
+                    EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current){position=phoneDragStart},phonePointerHits);
+                    foreach(var hit in phonePointerHits)if(hit.gameObject.GetComponentInParent<Selectable>()||hit.gameObject.GetComponentInParent<ScrollRect>())
+                    {phoneDragCandidate=false;break;}
+                }
+            }
+            if(phoneDragCandidate&&(mouse.position.ReadValue()-phoneDragStart).sqrMagnitude>=36)phoneDragLooking=true;
+        }
 
         // The capsule retains movement ownership; visual animation never supplies root motion.
         public static Vector3 StepPlanarVelocity(Vector3 current, Vector3 target, float dt,
@@ -118,6 +146,7 @@ namespace LayarTerakhir.Player
         private void OnApplicationFocus(bool focused)
         {
             UiFocus.ApplicationFocused=focused;
+            phoneDragCandidate=phoneDragLooking=false;
             _horizontalVelocity=Vector3.zero;
             // Discard the window-system pointer delta from focus/cursor recapture.
             ignoreLookThroughFrame=Time.frameCount+1;

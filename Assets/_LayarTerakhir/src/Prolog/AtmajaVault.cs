@@ -18,8 +18,6 @@ namespace LayarTerakhir.Prolog
             bool close=Vector3.Distance(player.transform.position,director.vaultOutside.position)<1.5f;
             bool aiming=Vector3.Dot(eye.transform.forward,(target-eye.transform.position).normalized)>.6f;
             if(!close||!aiming)return;
-            var key=GameInputConfig.Instance.GetKeyForAction(GameAction.Vault);
-            HudController.Instance.SetInteractionPrompt($"[{key.ToString().ToUpperInvariant()}] Panjat jendela dapur");
             if(GameInputConfig.Instance.GetActionDown(GameAction.Vault)&&director.CanVault())director.StartCoroutine(director.Vault());
         }
     }

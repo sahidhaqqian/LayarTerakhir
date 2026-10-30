@@ -12,18 +12,19 @@ namespace LayarTerakhir.Prolog
     {
         public AtmajaUpperDirector upper;
         public string completedFlag;
+        public bool arOnly=true,whiteGlint,showWisp=true;
         private MeshRenderer glow;
         private MeshRenderer wisp;
         private Material material;
         private Material wispMaterial;
         private Mesh mesh;
         private Mesh wispMesh;
-        public static void Attach(Transform anchor,AtmajaUpperDirector upper,string flag)
+        public static void Attach(Transform anchor,AtmajaUpperDirector upper,string flag,bool arOnly=true,bool white=false,bool smoke=true)
         {
             if(!anchor||anchor.GetComponentInChildren<ARPhotoGlimmer>(true))return;
             var go=new GameObject("ARPhotoGlimmer",typeof(MeshFilter),typeof(MeshRenderer));
-            go.transform.SetParent(anchor,false);go.layer=AtmajaPhoneView.ARLayer;
-            var glimmer=go.AddComponent<ARPhotoGlimmer>();glimmer.upper=upper;glimmer.completedFlag=flag;
+            go.transform.SetParent(anchor,false);go.layer=arOnly?AtmajaPhoneView.ARLayer:0;
+            var glimmer=go.AddComponent<ARPhotoGlimmer>();glimmer.upper=upper;glimmer.completedFlag=flag;glimmer.arOnly=arOnly;glimmer.whiteGlint=white;glimmer.showWisp=smoke;
         }
         private void Start()
         {
@@ -48,14 +49,15 @@ namespace LayarTerakhir.Prolog
         private void LateUpdate()
         {
             if(!glow||!upper){return;}var phone=SmartphoneController.Instance;var campaign=CampaignState.Instance;
-            bool show=phone&&phone.isPhoneRaised&&phone.isScreenOn&&phone.currentScanMode==ScanVisualMode.AR&&campaign&&!campaign.HasInventoryItem(completedFlag);
-            glow.enabled=show;if(wisp)wisp.enabled=show;if(!show)return;
+            bool show=campaign&&!campaign.HasInventoryItem(completedFlag)&&(!arOnly||phone&&phone.isPhoneRaised&&phone.isScreenOn&&phone.currentScanMode==ScanVisualMode.AR);
+            if(!arOnly)show&=upper.director.Stage<AtmajaStage.Chase&&Vector3.Distance(transform.position,upper.director.player.transform.position)<5;
+            glow.enabled=show;if(wisp)wisp.enabled=show&&showWisp;if(!show)return;
             var camera=upper.director.phoneView.FeedCamera;if(camera)transform.rotation=camera.transform.rotation;
             float t=Time.time;
             // Subtle 2 Hz blink so the mark reads as supernatural, not static UI.
             float blink=(Mathf.Sin(t*Mathf.PI*2*2f)>0)?1f:.25f;
             float pulse=Mathf.Pow(Mathf.Max(0,Mathf.Sin(t*3.1f)),8);
-            transform.localScale=Vector3.one*(.26f+pulse*.74f);material.SetColor("_BaseColor",new Color(.19f,.4f,.29f)*(1+pulse*3)*blink);
+            transform.localScale=Vector3.one*(whiteGlint?.24f+pulse*.16f:.26f+pulse*.74f);material.SetColor("_BaseColor",(whiteGlint?Color.white:new Color(.19f,.4f,.29f))*(1+pulse*3)*blink);
             // Dark smoke: slow rise, sideways drift and breathing opacity.
             if(wisp)
             {

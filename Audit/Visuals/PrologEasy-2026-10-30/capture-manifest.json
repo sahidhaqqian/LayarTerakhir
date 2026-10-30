@@ -1,0 +1,236 @@
+{
+  "utc": "2026-10-30T09:58:42.5351620Z",
+  "platform": "LinuxEditor",
+  "gpu": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "windowsConfirmed": false,
+  "posedGameplayCamera": true,
+  "width": 1280,
+  "height": 720,
+  "captures": [
+    {
+      "path": "01-fan-facing-room.png",
+      "bytes": 946603,
+      "sha256": "ac7a45af20b8680f7762f5cdf17a8a9e69f7a06e91056537c0b0026c98846903",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "02-call-hand-reference.png",
+      "bytes": 1029709,
+      "sha256": "e0b7fbf79de16ec56a07df54c1c33341eebf9a91ea56f5a9709a1d0b48ab045a",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "02-messages-immediately-after-call.png",
+      "bytes": 1083732,
+      "sha256": "42b5dcc4d2c56e6a2c0e955b7f3dc1a03ebc062da1ab3eb9f694f59659f35564",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "05-no-floor-two-label.png",
+      "bytes": 1057345,
+      "sha256": "5f33810bfe448d15eba6c6e9664de5dd93c2e73aad145affc5fa862c621a008c",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "06-no-ground-label.png",
+      "bytes": 955446,
+      "sha256": "e5b2f1c521cb152ba4a17be22a4e7b6da62ed89e7169a6c3fe858366d3aa99c0",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "08-bathroom-symbol-follows-door.png",
+      "bytes": 959164,
+      "sha256": "b217c4f40c4856e548da4329fe268663093ea106acecb7e3aafdc04b0a917b2b",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "08-bathroom-symbols-closed.png",
+      "bytes": 964859,
+      "sha256": "03cb2288e50604d67fdf9b8270c96c33961861c25fe9b2174182e6efd050f918",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "08-male-bathroom-symbol.png",
+      "bytes": 964715,
+      "sha256": "ce0caf4b4cf365b11ae382af4070d415c7d205bd47bceea6f74e26acc678aa36",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "12-yard-street-seam.png",
+      "bytes": 953737,
+      "sha256": "ba830e0af958614b95e0cd1978e8aa476549b1525e661d63e34ece22f9db636e",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "14-phone-home-after-left-drag.png",
+      "bytes": 744402,
+      "sha256": "e6d287eb7249d8af831cc91ceec1df429812b72de0b7715aa2d9738e08441438",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "15-live-before-front-door.png",
+      "bytes": 849124,
+      "sha256": "ad98d8b20dbf3dc0cc1c2c8736ece189db47a9ba97e53c15ad67c065447f742b",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "16-window-glint-without-key-prompt.png",
+      "bytes": 1013534,
+      "sha256": "c308ce94425ed76dae63fc8cc55bd9464e0173adc55395382c1143c4d49b16b4",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "18-ground-door-header.png",
+      "bytes": 961236,
+      "sha256": "1b80a860c5e45da3753f0764820a821f1c9bacbc2a928a276318e2112e0dd7f8",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "19-home-clears-ar.png",
+      "bytes": 804500,
+      "sha256": "617cd443f39b4f8caf8fac5ffd33a6354cdb0d0c73c8addf32c72543284d5c0a",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "19-map-clears-ar.png",
+      "bytes": 830703,
+      "sha256": "e25fa31c55d9248f7fa1c9a13727cc14cbad1910584040dbc2f8988a88b6703a",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "23-bath-door-upper-seal.png",
+      "bytes": 1236691,
+      "sha256": "7cf5703bc28e061e879b2b1c18d7957220392a72215f4e2bcefbe62803320e46",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "23-child-and-bath-headers.png",
+      "bytes": 1078650,
+      "sha256": "247ed6cb3e7c5cbf617e068f34be6bfd4f69cc815163bb0e98b109ad64cb77e2",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "23-child-door-upper-seal.png",
+      "bytes": 1243315,
+      "sha256": "6090a6e159a0e20985c413af2f636ff81276bce5d7b8d1aedc41dddca57c98ef",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "25-single-family-photograph.png",
+      "bytes": 1225689,
+      "sha256": "074dd21fa4d7ff75b0d534c7ae34a98c993c97cafb40c028e17d977e597c1496",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "26-27-ar-photograph-without-labels.png",
+      "bytes": 858894,
+      "sha256": "d26d1843f0801b919b3dd895043fcbc8b726ebcbe7989875c3f4a62b0313fb9d",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "28-child-room-live-chat.png",
+      "bytes": 1104681,
+      "sha256": "10bee4b4c793a3f8deb8cedd5b1d5ffe3dea8d62241d2da5889792b4e86a6e47",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "30-desk-lamp-facing-desk.png",
+      "bytes": 1099319,
+      "sha256": "46f483f64daeaf69925c3cd3608c8a3fb6dda276a7892c08a90980f1fe68a19b",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "38-no-floating-block-by-chandelier.png",
+      "bytes": 942210,
+      "sha256": "ea3eddcdfed02afb48da1c605eda49529c06a9635deec4e23c409b7cd207cf89",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "40-medium-green-yellow.png",
+      "bytes": 54324,
+      "sha256": "12d5c7e761a641e6f252cb8220bb2ceccd59f7d29c4259c8b2affb782747414e",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "40-near-all-colors.png",
+      "bytes": 60262,
+      "sha256": "dc350a2b04a94029dec2f067dfa038e725c4b8b1d308a3fe6589ee60b40b26de",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "40-safe-green.png",
+      "bytes": 51219,
+      "sha256": "2fc6c05efc9fa60cc6c84c2e9d2364a10d01faf1b8bd905664f10ce19f7114f6",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "45-window-without-escape-key-prompt.png",
+      "bytes": 1211519,
+      "sha256": "4519ea30a99ecebeeeb532aaa6990c2ecad85e43c6c2032d46def6816907d277",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "45-window-without-face-her-prompt.png",
+      "bytes": 1199433,
+      "sha256": "c97a22254ab05c01f0ab28ebbecddefd05de38db635108f8d96b586f942564aa",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "Regression/01-phone-aim-from-pocket.png",
+      "bytes": 834226,
+      "sha256": "ee1e10c3fa4aae1a5ad6faa742ed856d6a148e2bcc3336e97c78778b47ac9657",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "Regression/02-phone-menu-after-release.png",
+      "bytes": 826611,
+      "sha256": "a1228c1c937d0ba586613996eb761f607acf6040a68dd08b9437f9ded06d931b",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "Regression/03-phone-after-focus-restored.png",
+      "bytes": 798075,
+      "sha256": "0e8654d8205c43a6b5009be03b7746a1296882285358fe68f4431c8f6155c457",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "Regression/04-phone-call-contact.png",
+      "bytes": 810733,
+      "sha256": "c7cf12de77646a9b2efabc732f1fda6ee1e5babc47bf78f992d87189c06794f7",
+      "width": 1280,
+      "height": 720
+    }
+  ],
+  "review": "Inspected actual frames; scope acceptance only, existing first-person hand artifacts remain open as bug13"
+}

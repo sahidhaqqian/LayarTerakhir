@@ -13,6 +13,7 @@ namespace LayarTerakhir.Prolog
         public string InteractableId=>"ATMAJA_"+action;
         public string GetInteractionPrompt()
         {
+            if(action==AtmajaAction.Window)return string.Empty;
             var campaign=LayarTerakhir.Core.CampaignState.Instance;
             if(action==AtmajaAction.Powerbank&&campaign&&campaign.HasInventoryItem("EVENT_P0_POWERBANK_TAKEN"))return "Sambungkan kembali powerbank Damar";
             if(action==AtmajaAction.Handycam&&campaign&&campaign.HasInventoryItem(AtmajaBasementHorror.HandycamId))return "Putar rekaman terakhir Damar";
