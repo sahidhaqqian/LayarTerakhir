@@ -21,23 +21,36 @@ namespace LayarTerakhir.Prolog
         private Mesh wispMesh;
         public static void Attach(Transform anchor,AtmajaUpperDirector upper,string flag,bool arOnly=true,bool white=false,bool smoke=true)
         {
-            if(!anchor||anchor.GetComponentInChildren<ARPhotoGlimmer>(true))return;
+            if(!anchor)return;
+            var existing=anchor.GetComponentInChildren<ARPhotoGlimmer>(true);
+            if(existing)
+            {
+                existing.upper=upper;existing.completedFlag=flag;existing.arOnly=arOnly;existing.whiteGlint=white;existing.showWisp=smoke;
+                existing.gameObject.layer=arOnly?AtmajaPhoneView.ARLayer:0;
+                existing.EnsureBuilt();
+                return;
+            }
             var go=new GameObject("ARPhotoGlimmer",typeof(MeshFilter),typeof(MeshRenderer));
             go.transform.SetParent(anchor,false);go.layer=arOnly?AtmajaPhoneView.ARLayer:0;
             var glimmer=go.AddComponent<ARPhotoGlimmer>();glimmer.upper=upper;glimmer.completedFlag=flag;glimmer.arOnly=arOnly;glimmer.whiteGlint=white;glimmer.showWisp=smoke;
         }
-        private void Start()
+        private void Start()=>EnsureBuilt();
+        public void EnsureBuilt()
         {
+            if(glow&&material&&mesh)return;
+            var mf=GetComponent<MeshFilter>();if(!mf)mf=gameObject.AddComponent<MeshFilter>();
+            glow=GetComponent<MeshRenderer>();if(!glow)glow=gameObject.AddComponent<MeshRenderer>();
             mesh=new Mesh{name="AR glint"};mesh.vertices=new[]{new Vector3(0,.055f,0),new Vector3(.017f,0,0),new Vector3(0,-.055f,0),new Vector3(-.017f,0,0),new Vector3(-.04f,0,0),new Vector3(0,.009f,0),new Vector3(.04f,0,0),new Vector3(0,-.009f,0)};
             mesh.triangles=new[]{0,1,2,0,2,3,4,5,6,4,6,7};mesh.RecalculateBounds();
-            GetComponent<MeshFilter>().sharedMesh=mesh;glow=GetComponent<MeshRenderer>();
+            mf.sharedMesh=mesh;
             material=new Material(Shader.Find("Universal Render Pipeline/Unlit"));material.SetFloat("_Cull",0);glow.sharedMaterial=material;
             glow.shadowCastingMode=ShadowCastingMode.Off;glow.receiveShadows=false;
             // Dark smoke wisp: a soft quad behind the glint, same layer, unlit.
             wispMesh=new Mesh{name="AR wisp"};wispMesh.vertices=new[]{new Vector3(-.05f,.09f,0),new Vector3(.05f,.09f,0),new Vector3(.05f,-.09f,0),new Vector3(-.05f,-.09f,0)};
             wispMesh.triangles=new[]{0,1,2,0,2,3};wispMesh.RecalculateNormals();wispMesh.RecalculateBounds();
-            var wispGo=new GameObject("ARPhotoWisp",typeof(MeshFilter),typeof(MeshRenderer));
-            wispGo.transform.SetParent(transform,false);wispGo.transform.localPosition=Vector3.zero;wispGo.layer=AtmajaPhoneView.ARLayer;
+            var existingWisp=transform.Find("ARPhotoWisp");
+            var wispGo=existingWisp?existingWisp.gameObject:new GameObject("ARPhotoWisp",typeof(MeshFilter),typeof(MeshRenderer));
+            wispGo.transform.SetParent(transform,false);wispGo.transform.localPosition=Vector3.zero;wispGo.layer=arOnly?AtmajaPhoneView.ARLayer:0;
             wispGo.GetComponent<MeshFilter>().sharedMesh=wispMesh;wisp=wispGo.GetComponent<MeshRenderer>();
             // Sprites/Default is an always-included unlit alpha-blended shader,
             // so the smoke body blends reliably without URP keyword setup.
@@ -48,16 +61,23 @@ namespace LayarTerakhir.Prolog
         }
         private void LateUpdate()
         {
+            if(!glow)EnsureBuilt();
             if(!glow||!upper){return;}var phone=SmartphoneController.Instance;var campaign=CampaignState.Instance;
             bool show=campaign&&!campaign.HasInventoryItem(completedFlag)&&(!arOnly||phone&&phone.isPhoneRaised&&phone.isScreenOn&&phone.currentScanMode==ScanVisualMode.AR);
-            if(!arOnly)show&=upper.director.Stage<AtmajaStage.Chase&&Vector3.Distance(transform.position,upper.director.player.transform.position)<5;
+            if(!arOnly)show&=upper.director.Stage<AtmajaStage.Chase&&Vector3.Distance(transform.position,upper.director.player.transform.position)<9.5f;
             glow.enabled=show;if(wisp)wisp.enabled=show&&showWisp;if(!show)return;
-            var camera=upper.director.phoneView.FeedCamera;if(camera)transform.rotation=camera.transform.rotation;
+            var camera=(arOnly||phone&&phone.isPhoneRaised)?upper.director.phoneView.FeedCamera:null;
+            if(!camera&&upper.director.phoneView)camera=upper.director.phoneView.playerCamera;
+            if(!camera)camera=Camera.main;
+            if(camera)transform.rotation=camera.transform.rotation;
             float t=Time.time;
             // Subtle 2 Hz blink so the mark reads as supernatural, not static UI.
-            float blink=(Mathf.Sin(t*Mathf.PI*2*2f)>0)?1f:.25f;
-            float pulse=Mathf.Pow(Mathf.Max(0,Mathf.Sin(t*3.1f)),8);
-            transform.localScale=Vector3.one*(whiteGlint?.24f+pulse*.16f:.26f+pulse*.74f);material.SetColor("_BaseColor",(whiteGlint?Color.white:new Color(.19f,.4f,.29f))*(1+pulse*3)*blink);
+            float blink=(Mathf.Sin(t*Mathf.PI*2*2f)>0)?1f:.32f;
+            float pulse=Mathf.Pow(Mathf.Max(0,Mathf.Sin(t*3.1f)),6);
+            float baseScale=!arOnly&&whiteGlint?.46f:whiteGlint?.30f:.26f;
+            float pulseScale=!arOnly&&whiteGlint?.26f:whiteGlint?.20f:.74f;
+            transform.localScale=Vector3.one*(baseScale+pulse*pulseScale);
+            material.SetColor("_BaseColor",(whiteGlint?Color.white:new Color(.19f,.4f,.29f))*(1+pulse*3)*blink);
             // Dark smoke: slow rise, sideways drift and breathing opacity.
             if(wisp)
             {

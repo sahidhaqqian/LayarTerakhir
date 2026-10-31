@@ -118,6 +118,7 @@ namespace LayarTerakhir.Player
         [SerializeField,HideInInspector]private Vector3 screenOffsetInHand,headCentreInBone;
         [SerializeField,HideInInspector]private float headHalfWidth,callSide;
         private float callBlend;
+        private float browseBlend;
 
         // Derive contact frames from the actual skinned handset/head. Moving the
         // wrist to an assumed ear point ignores the grip offset and twists it.
@@ -197,21 +198,41 @@ namespace LayarTerakhir.Player
         private void ApplyCallPose()
         {
             if(phoneDesktop==null)phoneDesktop=Object.FindFirstObjectByType<PhoneDesktop>();
-            bool calling=phoneDesktop&&phoneDesktop.CallActive&&current!=null&&current.StartsWith("Phone");
+            bool inPhoneState=current!=null&&current.StartsWith("Phone");
+            bool calling=phoneDesktop&&phoneDesktop.IsCalling&&inPhoneState;
             callBlend=Mathf.MoveTowards(callBlend,calling?1:0,Time.deltaTime/.24f);
-            if(callBlend<=0)return;
+            bool portraitBrowse=inPhoneState&&!calling&&!UiFocus.PhoneAiming&&(phoneDesktop==null||phoneDesktop.CurrentApp!=PhoneApp.Camera||UiFocus.Phone);
+            browseBlend=Mathf.MoveTowards(browseBlend,portraitBrowse?1:0,Time.deltaTime/.22f);
+            if(callBlend<=0&&browseBlend<=0)return;
             if(!armBonesCached)PrepareFootContacts();
             if(!upperArmR||!forearmR||!handR||!headBone||!callContactCached)return;
-            Quaternion headFrame=headBone.rotation*headFrameInBone;
-            Vector3 right=headFrame*Vector3.right,up=headFrame*Vector3.up;
             float scale=Mathf.Abs(transform.lossyScale.x);
-            Vector3 ear=headBone.TransformPoint(headCentreInBone)+right*callSide*(headHalfWidth*scale+.004f);
-            Quaternion handRotation=Quaternion.LookRotation(-right*callSide,up)*Quaternion.Inverse(phoneFrameInHand);
-            Vector3 wrist=ear-handRotation*(screenOffsetInHand*scale);
-            Vector3 pole=upperArmR.position-up*.35f+(headFrame*Vector3.forward)*.15f+right*callSide*.1f;
-            var rotation=Quaternion.Slerp(handR.rotation,handRotation,callBlend);
-            MotorcycleRiderAlignment.Solve(upperArmR,forearmR,handR,Vector3.Lerp(handR.position,wrist,callBlend),pole);
-            handR.rotation=rotation;
+            if(browseBlend>0)
+            {
+                Quaternion bodyFrame=transform.rotation;
+                Vector3 bRight=bodyFrame*Vector3.right,bUp=bodyFrame*Vector3.up,bFwd=bodyFrame*Vector3.forward;
+                Vector3 screenTarget=upperArmR.position-bUp*(.21f*scale)+bFwd*(.26f*scale)-bRight*callSide*(.055f*scale);
+                Vector3 screenNormal=(-bFwd*.76f+bUp*.65f).normalized;
+                Vector3 phoneUp=(bUp*.76f+bFwd*.65f).normalized;
+                Quaternion browseHandRot=Quaternion.LookRotation(screenNormal,phoneUp)*Quaternion.Inverse(phoneFrameInHand);
+                Vector3 browseWrist=screenTarget-browseHandRot*(screenOffsetInHand*scale);
+                Vector3 browsePole=upperArmR.position-bUp*(.36f*scale)-bFwd*(.06f*scale)+bRight*callSide*(.07f*scale);
+                var bRot=Quaternion.Slerp(handR.rotation,browseHandRot,browseBlend);
+                MotorcycleRiderAlignment.Solve(upperArmR,forearmR,handR,Vector3.Lerp(handR.position,browseWrist,browseBlend),browsePole);
+                handR.rotation=bRot;
+            }
+            if(callBlend>0)
+            {
+                Quaternion headFrame=headBone.rotation*headFrameInBone;
+                Vector3 right=headFrame*Vector3.right,up=headFrame*Vector3.up;
+                Vector3 ear=headBone.TransformPoint(headCentreInBone)+right*callSide*(headHalfWidth*scale+.004f);
+                Quaternion handRotation=Quaternion.LookRotation(-right*callSide,up)*Quaternion.Inverse(phoneFrameInHand);
+                Vector3 wrist=ear-handRotation*(screenOffsetInHand*scale);
+                Vector3 pole=upperArmR.position-up*.35f+(headFrame*Vector3.forward)*.15f+right*callSide*.1f;
+                var rotation=Quaternion.Slerp(handR.rotation,handRotation,callBlend);
+                MotorcycleRiderAlignment.Solve(upperArmR,forearmR,handR,Vector3.Lerp(handR.position,wrist,callBlend),pole);
+                handR.rotation=rotation;
+            }
         }
 
         public void Present(float speed, bool crouching, bool phone, bool riding, Vector2 direction = default, bool lowCrouch = false)

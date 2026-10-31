@@ -44,18 +44,6 @@ namespace LayarTerakhir.Interlude
                 cloth.GetComponent<Renderer>().sharedMaterial = mat;
                 DropCollider(cloth);
             }
-            var sandalMat = new Material(Shader.Find("Universal Render Pipeline/Lit")) { color = new Color(.12f, .10f, .09f) };
-            foreach (var spot in new[] { new Vector3(-1.0f, .03f, 2.1f), new Vector3(1.0f, .03f, 8.0f), new Vector3(-1.0f, .03f, 10.9f) })
-                for (int s = -1; s <= 1; s += 2)
-                {
-                    var sandal = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    sandal.name = "InterludeSandals";
-                    sandal.transform.SetParent(root, false);
-                    sandal.transform.localPosition = spot + new Vector3(s * .09f, 0, 0);
-                    sandal.transform.localScale = new Vector3(.11f, .05f, .28f);
-                    sandal.GetComponent<Renderer>().sharedMaterial = sandalMat;
-                    DropCollider(sandal);
-                }
             var galon = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             galon.name = "InterludeGalon";
             galon.transform.SetParent(root, false);
@@ -73,8 +61,23 @@ namespace LayarTerakhir.Interlude
             DropCollider(broom);
         }
 
+        private static void SuppressNightRain()
+        {
+            foreach (var ps in Object.FindObjectsByType<ParticleSystem>(FindObjectsSortMode.None))
+                if (ps.name.IndexOf("Rain", System.StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                    var r = ps.GetComponent<ParticleSystemRenderer>();
+                    if (r) r.enabled = false;
+                }
+            foreach (var src in Object.FindObjectsByType<AudioSource>(FindObjectsSortMode.None))
+                if (src.name.IndexOf("Rain", System.StringComparison.OrdinalIgnoreCase) >= 0 || (src.clip && src.clip.name.IndexOf("Rain", System.StringComparison.OrdinalIgnoreCase) >= 0))
+                    src.Stop();
+        }
+
         public static void ApplyDay(Camera eye)
         {
+            SuppressNightRain();
             SetSky(eye,"PrologDaySky");
             SetExposure(.45f);
             foreach (var light in Object.FindObjectsByType<Light>(FindObjectsSortMode.None))
@@ -100,6 +103,7 @@ namespace LayarTerakhir.Interlude
 
         public static void ApplyDusk(Camera eye)
         {
+            SuppressNightRain();
             SetSky(eye,"PrologDuskSky");
             SetExposure(.45f);
             foreach (var light in Object.FindObjectsByType<Light>(FindObjectsSortMode.None))

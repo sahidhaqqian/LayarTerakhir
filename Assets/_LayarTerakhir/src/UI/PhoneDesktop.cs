@@ -15,7 +15,7 @@ namespace LayarTerakhir.UI
         public bool TravelSelection {get;private set;}
         public bool CallActive {get;private set;}
         private AtmajaPhoneView view;private GameObject root,page,banner;private bool lastAR;
-        private float callStarted,bannerUntil;private Text callTimer;private string latestMessage;
+        private float callStarted,bannerUntil;private Text callTimer,homeClock,homeDate;private string latestMessage;
         public string DialedContact {get;private set;}
         public static readonly string[] Contacts={"Damar", "Ibu", "Bu Haji Ratna"};
         private static readonly string[] ContactNumbers={"08•• •••• 2140", "08•• •••• 5729", "08•• •••• 0800"};
@@ -28,6 +28,11 @@ namespace LayarTerakhir.UI
         private void Update()
         {
             if(banner&&Time.unscaledTime>bannerUntil){Destroy(banner);banner=null;}
+            if(CurrentApp==PhoneApp.Home&&view)
+            {
+                if(homeClock&&homeClock.text!=view.ClockText)homeClock.text=view.ClockText;
+                if(homeDate&&homeDate.text!=view.DateText)homeDate.text=view.DateText;
+            }
             if(callTimer&&IsCalling){int seconds=Mathf.FloorToInt(Time.time-callStarted);callTimer.text=dialing&&!outgoingConnected?"Memanggil…":$"{seconds/60:00}:{seconds%60:00}  •  Tersambung";}
             if(!UiFocus.ApplicationFocused||GameInputConfig.SystemShortcutHeld||!Phone||!Phone.hasSmartphoneInInventory||!root||UiFocus.Cinematic||UiFocus.HardModal||HudController.Instance.IsModalOpen||Phone.CameraLocked)return;
             if(Keyboard.current!=null)
@@ -56,8 +61,8 @@ namespace LayarTerakhir.UI
         }
         private void Home()
         {
-            UiWidgets.Text("Clock",page.transform,view.ClockText,new Vector2(.08f,.77f),new Vector2(.92f,.94f),82,TextAnchor.MiddleCenter);
-            UiWidgets.Text("Date",page.transform,view.DateText,new Vector2(.08f,.72f),new Vector2(.92f,.78f),20,TextAnchor.MiddleCenter);
+            homeClock=UiWidgets.Text("Clock",page.transform,view.ClockText,new Vector2(.08f,.77f),new Vector2(.92f,.94f),82,TextAnchor.MiddleCenter);
+            homeDate=UiWidgets.Text("Date",page.transform,view.DateText,new Vector2(.08f,.72f),new Vector2(.92f,.78f),20,TextAnchor.MiddleCenter);
             var widget=PhoneSkin.Card("ChannelWidget",page.transform,new Vector2(.07f,.59f),new Vector2(.93f,.70f),new Color(.10f,.18f,.24f));
             UiWidgets.Text("ChannelWidgetText",widget.transform,"MALAM KERAMAT\n"+(Phone.isBroadcastConnected?"Siaran langsung berlangsung":"Kanal offline  •  32 penonton terakhir"),new Vector2(.07f,.06f),new Vector2(.93f,.94f),21);
             string[] labels={"Kamera","Peta","Pesan","Jurnal","Tas","Bank","Setelan","Telepon","MataBatin"};string[] glyphs={"Camera","Map","Messages","Journal","Inventory","Bank","Settings","Call","MataBatin"};
@@ -168,15 +173,17 @@ namespace LayarTerakhir.UI
         }
         private void ShowNotification()
         {
-            if(banner)Destroy(banner);bannerUntil=Time.unscaledTime+6;banner=PhoneSkin.Card("PhoneNotification",view.Panel.transform,new Vector2(.055f,.765f),new Vector2(.945f,.915f),new Color(.13f,.20f,.27f,.99f));
-            var button=banner.AddComponent<Button>();button.targetGraphic=banner.GetComponent<Image>();button.onClick.AddListener(()=>{Destroy(banner);Open(PhoneApp.Messages);});UiWidgets.Text("Preview",banner.transform,"Penonton_Terakhir\n"+(latestMessage.Length>90?latestMessage.Substring(0,90)+"…":latestMessage),new Vector2(.06f,.10f),new Vector2(.94f,.93f),22);
+            if(banner)Destroy(banner);bannerUntil=Time.unscaledTime+4.5f;banner=PhoneSkin.Card("PhoneNotification",view.Panel.transform,new Vector2(.05f,.882f),new Vector2(.95f,.972f),new Color(.13f,.22f,.30f,.98f));
+            var button=banner.AddComponent<Button>();button.targetGraphic=banner.GetComponent<Image>();button.onClick.AddListener(()=>{Destroy(banner);Open(PhoneApp.Messages);});
+            string preview=latestMessage=="Pesan baru • Penonton_Terakhir"?"Notifikasi Pesan • Penonton_Terakhir: Rp5.000.000 diterima":"Penonton_Terakhir • "+(latestMessage.Length>72?latestMessage.Substring(0,72)+"…":latestMessage);
+            UiWidgets.Text("Preview",banner.transform,preview,new Vector2(.05f,.08f),new Vector2(.95f,.92f),18,TextAnchor.MiddleLeft);
         }
         private void Messages()
         {
-            UiWidgets.Text("ThreadName",page.transform,"Penonton_Terakhir",new Vector2(.075f,.80f),new Vector2(.93f,.89f),27);UiWidgets.Text("MessageTime",page.transform,"Malam ini  •  23:46",new Vector2(.075f,.75f),new Vector2(.93f,.80f),17);
-            var card=PhoneSkin.Card("ContractBubble",page.transform,new Vector2(.06f,.22f),new Vector2(.94f,.74f),new Color(.10f,.18f,.25f));bool received=ContractReceived;
+            UiWidgets.Text("ThreadName",page.transform,"Penonton_Terakhir",new Vector2(.075f,.78f),new Vector2(.93f,.86f),26);UiWidgets.Text("MessageTime",page.transform,"Malam ini  •  23:46",new Vector2(.075f,.73f),new Vector2(.93f,.78f),17);
+            var card=PhoneSkin.Card("ContractBubble",page.transform,new Vector2(.06f,.22f),new Vector2(.94f,.72f),new Color(.10f,.18f,.25f));bool received=ContractReceived;
             if(received&&Phone.isPhoneRaised&&Phone.isScreenOn)CampaignState.Instance.AddInventoryItem("EVENT_P0_CONTRACT_READ");
-            string text=received?"Rp5.000.000 diterima\n\n"+KosDialogue.Contract:"Belum ada pesan.";if(!string.IsNullOrEmpty(latestMessage))text+="\n\n"+latestMessage;
+            string text=received?"Rp5.000.000 diterima\n\n"+KosDialogue.Contract:"Belum ada pesan.";if(!string.IsNullOrEmpty(latestMessage)&&latestMessage!="Pesan baru • Penonton_Terakhir")text+="\n\n"+latestMessage;
             if(CampaignState.Instance.HasInventoryItem("EVENT_P0_FINAL_CONTRACT"))text="00:07 • SATU MALAM SELESAI\n\n"+PrologFinaleView.FinalContract+"\n\n—— Pesan sebelumnya ——\n\n"+text;
             UiWidgets.ScrollText("Contract",card.transform,text,new Vector2(.06f,.03f),new Vector2(.94f,.97f),23);PhoneSkin.Button("OpenBank",page.transform,"Lihat mutasi di Bank  →",new Vector2(.06f,.115f),new Vector2(.94f,.20f),()=>Open(PhoneApp.Bank));
         }

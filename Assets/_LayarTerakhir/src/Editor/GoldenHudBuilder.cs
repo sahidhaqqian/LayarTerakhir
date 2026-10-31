@@ -101,7 +101,10 @@ namespace LayarTerakhir.Editor
             var backdrop=Image("ModalBackdrop",canvas.transform,new Vector2(.5f,.5f),new Vector2(.5f,.5f),Vector2.zero,Vector2.zero,new Color(0,0,0,.7f));
             backdrop.rectTransform.anchorMin=Vector2.zero;backdrop.rectTransform.anchorMax=Vector2.one;backdrop.rectTransform.offsetMin=backdrop.rectTransform.offsetMax=Vector2.zero;
             backdrop.raycastTarget=true;backdrop.transform.SetSiblingIndex(Mathf.Min(hud.documentPanel.transform.GetSiblingIndex(),hud.padlockPanel.transform.GetSiblingIndex()));p.modalBackdrop=backdrop.gameObject;backdrop.gameObject.SetActive(false);
-            var doc=(RectTransform)hud.documentPanel.transform;doc.sizeDelta=new Vector2(920,640);doc.GetComponent<Image>().color=style.paper;
+            var doc=(RectTransform)hud.documentPanel.transform;doc.sizeDelta=new Vector2(920,640);
+            var docImage=doc.GetComponent<Image>();
+            var notebookSprite=UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/_LayarTerakhir/Resources/PrologNotebookSheet.png");
+            if(notebookSprite){docImage.sprite=notebookSprite;docImage.color=Color.white;}else docImage.color=style.paper;
             Place(hud.documentTitleText.rectTransform,doc,new Vector2(.5f,1),new Vector2(.5f,1),new Vector2(0,-40),new Vector2(800,90));
             hud.documentTitleText.font=style.emphasisFont;hud.documentTitleText.fontSize=28;hud.documentTitleText.color=style.ink;hud.documentTitleText.alignment=TextAnchor.UpperLeft;
             var viewport=Rect("DocumentViewport",doc,new Vector2(.5f,.5f),new Vector2(.5f,.5f),new Vector2(0,-8),new Vector2(800,350));viewport.gameObject.AddComponent<RectMask2D>();

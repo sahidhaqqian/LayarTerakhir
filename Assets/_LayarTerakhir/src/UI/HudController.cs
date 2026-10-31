@@ -38,7 +38,10 @@ namespace LayarTerakhir.UI
         public Text threatExitKeyText;
         private GameObject threatBarRoot;
         private GameObject prologThreatMeter;
+        private GameObject prologWardrobeSlats;
+        private Text prologThreatExitKey;
         private Image[] prologThreatSegments;
+        private static Sprite _notebookSheetSprite;
         private float _lastThreatFill = -2f;
 
         public bool IsDocumentOpen => documentPanel != null && documentPanel.activeSelf;
@@ -272,37 +275,109 @@ namespace LayarTerakhir.UI
             }
         }
 
-        // Prolog wardrobe: cumulative green / yellow / red segments at lower right.
-        // Keep the existing bar API for other chapters.
+        // Prolog wardrobe: cumulative green / yellow / red segments at lower right,
+        // framed in a dark VU-meter housing with [E] Keluar badge and subtle wooden wardrobe louvers.
         public void SetPrologThreatMeter(float? danger)
         {
-            if(!danger.HasValue){if(prologThreatMeter)prologThreatMeter.SetActive(false);return;}
+            if(!danger.HasValue)
+            {
+                if(prologThreatMeter)prologThreatMeter.SetActive(false);
+                if(prologWardrobeSlats)prologWardrobeSlats.SetActive(false);
+                return;
+            }
+            var canvas=GetComponentInChildren<Canvas>();if(!canvas)return;
+            if(!prologWardrobeSlats)
+            {
+                prologWardrobeSlats=CreateUIObject("PrologWardrobeSlats",canvas.transform);
+                var slatsRect=prologWardrobeSlats.GetComponent<RectTransform>();
+                slatsRect.anchorMin=Vector2.zero;slatsRect.anchorMax=Vector2.one;
+                slatsRect.offsetMin=slatsRect.offsetMax=Vector2.zero;
+                // Left/right heavy wooden wardrobe stiles + horizontal louver slats with faint crevice light between them
+                void Bar(string name,Vector2 aMin,Vector2 aMax,Color col)
+                {
+                    var b=CreateUIObject(name,prologWardrobeSlats.transform);
+                    var r=b.GetComponent<RectTransform>();r.anchorMin=aMin;r.anchorMax=aMax;r.offsetMin=r.offsetMax=Vector2.zero;
+                    var img=b.AddComponent<Image>();img.color=col;img.raycastTarget=false;
+                }
+                Color woodDark=new Color(.11f,.072f,.045f,.96f);
+                Color woodMid=new Color(.165f,.112f,.068f,.94f);
+                Color woodBevel=new Color(.27f,.185f,.115f,.85f);
+                Color crevice=new Color(.20f,.24f,.22f,.14f);
+                Bar("LeftStile",new Vector2(0,0),new Vector2(.135f,1),woodDark);
+                Bar("LeftStileEdge",new Vector2(.135f,0),new Vector2(.141f,1),woodBevel);
+                Bar("RightStileEdge",new Vector2(.859f,0),new Vector2(.865f,1),woodBevel);
+                Bar("RightStile",new Vector2(.865f,0),new Vector2(1,1),woodDark);
+                Bar("CenterMullion",new Vector2(.486f,0),new Vector2(.514f,1),woodDark);
+                for(int s=0;s<7;s++)
+                {
+                    float y0=s/7f;
+                    Bar("LouverWood_"+s,new Vector2(.141f,y0),new Vector2(.859f,Mathf.Min(1f,y0+.084f)),s%2==0?woodDark:woodMid);
+                    Bar("LouverBevel_"+s,new Vector2(.141f,Mathf.Min(1f,y0+.080f)),new Vector2(.859f,Mathf.Min(1f,y0+.085f)),woodBevel);
+                    Bar("LouverCrevice_"+s,new Vector2(.145f,Mathf.Min(1f,y0+.085f)),new Vector2(.855f,Mathf.Min(1f,y0+.142f)),crevice);
+                }
+                prologWardrobeSlats.transform.SetAsFirstSibling();
+            }
             if(!prologThreatMeter)
             {
-                var canvas=GetComponentInChildren<Canvas>();if(!canvas)return;
                 prologThreatMeter=CreateUIObject("PrologThreatMeter",canvas.transform);
                 var rect=prologThreatMeter.GetComponent<RectTransform>();
                 rect.anchorMin=rect.anchorMax=new Vector2(1,0);rect.pivot=new Vector2(1,0);
-                rect.anchoredPosition=new Vector2(-38,42);rect.sizeDelta=new Vector2(22,104);
+                rect.anchoredPosition=new Vector2(-24,26);rect.sizeDelta=new Vector2(148,136);
+                var housing=prologThreatMeter.AddComponent<Image>();
+                housing.color=new Color(.035f,.042f,.04f,.88f);housing.raycastTarget=false;
+                var border=CreateUIObject("HousingAccent",prologThreatMeter.transform);
+                var bRect=border.GetComponent<RectTransform>();bRect.anchorMin=new Vector2(1,0);bRect.anchorMax=new Vector2(1,1);
+                bRect.pivot=new Vector2(1,.5f);bRect.anchoredPosition=Vector2.zero;bRect.sizeDelta=new Vector2(3,0);
+                var bImg=border.AddComponent<Image>();bImg.color=new Color(.42f,.36f,.24f,.7f);bImg.raycastTarget=false;
+
+                var fnt=objectiveText?objectiveText.font:Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+                var titleGo=CreateUIObject("MeterLabel",prologThreatMeter.transform);
+                var tRect=titleGo.GetComponent<RectTransform>();tRect.anchorMin=tRect.anchorMax=new Vector2(0,1);
+                tRect.pivot=new Vector2(0,1);tRect.anchoredPosition=new Vector2(12,-10);tRect.sizeDelta=new Vector2(96,20);
+                var tTxt=titleGo.AddComponent<Text>();tTxt.font=fnt;tTxt.fontSize=13;tTxt.alignment=TextAnchor.UpperLeft;
+                tTxt.color=new Color(.78f,.76f,.68f,.9f);tTxt.text="ANCAMAN";tTxt.raycastTarget=false;
+
+                var badgeGo=CreateUIObject("ExitKeyBadge",prologThreatMeter.transform);
+                var kRect=badgeGo.GetComponent<RectTransform>();kRect.anchorMin=kRect.anchorMax=new Vector2(0,0);
+                kRect.pivot=Vector2.zero;kRect.anchoredPosition=new Vector2(12,12);kRect.sizeDelta=new Vector2(92,34);
+                var kBg=badgeGo.AddComponent<Image>();kBg.color=new Color(.12f,.13f,.12f,.95f);kBg.raycastTarget=false;
+                var kTxtGo=CreateUIObject("ExitKeyText",badgeGo.transform);
+                var ktRect=kTxtGo.GetComponent<RectTransform>();ktRect.anchorMin=Vector2.zero;ktRect.anchorMax=Vector2.one;
+                ktRect.offsetMin=ktRect.offsetMax=Vector2.zero;
+                prologThreatExitKey=kTxtGo.AddComponent<Text>();prologThreatExitKey.font=fnt;prologThreatExitKey.fontSize=15;
+                prologThreatExitKey.alignment=TextAnchor.MiddleCenter;prologThreatExitKey.color=new Color(.94f,.92f,.84f,1f);
+                prologThreatExitKey.text="[E] Keluar";prologThreatExitKey.raycastTarget=false;
+
                 prologThreatSegments=new Image[12];
                 for(int i=0;i<12;i++)
                 {
                     var go=CreateUIObject("ThreatSegment_"+i,prologThreatMeter.transform);
-                    var segment=go.GetComponent<RectTransform>();segment.anchorMin=segment.anchorMax=Vector2.zero;
-                    segment.pivot=Vector2.zero;segment.anchoredPosition=new Vector2(2,i*8.5f+2);segment.sizeDelta=new Vector2(18,6);
+                    var segment=go.GetComponent<RectTransform>();segment.anchorMin=segment.anchorMax=new Vector2(1,0);
+                    segment.pivot=new Vector2(1,0);segment.anchoredPosition=new Vector2(-12,12+i*9.2f);segment.sizeDelta=new Vector2(24,6.5f);
                     prologThreatSegments[i]=go.AddComponent<Image>();prologThreatSegments[i].raycastTarget=false;
                 }
             }
             if(threatBarRoot)threatBarRoot.SetActive(false);
+            prologWardrobeSlats.SetActive(true);
+            prologWardrobeSlats.transform.SetAsFirstSibling();
             prologThreatMeter.SetActive(true);
+            prologThreatMeter.transform.SetAsLastSibling();
+            if(prologThreatExitKey)
+            {
+                string key="E";
+                if(GameInputConfig.Instance!=null){try{string k=GameInputConfig.Instance.GetActionLabel(GameAction.Interact);if(!string.IsNullOrEmpty(k))key=k;}catch{}}
+                prologThreatExitKey.text=$"[{key}] Keluar";
+            }
             float value=Mathf.Clamp01(danger.Value);
-            int active=value>=.7f?12:value>=.3f?8:4;
+            int active=value>=.7f?12:value>=.3f?8:Mathf.Max(2,Mathf.RoundToInt(value*13f));
             for(int i=0;i<12;i++)
             {
-                Color color=i<4?new Color(.22f,.75f,.30f):i<8?new Color(.95f,.76f,.16f):new Color(.88f,.12f,.12f);
-                prologThreatSegments[i].color=i<active?color:new Color(color.r*.16f,color.g*.16f,color.b*.16f,.55f);
+                Color color=i<4?new Color(.22f,.78f,.32f):i<8?new Color(.96f,.78f,.16f):new Color(.92f,.14f,.12f);
+                prologThreatSegments[i].color=i<active?color:new Color(color.r*.18f,color.g*.18f,color.b*.18f,.62f);
             }
         }
+
+        public bool IsPrologThreatMeterVisible=>prologThreatMeter!=null&&prologThreatMeter.activeSelf;
 
         // Threat proximity bar for hiding spots. Null hides everything.
         // Fill = danger: full red = threat at the locker, green sliver = far,
@@ -487,6 +562,69 @@ namespace LayarTerakhir.UI
                     :"KLIK KANAN  Angkat kamera   ·   "+phoneKey.ToString().ToUpperInvariant()+"  Aplikasi";
         }
 
+        private void ApplyNotebookDocumentTheme(RectTransform documentRect)
+        {
+            var panelImage=documentPanel.GetComponent<Image>();
+            if(panelImage)
+            {
+                if(!_notebookSheetSprite)
+                {
+                    var tex=Resources.Load<Texture2D>("PrologNotebookSheet");
+                    if(tex)_notebookSheetSprite=Sprite.Create(tex,new Rect(0,0,tex.width,tex.height),new Vector2(.5f,.5f),100f);
+                }
+                if(_notebookSheetSprite)
+                {
+                    panelImage.sprite=_notebookSheetSprite;
+                    panelImage.type=Image.Type.Simple;
+                    panelImage.color=Color.white;
+                }
+            }
+            Color inkTitle=new Color(.15f,.09f,.06f,.98f);
+            Color inkBody=new Color(.18f,.12f,.08f,.95f);
+            if(documentTitleText)
+            {
+                documentTitleText.color=inkTitle;
+                var tr=documentTitleText.rectTransform;
+                tr.anchorMin=new Vector2(0,1);tr.anchorMax=new Vector2(1,1);tr.pivot=new Vector2(.5f,1);
+                tr.offsetMin=new Vector2(118,-122);tr.offsetMax=new Vector2(-64,-36);
+            }
+            var presentation=GetComponent<HudPresentation>();
+            if(presentation&&presentation.documentScroll&&presentation.documentScroll.viewport)
+            {
+                var vp=presentation.documentScroll.viewport;
+                vp.anchorMin=Vector2.zero;vp.anchorMax=Vector2.one;vp.pivot=new Vector2(.5f,.5f);
+                vp.offsetMin=new Vector2(118,96);vp.offsetMax=new Vector2(-64,-132);
+            }
+            if(documentBodyText)
+            {
+                documentBodyText.color=inkBody;
+                documentBodyText.lineSpacing=1.28f;
+                var br=documentBodyText.rectTransform;
+                br.anchorMin=new Vector2(0,1);br.anchorMax=new Vector2(1,1);br.pivot=new Vector2(.5f,1);
+                br.offsetMin=new Vector2(0,br.offsetMin.y);br.offsetMax=new Vector2(0,0);
+            }
+            if(documentCloseButton)
+            {
+                var btnImg=documentCloseButton.GetComponent<Image>();
+                if(btnImg)btnImg.color=new Color(.22f,.15f,.10f,.94f);
+                var lbl=documentCloseButton.GetComponentInChildren<Text>();
+                if(lbl)lbl.color=new Color(.95f,.91f,.82f,1f);
+            }
+            var scrollHint=documentRect.Find("ScrollHint");
+            if(scrollHint)
+            {
+                var shTxt=scrollHint.GetComponent<Text>();
+                if(shTxt)shTxt.color=new Color(.34f,.24f,.16f,.85f);
+                var shRect=scrollHint.GetComponent<RectTransform>();
+                if(shRect)
+                {
+                    shRect.anchorMin=shRect.anchorMax=new Vector2(0,0);
+                    shRect.pivot=Vector2.zero;
+                    shRect.anchoredPosition=new Vector2(122,36);
+                }
+            }
+        }
+
         public void OpenDocumentModal(string title, string body, Action onClosed = null, string documentId = null)
         {
             if (documentPanel == null) return;
@@ -498,13 +636,14 @@ namespace LayarTerakhir.UI
             _onDocumentClosed = onClosed;
             documentTitleText.text = title;
             documentBodyText.text = body;
-            var closeLabel=documentCloseButton.GetComponentInChildren<Text>();if(closeLabel)closeLabel.text="TUTUP DOKUMEN";
+            var closeLabel=documentCloseButton.GetComponentInChildren<Text>();if(closeLabel)closeLabel.text="TUTUP CATATAN";
             var documentRect=(RectTransform)documentPanel.transform;
             bool holdingPhone=SmartphoneController.Instance&&SmartphoneController.Instance.isPhoneRaised;
-            documentRect.anchorMin=holdingPhone?new Vector2(.055f,.14f):new Vector2(.5f,.5f);
-            documentRect.anchorMax=holdingPhone?new Vector2(.68f,.86f):new Vector2(.5f,.5f);
+            documentRect.anchorMin=holdingPhone?new Vector2(.055f,.11f):new Vector2(.5f,.5f);
+            documentRect.anchorMax=holdingPhone?new Vector2(.685f,.89f):new Vector2(.5f,.5f);
             documentRect.anchoredPosition=Vector2.zero;
-            documentRect.sizeDelta=holdingPhone?Vector2.zero:new Vector2(880,520);
+            documentRect.sizeDelta=holdingPhone?Vector2.zero:new Vector2(880,580);
+            ApplyNotebookDocumentTheme(documentRect);
             documentPanel.SetActive(true);
             var presentation=GetComponent<HudPresentation>();
             if(presentation&&presentation.documentScroll)

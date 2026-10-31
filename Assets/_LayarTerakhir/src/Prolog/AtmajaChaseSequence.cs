@@ -147,7 +147,7 @@ namespace LayarTerakhir.Prolog
             if (run == Run.WindowStandoff || run == Run.EscapeReady || run == Run.Stunned) return string.Empty;
             if (run == Run.GateRun) return "Keluar menuju gerbang. Merunduk melewati dahan kamboja.";
             if (run == Run.Ending || run == Run.Complete) return "Malam pertama selesai. Damar masih di balik cermin.";
-            if (!climbedOut) return "LARI! Kembali ke tangga batu di sudut ruang jahit!";
+            if (!climbedOut) return "LARI! Kembali ke tangga besi di sudut ruang jahit!";
             return "Turuni tangga tengah! Kembali ke jendela dapur!";
         }
         public void PlayHandycamVideo()
@@ -189,13 +189,23 @@ namespace LayarTerakhir.Prolog
                     StartCoroutine(EscapeWindow());
                 return;
             }
-            if (run != Run.Pursuit && run != Run.GateRun) return;
-            if(run==Run.Pursuit&&GameInputConfig.Instance.GetActionDown(GameAction.CaptureOrBlitz))TryPursuitBlitz();
+            if (run != Run.Breaking && run != Run.Pursuit && run != Run.GateRun) return;
+            if (GameInputConfig.Instance.GetActionDown(GameAction.CaptureOrBlitz))
+            {
+                if (!TryPursuitBlitz() && Phone && Phone.isPhoneRaised && Phone.isScreenOn && Phone.HasCameraPower &&
+                    director.phoneView && director.phoneView.IsCameraApp && (!UiFocus.Phone || director.phoneView.ViewfinderActive))
+                {
+                    if (!Phone.RitualCameraPower && Phone.batteryPercent > 0f)
+                        Phone.ConsumeBattery(Mathf.Min(Phone.batteryPercent, Phone.photoCostPercent));
+                    director.phoneView.CaptureFlash();
+                }
+            }
             if(chaserFigure)
             {
                 var presentation=chaserFigure.GetComponent<AtmajaThreatPresentation>();
                 if(presentation)presentation.ExternalStun=IsStunned;
             }
+            if (run == Run.Breaking) return;
             float dt = Time.deltaTime; dangerGrace = Mathf.Max(0, dangerGrace - dt);
             if (chaserFigure && chaserFigure.activeInHierarchy && rail.Length > 1 && !IsStunned)
             {
@@ -229,7 +239,7 @@ namespace LayarTerakhir.Prolog
             }
             if (!climbedOut && cellarExitApproach && Vector3.Distance(director.player.transform.position, cellarExitApproach.position) < 1.3f)
             {
-                finale.Prompt($"[{Key(GameAction.Sprint)}] NAIKI TANGGA BATU");
+                finale.Prompt($"[{Key(GameAction.Sprint)}] NAIKI TANGGA BESI");
                 if (GameInputConfig.Instance.GetActionHeld(GameAction.Sprint) || GameInputConfig.Instance.GetActionDown(GameAction.Interact)) StartCoroutine(ClimbOut());
             }
             else finale.Prompt(null);
@@ -360,11 +370,13 @@ namespace LayarTerakhir.Prolog
         }
         public bool TryPursuitBlitz()
         {
-            if(run!=Run.Pursuit||IsStunned||!Phone||!Phone.isPhoneRaised||!Phone.isScreenOn||Phone.batteryPercent<Phone.blitzCostPercent)return false;
-            if(!director.phoneView||!director.phoneView.IsCameraApp||!director.phoneView.FramesTarget(chaserFigure,8))return false;
-            Phone.ConsumeBattery(Phone.blitzCostPercent);pursuitStunUntil=Time.time+2;dangerGrace=Mathf.Max(dangerGrace,2);
-            var pose=chaserFigure.GetComponent<AtmajaThreatPresentation>();
-            if(pose){pose.ExternalStun=true;if(pose.blitzSmoke)pose.blitzSmoke.Play();}
+            if((run!=Run.Breaking&&run!=Run.Pursuit&&run!=Run.GateRun)||IsStunned||!Phone||!Phone.isPhoneRaised||!Phone.isScreenOn||!Phone.HasCameraPower)return false;
+            if(!director.phoneView||!director.phoneView.IsCameraApp||!director.phoneView.FramesTarget(chaserFigure,11f))return false;
+            if(!Phone.RitualCameraPower&&Phone.batteryPercent>0f)
+                Phone.ConsumeBattery(Mathf.Min(Phone.batteryPercent,Phone.blitzCostPercent));
+            pursuitStunUntil=Time.time+1.85f;dangerGrace=Mathf.Max(dangerGrace,2.1f);
+            var pose=chaserFigure?chaserFigure.GetComponent<AtmajaThreatPresentation>():null;
+            if(pose){pose.ExternalStun=true;if(pose.blitzSmoke)pose.blitzSmoke.Play();pose.EmitPhotoSmoke(24);}
             director.phoneView.CaptureFlash();return true;
         }
         public bool TryPhoto()

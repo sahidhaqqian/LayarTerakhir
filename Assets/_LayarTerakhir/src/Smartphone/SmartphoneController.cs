@@ -243,6 +243,7 @@ namespace LayarTerakhir.Smartphone
             if (phoneFlashlight != null)
             {
                 LayarTerakhir.Player.PracticalLightPresentation.ConfigureBeam(phoneFlashlight);
+                phoneFlashlight.cullingMask &= ~(1 << LayarTerakhir.Player.ShoulderCameraRig.AvatarLayer);
                 phoneFlashlight.enabled = hasSmartphoneInInventory && isPhoneRaised && isScreenOn && HasCameraPower;
                 phoneFlashlight.intensity = 22f;
                 phoneFlashlight.range = 16f;
@@ -271,7 +272,7 @@ namespace LayarTerakhir.Smartphone
 
         public void PulseShutter()
         {
-            if (!isPhoneRaised || !isScreenOn || batteryPercent <= 0) return;
+            if (!isPhoneRaised || !isScreenOn || !HasCameraPower) return;
             shutterUntil = Time.unscaledTime + .16f;
         }
 

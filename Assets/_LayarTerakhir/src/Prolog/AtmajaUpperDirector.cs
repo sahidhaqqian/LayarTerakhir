@@ -164,6 +164,7 @@ namespace LayarTerakhir.Prolog
         private void Start()
         {
             ARPhotoGlimmer.Attach(cupAim,this,"EVENT_P0_CHAIN1_BROKEN");
+            ARPhotoGlimmer.Attach(ventMouth,this,"EVENT_P0_CHAIN1_BROKEN",true,true,false);
             ARPhotoGlimmer.Attach(scratchAim,this,"EVENT_P0_CHAIN2_BROKEN");
             ARPhotoGlimmer.Attach(ropeAim,this,"EVENT_P0_CHAIN3_BROKEN");
             if(childDoor)childDoor.lockedDialogue="Sial pintunya dikunci, aku harus cari jalan lain.";
@@ -202,7 +203,7 @@ namespace LayarTerakhir.Prolog
         {
             int n=ChainsBroken;
             if(director.Stage==AtmajaStage.StairLanding)return "Naiki tangga. Ikuti jejak tangan berdarah ke lantai 2.";
-            if(director.Stage==AtmajaStage.MasterOpen)return Has("EVENT_P0_CARPET_LIFTED")?(Has("EVENT_P0_TRAPDOOR_OPEN")?"Turuni tangga batu ke ruang bawah tanah.":"Buka pintu jebakan di bawah karpet."):"Masuki Kamar Tidur Utama. Periksa karpet merah yang tergulung.";
+            if(director.Stage==AtmajaStage.MasterOpen)return Has("EVENT_P0_CARPET_LIFTED")?(Has("EVENT_P0_TRAPDOOR_OPEN")?"Turuni tangga besi ke ruang bawah tanah.":"Buka pintu jebakan di bawah karpet."):"Masuki Kamar Tidur Utama. Periksa karpet merah yang tergulung.";
             return n>=3?"Kembali ke Pintu Kamar Utama yang terbuka.":$"Potret 3 Bukti Tragedi dengan Kamera AR ({n}/3).";
         }
         private void Update()
@@ -403,7 +404,7 @@ namespace LayarTerakhir.Prolog
                 case AtmajaAction.Diary:Hud.OpenDocumentModal("BUKU HARIAN BIMA • DOKUMEN #4",DiaryText,()=>{if(Commit(DiaryId,"PROLOG_ATMAJA_UPPER")){Hud.ShowBroadcastNotification("Buku harian tersimpan di catatan HP.",4);director.Objective();}},DiaryId);break;
                 case AtmajaAction.BathCurtain:
                     if(Commit("EVENT_P0_CURTAIN_OPEN","PROLOG_ATMAJA_UPPER")){RestoreWorld();Hud.EnqueueSubtitle("Raka","Airnya... merah kecokelatan. Kayak karat... atau darah.",4);Sfx(director.audioProfile.cloth,item.transform.position,.4f);}break;
-                case AtmajaAction.BathScratches:Hud.ShowBroadcastNotification("Bekas cakaran puluhan jari kecil di kayu yang lembap.",4);break;
+                case AtmajaAction.BathScratches:Hud.ShowBroadcastNotification("Bekas cakaran puluhan jari kecil di dinding kamar mandi yang lembap.",4);break;
                 case AtmajaAction.WillLetter:Hud.OpenDocumentModal("SURAT WASIAT NYONYA • DOKUMEN #5",WillText,()=>{if(Commit(WillId,"PROLOG_ATMAJA_UPPER")){Hud.ShowBroadcastNotification("Surat tersimpan di catatan HP.",4);director.Objective();}},WillId);break;
                 case AtmajaAction.RopePhoto:Hud.ShowBroadcastNotification("Seutas tali tambang menjuntai. Tidak ada angin di sini.",4);break;
             }
@@ -421,7 +422,7 @@ namespace LayarTerakhir.Prolog
             else if(item.action==AtmajaAction.Trapdoor)
             {
                 if(Has("EVENT_P0_TRAPDOOR_OPEN"))return;
-                if(Commit("EVENT_P0_TRAPDOOR_OPEN","PROLOG_ATMAJA_UPPER")){RestoreWorld();Hud.EnqueueSubtitle("Raka","Tangga batu... turun ke bawah tanah. Dingin banget hawanya.",4);Sfx(director.audioProfile.latch,item.transform.position,.6f);director.Objective();StartCoroutine(DescendToBasement());}
+                if(Commit("EVENT_P0_TRAPDOOR_OPEN","PROLOG_ATMAJA_UPPER")){RestoreWorld();Hud.EnqueueSubtitle("Raka","Tangga besi... turun ke bawah tanah. Dingin banget hawanya.",4);Sfx(director.audioProfile.latch,item.transform.position,.6f);director.Objective();StartCoroutine(DescendToBasement());}
             }
         }
         public int ViewersBump()

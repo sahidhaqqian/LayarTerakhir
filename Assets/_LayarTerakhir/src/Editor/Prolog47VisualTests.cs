@@ -80,7 +80,7 @@ namespace LayarTerakhir.Editor.Tests
             phone.batteryPercent = 90; phone.currentScanMode = ScanVisualMode.Normal; phone.SyncVisualState();
             d.phoneView.Apps.Open(PhoneApp.Camera);
             CampaignState.Instance.Data.upgrades.Add("MATABATIN_AR");
-            foreach (string id in new[]{"EVENT_P0_MIRROR_SCARE", "EVENT_P0_ROPE_SCARE", "EVENT_P0_CURTAIN_OPEN"}) CampaignState.Instance.AddInventoryItem(id);
+            foreach (string id in new[]{"EVENT_P0_AR_REVEALED", "EVENT_P0_AR_CLUE_READ", "EVENT_P0_MIRROR_SCARE", "EVENT_P0_ROPE_SCARE", "EVENT_P0_CURTAIN_OPEN"}) CampaignState.Instance.AddInventoryItem(id);
             d.upper.RestoreWorld();
             Inventory("atmaja", d.transform);
             IEnumerator Shot(string name, Vector3 foot, Vector3 target)
@@ -92,6 +92,13 @@ namespace LayarTerakhir.Editor.Tests
             }
             yield return Shot("16-kitchen-window", d.P(6.9f,10.4f,.04f), d.P(5.7f,10.4f,1.5f));
             yield return Shot("20-damar-notebook", d.P(2.3f,8.0f,.54f), GameObject.Find("DamarSurveyInsideDining").transform.position);
+            // Bug 20 UI verification: capture the actual Document Reader modal with PrologNotebookSheet!
+            HudController.Instance.OpenDocumentModal("Catatan Survei Damar", "Rumah Keluarga Atmaja — Jl. Kenanga Lama No. 14.\n\nGerbang depan dirantai rapat dari dalam. Aku menemukan celah masuk lewat jendela dapur belakang dekat sumur tua.\n\nJangan naik ke lantai dua tanpa modul MataBatin AR aktif.");
+            yield return null; yield return null;
+            Assert.That(HudController.Instance.documentPanel.GetComponent<UnityEngine.UI.Image>().sprite, Is.Not.Null, "Document modal must use real notebook sheet sprite");
+            yield return Capture(eye, "20-document-reader-modal-ui");
+            HudController.Instance.CloseDocumentModal();
+            yield return null;
             yield return Shot("17-well-and-kitchen", d.P(4.6f,9.8f,.36f), d.P(2.85f,11.2f,.95f));
             yield return Shot("18-dining-room", d.P(5.25f,7.8f,.54f), d.P(3.7f,4.8f,1.25f));
             yield return Shot("18-ground-doorways", d.P(-2.7f,2.8f,.54f), d.P(-3.55f,5.1f,2.6f));
@@ -100,6 +107,8 @@ namespace LayarTerakhir.Editor.Tests
             phone.currentScanMode = ScanVisualMode.AR;
             yield return Shot("24-ar-vent", d.P(-3.0f,5.95f,3.83f), d.P(-3.0f,5.2f,4.5f));
             phone.currentScanMode = ScanVisualMode.Normal;
+            Assert.That(Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None).Count(t => t.name.StartsWith("ScratchedFamilyPhotograph")), Is.EqualTo(1), "Only one family photograph must remain on the upper corridor wall");
+            Assert.That(GameObject.Find("ChildShelf"), Is.Null, "Backwards clipping ChildShelf must be removed");
             yield return Shot("25-family-photo", d.P(-2.1f,5.9f,3.83f), d.P(-2.1f,5.1f,5.25f));
             yield return Shot("31-child-bedroom", d.P(-4.8f,4.65f,3.83f), d.P(-3.8f,2.1f,4.45f));
             yield return Shot("33-cup-detail",d.P(-4.92f,1.15f,3.83f),d.upper.cupAim.position);
@@ -117,6 +126,13 @@ namespace LayarTerakhir.Editor.Tests
             phone.isPhoneRaised=true;phone.SyncVisualState();
             yield return Shot("42-cellar-room", d.P(1.4f,4.2f,-2.79f), d.P(4.8f,5.5f,-1.3f));
             yield return Shot("43-cellar-exit", d.P(1.35f,3.0f,-2.79f), d.P(1.025f,.69f,-.2f));
+            // Bug 40 UI verification: wardrobe louver view + framed threat meter + [E] Keluar badge with phone screen off
+            phone.isScreenOn = false; phone.SyncVisualState();
+            HudController.Instance.SetPrologThreatMeter(0.45f);
+            yield return null; yield return null;
+            yield return Capture(eye, "40-wardrobe-hide-threat-ui");
+            HudController.Instance.SetPrologThreatMeter(null);
+            phone.isScreenOn = true; phone.SyncVisualState();
         }
         private IEnumerator Kos()
         {
@@ -159,7 +175,10 @@ namespace LayarTerakhir.Editor.Tests
             yield return Shot("47-parking-morning",new Vector3(0,.02f,-2.4f),new Vector3(-2.7f,.8f,-5));
             yield return Shot("47-street-morning",new Vector3(0,.02f,-7.5f),new Vector3(0,3,-15));
             Assert.That(RenderSettings.skybox.name,Is.EqualTo("PrologDaySky"));
+            var kosPhoneView=Object.FindFirstObjectByType<AtmajaPhoneView>();
+            if(kosPhoneView)Assert.That(kosPhoneView.ClockText,Is.EqualTo("07:15"),"Morning interlude clock must reflect morning, not 23:46");
             LayarTerakhir.Interlude.InterludeExterior.ApplyDusk(eye);
+            if(kosPhoneView)Assert.That(kosPhoneView.ClockText,Is.EqualTo("17:45"),"Dusk interlude clock must reflect dusk, not 23:46");
             yield return Shot("47-street-dusk",new Vector3(0,.02f,-7.5f),new Vector3(0,3,-15));
             LayarTerakhir.Interlude.InterludeExterior.ApplyDay(eye);
             yield return Shot("47-street-next-morning",new Vector3(0,.02f,-7.5f),new Vector3(0,3,-15));

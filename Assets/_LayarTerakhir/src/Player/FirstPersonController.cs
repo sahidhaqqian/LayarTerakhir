@@ -119,16 +119,20 @@ namespace LayarTerakhir.Player
             if(mouse.leftButton.wasPressedThisFrame)
             {
                 phoneDragStart=mouse.position.ReadValue();phoneDragCandidate=true;
-                // A press begun on an app button/scrollbar belongs to that control.
+                // A press begun on an active app button/scrollbar belongs to that control.
                 if(EventSystem.current)
                 {
                     phonePointerHits.Clear();
                     EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current){position=phoneDragStart},phonePointerHits);
-                    foreach(var hit in phonePointerHits)if(hit.gameObject.GetComponentInParent<Selectable>()||hit.gameObject.GetComponentInParent<ScrollRect>())
-                    {phoneDragCandidate=false;break;}
+                    foreach(var hit in phonePointerHits)
+                    {
+                        var selectable=hit.gameObject.GetComponentInParent<Selectable>();
+                        if((selectable&&selectable.IsInteractable())||hit.gameObject.GetComponentInParent<ScrollRect>())
+                        {phoneDragCandidate=false;break;}
+                    }
                 }
             }
-            if(phoneDragCandidate&&(mouse.position.ReadValue()-phoneDragStart).sqrMagnitude>=36)phoneDragLooking=true;
+            if(phoneDragCandidate&&(mouse.position.ReadValue()-phoneDragStart).sqrMagnitude>=4f)phoneDragLooking=true;
         }
 
         // The capsule retains movement ownership; visual animation never supplies root motion.

@@ -176,8 +176,11 @@ namespace LayarTerakhir.Prolog
         {
             arApparitionEndsAt=Time.time+ARApparitionSeconds;
             director.phoneView.Glitch(1.5f,1);
-            if(director.arFigure)yield return LookAt(director.arFigure.transform.position+Vector3.up*1.18f,.45f,true);
-            Hud.PlayPriorityDialogue("Raka","Siapa... yang duduk di situ?",3);
+            if(director.arFigure && Mathf.Abs(director.player.transform.position.y - director.arFigure.transform.position.y) < 2.2f)
+            {
+                yield return LookAt(director.arFigure.transform.position+Vector3.up*1.18f,.45f,true);
+                Hud.PlayPriorityDialogue("Raka","Siapa... yang duduk di situ?",3);
+            }
             yield return null;
         }
         private void LateUpdate()

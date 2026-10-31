@@ -72,16 +72,22 @@ namespace LayarTerakhir.Prolog
         public bool FramesTarget(GameObject target,float range)
         {
             if(!FeedCamera||!target||!target.activeInHierarchy||!Phone||!Phone.HasCameraPower)return false;
-            Vector3 point=target.transform.position+Vector3.up*1.45f;
-            Vector3 viewport=FeedCamera.WorldToViewportPoint(point);
-            Vector3 delta=point-FeedCamera.transform.position;
-            if(viewport.z<=FeedCamera.nearClipPlane||delta.magnitude>range||viewport.x<.06f||viewport.x>.94f||viewport.y<.06f||viewport.y>.94f)return false;
-            foreach(var hit in Physics.RaycastAll(FeedCamera.transform.position,delta.normalized,delta.magnitude,~((1<<29)|(1<<2)),QueryTriggerInteraction.Ignore))
+            float[] heights={1.45f,1.1f,.75f,1.65f};
+            foreach(float h in heights)
             {
-                if(hit.transform.IsChildOf(target.transform)||(owner&&hit.transform.IsChildOf(owner.transform)))continue;
-                return false;
+                Vector3 point=target.transform.position+Vector3.up*h;
+                Vector3 viewport=FeedCamera.WorldToViewportPoint(point);
+                Vector3 delta=point-FeedCamera.transform.position;
+                if(viewport.z<=FeedCamera.nearClipPlane||delta.magnitude>range||viewport.x<.03f||viewport.x>.97f||viewport.y<.03f||viewport.y>.97f)continue;
+                bool blocked=false;
+                foreach(var hit in Physics.RaycastAll(FeedCamera.transform.position,delta.normalized,delta.magnitude,~((1<<29)|(1<<2)),QueryTriggerInteraction.Ignore))
+                {
+                    if(hit.transform.IsChildOf(target.transform)||(owner&&hit.transform.IsChildOf(owner.transform)))continue;
+                    blocked=true;break;
+                }
+                if(!blocked)return true;
             }
-            return true;
+            return false;
         }
         private void PresentFeed(bool focus)
         {
@@ -99,8 +105,10 @@ namespace LayarTerakhir.Prolog
         }
         private HudController Hud=>HudController.Instance;private SmartphoneController Phone=>SmartphoneController.Instance;
         private IPhoneChapterContent Chapter=>Phone?Phone.ChapterContent:null;
-        public string ClockText=>Chapter is LayarTerakhir.Interlude.InterludeHub ih?ih.ClockLabel:Chapter is LayarTerakhir.Interlude.InterludeDirector id?id.ClockLabel:Chapter is LayarTerakhir.Phase5.Phase5Director?"--:--":Chapter is LayarTerakhir.Phase4.Phase4Hub?"16:45":Chapter is LayarTerakhir.Phase4.Phase4Director?"23:53":Chapter is LayarTerakhir.Phase3.Phase3Hub?"15:30":Chapter is LayarTerakhir.Phase3.Phase3Director?"23:54":Chapter is LayarTerakhir.Phase2.Phase2Hub?"14:00":Chapter is LayarTerakhir.Phase2.Phase2Director?"23:50":Chapter!=null?"23:58":director?"23:52":"23:46";
-        public string DateText=>Chapter is LayarTerakhir.Interlude.InterludeHub ihd?ihd.DateLabel:Chapter is LayarTerakhir.Interlude.InterludeDirector idd?idd.DateLabel:Chapter is LayarTerakhir.Phase5.Phase5Director?"Malam yang sama • Pasar Setan":Chapter is LayarTerakhir.Phase4.Phase4Hub?"Sore • Persiapan Karang Setra":Chapter is LayarTerakhir.Phase4.Phase4Director?"Malam • Karang Setra":Chapter is LayarTerakhir.Phase3.Phase3Hub?"Siang • Persiapan Sindang Laut":Chapter is LayarTerakhir.Phase3.Phase3Director?"Malam • Sindang Laut":Chapter is LayarTerakhir.Phase2.Phase2Hub?"Siang • Persiapan malam kedua":Chapter is LayarTerakhir.Phase2.Phase2Director?"Malam kedua • RSUD Sido Waras":"Kamis, 15 Oktober  •  Hujan";
+        private static bool IsDaySkybox=>RenderSettings.skybox&&RenderSettings.skybox.name.IndexOf("DaySky",System.StringComparison.OrdinalIgnoreCase)>=0;
+        private static bool IsDuskSkybox=>RenderSettings.skybox&&RenderSettings.skybox.name.IndexOf("DuskSky",System.StringComparison.OrdinalIgnoreCase)>=0;
+        public string ClockText=>Chapter is LayarTerakhir.Interlude.InterludeHub ih?ih.ClockLabel:Chapter is LayarTerakhir.Interlude.InterludeDirector id?id.ClockLabel:Chapter is LayarTerakhir.Phase5.Phase5Director?"--:--":Chapter is LayarTerakhir.Phase4.Phase4Hub?"16:45":Chapter is LayarTerakhir.Phase4.Phase4Director?"23:53":Chapter is LayarTerakhir.Phase3.Phase3Hub?"15:30":Chapter is LayarTerakhir.Phase3.Phase3Director?"23:54":Chapter is LayarTerakhir.Phase2.Phase2Hub?"14:00":Chapter is LayarTerakhir.Phase2.Phase2Director?"23:50":Chapter!=null?"23:58":director?"23:52":IsDaySkybox?"07:15":IsDuskSkybox?"17:45":"23:46";
+        public string DateText=>Chapter is LayarTerakhir.Interlude.InterludeHub ihd?ihd.DateLabel:Chapter is LayarTerakhir.Interlude.InterludeDirector idd?idd.DateLabel:Chapter is LayarTerakhir.Phase5.Phase5Director?"Malam yang sama • Pasar Setan":Chapter is LayarTerakhir.Phase4.Phase4Hub?"Sore • Persiapan Karang Setra":Chapter is LayarTerakhir.Phase4.Phase4Director?"Malam • Karang Setra":Chapter is LayarTerakhir.Phase3.Phase3Hub?"Siang • Persiapan Sindang Laut":Chapter is LayarTerakhir.Phase3.Phase3Director?"Malam • Sindang Laut":Chapter is LayarTerakhir.Phase2.Phase2Hub?"Siang • Persiapan malam kedua":Chapter is LayarTerakhir.Phase2.Phase2Director?"Malam kedua • RSUD Sido Waras":(!director&&IsDaySkybox)?"Jumat, 16 Oktober  •  Pagi Cerah":(!director&&IsDuskSkybox)?"Jumat, 16 Oktober  •  Senja":"Kamis, 15 Oktober  •  Hujan";
         private void Start()
         {
             if(!playerCamera){var p=FindFirstObjectByType<FirstPersonController>();if(p)playerCamera=p.GetComponent<InteractionInteractor>().playerCamera;}
@@ -191,7 +199,7 @@ namespace LayarTerakhir.Prolog
             stowLabel=stow.GetComponentInChildren<Text>();
             PhoneSkin.Card("GestureBar",Panel.transform,new Vector2(.37f,.014f),new Vector2(.63f,.019f),new Color(.55f,.57f,.6f));
             chat=UiWidgets.Text("AtmajaLiveChat",canvas,"",new Vector2(.035f,.17f),new Vector2(.32f,.43f),18);chat.color=new Color(.82f,.83f,.77f,.93f);
-            walkHint=UiWidgets.Text("PhoneWalkHint",canvas,"WASD jalan · klik kanan angkat kamera · tahan untuk bidik",new Vector2(.42f,.008f),new Vector2(.97f,.04f),16,TextAnchor.MiddleRight);
+            walkHint=UiWidgets.Text("PhoneWalkHint",canvas,"WASD jalan · tahan klik kiri geser arah pandang · klik kanan bidik kamera",new Vector2(.30f,.008f),new Vector2(.97f,.04f),16,TextAnchor.MiddleRight);
             Apps=gameObject.AddComponent<PhoneDesktop>();Apps.Initialize(this);Panel.transform.SetAsFirstSibling();chat.transform.SetAsFirstSibling();
             if(gripOverlay)gripOverlay.transform.SetSiblingIndex(Panel.transform.GetSiblingIndex()+1);
             shutter=UiWidgets.Panel("PhoneShutterFlash",cameraRoot.transform,Vector2.zero,Vector2.one,Color.clear).GetComponent<Image>();shutter.raycastTarget=false;
@@ -200,12 +208,12 @@ namespace LayarTerakhir.Prolog
             vignetteTexture=CreateVignetteTexture();
             var vignette=UiWidgets.Rect("ViewfinderThreat",cameraRoot.transform,Vector2.zero,Vector2.one);
             focusVignette=vignette.AddComponent<RawImage>();focusVignette.texture=vignetteTexture;focusVignette.raycastTarget=false;focusVignette.color=new Color(1,1,1,0);
-            var thumbObj=PhoneSkin.Card("PhoneThumb",Panel.transform,new Vector2(.82f,.055f),new Vector2(.945f,.145f),new Color(.60f,.42f,.28f,.94f));
+            var thumbObj=PhoneSkin.Card("PhoneThumb",Panel.transform,new Vector2(.82f,.055f),new Vector2(.945f,.145f),Color.clear);
             thumb=thumbObj.GetComponent<Image>();thumb.raycastTarget=false;thumb.gameObject.SetActive(false);
             if(Phone){lastMode=Phone.currentScanMode;lastSelfie=Phone.isSelfieCamera;}
             shutterAudio=gameObject.AddComponent<AudioSource>();shutterAudio.playOnAwake=false;
             var audio=PresentationProfile.Load()?.audio;if(audio)shutterAudio.outputAudioMixerGroup=audio.uiBus;
-            if(Phone.handPhoneMeshRoot)foreach(var r in Phone.handPhoneMeshRoot.GetComponentsInChildren<Renderer>(true))r.enabled=false;
+            if(Phone.handPhoneMeshRoot)foreach(var r in Phone.handPhoneMeshRoot.GetComponentsInChildren<Renderer>(true))r.enabled=true;
         }
         private void Update()
         {
@@ -224,8 +232,9 @@ namespace LayarTerakhir.Prolog
                 if(resolved)AddChat("@maya_sari","Udah hilang... tarik napas dulu, Bang.");
             }
             var p=director.LocalPosition(director.player.transform.position);float y=director.player.transform.position.y-director.origin.y;
+            bool insideGround=p.x>-6f&&p.x<6f&&p.y>.2f&&p.y<12.75f;
             string room=y<-.5f?"cellar":y>3.3f?(p.y>5.1f?"hall":p.x< -2.5f?"child":p.x<.25f?"bath":p.x<2.3f?"master":"balcony"):
-                p.y>9?"kitchen":p.x>1.6f&&p.x<6.1f&&p.y>1?"dining":p.y>0&&p.x<1.6f?"lounge":"yard";
+                !insideGround?"yard":p.y>9?"kitchen":p.x>1.6f&&p.x<6.1f&&p.y>1?"dining":p.y>0&&p.x<1.6f?"lounge":"yard";
             bool danger=!resolved&&director.basement&&director.basement.IsHunting;
             bool chase=!resolved&&director.Stage>=AtmajaStage.Chase;
             bool upstairs=!danger&&!chase&&y>3.3f;
@@ -249,9 +258,13 @@ namespace LayarTerakhir.Prolog
         }
         private static readonly string[] LiveAuthors={"@kopi_susu99","@dinda_ayu","@intan_permata","@bocil_kematian","@rudi_tabuti","@maya_sari","@rizky_pratama_","@hantu_karang01"};
         private static readonly string[] ReliefComments={"Udah tenang sekarang...","Jalur keluarnya sudah kosong, Bang.","Kita masih di sini. Pelan-pelan aja.","Tarik napas dulu, tadi serem banget."};
-        private static string[] PanicComments(bool chase,string room)
+        private string[] PanicComments(bool chase,string room)
         {
-            if(chase)return new[]{"LARI BANG JANGAN NENGOK!","DIA MASIH DI BELAKANG LU!","TANGGA! TANGGA! CEPET!","KAMERA JANGAN DITUTUP BANG!","BLITZ BANG KALO DIA DEKET!","JANGAN BERHENTI ANJIR!","BLITZ! BLITZ! BLITZ!"};
+            if(director&&director.chase&&director.chase.AwaitingPhotos)
+                return new[]{"FOTO DIA BANG!","JANGAN SAMPAI KEPOJOK!","TERUS POTRET MUKANYA!","KAMERA JANGAN TURUN BANG!","ASAPNYA MULAI KELUAR!"};
+            if(chase)
+                return room=="cellar"?new[]{"NAIK TANGGA BESI BANG!","LARI KE ATAS CEPET!","DIA DI BELAKANG LU!","BLITZ BANG KALO DIA DEKET!","KAMERA JANGAN DITUTUP BANG!"}
+                    :new[]{"LARI KE JENDELA DEPAN BANG!","DIA MASIH DI BELAKANG LU!","KAMERA JANGAN DITUTUP BANG!","BLITZ BANG KALO DIA DEKET!","JANGAN BERHENTI ANJIR!"};
             return room switch
             {
                 "cellar"=>new[]{"ITU GUNTINGNYA KEDENGERAN!","DIA LEWAT KAMAR JAHIT!","MATIIN LAYAR HP BANG!","SEMBUNYI DI LEMARI!","JANGAN NAFAS BANG!","ADA BAYANGAN DI BELAKANG RAK!"},
@@ -364,7 +377,8 @@ namespace LayarTerakhir.Prolog
             // PhoneDesktop can process an app shortcut later in Update. The hold
             // remains authoritative through presentation, independent of order.
             HandleCameraShortcut();
-            bool allowed=(!Hud.IsModalOpen||(Hud.IsDocumentOpen&&!UiFocus.HardModal))&&(!UiFocus.Cinematic||CinematicHandsetVisible);
+            bool hiddenScreenOff=((director&&director.basement&&director.basement.IsHidden)||(Hud&&Hud.IsPrologThreatMeterVisible))&&!Phone.isScreenOn;
+            bool allowed=(!Hud.IsModalOpen||(Hud.IsDocumentOpen&&!UiFocus.HardModal))&&(!UiFocus.Cinematic||CinematicHandsetVisible)&&!hiddenScreenOff;
             bool active=Phone.isPhoneRaised&&allowed;
             raiseAmount=allowed?Mathf.MoveTowards(raiseAmount,active?1:0,Time.unscaledDeltaTime/.24f):0;
             if(raiseAmount<=0)landscapeFromStowed=false;
@@ -420,18 +434,18 @@ namespace LayarTerakhir.Prolog
             if(Phone.currentScanMode!=lastMode||Phone.isSelfieCamera!=lastSelfie)
             {
                 bool changed=Phone.currentScanMode!=lastMode;lastMode=Phone.currentScanMode;lastSelfie=Phone.isSelfieCamera;
-                if(changed&&screen)
+                if(changed&&screen&&IsCameraApp)
                 {
-                    Glitch(.2f,.9f);thumbUntil=Time.unscaledTime+.22f;
+                    Glitch(.2f,.9f);
                     if(shutterAudio)
                     {
                         if(!switchClip){var audio=PresentationProfile.Load()?.audio;switchClip=audio&&audio.phoneSwitch?audio.phoneSwitch:AtmajaSynth.Tone(.06f,1400,240,.3f);}
                         shutterAudio.PlayOneShot(switchClip,.45f);
                     }
                 }
+                else if(changed&&!IsCameraApp)glitchUntil=0f;
             }
-            bool thumbVisible=screen&&!landscapeFeed&&Time.unscaledTime<thumbUntil;
-            if(thumb){thumb.gameObject.SetActive(thumbVisible);if(thumbVisible)thumb.rectTransform.anchoredPosition=new Vector2(0,-12f*Mathf.Clamp01((thumbUntil-Time.unscaledTime)/.22f));}
+            if(thumb)thumb.gameObject.SetActive(false);
             header.enabled=!landscapeFeed;mode.enabled=!landscapeFeed;
             homeButton.gameObject.SetActive(screen&&!UiFocus.Cinematic&&!Hud.IsModalOpen&&!landscapeFeed);stowButton.gameObject.SetActive(screen&&!UiFocus.Cinematic&&!Hud.IsModalOpen&&!landscapeFeed);
             var stowBinding=GameInputConfig.Instance?GameInputConfig.Instance.togglePhoneKey:KeyCode.Tab;
@@ -450,9 +464,9 @@ namespace LayarTerakhir.Prolog
                 float pulse=.86f+.14f*Mathf.Sin(Time.unscaledTime*17f);
                 focusVignette.color=new Color(1,1,1,ViewfinderActive?Mathf.Clamp01(threat*.56f)*pulse*(GameShell.ReducedGlitch?.4f:1):0);
             }
-            float signal=disturbance*(GameShell.ReducedGlitch?.15f:1);
+            float signal=IsCameraApp?disturbance*(GameShell.ReducedGlitch?.15f:1):0f;
             for(int i=0;i<signalBars.Length;i++)
-            {float noise=Mathf.Sin(Mathf.Floor(Time.unscaledTime*13)+i*5.76f);var rect=signalBars[i].rectTransform;rect.anchoredPosition=new Vector2(noise*signal*18,noise*signal*13);signalBars[i].color=new Color(i%2==0?.22f:.65f,.7f,.55f,screen&&noise>.72f?signal*.5f:0);}
+            {float noise=Mathf.Sin(Mathf.Floor(Time.unscaledTime*13)+i*5.76f);var rect=signalBars[i].rectTransform;rect.anchoredPosition=new Vector2(noise*signal*18,noise*signal*13);signalBars[i].color=new Color(i%2==0?.22f:.65f,.7f,.55f,screen&&IsCameraApp&&noise>.72f?signal*.5f:0);}
             if(shutter)shutter.color=new Color(1,1,1,Mathf.Clamp01((flashUntil-Time.unscaledTime)/.22f)*(GameShell.ReducedGlitch?.45f:1));
             string energyLabel=Phone.RitualCameraPower?"KAPASITOR RITUAL 5%":$"{Phone.DisplayBatteryPercent:0}%";
             header.text=!screen?"":Phone.isBroadcastConnected?$"LIVE • {(Chapter!=null?Chapter.Viewers:director?director.Viewers:14):N0}   |   {energyLabel}":ClockText+$"    LTE    {energyLabel}";
@@ -460,7 +474,7 @@ namespace LayarTerakhir.Prolog
             LiveButton.gameObject.SetActive(screen&&IsCameraApp&&(director||Chapter!=null)&&!Phone.isBroadcastConnected&&!landscapeFeed);LiveButton.interactable=Chapter!=null?Chapter.CanBeginLive:director&&director.CanBeginLive&&!director.Busy&&!Hud.IsModalOpen;
             UiFocus.Phone=active&&screen&&!Hud.IsModalOpen&&(!IsCameraApp||((director||Chapter!=null)&&!Phone.isBroadcastConnected));
             if(owner&&!UiFocus.HardModal&&!Hud.IsModalOpen&&!UiFocus.Cinematic)owner.SetCursorLock(!UiFocus.Phone||ViewfinderActive);
-            walkHint.enabled=UiFocus.Phone&&!UiFocus.Cinematic&&!Hud.IsModalOpen&&!ViewfinderActive;
+            walkHint.enabled=UiFocus.Phone&&raiseAmount>.98f&&!UiFocus.Cinematic&&!Hud.IsModalOpen&&!ViewfinderActive;
             chat.enabled=(director||Chapter!=null)&&Phone.isBroadcastConnected&&!Hud.IsModalOpen&&(!UiFocus.Cinematic||CinematicHandsetVisible)&&!ViewfinderActive;
         }
         public void ShowChapterChat(string text)
