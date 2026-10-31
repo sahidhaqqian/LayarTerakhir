@@ -1,7 +1,7 @@
 {
-  "baseCommit": "72c4edf45937dc167af84c7475c78f01b7c8448a",
+  "baseCommit": "88d4e466a53cfc896faafbec6c81e978ae98e255",
   "protectedGoldenSceneSha256": "4b73b117b832fb753b92d3de885c163bc1dd3f6225101867f7b4e2437c8b793a",
-  "structureSha256": "0f0133b77c83db4f1d3608f0c62c2a7f1d5e38daab32b909a701a85fdd81f615",
-  "description": "Approved Prolog KamarKos structure at 72c4edf4, including the committed C1 player acceleration/crouch defaults and camera-hand transform. Only camera color-volume and AA/dithering settings remain outside the structural fingerprint; future gameplay, geometry, collider, or transform edits fail validation.",
-  "source": "git show 72c4edf4:Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity"
+  "structureSha256": "693ca2241d7e427da75e79519293e6377edd1405c92bd3a2e7217498eab3f864",
+  "description": "Approved Prolog KamarKos structure at 88d4e466 including designer Bug 1 (rotated desk fan) and Bug 4 (Swallow sandals). Only camera color-volume and AA/dithering settings remain outside the structural fingerprint; future gameplay, geometry, collider, or transform edits fail validation.",
+  "source": "git show 88d4e466:Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity"
 }
