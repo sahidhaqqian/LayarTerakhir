@@ -66,8 +66,10 @@ if 'prolog' in args.source_record.lower():
 assert b'SeatedDollOnEndChair' not in atmaja_data,'The AR scare chair must be empty in normal sight'
 assert b'Prolog_RumahAtmaja' in (out/'LayarTerakhir_Data/globalgamemanagers').read_bytes()
 corridor_data=(out/'LayarTerakhir_Data/level2').read_bytes()
-for marker in ['Spawn_KosFloor2','StairA_9','StairB_9','DAPUR BERSAMA','KAMAR MANDI','RakaMotor','RakaMotorHeadlight','DoubleLeafIronGate','KosStreetDeparture','KosMainEntranceDoor','StairwellFoundation','UpperLandingGuard','StairInnerGuardA_9','RoomCell_F2_21','KosPitchedRoof','SharedDiningDoor','BathroomWANITADoor','BathroomPRIADoor','KosFrontWindowGlass','KampungMelati','WarungSalesCounter','MelatiContinuousRain','MelatiAtmajaSign','BuSriShopkeeper']:
+for marker in ['Spawn_KosFloor2','StairA_9','StairB_9','DAPUR BERSAMA','KAMAR MANDI','RakaMotor','RakaMotorHeadlight','DoubleLeafIronGate','KosStreetDeparture','KosMainEntranceDoor','StairwellFoundation','UpperLandingGuard','StairInnerGuardA_9','RoomCell_F2_21','KosPitchedRoof','BathroomWANITADoor','BathroomPRIADoor','KosFrontWindowGlass','KampungMelati','WarungSalesCounter','MelatiContinuousRain','MelatiAtmajaSign','BuSriShopkeeper']:
  assert marker.encode() in corridor_data,marker
+# Bug 7 keeps the communal kitchen and dining area as one open room.
+assert b'SharedDiningDoor' not in corridor_data,'Removed kitchen/dining partition is still packaged'
 for blocker in ['MelatiDistrictBoundary','MelatiStreetEnd','MelatiCrossroadEnd','StreetEndBoundary','KosGateBoundary']:
  assert blocker.encode() not in corridor_data,'Removed pedestrian barrier still packaged: '+blocker
 runtime=(out/'LayarTerakhir_Data/Managed/Assembly-CSharp.dll').read_bytes()
