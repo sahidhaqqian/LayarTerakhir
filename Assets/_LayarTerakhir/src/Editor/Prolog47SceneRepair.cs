@@ -1917,26 +1917,19 @@ namespace LayarTerakhir.Editor
             var wood = Old("House_MAT_WoodDoor");
             const float topY = 1.42f;
 
+            // The bundled LongDiningTable.fbx carries a broken node transform
+            // (Lcl Rotation -90 X, Lcl Scaling 100) and imports as a tiny blob.
+            // Use the CC0 Poly Haven Dining Table instead (see
+            // Audit/dining-table-cc0-sources.json): rustic wood + cloth, resized
+            // to the Bug-39 feast footprint (surface y=1.42).
             Delete("LongDiningTable");
             foreach (string n in new[] { "DiningTableTop47", "DiningTableLeg47_0", "DiningTableLeg47_1", "DiningTableLeg47_2", "DiningTableLeg47_3" })
                 Delete(n);
-            var top = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            top.name = "DiningTableTop47";
-            top.transform.SetParent(env, false);
-            top.transform.position = d.P(3.7f, 4.9f, topY - .035f);
-            top.transform.localScale = new Vector3(1.5f, .07f, 3.6f);
-            top.GetComponent<Renderer>().sharedMaterial = wood;
-            Object.DestroyImmediate(top.GetComponent<Collider>());
-            for (int i = 0; i < 4; i++)
-            {
-                var leg = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                leg.name = "DiningTableLeg47_" + i;
-                leg.transform.SetParent(env, false);
-                leg.transform.position = d.P(3.7f + (i % 2 == 0 ? -.63f : .63f), 4.9f + (i < 2 ? -1.68f : 1.68f), .935f);
-                leg.transform.localScale = new Vector3(.09f, .83f, .09f);
-                leg.GetComponent<Renderer>().sharedMaterial = wood;
-                Object.DestroyImmediate(leg.GetComponent<Collider>());
-            }
+            var table = ProjectAsset(
+                "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/dining_table/dining_table_1k.fbx",
+                "LongDiningTable", env, d.P(3.7f, 4.9f, .52f), Quaternion.Euler(0f, 90f, 0f),
+                new Vector3(1.4f, .9f, 3.4f));
+            if (table == null) throw new Exception("CC0 dining table failed to project");
 
             // Reseat the feast onto the real surface: shift each root so its bounds
             // bottom rests on topY. (Roots sit at different anchors per builder.)

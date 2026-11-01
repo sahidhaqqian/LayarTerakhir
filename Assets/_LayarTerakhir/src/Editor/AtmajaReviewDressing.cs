@@ -31,12 +31,13 @@ namespace LayarTerakhir.Editor
             Chain(P(2.85f,11.2f,1.14f),1.1f,true);var bucket=Model("wooden_bucket_01","KitchenBucket",P(3.6f,11.9f,.35f));Ground(bucket,.35f);FitCollider(bucket);
             Existing("painted_wooden_cabinet_02","KitchenStorage",P(5.45f,11.7f,.88f),new Vector3(.8f,1.05f,.48f));
             var charger=Box("KitchenEmergencyCharger",P(5.76f,10.1f,1.35f),new Vector3(.15f,.20f,.09f),Mat("House_MAT_WoodFrameWhite"));Item(charger,AtmajaAction.Charge,"Isi daya darurat • dapur");
-            // The LongDiningTable FBX renders as a tiny chair-sized blob, so the visual
-            // tabletop is procedural, matched to DiningTableTopCollision (surface y=1.42).
-            // (Prolog47SceneRepair.ApplyRumahAtmajaDiningFix enforces the same on saved scenes.)
-            var dTop=Box("DiningTableTop47",P(3.7f,4.9f,1.385f),new Vector3(1.5f,.07f,3.6f),wood);Object.DestroyImmediate(dTop.GetComponent<Collider>());
-            for(int i=0;i<4;i++)
-            {var dLeg=Box("DiningTableLeg47_"+i,P(3.7f+(i%2==0?-.63f:.63f),4.9f+(i<2?-1.68f:1.68f),.935f),new Vector3(.09f,.83f,.09f),wood);Object.DestroyImmediate(dLeg.GetComponent<Collider>());}
+            // The bundled LongDiningTable.fbx carries a broken node transform, so the
+            // visual table is the CC0 Poly Haven Dining Table (rustic wood + cloth),
+            // matched to DiningTableTopCollision (surface y=1.42). Repair enforces
+            // the same on saved scenes.
+            var dtable=new GameObject("LongDiningTable");dtable.transform.SetParent(environment,false);dtable.transform.SetPositionAndRotation(P(3.7f,4.9f,.52f),Quaternion.Euler(0,90,0));
+            var dchild=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/dining_table/dining_table_1k.fbx"));dchild.transform.SetParent(dtable.transform,false);
+            KosVisualV2.Resize(dtable,new Vector3(1.4f,.9f,3.4f));KosVisualV2.SetCenter(dtable,P(3.7f,4.9f,.52f)+Vector3.up*.45f);FitCollider(dtable);
             var top=Box("DiningTableTopCollision",P(3.7f,4.9f,1.42f),new Vector3(1.45f,.075f,4.4f),wood);top.GetComponent<Renderer>().enabled=false;
             foreach(float x in new[]{3.09f,4.31f})foreach(float z in new[]{2.86f,6.94f})Box("DiningTableLegCollision",P(x,z,.95f),new Vector3(.09f,.86f,.09f),wood).GetComponent<Renderer>().enabled=false;
             foreach(float z in new[]{3.7f,5.5f})foreach(float x in new[]{2.75f,4.65f})Chair("WornDiningChair",P(x,z,.52f),P(3.7f,z,.52f));

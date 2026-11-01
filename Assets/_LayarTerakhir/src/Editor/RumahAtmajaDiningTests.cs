@@ -10,6 +10,10 @@ namespace LayarTerakhir.Editor.Tests
     // goal.md Nov: meja ruang makan, jarum jam, pintu dan dinding Rumah Atmaja.
     public sealed class RumahAtmajaDiningTests
     {
+        private static GameObject Find(string name) =>
+            Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None)
+                .FirstOrDefault(t => t && t.name == name)?.gameObject;
+
         private static AtmajaDirector Open()
         {
             EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
@@ -30,13 +34,18 @@ namespace LayarTerakhir.Editor.Tests
         public void DiningTableSurfaceSupportsTheFeast()
         {
             Open();
-            Assert.That(GameObject.Find("LongDiningTable"), Is.Null, "Tiny broken table blob must be gone");
-            var top = GameObject.Find("DiningTableTop47");
-            Assert.That(top && top.activeInHierarchy, Is.True, "Procedural tabletop exists and is active");
-            var tb = VisualBounds(top);
+            var table = Find("LongDiningTable");
+            Assert.That(table && table.activeInHierarchy, Is.True, "CC0 dining table exists and is active");
+            var tb = VisualBounds(table);
             Assert.That(tb.max.y, Is.EqualTo(1.42f).Within(.03f), "Table surface at collision height");
             Assert.That(tb.size.x, Is.GreaterThan(1.2f), "Tabletop spans the place settings");
             Assert.That(tb.size.z, Is.GreaterThan(3.0f), "Tabletop spans the feast length");
+            var mats = table.GetComponentsInChildren<Renderer>(true).Where(r => r && r.enabled)
+                .SelectMany(r => r.sharedMaterials).Where(m => m).Distinct().ToArray();
+            Assert.That(mats.Length, Is.GreaterThan(0), "Table has real materials");
+            foreach (var m in mats)
+                Assert.That(m.shader && m.shader.name != "Hidden/InternalErrorShader", Is.True, "Table material shader is valid: " + m.name);
+            Assert.That(mats.Any(m => m.HasProperty("_BaseMap") && m.GetTexture("_BaseMap")), Is.True, "Table has its CC0 diffuse wired, not flat gray");
             var feast = Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None)
                 .Where(t => t && (t.name.StartsWith("AddedDinner_") || t.name.StartsWith("AddedDish_") || t.name.StartsWith("DiningCenter_"))).ToArray();
             Assert.That(feast.Length, Is.AtLeast(20), "Bug-39 feast survives");
@@ -112,6 +121,22 @@ namespace LayarTerakhir.Editor.Tests
                 var hits = Physics.OverlapCapsule(p + Vector3.up * cc.radius, p + Vector3.up * (cc.height - cc.radius), cc.radius, ~0, QueryTriggerInteraction.Ignore)
                     .Where(c => c != cc && !c.transform.IsChildOf(d.player.transform)).ToArray();
                 return hits.Length == 0;
+            }
+        }
+
+        [Test]
+        public void PrologDoorsAndClockLoadWithValidMaterials()
+        {
+            Open();
+            foreach (string n in new[] { "KitchenDiningDoor", "FrontSittingDoor", "LockedCentralStairDoor", "GrandfatherClock", "ChildBedroomDoor", "BathroomDoor", "MasterBedroomDoor" })
+            {
+                var go = Find(n);
+                Assert.That(go && go.activeInHierarchy, Is.True, n + " loads");
+                var mats = go.GetComponentsInChildren<Renderer>(true).Where(r => r && r.enabled)
+                    .SelectMany(r => r.sharedMaterials).Where(m => m).Distinct().ToArray();
+                Assert.That(mats.Length, Is.GreaterThan(0), n + " has real materials");
+                foreach (var m in mats)
+                    Assert.That(m.shader && m.shader.name != "Hidden/InternalErrorShader", Is.True, n + " material shader valid: " + m.name);
             }
         }
 
