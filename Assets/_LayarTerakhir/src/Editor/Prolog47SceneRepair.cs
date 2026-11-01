@@ -58,6 +58,9 @@ namespace LayarTerakhir.Editor
                     source = "Upper_BedFabric"; color = new Color(.22f, .18f, .16f); smooth = .06f; break;
                 case "Repair_Paper":
                     customTex = Texs + "AgedNotebookPaperDiffuse.png"; color = Color.white; smooth = .05f; break;
+                case "Repair_SideTableWood":
+                    customTex = "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/wooden_table_02/wooden_table_02_diff_1k.jpg";
+                    color = Color.white; smooth = .3f; break;
                 case "Repair_Ceramic":
                     color = new Color(.86f, .84f, .78f); smooth = .76f; break;
                 case "Repair_CeramicEdge":
@@ -1925,11 +1928,45 @@ namespace LayarTerakhir.Editor
             Delete("LongDiningTable");
             foreach (string n in new[] { "DiningTableTop47", "DiningTableLeg47_0", "DiningTableLeg47_1", "DiningTableLeg47_2", "DiningTableLeg47_3" })
                 Delete(n);
-            var table = ProjectAsset(
-                "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/dining_table/dining_table_1k.fbx",
-                "LongDiningTable", env, d.P(3.7f, 4.9f, .52f), Quaternion.Euler(0f, 90f, 0f),
-                new Vector3(1.4f, .9f, 3.4f));
-            if (table == null) throw new Exception("CC0 dining table failed to project");
+            // NOTE: keep the root unrotated and yaw the FBX child instead, so
+            // Resize/SetCenter/FitCollider stay axis-aligned with the world.
+            // (A BoxCollider fitted under a yawed root maps its extents swapped
+            // into the world and invisibly walls off the east route.)
+            var table = new GameObject("LongDiningTable");
+            table.transform.SetParent(env, false);
+            table.transform.SetPositionAndRotation(d.P(3.7f, 4.9f, .52f), Quaternion.identity);
+            var tableAsset = AssetDatabase.LoadAssetAtPath<GameObject>(
+                "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/dining_table/dining_table_1k.fbx");
+            if (!tableAsset) throw new Exception("CC0 dining table FBX missing");
+            var tableChild = (GameObject)PrefabUtility.InstantiatePrefab(tableAsset);
+            tableChild.transform.SetParent(table.transform, false);
+            tableChild.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+            KosVisualV2.Resize(table, new Vector3(1.5f, .9f, 3.8f));
+            KosVisualV2.SetCenter(table, d.P(3.7f, 4.9f, .52f) + Vector3.up * .45f);
+            // Sole physics stays in the invisible DiningTableTopCollision box;
+            // a collider on the visual would double-block the crouch route.
+            if (table.GetComponent<Collider>()) Object.DestroyImmediate(table.GetComponent<Collider>());
+            // The invisible top collision must match the visual exactly, otherwise
+            // its overhangs block capsules where nothing is seen.
+            {
+                var topCol = Find("DiningTableTopCollision");
+                if (topCol)
+                {
+                    topCol.transform.position = d.P(3.7f, 4.9f, 1.42f);
+                    topCol.transform.localScale = new Vector3(1.5f, .075f, 3.8f);
+                }
+                foreach (var n in new[] { "DiningTableLegCollision" })
+                    foreach (var go in env.GetComponentsInChildren<Transform>(true).Where(t => t && t.name == n).ToArray())
+                        Object.DestroyImmediate(go.GetComponent<Collider>());
+                foreach (float x in new[] { 3.09f, 4.31f }) foreach (float z in new[] { 2.9f, 6.9f })
+                {
+                    var leg = new GameObject("DiningTableLegCollision");
+                    leg.transform.SetParent(env, false);
+                    leg.transform.position = d.P(x, z, .95f);
+                    leg.transform.localScale = new Vector3(.09f, .86f, .09f);
+                    leg.AddComponent<BoxCollider>();
+                }
+            }
 
             // Reseat the feast onto the real surface: shift each root so its bounds
             // bottom rests on topY. (Roots sit at different anchors per builder.)
@@ -1941,8 +1978,31 @@ namespace LayarTerakhir.Editor
             }
 
             // Clock hands + ashtray rest on the side table, not inside it.
-            var side = Find("CornerSideTable");
-            if (side)
+            // CornerSideTable.fbx carries the same broken node transform as the old
+            // dining table, so the visual is the CC0 Poly Haven Wooden Table 02
+            // (small vintage side table; batch receipt in asset-download-manifest).
+            Delete("CornerSideTable");
+            var side = ProjectAsset(
+                "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/wooden_table_02/wooden_table_02.fbx",
+                "CornerSideTable", env, d.P(-5.25f, 1.15f, .52f), Quaternion.identity,
+                new Vector3(.9f, .75f, .9f));
+            if (side == null) throw new Exception("CC0 side table failed to project");
+            // The Poly Haven export does not resolve its textures on import, so wire
+            // the CC0 diffuse + normal explicitly (idempotent: same asset, re-set).
+            {
+                const string sideDir = "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/wooden_table_02/";
+                var norImport = AssetImporter.GetAtPath(sideDir + "wooden_table_02_nor_gl_1k.jpg") as TextureImporter;
+                if (norImport && norImport.textureType != TextureImporterType.NormalMap)
+                {
+                    norImport.textureType = TextureImporterType.NormalMap;
+                    norImport.SaveAndReimport();
+                }
+                var sideMat = Material("Repair_SideTableWood");
+                var sideNor = AssetDatabase.LoadAssetAtPath<Texture2D>(sideDir + "wooden_table_02_nor_gl_1k.jpg");
+                if (sideNor) { sideMat.SetTexture("_BumpMap", sideNor); sideMat.SetFloat("_BumpScale", .55f); sideMat.EnableKeyword("_NORMALMAP"); EditorUtility.SetDirty(sideMat); }
+                foreach (var r in side.GetComponentsInChildren<Renderer>())
+                    r.sharedMaterials = Enumerable.Repeat(sideMat, r.sharedMaterials.Length).ToArray();
+            }
             {
                 float surface = SafeBounds(side).max.y;
                 var cxz = SafeBounds(side).center;
@@ -1950,6 +2010,32 @@ namespace LayarTerakhir.Editor
                 if (hands) hands.transform.position = new Vector3(cxz.x, surface + .015f, cxz.z);
                 var tray = Find("OldAshtray");
                 if (tray) tray.transform.position = new Vector3(tray.transform.position.x, surface + .008f, tray.transform.position.z);
+            }
+
+            // Grandfather clock: blades + pendulum render buried at the case base.
+            // Seat them where the mechanism belongs: hands on the dial centre,
+            // pendulum hanging below it (the drawer stays low, as built).
+            {
+                var clock = Find("GrandfatherClock");
+                if (clock)
+                {
+                    var parts = clock.GetComponentsInChildren<Transform>(true);
+                    var hour = parts.FirstOrDefault(t => t && t.name.StartsWith("ClockHourBlade__"));
+                    var minute = parts.FirstOrDefault(t => t && t.name.StartsWith("ClockMinuteBlade__"));
+                    var pend = parts.FirstOrDefault(t => t && t.name.StartsWith("ClockPendulum__"));
+                    if (hour) hour.position = d.clockDialCentre;
+                    if (minute) minute.position = d.clockDialCentre;
+                    if (hour) hour.rotation = clock.transform.rotation;
+                    if (minute) minute.rotation = clock.transform.rotation;
+                    if (pend)
+                    {
+                        var tick = clock.GetComponentInParent<LayarTerakhir.Prolog.ClockAmbience>()
+                            ?? clock.GetComponentInChildren<LayarTerakhir.Prolog.ClockAmbience>(true);
+                        pend.position = tick
+                            ? clock.transform.TransformPoint(tick.pivot)
+                            : d.clockDialCentre + Vector3.down * .4f;
+                    }
+                }
             }
 
             // The dining hinge must be serialized, not only runtime-added.

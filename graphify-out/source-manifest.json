@@ -1,16 +1,16 @@
 {
   "artifacts_sha256": {
-    "GRAPH_REPORT.md": "adef80e66cdc5b2bb53e3d0ce9b7995531bcaa8ed5c60534f0c5a3b2eeb87a1f",
-    "graph.html": "12cb0e8fcda51bed2cef9ce3e38f2a61ee8b77daf8aebc6e5a5353991eb12293",
-    "graph.json": "ad29eecf3c5d2b1a6984332df9e09b2b920639e15d68a364c9682277592755f8"
+    "GRAPH_REPORT.md": "c0b46466332d5ce687c193a1d437e6d17470e312b2f0f7d6d7425329a914cc2d",
+    "graph.html": "3f3886e50552dabb410822310795d58890aceb0d194eab57d4e53cc5ee261527",
+    "graph.json": "25640506eebc29aad74d77b79ce19eb6d2a933d36d7e84e6bdc25caf833e5368"
   },
   "asset_file_count": 0,
   "code_file_count": 413,
-  "edge_count": 19861,
+  "edge_count": 19877,
   "graphify_version": "graphify 0.9.92",
   "ignore_sha256": "05660cd7b7a81591931d5661fb73b7124598a04c44f843eda7a7ac2107f20e17",
   "mode": "local-code-only; no LLM/community labeling",
-  "node_count": 5253,
+  "node_count": 5254,
   "referenced_source_count": 413,
   "sources_sha256": {
     "Assets/_LayarTerakhir/src/Audio/AmbientAudioLoop.cs": "7de60fa68d2b45ec199754e8c16b8ac4827306cc38d7ad32a708d93a78e83514",
@@ -54,7 +54,7 @@
     "Assets/_LayarTerakhir/src/Editor/AbandonedLocationLightingTests.cs": "88e953985af09daf65b9045c5e54d76ada4fec89f0aaf865f79383008852a687",
     "Assets/_LayarTerakhir/src/Editor/AtmajaGeometryAudit.cs": "0ec565151e9d62ca8c6a225b188a639181f1cf0bfa5192b017289455edec006e",
     "Assets/_LayarTerakhir/src/Editor/AtmajaPlayTests.cs": "21b41047eb2aed89d707782e389cad9e87fc31ad1545ba9a2bf0e202e160a534",
-    "Assets/_LayarTerakhir/src/Editor/AtmajaReviewDressing.cs": "c992f0c9a4e30dc183701c051a5f57d0bb47ea304a6dff7de6d1bc9ce5834a7c",
+    "Assets/_LayarTerakhir/src/Editor/AtmajaReviewDressing.cs": "3642a475141eb7c6cdbd722c8173152c6c03130c915a28848d5d3b22ee93e46e",
     "Assets/_LayarTerakhir/src/Editor/AtmajaSceneBuilder.cs": "2887d156360e49b9221ab835bf809e510e1e3db2c13480bb8ebd73cda4d0e389",
     "Assets/_LayarTerakhir/src/Editor/AtmajaSceneValidation.cs": "7e04e865741676dcb544d2c0e5de91450d0642b3d4ca807414ae4a81b1e00709",
     "Assets/_LayarTerakhir/src/Editor/AtmajaStairRevisionBuilder.cs": "d6566b0bceabde555e59bbb5c9b14b17bff64492bac92586cd83b824c94b1041",
@@ -138,7 +138,7 @@
     "Assets/_LayarTerakhir/src/Editor/PlaytestRevisionBuilder.cs": "559fbc85b54af14f44030848e045bd7feb5492a5c9b9b6e768e635106e3f1383",
     "Assets/_LayarTerakhir/src/Editor/Prolog47InteractionTests.cs": "d5d0aa4f460fefcf68cb38504efd9548b84651f64f8803d1ed4ebbfa51c72e73",
     "Assets/_LayarTerakhir/src/Editor/Prolog47MeshRepair.cs": "7b2dee5be2ff8b2b6228fc13464bb42ab987bfc7e03f7fabec72075d68526f3c",
-    "Assets/_LayarTerakhir/src/Editor/Prolog47SceneRepair.cs": "6ad9d799f2bf862f742489081702bfbfdeb5f76bebec44b412e667ca57c4e07c",
+    "Assets/_LayarTerakhir/src/Editor/Prolog47SceneRepair.cs": "90c1ecbfcd61b2470b6bad731d5230e50da4c547c53e346bc292f89897d46c06",
     "Assets/_LayarTerakhir/src/Editor/Prolog47VisualTests.cs": "97a623da2a73d76af6e55bf2ab0e3381d377bcf8576f863f88128011b1804a55",
     "Assets/_LayarTerakhir/src/Editor/PrologCompletionBuilder.cs": "e90b7966dfd7c08996fe4c416856fdac33f4b5392d69c14c1165d7f50ad38544",
     "Assets/_LayarTerakhir/src/Editor/PrologEasyPlayTests.cs": "2ce15608cd7618f43f80b5dca5dc881c26193ec3d90c4442e8fa2266fbac8ffa",
@@ -149,7 +149,7 @@
     "Assets/_LayarTerakhir/src/Editor/RakaPresentationRevisionBuilder.cs": "4a0d6117399e59a657050c973ff52e54bb376c027143a976a66808056c0f4b84",
     "Assets/_LayarTerakhir/src/Editor/RecoveryVisualEvidence.cs": "1863b739bf71db3c7e09a8343dc8c1f49a89ba2f7fbcb9a0a8911ce885280314",
     "Assets/_LayarTerakhir/src/Editor/ReviewDirectBootTests.cs": "e03ce0f9cc09f802c7c6b8a967c67fbd73e97bc115c72f0de92d987f6357fec9",
-    "Assets/_LayarTerakhir/src/Editor/RumahAtmajaDiningTests.cs": "5ccc1140d85bb790f41394423ec9492f6097ea92bb65ae29e5dcecf393f2d1d1",
+    "Assets/_LayarTerakhir/src/Editor/RumahAtmajaDiningTests.cs": "9c0c5a3f256c2f5d02e88d2a79afffce32baa81f73a22c2bd5e8a0fed9406652",
     "Assets/_LayarTerakhir/src/Editor/TempShaftProbe.cs": "41cb33acfcb5990572b9701ec5048fadf9701255c3db0875b733dab18da7a8d1",
     "Assets/_LayarTerakhir/src/Editor/WindowsDevelopmentBuild.cs": "b383fbdce113cdb3e8516ed6f967bc315b49877ee98a6cc83ac248f541a681f6",
     "Assets/_LayarTerakhir/src/Interlude/InterludeCampaign.cs": "db791cbe918ff20db350705011ef674d72e1b3d2e65e045c6f504bf4d9d350b9",

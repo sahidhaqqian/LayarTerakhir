@@ -35,11 +35,11 @@ namespace LayarTerakhir.Editor
             // visual table is the CC0 Poly Haven Dining Table (rustic wood + cloth),
             // matched to DiningTableTopCollision (surface y=1.42). Repair enforces
             // the same on saved scenes.
-            var dtable=new GameObject("LongDiningTable");dtable.transform.SetParent(environment,false);dtable.transform.SetPositionAndRotation(P(3.7f,4.9f,.52f),Quaternion.Euler(0,90,0));
-            var dchild=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/dining_table/dining_table_1k.fbx"));dchild.transform.SetParent(dtable.transform,false);
-            KosVisualV2.Resize(dtable,new Vector3(1.4f,.9f,3.4f));KosVisualV2.SetCenter(dtable,P(3.7f,4.9f,.52f)+Vector3.up*.45f);FitCollider(dtable);
-            var top=Box("DiningTableTopCollision",P(3.7f,4.9f,1.42f),new Vector3(1.45f,.075f,4.4f),wood);top.GetComponent<Renderer>().enabled=false;
-            foreach(float x in new[]{3.09f,4.31f})foreach(float z in new[]{2.86f,6.94f})Box("DiningTableLegCollision",P(x,z,.95f),new Vector3(.09f,.86f,.09f),wood).GetComponent<Renderer>().enabled=false;
+            var dtable=new GameObject("LongDiningTable");dtable.transform.SetParent(environment,false);dtable.transform.SetPositionAndRotation(P(3.7f,4.9f,.52f),Quaternion.identity);
+            var dchild=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/dining_table/dining_table_1k.fbx"));dchild.transform.SetParent(dtable.transform,false);dchild.transform.rotation=Quaternion.Euler(0,90,0);
+            KosVisualV2.Resize(dtable,new Vector3(1.5f,.9f,3.8f));KosVisualV2.SetCenter(dtable,P(3.7f,4.9f,.52f)+Vector3.up*.45f);
+            var top=Box("DiningTableTopCollision",P(3.7f,4.9f,1.42f),new Vector3(1.5f,.075f,3.8f),wood);top.GetComponent<Renderer>().enabled=false;
+            foreach(float x in new[]{3.09f,4.31f})foreach(float z in new[]{2.9f,6.9f})Box("DiningTableLegCollision",P(x,z,.95f),new Vector3(.09f,.86f,.09f),wood).GetComponent<Renderer>().enabled=false;
             foreach(float z in new[]{3.7f,5.5f})foreach(float x in new[]{2.75f,4.65f})Chair("WornDiningChair",P(x,z,.52f),P(3.7f,z,.52f));
             Chair("EmptyARScareChair",P(3.7f,2.15f,.52f),P(3.7f,4.9f,.52f));
             for(int i=0;i<6;i++)
@@ -57,7 +57,9 @@ namespace LayarTerakhir.Editor
             Box("FrontSittingPartitionEast",P(.35f,2.5f,2.1f),new Vector3(2.3f,3.2f,.16f),plaster);
             Box("FrontSittingDoorLintel",P(-1.4f,2.5f,3.3f),new Vector3(1.25f,.7f,.16f),plaster);
             Door("FrontSittingDoor",P(-2,2.5f,.52f),P(-1.4f,2.5f,1.62f),new Vector3(1.2f,2.2f,.09f),"Buka ruang tamu depan");
-            var corner=Model("CornerSideTable","CornerSideTable",P(-5.05f,1.15f,.52f));FitCollider(corner);
+            var corner=new GameObject("CornerSideTable");corner.transform.SetParent(environment,false);corner.transform.SetPositionAndRotation(P(-5.25f,1.15f,.52f),Quaternion.identity);
+            var cchild=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/wooden_table_02/wooden_table_02.fbx"));cchild.transform.SetParent(corner.transform,false);
+            KosVisualV2.Resize(corner,new Vector3(.9f,.75f,.9f));KosVisualV2.SetCenter(corner,P(-5.25f,1.15f,.52f)+Vector3.up*.375f);FitCollider(corner);
             float cornerTop=KosVisualV2.BoundsOf(corner).max.y;
             director.clockHands=Box("BrassClockHands",new Vector3(corner.transform.position.x,cornerTop+.015f,corner.transform.position.z),new Vector3(.18f,.025f,.03f),Mat("Detail_AgedBrass"));Item(director.clockHands,AtmajaAction.ClockHands,"Ambil Jarum Jam Kuningan");
             var ashtray=GameObject.CreatePrimitive(PrimitiveType.Cylinder);ashtray.name="OldAshtray";ashtray.transform.SetParent(environment,false);ashtray.transform.position=new Vector3(P(-4.85f,1.1f,0).x,cornerTop+.008f,P(-4.85f,1.1f,0).z);ashtray.transform.localScale=new Vector3(.12f,.015f,.12f);ashtray.GetComponent<Renderer>().sharedMaterial=Mat("House_MAT_Concrete");Object.DestroyImmediate(ashtray.GetComponent<Collider>());
@@ -72,7 +74,9 @@ namespace LayarTerakhir.Editor
             var clock=Model("GrandfatherClock","GrandfatherClock",P(-5.58f,5.8f,.52f));clock.transform.rotation=Facing(east);FitCollider(clock);Item(clock,AtmajaAction.Clock,"Periksa jam bandul tua");
             director.clockFaceNormal=east;director.clockDialCentre=clock.transform.position+east*.184f+Vector3.up*1.78f;
             director.clockHour=clock.GetComponentsInChildren<Transform>().Single(t=>t.name.StartsWith("ClockHourBlade__"));director.clockMinute=clock.GetComponentsInChildren<Transform>().Single(t=>t.name.StartsWith("ClockMinuteBlade__"));director.clockDrawer=clock.GetComponentsInChildren<Transform>().Single(t=>t.name.StartsWith("ClockDrawer__"));
-            var tick=clock.AddComponent<ClockAmbience>();tick.pendulum=clock.GetComponentsInChildren<Transform>().Single(t=>t.name.StartsWith("ClockPendulum__"));tick.pivot=new Vector3(0,1.4f,.15f);tick.axis=Vector3.forward;
+            director.clockHour.position=director.clockDialCentre;director.clockMinute.position=director.clockDialCentre;
+            director.clockHour.rotation=director.clockMinute.rotation=clock.transform.rotation;
+            var tick=clock.AddComponent<ClockAmbience>();tick.pendulum=clock.GetComponentsInChildren<Transform>().Single(t=>t.name.StartsWith("ClockPendulum__"));tick.pendulum.position=clock.transform.position+Vector3.up*1.4f;tick.pivot=new Vector3(0,1.4f,.15f);tick.axis=Vector3.forward;
             tick.source=clock.AddComponent<AudioSource>();tick.source.playOnAwake=false;tick.source.dopplerLevel=0;tick.source.spatialBlend=1;tick.source.minDistance=.8f;tick.source.maxDistance=7;tick.source.rolloffMode=AudioRolloffMode.Linear;tick.source.outputAudioMixerGroup=director.audioProfile.effectsBus;
             var stair=Box("LockedCentralStairDoor",P(-3.55f,7.7f,1.8f),new Vector3(1.25f,2.6f,.14f),wood);Item(stair,AtmajaAction.StairDoor,"Buka pintu tangga tengah");
             Box("StairHallWall_W",P(-5.04f,7.9f,2.1f),new Vector3(1.73f,3.2f,.16f),plaster);

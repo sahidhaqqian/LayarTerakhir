@@ -40,6 +40,11 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(tb.max.y, Is.EqualTo(1.42f).Within(.03f), "Table surface at collision height");
             Assert.That(tb.size.x, Is.GreaterThan(1.2f), "Tabletop spans the place settings");
             Assert.That(tb.size.z, Is.GreaterThan(3.0f), "Tabletop spans the feast length");
+            var tcol = Find("DiningTableTopCollision");
+            Assert.That(tcol, Is.Not.Null, "Invisible table collision box exists");
+            var cb = tcol.GetComponent<Collider>().bounds;
+            Assert.That(Mathf.Abs(cb.size.x - tb.size.x), Is.LessThan(.12f), "Collision matches visual width (no invisible overhang)");
+            Assert.That(Mathf.Abs(cb.size.z - tb.size.z), Is.LessThan(.12f), "Collision matches visual length");
             var mats = table.GetComponentsInChildren<Renderer>(true).Where(r => r && r.enabled)
                 .SelectMany(r => r.sharedMaterials).Where(m => m).Distinct().ToArray();
             Assert.That(mats.Length, Is.GreaterThan(0), "Table has real materials");
@@ -73,6 +78,9 @@ namespace LayarTerakhir.Editor.Tests
             var tray = GameObject.Find("OldAshtray");
             if (tray) Assert.That(tray.transform.position.y - sb.max.y, Is.InRange(0f, .05f), "Ashtray rests on the tabletop");
             Assert.That(d.clockHands, Is.SameAs(hands), "Director still binds the same hands object");
+            var sideMats = side.GetComponentsInChildren<Renderer>(true).Where(r => r && r.enabled)
+                .SelectMany(r => r.sharedMaterials).Where(m => m).Distinct().ToArray();
+            Assert.That(sideMats.Any(m => m.HasProperty("_BaseMap") && m.GetTexture("_BaseMap")), Is.True, "Side table has its CC0 diffuse wired");
         }
 
         [Test]
@@ -138,6 +146,25 @@ namespace LayarTerakhir.Editor.Tests
                 foreach (var m in mats)
                     Assert.That(m.shader && m.shader.name != "Hidden/InternalErrorShader", Is.True, n + " material shader valid: " + m.name);
             }
+        }
+
+        [Test]
+        public void GrandfatherClockHandsAreOnTheDial()
+        {
+            var d = Open();
+            var clock = GameObject.Find("GrandfatherClock");
+            Assert.That(clock, Is.Not.Null);
+            var parts = clock.GetComponentsInChildren<Transform>(true);
+            var hour = parts.FirstOrDefault(t => t && t.name.StartsWith("ClockHourBlade__"));
+            var minute = parts.FirstOrDefault(t => t && t.name.StartsWith("ClockMinuteBlade__"));
+            var pend = parts.FirstOrDefault(t => t && t.name.StartsWith("ClockPendulum__"));
+            Assert.That(hour && minute && pend, Is.True, "Clockwork parts exist");
+            Assert.That(Vector3.Distance(hour.position, d.clockDialCentre), Is.LessThan(.15f), "Hour hand sits on the dial");
+            Assert.That(Vector3.Distance(minute.position, d.clockDialCentre), Is.LessThan(.15f), "Minute hand sits on the dial");
+            Assert.That(pend.position.y, Is.GreaterThan(.9f).And.LessThan(2.2f), "Pendulum hangs inside the case");
+            Assert.That(Vector3.Distance(new Vector3(pend.position.x, 0, pend.position.z), new Vector3(d.clockDialCentre.x, 0, d.clockDialCentre.z)), Is.LessThan(.6f), "Pendulum hangs below the dial");
+            var tick = clock.GetComponentInParent<ClockAmbience>() ?? clock.GetComponentInChildren<ClockAmbience>(true);
+            Assert.That(tick && tick.pendulum && tick.source, Is.True, "Ticking ambience is wired");
         }
 
         [Test]
