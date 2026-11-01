@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<test-run id="2" testcasecount="6" result="Passed" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-01 10:59:14Z" end-time="2026-11-01 10:59:20Z" duration="5.9203308">
-  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="570" result="Passed" start-time="2026-11-01 10:59:14Z" end-time="2026-11-01 10:59:20Z" duration="5.920331" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+<test-run id="2" testcasecount="8" result="Passed" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-01 11:58:09Z" end-time="2026-11-01 11:58:16Z" duration="6.7913448">
+  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="572" result="Passed" start-time="2026-11-01 11:58:09Z" end-time="2026-11-01 11:58:16Z" duration="6.791345" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
     <properties>
       <property name="platform" value="EditMode" />
     </properties>
-    <test-suite type="Assembly" id="1658" name="Assembly-CSharp-Editor.dll" fullname="/root/projects/LayarTerakhir/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="570" result="Passed" start-time="2026-11-01 10:59:14Z" end-time="2026-11-01 10:59:20Z" duration="5.829653" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <test-suite type="Assembly" id="1660" name="Assembly-CSharp-Editor.dll" fullname="/root/projects/LayarTerakhir/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="572" result="Passed" start-time="2026-11-01 11:58:09Z" end-time="2026-11-01 11:58:16Z" duration="6.700487" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
       <properties>
-        <property name="_PID" value="869106" />
+        <property name="_PID" value="875979" />
         <property name="_APPDOMAIN" value="Unity Child Domain" />
         <property name="platform" value="EditMode" />
         <property name="EditorOnly" value="True" />
       </properties>
-      <test-suite type="TestSuite" id="1659" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="570" result="Passed" start-time="2026-11-01 10:59:14Z" end-time="2026-11-01 10:59:20Z" duration="5.827119" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <test-suite type="TestSuite" id="1661" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="572" result="Passed" start-time="2026-11-01 11:58:09Z" end-time="2026-11-01 11:58:16Z" duration="6.697832" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
         <properties />
-        <test-suite type="TestSuite" id="1660" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="570" result="Passed" start-time="2026-11-01 10:59:14Z" end-time="2026-11-01 10:59:20Z" duration="5.825791" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <test-suite type="TestSuite" id="1662" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="572" result="Passed" start-time="2026-11-01 11:58:09Z" end-time="2026-11-01 11:58:16Z" duration="6.696285" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
           <properties />
-          <test-suite type="TestSuite" id="1661" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="570" result="Passed" start-time="2026-11-01 10:59:14Z" end-time="2026-11-01 10:59:20Z" duration="5.824426" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestSuite" id="1663" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="572" result="Passed" start-time="2026-11-01 11:58:09Z" end-time="2026-11-01 11:58:16Z" duration="6.694777" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-suite type="TestFixture" id="1011" name="AtmajaPlayTests" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" testcasecount="41" result="Passed" start-time="2026-11-01 10:59:14Z" end-time="2026-11-01 10:59:18Z" duration="3.111252" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-suite type="TestFixture" id="1011" name="AtmajaPlayTests" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" testcasecount="41" result="Passed" start-time="2026-11-01 11:58:09Z" end-time="2026-11-01 11:58:12Z" duration="2.860422" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-case id="1015" name="KosBothStairFlightsAndSharedRoomsAreContinuouslyWalkable" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.KosBothStairFlightsAndSharedRoomsAreContinuouslyWalkable" methodname="KosBothStairFlightsAndSharedRoomsAreContinuouslyWalkable" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="7373140" result="Passed" start-time="2026-11-01 10:59:07Z" end-time="2026-11-01 10:59:18Z" duration="10.804397" asserts="0">
+              <test-case id="1015" name="KosBothStairFlightsAndSharedRoomsAreContinuouslyWalkable" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.KosBothStairFlightsAndSharedRoomsAreContinuouslyWalkable" methodname="KosBothStairFlightsAndSharedRoomsAreContinuouslyWalkable" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="2030398290" result="Passed" start-time="2026-11-01 11:58:01Z" end-time="2026-11-01 11:58:12Z" duration="10.424515" asserts="0">
                 <properties>
                   <property name="_JOINTYPE" value="UnityCombinatorial" />
                   <property name="retryIteration" value="0" />
@@ -27,33 +27,45 @@
                 </properties>
               </test-case>
             </test-suite>
-            <test-suite type="TestFixture" id="1162" name="KosBathroomRevisionTests" fullname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests" classname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-01 10:59:18Z" end-time="2026-11-01 10:59:20Z" duration="2.703030" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-suite type="TestFixture" id="1162" name="KosBathroomRevisionTests" fullname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests" classname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-01 11:58:12Z" end-time="2026-11-01 11:58:16Z" duration="3.823205" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-case id="1163" name="BathroomFoyerStaysOpenWithOnlyTwoGenderDoors" fullname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests.BathroomFoyerStaysOpenWithOnlyTwoGenderDoors" methodname="BathroomFoyerStaysOpenWithOnlyTwoGenderDoors" classname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests" runstate="Runnable" seed="1710594516" result="Passed" start-time="2026-11-01 10:59:18Z" end-time="2026-11-01 10:59:18Z" duration="0.538128" asserts="0">
+              <test-case id="1163" name="BathroomFoyerStaysOpenWithOnlyTwoGenderDoors" fullname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests.BathroomFoyerStaysOpenWithOnlyTwoGenderDoors" methodname="BathroomFoyerStaysOpenWithOnlyTwoGenderDoors" classname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests" runstate="Runnable" seed="1803753734" result="Passed" start-time="2026-11-01 11:58:12Z" end-time="2026-11-01 11:58:12Z" duration="0.560471" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1164" name="DiningPortalHasNoFloatingTrim" fullname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests.DiningPortalHasNoFloatingTrim" methodname="DiningPortalHasNoFloatingTrim" classname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests" runstate="Runnable" seed="2025035204" result="Passed" start-time="2026-11-01 10:59:18Z" end-time="2026-11-01 10:59:19Z" duration="0.512008" asserts="0">
+              <test-case id="1164" name="DiningPortalHasNoFloatingTrim" fullname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests.DiningPortalHasNoFloatingTrim" methodname="DiningPortalHasNoFloatingTrim" classname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests" runstate="Runnable" seed="2080492058" result="Passed" start-time="2026-11-01 11:58:12Z" end-time="2026-11-01 11:58:13Z" duration="0.521873" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1167" name="ExpandedBathroomFixturesArePresent" fullname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests.ExpandedBathroomFixturesArePresent" methodname="ExpandedBathroomFixturesArePresent" classname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests" runstate="Runnable" seed="1418237604" result="Passed" start-time="2026-11-01 10:59:19Z" end-time="2026-11-01 10:59:19Z" duration="0.540688" asserts="0">
+              <test-case id="1167" name="DiningWestNotchIsSealed" fullname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests.DiningWestNotchIsSealed" methodname="DiningWestNotchIsSealed" classname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests" runstate="Runnable" seed="789887659" result="Passed" start-time="2026-11-01 11:58:13Z" end-time="2026-11-01 11:58:13Z" duration="0.568420" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1165" name="MainEntranceLeafSealsItsFrame" fullname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests.MainEntranceLeafSealsItsFrame" methodname="MainEntranceLeafSealsItsFrame" classname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests" runstate="Runnable" seed="2127609859" result="Passed" start-time="2026-11-01 10:59:19Z" end-time="2026-11-01 10:59:20Z" duration="0.528332" asserts="0">
+              <test-case id="1169" name="ExpandedBathroomFixturesArePresent" fullname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests.ExpandedBathroomFixturesArePresent" methodname="ExpandedBathroomFixturesArePresent" classname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests" runstate="Runnable" seed="1260163353" result="Passed" start-time="2026-11-01 11:58:13Z" end-time="2026-11-01 11:58:14Z" duration="0.529253" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1166" name="PorcelainToiletsFaceTheirDoorways" fullname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests.PorcelainToiletsFaceTheirDoorways" methodname="PorcelainToiletsFaceTheirDoorways" classname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests" runstate="Runnable" seed="63085296" result="Passed" start-time="2026-11-01 10:59:20Z" end-time="2026-11-01 10:59:20Z" duration="0.580648" asserts="0">
+              <test-case id="1168" name="FridgeFacesTheKitchenNotTheDiningTable" fullname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests.FridgeFacesTheKitchenNotTheDiningTable" methodname="FridgeFacesTheKitchenNotTheDiningTable" classname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests" runstate="Runnable" seed="345652996" result="Passed" start-time="2026-11-01 11:58:14Z" end-time="2026-11-01 11:58:15Z" duration="0.532126" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1165" name="MainEntranceLeafSealsItsFrame" fullname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests.MainEntranceLeafSealsItsFrame" methodname="MainEntranceLeafSealsItsFrame" classname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests" runstate="Runnable" seed="1178175382" result="Passed" start-time="2026-11-01 11:58:15Z" end-time="2026-11-01 11:58:15Z" duration="0.527606" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1166" name="PorcelainToiletsFaceTheirDoorways" fullname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests.PorcelainToiletsFaceTheirDoorways" methodname="PorcelainToiletsFaceTheirDoorways" classname="LayarTerakhir.Editor.Tests.KosBathroomRevisionTests" runstate="Runnable" seed="1377842857" result="Passed" start-time="2026-11-01 11:58:15Z" end-time="2026-11-01 11:58:16Z" duration="0.579182" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />

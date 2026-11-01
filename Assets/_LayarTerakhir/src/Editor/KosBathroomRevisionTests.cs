@@ -8,8 +8,9 @@ using Object=UnityEngine.Object;
 
 namespace LayarTerakhir.Editor.Tests
 {
-    // Designer round Nov 2026 (goal.md): dining leftover wall, open bathroom foyer,
-    // sealed main entrance, expanded natural bathrooms. EditMode pins only.
+    // Designer rounds Nov 2026 (goal.md): dining notch sealed, exit swings east/outward,
+    // toilets face their doors, buckets/tubs removed, dispenser raised+turned, fridge faces kitchen.
+    // EditMode pins only.
     public sealed class KosBathroomRevisionTests
     {
         [SetUp] public void Setup() =>
@@ -64,13 +65,25 @@ namespace LayarTerakhir.Editor.Tests
             var door = doors[0];
             Assert.That(door.hinge,Is.Not.Null);
             Assert.That(door.locked,Is.False);
+            // Hinge on the EAST jamb, swings outward east (left when entering).
+            var hingeLocal = Local(door.hinge);
+            Assert.That(hingeLocal.x,Is.EqualTo(.9f).Within(.05f),"Hinge x=" + hingeLocal.x);
+            Assert.That(door.angle,Is.LessThan(0f),"Swing angle=" + door.angle);
             door.SetOpenImmediate(false);
+            // Open pose must land OUTSIDE (z < -1) on the EAST side (x > 0).
+            door.hinge.localRotation = Quaternion.Euler(0, door.angle, 0);
+            var openCenter = Local(leaf.transform);
+            door.hinge.localRotation = Quaternion.identity;
+            door.SetOpenImmediate(false);
+            Assert.That(openCenter.z,Is.LessThan(-1f),"Open leaf stays outside, z=" + openCenter.z);
+            Assert.That(openCenter.x,Is.GreaterThan(0f),"Open leaf swings east/left, x=" + openCenter.x);
             var bounds = leaf.GetComponent<Collider>().bounds;
             var root = Root();
             var lo = root.InverseTransformPoint(bounds.min);
             var hi = root.InverseTransformPoint(bounds.max);
             Assert.That(lo.x,Is.LessThanOrEqualTo(-.85f),"Leaf covers the left jamb gap, min.x=" + lo.x);
             Assert.That(hi.x,Is.GreaterThanOrEqualTo(.85f),"Leaf covers the right jamb gap, max.x=" + hi.x);
+            Assert.That(hi.y,Is.GreaterThanOrEqualTo(2.28f),"Leaf seals the top slit, max.y=" + hi.y);
             var corridor = Object.FindFirstObjectByType<KosCorridorDirector>();
             Assert.That(corridor.entranceDoor,Is.SameAs(door));
         }
@@ -82,8 +95,29 @@ namespace LayarTerakhir.Editor.Tests
                 var toilet = GameObject.Find("KosPorcelainToilet_" + z);
                 Assert.That(toilet,Is.Not.Null);
                 float yaw = ((toilet.transform.eulerAngles.y % 360) + 360) % 360;
-                Assert.That(yaw,Is.EqualTo(270f).Within(.5f),"Toilet bowl faces the cubicle door (-X), yaw=" + yaw);
+                Assert.That(yaw,Is.EqualTo(90f).Within(.5f),"Toilet bowl faces the cubicle door (-X), yaw=" + yaw);
             }
+        }
+
+        [Test] public void DiningWestNotchIsSealed()
+        {
+            var seal = GameObject.Find("DiningWestJogSeal");
+            Assert.That(seal,Is.Not.Null);
+            var b = seal.GetComponent<Collider>().bounds;
+            var root = Root();
+            var lo = root.InverseTransformPoint(b.min);
+            var hi = root.InverseTransformPoint(b.max);
+            Assert.That(lo.x,Is.LessThanOrEqualTo(-6.2f),"Seal reaches the outer wall, min.x=" + lo.x);
+            Assert.That(hi.x,Is.GreaterThanOrEqualTo(-4.85f),"Seal reaches the kitchen wall, max.x=" + hi.x);
+            Assert.That(hi.y,Is.GreaterThanOrEqualTo(2.8f),"Seal full height, max.y=" + hi.y);
+        }
+
+        [Test] public void FridgeFacesTheKitchenNotTheDiningTable()
+        {
+            var fridge = GameObject.Find("KosRefrigerator");
+            Assert.That(fridge,Is.Not.Null);
+            float yaw = ((fridge.transform.eulerAngles.y % 360) + 360) % 360;
+            Assert.That(yaw,Is.EqualTo(180f).Within(.5f),"Fridge faces east into the kitchen, yaw=" + yaw);
         }
 
         [Test] public void ExpandedBathroomFixturesArePresent()
@@ -92,23 +126,22 @@ namespace LayarTerakhir.Editor.Tests
             {
                 "KosBathroomMirror","KosBathroomShelf","KosToothbrushCup",
                 "KosToothbrushBlue","KosToothbrushPink","KosOdolBottle",
-                "KosBathTub_PRIA","KosBathTub_WANITA",
-                "KosBathBucket_PRIA","KosBathBucket_WANITA","KosToiletPaper_PRIA","KosToiletPaper_WANITA",
+                "KosToiletPaper_PRIA","KosToiletPaper_WANITA",
                 "KosBathroomLight_PRIA","KosBathroomLight_WANITA","KosKitchenWashBasin","KosWashBasin",
             }) Assert.That(GameObject.Find(name),Is.Not.Null,name);
-            // Modelled tubs hold their own visible water below the rim.
-            foreach (string tag in new[] { "PRIA", "WANITA" })
+            // Designer: ugly buckets and tub water removed.
+            foreach (string gone in new[]
             {
-                var tub = GameObject.Find("KosBathTub_" + tag).GetComponent<Collider>().bounds;
-                var inner = GameObject.Find("KosBathTub_" + tag).GetComponentsInChildren<Renderer>(true)
-                    .Select(r => r.bounds).Where(b => b.size.magnitude < tub.size.magnitude * .95f &&
-                        tub.Contains(b.min) && tub.Contains(b.max)).ToArray();
-                Assert.That(inner.Length,Is.GreaterThanOrEqualTo(1),tag + " tub holds modelled water");
-                var water = inner[0];
-                Assert.That(water.min.y,Is.GreaterThan(tub.min.y + .05f));
-                Assert.That(water.max.y,Is.LessThan(tub.max.y - .02f));
-                Assert.That(water.center.x,Is.EqualTo(tub.center.x).Within(.1f));
-            }
+                "KosBathTub_PRIA","KosBathTub_WANITA",
+                "KosBathBucket_PRIA","KosBathBucket_WANITA",
+                "KosBathWater_PRIA","KosBathWater_WANITA",
+            }) Assert.That(GameObject.Find(gone),Is.Null,gone + " removed");
+            // Raised dispenser station: shelf above the old height, bottle turned to face the room.
+            var shelf = Local(GameObject.Find("KosBathroomShelf").transform);
+            Assert.That(shelf.y,Is.GreaterThan(1.25f),"Shelf raised, y=" + shelf.y);
+            var bottle = GameObject.Find("KosOdolBottle");
+            float bottleYaw = ((bottle.transform.eulerAngles.y % 360) + 360) % 360;
+            Assert.That(bottleYaw,Is.EqualTo(180f).Within(.5f),"Dispenser faces the room, yaw=" + bottleYaw);
             // Kitchen basin backs against the south wall instead of floating mid-room.
             var basin = Local(GameObject.Find("KosKitchenWashBasin").transform);
             Assert.That(basin.z,Is.LessThan(3f),"Basin z=" + basin.z);
