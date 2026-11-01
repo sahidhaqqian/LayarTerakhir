@@ -28,7 +28,7 @@ while [ $# -gt 0 ]; do
     --with-zip) WITH_ZIP=1; shift ;;
     --force) FORCE=1; shift ;;
     -h|--help) usage; exit 0 ;;
-    *) echo "Unknown flag: $a" >&2; usage >&2; exit 1 ;;
+    *) echo "Unknown flag: $1" >&2; usage >&2; exit 1 ;;
   esac
 done
 

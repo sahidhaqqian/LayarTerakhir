@@ -86,6 +86,9 @@ namespace LayarTerakhir.Editor
 
             var scenes = SelectedScenes();
             string tag = BuildTag;
+            foreach (char c in tag)
+                if (!(char.IsLetterOrDigit(c) || c == '-'))
+                    throw new BuildFailedException("WINDOWS_BUILD_TAG must match [A-Za-z0-9-] (got '" + tag + "')");
             string outputSubdir = string.IsNullOrEmpty(tag) ? "Windows" : "Windows-" + tag;
             if (scenes == null)
             {

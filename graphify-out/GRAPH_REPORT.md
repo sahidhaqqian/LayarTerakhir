@@ -9,7 +9,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `feed43ec`
+- Built from commit: `26c91bb0`
 - Commit above is the pre-commit base, not a freshness check. Verify source/artifact hashes with `python3 Tools/update_graphify.py --check`.
 - Regenerate safely with `python3 Tools/update_graphify.py` before commit/push.
 
@@ -669,7 +669,7 @@ Cohesion: 0.40
 Nodes (5): Phase3FloorKind, FragileDrop, FragileFatal, IllusionVoid, Solid
 
 ## Knowledge Gaps
-- **681 isolated node(s):** `AwaitingBlitz`, `AwaitingPhotos`, `Campaign`, `FollowsPlayerInBasement`, `Hud` (+676 more)
+- **681 isolated node(s):** `Campaign`, `Detection`, `Hud`, `InspectingLocker`, `IsBlitzStunned` (+676 more)
   These have ≤1 connection - possible missing edges. (Counts symbols only; 1085 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **42 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -678,12 +678,12 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `AtmajaPhoneView` connect `Community 35` to `Community 0`, `Community 3`, `Community 7`, `Community 136`, `Community 9`, `Community 8`, `Community 11`, `Community 12`, `Community 13`, `Community 14`, `Community 16`, `Community 17`, `Community 19`, `Community 147`, `Community 22`, `Community 24`, `Community 25`, `Community 28`, `Community 29`, `Community 33`, `Community 34`, `Community 36`, `Community 37`, `Community 38`, `Community 40`, `Community 45`, `Community 47`, `Community 48`, `Community 62`, `Community 66`, `Community 72`, `Community 77`, `Community 78`, `Community 79`, `Community 81`, `Community 84`, `Community 87`, `Community 88`, `Community 89`, `Community 93`, `Community 95`, `Community 96`, `Community 103`, `Community 116`, `Community 126`?**
   _High betweenness centrality (0.195) - this node is a cross-community bridge._
-- **What connects `AwaitingBlitz`, `AwaitingPhotos`, `Campaign` to the rest of the system?**
+- **What connects `Campaign`, `Detection`, `Hud` to the rest of the system?**
   _681 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.03229255774165954 - nodes in this community are weakly interconnected._
 - **Why does `CampaignState` connect `Community 5` to `Community 0`, `Community 1`, `Community 3`, `Community 9`, `Community 10`, `Community 137`, `Community 17`, `Community 21`, `Community 22`, `Community 27`, `Community 37`, `Community 38`, `Community 48`, `Community 50`, `Community 74`, `Community 75`, `Community 83`, `Community 86`, `Community 91`, `Community 95`, `Community 96`, `Community 99`, `Community 103`, `Community 106`?**
-  _High betweenness centrality (0.063) - this node is a cross-community bridge._
+  _High betweenness centrality (0.060) - this node is a cross-community bridge._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.02948297963253098 - nodes in this community are weakly interconnected._
 - **Why does `PlayerFootsteps` connect `Community 111` to `Community 6`, `Community 8`, `Community 45`, `Community 113`, `Community 51`, `Community 22`, `Community 88`, `Community 89`, `Community 124`, `Community 93`, `Community 25`?**

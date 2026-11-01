@@ -22,7 +22,7 @@ while [ $# -gt 0 ]; do
     --all) ALL=1; shift ;;
     --run) WANT="${2:?--run needs an id}"; shift 2 ;;
     -h|--help) usage; exit 0 ;;
-    *) echo "Unknown flag: $a" >&2; usage >&2; exit 2 ;;
+    *) echo "Unknown flag: $1" >&2; usage >&2; exit 2 ;;
   esac
 done
 
