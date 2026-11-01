@@ -168,6 +168,32 @@ namespace LayarTerakhir.Editor.Tests
         }
 
         [Test]
+        public void AnnexSouthWallSealedAndCounterRestored()
+        {
+            var d = Open();
+            foreach (string n in new[] { "AnnexSouthWall_W", "AnnexSouthWall_E", "AnnexBackDoor", "AnnexBackDoorJamb_W", "AnnexBackDoorJamb_E", "AnnexBackDoorHeader", "KitchenCounter" })
+            {
+                var go = GameObject.Find(n);
+                Assert.That(go && go.activeInHierarchy, Is.True, n + " exists");
+                Assert.That(go.GetComponentsInChildren<Renderer>(true).Any(r => r && r.enabled), Is.True, n + " renders");
+            }
+            var leaf = GameObject.Find("AnnexBackDoor");
+            var lb = VisualBounds(leaf);
+            var lx0 = d.LocalPosition(new Vector3(lb.min.x, 0, 0)).x;
+            var lx1 = d.LocalPosition(new Vector3(lb.max.x, 0, 0)).x;
+            Assert.That(Mathf.Min(lx0, lx1), Is.AtMost(3.5f + .15f), "Back door covers the west gap");
+            Assert.That(Mathf.Max(lx0, lx1), Is.AtLeast(4.5f - .15f), "Back door covers the east gap");
+            int samples = 0, blocked = 0;
+            for (float x = 2f; x <= 6f; x += .5f)
+                for (float y = .6f; y <= 2.8f; y += .7f)
+                {
+                    samples++;
+                    if (Physics.Linecast(d.P(x, 11.4f, y), d.P(x, 13.4f, y), out _, ~0, QueryTriggerInteraction.Ignore)) blocked++;
+                }
+            Assert.That(blocked, Is.EqualTo(samples), "South kitchen wall is fully sealed");
+        }
+
+        [Test]
         public void StairDoorwayWallSeal()
         {
             var d = Open();

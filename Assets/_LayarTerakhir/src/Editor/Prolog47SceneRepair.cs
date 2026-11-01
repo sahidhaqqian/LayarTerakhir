@@ -313,6 +313,7 @@ namespace LayarTerakhir.Editor
             ApplyPrologSkin();
             ApplyKosBathroomRound();
             ApplyRumahAtmajaDiningFix();
+            ApplyRumahAtmajaAnnexSeal();
             Debug.Log("PROLOG47_COMPLETE_REVISION_APPLIED all 3 Prolog scenes updated and saved");
         }
 
@@ -323,7 +324,7 @@ namespace LayarTerakhir.Editor
 
         public static void ApplyRemaining()
         {
-            ConfigureImports(); ApplyFurniture(); ApplyKosFacilities(); ApplyArchitecture(); ApplyDetails(); ApplyLadder(); ApplyFinishProps(); ApplyKosBathroomRound(); ApplyRumahAtmajaDiningFix();
+            ConfigureImports(); ApplyFurniture(); ApplyKosFacilities(); ApplyArchitecture(); ApplyDetails(); ApplyLadder(); ApplyFinishProps(); ApplyKosBathroomRound(); ApplyRumahAtmajaDiningFix(); ApplyRumahAtmajaAnnexSeal();
         }
 
         private static void ConfigureImports()
@@ -2064,6 +2065,63 @@ namespace LayarTerakhir.Editor
             }
             Save();
             Debug.Log("PROLOG47_RUMAH_ATMAJA_DINING_FIX_APPLIED table surface, feast seating, clock hands");
+        }
+
+        // goal.md Nov: the kitchen south wall is a bare collision skeleton (piers +
+        // lintel + invisible annex leaf) with walk-through gaps at local x 3.5/4.5,
+        // and the KitchenCounter vanished. Seal with a visible wall + back door leaf
+        // at the architect's x=4.0 opening, and restore the counter. Idempotent.
+        public static void ApplyRumahAtmajaAnnexSeal()
+        {
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            var env = Find("Atmaja_Environment_Art").transform;
+            var plaster = Old("House_MAT_PlasterDamaged");
+            var wood = Old("House_MAT_WoodDoor");
+            foreach (string n in new[] { "AnnexSouthWall_W", "AnnexSouthWall_E", "AnnexBackDoor", "AnnexBackDoorJamb_W", "AnnexBackDoorJamb_E", "AnnexBackDoorHeader" })
+                Delete(n);
+            var west = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            west.name = "AnnexSouthWall_W";
+            west.transform.SetParent(env, false);
+            west.transform.position = d.P(2.75f, 12.25f, 1.6f);
+            west.transform.localScale = new Vector3(1.7f, 3.2f, .18f);
+            west.GetComponent<Renderer>().sharedMaterial = plaster;
+            var east = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            east.name = "AnnexSouthWall_E";
+            east.transform.SetParent(env, false);
+            east.transform.position = d.P(5.25f, 12.25f, 1.6f);
+            east.transform.localScale = new Vector3(1.7f, 3.2f, .18f);
+            east.GetComponent<Renderer>().sharedMaterial = plaster;
+            var leaf = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            leaf.name = "AnnexBackDoor";
+            leaf.transform.SetParent(env, false);
+            leaf.transform.position = d.P(4.0f, 12.25f, 1.55f);
+            leaf.transform.localScale = new Vector3(1.0f, 2.1f, .1f);
+            leaf.GetComponent<Renderer>().sharedMaterial = wood;
+            foreach (float x in new[] { 3.44f, 4.56f })
+            {
+                var jamb = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                jamb.name = "AnnexBackDoorJamb_" + (x < 4f ? "W" : "E");
+                jamb.transform.SetParent(env, false);
+                jamb.transform.position = d.P(x, 12.25f, 1.6f);
+                jamb.transform.localScale = new Vector3(.12f, 3.2f, .18f);
+                jamb.GetComponent<Renderer>().sharedMaterial = wood;
+            }
+            var header = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            header.name = "AnnexBackDoorHeader";
+            header.transform.SetParent(env, false);
+            header.transform.position = d.P(4.0f, 12.25f, 2.9f);
+            header.transform.localScale = new Vector3(1.24f, .5f, .18f);
+            header.GetComponent<Renderer>().sharedMaterial = plaster;
+            Delete("KitchenCounter");
+            var counter = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            counter.name = "KitchenCounter";
+            counter.transform.SetParent(env, false);
+            counter.transform.position = d.P(5.55f, 11.85f, .85f);
+            counter.transform.localScale = new Vector3(.65f, 1f, .5f);
+            counter.GetComponent<Renderer>().sharedMaterial = Old("House_MAT_PlasterLower");
+            Save();
+            Debug.Log("PROLOG47_RUMAH_ATMAJA_ANNEX_SEAL_APPLIED south wall, back door, counter");
         }
 
         public static void ApplyKosBathroomRound()

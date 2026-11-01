@@ -42,52 +42,142 @@ namespace LayarTerakhir.UI
         private Text prologThreatExitKey;
         private Image[] prologThreatSegments;
         private static Sprite _notebookSheetSprite;
-        private static Sprite _atmajaNoteSprite;
-        // Atmaja house documents (survey, newspaper, diary, will). Routed to the
-        // Outlast-style grimy note theme instead of the kos notebook paper.
-        public static bool IsAtmajaNoteDocument(string documentId, string title)
+        private static readonly System.Collections.Generic.Dictionary<DocPaper, Sprite> _paperSprites = new System.Collections.Generic.Dictionary<DocPaper, Sprite>();
+        private static Font _kalamFont, _courierFont;
+        public enum DocPaper { Notebook, RedEnvelope, BloodyNote, Newsprint, DiaryNote, WillNote }
+        // Paper + font routing per playtest notes: the kos letter arrives in a red
+        // envelope, Damar's survey/diary/will match the grimy Outlast reference
+        // (handwriting, blood spots, crumpled), the 1998 clipping is typewritten
+        // newsprint. Everything else keeps the lined notebook.
+        public static DocPaper PaperFor(string documentId, string title)
         {
-            if (!string.IsNullOrEmpty(documentId) &&
-                (documentId == "DOC_PROLOG_02_SURVEI_DAMAR" || documentId == "DOC_PROLOG_03_KORAN_1998" ||
-                 documentId == "DOC_PROLOG_04_DIARY_BIMA" || documentId == "DOC_PROLOG_05_WASIAT_NYONYA"))
-                return true;
-            if (!string.IsNullOrEmpty(title) &&
-                (title.Contains("DOKUMEN #2") || title.Contains("DOKUMEN #3") || title.Contains("DOKUMEN #4") || title.Contains("DOKUMEN #5") ||
-                 title.Contains("SURVEI DAMAR") || title.Contains("KORAN 1998") || title.Contains("HARIAN BIMA") || title.Contains("WASIAT NYONYA")))
-                return true;
-            return false;
+            if (documentId == "DOC_PROLOG_01_SURAT_KOS") return DocPaper.RedEnvelope;
+            if (documentId == "DOC_PROLOG_02_SURVEI_DAMAR" || (title ?? "").Contains("DOKUMEN #2") || (title ?? "").Contains("SURVEI DAMAR")) return DocPaper.BloodyNote;
+            if (documentId == "DOC_PROLOG_03_KORAN_1998" || (title ?? "").Contains("DOKUMEN #3") || (title ?? "").Contains("KORAN 1998")) return DocPaper.Newsprint;
+            if (documentId == "DOC_PROLOG_04_DIARY_BIMA" || (title ?? "").Contains("DOKUMEN #4") || (title ?? "").Contains("HARIAN BIMA")) return DocPaper.DiaryNote;
+            if (documentId == "DOC_PROLOG_05_WASIAT_NYONYA" || (title ?? "").Contains("DOKUMEN #5") || (title ?? "").Contains("WASIAT NYONYA")) return DocPaper.WillNote;
+            return DocPaper.Notebook;
         }
-        // Deterministic runtime paper: aged beige with edge vignette and blotches.
-        // Generated in code so no binary art asset is required; cached for the session.
-        public static Sprite AtmajaNoteSprite()
+        public static bool IsAtmajaNoteDocument(string documentId, string title) => PaperFor(documentId, title) != DocPaper.Notebook;
+        public static Font DocFont(DocPaper paper)
         {
-            if (_atmajaNoteSprite) return _atmajaNoteSprite;
-            const int size = 512;
+            if (paper == DocPaper.Newsprint)
+                return _courierFont ? _courierFont : (_courierFont = Resources.Load<Font>("Fonts/CourierPrime-Regular"));
+            if (paper == DocPaper.BloodyNote || paper == DocPaper.DiaryNote || paper == DocPaper.WillNote)
+                return _kalamFont ? _kalamFont : (_kalamFont = Resources.Load<Font>("Fonts/Kalam-Regular"));
+            return null;
+        }
+        public static Sprite DocPaperSprite(DocPaper paper)
+        {
+            if (_paperSprites.TryGetValue(paper, out var cached) && cached) return cached;
+            var made = GeneratePaper(paper);
+            _paperSprites[paper] = made;
+            return made;
+        }
+        public static Sprite AtmajaNoteSprite() => DocPaperSprite(DocPaper.BloodyNote);
+        // Deterministic runtime paper: crumpled folds, blood spots / ink smudges,
+        // grain and edge vignette. Generated in code so no binary art is required.
+        private static Sprite GeneratePaper(DocPaper paper)
+        {
+            Color baseCol; int seed; float blood, smudge, crease;
+            switch (paper)
+            {
+                case DocPaper.RedEnvelope: baseCol = new Color(.45f, .08f, .07f); seed = 11; blood = 0f; smudge = .25f; crease = .5f; break;
+                case DocPaper.Newsprint: baseCol = new Color(.68f, .67f, .61f); seed = 13; blood = 0f; smudge = 1f; crease = .8f; break;
+                case DocPaper.DiaryNote: baseCol = new Color(.64f, .61f, .53f); seed = 14; blood = .8f; smudge = .3f; crease = 1f; break;
+                case DocPaper.WillNote: baseCol = new Color(.60f, .57f, .49f); seed = 15; blood = .6f; smudge = .4f; crease = .9f; break;
+                default: baseCol = new Color(.66f, .64f, .56f); seed = 12; blood = 1f; smudge = .3f; crease = 1f; break;
+            }
+            const int size = 384;
             var tex = new Texture2D(size, size, TextureFormat.RGBA32, false, false);
             tex.filterMode = FilterMode.Bilinear; tex.wrapMode = TextureWrapMode.Clamp;
-            var rand = new System.Random(19980514);
-            var blots = new Vector3[7];
-            for (int i = 0; i < blots.Length; i++)
-                blots[i] = new Vector3((float)rand.NextDouble(), (float)rand.NextDouble(), 28f + (float)rand.NextDouble() * 70f);
+            var rand = new System.Random(seed * 7919 + 17);
+            float w1 = 2f + (float)rand.NextDouble() * 3f, w2 = 2f + (float)rand.NextDouble() * 3f;
+            float p1 = (float)rand.NextDouble() * 6.28f, p2 = (float)rand.NextDouble() * 6.28f;
+            int creases = 4 + rand.Next(4);
+            var lines = new Vector4[creases];
+            for (int i = 0; i < creases; i++)
+            {
+                float a = (float)rand.NextDouble() * 6.28f, off = (float)rand.NextDouble() * 2f - 1f;
+                lines[i] = new Vector4(Mathf.Cos(a), Mathf.Sin(a), off, .5f + (float)rand.NextDouble());
+            }
+            int blobs = Mathf.RoundToInt(blood * 3.2f);
+            var blot = new Vector4[6];
+            for (int i = 0; i < blot.Length; i++)
+            {
+                bool edgeZone = rand.NextDouble() < .7;
+                float bx = edgeZone ? (rand.NextDouble() < .5 ? (float)rand.NextDouble() * .28f : .72f + (float)rand.NextDouble() * .28f) : (float)rand.NextDouble();
+                float by = (float)rand.NextDouble();
+                blot[i] = new Vector4(bx, by, 10f + (float)rand.NextDouble() * 20f, i < blobs ? 1f : 0f);
+            }
             for (int y = 0; y < size; y++)
                 for (int x = 0; x < size; x++)
                 {
                     float u = x / (float)(size - 1), v = y / (float)(size - 1);
-                    float grain = (float)rand.NextDouble() * 18f - 9f;
+                    float shade = .90f + .10f * Mathf.Sin(u * w1 + p1) * Mathf.Sin(v * w2 + p2);
+                    float grain = ((float)rand.NextDouble() - .5f) * .09f;
+                    float r = baseCol.r * shade + grain, g = baseCol.g * shade + grain, b = baseCol.b * shade + grain;
                     float edge = Mathf.Min(1f, Mathf.Min(u, 1f - u) * 4f) * Mathf.Min(1f, Mathf.Min(v, 1f - v) * 4f);
-                    float tone = 0.60f + 0.40f * edge;
-                    float r = 196f * tone + grain, g = 182f * tone + grain, b = 150f * tone + grain * .9f;
-                    for (int i = 0; i < blots.Length; i++)
+                    float tone = .62f + .38f * edge;
+                    r *= tone; g *= tone; b *= tone;
+                    if (crease > 0)
+                        for (int i = 0; i < lines.Length; i++)
+                        {
+                            float dist = Mathf.Abs(u * lines[i].x + v * lines[i].y - lines[i].z);
+                            float wdt = .004f * lines[i].w;
+                            if (dist < wdt * 3f)
+                            {
+                                float k = (1f - dist / (wdt * 3f)) * crease;
+                                float lift = dist < wdt ? .10f * k : -.08f * k;
+                                r += lift; g += lift; b += lift;
+                            }
+                        }
+                    if (blood > 0)
+                        for (int i = 0; i < blot.Length; i++)
+                        {
+                            if (blot[i].w <= 0) continue;
+                            float dx = (u - blot[i].x) * size, dy = (v - blot[i].y) * size;
+                            float dd = Mathf.Sqrt(dx * dx + dy * dy);
+                            if (dd < blot[i].z)
+                            {
+                                float a = (1f - dd / blot[i].z) * .75f * blood;
+                                r = r * (1 - a) + .30f * a; g = g * (1 - a) + .035f * a; b = b * (1 - a) + .025f * a;
+                            }
+                            else if (dd < blot[i].z * 3.0f && rand.NextDouble() < .05)
+                            {
+                                r = r * .6f + .30f * .4f; g = g * .6f + .035f * .4f; b = b * .6f + .025f * .4f;
+                            }
+                        }
+                    if (smudge > 0 && rand.NextDouble() < .0016 * smudge)
                     {
-                        float dx = (u - blots[i].x) * size / blots[i].z, dy = (v - blots[i].y) * size / blots[i].z;
-                        float d = dx * dx + dy * dy;
-                        if (d < 1f) { float k = (1f - d) * .16f; r -= 34f * k * 3f; g -= 30f * k * 3f; b -= 24f * k * 3f; }
+                        float k = .25f * smudge;
+                        r = r * (1 - k) + .12f * k; g = g * (1 - k) + .11f * k; b = b * (1 - k) + .10f * k;
                     }
-                    tex.SetPixel(x, y, new Color(Mathf.Clamp01(r / 255f), Mathf.Clamp01(g / 255f), Mathf.Clamp01(b / 255f), 1f));
+                    tex.SetPixel(x, y, new Color(Mathf.Clamp01(r), Mathf.Clamp01(g), Mathf.Clamp01(b), 1f));
                 }
-            tex.Apply(false, true);
-            _atmajaNoteSprite = Sprite.Create(tex, new Rect(0, 0, size, size), new Vector2(.5f, .5f), 100f);
-            return _atmajaNoteSprite;
+            tex.Apply(false, false);
+            return Sprite.Create(tex, new Rect(0, 0, size, size), new Vector2(.5f, .5f), 100f);
+        }
+        // Test helper: does the generated paper actually carry blood?
+        public static bool DocPaperHasBlood(DocPaper paper)
+        {
+            var sp = DocPaperSprite(paper);
+            if (!sp || !sp.texture) return false;
+            var t = sp.texture;
+            double sum = 0; int n = 0;
+            for (int y = 0; y < t.height; y += 8)
+                for (int x = 0; x < t.width; x += 8)
+                { sum += t.GetPixel(x, y).r; n++; }
+            double avg = sum / Mathf.Max(1, n);
+            if (avg < .38) return false;
+            int hits = 0;
+            for (int y = 0; y < t.height; y += 4)
+                for (int x = 0; x < t.width; x += 4)
+                {
+                    var c = t.GetPixel(x, y);
+                    if (c.r > c.g + .12f && c.r > c.b + .12f && c.r < avg * .8f) hits++;
+                }
+            return hits > 8;
         }
         private float _lastThreatFill = -2f;
 
@@ -631,6 +721,7 @@ namespace LayarTerakhir.UI
             if(documentTitleText)
             {
                 documentTitleText.color=inkTitle;
+                documentTitleText.font=LoadSafeFont();
                 documentTitleText.alignment=TextAnchor.UpperCenter;
                 documentTitleText.fontSize=26;
                 var tr=documentTitleText.rectTransform;
@@ -647,6 +738,7 @@ namespace LayarTerakhir.UI
             if(documentBodyText)
             {
                 documentBodyText.color=inkBody;
+                documentBodyText.font=LoadSafeFont();
                 documentBodyText.alignment=TextAnchor.MiddleLeft;
                 // Body ruling on PrologNotebookSheet.png: pitch 32px from y=158 at 720px.
                 // The held panel spans 0.78 of the 1080 reference height, so on-screen
@@ -682,21 +774,27 @@ namespace LayarTerakhir.UI
             }
         }
 
-        // Outlast-style house-note theme for Rumah Atmaja documents: opaque aged paper,
-        // even ink layout, no ruled lines to fight. The kos letter keeps the notebook.
-        private void ApplyAtmajaNoteTheme(RectTransform documentRect)
+        // Outlast-style paper themes for Rumah Atmaja documents and the red kos
+        // envelope: opaque generated paper (blood spots, crumpled folds), even ink
+        // layout, no ruled lines to fight. Everything else keeps the notebook.
+        private void ApplyPaperTheme(RectTransform documentRect,DocPaper paper)
         {
             var panelImage=documentPanel.GetComponent<Image>();
             if(panelImage)
             {
-                panelImage.sprite=AtmajaNoteSprite();
+                panelImage.sprite=DocPaperSprite(paper);
                 panelImage.type=Image.Type.Simple;
                 panelImage.color=Color.white;
             }
-            Color ink=new Color(.14f,.10f,.06f,.97f);
+            Color ink,btnInk,hintInk;
+            if(paper==DocPaper.RedEnvelope){ink=new Color(.96f,.90f,.76f,.98f);btnInk=new Color(.96f,.90f,.76f,1f);hintInk=new Color(.80f,.70f,.58f,.9f);}
+            else if(paper==DocPaper.Newsprint){ink=new Color(.09f,.09f,.09f,.97f);btnInk=new Color(.93f,.92f,.86f,1f);hintInk=new Color(.25f,.25f,.22f,.9f);}
+            else{ink=new Color(.14f,.09f,.05f,.97f);btnInk=new Color(.93f,.88f,.76f,1f);hintInk=new Color(.30f,.22f,.14f,.9f);}
+            var face=DocFont(paper);
             if(documentTitleText)
             {
                 documentTitleText.color=ink;
+                if(face)documentTitleText.font=face;
                 documentTitleText.alignment=TextAnchor.UpperLeft;
                 documentTitleText.fontSize=30;
                 var tr=documentTitleText.rectTransform;
@@ -713,6 +811,7 @@ namespace LayarTerakhir.UI
             if(documentBodyText)
             {
                 documentBodyText.color=ink;
+                if(face)documentBodyText.font=face;
                 documentBodyText.alignment=TextAnchor.UpperLeft;
                 documentBodyText.fontSize=24;
                 documentBodyText.lineSpacing=1.5f;
@@ -725,13 +824,13 @@ namespace LayarTerakhir.UI
                 var btnImg=documentCloseButton.GetComponent<Image>();
                 if(btnImg)btnImg.color=new Color(.16f,.11f,.07f,.96f);
                 var lbl=documentCloseButton.GetComponentInChildren<Text>();
-                if(lbl)lbl.color=new Color(.93f,.88f,.76f,1f);
+                if(lbl)lbl.color=btnInk;
             }
             var scrollHint=documentRect.Find("ScrollHint");
             if(scrollHint)
             {
                 var shTxt=scrollHint.GetComponent<Text>();
-                if(shTxt)shTxt.color=new Color(.30f,.22f,.14f,.9f);
+                if(shTxt)shTxt.color=hintInk;
                 var shRect=scrollHint.GetComponent<RectTransform>();
                 if(shRect)
                 {
@@ -760,7 +859,7 @@ namespace LayarTerakhir.UI
             documentRect.anchorMax=holdingPhone?new Vector2(.685f,.89f):new Vector2(.5f,.5f);
             documentRect.anchoredPosition=Vector2.zero;
             documentRect.sizeDelta=holdingPhone?Vector2.zero:new Vector2(880,580);
-            if(IsAtmajaNoteDocument(documentId,title))ApplyAtmajaNoteTheme(documentRect);
+            if(IsAtmajaNoteDocument(documentId,title))ApplyPaperTheme(documentRect,PaperFor(documentId,title));
             else ApplyNotebookDocumentTheme(documentRect);
             documentPanel.SetActive(true);
             var presentation=GetComponent<HudPresentation>();

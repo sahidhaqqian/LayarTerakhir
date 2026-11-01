@@ -64,19 +64,28 @@ namespace LayarTerakhir.Editor.Tests
         {
             var hud = Find<HudController>();
             hud.documentCloseButton.onClick.Invoke();
-            // Rumah Atmaja house documents use the grimy Outlast-style note.
+            // Damar's survey note matches the Outlast reference: handwriting font,
+            // blood-spotted crumpled paper, even top-left layout.
             hud.OpenDocumentModal("CATATAN SURVEI DAMAR • DOKUMEN #2", "Baris satu.\nBaris dua.", null, "DOC_PROLOG_02_SURVEI_DAMAR");
             Assert.That(hud.IsDocumentOpen, Is.True);
             var panel = hud.documentPanel.GetComponent<UnityEngine.UI.Image>();
-            Assert.That(panel.sprite, Is.SameAs(HudController.AtmajaNoteSprite()), "Atmaja docs use the generated note paper");
+            Assert.That(panel.sprite, Is.SameAs(HudController.DocPaperSprite(HudController.DocPaper.BloodyNote)), "Survey uses the bloody note paper");
+            Assert.That(hud.documentBodyText.font, Is.SameAs(Resources.Load<Font>("Fonts/Kalam-Regular")), "Survey uses the handwriting font");
+            Assert.That(HudController.DocPaperHasBlood(HudController.DocPaper.BloodyNote), Is.True, "Survey paper carries blood spots");
             Assert.That(hud.documentBodyText.alignment, Is.EqualTo(TextAnchor.UpperLeft), "Note body is evenly top-left");
-            Assert.That(hud.documentBodyText.fontSize * hud.documentBodyText.lineSpacing, Is.EqualTo(36f).Within(.01f), "Note pitch is even, no ruling to fight");
-            var titleBottom = hud.documentTitleText.rectTransform.offsetMin.y;
-            var bodyTop = hud.documentBodyText.rectTransform.offsetMax.y;
-            Assert.That(titleBottom, Is.LessThan(bodyTop), "Title sits above the note body");
             hud.documentCloseButton.onClick.Invoke();
-            // The kos letter keeps the lined notebook, aligned to its ruling.
+            // The 1998 clipping is typewritten newsprint.
+            hud.OpenDocumentModal("KLIPING KORAN 1998 • DOKUMEN #3", "Baris satu.", null, "DOC_PROLOG_03_KORAN_1998");
+            Assert.That(hud.documentBodyText.font, Is.SameAs(Resources.Load<Font>("Fonts/CourierPrime-Regular")), "Newspaper uses the typewriter font");
+            Assert.That(HudController.DocPaperHasBlood(HudController.DocPaper.Newsprint), Is.False, "Newsprint carries ink, not blood");
+            hud.documentCloseButton.onClick.Invoke();
+            // The kos letter arrives in a red envelope, not the notebook.
             hud.OpenDocumentModal("SURAT PERINGATAN TERAKHIR (ITEM DOKUMEN #1)", "Baris satu.\nBaris dua.", null, "DOC_PROLOG_01_SURAT_KOS");
+            Assert.That(panel.sprite, Is.SameAs(HudController.DocPaperSprite(HudController.DocPaper.RedEnvelope)), "Kos letter uses the red envelope paper");
+            Assert.That(HudController.DocPaperHasBlood(HudController.DocPaper.RedEnvelope), Is.False, "Envelope has no blood");
+            hud.documentCloseButton.onClick.Invoke();
+            // Anything else keeps the lined notebook, aligned to its ruling.
+            hud.OpenDocumentModal("STICKY NOTE DI MEJA PC", "Baris satu.", null, null);
             var tex = Resources.Load<Texture2D>("PrologNotebookSheet");
             Assert.That(tex, Is.Not.Null);
             Assert.That(hud.documentBodyText.fontSize * hud.documentBodyText.lineSpacing, Is.EqualTo(37.4f).Within(.05f), "Notebook pitch matches the 32px ruling at 37.4px");
