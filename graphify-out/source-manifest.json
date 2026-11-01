@@ -1,8 +1,8 @@
 {
   "artifacts_sha256": {
-    "GRAPH_REPORT.md": "5c7e12487405d24496b11b2b95f0225051228627e71aef3fe54b09a6d05223ac",
-    "graph.html": "385dff07f3f001e86e72e9040b6d31934912a1229aaafe3416a6f5881a08b7bb",
-    "graph.json": "703b33e162dae4757aa5d8fa9bb97d23de391307134e19a1365b780833f1dd2b"
+    "GRAPH_REPORT.md": "7dcd5b69a3db4db889506d2dde60738041934086bc66108eb653f2f0e1dea0ec",
+    "graph.html": "e9194d5481280081125cf18cfc786dac2680e8b3fac1c7fbe9fd27e3f966660d",
+    "graph.json": "3493414b20d95594550de0a1835bad3e19281913d6c71b60edf7a13d7be4f3ec"
   },
   "asset_file_count": 0,
   "code_file_count": 409,
@@ -10,7 +10,7 @@
   "graphify_version": "graphify 0.9.92",
   "ignore_sha256": "05660cd7b7a81591931d5661fb73b7124598a04c44f843eda7a7ac2107f20e17",
   "mode": "local-code-only; no LLM/community labeling",
-  "node_count": 5209,
+  "node_count": 5210,
   "referenced_source_count": 409,
   "sources_sha256": {
     "Assets/_LayarTerakhir/src/Audio/AmbientAudioLoop.cs": "7de60fa68d2b45ec199754e8c16b8ac4827306cc38d7ad32a708d93a78e83514",
@@ -249,7 +249,7 @@
     "Assets/_LayarTerakhir/src/Phase5/Phase5World.cs": "1f52d7402f186577b1061f21f48a91ac5ed580984fde7e864b866da1b6732d76",
     "Assets/_LayarTerakhir/src/Phase5/Phase5WorldItem.cs": "56b82157ac3211dbd599403c2cdf1e980d9bf49c08480c13609d5e2a1c90d0c6",
     "Assets/_LayarTerakhir/src/Player/AbandonedLocationLighting.cs": "ccc9ada1091a2ee9f59d82b7be764c810256bbdbdef9e831f9124f65906cc01a",
-    "Assets/_LayarTerakhir/src/Player/AnimatedRakaAvatar.cs": "3d4ba4ff078f83298c1cfe5af904d7c5933ffa664f6843ba1af603790ba830db",
+    "Assets/_LayarTerakhir/src/Player/AnimatedRakaAvatar.cs": "91ed81d6e7305e854ae1adc4fdb184085d1f22826fc1a9c7d77d902e1425f7ad",
     "Assets/_LayarTerakhir/src/Player/FirstPersonController.cs": "962f81cce180206060c6179f595d7f5702971cc95b6856b9f66d9f432bfb117f",
     "Assets/_LayarTerakhir/src/Player/IInteractable.cs": "02c6cf7c0fe811ae354afeb9800de7bf75770540318936eda7c6d92bdf803690",
     "Assets/_LayarTerakhir/src/Player/InteractionInteractor.cs": "9180efed3ca63e3ce725e053d87401b779955dca2830ac522ee48d3868ec704b",
