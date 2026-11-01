@@ -15,8 +15,9 @@ namespace LayarTerakhir.Editor
         private const string StartupScene = "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity";
 
         // Optional scene subset for partial builds (see skill windows-build-partial).
-        // WINDOWS_BUILD_SCENES unset/"full"/"all" (or "prolog" alone) = every enabled
-        // scene, exactly like before. Otherwise a comma/space separated list of phase
+        // WINDOWS_BUILD_SCENES unset/"full"/"all" = every enabled scene, exactly
+        // like before. "prolog" (or "p"/"0") = only the 3 prolog scenes (startup +
+        // RumahAtmaja + KoridorKos). Otherwise a comma/space separated list of phase
         // numbers, e.g. "1,2" = prolog + Babak 1 + Babak 2; anything else is rejected.
         // Prolog (startup + RumahAtmaja + KoridorKos) is always included first so the
         // player still boots from the approved startup scene and level indices stay
@@ -44,8 +45,10 @@ namespace LayarTerakhir.Editor
         internal static string[] SelectedScenes()
         {
             string spec = SceneSpec.Trim().ToLowerInvariant();
-            if (spec == "" || spec == "full" || spec == "all" || spec == "prolog" || spec == "p" || spec == "0")
+            if (spec == "" || spec == "full" || spec == "all")
                 return null; // null = legacy path: every enabled scene.
+            if (spec == "prolog" || spec == "p" || spec == "0")
+                return PrologScenes;
             var phases = new System.Collections.Generic.SortedSet<int>();
             foreach (string token in spec.Split(new[] { ',', ' ', ';', '+' }, StringSplitOptions.RemoveEmptyEntries))
             {

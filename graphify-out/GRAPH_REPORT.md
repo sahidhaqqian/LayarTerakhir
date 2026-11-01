@@ -9,7 +9,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `9d5defc9`
+- Built from commit: `bd92fbb5`
 - Commit above is the pre-commit base, not a freshness check. Verify source/artifact hashes with `python3 Tools/update_graphify.py --check`.
 - Regenerate safely with `python3 Tools/update_graphify.py` before commit/push.
 
@@ -668,7 +668,7 @@ Cohesion: 0.40
 Nodes (5): Phase3FloorKind, FragileDrop, FragileFatal, IllusionVoid, Solid
 
 ## Knowledge Gaps
-- **681 isolated node(s):** `Analyzer`, `CameraCanScan`, `CameraLocked`, `CameraStatus`, `Campaign` (+676 more)
+- **681 isolated node(s):** `B`, `LungeProgress`, `Pursuing`, `State`, `W` (+676 more)
   These have ≤1 connection - possible missing edges. (Counts symbols only; 1085 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **36 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -676,16 +676,16 @@ Nodes (5): Phase3FloorKind, FragileDrop, FragileFatal, IllusionVoid, Solid
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `AtmajaPhoneView` connect `Community 35` to `Community 0`, `Community 133`, `Community 5`, `Community 7`, `Community 9`, `Community 141`, `Community 14`, `Community 15`, `Community 16`, `Community 17`, `Community 18`, `Community 20`, `Community 21`, `Community 22`, `Community 23`, `Community 24`, `Community 26`, `Community 27`, `Community 28`, `Community 34`, `Community 37`, `Community 38`, `Community 39`, `Community 40`, `Community 46`, `Community 51`, `Community 52`, `Community 58`, `Community 61`, `Community 62`, `Community 65`, `Community 66`, `Community 69`, `Community 70`, `Community 71`, `Community 79`, `Community 81`, `Community 85`, `Community 86`, `Community 89`, `Community 93`, `Community 94`, `Community 96`, `Community 113`, `Community 125`, `Community 126`?**
-  _High betweenness centrality (0.220) - this node is a cross-community bridge._
-- **What connects `Analyzer`, `CameraCanScan`, `CameraLocked` to the rest of the system?**
+  _High betweenness centrality (0.210) - this node is a cross-community bridge._
+- **What connects `B`, `LungeProgress`, `Pursuing` to the rest of the system?**
   _681 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.03589232303090728 - nodes in this community are weakly interconnected._
-- **Why does `CampaignState` connect `Community 1` to `Community 0`, `Community 3`, `Community 4`, `Community 131`, `Community 8`, `Community 11`, `Community 25`, `Community 27`, `Community 28`, `Community 29`, `Community 36`, `Community 38`, `Community 40`, `Community 51`, `Community 58`, `Community 61`, `Community 62`, `Community 80`, `Community 93`, `Community 94`, `Community 96`?**
-  _High betweenness centrality (0.076) - this node is a cross-community bridge._
+- **Why does `Phase5Director` connect `Community 38` to `Community 1`, `Community 3`, `Community 131`, `Community 133`, `Community 7`, `Community 9`, `Community 10`, `Community 138`, `Community 12`, `Community 14`, `Community 15`, `Community 17`, `Community 21`, `Community 22`, `Community 35`, `Community 57`, `Community 59`, `Community 61`, `Community 62`, `Community 65`, `Community 70`, `Community 72`, `Community 83`, `Community 85`, `Community 89`, `Community 93`, `Community 94`, `Community 104`, `Community 108`, `Community 113`?**
+  _High betweenness centrality (0.061) - this node is a cross-community bridge._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.061936936936936936 - nodes in this community are weakly interconnected._
-- **Why does `Phase5Director` connect `Community 38` to `Community 1`, `Community 3`, `Community 131`, `Community 133`, `Community 7`, `Community 9`, `Community 10`, `Community 138`, `Community 12`, `Community 14`, `Community 15`, `Community 17`, `Community 21`, `Community 22`, `Community 35`, `Community 57`, `Community 59`, `Community 61`, `Community 62`, `Community 65`, `Community 70`, `Community 72`, `Community 83`, `Community 85`, `Community 89`, `Community 93`, `Community 94`, `Community 104`, `Community 108`, `Community 113`?**
-  _High betweenness centrality (0.064) - this node is a cross-community bridge._
+- **Why does `CampaignState` connect `Community 1` to `Community 0`, `Community 3`, `Community 4`, `Community 131`, `Community 8`, `Community 11`, `Community 25`, `Community 27`, `Community 28`, `Community 29`, `Community 36`, `Community 38`, `Community 40`, `Community 51`, `Community 58`, `Community 61`, `Community 62`, `Community 80`, `Community 93`, `Community 94`, `Community 96`?**
+  _High betweenness centrality (0.060) - this node is a cross-community bridge._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.03882063882063882 - nodes in this community are weakly interconnected._
