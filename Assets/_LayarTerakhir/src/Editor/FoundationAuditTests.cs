@@ -60,6 +60,33 @@ namespace LayarTerakhir.Editor.Tests
         }
 
         [Test]
+        public void DocumentThemesSplitKosNotebookAndAtmajaNote()
+        {
+            var hud = Find<HudController>();
+            hud.documentCloseButton.onClick.Invoke();
+            // Rumah Atmaja house documents use the grimy Outlast-style note.
+            hud.OpenDocumentModal("CATATAN SURVEI DAMAR • DOKUMEN #2", "Baris satu.\nBaris dua.", null, "DOC_PROLOG_02_SURVEI_DAMAR");
+            Assert.That(hud.IsDocumentOpen, Is.True);
+            var panel = hud.documentPanel.GetComponent<UnityEngine.UI.Image>();
+            Assert.That(panel.sprite, Is.SameAs(HudController.AtmajaNoteSprite()), "Atmaja docs use the generated note paper");
+            Assert.That(hud.documentBodyText.alignment, Is.EqualTo(TextAnchor.UpperLeft), "Note body is evenly top-left");
+            Assert.That(hud.documentBodyText.fontSize * hud.documentBodyText.lineSpacing, Is.EqualTo(36f).Within(.01f), "Note pitch is even, no ruling to fight");
+            var titleBottom = hud.documentTitleText.rectTransform.offsetMin.y;
+            var bodyTop = hud.documentBodyText.rectTransform.offsetMax.y;
+            Assert.That(titleBottom, Is.LessThan(bodyTop), "Title sits above the note body");
+            hud.documentCloseButton.onClick.Invoke();
+            // The kos letter keeps the lined notebook, aligned to its ruling.
+            hud.OpenDocumentModal("SURAT PERINGATAN TERAKHIR (ITEM DOKUMEN #1)", "Baris satu.\nBaris dua.", null, "DOC_PROLOG_01_SURAT_KOS");
+            var tex = Resources.Load<Texture2D>("PrologNotebookSheet");
+            Assert.That(tex, Is.Not.Null);
+            Assert.That(hud.documentBodyText.fontSize * hud.documentBodyText.lineSpacing, Is.EqualTo(37.4f).Within(.05f), "Notebook pitch matches the 32px ruling at 37.4px");
+            var vp = hud.GetComponent<HudPresentation>().documentScroll.viewport;
+            Assert.That(vp.offsetMax.y, Is.EqualTo(-185f).Within(1f), "Viewport starts on the first ruled line");
+            hud.documentCloseButton.onClick.Invoke();
+            Assert.That(hud.IsModalOpen, Is.False);
+        }
+
+        [Test]
         public void MonitorDashboardFollowsMeasuredGlassPlaneWithinTwoMillimeters()
         {
             LayarTerakhir.Prolog.KosRoomCorrections.AlignMonitor();

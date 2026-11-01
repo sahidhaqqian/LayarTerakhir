@@ -42,6 +42,53 @@ namespace LayarTerakhir.UI
         private Text prologThreatExitKey;
         private Image[] prologThreatSegments;
         private static Sprite _notebookSheetSprite;
+        private static Sprite _atmajaNoteSprite;
+        // Atmaja house documents (survey, newspaper, diary, will). Routed to the
+        // Outlast-style grimy note theme instead of the kos notebook paper.
+        public static bool IsAtmajaNoteDocument(string documentId, string title)
+        {
+            if (!string.IsNullOrEmpty(documentId) &&
+                (documentId == "DOC_PROLOG_02_SURVEI_DAMAR" || documentId == "DOC_PROLOG_03_KORAN_1998" ||
+                 documentId == "DOC_PROLOG_04_DIARY_BIMA" || documentId == "DOC_PROLOG_05_WASIAT_NYONYA"))
+                return true;
+            if (!string.IsNullOrEmpty(title) &&
+                (title.Contains("DOKUMEN #2") || title.Contains("DOKUMEN #3") || title.Contains("DOKUMEN #4") || title.Contains("DOKUMEN #5") ||
+                 title.Contains("SURVEI DAMAR") || title.Contains("KORAN 1998") || title.Contains("HARIAN BIMA") || title.Contains("WASIAT NYONYA")))
+                return true;
+            return false;
+        }
+        // Deterministic runtime paper: aged beige with edge vignette and blotches.
+        // Generated in code so no binary art asset is required; cached for the session.
+        public static Sprite AtmajaNoteSprite()
+        {
+            if (_atmajaNoteSprite) return _atmajaNoteSprite;
+            const int size = 512;
+            var tex = new Texture2D(size, size, TextureFormat.RGBA32, false, false);
+            tex.filterMode = FilterMode.Bilinear; tex.wrapMode = TextureWrapMode.Clamp;
+            var rand = new System.Random(19980514);
+            var blots = new Vector3[7];
+            for (int i = 0; i < blots.Length; i++)
+                blots[i] = new Vector3((float)rand.NextDouble(), (float)rand.NextDouble(), 28f + (float)rand.NextDouble() * 70f);
+            for (int y = 0; y < size; y++)
+                for (int x = 0; x < size; x++)
+                {
+                    float u = x / (float)(size - 1), v = y / (float)(size - 1);
+                    float grain = (float)rand.NextDouble() * 18f - 9f;
+                    float edge = Mathf.Min(1f, Mathf.Min(u, 1f - u) * 4f) * Mathf.Min(1f, Mathf.Min(v, 1f - v) * 4f);
+                    float tone = 0.60f + 0.40f * edge;
+                    float r = 196f * tone + grain, g = 182f * tone + grain, b = 150f * tone + grain * .9f;
+                    for (int i = 0; i < blots.Length; i++)
+                    {
+                        float dx = (u - blots[i].x) * size / blots[i].z, dy = (v - blots[i].y) * size / blots[i].z;
+                        float d = dx * dx + dy * dy;
+                        if (d < 1f) { float k = (1f - d) * .16f; r -= 34f * k * 3f; g -= 30f * k * 3f; b -= 24f * k * 3f; }
+                    }
+                    tex.SetPixel(x, y, new Color(Mathf.Clamp01(r / 255f), Mathf.Clamp01(g / 255f), Mathf.Clamp01(b / 255f), 1f));
+                }
+            tex.Apply(false, true);
+            _atmajaNoteSprite = Sprite.Create(tex, new Rect(0, 0, size, size), new Vector2(.5f, .5f), 100f);
+            return _atmajaNoteSprite;
+        }
         private float _lastThreatFill = -2f;
 
         public bool IsDocumentOpen => documentPanel != null && documentPanel.activeSelf;
@@ -584,6 +631,8 @@ namespace LayarTerakhir.UI
             if(documentTitleText)
             {
                 documentTitleText.color=inkTitle;
+                documentTitleText.alignment=TextAnchor.UpperCenter;
+                documentTitleText.fontSize=26;
                 var tr=documentTitleText.rectTransform;
                 tr.anchorMin=new Vector2(0,1);tr.anchorMax=new Vector2(1,1);tr.pivot=new Vector2(.5f,1);
                 tr.offsetMin=new Vector2(118,-122);tr.offsetMax=new Vector2(-64,-36);
@@ -593,15 +642,23 @@ namespace LayarTerakhir.UI
             {
                 var vp=presentation.documentScroll.viewport;
                 vp.anchorMin=Vector2.zero;vp.anchorMax=Vector2.one;vp.pivot=new Vector2(.5f,.5f);
-                vp.offsetMin=new Vector2(118,96);vp.offsetMax=new Vector2(-64,-132);
+                vp.offsetMin=new Vector2(118,96);vp.offsetMax=new Vector2(-64,-185);
             }
             if(documentBodyText)
             {
                 documentBodyText.color=inkBody;
-                documentBodyText.lineSpacing=1.28f;
+                documentBodyText.alignment=TextAnchor.MiddleLeft;
+                // Body ruling on PrologNotebookSheet.png: pitch 32px from y=158 at 720px.
+                // The held panel spans 0.78 of the 1080 reference height, so on-screen
+                // pitch is 32*0.78*1080/720=37.4px. A 22px body at 1.70 spacing hits
+                // 37.4px per line and lands on the rules instead of drifting across them.
+                // Viewport top is inset to the first body rule (the ContentSizeFitter
+                // owns the content rect, so the viewport is the alignment lever).
+                documentBodyText.fontSize=22;
+                documentBodyText.lineSpacing=1.70f;
                 var br=documentBodyText.rectTransform;
                 br.anchorMin=new Vector2(0,1);br.anchorMax=new Vector2(1,1);br.pivot=new Vector2(.5f,1);
-                br.offsetMin=new Vector2(0,br.offsetMin.y);br.offsetMax=new Vector2(0,0);
+                br.offsetMin=new Vector2(150,br.offsetMin.y);br.offsetMax=new Vector2(0,0);
             }
             if(documentCloseButton)
             {
@@ -625,6 +682,66 @@ namespace LayarTerakhir.UI
             }
         }
 
+        // Outlast-style house-note theme for Rumah Atmaja documents: opaque aged paper,
+        // even ink layout, no ruled lines to fight. The kos letter keeps the notebook.
+        private void ApplyAtmajaNoteTheme(RectTransform documentRect)
+        {
+            var panelImage=documentPanel.GetComponent<Image>();
+            if(panelImage)
+            {
+                panelImage.sprite=AtmajaNoteSprite();
+                panelImage.type=Image.Type.Simple;
+                panelImage.color=Color.white;
+            }
+            Color ink=new Color(.14f,.10f,.06f,.97f);
+            if(documentTitleText)
+            {
+                documentTitleText.color=ink;
+                documentTitleText.alignment=TextAnchor.UpperLeft;
+                documentTitleText.fontSize=30;
+                var tr=documentTitleText.rectTransform;
+                tr.anchorMin=new Vector2(0,1);tr.anchorMax=new Vector2(1,1);tr.pivot=new Vector2(.5f,1);
+                tr.offsetMin=new Vector2(90,-132);tr.offsetMax=new Vector2(-60,-52);
+            }
+            var presentation=GetComponent<HudPresentation>();
+            if(presentation&&presentation.documentScroll&&presentation.documentScroll.viewport)
+            {
+                var vp=presentation.documentScroll.viewport;
+                vp.anchorMin=Vector2.zero;vp.anchorMax=Vector2.one;vp.pivot=new Vector2(.5f,.5f);
+                vp.offsetMin=new Vector2(90,110);vp.offsetMax=new Vector2(-60,-152);
+            }
+            if(documentBodyText)
+            {
+                documentBodyText.color=ink;
+                documentBodyText.alignment=TextAnchor.UpperLeft;
+                documentBodyText.fontSize=24;
+                documentBodyText.lineSpacing=1.5f;
+                var br=documentBodyText.rectTransform;
+                br.anchorMin=new Vector2(0,1);br.anchorMax=new Vector2(1,1);br.pivot=new Vector2(.5f,1);
+                br.offsetMin=new Vector2(0,br.offsetMin.y);br.offsetMax=new Vector2(0,0);
+            }
+            if(documentCloseButton)
+            {
+                var btnImg=documentCloseButton.GetComponent<Image>();
+                if(btnImg)btnImg.color=new Color(.16f,.11f,.07f,.96f);
+                var lbl=documentCloseButton.GetComponentInChildren<Text>();
+                if(lbl)lbl.color=new Color(.93f,.88f,.76f,1f);
+            }
+            var scrollHint=documentRect.Find("ScrollHint");
+            if(scrollHint)
+            {
+                var shTxt=scrollHint.GetComponent<Text>();
+                if(shTxt)shTxt.color=new Color(.30f,.22f,.14f,.9f);
+                var shRect=scrollHint.GetComponent<RectTransform>();
+                if(shRect)
+                {
+                    shRect.anchorMin=shRect.anchorMax=new Vector2(0,0);
+                    shRect.pivot=Vector2.zero;
+                    shRect.anchoredPosition=new Vector2(94,40);
+                }
+            }
+        }
+
         public void OpenDocumentModal(string title, string body, Action onClosed = null, string documentId = null)
         {
             if (documentPanel == null) return;
@@ -643,7 +760,8 @@ namespace LayarTerakhir.UI
             documentRect.anchorMax=holdingPhone?new Vector2(.685f,.89f):new Vector2(.5f,.5f);
             documentRect.anchoredPosition=Vector2.zero;
             documentRect.sizeDelta=holdingPhone?Vector2.zero:new Vector2(880,580);
-            ApplyNotebookDocumentTheme(documentRect);
+            if(IsAtmajaNoteDocument(documentId,title))ApplyAtmajaNoteTheme(documentRect);
+            else ApplyNotebookDocumentTheme(documentRect);
             documentPanel.SetActive(true);
             var presentation=GetComponent<HudPresentation>();
             if(presentation&&presentation.documentScroll)

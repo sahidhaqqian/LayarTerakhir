@@ -309,6 +309,7 @@ namespace LayarTerakhir.Editor
             ApplyPrologSkin();
             ApplyPrologSkin();
             ApplyKosBathroomRound();
+            ApplyRumahAtmajaDiningFix();
             Debug.Log("PROLOG47_COMPLETE_REVISION_APPLIED all 3 Prolog scenes updated and saved");
         }
 
@@ -319,7 +320,7 @@ namespace LayarTerakhir.Editor
 
         public static void ApplyRemaining()
         {
-            ConfigureImports(); ApplyFurniture(); ApplyKosFacilities(); ApplyArchitecture(); ApplyDetails(); ApplyLadder(); ApplyFinishProps(); ApplyKosBathroomRound();
+            ConfigureImports(); ApplyFurniture(); ApplyKosFacilities(); ApplyArchitecture(); ApplyDetails(); ApplyLadder(); ApplyFinishProps(); ApplyKosBathroomRound(); ApplyRumahAtmajaDiningFix();
         }
 
         private static void ConfigureImports()
@@ -1902,6 +1903,90 @@ namespace LayarTerakhir.Editor
 
         // Designer round Nov 2026 (goal.md): leftover dining wall, open bathroom foyer
         // with only PRIA/WANITA doors, sealed main entrance, expanded natural bathrooms.
+        // goal.md Nov (Rumah Atmaja): the LongDiningTable FBX instance renders as a tiny
+        // chair-sized blob, so the Bug-39 feast floats in mid-air ("meja gak ke load").
+        // Replace the visual with a procedural top+legs matched to DiningTableTopCollision
+        // (surface y=1.42), reseat every feast item onto it, and lift the brass clock
+        // hands (plus ashtray) out of the CornerSideTable volume ("jarum jam" hidden).
+        // Idempotent: deletes its own visuals first, never touches colliders or items.
+        public static void ApplyRumahAtmajaDiningFix()
+        {
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            var env = Find("Atmaja_Environment_Art").transform;
+            var wood = Old("House_MAT_WoodDoor");
+            const float topY = 1.42f;
+
+            Delete("LongDiningTable");
+            foreach (string n in new[] { "DiningTableTop47", "DiningTableLeg47_0", "DiningTableLeg47_1", "DiningTableLeg47_2", "DiningTableLeg47_3" })
+                Delete(n);
+            var top = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            top.name = "DiningTableTop47";
+            top.transform.SetParent(env, false);
+            top.transform.position = d.P(3.7f, 4.9f, topY - .035f);
+            top.transform.localScale = new Vector3(1.5f, .07f, 3.6f);
+            top.GetComponent<Renderer>().sharedMaterial = wood;
+            Object.DestroyImmediate(top.GetComponent<Collider>());
+            for (int i = 0; i < 4; i++)
+            {
+                var leg = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                leg.name = "DiningTableLeg47_" + i;
+                leg.transform.SetParent(env, false);
+                leg.transform.position = d.P(3.7f + (i % 2 == 0 ? -.63f : .63f), 4.9f + (i < 2 ? -1.68f : 1.68f), .935f);
+                leg.transform.localScale = new Vector3(.09f, .83f, .09f);
+                leg.GetComponent<Renderer>().sharedMaterial = wood;
+                Object.DestroyImmediate(leg.GetComponent<Collider>());
+            }
+
+            // Reseat the feast onto the real surface: shift each root so its bounds
+            // bottom rests on topY. (Roots sit at different anchors per builder.)
+            foreach (var t in env.GetComponentsInChildren<Transform>(true).Where(t =>
+                t && (t.name.StartsWith("AddedDinner_") || t.name.StartsWith("AddedDish_") || t.name.StartsWith("DiningCenter_"))).ToArray())
+            {
+                var b = SafeBounds(t.gameObject);
+                t.position += Vector3.up * (topY + .002f - b.min.y);
+            }
+
+            // Clock hands + ashtray rest on the side table, not inside it.
+            var side = Find("CornerSideTable");
+            if (side)
+            {
+                float surface = SafeBounds(side).max.y;
+                var cxz = SafeBounds(side).center;
+                var hands = Find("BrassClockHands");
+                if (hands) hands.transform.position = new Vector3(cxz.x, surface + .015f, cxz.z);
+                var tray = Find("OldAshtray");
+                if (tray) tray.transform.position = new Vector3(tray.transform.position.x, surface + .008f, tray.transform.position.z);
+            }
+
+            // The dining hinge must be serialized, not only runtime-added.
+            var hinge = Find("KitchenDoorHinge");
+            if (hinge && !hinge.GetComponent<LayarTerakhir.Prolog.HingedDoor>())
+            {
+                var hd = hinge.AddComponent<LayarTerakhir.Prolog.HingedDoor>();
+                hd.hinge = hinge.transform; hd.angle = -95; hd.label = "Buka pintu ruang makan";
+            }
+            // The west-shifted radio cabinet (local x -1.25) seals the door-to-hands
+            // desire line for a 0.32-radius capsule ("meja menghalangi jarum jam").
+            // Park it flush against the sitting partition so the flow stays clear.
+            // Delta is recomputed from the live position, so reruns converge.
+            {
+                var cab0 = Find("FamilyRadioCabinet");
+                if (cab0)
+                {
+                    var cl = d.LocalPosition(cab0.transform.position);
+                    var target = d.P(.35f, 1.72f, 0f) - d.P(cl.x, cl.y, 0f);
+                    target.y = 0f;
+                    if (target.magnitude > .01f)
+                        foreach (var t in env.GetComponentsInChildren<Transform>(true).Where(t =>
+                            t && (t.name == "FamilyRadioCabinet" || t.name == "FamilyRadioBody" || t.name == "FamilyCabinetPanel" || t.name == "RadioSpeakerGrille")).ToArray())
+                            t.position += target;
+                }
+            }
+            Save();
+            Debug.Log("PROLOG47_RUMAH_ATMAJA_DINING_FIX_APPLIED table surface, feast seating, clock hands");
+        }
+
         public static void ApplyKosBathroomRound()
         {
             EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);

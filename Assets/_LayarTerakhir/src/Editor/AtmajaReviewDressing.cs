@@ -31,7 +31,12 @@ namespace LayarTerakhir.Editor
             Chain(P(2.85f,11.2f,1.14f),1.1f,true);var bucket=Model("wooden_bucket_01","KitchenBucket",P(3.6f,11.9f,.35f));Ground(bucket,.35f);FitCollider(bucket);
             Existing("painted_wooden_cabinet_02","KitchenStorage",P(5.45f,11.7f,.88f),new Vector3(.8f,1.05f,.48f));
             var charger=Box("KitchenEmergencyCharger",P(5.76f,10.1f,1.35f),new Vector3(.15f,.20f,.09f),Mat("House_MAT_WoodFrameWhite"));Item(charger,AtmajaAction.Charge,"Isi daya darurat • dapur");
-            Model("LongDiningTable","LongDiningTable",P(3.7f,4.9f,.52f));
+            // The LongDiningTable FBX renders as a tiny chair-sized blob, so the visual
+            // tabletop is procedural, matched to DiningTableTopCollision (surface y=1.42).
+            // (Prolog47SceneRepair.ApplyRumahAtmajaDiningFix enforces the same on saved scenes.)
+            var dTop=Box("DiningTableTop47",P(3.7f,4.9f,1.385f),new Vector3(1.5f,.07f,3.6f),wood);Object.DestroyImmediate(dTop.GetComponent<Collider>());
+            for(int i=0;i<4;i++)
+            {var dLeg=Box("DiningTableLeg47_"+i,P(3.7f+(i%2==0?-.63f:.63f),4.9f+(i<2?-1.68f:1.68f),.935f),new Vector3(.09f,.83f,.09f),wood);Object.DestroyImmediate(dLeg.GetComponent<Collider>());}
             var top=Box("DiningTableTopCollision",P(3.7f,4.9f,1.42f),new Vector3(1.45f,.075f,4.4f),wood);top.GetComponent<Renderer>().enabled=false;
             foreach(float x in new[]{3.09f,4.31f})foreach(float z in new[]{2.86f,6.94f})Box("DiningTableLegCollision",P(x,z,.95f),new Vector3(.09f,.86f,.09f),wood).GetComponent<Renderer>().enabled=false;
             foreach(float z in new[]{3.7f,5.5f})foreach(float x in new[]{2.75f,4.65f})Chair("WornDiningChair",P(x,z,.52f),P(3.7f,z,.52f));
@@ -52,8 +57,9 @@ namespace LayarTerakhir.Editor
             Box("FrontSittingDoorLintel",P(-1.4f,2.5f,3.3f),new Vector3(1.25f,.7f,.16f),plaster);
             Door("FrontSittingDoor",P(-2,2.5f,.52f),P(-1.4f,2.5f,1.62f),new Vector3(1.2f,2.2f,.09f),"Buka ruang tamu depan");
             var corner=Model("CornerSideTable","CornerSideTable",P(-5.05f,1.15f,.52f));FitCollider(corner);
-            director.clockHands=Box("BrassClockHands",P(-5.05f,1.15f,1.30f),new Vector3(.18f,.025f,.03f),Mat("Detail_AgedBrass"));Item(director.clockHands,AtmajaAction.ClockHands,"Ambil Jarum Jam Kuningan");
-            var ashtray=GameObject.CreatePrimitive(PrimitiveType.Cylinder);ashtray.name="OldAshtray";ashtray.transform.SetParent(environment,false);ashtray.transform.position=P(-4.85f,1.1f,1.30f);ashtray.transform.localScale=new Vector3(.12f,.015f,.12f);ashtray.GetComponent<Renderer>().sharedMaterial=Mat("House_MAT_Concrete");Object.DestroyImmediate(ashtray.GetComponent<Collider>());
+            float cornerTop=KosVisualV2.BoundsOf(corner).max.y;
+            director.clockHands=Box("BrassClockHands",new Vector3(corner.transform.position.x,cornerTop+.015f,corner.transform.position.z),new Vector3(.18f,.025f,.03f),Mat("Detail_AgedBrass"));Item(director.clockHands,AtmajaAction.ClockHands,"Ambil Jarum Jam Kuningan");
+            var ashtray=GameObject.CreatePrimitive(PrimitiveType.Cylinder);ashtray.name="OldAshtray";ashtray.transform.SetParent(environment,false);ashtray.transform.position=new Vector3(P(-4.85f,1.1f,0).x,cornerTop+.008f,P(-4.85f,1.1f,0).z);ashtray.transform.localScale=new Vector3(.12f,.015f,.12f);ashtray.GetComponent<Renderer>().sharedMaterial=Mat("House_MAT_Concrete");Object.DestroyImmediate(ashtray.GetComponent<Collider>());
             Chair("FrontRoomWoodChair",P(-4.25f,.8f,.52f),P(-4.25f,2,.52f));Existing("wooden_bookshelf_worn","FrontRoomBookcase",P(-3.35f,.45f,1.25f),new Vector3(1.0f,1.45f,.35f));
             // Small storage room off the lounge, not another mandatory story key.
             Box("StorageWall",P(-.15f,6.65f,2.05f),new Vector3(.15f,3.1f,2.4f),plaster);
