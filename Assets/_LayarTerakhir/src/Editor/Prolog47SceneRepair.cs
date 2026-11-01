@@ -366,9 +366,11 @@ namespace LayarTerakhir.Editor
             // 1. Prolog_KamarKos.unity
             EditorSceneManager.OpenScene(PrologKosSceneBuilder.ScenePath);
             RotateCentred(Find("KosDeskFan"), 162);
-            // Upgrade Raka's bedroom sandals to Swallow-style IndonesianFlipFlops without dotted sole ring
+            // Upgrade Raka's bedroom sandals to Swallow-style IndonesianFlipFlops without dotted sole ring.
+            // Idempotent: the upgraded pair root already parents an IndonesianFlipFlops model, so later
+            // runs must not delete and recreate it (that churns fileIDs and breaks the opening-scene guard).
             var roomSandals = Find("KosSandals");
-            if (roomSandals)
+            if (roomSandals && !roomSandals.GetComponentsInChildren<Transform>(true).Any(t => t && t.name == "IndonesianFlipFlops"))
             {
                 var b = SafeBounds(roomSandals);
                 var p = roomSandals.transform.parent;
