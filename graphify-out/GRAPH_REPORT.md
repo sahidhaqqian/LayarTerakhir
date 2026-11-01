@@ -9,7 +9,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f7f5ca9e`
+- Built from commit: `458d0939`
 - Commit above is the pre-commit base, not a freshness check. Verify source/artifact hashes with `python3 Tools/update_graphify.py --check`.
 - Regenerate safely with `python3 Tools/update_graphify.py` before commit/push.
 
@@ -721,16 +721,16 @@ Nodes (5): KuntiState, Dormant, Manifested, Pursuit, Resolved
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `AtmajaPhoneView` connect `Community 46` to `Community 1`, `Community 4`, `Community 5`, `Community 134`, `Community 6`, `Community 8`, `Community 9`, `Community 139`, `Community 140`, `Community 13`, `Community 12`, `Community 15`, `Community 14`, `Community 17`, `Community 19`, `Community 21`, `Community 22`, `Community 23`, `Community 26`, `Community 29`, `Community 30`, `Community 32`, `Community 35`, `Community 36`, `Community 37`, `Community 40`, `Community 41`, `Community 43`, `Community 44`, `Community 45`, `Community 50`, `Community 52`, `Community 55`, `Community 56`, `Community 60`, `Community 67`, `Community 70`, `Community 73`, `Community 74`, `Community 76`, `Community 77`, `Community 80`, `Community 85`, `Community 90`, `Community 93`, `Community 116`, `Community 123`?**
-  _High betweenness centrality (0.235) - this node is a cross-community bridge._
+  _High betweenness centrality (0.232) - this node is a cross-community bridge._
 - **What connects `BackupSaveFilePath`, `Data`, `HasValidCheckpoint` to the rest of the system?**
   _679 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.070201643017177 - nodes in this community are weakly interconnected._
 - **Why does `CampaignState` connect `Community 0` to `Community 3`, `Community 5`, `Community 11`, `Community 12`, `Community 18`, `Community 23`, `Community 24`, `Community 25`, `Community 32`, `Community 37`, `Community 40`, `Community 42`, `Community 43`, `Community 52`, `Community 55`, `Community 60`, `Community 71`, `Community 72`, `Community 74`, `Community 82`, `Community 85`, `Community 86`, `Community 93`, `Community 98`?**
-  _High betweenness centrality (0.065) - this node is a cross-community bridge._
+  _High betweenness centrality (0.069) - this node is a cross-community bridge._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.0868185212845407 - nodes in this community are weakly interconnected._
 - **Why does `PlayerFootsteps` connect `Community 117` to `Community 64`, `Community 96`, `Community 26`, `Community 4`, `Community 5`, `Community 7`, `Community 9`, `Community 74`, `Community 41`, `Community 105`, `Community 90`, `Community 123`?**
-  _High betweenness centrality (0.053) - this node is a cross-community bridge._
+  _High betweenness centrality (0.051) - this node is a cross-community bridge._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.044444444444444446 - nodes in this community are weakly interconnected._
