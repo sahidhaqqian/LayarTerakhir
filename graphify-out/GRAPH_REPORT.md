@@ -9,7 +9,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `9750ecde`
+- Built from commit: `5681afa8`
 - Commit above is the pre-commit base, not a freshness check. Verify source/artifact hashes with `python3 Tools/update_graphify.py --check`.
 - Regenerate safely with `python3 Tools/update_graphify.py` before commit/push.
 
@@ -681,11 +681,11 @@ _Questions this graph is uniquely positioned to answer:_
   _679 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.0923999294657027 - nodes in this community are weakly interconnected._
-- **Why does `PlayerFootsteps` connect `Community 31` to `Community 34`, `Community 4`, `Community 5`, `Community 101`, `Community 38`, `Community 104`, `Community 8`, `Community 78`, `Community 113`, `Community 22`, `Community 86`, `Community 60`?**
-  _High betweenness centrality (0.045) - this node is a cross-community bridge._
+- **Why does `HudController` connect `Community 19` to `Community 5`, `Community 8`, `Community 11`, `Community 12`, `Community 13`, `Community 16`, `Community 18`, `Community 21`, `Community 22`, `Community 23`, `Community 30`, `Community 33`, `Community 35`, `Community 39`, `Community 43`, `Community 44`, `Community 45`, `Community 47`, `Community 56`, `Community 58`, `Community 62`, `Community 77`, `Community 78`, `Community 79`, `Community 83`, `Community 86`, `Community 90`, `Community 91`, `Community 93`, `Community 94`, `Community 95`, `Community 100`, `Community 101`, `Community 112`?**
+  _High betweenness centrality (0.046) - this node is a cross-community bridge._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.08814011041309727 - nodes in this community are weakly interconnected._
-- **Why does `Phase4Director` connect `Community 47` to `Community 2`, `Community 4`, `Community 5`, `Community 134`, `Community 6`, `Community 8`, `Community 10`, `Community 12`, `Community 14`, `Community 142`, `Community 16`, `Community 19`, `Community 22`, `Community 23`, `Community 27`, `Community 32`, `Community 35`, `Community 39`, `Community 42`, `Community 43`, `Community 46`, `Community 52`, `Community 61`, `Community 63`, `Community 64`, `Community 69`, `Community 77`, `Community 78`, `Community 84`, `Community 85`, `Community 87`, `Community 91`, `Community 99`, `Community 116`?**
+- **Why does `PlayerFootsteps` connect `Community 31` to `Community 34`, `Community 4`, `Community 5`, `Community 101`, `Community 38`, `Community 104`, `Community 8`, `Community 78`, `Community 113`, `Community 22`, `Community 86`, `Community 60`?**
   _High betweenness centrality (0.045) - this node is a cross-community bridge._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.0713877784123358 - nodes in this community are weakly interconnected._
