@@ -19,6 +19,8 @@ SNAP="$WORKSPACE"
 LOGS="$RUN_DIR/logs"
 RESULT="$RUN_DIR/result"
 OUTDIR="$SNAP/Builds/$OUT_SUBDIR"
+# Workspace has no .git (excluded); point git at the live repo for provenance only.
+export GIT_DIR="$LIVE_ROOT/.git"
 mkdir -p "$LOGS" "$RESULT/receipts" "$WORKSPACE" "$LASTGOOD_P"
 exec > >(tee -a "$LOGS/pipeline.log") 2>&1
 set -x
