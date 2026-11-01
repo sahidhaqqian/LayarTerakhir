@@ -3,8 +3,13 @@ No rclone configuration/credentials or signed URLs are printed or stored in the 
 """
 from pathlib import Path
 from datetime import datetime,timezone
-import hashlib,json,subprocess
-ROOT=Path(__file__).resolve().parents[1];archive=ROOT/'Builds/LayarTerakhir-Windows-x86_64-Development.zip'
+import argparse,hashlib,json,subprocess
+parser=argparse.ArgumentParser(description=__doc__)
+# Partial builds (skill windows-build-partial) upload a tagged archive to its own
+# R2 key; default uploads the full release exactly like before.
+parser.add_argument('--archive-name',default='LayarTerakhir-Windows-x86_64-Development.zip')
+args=parser.parse_args()
+ROOT=Path(__file__).resolve().parents[1];archive=ROOT/('Builds/'+args.archive_name)
 destination='r2:layarterakhir/Layarterakhir/';remote=destination+archive.name
 assert archive.is_file()
 expected=hashlib.file_digest(archive.open('rb'),'sha256').hexdigest()

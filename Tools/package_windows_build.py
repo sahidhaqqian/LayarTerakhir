@@ -7,10 +7,34 @@ from datetime import datetime,timezone
 import argparse,hashlib,json,struct,zipfile,zlib,shutil
 from record_designer_sources import snapshot
 from opening_presentation_identity import verify_opening_source
-root=Path(__file__).resolve().parents[1];out=root/'Builds/Windows';logs=root/'Builds/Logs'
+root=Path(__file__).resolve().parents[1]
+import re as _re
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--source-record',default='Audit/designer-build-sources.json')
+# Partial builds (skill windows-build-partial): --scenes-spec "1,2" builds prolog +
+# phases 1-2 only; --build-tag names the separate output dir and ZIP (e.g. Prolog-P1P2).
+# Defaults reproduce the full release pipeline exactly.
+parser.add_argument('--scenes-spec',default='full')
+parser.add_argument('--build-tag',default='')
 args=parser.parse_args()
+tag=args.build_tag
+out=root/('Builds/Windows' if not tag else 'Builds/Windows-'+tag)
+logs=root/'Builds/Logs'
+
+def included_phases(spec):
+    s=(spec or 'full').strip().lower()
+    if s in ('','full','all'):return {1,2,3,4,5}
+    inc=set()
+    for tok in _re.split(r'[,\s;+]+',s):
+        t=tok.strip().lower()
+        if t in ('prolog','p','0',''):continue
+        if len(t)==1 and t in '12345':inc.add(int(t));continue
+        raise ValueError('scenes-spec: unknown token %r (use full or phase numbers 1-5)'%tok)
+    return inc
+included=included_phases(args.scenes_spec)
+explicit=(args.scenes_spec or 'full').strip().lower() not in ('','full','all')
+def scene_index(phase):return 3+sum(1 for p in included if p<phase)
+legacy=args.source_record.lower()
 source_record=json.loads((root/args.source_record).read_text())
 assert source_record['sources']==snapshot(),'Source changed after the designer build snapshot'
 opening_identity=verify_opening_source(root)
@@ -83,9 +107,9 @@ if 'prolog' in args.source_record.lower():
  for marker in ['PrologFinaleView','AtmajaHandycamPlayback','AtmajaMirrorReflection','AtmajaThreatPresentation','PrologCompletionAudit']:
   assert marker.encode() in runtime,marker
 assert b'LayarPresentation' in (out/'LayarTerakhir_Data/resources.assets').read_bytes(),'Presentation/voice resource missing'
-if any(chapter in args.source_record.lower() for chapter in ('phase1','phase2','phase3','phase4','phase5')):
- assert report['scenes'][3]=='Assets/_LayarTerakhir/assets/Scenes/Babak1_Rusunawa.unity','Rusunawa scene is missing or reordered'
- phase1_data=(out/'LayarTerakhir_Data/level3').read_bytes()
+if any(chapter in legacy for chapter in ('phase1','phase2','phase3','phase4','phase5')) or (explicit and 1 in included):
+ assert report['scenes'][scene_index(1)]=='Assets/_LayarTerakhir/assets/Scenes/Babak1_Rusunawa.unity','Rusunawa scene is missing or reordered'
+ phase1_data=(out/('LayarTerakhir_Data/level%d'%scene_index(1))).read_bytes()
  for marker in ['Rusunawa_GriyaAsri_Environment','K102_HiddenConcreteFlight','BoltCutter_HandReach','K403_UsableDoor','DamarExistingWheelchair','HalogenImportedHousing_N','DYNAMO_L3_PANEL']:
   assert marker.encode() in phase1_data,marker
  for marker in ['Phase1Director','Phase1Threats','Phase1Navigator','IPhoneChapterContent','CampaignRouting','Phase1LightBudget']:
@@ -97,9 +121,9 @@ if any(chapter in args.source_record.lower() for chapter in ('phase1','phase2','
  (out/'Phase1Review-Start.json').write_text(json.dumps(fixture,indent=2)+'\n')
  (out/'Review-Phase1.cmd').write_text('@echo off\nsetlocal\nset "LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY=%~dp0ReviewSaves\\Phase1"\nif not exist "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%" mkdir "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%"\nif not exist "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%\\layar_terakhir_save.json" copy /Y "%~dp0Phase1Review-Start.json" "%LAYAR_TERAKHIR_TEST_SAVE_DIRECTORY%\\layar_terakhir_save.json" >nul\nstart "" /D "%~dp0" "%~dp0LayarTerakhir.exe" -phase1Review\nendlocal\n')
 
-if any(chapter in args.source_record.lower() for chapter in ('phase2','phase3','phase4','phase5')):
- assert report['scenes'][4]=='Assets/_LayarTerakhir/assets/Scenes/Babak2_RSUD.unity','RSUD Session 1 scene is missing or reordered'
- phase2_data=(out/'LayarTerakhir_Data/level4').read_bytes()
+if any(chapter in legacy for chapter in ('phase2','phase3','phase4','phase5')) or (explicit and 2 in included):
+ assert report['scenes'][scene_index(2)]=='Assets/_LayarTerakhir/assets/Scenes/Babak2_RSUD.unity','RSUD Session 1 scene is missing or reordered'
+ phase2_data=(out/('LayarTerakhir_Data/level%d'%scene_index(2))).read_bytes()
  for marker in ['RSUD_Lama_SidoWaras','Freezer_C3','C3_Contents','Lastri_KuntilanakMerah','MedicineSafeHinge','Inkubator_04','DYNAMO_IGD']:
   assert marker.encode() in phase2_data,marker
  for marker in ['Phase2Director','Phase2Hub','Phase2Data','Phase2Lastri','Phase2PlayerAudit','Phase2Campaign']:
@@ -108,9 +132,9 @@ if any(chapter in args.source_record.lower() for chapter in ('phase2','phase3','
   shutil.copy2(root/'Audit'/filename,out/filename)
  (out/'Review-Phase2.cmd').write_text('@echo off\nsetlocal\nstart "" /D "%~dp0" "%~dp0LayarTerakhir.exe" -phase2Review\nendlocal\n')
 
-if any(chapter in args.source_record.lower() for chapter in ('phase3','phase4','phase5')):
- assert report['scenes'][5]=='Assets/_LayarTerakhir/assets/Scenes/Babak3_PabrikGula.unity','Factory missing or reordered'
- phase3_data=(out/'LayarTerakhir_Data/level5').read_bytes()
+if any(chapter in legacy for chapter in ('phase3','phase4','phase5')) or (explicit and 3 in included):
+ assert report['scenes'][scene_index(3)]=='Assets/_LayarTerakhir/assets/Scenes/Babak3_PabrikGula.unity','Factory missing or reordered'
+ phase3_data=(out/('LayarTerakhir_Data/level%d'%scene_index(3))).read_bytes()
  for marker in ['Pabrik_Gula_Sindang_Laut','G_ACC_MagneticGate','SlingPhotoTarget','RajahPhotoTarget','EVP_INTERCOM','EVP_VENT09','RitualHallGate','Alcove_ClosedDoor','WeweGombel_ArtistRig','RakaMotor_CampaignCarryOver']:
   assert marker.encode() in phase3_data,marker
  for marker in ['Phase3Director','Phase3Hub','Phase3Campaign','Phase3Wewe','Phase3Boss','Phase3PlayerAudit','Phase3Data']:
@@ -119,9 +143,9 @@ if any(chapter in args.source_record.lower() for chapter in ('phase3','phase4','
   shutil.copy2(root/'Audit'/filename,out/filename)
  (out/'Review-Phase3.cmd').write_text('@echo off\nsetlocal\nstart "" /D "%~dp0" "%~dp0LayarTerakhir.exe" -phase3Review\nendlocal\n')
 
-if any(chapter in args.source_record.lower() for chapter in ('phase4','phase5')):
- assert report['scenes'][6]=='Assets/_LayarTerakhir/assets/Scenes/Babak4_KarangSetra.unity','Village missing or reordered'
- data=(out/'LayarTerakhir_Data/level6').read_bytes()
+if any(chapter in legacy for chapter in ('phase4','phase5')) or (explicit and 4 in included):
+ assert report['scenes'][scene_index(4)]=='Assets/_LayarTerakhir/assets/Scenes/Babak4_KarangSetra.unity','Village missing or reordered'
+ data=(out/('LayarTerakhir_Data/level%d'%scene_index(4))).read_bytes()
  for marker in ['Desa_Mati_Karang_Setra','Thermal66_Target','AR_Altar_Target','Hidden_Drawer','PasarSetan_Stairway','Arwah_Mbah_Suro']:
   assert marker.encode() in data,marker
  for marker in ['Phase4Director','Phase4Hub','Phase4Campaign','Phase4Ritual','Phase4Banaspati','Phase4PlayerAudit','Phase4Data']:
@@ -133,9 +157,9 @@ if any(chapter in args.source_record.lower() for chapter in ('phase4','phase5'))
  shutil.copy2(root/'Audit/Recording/phase4-dialogue-recording.csv',out/'Phase4-Dialogue-For-Recording.csv')
  (out/'Review-Phase4.cmd').write_text('@echo off\nsetlocal\nstart "" /D "%~dp0" "%~dp0LayarTerakhir.exe" -phase4Review\nendlocal\n')
 
-if 'phase5' in args.source_record.lower():
- assert report['scenes'][7]=='Assets/_LayarTerakhir/assets/Scenes/Babak5_PasarSetan.unity','Pasar Setan missing or reordered'
- data=(out/'LayarTerakhir_Data/level7').read_bytes()
+if 'phase5' in legacy or (explicit and 5 in included):
+ assert report['scenes'][scene_index(5)]=='Assets/_LayarTerakhir/assets/Scenes/Babak5_PasarSetan.unity','Pasar Setan missing or reordered'
+ data=(out/('LayarTerakhir_Data/level%d'%scene_index(5))).read_bytes()
  for marker in ['Pasar_Setan_New_Licensed_Environment','Interaction_DYNAMO_ARENA_W','Interaction_ARCHIVE','Damar_Lens_Cage','Interaction_CABLE_3','FireWaveOrigin']:
   assert marker.encode() in data,marker
  for marker in ['Phase5Director','Phase5Campaign','Phase5Boss','Phase5Replicas','Phase5PlayerAudit','Phase5Data','EndingId']:
@@ -164,7 +188,8 @@ for p in files:
  with p.open('rb') as f:
   for block in iter(lambda:f.read(1024*1024),b''):digest.update(block);crc=zlib.crc32(block,crc)
  manifest.append({'path':p.relative_to(out).as_posix(),'sizeBytes':p.stat().st_size,'sha256':digest.hexdigest(),'crc32':crc&0xffffffff})
-archive=root/'Builds/LayarTerakhir-Windows-x86_64-Development.zip';partial=archive.with_suffix('.zip.partial')
+archive_name='LayarTerakhir-Windows-x86_64-Development.zip' if not tag else 'LayarTerakhir-Windows-x86_64-'+tag+'.zip'
+archive=root/'Builds'/archive_name;partial=archive.with_suffix('.zip.partial')
 assert not archive.exists() and not partial.exists(),'Preserve the existing archive before packaging a new version'
 with zipfile.ZipFile(partial,'x',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
  for p in files:z.write(p,Path('Windows')/p.relative_to(out))
@@ -187,6 +212,8 @@ verification={'verifiedUtc':datetime.now(timezone.utc).isoformat(),'unityExitCod
  'windowsRuntimeTested':False,'files':manifest}
 verification['sourceSceneSha256']=hashlib.sha256((root/'Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity').read_bytes()).hexdigest()
 verification['atmajaSceneSha256']=hashlib.sha256((root/'Assets/_LayarTerakhir/assets/Scenes/Prolog_RumahAtmaja.unity').read_bytes()).hexdigest()
+verification['sceneSpec']=args.scenes_spec
+verification['buildTag']=tag
 verification['openingProtection']=opening_identity
 verification['developmentScreenshotUtilityIncluded']=True
 verification['includedScenes']=report['scenes']

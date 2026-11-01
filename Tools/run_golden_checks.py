@@ -51,7 +51,12 @@ else:
         if os.environ.get('WINDOWS_KEEP_PREVIOUS')!='1':
             prior=ROOT/'Builds/Previous'/('before-golden-'+datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S'))
             prior.mkdir(parents=True,exist_ok=False)
-            for name in ['Windows','LayarTerakhir-Windows-x86_64-Development.zip','LayarTerakhir-Windows-x86_64-Development.zip.sha256']:
+            names=['Windows','LayarTerakhir-Windows-x86_64-Development.zip','LayarTerakhir-Windows-x86_64-Development.zip.sha256']
+            # Partial builds (skill windows-build-partial) use a tagged output dir
+            # and archive; the default full names above are untouched.
+            ptag=os.environ.get('WINDOWS_BUILD_TAG','')
+            if ptag:names+=['Windows-'+ptag,'LayarTerakhir-Windows-x86_64-'+ptag+'.zip','LayarTerakhir-Windows-x86_64-'+ptag+'.zip.sha256']
+            for name in names:
                 old=ROOT/'Builds'/name
                 if old.exists():shutil.move(str(old),str(prior/name))
         record_path=ROOT/'Builds/Logs/windows-build-invocation.json';log=ROOT/'Builds/Logs/windows-development.log'
@@ -84,6 +89,11 @@ if is_player or stage=='test':
         raise RuntimeError('Private PulseAudio sink did not start: '+diagnostic.decode(errors='replace').strip())
     env['PULSE_SERVER']='unix:'+socket
 record={'stage':stage,'command':command,'startedUtc':datetime.now(timezone.utc).isoformat()}
+if stage=='windows':
+    # Partial builds (skill windows-build-partial) record their spec; full builds
+    # record the same defaults they always had.
+    record['sceneSpec']=env.get('WINDOWS_BUILD_SCENES','full')
+    record['buildTag']=env.get('WINDOWS_BUILD_TAG','')
 host_overrides={key:env[key] for key in ('UNITY_BURST_DISABLE_COMPILATION','LD_BIND_NOW') if key in env}
 if host_overrides:record['hostEnvironmentOverrides']=host_overrides
 if is_player:record['rendererEnvironment']={key:env[key] for key in ('LIBGL_ALWAYS_SOFTWARE','LP_NUM_THREADS')}

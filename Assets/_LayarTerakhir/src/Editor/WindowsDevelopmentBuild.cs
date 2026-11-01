@@ -14,6 +14,51 @@ namespace LayarTerakhir.Editor
     {
         private const string StartupScene = "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity";
 
+        // Optional scene subset for partial builds (see skill windows-build-partial).
+        // WINDOWS_BUILD_SCENES unset/"full"/"all" (or "prolog" alone) = every enabled
+        // scene, exactly like before. Otherwise a comma/space separated list of phase
+        // numbers, e.g. "1,2" = prolog + Babak 1 + Babak 2; anything else is rejected.
+        // Prolog (startup + RumahAtmaja + KoridorKos) is always included first so the
+        // player still boots from the approved startup scene and level indices stay
+        // stable (prolog = levels 0-2, phase N = level 2+N).
+        private static readonly string[] PhaseScenes =
+        {
+            "Assets/_LayarTerakhir/assets/Scenes/Babak1_Rusunawa.unity",
+            "Assets/_LayarTerakhir/assets/Scenes/Babak2_RSUD.unity",
+            "Assets/_LayarTerakhir/assets/Scenes/Babak3_PabrikGula.unity",
+            "Assets/_LayarTerakhir/assets/Scenes/Babak4_KarangSetra.unity",
+            "Assets/_LayarTerakhir/assets/Scenes/Babak5_PasarSetan.unity",
+        };
+
+        private static readonly string[] PrologScenes =
+        {
+            StartupScene,
+            "Assets/_LayarTerakhir/assets/Scenes/Prolog_RumahAtmaja.unity",
+            "Assets/_LayarTerakhir/assets/Scenes/Prolog_KoridorKos.unity",
+        };
+
+        internal static string SceneSpec => Environment.GetEnvironmentVariable("WINDOWS_BUILD_SCENES") ?? "full";
+
+        internal static string BuildTag => Environment.GetEnvironmentVariable("WINDOWS_BUILD_TAG") ?? string.Empty;
+
+        internal static string[] SelectedScenes()
+        {
+            string spec = SceneSpec.Trim().ToLowerInvariant();
+            if (spec == "" || spec == "full" || spec == "all" || spec == "prolog" || spec == "p" || spec == "0")
+                return null; // null = legacy path: every enabled scene.
+            var phases = new System.Collections.Generic.SortedSet<int>();
+            foreach (string token in spec.Split(new[] { ',', ' ', ';', '+' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                string t = token.Trim().ToLowerInvariant();
+                if (t == "prolog" || t == "p" || t == "0") continue;
+                if (t.Length == 1 && t[0] >= '1' && t[0] <= '5') { phases.Add(t[0] - '0'); continue; }
+                throw new BuildFailedException("WINDOWS_BUILD_SCENES: unknown token '" + token + "' (use full or phase numbers 1-5, e.g. \"1,2\")");
+            }
+            var scenes = new System.Collections.Generic.List<string>(PrologScenes);
+            foreach (int phase in phases) scenes.Add(PhaseScenes[phase - 1]);
+            return scenes.ToArray();
+        }
+
         public static void Build()
         {
             BuildInternal(BuildOptions.Development);
@@ -27,6 +72,8 @@ namespace LayarTerakhir.Editor
         // falls back to a full build automatically on failure).
         // Requires a previous successful full build at the same location;
         // anything else (scenes, prefabs, assets, settings) needs Build().
+        // Partial builds (WINDOWS_BUILD_TAG set, see skill windows-build-partial)
+        // always build full assets into their own output directory.
         private static void BuildInternal(BuildOptions options)
         {
             const BuildTarget target = BuildTarget.StandaloneWindows64;
@@ -37,9 +84,15 @@ namespace LayarTerakhir.Editor
             if (!File.Exists(StartupScene))
                 throw new BuildFailedException("Startup scene is missing: " + StartupScene);
 
-            var scenes = new[] { StartupScene }
-                .Concat(EditorBuildSettings.scenes.Where(scene => scene.enabled).Select(scene => scene.path))
-                .Distinct().ToArray();
+            var scenes = SelectedScenes();
+            string tag = BuildTag;
+            string outputSubdir = string.IsNullOrEmpty(tag) ? "Windows" : "Windows-" + tag;
+            if (scenes == null)
+            {
+                scenes = new[] { StartupScene }
+                    .Concat(EditorBuildSettings.scenes.Where(scene => scene.enabled).Select(scene => scene.path))
+                    .Distinct().ToArray();
+            }
             foreach (string scene in scenes)
                 if (!File.Exists(scene))
                     throw new BuildFailedException("Enabled scene is missing: " + scene);
@@ -62,17 +115,18 @@ namespace LayarTerakhir.Editor
             AssetDatabase.SaveAssets();
 
             string projectRoot = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
-            string output = Path.Combine(projectRoot, "Builds/Windows/LayarTerakhir.exe");
+            string output = Path.Combine(projectRoot, "Builds", outputSubdir, "LayarTerakhir.exe");
             string reportPath = Path.Combine(projectRoot, "Builds/Logs/windows-development-build-report.json");
             Directory.CreateDirectory(Path.GetDirectoryName(output));
             Directory.CreateDirectory(Path.GetDirectoryName(reportPath));
-            if (Environment.GetEnvironmentVariable("WINDOWS_BUILD_SCRIPTS_ONLY") == "1")
+            if (Environment.GetEnvironmentVariable("WINDOWS_BUILD_SCRIPTS_ONLY") == "1" && string.IsNullOrEmpty(tag))
             {
                 if (!File.Exists(output))
                     throw new BuildFailedException("Scripts-only build requested but no previous player exists at " + output + "; run a full build first.");
                 options |= BuildOptions.BuildScriptsOnly;
             }
             Debug.Log("WINDOWS_BUILD Target=" + target + " Backend=Mono2x Options=" + options);
+            Debug.Log("WINDOWS_BUILD Spec=" + SceneSpec + " Tag=" + tag);
             Debug.Log("WINDOWS_BUILD Scenes=" + string.Join(",", scenes));
             Debug.Log("WINDOWS_BUILD Output=" + output);
 
@@ -95,6 +149,8 @@ namespace LayarTerakhir.Editor
                 scriptingBackend = PlayerSettings.GetScriptingBackend(NamedBuildTarget.Standalone).ToString(),
                 options = summary.options.ToString(),
                 outputPath = summary.outputPath,
+                sceneSpec = SceneSpec,
+                buildTag = tag,
                 scenes = scenes,
                 totalSizeBytes = summary.totalSize,
                 totalErrors = summary.totalErrors,
@@ -117,7 +173,7 @@ namespace LayarTerakhir.Editor
         [Serializable]
         private sealed class BuildRecord
         {
-            public string unityVersion, result, target, scriptingBackend, options, outputPath;
+            public string unityVersion, result, target, scriptingBackend, options, outputPath, sceneSpec, buildTag;
             public string startedUtc, endedUtc;
             public string[] scenes;
             public ulong totalSizeBytes;
