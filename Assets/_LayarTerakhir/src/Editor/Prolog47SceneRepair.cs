@@ -88,6 +88,13 @@ namespace LayarTerakhir.Editor
                     source = "Upper_PineTable"; color = new Color(.42f, .35f, .27f); smooth = .26f; break;
                 case "Repair_NumberBacking":
                     color = new Color(.11f, .10f, .09f); metal = .15f; smooth = .35f; break;
+                case "BathroomSet_TinyTreats":
+                    customTex = "Assets/_LayarTerakhir/assets/Art/Imported/BathroomSet/TinyTreats/tiny_treats_texture_1.png";
+                    color = Color.white; smooth = .5f; break;
+                case "BathroomSet_Bucket":
+                    color = Color.white; smooth = .5f; break;
+                case "BathroomSet_Paper":
+                    color = new Color(.93f, .92f, .88f); smooth = .55f; break;
                 case "Repair_ApplianceEnamel":
                     color = new Color(.72f, .75f, .77f); metal = .22f; smooth = .60f; break;
                 case "Repair_BathFloorTile":
@@ -300,6 +307,8 @@ namespace LayarTerakhir.Editor
             ApplyFinishProps();
             ApplyLadder();
             ApplyPrologSkin();
+            ApplyPrologSkin();
+            ApplyKosBathroomRound();
             Debug.Log("PROLOG47_COMPLETE_REVISION_APPLIED all 3 Prolog scenes updated and saved");
         }
 
@@ -310,7 +319,7 @@ namespace LayarTerakhir.Editor
 
         public static void ApplyRemaining()
         {
-            ConfigureImports(); ApplyFurniture(); ApplyKosFacilities(); ApplyArchitecture(); ApplyDetails(); ApplyLadder(); ApplyFinishProps();
+            ConfigureImports(); ApplyFurniture(); ApplyKosFacilities(); ApplyArchitecture(); ApplyDetails(); ApplyLadder(); ApplyFinishProps(); ApplyKosBathroomRound();
         }
 
         private static void ConfigureImports()
@@ -327,7 +336,7 @@ namespace LayarTerakhir.Editor
                 nbImp.maxTextureSize = 1024;
                 nbImp.SaveAndReimport();
             }
-            foreach (string root in new[] { "Assets/_LayarTerakhir/assets/Art/Imported/Prolog47Facilities", Texs })
+            foreach (string root in new[] { "Assets/_LayarTerakhir/assets/Art/Imported/Prolog47Facilities", "Assets/_LayarTerakhir/assets/Art/Imported/BathroomSet", Texs })
             {
                 if (!Directory.Exists(root)) continue;
                 foreach (string file in Directory.GetFiles(root, "*", SearchOption.AllDirectories).Where(p => p.EndsWith(".png") || p.EndsWith(".jpg")))
@@ -769,7 +778,7 @@ namespace LayarTerakhir.Editor
                 Imported("Toilet_Round_A", "KosPorcelainToilet_" + z, root, new Vector3(5.52f, 0, z), new Vector3(.45f, .78f, .73f), Quaternion.Euler(0, -90, 0));
                 Imported("Shower", "KosWallShower_" + z, root, new Vector3(5.61f, .88f, z - .38f), new Vector3(.26f, 1.32f, .28f), Quaternion.Euler(0, 90, 0));
             }
-            Imported("Sink_A", "KosWashBasin", root, new Vector3(2.05f, 0, 5.66f), new Vector3(.53f, .85f, .38f), Quaternion.Euler(0, 180, 0));
+            Imported("Sink_A", "KosWashBasin", root, new Vector3(2.30f, 0, 5.70f), new Vector3(.53f, .85f, .38f), Quaternion.Euler(0, 180, 0));
 
             // Apply bright ceramic bathroom tile material to bathroom floor meshes so bathroom floors aren't pitch-black!
             var bathTileMat = Material("Repair_BathFloorTile");
@@ -1068,9 +1077,9 @@ namespace LayarTerakhir.Editor
             var root = Find("Kos_Building_Corridors").transform;
             var bucket = Find("SharedWaterBucket");
             if (bucket) bucket.transform.localPosition = new Vector3(-3.65f, 0, 5.45f);
-            // Bug 10: Place KosKitchenWashBasin at z = 3.36 facing +Z into the kitchen so it NEVER Z-fights inside the z = 3.0 wall!
-            Imported("Sink_A", "KosKitchenWashBasin", root, new Vector3(-3.15f, 0, 3.36f), new Vector3(.53f, .85f, .44f), Quaternion.identity);
-            Imported("Sink_A", "KosWashBasin", root, new Vector3(2.05f, 0, 5.66f), new Vector3(.53f, .85f, .38f), Quaternion.Euler(0, 180, 0));
+            // Bug 10: KosKitchenWashBasin backs against the z = 2.5 wall (never floating mid-room).
+            Imported("Sink_A", "KosKitchenWashBasin", root, new Vector3(-3.15f, 0, 2.85f), new Vector3(.53f, .85f, .44f), Quaternion.identity);
+            Imported("Sink_A", "KosWashBasin", root, new Vector3(2.30f, 0, 5.70f), new Vector3(.53f, .85f, .38f), Quaternion.Euler(0, 180, 0));
             Save();
         }
 
@@ -1863,6 +1872,148 @@ namespace LayarTerakhir.Editor
             KosVisualV2.SetCenter(go, point + Vector3.up * size.y * .5f);
             FitCollider(go);
             return go;
+        }
+
+        private static GameObject ImportedBath(string file, string name, Transform root, Vector3 foot, Vector3 size, Quaternion rotation, Material overrideMat)
+        {
+            foreach (var prior in root.GetComponentsInChildren<Transform>(true).Where(t => t.name == name).ToArray())
+                Object.DestroyImmediate(prior.gameObject);
+            var asset = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_LayarTerakhir/assets/Art/Imported/BathroomSet/" + file);
+            if (!asset) throw new InvalidOperationException("Missing CC0 bathroom source " + file);
+            var go = new GameObject(name);
+            go.transform.SetParent(root, false);
+            go.transform.localRotation = rotation;
+            var child = (GameObject)PrefabUtility.InstantiatePrefab(asset);
+            child.transform.SetParent(go.transform, false);
+            if (overrideMat)
+                foreach (var renderer in child.GetComponentsInChildren<Renderer>())
+                    renderer.sharedMaterials = Enumerable.Repeat(overrideMat, renderer.sharedMaterials.Length).ToArray();
+            KosVisualV2.Resize(go, size);
+            var point = root.TransformPoint(foot);
+            KosVisualV2.SetCenter(go, point + Vector3.up * size.y * .5f);
+            FitCollider(go);
+            return go;
+        }
+
+        // Designer round Nov 2026 (goal.md): leftover dining wall, open bathroom foyer
+        // with only PRIA/WANITA doors, sealed main entrance, expanded natural bathrooms.
+        public static void ApplyKosBathroomRound()
+        {
+            EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);
+            var root = Find("Kos_Building_Corridors").transform;
+
+            // 1. Dining: the merged Kitchen+Dining portal (z 3.5..8) must not carry the
+            // old corridor wainscot/chair-rail strips — they read as a leftover half wall.
+            foreach (var t in root.GetComponentsInChildren<Transform>(true).Where(t =>
+                t && (t.name == "HallSageWainscot" || t.name == "HallChairRail")).ToArray())
+            {
+                var lp = root.InverseTransformPoint(t.position);
+                if (Mathf.Abs(lp.x + 1.39f) < .06f && Mathf.Abs(lp.z - 6f) < .06f && lp.y < 2f)
+                    Object.DestroyImmediate(t.gameObject);
+            }
+
+            // 2. Bathroom: no entrance door — keep only the PRIA + WANITA cubicle doors.
+            foreach (string gone in new[] { "KAMAR MANDIDoor", "KAMAR MANDIHinge", "BathPocketDoorTrack" })
+                Delete(gone);
+
+            // 3. Main entrance: exactly one framed leaf that seals the opening (no see-through gaps).
+            var hinge = Find("MainEntranceHinge");
+            var director = Object.FindFirstObjectByType<KosCorridorDirector>();
+            if (hinge)
+            {
+                foreach (var v in hinge.GetComponentsInChildren<Transform>(true).Where(t => t && t.name == "ModernDoorVisual").ToArray())
+                    Object.DestroyImmediate(v.gameObject);
+                foreach (var hd in hinge.GetComponentsInChildren<HingedDoor>(true).ToArray())
+                    Object.DestroyImmediate(hd);
+                var oldLeaf = Find("KosMainEntranceDoor");
+                if (oldLeaf) Object.DestroyImmediate(oldLeaf);
+                hinge.transform.SetParent(root, false);
+                hinge.transform.localPosition = new Vector3(-.9f, 0, -1.03f);
+                hinge.transform.localRotation = Quaternion.identity;
+                hinge.transform.localScale = Vector3.one;
+                var leaf = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                leaf.name = "KosMainEntranceDoor";
+                leaf.transform.SetParent(hinge.transform, false);
+                leaf.transform.localPosition = new Vector3(.9f, 1.12f, 0);
+                leaf.transform.localScale = new Vector3(1.8f, 2.24f, .065f);
+                var door = leaf.AddComponent<HingedDoor>();
+                door.hinge = hinge.transform;
+                door.label = "Buka pintu utama kos";
+                door.angle = 105;
+                door.locked = false;
+                door.SetOpenImmediate(false);
+                if (director) director.entranceDoor = door;
+                UpgradeDoorToModernPanel(door, root);
+                door.SetOpenImmediate(false);
+            }
+
+            // Kitchen sink backs against the south wall instead of floating mid-room.
+            var kitchenBasin = Find("KosKitchenWashBasin");
+            if (kitchenBasin)
+            {
+                var p = kitchenBasin.transform.localPosition;
+                kitchenBasin.transform.localPosition = new Vector3(-3.15f, p.y, 2.85f);
+            }
+
+            // 4. Expanded natural bathrooms (CC0 downloads, see Audit/bathroom-set-cc0-sources.json).
+            var treatsMat = Material("BathroomSet_TinyTreats");
+            var bucketMat = Material("BathroomSet_Bucket");
+            bucketMat.SetTexture("_BaseMap", AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/_LayarTerakhir/assets/Art/Imported/BathroomSet/Bucket3/Bucket3Albedo.png"));
+            var bucketNormal = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/_LayarTerakhir/assets/Art/Imported/BathroomSet/Bucket3/Bucket3_Normal.png");
+            if (bucketNormal) { bucketMat.SetTexture("_BumpMap", bucketNormal); bucketMat.EnableKeyword("_NORMALMAP"); }
+            var bucketMask = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/_LayarTerakhir/assets/Art/Imported/BathroomSet/Bucket3/Bucket3_mask.png");
+            if (bucketMask)
+            {
+                bucketMat.SetTexture("_MetallicGlossMap", bucketMask);
+                bucketMat.SetTexture("_OcclusionMap", bucketMask);
+                bucketMat.EnableKeyword("_METALLICSPECGLOSSMAP");
+                bucketMat.EnableKeyword("_OCCLUSIONMAP");
+                bucketMat.SetFloat("_Smoothness", 1f);
+            }
+            EditorUtility.SetDirty(bucketMat);
+            var paperMat = Material("BathroomSet_Paper");
+
+            // Shared wash foyer: mirror + shelf + cup + brushes + toiletry bottle on the north wall by the basin.
+            ImportedBath("TinyTreats/mirror.fbx", "KosBathroomMirror", root, new Vector3(2.30f, 1.30f, 5.895f), new Vector3(.4f, .5f, .06f), Quaternion.Euler(0, 180, 0), treatsMat);
+            ImportedBath("TinyTreats/wall_shelf.fbx", "KosBathroomShelf", root, new Vector3(2.30f, 1.12f, 5.80f), new Vector3(.65f, .05f, .2f), Quaternion.identity, treatsMat);
+            ImportedBath("TinyTreats/toothbrush_cup.fbx", "KosToothbrushCup", root, new Vector3(2.08f, 1.15f, 5.80f), new Vector3(.08f, .1f, .08f), Quaternion.identity, treatsMat);
+            ImportedBath("TinyTreats/toothbrush_blue.fbx", "KosToothbrushBlue", root, new Vector3(2.24f, 1.15f, 5.80f), new Vector3(.17f, .025f, .03f), Quaternion.Euler(0, 90, 0), treatsMat);
+            ImportedBath("TinyTreats/toothbrush_pink.fbx", "KosToothbrushPink", root, new Vector3(2.40f, 1.15f, 5.80f), new Vector3(.17f, .025f, .03f), Quaternion.Euler(0, 90, 0), treatsMat);
+            ImportedBath("TinyTreats/container_bathroom_C_blue.fbx", "KosOdolBottle", root, new Vector3(2.55f, 1.15f, 5.80f), new Vector3(.07f, .11f, .07f), Quaternion.identity, treatsMat);
+
+            // Per-cubicle tub with water, bucket and toilet paper; toilets keep facing the doorway.
+            // (Stale KosBathWater_* boxes from the earlier iteration are superseded by the modelled tub water.)
+            foreach (string stale in new[] { "KosBathWater_PRIA", "KosBathWater_WANITA" }) Delete(stale);
+            foreach (float z in new[] { 3.30f, 5.20f })
+            {
+                bool pria = z < 4f;
+                string tag = pria ? "PRIA" : "WANITA";
+                float tubZ = pria ? 3.95f : 4.55f;
+                ImportedBath("TinyTreats/bath.fbx", "KosBathTub_" + tag, root, new Vector3(4.15f, 0, tubZ), new Vector3(.55f, .5f, .85f), Quaternion.identity, treatsMat);
+                float bucketZ = pria ? 3.20f : 5.30f;
+                ImportedBath("Bucket3/Bucket3.FBX", "KosBathBucket_" + tag, root, new Vector3(4.30f, 0, bucketZ), new Vector3(.3f, .32f, .3f), Quaternion.Euler(0, 25, 0), bucketMat);
+                float paperZ = pria ? 2.70f : 5.80f;
+                ImportedBath("ToiletPaper/toiletpaper.fbx", "KosToiletPaper_" + tag, root, new Vector3(5.0f, 1.15f, paperZ), new Vector3(.13f, .13f, .11f), Quaternion.identity, paperMat);
+            }
+
+            // Cubicles were pitch black; one soft practical light each.
+            foreach (var spec in new[] { ("KosBathroomLight_PRIA", 3.3f), ("KosBathroomLight_WANITA", 5.2f) })
+            {
+                var old = Find(spec.Item1);
+                if (old) Object.DestroyImmediate(old);
+                var go = new GameObject(spec.Item1, typeof(Light));
+                go.transform.SetParent(root, false);
+                go.transform.localPosition = new Vector3(4.5f, 2.35f, spec.Item2);
+                var light = go.GetComponent<Light>();
+                light.type = LightType.Point;
+                light.intensity = 1.4f;
+                light.range = 3.5f;
+                light.color = new Color(1f, .86f, .66f);
+                light.shadows = LightShadows.None;
+            }
+
+            Save();
+            Debug.Log("KOS_BATHROOM_ROUND_APPLIED open foyer, sealed entrance, expanded natural bathrooms");
         }
 
         private static void DaySky(string name, Color tint, float exposure)

@@ -808,7 +808,7 @@ namespace LayarTerakhir.Editor.Tests
             yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(-2.1f,0,7.5f)));
             yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(-2.1f,0,4.25f)));
             yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(0,0,4.25f)));
-            GameObject.Find("KAMAR MANDIDoor").GetComponent<HingedDoor>().Interact();yield return new WaitForSeconds(1.2f);
+            Assert.That(GameObject.Find("KAMAR MANDIDoor"),Is.Null,"Bathroom foyer stays open; only the PRIA/WANITA cubicle doors remain");
             yield return WalkCapsule(p,corridor.BuildingPoint(new Vector3(2.1f,0,4.25f)));
             foreach(var cubicle in new[]{("WANITA",5.2f),("PRIA",3.3f)})
             {
