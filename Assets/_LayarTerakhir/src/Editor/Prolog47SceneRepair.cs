@@ -514,6 +514,7 @@ namespace LayarTerakhir.Editor
             FitCollider(diary);
             var item = diary.AddComponent<AtmajaItem>();
             item.director = d; item.action = AtmajaAction.Diary; item.label = "Baca buku harian Bima";
+            LayarTerakhir.Player.PickupBlink.EnsureFor(diary, "DOC_PROLOG_04_DIARY_BIMA");
             Ink(diary.transform, "Buku harian Bima\n\nIbu sekarang sering\nngomong sendiri di\nruang jahit bawah\ntanah. Tangannya\nselalu megang\ngunting taman.", -.076f);
             Ink(diary.transform, "Tadi malam Ibu\nbikinin aku susu.\nBaunya aneh, kayak\nkapur barus campur\nkarat. Kata Ibu, kami\nnggak bakal sakit-\nsakit lagi.", .076f);
 
@@ -2388,6 +2389,7 @@ namespace LayarTerakhir.Editor
             }
             Ground(d.crowbar, .5f);
             FitCollider(d.crowbar);
+            LayarTerakhir.Player.PickupBlink.EnsureFor(d.crowbar, "ITEM_P0_CROWBAR");
         }
 
         // goal.md Nov: the kitchen south wall is a bare collision skeleton (piers +

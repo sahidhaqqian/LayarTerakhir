@@ -69,9 +69,22 @@ namespace LayarTerakhir.Prolog
             { LayarTerakhir.Interlude.InterludeHub.Install(this); return; }
             KosRoomCorrections.Apply(this);
             if(suratKosItem){suratKosItem.isInteractable=false;suratKosItem.gameObject.SetActive(false);}
+            EnsurePickupBlinks();
         }
         private void Start()
         {StartCoroutine(AwaitMenuChoice());}
+        // Designer Nov: a small gold blink above every must-take supply so
+        // players notice it. Idempotent — safe on every load and restore.
+        // Visibility follows the item itself (taken items deactivate, the
+        // phone waits for its turn), so no flag bookkeeping is needed here.
+        private void EnsurePickupBlinks()
+        {
+            if (suratKosItem) PickupBlink.EnsureFor(suratKosItem.gameObject);
+            if (smartphoneBedItem) PickupBlink.EnsureFor(smartphoneBedItem.gameObject);
+            if (lockedDrawerItem) PickupBlink.EnsureFor(lockedDrawerItem.gameObject);
+            if (jacketItem) PickupBlink.EnsureFor(jacketItem.gameObject);
+            if (motorKeyItem) PickupBlink.EnsureFor(motorKeyItem.gameObject);
+        }
         private IEnumerator AwaitMenuChoice()
         {
             while(GameShell.AwaitingStart||GameShell.MenuSceneLoading)yield return null;

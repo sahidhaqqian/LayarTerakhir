@@ -248,11 +248,11 @@ namespace LayarTerakhir.Editor
             KosVisualV2.Resize(bag,new Vector3(.43f,.32f,.31f));KosVisualV2.SetCenter(bag,P(3.6f,6.8f,.675f));FitCollider(bag);
             Box("DriedBloodOnStrap",P(3.62f,6.63f,.73f),new Vector3(.045f,.18f,.012f),Plain("DriedBlood",new Color(.18f,.055f,.035f)),false);
             float phoneY=KosVisualV2.SurfaceHeight(bag,P(3.61f,6.77f,0).x,P(3.61f,6.77f,0).z)+.011f;
-            director.damarPhone=Box("DamarCrackedPhone",P(3.61f,6.77f,phoneY),new Vector3(.075f,.015f,.145f),Plain("CrackedPhoneGlass",new Color(.15f,.22f,.19f),.55f));Item(director.damarPhone,AtmajaAction.DamarPhone,"Ambil kartu aplikasi dari HP Damar");
+            director.damarPhone=Box("DamarCrackedPhone",P(3.61f,6.77f,phoneY),new Vector3(.075f,.015f,.145f),Plain("CrackedPhoneGlass",new Color(.15f,.22f,.19f),.55f));Item(director.damarPhone,AtmajaAction.DamarPhone,"Ambil kartu aplikasi dari HP Damar");PickupBlink.EnsureFor(director.damarPhone,"MATABATIN_APK");
             var cracks=new GameObject("DamarScreenCracks",typeof(LineRenderer));cracks.transform.SetParent(director.damarPhone.transform,true);var line=cracks.GetComponent<LineRenderer>();line.widthMultiplier=.0015f;line.positionCount=5;line.sharedMaterial=Mat("House_MAT_WoodFrameWhite");line.SetPositions(new[]{P(3.58f,6.71f,phoneY+.008f),P(3.62f,6.76f,phoneY+.008f),P(3.60f,6.78f,phoneY+.008f),P(3.63f,6.82f,phoneY+.008f),P(3.59f,6.80f,phoneY+.008f)});
             var lounge=Box("OldLoungeTable",P(-1.0f,2.6f,.93f),new Vector3(1.2f,.10f,.65f),Mat("House_MAT_WoodDoor"));
             foreach(float x in new[]{-1.5f,-.5f})foreach(float z in new[]{2.4f,2.8f})Box("LoungeTableLeg",P(x,z,.72f),new Vector3(.08f,.4f,.08f),Mat("House_MAT_WoodDoor"));
-            director.clockHands=Box("BrassClockHands",P(-1,2.6f,1.0f),new Vector3(.18f,.025f,.03f),Plain("ClockBrass",new Color(.46f,.32f,.12f),.45f));Item(director.clockHands,AtmajaAction.ClockHands,"Ambil Jarum Jam Kuningan");
+            director.clockHands=Box("BrassClockHands",P(-1,2.6f,1.0f),new Vector3(.18f,.025f,.03f),Plain("ClockBrass",new Color(.46f,.32f,.12f),.45f));Item(director.clockHands,AtmajaAction.ClockHands,"Ambil Jarum Jam Kuningan");PickupBlink.EnsureFor(director.clockHands,"ITEM_P0_CLOCK_HANDS");
             var clock=Model("GrandfatherClock","GrandfatherClock",P(-4.85f,5.5f,.52f));FitCollider(clock);Item(clock,AtmajaAction.Clock,"Pasang dan atur jarum jam bandul");
             director.clockDialCentre=P(-4.85f,5.29f,2.30f);
             director.clockHour=clock.GetComponentsInChildren<Transform>().Single(t=>t.name.StartsWith("ClockHourBlade__"));

@@ -78,7 +78,7 @@ namespace LayarTerakhir.Editor
             crowRoot.transform.SetPositionAndRotation(P(-.6f,7.9f,.56f),Quaternion.Euler(0,35,0));
             for(int fi=0;fi<2;fi++){var fb=KosVisualV2.BoundsOf(crowRoot);if(fb.size.y>fb.size.x&&fb.size.y>fb.size.z)crowRoot.transform.rotation=crowRoot.transform.rotation*Quaternion.Euler(90,0,0);else break;}
             crowRoot.transform.position+=Vector3.up*(.5f-KosVisualV2.BoundsOf(crowRoot).min.y);
-            FitCollider(crowRoot);director.crowbar=crowRoot;Item(crowRoot,AtmajaAction.Crowbar,"Ambil linggis tua");
+            FitCollider(crowRoot);director.crowbar=crowRoot;Item(crowRoot,AtmajaAction.Crowbar,"Ambil linggis tua");LayarTerakhir.Player.PickupBlink.EnsureFor(crowRoot,"ITEM_P0_CROWBAR");
             // The bundled GrandfatherClock.fbx renders invisibly in play (its blades
             // + pendulum sit buried at the case base), so the case is the CC0 Poly
             // Haven Vintage Grandfather Clock 01 (2.2 m, dial + hands included;

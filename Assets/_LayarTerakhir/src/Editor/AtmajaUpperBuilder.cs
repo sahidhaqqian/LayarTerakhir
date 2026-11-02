@@ -320,6 +320,7 @@ namespace LayarTerakhir.Editor
             director.upper.cupAim=Anchor("CupAim",P(-5.0f,.62f,4.66f),P(-5.0f,2,4.4f));
             Box("ChildDiaryBook",P(-5.32f,.62f,4.61f),new Vector3(.22f,.05f,.3f),Mat("Upper_BookCover"));
             Item(GameObject.Find("ChildDiaryBook"),AtmajaAction.Diary,"Baca buku harian Bima");
+            LayarTerakhir.Player.PickupBlink.EnsureFor(GameObject.Find("ChildDiaryBook"),"DOC_PROLOG_04_DIARY_BIMA");
             var shelf=Existing("painted_wooden_shelves","ChildShelf",P(-3.3f,.30f,5.6f),new Vector3(1.2f,.9f,.28f));
             var books=ExistingMapped("book_encyclopedia_set_01","ChildBooks",P(-3.3f,.30f,5.62f),new Vector3(.8f,.3f,.2f),Mat("Upper_BookCover"),Mat("Upper_BookPaper"));
             var cabinet=Existing("painted_wooden_cabinet_02","ChildWardrobe",P(-2.85f,1.6f,4.45f),new Vector3(.95f,1.25f,.45f));
@@ -347,6 +348,7 @@ namespace LayarTerakhir.Editor
             var curtain=Box("BathCurtain",P(-1.1f,.8f,4.55f),new Vector3(1.6f,.02f,.7f),Mat("Upper_CurtainDirty"));
             director.upper.bathCurtain=curtain;
             Item(curtain,AtmajaAction.BathCurtain,"Buka tirai bak mandi");
+            LayarTerakhir.Player.PickupBlink.EnsureFor(curtain,"EVENT_P0_CURTAIN_OPEN");
             var water=Box("BathBloodyWater",P(-1.1f,.8f,4.15f),new Vector3(1.34f,.56f,.06f),Mat("Upper_BloodWater"),false);
             director.upper.bathWater=water;
             var sink=Original("UpperSinkPedestal","BathSink",P(-.05f,4.5f,3.83f));Ground(sink,3.83f);FitCollider(sink);
@@ -394,6 +396,7 @@ namespace LayarTerakhir.Editor
             director.upper.ropeSpot=Anchor("RopeSpot",P(2.75f,4.9f,4.6f),P(2.75f,4.9f,4.4f));
             Box("WillLetterPaper",P(3.4f,3.45f,4.82f),new Vector3(.3f,.02f,.4f),Mat("Upper_BookPaper"));
             Item(GameObject.Find("WillLetterPaper"),AtmajaAction.WillLetter,"Baca surat wasiat Nyonya");
+            LayarTerakhir.Player.PickupBlink.EnsureFor(GameObject.Find("WillLetterPaper"),"DOC_PROLOG_05_WASIAT_NYONYA");
             var rocker=Existing("Rockingchair_01","BalconyRocker",P(4.5f,4.6f,4.32f),new Vector3(.6f,1.0f,.9f));
             rocker.transform.rotation=Facing(-east);
             LightAt("BalconyLight",P(3.7f,4.6f,6.2f),LightType.Point,1.0f,6,new Color(.95f,.85f,.65f),P(3.7f,4.6f,3.9f));
@@ -415,8 +418,10 @@ namespace LayarTerakhir.Editor
             var carpet=Box("MasterRolledCarpet",P(1.0f,1.4f,3.88f),new Vector3(1.2f,.5f,.16f),Mat("Upper_RedCarpet"));
             director.upper.carpetRoll=carpet;
             Item(carpet,AtmajaAction.CarpetLift,"Angkat gulungan karpet merah");
+            LayarTerakhir.Player.PickupBlink.EnsureFor(carpet,"EVENT_P0_CARPET_LIFTED");
             var lid=Original("UpperTrapdoorSlab","MasterTrapdoorLid",P(1.0f,1.4f,3.83f));
             FitCollider(lid);Item(lid,AtmajaAction.Trapdoor,"Buka pintu jebakan kayu");
+            LayarTerakhir.Player.PickupBlink.EnsureFor(lid,"EVENT_P0_TRAPDOOR_OPEN");
             director.upper.trapdoorLid=lid;
             director.upper.trapdoorTop=Anchor("TrapdoorTop",P(1.0f,.95f,3.83f),P(1.0f,1.95f,3.83f));
             var stone=Mat("House_MAT_Concrete");
@@ -481,6 +486,7 @@ namespace LayarTerakhir.Editor
             var packBody=Box("BasementPowerbank",P(2.85f,6.575f,BF+.9f),new Vector3(.16f,.09f,.05f),Mat("Upper_PowerbankBody"));
             Box("BasementPowerbankLED",P(2.85f,6.53f,BF+.93f),new Vector3(.1f,.012f,.012f),Mat("Upper_PowerbankLED"),false);
             Item(packBody,AtmajaAction.Powerbank,"Ambil Powerbank Besar Damar");
+            LayarTerakhir.Player.PickupBlink.EnsureFor(packBody,"EVENT_P0_POWERBANK_TAKEN");
             director.basement.powerbankObj=packBody;
             var mirror=Original("UpperStandingMirror","CellarBigMirror",P(.75f,6.2f,BF));mirror.transform.rotation=Facing(north);Ground(mirror,BF);FitCollider(mirror);
             director.chase.bigMirror=mirror;
@@ -494,6 +500,7 @@ namespace LayarTerakhir.Editor
             shards.SetActive(false);director.chase.mirrorShards=shards;
             var cam=ExistingMapped("vintage_video_camera","DamarHandycam",P(1.05f,5.9f,BF+.1f),new Vector3(.32f,.2f,.22f),Mat("Upper_HandycamBody"),Mat("House_MAT_GlassDark"));
             Item(cam,AtmajaAction.Handycam,"Ambil Handycam Sony milik Damar");
+            LayarTerakhir.Player.PickupBlink.EnsureFor(cam,"ITEM_P0_HANDYCAM");
             director.basement.handycamObj=cam;
             var rag=Original("UpperHangingRag","StairExitRag",P(2.6f,5.0f,BF));FitCollider(rag);
             Box("RagRod",P(2.6f,5.0f,BF+2.12f),new Vector3(.95f,.04f,.04f),Mat("House_MAT_WoodDoor"));

@@ -168,8 +168,38 @@ namespace LayarTerakhir.Prolog
             ARPhotoGlimmer.Attach(scratchAim,this,"EVENT_P0_CHAIN2_BROKEN");
             ARPhotoGlimmer.Attach(ropeAim,this,"EVENT_P0_CHAIN3_BROKEN");
             if(childDoor)childDoor.lockedDialogue="Sial pintunya dikunci, aku harus cari jalan lain.";
+            EnsurePickupBlinks();
         }
         private bool ArActive=>Phone&&Phone.arModuleUnlocked&&Phone.isPhoneRaised&&Phone.isScreenOn&&Phone.currentScanMode==ScanVisualMode.AR&&director.phoneView&&director.phoneView.IsCameraApp;
+        // Designer Nov: a small gold blink above every must-take item so
+        // players notice it. Each blink hides itself once its flag is taken
+        // (or the item deactivates / stops being interactable). Flavor-only
+        // spots (cup, scratches, rope, doors, hideouts, chargers) stay clean.
+        private void EnsurePickupBlinks()
+        {
+            var done = new System.Collections.Generic.HashSet<AtmajaAction>();
+            foreach (var it in UnityEngine.Object.FindObjectsByType<AtmajaItem>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            {
+                if (!it || done.Contains(it.action)) continue;
+                string flag = null;
+                switch (it.action)
+                {
+                    case AtmajaAction.DamarPhone: flag = "MATABATIN_APK"; break;
+                    case AtmajaAction.ClockHands: flag = "ITEM_P0_CLOCK_HANDS"; break;
+                    case AtmajaAction.Crowbar: flag = "ITEM_P0_CROWBAR"; break;
+                    case AtmajaAction.Powerbank: flag = "EVENT_P0_POWERBANK_TAKEN"; break;
+                    case AtmajaAction.Handycam: flag = AtmajaBasementHorror.HandycamId; break;
+                    case AtmajaAction.Diary: flag = DiaryId; break;
+                    case AtmajaAction.WillLetter: flag = WillId; break;
+                    case AtmajaAction.BathCurtain: flag = "EVENT_P0_CURTAIN_OPEN"; break;
+                    case AtmajaAction.CarpetLift: flag = "EVENT_P0_CARPET_LIFTED"; break;
+                    case AtmajaAction.Trapdoor: flag = "EVENT_P0_TRAPDOOR_OPEN"; break;
+                    default: continue;
+                }
+                done.Add(it.action);
+                PickupBlink.EnsureFor(it.gameObject, flag);
+            }
+        }
         public int ChainsBroken=>(Has("EVENT_P0_CHAIN1_BROKEN")?1:0)+(Has("EVENT_P0_CHAIN2_BROKEN")?1:0)+(Has("EVENT_P0_CHAIN3_BROKEN")?1:0);
         private bool Commit(string id,string checkpoint,Action change=null)
         {

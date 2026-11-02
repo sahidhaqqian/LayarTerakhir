@@ -1,4 +1,5 @@
 using LayarTerakhir.Core;
+using LayarTerakhir.Player;
 using LayarTerakhir.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -44,6 +45,7 @@ namespace LayarTerakhir.Prolog
                 key.transform.SetParent(director.transform,true);
                 var item=key.AddComponent<KosInteractableItem>();item.director=director;item.itemId="KUNCI_MOTOR_MEJA";item.promptLabel="Ambil kunci motor";
                 var hit=key.AddComponent<BoxCollider>();hit.size=new Vector3(.15f,.045f,.11f);
+                PickupBlink.EnsureFor(key);
                 var metal=new Material(Shader.Find("Universal Render Pipeline/Lit"));metal.SetColor("_BaseColor",new Color(.58f,.57f,.50f));metal.SetFloat("_Metallic",.8f);
                 var rubber=new Material(metal);rubber.SetColor("_BaseColor",new Color(.055f,.06f,.05f));rubber.SetFloat("_Metallic",0);
                 Part("RubberFob",key.transform,new Vector3(-.025f,.005f,0),new Vector3(.044f,.018f,.055f),rubber);

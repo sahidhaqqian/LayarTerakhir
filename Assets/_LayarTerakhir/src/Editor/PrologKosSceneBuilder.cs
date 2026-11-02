@@ -114,6 +114,7 @@ namespace LayarTerakhir.Editor
                 "Buka Laci Meja Kerja (Gembok Angka 3 Digit)",
                 director
             );
+            PickupBlink.EnsureFor(director.lockedDrawerItem.gameObject);
 
             director.wallCalendarItem = CreateInteractableBox(
                 "Interactable_KalenderDinding",
@@ -136,6 +137,7 @@ namespace LayarTerakhir.Editor
                 "Ambil Kertas Merah di Bawah Pintu Kamar",
                 director
             );
+            PickupBlink.EnsureFor(director.suratKosItem.gameObject);
 
             director.smartphoneBedItem = CreateInteractableBox(
                 "Interactable_SmartphoneDiKasur",
@@ -147,6 +149,7 @@ namespace LayarTerakhir.Editor
                 "Ambil Smartphone di Atas Kasur",
                 director
             );
+            PickupBlink.EnsureFor(director.smartphoneBedItem.gameObject);
 
             GameObject redLedObj = new GameObject("SmartphoneRedLED");
             redLedObj.transform.SetParent(director.smartphoneBedItem.transform, false);
@@ -180,6 +183,7 @@ namespace LayarTerakhir.Editor
                 "Ambil Jaket di Balik Pintu Kamar",
                 director
             );
+            PickupBlink.EnsureFor(director.jacketItem.gameObject);
 
             GameObject playerObj = new GameObject("Player_RakaWijaya");
             playerObj.tag = "Player";
