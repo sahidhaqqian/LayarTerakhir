@@ -1,7 +1,7 @@
 {
-  "baseCommit": "88d4e466a53cfc896faafbec6c81e978ae98e255",
+  "baseCommit": "147a4599",
   "protectedGoldenSceneSha256": "4b73b117b832fb753b92d3de885c163bc1dd3f6225101867f7b4e2437c8b793a",
-  "structureSha256": "693ca2241d7e427da75e79519293e6377edd1405c92bd3a2e7217498eab3f864",
-  "description": "Approved Prolog KamarKos structure at 88d4e466 including designer Bug 1 (rotated desk fan) and Bug 4 (Swallow sandals). Only camera color-volume and AA/dithering settings remain outside the structural fingerprint; future gameplay, geometry, collider, or transform edits fail validation.",
-  "source": "git show 88d4e466:Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity"
+  "structureSha256": "3d8e714454cf8d958fe356901c8a2fb25e90580ce159d73b2db5be4ccf8b090e",
+  "description": "Approved Prolog KamarKos structure at 147a4599 including the designer-requested wardrobe turn (bookcaseClosedDoors yaw 90->270 so the double doors face the room) and the wall-calendar sheet redraw (17 ringed, deduction note, no printed padlock code). Only camera color-volume and AA/dithering settings remain outside the structural fingerprint; future gameplay, geometry, collider, or transform edits fail validation.",
+  "source": "git show 147a4599:Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity"
 }
