@@ -7,17 +7,17 @@
     "outputPath": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir.exe",
     "sceneSpec": "prolog",
     "buildTag": "Prolog",
-    "startedUtc": "2026-11-02T23:36:38.3128620Z",
-    "endedUtc": "2026-11-02T23:39:19.0980290Z",
+    "startedUtc": "2026-11-02T23:44:11.3779840Z",
+    "endedUtc": "2026-11-02T23:46:35.9521630Z",
     "scenes": [
         "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity",
         "Assets/_LayarTerakhir/assets/Scenes/Prolog_RumahAtmaja.unity",
         "Assets/_LayarTerakhir/assets/Scenes/Prolog_KoridorKos.unity"
     ],
-    "totalSizeBytes": 448775559,
+    "totalSizeBytes": 448784279,
     "totalErrors": 0,
     "totalWarnings": 17,
-    "durationSeconds": 160.785167,
+    "durationSeconds": 144.574179,
     "files": [
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/Resources/unity_builtin_extra",
@@ -57,7 +57,7 @@
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/level1",
             "role": "Scene",
-            "sizeBytes": 849448
+            "sizeBytes": 858168
         },
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/level2",
