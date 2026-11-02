@@ -28,21 +28,31 @@ namespace LayarTerakhir.Editor.Tests
         {
             yield return new WaitForSeconds(2);var d=Find<AtmajaDirector>();
             Time.timeScale=1;UiFocus.Cinematic=false;
-            var smoke=GameObject.Find("RottenStinkSmoke");
-            Assert.That(smoke&&smoke.activeInHierarchy,Is.True,"Black smoke hangs over the rotten table in play");
-            var ps=smoke.GetComponent<ParticleSystem>();
-            Assert.That(ps,Is.Not.Null);
+            var smokes=Object.FindObjectsByType<ParticleSystem>(FindObjectsSortMode.None).Where(s=>s.name.StartsWith("RottenStinkSmoke")).ToList();
+            Assert.That(smokes.Count,Is.GreaterThanOrEqualTo(1).And.LessThanOrEqualTo(3),"1-3 small smoke wisps on select dishes, not a whole-table plume");
+            foreach(var ps in smokes)
+            {
+                Assert.That(ps.gameObject.activeInHierarchy,Is.True,"Smoke wisp active in play");
+                // Designer Nov: wisps are SMALL — 10-20cm puffs right above
+                // their own plate, never half-metre clouds over the table.
+                Assert.That(ps.main.startSize.constantMax,Is.LessThanOrEqualTo(.25f),"Smoke wisp stays small (<=25cm)");
+                Assert.That(ps.shape.scale.magnitude,Is.LessThan(.5f),"Smoke emitter stays pinned to one dish");
+                Assert.That(ps.emission.rateOverTime.constant,Is.LessThanOrEqualTo(6f),"Thin wisp, not a chimney");
+            }
+            var smoke=smokes[0].gameObject;
+            var ps0=smokes[0];
             for(int w=0;w<2;w++)
             {
                 yield return new WaitForSeconds(2);
-                bool paused=false;try{paused=ps.isPaused;}catch{paused=true;}
-                float ptime=-1;try{ptime=ps.time;}catch{}
-                Debug.Log("FEASTPLAY_DIAG t="+w+" playing="+(ps?ps.isPlaying.ToString():"DESTROYED")+" paused="+paused+" time="+ptime+" emit="+(ps?ps.emission.enabled.ToString():"?")+" rate="+(ps?ps.emission.rateOverTime.constant.ToString():"?")+" count="+(ps?ps.particleCount.ToString():"?")+" active="+(smoke?smoke.activeInHierarchy.ToString():"?")+" ts="+Time.timeScale);
+                bool paused=false;try{paused=ps0.isPaused;}catch{paused=true;}
+                float ptime=-1;try{ptime=ps0.time;}catch{}
+                Debug.Log("FEASTPLAY_DIAG t="+w+" playing="+(ps0?ps0.isPlaying.ToString():"DESTROYED")+" paused="+paused+" time="+ptime+" emit="+(ps0?ps0.emission.enabled.ToString():"?")+" rate="+(ps0?ps0.emission.rateOverTime.constant.ToString():"?")+" count="+(ps0?ps0.particleCount.ToString():"?")+" active="+(smoke?smoke.activeInHierarchy.ToString():"?")+" ts="+Time.timeScale);
                 var all=Object.FindObjectsByType<ParticleSystem>(FindObjectsSortMode.None);
                 string samp="";foreach(var a in all.Take(14))samp+=a.name+":"+a.particleCount+" ";
                 Debug.Log("FEASTPLAY_ALLPS total="+all.Length+" "+samp);
             }
-            Assert.That(ps.particleCount,Is.GreaterThan(5),"Stink-smoke actually emits while playing, not just in the editor");
+            int totalPuffs=smokes.Sum(s=>{try{return s.particleCount;}catch{return 0;}});
+            Assert.That(totalPuffs,Is.GreaterThan(3),"Stink-wisps actually emit while playing, not just in the editor");
             yield return new WaitForSeconds(1);
             var lamp=new GameObject("FeastPlayLamp").AddComponent<Light>();
             lamp.type=LightType.Spot;lamp.intensity=30;lamp.range=12;lamp.spotAngle=60;lamp.color=new Color(1f,.93f,.8f);
@@ -61,8 +71,8 @@ namespace LayarTerakhir.Editor.Tests
             yield return null;yield return null;
             var eye=d.phoneView.playerCamera;Physics.SyncTransforms();
             var pr=smoke.GetComponent<ParticleSystemRenderer>();
-            var pp=new ParticleSystem.Particle[ps.particleCount];int nn=ps.GetParticles(pp);
-            string ws="";for(int k=0;k<Mathf.Min(5,nn);k++){ws+="["+pp[k].position.ToString("F2")+" s="+pp[k].GetCurrentSize(ps).ToString("F2")+"]";}
+            var pp=new ParticleSystem.Particle[ps0.particleCount];int nn=ps0.GetParticles(pp);
+            string ws="";for(int k=0;k<Mathf.Min(5,nn);k++){ws+="["+pp[k].position.ToString("F2")+" s="+pp[k].GetCurrentSize(ps0).ToString("F2")+"]";}
             Debug.Log("FEASTPLAY_RENDER ren="+pr.enabled+" mat="+(pr.sharedMaterial?pr.sharedMaterial.name:"NULL")+" mask="+eye.cullingMask+" count="+nn+" emitter="+smoke.transform.position.ToString("F2")+" raw="+ws);
             yield return Prolog47VisualTests.Capture(eye,"47-rotten-feast-playmode");
             Object.DestroyImmediate(lamp.gameObject);

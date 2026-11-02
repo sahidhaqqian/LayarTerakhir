@@ -31,19 +31,18 @@ namespace LayarTerakhir.Editor
             EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
             var d = Object.FindFirstObjectByType<LayarTerakhir.Prolog.AtmajaDirector>();
             Physics.SyncTransforms();
-            // Pre-roll the stink-smoke so the stills show what players see
-            // after a few seconds in the room (EditMode does not auto-run it).
-            var pre = GameObject.Find("RottenStinkSmoke");
-            if (pre)
+            // Pre-roll the small stink-wisps so the stills show what players
+            // see after a few seconds in the room (EditMode does not auto-run it).
+            var pres = Object.FindObjectsByType<ParticleSystem>(FindObjectsSortMode.None).Where(s=>s.name.StartsWith("RottenStinkSmoke")).ToList();
+            foreach (var pps in pres)
             {
-                var pps = pre.GetComponent<ParticleSystem>();
                 pps.Simulate(3.5f, true, true);
                 var parts = new ParticleSystem.Particle[pps.particleCount];
                 int n = pps.GetParticles(parts);
                 string samp = "";
-                for (int k = 0; k < Mathf.Min(5, n); k++)
+                for (int k = 0; k < Mathf.Min(3, n); k++)
                     samp += string.Format("[{0:F2},{1:F2},{2:F2} s={3:F2}]", parts[k].position.x, parts[k].position.y, parts[k].position.z, parts[k].GetCurrentSize(pps));
-                Debug.Log("FEAST_SMOKE_DIAG alive=" + pps.particleCount + " emitting=" + pps.emission.rateOverTime.constant + " pos=" + pre.transform.position + " parts=" + samp);
+                Debug.Log("FEAST_SMOKE_DIAG " + pps.name + " alive=" + pps.particleCount + " emitting=" + pps.emission.rateOverTime.constant + " pos=" + pps.transform.position + " parts=" + samp);
             }
             var cam = new GameObject("ProofCam").AddComponent<Camera>();
             cam.nearClipPlane = .05f;

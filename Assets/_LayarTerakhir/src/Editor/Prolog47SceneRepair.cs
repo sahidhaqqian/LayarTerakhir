@@ -1562,7 +1562,9 @@ namespace LayarTerakhir.Editor
                 float x = i % 2 == 0 ? 3.28f : 4.15f, depth = 3.35f + (i / 2) * .55f;
                 var p = d.P(x, depth, 1.49f);
                 var plate = MeshObject("AddedDish_" + i, root, p, Plate(), Material("Repair_RottenCeramic"));
-                Ground(plate, topY);
+                // Designer Nov: ZERO gap — the plate foot sinks 2mm into the
+                // wood so it never hovers above the tabletop.
+                Ground(plate, topY - .002f);
                 float plateTop = SafeBounds(plate).max.y;
                 // Rot juice ring on the plate: the food sits IN the stain, never floats.
                 var ring = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
@@ -1589,7 +1591,9 @@ namespace LayarTerakhir.Editor
                 // interaction rays and the crawl route clean, like before).
                 foreach (var c in food.GetComponentsInChildren<Collider>(true)) Object.DestroyImmediate(c);
                 food.transform.Rotate(Vector3.up, i * 37);
-                Ground(food, plateTop + .002f);
+                // Designer Nov: ZERO gap — food sinks 1mm into its own plate
+                // so no daylight shows between the meal and the dish.
+                Ground(food, plateTop - .001f);
             }
             // Rat carcasses draped over five of the dishes + two down the middle.
             int[] ratSeats = { 1, 4, 6, 9, 11 };
@@ -1598,7 +1602,7 @@ namespace LayarTerakhir.Editor
                 float x = i % 2 == 0 ? 3.28f : 4.15f, depth = 3.35f + (i / 2) * .55f;
                 var p = d.P(x, depth, 1.49f);
                 var plate = Find("AddedDish_" + i);
-                float rest = plate ? SafeBounds(plate).max.y + .002f : topY;
+                float rest = plate ? SafeBounds(plate).max.y - .001f : topY;
                 var rat = DesignerReviewBuilder.ReviewModel("AddedDinner_Rat_" + i, "DeadStreetRat", root, p + Vector3.up * .06f, new Vector3(.20f, .06f, .09f), false);
                 rat.transform.Rotate(Vector3.up, i * 53 + 20);
                 // Belly-up: roll so the carcass reads dead, not parked.
@@ -1615,7 +1619,7 @@ namespace LayarTerakhir.Editor
                 spill.transform.position = d.P(3.71f + (k - 1) * .12f, 3.55f + k * 1.05f, topY);
                 spill.transform.localScale = new Vector3(.30f - k * .05f, .004f, .24f - k * .03f);
                 spill.GetComponent<Renderer>().sharedMaterial = stain;
-                Ground(spill, topY);
+                Ground(spill, topY - .001f);
             }
             var pot = ProjectAsset("Assets/_LayarTerakhir/assets/Art/Imported/Prolog47Facilities/pot_enamel_01/pot_enamel_01.fbx", "AddedDish_TippedPot", root,
                 d.P(3.71f, 4.35f, 1.49f), Quaternion.Euler(0, 18, 0), new Vector3(.30f, .21f, .26f));
@@ -1623,7 +1627,7 @@ namespace LayarTerakhir.Editor
             {
                 // Knocked over: lying on its side in the middle spill.
                 pot.transform.rotation = Quaternion.Euler(0, 18, 90) * Quaternion.LookRotation(d.north);
-                Ground(pot, topY);
+                Ground(pot, topY - .002f);
             }
             for (int k = 0; k < 2; k++)
             {
@@ -1631,37 +1635,14 @@ namespace LayarTerakhir.Editor
                 var rat = DesignerReviewBuilder.ReviewModel("AddedDinner_RatCenter_" + k, "DeadStreetRat", root, p + Vector3.up * .06f, new Vector3(.20f, .06f, .09f), false);
                 rat.transform.Rotate(Vector3.up, k * 120 + 40);
                 rat.transform.Rotate(Vector3.forward, 155);
-                Ground(rat, topY + .002f);
+                Ground(rat, topY + .001f);
             }
-            // Black stink-smoke hanging over the spoiled table.
+            // Designer Nov: SMALL stink-wisps on 2 dishes only — not a big
+            // plume over the whole table. Each wisp sits just above its own
+            // plate (≈12-20cm puffs, slow rise) so the rest stays clear.
             Delete("RottenStinkSmoke");
-            var smoke = new GameObject("RottenStinkSmoke");
-            smoke.transform.SetParent(root, true);
-            smoke.transform.position = d.P(3.71f, 4.5f, 1.90f);
-            var ps = smoke.AddComponent<ParticleSystem>();
-            ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-            var main = ps.main;
-            main.loop = true; main.playOnAwake = true; main.duration = 4f;
-            main.startLifetime = new ParticleSystem.MinMaxCurve(2.2f, 3.6f);
-            main.startSpeed = new ParticleSystem.MinMaxCurve(.03f, .08f);
-            main.startSize = new ParticleSystem.MinMaxCurve(.45f, .85f);
-            // Near-black but not pure black: the plume must read against the
-            // lit cloth. No color-over-lifetime multiplier (it crushed the
-            // tint to invisible); the puff texture's own falloff shapes it.
-            main.startColor = new Color(.13f, .13f, .13f, .90f);
-            main.maxParticles = 90;
-            main.simulationSpace = ParticleSystemSimulationSpace.World;
-            // Gentle buoyant rise: too strong a negative gravity fires the
-            // plume metres above the table and out of every frame.
-            main.gravityModifier = -.02f;
-            var emission = ps.emission;
-            emission.rateOverTime = 14f;
-            var shape = ps.shape;
-            shape.shapeType = ParticleSystemShapeType.Box;
-            shape.scale = new Vector3(.9f, .15f, 2.6f);
-            // No color-over-lifetime: its dark gradient multiplied every tint
-            // to invisible, even opaque white. The puff alpha falloff alone
-            // shapes each wisp.
+            Delete("RottenStinkSmoke_0");
+            Delete("RottenStinkSmoke_1");
             var mist = AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/assets/Art/Phase2/Materials/OperationMist.mat");
             if (!mist) throw new Exception("OperationMist material missing for rotten smoke");
             // The Kenney wisp is too faint for a stink plume (mean alpha <10%),
@@ -1678,12 +1659,47 @@ namespace LayarTerakhir.Editor
             if (!puffTex) throw new Exception("SmokePuff texture missing");
             puff.SetTexture("_BaseMap", puffTex);
             EditorUtility.SetDirty(puff);
-            var pr = smoke.GetComponent<ParticleSystemRenderer>();
-            pr.sharedMaterial = puff;
-            pr.renderMode = ParticleSystemRenderMode.Billboard;
-            // Zero sorting offset: a large fudge re-sorted the plume behind
-            // the room and hid it from every capture.
-            pr.sortingFudge = 0;
+            // Two smoking dishes: stale rice (seat 2) + spoiled sausage
+            // (seat 7). Both are rat-free so the wisp reads cleanly.
+            int[] smokeSeats = { 2, 7 };
+            for (int s = 0; s < smokeSeats.Length; s++)
+            {
+                int i = smokeSeats[s];
+                float sx = i % 2 == 0 ? 3.28f : 4.15f, sdepth = 3.35f + (i / 2) * .55f;
+                var smoke = new GameObject(s == 0 ? "RottenStinkSmoke" : "RottenStinkSmoke_" + s);
+                smoke.transform.SetParent(root, true);
+                smoke.transform.position = d.P(sx, sdepth, topY + .20f);
+                var ps = smoke.AddComponent<ParticleSystem>();
+                ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                var main = ps.main;
+                main.loop = true; main.playOnAwake = true; main.duration = 2.5f;
+                main.startLifetime = new ParticleSystem.MinMaxCurve(1.2f, 1.9f);
+                main.startSpeed = new ParticleSystem.MinMaxCurve(.02f, .05f);
+                main.startSize = new ParticleSystem.MinMaxCurve(.10f, .20f);
+                // Near-black but not pure black: the wisp must read against the
+                // lit cloth. No color-over-lifetime multiplier (it crushed the
+                // tint to invisible); the puff texture's own falloff shapes it.
+                main.startColor = new Color(.13f, .13f, .13f, .75f);
+                main.maxParticles = 16;
+                main.simulationSpace = ParticleSystemSimulationSpace.World;
+                // Gentle buoyant rise: too strong a negative gravity fires the
+                // wisp metres above the table and out of every frame.
+                main.gravityModifier = -.015f;
+                var emission = ps.emission;
+                emission.rateOverTime = 4f;
+                var shape = ps.shape;
+                shape.shapeType = ParticleSystemShapeType.Box;
+                shape.scale = new Vector3(.12f, .06f, .12f);
+                // No color-over-lifetime: its dark gradient multiplied every tint
+                // to invisible, even opaque white. The puff alpha falloff alone
+                // shapes each wisp.
+                var pr = smoke.GetComponent<ParticleSystemRenderer>();
+                pr.sharedMaterial = puff;
+                pr.renderMode = ParticleSystemRenderMode.Billboard;
+                // Zero sorting offset: a large fudge re-sorted the plume behind
+                // the room and hid it from every capture.
+                pr.sortingFudge = 0;
+            }
         }
 
         public static void ApplyLadder()
@@ -2072,11 +2088,13 @@ namespace LayarTerakhir.Editor
             // pot rest on topY. Food and rat carcasses sit on their plates (not
             // the tabletop), so they are deliberately skipped here — grounding
             // them to topY would sink them into the dishes and make them float.
+            // Designer Nov: ZERO gap — seat 2mm INTO the top so the plate foot
+            // never hovers above the wood at glancing angles.
             foreach (var t in env.GetComponentsInChildren<Transform>(true).Where(t =>
                 t && t.name.StartsWith("AddedDish_")).ToArray())
             {
                 var b = SafeBounds(t.gameObject);
-                t.position += Vector3.up * (topY + .002f - b.min.y);
+                t.position += Vector3.up * (topY - .002f - b.min.y);
             }
 
             // Clock hands + ashtray rest on the side table, not inside it.
