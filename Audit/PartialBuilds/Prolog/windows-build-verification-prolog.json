@@ -1,5 +1,5 @@
 {
-  "verifiedUtc": "2026-11-01T17:06:46.475861+00:00",
+  "verifiedUtc": "2026-11-02T16:01:39.270805+00:00",
   "unityExitCode": 0,
   "result": "Succeeded",
   "target": "StandaloneWindows64",
@@ -14,12 +14,12 @@
   },
   "unityReportedFilesVerified": 295,
   "scriptingAssembliesVerified": 112,
-  "unityReportedSizeBytes": 440182359,
+  "unityReportedSizeBytes": 448762659,
   "buildFileCount": 306,
-  "totalBuildSizeBytes": 440491078,
+  "totalBuildSizeBytes": 449071378,
   "archivePath": "/tmp/opencode/windows-build-r2/workspace/Builds/LayarTerakhir-Windows-x86_64-Prolog.zip",
-  "archiveSizeBytes": 241804405,
-  "archiveSha256": "55622c886d3213f23ed3931110c710cdea8a7e99bc8da19cdb64bec94e731c29",
+  "archiveSizeBytes": 248155505,
+  "archiveSha256": "b9efe01a232f2a66538a3c2d2a67ff93612a595c429831b1e01bdbef228c3c51",
   "zipCrcVerified": true,
   "zipContainsAllBuildFiles": true,
   "windowsRuntimeTested": false,
@@ -98,15 +98,15 @@
     },
     {
       "path": "LayarTerakhir_Data/Managed/Assembly-CSharp.dll",
-      "sizeBytes": 1421824,
-      "sha256": "a1cc94b7135af1ac1403462226685edf914b9b12c07f98f05d428f6f91f9418d",
-      "crc32": 3030850137
+      "sizeBytes": 1423872,
+      "sha256": "2232d1fa7350056ae07d17ce3cddb3056c33eb26d8f74d5f86b24d2406bebab8",
+      "crc32": 3565401493
     },
     {
       "path": "LayarTerakhir_Data/Managed/Assembly-CSharp.pdb",
-      "sizeBytes": 408476,
-      "sha256": "3eedeba8d7180f6e383c79999cd2ede1a1db773d67a1edcab6c99631537b18d2",
-      "crc32": 68354403
+      "sizeBytes": 408872,
+      "sha256": "3d2c0be2b81cc81f876db261e6a557cf67bbef482ae4ef9f5a921add12b35a3e",
+      "crc32": 1118873123
     },
     {
       "path": "LayarTerakhir_Data/Managed/Mono.Security.dll",
@@ -1605,20 +1605,20 @@
     {
       "path": "LayarTerakhir_Data/boot.config",
       "sizeBytes": 326,
-      "sha256": "687079c2f3ba02f6d495957854b4a500fccb16c0d1ffb57d56c04796be844b6f",
-      "crc32": 1182422192
+      "sha256": "92110d7c6e35605f1a004bec36c37cb04c774fd2b0660a60e3bf73baaa952906",
+      "crc32": 2303019737
     },
     {
       "path": "LayarTerakhir_Data/globalgamemanagers",
       "sizeBytes": 235924,
-      "sha256": "51448404ad3d486b28943222bd73c2027424080bd4d92c8482e315917c40e0bd",
-      "crc32": 955201339
+      "sha256": "6cb52019c82670b213ff4782edf3877ff0b27dcbb7d4189045724bcb796f0a30",
+      "crc32": 2269275320
     },
     {
       "path": "LayarTerakhir_Data/globalgamemanagers.assets",
       "sizeBytes": 1067992,
-      "sha256": "91779407ed4dba59cf4c083b3dc85bb64c383b3130b435f5765e89a874a912ae",
-      "crc32": 3100200850
+      "sha256": "152739c8e8a559d4dc2fd018a2667e81d52605259441648855612396d11ee3b5",
+      "crc32": 3497382439
     },
     {
       "path": "LayarTerakhir_Data/globalgamemanagers.assets.resS",
@@ -1629,20 +1629,20 @@
     {
       "path": "LayarTerakhir_Data/level0",
       "sizeBytes": 219576,
-      "sha256": "bef223619779b302ebc7158a3a48c251e2c90513e502dd361b20fdef6886de9c",
-      "crc32": 1597229734
+      "sha256": "22da1c601e4d08a2bd45608e2ee72952033360cace3e407d8e197f8dcd72cdc5",
+      "crc32": 2888275698
     },
     {
       "path": "LayarTerakhir_Data/level1",
-      "sizeBytes": 834904,
-      "sha256": "b20c27369552ae4929c722008acddded3919b43799b03fb8ba6810219a96a4fe",
-      "crc32": 3346296242
+      "sizeBytes": 854968,
+      "sha256": "92f80856ef6995d8e7cf34c3fc75ecafeda65f8e40dec69224e9e220776635a1",
+      "crc32": 1084454763
     },
     {
       "path": "LayarTerakhir_Data/level2",
-      "sizeBytes": 1577332,
-      "sha256": "ce7414281e95e729a97f09e9e3eb5a77f1e3537dfebda71fe5fe2d60c65ac2b1",
-      "crc32": 4131467205
+      "sizeBytes": 1577796,
+      "sha256": "19eb99293984e206d9ccec0598f95391695f07d9f2d39664021f1a36e06c4015",
+      "crc32": 426914115
     },
     {
       "path": "LayarTerakhir_Data/level2.resS",
@@ -1653,8 +1653,8 @@
     {
       "path": "LayarTerakhir_Data/resources.assets",
       "sizeBytes": 20619224,
-      "sha256": "7191912c44f382438c71ff51f894372f9f3df8217b25976b109e3bfa744cc6e5",
-      "crc32": 3227589338
+      "sha256": "c94ab6f58bf52f7c384e3036b9521885e92951bf4652ddbe83d4cfb9adbceb1b",
+      "crc32": 3286529151
     },
     {
       "path": "LayarTerakhir_Data/resources.assets.resS",
@@ -1670,15 +1670,15 @@
     },
     {
       "path": "LayarTerakhir_Data/sharedassets0.assets",
-      "sizeBytes": 5479176,
-      "sha256": "bab43568f4012042685d18c22e835ebebe55c8119b15bb3e0e58a25ef6f6f4aa",
-      "crc32": 3937871407
+      "sizeBytes": 5170296,
+      "sha256": "88f396bffb51e988bc8ae963ff692c236b264d8ce20125e4cfba319a7968aaef",
+      "crc32": 3734452721
     },
     {
       "path": "LayarTerakhir_Data/sharedassets0.assets.resS",
       "sizeBytes": 63871248,
-      "sha256": "735ccfce7ef8796e24be6b3518dc86a88ccf44ec5d4850d00f99d363367a2262",
-      "crc32": 1360985696
+      "sha256": "9eb01bc6f87a7bfa3ddc7db3dbff1d10ba941c73b32771d4f063a33a953cbf32",
+      "crc32": 1089870145
     },
     {
       "path": "LayarTerakhir_Data/sharedassets0.resource",
@@ -1688,27 +1688,27 @@
     },
     {
       "path": "LayarTerakhir_Data/sharedassets1.assets",
-      "sizeBytes": 18487084,
-      "sha256": "f1805caffd060a5a4eb893789699d6c6089fccfb5901c4225b38459f1f40614b",
-      "crc32": 1681874523
+      "sizeBytes": 18873628,
+      "sha256": "b2c262c1e719887a81f1a082c4c0b7882ad797b26bd4bb4f32892914b352ab18",
+      "crc32": 1895678405
     },
     {
       "path": "LayarTerakhir_Data/sharedassets1.assets.resS",
-      "sizeBytes": 106369952,
-      "sha256": "0bbd8b4dcee22687ce61e4560c6272c8e51bb8b86a5fc120c08aa8512e8c672b",
-      "crc32": 3408006588
+      "sizeBytes": 113958384,
+      "sha256": "113b981c9d00945ab53f3bd3b282f2dc26541e579e358ecb56efcb7fc400a414",
+      "crc32": 1156229693
     },
     {
       "path": "LayarTerakhir_Data/sharedassets2.assets",
-      "sizeBytes": 3320772,
-      "sha256": "50313a4e93df7034a5aab4bb5095c86b4b1075632fc95455b9d63df99092a54f",
-      "crc32": 189022001
+      "sizeBytes": 3451876,
+      "sha256": "7a6d1d45c490dbc6786d9cc3a7ff2492468145baecb30e63f9f3a844cff4870e",
+      "crc32": 1711610655
     },
     {
       "path": "LayarTerakhir_Data/sharedassets2.assets.resS",
-      "sizeBytes": 36871152,
-      "sha256": "bc3aab8d577058bc69279dd4405e7ef71412830ae8de811f3323abc82e05a4bf",
-      "crc32": 2045403592
+      "sizeBytes": 37631280,
+      "sha256": "3a3db52fddba7e7674cffb707cdcfaab2016f19d7b3e1ea80213c7f4a827852d",
+      "crc32": 2799774220
     },
     {
       "path": "MakeHuman-Graphical-Assets-CC0.txt",
@@ -1861,16 +1861,16 @@
       "crc32": 1615993520
     }
   ],
-  "sourceSceneSha256": "b6f9c1e384d6a19a02cea1000bb0811c154e958586607b2b7eda20aa20e088ff",
-  "atmajaSceneSha256": "f263db480c8957ba1222f979ec332be6e8fe4fa550d5317ea0173556c085504b",
+  "sourceSceneSha256": "83140fbaba620c1983f78b60daa64905e5940735c34cc0756a8f0c3cb550c695",
+  "atmajaSceneSha256": "7932d3fffc964448ac3132c3c935ebcb3954a245df2248f8a6e1490ffcfde3fb",
   "sceneSpec": "prolog",
   "buildTag": "Prolog",
   "openingProtection": {
     "method": "Historic approved structure; camera presentation may change",
-    "sha256": "b6f9c1e384d6a19a02cea1000bb0811c154e958586607b2b7eda20aa20e088ff",
-    "structureSha256": "693ca2241d7e427da75e79519293e6377edd1405c92bd3a2e7217498eab3f864",
+    "sha256": "83140fbaba620c1983f78b60daa64905e5940735c34cc0756a8f0c3cb550c695",
+    "structureSha256": "3d8e714454cf8d958fe356901c8a2fb25e90580ce159d73b2db5be4ccf8b090e",
     "historicSha256": "4b73b117b832fb753b92d3de885c163bc1dd3f6225101867f7b4e2437c8b793a",
-    "baseCommit": "88d4e466a53cfc896faafbec6c81e978ae98e255"
+    "baseCommit": "147a4599"
   },
   "developmentScreenshotUtilityIncluded": true,
   "includedScenes": [

@@ -7,17 +7,17 @@
     "outputPath": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir.exe",
     "sceneSpec": "prolog",
     "buildTag": "Prolog",
-    "startedUtc": "2026-11-01T17:02:54.4105910Z",
-    "endedUtc": "2026-11-01T17:05:21.5489760Z",
+    "startedUtc": "2026-11-02T15:57:47.7688130Z",
+    "endedUtc": "2026-11-02T16:00:16.7867200Z",
     "scenes": [
         "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity",
         "Assets/_LayarTerakhir/assets/Scenes/Prolog_RumahAtmaja.unity",
         "Assets/_LayarTerakhir/assets/Scenes/Prolog_KoridorKos.unity"
     ],
-    "totalSizeBytes": 440182359,
+    "totalSizeBytes": 448762659,
     "totalErrors": 0,
-    "totalWarnings": 12,
-    "durationSeconds": 147.138385,
+    "totalWarnings": 17,
+    "durationSeconds": 149.01790699999999,
     "files": [
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/Resources/unity_builtin_extra",
@@ -57,12 +57,12 @@
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/level1",
             "role": "Scene",
-            "sizeBytes": 834904
+            "sizeBytes": 854968
         },
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/level2",
             "role": "Scene",
-            "sizeBytes": 1577332
+            "sizeBytes": 1577796
         },
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/level2.resS",
@@ -87,7 +87,7 @@
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/sharedassets0.assets",
             "role": "SharedAssets",
-            "sizeBytes": 5479176
+            "sizeBytes": 5170296
         },
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/sharedassets0.assets.resS",
@@ -102,22 +102,22 @@
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/sharedassets1.assets",
             "role": "SharedAssets",
-            "sizeBytes": 18487084
+            "sizeBytes": 18873628
         },
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/sharedassets1.assets.resS",
             "role": "StreamingResourceFile",
-            "sizeBytes": 106369952
+            "sizeBytes": 113958384
         },
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/sharedassets2.assets",
             "role": "SharedAssets",
-            "sizeBytes": 3320772
+            "sizeBytes": 3451876
         },
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/sharedassets2.assets.resS",
             "role": "StreamingResourceFile",
-            "sizeBytes": 36871152
+            "sizeBytes": 37631280
         },
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/boot.config",
@@ -132,7 +132,7 @@
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/Managed/Assembly-CSharp.dll",
             "role": "ManagedLibrary",
-            "sizeBytes": 1421824
+            "sizeBytes": 1423872
         },
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/Managed/Mono.Security.dll",
@@ -802,7 +802,7 @@
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/Managed/Assembly-CSharp.pdb",
             "role": "pdb",
-            "sizeBytes": 408476
+            "sizeBytes": 408872
         },
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/Managed/Unity.AI.Navigation.pdb",
