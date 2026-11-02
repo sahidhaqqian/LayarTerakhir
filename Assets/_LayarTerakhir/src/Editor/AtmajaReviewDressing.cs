@@ -71,12 +71,59 @@ namespace LayarTerakhir.Editor
             Box("StorageLintel",P(.85f,5.45f,3.15f),new Vector3(1.1f,.9f,.15f),plaster);
             Door("StorageDoor",P(.35f,5.45f,.52f),P(.85f,5.45f,1.62f),new Vector3(1,2.2f,.09f),"Buka ruang penyimpanan");
             Existing("painted_wooden_cabinet_02","LoungeStorage",P(.8f,7.25f,1.15f),new Vector3(.95f,1.25f,.45f));
-            var clock=Model("GrandfatherClock","GrandfatherClock",P(-5.58f,5.8f,.52f));clock.transform.rotation=Facing(east);FitCollider(clock);Item(clock,AtmajaAction.Clock,"Periksa jam bandul tua");
-            director.clockFaceNormal=east;director.clockDialCentre=clock.transform.position+east*.184f+Vector3.up*1.78f;
-            director.clockHour=clock.GetComponentsInChildren<Transform>().Single(t=>t.name.StartsWith("ClockHourBlade__"));director.clockMinute=clock.GetComponentsInChildren<Transform>().Single(t=>t.name.StartsWith("ClockMinuteBlade__"));director.clockDrawer=clock.GetComponentsInChildren<Transform>().Single(t=>t.name.StartsWith("ClockDrawer__"));
-            director.clockHour.position=director.clockDialCentre;director.clockMinute.position=director.clockDialCentre;
-            director.clockHour.rotation=director.clockMinute.rotation=clock.transform.rotation;
-            var tick=clock.AddComponent<ClockAmbience>();tick.pendulum=clock.GetComponentsInChildren<Transform>().Single(t=>t.name.StartsWith("ClockPendulum__"));tick.pendulum.position=clock.transform.position+Vector3.up*1.4f;tick.pivot=new Vector3(0,1.4f,.15f);tick.axis=Vector3.forward;
+            // A worker's CC0 crowbar left on the storage-nook floor — pries the
+            // rusted child-room vent. Repair ensures the same on saved scenes.
+            var crowRoot=new GameObject("StorageCrowbar");crowRoot.transform.SetParent(environment,false);
+            var crowChild=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/crowbar/crowbar_01_1k.fbx"));crowChild.transform.SetParent(crowRoot.transform,false);
+            crowRoot.transform.SetPositionAndRotation(P(.35f,6.35f,.56f),Quaternion.Euler(0,35,0));
+            for(int fi=0;fi<2;fi++){var fb=KosVisualV2.BoundsOf(crowRoot);if(fb.size.y>fb.size.x&&fb.size.y>fb.size.z)crowRoot.transform.rotation=crowRoot.transform.rotation*Quaternion.Euler(90,0,0);else break;}
+            crowRoot.transform.position+=Vector3.up*(KosVisualV2.BoundsOf(GameObject.Find("LoungeStorage")).min.y-KosVisualV2.BoundsOf(crowRoot).min.y);
+            FitCollider(crowRoot);director.crowbar=crowRoot;Item(crowRoot,AtmajaAction.Crowbar,"Ambil linggis tua");
+            // The bundled GrandfatherClock.fbx renders invisibly in play (its blades
+            // + pendulum sit buried at the case base), so the case is the CC0 Poly
+            // Haven Vintage Grandfather Clock 01 (2.2 m, dial + hands included;
+            // Audit/grandfather-clock-cc0-sources.json). Hands are rebound by
+            // renaming the skinned pivots to the ClockHourBlade__ convention.
+            var clockPos=P(-5.58f,5.8f,.52f);
+            var clock=new GameObject("GrandfatherClock");clock.transform.SetParent(environment,false);clock.transform.SetPositionAndRotation(clockPos,Facing(east));
+            var clockChild=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/grandfather_clock/vintage_grandfather_clock_01_1k.fbx"));clockChild.transform.SetParent(clock.transform,false);
+            FixClockNormalImport();
+            KosVisualV2.SetCenter(clock,clockPos+Vector3.up*1.1f);
+            var clockWood=Plain("ClockWoodCC0",Color.white);
+            clockWood.SetTexture("_BaseMap",AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/grandfather_clock/vintage_grandfather_clock_01_diff_1k.jpg"));
+            var clockNor=AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/grandfather_clock/vintage_grandfather_clock_01_nor_gl_1k.jpg");
+            if(clockNor){clockWood.SetTexture("_BumpMap",clockNor);clockWood.SetFloat("_BumpScale",.55f);clockWood.EnableKeyword("_NORMALMAP");}
+            var clockGlass=Plain("ClockGlassCC0",new Color(.85f,.88f,.92f,.09f));
+            clockGlass.SetFloat("_Surface",1f);clockGlass.SetFloat("_Blend",0f);clockGlass.SetFloat("_SrcBlend",5f);clockGlass.SetFloat("_DstBlend",10f);clockGlass.SetFloat("_ZWrite",0f);
+            clockGlass.SetFloat("_Smoothness",.9f);clockGlass.SetFloat("_Metallic",0f);
+            clockGlass.DisableKeyword("_ALPHATEST_ON");clockGlass.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");clockGlass.renderQueue=3000;
+            foreach(var r in clock.GetComponentsInChildren<Renderer>())
+            {
+                var cm=r.sharedMaterials;
+                for(int ci=0;ci<cm.Length;ci++)
+                {
+                    if(!cm[ci])continue;
+                    cm[ci]=cm[ci].name.IndexOf("glass",System.StringComparison.OrdinalIgnoreCase)>=0?clockGlass:clockWood;
+                }
+                r.sharedMaterials=cm;
+            }
+            var hourNode=clock.GetComponentsInChildren<Transform>().Single(t=>t.name=="vintage_grandfather_clock_01_HourHand");hourNode.name="ClockHourBlade__CC0";
+            var minuteNode=clock.GetComponentsInChildren<Transform>().Single(t=>t.name=="vintage_grandfather_clock_01_MinuteHand");minuteNode.name="ClockMinuteBlade__CC0";
+            director.clockFaceNormal=east;director.clockDialCentre=hourNode.position;
+            director.clockHour=hourNode;director.clockMinute=minuteNode;
+            var pendPivot=new GameObject("ClockPendulum__");pendPivot.transform.SetParent(clock.transform,false);pendPivot.transform.localPosition=new Vector3(0,1.45f,.05f);
+            var rod=GameObject.CreatePrimitive(PrimitiveType.Cylinder);rod.name="PendulumRod";rod.transform.SetParent(pendPivot.transform,false);rod.transform.localPosition=new Vector3(0,-.475f,0);rod.transform.localScale=new Vector3(.02f,.95f,.02f);rod.GetComponent<Renderer>().sharedMaterial=Mat("Detail_AgedBrass");Object.DestroyImmediate(rod.GetComponent<Collider>());
+            var bob=GameObject.CreatePrimitive(PrimitiveType.Cylinder);bob.name="PendulumBob";bob.transform.SetParent(pendPivot.transform,false);bob.transform.localPosition=new Vector3(0,-.95f,0);bob.transform.localRotation=Quaternion.Euler(90,0,0);bob.transform.localScale=new Vector3(.18f,.03f,.18f);bob.GetComponent<Renderer>().sharedMaterial=Mat("Detail_AgedBrass");Object.DestroyImmediate(bob.GetComponent<Collider>());
+            var clockDrawerBox=GameObject.CreatePrimitive(PrimitiveType.Cube);clockDrawerBox.name="ClockDrawer__";clockDrawerBox.transform.SetParent(clock.transform,false);clockDrawerBox.transform.localPosition=new Vector3(0,.35f,.21f);clockDrawerBox.transform.localScale=new Vector3(.4f,.18f,.06f);clockDrawerBox.GetComponent<Renderer>().sharedMaterial=Mat("House_MAT_WoodDoor");Object.DestroyImmediate(clockDrawerBox.GetComponent<Collider>());
+            director.clockDrawer=clockDrawerBox.transform;
+            // FitCollider only reads MeshFilters (absent on this skinned CC0 rig),
+            // so fit from the renderer bounds instead.
+            var clockCol=clock.AddComponent<BoxCollider>();
+            var clockBounds=KosVisualV2.BoundsOf(clock);
+            clockCol.center=clock.transform.InverseTransformPoint(clockBounds.center);
+            clockCol.size=clockBounds.size;
+            Item(clock,AtmajaAction.Clock,"Periksa jam bandul tua");
+            var tick=clock.AddComponent<ClockAmbience>();tick.pendulum=pendPivot.transform;tick.pivot=new Vector3(0,1.45f,.05f);tick.axis=Vector3.forward;
             tick.source=clock.AddComponent<AudioSource>();tick.source.playOnAwake=false;tick.source.dopplerLevel=0;tick.source.spatialBlend=1;tick.source.minDistance=.8f;tick.source.maxDistance=7;tick.source.rolloffMode=AudioRolloffMode.Linear;tick.source.outputAudioMixerGroup=director.audioProfile.effectsBus;
             var stair=Box("LockedCentralStairDoor",P(-3.55f,7.7f,1.8f),new Vector3(1.25f,2.6f,.14f),wood);Item(stair,AtmajaAction.StairDoor,"Buka pintu tangga tengah");
             Box("StairHallWall_W",P(-5.04f,7.9f,2.1f),new Vector3(1.73f,3.2f,.16f),plaster);
@@ -84,6 +131,15 @@ namespace LayarTerakhir.Editor
             Box("StairHallLintel",P(-3.55f,7.9f,3.4f),new Vector3(1.25f,.6f,.16f),plaster);
             director.arClue=BloodWriting.Build(environment,P(-5.76f,4.6f,2.17f),north,Vector3.up,east);director.arClue.SetActive(false);
             director.arFigure=Model("ARSeatedAtmaja","AR_SeatedSriAtmaja",P(3.7f,2.15f,.52f));director.arFigure.transform.rotation=Facing(north);foreach(var t in director.arFigure.GetComponentsInChildren<Transform>(true))t.gameObject.layer=AtmajaPhoneView.ARLayer;director.arFigure.SetActive(false);
+        }
+        private static void FixClockNormalImport()
+        {
+            var ti=AssetImporter.GetAtPath("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/grandfather_clock/vintage_grandfather_clock_01_nor_gl_1k.jpg") as TextureImporter;
+            if(ti&&ti.textureType!=TextureImporterType.NormalMap){ti.textureType=TextureImporterType.NormalMap;ti.SaveAndReimport();}
+            var cti=AssetImporter.GetAtPath("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/crowbar/crowbar_01_nor_gl_1k.jpg") as TextureImporter;
+            if(cti&&cti.textureType!=TextureImporterType.NormalMap){cti.textureType=TextureImporterType.NormalMap;cti.SaveAndReimport();}
+            var vti=AssetImporter.GetAtPath("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/metal_grate_rusty/metal_grate_rusty_nor_gl_1k.jpg") as TextureImporter;
+            if(vti&&vti.textureType!=TextureImporterType.NormalMap){vti.textureType=TextureImporterType.NormalMap;vti.SaveAndReimport();}
         }
         private static void Chair(string name,Vector3 where,Vector3 target){var c=Model("WornWoodChair",name,where);c.transform.rotation=Facing((target-where).normalized);Ground(c,where.y);FitCollider(c);}
         private static void Door(string name,Vector3 pivot,Vector3 center,Vector3 size,string label)

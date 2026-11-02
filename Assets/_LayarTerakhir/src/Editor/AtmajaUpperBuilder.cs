@@ -334,8 +334,8 @@ namespace LayarTerakhir.Editor
             var gate=Box("VentPassGate",P(-3.0f,5.2f,4.4f),new Vector3(.9f,1.2f,.12f),plaster);gate.GetComponent<Renderer>().enabled=false;
             director.upper.ventGate=gate.GetComponent<Collider>();
             director.upper.ventMouth=Anchor("VentMouth",P(-3.0f,5.6f,4.4f),P(-3.0f,4.5f,4.4f));
-            var cabinetCover=Existing("painted_wooden_cabinet_02","VentCabinet",P(-3.0f,4.95f,4.445f),new Vector3(.95f,1.25f,.45f));
-            director.upper.ventCabinet=cabinetCover;
+            // No cabinet here: the opening wears a rusted grille sized to the duct
+            // (Prolog47SceneRepair), never a brand-new wardrobe that hides the hole.
             LightAt("ChildRoomLight",P(-4.3f,2.6f,6.2f),LightType.Point,1.1f,7,new Color(.95f,.85f,.65f),P(-4.3f,2.6f,3.9f));
         }
         private static void DressBathroom()

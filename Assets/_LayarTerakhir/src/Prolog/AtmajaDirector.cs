@@ -18,7 +18,7 @@ namespace LayarTerakhir.Prolog
         public const string LiveIntro="Oke... tes, satu dua. Malam semuanya, balik lagi di Malam Keramat. Malam ini gue nggak sendirian... maksudnya, gue lagi nyusulin Damar yang hilang kontak di Rumah Tua Atmaja. Buat yang baru gabung, bantu pantau layar ya.";
         public FirstPersonController player;
         public Transform gateHinge,kitchenDoor,spawnCourtyard,spawnKitchen,spawnDining,spawnStairs,vaultOutside,vaultInside;
-        public GameObject kitchenShutter,damarPhone,clockHands,arFigure,arClue,stairDoorLeaf;
+        public GameObject kitchenShutter,damarPhone,clockHands,crowbar,arFigure,arClue,stairDoorLeaf;
         public HingedDoor stairDoorMotion;
         private HingedDoor kitchenDoorMotion;
         public AtmajaUpperDirector upper;public AtmajaBasementHorror basement;public AtmajaChaseSequence chase;
@@ -97,6 +97,7 @@ namespace LayarTerakhir.Prolog
             if(damarPhone)damarPhone.SetActive(!Has("MATABATIN_APK"));
             if(stairDoorMotion)stairDoorMotion.SetOpenImmediate(Has("EVENT_P0_STAIRS_UNLOCKED"));
             if(clockHands)clockHands.SetActive(!Has("ITEM_P0_CLOCK_HANDS"));
+            if(crowbar)crowbar.SetActive(!Has("ITEM_P0_CROWBAR"));
             if(clockHour)clockHour.gameObject.SetActive(Has("EVENT_P0_CLOCK_UNLOCKED"));
             if(clockMinute)clockMinute.gameObject.SetActive(Has("EVENT_P0_CLOCK_UNLOCKED"));
             if(Has("EVENT_P0_CLOCK_UNLOCKED"))ShowClockTime();
@@ -166,6 +167,8 @@ namespace LayarTerakhir.Prolog
                 case AtmajaAction.Well:StartCoroutine(moments.OpenWell());break;
                 case AtmajaAction.ClockHands:
                     if(Commit("ITEM_P0_CLOCK_HANDS","PROLOG_MATABATIN_ACQUIRED")){clockHands.SetActive(false);Hud.ShowBroadcastNotification("Jarum Jam Kuningan diambil.",3);Objective();}break;
+                case AtmajaAction.Crowbar:
+                    if(Commit("ITEM_P0_CROWBAR",Campaign.Data.checkpoint_id)){if(crowbar)crowbar.SetActive(false);if(upper&&upper.ventDoor)upper.ventDoor.locked=false;Hud.ShowBroadcastNotification("Linggis tua diambil. Bisa buat mencongkel ventilasi berkarat.",4);Sfx(audioProfile.latch,item.transform.position,.5f);Objective();}break;
                 case AtmajaAction.Clock:ClockPuzzle();break;
                 case AtmajaAction.StairDoor:
                     if(!Has("EVENT_P0_CLOCK_UNLOCKED")){Hud.ShowBroadcastNotification("Pintunya terkunci. Ada lubang kunci tua di bawah gagangnya.",5);break;}

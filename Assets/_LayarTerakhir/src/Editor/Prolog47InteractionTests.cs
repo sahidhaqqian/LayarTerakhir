@@ -46,18 +46,27 @@ namespace LayarTerakhir.Editor.Tests
             d.upper.childDoor.SetOpenImmediate(false);d.upper.ventDoor.SetOpenImmediate(false);
             var device=SmartphoneController.Instance;device.arModuleUnlocked=true;device.isPhoneRaised=device.isScreenOn=true;device.currentScanMode=ScanVisualMode.Normal;device.SyncVisualState();d.phoneView.Apps.Open(PhoneApp.Camera);
             d.PlacePlayer(d.P(-3,5.95f,3.83f),Quaternion.LookRotation(-d.north));p.MovementLocked=false;p.enabled=true;
-            Assert.That(d.upper.ventDoor.CanInteract(),Is.False,"Standing in normal camera cannot open the vent");
-            device.currentScanMode=ScanVisualMode.AR;
-            Assert.That(d.upper.ventDoor.CanInteract(),Is.False,"AR still requires crouching");
-            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftCtrl));yield return new WaitForSeconds(.6f);
-            Assert.That(p.IsCrouching,Is.True);Assert.That(d.upper.ventDoor.CanInteract(),Is.True);
+            // The rusted cover pries open standing in normal camera — but only with the crowbar.
+            Assert.That(d.upper.ventDoor.CanInteract(),Is.True,"Prying stance is just standing at the grille");
             p.enabled=false;var target=d.upper.ventDoor.GetComponent<Collider>().bounds.center;var delta=target-p.cameraPivot.position;var flat=Vector3.ProjectOnPlane(delta,Vector3.up);p.transform.rotation=Quaternion.LookRotation(flat);p.SetViewPitch(-Mathf.Atan2(delta.y,flat.magnitude)*Mathf.Rad2Deg);p.GetComponent<ShoulderCameraRig>().RefreshCameraPose();
             yield return null;yield return null;
             var eye=d.phoneView.playerCamera;Physics.SyncTransforms();
             yield return Prolog47VisualTests.Capture(eye,"24-vent-interaction-ray");
             var hits=Physics.RaycastAll(eye.transform.position,eye.transform.forward,3).OrderBy(h=>h.distance).Select(h=>h.collider.name+":"+h.distance.ToString("F3"));
             Assert.That(p.GetComponent<InteractionInteractor>().CurrentTarget,Is.SameAs(d.upper.ventDoor),"Vent ray: "+string.Join(",",hits));
+            yield return Press(Key.E);yield return new WaitForSeconds(1.1f);
+            Assert.That(d.upper.ventDoor.IsOpen,Is.False,"Rusted vent stays shut without the crowbar");
+            Item(AtmajaAction.Crowbar).Interact();
+            Assert.That(CampaignState.Instance.HasInventoryItem("ITEM_P0_CROWBAR"),Is.True,"Crowbar pickup registers");
             yield return Press(Key.E);yield return new WaitForSeconds(1.1f);Assert.That(d.upper.ventDoor.IsOpen,Is.True);
+            // Crawling through still needs AR + crouch at the open grille.
+            device.currentScanMode=ScanVisualMode.AR;device.SyncVisualState();
+            yield return new WaitForSeconds(.3f);
+            p.enabled=true;
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftCtrl));yield return new WaitForSeconds(.6f);
+            Assert.That(p.IsCrouching,Is.True);
+            p.enabled=false;
+            yield return new WaitForSeconds(.3f);
             Assert.That(d.upper.ventGate.enabled,Is.False);yield return Prolog47VisualTests.Capture(d.phoneView.playerCamera,"24-vent-open-ar-crouched");
             yield return WalkCapsule(p,d.P(-3,4.5f,3.83f));
             Assert.That(d.LocalPosition(p.transform.position).y,Is.LessThan(4.7f),"Raka physically passes through the opening");

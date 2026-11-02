@@ -61,6 +61,12 @@ namespace LayarTerakhir.Editor
                 case "Repair_SideTableWood":
                     customTex = "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/wooden_table_02/wooden_table_02_diff_1k.jpg";
                     color = Color.white; smooth = .3f; break;
+                case "Repair_ClockWood":
+                    customTex = "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/grandfather_clock/vintage_grandfather_clock_01_diff_1k.jpg";
+                    color = Color.white; smooth = .3f; break;
+                case "Repair_VentRust":
+                    customTex = "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/metal_grate_rusty/metal_grate_rusty_diff_1k.jpg";
+                    color = Color.white; metal = .38f; smooth = .52f; break;
                 case "Repair_Ceramic":
                     color = new Color(.86f, .84f, .78f); smooth = .76f; break;
                 case "Repair_CeramicEdge":
@@ -1428,44 +1434,8 @@ namespace LayarTerakhir.Editor
             var item = target.GetComponent<AtmajaItem>();
             item.director = d; item.action = AtmajaAction.BathScratches; item.label = "Periksa bekas cakaran di dinding";
 
-            // Bug 24: Compact crawlable recessed VentGrille (0.76m x 0.56m near floor) + HOLLOW 4-bar sheet-metal duct bezel (so opening VentGrille reveals Bima's bedroom!) + white AR glint!
-            if (d.upper.ventMouth) d.upper.ventMouth.SetParent(root, true);
-            foreach (string oldV in new[] { "VentCabinet", "VentHoleDark", "VentHoleAR", "VentGrilleHinge", "VentDuctFrame", "VentDuctTrim_Top", "VentDuctTrim_Bottom", "VentDuctTrim_Left", "VentDuctTrim_Right" })
-                Delete(oldV);
-            d.upper.ventCabinet = null;
-            void VentTrim(string tName, float tx, float ty, Vector3 tScale)
-            {
-                var bar = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                bar.name = tName;
-                bar.transform.SetParent(root, true);
-                Object.DestroyImmediate(bar.GetComponent<Collider>());
-                bar.transform.SetPositionAndRotation(d.P(tx, 5.24f, ty), Quaternion.LookRotation(d.north));
-                bar.transform.localScale = tScale;
-                bar.GetComponent<Renderer>().sharedMaterial = Material("Repair_NumberBacking");
-            }
-            VentTrim("VentDuctTrim_Top", -3.0f, 4.465f, new Vector3(.80f, .035f, .14f));
-            VentTrim("VentDuctTrim_Bottom", -3.0f, 3.895f, new Vector3(.80f, .035f, .14f));
-            VentTrim("VentDuctTrim_Left", -3.385f, 4.18f, new Vector3(.035f, .58f, .14f));
-            VentTrim("VentDuctTrim_Right", -2.615f, 4.18f, new Vector3(.035f, .58f, .14f));
-
-            var hinge = new GameObject("VentGrilleHinge").transform;
-            hinge.SetParent(root, true);
-            hinge.SetPositionAndRotation(d.P(-3.38f, 5.315f, 3.82f), Quaternion.LookRotation(d.north));
-            var cover = Model("VentGrille", "VentGrille", hinge, d.P(-3.0f, 5.315f, 4.18f), Quaternion.LookRotation(d.north));
-            KosVisualV2.Resize(cover, new Vector3(.76f, .56f, .048f));
-            KosVisualV2.SetCenter(cover, d.P(-3.0f, 5.315f, 4.18f));
-            FitCollider(cover);
-            var vent = cover.AddComponent<HingedDoor>();
-            vent.hinge = hinge; vent.angle = -105; vent.requiresCrouchAndAR = true; vent.label = "Buka ventilasi";
-            d.upper.ventDoor = vent;
-            if (d.upper.ventMouth)
-            {
-                d.upper.ventMouth.position = d.P(-3.0f, 5.26f, 4.18f);
-                foreach (var oldG in d.upper.ventMouth.GetComponentsInChildren<ARPhotoGlimmer>(true))
-                    if (oldG) Object.DestroyImmediate(oldG.gameObject);
-                ARPhotoGlimmer.Attach(d.upper.ventMouth, d.upper, "EVENT_P0_CHAIN1_BROKEN", true, true, false);
-                d.upper.ventHoleAR = d.upper.ventMouth.GetComponentInChildren<ARPhotoGlimmer>(true).gameObject;
-            }
+            // Bug 24 (revisit, designer Nov): rusted exact-fit crowbar-gated vent.
+            RebuildRustedVent(d, root);
 
             // Bug 16: Kitchen entry window — place KitchenWindowGlimmerAnchor right inside the visible window opening!
             var kWinAnchor = Find("KitchenWindowGlimmerAnchor");
@@ -2013,31 +1983,11 @@ namespace LayarTerakhir.Editor
                 if (tray) tray.transform.position = new Vector3(tray.transform.position.x, surface + .008f, tray.transform.position.z);
             }
 
-            // Grandfather clock: blades + pendulum render buried at the case base.
-            // Seat them where the mechanism belongs: hands on the dial centre,
-            // pendulum hanging below it (the drawer stays low, as built).
-            {
-                var clock = Find("GrandfatherClock");
-                if (clock)
-                {
-                    var parts = clock.GetComponentsInChildren<Transform>(true);
-                    var hour = parts.FirstOrDefault(t => t && t.name.StartsWith("ClockHourBlade__"));
-                    var minute = parts.FirstOrDefault(t => t && t.name.StartsWith("ClockMinuteBlade__"));
-                    var pend = parts.FirstOrDefault(t => t && t.name.StartsWith("ClockPendulum__"));
-                    if (hour) hour.position = d.clockDialCentre;
-                    if (minute) minute.position = d.clockDialCentre;
-                    if (hour) hour.rotation = clock.transform.rotation;
-                    if (minute) minute.rotation = clock.transform.rotation;
-                    if (pend)
-                    {
-                        var tick = clock.GetComponentInParent<LayarTerakhir.Prolog.ClockAmbience>()
-                            ?? clock.GetComponentInChildren<LayarTerakhir.Prolog.ClockAmbience>(true);
-                        pend.position = tick
-                            ? clock.transform.TransformPoint(tick.pivot)
-                            : d.clockDialCentre + Vector3.down * .4f;
-                    }
-                }
-            }
+            // Grandfather clock: the bundled FBX renders invisibly in play (blades +
+            // pendulum buried at the case base), so rebuild the case from the CC0
+            // Poly Haven Vintage Grandfather Clock 01 (Audit/grandfather-clock-
+            // cc0-sources.json). Shared with ApplyRumahAtmajaClockVentCrowbar.
+            RebuildCC0Clock(d, env);
 
             // The dining hinge must be serialized, not only runtime-added.
             var hinge = Find("KitchenDoorHinge");
@@ -2065,6 +2015,259 @@ namespace LayarTerakhir.Editor
             }
             Save();
             Debug.Log("PROLOG47_RUMAH_ATMAJA_DINING_FIX_APPLIED table surface, feast seating, clock hands");
+        }
+
+        // Designer Nov: the sitting-room clock never renders (bundled FBX hides its
+        // works at the case base) and the child-room vent wears a brand-new,
+        // ill-fitting cover that cannot be pried open. Rebuild the clock from the
+        // CC0 Poly Haven Vintage Grandfather Clock 01, rust the vent grille to fit
+        // its duct exactly behind a crowbar-gated hinge, and ensure the CC0 crowbar
+        // in the storage nook. Idempotent.
+        public static void ApplyRumahAtmajaClockVentCrowbar()
+        {
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            var env = Find("Atmaja_Environment_Art").transform;
+            RebuildCC0Clock(d, env);
+            RebuildRustedVent(d, env);
+            EnsureCrowbar(d, env);
+            Save();
+            Debug.Log("PROLOG47_RUMAH_ATMAJA_CLOCK_VENT_CROWBAR_APPLIED cc0 clock, rusted vent, crowbar");
+        }
+
+        private static void RebuildCC0Clock(AtmajaDirector d, Transform env)
+        {
+            const string clockDir = "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/grandfather_clock/";
+            var norImport = AssetImporter.GetAtPath(clockDir + "vintage_grandfather_clock_01_nor_gl_1k.jpg") as TextureImporter;
+            if (norImport && norImport.textureType != TextureImporterType.NormalMap)
+            {
+                norImport.textureType = TextureImporterType.NormalMap;
+                norImport.SaveAndReimport();
+            }
+            var asset = AssetDatabase.LoadAssetAtPath<GameObject>(clockDir + "vintage_grandfather_clock_01_1k.fbx");
+            if (!asset) throw new Exception("CC0 grandfather clock FBX missing: " + clockDir);
+            Delete("GrandfatherClock");
+            Delete("ClockDial");
+            var clockPos = d.P(-5.58f, 5.8f, .52f);
+            var clock = new GameObject("GrandfatherClock");
+            clock.transform.SetParent(env, false);
+            clock.transform.SetPositionAndRotation(clockPos, Quaternion.LookRotation(d.east));
+            var child = (GameObject)PrefabUtility.InstantiatePrefab(asset);
+            child.transform.SetParent(clock.transform, false);
+            KosVisualV2.SetCenter(clock, clockPos + Vector3.up * 1.1f);
+            var wood = Material("Repair_ClockWood");
+            var nor = AssetDatabase.LoadAssetAtPath<Texture2D>(clockDir + "vintage_grandfather_clock_01_nor_gl_1k.jpg");
+            if (nor) { wood.SetTexture("_BumpMap", nor); wood.SetFloat("_BumpScale", .55f); wood.EnableKeyword("_NORMALMAP"); EditorUtility.SetDirty(wood); }
+            // The imported glass renders opaque and hides the dial + hands, so the
+            // door pane becomes a faint custom sheet: readable with a flashlight.
+            var glassMat = Material("Repair_ClockGlass");
+            glassMat.SetFloat("_Surface", 1f);
+            glassMat.SetFloat("_Blend", 0f);
+            glassMat.SetFloat("_SrcBlend", 5f);
+            glassMat.SetFloat("_DstBlend", 10f);
+            glassMat.SetFloat("_ZWrite", 0f);
+            glassMat.SetFloat("_Smoothness", .9f);
+            glassMat.SetFloat("_Metallic", 0f);
+            glassMat.DisableKeyword("_ALPHATEST_ON");
+            glassMat.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+            glassMat.SetColor("_BaseColor", new Color(.85f, .88f, .92f, .09f));
+            glassMat.renderQueue = 3000;
+            EditorUtility.SetDirty(glassMat);
+            foreach (var r in clock.GetComponentsInChildren<Renderer>())
+            {
+                var cm = r.sharedMaterials;
+                for (int ci = 0; ci < cm.Length; ci++)
+                {
+                    if (!cm[ci]) continue;
+                    cm[ci] = cm[ci].name.IndexOf("glass", StringComparison.OrdinalIgnoreCase) >= 0 ? glassMat : wood;
+                }
+                r.sharedMaterials = cm;
+            }
+            var hour = clock.GetComponentsInChildren<Transform>(true).First(t => t.name == "vintage_grandfather_clock_01_HourHand");
+            hour.name = "ClockHourBlade__CC0";
+            var minute = clock.GetComponentsInChildren<Transform>(true).First(t => t.name == "vintage_grandfather_clock_01_MinuteHand");
+            minute.name = "ClockMinuteBlade__CC0";
+            d.clockFaceNormal = d.east;
+            d.clockDialCentre = hour.position;
+            d.clockHour = hour;
+            d.clockMinute = minute;
+            var pend = new GameObject("ClockPendulum__");
+            pend.transform.SetParent(clock.transform, false);
+            pend.transform.localPosition = new Vector3(0, 1.45f, .05f);
+            var rod = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            rod.name = "PendulumRod";
+            rod.transform.SetParent(pend.transform, false);
+            rod.transform.localPosition = new Vector3(0, -.475f, 0);
+            rod.transform.localScale = new Vector3(.02f, .95f, .02f);
+            rod.GetComponent<Renderer>().sharedMaterial = Old("Detail_AgedBrass");
+            Object.DestroyImmediate(rod.GetComponent<Collider>());
+            var bob = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            bob.name = "PendulumBob";
+            bob.transform.SetParent(pend.transform, false);
+            bob.transform.localPosition = new Vector3(0, -.95f, 0);
+            bob.transform.localRotation = Quaternion.Euler(90, 0, 0);
+            bob.transform.localScale = new Vector3(.18f, .03f, .18f);
+            bob.GetComponent<Renderer>().sharedMaterial = Old("Detail_AgedBrass");
+            Object.DestroyImmediate(bob.GetComponent<Collider>());
+            var drawerBox = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            drawerBox.name = "ClockDrawer__";
+            drawerBox.transform.SetParent(clock.transform, false);
+            drawerBox.transform.localPosition = new Vector3(0, .35f, .21f);
+            drawerBox.transform.localScale = new Vector3(.4f, .18f, .06f);
+            drawerBox.GetComponent<Renderer>().sharedMaterial = Old("House_MAT_WoodDoor");
+            Object.DestroyImmediate(drawerBox.GetComponent<Collider>());
+            d.clockDrawer = drawerBox.transform;
+            FitCollider(clock);
+            var item = clock.GetComponent<AtmajaItem>();
+            if (!item) item = clock.AddComponent<AtmajaItem>();
+            item.director = d;
+            item.action = AtmajaAction.Clock;
+            item.label = "Periksa jam bandul tua";
+            var tick = clock.GetComponent<ClockAmbience>();
+            if (!tick) tick = clock.AddComponent<ClockAmbience>();
+            tick.pendulum = pend.transform;
+            tick.pivot = new Vector3(0, 1.45f, .05f);
+            tick.axis = Vector3.forward;
+            var src = clock.GetComponent<AudioSource>();
+            if (!src) src = clock.AddComponent<AudioSource>();
+            tick.source = src;
+            src.playOnAwake = false;
+            src.dopplerLevel = 0;
+            src.spatialBlend = 1;
+            src.minDistance = .8f;
+            src.maxDistance = 7;
+            src.rolloffMode = AudioRolloffMode.Linear;
+            src.outputAudioMixerGroup = d.audioProfile.effectsBus;
+        }
+
+        private static void RebuildRustedVent(AtmajaDirector d, Transform root)
+        {
+            var norImport = AssetImporter.GetAtPath("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/metal_grate_rusty/metal_grate_rusty_nor_gl_1k.jpg") as TextureImporter;
+            if (norImport && norImport.textureType != TextureImporterType.NormalMap)
+            {
+                norImport.textureType = TextureImporterType.NormalMap;
+                norImport.SaveAndReimport();
+            }
+            if (d.upper.ventMouth) d.upper.ventMouth.SetParent(root, true);
+            foreach (string oldV in new[] { "VentCabinet", "VentHoleDark", "VentHoleAR", "VentGrille", "VentGrilleDoor", "VentGrilleHinge", "VentDuctFrame", "VentDuctTrim_Top", "VentDuctTrim_Bottom", "VentDuctTrim_Left", "VentDuctTrim_Right", "VentBackDark_Top", "VentBackDark_Bottom" })
+                Delete(oldV);
+            d.upper.ventCabinet = null;
+            void VentTrim(string tName, float tx, float ty, Vector3 tScale)
+            {
+                var bar = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                bar.name = tName;
+                bar.transform.SetParent(root, true);
+                Object.DestroyImmediate(bar.GetComponent<Collider>());
+                bar.transform.SetPositionAndRotation(d.P(tx, 5.24f, ty), Quaternion.LookRotation(d.north));
+                bar.transform.localScale = tScale;
+                bar.GetComponent<Renderer>().sharedMaterial = Material("Repair_NumberBacking");
+            }
+            VentTrim("VentDuctTrim_Top", -3.0f, 4.465f, new Vector3(.80f, .035f, .14f));
+            VentTrim("VentDuctTrim_Bottom", -3.0f, 3.895f, new Vector3(.80f, .035f, .14f));
+            VentTrim("VentDuctTrim_Left", -3.385f, 4.18f, new Vector3(.035f, .58f, .14f));
+            VentTrim("VentDuctTrim_Right", -2.615f, 4.18f, new Vector3(.035f, .58f, .14f));
+            // Seal the wall-cavity slits above/below the trim frame with dark duct
+            // backing, so no see-through gaps remain around the opening.
+            void BackDark(string n, float y0, float y1)
+            {
+                var b = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                b.name = n;
+                b.transform.SetParent(root, true);
+                Object.DestroyImmediate(b.GetComponent<Collider>());
+                b.transform.SetPositionAndRotation(d.P(-3.0f, 5.27f, (y0 + y1) * .5f), Quaternion.LookRotation(d.north));
+                b.transform.localScale = new Vector3(.9f, y1 - y0, .06f);
+                b.GetComponent<Renderer>().sharedMaterial = Material("Repair_NumberBacking");
+            }
+            BackDark("VentBackDark_Bottom", 3.82f, 3.9125f);
+            BackDark("VentBackDark_Top", 4.4475f, 4.90f);
+            var hinge = new GameObject("VentGrilleHinge").transform;
+            hinge.SetParent(root, true);
+            hinge.SetPositionAndRotation(d.P(-3.38f, 5.24f, 4.18f), Quaternion.LookRotation(d.north));
+            var cover = Model("VentGrille", "VentGrilleDoor", hinge, d.P(-3.0f, 5.24f, 4.18f), Quaternion.LookRotation(d.north));
+            KosVisualV2.Resize(cover, new Vector3(.76f, .56f, .048f));
+            KosVisualV2.SetCenter(cover, d.P(-3.0f, 5.24f, 4.18f));
+            // Rust it: the authored mesh ships with flat grey iron. Dress every face
+            // in the CC0 rusty grate so it reads decades old, never brand new.
+            var rust = Material("Repair_VentRust");
+            rust.SetColor("_BaseColor", new Color(.66f, .57f, .48f));
+            var norGl = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/metal_grate_rusty/metal_grate_rusty_nor_gl_1k.jpg");
+            if (norGl) { rust.SetTexture("_BumpMap", norGl); rust.SetFloat("_BumpScale", .6f); rust.EnableKeyword("_NORMALMAP"); EditorUtility.SetDirty(rust); }
+            foreach (var r in cover.GetComponentsInChildren<Renderer>())
+                r.sharedMaterials = Enumerable.Repeat(rust, r.sharedMaterials.Length).ToArray();
+            FitCollider(cover);
+            var vent = cover.AddComponent<HingedDoor>();
+            vent.hinge = hinge;
+            vent.angle = -105;
+            vent.requiresCrouchAndAR = false;
+            vent.label = "Congkel ventilasi berkarat";
+            vent.locked = true;
+            vent.lockedPrompt = "Terkunci karat — butuh linggis";
+            vent.lockedDialogue = "Berkarat parah... perlu linggis buat mencongkelnya.";
+            d.upper.ventDoor = vent;
+            if (d.upper.ventMouth)
+            {
+                d.upper.ventMouth.position = d.P(-3.0f, 5.26f, 4.18f);
+                foreach (var oldG in d.upper.ventMouth.GetComponentsInChildren<ARPhotoGlimmer>(true))
+                    if (oldG) Object.DestroyImmediate(oldG.gameObject);
+                ARPhotoGlimmer.Attach(d.upper.ventMouth, d.upper, "EVENT_P0_CHAIN1_BROKEN", true, true, false);
+                d.upper.ventHoleAR = d.upper.ventMouth.GetComponentInChildren<ARPhotoGlimmer>(true).gameObject;
+            }
+        }
+
+        private static void EnsureCrowbar(AtmajaDirector d, Transform env)
+        {
+            var norImport = AssetImporter.GetAtPath("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/crowbar/crowbar_01_nor_gl_1k.jpg") as TextureImporter;
+            if (norImport && norImport.textureType != TextureImporterType.NormalMap)
+            {
+                norImport.textureType = TextureImporterType.NormalMap;
+                norImport.SaveAndReimport();
+            }
+            var asset = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/crowbar/crowbar_01_1k.fbx");
+            if (!asset) throw new Exception("CC0 crowbar FBX missing");
+            var existing = Find("StorageCrowbar");
+            if (existing && existing.GetComponentInChildren<MeshRenderer>(true))
+            {
+                d.crowbar = existing;
+            }
+            else
+            {
+                Delete("StorageCrowbar");
+                var crowRoot = new GameObject("StorageCrowbar");
+                crowRoot.transform.SetParent(env, false);
+                var crowChild = (GameObject)PrefabUtility.InstantiatePrefab(asset);
+                crowChild.transform.SetParent(crowRoot.transform, false);
+                crowRoot.transform.SetPositionAndRotation(d.P(.35f, 6.35f, .56f), Quaternion.Euler(0, 35, 0));
+                // The Poly Haven bar can arrive standing on end; lay its longest
+                // axis flat so it reads as a dropped tool, then ground it.
+                for (int i = 0; i < 2; i++)
+                {
+                    var cb = SafeBounds(crowRoot);
+                    if (cb.size.y > cb.size.x && cb.size.y > cb.size.z)
+                        crowRoot.transform.rotation = crowRoot.transform.rotation * Quaternion.Euler(90, 0, 0);
+                    else break;
+                }
+                var cab = Find("LoungeStorage");
+                Ground(crowRoot, cab ? SafeBounds(cab).min.y : .5f);
+                FitCollider(crowRoot);
+                d.crowbar = crowRoot;
+            }
+            var item = d.crowbar.GetComponent<AtmajaItem>();
+            if (!item) item = d.crowbar.AddComponent<AtmajaItem>();
+            item.director = d;
+            item.action = AtmajaAction.Crowbar;
+            item.label = "Ambil linggis tua";
+            // Normalize every run, not only on create: the bar must lie flat on
+            // the nook floor even if an earlier pass left it standing on end.
+            for (int i = 0; i < 2; i++)
+            {
+                var cb = SafeBounds(d.crowbar);
+                if (cb.size.y > cb.size.x && cb.size.y > cb.size.z)
+                    d.crowbar.transform.rotation = d.crowbar.transform.rotation * Quaternion.Euler(90, 0, 0);
+                else break;
+            }
+            var cabStorage = Find("LoungeStorage");
+            Ground(d.crowbar, cabStorage ? SafeBounds(cabStorage).min.y : .5f);
+            FitCollider(d.crowbar);
         }
 
         // goal.md Nov: the kitchen south wall is a bare collision skeleton (piers +

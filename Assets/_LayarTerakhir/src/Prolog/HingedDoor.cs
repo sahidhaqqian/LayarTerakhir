@@ -7,7 +7,7 @@ namespace LayarTerakhir.Prolog
 {
     public sealed class HingedDoor:MonoBehaviour,IInteractable
     {
-        public Transform hinge;public string label="Buka pintu";public bool locked;public float angle=95;private bool opened,moving;
+        public Transform hinge;public string label="Buka pintu";public bool locked;public string lockedPrompt="Pintu kamar tertutup";public float angle=95;private bool opened,moving;
         public string lockedDialogue;
         public bool requiresCrouchAndAR;
         public bool slides;public Vector3 slideOffset=Vector3.forward*1.6f;
@@ -21,7 +21,7 @@ namespace LayarTerakhir.Prolog
             var player=FindFirstObjectByType<FirstPersonController>();var phone=LayarTerakhir.Smartphone.SmartphoneController.Instance;
             return player&&player.IsCrouching&&phone&&phone.isPhoneRaised&&phone.isScreenOn&&phone.currentScanMode==LayarTerakhir.Smartphone.ScanVisualMode.AR;
         }
-        public string GetInteractionPrompt()=>requiresCrouchAndAR?string.Empty:locked?"Pintu kamar tertutup":opened?"Tutup pintu":label;
+        public string GetInteractionPrompt()=>requiresCrouchAndAR?string.Empty:locked?lockedPrompt:opened?"Tutup pintu":label;
         public void Interact()
         {
             if(!CanInteract())return;

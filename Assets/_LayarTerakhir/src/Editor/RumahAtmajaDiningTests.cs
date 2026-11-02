@@ -217,6 +217,72 @@ namespace LayarTerakhir.Editor.Tests
                 }
             Assert.That(x0, Is.GreaterThan(20), "Seal grid actually sampled");
         }
+
+        [Test]
+        public void GrandfatherClockIsCC0AndVisible()
+        {
+            var d = Open();
+            var clock = GameObject.Find("GrandfatherClock");
+            Assert.That(clock && clock.activeInHierarchy, Is.True, "CC0 clock exists and is active");
+            var cb = VisualBounds(clock);
+            Assert.That(cb.size.y, Is.InRange(1.9f, 2.4f), "Clock reads as a full tall case, not a buried blob");
+            Assert.That(cb.min.y, Is.LessThan(.7f), "Clock case reaches the floor");
+            var mats = clock.GetComponentsInChildren<Renderer>(true).Where(r => r && r.enabled)
+                .SelectMany(r => r.sharedMaterials).Where(m => m).Distinct().ToArray();
+            Assert.That(mats.Any(m => m.HasProperty("_BaseMap") && m.GetTexture("_BaseMap") && m.GetTexture("_BaseMap").name.Contains("vintage_grandfather")), Is.True, "Clock wears its CC0 diffuse, not flat grey");
+            Assert.That(mats.Any(m => m && m.name.Contains("ClockGlass") && m.renderQueue == 3000), Is.True, "Door glass is a faint sheet so the dial stays readable");
+            var hour = clock.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t && t.name.StartsWith("ClockHourBlade__"));
+            var minute = clock.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t && t.name.StartsWith("ClockMinuteBlade__"));
+            Assert.That(hour && minute, Is.True, "CC0 hand pivots are rebound");
+            Assert.That(Vector3.Distance(hour.position, d.clockDialCentre), Is.LessThan(.15f), "Hour hand sits on the dial");
+            var pend = GameObject.Find("ClockPendulum__");
+            Assert.That(pend, Is.Not.Null, "Pendulum hangs inside the CC0 case");
+            var pb = VisualBounds(pend);
+            Assert.That(pb.size.y, Is.GreaterThan(.5f), "Pendulum rod+ball read as one swinging piece");
+            Assert.That(d.clockHour, Is.SameAs(hour), "Director binds the CC0 hour pivot");
+        }
+
+        [Test]
+        public void VentCoverIsRustedAndFitsItsDuct()
+        {
+            Open();
+            var cover = GameObject.Find("VentGrilleDoor");
+            Assert.That(cover && cover.activeInHierarchy, Is.True, "Vent grille leaf exists");
+            var cb = VisualBounds(cover);
+            Assert.That(cb.size.x, Is.EqualTo(.76f).Within(.05f), "Grille width matches the duct opening");
+            Assert.That(cb.size.y, Is.EqualTo(.56f).Within(.05f), "Grille height matches the duct opening");
+            var hinge = GameObject.Find("VentGrilleHinge");
+            Assert.That(hinge, Is.Not.Null, "Grille hinge exists");
+            Assert.That(Mathf.Abs(hinge.transform.position.y - cb.center.y), Is.LessThan(.12f), "Hinge sits at grille height, not the floor");
+            var mats = cover.GetComponentsInChildren<Renderer>(true).Where(r => r && r.enabled)
+                .SelectMany(r => r.sharedMaterials).Where(m => m).Distinct().ToArray();
+            Assert.That(mats.Length, Is.GreaterThan(0), "Grille has real materials");
+            Assert.That(mats.Any(m => m.HasProperty("_BaseMap") && m.GetTexture("_BaseMap") && m.GetTexture("_BaseMap").name.Contains("metal_grate_rusty")), Is.True, "Grille wears the CC0 rust, not brand-new grey");
+            foreach (string n in new[] { "VentDuctTrim_Top", "VentDuctTrim_Bottom", "VentDuctTrim_Left", "VentDuctTrim_Right", "VentBackDark_Top", "VentBackDark_Bottom" })
+                Assert.That(GameObject.Find(n), Is.Not.Null, n + " seals the duct frame");
+            var door = cover.GetComponent<LayarTerakhir.Prolog.HingedDoor>();
+            Assert.That(door, Is.Not.Null, "Grille swings on a real hinge");
+            Assert.That(door.locked, Is.True, "Grille starts locked until the crowbar is found");
+        }
+
+        [Test]
+        public void CrowbarWaitsInTheStorageNook()
+        {
+            var d = Open();
+            var crow = GameObject.Find("StorageCrowbar");
+            Assert.That(crow && crow.activeInHierarchy, Is.True, "CC0 crowbar waits in storage");
+            var cb = VisualBounds(crow);
+            float longHoriz = Mathf.Max(cb.size.x, cb.size.z);
+            Assert.That(longHoriz, Is.InRange(.4f, .8f), "Crowbar lies flat as a full pry bar, not a speck");
+            Assert.That(cb.min.y, Is.EqualTo(.5f).Within(.12f), "Crowbar rests on the nook floor");
+            var mats = crow.GetComponentsInChildren<Renderer>(true).Where(r => r && r.enabled)
+                .SelectMany(r => r.sharedMaterials).Where(m => m).Distinct().ToArray();
+            Assert.That(mats.Any(m => m.HasProperty("_BaseMap") && m.GetTexture("_BaseMap") && m.GetTexture("_BaseMap").name.Contains("crowbar")), Is.True, "Crowbar wears its CC0 diffuse");
+            var item = crow.GetComponent<LayarTerakhir.Prolog.AtmajaItem>();
+            Assert.That(item, Is.Not.Null, "Crowbar is actually pickable");
+            Assert.That(item.action, Is.EqualTo(LayarTerakhir.Prolog.AtmajaAction.Crowbar), "Crowbar pickup is wired");
+            Assert.That(d.crowbar, Is.SameAs(crow), "Director binds the crowbar");
+        }
     }
 }
 #endif

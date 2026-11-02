@@ -227,6 +227,9 @@ namespace LayarTerakhir.Prolog
             }
             if(director.Stage==AtmajaStage.StairLanding&&director.player.transform.position.y>3.4f&&Math.Abs(director.LocalPosition(director.player.transform.position).y-5.7f)<1.2f)
             {director.SetStage(AtmajaStage.EvidenceHunt);director.Objective();}
+            // The rusted vent cover only pries open with the worker's crowbar.
+            // Without it the hinge stays locked no matter the stance or camera.
+            if(ventDoor)ventDoor.locked=!Has("ITEM_P0_CROWBAR");
             // Child vent pass: AR transparency + crouch walk lets the capsule through the cabinet hole.
             if(ventGate&&ventMouth)
             {
