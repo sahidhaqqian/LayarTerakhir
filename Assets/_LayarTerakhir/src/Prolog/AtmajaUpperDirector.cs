@@ -222,6 +222,8 @@ namespace LayarTerakhir.Prolog
             if(masterDoor){masterDoor.locked=!(c1&&c2&&c3);masterDoor.SetOpenImmediate(Has("EVENT_P0_MASTER_OPEN"));}
             if(bathCurtain)bathCurtain.SetActive(!Has("EVENT_P0_CURTAIN_OPEN"));
             if(bathWater)bathWater.SetActive(Has("EVENT_P0_CURTAIN_OPEN"));
+            // Designer Nov: a prized grille stays gone across loads.
+            if(Has("EVENT_P0_VENT_PRIZED")&&ventDoor)ventDoor.gameObject.SetActive(false);
             if(carpetRoll)carpetRoll.SetActive(!Has("EVENT_P0_CARPET_LIFTED"));
             if(trapdoorLid)trapdoorLid.SetActive(Has("EVENT_P0_CARPET_LIFTED")&&!Has("EVENT_P0_TRAPDOOR_OPEN"));
             if(ventGate)ventGate.enabled=true;
@@ -266,7 +268,8 @@ namespace LayarTerakhir.Prolog
             if(ventGate&&ventMouth)
             {
                 bool near=Vector3.Distance(director.player.transform.position,ventMouth.position)<2.1f;
-                bool pass=ar&&director.player.IsCrouching&&near&&childDoor&&!childDoor.IsOpen&&(!ventDoor||ventDoor.IsOpen);
+                // A prized grille is gone for good, so the open/closed swing no longer gates anything.
+                bool pass=ar&&director.player.IsCrouching&&near&&childDoor&&!childDoor.IsOpen&&(Has("EVENT_P0_VENT_PRIZED")||!ventDoor||ventDoor.IsOpen);
                 ventGate.enabled=!pass;
                 if(ventCabinet&&!ventDoor)ventCabinet.SetActive(!pass);
             }

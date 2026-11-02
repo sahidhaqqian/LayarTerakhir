@@ -10,6 +10,11 @@ namespace LayarTerakhir.Prolog
         public Transform hinge;public string label="Buka pintu";public bool locked;public string lockedPrompt="Pintu kamar tertutup";public float angle=95;private bool opened,moving;
         public string lockedDialogue;
         public bool requiresCrouchAndAR;
+        // Designer Nov: one-way pry (rusted vent). When set, the first
+        // unlocked interact rips the leaf off for good — persisted via the
+        // flag, restored as gone — instead of swinging open/closed forever.
+        public string pryFlag;
+        public string pryToast;
         public bool slides;public Vector3 slideOffset=Vector3.forward*1.6f;
         private Vector3 closedPosition;private Quaternion closedRotation;private bool positionCaptured;
         public bool IsOpen=>opened;
@@ -27,6 +32,18 @@ namespace LayarTerakhir.Prolog
             if(!CanInteract())return;
             CapturePosition();
             if(locked){if(!string.IsNullOrEmpty(lockedDialogue))HudController.Instance.EnqueueSubtitle("Raka",lockedDialogue,4);else HudController.Instance.ShowBroadcastNotification("Pintunya terkunci.",3);return;}
+            if(!string.IsNullOrEmpty(pryFlag))
+            {
+                var campaign=LayarTerakhir.Core.CampaignState.Instance;
+                if(campaign&&!campaign.HasInventoryItem(pryFlag))
+                {
+                    campaign.AddInventoryItem(pryFlag);
+                    campaign.SaveCheckpointAtomic(campaign.Data.checkpoint_id);
+                    if(!string.IsNullOrEmpty(pryToast))HudController.Instance.ShowBroadcastNotification(pryToast,4);
+                    gameObject.SetActive(false);
+                    return;
+                }
+            }
             opened=!opened;StartCoroutine(Swing());
         }
         private IEnumerator Swing()

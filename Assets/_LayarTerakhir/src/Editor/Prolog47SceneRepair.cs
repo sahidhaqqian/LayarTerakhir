@@ -2334,6 +2334,10 @@ namespace LayarTerakhir.Editor
             vent.locked = true;
             vent.lockedPrompt = "Terkunci karat — butuh linggis";
             vent.lockedDialogue = "Berkarat parah... perlu linggis buat mencongkelnya.";
+            // Designer Nov: prying rips the grille off for good — persisted,
+            // restored as gone, never a door that swings open and shut.
+            vent.pryFlag = "EVENT_P0_VENT_PRIZED";
+            vent.pryToast = "Ventilasi dijebol — teralis karatnya copot.";
             d.upper.ventDoor = vent;
             if (d.upper.ventMouth)
             {

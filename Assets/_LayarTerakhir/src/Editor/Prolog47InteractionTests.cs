@@ -100,9 +100,14 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(p.GetComponent<InteractionInteractor>().CurrentTarget,Is.SameAs(d.upper.ventDoor),"Vent ray: "+string.Join(",",hits));
             yield return Press(Key.E);yield return new WaitForSeconds(1.1f);
             Assert.That(d.upper.ventDoor.IsOpen,Is.False,"Rusted vent stays shut without the crowbar");
+            Assert.That(CampaignState.Instance.HasInventoryItem("EVENT_P0_VENT_PRIZED"),Is.False,"Grille is still on without the crowbar");
             Item(AtmajaAction.Crowbar).Interact();
             Assert.That(CampaignState.Instance.HasInventoryItem("ITEM_P0_CROWBAR"),Is.True,"Crowbar pickup registers");
-            yield return Press(Key.E);yield return new WaitForSeconds(1.1f);Assert.That(d.upper.ventDoor.IsOpen,Is.True);
+            yield return Press(Key.E);yield return new WaitForSeconds(1.1f);
+            // Designer Nov: prying rips the grille off for good — persisted,
+            // never a door that swings open and shut again.
+            Assert.That(CampaignState.Instance.HasInventoryItem("EVENT_P0_VENT_PRIZED"),Is.True,"Prying registers");
+            Assert.That(d.upper.ventDoor.gameObject.activeInHierarchy,Is.False,"Prized grille is gone, not left swinging");
             // Crawling through still needs AR + crouch at the open grille.
             device.currentScanMode=ScanVisualMode.AR;device.SyncVisualState();
             yield return new WaitForSeconds(.3f);
