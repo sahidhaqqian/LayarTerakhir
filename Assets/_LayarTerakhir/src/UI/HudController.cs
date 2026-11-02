@@ -245,6 +245,9 @@ namespace LayarTerakhir.UI
             if (objectiveText != null && documentPanel != null && padlockPanel != null && blackFadeImage != null)
             {
                 BindUIEvents();
+                // Baked scene HUDs predate the round-dot fix: enforce it on
+                // every load, not just on first build.
+                EnforceCrosshair();
                 return;
             }
 
@@ -290,11 +293,12 @@ namespace LayarTerakhir.UI
             crossRect.anchorMax = new Vector2(0.5f, 0.5f);
             crossRect.pivot = new Vector2(0.5f, 0.5f);
             crossRect.anchoredPosition = Vector2.zero;
-            crossRect.sizeDelta = new Vector2(12f, 12f);
+            crossRect.sizeDelta = new Vector2(8f, 8f);
             Image crossImg = crosshairObj.AddComponent<Image>();
             crossImg.sprite = CircleSprite();
             crossImg.color = new Color(1f, 1f, 1f, 0.9f);
             crossImg.raycastTarget = false;
+            EnforceCrosshair();
 
             objectiveText = CreateText("ObjectiveText", canvas.transform, defaultFont, 22, TextAnchor.UpperLeft);
             RectTransform objRect = objectiveText.GetComponent<RectTransform>();
@@ -1080,7 +1084,9 @@ namespace LayarTerakhir.UI
         }
 
         private static Sprite circleSprite;
-        private static Sprite CircleSprite()
+        // Public so the scene-baking editor pass (separate assembly) can use
+        // the same dot. Generated once, shared by every HUD.
+        public static Sprite CircleSprite()
         {
             if (circleSprite) return circleSprite;
             const int s = 64;
@@ -1090,12 +1096,36 @@ namespace LayarTerakhir.UI
             {
                 float dx = (x + .5f) / s * 2 - 1, dy = (y + .5f) / s * 2 - 1;
                 float d = Mathf.Sqrt(dx * dx + dy * dy);
-                float a = Mathf.Clamp01((1 - d) * 4);
+                float a = Mathf.Clamp01((1 - d) * 48);
                 tex.SetPixel(x, y, new Color(1, 1, 1, a));
             }
             tex.Apply();
             circleSprite = Sprite.Create(tex, new Rect(0, 0, s, s), new Vector2(.5f, .5f), s);
             return circleSprite;
+        }
+        // Styles the center dot on every load. Baked scene HUDs keep their
+        // old square dot unless this runs — a sprite miss here is exactly
+        // why players still saw a square after the round-dot change.
+        private void EnforceCrosshair()
+        {
+            var canvas = GetComponentInChildren<Canvas>();
+            if (!canvas) return;
+            var t = canvas.transform.Find("Crosshair");
+            if (!t) return;
+            var rect = t.GetComponent<RectTransform>();
+            if (rect)
+            {
+                rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(.5f, .5f);
+                rect.anchoredPosition = Vector2.zero;
+                rect.sizeDelta = new Vector2(8f, 8f);
+            }
+            var img = t.GetComponent<Image>();
+            if (img)
+            {
+                img.sprite = CircleSprite();
+                img.color = new Color(1f, 1f, 1f, 0.9f);
+                img.raycastTarget = false;
+            }
         }
         private static GameObject CreateUIObject(string name, Transform parent)
         {
