@@ -75,6 +75,37 @@ namespace LayarTerakhir.Editor
             Debug.Log("KOS_V2 Applied incremental furnished-room corrections; 6 x 4.5m preserved.");
         }
 
+        // Designer Nov 2026: Raka's wardrobe faces the east wall (backwards).
+        // Turns it 180° in place so the doors face the room. Position-preserving
+        // (rotates about the bounds centre, footprint identical under a half
+        // turn), so the CompactKosPolish layout and collider aprons are untouched.
+        // Idempotent: skips when the doors already face west. Full Apply() is not
+        // used here — its chair pass predates the current scene structure.
+        public static void ApplyWardrobeFacing()
+        {
+            EditorSceneManager.OpenScene(PrologKosSceneBuilder.ScenePath);
+            var wardrobe = Find("bookcaseClosedDoors");
+            float yaw = wardrobe.transform.rotation.eulerAngles.y;
+            float east = Mathf.Abs(Mathf.DeltaAngle(yaw, 90f));
+            float west = Mathf.Abs(Mathf.DeltaAngle(yaw, 270f));
+            if (west <= east)
+            {
+                Debug.Log("KOS_WARDROBE_FACING already west (yaw " + yaw.ToString("F1") + "), no change");
+                return;
+            }
+            var before = BoundsOf(wardrobe);
+            wardrobe.transform.RotateAround(before.center, Vector3.up, 180f);
+            Physics.SyncTransforms();
+            var after = BoundsOf(wardrobe);
+            if ((after.center - before.center).magnitude > .01f)
+                throw new Exception("Wardrobe drifted while turning");
+            FitBox(Find("LemariPakaian").GetComponent<BoxCollider>(), after);
+            EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
+            EditorSceneManager.SaveOpenScenes();
+            AssetDatabase.SaveAssets();
+            Debug.Log("KOS_WARDROBE_FACING turned to face the room (yaw " + wardrobe.transform.rotation.eulerAngles.y.ToString("F1") + ")");
+        }
+
         private static void ConfigureNewImports()
         {
             var paths = new[] { "Imported/PolyHaven/plastic_container", "Imported/PolyHaven/wicker_basket_02", "Imported/PolyHaven/fabric_pattern_07" };
@@ -156,7 +187,10 @@ namespace LayarTerakhir.Editor
 
             var wardrobe = Find("bookcaseClosedDoors");
             ResetPrefabRoot(wardrobe,0);
-            wardrobe.transform.rotation = Quaternion.Euler(0, 90, 0);
+            // Doors face the room (west, -X): the Kenney front is +Z, so yaw
+            // 270 turns the doors inward. Yaw 90 parked them facing the east
+            // wall — backwards, as the designer spotted in play.
+            wardrobe.transform.rotation = Quaternion.Euler(0, 270, 0);
             Resize(wardrobe, new Vector3(.56f, 1.95f, .96f));
             SetCenter(wardrobe, new Vector3(2.62f, .981f, 1.48f)); Ground(wardrobe);
             FitBox(Find("LemariPakaian").GetComponent<BoxCollider>(), BoundsOf(wardrobe));

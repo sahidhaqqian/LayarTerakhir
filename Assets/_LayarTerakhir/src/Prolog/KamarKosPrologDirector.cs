@@ -42,6 +42,20 @@ namespace LayarTerakhir.Prolog
         public KosInteractableItem kosDoorItem;
         public Light phoneBedRedLed;
         public KosSceneAudio environmentAudio;
+        public const string CalendarDocumentId = "DOC_KOS_KALENDER_AGUSTUS";
+        // The wall calendar as paper: month grid with the 17th ringed red plus
+        // Raka's handwritten note. The padlock answer is never printed here —
+        // only "three days before" as a deduction prompt.
+        public const string CalendarBody =
+            "SEN  SEL  RAB  KAM  JUM  SAB  MIN\n" +
+            "1  2  3  4  5  6  7\n" +
+            "8  9  10  11  12  13  14\n" +
+            "15  16  <color=#9d1414><b>17</b></color>  18  19  20  21\n" +
+            "22  23  24  25  26  27  28\n" +
+            "29  30  31\n\n" +
+            "<color=#9d1414><b>(17) dilingkari merah — Merdeka.</b></color>\n" +
+            "Catatan kecil di bawahnya:\n" +
+            "\"Ibu bertambah usia tiga hari sebelumnya. Jangan lupa telepon.\"";
 
         private void Awake()
         {
@@ -356,8 +370,8 @@ namespace LayarTerakhir.Prolog
         private void HandleInspectCalendar()
         {
             HudController.Instance.OpenDocumentModal(
-                "KALENDER DINDING KAMAR KOS",
-                "AGUSTUS\n\nTanggal 17 ditandai: Merdeka.\nDi bawahnya ada catatan kecil:\n\"Ibu bertambah usia tiga hari sebelumnya. Jangan lupa telepon.\""
+                "KALENDER DINDING — AGUSTUS",
+                CalendarBody, null, CalendarDocumentId
             );
         }
 

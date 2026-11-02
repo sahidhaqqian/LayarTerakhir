@@ -84,6 +84,15 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(panel.sprite, Is.SameAs(HudController.DocPaperSprite(HudController.DocPaper.RedEnvelope)), "Kos letter uses the red envelope paper");
             Assert.That(HudController.DocPaperHasBlood(HudController.DocPaper.RedEnvelope), Is.False, "Envelope has no blood");
             hud.documentCloseButton.onClick.Invoke();
+            // Raka's wall calendar opens as its own calendar sheet — red month
+            // band, ringed 17th, handwritten note — never plain notebook text.
+            hud.OpenDocumentModal("KALENDER DINDING — AGUSTUS", LayarTerakhir.Prolog.KamarKosPrologDirector.CalendarBody, null, LayarTerakhir.Prolog.KamarKosPrologDirector.CalendarDocumentId);
+            Assert.That(HudController.PaperFor(LayarTerakhir.Prolog.KamarKosPrologDirector.CalendarDocumentId, "KALENDER DINDING — AGUSTUS"), Is.EqualTo(HudController.DocPaper.WallCalendar), "Calendar routes to its own sheet");
+            Assert.That(panel.sprite, Is.SameAs(HudController.DocPaperSprite(HudController.DocPaper.WallCalendar)), "Calendar uses the calendar sheet, not notebook lines");
+            Assert.That(hud.documentBodyText.font, Is.SameAs(Resources.Load<Font>("Fonts/Kalam-Regular")), "Calendar note is handwritten");
+            Assert.That(HudController.DocPaperHasBlood(HudController.DocPaper.WallCalendar), Is.False, "Calendar carries no blood");
+            Assert.That(hud.documentBodyText.text, Does.Contain("17").And.Contain("tiga hari sebelumnya").And.Not.Contain("1408").And.Not.Contain("14 - 08"), "Calendar keeps the grid + deduction note without printing the code");
+            hud.documentCloseButton.onClick.Invoke();
             // Anything else keeps the lined notebook, aligned to its ruling.
             hud.OpenDocumentModal("STICKY NOTE DI MEJA PC", "Baris satu.", null, null);
             var tex = Resources.Load<Texture2D>("PrologNotebookSheet");

@@ -44,13 +44,16 @@ namespace LayarTerakhir.UI
         private static Sprite _notebookSheetSprite;
         private static readonly System.Collections.Generic.Dictionary<DocPaper, Sprite> _paperSprites = new System.Collections.Generic.Dictionary<DocPaper, Sprite>();
         private static Font _kalamFont, _courierFont;
-        public enum DocPaper { Notebook, RedEnvelope, BloodyNote, Newsprint, DiaryNote, WillNote }
+        public enum DocPaper { Notebook, RedEnvelope, BloodyNote, Newsprint, DiaryNote, WillNote, WallCalendar }
         // Paper + font routing per playtest notes: the kos letter arrives in a red
         // envelope, Damar's survey/diary/will match the grimy Outlast reference
         // (handwriting, blood spots, crumpled), the 1998 clipping is typewritten
-        // newsprint. Everything else keeps the lined notebook.
+        // newsprint, and Raka's wall calendar opens as its own calendar sheet
+        // (red month band, ringed 17th, handwritten note) instead of plain text.
+        // Everything else keeps the lined notebook.
         public static DocPaper PaperFor(string documentId, string title)
         {
+            if (documentId == "DOC_KOS_KALENDER_AGUSTUS" || (title ?? "").Contains("KALENDER")) return DocPaper.WallCalendar;
             if (documentId == "DOC_PROLOG_01_SURAT_KOS") return DocPaper.RedEnvelope;
             if (documentId == "DOC_PROLOG_02_SURVEI_DAMAR" || (title ?? "").Contains("DOKUMEN #2") || (title ?? "").Contains("SURVEI DAMAR")) return DocPaper.BloodyNote;
             if (documentId == "DOC_PROLOG_03_KORAN_1998" || (title ?? "").Contains("DOKUMEN #3") || (title ?? "").Contains("KORAN 1998")) return DocPaper.Newsprint;
@@ -63,7 +66,7 @@ namespace LayarTerakhir.UI
         {
             if (paper == DocPaper.Newsprint)
                 return _courierFont ? _courierFont : (_courierFont = Resources.Load<Font>("Fonts/CourierPrime-Regular"));
-            if (paper == DocPaper.BloodyNote || paper == DocPaper.DiaryNote || paper == DocPaper.WillNote)
+            if (paper == DocPaper.BloodyNote || paper == DocPaper.DiaryNote || paper == DocPaper.WillNote || paper == DocPaper.WallCalendar)
                 return _kalamFont ? _kalamFont : (_kalamFont = Resources.Load<Font>("Fonts/Kalam-Regular"));
             return null;
         }
@@ -86,6 +89,7 @@ namespace LayarTerakhir.UI
                 case DocPaper.Newsprint: baseCol = new Color(.68f, .67f, .61f); seed = 13; blood = 0f; smudge = 1f; crease = .8f; break;
                 case DocPaper.DiaryNote: baseCol = new Color(.64f, .61f, .53f); seed = 14; blood = .8f; smudge = .3f; crease = 1f; break;
                 case DocPaper.WillNote: baseCol = new Color(.60f, .57f, .49f); seed = 15; blood = .6f; smudge = .4f; crease = .9f; break;
+                case DocPaper.WallCalendar: baseCol = new Color(.80f, .76f, .64f); seed = 16; blood = 0f; smudge = .3f; crease = .25f; break;
                 default: baseCol = new Color(.66f, .64f, .56f); seed = 12; blood = 1f; smudge = .3f; crease = 1f; break;
             }
             const int size = 384;
@@ -152,6 +156,13 @@ namespace LayarTerakhir.UI
                     {
                         float k = .25f * smudge;
                         r = r * (1 - k) + .12f * k; g = g * (1 - k) + .11f * k; b = b * (1 - k) + .10f * k;
+                    }
+                    // Wall calendar: printed red month band across the sheet top.
+                    // The modal title sits on this band; the grid + note live below.
+                    if (paper == DocPaper.WallCalendar && v > .84f)
+                    {
+                        float band = .85f + .15f * Mathf.Sin(u * 40f);
+                        r = r * .15f + .60f * band; g = g * .15f + .10f * band; b = b * .15f + .08f * band;
                     }
                     tex.SetPixel(x, y, new Color(Mathf.Clamp01(r), Mathf.Clamp01(g), Mathf.Clamp01(b), 1f));
                 }
@@ -791,12 +802,22 @@ namespace LayarTerakhir.UI
             else if(paper==DocPaper.Newsprint){ink=new Color(.09f,.09f,.09f,.97f);btnInk=new Color(.93f,.92f,.86f,1f);hintInk=new Color(.25f,.25f,.22f,.9f);}
             else{ink=new Color(.14f,.09f,.05f,.97f);btnInk=new Color(.93f,.88f,.76f,1f);hintInk=new Color(.30f,.22f,.14f,.9f);}
             var face=DocFont(paper);
+            // Raka's wall calendar: cream month title on the printed red band,
+            // pencil-dark handwriting for the grid + note below the band.
+            Color titleInk=ink,bodyInk=ink;
+            float titleSize=30,bodySize=24,viewTop=-152f;
+            if(paper==DocPaper.WallCalendar)
+            {
+                titleInk=new Color(.97f,.90f,.76f,.98f);
+                bodyInk=new Color(.16f,.13f,.10f,.97f);
+                titleSize=32;bodySize=23;viewTop=-172f;
+            }
             if(documentTitleText)
             {
-                documentTitleText.color=ink;
+                documentTitleText.color=titleInk;
                 if(face)documentTitleText.font=face;
                 documentTitleText.alignment=TextAnchor.UpperLeft;
-                documentTitleText.fontSize=30;
+                documentTitleText.fontSize=(int)titleSize;
                 var tr=documentTitleText.rectTransform;
                 tr.anchorMin=new Vector2(0,1);tr.anchorMax=new Vector2(1,1);tr.pivot=new Vector2(.5f,1);
                 tr.offsetMin=new Vector2(90,-132);tr.offsetMax=new Vector2(-60,-52);
@@ -806,14 +827,14 @@ namespace LayarTerakhir.UI
             {
                 var vp=presentation.documentScroll.viewport;
                 vp.anchorMin=Vector2.zero;vp.anchorMax=Vector2.one;vp.pivot=new Vector2(.5f,.5f);
-                vp.offsetMin=new Vector2(90,110);vp.offsetMax=new Vector2(-60,-152);
+                vp.offsetMin=new Vector2(90,110);vp.offsetMax=new Vector2(-60,viewTop);
             }
             if(documentBodyText)
             {
-                documentBodyText.color=ink;
+                documentBodyText.color=bodyInk;
                 if(face)documentBodyText.font=face;
                 documentBodyText.alignment=TextAnchor.UpperLeft;
-                documentBodyText.fontSize=24;
+                documentBodyText.fontSize=(int)bodySize;
                 documentBodyText.lineSpacing=1.5f;
                 var br=documentBodyText.rectTransform;
                 br.anchorMin=new Vector2(0,1);br.anchorMax=new Vector2(1,1);br.pivot=new Vector2(.5f,1);

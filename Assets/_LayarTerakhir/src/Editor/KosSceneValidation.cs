@@ -217,6 +217,16 @@ namespace LayarTerakhir.Editor
                 var report=KosSceneValidation.Validate(false);
                 Assert.That(report.failures,Is.Zero,string.Join("\n",report.checks.Where(c=>!c.passed).Select(c=>c.subject+": "+c.kind+" "+c.detail)));
             }
+            [Test] public void WardrobeDoorsFaceTheRoom()
+            {
+                EditorSceneManager.OpenScene(PrologKosSceneBuilder.ScenePath);
+                var wardrobe=GameObject.Find("bookcaseClosedDoors");
+                Assert.That(wardrobe,Is.Not.Null,"Raka's wardrobe exists");
+                // The Kenney front is +Z: yaw 270 turns the double doors west
+                // into the room. Yaw 90 parked them facing the east wall.
+                float yaw=wardrobe.transform.rotation.eulerAngles.y;
+                Assert.That(Mathf.Abs(Mathf.DeltaAngle(yaw,270f)),Is.LessThan(2f),"Wardrobe doors face the room, not the wall (yaw "+yaw.ToString("F1")+")");
+            }
             [Test] public void PlacementValidationDetectsActualFloatingFurniture()
             {
                 EditorSceneManager.OpenScene(PrologKosSceneBuilder.ScenePath);

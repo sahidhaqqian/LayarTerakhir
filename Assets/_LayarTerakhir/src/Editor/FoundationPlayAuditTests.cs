@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using LayarTerakhir.Core;
 using LayarTerakhir.Player;
@@ -46,6 +47,11 @@ namespace LayarTerakhir.Editor.Tests
             _keyboard = InputSystem.AddDevice<Keyboard>();
             _mouse = InputSystem.AddDevice<Mouse>();
             Time.timeScale = 10f;
+            // Xvfb batch mode has no focused GameView: mark the app focused so the
+            // synthetic keys reach the game (GameInputConfig gates on this flag),
+            // like the Atmaja fixture. Assigned directly — broadcasting focus
+            // would edge-trigger the handset auto-raise during the incoming call.
+            UiFocus.ApplicationFocused = true;
             Assert.That(Application.isPlaying, Is.True);
             int initialFrame = Time.frameCount;
             while (Time.frameCount == initialFrame) yield return null;
@@ -72,6 +78,63 @@ namespace LayarTerakhir.Editor.Tests
 
         [UnityTest]
         public IEnumerator KosSequenceWithJacketFirst() => RunInPlayerLoop(CompleteKos(true));
+
+        [UnityTest] public IEnumerator KosCalendarPaperShowsSheetAndNote() => RunInPlayerLoop(CalendarPaperProof());
+        private IEnumerator CalendarPaperProof()
+        {
+            var director = Find<KamarKosPrologDirector>(); var hud = Find<HudController>();
+            yield return WaitForStage(KosPrologStage.WaitReadSuratIbuKos);
+            // Stand where the flow test stands, look at the wall calendar.
+            PlacePlayer(new Vector3(.85f, .05f, .5f));
+            var player = Find<FirstPersonController>(); bool wasEnabled = player.enabled; player.enabled = false;
+            var interactor = Find<InteractionInteractor>();
+            interactor.playerCamera.transform.LookAt(director.wallCalendarItem.transform.position);
+            Physics.SyncTransforms(); yield return null;
+            // Same entry point the E press dispatches to.
+            director.OnObjectInteracted(director.wallCalendarItem);
+            // The modal fades in; capture only once it is fully up (the Atmaja
+            // document proofs wait ~1s after opening for the same reason).
+            yield return new WaitForSeconds(1.5f);
+            Assert.That(hud.IsModalOpen, Is.True, "Calendar opens its paper sheet");
+            Assert.That(hud.documentBodyText.text, Does.Contain("tiga hari sebelumnya").And.Not.Contain("1408").And.Not.Contain("14 - 08"), "Modal keeps the deduction note without printing the code");
+            var panel = hud.documentPanel.GetComponent<UnityEngine.UI.Image>();
+            Assert.That(panel.sprite, Is.SameAs(HudController.DocPaperSprite(HudController.DocPaper.WallCalendar)), "Modal wears the calendar sheet");
+            // The modal canvas is bound to the game-view camera, not necessarily
+            // the interaction camera: capture with every live camera and keep
+            // the first-person framing like the Atmaja document proofs.
+            player.GetComponent<ShoulderCameraRig>().SetPerspective(PlayerPerspective.FirstPerson);
+            player.GetComponent<ShoulderCameraRig>().RefreshCameraPose();
+            yield return null; yield return null;
+            // The modal lives on a ScreenSpace-Overlay canvas, which a raw camera
+            // render skips. Temporarily bind overlays to the capture eye like
+            // the Atmaja document proofs do, then restore.
+            var eye = UnityEngine.Camera.main ? UnityEngine.Camera.main : interactor.playerCamera;
+            var overlays = UnityEngine.Object.FindObjectsByType<Canvas>(FindObjectsSortMode.None).Where(c => c.isRootCanvas && c.renderMode == RenderMode.ScreenSpaceOverlay && c.gameObject.activeInHierarchy).ToArray();
+            try
+            {
+                foreach (var canvas in overlays) { canvas.renderMode = RenderMode.ScreenSpaceCamera; canvas.worldCamera = eye; canvas.planeDistance = eye.nearClipPlane + .02f; }
+                Canvas.ForceUpdateCanvases();
+                KosRenderDiagnosis.Capture(eye, "kos-calendar-paper-note", false, "Audit/Visuals/KosCalendarProof");
+                // The handwritten note sits below the grid: scroll to the bottom
+                // and prove it renders on the same sheet.
+                var scroll = hud.GetComponent<HudPresentation>().documentScroll;
+                scroll.verticalNormalizedPosition = 0f;
+                Canvas.ForceUpdateCanvases();
+                KosRenderDiagnosis.Capture(eye, "kos-calendar-paper-note-scrolled", false, "Audit/Visuals/KosCalendarProof");
+            }
+            finally
+            {
+                foreach (var canvas in overlays) { canvas.renderMode = RenderMode.ScreenSpaceOverlay; canvas.worldCamera = null; }
+                Canvas.ForceUpdateCanvases();
+            }
+            CloseDocument();
+            // The wall sheet itself must never print the code either.
+            var wallNote = GameObject.Find("BirthdayClue");
+            Assert.That(wallNote, Is.Not.Null, "Wall calendar note exists in play");
+            Assert.That(wallNote.GetComponent<UnityEngine.UI.Text>().text, Does.Contain("tiga hari sebelumnya").And.Not.Contain("1408").And.Not.Contain("14 - 08").And.Not.Contain("14-08"), "Wall keeps the deduction note without printing the code");
+            KosRenderDiagnosis.Capture(interactor.playerCamera, "kos-wall-calendar-playmode", false, "Audit/Visuals/KosCalendarProof");
+            player.enabled = wasEnabled;
+        }
 
         [UnityTest]
         public IEnumerator PauseSettingsAndResumeOwnInputAndTime() => RunInPlayerLoop(PauseSettings());
@@ -143,7 +206,14 @@ namespace LayarTerakhir.Editor.Tests
             CloseDocument();
             yield return Interact(director.wallCalendarItem, new Vector3(.85f, .05f, .5f));
             Assert.That(hud.documentBodyText.text, Does.Contain("tiga hari sebelumnya").And.Not.Contain("1408").And.Not.Contain("14 - 08"));
+            KosRenderDiagnosis.Capture(Find<InteractionInteractor>().playerCamera, "kos-calendar-paper-note", false, "Audit/Visuals/KosCalendarProof");
             CloseDocument();
+            // The wall sheet itself must also never print the padlock code —
+            // the design deduces 14 from the ringed 17 + the note.
+            var wallNote = GameObject.Find("BirthdayClue");
+            Assert.That(wallNote, Is.Not.Null, "Wall calendar note exists in play");
+            Assert.That(wallNote.GetComponent<UnityEngine.UI.Text>().text, Does.Contain("tiga hari sebelumnya").And.Not.Contain("1408").And.Not.Contain("14 - 08").And.Not.Contain("14-08"));
+            KosRenderDiagnosis.Capture(Find<InteractionInteractor>().playerCamera, "kos-wall-calendar-playmode", false, "Audit/Visuals/KosCalendarProof");
             if (jacketFirst) yield return Interact(director.jacketItem, new Vector3(1.05f, 0.05f, -0.4f));
             yield return Interact(director.lockedDrawerItem, new Vector3(.95f, .05f, -.65f));
             FoundationAuditTests.Button(hud, "UnlockPadlockBtn").onClick.Invoke();
