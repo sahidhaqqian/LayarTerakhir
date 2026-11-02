@@ -1,95 +1,83 @@
+using System.Collections.Generic;
 using LayarTerakhir.Core;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace LayarTerakhir.Player
 {
-    // Small gold blink floating above every must-take item (Kos supplies,
-    // Damar's phone, clock hands, crowbar, basement gear, readable evidence).
-    // A quiet 2 Hz brightness blink + gentle bob, billboarded to the camera.
-    // Hides itself once the item is taken: parent deactivated, IInteractable
-    // no longer interactable, or the completedFlag present in the campaign.
+    // Designer Nov: a small FAINT blink directly ON every must-take item —
+    // not a star, not floating above it. The item itself gently breathes
+    // brighter (~1.2 Hz sine, low amplitude) via per-renderer property
+    // blocks, so shared materials are never touched. Hides itself once the
+    // item is taken: parent deactivated, IInteractable no longer
+    // interactable, or the completedFlag present in the campaign.
     public sealed class PickupBlink : MonoBehaviour
     {
         public string completedFlag;
-        private MeshRenderer glow;
-        private Material material;
-        private Mesh mesh;
+        public System.Func<bool> availableWhen;
         private IInteractable target;
-        private Vector3 baseLocal;
+        private readonly List<Renderer> renderers = new List<Renderer>();
+        private readonly List<Color> baseColors = new List<Color>();
+        private readonly List<string> baseProps = new List<string>();
         private float seed;
+        private bool pulsed;
 
         // Idempotent: safe to call from builders, repairs and directors alike.
-        // Always re-snaps above the item so stale scenes self-correct.
-        public static PickupBlink EnsureFor(GameObject item, string completedFlag = null)
+        // availableWhen gates story-locked takes (jacket keys before the
+        // preparation stage, handycam before the powerbank): the blink only
+        // lights once the thing can actually be taken.
+        public static PickupBlink EnsureFor(GameObject item, string completedFlag = null, System.Func<bool> availableWhen = null)
         {
             if (!item) return null;
-            var existing = item.GetComponentInChildren<PickupBlink>(true);
+            // Prefer the blink on the item itself; a floating star child
+            // from the previous design is removed, never reused.
+            foreach (var legacy in item.GetComponentsInChildren<PickupBlink>(true))
+                if (legacy && legacy.gameObject != item) Object.DestroyImmediate(legacy.gameObject);
+            var existing = item.GetComponent<PickupBlink>();
             if (existing)
             {
                 if (!string.IsNullOrEmpty(completedFlag)) existing.completedFlag = completedFlag;
+                if (availableWhen != null) existing.availableWhen = availableWhen;
                 existing.target = item.GetComponentInParent<IInteractable>() ?? item.GetComponent<IInteractable>();
-                existing.SnapAbove();
-                existing.EnsureBuilt();
+                existing.Collect();
+                existing.ClearPulse();
                 return existing;
             }
-            var go = new GameObject("PickupBlink", typeof(MeshFilter), typeof(MeshRenderer));
-            go.transform.SetParent(item.transform, false);
-            var blink = go.AddComponent<PickupBlink>();
+            var blink = item.AddComponent<PickupBlink>();
             blink.completedFlag = completedFlag;
+            blink.availableWhen = availableWhen;
             blink.target = item.GetComponentInParent<IInteractable>() ?? item.GetComponent<IInteractable>();
             blink.seed = Random.Range(0f, 10f);
-            blink.SnapAbove();
-            blink.EnsureBuilt();
+            blink.Collect();
             return blink;
         }
 
         private void Awake()
         {
             seed = Random.Range(0f, 10f);
-            EnsureBuilt();
+            Collect();
         }
 
-        private void EnsureBuilt()
+        private void Collect()
         {
-            if (glow && material && mesh) return;
-            var mf = GetComponent<MeshFilter>(); if (!mf) mf = gameObject.AddComponent<MeshFilter>();
-            glow = GetComponent<MeshRenderer>(); if (!glow) glow = gameObject.AddComponent<MeshRenderer>();
-            if (mf.sharedMesh) mesh = mf.sharedMesh;
-            else
+            renderers.Clear(); baseColors.Clear(); baseProps.Clear();
+            foreach (var r in GetComponentsInChildren<Renderer>(true))
             {
-                mesh = new Mesh { name = "Pickup blink" };
-                mesh.vertices = new[] { new Vector3(0, .055f, 0), new Vector3(.017f, 0, 0), new Vector3(0, -.055f, 0), new Vector3(-.017f, 0, 0), new Vector3(-.04f, 0, 0), new Vector3(0, .009f, 0), new Vector3(.04f, 0, 0), new Vector3(0, -.009f, 0) };
-                mesh.triangles = new[] { 0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7 };
-                mesh.RecalculateBounds();
-                mf.sharedMesh = mesh;
+                if (!r || r is ParticleSystemRenderer) continue;
+                var mat = r.sharedMaterial;
+                if (!mat) continue;
+                string prop = null;
+                if (mat.HasProperty("_BaseColor")) prop = "_BaseColor";
+                else if (mat.HasProperty("_Color")) prop = "_Color";
+                if (prop == null) continue;
+                renderers.Add(r); baseColors.Add(mat.GetColor(prop)); baseProps.Add(prop);
+                // Old floating-star rigs (Nov batch 1) must not linger next
+                // to the new on-item pulse.
+                if (r.gameObject != gameObject && r.GetComponent<PickupBlink>() == null && r.gameObject.name == "PickupBlink")
+                    Destroy(r.gameObject);
             }
-            if (glow.sharedMaterial) material = glow.sharedMaterial;
-            else
-            {
-                var shader = Shader.Find("Universal Render Pipeline/Unlit") ?? Shader.Find("Sprites/Default");
-                material = new Material(shader);
-                glow.sharedMaterial = material;
-            }
-            glow.shadowCastingMode = ShadowCastingMode.Off;
-            glow.receiveShadows = false;
-        }
-
-        private void SnapAbove()
-        {
-            float top = float.NegativeInfinity;
-            var col = GetComponentInParent<Collider>();
-            if (col) top = col.bounds.max.y;
-            else foreach (var r in GetComponentsInParent<Renderer>()) if (r && r.enabled) top = Mathf.Max(top, r.bounds.max.y);
-            if (float.IsNegativeInfinity(top)) top = transform.parent ? transform.parent.position.y + .1f : .3f;
-            var parent = transform.parent;
-            if (parent)
-            {
-                var anchor = new Vector3(parent.position.x, top + .16f, parent.position.z);
-                baseLocal = parent.InverseTransformPoint(anchor);
-            }
-            else baseLocal = new Vector3(0, top + .16f, 0);
-            transform.localPosition = baseLocal;
+            // Remove a legacy star child left by the previous design.
+            foreach (Transform c in transform)
+                if (c.name == "PickupBlink" && c.GetComponent<PickupBlink>() == null) Destroy(c.gameObject);
         }
 
         private bool Taken()
@@ -102,40 +90,49 @@ namespace LayarTerakhir.Player
             return false;
         }
 
+        // k in 0..1: 0 = item's normal look, 1 = peak of the faint blink.
+        public void ApplyPulse(float k)
+        {
+            var block = new MaterialPropertyBlock();
+            for (int i = 0; i < renderers.Count; i++)
+            {
+                var r = renderers[i];
+                if (!r) continue;
+                r.GetPropertyBlock(block);
+                block.SetColor(baseProps[i], baseColors[i] * (1f + .35f * k));
+                r.SetPropertyBlock(block);
+            }
+            pulsed = true;
+        }
+
+        public void ClearPulse()
+        {
+            if (!pulsed) return;
+            for (int i = 0; i < renderers.Count; i++)
+                if (renderers[i]) renderers[i].SetPropertyBlock(null);
+            pulsed = false;
+        }
+
+        // Deterministic core of LateUpdate so tests can pin the story gate
+        // without entering playmode.
+        public bool ShouldShow() =>
+            !Taken() && (target == null || target.CanInteract()) &&
+            (availableWhen == null || availableWhen());
+
         private void LateUpdate()
         {
-            if (!glow) EnsureBuilt();
-            bool show = !Taken() && (target == null || target.CanInteract());
-            glow.enabled = show;
-            if (!show) return;
-            var cam = Camera.main;
-            if (cam) transform.rotation = cam.transform.rotation;
+            bool show = ShouldShow();
+            if (!show) { ClearPulse(); return; }
             float t = Time.time + seed;
-            float blink = (Mathf.Sin(t * Mathf.PI * 2 * 2f) > 0) ? 1f : .3f;
-            float pulse = Mathf.Pow(Mathf.Max(0, Mathf.Sin(t * 3.1f)), 6);
-            transform.localScale = Vector3.one * (1.6f + pulse * .7f);
-            transform.localPosition = baseLocal + new Vector3(0, Mathf.Sin(t * 2.2f) * .02f, 0);
-            material.SetColor("_BaseColor", new Color(1f, .72f, .18f) * (1 + pulse * 2) * blink);
-            if (material.HasProperty("_Color")) material.SetColor("_Color", new Color(1f, .78f, .25f, 1));
+            float k = .5f + .5f * Mathf.Sin(t * Mathf.PI * 2 * 1.2f);
+            ApplyPulse(k * k);
         }
 
-        // EditMode photo rigs don't run LateUpdate: pin the blink at full
-        // brightness facing the proof camera before rendering.
-        public void ShowForPhoto(Camera cam)
-        {
-            EnsureBuilt();
-            SnapAbove();
-            if (cam) transform.rotation = cam.transform.rotation;
-            transform.localScale = Vector3.one * 1.6f;
-            material.SetColor("_BaseColor", new Color(1f, .72f, .18f) * 3);
-            if (material.HasProperty("_Color")) material.SetColor("_Color", new Color(1f, .72f, .18f, 1));
-            glow.enabled = true;
-        }
+        private void OnDisable() => ClearPulse();
+        private void OnDestroy() => ClearPulse();
 
-        private void OnDestroy()
-        {
-            if (material) Destroy(material);
-            if (mesh) Destroy(mesh);
-        }
+        // EditMode photo rigs don't run LateUpdate: pin the peak of the
+        // blink before rendering so the still shows what players see.
+        public void ApplyPeakForPhoto() => ApplyPulse(1f);
     }
 }

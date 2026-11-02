@@ -82,8 +82,10 @@ namespace LayarTerakhir.Prolog
             if (suratKosItem) PickupBlink.EnsureFor(suratKosItem.gameObject);
             if (smartphoneBedItem) PickupBlink.EnsureFor(smartphoneBedItem.gameObject);
             if (lockedDrawerItem) PickupBlink.EnsureFor(lockedDrawerItem.gameObject);
-            if (jacketItem) PickupBlink.EnsureFor(jacketItem.gameObject);
-            if (motorKeyItem) PickupBlink.EnsureFor(motorKeyItem.gameObject);
+            // Jacket and motor key refuse before the preparation stage, so
+            // their blink waits too — it only lights what can be taken.
+            if (jacketItem) PickupBlink.EnsureFor(jacketItem.gameObject, null, () => currentStage >= KosPrologStage.PreparationAndDrawerPuzzle);
+            if (motorKeyItem) PickupBlink.EnsureFor(motorKeyItem.gameObject, null, () => currentStage >= KosPrologStage.PreparationAndDrawerPuzzle);
         }
         private IEnumerator AwaitMenuChoice()
         {

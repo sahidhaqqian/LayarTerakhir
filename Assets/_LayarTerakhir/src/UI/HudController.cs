@@ -283,14 +283,16 @@ namespace LayarTerakhir.UI
 
             GameObject crosshairObj = CreateUIObject("Crosshair", canvas.transform);
             RectTransform crossRect = crosshairObj.GetComponent<RectTransform>();
-            // Designer Nov: the center dot was 8px and nearly invisible, so
-            // aiming items felt like guesswork. 16px idle reads at a glance.
+            // Designer Nov: the center dot must be ROUND, not a square.
+            // Generated circle sprite with a soft edge; 12px idle reads
+            // without covering small pickups at range.
             crossRect.anchorMin = new Vector2(0.5f, 0.5f);
             crossRect.anchorMax = new Vector2(0.5f, 0.5f);
             crossRect.pivot = new Vector2(0.5f, 0.5f);
             crossRect.anchoredPosition = Vector2.zero;
-            crossRect.sizeDelta = new Vector2(16f, 16f);
+            crossRect.sizeDelta = new Vector2(12f, 12f);
             Image crossImg = crosshairObj.AddComponent<Image>();
+            crossImg.sprite = CircleSprite();
             crossImg.color = new Color(1f, 1f, 1f, 0.9f);
             crossImg.raycastTarget = false;
 
@@ -1077,6 +1079,24 @@ namespace LayarTerakhir.UI
             return font;
         }
 
+        private static Sprite circleSprite;
+        private static Sprite CircleSprite()
+        {
+            if (circleSprite) return circleSprite;
+            const int s = 64;
+            var tex = new Texture2D(s, s, TextureFormat.ARGB32, false);
+            tex.wrapMode = TextureWrapMode.Clamp;
+            for (int y = 0; y < s; y++) for (int x = 0; x < s; x++)
+            {
+                float dx = (x + .5f) / s * 2 - 1, dy = (y + .5f) / s * 2 - 1;
+                float d = Mathf.Sqrt(dx * dx + dy * dy);
+                float a = Mathf.Clamp01((1 - d) * 4);
+                tex.SetPixel(x, y, new Color(1, 1, 1, a));
+            }
+            tex.Apply();
+            circleSprite = Sprite.Create(tex, new Rect(0, 0, s, s), new Vector2(.5f, .5f), s);
+            return circleSprite;
+        }
         private static GameObject CreateUIObject(string name, Transform parent)
         {
             GameObject go = new GameObject(name);

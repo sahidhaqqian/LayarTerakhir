@@ -83,11 +83,10 @@ namespace LayarTerakhir.UI
             if(reticle)
             {
                 reticle.enabled=!modal&&!UiFocus.Cinematic&&hud.blackFadeImage.color.a<.01f;
-                // Designer Nov: the center dot was tiny and gave no feedback,
-                // so players couldn't tell when an item was actually aimed.
-                // Idle 16px white; on-target 24px warm gold.
+                // Designer Nov: the center dot is ROUND, 12px idle, 18px warm
+                // gold on-target — small enough to aim precisely.
                 bool hasTarget=!string.IsNullOrEmpty(hud.interactionPromptText.text);
-                reticle.rectTransform.sizeDelta=hasTarget?new Vector2(24,24):new Vector2(16,16);
+                reticle.rectTransform.sizeDelta=hasTarget?new Vector2(18,18):new Vector2(12,12);
                 reticle.color=hasTarget?new Color(1f,.88f,.35f,.95f):new Color(1f,1f,1f,.9f);
             }
             if(hud.padlockDigitsText && digits!=hud.padlockDigitsText.text)

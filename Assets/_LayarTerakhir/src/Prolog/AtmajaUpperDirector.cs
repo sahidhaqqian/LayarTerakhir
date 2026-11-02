@@ -182,13 +182,15 @@ namespace LayarTerakhir.Prolog
             {
                 if (!it || done.Contains(it.action)) continue;
                 string flag = null;
+                System.Func<bool> gate = null;
                 switch (it.action)
                 {
                     case AtmajaAction.DamarPhone: flag = "MATABATIN_APK"; break;
                     case AtmajaAction.ClockHands: flag = "ITEM_P0_CLOCK_HANDS"; break;
                     case AtmajaAction.Crowbar: flag = "ITEM_P0_CROWBAR"; break;
                     case AtmajaAction.Powerbank: flag = "EVENT_P0_POWERBANK_TAKEN"; break;
-                    case AtmajaAction.Handycam: flag = AtmajaBasementHorror.HandycamId; break;
+                    // Handycam refuses before the powerbank is hooked up.
+                    case AtmajaAction.Handycam: flag = AtmajaBasementHorror.HandycamId; gate = () => Has("EVENT_P0_POWERBANK_TAKEN"); break;
                     case AtmajaAction.Diary: flag = DiaryId; break;
                     case AtmajaAction.WillLetter: flag = WillId; break;
                     case AtmajaAction.BathCurtain: flag = "EVENT_P0_CURTAIN_OPEN"; break;
@@ -197,7 +199,7 @@ namespace LayarTerakhir.Prolog
                     default: continue;
                 }
                 done.Add(it.action);
-                PickupBlink.EnsureFor(it.gameObject, flag);
+                PickupBlink.EnsureFor(it.gameObject, flag, gate);
             }
         }
         public int ChainsBroken=>(Has("EVENT_P0_CHAIN1_BROKEN")?1:0)+(Has("EVENT_P0_CHAIN2_BROKEN")?1:0)+(Has("EVENT_P0_CHAIN3_BROKEN")?1:0);

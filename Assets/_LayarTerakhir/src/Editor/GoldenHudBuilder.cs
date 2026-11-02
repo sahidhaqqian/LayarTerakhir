@@ -134,7 +134,7 @@ namespace LayarTerakhir.Editor
                 if(button.name=="UnlockPadlockBtn")text.text="Buka gembok";
                 if(button.name=="CancelPadlockBtn")text.text="Batal";
             }
-            p.reticle=canvas.transform.Find("Crosshair").GetComponent<Image>();p.reticle.color=new Color(1f,1f,1f,.9f);p.reticle.rectTransform.anchorMin=p.reticle.rectTransform.anchorMax=p.reticle.rectTransform.pivot=new Vector2(.5f,.5f);p.reticle.rectTransform.anchoredPosition=Vector2.zero;p.reticle.rectTransform.sizeDelta=new Vector2(16,16);
+            p.reticle=canvas.transform.Find("Crosshair").GetComponent<Image>();p.reticle.color=new Color(1f,1f,1f,.9f);p.reticle.rectTransform.anchorMin=p.reticle.rectTransform.anchorMax=p.reticle.rectTransform.pivot=new Vector2(.5f,.5f);p.reticle.rectTransform.anchoredPosition=Vector2.zero;p.reticle.rectTransform.sizeDelta=new Vector2(12,12);
             hud.phoneStatusText.text=string.Empty;hud.objectiveText.text=string.Empty;hud.subtitleText.text=string.Empty;hud.broadcastToastText.text=string.Empty;
             hud.interactionPromptText.text=string.Empty;hud.blackFadeImage.color=Color.clear;hud.blackFadeImage.transform.SetAsLastSibling();
             hud.documentPanel.SetActive(false);hud.padlockPanel.SetActive(false);

@@ -26,7 +26,9 @@ namespace LayarTerakhir.Editor
                 var b = BoundsOf(surat);
                 cam.transform.position = b.center + new Vector3(.35f, .75f, .55f);
                 cam.transform.rotation = Quaternion.LookRotation((b.center - cam.transform.position).normalized);
-                blink.ShowForPhoto(cam);
+                blink.ClearPulse();
+                KosRenderDiagnosis.Capture(cam, "kos-surat-blink-off", false, "Audit/Visuals/PickupBlinkProof");
+                blink.ApplyPeakForPhoto();
                 KosRenderDiagnosis.Capture(cam, "kos-surat-blink", false, "Audit/Visuals/PickupBlinkProof");
                 Object.DestroyImmediate(cam.gameObject);
             }
@@ -47,7 +49,9 @@ namespace LayarTerakhir.Editor
                 var b = BoundsOf(crow);
                 cam.transform.position = d.P(.55f, 7.1f, 1.6f);
                 cam.transform.rotation = Quaternion.LookRotation((b.center - cam.transform.position).normalized);
-                blink.ShowForPhoto(cam);
+                blink.ClearPulse();
+                KosRenderDiagnosis.Capture(cam, "atmaja-crowbar-blink-off", false, "Audit/Visuals/PickupBlinkProof");
+                blink.ApplyPeakForPhoto();
                 KosRenderDiagnosis.Capture(cam, "atmaja-crowbar-blink", false, "Audit/Visuals/PickupBlinkProof");
                 Object.DestroyImmediate(cam.gameObject);
             }
