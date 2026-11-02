@@ -54,6 +54,26 @@ namespace LayarTerakhir.Editor.Tests
             var feast = Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None)
                 .Where(t => t && (t.name.StartsWith("AddedDinner_") || t.name.StartsWith("AddedDish_") || t.name.StartsWith("DiningCenter_"))).ToArray();
             Assert.That(feast.Length, Is.AtLeast(20), "Bug-39 feast survives");
+            // Designer Nov: the spread is four visibly different spoiled dishes
+            // (moldy bread, rotten apple, stale rice, spoiled sausage) — never
+            // twelve identical servings again.
+            int apples = 0, buns = 0, rice = 0, sausage = 0;
+            foreach (var t in feast.Where(t => t.name.StartsWith("AddedDinner_") && !t.name.Contains("Rat")))
+            {
+                var fmat = t.gameObject.GetComponentsInChildren<Renderer>(true).Where(r => r && r.enabled)
+                    .SelectMany(r => r.sharedMaterials).Where(m => m).Select(m => m.name).ToArray();
+                // Review models keep their CC0 source material names
+                // (Review_food_apple_01, Review_hamburger_buns); the Kenney
+                // dishes wear the Repair_RottenRice/Meat rot tints.
+                if (fmat.Any(m => m.Contains("food_apple"))) apples++;
+                else if (fmat.Any(m => m.Contains("buns"))) buns++;
+                else if (fmat.Any(m => m.Contains("RottenRice"))) rice++;
+                else if (fmat.Any(m => m.Contains("RottenMeat"))) sausage++;
+            }
+            Assert.That(apples, Is.GreaterThanOrEqualTo(2), "Rotten apples on the spread");
+            Assert.That(buns, Is.GreaterThanOrEqualTo(2), "Moldy bread on the spread");
+            Assert.That(rice, Is.GreaterThanOrEqualTo(2), "Stale rice on the spread");
+            Assert.That(sausage, Is.GreaterThanOrEqualTo(2), "Spoiled sausage on the spread");
             // Designer Nov: every dish on the table is spoiled — no fresh serving
             // vessels remain, rat carcasses lie on the plates, black smoke hangs
             // over the spread.
@@ -80,8 +100,19 @@ namespace LayarTerakhir.Editor.Tests
             {
                 var b = VisualBounds(t.gameObject);
                 Assert.That(b.min.y, Is.AtLeast(tb.max.y - .02f), t.name + " is not sunk into the table");
-                Assert.That(b.min.y, Is.AtMost(tb.max.y + .10f), t.name + " rests on the table, not floating");
+                Assert.That(b.min.y, Is.AtMost(tb.max.y + .045f), t.name + " rests on the table, not floating");
                 Assert.That(b.center.x, Is.EqualTo(tb.center.x).Within(tb.extents.x + .3f), t.name + " sits over the table");
+            }
+            // Dishes rest on their own plates, not on air: each food / seat rat
+            // sits within 15 mm of its plate top.
+            foreach (var t in feast.Where(t => (t.name.StartsWith("AddedDinner_") && !t.name.Contains("Center")) || (t.name.StartsWith("AddedDinner_Rat_") && !t.name.Contains("Center"))))
+            {
+                string seat = t.name.StartsWith("AddedDinner_Rat_") ? t.name.Replace("AddedDinner_Rat_", "") : t.name.Replace("AddedDinner_", "");
+                var plate = Find("AddedDish_" + seat);
+                Assert.That(plate, Is.Not.Null, "Seat " + seat + " has its plate");
+                float plateTop = VisualBounds(plate).max.y;
+                float gap = VisualBounds(t.gameObject).min.y - plateTop;
+                Assert.That(gap, Is.InRange(-.005f, .015f), t.name + " sits on its plate, gap " + gap.ToString("F3"));
             }
         }
 
@@ -288,15 +319,22 @@ namespace LayarTerakhir.Editor.Tests
         }
 
         [Test]
-        public void CrowbarWaitsInTheStorageNook()
+        public void CrowbarHidesUnderTheStairs()
         {
             var d = Open();
             var crow = GameObject.Find("StorageCrowbar");
-            Assert.That(crow && crow.activeInHierarchy, Is.True, "CC0 crowbar waits in storage");
+            Assert.That(crow && crow.activeInHierarchy, Is.True, "CC0 crowbar waits under the stairs");
             var cb = VisualBounds(crow);
             float longHoriz = Mathf.Max(cb.size.x, cb.size.z);
             Assert.That(longHoriz, Is.InRange(.4f, .8f), "Crowbar lies flat as a full pry bar, not a speck");
             Assert.That(cb.min.y, Is.EqualTo(.5f).Within(.12f), "Crowbar rests on the nook floor");
+            // Hidden under the lower stair flight, not out on the open floor:
+            // its footprint stays within a metre of the flight's footprint.
+            var stair = GameObject.Find("StairFlightLower");
+            Assert.That(stair, Is.Not.Null, "Lower stair flight exists");
+            var sb = VisualBounds(stair);
+            Assert.That(cb.center.x, Is.InRange(sb.min.x - 1f, sb.max.x + 1f), "Crowbar hides by the stairs (x)");
+            Assert.That(cb.center.z, Is.InRange(sb.min.z - 1f, sb.max.z + 1f), "Crowbar hides by the stairs (z)");
             var mats = crow.GetComponentsInChildren<Renderer>(true).Where(r => r && r.enabled)
                 .SelectMany(r => r.sharedMaterials).Where(m => m).Distinct().ToArray();
             Assert.That(mats.Any(m => m.HasProperty("_BaseMap") && m.GetTexture("_BaseMap") && m.GetTexture("_BaseMap").name.Contains("crowbar")), Is.True, "Crowbar wears its CC0 diffuse");

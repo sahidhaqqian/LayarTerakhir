@@ -1,9 +1,9 @@
 {
     "scene": "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity",
-    "utc": "2026-10-27T02:53:53.7159260Z",
+    "utc": "2026-11-02T15:20:10.5138630Z",
     "failures": 0,
-    "triangles": 114455,
-    "renderers": 208,
+    "triangles": 108259,
+    "renderers": 191,
     "textureMaximum": 1024,
     "reachableGridCells": 95,
     "roomDimensions": {
@@ -197,7 +197,7 @@
         {
             "subject": "KosSandals",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (0.60, 0.04, -1.51), Extents: (0.13, 0.03, 0.13)",
+            "detail": "Actual mesh bounds Center: (0.60, 0.03, -1.51), Extents: (0.12, 0.03, 0.14)",
             "passed": true,
             "measured": 0.0
         },
@@ -951,20 +951,6 @@
             "measured": 0.0
         },
         {
-            "subject": "SandalRubber",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "SandalStrap",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
             "subject": "BagCanvas",
             "kind": "mesh-reference",
             "detail": "Visible MeshFilter must reference an imported/generated mesh",
@@ -1127,6 +1113,20 @@
         },
         {
             "subject": "PhoneCharger",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FlipFlop_L_Sole",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FlipFlop_R_Sole",
             "kind": "mesh-reference",
             "detail": "Visible MeshFilter must reference an imported/generated mesh",
             "passed": true,
@@ -1350,20 +1350,6 @@
             "measured": 0.0
         },
         {
-            "subject": "cur_middle_wire",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "cur_top_wire",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
             "subject": "geo_arm_1_a",
             "kind": "mesh-reference",
             "detail": "Visible MeshFilter must reference an imported/generated mesh",
@@ -1427,63 +1413,7 @@
             "measured": 0.0
         },
         {
-            "subject": "geo_lower-spring_a",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_lower-spring_a_bottom-hook",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_lower-spring_a_top-hook",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_lower-spring_b",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_lower-spring_b_bottom-hook",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_lower-spring_b_top-hook",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_lower-spring_top-bar",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
             "subject": "geo_middle-pivot",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_middle_wire",
             "kind": "mesh-reference",
             "detail": "Visible MeshFilter must reference an imported/generated mesh",
             "passed": true,
@@ -1498,55 +1428,6 @@
         },
         {
             "subject": "geo_top-pivot",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_top-spring_a",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_top-spring_a_bottom-hook",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_top-spring_a_top-hook",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_top-spring_b",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_top-spring_b_bottom-hook",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_top-spring_b_top-hook",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_top_wire",
             "kind": "mesh-reference",
             "detail": "Visible MeshFilter must reference an imported/generated mesh",
             "passed": true,
@@ -3114,34 +2995,6 @@
             "measured": 98.6138916015625
         },
         {
-            "subject": "SandalRubber",
-            "kind": "material-reference",
-            "detail": "SandalRubberV2",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "SandalRubber",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 149.10166931152345
-        },
-        {
-            "subject": "SandalStrap",
-            "kind": "material-reference",
-            "detail": "SandalStrapV2",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "SandalStrap",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 149.10231018066407
-        },
-        {
             "subject": "BagCanvas",
             "kind": "material-reference",
             "detail": "FadedGreenJacket",
@@ -3195,7 +3048,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 153.68386840820313
+            "measured": 153.6839141845703
         },
         {
             "subject": "FanEnamel",
@@ -3209,7 +3062,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 153.68386840820313
+            "measured": 153.6839141845703
         },
         {
             "subject": "FanMetal",
@@ -3223,7 +3076,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 153.68386840820313
+            "measured": 153.6839141845703
         },
         {
             "subject": "FanWallShelf",
@@ -3504,6 +3357,62 @@
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
             "measured": 1.7320507764816285
+        },
+        {
+            "subject": "FlipFlop_L_Sole",
+            "kind": "material-reference",
+            "detail": "Repair_SandalRubber",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FlipFlop_L_Sole",
+            "kind": "material-reference",
+            "detail": "Repair_SandalFootbed",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FlipFlop_L_Sole",
+            "kind": "material-reference",
+            "detail": "Repair_SandalStrap",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FlipFlop_L_Sole",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 1.633689045906067
+        },
+        {
+            "subject": "FlipFlop_R_Sole",
+            "kind": "material-reference",
+            "detail": "Repair_SandalRubber",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FlipFlop_R_Sole",
+            "kind": "material-reference",
+            "detail": "Repair_SandalFootbed",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FlipFlop_R_Sole",
+            "kind": "material-reference",
+            "detail": "Repair_SandalStrap",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FlipFlop_R_Sole",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 1.6336711645126343
         },
         {
             "subject": "wooden_table_02",
@@ -3947,34 +3856,6 @@
             "measured": 171.78836059570313
         },
         {
-            "subject": "cur_middle_wire",
-            "kind": "material-reference",
-            "detail": "desk_lamp_arm_01",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "cur_middle_wire",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 90.81446075439453
-        },
-        {
-            "subject": "cur_top_wire",
-            "kind": "material-reference",
-            "detail": "desk_lamp_arm_01",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "cur_top_wire",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 90.81446075439453
-        },
-        {
             "subject": "geo_arm_1_a",
             "kind": "material-reference",
             "detail": "desk_lamp_arm_01",
@@ -4108,104 +3989,6 @@
             "measured": 90.99319458007813
         },
         {
-            "subject": "geo_lower-spring_a",
-            "kind": "material-reference",
-            "detail": "desk_lamp_arm_01",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_lower-spring_a",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 90.81443786621094
-        },
-        {
-            "subject": "geo_lower-spring_a_bottom-hook",
-            "kind": "material-reference",
-            "detail": "desk_lamp_arm_01",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_lower-spring_a_bottom-hook",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 90.81443786621094
-        },
-        {
-            "subject": "geo_lower-spring_a_top-hook",
-            "kind": "material-reference",
-            "detail": "desk_lamp_arm_01",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_lower-spring_a_top-hook",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 90.81443786621094
-        },
-        {
-            "subject": "geo_lower-spring_b",
-            "kind": "material-reference",
-            "detail": "desk_lamp_arm_01",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_lower-spring_b",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 90.81443786621094
-        },
-        {
-            "subject": "geo_lower-spring_b_bottom-hook",
-            "kind": "material-reference",
-            "detail": "desk_lamp_arm_01",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_lower-spring_b_bottom-hook",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 90.81443786621094
-        },
-        {
-            "subject": "geo_lower-spring_b_top-hook",
-            "kind": "material-reference",
-            "detail": "desk_lamp_arm_01",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_lower-spring_b_top-hook",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 90.81443786621094
-        },
-        {
-            "subject": "geo_lower-spring_top-bar",
-            "kind": "material-reference",
-            "detail": "desk_lamp_arm_01",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_lower-spring_top-bar",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 90.81443786621094
-        },
-        {
             "subject": "geo_middle-pivot",
             "kind": "material-reference",
             "detail": "desk_lamp_arm_01",
@@ -4218,20 +4001,6 @@
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
             "measured": 90.81443786621094
-        },
-        {
-            "subject": "geo_middle_wire",
-            "kind": "material-reference",
-            "detail": "desk_lamp_arm_01",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_middle_wire",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 90.81446075439453
         },
         {
             "subject": "geo_pivot-holder",
@@ -4260,104 +4029,6 @@
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
             "measured": 90.81443786621094
-        },
-        {
-            "subject": "geo_top-spring_a",
-            "kind": "material-reference",
-            "detail": "desk_lamp_arm_01",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_top-spring_a",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 90.81443786621094
-        },
-        {
-            "subject": "geo_top-spring_a_bottom-hook",
-            "kind": "material-reference",
-            "detail": "desk_lamp_arm_01",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_top-spring_a_bottom-hook",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 90.81443786621094
-        },
-        {
-            "subject": "geo_top-spring_a_top-hook",
-            "kind": "material-reference",
-            "detail": "desk_lamp_arm_01",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_top-spring_a_top-hook",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 90.81443786621094
-        },
-        {
-            "subject": "geo_top-spring_b",
-            "kind": "material-reference",
-            "detail": "desk_lamp_arm_01",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_top-spring_b",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 90.81443786621094
-        },
-        {
-            "subject": "geo_top-spring_b_bottom-hook",
-            "kind": "material-reference",
-            "detail": "desk_lamp_arm_01",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_top-spring_b_bottom-hook",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 90.81443786621094
-        },
-        {
-            "subject": "geo_top-spring_b_top-hook",
-            "kind": "material-reference",
-            "detail": "desk_lamp_arm_01",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_top-spring_b_top-hook",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 90.81443786621094
-        },
-        {
-            "subject": "geo_top_wire",
-            "kind": "material-reference",
-            "detail": "desk_lamp_arm_01",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "geo_top_wire",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 90.814453125
         },
         {
             "subject": "MonitorSignalCable",
@@ -6460,34 +6131,6 @@
             "measured": 0.0
         },
         {
-            "subject": "KosSandals",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "KosSandals",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "SandalRubber",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "SandalStrap",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
             "subject": "KosBackpack",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
@@ -6706,6 +6349,34 @@
         },
         {
             "subject": "FanLead",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosSandals",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "IndonesianFlipFlops",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FlipFlop_L_Sole",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FlipFlop_R_Sole",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
             "passed": true,
@@ -7846,48 +7517,6 @@
             "measured": 95.0
         },
         {
-            "subject": "STICKY_NOTE",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "STICKY_NOTE",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "STICKY_NOTE",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.116146",
-            "passed": true,
-            "measured": 72.0
-        },
-        {
-            "subject": "PC_MONITOR",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PC_MONITOR",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 0.004000067710876465
-        },
-        {
-            "subject": "PC_MONITOR",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.253847",
-            "passed": true,
-            "measured": 67.0
-        },
-        {
             "subject": "JAKET_PINTU",
             "kind": "interaction-references",
             "detail": "Existing item ID, collider and director binding",
@@ -7907,6 +7536,27 @@
             "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.7637089",
             "passed": true,
             "measured": 54.0
+        },
+        {
+            "subject": "SURAT_KOS",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "SURAT_KOS",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 0.013000000268220902
+        },
+        {
+            "subject": "SURAT_KOS",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.675999",
+            "passed": true,
+            "measured": 58.0
         },
         {
             "subject": "LACI_MEJA",
@@ -7951,48 +7601,6 @@
             "measured": 52.0
         },
         {
-            "subject": "SMARTPHONE_BED",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "SMARTPHONE_BED",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 1.1920928955078126e-7
-        },
-        {
-            "subject": "SMARTPHONE_BED",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.448448",
-            "passed": true,
-            "measured": 46.0
-        },
-        {
-            "subject": "SURAT_KOS",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "SURAT_KOS",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 0.013000000268220902
-        },
-        {
-            "subject": "SURAT_KOS",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.675999",
-            "passed": true,
-            "measured": 58.0
-        },
-        {
             "subject": "PINTU_KOS",
             "kind": "interaction-references",
             "detail": "Existing item ID, collider and director binding",
@@ -8012,6 +7620,69 @@
             "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.8480633",
             "passed": true,
             "measured": 78.0
+        },
+        {
+            "subject": "STICKY_NOTE",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "STICKY_NOTE",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "STICKY_NOTE",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.116146",
+            "passed": true,
+            "measured": 72.0
+        },
+        {
+            "subject": "PC_MONITOR",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PC_MONITOR",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 0.004000067710876465
+        },
+        {
+            "subject": "PC_MONITOR",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.253847",
+            "passed": true,
+            "measured": 67.0
+        },
+        {
+            "subject": "SMARTPHONE_BED",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "SMARTPHONE_BED",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 1.1920928955078126e-7
+        },
+        {
+            "subject": "SMARTPHONE_BED",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.448448",
+            "passed": true,
+            "measured": 46.0
         },
         {
             "subject": "KosDoor",
@@ -8039,7 +7710,7 @@
             "kind": "approach-clearance",
             "detail": "Nearest capsule-clear reachable floor cell to actual collider centre",
             "passed": true,
-            "measured": 0.7454192042350769
+            "measured": 0.7454189658164978
         },
         {
             "subject": "DoorOpening",
@@ -8060,7 +7731,7 @@
             "kind": "triangle-budget",
             "detail": "Visible scene meshes, actual submesh index counts",
             "passed": true,
-            "measured": 114455.0
+            "measured": 108259.0
         },
         {
             "subject": "Art",

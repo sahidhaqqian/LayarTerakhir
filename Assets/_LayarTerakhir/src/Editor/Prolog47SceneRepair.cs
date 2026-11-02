@@ -79,6 +79,10 @@ namespace LayarTerakhir.Editor
                     color = new Color(.52f, .50f, .36f); smooth = .18f; break;
                 case "Repair_RotStain":
                     color = new Color(.10f, .085f, .045f); smooth = .75f; break;
+                case "Repair_RottenRice":
+                    color = new Color(.55f, .53f, .40f); smooth = .35f; break;
+                case "Repair_RottenMeat":
+                    color = new Color(.30f, .13f, .08f); smooth = .30f; break;
                 case "Repair_SandalFootbed":
                     customTex = Texs + "SwallowFootbedDiffuse.png"; color = Color.white; smooth = .12f; break;
                 case "Repair_SandalRubber":
@@ -1565,7 +1569,22 @@ namespace LayarTerakhir.Editor
                 ring.transform.position = new Vector3(p.x, plateTop + .0015f, p.z);
                 ring.transform.localScale = new Vector3(.20f, .003f, .20f);
                 ring.GetComponent<Renderer>().sharedMaterial = stain;
-                var food = DesignerReviewBuilder.ReviewModel("AddedDinner_" + i, i % 3 == 0 ? "RottenApple" : "MoldyBread", root, p + Vector3.up * .05f, new Vector3(.15f, .08f, .13f), false);
+                // Four visibly different spoiled dishes, not twelve identical ones:
+                // moldy bread, rotten apple, stale rice (Kenney CC0 rice-ball),
+                // spoiled sausage (Kenney CC0 sausage). Everything grounded to
+                // its own plate so nothing floats.
+                GameObject food;
+                switch (i % 4)
+                {
+                    case 0: food = DesignerReviewBuilder.ReviewModel("AddedDinner_" + i, "RottenApple", root, p + Vector3.up * .05f, new Vector3(.15f, .08f, .13f), false); break;
+                    case 1: food = DesignerReviewBuilder.ReviewModel("AddedDinner_" + i, "MoldyBread", root, p + Vector3.up * .05f, new Vector3(.15f, .08f, .13f), false); break;
+                    case 2: food = ProjectAsset("Assets/_LayarTerakhir/assets/Art/Imported/InterludeStreet/kenney-food-kit/rice-ball.fbx", "AddedDinner_" + i, root, p + Vector3.up * .05f, Quaternion.Euler(0, i * 37, 0), new Vector3(.11f, .07f, .11f), Material("Repair_RottenRice")); break;
+                    default: food = ProjectAsset("Assets/_LayarTerakhir/assets/Art/Imported/InterludeStreet/kenney-food-kit/sausage.fbx", "AddedDinner_" + i, root, p + Vector3.up * .05f, Quaternion.Euler(0, i * 37, 0), new Vector3(.16f, .05f, .06f), Material("Repair_RottenMeat")); break;
+                }
+                if (!food) throw new Exception("Rotten feast food missing for seat " + i);
+                // ProjectAsset fits a BoxCollider; the feast carries none (keeps
+                // interaction rays and the crawl route clean, like before).
+                foreach (var c in food.GetComponentsInChildren<Collider>(true)) Object.DestroyImmediate(c);
                 food.transform.Rotate(Vector3.up, i * 37);
                 Ground(food, plateTop + .002f);
             }
@@ -2345,28 +2364,19 @@ namespace LayarTerakhir.Editor
                 crowRoot.transform.SetParent(env, false);
                 var crowChild = (GameObject)PrefabUtility.InstantiatePrefab(asset);
                 crowChild.transform.SetParent(crowRoot.transform, false);
-                crowRoot.transform.SetPositionAndRotation(d.P(.35f, 6.35f, .56f), Quaternion.Euler(0, 35, 0));
-                // The Poly Haven bar can arrive standing on end; lay its longest
-                // axis flat so it reads as a dropped tool, then ground it.
-                for (int i = 0; i < 2; i++)
-                {
-                    var cb = SafeBounds(crowRoot);
-                    if (cb.size.y > cb.size.x && cb.size.y > cb.size.z)
-                        crowRoot.transform.rotation = crowRoot.transform.rotation * Quaternion.Euler(90, 0, 0);
-                    else break;
-                }
-                var cab = Find("LoungeStorage");
-                Ground(crowRoot, cab ? SafeBounds(cab).min.y : .5f);
-                FitCollider(crowRoot);
                 d.crowbar = crowRoot;
             }
+            // Hidden under the lower stair flight (designer Nov): tucked in the
+            // flight's shadow at its south foot, out of the open nook floor.
+            d.crowbar.transform.SetPositionAndRotation(d.P(-0.6f, 7.9f, .56f), Quaternion.Euler(0, 35, 0));
             var item = d.crowbar.GetComponent<AtmajaItem>();
             if (!item) item = d.crowbar.AddComponent<AtmajaItem>();
             item.director = d;
             item.action = AtmajaAction.Crowbar;
             item.label = "Ambil linggis tua";
             // Normalize every run, not only on create: the bar must lie flat on
-            // the nook floor even if an earlier pass left it standing on end.
+            // the floor under the stairs even if an earlier pass left it
+            // standing on end or out on the open nook floor.
             for (int i = 0; i < 2; i++)
             {
                 var cb = SafeBounds(d.crowbar);
@@ -2374,8 +2384,7 @@ namespace LayarTerakhir.Editor
                     d.crowbar.transform.rotation = d.crowbar.transform.rotation * Quaternion.Euler(90, 0, 0);
                 else break;
             }
-            var cabStorage = Find("LoungeStorage");
-            Ground(d.crowbar, cabStorage ? SafeBounds(cabStorage).min.y : .5f);
+            Ground(d.crowbar, .5f);
             FitCollider(d.crowbar);
         }
 

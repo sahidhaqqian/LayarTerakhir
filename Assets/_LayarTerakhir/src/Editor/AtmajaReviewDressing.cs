@@ -71,13 +71,13 @@ namespace LayarTerakhir.Editor
             Box("StorageLintel",P(.85f,5.45f,3.15f),new Vector3(1.1f,.9f,.15f),plaster);
             Door("StorageDoor",P(.35f,5.45f,.52f),P(.85f,5.45f,1.62f),new Vector3(1,2.2f,.09f),"Buka ruang penyimpanan");
             Existing("painted_wooden_cabinet_02","LoungeStorage",P(.8f,7.25f,1.15f),new Vector3(.95f,1.25f,.45f));
-            // A worker's CC0 crowbar left on the storage-nook floor — pries the
-            // rusted child-room vent. Repair ensures the same on saved scenes.
+            // A worker's CC0 crowbar hidden under the lower stair flight — pries
+            // the rusted child-room vent. Repair ensures the same on saved scenes.
             var crowRoot=new GameObject("StorageCrowbar");crowRoot.transform.SetParent(environment,false);
             var crowChild=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/crowbar/crowbar_01_1k.fbx"));crowChild.transform.SetParent(crowRoot.transform,false);
-            crowRoot.transform.SetPositionAndRotation(P(.35f,6.35f,.56f),Quaternion.Euler(0,35,0));
+            crowRoot.transform.SetPositionAndRotation(P(-.6f,7.9f,.56f),Quaternion.Euler(0,35,0));
             for(int fi=0;fi<2;fi++){var fb=KosVisualV2.BoundsOf(crowRoot);if(fb.size.y>fb.size.x&&fb.size.y>fb.size.z)crowRoot.transform.rotation=crowRoot.transform.rotation*Quaternion.Euler(90,0,0);else break;}
-            crowRoot.transform.position+=Vector3.up*(KosVisualV2.BoundsOf(GameObject.Find("LoungeStorage")).min.y-KosVisualV2.BoundsOf(crowRoot).min.y);
+            crowRoot.transform.position+=Vector3.up*(.5f-KosVisualV2.BoundsOf(crowRoot).min.y);
             FitCollider(crowRoot);director.crowbar=crowRoot;Item(crowRoot,AtmajaAction.Crowbar,"Ambil linggis tua");
             // The bundled GrandfatherClock.fbx renders invisibly in play (its blades
             // + pendulum sit buried at the case base), so the case is the CC0 Poly
