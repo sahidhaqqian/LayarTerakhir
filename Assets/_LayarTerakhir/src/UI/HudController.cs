@@ -283,9 +283,15 @@ namespace LayarTerakhir.UI
 
             GameObject crosshairObj = CreateUIObject("Crosshair", canvas.transform);
             RectTransform crossRect = crosshairObj.GetComponent<RectTransform>();
-            crossRect.sizeDelta = new Vector2(8f, 8f);
+            // Designer Nov: the center dot was 8px and nearly invisible, so
+            // aiming items felt like guesswork. 16px idle reads at a glance.
+            crossRect.anchorMin = new Vector2(0.5f, 0.5f);
+            crossRect.anchorMax = new Vector2(0.5f, 0.5f);
+            crossRect.pivot = new Vector2(0.5f, 0.5f);
+            crossRect.anchoredPosition = Vector2.zero;
+            crossRect.sizeDelta = new Vector2(16f, 16f);
             Image crossImg = crosshairObj.AddComponent<Image>();
-            crossImg.color = new Color(1f, 1f, 1f, 0.75f);
+            crossImg.color = new Color(1f, 1f, 1f, 0.9f);
             crossImg.raycastTarget = false;
 
             objectiveText = CreateText("ObjectiveText", canvas.transform, defaultFont, 22, TextAnchor.UpperLeft);

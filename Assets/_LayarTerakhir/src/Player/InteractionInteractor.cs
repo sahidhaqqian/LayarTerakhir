@@ -51,11 +51,14 @@ namespace LayarTerakhir.Player
             Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
             float cameraOffset = Vector3.Distance(playerCamera.transform.position, transform.position + Vector3.up * 1.3f);
             float rayLength = interactionDistance + cameraOffset;
-            int hitCount = Physics.RaycastNonAlloc(ray, _hits, rayLength, interactableMask, QueryTriggerInteraction.Collide);
+            // Designer Nov: a hair-thin ray made small pickups (keys, crowbar,
+            // drawer handles) frustrating — a near-miss by a pixel lost the
+            // target. A 7 cm sphere keeps walls blocking but forgives aim.
+            int hitCount = Physics.SphereCastNonAlloc(ray, 0.07f, _hits, rayLength, interactableMask, QueryTriggerInteraction.Collide);
             RaycastHit[] hits = _hits;
             if (hitCount == _hits.Length)
             {
-                hits = Physics.RaycastAll(ray, rayLength, interactableMask, QueryTriggerInteraction.Collide);
+                hits = Physics.SphereCastAll(ray, 0.07f, rayLength, interactableMask, QueryTriggerInteraction.Collide);
                 hitCount = hits.Length;
             }
             RaycastHit hit = default;

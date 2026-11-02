@@ -80,7 +80,16 @@ namespace LayarTerakhir.UI
             // Handset status lives inside its bezel. External status is only for a stowed phone.
             Fade(phoneGroup,!modal&&!UiFocus.Cinematic&&phone&&phone.hasSmartphoneInInventory&&!phone.isPhoneRaised?1:0);
             if(modalBackdrop && modalBackdrop.activeSelf!=modal)modalBackdrop.SetActive(modal);
-            if(reticle)reticle.enabled=!modal&&!UiFocus.Cinematic&&hud.blackFadeImage.color.a<.01f;
+            if(reticle)
+            {
+                reticle.enabled=!modal&&!UiFocus.Cinematic&&hud.blackFadeImage.color.a<.01f;
+                // Designer Nov: the center dot was tiny and gave no feedback,
+                // so players couldn't tell when an item was actually aimed.
+                // Idle 16px white; on-target 24px warm gold.
+                bool hasTarget=!string.IsNullOrEmpty(hud.interactionPromptText.text);
+                reticle.rectTransform.sizeDelta=hasTarget?new Vector2(24,24):new Vector2(16,16);
+                reticle.color=hasTarget?new Color(1f,.88f,.35f,.95f):new Color(1f,1f,1f,.9f);
+            }
             if(hud.padlockDigitsText && digits!=hud.padlockDigitsText.text)
             {
                 digits=hud.padlockDigitsText.text;int slot=0;
