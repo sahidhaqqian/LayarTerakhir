@@ -1553,10 +1553,12 @@ namespace LayarTerakhir.Editor
         {
             const float topY = 1.42f;
             var stain = Material("Repair_RotStain");
-            // 12 stained place settings down both sides of the table.
+            // 12 stained place settings down both sides of the table. Rows start
+            // 0.35 inside the table ends: the old 3.0 start sat exactly on the
+            // table edge and left the end plates hanging half off the wood.
             for (int i = 0; i < 12; i++)
             {
-                float x = i % 2 == 0 ? 3.28f : 4.15f, depth = 3.0f + (i / 2) * .61f;
+                float x = i % 2 == 0 ? 3.28f : 4.15f, depth = 3.35f + (i / 2) * .55f;
                 var p = d.P(x, depth, 1.49f);
                 var plate = MeshObject("AddedDish_" + i, root, p, Plate(), Material("Repair_RottenCeramic"));
                 Ground(plate, topY);
@@ -1592,7 +1594,7 @@ namespace LayarTerakhir.Editor
             int[] ratSeats = { 1, 4, 6, 9, 11 };
             foreach (int i in ratSeats)
             {
-                float x = i % 2 == 0 ? 3.28f : 4.15f, depth = 3.0f + (i / 2) * .61f;
+                float x = i % 2 == 0 ? 3.28f : 4.15f, depth = 3.35f + (i / 2) * .55f;
                 var p = d.P(x, depth, 1.49f);
                 var plate = Find("AddedDish_" + i);
                 float rest = plate ? SafeBounds(plate).max.y + .002f : topY;
@@ -1609,7 +1611,7 @@ namespace LayarTerakhir.Editor
                 spill.name = "AddedDish_Spill_" + k;
                 spill.transform.SetParent(root, true);
                 Object.DestroyImmediate(spill.GetComponent<Collider>());
-                spill.transform.position = d.P(3.71f + (k - 1) * .12f, topY, 3.55f + k * 1.05f);
+                spill.transform.position = d.P(3.71f + (k - 1) * .12f, 3.55f + k * 1.05f, topY);
                 spill.transform.localScale = new Vector3(.30f - k * .05f, .004f, .24f - k * .03f);
                 spill.GetComponent<Renderer>().sharedMaterial = stain;
                 Ground(spill, topY);

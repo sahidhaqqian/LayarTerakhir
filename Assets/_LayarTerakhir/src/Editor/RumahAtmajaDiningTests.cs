@@ -103,8 +103,16 @@ namespace LayarTerakhir.Editor.Tests
                 Assert.That(b.min.y, Is.AtMost(tb.max.y + .045f), t.name + " rests on the table, not floating");
                 Assert.That(b.center.x, Is.EqualTo(tb.center.x).Within(tb.extents.x + .3f), t.name + " sits over the table");
             }
-            // Dishes rest on their own plates, not on air: each food / seat rat
-            // sits within 15 mm of its plate top.
+            // Nothing hangs off the table: every feast item's footprint stays
+            // inside the tabletop (5 cm tolerance for rims and draped bits).
+            foreach (var t in feast)
+            {
+                var fb = VisualBounds(t.gameObject);
+                Assert.That(fb.min.x, Is.GreaterThanOrEqualTo(tb.min.x - .05f), t.name + " inside west edge");
+                Assert.That(fb.max.x, Is.LessThanOrEqualTo(tb.max.x + .05f), t.name + " inside east edge");
+                Assert.That(fb.min.z, Is.GreaterThanOrEqualTo(tb.min.z - .05f), t.name + " inside near edge");
+                Assert.That(fb.max.z, Is.LessThanOrEqualTo(tb.max.z + .05f), t.name + " inside far edge");
+            }
             foreach (var t in feast.Where(t => (t.name.StartsWith("AddedDinner_") && !t.name.Contains("Center")) || (t.name.StartsWith("AddedDinner_Rat_") && !t.name.Contains("Center"))))
             {
                 string seat = t.name.StartsWith("AddedDinner_Rat_") ? t.name.Replace("AddedDinner_Rat_", "") : t.name.Replace("AddedDinner_", "");
