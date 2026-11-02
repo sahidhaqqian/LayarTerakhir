@@ -75,6 +75,10 @@ namespace LayarTerakhir.Editor
                     color = new Color(.86f, .84f, .77f); smooth = .54f; break;
                 case "Repair_CupCrack":
                     color = new Color(.14f, .075f, .045f); smooth = .10f; break;
+                case "Repair_RottenCeramic":
+                    color = new Color(.52f, .50f, .36f); smooth = .18f; break;
+                case "Repair_RotStain":
+                    color = new Color(.10f, .085f, .045f); smooth = .75f; break;
                 case "Repair_SandalFootbed":
                     customTex = Texs + "SwallowFootbedDiffuse.png"; color = Color.white; smooth = .12f; break;
                 case "Repair_SandalRubber":
@@ -1522,39 +1526,142 @@ namespace LayarTerakhir.Editor
             water.GetComponent<MeshFilter>().sharedMesh = StoreMesh(waterMesh, "BathBloodSurface");
             water.transform.localScale = Vector3.one;
 
-            // Bug 39: Abundant abandoned family feast across LongDiningTable (center serving pots, soup bowls, jug, tray, 12 place settings!)
+            // Bug 39 (revisit, designer Nov): the family feast looked fresh and its
+            // food floated above the plates. Strip every fresh item and relay a
+            // spoiled spread: stained plates, moldy CC0 bread/apple (Audit/
+            // designer-review-asset-sources.json), dead CC0 street rats draped
+            // over the dishes, spilled rot + a tipped pot down the middle, and
+            // black stink-smoke hanging over the table. Nothing floats: plates
+            // ground to the tabletop, food and rats ground to their plates.
             foreach (var t in root.GetComponentsInChildren<Transform>(true).Where(t =>
                 t && (t.name.StartsWith("AddedDinner_") || t.name.StartsWith("AddedDish_") || t.name.StartsWith("DiningCenter_") ||
-                      t.name == "MouldyPlate" || t.name.StartsWith("RottenDinner_") || t.name.StartsWith("DeadRatOnPlate_"))).ToArray())
+                      t.name == "MouldyPlate" || t.name.StartsWith("RottenDinner_") || t.name.StartsWith("DeadRatOnPlate_") || t.name == "RottenStinkSmoke")).ToArray())
             {
                 if (t) Object.DestroyImmediate(t.gameObject);
             }
+            BuildRottenFeast(d, root);
+
+            Save();
+            Debug.Log("PROLOG47_DETAILS_APPLIED arterial handprints, 5-finger scratches, compact duct vent, fine chains, abundant dining table");
+        }
+
+        private static void BuildRottenFeast(AtmajaDirector d, Transform root)
+        {
+            const float topY = 1.42f;
+            var stain = Material("Repair_RotStain");
+            // 12 stained place settings down both sides of the table.
             for (int i = 0; i < 12; i++)
             {
                 float x = i % 2 == 0 ? 3.28f : 4.15f, depth = 3.0f + (i / 2) * .61f;
                 var p = d.P(x, depth, 1.49f);
-                var food = DesignerReviewBuilder.ReviewModel("AddedDinner_" + i, i % 3 == 0 ? "RottenApple" : "MoldyBread", root, p + Vector3.up * .04f, new Vector3(.16f, .08f, .14f), false);
+                var plate = MeshObject("AddedDish_" + i, root, p, Plate(), Material("Repair_RottenCeramic"));
+                Ground(plate, topY);
+                float plateTop = SafeBounds(plate).max.y;
+                // Rot juice ring on the plate: the food sits IN the stain, never floats.
+                var ring = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                ring.name = "AddedDish_StainRing_" + i;
+                ring.transform.SetParent(root, true);
+                Object.DestroyImmediate(ring.GetComponent<Collider>());
+                ring.transform.position = new Vector3(p.x, plateTop + .0015f, p.z);
+                ring.transform.localScale = new Vector3(.20f, .003f, .20f);
+                ring.GetComponent<Renderer>().sharedMaterial = stain;
+                var food = DesignerReviewBuilder.ReviewModel("AddedDinner_" + i, i % 3 == 0 ? "RottenApple" : "MoldyBread", root, p + Vector3.up * .05f, new Vector3(.15f, .08f, .13f), false);
                 food.transform.Rotate(Vector3.up, i * 37);
-                KosVisualV2.SetCenter(food, p + Vector3.up * .04f);
-                MeshObject("AddedDish_" + i, root, p, Plate(), Material("Repair_Ceramic"));
+                Ground(food, plateTop + .002f);
             }
-            // Center-spine communal serving vessels along x = 3.715, depth = 3.15 .. 5.95
-            ProjectAsset("Assets/_LayarTerakhir/assets/Art/Imported/Prolog47Facilities/pot_enamel_01/pot_enamel_01.fbx", "DiningCenter_EnamelPot", root,
-                d.P(3.71f, 3.30f, 1.49f), Quaternion.Euler(0, 18, 0), new Vector3(.30f, .21f, .26f));
-            ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase1/Imported/ceramic_pot/ceramic_pot.fbx", "DiningCenter_CeramicTureen", root,
-                d.P(3.72f, 4.15f, 1.49f), Quaternion.Euler(0, 75, 0), new Vector3(.26f, .22f, .26f));
-            ProjectAsset("Assets/_LayarTerakhir/assets/Art/Imported/Prolog47Facilities/metal_jug/metal_jug.fbx", "DiningCenter_WaterJug", root,
-                d.P(3.70f, 4.85f, 1.49f), Quaternion.Euler(0, -40, 0), new Vector3(.19f, .26f, .19f));
-            ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase1/Imported/brass_pan_01/brass_pan_01.fbx", "DiningCenter_ServingPan", root,
-                d.P(3.72f, 5.55f, 1.49f), Quaternion.Euler(0, 110, 0), new Vector3(.28f, .08f, .36f), Material("Repair_Brass"));
-            for (int bi = 0; bi < 4; bi++)
+            // Rat carcasses draped over five of the dishes + two down the middle.
+            int[] ratSeats = { 1, 4, 6, 9, 11 };
+            foreach (int i in ratSeats)
             {
-                ProjectAsset("Assets/_LayarTerakhir/assets/Art/Imported/InterludeStreet/kenney-food-kit/bowl-soup.fbx", "DiningCenter_SoupBowl_" + bi, root,
-                    d.P(3.71f + (bi % 2 == 0 ? -.11f : .11f), 3.72f + bi * .68f, 1.49f), Quaternion.Euler(0, bi * 47, 0), new Vector3(.17f, .075f, .17f), Material("Repair_Ceramic"));
+                float x = i % 2 == 0 ? 3.28f : 4.15f, depth = 3.0f + (i / 2) * .61f;
+                var p = d.P(x, depth, 1.49f);
+                var plate = Find("AddedDish_" + i);
+                float rest = plate ? SafeBounds(plate).max.y + .002f : topY;
+                var rat = DesignerReviewBuilder.ReviewModel("AddedDinner_Rat_" + i, "DeadStreetRat", root, p + Vector3.up * .06f, new Vector3(.20f, .06f, .09f), false);
+                rat.transform.Rotate(Vector3.up, i * 53 + 20);
+                // Belly-up: roll so the carcass reads dead, not parked.
+                rat.transform.Rotate(Vector3.forward, 155);
+                Ground(rat, rest);
             }
-
-            Save();
-            Debug.Log("PROLOG47_DETAILS_APPLIED arterial handprints, 5-finger scratches, compact duct vent, fine chains, abundant dining table");
+            // Middle of the table: spilled rot, a tipped-over pot, more carcasses.
+            for (int k = 0; k < 3; k++)
+            {
+                var spill = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                spill.name = "AddedDish_Spill_" + k;
+                spill.transform.SetParent(root, true);
+                Object.DestroyImmediate(spill.GetComponent<Collider>());
+                spill.transform.position = d.P(3.71f + (k - 1) * .12f, topY, 3.55f + k * 1.05f);
+                spill.transform.localScale = new Vector3(.30f - k * .05f, .004f, .24f - k * .03f);
+                spill.GetComponent<Renderer>().sharedMaterial = stain;
+                Ground(spill, topY);
+            }
+            var pot = ProjectAsset("Assets/_LayarTerakhir/assets/Art/Imported/Prolog47Facilities/pot_enamel_01/pot_enamel_01.fbx", "AddedDish_TippedPot", root,
+                d.P(3.71f, 4.35f, 1.49f), Quaternion.Euler(0, 18, 0), new Vector3(.30f, .21f, .26f));
+            if (pot)
+            {
+                // Knocked over: lying on its side in the middle spill.
+                pot.transform.rotation = Quaternion.Euler(0, 18, 90) * Quaternion.LookRotation(d.north);
+                Ground(pot, topY);
+            }
+            for (int k = 0; k < 2; k++)
+            {
+                var p = d.P(3.68f + k * .22f, 5.30f + k * .55f, 1.49f);
+                var rat = DesignerReviewBuilder.ReviewModel("AddedDinner_RatCenter_" + k, "DeadStreetRat", root, p + Vector3.up * .06f, new Vector3(.20f, .06f, .09f), false);
+                rat.transform.Rotate(Vector3.up, k * 120 + 40);
+                rat.transform.Rotate(Vector3.forward, 155);
+                Ground(rat, topY + .002f);
+            }
+            // Black stink-smoke hanging over the spoiled table.
+            Delete("RottenStinkSmoke");
+            var smoke = new GameObject("RottenStinkSmoke");
+            smoke.transform.SetParent(root, true);
+            smoke.transform.position = d.P(3.71f, 4.5f, 1.90f);
+            var ps = smoke.AddComponent<ParticleSystem>();
+            ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            var main = ps.main;
+            main.loop = true; main.playOnAwake = true; main.duration = 4f;
+            main.startLifetime = new ParticleSystem.MinMaxCurve(2.2f, 3.6f);
+            main.startSpeed = new ParticleSystem.MinMaxCurve(.03f, .08f);
+            main.startSize = new ParticleSystem.MinMaxCurve(.45f, .85f);
+            // Near-black but not pure black: the plume must read against the
+            // lit cloth. No color-over-lifetime multiplier (it crushed the
+            // tint to invisible); the puff texture's own falloff shapes it.
+            main.startColor = new Color(.13f, .13f, .13f, .90f);
+            main.maxParticles = 90;
+            main.simulationSpace = ParticleSystemSimulationSpace.World;
+            // Gentle buoyant rise: too strong a negative gravity fires the
+            // plume metres above the table and out of every frame.
+            main.gravityModifier = -.02f;
+            var emission = ps.emission;
+            emission.rateOverTime = 14f;
+            var shape = ps.shape;
+            shape.shapeType = ParticleSystemShapeType.Box;
+            shape.scale = new Vector3(.9f, .15f, 2.6f);
+            // No color-over-lifetime: its dark gradient multiplied every tint
+            // to invisible, even opaque white. The puff alpha falloff alone
+            // shapes each wisp.
+            var mist = AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/assets/Art/Phase2/Materials/OperationMist.mat");
+            if (!mist) throw new Exception("OperationMist material missing for rotten smoke");
+            // The Kenney wisp is too faint for a stink plume (mean alpha <10%),
+            // so the smoke gets its own dense procedural puff (generated PNG,
+            // no authored model) over the same particle shader.
+            var puffPath = "Assets/_LayarTerakhir/assets/Art/Generated/Materials/Prolog47/Repair_SmokePuff.mat";
+            var puff = AssetDatabase.LoadAssetAtPath<Material>(puffPath);
+            if (!puff)
+            {
+                puff = new Material(mist);
+                AssetDatabase.CreateAsset(puff, puffPath);
+            }
+            var puffTex = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/_LayarTerakhir/assets/Art/Original/Textures/Prolog47/SmokePuff.png");
+            if (!puffTex) throw new Exception("SmokePuff texture missing");
+            puff.SetTexture("_BaseMap", puffTex);
+            EditorUtility.SetDirty(puff);
+            var pr = smoke.GetComponent<ParticleSystemRenderer>();
+            pr.sharedMaterial = puff;
+            pr.renderMode = ParticleSystemRenderMode.Billboard;
+            // Zero sorting offset: a large fudge re-sorted the plume behind
+            // the room and hid it from every capture.
+            pr.sortingFudge = 0;
         }
 
         public static void ApplyLadder()
@@ -1939,10 +2046,12 @@ namespace LayarTerakhir.Editor
                 }
             }
 
-            // Reseat the feast onto the real surface: shift each root so its bounds
-            // bottom rests on topY. (Roots sit at different anchors per builder.)
+            // Reseat the feast onto the real surface: plates, spills and the tipped
+            // pot rest on topY. Food and rat carcasses sit on their plates (not
+            // the tabletop), so they are deliberately skipped here — grounding
+            // them to topY would sink them into the dishes and make them float.
             foreach (var t in env.GetComponentsInChildren<Transform>(true).Where(t =>
-                t && (t.name.StartsWith("AddedDinner_") || t.name.StartsWith("AddedDish_") || t.name.StartsWith("DiningCenter_"))).ToArray())
+                t && t.name.StartsWith("AddedDish_")).ToArray())
             {
                 var b = SafeBounds(t.gameObject);
                 t.position += Vector3.up * (topY + .002f - b.min.y);

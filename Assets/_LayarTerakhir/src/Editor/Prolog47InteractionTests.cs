@@ -23,6 +23,50 @@ namespace LayarTerakhir.Editor.Tests
         [UnityTest] public IEnumerator Prolog47PursuitBlitzStillWorksAfterHandycam()=>Run(PursuitBlitz47());
         [UnityTest] public IEnumerator Prolog47WindowAppearsWithoutMovingPlayerThenAdvances()=>Run(Window47());
         [UnityTest] public IEnumerator Prolog47DoorLeavesStayVisibleAndVentNeedsCrouchAR()=>Run(DoorsVent47());
+        [UnityTest] public IEnumerator Prolog47RottenFeastSmokePlaysOverTable()=>Run(FeastSmoke47());
+        private IEnumerator FeastSmoke47()
+        {
+            yield return new WaitForSeconds(2);var d=Find<AtmajaDirector>();
+            Time.timeScale=1;UiFocus.Cinematic=false;
+            var smoke=GameObject.Find("RottenStinkSmoke");
+            Assert.That(smoke&&smoke.activeInHierarchy,Is.True,"Black smoke hangs over the rotten table in play");
+            var ps=smoke.GetComponent<ParticleSystem>();
+            Assert.That(ps,Is.Not.Null);
+            for(int w=0;w<2;w++)
+            {
+                yield return new WaitForSeconds(2);
+                bool paused=false;try{paused=ps.isPaused;}catch{paused=true;}
+                float ptime=-1;try{ptime=ps.time;}catch{}
+                Debug.Log("FEASTPLAY_DIAG t="+w+" playing="+(ps?ps.isPlaying.ToString():"DESTROYED")+" paused="+paused+" time="+ptime+" emit="+(ps?ps.emission.enabled.ToString():"?")+" rate="+(ps?ps.emission.rateOverTime.constant.ToString():"?")+" count="+(ps?ps.particleCount.ToString():"?")+" active="+(smoke?smoke.activeInHierarchy.ToString():"?")+" ts="+Time.timeScale);
+                var all=Object.FindObjectsByType<ParticleSystem>(FindObjectsSortMode.None);
+                string samp="";foreach(var a in all.Take(14))samp+=a.name+":"+a.particleCount+" ";
+                Debug.Log("FEASTPLAY_ALLPS total="+all.Length+" "+samp);
+            }
+            Assert.That(ps.particleCount,Is.GreaterThan(5),"Stink-smoke actually emits while playing, not just in the editor");
+            yield return new WaitForSeconds(1);
+            var lamp=new GameObject("FeastPlayLamp").AddComponent<Light>();
+            lamp.type=LightType.Spot;lamp.intensity=30;lamp.range=12;lamp.spotAngle=60;lamp.color=new Color(1f,.93f,.8f);
+            lamp.transform.position=d.P(3.71f,4.5f,3.6f);
+            lamp.transform.rotation=Quaternion.LookRotation(Vector3.down+d.east*.1f);
+            var pot=GameObject.Find("AddedDish_TippedPot");
+            Assert.That(pot,Is.Not.Null,"Tipped pot anchors the rotten spread");
+            var b=KosVisualV2.BoundsOf(pot);
+            // Capture through the player's own camera (the same path that
+            // proves rain renders) rather than a fresh camera.
+            var p=d.player;
+            d.PlacePlayer(d.P(3.71f,2.35f,.54f),Quaternion.identity);
+            p.GetComponent<ShoulderCameraRig>().SetPerspective(PlayerPerspective.FirstPerson);
+            var delta=b.center-p.cameraPivot.position;var flat=Vector3.ProjectOnPlane(delta,Vector3.up);
+            p.transform.rotation=Quaternion.LookRotation(flat);p.SetViewPitch(-Mathf.Atan2(delta.y,flat.magnitude)*Mathf.Rad2Deg);p.GetComponent<ShoulderCameraRig>().RefreshCameraPose();
+            yield return null;yield return null;
+            var eye=d.phoneView.playerCamera;Physics.SyncTransforms();
+            var pr=smoke.GetComponent<ParticleSystemRenderer>();
+            var pp=new ParticleSystem.Particle[ps.particleCount];int nn=ps.GetParticles(pp);
+            string ws="";for(int k=0;k<Mathf.Min(5,nn);k++){ws+="["+pp[k].position.ToString("F2")+" s="+pp[k].GetCurrentSize(ps).ToString("F2")+"]";}
+            Debug.Log("FEASTPLAY_RENDER ren="+pr.enabled+" mat="+(pr.sharedMaterial?pr.sharedMaterial.name:"NULL")+" mask="+eye.cullingMask+" count="+nn+" emitter="+smoke.transform.position.ToString("F2")+" raw="+ws);
+            yield return Prolog47VisualTests.Capture(eye,"47-rotten-feast-playmode");
+            Object.DestroyImmediate(lamp.gameObject);
+        }
         private IEnumerator DoorsVent47()
         {
             yield return new WaitForSeconds(2);var d=Find<AtmajaDirector>();var p=d.player;

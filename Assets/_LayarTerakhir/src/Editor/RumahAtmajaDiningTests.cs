@@ -54,6 +54,28 @@ namespace LayarTerakhir.Editor.Tests
             var feast = Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None)
                 .Where(t => t && (t.name.StartsWith("AddedDinner_") || t.name.StartsWith("AddedDish_") || t.name.StartsWith("DiningCenter_"))).ToArray();
             Assert.That(feast.Length, Is.AtLeast(20), "Bug-39 feast survives");
+            // Designer Nov: every dish on the table is spoiled — no fresh serving
+            // vessels remain, rat carcasses lie on the plates, black smoke hangs
+            // over the spread.
+            var rats = Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None)
+                .Where(t => t && t.name.StartsWith("AddedDinner_Rat")).ToArray();
+            Assert.That(rats.Length, Is.AtLeast(5), "Dead rats lie on and around the dishes");
+            foreach (var r in rats)
+            {
+                var rb = VisualBounds(r.gameObject);
+                Assert.That(rb.min.y, Is.AtLeast(tb.max.y - .02f), r.name + " is not sunk into the table");
+                Assert.That(rb.min.y, Is.AtMost(tb.max.y + .12f), r.name + " rests on the spread, not floating");
+            }
+            var fresh = Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None)
+                .Where(t => t && t.name.StartsWith("DiningCenter_")).ToArray();
+            Assert.That(fresh, Is.Empty, "No fresh soup bowls / tureen / jug remain on the table");
+            var smoke = GameObject.Find("RottenStinkSmoke");
+            Assert.That(smoke && smoke.activeInHierarchy, Is.True, "Black stink-smoke hangs over the rotten table");
+            var ps = smoke.GetComponent<ParticleSystem>();
+            Assert.That(ps, Is.Not.Null, "Smoke is a real particle system");
+            Assert.That(ps.emission.rateOverTime.constant, Is.GreaterThan(0f), "Smoke actually emits");
+            var sc = ps.main.startColor.color;
+            Assert.That(sc.r + sc.g + sc.b, Is.LessThan(.6f), "Smoke is black, not white steam");
             foreach (var t in feast)
             {
                 var b = VisualBounds(t.gameObject);
