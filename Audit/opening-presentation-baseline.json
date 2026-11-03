@@ -1,7 +1,7 @@
 {
-  "baseCommit": "dbb7dd65",
+  "baseCommit": "0505ec10648ac15b0c2ae06e68fcd957f65c91e6",
   "protectedGoldenSceneSha256": "4b73b117b832fb753b92d3de885c163bc1dd3f6225101867f7b4e2437c8b793a",
-  "structureSha256": "9ad98d93caef8fe1e034a843a13de2d09949c65cbaf06c798695f2582819b8c1",
-  "description": "Approved Prolog KamarKos structure at dbb7dd65 including the designer-ordered Meshy wardrobe with visible clothes (MeshyBedroomWardrobe replaces the Kenney bookcase, doors face the room) plus holder repairs that restore the canonical layout (chair/cupboard/desk respawn, books/router/speakers/legs re-seated to live bounds). Only camera color-volume and AA/dithering settings remain outside the structural fingerprint; future gameplay, geometry, collider, or transform edits fail validation.",
-  "source": "git show dbb7dd65:Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity"
+  "structureSha256": "c2279041217e7a97ca9e02a7f35eb2f515268db69cccee7a8b207722c26dee14",
+  "description": "Approved Prolog KamarKos structure at 0505ec10 fixing four designer-reported bugs with photo proof: Meshy wardrobe authored atlas bound (brown wood, colored clothes), PC monitor reseated on the final desk facing the chair, chair seated south of the final desk, window bars+sill returned to the east opening (mid-room rack gone), plus deterministic post-Compact final seating (monitor/chair/bars/books/box/cables/desk colliders from live bounds). Only camera color-volume and AA/dithering settings remain outside the structural fingerprint; future gameplay, geometry, collider, or transform edits fail validation.",
+  "source": "git show 0505ec10648ac15b0c2ae06e68fcd957f65c91e6:Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity"
 }
