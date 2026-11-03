@@ -50,8 +50,7 @@ namespace LayarTerakhir.Editor.Tests
             lens.transform.position=cup.position+d.north*1.2f+Vector3.up*.7f;
             lens.transform.LookAt(cup);Physics.SyncTransforms();d.upper.TryPhotoTick();
             Assert.That(c.HasInventoryItem("EVENT_P0_CHAIN1_BROKEN"),Is.True,"Cup photo counts without the diary");
-            // 3. Scratches last (curtain drawn open first — the one physical gate).
-            c.AddInventoryItem("EVENT_P0_CURTAIN_OPEN");d.upper.RestoreWorld();
+            // 3. Scratches last — no curtain, no diary, no order.
             var scratch=d.upper.scratchAim;
             lens.transform.position=scratch.position+d.east*1.2f+Vector3.up*.1f;
             lens.transform.LookAt(scratch);Physics.SyncTransforms();d.upper.TryPhotoTick();

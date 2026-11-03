@@ -250,7 +250,7 @@ namespace LayarTerakhir.Prolog
             }
             bool ar=ArActive;
             if(ventHoleAR)ventHoleAR.SetActive(ar&&!Has("EVENT_P0_CHAIN1_BROKEN"));
-            if(bathScratchesAR)bathScratchesAR.SetActive(ar&&Has("EVENT_P0_CURTAIN_OPEN")&&!Has("EVENT_P0_CHAIN2_BROKEN"));
+            if(bathScratchesAR)bathScratchesAR.SetActive(ar&&!Has("EVENT_P0_CHAIN2_BROKEN"));
             if(ar)SyncScratchTarget();
             for(int i=0;i<portraitBloodAR.Length;i++)if(portraitBloodAR[i])portraitBloodAR[i].SetActive(ar);
             // Stair landing detection: the pocket door is open and the capsule climbs past the slab.
@@ -330,11 +330,11 @@ namespace LayarTerakhir.Prolog
             SyncScratchTarget();
             // Designer Nov: the three AR evidences work in ANY order — a
             // photo counts whenever its own target is aimed, never
-            // cup-then-scratches-then-rope. Only the shower curtain stays a
-            // physical prerequisite (it covers the scratched wall until
-            // drawn open).
+            // cup-then-scratches-then-rope. The shower curtain is only
+            // flavor (it reveals the bloody water), never a photo gate:
+            // it hangs east of the scratched wall and covers nothing.
             if(!Has("EVENT_P0_CHAIN1_BROKEN")&&Aimed(cupAim,3f,.9f))BreakChain(1,"Cangkir susu retak terpindai aura merah.","EVENT_P0_CHAIN1_BROKEN");
-            else if(!Has("EVENT_P0_CHAIN2_BROKEN")&&Has("EVENT_P0_CURTAIN_OPEN")&&Aimed(scratchAim,2.6f,.88f))BreakChain(2,"Cakaran puluhan jari kecil terpindai jelas.","EVENT_P0_CHAIN2_BROKEN");
+            else if(!Has("EVENT_P0_CHAIN2_BROKEN")&&Aimed(scratchAim,2.6f,.88f))BreakChain(2,"Cakaran puluhan jari kecil terpindai jelas.","EVENT_P0_CHAIN2_BROKEN");
             else if(!Has("EVENT_P0_CHAIN3_BROKEN")&&Aimed(ropeAim,4.5f,.88f))BreakChain(3,"Tali tambang berayun terpindai. Sesuatu tergantung di sana...","EVENT_P0_CHAIN3_BROKEN");
         }
         private void SyncScratchTarget()
