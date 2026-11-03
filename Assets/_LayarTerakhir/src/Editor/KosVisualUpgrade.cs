@@ -191,7 +191,7 @@ namespace LayarTerakhir.Editor
             return mat;
         }
 
-        private static Material Pbr(string name, string asset, Color? tint = null, float smoothness = .68f, float bumpScale = 1.15f)
+        public static Material Pbr(string name, string asset, Color? tint = null, float smoothness = .68f, float bumpScale = 1.15f)
         {
             var mat = Plain(name, tint ?? Color.white, 0, smoothness);
             string folder = Art + "/Imported/PolyHaven/" + asset;

@@ -32,7 +32,7 @@ namespace LayarTerakhir.Editor
                 var b = KosVisualV2.BoundsOf(wardrobe);
                 spot.transform.position = b.center + Vector3.up * 1.6f + Vector3.right * .6f;
                 spot.transform.rotation = Quaternion.LookRotation((b.center - spot.transform.position).normalized);
-                cam.transform.position = new Vector3(b.center.x - 2.2f, 1.6f, b.center.z + .4f);
+                cam.transform.position = new Vector3(b.center.x - 2.2f, 1.6f, b.center.z - .6f);
                 cam.transform.rotation = Quaternion.LookRotation((b.center + Vector3.up * .1f - cam.transform.position).normalized);
                 KosRenderDiagnosis.Capture(cam, "kos-wardrobe-facing", false, "Audit/Visuals/KosWardrobeProof");
                 Debug.Log("KOS_PHOTO wardrobe yaw=" + wardrobe.transform.rotation.eulerAngles.y.ToString("F1"));

@@ -35,6 +35,9 @@ namespace LayarTerakhir.Editor
         }
         private static void ResetPrefabRoot(GameObject holder,float yaw)
         {
+            // Some legacy holders carry their mesh directly (no FBX child);
+            // there is nothing to reset — orientation is handled downstream.
+            if (holder.transform.childCount == 0) return;
             var model=holder.transform.GetChild(0);
             var source=PrefabUtility.GetCorrespondingObjectFromSource(model);
             if(!source)throw new Exception("Expected FBX instance root: "+holder.name);
@@ -59,6 +62,12 @@ namespace LayarTerakhir.Editor
             CorrectFurniture();
             DressRoom();
             LightingAndMaterials();
+            // V2 furniture is authored pre-layout; the Compact pass owns the
+            // final 5.0 x 3.8m arrangement, so run it before gating — the
+            // validation below checks the shipped layout, not an intermediate.
+            CompactKosPolish.ApplyToOpenScene();
+            // Backrest direction is judged against the final desk spot.
+            OrientChairToDesk();
             foreach (var camera in Object.FindObjectsByType<Camera>(FindObjectsSortMode.None))
             {
                 if (!camera.CompareTag("MainCamera")) continue;
@@ -72,7 +81,7 @@ namespace LayarTerakhir.Editor
             EditorSceneManager.SaveOpenScenes();
             AssetDatabase.SaveAssets();
             KosSceneValidation.Validate();
-            Debug.Log("KOS_V2 Applied incremental furnished-room corrections; 6 x 4.5m preserved.");
+            Debug.Log("KOS_V2 Applied incremental furnished-room corrections; compact 5.0 x 3.8m layout validated.");
         }
 
         // Designer Nov 2026: Raka's wardrobe faces the east wall (backwards).
@@ -207,7 +216,7 @@ namespace LayarTerakhir.Editor
         // Idempotent: removes any previous holder, then spawns fresh.
         public static GameObject SpawnMeshyWardrobe()
         {
-            const string fbx = Art + "/Imported/Meshy/wardrobe/Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture.fbx";
+            const string fbx = Art + "/Imported/Meshy/wardrobe/Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture_remesh_tri.fbx";
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(fbx);
             if (!prefab) throw new Exception("Missing Meshy wardrobe FBX: " + fbx);
             var artRoot = Find("Kos_Environment_Art").transform;
@@ -228,26 +237,86 @@ namespace LayarTerakhir.Editor
             holder.transform.rotation = Quaternion.Euler(0, 270, 0);
             foreach (var c in model.GetComponentsInChildren<Collider>()) Object.DestroyImmediate(c);
             // World fit AFTER yaw: shallow in x (east wall), wide in z.
-            var b = BoundsOf(holder);
-            var size = new Vector3(.68f, 1.95f, 1.00f);
-            holder.transform.localScale = new Vector3(size.x / b.size.x, size.y / b.size.y, size.z / b.size.z);
+            // FitWorldSize routes axes through the holder frame, so the
+            // pitched Meshy root cannot skew the footprint.
+            FitWorldSize(holder, new Vector3(.68f, 1.95f, 1.00f));
             SetCenter(holder, new Vector3(2.12f, .975f, 1.25f));
             Ground(holder);
             return holder;
+        }
+        // Legacy passes left a nest of same-named holders, 100x-scaled ancestors
+        // and children whose meshes were stripped: the art-root holder can
+        // end up squashed flat with no usable surface. Rebuild it
+        // deterministically: reparent under the art root, reset local pose,
+        // drop every child, sweep same-named strays scene-wide, and respawn
+        // the FBX model fresh. Downstream Resize/SetCenter/Ground then fit it.
+        public static void EnsurePrefabChild(GameObject holder,string fbxPath,Vector3 canonicalXZ)
+        {
+            var artRoot = Find("Kos_Environment_Art").transform;
+            holder.transform.SetParent(artRoot, false);
+            // Rough slot only; Resize scales about the holder origin, so the
+            // caller must SetCenter AFTER resizing (pivot != mesh center).
+            holder.transform.localPosition = new Vector3(canonicalXZ.x, 0, canonicalXZ.y);
+            holder.transform.localRotation = Quaternion.identity;
+            holder.transform.localScale = Vector3.one;
+            foreach (Transform t in holder.transform) Object.DestroyImmediate(t.gameObject);
+            // A flattened legacy state can also park the mesh directly on the
+            // holder; drop those so the fresh instance is the only geometry.
+            foreach (var c in holder.GetComponents<MeshFilter>()) Object.DestroyImmediate(c);
+            foreach (var c in holder.GetComponents<MeshRenderer>()) Object.DestroyImmediate(c);
+            foreach (var c in holder.GetComponents<SkinnedMeshRenderer>()) Object.DestroyImmediate(c);
+            foreach (var t in Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                if (t && t.name == holder.name && t.gameObject != holder && !t.IsChildOf(holder.transform))
+                    Object.DestroyImmediate(t.gameObject);
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(fbxPath);
+            if (!prefab) throw new Exception("Missing model: " + fbxPath);
+            var model = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            model.transform.SetParent(holder.transform, false);
+            var source = PrefabUtility.GetCorrespondingObjectFromSource(model);
+            if (source) { model.transform.localPosition = source.transform.localPosition; model.transform.localScale = source.transform.localScale; model.transform.localRotation = source.transform.localRotation; }
+            model.name = holder.name + "_Model";
+            foreach (var c in model.GetComponentsInChildren<Collider>()) Object.DestroyImmediate(c);
+            // Leave final centering to the caller: Resize scales about the
+            // holder origin, so it must run before any SetCenter.
+            Debug.Log("KOS_HOLDER_REBUILT " + holder.name + " from " + fbxPath);
+        }
+        // Chair backrest vs desk is evaluated on the FINAL (post-Compact)
+        // layout, so this runs after the Compact pass: aim the backrest
+        // opposite the desk vector, then keep the lived-in tilt.
+        public static void OrientChairToDesk()
+        {
+            var chair = Find("painted_wooden_chair_01");
+            var desk = Find("wooden_table_02");
+            var cb = BoundsOf(chair);
+            var toDesk = BoundsOf(desk).center - cb.center; toDesk.y = 0;
+            var high = MeshVertices(chair).Where(v => v.y > cb.min.y + .65f).ToArray();
+            if (high.Length > 0 && toDesk.sqrMagnitude > .000001f)
+            {
+                var back = new Vector3(high.Average(v => v.x), 0, high.Average(v => v.z)) - new Vector3(cb.center.x, 0, cb.center.z);
+                if (back.sqrMagnitude > .000001f)
+                    chair.transform.RotateAround(BoundsOf(chair).center, Vector3.up, Vector3.SignedAngle(back, -toDesk, Vector3.up));
+            }
+            chair.transform.RotateAround(BoundsOf(chair).center, Vector3.up, -7);
+            Ground(chair);
         }
         private static void CorrectFurniture()
         {
             var bed = Find("vintage_day_bed"); Ground(bed);
             var desk = Find("wooden_table_02");
+            EnsurePrefabChild(desk, Art + "/Imported/PolyHaven/wooden_table_02/wooden_table_02.fbx", new Vector3(-1.25f, 1.87f));
+            var deskPbr = KosVisualUpgrade.Pbr("wooden_table_02", "wooden_table_02");
+            foreach (var r in desk.GetComponentsInChildren<Renderer>()) r.sharedMaterials = Enumerable.Repeat(deskPbr, r.sharedMaterials.Length).ToArray();
+            ResetPrefabRoot(desk, 0);
+            Resize(desk, new Vector3(1.30f, .75f, .65f));
             SetCenter(desk, new Vector3(-1.25f, .381f, 1.87f)); Ground(desk);
+            // The desk rides the workstation assembly so Compact layout moves
+            // top and legs together; world pose is preserved.
+            desk.transform.SetParent(GameObject.Find("Golden_Workstation").transform, true);
             var chair = Find("painted_wooden_chair_01");
+            EnsurePrefabChild(chair, Art + "/Imported/PolyHaven/painted_wooden_chair_01/painted_wooden_chair_01.fbx", new Vector3(-1.36f, 1.13f));
             ResetPrefabRoot(chair,180);
             Resize(chair,new Vector3(.40f,.86f,.46f));
-            SetCenter(chair, new Vector3(-1.30f, .436f, 1.13f));
-            // Derive which side contains the backrest from the actual high vertices.
-            var high = MeshVertices(chair).Where(v => v.y > BoundsOf(chair).min.y + .65f).ToArray();
-            if (high.Length > 0 && high.Average(v => v.z) > BoundsOf(chair).center.z)
-                chair.transform.RotateAround(BoundsOf(chair).center, Vector3.up, 180);
+            SetCenter(chair, new Vector3(-1.36f, .436f, 1.13f));
             chair.transform.RotateAround(BoundsOf(chair).center, Vector3.up, -7);
             Ground(chair);
             var chairB = BoundsOf(chair);
@@ -255,13 +324,23 @@ namespace LayarTerakhir.Editor
 
             var wardrobe = SpawnMeshyWardrobe();
             FitBox(Find("LemariPakaian").GetComponent<BoxCollider>(), BoundsOf(wardrobe));
-            var cupboard = Find("painted_wooden_cabinet_02"); Ground(cupboard);
+            var cupboard = Find("painted_wooden_cabinet_02");
+            EnsurePrefabChild(cupboard, Art + "/Imported/PolyHaven/painted_wooden_cabinet_02/painted_wooden_cabinet_02.fbx", new Vector3(1.40f, 1.72f));
+            Resize(cupboard, new Vector3(.45f, 1.20f, .30f));
+            SetCenter(cupboard, new Vector3(1.40f, BoundsOf(cupboard).center.y, 1.72f));
+            Ground(cupboard);
             FitBox(Find("CupboardCollision").GetComponent<BoxCollider>(), BoundsOf(cupboard));
             FitBox(Find("MejaKerjaPC").GetComponent<BoxCollider>(), new Bounds(new Vector3(-1.25f, .72f, 1.87f), new Vector3(1.30f, .072f, .65f)));
-            foreach (var name in new[] { "KakiMejaKiri", "KakiMejaKanan" })
+            // Legs are invisible collision boxes (no renderers), so seat them
+            // from the desk bounds via their own collider bounds, keeping
+            // their desk-relative offsets so the assembly moves as one.
+            var deskBounds = BoundsOf(desk);
+            foreach (var pair in new[] { ("KakiMejaKiri", -.55f), ("KakiMejaKanan", .55f) })
             {
-                var c = Find(name).GetComponent<BoxCollider>();
-                var b = c.bounds; b.center = new Vector3(b.center.x, b.center.y + .006f, 1.87f); FitBox(c, b);
+                var c = Find(pair.Item1).GetComponent<BoxCollider>();
+                var b = c.bounds;
+                b.center = new Vector3(deskBounds.center.x + pair.Item2, b.center.y, deskBounds.center.z);
+                FitBox(c, b);
             }
             // Fit the bed's solid base below the quilt so its phone remains raycast-accessible.
             var bedB = BoundsOf(bed);
@@ -290,8 +369,13 @@ namespace LayarTerakhir.Editor
             RestOn(Find("binder_notebook"), desk, -1.68f, 1.70f);
             RestOn(Find("EnamelMug"), desk, -.70f, 2.04f);
             RestOn(Find("desk_lamp_arm_01"), desk, -1.74f, 2.00f);
-            foreach (var go in Object.FindObjectsByType<Transform>(FindObjectsSortMode.None).Where(t => t.name == "speakerSmall"))
-                RestOn(go.gameObject, desk, go.position.x, go.position.z);
+            // Speakers ride under the Golden_Workstation assembly, so their world
+            // spots drift from the desk; pin both back to authored desk spots
+            // instead of trusting wherever the assembly left them.
+            var speakers = Object.FindObjectsByType<Transform>(FindObjectsSortMode.None).Where(t => t.name == "speakerSmall").Select(t => t.gameObject).OrderBy(g => g.transform.position.x).ToArray();
+            float[] speakerSpots = { -1.61f, -.80f };
+            for (int i = 0; i < speakers.Length && i < speakerSpots.Length; i++)
+                RestOn(speakers[i], desk, speakerSpots[i], 2.06f);
             var note = d.stickyNoteItem.transform.Find("StickyNote").gameObject;
             RestOn(note, desk, -.87f, 1.82f); AlignItem(d.stickyNoteItem, BoundsOf(note), .018f);
             foreach (var name in new[] { "OldPCTower", "RefillWaterGallon", "plastic_bottle_gallon", "trashcan", "cardboardBoxOpen" }) Ground(Find(name));
@@ -300,21 +384,25 @@ namespace LayarTerakhir.Editor
                 FitBox(Find(pair.Item1).GetComponent<BoxCollider>(), BoundsOf(Find(pair.Item2)));
 
             // These were arranged in mid-air behind solid cupboard doors. Reuse every book on real shelf tops.
+            // Spots derive from the actual (Compact-maintained) shelf positions, never stale absolutes.
             var books = Find("Kos_Environment_Art").transform.Cast<Transform>().Where(t => t.name == "books")
                 .Select(t => t.gameObject).OrderBy(g => BoundsOf(g).min.y).ToArray();
             GameObject stackSupport=cupboard;
+            var cupTop = BoundsOf(cupboard);
+            float stackX = cupTop.center.x, stackZ = cupTop.center.z + .075f;
+            var shelfTop = BoundsOf(Find("wooden_bookshelf_worn"));
             foreach (var book in books)
             {
                 if (BoundsOf(book).center.x < 0)
                 {
                     // Horizontal stack sitting on top of the existing wall shelf.
                     Resize(book, new Vector3(.15f, .09f, .42f));
-                    RestOn(book, Find("wooden_bookshelf_worn"), -2.84f, .95f);
+                    RestOn(book, Find("wooden_bookshelf_worn"), shelfTop.center.x, shelfTop.center.z);
                 }
                 else
                 {
                     Resize(book, new Vector3(.26f, .075f, .11f));
-                    RestOn(book,stackSupport,1.65f,2.145f);
+                    RestOn(book,stackSupport,stackX,stackZ);
                     stackSupport=book;
                 }
             }
@@ -350,9 +438,10 @@ namespace LayarTerakhir.Editor
             Rail("FanShelfLeftBracket", new Vector3(-.10f, 1.14f, 2.23f), new Vector3(-.10f, 1.29f, 1.93f), .012f, Mat("DarkOxidisedMetal"));
             Rail("FanShelfRightBracket", new Vector3(.22f, 1.14f, 2.23f), new Vector3(.22f, 1.29f, 1.93f), .012f, Mat("DarkOxidisedMetal"));
             var router = Spawn("Original/Models/KosRouter.fbx", "KosRouter", new Vector3(1.66f, 1.65f, 2.06f), new Vector3(.17f, .16f, .105f), 0, Plain("RouterPlasticV2", new Color(.48f, .47f, .40f)));
-            RestOn(router, Find("painted_wooden_cabinet_02"), 1.66f, 2.06f);
+            var cupTop2 = BoundsOf(Find("painted_wooden_cabinet_02"));
+            RestOn(router, Find("painted_wooden_cabinet_02"), cupTop2.center.x + .01f, cupTop2.center.z - .01f);
             // Router sits beside, not through, the narrow stack of old books.
-            SetCenter(router, new Vector3(1.66f, BoundsOf(router).center.y, 2.00f));
+            SetCenter(router, new Vector3(cupTop2.center.x + .01f, BoundsOf(router).center.y, cupTop2.center.z - .07f));
             AssignSlots(router, name => name.Contains("Vent") ? Mat("OldComputerPlastic") : Mat("RouterPlasticV2"));
             var black = Mat("OldComputerPlastic");
             DetailBox("PowerStrip", new Vector3(-1.99f, .028f, 2.10f), new Vector3(.10f, .042f, .25f), Mat("AgedSwitchPlastic"));
@@ -364,7 +453,8 @@ namespace LayarTerakhir.Editor
             Rail("MonitorSignalCable",new Vector3(-1.25f,.92f,2.01f),new Vector3(-1.31f,.03f,2.18f),.003f,black);
             Rail("KeyboardCable",new Vector3(-1.32f,.77f,1.78f),new Vector3(-1.34f,.77f,2.17f),.002f,black);
             Rail("MouseCable",new Vector3(-.88f,.78f,1.78f),new Vector3(-1.03f,.77f,2.16f),.002f,black);
-            Rail("RouterPowerCable",new Vector3(1.67f,1.23f,2.02f),new Vector3(1.67f,.33f,2.215f),.003f,black);
+            var routerBounds = BoundsOf(router);
+            Rail("RouterPowerCable",new Vector3(routerBounds.center.x+.01f,routerBounds.max.y-.05f,routerBounds.max.z-.02f),new Vector3(1.67f,.33f,2.215f),.003f,black);
             DetailBox("RouterWallSocket",new Vector3(1.67f,.32f,2.225f),new Vector3(.10f,.12f,.026f),Mat("AgedSwitchPlastic"));
             DetailBox("RouterAdapter",new Vector3(1.67f,.32f,2.19f),new Vector3(.047f,.06f,.05f),black);
             DetailBox("BedsideSocket",new Vector3(-2.975f,.36f,-.20f),new Vector3(.026f,.12f,.10f),Mat("AgedSwitchPlastic"));
@@ -477,6 +567,35 @@ namespace LayarTerakhir.Editor
             line.positionCount=points.Length;line.SetPositions(points);line.widthMultiplier=width;line.numCornerVertices=2;line.numCapVertices=2;line.sharedMaterial=material;line.generateLightingData=true;
         }
         public static void SetCenter(GameObject go,Vector3 center) => go.transform.position+=center-BoundsOf(go).center;
+        // Rotation-agnostic world fit: routes each world-axis target through
+        // the holder-local axis that feeds it (exact for 90-degree turns, e.g.
+        // a yawed holder with a pitched FBX root). Plain Resize assumes an
+        // identity holder, which mis-fits those.
+        public static void FitWorldSize(GameObject go,Vector3 size)
+        {
+            for (int iter = 0; iter < 3; iter++)
+            {
+                var b = BoundsOf(go);
+                if (Mathf.Abs(b.size.x - size.x) < .005f && Mathf.Abs(b.size.y - size.y) < .005f && Mathf.Abs(b.size.z - size.z) < .005f) break;
+                var m = Matrix4x4.Rotate(go.transform.rotation);
+                var s = go.transform.localScale;
+                var ns = s;
+                bool[] used = new bool[3];
+                for (int w = 0; w < 3; w++)
+                {
+                    int l = 0; float best = -1;
+                    for (int ll = 0; ll < 3; ll++) { float a = Mathf.Abs(m[w, ll]); if (!used[ll] && a > best) { best = a; l = ll; } }
+                    used[l] = true;
+                    float worldSize = w == 0 ? b.size.x : w == 1 ? b.size.y : b.size.z;
+                    float target = w == 0 ? size.x : w == 1 ? size.y : size.z;
+                    if (worldSize < 1e-6f) continue;
+                    float cur = l == 0 ? s.x : l == 1 ? s.y : s.z;
+                    float nv = cur * target / worldSize;
+                    if (l == 0) ns.x = nv; else if (l == 1) ns.y = nv; else ns.z = nv;
+                }
+                go.transform.localScale = ns;
+            }
+        }
         public static void Resize(GameObject go,Vector3 size)
         {
             var b=BoundsOf(go);var s=go.transform.localScale;

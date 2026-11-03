@@ -1,37 +1,42 @@
 [
   {
-    "name": "Untidy Bedroom Wardrobe",
+    "name": "Untidy Bedroom Wardrobe (remesh, tri)",
     "page": "https://meshy.ai",
     "author": "meshy.ai generation, provided by the designer (user upload)",
     "license": "designer-provided (user-owned meshy.ai generation); not third-party CC0",
     "licenseUrl": "",
-    "source": "r2:layarterakhir/Layarterakhir/asset/Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture_fbx.zip (designer upload 2026-11-03)",
-    "note": "Single wardrobe with open door, hanging clothes and folded stacks. FBX 4.1M tris; repo-standard import meshCompression Low applied, no geometry authored.",
+    "source": "r2:layarterakhir/Layarterakhir/asset/Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture_remesh_tri_fbx.zip (designer upload 2026-11-03, lighter remesh replacing the 182MB version)",
+    "note": "Open-door wardrobe with hanging clothes and folded stacks. Repo-standard import meshCompression Low, no geometry authored.",
     "files": [
       {
-        "path": "Assets/_LayarTerakhir/assets/Art/Imported/Meshy/wardrobe/Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture.fbx",
-        "bytes": 182686556,
-        "sha256": "32e3194f095a4280944522e8eed579844ac9e0b0699cc0c32ad8f9f8422f284e"
+        "path": "Assets/_LayarTerakhir/assets/Art/Imported/Meshy/wardrobe/Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture_remesh_tri.fbx",
+        "bytes": 12417980,
+        "sha256": "cf30d51f690f2c04479af22425b983689bfa4add938f2d39a9c08d4b7678cc5c"
       },
       {
-        "path": "Assets/_LayarTerakhir/assets/Art/Imported/Meshy/wardrobe/Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture.png",
-        "bytes": 5664754,
-        "sha256": "7a43ceb664679fb53faec4f1fdfa70c064c1a99c6c2c346b3c30a00ded1a5231"
+        "path": "Assets/_LayarTerakhir/assets/Art/Imported/Meshy/wardrobe/Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture_remesh_tri.png",
+        "bytes": 4465492,
+        "sha256": "d6ef0dd4005cb1bba3675ff7a07aa1ad30a849a6ebcb45260a0972db280bb619"
       },
       {
-        "path": "Assets/_LayarTerakhir/assets/Art/Imported/Meshy/wardrobe/Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture_metallic.png",
-        "bytes": 109131,
-        "sha256": "cf16fd55fb019d6d758c46e936737b8a0acd0f5029c74ae7bfd6d5a6d3da9488"
+        "path": "Assets/_LayarTerakhir/assets/Art/Imported/Meshy/wardrobe/Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture_remesh_tri_metallic.png",
+        "bytes": 610228,
+        "sha256": "712ad74b7425afe3c27117f8c264344756cffd726fe3253535260e3c6f2023fc"
       },
       {
-        "path": "Assets/_LayarTerakhir/assets/Art/Imported/Meshy/wardrobe/Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture_normal.png",
-        "bytes": 5513283,
-        "sha256": "6eeab36c4abe28c297e09dae63e6823016c7b230aae8fce60e3e7d3c37ee32bd"
+        "path": "Assets/_LayarTerakhir/assets/Art/Imported/Meshy/wardrobe/Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture_remesh_tri_metallic_roughness.png",
+        "bytes": 2610366,
+        "sha256": "d12a647619c6d8a4991ab2202694929e980673f13a4200566210350ddb2f6989"
       },
       {
-        "path": "Assets/_LayarTerakhir/assets/Art/Imported/Meshy/wardrobe/Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture_roughness.png",
-        "bytes": 1456099,
-        "sha256": "c452fad10b78948bb681cfa6c8fa92f3d505c21cae46cf72537b8a118e07ed0d"
+        "path": "Assets/_LayarTerakhir/assets/Art/Imported/Meshy/wardrobe/Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture_remesh_tri_normal.png",
+        "bytes": 5201494,
+        "sha256": "e7dd0d6eecea63f9e80e780002ccaf80547ab17ea82ad61093c036b6d28e5e6f"
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Imported/Meshy/wardrobe/Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture_remesh_tri_roughness.png",
+        "bytes": 959325,
+        "sha256": "08d0323b0347866c1817d66c57d39e4621642eaf1007827cd62658a7839bc70e"
       }
     ]
   }
