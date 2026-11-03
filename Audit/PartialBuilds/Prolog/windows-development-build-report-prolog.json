@@ -7,17 +7,17 @@
     "outputPath": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir.exe",
     "sceneSpec": "prolog",
     "buildTag": "Prolog",
-    "startedUtc": "2026-11-02T23:44:11.3779840Z",
-    "endedUtc": "2026-11-02T23:46:35.9521630Z",
+    "startedUtc": "2026-11-03T00:45:48.6706430Z",
+    "endedUtc": "2026-11-03T00:48:20.7345310Z",
     "scenes": [
         "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity",
         "Assets/_LayarTerakhir/assets/Scenes/Prolog_RumahAtmaja.unity",
         "Assets/_LayarTerakhir/assets/Scenes/Prolog_KoridorKos.unity"
     ],
-    "totalSizeBytes": 448784279,
+    "totalSizeBytes": 448784326,
     "totalErrors": 0,
-    "totalWarnings": 17,
-    "durationSeconds": 144.574179,
+    "totalWarnings": 12,
+    "durationSeconds": 152.063888,
     "files": [
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/Resources/unity_builtin_extra",
@@ -122,7 +122,7 @@
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/boot.config",
             "role": "BootConfig",
-            "sizeBytes": 326
+            "sizeBytes": 325
         },
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/Plugins/x86_64/libonigwrap.dll",
@@ -802,7 +802,7 @@
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/Managed/Assembly-CSharp.pdb",
             "role": "pdb",
-            "sizeBytes": 411628
+            "sizeBytes": 411676
         },
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/Managed/Unity.AI.Navigation.pdb",

@@ -1,5 +1,5 @@
 {
-  "verifiedUtc": "2026-11-02T23:47:54.215066+00:00",
+  "verifiedUtc": "2026-11-03T00:49:42.581702+00:00",
   "unityExitCode": 0,
   "result": "Succeeded",
   "target": "StandaloneWindows64",
@@ -14,12 +14,12 @@
   },
   "unityReportedFilesVerified": 295,
   "scriptingAssembliesVerified": 112,
-  "unityReportedSizeBytes": 448784279,
+  "unityReportedSizeBytes": 448784326,
   "buildFileCount": 306,
-  "totalBuildSizeBytes": 449092998,
+  "totalBuildSizeBytes": 449093045,
   "archivePath": "/tmp/opencode/windows-build-r2/workspace/Builds/LayarTerakhir-Windows-x86_64-Prolog.zip",
-  "archiveSizeBytes": 248161865,
-  "archiveSha256": "92d032c90751f8442a15c214d2a2929be08068932fb634c8e9512dea35b36b86",
+  "archiveSizeBytes": 248161909,
+  "archiveSha256": "137f25f4a5209e17aee6bcdedf06be4050d6b021229c1273958ceaf7eb604e3f",
   "zipCrcVerified": true,
   "zipContainsAllBuildFiles": true,
   "windowsRuntimeTested": false,
@@ -99,14 +99,14 @@
     {
       "path": "LayarTerakhir_Data/Managed/Assembly-CSharp.dll",
       "sizeBytes": 1428480,
-      "sha256": "6975f94c890b6fa5f21c0fccbb60d8fd2a9ad42fa6e065d6f9c19268ed6cdf8d",
-      "crc32": 3569102149
+      "sha256": "825571a548ffb6b55a572711bfb169ca3978cdb6d223a1f134ba63aa3874ffbf",
+      "crc32": 1567598129
     },
     {
       "path": "LayarTerakhir_Data/Managed/Assembly-CSharp.pdb",
-      "sizeBytes": 411628,
-      "sha256": "07db061efa07dcabe2bb59f937103020cdc2fbc6a9f81fde11193dff4c769a1b",
-      "crc32": 1446914097
+      "sizeBytes": 411676,
+      "sha256": "3c32bfa295305075f7f7de03e51bd38bda41498d09331fccd9243b59fb9e77e9",
+      "crc32": 1691831246
     },
     {
       "path": "LayarTerakhir_Data/Managed/Mono.Security.dll",
@@ -1604,9 +1604,9 @@
     },
     {
       "path": "LayarTerakhir_Data/boot.config",
-      "sizeBytes": 326,
-      "sha256": "22c94bbe3238d69b1e4fc985c0f9497729b96f45c1f07defb02dd1b91563e705",
-      "crc32": 2063120992
+      "sizeBytes": 325,
+      "sha256": "ed8b194310325333d8543679efadf51dc74e4294bd9500b03791ae9930eb7791",
+      "crc32": 441199887
     },
     {
       "path": "LayarTerakhir_Data/globalgamemanagers",
