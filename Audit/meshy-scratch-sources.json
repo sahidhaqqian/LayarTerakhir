@@ -1,0 +1,19 @@
+{
+ "recordedUtc": "2026-11-04T00:00:00+00:00",
+ "description": "Designer-provided meshy.ai crimson-rupture relief (R2 asset/) + designer reference photo; mesh used as wall relief, re-textured in-repo toward the reference (first-party paint over bathroom tile). No CC0 download; designer owns the asset.",
+ "r2": {
+  "glb": "r2:layarterakhir/Layarterakhir/asset/Meshy_AI_Crimson_Rupture_1103221427_texture.glb",
+  "glbBytes": 36078060,
+  "reference": "r2:layarterakhir/Layarterakhir/asset/cakaran_yang_aku_inginkan.jpg",
+  "referenceBytes": 741112
+ },
+ "localSha256": {
+  "glb": "80e5fea6533ae19b3e6bfeaeb73507842578ca6c311edc8a0d425a77b26a2684"
+ },
+ "derived": {
+  "fbx": "Assets/_LayarTerakhir/assets/Art/Imported/Meshy/CrimsonRupture/CrimsonRuptureWall.fbx (decimated 0.35, ~355k tris, Blender)",
+  "albedo": "CrimsonRuptureWall_albedo.png (Tools/gen_crimson_scratches.py, seed 19980521)",
+  "mask": "CrimsonRuptureWall_mask.png (A=smoothness)",
+  "normal": "CrimsonRuptureWall_normal.jpg (extracted from designer GLB)"
+ }
+}

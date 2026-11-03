@@ -1392,7 +1392,6 @@ namespace LayarTerakhir.Editor
             var hand = DecalMaterial("BloodHandprint", false);
             hand.SetColor("_BaseColor", new Color(.74f, .68f, .68f, .94f));
             EditorUtility.SetDirty(hand);
-            var scratches = DecalMaterial("WallScratches", true);
 
             (float x, float h, float roll, float sx, float sy)[] handSpecs =
             {
@@ -1413,35 +1412,11 @@ namespace LayarTerakhir.Editor
             foreach (var p in new[] { d.P(-3.8f, 5.75f, 3.833f), d.P(-2.95f, 5.52f, 3.833f), d.P(-1.7f, 5.8f, 3.833f), d.P(2.9f, 5.55f, 3.834f) })
                 Quad("BloodFloor_" + p.x.ToString("F2"), root, p, Quaternion.Euler(90, p.x * 37f, 0), new Vector2(.76f, .88f), stain);
 
-            // Bug 34: 5-finger desperate bloody wall scratches in bathroom + delete any stray grey cube on the floor beneath it!
-            if (d.upper.scratchAim) d.upper.scratchAim.SetParent(root, true);
-            Delete("BathScratchesAR"); Delete("BathScratchTarget"); Delete("BathWallScratches"); Delete("BathWallARTrace");
-            Vector3 scratchPos = d.P(-2.285f, 3.25f, 4.94f);
-            // Delete any unnamed/stray small grey cube sitting on the bathroom floor directly beneath BathWallScratches
-            foreach (var r in root.GetComponentsInChildren<MeshRenderer>(true).ToArray())
-            {
-                if (!r) continue;
-                Vector3 lp = d.LocalPosition(r.bounds.center);
-                if (lp.x < -1.85f && lp.x > -2.45f && lp.y > 2.75f && lp.y < 3.75f && r.bounds.center.y > 3.80f && r.bounds.center.y < 4.35f &&
-                    r.bounds.size.x < .65f && r.bounds.size.z < .65f && !r.name.Contains("Floor") && !r.name.Contains("Wall") && !r.name.Contains("Tub") && !r.name.Contains("Bucket"))
-                {
-                    Object.DestroyImmediate(r.gameObject);
-                }
-            }
-            var scratch = Quad("BathWallScratches", root, scratchPos, Quaternion.LookRotation(-d.east), new Vector2(.48f, .74f), scratches);
-            var trace = new GameObject("BathWallARTrace");
-            trace.transform.SetParent(root, true);
-            trace.transform.SetPositionAndRotation(scratch.transform.position, scratch.transform.rotation);
-            d.upper.bathScratchesAR = trace;
-            if (!d.upper.scratchAim) d.upper.scratchAim = new GameObject("ScratchAim").transform;
-            d.upper.scratchAim.SetParent(trace.transform, true);
-            d.upper.scratchAim.position = scratch.transform.position;
-            var target = new GameObject("BathScratchTarget", typeof(BoxCollider), typeof(AtmajaItem));
-            target.transform.SetParent(root, true);
-            target.transform.SetPositionAndRotation(scratch.transform.position, scratch.transform.rotation);
-            target.GetComponent<BoxCollider>().size = new Vector3(.48f, .74f, .02f);
-            var item = target.GetComponent<AtmajaItem>();
-            item.director = d; item.action = AtmajaAction.BathScratches; item.label = "Periksa bekas cakaran di dinding";
+            // Designer Nov: the designer's own Meshy crimson-rupture relief
+            // replaces the flat scratch decal — real torn ridges under the
+            // flashlight, painted to the reference (bloody fan slashes over
+            // the bathroom's own tile).
+            RebuildScratchRelief(d, root);
 
             // Bug 24 (revisit, designer Nov): rusted exact-fit crowbar-gated vent.
             RebuildRustedVent(d, root);
@@ -2287,6 +2262,91 @@ namespace LayarTerakhir.Editor
             src.maxDistance = 7;
             src.rolloffMode = AudioRolloffMode.Linear;
             src.outputAudioMixerGroup = d.audioProfile.effectsBus;
+        }
+
+        // Designer Nov: the designer's own Meshy crimson-rupture relief stands
+        // on the bathroom west wall — real torn ridges under the flashlight,
+        // painted to the reference (bloody fan slashes over the bathroom's
+        // own tile, wet-glossy slashes on a rough wall). Idempotent.
+        public static void ApplyScratchRelief()
+        {
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            var root = Find("Atmaja_Environment_Art").transform;
+            RebuildScratchRelief(d, root);
+            Save();
+            Debug.Log("PROLOG47_SCRATCH_RELIEF_APPLIED designer rupture relief, reference-matched paint");
+        }
+
+        private static void RebuildScratchRelief(AtmajaDirector d, Transform root)
+        {
+            const string dir = "Assets/_LayarTerakhir/assets/Art/Imported/Meshy/CrimsonRupture/";
+            var norImport = AssetImporter.GetAtPath(dir + "CrimsonRuptureWall_normal.jpg") as TextureImporter;
+            if (norImport && norImport.textureType != TextureImporterType.NormalMap)
+            {
+                norImport.textureType = TextureImporterType.NormalMap;
+                norImport.SaveAndReimport();
+            }
+            // Authored material: opaque relief, wet gloss only on the slashes
+            // (mask alpha), zero metal everywhere — mask R is 0 by construction.
+            string mPath = Mats + "CrimsonRuptureWall.mat";
+            var mat = AssetDatabase.LoadAssetAtPath<Material>(mPath);
+            if (!mat)
+            {
+                mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+                AssetDatabase.CreateAsset(mat, mPath);
+            }
+            mat.SetTexture("_BaseMap", AssetDatabase.LoadAssetAtPath<Texture2D>(dir + "CrimsonRuptureWall_albedo.png"));
+            var nor = AssetDatabase.LoadAssetAtPath<Texture2D>(dir + "CrimsonRuptureWall_normal.jpg");
+            if (nor) { mat.SetTexture("_BumpMap", nor); mat.SetFloat("_BumpScale", .7f); mat.EnableKeyword("_NORMALMAP"); }
+            mat.SetTexture("_MetallicGlossMap", AssetDatabase.LoadAssetAtPath<Texture2D>(dir + "CrimsonRuptureWall_mask.png"));
+            mat.EnableKeyword("_METALLICSPECGLOSSMAP");
+            mat.SetColor("_BaseColor", Color.white);
+            mat.SetFloat("_Metallic", 0f);
+            mat.SetFloat("_Smoothness", 1f);
+            mat.SetFloat("_Cull", 0f);
+            EditorUtility.SetDirty(mat);
+
+            Delete("BathWallScratches");
+            Delete("CrimsonScratchRelief");
+            var asset = AssetDatabase.LoadAssetAtPath<GameObject>(dir + "CrimsonRuptureWall.fbx");
+            if (!asset) throw new InvalidOperationException("Missing designer crimson rupture FBX");
+            var holder = new GameObject("CrimsonScratchRelief");
+            holder.transform.SetParent(root, true);
+            var child = (GameObject)PrefabUtility.InstantiatePrefab(asset);
+            child.transform.SetParent(holder.transform, false);
+            foreach (var r in child.GetComponentsInChildren<Renderer>())
+                r.sharedMaterials = Enumerable.Repeat(mat, r.sharedMaterials.Length).ToArray();
+            // The Meshy panel lies in XZ (thin Y): stand it on the west wall
+            // facing east — local width to the wall tangent, thin axis east.
+            var east = d.east; east.y = 0; east.Normalize();
+            var right = Vector3.Cross(east, Vector3.up).normalized;
+            var basis = Matrix4x4.identity;
+            basis.SetColumn(0, new Vector4(right.x, right.y, right.z, 0));
+            basis.SetColumn(1, new Vector4(east.x, east.y, east.z, 0));
+            basis.SetColumn(2, new Vector4(0, 1, 0, 0));
+            holder.transform.rotation = basis.rotation;
+            KosVisualV2.Resize(holder, new Vector3(.05f, .95f, 1.5f));
+            Vector3 center = d.P(-2.27f, 2.9f, 4.94f);
+            KosVisualV2.SetCenter(holder, center);
+            // Re-seat the AR trace + aim + inspect target on the relief face.
+            Vector3 face = d.P(-2.24f, 2.9f, 4.94f);
+            if (d.upper.scratchAim) d.upper.scratchAim.SetParent(root, true);
+            Delete("BathWallARTrace");
+            var trace = new GameObject("BathWallARTrace");
+            trace.transform.SetParent(root, true);
+            trace.transform.SetPositionAndRotation(face, Quaternion.LookRotation(east));
+            d.upper.bathScratchesAR = trace;
+            if (!d.upper.scratchAim) d.upper.scratchAim = new GameObject("ScratchAim").transform;
+            d.upper.scratchAim.SetParent(trace.transform, true);
+            d.upper.scratchAim.position = face;
+            Delete("BathScratchTarget");
+            var target = new GameObject("BathScratchTarget", typeof(BoxCollider), typeof(AtmajaItem));
+            target.transform.SetParent(root, true);
+            target.transform.SetPositionAndRotation(center, Quaternion.LookRotation(east));
+            target.GetComponent<BoxCollider>().size = new Vector3(1.5f, .95f, .06f);
+            var item = target.GetComponent<AtmajaItem>();
+            item.director = d; item.action = AtmajaAction.BathScratches; item.label = "Periksa bekas cakaran di dinding";
         }
 
         private static void RebuildRustedVent(AtmajaDirector d, Transform root)

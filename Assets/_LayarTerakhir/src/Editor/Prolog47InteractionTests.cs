@@ -37,6 +37,13 @@ namespace LayarTerakhir.Editor.Tests
             phone.arModuleUnlocked=true;phone.currentScanMode=ScanVisualMode.AR;phone.isPhoneRaised=phone.isScreenOn=true;phone.batteryPercent=100;
             d.phoneView.Apps.Open(PhoneApp.Camera);phone.SyncVisualState();yield return null;
             var lens=d.phoneView.FeedCamera;
+            // Designer rupture relief replaces the flat decal (mesh owned by
+            // the designer, re-textured in-repo toward the reference).
+            var relief=GameObject.Find("CrimsonScratchRelief");
+            Assert.That(relief,Is.Not.Null,"Designer rupture relief stands on the bathroom wall");
+            var rb=KosVisualV2.BoundsOf(relief);
+            Assert.That(rb.size.z,Is.GreaterThan(1f),"Relief spans the reference-wide slash field");
+            Assert.That(rb.Contains(d.upper.scratchAim.position),Is.True,"Scratch aim sits on the relief face");
             // 1. Rope first: the hanged figure answers the rope photo itself.
             var rope=d.upper.ropeAim;
             lens.transform.position=rope.position-d.north*1.2f+Vector3.up*-.5f;
