@@ -2301,40 +2301,16 @@ namespace LayarTerakhir.Editor
             foreach (string oldV in new[] { "VentCabinet", "VentHoleDark", "VentHoleAR", "VentGrille", "VentGrilleDoor", "VentGrilleHinge", "VentDuctFrame", "VentDuctTrim_Top", "VentDuctTrim_Bottom", "VentDuctTrim_Left", "VentDuctTrim_Right", "VentBackDark_Top", "VentBackDark_Bottom" })
                 Delete(oldV);
             d.upper.ventCabinet = null;
-            void VentTrim(string tName, float tx, float ty, Vector3 tScale)
-            {
-                var bar = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                bar.name = tName;
-                bar.transform.SetParent(root, true);
-                Object.DestroyImmediate(bar.GetComponent<Collider>());
-                bar.transform.SetPositionAndRotation(d.P(tx, 5.24f, ty), Quaternion.LookRotation(d.north));
-                bar.transform.localScale = tScale;
-                bar.GetComponent<Renderer>().sharedMaterial = Material("Repair_NumberBacking");
-            }
-            VentTrim("VentDuctTrim_Top", -3.0f, 4.465f, new Vector3(.80f, .035f, .14f));
-            VentTrim("VentDuctTrim_Bottom", -3.0f, 3.895f, new Vector3(.80f, .035f, .14f));
-            VentTrim("VentDuctTrim_Left", -3.385f, 4.18f, new Vector3(.035f, .58f, .14f));
-            VentTrim("VentDuctTrim_Right", -2.615f, 4.18f, new Vector3(.035f, .58f, .14f));
-            // Seal the wall-cavity slits above/below the trim frame with dark duct
-            // backing, so no see-through gaps remain around the opening.
-            void BackDark(string n, float y0, float y1)
-            {
-                var b = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                b.name = n;
-                b.transform.SetParent(root, true);
-                Object.DestroyImmediate(b.GetComponent<Collider>());
-                b.transform.SetPositionAndRotation(d.P(-3.0f, 5.27f, (y0 + y1) * .5f), Quaternion.LookRotation(d.north));
-                b.transform.localScale = new Vector3(.9f, y1 - y0, .06f);
-                b.GetComponent<Renderer>().sharedMaterial = Material("Repair_NumberBacking");
-            }
-            BackDark("VentBackDark_Bottom", 3.82f, 3.9125f);
-            BackDark("VentBackDark_Top", 4.4475f, 4.90f);
+            // Designer Nov: the black duct trims and backing slabs are gone —
+            // no dark clutter around the hole. The rusted grille grows to the
+            // full wall opening (x -3.45..-2.55, y 3.84..4.88) so the prized
+            // hole reads as one big enterable vent, never a slit.
             var hinge = new GameObject("VentGrilleHinge").transform;
             hinge.SetParent(root, true);
-            hinge.SetPositionAndRotation(d.P(-3.38f, 5.24f, 4.18f), Quaternion.LookRotation(d.north));
-            var cover = Model("VentGrille", "VentGrilleDoor", hinge, d.P(-3.0f, 5.24f, 4.18f), Quaternion.LookRotation(d.north));
-            KosVisualV2.Resize(cover, new Vector3(.76f, .56f, .048f));
-            KosVisualV2.SetCenter(cover, d.P(-3.0f, 5.24f, 4.18f));
+            hinge.SetPositionAndRotation(d.P(-3.45f, 5.24f, 4.36f), Quaternion.LookRotation(d.north));
+            var cover = Model("VentGrille", "VentGrilleDoor", hinge, d.P(-3.0f, 5.24f, 4.36f), Quaternion.LookRotation(d.north));
+            KosVisualV2.Resize(cover, new Vector3(.90f, 1.02f, .05f));
+            KosVisualV2.SetCenter(cover, d.P(-3.0f, 5.24f, 4.36f));
             // Rust it: the authored mesh ships with flat grey iron. Dress every face
             // in the CC0 rusty grate so it reads decades old, never brand new.
             var rust = Material("Repair_VentRust");
@@ -2359,7 +2335,7 @@ namespace LayarTerakhir.Editor
             d.upper.ventDoor = vent;
             if (d.upper.ventMouth)
             {
-                d.upper.ventMouth.position = d.P(-3.0f, 5.26f, 4.18f);
+                d.upper.ventMouth.position = d.P(-3.0f, 5.26f, 4.36f);
                 foreach (var oldG in d.upper.ventMouth.GetComponentsInChildren<ARPhotoGlimmer>(true))
                     if (oldG) Object.DestroyImmediate(oldG.gameObject);
                 ARPhotoGlimmer.Attach(d.upper.ventMouth, d.upper, "EVENT_P0_CHAIN1_BROKEN", true, true, false);

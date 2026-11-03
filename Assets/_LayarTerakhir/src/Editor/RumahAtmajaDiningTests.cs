@@ -310,8 +310,8 @@ namespace LayarTerakhir.Editor.Tests
             var cover = GameObject.Find("VentGrilleDoor");
             Assert.That(cover && cover.activeInHierarchy, Is.True, "Vent grille leaf exists");
             var cb = VisualBounds(cover);
-            Assert.That(cb.size.x, Is.EqualTo(.76f).Within(.05f), "Grille width matches the duct opening");
-            Assert.That(cb.size.y, Is.EqualTo(.56f).Within(.05f), "Grille height matches the duct opening");
+            Assert.That(cb.size.x, Is.EqualTo(.90f).Within(.06f), "Grille width fills the wall opening");
+            Assert.That(cb.size.y, Is.EqualTo(1.02f).Within(.06f), "Grille height fills the wall opening");
             var hinge = GameObject.Find("VentGrilleHinge");
             Assert.That(hinge, Is.Not.Null, "Grille hinge exists");
             Assert.That(Mathf.Abs(hinge.transform.position.y - cb.center.y), Is.LessThan(.12f), "Hinge sits at grille height, not the floor");
@@ -320,7 +320,7 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(mats.Length, Is.GreaterThan(0), "Grille has real materials");
             Assert.That(mats.Any(m => m.HasProperty("_BaseMap") && m.GetTexture("_BaseMap") && m.GetTexture("_BaseMap").name.Contains("metal_grate_rusty")), Is.True, "Grille wears the CC0 rust, not brand-new grey");
             foreach (string n in new[] { "VentDuctTrim_Top", "VentDuctTrim_Bottom", "VentDuctTrim_Left", "VentDuctTrim_Right", "VentBackDark_Top", "VentBackDark_Bottom" })
-                Assert.That(GameObject.Find(n), Is.Not.Null, n + " seals the duct frame");
+                Assert.That(GameObject.Find(n), Is.Null, n + " removed: no black clutter around the vent hole");
             var door = cover.GetComponent<LayarTerakhir.Prolog.HingedDoor>();
             Assert.That(door, Is.Not.Null, "Grille swings on a real hinge");
             Assert.That(door.locked, Is.True, "Grille starts locked until the crowbar is found");

@@ -26,7 +26,7 @@ namespace LayarTerakhir.Editor
             var spot = new GameObject("VentPrySpot").AddComponent<Light>();
             spot.type = LightType.Spot; spot.intensity = 4f; spot.range = 9;
             spot.spotAngle = 60; spot.color = new Color(1f, .93f, .8f);
-            var hole = d.P(-3.0f, 5.24f, 4.2f);
+            var hole = d.P(-3.0f, 5.24f, 4.36f);
             cam.transform.position = d.P(-3.0f, 6.5f, 4.25f);
             cam.transform.rotation = Quaternion.LookRotation((hole - cam.transform.position).normalized);
             spot.transform.position = d.P(-3.0f, 6.3f, 4.6f);
