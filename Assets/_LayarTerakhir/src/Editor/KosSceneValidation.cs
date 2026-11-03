@@ -16,7 +16,7 @@ namespace LayarTerakhir.Editor
     public static class KosSceneValidation
     {
         public static readonly string[] FloorModels = { "vintage_day_bed", "wooden_table_02", "painted_wooden_chair_01",
-            "bookcaseClosedDoors", "painted_wooden_cabinet_02", "OldPCTower", "RefillWaterGallon",
+            "MeshyBedroomWardrobe", "painted_wooden_cabinet_02", "OldPCTower", "RefillWaterGallon",
             "plastic_bottle_gallon", "trashcan", "cardboardBoxOpen", "plastic_container", "wicker_basket_02", "KosSandals", "KosBackpack", "StreamerGreenScreen" };
         [Serializable] public class Check { public string subject, kind, detail; public bool passed; public float measured; }
         [Serializable] public class Report
@@ -220,10 +220,11 @@ namespace LayarTerakhir.Editor
             [Test] public void WardrobeDoorsFaceTheRoom()
             {
                 EditorSceneManager.OpenScene(PrologKosSceneBuilder.ScenePath);
-                var wardrobe=GameObject.Find("bookcaseClosedDoors");
+                var wardrobe=GameObject.Find("MeshyBedroomWardrobe");
                 Assert.That(wardrobe,Is.Not.Null,"Raka's wardrobe exists");
-                // The Kenney front is +Z: yaw 270 turns the double doors west
-                // into the room. Yaw 90 parked them facing the east wall.
+                // The Meshy front is +Z (open door, hanging + folded clothes):
+                // yaw 270 turns it west into the room. Yaw 90 would park the
+                // clothes facing the east wall.
                 float yaw=wardrobe.transform.rotation.eulerAngles.y;
                 Assert.That(Mathf.Abs(Mathf.DeltaAngle(yaw,270f)),Is.LessThan(2f),"Wardrobe doors face the room, not the wall (yaw "+yaw.ToString("F1")+")");
             }

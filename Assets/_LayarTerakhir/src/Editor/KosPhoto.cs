@@ -26,7 +26,7 @@ namespace LayarTerakhir.Editor
             spot.spotAngle = 65;
             spot.color = new Color(1f, .93f, .8f);
 
-            var wardrobe = GameObject.Find("bookcaseClosedDoors");
+            var wardrobe = GameObject.Find("MeshyBedroomWardrobe");
             if (wardrobe)
             {
                 var b = KosVisualV2.BoundsOf(wardrobe);

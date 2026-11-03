@@ -84,7 +84,7 @@ namespace LayarTerakhir.Editor
         public static void ApplyWardrobeFacing()
         {
             EditorSceneManager.OpenScene(PrologKosSceneBuilder.ScenePath);
-            var wardrobe = Find("bookcaseClosedDoors");
+            var wardrobe = Find("MeshyBedroomWardrobe");
             float yaw = wardrobe.transform.rotation.eulerAngles.y;
             float east = Mathf.Abs(Mathf.DeltaAngle(yaw, 90f));
             float west = Mathf.Abs(Mathf.DeltaAngle(yaw, 270f));
@@ -122,12 +122,35 @@ namespace LayarTerakhir.Editor
                     ti.SaveAndReimport();
                 }
             }
+            // Designer-provided Meshy wardrobe: cap textures like everything
+            // else, but KEEP its authored textured material (the clothes must
+            // read as clothes, never a flat repo tint).
+            foreach (var path in Directory.GetFiles(Art + "/Imported/Meshy/wardrobe"))
+            {
+                if (AssetImporter.GetAtPath(path) is TextureImporter ti)
+                {
+                    ti.maxTextureSize = 1024;
+                    ti.textureType = path.Contains("_normal") ? TextureImporterType.NormalMap : TextureImporterType.Default;
+                    ti.sRGBTexture = !path.Contains("_normal") && !path.Contains("_metallic") && !path.Contains("_roughness");
+                    ti.mipmapEnabled = true; ti.anisoLevel = 2;
+                    ti.textureCompression = TextureImporterCompression.Compressed;
+                    ti.SaveAndReimport();
+                }
+            }
             foreach (var path in Directory.GetFiles(Art, "*.fbx", SearchOption.AllDirectories)
                 .Where(p => p.Contains("/Kos") || p.Contains("plastic_container/") || p.Contains("wicker_basket_02/")))
             {
                 var mi = (ModelImporter)AssetImporter.GetAtPath(path);
                 mi.importCameras = false; mi.importLights = false; mi.importAnimation = false;
                 mi.addCollider = false; mi.materialImportMode = ModelImporterMaterialImportMode.None;
+                mi.meshCompression = ModelImporterMeshCompression.Low; mi.SaveAndReimport();
+            }
+            foreach (var path in Directory.GetFiles(Art + "/Imported/Meshy/wardrobe", "*.fbx"))
+            {
+                var mi = (ModelImporter)AssetImporter.GetAtPath(path);
+                if (mi == null) continue;
+                mi.importCameras = false; mi.importLights = false; mi.importAnimation = false;
+                mi.addCollider = false;
                 mi.meshCompression = ModelImporterMeshCompression.Low; mi.SaveAndReimport();
             }
         }
@@ -167,6 +190,51 @@ namespace LayarTerakhir.Editor
             Rail("DoorHandleLever", new Vector3(1.63f, .99f, -2.12f), new Vector3(1.54f, .99f, -2.12f), .011f, Mat("WornBrass"));
         }
 
+        [MenuItem("LayarTerakhir/Environment/Replace Kos wardrobe with Meshy one")]
+        public static void ReplaceWardrobeOnly()
+        {
+            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+            EditorSceneManager.OpenScene(PrologKosSceneBuilder.ScenePath);
+            var wardrobe = SpawnMeshyWardrobe();
+            FitBox(Find("LemariPakaian").GetComponent<BoxCollider>(), BoundsOf(wardrobe));
+            EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
+            EditorSceneManager.SaveOpenScenes();
+            AssetDatabase.SaveAssets();
+            Debug.Log("KOS_WARDROBE_REPLACED Meshy wardrobe with visible clothes at " + wardrobe.transform.position);
+        }
+        // Designer: Raka's room gets a real wardrobe with visible clothes
+        // (designer-provided Meshy generation), replacing the Kenney bookcase.
+        // Idempotent: removes any previous holder, then spawns fresh.
+        public static GameObject SpawnMeshyWardrobe()
+        {
+            const string fbx = Art + "/Imported/Meshy/wardrobe/Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture.fbx";
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(fbx);
+            if (!prefab) throw new Exception("Missing Meshy wardrobe FBX: " + fbx);
+            var artRoot = Find("Kos_Environment_Art").transform;
+            foreach (string stale in new[] { "MeshyBedroomWardrobe", "bookcaseClosedDoors" })
+            {
+                var t = artRoot.Find(stale);
+                if (t) Object.DestroyImmediate(t.gameObject);
+                var g = GameObject.Find(stale);
+                if (g) Object.DestroyImmediate(g);
+            }
+            var holder = new GameObject("MeshyBedroomWardrobe");
+            holder.transform.SetParent(artRoot, false);
+            var model = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            model.transform.SetParent(holder.transform, false);
+            // Authored front (+Z: open door, hanging + folded clothes) faces
+            // the room (west, -X) — same convention as the old Kenney front.
+            // Yaw lives on the holder so facing checks read it directly.
+            holder.transform.rotation = Quaternion.Euler(0, 270, 0);
+            foreach (var c in model.GetComponentsInChildren<Collider>()) Object.DestroyImmediate(c);
+            // World fit AFTER yaw: shallow in x (east wall), wide in z.
+            var b = BoundsOf(holder);
+            var size = new Vector3(.68f, 1.95f, 1.00f);
+            holder.transform.localScale = new Vector3(size.x / b.size.x, size.y / b.size.y, size.z / b.size.z);
+            SetCenter(holder, new Vector3(2.12f, .975f, 1.25f));
+            Ground(holder);
+            return holder;
+        }
         private static void CorrectFurniture()
         {
             var bed = Find("vintage_day_bed"); Ground(bed);
@@ -185,14 +253,7 @@ namespace LayarTerakhir.Editor
             var chairB = BoundsOf(chair);
             FitBox(Find("ChairSeatCollision").GetComponent<BoxCollider>(), new Bounds(new Vector3(chairB.center.x, .24f, chairB.center.z), new Vector3(chairB.size.x, .47f, chairB.size.z)));
 
-            var wardrobe = Find("bookcaseClosedDoors");
-            ResetPrefabRoot(wardrobe,0);
-            // Doors face the room (west, -X): the Kenney front is +Z, so yaw
-            // 270 turns the doors inward. Yaw 90 parked them facing the east
-            // wall — backwards, as the designer spotted in play.
-            wardrobe.transform.rotation = Quaternion.Euler(0, 270, 0);
-            Resize(wardrobe, new Vector3(.56f, 1.95f, .96f));
-            SetCenter(wardrobe, new Vector3(2.62f, .981f, 1.48f)); Ground(wardrobe);
+            var wardrobe = SpawnMeshyWardrobe();
             FitBox(Find("LemariPakaian").GetComponent<BoxCollider>(), BoundsOf(wardrobe));
             var cupboard = Find("painted_wooden_cabinet_02"); Ground(cupboard);
             FitBox(Find("CupboardCollision").GetComponent<BoxCollider>(), BoundsOf(cupboard));

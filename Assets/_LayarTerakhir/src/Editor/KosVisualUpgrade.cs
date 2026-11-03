@@ -399,8 +399,9 @@ namespace LayarTerakhir.Editor
             seat.transform.position = new Vector3(-1.58f, .25f, 1.56f);
             seat.GetComponent<BoxCollider>().size = new Vector3(.38f, .5f, .38f);
 
-            // Lemari Pakaian & Kabinet di sudut Timur Laut
-            Ken("bookcaseClosedDoors", new Vector3(2.55f, .975f, 1.55f), new Vector3(.72f, 1.95f, .82f), wood);
+            // Lemari Pakaian & Kabinet di sudut Timur Laut: lemari Meshy
+            // desainer (baju kelihatan) gantiin bookcase Kenney.
+            KosVisualV2.SpawnMeshyWardrobe();
             Ph("painted_wooden_cabinet_02", new Vector3(1.65f, .60f, 2.07f), new Vector3(.45f, 1.20f, .30f));
             Solid("CupboardCollision", new Vector3(1.65f, .60f, 2.07f), new Vector3(.45f, 1.20f, .30f));
 

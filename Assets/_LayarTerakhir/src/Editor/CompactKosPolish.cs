@@ -129,7 +129,7 @@ namespace LayarTerakhir.Editor
             foreach(string name in new[]{"BudgetStreamingMicrophone","KeyboardKeycaps"})Find(name).transform.SetParent(Find("Golden_Workstation").transform,true);
             MoveSet("wooden_table_02",new Vector2(-.45f,1.30f),Find("Golden_Workstation"));
             MoveSet("vintage_day_bed",new Vector2(-1.89f,-.65f),new[]{Find("vintage_day_bed"),Find("KasurKos"),Find("BedContactShade"),d.smartphoneBedItem.gameObject,d.phoneBedRedLed.gameObject});
-            MoveSet("bookcaseClosedDoors",new Vector2(2.12f,1.25f),Named("bookcaseClosedDoors","LemariPakaian","CupboardContactShade"));
+            MoveSet("MeshyBedroomWardrobe",new Vector2(2.12f,1.25f),Named("MeshyBedroomWardrobe","LemariPakaian","CupboardContactShade"));
             var books=art.Cast<Transform>().Where(t=>t.name=="books").Select(t=>t.gameObject).ToArray();
             MoveSet("painted_wooden_cabinet_02",new Vector2(1.40f,1.72f),Named("painted_wooden_cabinet_02","CupboardCollision","KosRouter","RouterPowerCable","RouterWallSocket","RouterAdapter")
                 .Concat(books.Where(g=>KosVisualV2.BoundsOf(g).center.x>0)).ToArray());
