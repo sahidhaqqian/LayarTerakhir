@@ -72,7 +72,7 @@ namespace LayarTerakhir.Editor.Tests
         [UnityTest] public IEnumerator FinishedPrologRestoresTheTitleWithoutAnotherDonation()=>Run(FinishedProlog());
         [UnityTest] public IEnumerator PhotoRitualRequiresThreeShotsThenNyonyaVanishes()=>Run(PhotoRitual());
         [UnityTest] public IEnumerator SeatedARScareLastsThreeSecondsWithoutRemovingTheClockClue()=>Run(ShortARScare());
-        [UnityTest] public IEnumerator BlockedCardInstallationRestoresPhoneAndPlayerControl()=>Run(BlockedCardInstallation());
+        [UnityTest] public IEnumerator TightSpotCardInstallationStillHitsScene()=>Run(BlockedCardInstallation());
         [UnityTest] public IEnumerator MasterCellarAndClosingTrapdoorHaveConnectedCapsuleRoutes()=>Run(FinaleGeometry());
         [UnityTest] public IEnumerator HybridCameraUsesRemappedInputAndPreservesChoiceDuringForcedCloseups()=>Run(HybridCamera());
         [UnityTest] public IEnumerator EveryOpenedDocumentPersistsItsFullTextInPhoneNotes()=>Run(DocumentArchive());
@@ -1020,11 +1020,13 @@ namespace LayarTerakhir.Editor.Tests
             d.PlacePlayer(d.P(3.86f,6.17f,.54f),Quaternion.identity);
             var obstruction=GameObject.CreatePrimitive(PrimitiveType.Cube);obstruction.name="FixtureBlockedInstallCeiling";
             obstruction.transform.SetPositionAndRotation(d.P(3.7f,6.2f,1.62f),Quaternion.LookRotation(d.north));obstruction.transform.localScale=new Vector3(6,.1f,4);Physics.SyncTransforms();
-            var original=d.damarPhone.transform.position;Item(AtmajaAction.DamarPhone).Interact();float deadline=Time.time+12;
+            // Designer Nov: the Damar-phone pickup must ALWAYS hit its scene
+            // no matter how tight the spot is — no "Sempit..." abort.
+            Item(AtmajaAction.DamarPhone).Interact();float deadline=Time.time+25;
             while(d.Busy&&Time.time<deadline)yield return null;
-            Assert.That(d.Busy,Is.False);Assert.That(c.HasInventoryItem("MATABATIN_APK"),Is.False);Assert.That(d.damarPhone.activeSelf,Is.True);
-            Assert.That(Vector3.Distance(original,d.damarPhone.transform.position),Is.LessThan(.001f));Assert.That(d.damarPhone.GetComponent<Collider>().enabled,Is.True);
-            Assert.That(UiFocus.Cinematic||d.player.MovementLocked,Is.False,"An obstructed pickup must be retryable");
+            Assert.That(d.Busy,Is.False);Assert.That(c.HasInventoryItem("MATABATIN_APK"),Is.True);
+            Assert.That(d.damarPhone.activeSelf,Is.False);
+            Assert.That(UiFocus.Cinematic||d.player.MovementLocked,Is.False,"A tight-spot pickup must still finish retryable");
             Object.Destroy(obstruction);
         }
         private static IEnumerator Run(IEnumerator scenario)

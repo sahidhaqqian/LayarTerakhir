@@ -97,9 +97,10 @@ namespace LayarTerakhir.Prolog
             // diagonally across its rear legs. Side pickups use the clear aisle.
             var exit=local.y>7.15f?director.P(local.x,7.85f,.54f):director.P(local.x>=3.7f?5.25f:2.12f,6.18f,.54f);
             var controller=director.player.GetComponent<CharacterController>();
-            // Retreat all the way to the authored exit before standing: the card
-            // animation must never start beneath the solid tabletop. A blocked
-            // capsule after the full walk means a real obstruction, not a hint.
+            // Designer Nov: the Damar-phone pickup must ALWAYS hit its scene
+            // no matter where Raka stands. Best-effort walk out first, then
+            // snap to the authored clear aisle if the capsule is still stuck
+            // — never abort with the "Sempit..." retry notif.
             for(float t=0;t<5f&&Vector3.ProjectOnPlane(exit-director.player.transform.position,Vector3.up).magnitude>.08f;t+=Time.deltaTime)
             {
                 var delta=Vector3.ProjectOnPlane(exit-director.player.transform.position,Vector3.up);
@@ -108,7 +109,12 @@ namespace LayarTerakhir.Prolog
                 if(rig)rig.RefreshCameraPose();yield return null;
             }
             if(!director.player.CanStandUp())
-            {Hud.PlayPriorityDialogue("Raka","Sempit... gue cari posisi lain dulu.",3);yield break;}
+            {
+                director.PlacePlayer(exit,director.player.transform.rotation);
+                Physics.SyncTransforms();
+                if(left)damagedPhone.transform.position=left.position;
+                if(rig)rig.RefreshCameraPose();yield return null;
+            }
             float height=controller.height,eye=director.player.cameraPivot.localPosition.y;
             for(float t=0;t<.4f;t+=Time.deltaTime)
             {
