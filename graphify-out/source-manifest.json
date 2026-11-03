@@ -1,16 +1,16 @@
 {
   "artifacts_sha256": {
-    "GRAPH_REPORT.md": "f07cdf033388827b3bcd5d2d36c600ad952ac28995270e30b574882f22d9bb35",
-    "graph.html": "c6714b67aad4f61d2800f4020ffe688f710fd9f203bd469e68c1ebe539d7993b",
-    "graph.json": "8194b06199ddbfec95566b8308224989c5f1eed6472944cc6342680770b19a99"
+    "GRAPH_REPORT.md": "61e52e8c1a2090d1867f9986123420243dbcedf204c72998a6740a4b2afe63e9",
+    "graph.html": "de67682834f3acf871d587d48dbeabbb6857895a485fc7dbf8db10e8fee3c50d",
+    "graph.json": "eb896af6323846cbde83a18170038af9e26c77fb48d2cbb176e006285ecf7f99"
   },
   "asset_file_count": 0,
   "code_file_count": 424,
-  "edge_count": 20354,
+  "edge_count": 20362,
   "graphify_version": "graphify 0.9.92",
   "ignore_sha256": "05660cd7b7a81591931d5661fb73b7124598a04c44f843eda7a7ac2107f20e17",
   "mode": "local-code-only; no LLM/community labeling",
-  "node_count": 5349,
+  "node_count": 5351,
   "referenced_source_count": 424,
   "sources_sha256": {
     "Assets/_LayarTerakhir/src/Audio/AmbientAudioLoop.cs": "7de60fa68d2b45ec199754e8c16b8ac4827306cc38d7ad32a708d93a78e83514",
@@ -142,9 +142,9 @@
     "Assets/_LayarTerakhir/src/Editor/PlaytestRepairBuilder.cs": "8da3d6148c8dcd11eb8f2d91634c235d415e2eaf59e688afbc864db765efcf9a",
     "Assets/_LayarTerakhir/src/Editor/PlaytestReviewValidation.cs": "25b0235bfaafac6c642c98c386503a68606c89f4726dd7ae0c690ddb2263abc0",
     "Assets/_LayarTerakhir/src/Editor/PlaytestRevisionBuilder.cs": "559fbc85b54af14f44030848e045bd7feb5492a5c9b9b6e768e635106e3f1383",
-    "Assets/_LayarTerakhir/src/Editor/Prolog47InteractionTests.cs": "17ffe5cd6091110c3a34ae3c935dda0f73656cfbad2888310a5bda934eee6832",
+    "Assets/_LayarTerakhir/src/Editor/Prolog47InteractionTests.cs": "505743f099b979facaa3bdabb397620cfdb334277f9bbe80c558a805d5d1f29f",
     "Assets/_LayarTerakhir/src/Editor/Prolog47MeshRepair.cs": "7b2dee5be2ff8b2b6228fc13464bb42ab987bfc7e03f7fabec72075d68526f3c",
-    "Assets/_LayarTerakhir/src/Editor/Prolog47SceneRepair.cs": "3a56bba5fde7188f8e192fd8d1e49c2672cce7b08a0d53a3375264bd93a103ad",
+    "Assets/_LayarTerakhir/src/Editor/Prolog47SceneRepair.cs": "a7edd3d69dfe84f9345dac8ed1bd7a4390f8651e587fa6dc8eff0d404089ad2a",
     "Assets/_LayarTerakhir/src/Editor/Prolog47VisualTests.cs": "97a623da2a73d76af6e55bf2ab0e3381d377bcf8576f863f88128011b1804a55",
     "Assets/_LayarTerakhir/src/Editor/PrologCompletionBuilder.cs": "e90b7966dfd7c08996fe4c416856fdac33f4b5392d69c14c1165d7f50ad38544",
     "Assets/_LayarTerakhir/src/Editor/PrologEasyPlayTests.cs": "2ce15608cd7618f43f80b5dca5dc881c26193ec3d90c4442e8fa2266fbac8ffa",
@@ -283,7 +283,7 @@
     "Assets/_LayarTerakhir/src/Prolog/ClockAmbience.cs": "479cb8cd0943d9e86225067c557247cd88f63e7ffd2ed75b7c47a7509f359603",
     "Assets/_LayarTerakhir/src/Prolog/DoubleLeafGate.cs": "fa91906b07138b45d769bb201cdd46c393f83600d7c245f7bcf41a298e60d314",
     "Assets/_LayarTerakhir/src/Prolog/ExplorationCommentary.cs": "3bd75f1696ad60a326a0e7fe3e3d363c4e118454fcd6acf43711aea3c3ef1f22",
-    "Assets/_LayarTerakhir/src/Prolog/HingedDoor.cs": "4f4338ad196d31952f80073b5768be18417a297a3eff8c07df3f9f895135bfc6",
+    "Assets/_LayarTerakhir/src/Prolog/HingedDoor.cs": "24c6617d732366085e75519bd8e5f2492c26cce208adc222ebf677bbd5ac1786",
     "Assets/_LayarTerakhir/src/Prolog/KamarKosPrologDirector.cs": "53c9387e740cab3f020db37004977a24a028efdf3b2bb45b60959188bfff2c52",
     "Assets/_LayarTerakhir/src/Prolog/KosCorridorDirector.cs": "7e6a05b60499b245a7497cbb0ba12b83efabfcae0e6fb163017fdab9100b259f",
     "Assets/_LayarTerakhir/src/Prolog/KosInteractableItem.cs": "fc6eda86dc1dadfca0a375f3ee80c4c6330e12de454ab3476ef1d52e60ba9ba2",

@@ -24,6 +24,31 @@ namespace LayarTerakhir.Editor.Tests
         [UnityTest] public IEnumerator Prolog47WindowAppearsWithoutMovingPlayerThenAdvances()=>Run(Window47());
         [UnityTest] public IEnumerator Prolog47DoorLeavesStayVisibleAndVentNeedsCrouchAR()=>Run(DoorsVent47());
         [UnityTest] public IEnumerator Prolog47RottenFeastSmokePlaysOverTable()=>Run(FeastSmoke47());
+        [UnityTest] public IEnumerator Prolog47VentWithoutCrowbarHintsAtTool()=>Run(VentHint47());
+        private IEnumerator VentHint47()
+        {
+            yield return new WaitForSeconds(2);var d=Find<AtmajaDirector>();
+            Time.timeScale=1;UiFocus.Cinematic=false;
+            // Designer Nov: trying the rusted grille empty-handed must tell
+            // the player a pry tool is needed — never a silent stuck door.
+            var vent=d.upper.ventDoor;
+            Assert.That(vent,Is.Not.Null,"Vent grille door exists");
+            Assert.That(vent.pryFlag,Is.EqualTo("EVENT_P0_VENT_PRIZED"));
+            Assert.That(CampaignState.Instance.HasInventoryItem("ITEM_P0_CROWBAR"),Is.False,"Hint path runs before the crowbar is taken");
+            vent.locked=true;
+            string prompt=vent.GetInteractionPrompt();
+            Assert.That(prompt.ToLowerInvariant(),Does.Contain("cari").Or.Contain("alat").Or.Contain("congkel"),
+                "Locked vent prompt must hint a tool is needed without naming it, got: "+prompt);
+            Assert.That(prompt.ToLowerInvariant(),Does.Not.Contain("linggis"),
+                "Locked vent prompt must not spoil the tool name, got: "+prompt);
+            Assert.That(vent.lockedDialogue.ToLowerInvariant(),Does.Contain("mencari sesuatu"),
+                "Locked vent line must say Raka has to find something, got: "+vent.lockedDialogue);
+            Assert.That(vent.lockedDialogue.ToLowerInvariant(),Does.Not.Contain("linggis"),
+                "Locked vent line must let the player guess the tool, got: "+vent.lockedDialogue);
+            vent.Interact();yield return null;
+            Assert.That(CampaignState.Instance.HasInventoryItem("EVENT_P0_VENT_PRIZED"),Is.False,"Empty-handed pry must not rip the grille");
+            Assert.That(vent.gameObject.activeInHierarchy,Is.True,"Grille stays on until the crowbar pries it");
+        }
         private IEnumerator FeastSmoke47()
         {
             yield return new WaitForSeconds(2);var d=Find<AtmajaDirector>();

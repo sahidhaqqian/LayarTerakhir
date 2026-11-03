@@ -2326,8 +2326,8 @@ namespace LayarTerakhir.Editor
             vent.requiresCrouchAndAR = false;
             vent.label = "Congkel ventilasi berkarat";
             vent.locked = true;
-            vent.lockedPrompt = "Terkunci karat — butuh linggis";
-            vent.lockedDialogue = "Berkarat parah... perlu linggis buat mencongkelnya.";
+            vent.lockedPrompt = "Berkarat — cari sesuatu buat mencongkelnya";
+            vent.lockedDialogue = "Berkarat parah... terkunci. Aku harus mencari sesuatu untuk membukanya.";
             // Designer Nov: prying rips the grille off for good — persisted,
             // restored as gone, never a door that swings open and shut.
             vent.pryFlag = "EVENT_P0_VENT_PRIZED";

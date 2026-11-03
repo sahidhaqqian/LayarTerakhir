@@ -31,7 +31,22 @@ namespace LayarTerakhir.Prolog
         {
             if(!CanInteract())return;
             CapturePosition();
-            if(locked){if(!string.IsNullOrEmpty(lockedDialogue))HudController.Instance.EnqueueSubtitle("Raka",lockedDialogue,4);else HudController.Instance.ShowBroadcastNotification("Pintunya terkunci.",3);return;}
+            if(locked)
+            {
+                // Designer Nov: a prized/rusted vent must TELL the player a tool
+                // is needed. Pry-gated leaves show Raka's first-person line as a
+                // subtitle AND a persistent toast so the hint is never missed.
+                if(!string.IsNullOrEmpty(pryFlag))
+                {
+                    if(HudController.Instance)
+                    {
+                        if(!string.IsNullOrEmpty(lockedDialogue))HudController.Instance.EnqueueSubtitle("Raka",lockedDialogue,4);
+                        HudController.Instance.ShowBroadcastNotification(!string.IsNullOrEmpty(lockedPrompt)?lockedPrompt:"Cari alat untuk membukanya.",4);
+                    }
+                    return;
+                }
+                if(!string.IsNullOrEmpty(lockedDialogue))HudController.Instance.EnqueueSubtitle("Raka",lockedDialogue,4);else HudController.Instance.ShowBroadcastNotification("Pintunya terkunci.",3);return;
+            }
             if(!string.IsNullOrEmpty(pryFlag))
             {
                 var campaign=LayarTerakhir.Core.CampaignState.Instance;
