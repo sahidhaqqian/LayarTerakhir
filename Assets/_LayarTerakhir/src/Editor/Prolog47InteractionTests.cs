@@ -25,6 +25,40 @@ namespace LayarTerakhir.Editor.Tests
         [UnityTest] public IEnumerator Prolog47DoorLeavesStayVisibleAndVentNeedsCrouchAR()=>Run(DoorsVent47());
         [UnityTest] public IEnumerator Prolog47RottenFeastSmokePlaysOverTable()=>Run(FeastSmoke47());
         [UnityTest] public IEnumerator Prolog47VentWithoutCrowbarHintsAtTool()=>Run(VentHint47());
+        [UnityTest] public IEnumerator Prolog47EvidencePhotosWorkInAnyOrder()=>Run(EvidenceAnyOrder47());
+        private IEnumerator EvidenceAnyOrder47()
+        {
+            yield return new WaitForSeconds(1);
+            var d=Find<AtmajaDirector>();var c=CampaignState.Instance;var phone=SmartphoneController.Instance;
+            // Designer Nov: evidences must count in ANY order — rope first
+            // with no diary read, no curtain, no earlier chains.
+            foreach(var id in new[]{"EVENT_P0_GATE_OPEN","EVENT_P0_LIVE_STARTED","EVENT_P0_KITCHEN_ENTERED","EVENT_P0_DINING_OPEN","MATABATIN_APK","EVENT_P0_STAIRS_UNLOCKED","EVENT_P0_UPPER_REACHED"})c.AddInventoryItem(id);
+            d.RestoreWorld();d.SetStage(AtmajaStage.EvidenceHunt);d.player.enabled=false;
+            phone.arModuleUnlocked=true;phone.currentScanMode=ScanVisualMode.AR;phone.isPhoneRaised=phone.isScreenOn=true;phone.batteryPercent=100;
+            d.phoneView.Apps.Open(PhoneApp.Camera);phone.SyncVisualState();yield return null;
+            var lens=d.phoneView.FeedCamera;
+            // 1. Rope first: the hanged figure answers the rope photo itself.
+            var rope=d.upper.ropeAim;
+            lens.transform.position=rope.position-d.north*1.2f+Vector3.up*-.5f;
+            lens.transform.LookAt(rope);Physics.SyncTransforms();d.upper.TryPhotoTick();
+            Assert.That(c.HasInventoryItem("EVENT_P0_CHAIN3_BROKEN"),Is.True,"Rope photo counts without earlier evidences");
+            yield return null;yield return null;
+            Assert.That(d.upper.hangedFlashFigure&&d.upper.hangedFlashFigure.activeSelf,Is.True,"Photographing the rope reveals the hanged figure");
+            Assert.That(c.HasInventoryItem("EVENT_P0_MASTER_OPEN"),Is.False,"Master stays shut until all three evidences are in");
+            // 2. Cup second, still without reading the diary.
+            var cup=d.upper.cupAim;
+            lens.transform.position=cup.position+d.north*1.2f+Vector3.up*.7f;
+            lens.transform.LookAt(cup);Physics.SyncTransforms();d.upper.TryPhotoTick();
+            Assert.That(c.HasInventoryItem("EVENT_P0_CHAIN1_BROKEN"),Is.True,"Cup photo counts without the diary");
+            // 3. Scratches last (curtain drawn open first — the one physical gate).
+            c.AddInventoryItem("EVENT_P0_CURTAIN_OPEN");d.upper.RestoreWorld();
+            var scratch=d.upper.scratchAim;
+            lens.transform.position=scratch.position+d.east*1.2f+Vector3.up*.1f;
+            lens.transform.LookAt(scratch);Physics.SyncTransforms();d.upper.TryPhotoTick();
+            Assert.That(c.HasInventoryItem("EVENT_P0_CHAIN2_BROKEN"),Is.True,"Scratches photo lands last");
+            Assert.That(d.upper.ChainsBroken,Is.EqualTo(3));
+            Assert.That(c.HasInventoryItem("EVENT_P0_MASTER_OPEN"),Is.True,"All three evidences open the master door whichever lands last");
+        }
         private IEnumerator VentHint47()
         {
             yield return new WaitForSeconds(2);var d=Find<AtmajaDirector>();

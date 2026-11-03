@@ -231,9 +231,9 @@ namespace LayarTerakhir.UI
             if(c.HasInventoryItem("EVENT_P0_AR_CLUE_READ"))entries.Add(("Tulisan di dinding","WAKTU KEMATIAN KAMI ADALAH KUNCI.\nIII : XLV"));
             if(c.HasInventoryItem(AtmajaUpperDirector.DiaryId))entries.Add(("Buku harian Bima",AtmajaUpperDirector.DiaryText));
             if(c.HasInventoryItem(AtmajaUpperDirector.WillId))entries.Add(("Surat wasiat Nyonya",AtmajaUpperDirector.WillText));
-            if(c.HasInventoryItem("EVENT_P0_CHAIN1_BROKEN"))entries.Add(("Foto cangkir retak","Bukti pertama: cangkir susu yang ditinggalkan di kamar anak. Ada aura yang tidak terlihat tanpa kamera."));
-            if(c.HasInventoryItem("EVENT_P0_CHAIN2_BROKEN"))entries.Add(("Foto cakaran","Bukti kedua: jejak jari kecil di balik kamar mandi."));
-            if(c.HasInventoryItem("EVENT_P0_CHAIN3_BROKEN"))entries.Add(("Foto tali","Bukti ketiga: tali di atas balkon. Tiga bukti terhubung dengan tragedi keluarga ini."));
+            if(c.HasInventoryItem("EVENT_P0_CHAIN1_BROKEN"))entries.Add(("Foto cangkir retak","Bukti: cangkir susu yang ditinggalkan di kamar anak. Ada aura yang tidak terlihat tanpa kamera."));
+            if(c.HasInventoryItem("EVENT_P0_CHAIN2_BROKEN"))entries.Add(("Foto cakaran","Bukti: jejak jari kecil di balik kamar mandi."));
+            if(c.HasInventoryItem("EVENT_P0_CHAIN3_BROKEN"))entries.Add(("Foto tali","Bukti: tali di atas balkon. Tiga bukti terhubung dengan tragedi keluarga ini."));
             if(c.HasInventoryItem(AtmajaBasementHorror.HandycamId))entries.Add(("Rekaman terakhir Damar",AtmajaHandycamPlayback.DamarLine));
             if(c.HasInventoryItem("EVENT_P0_FINAL_CONTRACT"))entries.Add(("Satu malam selesai",PrologFinaleView.FinalContract));
             // Old saves still expose their discovered documents; exact archived copies take precedence.

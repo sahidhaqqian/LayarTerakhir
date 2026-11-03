@@ -250,7 +250,7 @@ namespace LayarTerakhir.Prolog
             }
             bool ar=ArActive;
             if(ventHoleAR)ventHoleAR.SetActive(ar&&!Has("EVENT_P0_CHAIN1_BROKEN"));
-            if(bathScratchesAR)bathScratchesAR.SetActive(ar&&Has("EVENT_P0_CHAIN1_BROKEN")&&!Has("EVENT_P0_CHAIN2_BROKEN"));
+            if(bathScratchesAR)bathScratchesAR.SetActive(ar&&Has("EVENT_P0_CURTAIN_OPEN")&&!Has("EVENT_P0_CHAIN2_BROKEN"));
             if(ar)SyncScratchTarget();
             for(int i=0;i<portraitBloodAR.Length;i++)if(portraitBloodAR[i])portraitBloodAR[i].SetActive(ar);
             // Stair landing detection: the pocket door is open and the capsule climbs past the slab.
@@ -328,9 +328,14 @@ namespace LayarTerakhir.Prolog
         {
             if(!ArActive||director.Stage<AtmajaStage.EvidenceHunt||director.Stage>AtmajaStage.MasterOpen||Phone.batteryPercent<Phone.photoCostPercent)return;
             SyncScratchTarget();
-            if(!Has("EVENT_P0_CHAIN1_BROKEN")&&Has(DiaryId)&&Aimed(cupAim,3f,.9f))BreakChain(1,"Cangkir susu retak terpindai aura merah.","EVENT_P0_CHAIN1_BROKEN");
-            else if(Has("EVENT_P0_CHAIN1_BROKEN")&&Has("EVENT_P0_CURTAIN_OPEN")&&!Has("EVENT_P0_CHAIN2_BROKEN")&&Aimed(scratchAim,2.6f,.88f))BreakChain(2,"Cakaran puluhan jari kecil terpindai jelas.","EVENT_P0_CHAIN2_BROKEN");
-            else if(Has("EVENT_P0_CHAIN2_BROKEN")&&!Has("EVENT_P0_CHAIN3_BROKEN")&&Aimed(ropeAim,4.5f,.88f))BreakChain(3,"Tali tambang berayun terpindai. Sesuatu tergantung di sana...","EVENT_P0_CHAIN3_BROKEN");
+            // Designer Nov: the three AR evidences work in ANY order — a
+            // photo counts whenever its own target is aimed, never
+            // cup-then-scratches-then-rope. Only the shower curtain stays a
+            // physical prerequisite (it covers the scratched wall until
+            // drawn open).
+            if(!Has("EVENT_P0_CHAIN1_BROKEN")&&Aimed(cupAim,3f,.9f))BreakChain(1,"Cangkir susu retak terpindai aura merah.","EVENT_P0_CHAIN1_BROKEN");
+            else if(!Has("EVENT_P0_CHAIN2_BROKEN")&&Has("EVENT_P0_CURTAIN_OPEN")&&Aimed(scratchAim,2.6f,.88f))BreakChain(2,"Cakaran puluhan jari kecil terpindai jelas.","EVENT_P0_CHAIN2_BROKEN");
+            else if(!Has("EVENT_P0_CHAIN3_BROKEN")&&Aimed(ropeAim,4.5f,.88f))BreakChain(3,"Tali tambang berayun terpindai. Sesuatu tergantung di sana...","EVENT_P0_CHAIN3_BROKEN");
         }
         private void SyncScratchTarget()
         {
@@ -344,7 +349,12 @@ namespace LayarTerakhir.Prolog
             Ui(AtmajaSynth.Tone(1.2f,140,60,.5f),.6f);
             Hud.ShowBroadcastNotification($"Rantai {n} putus! {toast}",5);
             director.phoneView.AddChat("@horor_hunter","BARUSAN RANTAINYA PUTUS SENDIRI WOI");
-            if(n==3){StartCoroutine(FlashFigure(hangedFlashFigure,.5f,"Raka","Dia... tergantung di sana..."));OpenMasterDoor();}
+            // Designer Nov: the hanged figure answers the ROPE photo itself,
+            // in any order — held long enough to actually be seen — and the
+            // master door opens once all three evidences are in, whichever
+            // photo lands last.
+            if(n==3)StartCoroutine(FlashFigure(hangedFlashFigure,2.5f,"Raka","Dia... tergantung di sana..."));
+            if(ChainsBroken>=3)OpenMasterDoor();
             director.Objective();
         }
         private void OpenMasterDoor()
