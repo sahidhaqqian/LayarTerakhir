@@ -68,6 +68,11 @@ namespace LayarTerakhir.Editor
             CompactKosPolish.ApplyToOpenScene();
             // Backrest direction is judged against the final desk spot.
             OrientChairToDesk();
+            // Compact moves assemblies rigidly, so anything V2 placed by
+            // absolute coords pre-layout strands (monitor, chair, window
+            // dressing, cables...). Seat everything gameplay-visible here
+            // from LIVE bounds — absolute and idempotent.
+            SeatFinalLayout();
             foreach (var camera in Object.FindObjectsByType<Camera>(FindObjectsSortMode.None))
             {
                 if (!camera.CompareTag("MainCamera")) continue;
@@ -242,7 +247,31 @@ namespace LayarTerakhir.Editor
             FitWorldSize(holder, new Vector3(.68f, 1.95f, 1.00f));
             SetCenter(holder, new Vector3(2.12f, .975f, 1.25f));
             Ground(holder);
+            BindWardrobeAuthoredMaterial(holder);
             return holder;
+        }
+        // The remesh FBX references designer-absolute texture paths, so its
+        // embedded material imports with no base map (white wardrobe, white
+        // clothes). Bind the shipped atlas explicitly; idempotent across
+        // reimports since it runs on every spawn.
+        private static void BindWardrobeAuthoredMaterial(GameObject holder)
+        {
+            const string dir = Art + "/Imported/Meshy/wardrobe/";
+            var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(dir + "Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture_remesh_tri.png");
+            var normal = AssetDatabase.LoadAssetAtPath<Texture2D>(dir + "Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture_remesh_tri_normal.png");
+            if (!albedo) throw new Exception("Missing wardrobe albedo atlas: " + dir);
+            const string matPath = Art + "/Generated/Materials/MeshyWardrobeAuthored.mat";
+            var mat = AssetDatabase.LoadAssetAtPath<Material>(matPath);
+            if (!mat) { mat = new Material(Shader.Find("Universal Render Pipeline/Lit")); AssetDatabase.CreateAsset(mat, matPath); }
+            mat.SetTexture("_BaseMap", albedo);
+            if (normal) { mat.SetTexture("_BumpMap", normal); mat.EnableKeyword("_NORMALMAP"); mat.SetFloat("_BumpScale", 1f); }
+            mat.SetColor("_BaseColor", Color.white);
+            mat.SetFloat("_Metallic", 0f);
+            mat.SetFloat("_Smoothness", .35f);
+            EditorUtility.SetDirty(mat);
+            foreach (var r in holder.GetComponentsInChildren<Renderer>())
+                r.sharedMaterials = Enumerable.Repeat(mat, r.sharedMaterials.Length).ToArray();
+            Debug.Log("KOS_WARDROBE_MATERIAL bound authored atlas on " + holder.name);
         }
         // Legacy passes left a nest of same-named holders, 100x-scaled ancestors
         // and children whose meshes were stripped: the art-root holder can
@@ -281,13 +310,20 @@ namespace LayarTerakhir.Editor
             Debug.Log("KOS_HOLDER_REBUILT " + holder.name + " from " + fbxPath);
         }
         // Chair backrest vs desk is evaluated on the FINAL (post-Compact)
-        // layout, so this runs after the Compact pass: aim the backrest
-        // opposite the desk vector, then keep the lived-in tilt.
+        // layout, so this runs after the Compact pass: seat the sitter
+        // south of the final desk (clear of the desktop footprint), aim the
+        // backrest opposite the desk vector, then keep the lived-in tilt.
+        // The seat collision is refit here too — the pre-Compact fit rides
+        // stale once the assembly moves.
         public static void OrientChairToDesk()
         {
             var chair = Find("painted_wooden_chair_01");
             var desk = Find("wooden_table_02");
+            var db = BoundsOf(desk);
             var cb = BoundsOf(chair);
+            SetCenter(chair, new Vector3(db.center.x + .05f, cb.center.y, db.min.z - cb.size.z * .5f - .10f));
+            Ground(chair);
+            cb = BoundsOf(chair);
             var toDesk = BoundsOf(desk).center - cb.center; toDesk.y = 0;
             var high = MeshVertices(chair).Where(v => v.y > cb.min.y + .65f).ToArray();
             if (high.Length > 0 && toDesk.sqrMagnitude > .000001f)
@@ -298,6 +334,177 @@ namespace LayarTerakhir.Editor
             }
             chair.transform.RotateAround(BoundsOf(chair).center, Vector3.up, -7);
             Ground(chair);
+            var chairB = BoundsOf(chair);
+            var seatGo = Find("ChairSeatCollision");
+            seatGo.transform.position = new Vector3(chairB.center.x, .24f, chairB.center.z);
+            FitBox(seatGo.GetComponent<BoxCollider>(), new Bounds(new Vector3(chairB.center.x, .24f, chairB.center.z), new Vector3(chairB.size.x, .47f, chairB.size.z)));
+            Debug.Log("KOS_CHAIR_SEATED south of desk at " + chair.transform.position);
+        }
+        // Pull nested same-named holders up to the art root (world-stays)
+        // until flat, then drop holders left with no mesh. Kills the nesting
+        // disease where origin-based Resize/SetCenter pinball children
+        // across runs (books stacked inside the cupboard, doubled boxes).
+        private static void FlattenNested(string name)
+        {
+            var artRoot = Find("Kos_Environment_Art").transform;
+            bool moved;
+            do
+            {
+                moved = false;
+                foreach (var t in artRoot.GetComponentsInChildren<Transform>(true).ToArray())
+                {
+                    if (t == artRoot || t.name != name || t.parent == artRoot || t.parent == null) continue;
+                    if (t.parent.name != name) continue;
+                    t.SetParent(artRoot, true);
+                    moved = true;
+                }
+            } while (moved);
+            foreach (var t in artRoot.GetComponentsInChildren<Transform>(true).ToArray())
+            {
+                if (t == artRoot || t.name != name) continue;
+                if (!t.GetComponentsInChildren<MeshFilter>(true).Any(f => f.sharedMesh))
+                    Object.DestroyImmediate(t.gameObject);
+            }
+        }
+        private static void ArtCable(string name,Vector3[] points,float width,Material material)
+        {
+            var go = new GameObject(name, typeof(LineRenderer));
+            go.transform.SetParent(Find("Kos_Environment_Art").transform, false);
+            var line = go.GetComponent<LineRenderer>();
+            line.positionCount = points.Length; line.SetPositions(points);
+            line.widthMultiplier = width; line.numCornerVertices = 2; line.numCapVertices = 2;
+            line.sharedMaterial = material; line.generateLightingData = true;
+        }
+        // Post-Compact final seating: Compact moves assemblies rigidly, so
+        // anything V2 placed by absolute coords pre-layout strands (monitor,
+        // window dressing, desk cables...). Seat everything visible here from
+        // LIVE bounds — absolute and idempotent, so every Apply converges no
+        // matter which legacy generation stranded it.
+        private static void SeatFinalLayout()
+        {
+            var artRoot = Find("Kos_Environment_Art").transform;
+            var desk = Find("wooden_table_02");
+            var db = BoundsOf(desk);
+            float deskTop = db.max.y;
+            var director = Object.FindFirstObjectByType<KamarKosPrologDirector>();
+
+            // Monitor back on the desk, screen facing the chair (south).
+            var monitorMesh = director.pcMonitorItem.transform.Find("computerScreen").gameObject;
+            var screenB = BoundsOf(monitorMesh);
+            SetCenter(director.pcMonitorItem.gameObject, new Vector3(db.center.x - .05f, deskTop + screenB.size.y * .5f + .002f, db.center.z + .03f));
+            AlignItem(director.pcMonitorItem, BoundsOf(monitorMesh));
+            var monitorB = BoundsOf(director.pcMonitorItem.gameObject);
+
+            // Webcam back on top of the reseated screen (Compact.Dress ran pre-seat).
+            var webcam = GameObject.Find("BudgetStreamingWebcam");
+            if (webcam)
+            {
+                Resize(webcam, new Vector3(.085f, .055f, .046f));
+                SetCenter(webcam, new Vector3(monitorB.center.x, monitorB.max.y + .020f, monitorB.min.z + .015f));
+                var lens = webcam.GetComponentsInChildren<Renderer>().Single(r => r.name.Contains("Lens"));
+                if (Vector3.Dot(lens.bounds.center - BoundsOf(webcam).center, new Vector3(0, 0, -1)) < 0)
+                    webcam.transform.RotateAround(BoundsOf(webcam).center, Vector3.up, 180);
+                var lead = GameObject.Find("WebcamUSBLead")?.GetComponent<LineRenderer>();
+                if (lead)
+                {
+                    lead.positionCount = 4;
+                    lead.SetPositions(new[]{ webcam.transform.position,
+                        new Vector3(monitorB.center.x + .10f, monitorB.max.y, monitorB.max.z),
+                        new Vector3(monitorB.center.x + .14f, .78f, monitorB.max.z),
+                        new Vector3(monitorB.center.x + .10f, .08f, db.max.z + .02f) });
+                }
+            }
+            var glow = GameObject.Find("PCMonitorGlow");
+            if (glow) glow.transform.position = monitorB.center + new Vector3(0, .10f, -.25f);
+            var pool = GameObject.Find("DeskLampPool");
+            if (pool) pool.transform.position = BoundsOf(Find("desk_lamp_arm_01")).center + Vector3.up * .10f;
+
+            // Desk colliders from the FINAL desk spot. Origins are snapped to
+            // the target first so the legacy 6m-era holder offsets (which
+            // rode the workstation holder for generations) cannot accumulate.
+            var mejaGo = Find("MejaKerjaPC");
+            mejaGo.transform.position = new Vector3(db.center.x, deskTop - .036f, db.center.z);
+            FitBox(mejaGo.GetComponent<BoxCollider>(), new Bounds(new Vector3(db.center.x, deskTop - .036f, db.center.z), new Vector3(db.size.x, .072f, db.size.z)));
+            foreach (var pair in new[] { ("KakiMejaKiri", -.55f), ("KakiMejaKanan", .55f) })
+            {
+                var legGo = Find(pair.Item1);
+                legGo.transform.position = new Vector3(db.center.x + pair.Item2, legGo.transform.position.y, db.center.z);
+                var c = legGo.GetComponent<BoxCollider>();
+                var b = c.bounds;
+                b.center = new Vector3(db.center.x + pair.Item2, b.center.y, db.center.z);
+                FitBox(c, b);
+            }
+
+            // Window strays back to the east opening (bars inside the glass).
+            float glassX = BoundsOf(Find("DarkNightBeyondWindow")).center.x;
+            foreach (var t in Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            {
+                if (t.name == "WindowSecurityBar") t.position = new Vector3(glassX - .05f, t.position.y, t.position.z);
+                else if (t.name == "WindowSill") t.position = new Vector3(glassX - .06f, t.position.y, t.position.z);
+            }
+
+            // Books: flatten nesting, then stack on the live tops.
+            FlattenNested("books");
+            var cupboard = Find("painted_wooden_cabinet_02");
+            var cupTop = BoundsOf(cupboard);
+            // The cabinet top face is open at the naive centre point (the
+            // ray falls through to an inner shelf), so sample the live top
+            // for a real surface and stack there — RestOn is raycast-
+            // consistent by construction, which the surface-contact gate
+            // requires (gap within [-8mm, +12mm]).
+            float stackX = cupTop.center.x, stackZ = cupTop.center.z;
+            float bestTop = float.NegativeInfinity;
+            for (float ox = -.15f; ox <= .151f; ox += .05f)
+                for (float oz = -.10f; oz <= .101f; oz += .05f)
+                {
+                    try
+                    {
+                        float h = SurfaceHeight(cupboard, cupTop.center.x + ox, cupTop.center.z + oz);
+                        if (h > bestTop) { bestTop = h; stackX = cupTop.center.x + ox; stackZ = cupTop.center.z + oz; }
+                    }
+                    catch { }
+                }
+            if (float.IsNegativeInfinity(bestTop) || bestTop < cupTop.max.y - .05f)
+                throw new Exception("No book stack surface on cupboard top (best " + bestTop + ")");
+            var shelfTop = BoundsOf(Find("wooden_bookshelf_worn"));
+            GameObject stackSupport = cupboard;
+            foreach (var book in artRoot.Cast<Transform>().Where(t => t.name == "books").Select(t => t.gameObject).OrderBy(g => BoundsOf(g).min.y).ToArray())
+            {
+                if (BoundsOf(book).center.x < 0)
+                {
+                    Resize(book, new Vector3(.15f, .09f, .42f));
+                    RestOn(book, Find("wooden_bookshelf_worn"), shelfTop.center.x, shelfTop.center.z);
+                }
+                else
+                {
+                    Resize(book, new Vector3(.26f, .075f, .11f));
+                    RestOn(book, stackSupport, stackX, stackZ);
+                    stackSupport = book;
+                }
+            }
+
+            // Shipping box to its layout spot, collision refit.
+            FlattenNested("cardboardBoxOpen");
+            var box = Find("cardboardBoxOpen");
+            SetCenter(box, new Vector3(2.12f, BoundsOf(box).center.y, -.48f));
+            Ground(box);
+            var boxColGo = Find("CardboardBoxCollision");
+            boxColGo.transform.position = BoundsOf(box).center;
+            FitBox(boxColGo.GetComponent<BoxCollider>(), BoundsOf(box));
+
+            // Desk cables: kill every generation's dupes, route ONE from live spots.
+            var black = Mat("OldComputerPlastic");
+            foreach (var n in new[] { "MonitorSignalCable", "KeyboardCable", "MouseCable" })
+                foreach (var g in Object.FindObjectsByType<GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None).Where(g => g.name == n).ToArray())
+                    Object.DestroyImmediate(g);
+            var socket = Find("OldWallSocket").transform.position;
+            var towerB = BoundsOf(Find("OldPCTower"));
+            var kb = BoundsOf(Find("computerKeyboard"));
+            var ms = BoundsOf(Find("computerMouse"));
+            ArtCable("MonitorSignalCable", new[]{ new Vector3(monitorB.center.x + .10f, monitorB.max.y - .05f, monitorB.max.z + .01f), new Vector3(monitorB.center.x + .10f, .06f, monitorB.max.z + .06f), new Vector3(socket.x, .06f, 1.80f), new Vector3(socket.x, socket.y, socket.z) }, .003f, black);
+            ArtCable("KeyboardCable", new[]{ new Vector3(kb.center.x + .05f, kb.max.y, kb.max.z), new Vector3(kb.center.x - .10f, .40f, kb.max.z + .10f), new Vector3(towerB.center.x, .40f, towerB.max.z), new Vector3(towerB.center.x, .12f, towerB.max.z) }, .002f, black);
+            ArtCable("MouseCable", new[]{ new Vector3(ms.center.x, ms.max.y, ms.max.z), new Vector3(towerB.center.x + .05f, .30f, towerB.center.z), new Vector3(towerB.center.x + .05f, .12f, towerB.max.z) }, .002f, black);
+            Debug.Log("KOS_SEAT_FINAL done desk=" + db.center.ToString("F2") + " monitor=" + monitorB.center.ToString("F2"));
         }
         private static void CorrectFurniture()
         {
@@ -319,8 +526,8 @@ namespace LayarTerakhir.Editor
             SetCenter(chair, new Vector3(-1.36f, .436f, 1.13f));
             chair.transform.RotateAround(BoundsOf(chair).center, Vector3.up, -7);
             Ground(chair);
-            var chairB = BoundsOf(chair);
-            FitBox(Find("ChairSeatCollision").GetComponent<BoxCollider>(), new Bounds(new Vector3(chairB.center.x, .24f, chairB.center.z), new Vector3(chairB.size.x, .47f, chairB.size.z)));
+            // Seat collision is refit post-Compact in OrientChairToDesk from
+            // the FINAL chair spot; a pre-Compact fit rides stale.
 
             var wardrobe = SpawnMeshyWardrobe();
             FitBox(Find("LemariPakaian").GetComponent<BoxCollider>(), BoundsOf(wardrobe));
@@ -330,18 +537,8 @@ namespace LayarTerakhir.Editor
             SetCenter(cupboard, new Vector3(1.40f, BoundsOf(cupboard).center.y, 1.72f));
             Ground(cupboard);
             FitBox(Find("CupboardCollision").GetComponent<BoxCollider>(), BoundsOf(cupboard));
-            FitBox(Find("MejaKerjaPC").GetComponent<BoxCollider>(), new Bounds(new Vector3(-1.25f, .72f, 1.87f), new Vector3(1.30f, .072f, .65f)));
-            // Legs are invisible collision boxes (no renderers), so seat them
-            // from the desk bounds via their own collider bounds, keeping
-            // their desk-relative offsets so the assembly moves as one.
-            var deskBounds = BoundsOf(desk);
-            foreach (var pair in new[] { ("KakiMejaKiri", -.55f), ("KakiMejaKanan", .55f) })
-            {
-                var c = Find(pair.Item1).GetComponent<BoxCollider>();
-                var b = c.bounds;
-                b.center = new Vector3(deskBounds.center.x + pair.Item2, b.center.y, deskBounds.center.z);
-                FitBox(c, b);
-            }
+            // MejaKerjaPC + legs are refit post-Compact in SeatFinalLayout
+            // from the FINAL desk spot; pre-Compact absolutes strand them.
             // Fit the bed's solid base below the quilt so its phone remains raycast-accessible.
             var bedB = BoundsOf(bed);
             float mattressTop=SurfaceHeight(bed,-2.15f,-.85f)-.015f;
@@ -380,32 +577,12 @@ namespace LayarTerakhir.Editor
             RestOn(note, desk, -.87f, 1.82f); AlignItem(d.stickyNoteItem, BoundsOf(note), .018f);
             foreach (var name in new[] { "OldPCTower", "RefillWaterGallon", "plastic_bottle_gallon", "trashcan", "cardboardBoxOpen" }) Ground(Find(name));
             SetCenter(Find("OldPCTower"),new Vector3(-1.49f,BoundsOf(Find("OldPCTower")).center.y,2.0f));
-            foreach (var pair in new[] { ("WaterGallonCollision", "RefillWaterGallon"), ("CardboardBoxCollision", "cardboardBoxOpen") })
+            foreach (var pair in new[] { ("WaterGallonCollision", "RefillWaterGallon") })
                 FitBox(Find(pair.Item1).GetComponent<BoxCollider>(), BoundsOf(Find(pair.Item2)));
-
-            // These were arranged in mid-air behind solid cupboard doors. Reuse every book on real shelf tops.
-            // Spots derive from the actual (Compact-maintained) shelf positions, never stale absolutes.
-            var books = Find("Kos_Environment_Art").transform.Cast<Transform>().Where(t => t.name == "books")
-                .Select(t => t.gameObject).OrderBy(g => BoundsOf(g).min.y).ToArray();
-            GameObject stackSupport=cupboard;
-            var cupTop = BoundsOf(cupboard);
-            float stackX = cupTop.center.x, stackZ = cupTop.center.z + .075f;
-            var shelfTop = BoundsOf(Find("wooden_bookshelf_worn"));
-            foreach (var book in books)
-            {
-                if (BoundsOf(book).center.x < 0)
-                {
-                    // Horizontal stack sitting on top of the existing wall shelf.
-                    Resize(book, new Vector3(.15f, .09f, .42f));
-                    RestOn(book, Find("wooden_bookshelf_worn"), shelfTop.center.x, shelfTop.center.z);
-                }
-                else
-                {
-                    Resize(book, new Vector3(.26f, .075f, .11f));
-                    RestOn(book,stackSupport,stackX,stackZ);
-                    stackSupport=book;
-                }
-            }
+            // Books + shipping box are flattened and seated post-Compact in
+            // SeatFinalLayout from the FINAL cupboard/shelf/box spots: the
+            // pre-Compact loop pinballed nested same-named holders via
+            // origin-based Resize, and the box collision rides stale.
             // A forgotten receipt beside the wastebasket; retain the original litter without a repeated diagonal row.
             Find("DiscardedPaper0").transform.position = new Vector3(-.30f, .012f, 1.98f);
             Find("DiscardedPaper1").transform.position = new Vector3(-.37f, .013f, 1.79f);
@@ -419,9 +596,9 @@ namespace LayarTerakhir.Editor
             Spawn("Original/Models/KosCurtains.fbx", "KosCurtains", new Vector3(2.78f, 1.58f, -.55f), new Vector3(.08f, 1.44f, 1.30f), 90, fabric);
             var basket = Spawn("Imported/PolyHaven/wicker_basket_02/wicker_basket_02.fbx", "wicker_basket_02", new Vector3(2.57f, .24f, .35f), new Vector3(.40f, .46f, .40f), -12, Pbr("wicker_basket_02", "wicker_basket_02", Color.white));
             Ground(basket); AddSolid(basket);
-            // Move the original cardboard shipping box away from the wardrobe approach and basket.
-            SetCenter(Find("cardboardBoxOpen"), new Vector3(2.59f, .136f, -.20f)); Ground(Find("cardboardBoxOpen"));
-            FitBox(Find("CardboardBoxCollision").GetComponent<BoxCollider>(), BoundsOf(Find("cardboardBoxOpen")));
+            // The shipping box is seated post-Compact in SeatFinalLayout from
+            // the FINAL layout spot; a pre-Compact absolute goes stale.
+            Ground(Find("cardboardBoxOpen"));
             var container = Spawn("Imported/PolyHaven/plastic_container/plastic_container.fbx", "plastic_container", new Vector3(-2.36f, .17f, -2.03f), new Vector3(.48f, .29f, .30f), 0, Pbr("plastic_container", "plastic_container", Color.white));
             Ground(container); AddSolid(container);
             var sandals = Spawn("Original/Models/KosSandals.fbx", "KosSandals", new Vector3(.60f, .04f, -1.85f), new Vector3(.25f, .062f, .27f), -13, Plain("SandalRubberV2", new Color(.15f, .19f, .17f)));

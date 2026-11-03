@@ -1,16 +1,16 @@
 {
   "artifacts_sha256": {
-    "GRAPH_REPORT.md": "81941d0b9109ccab97786401738601e9104260f9cbfffedd4e3e274449cbeed9",
-    "graph.html": "1a4a513a3db74eca3bd3ff4db3686fd1fc02acb72709e188b490cc8b0dd65c59",
-    "graph.json": "45002206aec75bc8f004d93f66bad3118c9c22e0ce7b6f2c4637b4f0d679108d"
+    "GRAPH_REPORT.md": "f07cdf033388827b3bcd5d2d36c600ad952ac28995270e30b574882f22d9bb35",
+    "graph.html": "c6714b67aad4f61d2800f4020ffe688f710fd9f203bd469e68c1ebe539d7993b",
+    "graph.json": "8194b06199ddbfec95566b8308224989c5f1eed6472944cc6342680770b19a99"
   },
   "asset_file_count": 0,
   "code_file_count": 424,
-  "edge_count": 20318,
+  "edge_count": 20354,
   "graphify_version": "graphify 0.9.92",
   "ignore_sha256": "05660cd7b7a81591931d5661fb73b7124598a04c44f843eda7a7ac2107f20e17",
   "mode": "local-code-only; no LLM/community labeling",
-  "node_count": 5345,
+  "node_count": 5349,
   "referenced_source_count": 424,
   "sources_sha256": {
     "Assets/_LayarTerakhir/src/Audio/AmbientAudioLoop.cs": "7de60fa68d2b45ec199754e8c16b8ac4827306cc38d7ad32a708d93a78e83514",
@@ -85,13 +85,13 @@
     "Assets/_LayarTerakhir/src/Editor/KosCorridorBuilding.cs": "372b2f5e425ced2d51fc23e21bee8a3a4c7410931b2614ebb72ee5580f776d0a",
     "Assets/_LayarTerakhir/src/Editor/KosGroundWallRepair.cs": "f25fcf4ddadbbf5f81b36899fc8551f81a3e40845802091dbdfa7c1ec371baf3",
     "Assets/_LayarTerakhir/src/Editor/KosGroundWallTests.cs": "2a6c645269102dcf230e5db3b95435e50634b1d64e754879dd06c15edb447529",
-    "Assets/_LayarTerakhir/src/Editor/KosPhoto.cs": "c04913dc2dc6639dc367b0c1e4718f50eafb47043e00a45bc29bc5fe31a37e24",
+    "Assets/_LayarTerakhir/src/Editor/KosPhoto.cs": "ef095ad0010e71b87e4f737ab70166cc50196edc3385cdc86ffcea42cc5e9804",
     "Assets/_LayarTerakhir/src/Editor/KosRenderDiagnosis.cs": "6ffee637222371ef0a168f4a82662470eb56eea39e937daa60b01aa4cdf7ad23",
     "Assets/_LayarTerakhir/src/Editor/KosRoomSurvey.cs": "59343e24b982c252ca6fec9c573191684d61f44ad2b65f4305eada9015c890e6",
     "Assets/_LayarTerakhir/src/Editor/KosSceneValidation.cs": "61beb86d050e37d8cc5cd6b5df4726d633cf8c8af00c721412e82405a48ee86c",
     "Assets/_LayarTerakhir/src/Editor/KosVisualCapture.cs": "bcb32f0c01c6dac4ba258f4b26e5a22c2f38fd4cc631ff367701917c1da00ea7",
     "Assets/_LayarTerakhir/src/Editor/KosVisualUpgrade.cs": "b82d49dadb4c50ef6084e0cc6c7224959ad4deac90cc6e00f545b0e3443a0f8d",
-    "Assets/_LayarTerakhir/src/Editor/KosVisualV2.cs": "81f13bd57d1ca8df80ffd2b4c8a88715a4c03e4cf08edae2e48f60e458d5981b",
+    "Assets/_LayarTerakhir/src/Editor/KosVisualV2.cs": "791890510ed6b1edd815b67f9f71d49a5f42019c32358ab3a5230d68eb4fd17c",
     "Assets/_LayarTerakhir/src/Editor/MelatiInterludeAlleyBuilder.cs": "5bf0e14b6581eaf82766a65d95b5cff3998bcfa6320dfb03b1833d06f5f6ffbe",
     "Assets/_LayarTerakhir/src/Editor/MelatiNeighborhoodBuilder.cs": "157816b2dede075efe3f4692578c9472083a03d2171148e93dffc3e2f5f41bbe",
     "Assets/_LayarTerakhir/src/Editor/MelatiResidenceFactory.cs": "52fa5a6552e5a7975f06943dbbfdd3aa5f6ada537bb09fb37ef4d8c92aab0b8f",

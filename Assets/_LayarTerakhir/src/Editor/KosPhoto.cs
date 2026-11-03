@@ -49,6 +49,32 @@ namespace LayarTerakhir.Editor
                 KosRenderDiagnosis.Capture(cam, "kos-wall-calendar", false, "Audit/Visuals/KosWardrobeProof");
             }
 
+            // Designer bug proof: monitor back on the desk + chair seated south of it.
+            var desk = GameObject.Find("wooden_table_02");
+            if (desk)
+            {
+                var b = KosVisualV2.BoundsOf(desk);
+                spot.transform.position = b.center + Vector3.up * 1.8f + Vector3.forward * -.8f;
+                spot.transform.rotation = Quaternion.LookRotation((b.center - spot.transform.position).normalized);
+                cam.transform.position = new Vector3(b.center.x - .2f, 1.55f, b.center.z - 1.9f);
+                cam.transform.rotation = Quaternion.LookRotation((b.center + Vector3.up * .1f - cam.transform.position).normalized);
+                KosRenderDiagnosis.Capture(cam, "kos-desk-monitor", false, "Audit/Visuals/KosWardrobeProof");
+                Debug.Log("KOS_PHOTO desk shot done");
+            }
+
+            // Designer bug proof: security bars + sill back on the east window, nothing mid-room.
+            var glass = GameObject.Find("DarkNightBeyondWindow");
+            if (glass)
+            {
+                var b = KosVisualV2.BoundsOf(glass);
+                spot.transform.position = b.center + Vector3.up * 1.2f + Vector3.right * -1.2f;
+                spot.transform.rotation = Quaternion.LookRotation((b.center - spot.transform.position).normalized);
+                cam.transform.position = new Vector3(b.center.x - 1.9f, 1.6f, b.center.z + .3f);
+                cam.transform.rotation = Quaternion.LookRotation((b.center - cam.transform.position).normalized);
+                KosRenderDiagnosis.Capture(cam, "kos-window-bars", false, "Audit/Visuals/KosWardrobeProof");
+                Debug.Log("KOS_PHOTO window shot done");
+            }
+
             Object.DestroyImmediate(spot.gameObject);
             Object.DestroyImmediate(cam.gameObject);
             Debug.Log("KOS_PHOTO_DONE");
