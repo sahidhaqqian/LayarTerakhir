@@ -201,6 +201,34 @@ namespace LayarTerakhir.Editor.Tests
             yield return Prolog47VisualTests.Capture(eye,"33-crouched-cup-closeup");
         }
         [UnityTest] public IEnumerator Prolog47TrapdoorDescendsTheVisibleLadder()=>Run(Ladder47());
+        [UnityTest] public IEnumerator Prolog47CellarClimbReturnsToMaster()=>Run(CellarClimb47());
+        private IEnumerator CellarClimb47()
+        {
+            yield return new WaitForSeconds(2);var d=Find<AtmajaDirector>();var p=d.player;var c=CampaignState.Instance;
+            foreach(var flag in new[]{"EVENT_P0_CHAIN1_BROKEN","EVENT_P0_CHAIN2_BROKEN","EVENT_P0_CHAIN3_BROKEN","EVENT_P0_CARPET_LIFTED","EVENT_P0_MASTER_OPEN","EVENT_P0_TRAPDOOR_OPEN","EVENT_P0_BASEMENT_ENTERED"})c.AddInventoryItem(flag);
+            d.upper.RestoreWorld();d.basement.RestoreWorld();d.basement.nyonya.SetActive(false);
+            d.SetStage(AtmajaStage.BasementEntry);
+            var climb=Item(AtmajaAction.CellarClimb);
+            Assert.That(climb,Is.Not.Null,"Iron grab-handle stands at the ladder base");
+            // Designer Nov: the basement needs a way back up outside the
+            // chase — the handle must be reachable on foot and climb Raka
+            // back to the master bedroom through the visible shaft.
+            d.PlacePlayer(d.P(1.6f,1.6f,-2.79f),Quaternion.identity);p.MovementLocked=false;p.enabled=false;
+            p.GetComponent<ShoulderCameraRig>().SetPerspective(PlayerPerspective.FirstPerson);
+            var target=climb.GetComponent<Collider>().bounds.center;var delta=target-p.cameraPivot.position;var flat=Vector3.ProjectOnPlane(delta,Vector3.up);
+            p.transform.rotation=Quaternion.LookRotation(flat);p.SetViewPitch(-Mathf.Atan2(delta.y,flat.magnitude)*Mathf.Rad2Deg);p.GetComponent<ShoulderCameraRig>().RefreshCameraPose();
+            yield return null;yield return null;Physics.SyncTransforms();
+            Assert.That(p.GetComponent<InteractionInteractor>().CurrentTarget,Is.SameAs(climb),"Grab-handle is visible and reachable from the cellar floor");
+            yield return Press(Key.E);
+            Assert.That(d.Busy,Is.True,"Grabbing the handle starts the climb");
+            float end=Time.time+25;
+            while(d.Busy&&Time.time<end)yield return null;
+            Assert.That(d.Busy,Is.False,"Climb finishes");
+            Assert.That(Vector3.Distance(p.transform.position,d.upper.trapdoorTop.position),Is.LessThan(.3f),"Raka climbs back to the master bedroom");
+            Assert.That(d.Stage,Is.EqualTo(AtmajaStage.MasterOpen));
+            Assert.That(p.GetComponent<CharacterController>().enabled,Is.True);
+            Assert.That(p.MovementLocked,Is.False);
+        }
         private IEnumerator Ladder47()
         {
             yield return new WaitForSeconds(2);var d=Find<AtmajaDirector>();var p=d.player;var c=CampaignState.Instance;

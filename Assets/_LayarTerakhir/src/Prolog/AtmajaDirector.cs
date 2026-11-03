@@ -175,7 +175,7 @@ namespace LayarTerakhir.Prolog
                     if(Commit("EVENT_P0_STAIRS_UNLOCKED","PROLOG_ATMAJA_STAIRS_UNLOCKED")){Stage=AtmajaStage.StairCheckpoint;if(stairDoorMotion&&!stairDoorMotion.IsOpen)stairDoorMotion.Interact();Objective();Hud.ShowBroadcastNotification("Kunci berputar. Jalan ke lantai atas sudah terbuka.",5);}break;
                 case AtmajaAction.CupPhoto:case AtmajaAction.Diary:case AtmajaAction.BathCurtain:case AtmajaAction.BathScratches:case AtmajaAction.WillLetter:case AtmajaAction.RopePhoto:if(upper)upper.HandleEvidence(item);break;
                 case AtmajaAction.CarpetLift:case AtmajaAction.Trapdoor:if(upper)upper.HandleMaster(item);break;
-                case AtmajaAction.Powerbank:case AtmajaAction.Handycam:case AtmajaAction.WardrobeHide:if(basement)basement.Handle(item);break;
+                case AtmajaAction.Powerbank:case AtmajaAction.Handycam:case AtmajaAction.WardrobeHide:case AtmajaAction.CellarClimb:if(basement)basement.Handle(item);break;
                 case AtmajaAction.Charge:if(Phone.batteryPercent<35)StartCoroutine(Charge());break;
                 case AtmajaAction.Window:break;
             }

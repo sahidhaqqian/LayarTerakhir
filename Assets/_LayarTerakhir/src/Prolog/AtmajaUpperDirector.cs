@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using LayarTerakhir.Core;
 using LayarTerakhir.Player;
 using LayarTerakhir.Smartphone;
@@ -381,34 +382,104 @@ namespace LayarTerakhir.Prolog
                 yield break;
             }
             // Walk the visible CellarStep flight: no fade cut, the shaft walls
-            // and treads stay in view while Raka climbs down step by step.
+            // and treads stay in view while Raka climbs down rung by rung.
             director.SetBusy(true);director.player.MovementLocked=true;
             var rig=director.player.GetComponent<ShoulderCameraRig>();if(rig)rig.FirstPersonOverride=true;
             var cc=director.player.GetComponent<CharacterController>();cc.enabled=false;
             Hud.EnqueueSubtitle("Raka","Pelan-pelan... anak tangganya licin.",3);
+            yield return WalkShaftRungs(new List<Vector3>(path),false,rig);
+            cc.enabled=true;
+            if(rig){rig.FirstPersonOverride=false;rig.RefreshCameraPose();}
+            director.SetBusy(false);director.player.MovementLocked=false;
+        }
+        // One rung at a time: a weight-shift pause, an iron creak, a boot
+        // scuff and kicked dust hanging in the flashlight beam — the shaft
+        // journey reads as climbed, never glided. Shared by the scripted
+        // descent and the free climb back up.
+        private IEnumerator WalkShaftRungs(List<Vector3> path,bool ascending,ShoulderCameraRig rig)
+        {
+            var creak=AtmajaSynth.Creak(.4f);
+            var scuff=AtmajaSynth.Tone(.09f,110,60,.35f);
+            var dustGo=new GameObject("ShaftDust");
+            dustGo.transform.SetParent(director.player.transform,false);
+            dustGo.transform.localPosition=new Vector3(0,.15f,0);
+            var dust=dustGo.AddComponent<ParticleSystem>();
+            var prend=dustGo.AddComponent<ParticleSystemRenderer>();
+            // Cosmetic only: headless rigs may refuse renderer components, so
+            // every touch below is guarded and the climb works without dust.
+            if(dust!=null&&prend!=null)
+            {
+                var dm=dust.main;dm.loop=true;dm.startLifetime=.9f;dm.startSpeed=.22f;
+                dm.startSize=new ParticleSystem.MinMaxCurve(.04f,.1f);
+                dm.startColor=new Color(.5f,.42f,.32f,.26f);dm.maxParticles=36;
+                dm.simulationSpace=ParticleSystemSimulationSpace.World;
+                var dem=dust.emission;dem.rateOverTime=6;
+                var dsh=dust.shape;dsh.shapeType=ParticleSystemShapeType.Sphere;dsh.radius=.15f;
+                // Headless test rigs have no GPU (Null device): material tint
+                // would fault there, so only tint where a device exists.
+                if(UnityEngine.Rendering.GraphicsDeviceType.Null!=SystemInfo.graphicsDeviceType)
+                {
+                    var pshader=Shader.Find("Universal Render Pipeline/Particles/Unlit");
+                    if(pshader){var pmat=new Material(pshader);pmat.SetColor("_BaseColor",new Color(.5f,.42f,.32f,.26f));prend.material=pmat;}
+                }
+                prend.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;prend.receiveShadows=false;
+                dust.Play();
+            }
             float bob=0,pitch=0;
-            for(int seg=0;seg<path.Length;seg++)
+            for(int seg=0;seg<path.Count;seg++)
             {
                 Vector3 target=path[seg];
                 while(Vector3.Distance(director.player.transform.position,target)>.06f)
                 {
-                    float step=1.6f*Time.deltaTime;
+                    float step=(ascending?1.25f:1.6f)*Time.deltaTime;
                     Vector3 pos=Vector3.MoveTowards(director.player.transform.position,target,step);
                     bob+=step*7f;
                     director.player.transform.position=pos;
-                    Vector3 look=seg+1<path.Length?path[seg+1]:target+Vector3.down*2f;
+                    Vector3 look=seg+1<path.Count?path[seg+1]:target+(ascending?Vector3.up*1.2f:Vector3.down*2f);
                     Vector3 flat=look-pos;flat.y=0;
-                    if(cellarLadderRoute.Length>1&&seg>0&&seg<path.Length-1)flat=-director.north;
+                    if(cellarLadderRoute.Length>1&&seg>0&&seg<path.Count-1)flat=-director.north;
                     if(flat.sqrMagnitude>.01f)director.player.transform.rotation=Quaternion.Slerp(director.player.transform.rotation,Quaternion.LookRotation(flat),Time.deltaTime*5);
-                    pitch=Mathf.MoveTowards(pitch,28,30*Time.deltaTime);
+                    pitch=Mathf.MoveTowards(pitch,ascending?(seg<path.Count-1?-20f:5f):28f,(ascending?40f:30f)*Time.deltaTime);
                     director.player.SetViewPitch(pitch+Mathf.Sin(bob)*.5f);
                     if(rig)rig.RefreshCameraPose();
                     yield return null;
                 }
+                // Rung beat: the iron answers each tread before the next shift.
+                var foley=director.foleySource;
+                if(foley){foley.transform.position=director.player.transform.position;foley.pitch=UnityEngine.Random.Range(.9f,1.12f);foley.PlayOneShot(seg%2==0?creak:scuff,ascending?.15f:.18f);foley.pitch=1f;}
+                if(seg<path.Count-1)yield return new WaitForSeconds(.1f);
             }
+            UnityEngine.Object.Destroy(dustGo);
+        }
+
+        // Designer Nov: the basement needs a way back up outside the chase.
+        // The grab-handle at the iron ladder base walks the same visible
+        // flight Raka came down — tread by tread, no fade cut — and returns
+        // him to the master bedroom. The finale keeps its own urgent climb.
+        public void ClimbToMaster()
+        {
+            if(director.basement==null||director.Stage<AtmajaStage.BasementEntry||director.Stage>=AtmajaStage.Chase||director.Busy)return;
+            var ascent=CellarAscentPath();
+            if(ascent==null||ascent.Length<2)return;
+            StartCoroutine(ClimbShaft(ascent));
+        }
+        private IEnumerator ClimbShaft(Vector3[] ascent)
+        {
+            // Start from Raka's own boots — never yank him across the cellar
+            // (the scripted path begins at the far spawn point).
+            var path=new List<Vector3>{director.player.transform.position};
+            path.AddRange(ascent.Skip(1));
+            director.SetBusy(true);director.player.MovementLocked=true;
+            var rig=director.player.GetComponent<ShoulderCameraRig>();if(rig)rig.FirstPersonOverride=true;
+            var cc=director.player.GetComponent<CharacterController>();cc.enabled=false;
+            Hud.EnqueueSubtitle("Raka","Tangganya masih kokoh... naik pelan-pelan.",3);
+            yield return WalkShaftRungs(path,true,rig);
+            Hud.EnqueueSubtitle("Raka","Sampai juga... di atas lagi.",3);
+            director.player.transform.rotation=trapdoorTop.rotation;director.player.SetViewPitch(7);
             cc.enabled=true;
             if(rig){rig.FirstPersonOverride=false;rig.RefreshCameraPose();}
             director.SetBusy(false);director.player.MovementLocked=false;
+            director.SetStage(AtmajaStage.MasterOpen);director.Objective();
         }
 
         // Waypoints over the built CellarStep treads, top first. Resolved from

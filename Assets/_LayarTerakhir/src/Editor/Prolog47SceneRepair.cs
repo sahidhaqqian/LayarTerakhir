@@ -1779,6 +1779,20 @@ namespace LayarTerakhir.Editor
                 foreach (var t in root.GetComponentsInChildren<Transform>().Where(t => t.name == "FamilyRadioCabinet" || t.name == "FamilyRadioBody" || t.name == "FamilyCabinetPanel" || t.name == "RadioSpeakerGrille"))
                     t.position -= d.east * 1.9f;
 
+            // Designer Nov: the basement needs a way back up outside the
+            // chase — a visible iron grab-handle at the ladder base. The
+            // chase finale keeps its own urgent climb; this one is for
+            // free exploration. Idempotent.
+            Delete("CellarClimbHandle");
+            var grip = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            grip.name = "CellarClimbHandle";
+            grip.transform.SetParent(root, true);
+            grip.transform.SetPositionAndRotation(d.P(1.1f, 1.2f, -1.9f), Quaternion.LookRotation(d.north));
+            grip.transform.localScale = new Vector3(.4f, .5f, .12f);
+            grip.GetComponent<Renderer>().sharedMaterial = Material("Repair_Iron");
+            var climbItem = grip.AddComponent<AtmajaItem>();
+            climbItem.director = d; climbItem.action = AtmajaAction.CellarClimb; climbItem.label = "Naiki tangga besi";
+
             Save();
             Debug.Log("PROLOG47_LADDER_APPLIED visible anchored iron ladder, sealed shaft collar and matching climb route");
         }

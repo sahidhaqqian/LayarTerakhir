@@ -145,6 +145,11 @@ namespace LayarTerakhir.Prolog
                 if (Commit(HandycamId)) chase.PlayHandycamVideo();
             }
             else if (item.action == AtmajaAction.WardrobeHide && !IsHidden && Time.time >= nextHideTime) EnterWardrobe(item.transform);
+            // Designer Nov: the basement needs a way back up outside the
+            // chase — a grab-handle at the iron ladder base that walks Raka
+            // back to the master bedroom. Gated to the basement stages by
+            // Handle(), and to pre-chase by the item itself.
+            else if (item.action == AtmajaAction.CellarClimb && upper) upper.ClimbToMaster();
         }
         private IEnumerator Recharge()
         {
