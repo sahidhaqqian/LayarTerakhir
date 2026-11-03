@@ -1,7 +1,7 @@
 {
-  "baseCommit": "147a4599",
+  "baseCommit": "dbb7dd65",
   "protectedGoldenSceneSha256": "4b73b117b832fb753b92d3de885c163bc1dd3f6225101867f7b4e2437c8b793a",
-  "structureSha256": "3d8e714454cf8d958fe356901c8a2fb25e90580ce159d73b2db5be4ccf8b090e",
-  "description": "Approved Prolog KamarKos structure at 147a4599 including the designer-requested wardrobe turn (bookcaseClosedDoors yaw 90->270 so the double doors face the room) and the wall-calendar sheet redraw (17 ringed, deduction note, no printed padlock code). Only camera color-volume and AA/dithering settings remain outside the structural fingerprint; future gameplay, geometry, collider, or transform edits fail validation.",
-  "source": "git show 147a4599:Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity"
+  "structureSha256": "9ad98d93caef8fe1e034a843a13de2d09949c65cbaf06c798695f2582819b8c1",
+  "description": "Approved Prolog KamarKos structure at dbb7dd65 including the designer-ordered Meshy wardrobe with visible clothes (MeshyBedroomWardrobe replaces the Kenney bookcase, doors face the room) plus holder repairs that restore the canonical layout (chair/cupboard/desk respawn, books/router/speakers/legs re-seated to live bounds). Only camera color-volume and AA/dithering settings remain outside the structural fingerprint; future gameplay, geometry, collider, or transform edits fail validation.",
+  "source": "git show dbb7dd65:Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity"
 }
