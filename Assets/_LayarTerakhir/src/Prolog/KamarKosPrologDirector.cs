@@ -265,12 +265,54 @@ namespace LayarTerakhir.Prolog
 
         private void HandleInspectPCMonitor()
         {
-            HudController.Instance.OpenDocumentModal(
-                "DASHBOARD KANAL STREAMING: MALAM KERAMAT",
-                "Status Kanal: OFFLINE\n" +
-                "Penonton Rata-Rata Terakhir: 32 Penonton ( Grafik Anjlok )\n\n" +
-                "\"Tiga puluh dua penonton... Itu pun paling setengahnya akun bot. Kalau malam ini nggak ada konten yang meledak, tamat riwayat gue di Jakarta.\""
-            );
+            StartCoroutine(InspectMonitorRoutine());
+        }
+
+        // Designer: the PC monitor is a live screen, never a paper note.
+        // Inspecting it dollies the camera to the dashboard glass with Raka's
+        // line instead of opening the regular document modal.
+        private IEnumerator InspectMonitorRoutine()
+        {
+            var hud = HudController.Instance;
+            var player = FindFirstObjectByType<FirstPersonController>();
+            if (!player || !hud) yield break;
+            var camera = player.GetComponent<InteractionInteractor>().playerCamera.transform;
+            var fromPos = camera.position;
+            var fromRot = camera.rotation;
+            UiFocus.Cinematic = true;
+            player.MovementLocked = true;
+            player.enabled = false;
+            try
+            {
+                var screen = pcMonitorItem ? pcMonitorItem.transform.position : new Vector3(-1.25f, 1.02f, 2.0f);
+                var viewPos = screen + new Vector3(0f, .18f, -.75f);
+                var lookRot = Quaternion.LookRotation((screen + Vector3.down * .02f - viewPos).normalized);
+                for (float t = 0; t < 1; t += Time.deltaTime / .8f)
+                {
+                    float k = Mathf.SmoothStep(0, 1, Mathf.Clamp01(t));
+                    camera.position = Vector3.Lerp(fromPos, viewPos, k);
+                    camera.rotation = Quaternion.Slerp(fromRot, lookRot, k);
+                    yield return null;
+                }
+                camera.position = viewPos;
+                camera.rotation = lookRot;
+                float line = hud.PlayPriorityDialogue("Raka", "Tiga puluh dua penonton... Itu pun paling setengahnya akun bot. Kalau malam ini nggak ada konten yang meledak, tamat riwayat gue di Jakarta.", 5);
+                yield return new WaitForSeconds(line + .6f);
+                for (float t = 0; t < 1; t += Time.deltaTime / .8f)
+                {
+                    float k = Mathf.SmoothStep(0, 1, Mathf.Clamp01(t));
+                    camera.position = Vector3.Lerp(viewPos, fromPos, k);
+                    camera.rotation = Quaternion.Slerp(lookRot, fromRot, k);
+                    yield return null;
+                }
+            }
+            finally
+            {
+                camera.position = fromPos;
+                camera.rotation = fromRot;
+                if (player) { player.enabled = true; player.MovementLocked = false; }
+                UiFocus.Cinematic = false;
+            }
         }
 
         private void HandleReadSuratIbuKos(KosInteractableItem suratItem)

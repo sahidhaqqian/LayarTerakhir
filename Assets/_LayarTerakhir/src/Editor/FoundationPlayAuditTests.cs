@@ -168,8 +168,13 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(director.currentStage, Is.EqualTo(KosPrologStage.WakeUpAndKnocks));
             yield return WaitForStage(KosPrologStage.WaitReadSuratIbuKos);
             yield return Interact(director.pcMonitorItem, new Vector3(.85f, .05f, -.05f));
-            Assert.That(hud.documentBodyText.text, Does.Contain("32"));
-            CloseDocument();
+            // Designer: the monitor is a live screen, not a paper note — the
+            // inspect dollies to the dashboard glass with Raka's line.
+            Assert.That(hud.IsModalOpen, Is.False, "Monitor inspect must not open the regular note modal");
+            float monitorDeadline = Time.realtimeSinceStartup + 30f;
+            while (UiFocus.Cinematic && Time.realtimeSinceStartup < monitorDeadline) yield return null;
+            Assert.That(UiFocus.Cinematic, Is.False, "Monitor close-up must return control");
+            Assert.That(Find<FirstPersonController>().enabled, Is.True);
             yield return Interact(director.suratKosItem, new Vector3(0.85f, 0.05f, -0.25f));
             Assert.That(hud.IsModalOpen, Is.True);
             Vector3 modalPosition = Find<FirstPersonController>().transform.position;
