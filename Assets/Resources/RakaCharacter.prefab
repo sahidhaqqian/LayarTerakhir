@@ -76,6 +76,18 @@ PrefabInstance:
       propertyPath: m_PlayAutomatically
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2223639932434330405, guid: 2e4b14b915c9e91eb8a08f861f0df83d, type: 3}
+      propertyPath: 'm_Animations.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1462021494730937107, guid: 2e4b14b915c9e91eb8a08f861f0df83d, type: 3}
+    - target: {fileID: 2223639932434330405, guid: 2e4b14b915c9e91eb8a08f861f0df83d, type: 3}
+      propertyPath: 'm_Animations.Array.data[1]'
+      value: 
+      objectReference: {fileID: -5708794737731535269, guid: 2e4b14b915c9e91eb8a08f861f0df83d, type: 3}
+    - target: {fileID: 2223639932434330405, guid: 2e4b14b915c9e91eb8a08f861f0df83d, type: 3}
+      propertyPath: 'm_Animations.Array.data[2]'
+      value: 
+      objectReference: {fileID: 6122109672390236341, guid: 2e4b14b915c9e91eb8a08f861f0df83d, type: 3}
     - target: {fileID: 4467471095416293218, guid: 2e4b14b915c9e91eb8a08f861f0df83d, type: 3}
       propertyPath: m_Quality
       value: 4
@@ -123,7 +135,7 @@ MonoBehaviour:
   handset: {fileID: 1856321644071245816}
   sourcedLocomotion: 1
   walkStrideSpeed: 0.9028919
-  runStrideSpeed: 0.21822453
+  runStrideSpeed: 4.4539313
   crouchStrideSpeed: 0.43977275
   lowCrouchStrideSpeed: 0.3635238
   callContactCached: 1

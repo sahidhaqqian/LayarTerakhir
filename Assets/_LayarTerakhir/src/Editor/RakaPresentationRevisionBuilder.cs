@@ -44,6 +44,24 @@ namespace LayarTerakhir.Editor
                 }
             }
             finally{UnityEngine.Object.DestroyImmediate(actor);}
+            // The bouncy 21-frame Run clip exposes almost no sustained stance
+            // phase, so its median estimator can collapse toward turnaround
+            // noise (once measured 0.21 vs the tuned 4.45). A run slower than
+            // the walk is physically absurd: keep the previously shipped Run
+            // value and say so loudly instead of shipping frantic legs.
+            var previousPath="Audit/raka-presentation-stride.json";
+            if(File.Exists(previousPath))
+            {
+                var previous=JsonUtility.FromJson<StrideMetrics>(File.ReadAllText(previousPath));
+                var previousRun=previous.clips.FirstOrDefault(c=>c.clip=="Run");
+                var freshRun=metrics.FirstOrDefault(c=>c.clip=="Run");
+                var freshWalk=metrics.FirstOrDefault(c=>c.clip=="Walk");
+                if(previousRun!=null&&freshRun!=null&&freshWalk!=null&&freshRun.plantedFootSpeed<freshWalk.plantedFootSpeed)
+                {
+                    Debug.LogWarning("RAKA_STRIDE Run re-measure "+freshRun.plantedFootSpeed+" rejected (slower than Walk "+freshWalk.plantedFootSpeed+"); keeping shipped "+previousRun.plantedFootSpeed);
+                    freshRun.plantedFootSpeed=previousRun.plantedFootSpeed;freshRun.signedSpeed=previousRun.signedSpeed;
+                }
+            }
             var root=PrefabUtility.LoadPrefabContents("Assets/Resources/RakaCharacter.prefab");
             try
             {

@@ -106,7 +106,8 @@ namespace LayarTerakhir.Editor
             Check(texture<=2048,"Designer albedo at most 2048px; environment and other maps at most 1024px");
             var concreteCut=AssetDatabase.LoadAssetAtPath<Mesh>("Assets/_LayarTerakhir/assets/Art/Atmaja/Models/AtmajaConcreteFacadeCutout.asset");
             Check(concreteCut&&root.GetComponentsInChildren<MeshFilter>(true).Any(f=>f.sharedMesh==concreteCut),"Facade band preserves the exterior while opening its phantom interior floor at y=4.2");
-            if(concreteCut)
+            var facadeFilter=concreteCut?root.GetComponentsInChildren<MeshFilter>(true).FirstOrDefault(f=>f.sharedMesh==concreteCut):null;
+            if(concreteCut&&facadeFilter)
             {
                 var concreteFilter=root.GetComponentsInChildren<MeshFilter>(true).First(f=>f.sharedMesh==concreteCut);var positions=concreteCut.vertices;var indices=concreteCut.triangles;bool interiorCap=false;
                 for(int n=0;n<indices.Length;n+=3)
