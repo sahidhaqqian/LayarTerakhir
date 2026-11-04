@@ -9,7 +9,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3644cf8a`
+- Built from commit: `e3689e90`
 - Commit above is the pre-commit base, not a freshness check. Verify source/artifact hashes with `python3 Tools/update_graphify.py --check`.
 - Regenerate safely with `python3 Tools/update_graphify.py` before commit/push.
 
@@ -724,7 +724,7 @@ Nodes (4): ScanVisualMode, AR, Normal, UV
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `AtmajaPhoneView` connect `Community 46` to `Community 129`, `Community 130`, `Community 1`, `Community 4`, `Community 8`, `Community 9`, `Community 139`, `Community 12`, `Community 13`, `Community 14`, `Community 15`, `Community 16`, `Community 17`, `Community 144`, `Community 20`, `Community 21`, `Community 25`, `Community 26`, `Community 153`, `Community 28`, `Community 32`, `Community 161`, `Community 37`, `Community 38`, `Community 167`, `Community 40`, `Community 41`, `Community 42`, `Community 44`, `Community 45`, `Community 47`, `Community 48`, `Community 53`, `Community 55`, `Community 56`, `Community 64`, `Community 65`, `Community 68`, `Community 72`, `Community 84`, `Community 86`, `Community 87`, `Community 89`, `Community 90`, `Community 91`, `Community 94`, `Community 102`, `Community 109`?**
-  _High betweenness centrality (0.223) - this node is a cross-community bridge._
+  _High betweenness centrality (0.222) - this node is a cross-community bridge._
 - **What connects `BackupSaveFilePath`, `Data`, `HasValidCheckpoint` to the rest of the system?**
   _691 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
