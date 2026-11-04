@@ -614,9 +614,26 @@ namespace LayarTerakhir.Editor
             col.size = alongZ ? new Vector3(.06f, height, width) : new Vector3(width, height, .06f);
 
             Quaternion rot = root.rotation * (alongZ ? Quaternion.Euler(0, 90, 0) : Quaternion.identity);
-            var visual = Model("KosPanelDoor", "ModernDoorVisual", leaf.transform, center - Vector3.up * (height * .5f), rot);
-            KosVisualV2.Resize(visual, alongZ ? new Vector3(.055f, height, width) : new Vector3(width, height, .055f));
-            KosVisualV2.SetCenter(visual, center);
+            // Procedural instead of the KosPanelDoor FBX (its headless import
+            // yields empty instances, leaving invisible doors): slab plus
+            // recessed-look inset panels, wood finish.
+            var woodDoor = Old("House_MAT_WoodDoor");
+            var vsize = alongZ ? new Vector3(.055f, height, width) : new Vector3(width, height, .055f);
+            var visual = new GameObject("ModernDoorVisual"); visual.transform.SetParent(leaf.transform, false);
+            visual.transform.SetPositionAndRotation(center, rot);
+            void Slab(Vector3 lp, Vector3 s)
+            {
+                var p = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                p.transform.SetParent(visual.transform, false);
+                p.transform.localPosition = lp; p.transform.localScale = s;
+                if (woodDoor) p.GetComponent<Renderer>().sharedMaterial = woodDoor;
+                Object.DestroyImmediate(p.GetComponent<Collider>());
+            }
+            Slab(Vector3.zero, vsize);
+            float faceOff = .0275f + .006f;
+            Vector3 faceA = vsize.x < vsize.z ? new Vector3(faceOff, 0, 0) : new Vector3(0, 0, faceOff);
+            Vector3 faceS = vsize.x < vsize.z ? new Vector3(.012f, height * .78f, Mathf.Max(width - .12f, .3f)) : new Vector3(Mathf.Max(width - .12f, .3f), height * .78f, .012f);
+            Slab(faceA, faceS); Slab(-faceA, faceS);
 
             foreach (var t in root.GetComponentsInChildren<Transform>(true).Where(t => t && (t.name == leaf.name + "Handle" || (leaf.name.Contains("MainEntrance") && t.name.StartsWith("MainDoorHandle")))).ToArray())
                 if (t) Object.DestroyImmediate(t.gameObject);

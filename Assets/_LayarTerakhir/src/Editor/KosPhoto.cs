@@ -79,6 +79,39 @@ namespace LayarTerakhir.Editor
             Object.DestroyImmediate(cam.gameObject);
             Debug.Log("KOS_PHOTO_DONE");
         }
+
+        [MenuItem("LayarTerakhir/Prolog/Capture Kos doors proof")]
+        public static void CaptureKosDoorsProof()
+        {
+            // Proof shots: Kos corridor door leaf + KamarKos door, no-save.
+            const string folder = "Audit/Visuals/KosDoorsHunter";
+            System.IO.Directory.CreateDirectory(folder);
+            EditorSceneManager.OpenScene(KosCorridorBuilder.ScenePath);
+            Physics.SyncTransforms();
+            var camGo = new GameObject("DoorCam", typeof(Camera));
+            var cam = camGo.GetComponent<Camera>();
+            cam.enabled = false; cam.nearClipPlane = .05f; cam.farClipPlane = 70f;
+            cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = Color.black;
+            var fill = camGo.AddComponent<Light>();
+            fill.type = LightType.Point; fill.range = 12f; fill.intensity = .0f;
+            fill.color = new Color(1f, 1f, 1f); fill.shadows = LightShadows.None;
+            Transform FindDoor()
+            {
+                foreach (var tr in Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                    if ((tr.name.Contains("KosGroundDoor") || tr.name.Contains("KosUpperDoor")) && !tr.name.Contains("Frame") && !tr.name.Contains("Lintel") && !tr.name.Contains("Number")) return tr;
+                return null;
+            }
+            var door = FindDoor();
+            if (door)
+            {
+                var b = KosVisualV2.BoundsOf(door.gameObject);
+                var toCam = new Vector3(3.0f, .2f, 1.5f);
+                camGo.transform.SetPositionAndRotation(b.center + toCam, Quaternion.LookRotation(-toCam));
+                KosRenderDiagnosis.Capture(cam, "proof-kos-door", false, folder);
+            }
+            Object.DestroyImmediate(camGo);
+            Debug.Log("KOS_DOORS_PROOF_CAPTURED no-save");
+        }
     }
 }
 #endif
