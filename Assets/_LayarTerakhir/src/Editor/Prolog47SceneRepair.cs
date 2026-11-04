@@ -3959,23 +3959,27 @@ namespace LayarTerakhir.Editor
                 mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
                 AssetDatabase.CreateAsset(mat, mPath);
             }
-            // Designer order: flat image of the goal claws stuck on the wall.
-            // Opaque decal: goal claw strokes composited over tile-matching
-            // background (transparent setup refused to render; opaque quads
-            // are proven visible). Meshy FBX stays in-repo.
-            var decal = AssetDatabase.LoadAssetAtPath<Texture2D>(dir + "CrimsonDecalOpaque.png");
-            if (!decal) throw new InvalidOperationException("Missing opaque claw decal");
+            // Transparent claw decal ONLY: goal-photo blood strokes with
+            // alpha, stuck on the REAL bathroom tile wall — the wall itself
+            // is untouched (no painted poster background). Thin box holder
+            // (quads get culled, boxes render). Meshy FBX stays in-repo.
+            var decal = AssetDatabase.LoadAssetAtPath<Texture2D>(dir + "CrimsonGoalDecal.png");
+            if (!decal) throw new InvalidOperationException("Missing goal claw decal (run Tools/extract_goal_claws.py)");
             mat.SetTexture("_BaseMap", decal);
             mat.SetTexture("_BumpMap", null); mat.SetFloat("_BumpScale", 0f); mat.DisableKeyword("_NORMALMAP");
             mat.SetTexture("_MetallicGlossMap", null); mat.DisableKeyword("_METALLICSPECGLOSSMAP");
             mat.SetColor("_BaseColor", Color.white);
             mat.SetFloat("_Metallic", 0f);
-            mat.SetFloat("_Surface", 0f);
-            mat.DisableKeyword("_SURFACE_TYPE_TRANSPARENT");
+            mat.SetFloat("_Surface", 1f);
+            mat.SetFloat("_SrcBlend", 5f);
+            mat.SetFloat("_DstBlend", 10f);
+            mat.SetFloat("_ZWrite", 0f);
             mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-            mat.renderQueue = 2000;
-            mat.SetOverrideTag("RenderType", "Opaque");
-            mat.SetFloat("_Smoothness", 0.5f);
+            mat.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+            mat.renderQueue = 3000;
+            mat.SetOverrideTag("RenderType", "Transparent");
+            mat.SetFloat("_Smoothness", 0.25f);
+            mat.SetFloat("_SpecularHighlights", 0f);
             mat.SetFloat("_EnvironmentReflections", 0f);
             mat.SetFloat("_GlossyReflections", 1f);
             mat.SetFloat("_Cull", 2f);
@@ -3999,7 +4003,7 @@ namespace LayarTerakhir.Editor
             holder.GetComponent<Renderer>().sharedMaterial = mat;
             holder.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             // Re-seat the AR trace + aim + inspect target on the relief face.
-            Vector3 face = d.P(-2.24f, 2.9f, 4.94f);
+            Vector3 face = d.P(-2.27f, 2.9f, 4.94f);
             if (d.upper.scratchAim) d.upper.scratchAim.SetParent(root, true);
             Delete("BathWallARTrace");
             var trace = new GameObject("BathWallARTrace");
