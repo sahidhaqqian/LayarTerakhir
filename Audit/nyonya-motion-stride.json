@@ -2,21 +2,21 @@
     "clips": [
         {
             "clip": "Walk",
-            "strideSpeed": 0.9580716490745544,
-            "lowFootMedian": 0.9580716490745544,
-            "forwardRange": 0.6048734784126282,
-            "stanceSamples": 54,
-            "backwardSamples": 136
+            "strideSpeed": 0.6229479908943176,
+            "lowFootMedian": 0.6229479908943176,
+            "forwardRange": 0.32544779777526858,
+            "stanceSamples": 80,
+            "backwardSamples": 112
         },
         {
             "clip": "Run",
-            "strideSpeed": 1.7914212942123414,
-            "lowFootMedian": 0.888148307800293,
-            "forwardRange": 0.835996687412262,
-            "stanceSamples": 39,
+            "strideSpeed": 1.518865704536438,
+            "lowFootMedian": 1.6756442785263062,
+            "forwardRange": 0.5062885880470276,
+            "stanceSamples": 72,
             "backwardSamples": 116
         }
     ],
-    "vertices": 27824,
+    "vertices": 25989,
     "bones": 56
 }

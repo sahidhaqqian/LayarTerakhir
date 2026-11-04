@@ -74,13 +74,14 @@
     },
     "Nyonya": {
       "role": "Nyonya",
-      "sourceFile": "Nyonya.vrm",
-      "sourceSha256": "64230c3dbd3601def329df08b557c581d13b139fd5d31685acbac15e74f6ce75",
-      "sourceBytes": 118051156,
+      "sourceFile": "NyonyaMeshy.glb",
+      "sourceSha256": "e86342e5ec39cbbce79c9e4a8ba19e4144da9ecd9b7a7a3121ba435ed27f356d",
+      "sourceBytes": 70916076,
       "originalTriangles": 2137712,
-      "gameTriangles": 21999,
-      "gameVertices": 28047,
+      "gameTriangles": 22000,
+      "gameVertices": 27939,
       "bones": 56,
+      "sourceHumanoidBones": 55,
       "heightMetres": 1.64,
       "textures": {
         "Albedo": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/NyonyaAlbedo.png",
@@ -94,40 +95,8 @@
         "Windup",
         "Stun"
       ],
-      "sharedPoseSourceSha256": "ec0b31acb94415bdbd53e2c76d23a7a322f041b0f762e88ec4a38fa2da540174",
-      "sourceHumanoidBones": 55,
-      "weaponHook": "Source sculpted shears weighted to the existing Shears presentation bone; no duplicate mesh.",
-      "appliedToGameplay": true,
-      "outputs": {
-        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Materials/NyonyaDesignerSurface.mat": {
-          "sha256": "36efdd587deb83ba2814a9b6bfece889ac8cc7b7dbef8173b61da773e5cdda89",
-          "sizeBytes": 4076
-        },
-        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/NyonyaDesigner.fbx": {
-          "sha256": "d307ad0d637504cbcaf8baff91391a12dddc7cebf5600a8669b1e62c00d4847b",
-          "sizeBytes": 4063004
-        },
-        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/NyonyaDesignerEcho.fbx": {
-          "sha256": "f295933f2d02a2e0e3a7ee638fe791c28cb838707c25d7d19b7ec1525e9099f5",
-          "sizeBytes": 465164
-        },
-        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/NyonyaDesignerSeated.fbx": {
-          "sha256": "0979586d18042f4a07bcfeda5ca70c48413e43ccd1328e4e5bd4bc897ba7ca41",
-          "sizeBytes": 465564
-        },
-        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/NyonyaNormal.png": {
-          "sha256": "97c869479fa9d8a961a5c177e890a3ac7036fdab26ceda723fbc021722904506",
-          "sizeBytes": 1505271
-        },
-        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/NyonyaMetalSmooth.png": {
-          "sha256": "308ca928b7a62a6c1f68280da2aa4bc3235a528eaba0a9275ba916621954dc11",
-          "sizeBytes": 1254828
-        },
-        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/NyonyaAlbedo.png": {
-          "sha256": "d2cfabb360e4d9d251948f0bd548dd09d5a69d0dd16dfb727eeec795863da61b",
-          "sizeBytes": 5724228
-        }
-      }
+      "sharedPoseSourceSha256": "dd03770c6628a6656c9745625f72d87ccf601a3149572416dcf26b8c257ea884",
+      "rig": "manual-55-meshy"
     },
     "Damar": {
       "role": "Damar",
