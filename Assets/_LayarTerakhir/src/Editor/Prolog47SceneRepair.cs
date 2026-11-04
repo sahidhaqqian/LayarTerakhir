@@ -2718,6 +2718,27 @@ namespace LayarTerakhir.Editor
             Object.DestroyImmediate(camGo);
             Debug.Log("HUNTER_PROOF_CAPTURED no-save");
         }
+    [MenuItem("LayarTerakhir/Prolog/Diagnose quilt hide")]
+        public static void CaptureQuiltHide()
+        {
+            // Binary search: hide ChildBlanket, capture child room, no-save.
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            var q = GameObject.Find("ChildBlanket");
+            if (q) q.SetActive(false);
+            const string folder = "Audit/Visuals/House-Sweep";
+            var camGo = new GameObject("HouseSweepCam", typeof(Camera));
+            var cam = camGo.GetComponent<Camera>();
+            cam.enabled = false; cam.nearClipPlane = .05f; cam.farClipPlane = 120f;
+            cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = Color.black;
+            var fill = camGo.AddComponent<Light>();
+            fill.type = LightType.Point; fill.range = 9f; fill.intensity = .6f;
+            fill.color = new Color(1f, 1f, 1f); fill.shadows = LightShadows.None;
+            camGo.transform.SetPositionAndRotation(d.P(-3f, 3.5f, 5.2f), Quaternion.LookRotation(d.P(-4f, 2.5f, 4.2f) - d.P(-3f, 3.5f, 5.2f)));
+            KosRenderDiagnosis.Capture(cam, "34-quilt-hidden-test", false, folder);
+            Object.DestroyImmediate(camGo);
+            Debug.Log("QUILT_HIDE_CAPTURED no-save");
+        }
     [MenuItem("LayarTerakhir/Prolog/Diagnose dining walls 2")]
         public static void CaptureDiningDiag2()
         {
