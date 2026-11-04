@@ -3986,22 +3986,33 @@ namespace LayarTerakhir.Editor
             EditorUtility.SetDirty(mat);
 
             Delete("BathWallScratches");
-            Delete("CrimsonScratchRelief");
-            // Flat 2.6m x 1.47m decal BOARD (decal aspect 1290:730) on the
-            // west wall facing east. A 2cm-thick BOX, not a Quad: flat quads
+            // Spread the designer's Gemini claw image: 4 decal boards on the
+            // west wall (varied size/roll) so the bathroom carries dozens of
+            // claw strokes, not one panel. Thin BOXES, not Quads: flat quads
             // have zero-thickness bounds and get culled into invisibility
-            // (proven by the red-Unlit probe test), while thin boxes render
-            // like the old relief chunk did. Front face floats off the tiles.
+            // (proven by the red-Unlit probe test). Front faces float off
+            // the tiles; the wall itself is untouched.
             var east = d.east; east.y = 0; east.Normalize();
             Vector3 center = d.P(-2.27f, 2.9f, 4.94f);
-            var holder = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            holder.name = "CrimsonScratchRelief";
-            holder.transform.SetParent(root, true);
-            holder.transform.SetPositionAndRotation(new Vector3(2.275f, 4.94f, -2.9f), Quaternion.LookRotation(east));
-            holder.transform.localScale = new Vector3(2.9f, 1.62f, 0.02f);
-            Object.DestroyImmediate(holder.GetComponent<Collider>());
-            holder.GetComponent<Renderer>().sharedMaterial = mat;
-            holder.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            var decalSpecs = new (string, Vector3, Vector2, float)[]
+            {
+                ("CrimsonScratchRelief", new Vector3(2.275f, 4.94f, -2.9f), new Vector2(2.9f, 1.62f), 0f),
+                ("CrimsonScratchRelief2", new Vector3(2.275f, 5.32f, -4.42f), new Vector2(1.6f, 0.89f), 180f),
+                ("CrimsonScratchRelief3", new Vector3(2.275f, 4.32f, -1.42f), new Vector2(1.8f, 1.0f), 14f),
+                ("CrimsonScratchRelief4", new Vector3(2.275f, 4.18f, -4.28f), new Vector2(1.5f, 0.84f), -18f),
+            };
+            foreach (var sp in decalSpecs)
+            {
+                Delete(sp.Item1);
+                var holder = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                holder.name = sp.Item1;
+                holder.transform.SetParent(root, true);
+                holder.transform.SetPositionAndRotation(sp.Item2, Quaternion.LookRotation(east) * Quaternion.Euler(0, 0, sp.Item4));
+                holder.transform.localScale = new Vector3(sp.Item3.x, sp.Item3.y, 0.02f);
+                Object.DestroyImmediate(holder.GetComponent<Collider>());
+                holder.GetComponent<Renderer>().sharedMaterial = mat;
+                holder.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            }
             // Re-seat the AR trace + aim + inspect target on the relief face.
             Vector3 face = d.P(-2.27f, 2.9f, 4.94f);
             if (d.upper.scratchAim) d.upper.scratchAim.SetParent(root, true);
