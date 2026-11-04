@@ -2685,7 +2685,40 @@ namespace LayarTerakhir.Editor
             Debug.Log("DINING_DIAG_CAPTURED no-save");
         }
 
-        [MenuItem("LayarTerakhir/Prolog/Diagnose dining walls 2")]
+        [MenuItem("LayarTerakhir/Prolog/Capture hunter proof")]
+        public static void CaptureHunterProof()
+        {
+            // Basement hunter close-up, no-save. Proves the body exists.
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            var hunter = d && d.basement ? d.basement.nyonya : null;
+            if (!hunter) { Debug.Log("HUNTER_PROOF_MISSING no nyonya bound"); return; }
+            bool wasActive = hunter.activeSelf;
+            hunter.SetActive(true);
+            const string folder = "Audit/Visuals/House-Sweep";
+            var camGo = new GameObject("HunterCam", typeof(Camera));
+            var cam = camGo.GetComponent<Camera>();
+            cam.enabled = false; cam.nearClipPlane = .05f; cam.farClipPlane = 70f;
+            cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = Color.black;
+            var fill = camGo.AddComponent<Light>();
+            fill.type = LightType.Point; fill.range = 9f; fill.intensity = 1.6f;
+            fill.color = new Color(1f, 1f, 1f); fill.shadows = LightShadows.None;
+            var hb = KosVisualV2.BoundsOf(hunter);
+            Debug.Log("HUNTER_PROOF bounds " + hb.center.ToString("F2") + " size " + hb.size.ToString("F2"));
+            Vector3 focus, camPos;
+            if (hb.size.magnitude > 20f)
+            {
+                focus = hunter.transform.position + Vector3.up * 1f;
+                camPos = focus + new Vector3(2f, .5f, 2f);
+                Debug.Log("HUNTER_PROOF bounds insane, framing holder instead");
+            }
+            else { focus = hb.center; camPos = hb.center + new Vector3(1.5f, .3f, 1.5f); }
+            camGo.transform.SetPositionAndRotation(camPos, Quaternion.LookRotation(focus - camPos));
+            KosRenderDiagnosis.Capture(cam, "hunter-proof", false, folder);
+            Object.DestroyImmediate(camGo);
+            Debug.Log("HUNTER_PROOF_CAPTURED no-save");
+        }
+    [MenuItem("LayarTerakhir/Prolog/Diagnose dining walls 2")]
         public static void CaptureDiningDiag2()
         {
             // Varian A: sembunyikan shell, B: sembunyikan kursi, C: sitting.
@@ -3748,7 +3781,11 @@ namespace LayarTerakhir.Editor
             var holder = new GameObject("CrimsonScratchRelief");
             holder.transform.SetParent(root, true);
             var child = (GameObject)PrefabUtility.InstantiatePrefab(asset);
+            if (!child) throw new InvalidOperationException("InstantiatePrefab returned null for CrimsonRuptureWall.fbx");
             child.transform.SetParent(holder.transform, false);
+            // Batch-mode instantiate leaves a prefab link the saver drops:
+            // unpack so the relief persists as plain scene objects.
+            PrefabUtility.UnpackPrefabInstance(child, PrefabUnpackMode.OutermostRoot, InteractionMode.AutomatedAction);
             foreach (var r in child.GetComponentsInChildren<Renderer>())
                 r.sharedMaterials = Enumerable.Repeat(mat, r.sharedMaterials.Length).ToArray();
             // The Meshy panel lies in XZ (thin Y): stand it on the west wall

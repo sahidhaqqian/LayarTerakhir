@@ -65,6 +65,59 @@ namespace LayarTerakhir.Editor
             Debug.Log("DESIGNER_VRM_APPLIED Raka body/phone hand, Nyonya hunter/apparitions; Damar authoring prefab prepared");
         }
 
+        [MenuItem("LayarTerakhir/Characters/Probe Nyonya instantiate")]
+        public static void ProbeNyonyaInstantiate()
+        {
+            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene);
+            var path = "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/NyonyaDesigner.fbx";
+            var asset = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+            Debug.Log("NYONYA_PROBE asset=" + (asset ? asset.name : "NULL"));
+            var model = asset ? (GameObject)PrefabUtility.InstantiatePrefab(asset) : null;
+            Debug.Log("NYONYA_PROBE instance=" + (model ? model.name : "NULL"));
+            if (model)
+            {
+                Debug.Log("NYONYA_PROBE children=" + model.GetComponentsInChildren<Transform>(true).Length + " skins=" + model.GetComponentsInChildren<SkinnedMeshRenderer>(true).Length + " hips=" + (model.GetComponentInChildren<Transform>(true) != null));
+                var hips = model.transform.Find("CharacterRig/Hips");
+                if (!hips) foreach (var t in model.GetComponentsInChildren<Transform>(true)) if (t.name == "Hips") hips = t;
+                Debug.Log("NYONYA_PROBE hips=" + (hips ? "FOUND" : "MISSING"));
+                PrefabUtility.UnpackPrefabInstance(model, PrefabUnpackMode.OutermostRoot, InteractionMode.AutomatedAction);
+            }
+            EditorSceneManager.SaveScene(scene, "Assets/_LayarTerakhir/assets/Scenes/NyonyaProbeTmp.unity");
+            Debug.Log("NYONYA_PROBE_SAVED");
+        }
+
+        [MenuItem("LayarTerakhir/Characters/Apply Nyonya hunter only")]
+        public static void ApplyNyonyaHunterOnly()
+        {
+            // Hunter + apparitions ONLY. Never touches Raka/Damar/prefabs.
+            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+            Surface("Nyonya");
+            var scene = EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            if (!d || !d.basement || !d.basement.nyonya) throw new Exception("Missing existing Atmaja actor bindings");
+            var hunter = Replace(d.basement.nyonya, "NyonyaDesigner", true, 0);
+            if (hunter.GetComponentsInChildren<SkinnedMeshRenderer>(true).Length == 0) throw new Exception("Nyonya hunter has no skinned meshes after Replace; scene NOT saved");
+            var visual = d.basement.nyonya.GetComponent<AtmajaThreatPresentation>();
+            visual.body = Bone(hunter, "Hips");
+            visual.leftArm = Bone(hunter, "UpperArm_L");
+            visual.rightArm = Bone(hunter, "UpperArm_R");
+            visual.leftLeg = Bone(hunter, "Thigh_L");
+            visual.rightLeg = Bone(hunter, "Thigh_R");
+            visual.head = Bone(hunter, "Head");
+            visual.weapon = Bone(hunter, "Shears");
+            visual.authoredMotion = hunter.GetComponent<Animation>();
+            d.basement.shearsProp = visual.weapon.gameObject;
+            Compensate(Replace(d.chase.streetFigure, "NyonyaDesignerEcho", false, 0));
+            Compensate(Replace(d.upper.mirrorFlashFigure, "NyonyaDesignerEcho", false, AtmajaMirrorReflection.ReflectionLayer));
+            Compensate(Replace(d.upper.hangedFlashFigure, "NyonyaDesignerEcho", false, 0));
+            Compensate(Replace(d.arFigure, "NyonyaDesignerSeated", false, AtmajaPhoneView.ARLayer));
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            AssetDatabase.SaveAssets();
+            Debug.Log("DESIGNER_NYONYA_HUNTER_APPLIED hunter+apparitions, Raka untouched");
+        }
+
         private static Transform Bone(GameObject model, string name) =>
             model.GetComponentsInChildren<Transform>(true).Single(t => t.name == name);
 
@@ -144,7 +197,12 @@ namespace LayarTerakhir.Editor
                 importer.clipAnimations = clips;
                 importer.SaveAndReimport();
             }
-            var model = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(path));
+            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+            var prefabAsset = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+            if (!prefabAsset) throw new Exception("Designer model missing after import: " + path);
+            var model = (GameObject)PrefabUtility.InstantiatePrefab(prefabAsset);
+            if (!model || model.GetComponentsInChildren<Renderer>(true).Length == 0) throw new Exception("Designer model instantiate has no visible geometry: " + name);
+            if (animate && model.GetComponentsInChildren<Transform>(true).Length < 10) throw new Exception("Designer rig instantiate incomplete: " + name);
             foreach (var renderer in model.GetComponentsInChildren<Renderer>(true))
             {
                 renderer.sharedMaterials = renderer.sharedMaterials.Select(m =>
@@ -183,7 +241,14 @@ namespace LayarTerakhir.Editor
                 if (child.GetComponentsInChildren<Renderer>(true).Any(r => !(r is ParticleSystemRenderer)))
                     Object.DestroyImmediate(child.gameObject);
             var model = Actor(asset, animate);
+            if (!model) throw new Exception("InstantiatePrefab returned null for " + asset);
             model.transform.SetParent(actor.transform, false);
+            // Batch-mode instantiate leaves a prefab link the saver drops:
+            // unpack so the rig persists as plain scene objects.
+            PrefabUtility.UnpackPrefabInstance(model, PrefabUnpackMode.OutermostRoot, InteractionMode.AutomatedAction);
+            // Meshy bakes a 100x node scale; without this the rig explodes to
+            // kilometer bounds (invisible ghost + broken culling/probes).
+            foreach (var rig in model.GetComponentsInChildren<Transform>(true).Where(x => x.name == "CharacterRig")) rig.localScale = Vector3.one;
             foreach (var node in model.GetComponentsInChildren<Transform>(true)) node.gameObject.layer = layer;
             return model;
         }
