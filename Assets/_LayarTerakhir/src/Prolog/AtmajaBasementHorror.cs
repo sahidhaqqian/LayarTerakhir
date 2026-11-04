@@ -22,9 +22,9 @@ namespace LayarTerakhir.Prolog
         public GameObject nyonya, shearsProp, ragOriginal, teplokFlame;
         public Light teplokLight;
         public AudioSource humSource;
-        public Transform hideAnchor1, hideAnchor2, exitAnchor1, exitAnchor2;
+        public Transform hideAnchor1, hideAnchor2, hideAnchor3, exitAnchor1, exitAnchor2, exitAnchor3;
         public GameObject powerbankObj, handycamObj;
-        public Collider wardrobeCol1, wardrobeCol2;
+        public Collider wardrobeCol1, wardrobeCol2, wardrobeCol3;
         public Transform powerbankSpot, handycamSpot;
         public bool IsHidden => hiddenIn != null;
         public bool InspectingLocker => lockerCheckRunning;
@@ -101,6 +101,7 @@ namespace LayarTerakhir.Prolog
             if (humSource) { humSource.enabled = entered && !chased; if (humSource.enabled) humSource.Play(); }
             if (wardrobeCol1) wardrobeCol1.enabled = true;
             if (wardrobeCol2) wardrobeCol2.enabled = true;
+            if (wardrobeCol3) wardrobeCol3.enabled = true;
             var rig = director.player.GetComponent<ShoulderCameraRig>(); if (rig) rig.FirstPersonOverride = false;
             director.player.MovementLocked = false; lastPosition = director.player.transform.position; Breath(false);
             if (nyonya && waypoints.Length > 0) nyonya.transform.SetPositionAndRotation(waypoints[0].position, waypoints[0].rotation);
@@ -109,7 +110,7 @@ namespace LayarTerakhir.Prolog
         {
             if (IsHidden) return lockerCheckRunning ? $"Matikan layar [{Key(GameAction.ToggleScreen)}]. Jangan bergerak." : $"Dengarkan langkahnya. [{Key(GameAction.Interact)}] keluar lemari.";
             if (!Has("EVENT_P0_POWERBANK_TAKEN")) return "Temukan powerbank Damar di ruang jahit. Gunakan rak dan lemari untuk bersembunyi.";
-            if (!Has(HandycamId)) return "Cari jejak Damar di dekat cermin. Merunduk di balik meja saat dia berpatroli.";
+            if (!Has(HandycamId)) return "Cari jejak Damar di gudang banjir selatan. Merunduk di balik peti saat dia berpatroli.";
             return "Putar rekaman terakhir di handycam Damar.";
         }
         public void Handle(AtmajaItem item)
@@ -180,10 +181,13 @@ namespace LayarTerakhir.Prolog
         }
         private void EnterWardrobe(Transform wardrobe)
         {
-            hiddenAnchor = Vector3.Distance(wardrobe.position, hideAnchor1.position) < Vector3.Distance(wardrobe.position, hideAnchor2.position) ? hideAnchor1 : hideAnchor2;
+            float d1 = hideAnchor1 ? Vector3.Distance(wardrobe.position, hideAnchor1.position) : float.PositiveInfinity;
+            float d2 = hideAnchor2 ? Vector3.Distance(wardrobe.position, hideAnchor2.position) : float.PositiveInfinity;
+            float d3 = hideAnchor3 ? Vector3.Distance(wardrobe.position, hideAnchor3.position) : float.PositiveInfinity;
+            hiddenAnchor = d1 <= d2 && d1 <= d3 ? hideAnchor1 : d2 <= d3 ? hideAnchor2 : hideAnchor3;
             hiddenWasSeen = mind == Mind.Pursue && CanSeePlayer(12);
             hiddenIn = wardrobe; hideEnteredAt = Time.time; lockerCleared = false; inspectElapsed = 0;
-            var col = hiddenAnchor == hideAnchor1 ? wardrobeCol1 : wardrobeCol2; if (col) col.enabled = false;
+            var col = hiddenAnchor == hideAnchor1 ? wardrobeCol1 : hiddenAnchor == hideAnchor2 ? wardrobeCol2 : wardrobeCol3; if (col) col.enabled = false;
             director.PlacePlayer(hiddenAnchor.position, hiddenAnchor.rotation); director.player.MovementLocked = true;
             director.player.cameraPivot.localRotation = Quaternion.identity;
             var rig = director.player.GetComponent<ShoulderCameraRig>(); if (rig) rig.FirstPersonOverride = true;
@@ -192,7 +196,7 @@ namespace LayarTerakhir.Prolog
         public void ExitWardrobe()
         {
             if (!IsHidden) return;
-            Transform exit = hiddenAnchor == hideAnchor1 ? exitAnchor1 : exitAnchor2; if (!exit) return;
+            Transform exit = hiddenAnchor == hideAnchor1 ? exitAnchor1 : hiddenAnchor == hideAnchor2 ? exitAnchor2 : exitAnchor3; if (!exit) return;
             director.PlacePlayer(exit.position, exit.rotation);
             if (wardrobeCol1) wardrobeCol1.enabled = true; if (wardrobeCol2) wardrobeCol2.enabled = true;
             hiddenIn = hiddenAnchor = null; director.player.MovementLocked = false;
@@ -242,7 +246,7 @@ namespace LayarTerakhir.Prolog
                     case Mind.Patrol: PatrolTick(dt); break;
                     case Mind.Suspicion: StepToward(suspicionPoint, 1.35f, dt); suspicionTimer -= dt; if (suspicionTimer <= 0) ReturnToPatrol(); break;
                     case Mind.Pursue:
-                        StepToward(IsHidden ? (hiddenAnchor == hideAnchor1 ? exitAnchor1 : exitAnchor2).position : director.player.transform.position, 2.8f, dt);
+                        StepToward(IsHidden ? (hiddenAnchor == hideAnchor1 ? exitAnchor1 : hiddenAnchor == hideAnchor2 ? exitAnchor2 : exitAnchor3).position : director.player.transform.position, 2.8f, dt);
                         giveUpTimer -= dt; if (!IsHidden && !CanSeePlayer(12) && giveUpTimer <= 0) ReturnToPatrol(); break;
                 }
             }

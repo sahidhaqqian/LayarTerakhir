@@ -160,7 +160,12 @@ namespace LayarTerakhir.Diagnostics
             Check(Phone.batteryPercent>=79.5f,"Large powerbank restores charge and preserves the carried small pack");
             Check(Campaign.HasInventoryItem("POWERBANK_KECIL_KOS"),"Carried powerbank is not deleted by the battery tutorial");
             Phone.isPhoneRaised=true;Phone.SyncVisualState();d.phoneView.Apps.Open(PhoneApp.Camera);Aim(d.basement.powerbankObj.transform.position);yield return Shot("13-damar-powerbank");
-            yield return Crouch(true);yield return Walk(d.P(1.45f,5.45f,-2.79f));yield return Use(Item(AtmajaAction.Handycam));
+            yield return Crouch(true);
+            // Damar's handycam hides in the flooded south-east nook: through
+            // the south arch, the flooded store, the spine gap and the cross
+            // gap — every leg a straight capsule walk.
+            foreach(var p in new[]{d.P(2.5f,6.9f,-2.79f),d.P(2.5f,7.5f,-2.79f),d.P(6.0f,7.7f,-2.79f),d.P(6.0f,9.0f,-2.79f),d.P(7.5f,9.0f,-2.79f),d.P(9.0f,9.2f,-2.79f),d.P(9.6f,8.3f,-2.79f)})yield return Walk(p);
+            yield return Use(Item(AtmajaAction.Handycam));
             yield return Wait(()=>d.chase.recording.IsPlaying&&d.chase.recording.Progress>.2f,30,"Handycam plays the original visual recording");yield return Shot("14-recording-market-behind-mirror");
             yield return Wait(()=>d.chase.recording.Progress>.72f,30,"Pale hands reach through the recorded mirror");yield return Shot("15-recording-damar-dragged-in");
             Escape:
@@ -172,7 +177,9 @@ namespace LayarTerakhir.Diagnostics
             // immediately after playback. Crawling toward the pursuer first spends
             // the escape lead and lets its collider prevent the stand transition.
             yield return Crouch(false);
-            yield return Walk(d.P(1.4f,4.3f,-2.79f));
+            // Out of the nook and back west along the same maze lanes, then
+            // the old sprint line to the ladder shaft.
+            foreach(var p in new[]{d.P(9.5f,7.5f,-2.79f),d.P(9.3f,6.0f,-2.79f),d.P(7.0f,5.2f,-2.79f),d.P(7.0f,4.5f,-2.79f),d.P(6.0f,4.5f,-2.79f),d.P(6.0f,4.2f,-2.79f),d.P(5.0f,4.2f,-2.79f),d.P(4.2f,4.2f,-2.79f),d.P(4.2f,3.8f,-2.79f),d.P(1.5f,3.8f,-2.79f),d.P(1.4f,4.3f,-2.79f)})yield return Walk(p);
             foreach(var p in new[]{d.P(1.4f,2.8f,-2.79f),d.chase.cellarExitApproach.position})yield return Walk(p);
             InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftShift));yield return null;
             yield return Wait(()=>d.chase.Traversing,10,"Sprint initiates the cellar stair escape");yield return Wait(()=>!d.chase.Traversing,15,"Cellar ascent reaches the closing trapdoor");

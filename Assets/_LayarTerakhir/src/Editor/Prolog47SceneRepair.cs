@@ -2318,6 +2318,137 @@ namespace LayarTerakhir.Editor
             Debug.Log("PROLOG47_SCRATCH_RELIEF_APPLIED designer rupture relief, reference-matched paint");
         }
 
+        // Designer Nov: the cellar is a big but empty box — its gameplay all
+        // sits in the west corner. Carve an interconnected maze inside the
+        // existing 12x12 footprint (no new digging): a spine wall and a cross
+        // wall with staggered gaps form a full loop, the flooded south room
+        // gets puddle + crates, and Damar's handycam hides in the south-east
+        // nook so it is earned, not stumbled upon. West room, chase rail,
+        // ladder and audit anchors are untouched.
+        public static void ApplyBasementBranches()
+        {
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            var root = Find("Atmaja_Environment_Art").transform;
+            RebuildBasementBranches(d, root);
+            Save();
+            Debug.Log("PROLOG47_BASEMENT_BRANCHES_APPLIED maze loop, flooded storage, hidden handycam");
+        }
+
+        private static GameObject MazeBox(string name, Transform root, Vector3 pos, Vector3 size, Material mat, bool solid = true)
+        {
+            Delete(name);
+            var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            go.name = name;
+            go.transform.SetParent(root, true);
+            go.transform.SetPositionAndRotation(pos, Quaternion.LookRotation(Vector3.forward));
+            go.transform.localScale = size;
+            go.GetComponent<Renderer>().sharedMaterial = mat;
+            go.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+            if (!solid) Object.DestroyImmediate(go.GetComponent<Collider>());
+            return go;
+        }
+
+        private static void RebuildBasementBranches(AtmajaDirector d, Transform root)
+        {
+            var wallMat = Find("CellarWallW").GetComponent<Renderer>().sharedMaterial;
+            // Open the south wall into the flooded store (local x 2.0-3.0).
+            Delete("CellarWallS");
+            var wallRot = Find("CellarWallN") ? Find("CellarWallN").transform.rotation : Quaternion.identity;
+            var wallS1 = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            wallS1.name = "CellarWallS_W";
+            wallS1.transform.SetParent(root, true);
+            wallS1.transform.SetPositionAndRotation(d.P(1.1f, 6.9f, -1.575f), wallRot);
+            wallS1.transform.localScale = new Vector3(1.8f, 2.45f, .16f);
+            wallS1.GetComponent<Renderer>().sharedMaterial = wallMat;
+            var wallS2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            wallS2.name = "CellarWallS_E";
+            wallS2.transform.SetParent(root, true);
+            wallS2.transform.SetPositionAndRotation(d.P(4.3f, 6.9f, -1.575f), wallRot);
+            wallS2.transform.localScale = new Vector3(2.6f, 2.45f, .16f);
+            wallS2.GetComponent<Renderer>().sharedMaterial = wallMat;
+            var wood = Material("Repair_BedWood");
+            var iron = Material("Repair_Iron");
+            // Spine wall (local east 6.5, gaps at depth 4.0-5.0 and 8.5-9.5).
+            MazeBox("MazeSpineW1", root, d.P(6.5f, 1.5f, -1.575f), new Vector3(.16f, 2.45f, 5.0f), wallMat);
+            MazeBox("MazeSpineW2", root, d.P(6.5f, 6.75f, -1.575f), new Vector3(.16f, 2.45f, 3.5f), wallMat);
+            MazeBox("MazeSpineW3", root, d.P(6.5f, 10.5f, -1.575f), new Vector3(.16f, 2.45f, 2.0f), wallMat);
+            // Cross wall (local depth 7.2, gap at east 9.0-10.0).
+            MazeBox("MazeCrossS1", root, d.P(7.75f, 7.2f, -1.575f), new Vector3(2.5f, 2.45f, .16f), wallMat);
+            MazeBox("MazeCrossS2", root, d.P(11.0f, 7.2f, -1.575f), new Vector3(2.0f, 2.45f, .16f), wallMat);
+            // West cap of the flooded south room.
+            MazeBox("MazeSouthWestWall", root, d.P(0.2f, 8.05f, -1.575f), new Vector3(.16f, 2.45f, 2.3f), wallMat);
+            // Flooded storage: dark glossy puddle (visual only, walkable).
+            var puddle = MazeBox("MazeFloodPuddle", root, d.P(2.5f, 8.0f, -2.79f), new Vector3(2.0f, .012f, 1.4f), null, false);
+            var floodMat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+            floodMat.SetColor("_BaseColor", new Color(.04f, .06f, .07f));
+            floodMat.SetFloat("_Smoothness", .95f);
+            floodMat.SetFloat("_Metallic", .1f);
+            EditorUtility.SetDirty(floodMat);
+            puddle.GetComponent<Renderer>().sharedMaterial = floodMat;
+            // Crates dressing the new lanes (kept clear of walk lines).
+            ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02.fbx", "MazeCrateA", root,
+                d.P(1.0f, 8.4f, -2.79f), Quaternion.Euler(0, 12, 0), new Vector3(.55f, .55f, .55f), wood);
+            ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02.fbx", "MazeCrateB", root,
+                d.P(2.3f, 8.5f, -2.79f), Quaternion.Euler(0, -9, 0), new Vector3(.55f, .55f, .55f), wood);
+            ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/old_military_crate/old_military_crate.fbx", "MazeCrateC", root,
+                d.P(8.5f, 6.9f, -2.79f), Quaternion.Euler(0, 30, 0), new Vector3(.6f, .5f, .5f), wood);
+            // Handycam hideout: low crate in the south-east nook, flanked.
+            ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02.fbx", "MazeHandycamCrate", root,
+                d.P(10.8f, 8.8f, -2.79f), Quaternion.identity, new Vector3(.5f, .5f, .5f), wood);
+            ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02.fbx", "MazeNookFlank", root,
+                d.P(10.5f, 7.4f, -2.79f), Quaternion.Euler(0, -14, 0), new Vector3(.5f, .9f, .5f), wood);
+            var cam = Find("DamarHandycam");
+            if (cam) cam.transform.SetPositionAndRotation(d.P(10.8f, 8.8f, -2.2f), Quaternion.LookRotation(d.north));
+            // Archive shelf dressing the north-east room.
+            var shelf = MazeBox("MazeArchiveShelf", root, d.P(8.5f, 4.5f, -1.9f), new Vector3(1.8f, 1.8f, .45f), iron);
+            MazeBox("MazeArchiveTop", root, d.P(8.5f, 4.5f, -1.15f), new Vector3(1.7f, .3f, .4f), wood);
+            // Third wardrobe so the far half has its own hiding spot.
+            var ward = ProjectAsset("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/painted_wooden_cabinet_02/painted_wooden_cabinet_02.fbx", "CellarWardrobe3", root,
+                d.P(11.3f, 10.5f, -2.79f), Quaternion.Euler(0, -90, 0), new Vector3(.95f, 1.9f, .45f));
+            var wardItem = ward.AddComponent<AtmajaItem>();
+            wardItem.director = d; wardItem.action = AtmajaAction.WardrobeHide; wardItem.label = "Sembunyi di lemari kayu #3";
+            d.basement.wardrobeCol3 = ward.GetComponent<BoxCollider>();
+            d.basement.hideAnchor3 = AnchorAt(root, "HideAnchor3", d.P(10.5f, 10.5f, -2.79f), d.P(11.3f, 10.5f, 0));
+            d.basement.exitAnchor3 = AnchorAt(root, "ExitAnchor3", d.P(10.0f, 9.7f, -2.79f), d.P(11.3f, 10.5f, 0));
+            // Hunter patrol covers the new loop (existing indices preserved).
+            var wps = new List<Transform>(d.basement.waypoints);
+            int bi = 0;
+            foreach (var pt in new[] { d.P(6.5f, 9.0f, -2.79f), d.P(8.0f, 9.3f, -2.79f), d.P(10.0f, 8.4f, -2.79f), d.P(8.5f, 5.0f, -2.79f) })
+            {
+                var t = new GameObject("MazePatrol" + bi++).transform;
+                t.SetParent(root, true);
+                t.position = pt;
+                t.rotation = Quaternion.LookRotation(d.P(2.9f, 3.5f, 0) - pt);
+                wps.Add(t);
+            }
+            d.basement.waypoints = wps.ToArray();
+            // Dim lights for the new branches.
+            BranchLight(root, "MazeGapLight", d.P(6.5f, 9.0f, -1.7f), .55f, 5f, new Color(.72f, .76f, .65f));
+            BranchLight(root, "MazeNookLight", d.P(10.0f, 8.4f, -1.7f), .6f, 6f, new Color(1f, .85f, .6f));
+        }
+
+        private static Transform AnchorAt(Transform root, string name, Vector3 pos, Vector3 look)
+        {
+            Delete(name);
+            var t = new GameObject(name).transform;
+            t.SetParent(root, true);
+            var dir = look - pos; dir.y = 0;
+            t.SetPositionAndRotation(pos, Quaternion.LookRotation(dir.sqrMagnitude > .01f ? dir : Vector3.forward));
+            return t;
+        }
+
+        private static void BranchLight(Transform root, string name, Vector3 pos, float intensity, float range, Color color)
+        {
+            Delete(name);
+            var lamp = MazeBox(name, root, pos, new Vector3(.3f, .06f, .12f), Material("Repair_Iron"), false);
+            var light = new GameObject(name + "Glow", typeof(Light));
+            light.transform.SetParent(lamp.transform, true);
+            light.transform.localPosition = Vector3.down * .1f;
+            var l = light.GetComponent<Light>();
+            l.type = LightType.Point; l.range = range; l.intensity = intensity; l.color = color; l.shadows = LightShadows.None;
+        }
+
         private static void RebuildScratchRelief(AtmajaDirector d, Transform root)
         {
             const string dir = "Assets/_LayarTerakhir/assets/Art/Imported/Meshy/CrimsonRupture/";

@@ -206,7 +206,9 @@ namespace LayarTerakhir.Editor.Tests
         private IEnumerator CellarWalk47()
         {
             yield return new WaitForSeconds(2);var d=Find<AtmajaDirector>();var p=d.player;
-            d.upper.RestoreWorld();d.basement.RestoreWorld();d.basement.nyonya.SetActive(false);
+            d.upper.RestoreWorld();
+            CampaignState.Instance.AddInventoryItem("EVENT_P0_BASEMENT_ENTERED");
+            d.basement.RestoreWorld();d.basement.nyonya.SetActive(false);
             d.SetStage(AtmajaStage.BasementEntry);Physics.SyncTransforms();
             var cc=p.GetComponent<CharacterController>();float r=cc.radius,h=cc.height;
             var blocked="";
@@ -234,11 +236,39 @@ namespace LayarTerakhir.Editor.Tests
                 (P(4.15f,1.7f),P(4.05f,1.05f),"ward2-exit2"),(P(4.05f,1.05f),P(4.15f,1.7f),"exit2-back"),
                 (P(4.15f,1.7f),P(4.2f,3.8f),"north-return"),(P(4.2f,3.8f),P(1.5f,3.8f),"east-mid-return"),
                 (P(1.5f,3.8f),P(1.1f,1.5f),"mid-ladder"),
+                (P(2.2f,6.3f),P(2.5f,6.9f),"spawn-arch"),(P(2.5f,6.9f),P(2.5f,7.5f),"arch-flood"),
+                (P(2.5f,7.5f),P(6.0f,7.7f),"flood-lane"),(P(6.0f,7.7f),P(6.0f,9.0f),"lane-gapS"),
+                (P(6.0f,9.0f),P(7.5f,9.0f),"gapS-east"),(P(7.5f,9.0f),P(9.0f,9.2f),"east-lane"),
+                (P(9.0f,9.2f),P(9.6f,8.3f),"lane-nook"),(P(9.6f,8.3f),P(9.5f,7.5f),"nook-cross"),
+                (P(9.5f,7.5f),P(9.3f,6.2f),"cross-north"),(P(9.3f,6.2f),P(9.3f,6.0f),"cross-south"),
+                (P(9.3f,6.0f),P(7.0f,5.2f),"north-room"),(P(7.0f,5.2f),P(7.0f,4.5f),"room-gap"),
+                (P(7.0f,4.5f),P(6.0f,4.5f),"gap-cross"),(P(6.0f,4.5f),P(6.0f,4.2f),"gap-south"),
+                (P(6.0f,4.2f),P(5.0f,4.2f),"lane-crate"),(P(5.0f,4.2f),P(4.2f,4.2f),"lane-main"),
+                (P(4.2f,4.2f),P(4.2f,3.8f),"main-return"),
             };
             bool all=true;
             foreach(var s in tour)all=Seg(s.Item1,s.Item2,s.Item3)&&all;
             Debug.Log("CELLAR_SWEEP r="+r+" h="+h+" blocked=["+blocked+"]");
             Assert.That(all,Is.True,"Cellar floor routes walkable, blockers: "+blocked);
+            // Damar's handycam hides in the south-east nook: reachable and
+            // visible from the nook mouth, not from the main room.
+            d.PlacePlayer(d.P(9.6f,8.3f,-2.79f),Quaternion.identity);p.MovementLocked=false;p.enabled=false;
+            p.GetComponent<ShoulderCameraRig>().SetPerspective(PlayerPerspective.FirstPerson);
+            var camItem=Item(AtmajaAction.Handycam);
+            var cdelta=camItem.GetComponent<Collider>().bounds.center-p.cameraPivot.position;var cflat=Vector3.ProjectOnPlane(cdelta,Vector3.up);
+            p.transform.rotation=Quaternion.LookRotation(cflat);p.SetViewPitch(-Mathf.Atan2(cdelta.y,cflat.magnitude)*Mathf.Rad2Deg);p.GetComponent<ShoulderCameraRig>().RefreshCameraPose();
+            yield return null;yield return null;Physics.SyncTransforms();
+            Assert.That(p.GetComponent<InteractionInteractor>().CurrentTarget,Is.SameAs(camItem),"Hidden handycam is framed from the nook mouth");
+            // The far wardrobe hides Raka and lets him back out.
+            d.PlacePlayer(d.P(10.3f,10.5f,-2.79f),Quaternion.identity);
+            var ward3=GameObject.Find("CellarWardrobe3").GetComponent<AtmajaItem>();
+            Assert.That(ward3,Is.Not.Null,"Third wardrobe stands in the south-east");
+            ward3.Interact();yield return null;
+            Assert.That(d.basement.IsHidden,Is.True,"Far wardrobe conceals Raka");
+            yield return new WaitForSeconds(.4f);
+            yield return Press(Key.E);yield return null;
+            Assert.That(d.basement.IsHidden,Is.False,"Raka leaves the far wardrobe");
+            Assert.That(Vector3.Distance(p.transform.position,d.basement.exitAnchor3.position),Is.LessThan(.3f));
         }
         private IEnumerator CellarClimb47()
         {
