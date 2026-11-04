@@ -202,6 +202,44 @@ namespace LayarTerakhir.Editor.Tests
         }
         [UnityTest] public IEnumerator Prolog47TrapdoorDescendsTheVisibleLadder()=>Run(Ladder47());
         [UnityTest] public IEnumerator Prolog47CellarClimbReturnsToMaster()=>Run(CellarClimb47());
+        [UnityTest] public IEnumerator Prolog47CellarFloorRoutesStayWalkable()=>Run(CellarWalk47());
+        private IEnumerator CellarWalk47()
+        {
+            yield return new WaitForSeconds(2);var d=Find<AtmajaDirector>();var p=d.player;
+            d.upper.RestoreWorld();d.basement.RestoreWorld();d.basement.nyonya.SetActive(false);
+            d.SetStage(AtmajaStage.BasementEntry);Physics.SyncTransforms();
+            var cc=p.GetComponent<CharacterController>();float r=cc.radius,h=cc.height;
+            var blocked="";
+            bool Seg(Vector3 a,Vector3 b,string name)
+            {
+                float len=Vector3.Distance(a,b);int n=Mathf.Max(1,Mathf.CeilToInt(len/.2f));bool ok=true;
+                for(int i=0;i<=n;i++)
+                {
+                    Vector3 q=Vector3.Lerp(a,b,i/(float)n);
+                    var hits=Physics.OverlapCapsule(q+Vector3.up*r,q+Vector3.up*(h-r),r,~0,QueryTriggerInteraction.Ignore).Where(c=>c!=cc&&!c.transform.IsChildOf(p.transform)).ToArray();
+                    if(hits.Length>0){ok=false;blocked+=name+" @ "+q.ToString("F2")+" by "+string.Join(",",hits.Select(c=>c.name))+"; ";}
+                }
+                return ok;
+            }
+            Vector3 P(float x,float z)=>d.P(x,z,-2.79f);
+            var tour=new(Vector3,Vector3,string)[]
+            {
+                (P(1.1f,1.5f),P(1.5f,3.2f),"ladder-mid"),(P(1.5f,3.2f),P(1.5f,5.4f),"mid-west-lane"),
+                (P(1.5f,5.4f),P(2.2f,6.3f),"lane-spawn"),(P(2.2f,6.3f),P(3.2f,5.6f),"spawn-bench"),
+                (P(3.2f,5.6f),P(1.7f,6.0f),"bench-mirror"),(P(1.7f,6.0f),P(1.5f,2.6f),"mirror-south"),
+                (P(1.5f,2.6f),P(1.5f,1.35f),"south-drop"),(P(1.5f,1.35f),P(1.75f,1.35f),"south-lane"),
+                (P(1.75f,1.35f),P(1.42f,2.8f),"west-exit1"),(P(1.42f,2.8f),P(1.2f,1.7f),"exit1-approach"),
+                (P(1.2f,1.7f),P(1.5f,2.6f),"approach-mid"),(P(1.5f,2.6f),P(1.5f,3.8f),"mid-north"),
+                (P(1.5f,3.8f),P(4.2f,3.8f),"mid-east"),(P(4.2f,3.8f),P(4.15f,1.7f),"east-drop"),
+                (P(4.15f,1.7f),P(4.05f,1.05f),"ward2-exit2"),(P(4.05f,1.05f),P(4.15f,1.7f),"exit2-back"),
+                (P(4.15f,1.7f),P(4.2f,3.8f),"north-return"),(P(4.2f,3.8f),P(1.5f,3.8f),"east-mid-return"),
+                (P(1.5f,3.8f),P(1.1f,1.5f),"mid-ladder"),
+            };
+            bool all=true;
+            foreach(var s in tour)all=Seg(s.Item1,s.Item2,s.Item3)&&all;
+            Debug.Log("CELLAR_SWEEP r="+r+" h="+h+" blocked=["+blocked+"]");
+            Assert.That(all,Is.True,"Cellar floor routes walkable, blockers: "+blocked);
+        }
         private IEnumerator CellarClimb47()
         {
             yield return new WaitForSeconds(2);var d=Find<AtmajaDirector>();var p=d.player;var c=CampaignState.Instance;

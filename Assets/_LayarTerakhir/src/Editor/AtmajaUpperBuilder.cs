@@ -478,10 +478,13 @@ namespace LayarTerakhir.Editor
             director.basement.hideAnchor2=Anchor("HideAnchor2",P(4.95f,1.05f,BF+.01f),P(4.95f,3,0));
             var bench=Original("UpperSewingBench","SewingBench",P(3.7f,6.575f,BF));Ground(bench,BF);FitCollider(bench);
             Object.DestroyImmediate(bench.GetComponent<Collider>());
-            foreach(float x in new[]{2.7f,4.7f})foreach(float z in new[]{6.3f,6.85f})
+            // Designer Nov: the invisible bench collision is shaved back from
+            // the spawn approach (visual bench, machine and powerbank stay
+            // put) so walking to Damar's powerbank never hits thin air.
+            foreach(float x in new[]{3.0f,4.7f})foreach(float z in new[]{6.3f,6.85f})
             {var leg=GameObject.CreatePrimitive(PrimitiveType.Cube);leg.name="BenchLeg";leg.transform.SetParent(environment,false);leg.transform.position=P(x,z,BF+.42f);leg.transform.localScale=new Vector3(.09f,.85f,.09f);leg.GetComponent<Renderer>().enabled=false;}
             var benchTop=GameObject.CreatePrimitive(PrimitiveType.Cube);benchTop.name="BenchTopCollision";benchTop.transform.SetParent(environment,false);
-            benchTop.transform.position=P(3.7f,6.575f,BF+.845f);benchTop.transform.localScale=new Vector3(2.2f,.055f,.72f);benchTop.GetComponent<Renderer>().enabled=false;
+            benchTop.transform.position=P(3.85f,6.575f,BF+.845f);benchTop.transform.localScale=new Vector3(1.9f,.055f,.72f);benchTop.GetComponent<Renderer>().enabled=false;
             var machine=Original("UpperSewingMachine","SewingMachine",P(3.6f,6.55f,BF+.875f));FitCollider(machine);
             var packBody=Box("BasementPowerbank",P(2.85f,6.575f,BF+.9f),new Vector3(.16f,.09f,.05f),Mat("Upper_PowerbankBody"));
             Box("BasementPowerbankLED",P(2.85f,6.53f,BF+.93f),new Vector3(.1f,.012f,.012f),Mat("Upper_PowerbankLED"),false);

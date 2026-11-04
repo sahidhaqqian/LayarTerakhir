@@ -1310,11 +1310,14 @@ namespace LayarTerakhir.Editor
                 Delete(name);
             if (d.basement) d.basement.ragOriginal = null;
 
-            // Scatter varied CC0 wooden/military crates in cellar so basement doesn't look sparse or cloned
+            // Scatter varied CC0 wooden/military crates in cellar so basement doesn't look sparse or cloned.
+            // Designer Nov: the military crate stays out of the eastern
+            // north-south lane (tucked by the north-east crates) so Raka can
+            // walk from the middle of the room to the second wardrobe.
             ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02.fbx", "CellarExtraCrate_1", environment,
                 d.P(4.6f, 6.2f, -2.79f), Quaternion.Euler(0, 22, 0), new Vector3(.68f, .52f, .52f), Material("Repair_BedWood"));
             ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/old_military_crate/old_military_crate.fbx", "CellarExtraCrate_2", environment,
-                d.P(4.4f, 3.1f, -2.79f), Quaternion.Euler(0, -18, 0), new Vector3(.76f, .44f, .48f), Material("Repair_BedWood"));
+                d.P(4.15f, 4.75f, -2.79f), Quaternion.Euler(0, -18, 0), new Vector3(.76f, .44f, .48f), Material("Repair_BedWood"));
 
             // Bug 45 & 46: Texture/dress WestCollapsedMasonry_0..3 outside the escape window so opening the window reveals dark brick & foliage instead of 4 raw grey cubes!
             var brickMat = Old("House_MAT_BrickBase") ?? Old("House_MAT_PlasterDamaged");
@@ -1787,18 +1790,41 @@ namespace LayarTerakhir.Editor
             var grip = GameObject.CreatePrimitive(PrimitiveType.Cube);
             grip.name = "CellarClimbHandle";
             grip.transform.SetParent(root, true);
-            grip.transform.SetPositionAndRotation(d.P(1.1f, 1.2f, -1.9f), Quaternion.LookRotation(d.north));
-            grip.transform.localScale = new Vector3(.4f, .5f, .12f);
+            grip.transform.SetPositionAndRotation(d.P(1.025f, 0.7f, -1.9f), Quaternion.LookRotation(d.north));
+            grip.transform.localScale = new Vector3(.34f, .44f, .08f);
             grip.GetComponent<Renderer>().sharedMaterial = Material("Repair_Iron");
             var climbItem = grip.AddComponent<AtmajaItem>();
             climbItem.director = d; climbItem.action = AtmajaAction.CellarClimb; climbItem.label = "Naiki tangga besi";
+
+            RebuildCellarWalkability(d, root);
 
             Save();
             Debug.Log("PROLOG47_LADDER_APPLIED visible anchored iron ladder, sealed shaft collar and matching climb route");
         }
 
-        private static Material DecalMaterial(string name, bool scratch, bool spatter = false)
+        // Designer Nov: shave the invisible sewing-bench collision back from
+        // the spawn approach (visual bench, machine and powerbank stay put)
+        // so walking to Damar's powerbank never hits thin air. Idempotent.
+        private static void RebuildCellarWalkability(AtmajaDirector d, Transform root)
         {
+            var top = Find("BenchTopCollision");
+            if (top)
+            {
+                top.transform.SetPositionAndRotation(d.P(3.85f, 6.575f, top.transform.position.y), Quaternion.LookRotation(d.north));
+                var s = top.transform.localScale; s.x = 1.9f; top.transform.localScale = s;
+            }
+            foreach (var leg in FindAll("BenchLeg"))
+            {
+                var lp = d.LocalPosition(leg.transform.position);
+                if (lp.x < 2.85f) leg.transform.position += d.east * (3.0f - lp.x);
+            }
+            // Same military-crate tuck as the architecture scatter: keep the
+            // eastern north-south lane open even when only the ladder pass runs.
+            var mil = Find("CellarExtraCrate_2");
+            if (mil) mil.transform.SetPositionAndRotation(d.P(4.15f, 4.75f, -2.79f), Quaternion.Euler(0, -18, 0));
+        }
+
+        private static Material DecalMaterial(string name, bool scratch, bool spatter = false)        {
             string path = Mats + name + ".mat";
             var mat = AssetDatabase.LoadAssetAtPath<Material>(path);
             if (!mat) { mat = new Material(Shader.Find("Universal Render Pipeline/Lit")); AssetDatabase.CreateAsset(mat, path); }
