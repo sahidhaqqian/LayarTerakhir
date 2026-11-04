@@ -1445,6 +1445,72 @@ namespace LayarTerakhir.Editor
             Debug.Log("PROLOG47_ARCHITECTURE_APPLIED full-height walls, Gothic master bed, clean chandelier, open cellar without floating PVC pipes, dressed escape courtyard");
         }
 
+        [MenuItem("LayarTerakhir/Prolog/Apply well cover only")]
+        public static void ApplyWellCoverOnly()
+        {
+            // ONLY the courtyard well: round jointed cover + fine chain.
+            // Nothing else is touched.
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            var well = Find("WellCover");
+            if (!well) throw new InvalidOperationException("Missing WellCover holder");
+            foreach (var t in well.GetComponentsInChildren<Transform>(true).Where(t => t != well.transform).ToArray())
+                if (t) Object.DestroyImmediate(t.gameObject);
+            var mesh = new Mesh { name = "Circular jointed well cover" };
+            var vertices = new List<Vector3>();
+            var triangles = new List<int>();
+            const float radius = .50f;
+            for (int board = 0; board < 7; board++)
+            {
+                float z0 = -radius + board * (radius * 2 / 7) + .003f, z1 = -radius + (board + 1) * (radius * 2 / 7) - .003f;
+                var polygon = new List<Vector3>();
+                for (int k = 0; k <= 6; k++) { float z = Mathf.Lerp(z0, z1, k / 6f); polygon.Add(new Vector3(-Mathf.Sqrt(Mathf.Max(0, radius * radius - z * z)), 0, z)); }
+                for (int k = 6; k >= 0; k--) { float z = Mathf.Lerp(z0, z1, k / 6f); polygon.Add(new Vector3(Mathf.Sqrt(Mathf.Max(0, radius * radius - z * z)), 0, z)); }
+                int first = vertices.Count, n = polygon.Count;
+                vertices.AddRange(polygon.Select(p => p + Vector3.up * .018f));
+                vertices.AddRange(polygon.Select(p => p - Vector3.up * .018f));
+                for (int k = 1; k < n - 1; k++) triangles.AddRange(new[] { first, first + k, first + k + 1, first + n, first + n + k + 1, first + n + k });
+                for (int k = 0; k < n; k++) { int j = (k + 1) % n; triangles.AddRange(new[] { first + k, first + n + k, first + n + j, first + k, first + n + j, first + j }); }
+            }
+            mesh.SetVertices(vertices); mesh.SetTriangles(triangles, 0);
+            mesh.SetUVs(0, vertices.Select(v => new Vector2(v.x, v.z)).ToList());
+            mesh.RecalculateNormals(); mesh.RecalculateBounds();
+            MeshObject("WellCoverBoards47", well.transform, d.P(2.85f, 11.2f, 1.10f), StoreMesh(mesh, "CircularWellCover"), Old("House_MAT_WoodDoor"));
+            Chain("WellRustChain", well.transform, d.P(2.85f, 11.2f, 1.137f), d.east, Vector3.zero, .94f);
+            Save();
+            Debug.Log("WELL_COVER_APPLIED round cover + fine chain only");
+        }
+
+        [MenuItem("LayarTerakhir/Prolog/Capture well proof")]
+        public static void CaptureWellProof()
+        {
+            // No-save photo of the courtyard well (round cover + chain).
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            const string folder = "Audit/Visuals/House-Sweep";
+            var camGo = new GameObject("WellProofCam", typeof(Camera));
+            var cam = camGo.GetComponent<Camera>();
+            cam.enabled = false; cam.nearClipPlane = .05f; cam.farClipPlane = 120f;
+            cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = Color.black;
+            var fill = camGo.AddComponent<Light>();
+            fill.type = LightType.Point; fill.range = 9f; fill.intensity = 1.6f;
+            fill.color = new Color(1f, 1f, 1f); fill.shadows = LightShadows.None;
+            var target = d.P(2.85f, 11.2f, 1.10f);
+            var shots = new (string, Vector3, Vector3)[]
+            {
+                ("28-well-proof", target + new Vector3(1.3f, 1.1f, 0.6f), target),
+                ("29-well-proof-b", target + new Vector3(-1.3f, 1.1f, 0.6f), target),
+                ("30-well-proof-c", target + new Vector3(0f, 1.3f, 1.6f), target),
+            };
+            foreach (var s in shots)
+            {
+                camGo.transform.SetPositionAndRotation(s.Item2, Quaternion.LookRotation(s.Item3 - s.Item2));
+                KosRenderDiagnosis.Capture(cam, s.Item1, false, folder);
+            }
+            Object.DestroyImmediate(camGo);
+            Debug.Log("WELL_PROOF_CAPTURED no-save");
+        }
+
         public static void ApplyDetails()
         {
             EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);

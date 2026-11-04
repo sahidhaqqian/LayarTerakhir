@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<test-run id="2" testcasecount="6" result="Passed" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-04 13:02:19Z" end-time="2026-11-04 13:02:22Z" duration="2.3723842">
-  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="593" result="Passed" start-time="2026-11-04 13:02:19Z" end-time="2026-11-04 13:02:22Z" duration="2.372384" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+<test-run id="2" testcasecount="6" result="Passed" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-04 21:59:17Z" end-time="2026-11-04 21:59:19Z" duration="1.917197">
+  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="593" result="Passed" start-time="2026-11-04 21:59:17Z" end-time="2026-11-04 21:59:19Z" duration="1.917197" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
     <properties>
       <property name="platform" value="EditMode" />
     </properties>
-    <test-suite type="Assembly" id="1684" name="Assembly-CSharp-Editor.dll" fullname="/root/projects/LayarTerakhir/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="593" result="Passed" start-time="2026-11-04 13:02:19Z" end-time="2026-11-04 13:02:22Z" duration="2.339595" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <test-suite type="Assembly" id="1684" name="Assembly-CSharp-Editor.dll" fullname="/root/projects/LayarTerakhir/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="593" result="Passed" start-time="2026-11-04 21:59:17Z" end-time="2026-11-04 21:59:19Z" duration="1.907009" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
       <properties>
-        <property name="_PID" value="1540922" />
+        <property name="_PID" value="1665437" />
         <property name="_APPDOMAIN" value="Unity Child Domain" />
         <property name="platform" value="EditMode" />
         <property name="EditorOnly" value="True" />
       </properties>
-      <test-suite type="TestSuite" id="1685" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="593" result="Passed" start-time="2026-11-04 13:02:19Z" end-time="2026-11-04 13:02:22Z" duration="2.337363" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <test-suite type="TestSuite" id="1685" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="593" result="Passed" start-time="2026-11-04 21:59:17Z" end-time="2026-11-04 21:59:19Z" duration="1.906102" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
         <properties />
-        <test-suite type="TestSuite" id="1686" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="593" result="Passed" start-time="2026-11-04 13:02:19Z" end-time="2026-11-04 13:02:22Z" duration="2.336024" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <test-suite type="TestSuite" id="1686" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="593" result="Passed" start-time="2026-11-04 21:59:17Z" end-time="2026-11-04 21:59:19Z" duration="1.905372" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
           <properties />
-          <test-suite type="TestSuite" id="1687" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="593" result="Passed" start-time="2026-11-04 13:02:19Z" end-time="2026-11-04 13:02:22Z" duration="2.334728" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestSuite" id="1687" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="593" result="Passed" start-time="2026-11-04 21:59:17Z" end-time="2026-11-04 21:59:19Z" duration="1.904588" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-suite type="TestFixture" id="1058" name="AtmajaSceneTests" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-04 13:02:19Z" end-time="2026-11-04 13:02:22Z" duration="2.308177" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-suite type="TestFixture" id="1058" name="AtmajaSceneTests" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-04 21:59:17Z" end-time="2026-11-04 21:59:19Z" duration="1.896973" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-case id="1059" name="AtmajaSceneKeepsGoldenAndHasPhysicalTraversalAndCompleteMaterials" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.AtmajaSceneKeepsGoldenAndHasPhysicalTraversalAndCompleteMaterials" methodname="AtmajaSceneKeepsGoldenAndHasPhysicalTraversalAndCompleteMaterials" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" seed="829398389" result="Passed" start-time="2026-11-04 13:02:19Z" end-time="2026-11-04 13:02:21Z" duration="1.997133" asserts="0">
+              <test-case id="1059" name="AtmajaSceneKeepsGoldenAndHasPhysicalTraversalAndCompleteMaterials" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.AtmajaSceneKeepsGoldenAndHasPhysicalTraversalAndCompleteMaterials" methodname="AtmajaSceneKeepsGoldenAndHasPhysicalTraversalAndCompleteMaterials" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" seed="772253981" result="Passed" start-time="2026-11-04 21:59:18Z" end-time="2026-11-04 21:59:19Z" duration="1.629627" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
                 <output><![CDATA[ATMAJA_CAPSULE_BLOCKED (-8.20, 0.06, -5.50) h=1.75 by KambojaCrouchLimb Center: (-8.20, 1.41, -5.50), Extents: (2.10, 0.18, 0.18)
 ATMAJA_AR_BOUNDS figure=Center: (-3.70, 1.36, -2.19), Extents: (0.37, 0.82, 0.28) clue=Center: (5.76, 2.21, -4.58), Extents: (0.00, 0.31, 0.73)
-ATMAJA_VALIDATION checks=6677 failures=0 tris=920192 renderers=1470
+ATMAJA_VALIDATION checks=8949 failures=0 tris=962465 renderers=1467
 ]]></output>
               </test-case>
-              <test-suite type="ParameterizedMethod" id="1064" name="ContinuationCheckpointRoutingIsExplicit" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.ContinuationCheckpointRoutingIsExplicit" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-04 13:02:21Z" end-time="2026-11-04 13:02:21Z" duration="0.049821" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <test-suite type="ParameterizedMethod" id="1064" name="ContinuationCheckpointRoutingIsExplicit" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.ContinuationCheckpointRoutingIsExplicit" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-04 21:59:19Z" end-time="2026-11-04 21:59:19Z" duration="0.045433" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
                 <properties />
-                <test-case id="1061" name="ContinuationCheckpointRoutingIsExplicit(&quot;PROLOG_ATMAJA_COURTYARD&quot;)" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.ContinuationCheckpointRoutingIsExplicit(&quot;PROLOG_ATMAJA_COURTYARD&quot;)" methodname="ContinuationCheckpointRoutingIsExplicit" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" seed="830183854" result="Passed" start-time="2026-11-04 13:02:21Z" end-time="2026-11-04 13:02:21Z" duration="0.006117" asserts="0">
+                <test-case id="1061" name="ContinuationCheckpointRoutingIsExplicit(&quot;PROLOG_ATMAJA_COURTYARD&quot;)" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.ContinuationCheckpointRoutingIsExplicit(&quot;PROLOG_ATMAJA_COURTYARD&quot;)" methodname="ContinuationCheckpointRoutingIsExplicit" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" seed="1901854980" result="Passed" start-time="2026-11-04 21:59:19Z" end-time="2026-11-04 21:59:19Z" duration="0.005898" asserts="0">
                   <properties>
                     <property name="retryIteration" value="0" />
                     <property name="repeatIteration" value="0" />
                   </properties>
                 </test-case>
-                <test-case id="1062" name="ContinuationCheckpointRoutingIsExplicit(&quot;PROLOG_ATMAJA_KITCHEN&quot;)" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.ContinuationCheckpointRoutingIsExplicit(&quot;PROLOG_ATMAJA_KITCHEN&quot;)" methodname="ContinuationCheckpointRoutingIsExplicit" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" seed="2114122824" result="Passed" start-time="2026-11-04 13:02:21Z" end-time="2026-11-04 13:02:21Z" duration="0.000140" asserts="0">
+                <test-case id="1062" name="ContinuationCheckpointRoutingIsExplicit(&quot;PROLOG_ATMAJA_KITCHEN&quot;)" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.ContinuationCheckpointRoutingIsExplicit(&quot;PROLOG_ATMAJA_KITCHEN&quot;)" methodname="ContinuationCheckpointRoutingIsExplicit" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" seed="1441155951" result="Passed" start-time="2026-11-04 21:59:19Z" end-time="2026-11-04 21:59:19Z" duration="0.000108" asserts="0">
                   <properties>
                     <property name="retryIteration" value="0" />
                     <property name="repeatIteration" value="0" />
                   </properties>
                 </test-case>
-                <test-case id="1063" name="ContinuationCheckpointRoutingIsExplicit(&quot;PROLOG_MATABATIN_ACQUIRED&quot;)" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.ContinuationCheckpointRoutingIsExplicit(&quot;PROLOG_MATABATIN_ACQUIRED&quot;)" methodname="ContinuationCheckpointRoutingIsExplicit" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" seed="1675140203" result="Passed" start-time="2026-11-04 13:02:21Z" end-time="2026-11-04 13:02:21Z" duration="0.000158" asserts="0">
+                <test-case id="1063" name="ContinuationCheckpointRoutingIsExplicit(&quot;PROLOG_MATABATIN_ACQUIRED&quot;)" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.ContinuationCheckpointRoutingIsExplicit(&quot;PROLOG_MATABATIN_ACQUIRED&quot;)" methodname="ContinuationCheckpointRoutingIsExplicit" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" seed="1085925507" result="Passed" start-time="2026-11-04 21:59:19Z" end-time="2026-11-04 21:59:19Z" duration="0.000073" asserts="0">
                   <properties>
                     <property name="retryIteration" value="0" />
                     <property name="repeatIteration" value="0" />
                   </properties>
                 </test-case>
               </test-suite>
-              <test-case id="1065" name="KosCheckpointNeverSkipsApprovedOpening" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.KosCheckpointNeverSkipsApprovedOpening" methodname="KosCheckpointNeverSkipsApprovedOpening" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" seed="1640035877" result="Passed" start-time="2026-11-04 13:02:21Z" end-time="2026-11-04 13:02:21Z" duration="0.000395" asserts="0">
+              <test-case id="1065" name="KosCheckpointNeverSkipsApprovedOpening" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.KosCheckpointNeverSkipsApprovedOpening" methodname="KosCheckpointNeverSkipsApprovedOpening" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" seed="1708837118" result="Passed" start-time="2026-11-04 21:59:19Z" end-time="2026-11-04 21:59:19Z" duration="0.000413" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1060" name="OpeningProtectionRejectsTransformColliderAndMovementChanges" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.OpeningProtectionRejectsTransformColliderAndMovementChanges" methodname="OpeningProtectionRejectsTransformColliderAndMovementChanges" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" seed="596269149" result="Passed" start-time="2026-11-04 13:02:21Z" end-time="2026-11-04 13:02:22Z" duration="0.232979" asserts="0">
+              <test-case id="1060" name="OpeningProtectionRejectsTransformColliderAndMovementChanges" fullname="LayarTerakhir.Editor.Tests.AtmajaSceneTests.OpeningProtectionRejectsTransformColliderAndMovementChanges" methodname="OpeningProtectionRejectsTransformColliderAndMovementChanges" classname="LayarTerakhir.Editor.Tests.AtmajaSceneTests" runstate="Runnable" seed="1238293901" result="Passed" start-time="2026-11-04 21:59:19Z" end-time="2026-11-04 21:59:19Z" duration="0.202569" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
