@@ -1,16 +1,16 @@
 {
   "artifacts_sha256": {
-    "GRAPH_REPORT.md": "8180db745bc51ebdabab971256baf6768bd1785851179df90e603bfa30f37ca4",
-    "graph.html": "7188604456cf06e9084bc468a8cd169e0421c5f45b3848b060821fe32e24488f",
-    "graph.json": "11ab96897e1e03683596a62ef95b1796bc67762233139866e771c5381d528d77"
+    "GRAPH_REPORT.md": "d6db583ead9682f4687ca3f0a8913c46894ccffea65c3219e6116802daff6996",
+    "graph.html": "faca6232f6aad743109b4fcc3dc5c4537256196359f0f10f1fd4dfd82b06c9e2",
+    "graph.json": "41e2becb7e715fe10a3ca39198db3e3cd223f220effdf275bf9bc7bfe95ec0f2"
   },
   "asset_file_count": 0,
   "code_file_count": 428,
-  "edge_count": 20562,
+  "edge_count": 20582,
   "graphify_version": "graphify 0.9.92",
   "ignore_sha256": "05660cd7b7a81591931d5661fb73b7124598a04c44f843eda7a7ac2107f20e17",
   "mode": "local-code-only; no LLM/community labeling",
-  "node_count": 5403,
+  "node_count": 5406,
   "referenced_source_count": 428,
   "sources_sha256": {
     "Assets/_LayarTerakhir/src/Audio/AmbientAudioLoop.cs": "7de60fa68d2b45ec199754e8c16b8ac4827306cc38d7ad32a708d93a78e83514",
@@ -53,7 +53,7 @@
     "Assets/_LayarTerakhir/src/Diagnostics/RiderPresentationAudit.cs": "5794c27f359a02eff1b59023f4c06035416985d9824c1cb8066eb3fd5d3d55d4",
     "Assets/_LayarTerakhir/src/Editor/AbandonedLocationLightingTests.cs": "88e953985af09daf65b9045c5e54d76ada4fec89f0aaf865f79383008852a687",
     "Assets/_LayarTerakhir/src/Editor/AtmajaGeometryAudit.cs": "0ec565151e9d62ca8c6a225b188a639181f1cf0bfa5192b017289455edec006e",
-    "Assets/_LayarTerakhir/src/Editor/AtmajaPlayTests.cs": "9182d23c3c67cd1e27f91eae1214c99122e5fccf3b19dfcead354ea2f4b37340",
+    "Assets/_LayarTerakhir/src/Editor/AtmajaPlayTests.cs": "a4722fc35cb64bf054089f0b821547d830e227ee7436d7934148e1c8aeb3cfcb",
     "Assets/_LayarTerakhir/src/Editor/AtmajaReviewDressing.cs": "f03793dd3a1f2c1c331947e1567844788da41d31cd1faf290cd8641dbebd0735",
     "Assets/_LayarTerakhir/src/Editor/AtmajaSceneBuilder.cs": "c4768ba1204465f6915a4fc5b52a724266f453517160237f3fd4e04fe4e4f792",
     "Assets/_LayarTerakhir/src/Editor/AtmajaSceneValidation.cs": "7e04e865741676dcb544d2c0e5de91450d0642b3d4ca807414ae4a81b1e00709",
@@ -144,7 +144,7 @@
     "Assets/_LayarTerakhir/src/Editor/PlaytestRevisionBuilder.cs": "559fbc85b54af14f44030848e045bd7feb5492a5c9b9b6e768e635106e3f1383",
     "Assets/_LayarTerakhir/src/Editor/Prolog47InteractionTests.cs": "f1642a8b076a952bdb978263768686c4435d8d7689336136c44fbac0dff68bc2",
     "Assets/_LayarTerakhir/src/Editor/Prolog47MeshRepair.cs": "7b2dee5be2ff8b2b6228fc13464bb42ab987bfc7e03f7fabec72075d68526f3c",
-    "Assets/_LayarTerakhir/src/Editor/Prolog47SceneRepair.cs": "1dadc841a92c4802c91a939afc9a32424cbb19b9b793ff951c107ad8bfdb22b5",
+    "Assets/_LayarTerakhir/src/Editor/Prolog47SceneRepair.cs": "9dc4600db3b3552ec18b8dc11a9f052259c5c36fb4f06096c54332687aebbd40",
     "Assets/_LayarTerakhir/src/Editor/Prolog47VisualTests.cs": "97a623da2a73d76af6e55bf2ab0e3381d377bcf8576f863f88128011b1804a55",
     "Assets/_LayarTerakhir/src/Editor/PrologCompletionBuilder.cs": "e90b7966dfd7c08996fe4c416856fdac33f4b5392d69c14c1165d7f50ad38544",
     "Assets/_LayarTerakhir/src/Editor/PrologEasyPlayTests.cs": "2ce15608cd7618f43f80b5dca5dc881c26193ec3d90c4442e8fa2266fbac8ffa",

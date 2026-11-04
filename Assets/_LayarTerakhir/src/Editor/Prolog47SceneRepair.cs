@@ -2335,6 +2335,44 @@ namespace LayarTerakhir.Editor
             Debug.Log("PROLOG47_BASEMENT_BRANCHES_APPLIED maze loop, flooded storage, hidden handycam");
         }
 
+        // Review-only capture: one framebuffer per basement room with a
+        // temporary neutral fill light on the camera so dust/rust reads even
+        // in the dim horror grade. Never saved into the scene.
+        public static void CaptureBasementRooms()
+        {
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            const string folder = "Audit/Visuals/Basement-Review";
+            System.IO.Directory.CreateDirectory(folder);
+            var camGo = new GameObject("BasementReviewCam", typeof(Camera));
+            var cam = camGo.GetComponent<Camera>();
+            cam.enabled = false; cam.nearClipPlane = .05f; cam.farClipPlane = 60f;
+            cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = Color.black;
+            var fill = camGo.AddComponent<Light>();
+            fill.type = LightType.Point; fill.range = 7f; fill.intensity = 1.0f;
+            fill.color = new Color(1f, 1f, 1f); fill.shadows = LightShadows.None;
+            var shots = new (string, float, float, float, float, float, float)[]
+            {
+                ("01-west-original", 2.2f, 6.3f, 3.7f, 6.5f, -1.9f, 0f),
+                ("02-emergence-curtain", 2.2f, 5.0f, 3.3f, 6.0f, -1.8f, 0f),
+                ("03-spine-lane", 6.0f, 4.5f, 6.5f, 7.5f, -1.9f, 0f),
+                ("04-r1-archive", 12.5f, 6.5f, 14.6f, 10.2f, -2.0f, 0f),
+                ("05-r1-props", 12.3f, 5.8f, 12.8f, 3.2f, -2.5f, 0f),
+                ("06-r2-crypt", 13.5f, 12.8f, 11.0f, 15.3f, -2.6f, 0f),
+                ("07-r2-handycam", 13.8f, 14.0f, 14.8f, 15.2f, -2.5f, 0f),
+                ("08-r3-flooded", 3.5f, 9.0f, 5.6f, 11.5f, -2.5f, 0f),
+            };
+            foreach (var s in shots)
+            {
+                camGo.transform.SetPositionAndRotation(
+                    d.P(s.Item2, s.Item3, -1.19f),
+                    Quaternion.LookRotation(d.P(s.Item4, s.Item5, s.Item6) - d.P(s.Item2, s.Item3, -1.19f)));
+                KosRenderDiagnosis.Capture(cam, s.Item1, false, folder);
+            }
+            Object.DestroyImmediate(camGo);
+            Debug.Log("BASEMENT_REVIEW_CAPTURED " + shots.Length + " rooms -> " + folder);
+        }
+
         private static GameObject MazeBox(string name, Transform root, Vector3 pos, Vector3 size, Material mat, bool solid = true)
         {
             Delete(name);
@@ -2531,6 +2569,152 @@ namespace LayarTerakhir.Editor
             RebuildMazeRoom1(d, root);
             RebuildMazeDoors(d, root);
             RebuildMazeHorror(d, root);
+            RebuildBasementAtmosphere(d, root);
+        }
+
+        // Designer Nov: basement emergence staging + wayfinding breadcrumbs.
+        // Tirai putih tempat Nyonya muncul (spec Adegan 5), robekan kain tas
+        // Damar sebagai penunjuk jalan ke crypt (diegetik, tanpa sebut lokasi
+        // di catatan), dan rembesan dinding R3 banjir. Semua visual-only
+        // (non-colliding) agar sapu 87 segmen CellarWalk47 tetap bersih.
+        private static void RebuildBasementAtmosphere(AtmajaDirector d, Transform root)
+        {
+            var linen = Material("Repair_Linen");
+            var cloth = Material("Repair_BookCloth");
+            // Tirai emergence: dua panel kain putih + batang kayu di belakang
+            // spawn Nyonya, di timur lane spawn-bench agar tak memblokir.
+            Delete("MazeEmergeRod");
+            var rod = MazeBox("MazeEmergeRod", root, d.P(3.3f, 6.0f, -1.05f), new Vector3(.95f, .04f, .04f), Material("Repair_BedWood"), false);
+            rod.transform.rotation = Quaternion.LookRotation(d.east);
+            for (int i = 0; i < 2; i++)
+            {
+                string nm = "MazeEmergeCurtain_" + i;
+                Delete(nm);
+                var panel = GameObject.CreatePrimitive(PrimitiveType.Quad);
+                panel.name = nm;
+                panel.transform.SetParent(root, true);
+                panel.transform.SetPositionAndRotation(
+                    d.P(3.05f + i * .5f, 6.0f, -1.85f),
+                    Quaternion.LookRotation(-d.east));
+                panel.transform.localScale = new Vector3(.45f, 1.6f, 1f);
+                Object.DestroyImmediate(panel.GetComponent<Collider>());
+                panel.GetComponent<Renderer>().sharedMaterial = linen;
+                panel.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+            }
+            // Breadcrumb: robekan kain tas Damar dari mulut maze ke crypt.
+            var crumbs = new (float, float, float)[] { (7.0f, 5.8f, 20f), (10.5f, 5.8f, -15f), (13.5f, 8.0f, 35f), (13.5f, 12.5f, -30f) };
+            for (int ci = 0; ci < crumbs.Length; ci++)
+            {
+                string nm = "MazeDamarScrap_" + ci;
+                Delete(nm);
+                var q = GameObject.CreatePrimitive(PrimitiveType.Quad);
+                q.name = nm;
+                q.transform.SetParent(root, true);
+                q.transform.SetPositionAndRotation(
+                    d.P(crumbs[ci].Item1, crumbs[ci].Item2, -2.785f),
+                    Quaternion.Euler(90, 0, crumbs[ci].Item3));
+                q.transform.localScale = new Vector3(.18f, .12f, 1f);
+                Object.DestroyImmediate(q.GetComponent<Collider>());
+                q.GetComponent<Renderer>().sharedMaterial = cloth;
+                q.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+            }
+            // Rembesan R3: dua streak basah vertikal di dinding barat.
+            var wet = MazeFlatMat("MazeWetStreak", new Color(.10f, .13f, .12f), 0f, .85f);
+            var streaks = new (float, float)[] { (8.5f, 1.1f), (10.0f, 1.4f) };
+            for (int si = 0; si < streaks.Length; si++)
+            {
+                Quad("MazeWetStreak_" + si, root,
+                    d.P(0.30f, streaks[si].Item1, -1.9f + streaks[si].Item2 * .1f),
+                    Quaternion.LookRotation(d.east),
+                    new Vector2(.32f, 1.15f), wet);
+            }
+            // Ditinggalkan berdebu + karatan tua: dust sheets di atas
+            // crate/meja/peti (tipis, non-colliding, offset anti z-fight),
+            // rust streaks vertikal di tiang/engsel besi, dan dust motes
+            // melayang per ruangan (particle beige lambat, visual-only).
+            var dust = MazeFlatMat("MazeDustSheet", new Color(.62f, .58f, .48f), 0f, .05f);
+            var dustTops = new (string, float, float, float, float)[]
+            {
+                ("MazeHandycamCrate", 14.8f, 15.2f, .52f, .42f),
+                ("MazeCryptBox", 11.0f, 16.0f, .57f, .47f),
+                ("MazeTextileLid_0", 12.5f, 15.9f, .69f, .94f),
+                ("MazeWoodBox_0", 15.35f, 9.0f, .55f, .55f),
+            };
+            for (int di = 0; di < dustTops.Length; di++)
+            {
+                var dt = dustTops[di];
+                Quad("MazeDust_" + di, root,
+                    d.P(dt.Item2, dt.Item3, -2.79f + .55f + .006f),
+                    Quaternion.Euler(90, 0, di * 17f),
+                    new Vector2(dt.Item4 * .92f, dt.Item5 * .92f), dust);
+            }
+            // Dust di atas meja riset: di sela kertas, bukan menutupinya.
+            Quad("MazeDustTable", root,
+                d.P(14.35f, 10.35f, -2.79f + .782f),
+                Quaternion.Euler(90, 0, 8f),
+                new Vector2(.30f, .18f), dust);
+            // Dust caps di atas semua lemari persembunyian (6): tanda
+            // ruangan ditinggalkan, terlihat saat senter menyapu ke atas.
+            var lockerTops = new (float, float)[]
+            {
+                (2.6f, 1.3f), (4.95f, 1.05f), (11.3f, 10.5f),
+                (15.3f, 3.5f), (8.6f, 15.8f), (1.0f, 10.0f),
+            };
+            for (int li = 0; li < lockerTops.Length; li++)
+            {
+                Quad("MazeDustLocker_" + li, root,
+                    d.P(lockerTops[li].Item1, lockerTops[li].Item2, -2.79f + 1.906f),
+                    Quaternion.Euler(90, 0, li * 23f),
+                    new Vector2(.86f, .38f), dust);
+            }
+            var rust = MazeFlatMat("MazeRustStreak", new Color(.36f, .20f, .10f), .35f, .5f);
+            var rustSpots = new (float, float, float)[]
+            {
+                (14.05f, 2.75f, 0f), (14.95f, 2.75f, 0f),
+                (12.0f, 4.0f, 90f), (13.0f, 12.5f, 90f),
+                (2.85f, 11.2f, 0f), (5.1f, 2.2f, 0f),
+            };
+            for (int ri = 0; ri < rustSpots.Length; ri++)
+            {
+                var rs = rustSpots[ri];
+                Quad("MazeRust_" + ri, root,
+                    d.P(rs.Item1, rs.Item2, -1.7f),
+                    Quaternion.Euler(0, rs.Item3, 0),
+                    new Vector2(.18f, .9f), rust);
+            }
+            // Dust motes per ruangan: beige lambat, 12 partikel, tanpa collision.
+            var mist = AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/assets/Art/Phase2/Materials/OperationMist.mat");
+            var moteSpots = new (string, float, float)[]
+            {
+                ("MazeDustWest", 2.9f, 3.5f), ("MazeDustR1", 14.0f, 7.5f),
+                ("MazeDustR2", 12.0f, 14.5f), ("MazeDustR3", 3.0f, 9.5f),
+            };
+            foreach (var ms in moteSpots)
+            {
+                Delete(ms.Item1);
+                var mo = new GameObject(ms.Item1);
+                mo.transform.SetParent(root, true);
+                mo.transform.position = d.P(ms.Item2, ms.Item3, -1.6f);
+                var ps = mo.AddComponent<ParticleSystem>();
+                ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                var main = ps.main;
+                main.loop = true; main.playOnAwake = true; main.duration = 4f;
+                main.startLifetime = new ParticleSystem.MinMaxCurve(2.5f, 4f);
+                main.startSpeed = new ParticleSystem.MinMaxCurve(.01f, .04f);
+                main.startSize = new ParticleSystem.MinMaxCurve(.008f, .025f);
+                main.startColor = new Color(.78f, .74f, .64f, .5f);
+                main.maxParticles = 12;
+                main.simulationSpace = ParticleSystemSimulationSpace.World;
+                main.gravityModifier = -.005f;
+                var emission = ps.emission;
+                emission.rateOverTime = 3f;
+                var shape = ps.shape;
+                shape.shapeType = ParticleSystemShapeType.Box;
+                shape.scale = new Vector3(1.5f, 1.0f, 1.0f);
+                var pr = mo.GetComponent<ParticleSystemRenderer>();
+                pr.sharedMaterial = mist;
+                pr.renderMode = ParticleSystemRenderMode.Billboard;
+            }
         }
 
         // Designer Nov: the secret cellar gets its horror dressing, spread so

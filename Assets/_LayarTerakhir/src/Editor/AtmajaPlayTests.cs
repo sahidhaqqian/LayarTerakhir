@@ -430,8 +430,11 @@ namespace LayarTerakhir.Editor.Tests
         }
         private IEnumerator ExpandedCellarNavigation()
         {
-            yield return new WaitForSeconds(2);var d=SeedBasement();d.basement.enabled=false;d.basement.nyonya.SetActive(false);d.PlacePlayer(d.P(4.9f,6,-2.79f),Quaternion.identity);
-            foreach(var p in new[]{d.P(7.2f,6,-2.79f),d.P(7.2f,11.5f,-2.79f),d.P(10.1f,11.5f,-2.79f),d.P(10.1f,2.1f,-2.79f),d.P(7.2f,2.1f,-2.79f),d.P(7.2f,6,-2.79f)})yield return WalkCapsule(d.player,p);
+            yield return new WaitForSeconds(2);var d=SeedBasement();d.basement.enabled=false;d.basement.nyonya.SetActive(false);d.PlacePlayer(d.P(2.2f,6.3f,-2.79f),Quaternion.identity);
+            // Maze-aware loop: straight pre-maze rectangle is cut by spine/cross
+            // walls by design — route through the staggered gaps proven by
+            // CellarWalk87 (spine gaps z 4-5 / 8.5-9.5, cross gap x 9-10).
+            foreach(var p in new[]{d.P(3.2f,5.6f,-2.79f),d.P(1.7f,6.0f,-2.79f),d.P(1.5f,2.6f,-2.79f),d.P(1.5f,3.8f,-2.79f),d.P(4.2f,3.8f,-2.79f),d.P(4.2f,4.2f,-2.79f),d.P(6.0f,4.2f,-2.79f),d.P(7.0f,4.5f,-2.79f),d.P(7.0f,5.8f,-2.79f),d.P(9.3f,5.8f,-2.79f),d.P(9.5f,7.5f,-2.79f),d.P(9.0f,9.2f,-2.79f),d.P(6.0f,9.0f,-2.79f),d.P(6.0f,7.7f,-2.79f),d.P(2.5f,7.5f,-2.79f)})yield return WalkCapsule(d.player,p);
         }
         private IEnumerator NeighborhoodShop()
         {
