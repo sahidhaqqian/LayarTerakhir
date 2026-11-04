@@ -1,5 +1,5 @@
 {
-    "sceneTriangles": 856032,
+    "sceneTriangles": 861267,
     "meshes": [
         {
             "name": "CrimsonRuptureWall",
@@ -45,11 +45,6 @@
             "name": "Static__Scooter_MOTO_BodyPaint",
             "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/DamarScooter.fbx",
             "triangles": 7616
-        },
-        {
-            "name": "WellRustChain",
-            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/WellRustChainLinks.asset",
-            "triangles": 5760
         },
         {
             "name": "MasterSealChain0",
@@ -143,8 +138,8 @@
         },
         {
             "name": "Static__House_MAT_TrimTeak",
-            "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/RumahAtmaja.fbx",
-            "triangles": 4238
+            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/HouseTrimOutsideRooms.asset",
+            "triangles": 4484
         },
         {
             "name": "wooden_bookshelf_worn",
@@ -422,6 +417,11 @@
             "triangles": 1128
         },
         {
+            "name": "WellRustChain",
+            "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/WellChain.asset",
+            "triangles": 1080
+        },
+        {
             "name": "pot_enamel_01_base",
             "path": "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/pot_enamel_01/pot_enamel_01.fbx",
             "triangles": 946
@@ -480,6 +480,36 @@
             "name": "ornate_mirror_01",
             "path": "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/ornate_mirror_01/ornate_mirror_01.fbx",
             "triangles": 924
+        },
+        {
+            "name": "DeadStreetRat",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/DeadStreetRat.fbx",
+            "triangles": 899
+        },
+        {
+            "name": "DeadStreetRat",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/DeadStreetRat.fbx",
+            "triangles": 899
+        },
+        {
+            "name": "DeadStreetRat",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/DeadStreetRat.fbx",
+            "triangles": 899
+        },
+        {
+            "name": "DeadStreetRat",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/DeadStreetRat.fbx",
+            "triangles": 899
+        },
+        {
+            "name": "DeadStreetRat",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/DeadStreetRat.fbx",
+            "triangles": 899
+        },
+        {
+            "name": "DeadStreetRat",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/DeadStreetRat.fbx",
+            "triangles": 899
         },
         {
             "name": "DeadStreetRat",
@@ -632,56 +662,6 @@
             "triangles": 768
         },
         {
-            "name": "Curved ruled leaf",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
-            "triangles": 768
-        },
-        {
-            "name": "Curved ruled leaf.001",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
-            "triangles": 768
-        },
-        {
-            "name": "Curved ruled leaf.002",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
-            "triangles": 768
-        },
-        {
-            "name": "Curved ruled leaf.003",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
-            "triangles": 768
-        },
-        {
-            "name": "Curved ruled leaf.004",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
-            "triangles": 768
-        },
-        {
-            "name": "Curved ruled leaf.005",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
-            "triangles": 768
-        },
-        {
-            "name": "Curved ruled leaf.006",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
-            "triangles": 768
-        },
-        {
-            "name": "Curved ruled leaf.007",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
-            "triangles": 768
-        },
-        {
-            "name": "Curved ruled leaf.008",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
-            "triangles": 768
-        },
-        {
-            "name": "Curved ruled leaf.009",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
-            "triangles": 768
-        },
-        {
             "name": "MazeFlame_0",
             "path": "Library/unity default resources",
             "triangles": 768
@@ -777,6 +757,56 @@
             "triangles": 768
         },
         {
+            "name": "Curved ruled leaf",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
+            "triangles": 768
+        },
+        {
+            "name": "Curved ruled leaf.001",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
+            "triangles": 768
+        },
+        {
+            "name": "Curved ruled leaf.002",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
+            "triangles": 768
+        },
+        {
+            "name": "Curved ruled leaf.003",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
+            "triangles": 768
+        },
+        {
+            "name": "Curved ruled leaf.004",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
+            "triangles": 768
+        },
+        {
+            "name": "Curved ruled leaf.005",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
+            "triangles": 768
+        },
+        {
+            "name": "Curved ruled leaf.006",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
+            "triangles": 768
+        },
+        {
+            "name": "Curved ruled leaf.007",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
+            "triangles": 768
+        },
+        {
+            "name": "Curved ruled leaf.008",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
+            "triangles": 768
+        },
+        {
+            "name": "Curved ruled leaf.009",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/OpenDiary.fbx",
+            "triangles": 768
+        },
+        {
             "name": "Static__House_MAT_PlasterLower",
             "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/RumahAtmaja.fbx",
             "triangles": 744
@@ -790,66 +820,6 @@
             "name": "alarm_clock_01_glass",
             "path": "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/alarm_clock_01/alarm_clock_01.fbx",
             "triangles": 720
-        },
-        {
-            "name": "Static__House_MAT_WoodDoor",
-            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_Static__House_MAT_WoodDoor.asset",
-            "triangles": 712
-        },
-        {
-            "name": "Static__House_MAT_WoodDoor",
-            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_Static__House_MAT_WoodDoor.asset",
-            "triangles": 712
-        },
-        {
-            "name": "Static__House_MAT_WoodDoor",
-            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_Static__House_MAT_WoodDoor.asset",
-            "triangles": 712
-        },
-        {
-            "name": "Static__House_MAT_WoodDoor",
-            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_Static__House_MAT_WoodDoor.asset",
-            "triangles": 712
-        },
-        {
-            "name": "Static__House_MAT_WoodDoor",
-            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_Static__House_MAT_WoodDoor.asset",
-            "triangles": 712
-        },
-        {
-            "name": "Static__House_MAT_WoodDoor",
-            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_Static__House_MAT_WoodDoor.asset",
-            "triangles": 712
-        },
-        {
-            "name": "Static__House_MAT_WoodDoor",
-            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_Static__House_MAT_WoodDoor.asset",
-            "triangles": 712
-        },
-        {
-            "name": "Static__House_MAT_WoodDoor",
-            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_Static__House_MAT_WoodDoor.asset",
-            "triangles": 712
-        },
-        {
-            "name": "Static__House_MAT_WoodDoor",
-            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_Static__House_MAT_WoodDoor.asset",
-            "triangles": 712
-        },
-        {
-            "name": "Static__House_MAT_WoodDoor",
-            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_Static__House_MAT_WoodDoor.asset",
-            "triangles": 712
-        },
-        {
-            "name": "Static__House_MAT_WoodDoor",
-            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_Static__House_MAT_WoodDoor.asset",
-            "triangles": 712
-        },
-        {
-            "name": "Static__House_MAT_WoodDoor",
-            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_Static__House_MAT_WoodDoor.asset",
-            "triangles": 712
         },
         {
             "name": "Static__Scooter_MOTO_Rim",
@@ -977,6 +947,11 @@
             "triangles": 672
         },
         {
+            "name": "ChildBlanket",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/ChildDrapedQuilt.asset",
+            "triangles": 672
+        },
+        {
             "name": "old_military_crate_loop_a",
             "path": "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/old_military_crate/old_military_crate.fbx",
             "triangles": 660
@@ -1055,6 +1030,46 @@
             "name": "geo_top_wire",
             "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/LodDeskLamp_geo_top_wire.asset",
             "triangles": 560
+        },
+        {
+            "name": "Chipped enamel mug",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/EnamelMug.fbx",
+            "triangles": 560
+        },
+        {
+            "name": "Static__House_MAT_WoodDoor",
+            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_Static__House_MAT_WoodDoor.asset",
+            "triangles": 552
+        },
+        {
+            "name": "Static__House_MAT_WoodDoor",
+            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_Static__House_MAT_WoodDoor.asset",
+            "triangles": 552
+        },
+        {
+            "name": "Static__House_MAT_WoodDoor",
+            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_Static__House_MAT_WoodDoor.asset",
+            "triangles": 552
+        },
+        {
+            "name": "Static__House_MAT_WoodDoor",
+            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_Static__House_MAT_WoodDoor.asset",
+            "triangles": 552
+        },
+        {
+            "name": "Static__House_MAT_WoodDoor",
+            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_Static__House_MAT_WoodDoor.asset",
+            "triangles": 552
+        },
+        {
+            "name": "Static__House_MAT_WoodDoor",
+            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_Static__House_MAT_WoodDoor.asset",
+            "triangles": 552
+        },
+        {
+            "name": "Static__House_MAT_WoodDoor",
+            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_Static__House_MAT_WoodDoor.asset",
+            "triangles": 552
         },
         {
             "name": "vintage_wooden_drawer_01_drawer01",
@@ -1187,26 +1202,6 @@
             "triangles": 480
         },
         {
-            "name": "Static__House_MAT_WoodDoor",
-            "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/RumahAtmaja.fbx",
-            "triangles": 480
-        },
-        {
-            "name": "RottenApple",
-            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/RottenApple.fbx",
-            "triangles": 448
-        },
-        {
-            "name": "RottenApple",
-            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/RottenApple.fbx",
-            "triangles": 448
-        },
-        {
-            "name": "RottenApple",
-            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/RottenApple.fbx",
-            "triangles": 448
-        },
-        {
             "name": "vintage_suitcase_01_clasp",
             "path": "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/vintage_suitcase/vintage_suitcase_1k.fbx",
             "triangles": 448
@@ -1214,6 +1209,36 @@
         {
             "name": "vintage_suitcase_02_clasp",
             "path": "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/vintage_suitcase/vintage_suitcase_1k.fbx",
+            "triangles": 448
+        },
+        {
+            "name": "RottenApple",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/RottenApple.fbx",
+            "triangles": 448
+        },
+        {
+            "name": "RottenApple",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/RottenApple.fbx",
+            "triangles": 448
+        },
+        {
+            "name": "RottenApple",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/RottenApple.fbx",
+            "triangles": 448
+        },
+        {
+            "name": "RottenApple",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/RottenApple.fbx",
+            "triangles": 448
+        },
+        {
+            "name": "RottenApple",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/RottenApple.fbx",
+            "triangles": 448
+        },
+        {
+            "name": "RottenApple",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/RottenApple.fbx",
             "triangles": 448
         },
         {
@@ -1232,6 +1257,36 @@
             "triangles": 432
         },
         {
+            "name": "MoldyCeramicPlate",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 432
+        },
+        {
+            "name": "MoldyCeramicPlate",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 432
+        },
+        {
+            "name": "MoldyCeramicPlate",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 432
+        },
+        {
+            "name": "MoldyCeramicPlate",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 432
+        },
+        {
+            "name": "MoldyCeramicPlate",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 432
+        },
+        {
+            "name": "MoldyCeramicPlate",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 432
+        },
+        {
             "name": "metal_tool_chest_lid",
             "path": "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/metal_tool_chest/metal_tool_chest.fbx",
             "triangles": 414
@@ -1240,6 +1295,11 @@
             "name": "metal_tool_chest_lid",
             "path": "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/metal_tool_chest/metal_tool_chest.fbx",
             "triangles": 414
+        },
+        {
+            "name": "Loop handle",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/EnamelMug.fbx",
+            "triangles": 384
         },
         {
             "name": "BagCanvas",
@@ -1265,11 +1325,6 @@
             "name": "wooden_crate_01_latch",
             "path": "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/wooden_crate_01/wooden_crate_01.fbx",
             "triangles": 376
-        },
-        {
-            "name": "WellCoverBoards47",
-            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/CircularWellCover.asset",
-            "triangles": 364
         },
         {
             "name": "geo_lamp-base-pivot",
@@ -1427,9 +1482,29 @@
             "triangles": 240
         },
         {
+            "name": "Static__House_MAT_Concrete",
+            "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/AtmajaConcreteFacadeCutout.asset",
+            "triangles": 236
+        },
+        {
             "name": "Static__House_MAT_GlassDark",
             "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/RumahAtmaja.fbx",
             "triangles": 228
+        },
+        {
+            "name": "hamburger_buns_02",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyBread.fbx",
+            "triangles": 220
+        },
+        {
+            "name": "hamburger_buns_02",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyBread.fbx",
+            "triangles": 220
+        },
+        {
+            "name": "hamburger_buns_02",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyBread.fbx",
+            "triangles": 220
         },
         {
             "name": "hamburger_buns_02",
@@ -1467,9 +1542,39 @@
             "triangles": 218
         },
         {
+            "name": "hamburger_buns_01",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyBread.fbx",
+            "triangles": 218
+        },
+        {
+            "name": "hamburger_buns_01",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyBread.fbx",
+            "triangles": 218
+        },
+        {
+            "name": "hamburger_buns_01",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyBread.fbx",
+            "triangles": 218
+        },
+        {
             "name": "geo_base_pivot",
             "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/LodDeskLamp_geo_base_pivot.asset",
             "triangles": 212
+        },
+        {
+            "name": "hamburger_buns_03",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyBread.fbx",
+            "triangles": 210
+        },
+        {
+            "name": "hamburger_buns_03",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyBread.fbx",
+            "triangles": 210
+        },
+        {
+            "name": "hamburger_buns_03",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyBread.fbx",
+            "triangles": 210
         },
         {
             "name": "hamburger_buns_03",
@@ -1622,6 +1727,11 @@
             "triangles": 145
         },
         {
+            "name": "KitchenGlass__House_MAT_GlassDark",
+            "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/RumahAtmaja.fbx",
+            "triangles": 144
+        },
+        {
             "name": "book_encyclopedia_set_01_book03",
             "path": "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/book_encyclopedia_set_01/book_encyclopedia_set_01.fbx",
             "triangles": 144
@@ -1669,11 +1779,6 @@
         {
             "name": "StairFlightUpper",
             "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/StairFlightUpper.asset",
-            "triangles": 144
-        },
-        {
-            "name": "KitchenGlass__House_MAT_GlassDark",
-            "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/RumahAtmaja.fbx",
             "triangles": 144
         },
         {
@@ -2612,11 +2717,6 @@
             "triangles": 98
         },
         {
-            "name": "Static__House_MAT_Concrete",
-            "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/AtmajaConcreteFacadeCutout.asset",
-            "triangles": 96
-        },
-        {
             "name": "geo_arm_2_b",
             "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/LodDeskLamp_geo_arm_2_b.asset",
             "triangles": 94
@@ -2624,6 +2724,11 @@
         {
             "name": "Front camera",
             "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/SmartphoneUpright.fbx",
+            "triangles": 92
+        },
+        {
+            "name": "Dark coffee",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/EnamelMug.fbx",
             "triangles": 92
         },
         {
@@ -2645,6 +2750,11 @@
             "name": "sausage",
             "path": "Assets/_LayarTerakhir/assets/Art/Imported/InterludeStreet/kenney-food-kit/sausage.fbx",
             "triangles": 92
+        },
+        {
+            "name": "KitchenGlass__House_MAT_WoodDoor",
+            "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/KitchenHighFloatingBox_KitchenGlass__House_MAT_WoodDoor.asset",
+            "triangles": 91
         },
         {
             "name": "Static__Scooter_MOTO_Amber",
@@ -2673,91 +2783,6 @@
         },
         {
             "name": "FallenKambojaSupportedLimb",
-            "path": "Library/unity default resources",
-            "triangles": 80
-        },
-        {
-            "name": "AddedDish_StainRing_0",
-            "path": "Library/unity default resources",
-            "triangles": 80
-        },
-        {
-            "name": "AddedDish_StainRing_1",
-            "path": "Library/unity default resources",
-            "triangles": 80
-        },
-        {
-            "name": "AddedDish_StainRing_2",
-            "path": "Library/unity default resources",
-            "triangles": 80
-        },
-        {
-            "name": "AddedDish_StainRing_3",
-            "path": "Library/unity default resources",
-            "triangles": 80
-        },
-        {
-            "name": "AddedDish_StainRing_4",
-            "path": "Library/unity default resources",
-            "triangles": 80
-        },
-        {
-            "name": "AddedDish_StainRing_5",
-            "path": "Library/unity default resources",
-            "triangles": 80
-        },
-        {
-            "name": "AddedDish_StainRing_6",
-            "path": "Library/unity default resources",
-            "triangles": 80
-        },
-        {
-            "name": "AddedDish_StainRing_7",
-            "path": "Library/unity default resources",
-            "triangles": 80
-        },
-        {
-            "name": "AddedDish_StainRing_8",
-            "path": "Library/unity default resources",
-            "triangles": 80
-        },
-        {
-            "name": "AddedDish_StainRing_9",
-            "path": "Library/unity default resources",
-            "triangles": 80
-        },
-        {
-            "name": "AddedDish_StainRing_10",
-            "path": "Library/unity default resources",
-            "triangles": 80
-        },
-        {
-            "name": "AddedDish_StainRing_11",
-            "path": "Library/unity default resources",
-            "triangles": 80
-        },
-        {
-            "name": "AddedDish_Spill_0",
-            "path": "Library/unity default resources",
-            "triangles": 80
-        },
-        {
-            "name": "AddedDish_Spill_1",
-            "path": "Library/unity default resources",
-            "triangles": 80
-        },
-        {
-            "name": "AddedDish_Spill_2",
-            "path": "Library/unity default resources",
-            "triangles": 80
-        },
-        {
-            "name": "PendulumRod",
-            "path": "Library/unity default resources",
-            "triangles": 80
-        },
-        {
-            "name": "PendulumBob",
             "path": "Library/unity default resources",
             "triangles": 80
         },
@@ -2852,6 +2877,91 @@
             "triangles": 80
         },
         {
+            "name": "AddedDish_StainRing_0",
+            "path": "Library/unity default resources",
+            "triangles": 80
+        },
+        {
+            "name": "AddedDish_StainRing_1",
+            "path": "Library/unity default resources",
+            "triangles": 80
+        },
+        {
+            "name": "AddedDish_StainRing_2",
+            "path": "Library/unity default resources",
+            "triangles": 80
+        },
+        {
+            "name": "AddedDish_StainRing_3",
+            "path": "Library/unity default resources",
+            "triangles": 80
+        },
+        {
+            "name": "AddedDish_StainRing_4",
+            "path": "Library/unity default resources",
+            "triangles": 80
+        },
+        {
+            "name": "AddedDish_StainRing_5",
+            "path": "Library/unity default resources",
+            "triangles": 80
+        },
+        {
+            "name": "AddedDish_StainRing_6",
+            "path": "Library/unity default resources",
+            "triangles": 80
+        },
+        {
+            "name": "AddedDish_StainRing_7",
+            "path": "Library/unity default resources",
+            "triangles": 80
+        },
+        {
+            "name": "AddedDish_StainRing_8",
+            "path": "Library/unity default resources",
+            "triangles": 80
+        },
+        {
+            "name": "AddedDish_StainRing_9",
+            "path": "Library/unity default resources",
+            "triangles": 80
+        },
+        {
+            "name": "AddedDish_StainRing_10",
+            "path": "Library/unity default resources",
+            "triangles": 80
+        },
+        {
+            "name": "AddedDish_StainRing_11",
+            "path": "Library/unity default resources",
+            "triangles": 80
+        },
+        {
+            "name": "AddedDish_Spill_0",
+            "path": "Library/unity default resources",
+            "triangles": 80
+        },
+        {
+            "name": "AddedDish_Spill_1",
+            "path": "Library/unity default resources",
+            "triangles": 80
+        },
+        {
+            "name": "AddedDish_Spill_2",
+            "path": "Library/unity default resources",
+            "triangles": 80
+        },
+        {
+            "name": "PendulumRod",
+            "path": "Library/unity default resources",
+            "triangles": 80
+        },
+        {
+            "name": "PendulumBob",
+            "path": "Library/unity default resources",
+            "triangles": 80
+        },
+        {
             "name": "Static__Scooter_MOTO_HeadlightLens",
             "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/DamarScooter.fbx",
             "triangles": 76
@@ -2875,6 +2985,11 @@
             "name": "alarm_clock_01_second_hand",
             "path": "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/alarm_clock_01/alarm_clock_01.fbx",
             "triangles": 73
+        },
+        {
+            "name": "Static__House_MAT_BrickBase",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/WellOpening_Static__House_MAT_BrickBase.asset",
+            "triangles": 72
         },
         {
             "name": "BagMetal",
@@ -2922,6 +3037,11 @@
             "triangles": 64
         },
         {
+            "name": "Static__House_MAT_RustMetal",
+            "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/RumahAtmaja.fbx",
+            "triangles": 60
+        },
+        {
             "name": "geo_arm_1_a",
             "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/LodDeskLamp_geo_arm_1_a.asset",
             "triangles": 60
@@ -2967,16 +3087,6 @@
             "triangles": 60
         },
         {
-            "name": "KitchenGlass__House_MAT_WoodDoor",
-            "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/RumahAtmaja.fbx",
-            "triangles": 60
-        },
-        {
-            "name": "Static__House_MAT_RustMetal",
-            "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/RumahAtmaja.fbx",
-            "triangles": 60
-        },
-        {
             "name": "geo_lower-spring_a_bottom-hook",
             "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/LodDeskLamp_geo_lower-spring_a_bottom-hook.asset",
             "triangles": 58
@@ -2985,6 +3095,16 @@
             "name": "geo_lower-spring_b_bottom-hook",
             "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/LodDeskLamp_geo_lower-spring_b_bottom-hook.asset",
             "triangles": 58
+        },
+        {
+            "name": "Static__House_MAT_RoofTiles",
+            "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/RumahAtmaja.fbx",
+            "triangles": 52
+        },
+        {
+            "name": "Static__House_MAT_RoofTilesAnnex",
+            "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/RumahAtmaja.fbx",
+            "triangles": 52
         },
         {
             "name": "Cylinder",
@@ -3004,16 +3124,6 @@
         {
             "name": "Cylinder.003",
             "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
-            "triangles": 52
-        },
-        {
-            "name": "Static__House_MAT_RoofTiles",
-            "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/RumahAtmaja.fbx",
-            "triangles": 52
-        },
-        {
-            "name": "Static__House_MAT_RoofTilesAnnex",
-            "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/RumahAtmaja.fbx",
             "triangles": 52
         },
         {
@@ -3062,6 +3172,11 @@
             "triangles": 28
         },
         {
+            "name": "Static__House_MAT_PlasterDamaged",
+            "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/RumahAtmaja.fbx",
+            "triangles": 24
+        },
+        {
             "name": "WetCourtyard",
             "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/WellOpening_WetCourtyard.asset",
             "triangles": 24
@@ -3087,18 +3202,548 @@
             "triangles": 24
         },
         {
+            "name": "Cracked glaze",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze.001",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze.002",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze.003",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.001",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.002",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.003",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.004",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.005",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.006",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.007",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.008",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.009",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.010",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.011",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.012",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.013",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze.001",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze.002",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze.003",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.001",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.002",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.003",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.004",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.005",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.006",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.007",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.008",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.009",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.010",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.011",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.012",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.013",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze.001",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze.002",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze.003",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.001",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.002",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.003",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.004",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.005",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.006",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.007",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.008",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.009",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.010",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.011",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.012",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.013",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze.001",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze.002",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze.003",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.001",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.002",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.003",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.004",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.005",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.006",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.007",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.008",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.009",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.010",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.011",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.012",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.013",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze.001",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze.002",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze.003",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.001",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.002",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.003",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.004",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.005",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.006",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.007",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.008",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.009",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.010",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.011",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.012",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.013",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze.001",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze.002",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Cracked glaze.003",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.001",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.002",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.003",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.004",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.005",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.006",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.007",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.008",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.009",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.010",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.011",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.012",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
+            "name": "Fungal colony.013",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/MoldyCeramicPlate.fbx",
+            "triangles": 24
+        },
+        {
             "name": "ExpandedCellarSouthCeiling",
             "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/WellOpening_ExpandedCellarSouthCeiling.asset",
-            "triangles": 24
-        },
-        {
-            "name": "Static__House_MAT_BrickBase",
-            "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/RumahAtmaja.fbx",
-            "triangles": 24
-        },
-        {
-            "name": "Static__House_MAT_PlasterDamaged",
-            "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Models/RumahAtmaja.fbx",
             "triangles": 24
         },
         {
@@ -3362,6 +4007,36 @@
             "triangles": 12
         },
         {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
             "name": "StairLanternCord",
             "path": "Library/unity default resources",
             "triangles": 12
@@ -3452,12 +4127,12 @@
             "triangles": 12
         },
         {
-            "name": "ChildDoorHeader47",
+            "name": "CorrLintelN",
             "path": "Library/unity default resources",
             "triangles": 12
         },
         {
-            "name": "BathDoorHeader47",
+            "name": "CorrLintelN",
             "path": "Library/unity default resources",
             "triangles": 12
         },
@@ -3568,501 +4243,6 @@
         },
         {
             "name": "BathCurtain",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainFold",
             "path": "Library/unity default resources",
             "triangles": 12
         },
@@ -4417,6 +4597,31 @@
             "triangles": 12
         },
         {
+            "name": "FallenVaultTop",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FallenVaultLeg",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FallenVaultLeg",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FallenVaultLeg",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FallenVaultLeg",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
             "name": "TrapSlideGate",
             "path": "Library/unity default resources",
             "triangles": 12
@@ -4658,241 +4863,6 @@
         },
         {
             "name": "GateCentreHandle",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "VentBrokenLath",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "VentBrokenLath",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "VentBrokenLath",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "VentBrokenLath",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "VentBrokenLath",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "BathCurtainRod",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "RecordedStoneFloor",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "RecordedCeiling",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "MirrorFrameUpright",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarMirrorSideWall",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "MirrorFrameUpright",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarMirrorSideWall",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "MirrorFrameCrown",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "MirrorFrameFoot",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "MirrorDarkThreshold",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallCounter",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "FadedRedAwning",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallPole",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallPole",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallCounter",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "FadedRedAwning",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallPole",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallPole",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallCounter",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "FadedRedAwning",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallPole",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallPole",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallCounter",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "FadedRedAwning",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallPole",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallPole",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallCounter",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "FadedRedAwning",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallPole",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallPole",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallCounter",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "FadedRedAwning",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallPole",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallPole",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallCounter",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "FadedRedAwning",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallPole",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallPole",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallCounter",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "FadedRedAwning",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallPole",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "StallPole",
             "path": "Library/unity default resources",
             "triangles": 12
         },
@@ -5562,592 +5532,42 @@
             "triangles": 12
         },
         {
-            "name": "ExpandedCellarEastCeiling",
+            "name": "ARVentFracture",
             "path": "Library/unity default resources",
             "triangles": 12
         },
         {
-            "name": "ExpandedCellarSouthWall",
+            "name": "ARVentFracture",
             "path": "Library/unity default resources",
             "triangles": 12
         },
         {
-            "name": "CellarUtilityFixture",
+            "name": "ARVentFracture",
             "path": "Library/unity default resources",
             "triangles": 12
         },
         {
-            "name": "CellarUtilityFixture",
+            "name": "ARVentFracture",
             "path": "Library/unity default resources",
             "triangles": 12
         },
         {
-            "name": "CellarUtilityFixture",
+            "name": "ARVentFracture",
             "path": "Library/unity default resources",
             "triangles": 12
         },
         {
-            "name": "WellStoneRing",
+            "name": "ARVentFracture",
             "path": "Library/unity default resources",
             "triangles": 12
         },
         {
-            "name": "WellInnerStone",
+            "name": "ARVentFracture",
             "path": "Library/unity default resources",
             "triangles": 12
         },
         {
-            "name": "WellStoneRing",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellInnerStone",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellStoneRing",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellInnerStone",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellStoneRing",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellInnerStone",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellStoneRing",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellInnerStone",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellStoneRing",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellInnerStone",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellStoneRing",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellInnerStone",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellStoneRing",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellInnerStone",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellStoneRing",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellInnerStone",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellStoneRing",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellInnerStone",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellStoneRing",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellInnerStone",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellStoneRing",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellInnerStone",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellStoneRing",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellInnerStone",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellStoneRing",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellInnerStone",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellStoneRing",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellInnerStone",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellStoneRing",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellInnerStone",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellStoneRing",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellInnerStone",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellStoneRing",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellInnerStone",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellStoneRing",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellInnerStone",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellStoneRing",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellInnerStone",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "WellBlackDepth",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "FamilyLivingRug",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "FamilyCoffeeTable",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "FamilyCoffeeTableLeg",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "FamilyCoffeeTableLeg",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "FamilyCoffeeTableLeg",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "FamilyCoffeeTableLeg",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "FamilyRadioCabinet",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "FamilyCabinetPanel",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "FamilyCabinetPanel",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "FamilyCabinetPanel",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "FamilyRadioBody",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "RadioSpeakerGrille",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "RadioSpeakerGrille",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "MasterExtensionEastWall",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "MasterExtensionNorthWall",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "MasterExtensionBalconyWall",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "AnnexSouthWall_W",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "AnnexSouthWall_E",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "AnnexBackDoor",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "AnnexBackDoorJamb_W",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "AnnexBackDoorJamb_E",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "AnnexBackDoorHeader",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "KitchenCounter",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "ClockDrawer__",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "Cube",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
-            "triangles": 12
-        },
-        {
-            "name": "LouverSlat_0",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
-            "triangles": 12
-        },
-        {
-            "name": "LouverSlat_1",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
-            "triangles": 12
-        },
-        {
-            "name": "LouverSlat_2",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
-            "triangles": 12
-        },
-        {
-            "name": "LouverSlat_3",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
-            "triangles": 12
-        },
-        {
-            "name": "LouverSlat_4",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
-            "triangles": 12
-        },
-        {
-            "name": "LouverSlat_5",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
-            "triangles": 12
-        },
-        {
-            "name": "LouverSlat_6",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
-            "triangles": 12
-        },
-        {
-            "name": "LouverSlat_7",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
-            "triangles": 12
-        },
-        {
-            "name": "LouverSlat_8",
-            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
-            "triangles": 12
-        },
-        {
-            "name": "LadderWallBracket_0",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "LadderWallBracket_1",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "LadderWallBracket_2",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "LadderWallBracket_3",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "ShaftRimCollar",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarClimbHandle",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_W",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_E",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_W",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_E",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_W",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_E",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_W",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_E",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_W",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_E",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_W",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_E",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_W",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_E",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_W",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_E",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_W",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_E",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_W",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_E",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_W",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_E",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_W",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_E",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_W",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_E",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_W",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_E",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_W",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_E",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_W",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "CellarWallS_E",
+            "name": "ARVentFracture",
             "path": "Library/unity default resources",
             "triangles": 12
         },
@@ -6657,6 +6077,981 @@
             "triangles": 12
         },
         {
+            "name": "VentBrokenLath",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "VentBrokenLath",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "VentBrokenLath",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "VentBrokenLath",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "VentBrokenLath",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "BathCurtainRod",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "RecordedStoneFloor",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "RecordedCeiling",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "MirrorFrameUpright",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "CellarMirrorSideWall",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "MirrorFrameUpright",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "CellarMirrorSideWall",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "MirrorFrameCrown",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "MirrorFrameFoot",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "MirrorDarkThreshold",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallCounter",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FadedRedAwning",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallPole",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallPole",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallCounter",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FadedRedAwning",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallPole",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallPole",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallCounter",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FadedRedAwning",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallPole",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallPole",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallCounter",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FadedRedAwning",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallPole",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallPole",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallCounter",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FadedRedAwning",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallPole",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallPole",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallCounter",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FadedRedAwning",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallPole",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallPole",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallCounter",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FadedRedAwning",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallPole",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallPole",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallCounter",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FadedRedAwning",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallPole",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "StallPole",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "MasterExtensionEastWall",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "MasterExtensionNorthWall",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "MasterExtensionBalconyWall",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "CellarClosingStairLanding",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
+            "triangles": 12
+        },
+        {
+            "name": "LouverSlat_0",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
+            "triangles": 12
+        },
+        {
+            "name": "LouverSlat_1",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
+            "triangles": 12
+        },
+        {
+            "name": "LouverSlat_2",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
+            "triangles": 12
+        },
+        {
+            "name": "LouverSlat_3",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
+            "triangles": 12
+        },
+        {
+            "name": "LouverSlat_4",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
+            "triangles": 12
+        },
+        {
+            "name": "LouverSlat_5",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
+            "triangles": 12
+        },
+        {
+            "name": "LouverSlat_6",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
+            "triangles": 12
+        },
+        {
+            "name": "LouverSlat_7",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
+            "triangles": 12
+        },
+        {
+            "name": "LouverSlat_8",
+            "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
+            "triangles": 12
+        },
+        {
+            "name": "LadderWallBracket_0",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "LadderWallBracket_1",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "LadderWallBracket_2",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "LadderWallBracket_3",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "ShaftRimCollar",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "CellarClimbHandle",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "ClockDrawer__",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "Cube",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "AnnexSouthWall_W",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "AnnexSouthWall_E",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "AnnexBackDoor",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "AnnexBackDoorJamb_W",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "AnnexBackDoorJamb_E",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "AnnexBackDoorHeader",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "KitchenCounter",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FamilyLivingRug",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FamilyCoffeeTable",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FamilyCoffeeTableLeg",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FamilyCoffeeTableLeg",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FamilyCoffeeTableLeg",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FamilyCoffeeTableLeg",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FamilyRadioCabinet",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FamilyCabinetPanel",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FamilyCabinetPanel",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FamilyCabinetPanel",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "FamilyRadioBody",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "RadioSpeakerGrille",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "RadioSpeakerGrille",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "BimaToyTrainCar",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "BimaToyTrainCar",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "BimaToyTrainCar",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "ExpandedCellarEastCeiling",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "ExpandedCellarEastWall",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "ExpandedCellarSouthWall",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "CellarSpineNorth",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "CellarSpineSouth",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "CellarReturnPartition",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "CellarTextileChest",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "TextileChestLid",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "CellarTextileChest",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "TextileChestLid",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "CellarTextileChest",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "TextileChestLid",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "CellarTextileChest",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "TextileChestLid",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "CellarUtilityFixture",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "CellarUtilityFixture",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "CellarUtilityFixture",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "RottenWellBoard",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "RottenWellBoard",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "RottenWellBoard",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "RottenWellBoard",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellStoneRing",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellInnerStone",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "WellBlackDepth",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
             "name": "GroundFloorCeiling_0",
             "path": "Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/FinishSupport_GroundFloorCeiling_0.asset",
             "triangles": 10
@@ -6740,61 +7135,6 @@
             "name": "vintage_oil_lamp_flame",
             "path": "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/vintage_oil_lamp/vintage_oil_lamp.fbx",
             "triangles": 8
-        },
-        {
-            "name": "BathroomMirrorSurface",
-            "path": "Library/unity default resources",
-            "triangles": 2
-        },
-        {
-            "name": "ScratchedFamilyPhotograph1",
-            "path": "Library/unity default resources",
-            "triangles": 2
-        },
-        {
-            "name": "BloodyHand_0",
-            "path": "Library/unity default resources",
-            "triangles": 2
-        },
-        {
-            "name": "BloodyHand_1",
-            "path": "Library/unity default resources",
-            "triangles": 2
-        },
-        {
-            "name": "BloodyHand_2",
-            "path": "Library/unity default resources",
-            "triangles": 2
-        },
-        {
-            "name": "BloodyHand_3",
-            "path": "Library/unity default resources",
-            "triangles": 2
-        },
-        {
-            "name": "BloodyHand_4",
-            "path": "Library/unity default resources",
-            "triangles": 2
-        },
-        {
-            "name": "BloodFloor_3.80",
-            "path": "Library/unity default resources",
-            "triangles": 2
-        },
-        {
-            "name": "BloodFloor_2.95",
-            "path": "Library/unity default resources",
-            "triangles": 2
-        },
-        {
-            "name": "BloodFloor_1.70",
-            "path": "Library/unity default resources",
-            "triangles": 2
-        },
-        {
-            "name": "BloodFloor_-2.90",
-            "path": "Library/unity default resources",
-            "triangles": 2
         },
         {
             "name": "MazeRitualCircle",
@@ -6928,6 +7268,61 @@
         },
         {
             "name": "MazeRust_5",
+            "path": "Library/unity default resources",
+            "triangles": 2
+        },
+        {
+            "name": "BathroomMirrorSurface",
+            "path": "Library/unity default resources",
+            "triangles": 2
+        },
+        {
+            "name": "ScratchedFamilyPhotograph1",
+            "path": "Library/unity default resources",
+            "triangles": 2
+        },
+        {
+            "name": "BloodyHand_0",
+            "path": "Library/unity default resources",
+            "triangles": 2
+        },
+        {
+            "name": "BloodyHand_1",
+            "path": "Library/unity default resources",
+            "triangles": 2
+        },
+        {
+            "name": "BloodyHand_2",
+            "path": "Library/unity default resources",
+            "triangles": 2
+        },
+        {
+            "name": "BloodyHand_3",
+            "path": "Library/unity default resources",
+            "triangles": 2
+        },
+        {
+            "name": "BloodyHand_4",
+            "path": "Library/unity default resources",
+            "triangles": 2
+        },
+        {
+            "name": "BloodFloor_3.80",
+            "path": "Library/unity default resources",
+            "triangles": 2
+        },
+        {
+            "name": "BloodFloor_2.95",
+            "path": "Library/unity default resources",
+            "triangles": 2
+        },
+        {
+            "name": "BloodFloor_1.70",
+            "path": "Library/unity default resources",
+            "triangles": 2
+        },
+        {
+            "name": "BloodFloor_-2.90",
             "path": "Library/unity default resources",
             "triangles": 2
         },

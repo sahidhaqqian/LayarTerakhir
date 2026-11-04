@@ -4,12 +4,12 @@
 - cluster-only mode — file stats not available
 
 ## Summary
-- 5447 nodes · 20765 edges · 172 communities (124 shown, 48 thin omitted)
+- 5447 nodes · 20766 edges · 172 communities (124 shown, 48 thin omitted)
 - Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 1317 edges (avg confidence: 0.84)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `daf0a12d`
+- Built from commit: `65f52d9e`
 - Commit above is the pre-commit base, not a freshness check. Verify source/artifact hashes with `python3 Tools/update_graphify.py --check`.
 - Regenerate safely with `python3 Tools/update_graphify.py` before commit/push.
 
@@ -724,10 +724,10 @@ _Questions this graph is uniquely positioned to answer:_
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.037781109445277364 - nodes in this community are weakly interconnected._
 - **Why does `PlayerFootsteps` connect `Community 50` to `Community 32`, `Community 4`, `Community 11`, `Community 45`, `Community 17`, `Community 115`, `Community 52`, `Community 84`, `Community 86`, `Community 21`?**
-  _High betweenness centrality (0.057) - this node is a cross-community bridge._
+  _High betweenness centrality (0.052) - this node is a cross-community bridge._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.027169694146871603 - nodes in this community are weakly interconnected._
 - **Why does `Phase5Director` connect `Community 48` to `Community 1`, `Community 132`, `Community 5`, `Community 6`, `Community 7`, `Community 136`, `Community 135`, `Community 10`, `Community 8`, `Community 4`, `Community 141`, `Community 19`, `Community 21`, `Community 23`, `Community 25`, `Community 26`, `Community 31`, `Community 34`, `Community 39`, `Community 66`, `Community 74`, `Community 79`, `Community 84`, `Community 85`, `Community 86`, `Community 95`, `Community 98`, `Community 99`, `Community 104`, `Community 110`, `Community 120`?**
-  _High betweenness centrality (0.049) - this node is a cross-community bridge._
+  _High betweenness centrality (0.042) - this node is a cross-community bridge._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.07673745173745174 - nodes in this community are weakly interconnected._

@@ -566,6 +566,18 @@ def main():
             sg.add([v.index], 1.0, 'REPLACE')
             moved += 1
         print('RIG_SHEARS_BOUND', moved, flush=True)
+        # Project convention (Raka): FBX stores CENTIMETRE numbers with
+        # UnitScaleFactor 1.0, Unity converts to metres on import. All
+        # placement above runs in metres; scale once here, before clips.
+        for v in mesh.data.vertices:
+            v.co *= 100.0
+        bpy.context.view_layer.objects.active = rig
+        bpy.ops.object.mode_set(mode='EDIT')
+        for b in rig.data.edit_bones:
+            b.head *= 100.0
+            b.tail *= 100.0
+        bpy.ops.object.mode_set(mode='OBJECT')
+        print('RIG_CM_SCALED', flush=True)
         for o in bpy.context.scene.objects:
             if o.type == 'MESH':
                 o.hide_viewport = True

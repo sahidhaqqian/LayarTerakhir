@@ -1,12 +1,12 @@
 {
   "artifacts_sha256": {
-    "GRAPH_REPORT.md": "98b40e61adc154d9b41f1544b2eef45ad23de032a9cf453b699c2e1609a39c9a",
-    "graph.html": "fbc4f29d701a27ca1d483a42e34b7e503859428d9239c174a95fd801a3acde05",
-    "graph.json": "85868cf94d0e1c8bf3b77a2d341ffa268d7956ec855f631f20bb4c94c4d96c94"
+    "GRAPH_REPORT.md": "2e6dc302d922df5506a8e2d98f1f49e034a1dc3faf5c6c4ef1d0a4d222f66712",
+    "graph.html": "79634546a64091c8713d6cf89335b16d3c97c70da6a4cc3af8e5bbfbef80857b",
+    "graph.json": "9ba407310845e01d3fc4e708d4c02285660134d7bec2cd7249986410a14e1d8b"
   },
   "asset_file_count": 0,
   "code_file_count": 430,
-  "edge_count": 20765,
+  "edge_count": 20766,
   "graphify_version": "graphify 0.9.92",
   "ignore_sha256": "05660cd7b7a81591931d5661fb73b7124598a04c44f843eda7a7ac2107f20e17",
   "mode": "local-code-only; no LLM/community labeling",
@@ -63,7 +63,7 @@
     "Assets/_LayarTerakhir/src/Editor/ClockPhoto.cs": "5d4d47e698a623e543db445cfd872be8945b6bc5255374016b0abc32efb99ad7",
     "Assets/_LayarTerakhir/src/Editor/CompactKosPolish.cs": "457d6295e9481bfe88d8ec4459122acec3592af43e21432cba225af69621df06",
     "Assets/_LayarTerakhir/src/Editor/CrosshairDotTests.cs": "83dbba0d6fb0d51182fcbfa5f136811b2738c1d8ad31cb1a7a236d492456ce98",
-    "Assets/_LayarTerakhir/src/Editor/DesignerReviewBuilder.cs": "28c078ed63693143f5ca1db0278aca25840d04ff9d48533723c04857c00ad6de",
+    "Assets/_LayarTerakhir/src/Editor/DesignerReviewBuilder.cs": "8ff543adb4b5d974792d0c253ecbb8f5a840070694d2039d5bd8a30bd36804aa",
     "Assets/_LayarTerakhir/src/Editor/DesignerRevisionTests.cs": "695c64878e84580ecbd6c895f712d227cf1a73435b7ea4309d1e06f74ac10a78",
     "Assets/_LayarTerakhir/src/Editor/DesignerVrmBuilder.cs": "e4acd6dcbc4444dc3b0cdcc716c109820607d3647835ee1b2d0c115ce3f7374c",
     "Assets/_LayarTerakhir/src/Editor/DesignerWorldRevision.cs": "e26ea8356304334ca2b4255f422f6edd4ba3d9e2847a1b2553ce580cecf6cd8c",

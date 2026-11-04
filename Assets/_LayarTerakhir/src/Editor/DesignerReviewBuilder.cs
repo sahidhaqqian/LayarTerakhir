@@ -208,7 +208,13 @@ namespace LayarTerakhir.Editor
         }
         private static void DrapeChildQuilt()
         {
-            var quilt=Find("ChildBlanket");quilt.transform.SetPositionAndRotation(P(-3.55f,3.25f,4.585f),Quaternion.LookRotation(d.north));quilt.transform.localScale=Vector3.one;
+            // ChildBlanket was removed by ApplyFurniture (replaced by ChildBedSet):
+            // recreate the quilt holder instead of depending on the deleted GO.
+            var quilt = Find("ChildBlanket");
+            if (!quilt) { quilt = new GameObject("ChildBlanket"); quilt.transform.SetParent(root, false); }
+            if (!quilt.GetComponent<MeshFilter>()) quilt.AddComponent<MeshFilter>();
+            if (!quilt.GetComponent<Renderer>()) quilt.AddComponent<MeshRenderer>();
+            quilt.transform.SetPositionAndRotation(P(-3.55f,3.25f,4.585f),Quaternion.LookRotation(d.north));quilt.transform.localScale=Vector3.one;
             const int columns=24,rows=7;var vertices=new List<Vector3>();var uv=new List<Vector2>();var triangles=new List<int>();
             for(int layer=0;layer<2;layer++)for(int z=0;z<=rows;z++)for(int x=0;x<=columns;x++)
             {float across=(x/(float)columns-.5f)*1.16f,depth=(z/(float)rows-.5f)*.92f;float edge=Mathf.Clamp01((Mathf.Abs(across)-.43f)/.15f);float y=-Mathf.Sin(edge*Mathf.PI*.5f)*.16f+Mathf.Sin(across*48+depth*9)*.004f-layer*.014f;vertices.Add(new Vector3(across,y,depth));uv.Add(new Vector2(x/(float)columns,z/(float)rows));}
