@@ -613,7 +613,7 @@ namespace LayarTerakhir.Editor
             col.center = leaf.transform.InverseTransformPoint(center);
             col.size = alongZ ? new Vector3(.06f, height, width) : new Vector3(width, height, .06f);
 
-            Quaternion rot = root.rotation * (alongZ ? Quaternion.Euler(0, 90, 0) : Quaternion.identity);
+            Quaternion rot = root.rotation;
             // Procedural instead of the KosPanelDoor FBX (its headless import
             // yields empty instances, leaving invisible doors): slab plus
             // recessed-look inset panels, wood finish.
