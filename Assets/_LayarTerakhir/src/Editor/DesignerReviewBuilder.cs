@@ -53,6 +53,13 @@ namespace LayarTerakhir.Editor
             File.WriteAllText("Audit/designer-review-stairs-preserved.json","{\"unchanged\":true,\"signature\":\""+stairs+"\"}\n");
             MelatiNeighborhoodBuilder.Apply();AssetDatabase.SaveAssets();Debug.Log("DESIGNER_REVIEW_ENVIRONMENT_APPLIED stairs preserved");
         }
+        [MenuItem("LayarTerakhir/Prolog/Write scene mesh survey only")]
+        public static void SurveyMeshesOnly()
+        {
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            WriteMeshSurvey();
+            Debug.Log("DESIGNER_MESH_SURVEY_WRITTEN");
+        }
         [Serializable] private class MeshRow{public string name,path;public int triangles;}
         [Serializable] private class MeshSurvey{public int sceneTriangles;public MeshRow[] meshes;}
         private static void WriteMeshSurvey()

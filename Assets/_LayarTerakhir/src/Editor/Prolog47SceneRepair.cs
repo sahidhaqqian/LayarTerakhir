@@ -1309,15 +1309,29 @@ namespace LayarTerakhir.Editor
             foreach (string name in new[] { "CellarSpineNorth", "CellarSpineSouth", "CellarReturnPartition", "RagRod", "StairExitRag", "CellarClosingStairLanding" })
                 Delete(name);
             if (d.basement) d.basement.ragOriginal = null;
+            // The Bug-42 sweep above also removes the WIRED chase egress
+            // floor (PrologCompletionBuilder.ChaseLayout). Restore its exact
+            // shape, material and wiring so the finale keeps working.
+            {
+                var egress = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                egress.name = "CellarClosingStairLanding";
+                egress.transform.SetParent(environment, true);
+                egress.transform.SetPositionAndRotation(d.P(1.0f, 1.4f, 3.75f), Quaternion.identity);
+                egress.transform.localScale = new Vector3(.9f, .12f, 1.9f);
+                egress.GetComponent<Renderer>().sharedMaterial = Old("House_MAT_WoodDoor");
+                egress.SetActive(false);
+                if (d.chase) d.chase.cellarEgressFloor = egress;
+            }
 
             // Scatter varied CC0 wooden/military crates in cellar so basement doesn't look sparse or cloned.
             // Designer Nov: the military crate stays out of the eastern
             // north-south lane (tucked by the north-east crates) so Raka can
             // walk from the middle of the room to the second wardrobe.
+            // It sits against CellarExtraCrate_1, clear of lane-main x4.2-5.
             ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02.fbx", "CellarExtraCrate_1", environment,
                 d.P(4.6f, 6.2f, -2.79f), Quaternion.Euler(0, 22, 0), new Vector3(.68f, .52f, .52f), Material("Repair_BedWood"));
             ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/old_military_crate/old_military_crate.fbx", "CellarExtraCrate_2", environment,
-                d.P(4.15f, 4.75f, -2.79f), Quaternion.Euler(0, -18, 0), new Vector3(.76f, .44f, .48f), Material("Repair_BedWood"));
+                d.P(4.6f, 5.6f, -2.79f), Quaternion.Euler(0, -18, 0), new Vector3(.76f, .44f, .48f), Material("Repair_BedWood"));
 
             // Bug 45 & 46: Texture/dress WestCollapsedMasonry_0..3 outside the escape window so opening the window reveals dark brick & foliage instead of 4 raw grey cubes!
             var brickMat = Old("House_MAT_BrickBase") ?? Old("House_MAT_PlasterDamaged");
@@ -1340,10 +1354,12 @@ namespace LayarTerakhir.Editor
             {
                 Vector3 outPos = d.chase.windowExitSpot.position + d.chase.windowExitSpot.forward * 2.4f;
                 outPos.y = 0f;
+                // Keep the east-side walk lane capsule-clear: the pair must
+                // flank the escape-window view with a ~1.5 m gap, never gate it.
                 ProjectAsset("Assets/_LayarTerakhir/assets/Art/Review/Models/LodShrub.fbx", "EscapeWindowCourtyardShrub_1", environment,
-                    outPos + Vector3.right * 1.1f, Quaternion.Euler(0, 35, 0), new Vector3(1.25f, .95f, 1.25f));
+                    outPos + Vector3.right * 1.6f, Quaternion.Euler(0, 35, 0), new Vector3(1.25f, .95f, 1.25f));
                 ProjectAsset("Assets/_LayarTerakhir/assets/Art/Review/Models/LodShrub.fbx", "EscapeWindowCourtyardShrub_2", environment,
-                    outPos - Vector3.right * 1.2f, Quaternion.Euler(0, 140, 0), new Vector3(1.35f, 1.05f, 1.35f));
+                    outPos - Vector3.right * 1.7f, Quaternion.Euler(0, 140, 0), new Vector3(1.35f, 1.05f, 1.35f));
             }
 
             // Bug 44: Flush KitchenEmergencyCharger neatly into lower kitchen baseboard & ensure KitchenVaultContext never renders as a floating black rectangle!
@@ -2338,6 +2354,32 @@ namespace LayarTerakhir.Editor
         // Review-only capture: one framebuffer per basement room with a
         // temporary neutral fill light on the camera so dust/rust reads even
         // in the dim horror grade. Never saved into the scene.
+        public static void CaptureHouseExterior()
+        {
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            const string folder = "Audit/Visuals/House-Restore";
+            System.IO.Directory.CreateDirectory(folder);
+            var camGo = new GameObject("HouseReviewCam", typeof(Camera));
+            var cam = camGo.GetComponent<Camera>();
+            cam.enabled = false; cam.nearClipPlane = .05f; cam.farClipPlane = 120f;
+            cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = Color.black;
+            var shots = new (string, float, float, float, float, float, float)[]
+            {
+                ("01-courtyard-arrival", 0f, -13.5f, 0f, -6f, 2.5f, 0f),
+                ("02-side-passage", 8.2f, -2f, 4f, 6f, 1.5f, 0f),
+            };
+            foreach (var s in shots)
+            {
+                camGo.transform.SetPositionAndRotation(
+                    d.P(s.Item2, s.Item3, 1.7f),
+                    Quaternion.LookRotation(d.P(s.Item4, s.Item5, s.Item6) - d.P(s.Item2, s.Item3, 1.7f)));
+                KosRenderDiagnosis.Capture(cam, s.Item1, false, folder);
+            }
+            Object.DestroyImmediate(camGo);
+            Debug.Log("HOUSE_REVIEW_CAPTURED " + shots.Length + " views -> " + folder);
+        }
+
         public static void CaptureBasementRooms()
         {
             EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
@@ -3293,6 +3335,17 @@ namespace LayarTerakhir.Editor
             {
                 norImport.textureType = TextureImporterType.NormalMap;
                 norImport.SaveAndReimport();
+            }
+            // Environment texture budget (AtmajaSceneValidation): cap hero
+            // maps at 1024 like every other env asset.
+            foreach (string tex in new[] { "CrimsonRuptureWall_albedo.png", "CrimsonRuptureWall_normal.jpg", "CrimsonRuptureWall_mask.png" })
+            {
+                var ti = AssetImporter.GetAtPath(dir + tex) as TextureImporter;
+                if (ti && ti.maxTextureSize > 1024)
+                {
+                    ti.maxTextureSize = 1024;
+                    ti.SaveAndReimport();
+                }
             }
             // Authored material: opaque relief, wet gloss only on the slashes
             // (mask alpha), zero metal everywhere — mask R is 0 by construction.

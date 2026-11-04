@@ -96,6 +96,49 @@ namespace LayarTerakhir.Editor
             if(!kos.SequenceEqual(File.ReadAllBytes(PrologKosSceneBuilder.ScenePath))||!corridor.SequenceEqual(File.ReadAllBytes(KosCorridorBuilder.ScenePath)))throw new Exception("Stair revision modified approved Kos scenes");
             Debug.Log("ATMAJA_STAIR_REVISION_APPLIED enclosed stairs, twelve closed risers per flight, supported landings, hinged door, removed storage door");
         }
+        [MenuItem("LayarTerakhir/Prolog/Restore house shell and facade cutout")]
+        public static void RestoreHouseShell()
+        {
+            // The scene's RumahAtmaja prefab instance lost all children to a
+            // stripped save (only an empty stub remains), while the FBX
+            // itself is intact. Re-instantiate exactly like
+            // AtmajaSceneBuilder.Model(), re-apply its collision hulls, then
+            // re-cut the approved facade band. Idempotent.
+            var scene = EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            d = Object.FindFirstObjectByType<AtmajaDirector>();
+            if (!d) throw new Exception("AtmajaDirector missing");
+            var environment = Find("Atmaja_Environment_Art").transform;
+            Remove("RumahAtmaja_House");
+            var go = new GameObject("RumahAtmaja_House");
+            go.transform.SetParent(environment, false);
+            var asset = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_LayarTerakhir/assets/Art/Atmaja/Models/RumahAtmaja.fbx");
+            if (!asset) throw new Exception("RumahAtmaja.fbx model missing");
+            var instance = (GameObject)PrefabUtility.InstantiatePrefab(asset);
+            if (!instance) throw new Exception("RumahAtmaja prefab instantiation failed");
+            instance.transform.SetParent(go.transform, false);
+            var concrete = go.GetComponentsInChildren<MeshFilter>(true).Where(f => f.name == "Static__House_MAT_Concrete").ToArray();
+            if (concrete.Length != 1) throw new Exception("RumahAtmaja.fbx must carry exactly one Static__House_MAT_Concrete, found " + concrete.Length);
+            foreach (var r in go.GetComponentsInChildren<Renderer>())
+            {
+                string meshName = r.GetComponent<MeshFilter>() ? r.GetComponent<MeshFilter>().sharedMesh.name : r.name;
+                string key = r.name.Contains("__") ? r.name : meshName;
+                string materialName = key.Substring(key.IndexOf("__", StringComparison.Ordinal) + 2);
+                var material = Mat(materialName);
+                if (!material) throw new Exception("Missing Atmaja material mapping: " + r.name);
+                r.sharedMaterials = Enumerable.Repeat(material, r.sharedMaterials.Length).ToArray();
+            }
+            foreach (var marker in go.GetComponentsInChildren<Transform>().Where(t => t.name.StartsWith("COL_")))
+            {
+                var c = marker.gameObject.AddComponent<BoxCollider>();
+                c.size = Vector3.one * .01f;
+            }
+            RepairFacadeBand();
+            Physics.SyncTransforms();
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            AssetDatabase.SaveAssets();
+            Debug.Log("ATMAJA_HOUSE_SHELL_RESTORED prefab re-instantiated with collision hulls and facade cutout");
+        }
         private struct BandVertex
         {
             public Vector3 position,normal;public Vector2 uv;public Vector4 tangent;
