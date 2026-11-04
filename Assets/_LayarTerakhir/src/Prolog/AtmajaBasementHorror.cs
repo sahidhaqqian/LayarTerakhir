@@ -27,7 +27,7 @@ namespace LayarTerakhir.Prolog
         public GameObject powerbankObj, handycamObj;
         public Collider wardrobeCol1, wardrobeCol2, wardrobeCol3, wardrobeCol4, wardrobeCol5, wardrobeCol6;
         public const string DamarNoteTitle = "CATATAN DARI TAS DAMAR";
-        public const string DamarNoteText = "Robekan buku saku, tulisan tangan Damar yang terburu-buru.\n\n\"Kalau ada yang baca ini, berarti gue gagal balik.\nBaterai kamera tinggal sekarat, jadi gue umpetin handycam di ruang paling ujung — yang lampunya merah redup.\nJangan cari gue. Gue denger dia nyanyi dari dalam cermin.\"";
+        public const string DamarNoteText = "Robekan buku saku, tulisan tangan Damar yang terburu-buru.\n\n\"Kalau ada yang baca ini, berarti gue gagal balik.\nKamera gue ketinggalan di suatu tempat di bawah sini. Baterainya sekarat, jangan sampai mati total.\nGue denger dia nyanyi dari dalam cermin. Jangan cari gue.\"";
         public Transform powerbankSpot, handycamSpot;
         public bool IsHidden => hiddenIn != null;
         public bool InspectingLocker => lockerCheckRunning;
@@ -119,7 +119,7 @@ namespace LayarTerakhir.Prolog
             // not investigation — Raka should run and break line of sight.
             if (mind == Mind.Pursue && !IsBlitzStunned) return "LARI! Putus pandangannya, lalu sembunyi di lemari!";
             if (!Has("EVENT_P0_POWERBANK_TAKEN")) return "Temukan powerbank Damar di ruang jahit. Gunakan rak dan lemari untuk bersembunyi.";
-            if (!Has(HandycamId)) return "Sisir lorong-lorong bawah: tas Damar terlihat di ujung timur. Kameranya pasti di ruang terdalam.";
+            if (!Has(HandycamId)) return "Sisir lorong-lorong bawah sampai ketemu kamera Damar. Tasnya terlihat di ujung timur.";
             return "Putar rekaman terakhir di handycam Damar.";
         }
         public void Handle(AtmajaItem item)
@@ -157,7 +157,7 @@ namespace LayarTerakhir.Prolog
             else if (item.action == AtmajaAction.DamarBag)
             {
                 Hud.OpenDocumentModal(DamarNoteTitle, DamarNoteText, null);
-                Hud.EnqueueSubtitle("Raka", "Tas Damar... jadi kameranya dia umpetin di ruang paling ujung. Gue harus ke sana.", 4);
+                Hud.EnqueueSubtitle("Raka", "Tas Damar... kameranya nggak ada di sini. Pasti ketinggalan di suatu tempat di bawah sini.", 4);
                 director.Objective();
             }
             else if (item.action == AtmajaAction.WardrobeHide && !IsHidden && Time.time >= nextHideTime) EnterWardrobe(item.transform);

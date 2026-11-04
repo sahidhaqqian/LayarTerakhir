@@ -190,8 +190,10 @@ namespace LayarTerakhir.Prolog
                     case AtmajaAction.ClockHands: flag = "ITEM_P0_CLOCK_HANDS"; break;
                     case AtmajaAction.Crowbar: flag = "ITEM_P0_CROWBAR"; break;
                     case AtmajaAction.Powerbank: flag = "EVENT_P0_POWERBANK_TAKEN"; break;
-                    // Handycam refuses before the powerbank is hooked up.
-                    case AtmajaAction.Handycam: flag = AtmajaBasementHorror.HandycamId; gate = () => Has("EVENT_P0_POWERBANK_TAKEN"); break;
+                    // Designer Nov: the crypt handycam must blink from the
+                    // start — the player finds it by exploring, no spoiler.
+                    // (Taking it early just points back to the powerbank.)
+                    case AtmajaAction.Handycam: flag = AtmajaBasementHorror.HandycamId; break;
                     case AtmajaAction.Diary: flag = DiaryId; break;
                     case AtmajaAction.WillLetter: flag = WillId; break;
                     case AtmajaAction.BathCurtain: flag = "EVENT_P0_CURTAIN_OPEN"; break;

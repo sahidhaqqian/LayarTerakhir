@@ -236,7 +236,7 @@ namespace LayarTerakhir.Editor.Tests
                 (P(4.15f,1.7f),P(4.05f,1.05f),"ward2-exit2"),(P(4.05f,1.05f),P(4.15f,1.7f),"exit2-back"),
                 (P(4.15f,1.7f),P(4.2f,3.8f),"north-return"),(P(4.2f,3.8f),P(1.5f,3.8f),"east-mid-return"),
                 (P(1.5f,3.8f),P(1.1f,1.5f),"mid-ladder"),
-                (P(2.2f,6.3f),P(2.5f,6.9f),"spawn-arch"),(P(2.5f,6.9f),P(2.5f,7.5f),"arch-flood"),(P(2.5f,7.5f),P(2.1f,5.45f),"arch-back"),
+                (P(2.2f,6.3f),P(2.5f,6.9f),"spawn-arch"),(P(2.5f,6.9f),P(2.5f,7.5f),"arch-flood"),(P(2.5f,7.5f),P(2.5f,6.9f),"flood-center"),(P(2.5f,6.9f),P(2.1f,5.45f),"center-back"),
                 (P(2.5f,7.5f),P(6.0f,7.7f),"flood-lane"),(P(6.0f,7.7f),P(6.0f,9.0f),"lane-gapS"),
                 (P(6.0f,9.0f),P(7.5f,9.0f),"gapS-east"),(P(7.5f,9.0f),P(9.0f,9.2f),"east-lane"),
                 (P(9.0f,9.2f),P(9.6f,8.3f),"lane-nook"),(P(9.6f,8.3f),P(9.5f,7.5f),"nook-cross"),
@@ -274,6 +274,26 @@ namespace LayarTerakhir.Editor.Tests
             foreach(var s in tour)all=Seg(s.Item1,s.Item2,s.Item3)&&all;
             Debug.Log("CELLAR_SWEEP r="+r+" h="+h+" blocked=["+blocked+"]");
             Assert.That(all,Is.True,"Cellar floor routes walkable, blockers: "+blocked);
+            // R1 archive dressing: real CC0 props, URP Lit with diffuse wired.
+            foreach(var prop in new[]{"MazeCardboardBox_1","MazeCardboardBox_2","MazeSuitcasePair","MazeCementBag"})
+            {
+                var go=GameObject.Find(prop);
+                Assert.That(go,Is.Not.Null,prop+" dresses R1");
+                var rs=go.GetComponentsInChildren<Renderer>();
+                Assert.That(rs.Length,Is.GreaterThan(0),prop+" has visible meshes");
+                foreach(var rr in rs)foreach(var mm in rr.sharedMaterials)
+                {
+                    Assert.That(mm,Is.Not.Null,prop+" slot wired");
+                    Assert.That(mm.shader.name,Is.EqualTo("Universal Render Pipeline/Lit"),prop+" uses URP Lit");
+                    Assert.That(mm.GetTexture("_BaseMap"),Is.Not.Null,prop+" keeps its CC0 diffuse");
+                }
+            }
+            // Nyonya's maze patrol posts must all fit her capsule.
+            foreach(var wp in Object.FindObjectsByType<Transform>(FindObjectsSortMode.None).Where(t=>t&&t.name.StartsWith("MazeBranchPatrol")))
+            {
+                var hits=Physics.OverlapCapsule(wp.position+Vector3.up*r,wp.position+Vector3.up*(h-r),r,~0,QueryTriggerInteraction.Ignore).Where(c=>c!=cc&&!c.transform.IsChildOf(p.transform)).ToArray();
+                Assert.That(hits.Length,Is.Zero,wp.name+" fits a capsule, blocked by "+string.Join(",",hits.Select(c=>c.name)));
+            }
             // Damar's handycam hides in the crypt far corner: reachable and
             // visible from the crypt aisle, not from the main rooms.
             d.PlacePlayer(d.P(14.0f, 14.0f, -2.79f),Quaternion.identity);p.MovementLocked=false;p.enabled=false;
@@ -283,6 +303,11 @@ namespace LayarTerakhir.Editor.Tests
             p.transform.rotation=Quaternion.LookRotation(cflat);p.SetViewPitch(-Mathf.Atan2(cdelta.y,cflat.magnitude)*Mathf.Rad2Deg);p.GetComponent<ShoulderCameraRig>().RefreshCameraPose();
             yield return null;yield return null;Physics.SyncTransforms();
             Assert.That(p.GetComponent<InteractionInteractor>().CurrentTarget,Is.SameAs(camItem),"Hidden handycam is framed from the crypt aisle");
+            // No spoiler anywhere: the camera blinks on its own body instead.
+            var blink=camItem.GetComponent<PickupBlink>();
+            Assert.That(blink,Is.Not.Null,"Handycam carries an on-body blink");
+            Assert.That(blink.ShouldShow(),Is.True,"Handycam blinks so explorers notice it");
+            Assert.That(AtmajaBasementHorror.DamarNoteText.ToLowerInvariant(),Does.Not.Contain("umpetin").And.Not.Contain("paling ujung"),"Bag note never names the hiding place");
             // Each hiding locker conceals Raka and lets him back out.
             foreach(var spot in new[]{(14.2f,4.4f,"MazeWardrobeA"),(9.5f,15.8f,"MazeWardrobeB"),(1.9f,10.0f,"MazeWardrobeC")})
             {
@@ -303,6 +328,59 @@ namespace LayarTerakhir.Editor.Tests
             bagItem.Interact();yield return null;
             Assert.That(HudController.Instance.documentPanel.gameObject.activeSelf,Is.True,"Bag note opens");
             HudController.Instance.documentCloseButton.onClick.Invoke();yield return null;
+            // Every maze room has a wooden door, serialized open.
+            foreach(var dn in new[]{"MazeDoorR1","MazeDoorR2","MazeDoorR3"})
+            {
+                var leaf=GameObject.Find(dn);
+                Assert.That(leaf,Is.Not.Null,dn+" leaf stands in its doorway");
+                var hd=leaf.GetComponent<HingedDoor>();
+                Assert.That(hd,Is.Not.Null,dn+" swings on a hinge");
+                Assert.That(hd.IsOpen,Is.True,dn+" serializes open so lanes stay walkable");
+                Assert.That(leaf.GetComponent<Renderer>().sharedMaterial.name,Does.Contain("BedWood"),dn+" leaf is wood");
+                Assert.That(hd.GetInteractionPrompt(),Does.Contain("pintu"),dn+" prompt names the door");
+                Assert.That(leaf.transform.parent.GetComponent<MazeDoor>(),Is.Not.Null,dn+" auto-opens for the hunter");
+            }
+            // Nyonya shoulders a closed maze door open on approach.
+            d.basement.enabled=false;
+            d.basement.nyonya.SetActive(true);
+            d.basement.nyonya.transform.position=d.P(2.5f,6.5f,-2.79f);
+            var r3=GameObject.Find("MazeDoorR3").GetComponent<HingedDoor>();
+            r3.SetOpenImmediate(false);Physics.SyncTransforms();yield return null;
+            float dend=Time.time+4;
+            while(!r3.IsOpen&&Time.time<dend)yield return null;
+            Assert.That(r3.IsOpen,Is.True,"Nyonya opens the R3 door on approach");
+            d.basement.nyonya.SetActive(false);d.basement.enabled=true;
+            // Horror dressing, spread one theme per room, nothing repeated.
+            var circle=GameObject.Find("MazeRitualCircle");
+            Assert.That(circle,Is.Not.Null,"Ritual circle stains the crypt floor");
+            Assert.That(circle.GetComponent<Renderer>().sharedMaterial.GetTexture("_BaseMap").name,Does.Contain("RitualCircleBlood"));
+            int candles=0,flames=0,bags=0,papers=0,boxes=0,jars=0,shards=0;
+            foreach(var t in Object.FindObjectsByType<Transform>(FindObjectsSortMode.None))
+            {
+                if(!t)continue;
+                if(t.name.StartsWith("MazeCandle_"))candles++;
+                else if(t.name.StartsWith("MazeFlame_"))flames++;
+                else if(t.name.StartsWith("MazeTrashBag_"))bags++;
+                else if(t.name.StartsWith("MazeResearchPaper_"))papers++;
+                else if(t.name.StartsWith("MazeWoodBox_"))boxes++;
+                else if(t.name.StartsWith("MazeJar_"))jars++;
+                else if(t.name.StartsWith("MazeBottleShard_"))shards++;
+            }
+            Assert.That(candles,Is.EqualTo(5),"Five candles ring the star");
+            Assert.That(flames,Is.EqualTo(5),"Every candle burns");
+            Assert.That(GameObject.Find("MazeRitualBook").GetComponent<Collider>(),Is.Not.Null,"Black tome sits mid-circle");
+            Assert.That(bags,Is.InRange(10,20),"Trash-bag nest heaps up");
+            Assert.That(GameObject.Find("MazeShroud"),Is.Not.Null,"Shrouded corpse hides in the nest");
+            Assert.That(GameObject.Find("MazeBloodPool"),Is.Not.Null,"Blood pools beneath");
+            var stink=GameObject.Find("MazeStinkSmoke").GetComponent<ParticleSystem>();
+            Assert.That(stink.emission.enabled&&stink.emission.rateOverTime.constant>0,Is.True,"Stink smoke breathes over the pile");
+            Assert.That(GameObject.Find("MazeResearchTable").GetComponent<Collider>(),Is.Not.Null,"Research table stands");
+            Assert.That(papers,Is.GreaterThanOrEqualTo(4),"Scattered research papers");
+            Assert.That(boxes,Is.GreaterThanOrEqualTo(3),"Unlabeled wooden boxes");
+            Assert.That(GameObject.Find("MazeStandingRack"),Is.Not.Null,"Rack still stands");
+            Assert.That(jars,Is.GreaterThanOrEqualTo(6),"Smashed jars litter its shelves");
+            Assert.That(GameObject.Find("MazeFallenRack"),Is.Not.Null,"Second rack lies toppled");
+            Assert.That(shards,Is.GreaterThanOrEqualTo(5),"Bottle shards on the floor");
         }
         private IEnumerator CellarClimb47()
         {

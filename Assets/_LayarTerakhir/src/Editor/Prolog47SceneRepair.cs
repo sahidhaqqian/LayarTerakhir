@@ -2414,7 +2414,11 @@ namespace LayarTerakhir.Editor
             d.basement.hideAnchor3 = AnchorAt(root, "HideAnchor3", d.P(10.5f, 10.5f, -2.79f), d.P(11.3f, 10.5f, 0));
             d.basement.exitAnchor3 = AnchorAt(root, "ExitAnchor3", d.P(10.0f, 9.7f, -2.79f), d.P(11.3f, 10.5f, 0));
             // Hunter patrol covers the new loop (existing indices preserved).
-            var wps = new List<Transform>(d.basement.waypoints);
+            // Rebuilt from scratch each run: stale maze posts from previous
+            // applies are removed, never accumulated.
+            foreach (var old in root.GetComponentsInChildren<Transform>(true).Where(t => t && (t.name.StartsWith("MazePatrol") || t.name.StartsWith("MazeBranchPatrol"))).ToArray())
+                Object.DestroyImmediate(old.gameObject);
+            var wps = new List<Transform>(d.basement.waypoints.Where(t => t && !t.name.StartsWith("MazePatrol") && !t.name.StartsWith("MazeBranchPatrol")));
             int bi = 0;
             foreach (var pt in new[] { d.P(6.5f, 9.0f, -2.79f), d.P(8.0f, 9.3f, -2.79f), d.P(10.0f, 8.4f, -2.79f), d.P(8.5f, 5.0f, -2.79f) })
             {
@@ -2512,8 +2516,10 @@ namespace LayarTerakhir.Editor
             d.basement.wardrobeCol6 = wardC.GetComponent<BoxCollider>();
             d.basement.hideAnchor6 = AnchorAt(root, "HideAnchor6", d.P(1.9f, 10.0f, -2.79f), d.P(1.0f, 10.0f, 0));
             d.basement.exitAnchor6 = AnchorAt(root, "ExitAnchor6", d.P(1.9f, 9.2f, -2.79f), d.P(1.0f, 10.0f, 0));
-            // Patrol the new rooms too (existing indices preserved).
-            foreach (var pt in new[] { d.P(13.0f, 6.0f, -2.79f), d.P(14.5f, 9.0f, -2.79f), d.P(10.0f, 13.5f, -2.79f), d.P(14.0f, 14.0f, -2.79f), d.P(2.5f, 8.5f, -2.79f), d.P(2.5f, 11.0f, -2.79f) })
+            // Patrol the new rooms too (existing indices preserved). The old
+            // kitchen-well shaft drops through R3 at (2.85,11.2), so the R3
+            // post stands east of it, clear of the stones.
+            foreach (var pt in new[] { d.P(13.0f, 6.0f, -2.79f), d.P(14.5f, 9.0f, -2.79f), d.P(10.0f, 13.5f, -2.79f), d.P(14.0f, 14.0f, -2.79f), d.P(3.2f, 8.5f, -2.79f), d.P(4.5f, 10.5f, -2.79f) })
             {
                 var t = new GameObject("MazeBranchPatrol" + bi++).transform;
                 t.SetParent(root, true);
@@ -2522,6 +2528,556 @@ namespace LayarTerakhir.Editor
                 wps.Add(t);
             }
             d.basement.waypoints = wps.ToArray();
+            RebuildMazeRoom1(d, root);
+            RebuildMazeDoors(d, root);
+            RebuildMazeHorror(d, root);
+        }
+
+        // Designer Nov: the secret cellar gets its horror dressing, spread so
+        // no two rooms repeat an asset. R1 archive: research table with
+        // scattered papers, unlabeled wooden boxes, a standing rack of
+        // smashed jars plus a toppled rack with bottle shards. R2 crypt: a
+        // dried-blood star circle ringed by five candles around a black tome.
+        // R3 flooded store: a black trash-bag nest (14) with stink smoke over
+        // a half-hidden shrouded corpse and a blood pool. Idempotent.
+        private static void RebuildMazeHorror(AtmajaDirector d, Transform root)
+        {
+            var wood = Material("Repair_BedWood");
+            var paper = Material("Repair_Paper");
+            var cloth = Material("Repair_BookCloth");
+            var linen = Material("Repair_Linen");
+            var glassGrey = MazeFlatMat("MazeGlassGrey", new Color(.42f, .44f, .40f), 0f, .5f);
+            var glassGreen = MazeFlatMat("MazeGlassGreen", new Color(.13f, .26f, .14f), 0f, .55f);
+            // Ritual circle decal (dried blood on transparency).
+            var ritualPath = Mats + "MazeRitualCircle.mat";
+            var ritual = AssetDatabase.LoadAssetAtPath<Material>(ritualPath);
+            if (!ritual)
+            {
+                ritual = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+                AssetDatabase.CreateAsset(ritual, ritualPath);
+            }
+            ritual.SetTexture("_BaseMap", AssetDatabase.LoadAssetAtPath<Texture2D>(Texs + "RitualCircleBlood.png"));
+            ritual.SetColor("_BaseColor", Color.white);
+            ritual.SetFloat("_Surface", 1);
+            ritual.SetFloat("_SrcBlend", 5);
+            ritual.SetFloat("_DstBlend", 10);
+            ritual.SetFloat("_ZWrite", 0);
+            ritual.SetFloat("_Cull", 0);
+            ritual.SetFloat("_Smoothness", .3f);
+            ritual.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+            ritual.renderQueue = 3000;
+            ritual.SetOverrideTag("RenderType", "Transparent");
+            EditorUtility.SetDirty(ritual);
+            // Candle flame (emissive, no real light).
+            var flamePath = Mats + "MazeFlame.mat";
+            var flameMat = AssetDatabase.LoadAssetAtPath<Material>(flamePath);
+            if (!flameMat)
+            {
+                flameMat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+                AssetDatabase.CreateAsset(flameMat, flamePath);
+            }
+            flameMat.SetColor("_BaseColor", new Color(.05f, .02f, .01f));
+            flameMat.SetColor("_EmissionColor", new Color(1.5f, .6f, .15f));
+            flameMat.EnableKeyword("_EMISSION");
+            EditorUtility.SetDirty(flameMat);
+            var waxMat = MazeFlatMat("MazeCandleWax", new Color(.86f, .82f, .72f), 0f, .4f);
+            var bagMat = MazeFlatMat("MazeTrashBag", new Color(.02f, .02f, .025f), 0f, .55f);
+
+            // ---- R2 crypt: star circle, five candles, black tome ----
+            Quad("MazeRitualCircle", root, d.P(11f, 15.3f, -2.795f), Quaternion.Euler(90, 0, 0), new Vector2(2.4f, 2.4f), ritual);
+            var candleSpots = new[] { (11.00f, 14.22f), (9.97f, 14.97f), (10.36f, 16.17f), (11.64f, 16.17f), (12.03f, 14.97f) };
+            for (int ci = 0; ci < candleSpots.Length; ci++)
+            {
+                Delete("MazeCandle_" + ci); Delete("MazeFlame_" + ci);
+                var stick = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                stick.name = "MazeCandle_" + ci;
+                stick.transform.SetParent(root, true);
+                stick.transform.position = d.P(candleSpots[ci].Item1, candleSpots[ci].Item2, -2.79f + .11f);
+                stick.transform.localScale = new Vector3(.07f, .22f, .07f);
+                stick.GetComponent<Renderer>().sharedMaterial = waxMat;
+                stick.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+                Object.DestroyImmediate(stick.GetComponent<Collider>());
+                var flame = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                flame.name = "MazeFlame_" + ci;
+                flame.transform.SetParent(root, true);
+                flame.transform.position = d.P(candleSpots[ci].Item1, candleSpots[ci].Item2, -2.79f + .27f);
+                flame.transform.localScale = new Vector3(.05f, .09f, .05f);
+                flame.GetComponent<Renderer>().sharedMaterial = flameMat;
+                flame.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+                Object.DestroyImmediate(flame.GetComponent<Collider>());
+            }
+            Delete("MazeRitualBook"); Delete("MazeRitualPages");
+            var tome = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            tome.name = "MazeRitualBook";
+            tome.transform.SetParent(root, true);
+            tome.transform.position = d.P(11f, 15.3f, -2.79f + .025f);
+            tome.transform.localScale = new Vector3(.32f, .05f, .24f);
+            tome.GetComponent<Renderer>().sharedMaterial = cloth;
+            tome.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+            var pages = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            pages.name = "MazeRitualPages";
+            pages.transform.SetParent(root, true);
+            pages.transform.position = d.P(11f, 15.3f, -2.79f + .07f);
+            pages.transform.localScale = new Vector3(.28f, .04f, .20f);
+            pages.GetComponent<Renderer>().sharedMaterial = paper;
+            pages.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+            Object.DestroyImmediate(pages.GetComponent<Collider>());
+
+            // ---- R3 flooded store: trash-bag nest, shroud, pool, stink ----
+            for (int b = 0; b < 14; b++)
+            {
+                Delete("MazeTrashBag_" + b); Delete("MazeTrashKnot_" + b);
+                bool top = b >= 9;
+                int k = top ? b - 9 : b;
+                float ang = (top ? 20f + k * 72f : k * 40f) * Mathf.Deg2Rad;
+                float rr = top ? .25f : .42f + (k % 2) * .08f;
+                float sc = (top ? .48f : .55f) + (k % 3) * .04f;
+                var bag = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                bag.name = "MazeTrashBag_" + b;
+                bag.transform.SetParent(root, true);
+                bag.transform.position = d.P(5.6f + Mathf.Cos(ang) * rr, 11.5f + Mathf.Sin(ang) * rr, -2.79f + .20f * sc + (top ? .38f : 0f));
+                bag.transform.localScale = new Vector3(.55f * sc, .42f * sc, .55f * sc);
+                bag.transform.rotation = Quaternion.Euler(0, k * 37f, 0);
+                bag.GetComponent<Renderer>().sharedMaterial = bagMat;
+                bag.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+                if (top)
+                {
+                    var knot = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                    knot.name = "MazeTrashKnot_" + b;
+                    knot.transform.SetParent(bag.transform, false);
+                    knot.transform.localPosition = Vector3.up * .55f;
+                    knot.transform.localScale = new Vector3(.18f, .3f, .18f);
+                    knot.GetComponent<Renderer>().sharedMaterial = bagMat;
+                    knot.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+                    Object.DestroyImmediate(knot.GetComponent<Collider>());
+                }
+            }
+            Delete("MazeShroud");
+            var shroud = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+            shroud.name = "MazeShroud";
+            shroud.transform.SetParent(root, true);
+            shroud.transform.SetPositionAndRotation(d.P(5.5f, 11.3f, -2.79f + .18f), Quaternion.Euler(0, 10f, 90f));
+            shroud.transform.localScale = new Vector3(.36f, .55f, .36f);
+            shroud.GetComponent<Renderer>().sharedMaterial = linen;
+            shroud.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+            Quad("MazeBloodPool", root, d.P(5.3f, 11.1f, -2.795f), Quaternion.Euler(90, 20, 0), new Vector2(.9f, .7f), DecalMaterial("BloodSpatter", false, true));
+            // Stink smoke: same proven puff rig as the feast, sickly green.
+            Delete("MazeStinkSmoke");
+            var mist = AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/assets/Art/Phase2/Materials/OperationMist.mat");
+            if (!mist) throw new InvalidOperationException("OperationMist material missing for stink smoke");
+            var stinkPath = Mats + "MazeStinkPuff.mat";
+            var stink = AssetDatabase.LoadAssetAtPath<Material>(stinkPath);
+            if (!stink)
+            {
+                stink = new Material(mist);
+                AssetDatabase.CreateAsset(stink, stinkPath);
+            }
+            var puffTex = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/_LayarTerakhir/assets/Art/Original/Textures/Prolog47/SmokePuff.png");
+            if (!puffTex) throw new InvalidOperationException("SmokePuff texture missing");
+            stink.SetTexture("_BaseMap", puffTex);
+            EditorUtility.SetDirty(stink);
+            var stinkGo = new GameObject("MazeStinkSmoke");
+            stinkGo.transform.SetParent(root, true);
+            stinkGo.transform.position = d.P(5.6f, 11.5f, -2.2f);
+            var ps = stinkGo.AddComponent<ParticleSystem>();
+            ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            var main = ps.main;
+            main.loop = true; main.playOnAwake = true; main.duration = 3f;
+            main.startLifetime = new ParticleSystem.MinMaxCurve(1.5f, 2.2f);
+            main.startSpeed = new ParticleSystem.MinMaxCurve(.02f, .05f);
+            main.startSize = new ParticleSystem.MinMaxCurve(.12f, .24f);
+            main.startColor = new Color(.35f, .42f, .28f, .7f);
+            main.maxParticles = 20;
+            main.simulationSpace = ParticleSystemSimulationSpace.World;
+            main.gravityModifier = -.015f;
+            var emission = ps.emission;
+            emission.rateOverTime = 5f;
+            var shape = ps.shape;
+            shape.shapeType = ParticleSystemShapeType.Box;
+            shape.scale = new Vector3(.5f, .15f, .5f);
+            var pr = stinkGo.GetComponent<ParticleSystemRenderer>();
+            pr.sharedMaterial = stink;
+            pr.renderMode = ParticleSystemRenderMode.Billboard;
+            pr.sortingFudge = 0;
+
+            // ---- R1 archive: research table, wood boxes, smashed racks ----
+            Delete("MazeResearchTable");
+            var tableTop = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            tableTop.name = "MazeResearchTable";
+            tableTop.transform.SetParent(root, true);
+            tableTop.transform.position = d.P(14.6f, 10.2f, -2.79f + .75f);
+            tableTop.transform.localScale = new Vector3(.9f, .06f, .6f);
+            tableTop.GetComponent<Renderer>().sharedMaterial = wood;
+            tableTop.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+            for (int li = 0; li < 4; li++)
+            {
+                Delete("MazeTableLeg_" + li);
+                var leg = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                leg.name = "MazeTableLeg_" + li;
+                leg.transform.SetParent(root, true);
+                leg.transform.position = d.P(14.6f + (li % 2 == 0 ? -.4f : .4f), 10.2f + (li < 2 ? -.25f : .25f), -2.79f + .36f);
+                leg.transform.localScale = new Vector3(.06f, .72f, .06f);
+                leg.GetComponent<Renderer>().sharedMaterial = wood;
+                leg.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+                Object.DestroyImmediate(leg.GetComponent<Collider>());
+            }
+            float[] paperYaw = { 0f, 15f, -12f, 30f, -25f };
+            for (int pi = 0; pi < paperYaw.Length; pi++)
+            {
+                Delete("MazeResearchPaper_" + pi);
+                var sheet = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                sheet.name = "MazeResearchPaper_" + pi;
+                sheet.transform.SetParent(root, true);
+                sheet.transform.SetPositionAndRotation(
+                    d.P(14.6f + ((pi * 37) % 5 - 2) * .09f, 10.2f + ((pi * 53) % 3 - 1) * .1f, -2.79f + .782f + pi * .0015f),
+                    Quaternion.Euler(0, paperYaw[pi], 0));
+                sheet.transform.localScale = new Vector3(.21f, .004f, .3f);
+                sheet.GetComponent<Renderer>().sharedMaterial = paper;
+                sheet.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+                Object.DestroyImmediate(sheet.GetComponent<Collider>());
+            }
+            var boxSpots = new[] { (15.35f, 9.0f, .55f, 0f), (15.55f, 9.35f, .5f, 0f), (15.3f, 8.95f, .45f, .55f) };
+            for (int wi = 0; wi < boxSpots.Length; wi++)
+            {
+                Delete("MazeWoodBox_" + wi);
+                var wb = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                wb.name = "MazeWoodBox_" + wi;
+                wb.transform.SetParent(root, true);
+                wb.transform.SetPositionAndRotation(
+                    d.P(boxSpots[wi].Item1, boxSpots[wi].Item2, -2.79f + boxSpots[wi].Item3 / 2 + boxSpots[wi].Item4),
+                    Quaternion.Euler(0, wi * 9f, 0));
+                wb.transform.localScale = Vector3.one * boxSpots[wi].Item3;
+                wb.GetComponent<Renderer>().sharedMaterial = wood;
+                wb.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+            }
+            // Standing rack of smashed jars (north wall) + toppled rack (SE).
+            Delete("MazeStandingRack");
+            var rack = new GameObject("MazeStandingRack");
+            rack.transform.SetParent(root, true);
+            rack.transform.position = d.P(14.5f, 2.75f, -2.79f);
+            foreach (float px in new[] { -.55f, .55f })
+            {
+                var post = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                post.name = "MazeRackPost";
+                post.transform.SetParent(rack.transform, false);
+                post.transform.localPosition = new Vector3(px, .9f, 0);
+                post.transform.localScale = new Vector3(.08f, 1.8f, .08f);
+                post.GetComponent<Renderer>().sharedMaterial = wood;
+                post.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+                Object.DestroyImmediate(post.GetComponent<Collider>());
+            }
+            for (int si = 0; si < 3; si++)
+            {
+                var shelf = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                shelf.name = "MazeRackShelf";
+                shelf.transform.SetParent(rack.transform, false);
+                shelf.transform.localPosition = new Vector3(0, .35f + si * .6f, 0);
+                shelf.transform.localScale = new Vector3(1.2f, .06f, .4f);
+                shelf.GetComponent<Renderer>().sharedMaterial = wood;
+                shelf.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+            }
+            for (int ji = 0; ji < 6; ji++)
+            {
+                Delete("MazeJar_" + ji);
+                var jar = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                jar.name = "MazeJar_" + ji;
+                jar.transform.SetParent(rack.transform, false);
+                int shelfI = ji / 2;
+                jar.transform.localPosition = new Vector3(ji % 2 == 0 ? -.3f : .3f, .35f + shelfI * .6f + .12f, 0);
+                jar.transform.localRotation = Quaternion.Euler(ji % 2 == 0 ? 72f : -64f, ji * 31f, ji % 3 == 0 ? 18f : -12f);
+                jar.transform.localScale = new Vector3(.09f, .18f, .09f);
+                jar.GetComponent<Renderer>().sharedMaterial = glassGrey;
+                jar.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+                Object.DestroyImmediate(jar.GetComponent<Collider>());
+            }
+            for (int gi = 0; gi < 3; gi++)
+            {
+                Delete("MazeJarShard_" + gi);
+                var shard = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                shard.name = "MazeJarShard_" + gi;
+                shard.transform.SetParent(rack.transform, false);
+                shard.transform.localPosition = new Vector3(-.2f + gi * .2f, .98f, .08f);
+                shard.transform.localRotation = Quaternion.Euler(0, gi * 47f, 0);
+                shard.transform.localScale = new Vector3(.05f, .012f, .04f);
+                shard.GetComponent<Renderer>().sharedMaterial = glassGrey;
+                shard.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+                Object.DestroyImmediate(shard.GetComponent<Collider>());
+            }
+            Delete("MazeFallenRack");
+            var fallen = new GameObject("MazeFallenRack");
+            fallen.transform.SetParent(root, true);
+            fallen.transform.position = d.P(14.8f, 11.5f, -2.79f);
+            foreach (float rz in new[] { -.2f, .2f })
+            {
+                var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                rail.name = "MazeFallenRail";
+                rail.transform.SetParent(fallen.transform, false);
+                rail.transform.localPosition = new Vector3(0, .04f, rz);
+                rail.transform.localScale = new Vector3(1.2f, .08f, .08f);
+                rail.GetComponent<Renderer>().sharedMaterial = wood;
+                rail.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+            }
+            for (int fi = 0; fi < 2; fi++)
+            {
+                var plank = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                plank.name = "MazeFallenPlank";
+                plank.transform.SetParent(fallen.transform, false);
+                plank.transform.localPosition = new Vector3(-.3f + fi * .6f, .1f, 0);
+                plank.transform.localRotation = Quaternion.Euler(0, fi == 0 ? 12f : -9f, 0);
+                plank.transform.localScale = new Vector3(.25f, .04f, .6f);
+                plank.GetComponent<Renderer>().sharedMaterial = wood;
+                plank.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+                Object.DestroyImmediate(plank.GetComponent<Collider>());
+            }
+            for (int bi2 = 0; bi2 < 5; bi2++)
+            {
+                Delete("MazeBottleShard_" + bi2);
+                var bs = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                bs.name = "MazeBottleShard_" + bi2;
+                bs.transform.SetParent(fallen.transform, false);
+                bs.transform.localPosition = new Vector3(-.5f + bi2 * .25f, .012f, -.35f + (bi2 % 2) * .7f);
+                bs.transform.localRotation = Quaternion.Euler(0, bi2 * 53f, 0);
+                bs.transform.localScale = new Vector3(.04f + (bi2 % 3) * .02f, .012f, .05f);
+                bs.GetComponent<Renderer>().sharedMaterial = glassGreen;
+                bs.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+                Object.DestroyImmediate(bs.GetComponent<Collider>());
+            }
+            for (int ni = 0; ni < 2; ni++)
+            {
+                Delete("MazeBottleNeck_" + ni);
+                var neck = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                neck.name = "MazeBottleNeck_" + ni;
+                neck.transform.SetParent(fallen.transform, false);
+                neck.transform.localPosition = new Vector3(.35f - ni * .7f, .05f, .1f - ni * .3f);
+                neck.transform.localRotation = Quaternion.Euler(70f, 0, 20f * (ni == 0 ? 1f : -1f));
+                neck.transform.localScale = new Vector3(.07f, .14f, .07f);
+                neck.GetComponent<Renderer>().sharedMaterial = glassGreen;
+                neck.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+                Object.DestroyImmediate(neck.GetComponent<Collider>());
+            }
+        }
+
+        private static Material MazeFlatMat(string name, Color color, float metallic, float smooth)
+        {
+            string path = Mats + name + ".mat";
+            var mat = AssetDatabase.LoadAssetAtPath<Material>(path);
+            if (!mat)
+            {
+                mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+                AssetDatabase.CreateAsset(mat, path);
+            }
+            mat.SetColor("_BaseColor", color);
+            mat.SetFloat("_Metallic", metallic);
+            mat.SetFloat("_Smoothness", smooth);
+            EditorUtility.SetDirty(mat);
+            return mat;
+        }
+
+        // Designer Nov: every maze room gets a real wooden plank door in its
+        // main doorway — never a bare corridor gap. Leaves serialize OPEN
+        // (flat into their rooms, clear of every walk lane); Raka toggles
+        // them with E while Nyonya shoulders through via MazeDoor.
+        private static void RebuildMazeDoors(AtmajaDirector d, Transform root)
+        {
+            var wood = Material("Repair_BedWood");
+            string ipath = Mats + "MazeDoorIron.mat";
+            var iron = AssetDatabase.LoadAssetAtPath<Material>(ipath);
+            if (!iron)
+            {
+                iron = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+                AssetDatabase.CreateAsset(iron, ipath);
+            }
+            // Abandoned-house iron: rusted brown, half metal, low gloss.
+            iron.SetColor("_BaseColor", new Color(.38f, .22f, .13f));
+            iron.SetFloat("_Metallic", .55f);
+            iron.SetFloat("_Smoothness", .35f);
+            EditorUtility.SetDirty(iron);
+            var east = d.east; east.y = 0; east.Normalize();
+            var north = d.north; north.y = 0; north.Normalize();
+            // R3 flooded store: WallS opening x2.0-3.0, leaf opens south in.
+            MazeDoorLeaf("MazeDoorR3", root, d, d.P(2.0f, 6.9f, -2.79f), east, north, wood, iron);
+            // R1 archive: east-wall north gap z4.0-5.0, leaf opens east in.
+            MazeDoorLeaf("MazeDoorR1", root, d, d.P(12f, 4.0f, -2.79f), north, east, wood, iron);
+            // R2 crypt: north opening x13-14; leaf parks NORTH into R1 so the
+            // crypt-west lane behind it stays clear.
+            MazeDoorLeaf("MazeDoorR2", root, d, d.P(13f, 12.5f, -2.79f), east, -north, wood, iron);
+        }
+
+        // jambFloor = hinge-side floor point; closedL = leaf direction when
+        // shut (along the wall); openDir = where the leaf parks when open.
+        private static void MazeDoorLeaf(string name, Transform root, AtmajaDirector d, Vector3 jambFloor, Vector3 closedL, Vector3 openDir, Material wood, Material iron)
+        {
+            const float openingW = 1.0f, leafW = .92f, leafH = 2.1f;
+            Delete(name); Delete(name + "Hinge"); Delete(name + "Frame");
+            var L0 = closedL; L0.y = 0; L0.Normalize();
+            var O0 = openDir; O0.y = 0; O0.Normalize();
+            // Hinge yaw with local +X = closed leaf direction.
+            var hinge = new GameObject(name + "Hinge").transform;
+            hinge.SetParent(root, true);
+            hinge.SetPositionAndRotation(jambFloor, Quaternion.LookRotation(Vector3.Cross(L0, Vector3.up), Vector3.up));
+            var leaf = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            leaf.name = name;
+            leaf.transform.SetParent(hinge, false);
+            leaf.transform.localPosition = new Vector3(leafW / 2 - .02f, leafH / 2, 0);
+            leaf.transform.localScale = new Vector3(leafW, leafH, .06f);
+            leaf.GetComponent<Renderer>().sharedMaterial = wood;
+            leaf.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+            // Ledged planks + rusty knob ride the hinge beside the leaf (visual
+            // only, meter units — never scaled children of the leaf slab).
+            foreach (float fy in new[] { .65f, 1.45f })
+            {
+                var batten = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                batten.name = name + "Batten";
+                batten.transform.SetParent(hinge, false);
+                batten.transform.localPosition = new Vector3(leafW / 2 - .02f, fy, .045f);
+                batten.transform.localScale = new Vector3(.82f, .12f, .03f);
+                batten.GetComponent<Renderer>().sharedMaterial = wood;
+                batten.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+                Object.DestroyImmediate(batten.GetComponent<Collider>());
+            }
+            var knob = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            knob.name = name + "Knob";
+            knob.transform.SetParent(hinge, false);
+            knob.transform.localPosition = new Vector3(leafW - .12f, 1.0f, .07f);
+            knob.transform.localScale = new Vector3(.06f, .12f, .08f);
+            knob.GetComponent<Renderer>().sharedMaterial = iron;
+            knob.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+            Object.DestroyImmediate(knob.GetComponent<Collider>());
+            var hd = leaf.AddComponent<HingedDoor>();
+            hd.hinge = hinge;
+            hd.label = "Buka pintu kayu";
+            hd.locked = false;
+            hd.angle = Mathf.Clamp(Vector3.SignedAngle(L0, O0, Vector3.up), -105f, 105f);
+            var frame = new GameObject(name + "Frame").transform;
+            frame.SetParent(root, true);
+            frame.SetPositionAndRotation(jambFloor, hinge.rotation);
+            foreach (float lx in new[] { .04f, openingW - .04f })
+            {
+                var jamb = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                jamb.name = name + "Jamb";
+                jamb.transform.SetParent(frame, false);
+                jamb.transform.localPosition = new Vector3(lx, leafH / 2, 0);
+                jamb.transform.localScale = new Vector3(.08f, leafH, .12f);
+                jamb.GetComponent<Renderer>().sharedMaterial = wood;
+                jamb.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+            }
+            var lintel = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            lintel.name = name + "Lintel";
+            lintel.transform.SetParent(frame, false);
+            lintel.transform.localPosition = new Vector3(openingW / 2, leafH + .175f, 0);
+            lintel.transform.localScale = new Vector3(openingW, .35f, .12f);
+            lintel.GetComponent<Renderer>().sharedMaterial = wood;
+            lintel.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
+            var mazedoor = hinge.gameObject.AddComponent<MazeDoor>();
+            mazedoor.door = hd;
+            // Serialize shut for consistency; MazeDoor.Awake opens at runtime.
+            hd.SetOpenImmediate(false);
+        }
+
+        // Designer Nov: R1 east archive, dressed with realistic CC0 Poly Haven
+        // props (Audit/maze-dressing-cc0-sources.json) — real-world scale,
+        // authored URP materials over their diffuse + normal maps. R2/R3
+        // follow in later slices. Idempotent.
+        private static void RebuildMazeRoom1(AtmajaDirector d, Transform root)
+        {
+            const string PH = "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/";
+            foreach (string nor in new[]
+            {
+                PH + "cardboard_box_01/cardboard_box_01_nor_gl_1k.exr",
+                PH + "vintage_suitcase/vintage_suitcase_01_nor_gl_1k.png",
+                PH + "vintage_suitcase/vintage_suitcase_02_nor_gl_1k.png",
+                PH + "cement_bag/cement_bag_nor_gl_1k.exr",
+            })
+            {
+                var ni = AssetImporter.GetAtPath(nor) as TextureImporter;
+                if (ni && ni.textureType != TextureImporterType.NormalMap)
+                {
+                    ni.textureType = TextureImporterType.NormalMap;
+                    ni.SaveAndReimport();
+                }
+            }
+            var cardMat = MazePropMaterial("MazeCardboard", PH + "cardboard_box_01/cardboard_box_01_diff_1k.jpg",
+                PH + "cardboard_box_01/cardboard_box_01_nor_gl_1k.exr", 0f, .2f, .5f);
+            var caseMat1 = MazePropMaterial("MazeSuitcase1", PH + "vintage_suitcase/vintage_suitcase_01_diff_1k.png",
+                PH + "vintage_suitcase/vintage_suitcase_01_nor_gl_1k.png", .15f, .25f, .45f);
+            var caseMat2 = MazePropMaterial("MazeSuitcase2", PH + "vintage_suitcase/vintage_suitcase_02_diff_1k.png",
+                PH + "vintage_suitcase/vintage_suitcase_02_nor_gl_1k.png", .15f, .25f, .45f);
+            var cementMat = MazePropMaterial("MazeCementBag", PH + "cement_bag/cement_bag_diff_1k.jpg",
+                PH + "cement_bag/cement_bag_nor_gl_1k.exr", 0f, .1f, .35f);
+            var box1 = MazeProp(PH + "cardboard_box_01/cardboard_box_01_1k.fbx", "MazeCardboardBox_1", root,
+                d.P(13.0f, 3.0f, -2.79f), 12f, new[] { cardMat });
+            float stacked = SafeBounds(box1).max.y + .002f;
+            var box1b = SafeBounds(box1);
+            MazeProp(PH + "cardboard_box_01/cardboard_box_01_1k.fbx", "MazeCardboardBox_2", root,
+                new Vector3(box1b.center.x, stacked, box1b.center.z), -8f, new[] { cardMat });
+            MazeProp(PH + "vintage_suitcase/vintage_suitcase_1k.fbx", "MazeSuitcasePair", root,
+                d.P(15.3f, 6.0f, -2.79f), 90f, new[] { caseMat1, caseMat2 });
+            MazeProp(PH + "cement_bag/cement_bag_1k.fbx", "MazeCementBag", root,
+                d.P(12.6f, 3.4f, -2.79f), -20f, new[] { cementMat });
+        }
+
+        // Designer Nov: Rumah Atmaja has stood abandoned for decades — every
+        // prop ships dusty (matte + desaturating beige veil) unless it is
+        // iron, which rusts instead (handled per iron prop, not here).
+        private static Material MazePropMaterial(string name, string diff, string nor, float metallic, float smooth, float dust = .45f)
+        {
+            string path = Mats + name + ".mat";
+            var mat = AssetDatabase.LoadAssetAtPath<Material>(path);
+            if (!mat)
+            {
+                mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+                AssetDatabase.CreateAsset(mat, path);
+            }
+            mat.SetTexture("_BaseMap", AssetDatabase.LoadAssetAtPath<Texture2D>(diff));
+            if (!string.IsNullOrEmpty(nor))
+            {
+                var n = AssetDatabase.LoadAssetAtPath<Texture2D>(nor);
+                if (n) { mat.SetTexture("_BumpMap", n); mat.SetFloat("_BumpScale", 1f); mat.EnableKeyword("_NORMALMAP"); }
+            }
+            mat.SetColor("_BaseColor", Color.Lerp(Color.white, new Color(.78f, .74f, .66f), Mathf.Clamp01(dust)));
+            mat.SetFloat("_Metallic", metallic);
+            mat.SetFloat("_Smoothness", smooth);
+            EditorUtility.SetDirty(mat);
+            return mat;
+        }
+
+        // Real-world scale (no Resize distortion): the CC0 FBX are modeled in
+        // meters, so the holder just takes the authored yaw, grounds to the
+        // floor and fits a collider. Multi-material sets map by slot name.
+        private static GameObject MazeProp(string fbxPath, string name, Transform root, Vector3 basePos, float yawDeg, Material[] mats)
+        {
+            Delete(name);
+            var asset = AssetDatabase.LoadAssetAtPath<GameObject>(fbxPath);
+            if (!asset) throw new InvalidOperationException("Missing CC0 prop " + fbxPath);
+            var holder = new GameObject(name);
+            holder.transform.SetParent(root, true);
+            holder.transform.position = basePos;
+            var child = (GameObject)PrefabUtility.InstantiatePrefab(asset);
+            child.transform.SetParent(holder.transform, false);
+            // Yaw the mesh child, never the holder: FitCollider maps world
+            // bounds into holder-local, so a yawed holder swaps the collider
+            // extents into the world (the 90° suitcase blocked its lane).
+            child.transform.localRotation = Quaternion.Euler(0, yawDeg, 0);
+            // Recentre on the holder regardless of FBX pivot placement.
+            var pre = SafeBounds(holder);
+            Vector3 shift = holder.transform.position - pre.center; shift.y = 0;
+            child.transform.position += shift;
+            foreach (var r in child.GetComponentsInChildren<Renderer>())
+            {
+                var slots = r.sharedMaterials;
+                var mapped = new Material[slots.Length];
+                for (int i = 0; i < slots.Length; i++)
+                {
+                    string sn = slots[i] ? slots[i].name : "";
+                    int pick = 0;
+                    if (mats.Length > 1 && (sn.EndsWith("02") || sn.EndsWith("_02") || sn.Contains("02"))) pick = 1;
+                    mapped[i] = mats[Mathf.Clamp(pick, 0, mats.Length - 1)];
+                }
+                r.sharedMaterials = mapped;
+            }
+            Ground(holder, basePos.y);
+            FitCollider(holder);
+            return holder;
         }
 
         private static Transform AnchorAt(Transform root, string name, Vector3 pos, Vector3 look)
