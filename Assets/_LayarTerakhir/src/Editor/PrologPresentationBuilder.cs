@@ -20,6 +20,12 @@ namespace LayarTerakhir.Editor
         private const string Root="Assets/_LayarTerakhir/assets/Art/Characters/";
         public static void RebuildRakaOnly()
         {
+            // Hands off the designer prefab: if it already points at the
+            // current RakaDesigner rig, rebuilding from the legacy RakaRigged
+            // FBX would regress both the model and the tuned locomotion.
+            var existing = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Resources/RakaCharacter.prefab");
+            var src = existing ? PrefabUtility.GetCorrespondingObjectFromSource(existing) : null;
+            if (src && AssetDatabase.GetAssetPath(src).EndsWith("RakaDesigner.fbx", StringComparison.OrdinalIgnoreCase)) { Debug.Log("REBUILD_Raka SKIPPED designer prefab already current"); return; }
             materials.Clear();
             foreach(var guid in AssetDatabase.FindAssets("t:Material",new[]{Root+"Materials"}))
             {var material=AssetDatabase.LoadAssetAtPath<Material>(AssetDatabase.GUIDToAssetPath(guid));materials[material.name]=material;}
