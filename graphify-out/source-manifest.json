@@ -1,16 +1,16 @@
 {
   "artifacts_sha256": {
-    "GRAPH_REPORT.md": "6589c6e621bd9b8dbf5c89ac19484f6f93235b1f9cb57a3e8d5ea3833163d4ae",
-    "graph.html": "8dace390bdc5fc29b592093112973720ff0e50afe7d7ff8807a7d77c4ab3d71c",
-    "graph.json": "a124b17e971ea15b01491eba15ffe630feaa5fa33699adfdd8cc8b0d7b2c4f5d"
+    "GRAPH_REPORT.md": "d3b7fc84536346a6f9544d70133c337528e184cb757ba419a235c9ae562ac0c2",
+    "graph.html": "cdd2966fedb79ad771c8ff38aad60ab124b512a0f44757a02a8ae8fe0cee5797",
+    "graph.json": "698074714c3284d0a6385942e2bc45b7708779ec2f94db3d7b15da6779d5e74a"
   },
   "asset_file_count": 0,
   "code_file_count": 430,
-  "edge_count": 20630,
+  "edge_count": 20639,
   "graphify_version": "graphify 0.9.92",
   "ignore_sha256": "05660cd7b7a81591931d5661fb73b7124598a04c44f843eda7a7ac2107f20e17",
   "mode": "local-code-only; no LLM/community labeling",
-  "node_count": 5428,
+  "node_count": 5432,
   "referenced_source_count": 430,
   "sources_sha256": {
     "Assets/_LayarTerakhir/src/Audio/AmbientAudioLoop.cs": "7de60fa68d2b45ec199754e8c16b8ac4827306cc38d7ad32a708d93a78e83514",
@@ -97,7 +97,7 @@
     "Assets/_LayarTerakhir/src/Editor/MelatiResidenceFactory.cs": "52fa5a6552e5a7975f06943dbbfdd3aa5f6ada537bb09fb37ef4d8c92aab0b8f",
     "Assets/_LayarTerakhir/src/Editor/MelatiStreetRevision.cs": "19905f7a322eabfdb7772f3aaba4e8f756a2c296dbb8649a1e4ca9a24ef102f1",
     "Assets/_LayarTerakhir/src/Editor/NyonyaMotionRevisionBuilder.cs": "078b03dc6998c65e6df08006e457fd67afc41017a530d4d612c26cfcd1fda0d7",
-    "Assets/_LayarTerakhir/src/Editor/NyonyaMotionTests.cs": "5ba1e1fcb27d0047626c668c1352fdd7eccd04b30bf0a8f4f1878aedcce2d0a4",
+    "Assets/_LayarTerakhir/src/Editor/NyonyaMotionTests.cs": "c58589b710c0a2f1d2269d4af85446d6086fb37bbd250ce7c3d0b1e2e9b5c87e",
     "Assets/_LayarTerakhir/src/Editor/Phase1AdditionalDressing.cs": "700c9f508146ef58780bb97a82632cb294823962585e34e4b1396fa513d3da58",
     "Assets/_LayarTerakhir/src/Editor/Phase1AssetImport.cs": "d23657dedfbcdea77b869645b3cfe853e4f371ee4e59b279e71bbca7608e3a5f",
     "Assets/_LayarTerakhir/src/Editor/Phase1CampaignTests.cs": "623bbe60d224576e42db717cca49206eb00369d3e7a095c32e5ebac7d1400753",
@@ -422,7 +422,7 @@
     "Tools/retarget_nyonya_motion.py": "336e6db7f6b51d1bada7d47b889a29b150425f341a1c033bb3881f7705b4303c",
     "Tools/retarget_raka_presentation.py": "2de0673d588eb8b2b3c1671ba354aeb94b81eab689602aaceec60826de903554",
     "Tools/retexture_kenney_wood.py": "29d48432a08fc8a2ea9810fad0f39f4a913ed545e7c1e045bfdbaf18241f7528",
-    "Tools/rig_nyonya_meshy.py": "9913287934fc3782b94a2386c5ae8667e790ed9f37b8738718b95f6ea4465aa6",
+    "Tools/rig_nyonya_meshy.py": "7a8258f4d5355b99f9335193263cc0c3825db6b198f1f2a01aad8b4ad6117a47",
     "Tools/run_golden_checks.py": "e4e8815181885aea1c5047b532dfe59ebc14ce8f91dfaa180f1d927a8b217e3c",
     "Tools/run_kos_v2_checks.py": "e0c4c932afe7ba817964a146f610f41becd809dc7e56a7dbcc7e74fdcef693fb",
     "Tools/run_phase1_checks.py": "05ada3fe7b759b8db0a73a280de9b46782c1ab293a23e05fc9ab92fb2ac4ce08",

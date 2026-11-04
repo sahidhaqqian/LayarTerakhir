@@ -9,12 +9,13 @@ landmarks of THIS sculpt - no skin is transferred from any other model.
 """
 import argparse
 import json
+import math
 import sys
 from pathlib import Path
 
 import bpy
 import numpy as np
-from mathutils import Matrix, Vector
+from mathutils import Matrix, Quaternion, Vector
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'Tools'))
@@ -211,6 +212,17 @@ def build_armature(info):
     sh.head = wr + Vector((0, 0, 0.01))
     sh.tail = wr + Vector((-0.06, 0, -0.18))
     sh.parent = bones['Hand_R']
+    # skirt ring: 8 pendulum bones around the dress hem so the gown can
+    # swing with lag instead of riding the hips rigidly (game clips key
+    # them; validation poses leave them at rest). Unscaled space here;
+    # everything scales with the mesh afterwards.
+    # PIVOT AT THE WAIST, tails past the hem: rotation swings the hemband.
+    for k in range(8):
+        ang = k * math.pi / 4
+        sk = bones.new(f'Skirt_{k}')
+        sk.head = Vector((0.116 + 0.06 * math.cos(ang), -0.034 + 0.06 * math.sin(ang), 0.05))
+        sk.tail = Vector((0.116 + 0.30 * math.cos(ang), -0.034 + 0.30 * math.sin(ang), -0.95))
+        sk.parent = bones['Hips']
     # tails = child heads (pipeline convention); leaves keep explicit tails
     linked = {'Hips': 'Spine', 'Spine': 'Chest', 'Chest': 'UpperChest', 'UpperChest': 'Neck',
               'Neck': 'Head'}
@@ -314,6 +326,27 @@ def skin_heat(mesh, rig):
         region[tube & (verts[:, 0] * s > 0)] = 'arm' + side
     pools = {'head': head_segs, 'neck': head_segs, 'body': spine_segs,
              'armL': arm_segs['L'], 'armR': arm_segs['R']}
+    # skirt assignment (scaled space): hem verts go to the two angular
+    # neighbour skirt bones; above the hem blend skirt<->body pool.
+    skirt_names = [f'Skirt_{k}' for k in range(8)]
+    scx, scy = 0.10, -0.03
+    ang = np.arctan2(verts[:, 1] - scy, verts[:, 0] - scx)
+    kf = (ang + math.pi) / (math.pi / 4)
+    k0 = np.floor(kf).astype(int) % 8
+    k1 = (k0 + 1) % 8
+    f1 = kf - np.floor(kf)
+    hem = verts[:, 2] < 0.30
+    band = (verts[:, 2] >= 0.30) & (verts[:, 2] < 0.60)
+    region[hem] = 'skirt'
+    region[band] = 'skirtband'
+
+    def skirt_angular(idx):
+        out = {}
+        for vi in idx:
+            out[int(vi)] = [(f'Skirt_{int(k0[vi])}', float(1.0 - f1[vi])),
+                            (f'Skirt_{int(k1[vi])}', float(f1[vi]))]
+        return out
+
     for name in ('head', 'neck', 'body', 'armL', 'armR'):
         idx = np.where(region == name)[0]
         if len(idx) == 0:
@@ -323,6 +356,30 @@ def skin_heat(mesh, rig):
             for bn, w in weights:
                 groups[bn].add([vi], w, 'REPLACE')
         print('RIG_REGION', name, len(idx), flush=True)
+    idx = np.where(region == 'skirt')[0]
+    for vi, weights in skirt_angular(idx).items():
+        for bn, w in weights:
+            if w > 0.001:
+                groups[bn].add([vi], w, 'REPLACE')
+    print('RIG_REGION skirt', len(idx), flush=True)
+    idx = np.where(region == 'skirtband')[0]
+    if len(idx):
+        res = blend_weights(verts, idx, spine_segs)
+        tband = (verts[idx, 2] - 0.30) / 0.30
+        for r, vi in enumerate(idx):
+            tot = {}
+            for k in range(8):
+                w = (1.0 - tband[r]) * (1.0 - f1[vi] if k == int(k0[vi]) else
+                                        f1[vi] if k == int(k1[vi]) else 0.0)
+                if w > 0.001:
+                    tot[f'Skirt_{k}'] = tot.get(f'Skirt_{k}', 0.0) + w
+            for bn, w in res[int(vi)]:
+                tot[bn] = tot.get(bn, 0.0) + w * float(tband[r])
+            s = sum(tot.values()) or 1.0
+            for bn, w in tot.items():
+                if w / s > 0.001:
+                    groups[bn].add([int(vi)], float(w / s), 'REPLACE')
+        print('RIG_REGION skirtband', len(idx), flush=True)
     # topological smoothing: average each vert with its edge-neighbours so
     # no single edge spans a weight cliff (the flat-sheet artefact)
     used = sorted({g.group for v in mesh.data.vertices for g in v.groups})
@@ -359,6 +416,57 @@ def skin_heat(mesh, rig):
                 mesh.vertex_groups[colname[c]].add([vi], float(w), 'REPLACE')
     print('RIG_STAGE smoothed', flush=True)
     print('RIG_STAGE skinned', len(verts), flush=True)
+
+
+def skirt_sway(rig, kind, phase):
+    """Secondary pendulum for the gown hem: travels around the skirt with
+    lag behind the gait so the dress swings instead of riding rigidly."""
+    gait = phase * math.tau
+    # Fore-aft (about X) + horizontal swirl (about Z): both keep the hem
+    # level to second order. Never sway about Y (forward axis) — it dips
+    # the side hem first-order into the navigation floor.
+    if kind == 'Run':
+        fore, swirl, lag, rate = math.radians(3), math.radians(8), 0.7, 1.0
+    elif kind == 'Walk':
+        fore, swirl, lag, rate = math.radians(2.5), math.radians(6), 0.6, 1.0
+    elif kind == 'Windup':
+        fore, swirl, lag, rate = math.radians(1.5), math.radians(2.5), 0.3, 0.5
+    elif kind == 'Stun':
+        fore, swirl, lag, rate = math.radians(2), math.radians(3), 0.9, 0.5
+    else:
+        fore, swirl, lag, rate = math.radians(1), math.radians(2), 0.0, 0.3
+    for k in range(8):
+        ang = k * math.pi / 4
+        bone = rig.pose.bones[f'Skirt_{k}']
+        inv = bone.bone.matrix_local.to_3x3().inverted()
+        swing = fore * math.sin(gait * rate - lag + ang * 0.5)
+        sway = swirl * math.sin(gait * rate * 0.5 - lag + ang)
+        bone.rotation_mode = 'QUATERNION'
+        bone.rotation_quaternion = (Quaternion(inv @ Vector((1, 0, 0)), swing)
+                                    @ Quaternion(inv @ Vector((0, 0, 1)), sway))
+
+
+def nyonya_actions_with_skirt(rig):
+    specs = [('Idle', 2.8), ('Walk', 1.2), ('Run', .65), ('Windup', .8), ('Stun', 1.2)]
+    for name, duration in specs:
+        action = bpy.data.actions.new(name)
+        action.use_fake_user = True
+        rig.animation_data_create()
+        rig.animation_data.action = action
+        count = round(duration * 24)
+        for frame in range(count + 1):
+            bpy.context.scene.frame_set(frame + 1)
+            P.nyonya_pose(rig, name, frame / count)
+            skirt_sway(rig, name, frame / count)
+            for bone in rig.pose.bones:
+                bone.keyframe_insert('location', frame=frame + 1, group=bone.name)
+                bone.keyframe_insert('rotation_quaternion' if bone.rotation_mode == 'QUATERNION' else 'rotation_euler', frame=frame + 1, group=bone.name)
+        for curve in action.fcurves:
+            for key in curve.keyframe_points:
+                key.interpolation = 'LINEAR'
+    rig.animation_data.action = bpy.data.actions['Idle']
+    bpy.context.scene.frame_set(1)
+    return [n for n, _ in specs]
 
 
 def main():
@@ -461,7 +569,7 @@ def main():
         for o in bpy.context.scene.objects:
             if o.type == 'MESH':
                 o.hide_viewport = True
-        clips = P.nyonya_actions(rig)
+        clips = nyonya_actions_with_skirt(rig)
         for o in bpy.context.scene.objects:
             if o.type == 'MESH':
                 o.hide_viewport = False

@@ -19,7 +19,7 @@ namespace LayarTerakhir.Editor.Tests
             {
                 var clip=AssetDatabase.LoadAllAssetsAtPath(path).OfType<AnimationClip>().Single(c=>c.name==name);
                 var skin=actor.GetComponentInChildren<SkinnedMeshRenderer>();
-                Assert.That(skin.bones.Length,Is.EqualTo(56),"Retain the supplied character and shears rig");
+                Assert.That(skin.bones.Length,Is.EqualTo(64),"Retain the supplied character, skirt and shears rig");
                 clip.SampleAnimation(actor,0);var first=SkinPositions(skin,actor.transform);float maximumDeformation=0;
                 for(int step=1;step<=24;step++)
                 {
