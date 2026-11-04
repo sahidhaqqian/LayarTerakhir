@@ -3998,7 +3998,7 @@ namespace LayarTerakhir.Editor
             holder.name = "CrimsonScratchRelief";
             holder.transform.SetParent(root, true);
             holder.transform.SetPositionAndRotation(new Vector3(2.275f, 4.94f, -2.9f), Quaternion.LookRotation(east));
-            holder.transform.localScale = new Vector3(2.6f, 1.68f, 0.02f);
+            holder.transform.localScale = new Vector3(2.9f, 1.62f, 0.02f);
             Object.DestroyImmediate(holder.GetComponent<Collider>());
             holder.GetComponent<Renderer>().sharedMaterial = mat;
             holder.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
@@ -4017,7 +4017,7 @@ namespace LayarTerakhir.Editor
             var target = new GameObject("BathScratchTarget", typeof(BoxCollider), typeof(AtmajaItem));
             target.transform.SetParent(root, true);
             target.transform.SetPositionAndRotation(center, Quaternion.LookRotation(east));
-            target.GetComponent<BoxCollider>().size = new Vector3(2.6f, 1.68f, .06f);
+            target.GetComponent<BoxCollider>().size = new Vector3(2.9f, 1.62f, .06f);
             var item = target.GetComponent<AtmajaItem>();
             item.director = d; item.action = AtmajaAction.BathScratches; item.label = "Periksa bekas cakaran di dinding";
         }
