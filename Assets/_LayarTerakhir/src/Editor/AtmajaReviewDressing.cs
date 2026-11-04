@@ -141,7 +141,19 @@ namespace LayarTerakhir.Editor
             var vti=AssetImporter.GetAtPath("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/metal_grate_rusty/metal_grate_rusty_nor_gl_1k.jpg") as TextureImporter;
             if(vti&&vti.textureType!=TextureImporterType.NormalMap){vti.textureType=TextureImporterType.NormalMap;vti.SaveAndReimport();}
         }
-        private static void Chair(string name,Vector3 where,Vector3 target){var c=Model("WornWoodChair",name,where);c.transform.rotation=Facing((target-where).normalized);Ground(c,where.y);FitCollider(c);}
+        private static void Chair(string name,Vector3 where,Vector3 target)
+        {
+            // WornWoodChair.fbx shares the 13m house-shell mesh (renders as plank
+            // walls boxing the table): build the chair procedurally instead.
+            var c=new GameObject(name);c.transform.SetParent(environment,false);
+            c.transform.SetPositionAndRotation(where,Facing((target-where).normalized));
+            var wood=Plain("RepairDiningChairWood",new Color(.32f,.22f,.13f),.6f);
+            void Part(Vector3 lp,Vector3 s){var p=GameObject.CreatePrimitive(PrimitiveType.Cube);p.transform.SetParent(c.transform,false);p.transform.localPosition=lp;p.transform.localScale=s;p.GetComponent<Renderer>().sharedMaterial=wood;}
+            Part(new Vector3(0,.45f,0),new Vector3(.46f,.07f,.46f));
+            Part(new Vector3(0,.72f,-.225f),new Vector3(.46f,.55f,.07f));
+            foreach(float lx in new[]{-.19f,.19f})foreach(float lz in new[]{-.19f,.19f})Part(new Vector3(lx,.225f,lz),new Vector3(.07f,.45f,.07f));
+            Ground(c,where.y);FitCollider(c);
+        }
         private static void Door(string name,Vector3 pivot,Vector3 center,Vector3 size,string label)
         {
             var h=new GameObject(name+"Hinge").transform;h.SetParent(environment,false);h.position=pivot;var leaf=Box(name,center,size,Mat("House_MAT_WoodDoor"));leaf.transform.SetParent(h,true);var d=leaf.AddComponent<HingedDoor>();d.hinge=h;d.label=label;d.angle=-95;

@@ -113,7 +113,7 @@ namespace LayarTerakhir.Editor
                     var bounds=plaque.GetComponent<Renderer>().bounds;var text=plaque.GetComponent<TextMesh>();
                     if(bounds.size.x>.001f&&bounds.size.y>.001f)text.characterSize*=Mathf.Min((i==2?.38f:.47f)/bounds.size.x,.14f/bounds.size.y);
                 }
-                var ar=u.portraitBloodAR[i];if(ar)
+                var ar=i<u.portraitBloodAR.Length?u.portraitBloodAR[i]:null;if(ar)
                 {
                     ar.transform.position=P(x,5.375f,4.42f);var bounds=ar.GetComponent<Renderer>().bounds;var text=ar.GetComponent<TextMesh>();
                     if(bounds.size.x>.001f&&bounds.size.y>.001f)text.characterSize*=Mathf.Min(.55f/bounds.size.x,.30f/bounds.size.y);
@@ -131,11 +131,13 @@ namespace LayarTerakhir.Editor
                 { var strip = Part("VentBrokenLath", root, Vector3.zero, new Vector3(.045f, .14f, .055f), wood); strip.transform.position = P(-3.35f + i * .17f, 5.2f, 4.93f); strip.transform.rotation = Quaternion.LookRotation(d.north) * Quaternion.Euler(0, 0, i * 13 - 24); }
             }
             var scratch = u.bathScratchesAR;
+            if (!u.bathDoor) { var bd = GameObject.Find("BathroomDoor"); if (bd) u.bathDoor = bd.GetComponent<HingedDoor>(); }
+            if (!u.scratchAim) { var sa = GameObject.Find("ScratchAim"); if (sa) u.scratchAim = sa.transform; }
             if (scratch)
             {
                 var text = scratch.GetComponent<TextMesh>(); if (text) Object.DestroyImmediate(text);
                 var renderer = scratch.GetComponent<MeshRenderer>(); if (renderer) Object.DestroyImmediate(renderer);
-                scratch.transform.SetParent(u.bathDoor.transform, true);
+                if (u.bathDoor) scratch.transform.SetParent(u.bathDoor.transform, true);
                 for (int i = scratch.transform.childCount - 1; i >= 0; i--) Object.DestroyImmediate(scratch.transform.GetChild(i).gameObject);
                 for (int hand = 0; hand < 5; hand++) for (int finger = 0; finger < 4; finger++)
                 {
@@ -144,7 +146,7 @@ namespace LayarTerakhir.Editor
                     mark.transform.localRotation = Quaternion.Euler(0, 0, -18 + hand * 8);
                 }
                 Layer(scratch, AtmajaPhoneView.ARLayer);
-                u.scratchAim.SetParent(u.bathDoor.transform, true);
+                if (u.scratchAim && u.bathDoor) u.scratchAim.SetParent(u.bathDoor.transform, true);
             }
             var target = Find("BathScratchTarget"); if (target) { var collider = target.GetComponent<Collider>(); if (collider) collider.enabled = false; }
             if (u.bathCurtain)
@@ -158,34 +160,36 @@ namespace LayarTerakhir.Editor
                 }
             }
             if (u.bathWater) { Move(u.bathWater, P(-1.1f, .8f, 4.15f)); u.bathWater.transform.localScale = new Vector3(1.34f, .025f, .56f); }
-            var bed=Find("MasterBed");if(bed){KosVisualV2.Resize(bed,new Vector3(1.0f,.65f,1.9f));Move(bed,P(1.75f,3.1f,4.15f));Refit(bed);}
-            var chandelier=Find("VoidChandelier");if(chandelier){KosVisualV2.Resize(chandelier,new Vector3(.8f,1.0f,.8f));Move(chandelier,P(3.7f,4.9f,6.35f));Refit(chandelier);}
+            var bed=Find("MasterBed");if(bed){bed.SetActive(true);KosVisualV2.Resize(bed,new Vector3(1.0f,.65f,1.9f));Move(bed,P(1.75f,3.1f,4.15f));Refit(bed);}
+            var chandelier=Find("VoidChandelier");if(chandelier){chandelier.SetActive(true);KosVisualV2.Resize(chandelier,new Vector3(.8f,1.0f,.8f));Move(chandelier,P(3.7f,4.9f,6.35f));Refit(chandelier);}
             var chandelierLight=Find("ChandelierLight");if(chandelierLight)chandelierLight.transform.position=P(3.7f,4.9f,6.1f);
             var mattress=Find("MasterMattress");if(mattress){mattress.transform.localScale=new Vector3(.92f,.18f,1.8f);mattress.transform.position=P(1.75f,3.1f,4.3f);}
             Move(Find("MasterPillow"),P(1.75f,2.4f,4.46f));Move(Find("MasterNightstand"),P(2.05f,1.8f,4.13f));Move(Find("MasterAlarmClock"),P(2.05f,1.8f,4.53f));
             Move(Find("MasterRocker"),P(2.0f,1.1f,4.32f));Move(Find("MasterDresser"),P(2.05f,.35f,4.45f));Move(Find("MasterCandle"),P(2.05f,.35f,4.85f));
             // Open into the rooms. The old leaves spanned the entire 1.1m corridor,
             // making the return chase impassable after exploring the bathroom/master.
-            u.masterDoor.hinge.SetPositionAndRotation(P(1.85f,5.2f,3.82f),Quaternion.identity);
-            u.masterDoor.transform.SetPositionAndRotation(P(1.3f,5.2f,4.92f),Quaternion.LookRotation(d.north));u.masterDoor.angle=-95;
-            u.bathDoor.hinge.SetPositionAndRotation(P(-.65f,5.2f,3.82f),Quaternion.identity);
-            u.bathDoor.transform.SetPositionAndRotation(P(-1.1f,5.2f,4.82f),Quaternion.LookRotation(d.north));u.bathDoor.angle=-95;
-            u.childDoor.angle=95;
+            if (!u.masterDoor) { var md = GameObject.Find("MasterBedroomDoor"); if (md) u.masterDoor = md.GetComponent<HingedDoor>(); }
+            if (!u.childDoor) { var cd = GameObject.Find("ChildBedroomDoor"); if (cd) u.childDoor = cd.GetComponent<HingedDoor>(); }
+            if (u.masterDoor && u.masterDoor.hinge) u.masterDoor.hinge.SetPositionAndRotation(P(1.85f,5.2f,3.82f),Quaternion.identity);
+            if (u.masterDoor) { u.masterDoor.transform.SetPositionAndRotation(P(1.3f,5.2f,4.92f),Quaternion.LookRotation(d.north));u.masterDoor.angle=-95; }
+            if (u.bathDoor && u.bathDoor.hinge) u.bathDoor.hinge.SetPositionAndRotation(P(-.65f,5.2f,3.82f),Quaternion.identity);
+            if (u.bathDoor) { u.bathDoor.transform.SetPositionAndRotation(P(-1.1f,5.2f,4.82f),Quaternion.LookRotation(d.north));u.bathDoor.angle=-95; }
+            if (u.childDoor) u.childDoor.angle=95;
             Move(Find("BathSink"),P(-.05f,3.5f,4.35f));Move(Find("BathMirror"),P(.1f,3.5f,5.0f));
             // A shaped enamel cup replaces the old solid cube while retaining its interaction root.
             if (u.childCup)
             {
-                u.childCup.GetComponent<Renderer>().enabled = false;
+                var cupR = u.childCup.GetComponent<Renderer>(); if (cupR) cupR.enabled = false;
                 var oldCup=Find("BimaMilkCupMesh");if(oldCup)Object.DestroyImmediate(oldCup);
                 var cup = Model("EnamelMug", "BimaMilkCupMesh", P(-5, .62f, 4.66f), new Vector3(.09f, .09f, .09f), Existing("ChildCupWhite")); cup.transform.SetParent(u.childCup.transform, true);
-                var glow = new GameObject("MilkCupARAura", typeof(Light)); glow.transform.SetParent(root, false); glow.transform.position = u.cupAim.position + Vector3.up * .1f;
+                var glow = new GameObject("MilkCupARAura", typeof(Light)); glow.transform.SetParent(root, false); glow.transform.position = (u.cupAim ? u.cupAim.position : P(-5, .62f, 4.66f)) + Vector3.up * .1f;
                 var light = glow.GetComponent<Light>(); light.type = LightType.Point; light.range = .7f; light.intensity = .25f; light.color = new Color(1, .05f, .02f); light.shadows = LightShadows.None; atmosphere.cupAura = light;
             }
             var reflection = Component<AtmajaMirrorReflection>(); reflection.director = d;
             var plane = Part("BathroomMirrorSurface", root, Vector3.zero, new Vector3(.43f, .64f, 1), Mat("CompletionMirrorGlass", new Color(.55f, .60f, .58f), true), PrimitiveType.Quad);
             plane.transform.SetPositionAndRotation(P(.035f, 3.5f, 5.0f), Quaternion.LookRotation(-d.east));
             reflection.mirrorPlane = plane.transform; reflection.surface = plane.GetComponent<Renderer>(); reflection.reflectionMaterial = plane.GetComponent<Renderer>().sharedMaterial;
-            u.mirrorSpot.position=plane.transform.position;
+            if (u.mirrorSpot) u.mirrorSpot.position=plane.transform.position;
             if (u.mirrorFlashFigure) { Layer(u.mirrorFlashFigure, AtmajaMirrorReflection.ReflectionLayer); Move(u.mirrorFlashFigure, P(-1.65f, 3.25f, 4.7f)); }
             for (int i = 0; i < 3; i++)
             {
@@ -255,7 +259,7 @@ namespace LayarTerakhir.Editor
             var furniture = new List<GameObject>();
             foreach (var item in root.parent.GetComponentsInChildren<Transform>(true).Where(t => t.name == "FallenVaultTable" || t.name == "FallenVaultChair").ToArray())
             {
-                if (item.name == "FallenVaultTable") { KosVisualV2.Resize(item.gameObject, new Vector3(1.65f, .90f, .50f)); Move(item.gameObject, P(5.1f, 7.25f, 1.0f)); }
+                if (item.name == "FallenVaultTable") { item.gameObject.SetActive(true); if (item.GetComponentsInChildren<Renderer>(true).Length == 0) { var wm = Mat("CompletionVaultWood", new Color(.35f,.24f,.14f)); Part("FallenVaultTop", item.transform, new Vector3(0,.45f,0), new Vector3(1.65f,.08f,.5f), wm, PrimitiveType.Cube, true); foreach (float lx in new[]{-.75f,.75f}) foreach (float lz in new[]{-.2f,.2f}) Part("FallenVaultLeg", item.transform, new Vector3(lx,.2f,lz), new Vector3(.08f,.4f,.08f), wm); } else KosVisualV2.Resize(item.gameObject, new Vector3(1.65f, .90f, .50f)); Move(item.gameObject, P(5.1f, 7.25f, 1.0f)); }
                 else { Move(item.gameObject, P(4.2f, 7.15f + furniture.Count * .25f, .8f)); foreach (var col in item.GetComponentsInChildren<Collider>()) col.enabled = false; }
                 furniture.Add(item.gameObject); item.gameObject.SetActive(false);
             }

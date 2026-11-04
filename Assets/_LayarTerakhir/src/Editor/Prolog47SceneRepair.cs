@@ -2193,6 +2193,32 @@ namespace LayarTerakhir.Editor
                             t.position += target;
                 }
             }
+            // WornWoodChair.fbx shares the 13m house-shell mesh, so the four
+            // feast chairs + scare chair render as plank walls boxing the table.
+            // Replace their visuals procedurally (positions/facing kept).
+            // NOTE: Old("House_MAT_WoodDoor") resolves null (only .001-.004
+            // variants exist), so use the guaranteed repair wood instead.
+            {
+                var chairWood = Material("Repair_SideTableWood");
+                foreach (var tr in env.GetComponentsInChildren<Transform>(true).Where(t => t && (t.name == "WornDiningChair" || t.name == "EmptyARScareChair")).ToArray())
+                {
+                    var nm = tr.name; var pos = tr.position; var rot = tr.rotation;
+                    Object.DestroyImmediate(tr.gameObject);
+                    var c = new GameObject(nm); c.transform.SetParent(env, false);
+                    c.transform.SetPositionAndRotation(pos, rot);
+                    void Part(Vector3 lp, Vector3 s)
+                    {
+                        var p = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                        p.transform.SetParent(c.transform, false);
+                        p.transform.localPosition = lp; p.transform.localScale = s;
+                        p.GetComponent<Renderer>().sharedMaterial = chairWood;
+                    }
+                    Part(new Vector3(0, .45f, 0), new Vector3(.46f, .07f, .46f));
+                    Part(new Vector3(0, .72f, -.225f), new Vector3(.46f, .55f, .07f));
+                    foreach (float lx in new[] { -.19f, .19f }) foreach (float lz in new[] { -.19f, .19f })
+                        Part(new Vector3(lx, .225f, lz), new Vector3(.07f, .45f, .07f));
+                }
+            }
             Save();
             Debug.Log("PROLOG47_RUMAH_ATMAJA_DINING_FIX_APPLIED table surface, feast seating, clock hands");
         }
@@ -2354,6 +2380,303 @@ namespace LayarTerakhir.Editor
         // Review-only capture: one framebuffer per basement room with a
         // temporary neutral fill light on the camera so dust/rust reads even
         // in the dim horror grade. Never saved into the scene.
+        // Full-house visual sweep: one framebuffer per room plus straight-up
+        // ceiling views, to catch floaters, blocked furniture and gate
+        // oddities in the CURRENT scene. Review-only, never saved.
+        public static void CaptureAtmajaSweep()
+        {
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            const string folder = "Audit/Visuals/House-Sweep";
+            System.IO.Directory.CreateDirectory(folder);
+            var camGo = new GameObject("HouseSweepCam", typeof(Camera));
+            var cam = camGo.GetComponent<Camera>();
+            cam.enabled = false; cam.nearClipPlane = .05f; cam.farClipPlane = 120f;
+            cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = Color.black;
+            var fill = camGo.AddComponent<Light>();
+            fill.type = LightType.Point; fill.range = 9f; fill.intensity = 1.6f;
+            fill.color = new Color(1f, 1f, 1f); fill.shadows = LightShadows.None;
+            // All camera spots sit on audit-walked capsule-clear waypoints.
+            var shots = new (string, Vector3, Vector3)[]
+            {
+                ("01-gate", d.P(0f, -13.5f, 1.7f), d.P(0f, -6f, 2.5f)),
+                ("02-courtyard", d.P(0f, -10f, 1.6f), d.P(0f, -4f, 2f)),
+                ("03-kitchen", d.P(4.5f, 9f, 2f), d.P(2.85f, 11.2f, .3f)),
+                ("04-dining", d.P(3.7f, 7.5f, 2f), d.P(3.7f, 4.9f, 1f)),
+                ("05-dining-up", d.P(4.0f, 6.0f, 1.2f), d.P(4.0f, 6.0f, 3.5f)),
+                ("06-sitting", d.P(-1.4f, 4.1f, 2.1f), d.P(-4.5f, 3f, 1f)),
+                ("07-sitting-up", d.P(-3.4f, 3.9f, 1.2f), d.P(-3.4f, 3.9f, 3.5f)),
+                ("08-stairs", d.P(-3.55f, 8.2f, 2.1f), d.P(1.05f, 7f, 2.5f)),
+                ("09-upper-corridor", d.P(1.3f, 5.75f, 5.4f), d.P(-3.3f, 5.75f, 4.8f)),
+                ("10-child-room", d.P(-3f, 3.5f, 5.2f), d.P(-4f, 2.5f, 4.2f)),
+                ("15-child-doorway", d.P(-4.65f, 4.6f, 5.2f), d.P(-3.6f, 2.8f, 4.2f)),
+                ("16-bath-doorway", d.P(-1.1f, 5.6f, 5.2f), d.P(-1.1f, 3.2f, 4.2f)),
+                ("17-side-up", d.P(8.2f, 2f, 1.2f), d.P(6f, 4f, 6f)),
+                ("18-gate-close", d.P(0f, -11f, 1.6f), d.P(0f, -9.5f, 1.4f)),
+                ("11-bathroom", d.P(-0.5f, 4.3f, 5.2f), d.P(-1.3f, 3f, 4.2f)),
+                ("12-balcony-rope", d.P(3.4f, 5f, 5.4f), d.P(2.5f, 5.5f, 6f)),
+                ("13-master", d.P(1.3f, 4.5f, 5.4f), d.P(.5f, 2.5f, 4f)),
+                ("14-master-up", d.P(.8f, 2.6f, 4.6f), d.P(.8f, 2.6f, 6.5f)),
+            };
+            foreach (var s in shots)
+            {
+                camGo.transform.SetPositionAndRotation(s.Item2, Quaternion.LookRotation(s.Item3 - s.Item2));
+                KosRenderDiagnosis.Capture(cam, s.Item1, false, folder);
+            }
+            Object.DestroyImmediate(camGo);
+            Debug.Log("HOUSE_SWEEP_CAPTURED " + shots.Length + " views -> " + folder);
+        }
+
+        [MenuItem("LayarTerakhir/Prolog/Find stretched geometry")]
+        public static void FindStretchedGeometry()
+        {
+            // Where do the Static__House parts live, and what spans the
+            // child room / bathroom with long triangles?
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            var hunter = d.basement.nyonya;
+            Debug.Log("STRETCH_HUNTER active=" + hunter.activeSelf + " pos=" + hunter.transform.position.ToString("F2"));
+            var bodies = hunter.GetComponentsInChildren<SkinnedMeshRenderer>(true).Where(r => r.name == "NyonyaDesignerBody").ToArray();
+            Debug.Log("STRETCH_HUNTERBODYCOUNT " + bodies.Length);
+            foreach (var body in bodies)
+            {
+                Debug.Log("STRETCH_HUNTERMESH meshBounds=" + body.sharedMesh.bounds.size.ToString("F2") + " renderBounds=" + body.bounds.size.ToString("F2") + " verts=" + body.sharedMesh.vertexCount + " active=" + body.gameObject.activeInHierarchy);
+                Debug.Log("STRETCH_HUNTERBONES count=" + body.bones.Length + " rootscale=" + body.transform.root.GetComponentInChildren<Transform>().localScale.ToString("F2"));
+                foreach (var b in new[] { "Hips", "Head", "Hand_R", "Foot_L" })
+                {
+                    var t = body.bones.FirstOrDefault(x => x && x.name == b);
+                    if (t) Debug.Log("STRETCH_HUNTERBONE " + b + " local=" + t.localPosition.ToString("F2") + " world=" + t.position.ToString("F2"));
+                    else Debug.Log("STRETCH_HUNTERBONE " + b + " MISSING");
+                }
+                var wps = body.sharedMesh.bindposes;
+                Debug.Log("STRETCH_BINDPOSE0 Hips-equivalent magnitude=" + wps[0].MultiplyPoint3x4(Vector3.zero).magnitude.ToString("F2"));
+            }
+            var root = Find("Atmaja_Environment_Art").transform;
+            foreach (var f in root.GetComponentsInChildren<MeshFilter>(true))
+                if (f.name.StartsWith("Static__House") || f.name.StartsWith("KitchenGlass__House"))
+                    Debug.Log("STRETCH_HOUSEPART " + f.name + " parent=" + ParentChain(f.transform));
+            // child room approx d.P x -5..-2.5, bath x -2..0 (director space);
+            // streaks run wall to wall at eye height, so flag wide renderers
+            // in the upper-floor band instead of guessing rooms.
+            foreach (var r in root.GetComponentsInChildren<Renderer>(true))
+            {
+                var b = r.bounds;
+                if (b.size.x > 2.5f && b.size.y < 1.2f && b.center.y > 3.5f && b.center.y < 6.5f)
+                    Debug.Log("STRETCH_WIDE " + r.name + " " + b.center.ToString("F2") + " size " + b.size.ToString("F2") + " parent=" + ParentChain(r.transform));
+            }
+            Debug.Log("STRETCH_SCAN_DONE");
+        }
+        private static string ParentChain(Transform t)
+        {
+            var chain = t.name;
+            while (t.parent != null) { t = t.parent; chain = t.name + "/" + chain; }
+            return chain;
+        }
+        [MenuItem("LayarTerakhir/Prolog/Hide suspects and capture")]
+        public static void HideSuspectsAndCapture()
+        {
+            // Binary search for the streak source: hide curtain, louvers,
+            // quilt and blanket, capture child+bath, and QUIT WITHOUT
+            // SAVING so the scene file never changes.
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            foreach (var n in new[] { "BathCurtain", "ChildBlanket" })
+            {
+                var go = GameObject.Find(n);
+                if (go) go.SetActive(false);
+            }
+            foreach (var t in Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                if (t.name == "InteriorWoodLouver" || t.name == "Draped stitched cotton blanket")
+                    t.gameObject.SetActive(false);
+            const string folder = "Audit/Visuals/House-Sweep";
+            var camGo = new GameObject("HouseSweepCam", typeof(Camera));
+            var cam = camGo.GetComponent<Camera>();
+            cam.enabled = false; cam.nearClipPlane = .05f; cam.farClipPlane = 120f;
+            cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = Color.black;
+            var fill = camGo.AddComponent<Light>();
+            fill.type = LightType.Point; fill.range = 9f; fill.intensity = 1.6f;
+            fill.color = new Color(1f, 1f, 1f); fill.shadows = LightShadows.None;
+            var shots = new (string, Vector3, Vector3)[]
+            {
+                ("20-child-nohide-test", d.P(-3f, 3.5f, 5.2f), d.P(-4f, 2.5f, 4.2f)),
+                ("21-bath-nohide-test", d.P(-0.5f, 4.3f, 5.2f), d.P(-1.3f, 3f, 4.2f)),
+            };
+            foreach (var s in shots)
+            {
+                camGo.transform.SetPositionAndRotation(s.Item2, Quaternion.LookRotation(s.Item3 - s.Item2));
+                KosRenderDiagnosis.Capture(cam, s.Item1, false, folder);
+            }
+            Object.DestroyImmediate(camGo);
+            Debug.Log("HIDE_TEST_CAPTURED no-save");
+        }
+
+        [MenuItem("LayarTerakhir/Prolog/Verify fixes capture")]
+        public static void CaptureVerifyFixes()
+        {
+            // Verifikasi Crimson (sudah di-save via ApplyScratchRelief) +
+            // simulasi hasil rebuild balkon (rail/beam di-hide, no-save).
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            foreach (var t in Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                if (t.name == "RailTop" || t.name == "RailBaluster" || t.name == "VoidBeam")
+                {
+                    var r = t.GetComponent<Renderer>();
+                    if (r) r.enabled = false;
+                }
+            const string folder = "Audit/Visuals/House-Sweep";
+            var camGo = new GameObject("HouseSweepCam", typeof(Camera));
+            var cam = camGo.GetComponent<Camera>();
+            cam.enabled = false; cam.nearClipPlane = .05f; cam.farClipPlane = 120f;
+            cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = Color.black;
+            var fill = camGo.AddComponent<Light>();
+            fill.type = LightType.Point; fill.range = 9f; fill.intensity = 1.6f;
+            fill.color = new Color(1f, 1f, 1f); fill.shadows = LightShadows.None;
+            var shots = new (string, Vector3, Vector3)[]
+            {
+                ("22-child-verify", d.P(-3f, 3.5f, 5.2f), d.P(-4f, 2.5f, 4.2f)),
+                ("23-balcony-lookup-verify", d.P(10f, 5.5f, 1.5f), d.P(3.7f, 4.3f, 5.5f)),
+                ("24-gate-close-verify", d.P(0f, -11f, 1.6f), d.P(0f, -9.5f, 1.4f)),
+            };
+            foreach (var s in shots)
+            {
+                camGo.transform.SetPositionAndRotation(s.Item2, Quaternion.LookRotation(s.Item3 - s.Item2));
+                KosRenderDiagnosis.Capture(cam, s.Item1, false, folder);
+            }
+            Object.DestroyImmediate(camGo);
+            Debug.Log("VERIFY_FIXES_CAPTURED no-save");
+        }
+
+        [MenuItem("LayarTerakhir/Prolog/Diagnose gate capture")]
+        public static void CaptureGateDiag()
+        {
+            // Gerbang dari samping + dari dalam + balkon redup (no-save).
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            const string folder = "Audit/Visuals/House-Sweep";
+            var camGo = new GameObject("HouseSweepCam", typeof(Camera));
+            var cam = camGo.GetComponent<Camera>();
+            cam.enabled = false; cam.nearClipPlane = .05f; cam.farClipPlane = 120f;
+            cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = Color.black;
+            var fill = camGo.AddComponent<Light>();
+            fill.type = LightType.Point; fill.range = 9f; fill.intensity = .35f;
+            fill.color = new Color(1f, 1f, 1f); fill.shadows = LightShadows.None;
+            var shots = new (string, Vector3, Vector3)[]
+            {
+                ("25-gate-side", d.P(-6f, -10f, 1.6f), d.P(0f, -10f, 1.4f)),
+                ("26-gate-from-inside", d.P(0f, -8f, 1.6f), d.P(0f, -11f, 1.6f)),
+                ("27-balcony-dim", d.P(10f, 5.5f, 1.5f), d.P(3.7f, 4.3f, 5.5f)),
+            };
+            foreach (var s in shots)
+            {
+                camGo.transform.SetPositionAndRotation(s.Item2, Quaternion.LookRotation(s.Item3 - s.Item2));
+                KosRenderDiagnosis.Capture(cam, s.Item1, false, folder);
+            }
+            Object.DestroyImmediate(camGo);
+            Debug.Log("GATE_DIAG_CAPTURED no-save");
+        }
+
+        [MenuItem("LayarTerakhir/Prolog/Diagnose gate leaves")]
+        public static void CaptureLeafDiag()
+        {
+            // Tiap daun gerbang tegak lurus + 2 sudut pohon (no-save).
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            const string folder = "Audit/Visuals/House-Sweep";
+            var camGo = new GameObject("HouseSweepCam", typeof(Camera));
+            var cam = camGo.GetComponent<Camera>();
+            cam.enabled = false; cam.nearClipPlane = .05f; cam.farClipPlane = 120f;
+            cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = Color.black;
+            var fill = camGo.AddComponent<Light>();
+            fill.type = LightType.Point; fill.range = 9f; fill.intensity = .6f;
+            fill.color = new Color(1f, 1f, 1f); fill.shadows = LightShadows.None;
+            var shots = new (string, Vector3, Vector3)[]
+            {
+                ("28-leaf-left", d.P(0.74f, -13f, 1.4f), d.P(0.74f, -10f, 1.4f)),
+                ("29-leaf-right", d.P(-0.74f, -13f, 1.4f), d.P(-0.74f, -10f, 1.4f)),
+                ("30-tree-west", d.P(7f, 2.5f, 2f), d.P(3.7f, 4f, 5.2f)),
+                ("31-tree-south", d.P(9f, -1f, 2f), d.P(3.7f, 4f, 5.2f)),
+            };
+            foreach (var s in shots)
+            {
+                camGo.transform.SetPositionAndRotation(s.Item2, Quaternion.LookRotation(s.Item3 - s.Item2));
+                KosRenderDiagnosis.Capture(cam, s.Item1, false, folder);
+            }
+            Object.DestroyImmediate(camGo);
+            Debug.Log("LEAF_DIAG_CAPTURED no-save");
+        }
+
+        [MenuItem("LayarTerakhir/Prolog/Diagnose dining walls")]
+        public static void CaptureDiningDiag()
+        {
+            // Sembunyikan 8 dinding tersangka (no-save), capture meja makan
+            // + sudut jam/radio untuk identifikasi dinding ruang jam.
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            foreach (var n in new[] { "StairEnclosureFrontEast", "StairEnclosureEast", "StairHalfLandingPier", "StairHalfLanding", "StairFlightUpper", "StairFlightLower", "FrontSittingPartitionEast", "DiningVaultBlocker" })
+            {
+                var go = GameObject.Find(n);
+                if (go) go.SetActive(false);
+            }
+            const string folder = "Audit/Visuals/House-Sweep";
+            var camGo = new GameObject("HouseSweepCam", typeof(Camera));
+            var cam = camGo.GetComponent<Camera>();
+            cam.enabled = false; cam.nearClipPlane = .05f; cam.farClipPlane = 120f;
+            cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = Color.black;
+            var fill = camGo.AddComponent<Light>();
+            fill.type = LightType.Point; fill.range = 9f; fill.intensity = .6f;
+            fill.color = new Color(1f, 1f, 1f); fill.shadows = LightShadows.None;
+            var shots = new (string, Vector3, Vector3)[]
+            {
+                ("32-dining-freed", d.P(3.7f, 7.5f, 2f), d.P(3.7f, 4.9f, 1f)),
+                ("33-clock-corner", d.P(-3.5f, 1.15f, 1.6f), d.P(-5.25f, 1.15f, .8f)),
+            };
+            foreach (var s in shots)
+            {
+                camGo.transform.SetPositionAndRotation(s.Item2, Quaternion.LookRotation(s.Item3 - s.Item2));
+                KosRenderDiagnosis.Capture(cam, s.Item1, false, folder);
+            }
+            Object.DestroyImmediate(camGo);
+            Debug.Log("DINING_DIAG_CAPTURED no-save");
+        }
+
+        [MenuItem("LayarTerakhir/Prolog/Diagnose dining walls 2")]
+        public static void CaptureDiningDiag2()
+        {
+            // Varian A: sembunyikan shell, B: sembunyikan kursi, C: sitting.
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            const string folder = "Audit/Visuals/House-Sweep";
+            var camGo = new GameObject("HouseSweepCam", typeof(Camera));
+            var cam = camGo.GetComponent<Camera>();
+            cam.enabled = false; cam.nearClipPlane = .05f; cam.farClipPlane = 120f;
+            cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = Color.black;
+            var fill = camGo.AddComponent<Light>();
+            fill.type = LightType.Point; fill.range = 9f; fill.intensity = .6f;
+            fill.color = new Color(1f, 1f, 1f); fill.shadows = LightShadows.None;
+            var hidden = new System.Collections.Generic.List<GameObject>();
+            void Hide(System.Func<string, bool> pred)
+            {
+                foreach (var t in Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                    if (pred(t.name)) { t.gameObject.SetActive(false); hidden.Add(t.gameObject); }
+            }
+            void Unhide() { foreach (var g in hidden) if (g) g.SetActive(true); hidden.Clear(); }
+            void Shot(string name, Vector3 from, Vector3 to)
+            {
+                camGo.transform.SetPositionAndRotation(from, Quaternion.LookRotation(to - from));
+                KosRenderDiagnosis.Capture(cam, name, false, folder);
+            }
+            var diningFrom = d.P(3.7f, 7.5f, 2f); var diningTo = d.P(3.7f, 4.9f, 1f);
+            Hide(n => n == "RumahAtmaja_House");
+            Shot("34-dining-noshell", diningFrom, diningTo);
+            Unhide();
+            Hide(n => n.Contains("Chair"));
+            Shot("35-dining-nochairs", diningFrom, diningTo);
+            Unhide();
+            Shot("36-sitting-wide", d.P(-1.4f, 4.1f, 2.1f), d.P(-4.5f, 3f, 1f));
+            Object.DestroyImmediate(camGo);
+            Debug.Log("DINING_DIAG2_CAPTURED no-save");
+        }
+
         public static void CaptureHouseExterior()
         {
             EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
@@ -3359,7 +3682,9 @@ namespace LayarTerakhir.Editor
                 mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
                 AssetDatabase.CreateAsset(mat, mPath);
             }
-            mat.SetTexture("_BaseMap", AssetDatabase.LoadAssetAtPath<Texture2D>(dir + "CrimsonRuptureWall_albedo.png"));
+            var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(dir + "CrimsonRuptureWall_albedo.png");
+            if (!albedo) throw new InvalidOperationException("Missing designer crimson rupture albedo");
+            mat.SetTexture("_BaseMap", albedo);
             var nor = AssetDatabase.LoadAssetAtPath<Texture2D>(dir + "CrimsonRuptureWall_normal.jpg");
             if (nor) { mat.SetTexture("_BumpMap", nor); mat.SetFloat("_BumpScale", .7f); mat.EnableKeyword("_NORMALMAP"); }
             mat.SetTexture("_MetallicGlossMap", AssetDatabase.LoadAssetAtPath<Texture2D>(dir + "CrimsonRuptureWall_mask.png"));
@@ -3389,7 +3714,10 @@ namespace LayarTerakhir.Editor
             basis.SetColumn(1, new Vector4(east.x, east.y, east.z, 0));
             basis.SetColumn(2, new Vector4(0, 1, 0, 0));
             holder.transform.rotation = basis.rotation;
-            KosVisualV2.Resize(holder, new Vector3(.05f, .95f, 1.5f));
+            // FitWorldSize (not Resize): the basis rotation above is not a yaw,
+            // so Resize's yaw heuristic mis-routes axes (19m streak, crushed
+            // height). Same Meshy-pitched-root case as the wardrobe.
+            KosVisualV2.FitWorldSize(holder, new Vector3(.05f, .95f, 1.5f));
             Vector3 center = d.P(-2.27f, 2.9f, 4.94f);
             KosVisualV2.SetCenter(holder, center);
             // Re-seat the AR trace + aim + inspect target on the relief face.

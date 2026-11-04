@@ -91,6 +91,11 @@ namespace LayarTerakhir.Editor
             d.gateHinge=PairedGate(environment,d.P(0,-10,0),Quaternion.LookRotation(d.north),2.96f,AtmajaSceneBuilder.Mat("House_MAT_Iron" )??Mat("DesignerRustIron",new Color(.16f,.10f,.07f)));
             foreach(var leaf in new[]{d.gateHinge.GetComponent<DoubleLeafGate>().leftLeaf,d.gateHinge.GetComponent<DoubleLeafGate>().rightLeaf})
             {var item=leaf.gameObject.AddComponent<AtmajaItem>();item.director=d;item.action=AtmajaAction.Gate;item.label="Buka kedua daun gerbang";}
+            var oldGlow=GameObject.Find("GateBaseGlow");if(oldGlow)Object.DestroyImmediate(oldGlow);
+            var gateGlow=new GameObject("GateBaseGlow");gateGlow.transform.SetParent(environment,false);
+            gateGlow.transform.position=d.P(0,-10,.6f);
+            var glow=gateGlow.AddComponent<Light>();glow.type=LightType.Point;
+            glow.intensity=.5f;glow.range=5;glow.color=new Color(.7f,.8f,.9f);glow.shadows=LightShadows.None;
             var tree=GameObject.Find("FallenKamboja");
             if(tree)
             {

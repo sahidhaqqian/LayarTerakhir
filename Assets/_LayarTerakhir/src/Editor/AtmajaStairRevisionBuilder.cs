@@ -49,7 +49,8 @@ namespace LayarTerakhir.Editor
             var plaster=Mat("House_MAT_PlasterDamaged");var concrete=Mat("House_MAT_Concrete");var wood=Mat("Upper_WoodFloor");var trim=Mat("House_MAT_WoodDoor");
             // Full opaque enclosure. The closed door is the only ground-floor sightline into the stairs.
             Box("StairEnclosureFrontWest",P(-5.01f,6.31f,2.10f),new Vector3(1.67f,3.16f,.18f),plaster);
-            Box("StairEnclosureFrontEast",P(-.25f,6.31f,2.10f),new Vector3(5.35f,3.16f,.18f),plaster);
+            // Dining sightline: end flush with StairEnclosureEast so no stub intrudes west of the corner.
+            Box("StairEnclosureFrontEast",P(-.55f,6.31f,2.10f),new Vector3(4.75f,3.16f,.18f),plaster);
             Box("StairEnclosureDoorHeader",P(-3.55f,6.31f,3.225f),new Vector3(1.25f,.91f,.18f),plaster);
             Box("StairEnclosureWest",P(-4.36f,7.56f,2.10f),new Vector3(.18f,3.16f,2.68f),plaster);
             Box("StairEnclosureEast",P(1.79f,7.56f,3.605f),new Vector3(.18f,6.17f,2.68f),plaster);
@@ -95,6 +96,47 @@ namespace LayarTerakhir.Editor
             Physics.SyncTransforms();EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene);AssetDatabase.SaveAssets();
             if(!kos.SequenceEqual(File.ReadAllBytes(PrologKosSceneBuilder.ScenePath))||!corridor.SequenceEqual(File.ReadAllBytes(KosCorridorBuilder.ScenePath)))throw new Exception("Stair revision modified approved Kos scenes");
             Debug.Log("ATMAJA_STAIR_REVISION_APPLIED enclosed stairs, twelve closed risers per flight, supported landings, hinged door, removed storage door");
+        }
+        [MenuItem("LayarTerakhir/Prolog/Restore house shell visual only")]
+        public static void RestoreHouseVisualOnly()
+        {
+            // Manual restoration, second attempt. The full prefab restore
+            // (with its original collision hulls) fought newer content, and
+            // prefab instances can strip on bad saves. So: re-instantiate
+            // the intact FBX for VISUALS ONLY (no colliders — gameplay
+            // collision stays exactly as the houseless state), assign
+            // materials, re-cut the approved facade band, then UNPACK to
+            // plain objects so no future save can strip them again.
+            var scene = EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            d = Object.FindFirstObjectByType<AtmajaDirector>();
+            if (!d) throw new Exception("AtmajaDirector missing");
+            var environment = Find("Atmaja_Environment_Art").transform;
+            Remove("RumahAtmaja_House");
+            var go = new GameObject("RumahAtmaja_House");
+            go.transform.SetParent(environment, false);
+            var asset = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_LayarTerakhir/assets/Art/Atmaja/Models/RumahAtmaja.fbx");
+            if (!asset) throw new Exception("RumahAtmaja.fbx model missing");
+            var instance = (GameObject)PrefabUtility.InstantiatePrefab(asset);
+            if (!instance) throw new Exception("RumahAtmaja prefab instantiation failed");
+            instance.transform.SetParent(go.transform, false);
+            var concrete = go.GetComponentsInChildren<MeshFilter>(true).Where(f => f.name == "Static__House_MAT_Concrete").ToArray();
+            if (concrete.Length != 1) throw new Exception("RumahAtmaja.fbx must carry exactly one Static__House_MAT_Concrete, found " + concrete.Length);
+            foreach (var r in go.GetComponentsInChildren<Renderer>())
+            {
+                string meshName = r.GetComponent<MeshFilter>() ? r.GetComponent<MeshFilter>().sharedMesh.name : r.name;
+                string key = r.name.Contains("__") ? r.name : meshName;
+                string materialName = key.Substring(key.IndexOf("__", StringComparison.Ordinal) + 2);
+                var material = Mat(materialName);
+                if (!material) throw new Exception("Missing Atmaja material mapping: " + r.name);
+                r.sharedMaterials = Enumerable.Repeat(material, r.sharedMaterials.Length).ToArray();
+            }
+            RepairFacadeBand();
+            PrefabUtility.UnpackPrefabInstance(instance, PrefabUnpackMode.OutermostRoot, InteractionMode.AutomatedAction);
+            Physics.SyncTransforms();
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            AssetDatabase.SaveAssets();
+            Debug.Log("ATMAJA_HOUSE_VISUAL_RESTORED shell without colliders, unpacked against future strips");
         }
         private struct BandVertex
         {

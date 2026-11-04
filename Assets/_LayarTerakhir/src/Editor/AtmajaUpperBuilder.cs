@@ -379,7 +379,14 @@ namespace LayarTerakhir.Editor
             var railGuardS=Box("BalconyVoidGuardS",P(3.7f,3.4f,5.4f),new Vector3(2.6f,2.4f,.1f),wood);railGuardS.GetComponent<Renderer>().enabled=false;
             var railGuardE=Box("BalconyVoidGuardE",P(5.0f,4.3f,5.4f),new Vector3(.1f,2.4f,1.8f),wood);railGuardE.GetComponent<Renderer>().enabled=false;
             var railGuardW=Box("BalconyVoidGuardW",P(2.4f,4.3f,5.4f),new Vector3(.1f,2.4f,1.8f),wood);railGuardW.GetComponent<Renderer>().enabled=false;
-            Box("VoidBeam",P(3.7f,4.9f,6.8f),new Vector3(2.6f,.2f,.18f),wood);
+            var voidBeam=Box("VoidBeam",P(3.7f,4.9f,6.8f),new Vector3(2.6f,.2f,.18f),wood);voidBeam.GetComponent<Renderer>().enabled=false;
+            // Disembunyikan atas permintaan desainer: dari bawah terlihat
+            // seperti papan melayang. Collider tetap ada (Box solid).
+            foreach (var t in environment.GetComponentsInChildren<Transform>(true).Where(t=>t.name=="RailTop"||t.name=="RailBaluster"))
+            {
+                var r=t.GetComponent<Renderer>();
+                if(r) r.enabled=false;
+            }
             var chandelier=ExistingMapped("Chandelier_01","VoidChandelier",P(3.7f,4.9f,5.95f),new Vector3(.8f,1.4f,.8f),Mat("Upper_ChandelierBrass"),Mat("Upper_ChandelierLamp"));
             LightAt("ChandelierLight",P(3.7f,4.9f,5.3f),LightType.Point,1.6f,9,new Color(1,.82f,.6f),P(3.7f,4.9f,1.4f));
             var pivot=new GameObject("RopePivot").transform;pivot.SetParent(environment,false);pivot.position=P(2.75f,4.9f,6.68f);
