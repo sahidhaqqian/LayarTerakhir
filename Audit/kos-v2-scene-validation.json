@@ -1,11 +1,11 @@
 {
     "scene": "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity",
-    "utc": "2026-11-02T15:20:10.5138630Z",
+    "utc": "2026-11-03T16:09:56.4188240Z",
     "failures": 0,
-    "triangles": 108259,
+    "triangles": 117400,
     "renderers": 191,
     "textureMaximum": 1024,
-    "reachableGridCells": 95,
+    "reachableGridCells": 92,
     "roomDimensions": {
         "x": 5.0,
         "y": 2.799999952316284,
@@ -24,7 +24,7 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0010000411421060563
+            "measured": 0.0010000113397836686
         },
         {
             "subject": "vintage_day_bed",
@@ -38,7 +38,7 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0010000411421060563
+            "measured": 0.0010000113397836686
         },
         {
             "subject": "wooden_table_02",
@@ -52,26 +52,26 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0010000411421060563
+            "measured": 0.0010000113397836686
         },
         {
             "subject": "painted_wooden_chair_01",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (-0.50, 0.44, 0.56), Extents: (0.23, 0.43, 0.25)",
+            "detail": "Actual mesh bounds Center: (-0.40, 0.44, 0.62), Extents: (0.24, 0.43, 0.27)",
             "passed": true,
             "measured": 0.0
         },
         {
-            "subject": "bookcaseClosedDoors",
+            "subject": "MeshyBedroomWardrobe",
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0010000411421060563
+            "measured": 0.0009999815374612809
         },
         {
-            "subject": "bookcaseClosedDoors",
+            "subject": "MeshyBedroomWardrobe",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (2.12, 0.98, 1.25), Extents: (0.28, 0.98, 0.48)",
+            "detail": "Actual mesh bounds Center: (2.12, 0.98, 1.25), Extents: (0.34, 0.98, 0.50)",
             "passed": true,
             "measured": 0.0
         },
@@ -80,7 +80,7 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0010000411421060563
+            "measured": 0.0009999815374612809
         },
         {
             "subject": "painted_wooden_cabinet_02",
@@ -94,12 +94,12 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0010000411421060563
+            "measured": 0.0009999964386224747
         },
         {
             "subject": "OldPCTower",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (-0.69, 0.22, 1.43), Extents: (0.09, 0.21, 0.19)",
+            "detail": "Actual mesh bounds Center: (-0.69, 0.22, 1.43), Extents: (0.10, 0.21, 0.19)",
             "passed": true,
             "measured": 0.0
         },
@@ -108,7 +108,7 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0010000411421060563
+            "measured": 0.0010000113397836686
         },
         {
             "subject": "RefillWaterGallon",
@@ -122,7 +122,7 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0010000411421060563
+            "measured": 0.0009999964386224747
         },
         {
             "subject": "plastic_bottle_gallon",
@@ -136,7 +136,7 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0010000411421060563
+            "measured": 0.0009999964386224747
         },
         {
             "subject": "trashcan",
@@ -150,7 +150,7 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0010000411421060563
+            "measured": 0.0009999964386224747
         },
         {
             "subject": "cardboardBoxOpen",
@@ -164,7 +164,7 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0010000411421060563
+            "measured": 0.0009999964386224747
         },
         {
             "subject": "plastic_container",
@@ -178,7 +178,7 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0010000411421060563
+            "measured": 0.0010000113397836686
         },
         {
             "subject": "wicker_basket_02",
@@ -192,12 +192,12 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0010000411421060563
+            "measured": 0.0010000001639127732
         },
         {
             "subject": "KosSandals",
             "kind": "room-containment",
-            "detail": "Actual mesh bounds Center: (0.60, 0.03, -1.51), Extents: (0.12, 0.03, 0.14)",
+            "detail": "Actual mesh bounds Center: (0.60, 0.04, -1.51), Extents: (0.13, 0.03, 0.13)",
             "passed": true,
             "measured": 0.0
         },
@@ -206,7 +206,7 @@
             "kind": "floor-contact",
             "detail": "Transformed renderer minimum minus actual tile surface (metres)",
             "passed": true,
-            "measured": 0.0010000411421060563
+            "measured": 0.0009999964386224747
         },
         {
             "subject": "KosBackpack",
@@ -241,14 +241,14 @@
             "kind": "backrest-direction",
             "detail": "Upper mesh vertices must put the backrest on the side away from the desk",
             "passed": true,
-            "measured": -0.9833476543426514
+            "measured": -0.9925462007522583
         },
         {
             "subject": "DeskChair",
             "kind": "seat-height",
             "detail": "Actual mesh surface at the seat centre; detects toppled/stretched chair orientation",
             "passed": true,
-            "measured": 0.4030718207359314
+            "measured": 0.403071790933609
         },
         {
             "subject": "PC / KakiMejaKiri",
@@ -346,7 +346,7 @@
             "kind": "surface-contact",
             "detail": "Actual transformed triangle under prop on books",
             "passed": true,
-            "measured": 0.0009999871253967286
+            "measured": 0.0009999275207519532
         },
         {
             "subject": "books",
@@ -685,13 +685,6 @@
             "measured": 0.0
         },
         {
-            "subject": "bookcaseClosedDoors",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
             "subject": "painted_wooden_cabinet_02",
             "kind": "mesh-reference",
             "detail": "Visible MeshFilter must reference an imported/generated mesh",
@@ -755,48 +748,6 @@
             "measured": 0.0
         },
         {
-            "subject": "cardboardBoxOpen",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
             "subject": "DiscardedPaper0",
             "kind": "mesh-reference",
             "detail": "Visible MeshFilter must reference an imported/generated mesh",
@@ -854,293 +805,6 @@
         },
         {
             "subject": "BareWarmBulb",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "CurtainRod",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "CurtainRodBracket",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "CurtainRodBracket",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "DoorHinge",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "DoorHinge",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "DoorHinge",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "DoorHandleStem",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "DoorHandleLever",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "JacketHook",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "KosCurtains",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "wicker_basket_02_base",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "wicker_basket_02_lid",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "plastic_container",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "BagCanvas",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "BagMetal",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "BagStrap",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanBlade",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanEnamel",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanMetal",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanWallShelf",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanShelfLeftBracket",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanShelfRightBracket",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "RouterLED",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "RouterPlastic",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "RouterVent",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PowerStrip",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PowerPlug",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PlugCable",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PowerPlug",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PlugCable",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PowerPlug",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PlugCable",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "RouterPowerCable",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "RouterWallSocket",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "RouterAdapter",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "BedsideSocket",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PhoneCharger",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FlipFlop_L_Sole",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FlipFlop_R_Sole",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "wooden_table_02",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "painted_wooden_chair_01",
             "kind": "mesh-reference",
             "detail": "Visible MeshFilter must reference an imported/generated mesh",
             "passed": true,
@@ -1434,27 +1098,6 @@
             "measured": 0.0
         },
         {
-            "subject": "MonitorSignalCable",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "KeyboardCable",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "MouseCable",
-            "kind": "mesh-reference",
-            "detail": "Visible MeshFilter must reference an imported/generated mesh",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
             "subject": "computerScreen",
             "kind": "mesh-reference",
             "detail": "Visible MeshFilter must reference an imported/generated mesh",
@@ -1553,6 +1196,13 @@
             "measured": 0.0
         },
         {
+            "subject": "wooden_table_02_Model",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
             "subject": "painted_wooden_stool",
             "kind": "mesh-reference",
             "detail": "Visible MeshFilter must reference an imported/generated mesh",
@@ -1561,6 +1211,335 @@
         },
         {
             "subject": "KosBedMat",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "painted_wooden_chair_01_Model",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "cardboardBoxOpen",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "CurtainRod",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "CurtainRodBracket",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "CurtainRodBracket",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "DoorHinge",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "DoorHinge",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "DoorHinge",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "DoorHandleStem",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "DoorHandleLever",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "JacketHook",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosCurtains",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "wicker_basket_02_base",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "wicker_basket_02_lid",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "plastic_container",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "SandalRubber",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "SandalStrap",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "BagCanvas",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "BagMetal",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "BagStrap",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanBlade",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanEnamel",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanMetal",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanWallShelf",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanShelfLeftBracket",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanShelfRightBracket",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "RouterLED",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "RouterPlastic",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "RouterVent",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PowerStrip",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PowerPlug",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PlugCable",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PowerPlug",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PlugCable",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PowerPlug",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PlugCable",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "RouterPowerCable",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "RouterWallSocket",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "RouterAdapter",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "BedsideSocket",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PhoneCharger",
+            "kind": "mesh-reference",
+            "detail": "Visible MeshFilter must reference an imported/generated mesh",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture_remesh_tri",
             "kind": "mesh-reference",
             "detail": "Visible MeshFilter must reference an imported/generated mesh",
             "passed": true,
@@ -2124,7 +2103,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 194.37306213378907
+            "measured": 194.37342834472657
         },
         {
             "subject": "Window_metalDark",
@@ -2138,7 +2117,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 194.37306213378907
+            "measured": 194.37342834472657
         },
         {
             "subject": "Window_wood",
@@ -2152,7 +2131,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 194.37306213378907
+            "measured": 194.37342834472657
         },
         {
             "subject": "DarkNightBeyondWindow",
@@ -2309,30 +2288,9 @@
             "measured": 175.11184692382813
         },
         {
-            "subject": "bookcaseClosedDoors",
-            "kind": "material-reference",
-            "detail": "DoorAndWardrobeWood",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "bookcaseClosedDoors",
-            "kind": "material-reference",
-            "detail": "DoorAndWardrobeWood",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "bookcaseClosedDoors",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 400.50518798828127
-        },
-        {
             "subject": "painted_wooden_cabinet_02",
             "kind": "material-reference",
-            "detail": "painted_wooden_cabinet_02",
+            "detail": "Lit",
             "passed": true,
             "measured": 0.0
         },
@@ -2341,12 +2299,12 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 76.88668060302735
+            "measured": 76.88667297363281
         },
         {
             "subject": "painted_wooden_cabinet_02_door",
             "kind": "material-reference",
-            "detail": "painted_wooden_cabinet_02",
+            "detail": "Lit",
             "passed": true,
             "measured": 0.0
         },
@@ -2355,12 +2313,12 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 76.88533782958985
+            "measured": 76.88532257080078
         },
         {
             "subject": "painted_wooden_cabinet_02_drawer",
             "kind": "material-reference",
-            "detail": "painted_wooden_cabinet_02",
+            "detail": "Lit",
             "passed": true,
             "measured": 0.0
         },
@@ -2369,7 +2327,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 76.88668060302735
+            "measured": 76.88667297363281
         },
         {
             "subject": "wooden_bookshelf_worn",
@@ -2461,202 +2419,6 @@
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
             "measured": 0.07458377629518509
-        },
-        {
-            "subject": "cardboardBoxOpen",
-            "kind": "material-reference",
-            "detail": "Cardboard",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "cardboardBoxOpen",
-            "kind": "material-reference",
-            "detail": "Cardboard",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "cardboardBoxOpen",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.20768915116786958
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "FadedBookCovers",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "FadedBookCovers",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "FadedBookCovers",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "FadedBookCovers",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.22051209211349488
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "PaperEdges",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "PaperEdges",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "PaperEdges",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "PaperEdges",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.22051207721233369
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "FadedBookCovers",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "FadedBookCovers",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "FadedBookCovers",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "FadedBookCovers",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.22051209211349488
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "PaperEdges",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "PaperEdges",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "PaperEdges",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "PaperEdges",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.22051209211349488
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "FadedBookCovers",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "FadedBookCovers",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "FadedBookCovers",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "material-reference",
-            "detail": "FadedBookCovers",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.33261382579803469
         },
         {
             "subject": "DiscardedPaper0",
@@ -2811,636 +2573,6 @@
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
             "measured": 0.14071246981620789
-        },
-        {
-            "subject": "CurtainRod",
-            "kind": "material-reference",
-            "detail": "DarkOxidisedMetal",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "CurtainRod",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.6911354064941406
-        },
-        {
-            "subject": "CurtainRodBracket",
-            "kind": "material-reference",
-            "detail": "DoorAndWardrobeWood",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "CurtainRodBracket",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.09280090779066086
-        },
-        {
-            "subject": "CurtainRodBracket",
-            "kind": "material-reference",
-            "detail": "DoorAndWardrobeWood",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "CurtainRodBracket",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.09280090779066086
-        },
-        {
-            "subject": "DoorHinge",
-            "kind": "material-reference",
-            "detail": "WornBrass",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "DoorHinge",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.08929725736379624
-        },
-        {
-            "subject": "DoorHinge",
-            "kind": "material-reference",
-            "detail": "WornBrass",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "DoorHinge",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.08929725736379624
-        },
-        {
-            "subject": "DoorHinge",
-            "kind": "material-reference",
-            "detail": "WornBrass",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "DoorHinge",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.08929725736379624
-        },
-        {
-            "subject": "DoorHandleStem",
-            "kind": "material-reference",
-            "detail": "WornBrass",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "DoorHandleStem",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.04215454310178757
-        },
-        {
-            "subject": "DoorHandleLever",
-            "kind": "material-reference",
-            "detail": "WornBrass",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "DoorHandleLever",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.054708339273929599
-        },
-        {
-            "subject": "JacketHook",
-            "kind": "material-reference",
-            "detail": "DarkOxidisedMetal",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "JacketHook",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.06318234652280808
-        },
-        {
-            "subject": "KosCurtains",
-            "kind": "material-reference",
-            "detail": "CurtainCottonV2",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "KosCurtains",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 198.39108276367188
-        },
-        {
-            "subject": "wicker_basket_02_base",
-            "kind": "material-reference",
-            "detail": "wicker_basket_02",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "wicker_basket_02_base",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 262.5245056152344
-        },
-        {
-            "subject": "wicker_basket_02_lid",
-            "kind": "material-reference",
-            "detail": "wicker_basket_02",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "wicker_basket_02_lid",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 254.525390625
-        },
-        {
-            "subject": "plastic_container",
-            "kind": "material-reference",
-            "detail": "plastic_container",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "plastic_container",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 98.6138916015625
-        },
-        {
-            "subject": "BagCanvas",
-            "kind": "material-reference",
-            "detail": "FadedGreenJacket",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "BagCanvas",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 148.24232482910157
-        },
-        {
-            "subject": "BagMetal",
-            "kind": "material-reference",
-            "detail": "DarkOxidisedMetal",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "BagMetal",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 148.24232482910157
-        },
-        {
-            "subject": "BagStrap",
-            "kind": "material-reference",
-            "detail": "FadedGreenJacket",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "BagStrap",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 148.24232482910157
-        },
-        {
-            "subject": "FanBlade",
-            "kind": "material-reference",
-            "detail": "FanEnamelV2",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanBlade",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 153.6839141845703
-        },
-        {
-            "subject": "FanEnamel",
-            "kind": "material-reference",
-            "detail": "FanEnamelV2",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanEnamel",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 153.6839141845703
-        },
-        {
-            "subject": "FanMetal",
-            "kind": "material-reference",
-            "detail": "DarkOxidisedMetal",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanMetal",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 153.6839141845703
-        },
-        {
-            "subject": "FanWallShelf",
-            "kind": "material-reference",
-            "detail": "DoorAndWardrobeWood",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanWallShelf",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.6056607961654663
-        },
-        {
-            "subject": "FanShelfLeftBracket",
-            "kind": "material-reference",
-            "detail": "DarkOxidisedMetal",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanShelfLeftBracket",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.1711052656173706
-        },
-        {
-            "subject": "FanShelfRightBracket",
-            "kind": "material-reference",
-            "detail": "DarkOxidisedMetal",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanShelfRightBracket",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.1711052656173706
-        },
-        {
-            "subject": "RouterLED",
-            "kind": "material-reference",
-            "detail": "RouterPlasticV2",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "RouterLED",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 173.7587890625
-        },
-        {
-            "subject": "RouterPlastic",
-            "kind": "material-reference",
-            "detail": "RouterPlasticV2",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "RouterPlastic",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 173.7587890625
-        },
-        {
-            "subject": "RouterVent",
-            "kind": "material-reference",
-            "detail": "OldComputerPlastic",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "RouterVent",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 173.7587890625
-        },
-        {
-            "subject": "PowerStrip",
-            "kind": "material-reference",
-            "detail": "AgedSwitchPlastic",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PowerStrip",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.2725142240524292
-        },
-        {
-            "subject": "PowerPlug",
-            "kind": "material-reference",
-            "detail": "OldComputerPlastic",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PowerPlug",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.07119691371917725
-        },
-        {
-            "subject": "PlugCable",
-            "kind": "material-reference",
-            "detail": "OldComputerPlastic",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PlugCable",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.13714320957660676
-        },
-        {
-            "subject": "PowerPlug",
-            "kind": "material-reference",
-            "detail": "OldComputerPlastic",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PowerPlug",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.07119691371917725
-        },
-        {
-            "subject": "PlugCable",
-            "kind": "material-reference",
-            "detail": "OldComputerPlastic",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PlugCable",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.0820198580622673
-        },
-        {
-            "subject": "PowerPlug",
-            "kind": "material-reference",
-            "detail": "OldComputerPlastic",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PowerPlug",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.07119691371917725
-        },
-        {
-            "subject": "PlugCable",
-            "kind": "material-reference",
-            "detail": "OldComputerPlastic",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PlugCable",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.03787148371338844
-        },
-        {
-            "subject": "RouterPowerCable",
-            "kind": "material-reference",
-            "detail": "OldComputerPlastic",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "RouterPowerCable",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.4605196416378021
-        },
-        {
-            "subject": "RouterWallSocket",
-            "kind": "material-reference",
-            "detail": "AgedSwitchPlastic",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "RouterWallSocket",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.1583540290594101
-        },
-        {
-            "subject": "RouterAdapter",
-            "kind": "material-reference",
-            "detail": "OldComputerPlastic",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "RouterAdapter",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.09115371853113175
-        },
-        {
-            "subject": "BedsideSocket",
-            "kind": "material-reference",
-            "detail": "AgedSwitchPlastic",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "BedsideSocket",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.1583540290594101
-        },
-        {
-            "subject": "PhoneCharger",
-            "kind": "material-reference",
-            "detail": "OldComputerPlastic",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PhoneCharger",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.08124038577079773
-        },
-        {
-            "subject": "LoosePhoneChargeLead",
-            "kind": "material-reference",
-            "detail": "OldComputerPlastic",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "LoosePhoneChargeLead",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 1.7320507764816285
-        },
-        {
-            "subject": "FanLead",
-            "kind": "material-reference",
-            "detail": "OldComputerPlastic",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanLead",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 1.7320507764816285
-        },
-        {
-            "subject": "FlipFlop_L_Sole",
-            "kind": "material-reference",
-            "detail": "Repair_SandalRubber",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FlipFlop_L_Sole",
-            "kind": "material-reference",
-            "detail": "Repair_SandalFootbed",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FlipFlop_L_Sole",
-            "kind": "material-reference",
-            "detail": "Repair_SandalStrap",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FlipFlop_L_Sole",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 1.633689045906067
-        },
-        {
-            "subject": "FlipFlop_R_Sole",
-            "kind": "material-reference",
-            "detail": "Repair_SandalRubber",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FlipFlop_R_Sole",
-            "kind": "material-reference",
-            "detail": "Repair_SandalFootbed",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FlipFlop_R_Sole",
-            "kind": "material-reference",
-            "detail": "Repair_SandalStrap",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FlipFlop_R_Sole",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 1.6336711645126343
-        },
-        {
-            "subject": "wooden_table_02",
-            "kind": "material-reference",
-            "detail": "wooden_table_02",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "wooden_table_02",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 174.37652587890626
-        },
-        {
-            "subject": "painted_wooden_chair_01",
-            "kind": "material-reference",
-            "detail": "painted_wooden_chair_01",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "painted_wooden_chair_01",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 154.6887969970703
         },
         {
             "subject": "Air vent",
@@ -4031,48 +3163,6 @@
             "measured": 90.81443786621094
         },
         {
-            "subject": "MonitorSignalCable",
-            "kind": "material-reference",
-            "detail": "OldComputerPlastic",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "MonitorSignalCable",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.4541168808937073
-        },
-        {
-            "subject": "KeyboardCable",
-            "kind": "material-reference",
-            "detail": "OldComputerPlastic",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "KeyboardCable",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.19533824920654298
-        },
-        {
-            "subject": "MouseCable",
-            "kind": "material-reference",
-            "detail": "OldComputerPlastic",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "MouseCable",
-            "kind": "finite-transform",
-            "detail": "Actual world position/rotation/scale must be finite and scale positive",
-            "passed": true,
-            "measured": 0.20440654456615449
-        },
-        {
             "subject": "computerScreen",
             "kind": "material-reference",
             "detail": "OldComputerPlastic",
@@ -4304,6 +3394,20 @@
             "measured": 1.7320507764816285
         },
         {
+            "subject": "wooden_table_02_Model",
+            "kind": "material-reference",
+            "detail": "wooden_table_02",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "wooden_table_02_Model",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 174.37652587890626
+        },
+        {
             "subject": "painted_wooden_stool",
             "kind": "material-reference",
             "detail": "GoldenStool",
@@ -4330,6 +3434,804 @@
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
             "measured": 154.414794921875
+        },
+        {
+            "subject": "painted_wooden_chair_01_Model",
+            "kind": "material-reference",
+            "detail": "Lit",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "painted_wooden_chair_01_Model",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 154.68878173828126
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "FadedBookCovers",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "FadedBookCovers",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "FadedBookCovers",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "FadedBookCovers",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.22051209211349488
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "PaperEdges",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "PaperEdges",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "PaperEdges",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "PaperEdges",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.22051209211349488
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "FadedBookCovers",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "FadedBookCovers",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "FadedBookCovers",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "FadedBookCovers",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.22051209211349488
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "PaperEdges",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "PaperEdges",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "PaperEdges",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "PaperEdges",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.22051209211349488
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "FadedBookCovers",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "FadedBookCovers",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "FadedBookCovers",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "material-reference",
+            "detail": "FadedBookCovers",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.33261382579803469
+        },
+        {
+            "subject": "cardboardBoxOpen",
+            "kind": "material-reference",
+            "detail": "Cardboard",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "cardboardBoxOpen",
+            "kind": "material-reference",
+            "detail": "Cardboard",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "cardboardBoxOpen",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.20768915116786958
+        },
+        {
+            "subject": "CurtainRod",
+            "kind": "material-reference",
+            "detail": "DarkOxidisedMetal",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "CurtainRod",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.6911354064941406
+        },
+        {
+            "subject": "CurtainRodBracket",
+            "kind": "material-reference",
+            "detail": "DoorAndWardrobeWood",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "CurtainRodBracket",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.09280090779066086
+        },
+        {
+            "subject": "CurtainRodBracket",
+            "kind": "material-reference",
+            "detail": "DoorAndWardrobeWood",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "CurtainRodBracket",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.09280090779066086
+        },
+        {
+            "subject": "DoorHinge",
+            "kind": "material-reference",
+            "detail": "WornBrass",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "DoorHinge",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.08929725736379624
+        },
+        {
+            "subject": "DoorHinge",
+            "kind": "material-reference",
+            "detail": "WornBrass",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "DoorHinge",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.08929725736379624
+        },
+        {
+            "subject": "DoorHinge",
+            "kind": "material-reference",
+            "detail": "WornBrass",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "DoorHinge",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.08929725736379624
+        },
+        {
+            "subject": "DoorHandleStem",
+            "kind": "material-reference",
+            "detail": "WornBrass",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "DoorHandleStem",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.04215454310178757
+        },
+        {
+            "subject": "DoorHandleLever",
+            "kind": "material-reference",
+            "detail": "WornBrass",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "DoorHandleLever",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.054708339273929599
+        },
+        {
+            "subject": "JacketHook",
+            "kind": "material-reference",
+            "detail": "DarkOxidisedMetal",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "JacketHook",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.06318234652280808
+        },
+        {
+            "subject": "KosCurtains",
+            "kind": "material-reference",
+            "detail": "CurtainCottonV2",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosCurtains",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 198.39108276367188
+        },
+        {
+            "subject": "wicker_basket_02_base",
+            "kind": "material-reference",
+            "detail": "wicker_basket_02",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "wicker_basket_02_base",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 262.5245056152344
+        },
+        {
+            "subject": "wicker_basket_02_lid",
+            "kind": "material-reference",
+            "detail": "wicker_basket_02",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "wicker_basket_02_lid",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 254.525390625
+        },
+        {
+            "subject": "plastic_container",
+            "kind": "material-reference",
+            "detail": "plastic_container",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "plastic_container",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 98.6138916015625
+        },
+        {
+            "subject": "SandalRubber",
+            "kind": "material-reference",
+            "detail": "SandalRubberV2",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "SandalRubber",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 149.10166931152345
+        },
+        {
+            "subject": "SandalStrap",
+            "kind": "material-reference",
+            "detail": "SandalStrapV2",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "SandalStrap",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 149.10231018066407
+        },
+        {
+            "subject": "BagCanvas",
+            "kind": "material-reference",
+            "detail": "FadedGreenJacket",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "BagCanvas",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 148.24232482910157
+        },
+        {
+            "subject": "BagMetal",
+            "kind": "material-reference",
+            "detail": "DarkOxidisedMetal",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "BagMetal",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 148.24232482910157
+        },
+        {
+            "subject": "BagStrap",
+            "kind": "material-reference",
+            "detail": "FadedGreenJacket",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "BagStrap",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 148.24232482910157
+        },
+        {
+            "subject": "FanBlade",
+            "kind": "material-reference",
+            "detail": "FanEnamelV2",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanBlade",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 153.68386840820313
+        },
+        {
+            "subject": "FanEnamel",
+            "kind": "material-reference",
+            "detail": "FanEnamelV2",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanEnamel",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 153.68386840820313
+        },
+        {
+            "subject": "FanMetal",
+            "kind": "material-reference",
+            "detail": "DarkOxidisedMetal",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanMetal",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 153.68386840820313
+        },
+        {
+            "subject": "FanWallShelf",
+            "kind": "material-reference",
+            "detail": "DoorAndWardrobeWood",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanWallShelf",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.6056607961654663
+        },
+        {
+            "subject": "FanShelfLeftBracket",
+            "kind": "material-reference",
+            "detail": "DarkOxidisedMetal",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanShelfLeftBracket",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.1711052656173706
+        },
+        {
+            "subject": "FanShelfRightBracket",
+            "kind": "material-reference",
+            "detail": "DarkOxidisedMetal",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanShelfRightBracket",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.1711052656173706
+        },
+        {
+            "subject": "RouterLED",
+            "kind": "material-reference",
+            "detail": "RouterPlasticV2",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "RouterLED",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 173.7587890625
+        },
+        {
+            "subject": "RouterPlastic",
+            "kind": "material-reference",
+            "detail": "RouterPlasticV2",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "RouterPlastic",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 173.7587890625
+        },
+        {
+            "subject": "RouterVent",
+            "kind": "material-reference",
+            "detail": "OldComputerPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "RouterVent",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 173.7587890625
+        },
+        {
+            "subject": "PowerStrip",
+            "kind": "material-reference",
+            "detail": "AgedSwitchPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PowerStrip",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.2725142240524292
+        },
+        {
+            "subject": "PowerPlug",
+            "kind": "material-reference",
+            "detail": "OldComputerPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PowerPlug",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.07119691371917725
+        },
+        {
+            "subject": "PlugCable",
+            "kind": "material-reference",
+            "detail": "OldComputerPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PlugCable",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.13714320957660676
+        },
+        {
+            "subject": "PowerPlug",
+            "kind": "material-reference",
+            "detail": "OldComputerPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PowerPlug",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.07119691371917725
+        },
+        {
+            "subject": "PlugCable",
+            "kind": "material-reference",
+            "detail": "OldComputerPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PlugCable",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.0820198580622673
+        },
+        {
+            "subject": "PowerPlug",
+            "kind": "material-reference",
+            "detail": "OldComputerPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PowerPlug",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.07119691371917725
+        },
+        {
+            "subject": "PlugCable",
+            "kind": "material-reference",
+            "detail": "OldComputerPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PlugCable",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.03787148371338844
+        },
+        {
+            "subject": "RouterPowerCable",
+            "kind": "material-reference",
+            "detail": "OldComputerPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "RouterPowerCable",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.5519850850105286
+        },
+        {
+            "subject": "RouterWallSocket",
+            "kind": "material-reference",
+            "detail": "AgedSwitchPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "RouterWallSocket",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.1583540290594101
+        },
+        {
+            "subject": "RouterAdapter",
+            "kind": "material-reference",
+            "detail": "OldComputerPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "RouterAdapter",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.09115371853113175
+        },
+        {
+            "subject": "BedsideSocket",
+            "kind": "material-reference",
+            "detail": "AgedSwitchPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "BedsideSocket",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.1583540290594101
+        },
+        {
+            "subject": "PhoneCharger",
+            "kind": "material-reference",
+            "detail": "OldComputerPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PhoneCharger",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 0.08124038577079773
+        },
+        {
+            "subject": "LoosePhoneChargeLead",
+            "kind": "material-reference",
+            "detail": "OldComputerPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "LoosePhoneChargeLead",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 1.7320507764816285
+        },
+        {
+            "subject": "FanLead",
+            "kind": "material-reference",
+            "detail": "OldComputerPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanLead",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 1.7320507764816285
+        },
+        {
+            "subject": "Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture_remesh_tri",
+            "kind": "material-reference",
+            "detail": "MeshyWardrobeAuthored",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture_remesh_tri",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 141.34600830078126
         },
         {
             "subject": "BackdropStand",
@@ -4371,7 +4273,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 161.17335510253907
+            "measured": 161.17324829101563
         },
         {
             "subject": "WebcamShell",
@@ -4385,7 +4287,7 @@
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
-            "measured": 161.17340087890626
+            "measured": 161.1732940673828
         },
         {
             "subject": "SockCotton",
@@ -4536,6 +4438,48 @@
         },
         {
             "subject": "TrackedFloorWear",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 1.7320507764816285
+        },
+        {
+            "subject": "MonitorSignalCable",
+            "kind": "material-reference",
+            "detail": "OldComputerPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "MonitorSignalCable",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 1.7320507764816285
+        },
+        {
+            "subject": "KeyboardCable",
+            "kind": "material-reference",
+            "detail": "OldComputerPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KeyboardCable",
+            "kind": "finite-transform",
+            "detail": "Actual world position/rotation/scale must be finite and scale positive",
+            "passed": true,
+            "measured": 1.7320507764816285
+        },
+        {
+            "subject": "MouseCable",
+            "kind": "material-reference",
+            "detail": "OldComputerPlastic",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "MouseCable",
             "kind": "finite-transform",
             "detail": "Actual world position/rotation/scale must be finite and scale positive",
             "passed": true,
@@ -5662,20 +5606,6 @@
             "measured": 0.0
         },
         {
-            "subject": "bookcaseClosedDoors",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "bookcaseClosedDoors",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
             "subject": "painted_wooden_cabinet_02",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
@@ -5683,7 +5613,7 @@
             "measured": 0.0
         },
         {
-            "subject": "painted_wooden_cabinet_02",
+            "subject": "painted_wooden_cabinet_02_Model",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
             "passed": true,
@@ -5802,91 +5732,7 @@
             "measured": 0.0
         },
         {
-            "subject": "cardboardBoxOpen",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "cardboardBoxOpen",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
             "subject": "CardboardBoxCollision",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "books",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
             "passed": true,
@@ -6005,413 +5851,7 @@
             "measured": 0.0
         },
         {
-            "subject": "Kos_V2_Details",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "CurtainRod",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "CurtainRodBracket",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "CurtainRodBracket",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "DoorHinge",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "DoorHinge",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "DoorHinge",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "DoorHandleStem",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "DoorHandleLever",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "JacketHook",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "KosCurtains",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "KosCurtains",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "wicker_basket_02",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "wicker_basket_02",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "wicker_basket_02_base",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "wicker_basket_02_lid",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "plastic_container",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "plastic_container",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "KosBackpack",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "KosBackpack",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "BagCanvas",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "BagMetal",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "BagStrap",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "KosDeskFan",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "KosDeskFan",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanBlade",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanEnamel",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanMetal",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanWallShelf",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanShelfLeftBracket",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanShelfRightBracket",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "KosRouter",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "KosRouter",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "RouterLED",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "RouterPlastic",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "RouterVent",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PowerStrip",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PowerPlug",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PlugCable",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PowerPlug",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PlugCable",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PowerPlug",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PlugCable",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "RouterPowerCable",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "RouterWallSocket",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "RouterAdapter",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "BedsideSocket",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PhoneCharger",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "LoosePhoneChargeLead",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FanLead",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "KosSandals",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "IndonesianFlipFlops",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FlipFlop_L_Sole",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "FlipFlop_R_Sole",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
             "subject": "Golden_Workstation",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "wooden_table_02",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "wooden_table_02",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "painted_wooden_chair_01",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "painted_wooden_chair_01",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
             "passed": true,
@@ -6936,27 +6376,6 @@
             "measured": 0.0
         },
         {
-            "subject": "MonitorSignalCable",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "KeyboardCable",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "MouseCable",
-            "kind": "missing-scripts",
-            "detail": "Serialized component references",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
             "subject": "Interactable_PCMonitor",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
@@ -7132,6 +6551,20 @@
             "measured": 0.0
         },
         {
+            "subject": "wooden_table_02",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "wooden_table_02_Model",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
             "subject": "Golden_Dressing",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
@@ -7161,6 +6594,454 @@
         },
         {
             "subject": "KosBedMat",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "painted_wooden_chair_01",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "painted_wooden_chair_01_Model",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "books",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "cardboardBoxOpen",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "Kos_V2_Details",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "CurtainRod",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "CurtainRodBracket",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "CurtainRodBracket",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "DoorHinge",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "DoorHinge",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "DoorHinge",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "DoorHandleStem",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "DoorHandleLever",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "JacketHook",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosCurtains",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosCurtains",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "wicker_basket_02",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "wicker_basket_02",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "wicker_basket_02_base",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "wicker_basket_02_lid",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "plastic_container",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "plastic_container",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosSandals",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosSandals",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "SandalRubber",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "SandalStrap",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosBackpack",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosBackpack",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "BagCanvas",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "BagMetal",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "BagStrap",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosDeskFan",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosDeskFan",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanBlade",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanEnamel",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanMetal",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanWallShelf",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanShelfLeftBracket",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanShelfRightBracket",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosRouter",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KosRouter",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "RouterLED",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "RouterPlastic",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "RouterVent",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PowerStrip",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PowerPlug",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PlugCable",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PowerPlug",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PlugCable",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PowerPlug",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PlugCable",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "RouterPowerCable",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "RouterWallSocket",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "RouterAdapter",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "BedsideSocket",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PhoneCharger",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "LoosePhoneChargeLead",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "FanLead",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "MeshyBedroomWardrobe",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "Meshy_AI_Untidy_Bedroom_Wardrobe_20261103_texture_remesh_tri",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
             "passed": true,
@@ -7398,6 +7279,27 @@
             "measured": 0.0
         },
         {
+            "subject": "MonitorSignalCable",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "KeyboardCable",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "MouseCable",
+            "kind": "missing-scripts",
+            "detail": "Serialized component references",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
             "subject": "Player_RakaWijaya",
             "kind": "missing-scripts",
             "detail": "Serialized component references",
@@ -7507,35 +7409,14 @@
             "kind": "navigation-cells-clear",
             "detail": "Every returned cell must ignore only the player, never world collision",
             "passed": true,
-            "measured": 95.0
+            "measured": 92.0
         },
         {
             "subject": "Player",
             "kind": "pathway",
             "detail": "Flood-fill actual capsule-clear floor cells from player spawn; 25cm grid",
             "passed": true,
-            "measured": 95.0
-        },
-        {
-            "subject": "JAKET_PINTU",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "JAKET_PINTU",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 2.384185791015625e-7
-        },
-        {
-            "subject": "JAKET_PINTU",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.7637089",
-            "passed": true,
-            "measured": 54.0
+            "measured": 92.0
         },
         {
             "subject": "SURAT_KOS",
@@ -7559,6 +7440,111 @@
             "measured": 58.0
         },
         {
+            "subject": "SMARTPHONE_BED",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "SMARTPHONE_BED",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "SMARTPHONE_BED",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.726973",
+            "passed": true,
+            "measured": 32.0
+        },
+        {
+            "subject": "JAKET_PINTU",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "JAKET_PINTU",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 2.384185791015625e-7
+        },
+        {
+            "subject": "JAKET_PINTU",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.7637089",
+            "passed": true,
+            "measured": 53.0
+        },
+        {
+            "subject": "PC_MONITOR",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PC_MONITOR",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 0.003999948501586914
+        },
+        {
+            "subject": "PC_MONITOR",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.30235",
+            "passed": true,
+            "measured": 66.0
+        },
+        {
+            "subject": "PINTU_KOS",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "PINTU_KOS",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 0.009999990463256836
+        },
+        {
+            "subject": "PINTU_KOS",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.8480633",
+            "passed": true,
+            "measured": 76.0
+        },
+        {
+            "subject": "STICKY_NOTE",
+            "kind": "interaction-references",
+            "detail": "Existing item ID, collider and director binding",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "STICKY_NOTE",
+            "kind": "raycast-geometry-alignment",
+            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "subject": "STICKY_NOTE",
+            "kind": "reachable-interaction",
+            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.116145",
+            "passed": true,
+            "measured": 69.0
+        },
+        {
             "subject": "LACI_MEJA",
             "kind": "interaction-references",
             "detail": "Existing item ID, collider and director binding",
@@ -7570,7 +7556,7 @@
             "kind": "raycast-geometry-alignment",
             "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
             "passed": true,
-            "measured": 1.4901161193847657e-8
+            "measured": 4.470348358154297e-8
         },
         {
             "subject": "LACI_MEJA",
@@ -7598,91 +7584,7 @@
             "kind": "reachable-interaction",
             "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.4781578",
             "passed": true,
-            "measured": 52.0
-        },
-        {
-            "subject": "PINTU_KOS",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PINTU_KOS",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 0.009999990463256836
-        },
-        {
-            "subject": "PINTU_KOS",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 0.8480633",
-            "passed": true,
-            "measured": 78.0
-        },
-        {
-            "subject": "STICKY_NOTE",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "STICKY_NOTE",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "STICKY_NOTE",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.116146",
-            "passed": true,
-            "measured": 72.0
-        },
-        {
-            "subject": "PC_MONITOR",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "PC_MONITOR",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 0.004000067710876465
-        },
-        {
-            "subject": "PC_MONITOR",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.253847",
-            "passed": true,
-            "measured": 67.0
-        },
-        {
-            "subject": "SMARTPHONE_BED",
-            "kind": "interaction-references",
-            "detail": "Existing item ID, collider and director binding",
-            "passed": true,
-            "measured": 0.0
-        },
-        {
-            "subject": "SMARTPHONE_BED",
-            "kind": "raycast-geometry-alignment",
-            "detail": "Visible geometry centre must fall within the actual interaction collider (+27.5mm)",
-            "passed": true,
-            "measured": 1.1920928955078126e-7
-        },
-        {
-            "subject": "SMARTPHONE_BED",
-            "kind": "reachable-interaction",
-            "detail": "Unobstructed first raycast hit from reachable standing-player cells; closest eye distance 1.448448",
-            "passed": true,
-            "measured": 46.0
+            "measured": 49.0
         },
         {
             "subject": "KosDoor",
@@ -7703,14 +7605,14 @@
             "kind": "approach-clearance",
             "detail": "Nearest capsule-clear reachable floor cell to actual collider centre",
             "passed": true,
-            "measured": 1.005609154701233
+            "measured": 1.0776128768920899
         },
         {
             "subject": "LemariPakaian",
             "kind": "approach-clearance",
             "detail": "Nearest capsule-clear reachable floor cell to actual collider centre",
             "passed": true,
-            "measured": 0.7454189658164978
+            "measured": 0.7454192042350769
         },
         {
             "subject": "DoorOpening",
@@ -7731,7 +7633,7 @@
             "kind": "triangle-budget",
             "detail": "Visible scene meshes, actual submesh index counts",
             "passed": true,
-            "measured": 108259.0
+            "measured": 117400.0
         },
         {
             "subject": "Art",

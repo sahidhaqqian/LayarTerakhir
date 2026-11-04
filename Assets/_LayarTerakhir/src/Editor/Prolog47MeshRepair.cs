@@ -18,7 +18,7 @@ namespace LayarTerakhir.Editor
             public Vector3 p,n,local;public Vector2 uv;
             public static Vertex Lerp(Vertex a,Vertex b,float t)=>new Vertex{p=Vector3.Lerp(a.p,b.p,t),n=Vector3.Lerp(a.n,b.n,t).normalized,local=Vector3.Lerp(a.local,b.local,t),uv=Vector2.Lerp(a.uv,b.uv,t)};
         }
-        internal static void Subtract(MeshFilter filter,AtmajaDirector director,Bounds cut,string name)
+        internal static void Subtract(MeshFilter filter,AtmajaDirector director,Bounds cut,string name,string folder=null)
         {
             Rebuild(filter,director,name,polygon=>
             {
@@ -32,7 +32,7 @@ namespace LayarTerakhir.Editor
                     inside=Clip(inside,axis,hi,false);
                 }
                 return output;
-            });
+            },folder);
         }
         internal static void RemoveUpwardFinish(MeshFilter filter,AtmajaDirector director,float height,string name)
         {
@@ -61,7 +61,7 @@ namespace LayarTerakhir.Editor
             }
             return result;
         }
-        private static void Rebuild(MeshFilter filter,AtmajaDirector director,string name,Func<List<Vertex>,List<List<Vertex>>> operation)
+        private static void Rebuild(MeshFilter filter,AtmajaDirector director,string name,Func<List<Vertex>,List<List<Vertex>>> operation,string folder=null)
         {
             var source=filter.sharedMesh;var positions=source.vertices;var normals=source.normals;var uvs=source.uv;
             var verts=new List<Vector3>();var norms=new List<Vector3>();var uv=new List<Vector2>();var submeshes=new List<int[]>();
@@ -86,8 +86,8 @@ namespace LayarTerakhir.Editor
             }
             var mesh=new Mesh{name=name,indexFormat=IndexFormat.UInt32};mesh.SetVertices(verts);mesh.SetNormals(norms);mesh.SetUVs(0,uv);mesh.subMeshCount=submeshes.Count;
             for(int i=0;i<submeshes.Count;i++)mesh.SetTriangles(submeshes[i],i);mesh.RecalculateTangents();mesh.RecalculateBounds();
-            const string folder="Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/";Directory.CreateDirectory(folder);
-            string path=folder+name+".asset";var existing=AssetDatabase.LoadAssetAtPath<Mesh>(path);
+            string outFolder=folder??"Assets/_LayarTerakhir/assets/Art/Generated/Models/Prolog47/";Directory.CreateDirectory(outFolder);
+            string path=outFolder+name+".asset";var existing=AssetDatabase.LoadAssetAtPath<Mesh>(path);
             if(existing){EditorUtility.CopySerialized(mesh,existing);Object.DestroyImmediate(mesh);mesh=existing;}else AssetDatabase.CreateAsset(mesh,path);
             filter.sharedMesh=mesh;PrefabUtility.RecordPrefabInstancePropertyModifications(filter);
         }

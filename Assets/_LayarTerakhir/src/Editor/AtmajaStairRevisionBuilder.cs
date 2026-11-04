@@ -138,6 +138,15 @@ namespace LayarTerakhir.Editor
             AssetDatabase.SaveAssets();
             Debug.Log("ATMAJA_HOUSE_VISUAL_RESTORED shell without colliders, unpacked against future strips");
         }
+        internal static void ReapplyFacadeBand(AtmajaDirector director,Bounds shaftCut)
+        {
+            d=director;RepairFacadeBand();
+            // The ladder shaft passes through this same concrete mesh. Cut the
+            // opening into the fresh cutout and store it back in the SAME asset
+            // so the validation mesh reference stays stable.
+            var filter=Find("RumahAtmaja_House").GetComponentsInChildren<MeshFilter>(true).Single(f=>f.name=="Static__House_MAT_Concrete");
+            Prolog47MeshRepair.Subtract(filter,d,shaftCut,"AtmajaConcreteFacadeCutout","Assets/_LayarTerakhir/assets/Art/Atmaja/Models/");
+        }
         private struct BandVertex
         {
             public Vector3 position,normal;public Vector2 uv;public Vector4 tangent;
@@ -148,8 +157,13 @@ namespace LayarTerakhir.Editor
             // The source BAND_mid is a full 12.6 x 9.6m cuboid at y=4.04..4.20,
             // merged into the house's concrete mesh without an interior collider.
             // Its caps hid Raka's legs and visually intersected the entire upper floor.
+            // Source is always the pristine FBX mesh: repair passes (ladder shaft)
+            // replace the filter mesh, so re-cutting from the current mesh would
+            // compound their holes. The shaft opening is re-applied afterwards
+            // by ReapplyFacadeBand so the cutout asset keeps both treatments.
             var filter=Find("RumahAtmaja_House").GetComponentsInChildren<MeshFilter>(true).Single(f=>f.name=="Static__House_MAT_Concrete");
             var sourceFilter=PrefabUtility.GetCorrespondingObjectFromOriginalSource(filter);var source=sourceFilter?sourceFilter.sharedMesh:filter.sharedMesh;
+            if(!source)throw new Exception("Concrete facade mesh missing");
             var positions=source.vertices;var normals=source.normals;var uvs=source.uv;var tangents=source.tangents;
             var output=new List<BandVertex>();var indices=new List<int>();int caps=0;
             BandVertex Vertex(int index)=>new BandVertex{position=positions[index],normal=normals.Length>index?normals[index]:Vector3.up,uv=uvs.Length>index?uvs[index]:Vector2.zero,tangent=tangents.Length>index?tangents[index]:new Vector4(1,0,0,1)};

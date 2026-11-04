@@ -54,10 +54,10 @@ namespace LayarTerakhir.Editor
             visual.weapon = Bone(hunter, "Shears");
             visual.authoredMotion = hunter.GetComponent<Animation>();
             d.basement.shearsProp = visual.weapon.gameObject;
-            Replace(d.chase.streetFigure, "NyonyaDesignerEcho", false, 0);
-            Replace(d.upper.mirrorFlashFigure, "NyonyaDesignerEcho", false, AtmajaMirrorReflection.ReflectionLayer);
-            Replace(d.upper.hangedFlashFigure, "NyonyaDesignerEcho", false, 0);
-            Replace(d.arFigure, "NyonyaDesignerSeated", false, AtmajaPhoneView.ARLayer);
+            Compensate(Replace(d.chase.streetFigure, "NyonyaDesignerEcho", false, 0));
+            Compensate(Replace(d.upper.mirrorFlashFigure, "NyonyaDesignerEcho", false, AtmajaMirrorReflection.ReflectionLayer));
+            Compensate(Replace(d.upper.hangedFlashFigure, "NyonyaDesignerEcho", false, 0));
+            Compensate(Replace(d.arFigure, "NyonyaDesignerSeated", false, AtmajaPhoneView.ARLayer));
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
             AssetDatabase.SaveAssets();
@@ -67,6 +67,17 @@ namespace LayarTerakhir.Editor
 
         private static Transform Bone(GameObject model, string name) =>
             model.GetComponentsInChildren<Transform>(true).Single(t => t.name == name);
+
+        // The apparition FBXs carry a baked model-node scale from the sculpt
+        // pipeline (100x at the time of writing). Pin the instantiated model
+        // root to unit scale so echoes and the AR seated figure stay
+        // human-scale no matter what the file bakes (the hunter FBX already
+        // has unit node scale, so it is unaffected either way).
+        private static GameObject Compensate(GameObject model)
+        {
+            if (model) model.transform.localScale = Vector3.one;
+            return model;
+        }
 
         private static Material Surface(string role)
         {

@@ -1073,6 +1073,14 @@ namespace LayarTerakhir.Editor
                     if (!pose || !pose.authoredMotion) continue;
                     var target = pose.authoredMotion.GetComponentsInChildren<SkinnedMeshRenderer>(true).FirstOrDefault(r => r.name == "NyonyaDesignerBody");
                     if (!target) continue;
+                    // 1-to-1 weight/bone transfer requires identical topology.
+                    // A repair sculpt baked for an older rig must never be forced
+                    // onto a re-rigged hunter (exploded skinning, blown budget).
+                    if (source.sharedMesh.vertexCount != target.sharedMesh.vertexCount)
+                    {
+                        Debug.LogWarning("PROLOG47_SKIN_SKIPPED repair sculpt " + source.sharedMesh.vertexCount + " verts does not match hunter " + target.sharedMesh.vertexCount + " verts; keeping designer surface");
+                        continue;
+                    }
                     var bones = pose.authoredMotion.GetComponentsInChildren<Transform>(true).GroupBy(t => t.name).ToDictionary(g => g.Key, g => g.First());
                     target.sharedMesh = source.sharedMesh;
                     target.bones = source.bones.Select(b => bones[b.name]).ToArray();
@@ -1360,6 +1368,20 @@ namespace LayarTerakhir.Editor
                     outPos + Vector3.right * 1.6f, Quaternion.Euler(0, 35, 0), new Vector3(1.25f, .95f, 1.25f));
                 ProjectAsset("Assets/_LayarTerakhir/assets/Art/Review/Models/LodShrub.fbx", "EscapeWindowCourtyardShrub_2", environment,
                     outPos - Vector3.right * 1.7f, Quaternion.Euler(0, 140, 0), new Vector3(1.35f, 1.05f, 1.35f));
+                // The LOD shrub pivot sits off-centre, so FitBox wraps foliage
+                // that leans over the walk lane (capsule radius .32). Keep the
+                // woody core solid and let the soft foliage edge stay passable,
+                // then walk the root west until the lane AABB test clears.
+                var shrub2 = Find("EscapeWindowCourtyardShrub_2");
+                var shrubCol = shrub2 ? shrub2.GetComponent<BoxCollider>() : null;
+                if (shrubCol)
+                {
+                    shrubCol.center = new Vector3(shrubCol.center.x * .5f, shrubCol.center.y, shrubCol.center.z * .5f);
+                    var tight = shrubCol.size; tight.x *= .62f; tight.z *= .62f; shrubCol.size = tight;
+                    int guard = 0;
+                    while (guard++ < 8 && shrubCol.bounds.max.x > -8.62f) shrub2.transform.position += Vector3.right * -.12f;
+                    EditorUtility.SetDirty(shrub2);
+                }
             }
 
             // Bug 44: Flush KitchenEmergencyCharger neatly into lower kitchen baseboard & ensure KitchenVaultContext never renders as a floating black rectangle!
@@ -1759,8 +1781,11 @@ namespace LayarTerakhir.Editor
             }
             d.upper.cellarLadderRoute = points.ToArray();
 
+            // The concrete shell is owned by the facade band (exterior kept, phantom
+            // interior floor opened) with this same shaft hole cut into it; the
+            // ladder loop must not replace its cutout mesh reference.
             var cut = new Bounds(new Vector3(1.025f, 1.61f, 1.4f), new Vector3(.95f, 4.45f, 1.70f));
-            foreach (var f in root.GetComponentsInChildren<MeshFilter>().Where(f => f.name == "DiningDirtyTile" || f.name == "CellarCeiling" || f.name == "GroundFloorCeiling_1" || f.name == "Static__House_MAT_BrickBase" || f.name == "Static__House_MAT_Concrete").ToArray())
+            foreach (var f in root.GetComponentsInChildren<MeshFilter>().Where(f => f.name == "DiningDirtyTile" || f.name == "CellarCeiling" || f.name == "GroundFloorCeiling_1" || f.name == "Static__House_MAT_BrickBase").ToArray())
                 Prolog47MeshRepair.Subtract(f, d, cut, "ShaftOpening_" + f.name);
 
             var priorCollision = Find("LadderShaftFloorCollision");
@@ -1814,6 +1839,10 @@ namespace LayarTerakhir.Editor
 
             RebuildCellarWalkability(d, root);
 
+            // The shaft cut above replaces the concrete mesh (losing the
+            // facade-cutout reference); rebuild the band from the pristine FBX
+            // and cut the same shaft opening into the SAME cutout asset.
+            AtmajaStairRevisionBuilder.ReapplyFacadeBand(d, cut);
             Save();
             Debug.Log("PROLOG47_LADDER_APPLIED visible anchored iron ladder, sealed shaft collar and matching climb route");
         }
