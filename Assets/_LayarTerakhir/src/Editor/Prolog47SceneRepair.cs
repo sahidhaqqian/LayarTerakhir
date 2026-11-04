@@ -3930,7 +3930,7 @@ namespace LayarTerakhir.Editor
             mat.SetFloat("_Metallic", 0f);
             // Wet blood like the goal: strong gloss streaks separate the
             // spikes (matte made them merge into one blob); backfaces culled.
-            mat.SetFloat("_Smoothness", 0.5f);
+            mat.SetFloat("_Smoothness", 0.62f);
             mat.SetFloat("_EnvironmentReflections", 0f);
             mat.SetFloat("_GlossyReflections", 1f);
             mat.SetFloat("_Cull", 2f);
@@ -3951,15 +3951,18 @@ namespace LayarTerakhir.Editor
             PrefabUtility.UnpackPrefabInstance(child, PrefabUnpackMode.OutermostRoot, InteractionMode.AutomatedAction);
             foreach (var r in child.GetComponentsInChildren<Renderer>())
                 r.sharedMaterials = Enumerable.Repeat(mat, r.sharedMaterials.Length).ToArray();
-            // The Meshy panel lies in XZ (thin Y): stand it on the west wall
-            // facing east — local width to the wall tangent, thin axis east.
-            // (Known-good mount: same basis as the wardrobe Meshy roots.)
+            // Meshy GLB spans its fan in local XY (1.9 x 1.22), thin in
+            // local Z (0.06). Lay the fan flat on the west wall facing east:
+            // local X -> wall tangent, local Y -> up, local Z -> east
+            // (right-handed: -right x up = east).
+            // (The old basis sent local Y into the wall and crushed the fan
+            // into a blob, then stretched the thin axis vertical.)
             var east = d.east; east.y = 0; east.Normalize();
             var right = Vector3.Cross(east, Vector3.up).normalized;
             var basis = Matrix4x4.identity;
-            basis.SetColumn(0, new Vector4(right.x, right.y, right.z, 0));
-            basis.SetColumn(1, new Vector4(east.x, east.y, east.z, 0));
-            basis.SetColumn(2, new Vector4(0, 1, 0, 0));
+            basis.SetColumn(0, new Vector4(-right.x, -right.y, -right.z, 0));
+            basis.SetColumn(1, new Vector4(0, 1, 0, 0));
+            basis.SetColumn(2, new Vector4(east.x, east.y, east.z, 0));
             holder.transform.rotation = basis.rotation;
             KosVisualV2.FitWorldSize(holder, new Vector3(.06f, 1.15f, 2.0f));
             Vector3 center = d.P(-2.27f, 2.9f, 4.94f);
