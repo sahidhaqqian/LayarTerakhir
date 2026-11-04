@@ -1481,6 +1481,51 @@ namespace LayarTerakhir.Editor
             Debug.Log("WELL_COVER_APPLIED round cover + fine chain only");
         }
 
+        [MenuItem("LayarTerakhir/Prolog/Diagnose decal")]
+        public static void DiagnoseDecal()
+        {
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var tex = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/_LayarTerakhir/assets/Art/Imported/Meshy/CrimsonRupture/CrimsonGoalDecal.png");
+            if (!tex) throw new InvalidOperationException("decal texture missing");
+            Debug.Log("DECAL_TEX w=" + tex.width + " h=" + tex.height + " format=" + tex.format);
+            var q = GameObject.Find("CrimsonScratchRelief");
+            var r = q ? q.GetComponent<Renderer>() : null;
+            Debug.Log("DECAL_QUAD found=" + (q != null) + " pos=" + (q ? q.transform.position.ToString() : "?") + " mat=" + (r && r.sharedMaterial ? r.sharedMaterial.name : "?") + " queue=" + (r && r.sharedMaterial ? r.sharedMaterial.renderQueue : -1));
+            if (r) Debug.Log("DECAL_BOUNDS center=" + r.bounds.center + " size=" + r.bounds.size + " visible=" + r.isVisible + " meshVerts=" + (q.GetComponent<MeshFilter>().sharedMesh ? q.GetComponent<MeshFilter>().sharedMesh.vertexCount : -1) + " mainTex=" + (r.sharedMaterial && r.sharedMaterial.mainTexture ? r.sharedMaterial.mainTexture.name + "_" + r.sharedMaterial.mainTexture.width + "x" + r.sharedMaterial.mainTexture.height : "null"));
+            // No-save visibility probe: flat unlit red on the same quad.
+            if (r)
+            {
+                var probe = new Material(Shader.Find("Universal Render Pipeline/Unlit"));
+                probe.SetColor("_BaseColor", Color.red);
+                r.sharedMaterial = probe;
+            }
+            var camGo = GameObject.Find("ScratchProofCam");
+            // No-save capture with the red probe material.
+            var target = GameObject.Find("BathScratchTarget");
+            var pg = new GameObject("DiagCam", typeof(Camera));
+            var pc = pg.GetComponent<Camera>();
+            pc.enabled = false; pc.nearClipPlane = .05f; pc.farClipPlane = 120f;
+            pc.clearFlags = CameraClearFlags.SolidColor; pc.backgroundColor = Color.black;
+            pg.transform.SetPositionAndRotation(target.transform.position + target.transform.forward * 1.05f, Quaternion.LookRotation(-target.transform.forward));
+            KosRenderDiagnosis.Capture(pc, "scratch-diag-red", false, "Audit/Visuals/House-Sweep");
+            Object.DestroyImmediate(pg);
+            // Occlusion test: nudge a scratch-clone toward the room and shoot it.
+            var probe2 = GameObject.CreatePrimitive(PrimitiveType.Quad);
+            var probeMat2 = new Material(Shader.Find("Universal Render Pipeline/Unlit"));
+            probeMat2.SetColor("_BaseColor", Color.green);
+            probe2.GetComponent<Renderer>().sharedMaterial = probeMat2;
+            probe2.transform.SetPositionAndRotation(q.transform.position + target.transform.forward * 0.30f, q.transform.rotation);
+            probe2.transform.localScale = new Vector3(0.5f, 0.5f, 1);
+            var pg2 = new GameObject("DiagCam2", typeof(Camera));
+            var pc2 = pg2.GetComponent<Camera>();
+            pc2.enabled = false; pc2.nearClipPlane = .05f; pc2.farClipPlane = 120f;
+            pc2.clearFlags = CameraClearFlags.SolidColor; pc2.backgroundColor = Color.black;
+            pg2.transform.SetPositionAndRotation(target.transform.position + target.transform.forward * 1.05f, Quaternion.LookRotation(-target.transform.forward));
+            KosRenderDiagnosis.Capture(pc2, "scratch-diag-red-near", false, "Audit/Visuals/House-Sweep");
+            Object.DestroyImmediate(pg2); Object.DestroyImmediate(probe2);
+            Debug.Log("DECAL_DIAGNOSED no-save");
+        }
+
         [MenuItem("LayarTerakhir/Prolog/Capture scratch proof")]
         public static void CaptureScratchProof()
         {
@@ -3914,23 +3959,23 @@ namespace LayarTerakhir.Editor
                 mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
                 AssetDatabase.CreateAsset(mat, mPath);
             }
-            // Designer Meshy asset FIRST: the original GLB blood texture
-            // over the original rupture relief geometry (star-fan claws +
-            // drips, exactly the goal silhouette). Repaint PNGs retired.
-            var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(dir + "CrimsonRuptureMeshy_albedo.jpg");
-            if (!albedo) throw new InvalidOperationException("Missing designer Meshy crimson albedo");
-            mat.SetTexture("_BaseMap", albedo);
-            // Meshy normal map (torn ridges catch the flashlight like the goal).
-            var nor = AssetDatabase.LoadAssetAtPath<Texture2D>(dir + "CrimsonRuptureWall_normal.jpg");
-            if (nor) { mat.SetTexture("_BumpMap", nor); mat.SetFloat("_BumpScale", .7f); mat.EnableKeyword("_NORMALMAP"); }
+            // Designer order: flat image of the goal claws stuck on the wall.
+            // Opaque decal: goal claw strokes composited over tile-matching
+            // background (transparent setup refused to render; opaque quads
+            // are proven visible). Meshy FBX stays in-repo.
+            var decal = AssetDatabase.LoadAssetAtPath<Texture2D>(dir + "CrimsonDecalOpaque.png");
+            if (!decal) throw new InvalidOperationException("Missing opaque claw decal");
+            mat.SetTexture("_BaseMap", decal);
+            mat.SetTexture("_BumpMap", null); mat.SetFloat("_BumpScale", 0f); mat.DisableKeyword("_NORMALMAP");
             mat.SetTexture("_MetallicGlossMap", null); mat.DisableKeyword("_METALLICSPECGLOSSMAP");
-            // Meshy albedo is already arterial dark-red (avg 59,11,11):
-            // keep it unmultiplied; the pale wash was specular, not albedo.
             mat.SetColor("_BaseColor", Color.white);
             mat.SetFloat("_Metallic", 0f);
-            // Wet blood like the goal: strong gloss streaks separate the
-            // spikes (matte made them merge into one blob); backfaces culled.
-            mat.SetFloat("_Smoothness", 0.62f);
+            mat.SetFloat("_Surface", 0f);
+            mat.DisableKeyword("_SURFACE_TYPE_TRANSPARENT");
+            mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+            mat.renderQueue = 2000;
+            mat.SetOverrideTag("RenderType", "Opaque");
+            mat.SetFloat("_Smoothness", 0.5f);
             mat.SetFloat("_EnvironmentReflections", 0f);
             mat.SetFloat("_GlossyReflections", 1f);
             mat.SetFloat("_Cull", 2f);
@@ -3938,35 +3983,21 @@ namespace LayarTerakhir.Editor
 
             Delete("BathWallScratches");
             Delete("CrimsonScratchRelief");
-            // The designer's Meshy rupture relief (1.9m x 1.2m star-fan claw
-            // chunk, ~355k tris): re-exported with consistent outward normals
-            // so it shades glossy blood-red instead of white spikes.
-            var asset = AssetDatabase.LoadAssetAtPath<GameObject>(dir + "CrimsonRuptureWall.fbx");
-            if (!asset) throw new InvalidOperationException("Missing designer crimson rupture FBX");
-            var holder = new GameObject("CrimsonScratchRelief");
-            holder.transform.SetParent(root, true);
-            var child = (GameObject)PrefabUtility.InstantiatePrefab(asset);
-            if (!child) throw new InvalidOperationException("InstantiatePrefab returned null for CrimsonRuptureWall.fbx");
-            child.transform.SetParent(holder.transform, false);
-            PrefabUtility.UnpackPrefabInstance(child, PrefabUnpackMode.OutermostRoot, InteractionMode.AutomatedAction);
-            foreach (var r in child.GetComponentsInChildren<Renderer>())
-                r.sharedMaterials = Enumerable.Repeat(mat, r.sharedMaterials.Length).ToArray();
-            // Meshy GLB spans its fan in local XY (1.9 x 1.22), thin in
-            // local Z (0.06). Lay the fan flat on the west wall facing east:
-            // local X -> wall tangent, local Y -> up, local Z -> east
-            // (right-handed: -right x up = east).
-            // (The old basis sent local Y into the wall and crushed the fan
-            // into a blob, then stretched the thin axis vertical.)
+            // Flat 2.6m x 1.47m decal BOARD (decal aspect 1290:730) on the
+            // west wall facing east. A 2cm-thick BOX, not a Quad: flat quads
+            // have zero-thickness bounds and get culled into invisibility
+            // (proven by the red-Unlit probe test), while thin boxes render
+            // like the old relief chunk did. Front face floats off the tiles.
             var east = d.east; east.y = 0; east.Normalize();
-            var right = Vector3.Cross(east, Vector3.up).normalized;
-            var basis = Matrix4x4.identity;
-            basis.SetColumn(0, new Vector4(-right.x, -right.y, -right.z, 0));
-            basis.SetColumn(1, new Vector4(0, 1, 0, 0));
-            basis.SetColumn(2, new Vector4(east.x, east.y, east.z, 0));
-            holder.transform.rotation = basis.rotation;
-            KosVisualV2.FitWorldSize(holder, new Vector3(.06f, 1.15f, 2.0f));
             Vector3 center = d.P(-2.27f, 2.9f, 4.94f);
-            KosVisualV2.SetCenter(holder, center);
+            var holder = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            holder.name = "CrimsonScratchRelief";
+            holder.transform.SetParent(root, true);
+            holder.transform.SetPositionAndRotation(new Vector3(2.275f, 4.94f, -2.9f), Quaternion.LookRotation(east));
+            holder.transform.localScale = new Vector3(2.6f, 1.47f, 0.02f);
+            Object.DestroyImmediate(holder.GetComponent<Collider>());
+            holder.GetComponent<Renderer>().sharedMaterial = mat;
+            holder.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             // Re-seat the AR trace + aim + inspect target on the relief face.
             Vector3 face = d.P(-2.24f, 2.9f, 4.94f);
             if (d.upper.scratchAim) d.upper.scratchAim.SetParent(root, true);
@@ -3982,7 +4013,7 @@ namespace LayarTerakhir.Editor
             var target = new GameObject("BathScratchTarget", typeof(BoxCollider), typeof(AtmajaItem));
             target.transform.SetParent(root, true);
             target.transform.SetPositionAndRotation(center, Quaternion.LookRotation(east));
-            target.GetComponent<BoxCollider>().size = new Vector3(2.0f, 1.15f, .06f);
+            target.GetComponent<BoxCollider>().size = new Vector3(2.6f, 1.47f, .06f);
             var item = target.GetComponent<AtmajaItem>();
             item.director = d; item.action = AtmajaAction.BathScratches; item.label = "Periksa bekas cakaran di dinding";
         }

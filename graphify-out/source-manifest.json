@@ -1,17 +1,17 @@
 {
   "artifacts_sha256": {
-    "GRAPH_REPORT.md": "564c5922f1df1b34ab290b5e8095333a207ef9f33caf54b468a833fde68bfbfc",
-    "graph.html": "fab7b1deb877fd4bec2a8cce43b60b165b870bd7697f306782e48bfde6d29817",
-    "graph.json": "e4d6251d9ecca4d568c8d9ba1b9a3e304110f71065cc6a0cea5a80b194ec5504"
+    "GRAPH_REPORT.md": "726b4ac63fb6938c61223014ccc6b1ab9ec9069d9baeeffcdfe6ee4bb986b4e6",
+    "graph.html": "0acb8d6136bcfe62b47ca232ce830418c187b010f9329e58b99f96326d31d4b5",
+    "graph.json": "2c6868bfbcfe977f87782bcd98ece27bd07b0917feb5a8a656bc31db1abdeced"
   },
   "asset_file_count": 0,
-  "code_file_count": 430,
-  "edge_count": 20839,
+  "code_file_count": 431,
+  "edge_count": 20850,
   "graphify_version": "graphify 0.9.92",
   "ignore_sha256": "05660cd7b7a81591931d5661fb73b7124598a04c44f843eda7a7ac2107f20e17",
   "mode": "local-code-only; no LLM/community labeling",
-  "node_count": 5460,
-  "referenced_source_count": 430,
+  "node_count": 5464,
+  "referenced_source_count": 431,
   "sources_sha256": {
     "Assets/_LayarTerakhir/src/Audio/AmbientAudioLoop.cs": "7de60fa68d2b45ec199754e8c16b8ac4827306cc38d7ad32a708d93a78e83514",
     "Assets/_LayarTerakhir/src/Audio/KosSceneAudio.cs": "c6fb8b243b059a97beddcc0b730e61d09dba4fb39a11757c8e0d845f7b45b188",
@@ -144,7 +144,7 @@
     "Assets/_LayarTerakhir/src/Editor/PlaytestRevisionBuilder.cs": "559fbc85b54af14f44030848e045bd7feb5492a5c9b9b6e768e635106e3f1383",
     "Assets/_LayarTerakhir/src/Editor/Prolog47InteractionTests.cs": "f1642a8b076a952bdb978263768686c4435d8d7689336136c44fbac0dff68bc2",
     "Assets/_LayarTerakhir/src/Editor/Prolog47MeshRepair.cs": "527f614c8cafaead05f89ceb9eeafe5086694de7b3595ca9de92e27ac417e681",
-    "Assets/_LayarTerakhir/src/Editor/Prolog47SceneRepair.cs": "d0180d0ddb5f0e9e6210c27ed76623ec0372d82b0726de035a00cc79973af7ea",
+    "Assets/_LayarTerakhir/src/Editor/Prolog47SceneRepair.cs": "2951a70869adc8bc975e1ed63096c2ca8db8f06a417d7199d985b8785032cea9",
     "Assets/_LayarTerakhir/src/Editor/Prolog47VisualTests.cs": "97a623da2a73d76af6e55bf2ab0e3381d377bcf8576f863f88128011b1804a55",
     "Assets/_LayarTerakhir/src/Editor/PrologCompletionBuilder.cs": "96d2c1896405129e7af6832d6f087b1214bd1309188e14a030d2537bbf02c617",
     "Assets/_LayarTerakhir/src/Editor/PrologEasyPlayTests.cs": "2ce15608cd7618f43f80b5dca5dc881c26193ec3d90c4442e8fa2266fbac8ffa",
@@ -341,6 +341,7 @@
     "Tools/download_kos_sources.py": "89dc3859e6102ff13b974114baba29b29405f0bdc454ccb73c8d54efad413d06",
     "Tools/download_kos_v2.py": "329b10bc400aeb99c5c9ba1c5828ee6b1c13e5f6bc60f39aec60b1ecee195770",
     "Tools/export_dialogue_recording.py": "543693620d0abd8909ca80b239ae94cef5be51d05cab8ca1e943e6689041a322",
+    "Tools/extract_goal_claws.py": "2124e2bddd344bf97c82688ef31b4e7e84c0d986610918a51db0388f981281cb",
     "Tools/fetch_bathroom_set_assets.py": "2cecaeef93b4b9729ec5e8878edfaef4de715e872edc2292f1b3c138ff7068f7",
     "Tools/fetch_character_sources.py": "e0ac3b7c0a74c887d8639baddf10b961a044cdfa57123495c253df0286456bdd",
     "Tools/fetch_crowbar_vent_cc0.py": "afe05035078ee074b6a50ce353d7f754dce17554caf19bb15adc367ec213bf9d",
