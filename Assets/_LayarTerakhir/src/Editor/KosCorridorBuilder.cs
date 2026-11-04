@@ -15,7 +15,7 @@ namespace LayarTerakhir.Editor
     public static partial class KosCorridorBuilder
     {
         public const string ScenePath="Assets/_LayarTerakhir/assets/Scenes/Prolog_KoridorKos.unity";
-        private static Transform root;private static KosCorridorDirector d;private static Material wall,floor,wood,metal;
+        private static Transform root;private static KosCorridorDirector d;private static Material wall,floor,wood,metal,doorMat;
         public static void Build()
         {
             var golden=EditorSceneManager.OpenScene(PrologKosSceneBuilder.ScenePath);var systems=GameObject.Find("GameSystems");var player=Object.FindFirstObjectByType<FirstPersonController>();var events=Object.FindFirstObjectByType<EventSystem>();var profile=Object.FindFirstObjectByType<Volume>().sharedProfile;
@@ -28,6 +28,8 @@ namespace LayarTerakhir.Editor
             wall=Material("KosCorridorPlaster",new Color(.64f,.62f,.53f),"Assets/_LayarTerakhir/assets/Art/Generated/Materials/OldLimewash.mat");
             floor=Material("KosCorridorTile",new Color(.55f,.54f,.48f),"Assets/_LayarTerakhir/assets/Art/Generated/Materials/CeramicTiles.mat");
             wood=AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/assets/Art/Atmaja/Materials/House_MAT_WoodDoor.mat");metal=Material("KosCorridorMetal",new Color(.07f,.08f,.085f));
+            // Pintu kost modern (panel datar + kusen gelap), bukan kayu renyot.
+            doorMat=Material("KosModernDoor",new Color(.24f,.28f,.31f));doorMat.SetFloat("_Smoothness",.5f);EditorUtility.SetDirty(doorMat);
             Box("UpperHallFloor",new Vector3(0,3.23f,6),new Vector3(2.8f,.14f,14),floor);
             Box("GroundHallFloor",new Vector3(0,-.07f,6),new Vector3(2.8f,.14f,14),floor);
             Box("UpperHallCeiling",new Vector3(0,6.2f,6),new Vector3(2.9f,.13f,14),wall);
@@ -127,7 +129,7 @@ namespace LayarTerakhir.Editor
         }
         private static void ClosedDoor(string name,Vector3 center,int number,Vector3 normal,bool raka)
         {
-            var leaf=Box(name,center,new Vector3(.09f,2.1f,.90f),wood);var door=leaf.AddComponent<HingedDoor>();door.hinge=leaf.transform;door.locked=true;
+            var leaf=Box(name,center,new Vector3(.09f,2.1f,.90f),doorMat??wood);var door=leaf.AddComponent<HingedDoor>();door.hinge=leaf.transform;door.locked=true;
             foreach(float z in new[]{-.48f,.48f})Box(name+"Frame",center+Vector3.forward*z,new Vector3(.13f,2.18f,.055f),metal);
             Box(name+"Lintel",center+Vector3.up*1.07f,new Vector3(.13f,.07f,.99f),metal);
             Box(name+"Handle",center+normal*.07f+Vector3.forward*.30f,new Vector3(.045f,.08f,.04f),metal);
@@ -142,12 +144,12 @@ namespace LayarTerakhir.Editor
             Box(title+"Back",new Vector3(side*4.8f,1.4f,4.25f),new Vector3(.15f,2.8f,3.6f),wall);
             foreach(float z in new[]{2.5f,6f})Box(title+"Side",new Vector3(x,1.4f,z),new Vector3(3.4f,2.8f,.15f),wall);
             Box(title+"FrontLow",new Vector3(side*1.5f,1.4f,3.0f),new Vector3(.15f,2.8f,1.0f),wall);Box(title+"FrontHigh",new Vector3(side*1.5f,1.4f,5.5f),new Vector3(.15f,2.8f,1.0f),wall);Box(title+"Lintel",new Vector3(side*1.5f,2.55f,4.25f),new Vector3(.15f,.5f,1.5f),wall);
-            var hinge=new GameObject(title+"Hinge").transform;hinge.SetParent(root,false);hinge.position=new Vector3(side*1.5f,0,3.5f);var leaf=Box(title+"Door",new Vector3(side*1.5f,1.07f,4.25f),new Vector3(.09f,2.14f,1.5f),wood);leaf.transform.SetParent(hinge,true);var door=leaf.AddComponent<HingedDoor>();door.hinge=hinge;door.label="Buka "+title;door.angle=side*90;
+            var hinge=new GameObject(title+"Hinge").transform;hinge.SetParent(root,false);hinge.position=new Vector3(side*1.5f,0,3.5f);var leaf=Box(title+"Door",new Vector3(side*1.5f,1.07f,4.25f),new Vector3(.09f,2.14f,1.5f),doorMat??wood);leaf.transform.SetParent(hinge,true);var door=leaf.AddComponent<HingedDoor>();door.hinge=hinge;door.label="Buka "+title;door.angle=side*90;
             Label(title+"Sign",title,new Vector3(side*1.38f,2.44f,4.25f),side<0?Vector3.right:Vector3.left,.12f);
             Practical(new Vector3(x,2.72f,4.25f),new Color(.83f,.84f,.73f),1.1f,4);
             if(side<0)
             {
-                Box("SharedKitchenCounter",new Vector3(-4.2f,.45f,4.5f),new Vector3(.7f,.9f,2.3f),wood);Box("Stove",new Vector3(-4.2f,.93f,4.3f),new Vector3(.6f,.06f,.9f),metal);Box("KitchenSink",new Vector3(-4.2f,.93f,5.2f),new Vector3(.5f,.08f,.5f),metal);
+                Box("SharedKitchenCounter",new Vector3(-4.2f,.45f,4.5f),new Vector3(.7f,.9f,2.3f),doorMat??wood);Box("Stove",new Vector3(-4.2f,.93f,4.3f),new Vector3(.6f,.06f,.9f),metal);Box("KitchenSink",new Vector3(-4.2f,.93f,5.2f),new Vector3(.5f,.08f,.5f),metal);
                 Model("wooden_bucket_01","SharedWaterBucket",new Vector3(.35f,.45f,.35f),new Vector3(-2.1f,.225f,5.4f));
             }
             else

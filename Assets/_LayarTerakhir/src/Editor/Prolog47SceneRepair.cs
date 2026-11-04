@@ -617,7 +617,17 @@ namespace LayarTerakhir.Editor
             // Procedural instead of the KosPanelDoor FBX (its headless import
             // yields empty instances, leaving invisible doors): slab plus
             // recessed-look inset panels, wood finish.
-            var woodDoor = Old("House_MAT_WoodDoor");
+            // Panel pintu kost MODERN (biru-abu datar, bukan kayu) sesuai
+            // request 5deb9284: KosModernDoor, bukan House_MAT_WoodDoor.
+            var woodDoor = AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/assets/Art/Atmaja/Materials/KosModernDoor.mat");
+            if (!woodDoor)
+            {
+                woodDoor = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+                woodDoor.SetColor("_BaseColor", new Color(.24f, .28f, .31f));
+                woodDoor.SetFloat("_Smoothness", .5f);
+                AssetDatabase.CreateAsset(woodDoor, "Assets/_LayarTerakhir/assets/Art/Atmaja/Materials/KosModernDoor.mat");
+                EditorUtility.SetDirty(woodDoor);
+            }
             var vsize = alongZ ? new Vector3(.055f, height, width) : new Vector3(width, height, .055f);
             var visual = new GameObject("ModernDoorVisual"); visual.transform.SetParent(leaf.transform, false);
             visual.transform.SetPositionAndRotation(center, rot);
