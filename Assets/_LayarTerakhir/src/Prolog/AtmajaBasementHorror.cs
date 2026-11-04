@@ -22,9 +22,12 @@ namespace LayarTerakhir.Prolog
         public GameObject nyonya, shearsProp, ragOriginal, teplokFlame;
         public Light teplokLight;
         public AudioSource humSource;
-        public Transform hideAnchor1, hideAnchor2, hideAnchor3, exitAnchor1, exitAnchor2, exitAnchor3;
+        public Transform hideAnchor1, hideAnchor2, hideAnchor3, hideAnchor4, hideAnchor5, hideAnchor6;
+        public Transform exitAnchor1, exitAnchor2, exitAnchor3, exitAnchor4, exitAnchor5, exitAnchor6;
         public GameObject powerbankObj, handycamObj;
-        public Collider wardrobeCol1, wardrobeCol2, wardrobeCol3;
+        public Collider wardrobeCol1, wardrobeCol2, wardrobeCol3, wardrobeCol4, wardrobeCol5, wardrobeCol6;
+        public const string DamarNoteTitle = "CATATAN DARI TAS DAMAR";
+        public const string DamarNoteText = "Robekan buku saku, tulisan tangan Damar yang terburu-buru.\n\n\"Kalau ada yang baca ini, berarti gue gagal balik.\nBaterai kamera tinggal sekarat, jadi gue umpetin handycam di ruang paling ujung — yang lampunya merah redup.\nJangan cari gue. Gue denger dia nyanyi dari dalam cermin.\"";
         public Transform powerbankSpot, handycamSpot;
         public bool IsHidden => hiddenIn != null;
         public bool InspectingLocker => lockerCheckRunning;
@@ -102,6 +105,9 @@ namespace LayarTerakhir.Prolog
             if (wardrobeCol1) wardrobeCol1.enabled = true;
             if (wardrobeCol2) wardrobeCol2.enabled = true;
             if (wardrobeCol3) wardrobeCol3.enabled = true;
+            if (wardrobeCol4) wardrobeCol4.enabled = true;
+            if (wardrobeCol5) wardrobeCol5.enabled = true;
+            if (wardrobeCol6) wardrobeCol6.enabled = true;
             var rig = director.player.GetComponent<ShoulderCameraRig>(); if (rig) rig.FirstPersonOverride = false;
             director.player.MovementLocked = false; lastPosition = director.player.transform.position; Breath(false);
             if (nyonya && waypoints.Length > 0) nyonya.transform.SetPositionAndRotation(waypoints[0].position, waypoints[0].rotation);
@@ -109,8 +115,11 @@ namespace LayarTerakhir.Prolog
         public string Objective()
         {
             if (IsHidden) return lockerCheckRunning ? $"Matikan layar [{Key(GameAction.ToggleScreen)}]. Jangan bergerak." : $"Dengarkan langkahnya. [{Key(GameAction.Interact)}] keluar lemari.";
+            // Designer Nov: while actively hunted the objective is survival,
+            // not investigation — Raka should run and break line of sight.
+            if (mind == Mind.Pursue && !IsBlitzStunned) return "LARI! Putus pandangannya, lalu sembunyi di lemari!";
             if (!Has("EVENT_P0_POWERBANK_TAKEN")) return "Temukan powerbank Damar di ruang jahit. Gunakan rak dan lemari untuk bersembunyi.";
-            if (!Has(HandycamId)) return "Cari jejak Damar di gudang banjir selatan. Merunduk di balik peti saat dia berpatroli.";
+            if (!Has(HandycamId)) return "Sisir lorong-lorong bawah: tas Damar terlihat di ujung timur. Kameranya pasti di ruang terdalam.";
             return "Putar rekaman terakhir di handycam Damar.";
         }
         public void Handle(AtmajaItem item)
@@ -144,6 +153,12 @@ namespace LayarTerakhir.Prolog
                 { Hud.ShowBroadcastNotification("Daya terlalu rendah. Sambungkan lagi ke powerbank di meja jahit.", 4); return; }
                 // The physical interaction remains available if the game closed during playback.
                 if (Commit(HandycamId)) chase.PlayHandycamVideo();
+            }
+            else if (item.action == AtmajaAction.DamarBag)
+            {
+                Hud.OpenDocumentModal(DamarNoteTitle, DamarNoteText, null);
+                Hud.EnqueueSubtitle("Raka", "Tas Damar... jadi kameranya dia umpetin di ruang paling ujung. Gue harus ke sana.", 4);
+                director.Objective();
             }
             else if (item.action == AtmajaAction.WardrobeHide && !IsHidden && Time.time >= nextHideTime) EnterWardrobe(item.transform);
             // Designer Nov: the basement needs a way back up outside the
@@ -179,15 +194,29 @@ namespace LayarTerakhir.Prolog
             }
             if (breath) { var emission = breath.emission; emission.enabled = on; }
         }
+        private Transform NearestHide(Vector3 p)
+        {
+            Transform best = null; float bd = float.PositiveInfinity;
+            foreach (var h in new[] { hideAnchor1, hideAnchor2, hideAnchor3, hideAnchor4, hideAnchor5, hideAnchor6 })
+            {
+                if (!h) continue;
+                float dd = Vector3.Distance(p, h.position);
+                if (dd < bd) { bd = dd; best = h; }
+            }
+            return best;
+        }
+        private Transform ExitFor(Transform h) =>
+            h == hideAnchor1 ? exitAnchor1 : h == hideAnchor2 ? exitAnchor2 : h == hideAnchor3 ? exitAnchor3 :
+            h == hideAnchor4 ? exitAnchor4 : h == hideAnchor5 ? exitAnchor5 : exitAnchor6;
+        private Collider ColFor(Transform h) =>
+            h == hideAnchor1 ? wardrobeCol1 : h == hideAnchor2 ? wardrobeCol2 : h == hideAnchor3 ? wardrobeCol3 :
+            h == hideAnchor4 ? wardrobeCol4 : h == hideAnchor5 ? wardrobeCol5 : wardrobeCol6;
         private void EnterWardrobe(Transform wardrobe)
         {
-            float d1 = hideAnchor1 ? Vector3.Distance(wardrobe.position, hideAnchor1.position) : float.PositiveInfinity;
-            float d2 = hideAnchor2 ? Vector3.Distance(wardrobe.position, hideAnchor2.position) : float.PositiveInfinity;
-            float d3 = hideAnchor3 ? Vector3.Distance(wardrobe.position, hideAnchor3.position) : float.PositiveInfinity;
-            hiddenAnchor = d1 <= d2 && d1 <= d3 ? hideAnchor1 : d2 <= d3 ? hideAnchor2 : hideAnchor3;
+            hiddenAnchor = NearestHide(wardrobe.position);
             hiddenWasSeen = mind == Mind.Pursue && CanSeePlayer(12);
             hiddenIn = wardrobe; hideEnteredAt = Time.time; lockerCleared = false; inspectElapsed = 0;
-            var col = hiddenAnchor == hideAnchor1 ? wardrobeCol1 : hiddenAnchor == hideAnchor2 ? wardrobeCol2 : wardrobeCol3; if (col) col.enabled = false;
+            var col = ColFor(hiddenAnchor); if (col) col.enabled = false;
             director.PlacePlayer(hiddenAnchor.position, hiddenAnchor.rotation); director.player.MovementLocked = true;
             director.player.cameraPivot.localRotation = Quaternion.identity;
             var rig = director.player.GetComponent<ShoulderCameraRig>(); if (rig) rig.FirstPersonOverride = true;
@@ -196,9 +225,11 @@ namespace LayarTerakhir.Prolog
         public void ExitWardrobe()
         {
             if (!IsHidden) return;
-            Transform exit = hiddenAnchor == hideAnchor1 ? exitAnchor1 : hiddenAnchor == hideAnchor2 ? exitAnchor2 : exitAnchor3; if (!exit) return;
+            Transform exit = ExitFor(hiddenAnchor); if (!exit) return;
             director.PlacePlayer(exit.position, exit.rotation);
             if (wardrobeCol1) wardrobeCol1.enabled = true; if (wardrobeCol2) wardrobeCol2.enabled = true;
+            if (wardrobeCol3) wardrobeCol3.enabled = true; if (wardrobeCol4) wardrobeCol4.enabled = true;
+            if (wardrobeCol5) wardrobeCol5.enabled = true; if (wardrobeCol6) wardrobeCol6.enabled = true;
             hiddenIn = hiddenAnchor = null; director.player.MovementLocked = false;
             lockerCheckRunning = false; hiddenWasSeen = false;
             if (Hud) Hud.SetPrologThreatMeter(null);
@@ -246,7 +277,7 @@ namespace LayarTerakhir.Prolog
                     case Mind.Patrol: PatrolTick(dt); break;
                     case Mind.Suspicion: StepToward(suspicionPoint, 1.35f, dt); suspicionTimer -= dt; if (suspicionTimer <= 0) ReturnToPatrol(); break;
                     case Mind.Pursue:
-                        StepToward(IsHidden ? (hiddenAnchor == hideAnchor1 ? exitAnchor1 : hiddenAnchor == hideAnchor2 ? exitAnchor2 : exitAnchor3).position : director.player.transform.position, 2.8f, dt);
+                        StepToward(IsHidden ? ExitFor(hiddenAnchor).position : director.player.transform.position, 2.8f, dt);
                         giveUpTimer -= dt; if (!IsHidden && !CanSeePlayer(12) && giveUpTimer <= 0) ReturnToPatrol(); break;
                 }
             }

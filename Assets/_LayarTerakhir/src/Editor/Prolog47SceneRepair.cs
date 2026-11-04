@@ -2352,6 +2352,8 @@ namespace LayarTerakhir.Editor
         private static void RebuildBasementBranches(AtmajaDirector d, Transform root)
         {
             var wallMat = Find("CellarWallW").GetComponent<Renderer>().sharedMaterial;
+            var floorMat = Find("CellarFloor").GetComponent<Renderer>().sharedMaterial;
+            var ceilMat = Find("CellarCeiling").GetComponent<Renderer>().sharedMaterial;
             // Open the south wall into the flooded store (local x 2.0-3.0).
             Delete("CellarWallS");
             var wallRot = Find("CellarWallN") ? Find("CellarWallN").transform.rotation : Quaternion.identity;
@@ -2426,6 +2428,100 @@ namespace LayarTerakhir.Editor
             // Dim lights for the new branches.
             BranchLight(root, "MazeGapLight", d.P(6.5f, 9.0f, -1.7f), .55f, 5f, new Color(.72f, .76f, .65f));
             BranchLight(root, "MazeNookLight", d.P(10.0f, 8.4f, -1.7f), .6f, 6f, new Color(1f, .85f, .6f));
+            // Designer Nov: the maze grows to three rooms, each with its own
+            // hiding locker. R1 east annex (x 12-16) opens through the east
+            // wall gaps; R2 south crypt (x 8-16, z 12.5-16.5) hides the
+            // handycam in its far corner; R3 flooded store gets a locker.
+            Delete("ExpandedCellarEastWall");
+            MazeBox("MazeEastWall_N", root, d.P(12f, 2.3f, -1.575f), new Vector3(.16f, 2.45f, 3.4f), wallMat);
+            MazeBox("MazeEastWall_M", root, d.P(12f, 6.25f, -1.575f), new Vector3(.16f, 2.45f, 2.5f), wallMat);
+            MazeBox("MazeEastWall_S", root, d.P(12f, 10.5f, -1.575f), new Vector3(.16f, 2.45f, 4.0f), wallMat);
+            // R1 east annex shell.
+            MazeBox("MazeR1Floor", root, d.P(14f, 7.5f, -2.825f), new Vector3(4.1f, .05f, 10.1f), floorMat);
+            MazeBox("MazeR1Ceil", root, d.P(14f, 7.5f, 0f), new Vector3(4.1f, 1.0f, 10.1f), ceilMat);
+            MazeBox("MazeR1East", root, d.P(16f, 7.5f, -1.575f), new Vector3(.16f, 2.45f, 10.1f), wallMat);
+            MazeBox("MazeR1North", root, d.P(14f, 2.5f, -1.575f), new Vector3(4.16f, 2.45f, .16f), wallMat);
+            MazeBox("MazeR1South_W", root, d.P(12.5f, 12.5f, -1.575f), new Vector3(1.0f, 2.45f, .16f), wallMat);
+            MazeBox("MazeR1South_E", root, d.P(15f, 12.5f, -1.575f), new Vector3(2.0f, 2.45f, .16f), wallMat);
+            MazeBox("MazeR1PillarA", root, d.P(13.2f, 5.2f, -1.575f), new Vector3(.5f, 2.45f, .5f), wallMat);
+            MazeBox("MazeR1PillarB", root, d.P(14.6f, 7.8f, -1.575f), new Vector3(.5f, 2.45f, .5f), wallMat);
+            BranchLight(root, "MazeR1Light", d.P(14f, 7.5f, -1.7f), .55f, 6f, new Color(.72f, .76f, .65f));
+            // R2 south crypt shell.
+            MazeBox("MazeR2Floor", root, d.P(12f, 14.5f, -2.825f), new Vector3(8.1f, .05f, 4.1f), floorMat);
+            MazeBox("MazeR2Ceil", root, d.P(12f, 14.5f, 0f), new Vector3(8.1f, 1.0f, 4.1f), ceilMat);
+            MazeBox("MazeR2West", root, d.P(8f, 14.5f, -1.575f), new Vector3(.16f, 2.45f, 4.1f), wallMat);
+            MazeBox("MazeR2East", root, d.P(16f, 14.5f, -1.575f), new Vector3(.16f, 2.45f, 4.1f), wallMat);
+            MazeBox("MazeR2South", root, d.P(12f, 16.5f, -1.575f), new Vector3(8.26f, 2.45f, .16f), wallMat);
+            MazeBox("MazeR2North_W", root, d.P(10.5f, 12.5f, -1.575f), new Vector3(5.0f, 2.45f, .16f), wallMat);
+            MazeBox("MazeR2North_E", root, d.P(15f, 12.5f, -1.575f), new Vector3(2.0f, 2.45f, .16f), wallMat);
+            BranchLight(root, "MazeR2Light", d.P(12f, 14.5f, -1.7f), .6f, 7f, new Color(.72f, .76f, .65f));
+            BranchLight(root, "MazeCamLight", d.P(14.8f, 14.0f, -1.7f), .5f, 5f, new Color(1f, .85f, .6f));
+            // R3 flooded store: west + south caps (north is WallS, east the spine).
+            MazeBox("MazeR3West", root, d.P(0.2f, 9.7f, -1.575f), new Vector3(.16f, 2.45f, 5.6f), wallMat);
+            MazeBox("MazeR3South", root, d.P(3.35f, 12.5f, -1.575f), new Vector3(6.3f, 2.45f, .16f), wallMat);
+            BranchLight(root, "MazeR3Light", d.P(3.0f, 9.5f, -1.7f), .55f, 6f, new Color(.72f, .76f, .65f));
+            // Handycam moves to the crypt far corner, on its own crate.
+            Delete("MazeHandycamCrate"); Delete("MazeNookFlank");
+            // The legacy textile-chest row hugs the east wall and seals both
+            // new gaps: re-stack it along the crypt south wall instead.
+            foreach (var old in FindAll("CellarTextileChest")) Object.DestroyImmediate(old);
+            foreach (var old in FindAll("TextileChestLid")) Object.DestroyImmediate(old);
+            var chestSpots = new[] { new Vector3(12.5f, 0f, 15.9f), new Vector3(13.3f, 0f, 15.9f), new Vector3(14.5f, 0f, 15.9f), new Vector3(15.3f, 0f, 15.9f) };
+            for (int ci = 0; ci < chestSpots.Length; ci++)
+            {
+                var cp = d.P(chestSpots[ci].x, chestSpots[ci].z, -2.35f);
+                MazeBox("MazeTextileChest_" + ci, root, cp, new Vector3(.65f, .9f, .9f), wood);
+                MazeBox("MazeTextileLid_" + ci, root, cp + Vector3.up * .47f, new Vector3(.69f, .05f, .94f), wood);
+            }
+            ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02.fbx", "MazeHandycamCrate", root,
+                d.P(14.8f, 15.2f, -2.79f), Quaternion.identity, new Vector3(.5f, .5f, .5f), wood);
+            ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02.fbx", "MazeCryptFlank", root,
+                d.P(14.0f, 15.4f, -2.79f), Quaternion.Euler(0, -14, 0), new Vector3(.6f, .5f, .5f), wood);
+            ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02.fbx", "MazeCryptBox", root,
+                d.P(11.0f, 16.0f, -2.79f), Quaternion.Euler(0, 20, 0), new Vector3(.55f, .55f, .55f), wood);
+            var cam2 = Find("DamarHandycam");
+            if (cam2) cam2.transform.SetPositionAndRotation(d.P(14.8f, 15.2f, -2.2f), Quaternion.LookRotation(d.north));
+            // Damar's torn bag at the maze mouth: the breadcrumb to the camera.
+            var bag = MazeBox("DamarBagProp", root, d.P(7.5f, 4.2f, -2.62f), new Vector3(.45f, .3f, .28f), Material("Repair_BookCloth"), false);
+            var strap = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            strap.name = "DamarBagStrap"; strap.transform.SetParent(bag.transform, false);
+            strap.transform.localPosition = Vector3.up * .18f; strap.transform.localScale = new Vector3(.2f, .06f, .3f);
+            strap.GetComponent<Renderer>().sharedMaterial = Material("Repair_Iron");
+            Object.DestroyImmediate(strap.GetComponent<Collider>());
+            var bagItem = bag.AddComponent<AtmajaItem>();
+            bagItem.director = d; bagItem.action = AtmajaAction.DamarBag; bagItem.label = "Periksa tas ransel Damar";
+            // One hiding locker per new room.
+            var wardA = ProjectAsset("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/painted_wooden_cabinet_02/painted_wooden_cabinet_02.fbx", "MazeWardrobeA", root,
+                d.P(15.3f, 3.5f, -2.79f), Quaternion.Euler(0, -90, 0), new Vector3(.95f, 1.9f, .45f));
+            var wardAItem = wardA.AddComponent<AtmajaItem>();
+            wardAItem.director = d; wardAItem.action = AtmajaAction.WardrobeHide; wardAItem.label = "Sembunyi di lemari kayu #4";
+            d.basement.wardrobeCol4 = wardA.GetComponent<BoxCollider>();
+            d.basement.hideAnchor4 = AnchorAt(root, "HideAnchor4", d.P(14.4f, 3.5f, -2.79f), d.P(15.3f, 3.5f, 0));
+            d.basement.exitAnchor4 = AnchorAt(root, "ExitAnchor4", d.P(14.2f, 4.4f, -2.79f), d.P(15.3f, 3.5f, 0));
+            var wardB = ProjectAsset("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/painted_wooden_cabinet_02/painted_wooden_cabinet_02.fbx", "MazeWardrobeB", root,
+                d.P(8.6f, 15.8f, -2.79f), Quaternion.identity, new Vector3(.95f, 1.9f, .45f));
+            var wardBItem = wardB.AddComponent<AtmajaItem>();
+            wardBItem.director = d; wardBItem.action = AtmajaAction.WardrobeHide; wardBItem.label = "Sembunyi di lemari kayu #5";
+            d.basement.wardrobeCol5 = wardB.GetComponent<BoxCollider>();
+            d.basement.hideAnchor5 = AnchorAt(root, "HideAnchor5", d.P(9.5f, 15.8f, -2.79f), d.P(8.6f, 15.8f, 0));
+            d.basement.exitAnchor5 = AnchorAt(root, "ExitAnchor5", d.P(9.5f, 14.9f, -2.79f), d.P(8.6f, 15.8f, 0));
+            var wardC = ProjectAsset("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/painted_wooden_cabinet_02/painted_wooden_cabinet_02.fbx", "MazeWardrobeC", root,
+                d.P(1.0f, 10.0f, -2.79f), Quaternion.identity, new Vector3(.95f, 1.9f, .45f));
+            var wardCItem = wardC.AddComponent<AtmajaItem>();
+            wardCItem.director = d; wardCItem.action = AtmajaAction.WardrobeHide; wardCItem.label = "Sembunyi di lemari kayu #6";
+            d.basement.wardrobeCol6 = wardC.GetComponent<BoxCollider>();
+            d.basement.hideAnchor6 = AnchorAt(root, "HideAnchor6", d.P(1.9f, 10.0f, -2.79f), d.P(1.0f, 10.0f, 0));
+            d.basement.exitAnchor6 = AnchorAt(root, "ExitAnchor6", d.P(1.9f, 9.2f, -2.79f), d.P(1.0f, 10.0f, 0));
+            // Patrol the new rooms too (existing indices preserved).
+            foreach (var pt in new[] { d.P(13.0f, 6.0f, -2.79f), d.P(14.5f, 9.0f, -2.79f), d.P(10.0f, 13.5f, -2.79f), d.P(14.0f, 14.0f, -2.79f), d.P(2.5f, 8.5f, -2.79f), d.P(2.5f, 11.0f, -2.79f) })
+            {
+                var t = new GameObject("MazeBranchPatrol" + bi++).transform;
+                t.SetParent(root, true);
+                t.position = pt;
+                t.rotation = Quaternion.LookRotation(d.P(2.9f, 3.5f, 0) - pt);
+                wps.Add(t);
+            }
+            d.basement.waypoints = wps.ToArray();
         }
 
         private static Transform AnchorAt(Transform root, string name, Vector3 pos, Vector3 look)

@@ -236,39 +236,73 @@ namespace LayarTerakhir.Editor.Tests
                 (P(4.15f,1.7f),P(4.05f,1.05f),"ward2-exit2"),(P(4.05f,1.05f),P(4.15f,1.7f),"exit2-back"),
                 (P(4.15f,1.7f),P(4.2f,3.8f),"north-return"),(P(4.2f,3.8f),P(1.5f,3.8f),"east-mid-return"),
                 (P(1.5f,3.8f),P(1.1f,1.5f),"mid-ladder"),
-                (P(2.2f,6.3f),P(2.5f,6.9f),"spawn-arch"),(P(2.5f,6.9f),P(2.5f,7.5f),"arch-flood"),
+                (P(2.2f,6.3f),P(2.5f,6.9f),"spawn-arch"),(P(2.5f,6.9f),P(2.5f,7.5f),"arch-flood"),(P(2.5f,7.5f),P(2.1f,5.45f),"arch-back"),
                 (P(2.5f,7.5f),P(6.0f,7.7f),"flood-lane"),(P(6.0f,7.7f),P(6.0f,9.0f),"lane-gapS"),
                 (P(6.0f,9.0f),P(7.5f,9.0f),"gapS-east"),(P(7.5f,9.0f),P(9.0f,9.2f),"east-lane"),
                 (P(9.0f,9.2f),P(9.6f,8.3f),"lane-nook"),(P(9.6f,8.3f),P(9.5f,7.5f),"nook-cross"),
                 (P(9.5f,7.5f),P(9.3f,6.2f),"cross-north"),(P(9.3f,6.2f),P(9.3f,6.0f),"cross-south"),
-                (P(9.3f,6.0f),P(7.0f,5.2f),"north-room"),(P(7.0f,5.2f),P(7.0f,4.5f),"room-gap"),
-                (P(7.0f,4.5f),P(6.0f,4.5f),"gap-cross"),(P(6.0f,4.5f),P(6.0f,4.2f),"gap-south"),
+                (P(9.3f,6.0f),P(9.3f,5.8f),"north-room"),(P(9.3f,5.8f),P(7.0f,5.8f),"room-east"),
+                (P(7.0f,5.8f),P(7.0f,4.5f),"room-gap"),(P(7.0f,4.5f),P(6.0f,4.5f),"gap-cross"),(P(6.0f,4.5f),P(6.0f,4.2f),"gap-south"),
                 (P(6.0f,4.2f),P(5.0f,4.2f),"lane-crate"),(P(5.0f,4.2f),P(4.2f,4.2f),"lane-main"),
-                (P(4.2f,4.2f),P(4.2f,3.8f),"main-return"),
+                (P(4.2f,3.8f),P(4.2f,4.2f),"main-return"),
+                (P(4.2f,4.2f),P(5.0f,4.2f),"lane-main"),(P(5.0f,4.2f),P(6.0f,4.2f),"main-gap"),
+                (P(6.0f,4.2f),P(6.0f,4.5f),"gap-approach"),(P(6.0f,4.5f),P(7.0f,4.5f),"gap-east"),
+                (P(7.0f,4.5f),P(7.0f,5.8f),"east-north"),(P(7.0f,5.8f),P(9.3f,5.8f),"north-maze"),(P(9.3f,5.8f),P(10.5f,5.8f),"maze-room"),
+                (P(10.5f,5.8f),P(10.5f,4.5f),"maze-drop"),(P(10.5f,4.5f),P(11.5f,4.5f),"drop-gap"),
+                (P(11.5f,4.5f),P(12.5f,4.5f),"gap-r1"),(P(12.5f,4.5f),P(12.5f,6.5f),"r1-west"),
+                (P(12.5f,6.5f),P(13.5f,6.5f),"r1-center"),(P(13.5f,6.5f),P(14.2f,6.5f),"center-warda"),
+                (P(14.2f,6.5f),P(14.2f,4.4f),"warda-drop"),(P(14.2f,4.4f),P(13.5f,4.4f),"warda-back"),
+                (P(13.5f,4.4f),P(12.5f,4.4f),"back-gap"),(P(12.5f,4.4f),P(12.5f,6.5f),"gap-north"),
+                (P(12.5f,6.5f),P(13.5f,6.5f),"north-center"),(P(13.5f,6.5f),P(13.5f,8.0f),"center-south"),(P(13.5f,8.0f),P(13.5f,11.0f),"south-crypt"),
+                (P(13.5f,11.0f),P(13.5f,12.5f),"crypt-gate"),(P(13.5f,12.5f),P(13.5f,13.5f),"gate-crypt"),
+                (P(13.5f,13.5f),P(10.0f,13.5f),"crypt-west"),(P(10.0f,13.5f),P(9.5f,14.9f),"west-niche"),
+                (P(9.5f,14.9f),P(10.5f,14.9f),"niche-back"),(P(10.5f,14.9f),P(13.0f,14.5f),"niche-east"),
+                (P(13.0f,14.5f),P(14.0f,14.0f),"east-cam"),(P(14.0f,14.0f),P(13.5f,13.5f),"cam-back"),
+                (P(13.5f,13.5f),P(13.5f,12.5f),"crypt-exit"),(P(13.5f,12.5f),P(13.5f,11.0f),"exit-r1"),
+                (P(13.5f,11.0f),P(12.5f,11.0f),"r1-west2"),(P(12.5f,11.0f),P(12.5f,8.0f),"west-nook"),
+                (P(12.5f,8.0f),P(12.5f,4.5f),"r1-drop"),(P(12.5f,4.5f),P(11.5f,4.5f),"drop-east"),
+                (P(11.5f,4.5f),P(10.5f,4.5f),"east-maze"),(P(10.5f,4.5f),P(10.5f,5.8f),"maze-north"),
+                (P(10.5f,5.8f),P(9.3f,5.8f),"north-west"),(P(9.3f,5.8f),P(9.5f,7.5f),"west-cross"),
+                (P(9.5f,7.5f),P(9.5f,7.9f),"cross-south"),(P(9.5f,7.9f),P(7.0f,9.0f),"south-lane"),
+                (P(7.0f,9.0f),P(6.0f,9.0f),"lane-gap"),(P(6.0f,9.0f),P(5.0f,9.0f),"gap-flood"),
+                (P(5.0f,9.0f),P(3.5f,9.0f),"flood-mid"),(P(3.5f,9.0f),P(2.4f,9.2f),"mid-ward"),
+                (P(2.4f,9.2f),P(2.4f,10.0f),"ward-hide"),(P(2.4f,10.0f),P(2.4f,9.2f),"hide-exit"),
+                (P(2.4f,9.2f),P(3.5f,9.2f),"exit-mid"),(P(3.5f,9.2f),P(3.5f,7.5f),"mid-north"),
+                (P(3.5f,7.5f),P(2.5f,7.5f),"north-arch"),(P(2.5f,7.5f),P(2.5f,6.9f),"arch-main"),
             };
             bool all=true;
             foreach(var s in tour)all=Seg(s.Item1,s.Item2,s.Item3)&&all;
             Debug.Log("CELLAR_SWEEP r="+r+" h="+h+" blocked=["+blocked+"]");
             Assert.That(all,Is.True,"Cellar floor routes walkable, blockers: "+blocked);
-            // Damar's handycam hides in the south-east nook: reachable and
-            // visible from the nook mouth, not from the main room.
-            d.PlacePlayer(d.P(9.6f,8.3f,-2.79f),Quaternion.identity);p.MovementLocked=false;p.enabled=false;
+            // Damar's handycam hides in the crypt far corner: reachable and
+            // visible from the crypt aisle, not from the main rooms.
+            d.PlacePlayer(d.P(14.0f, 14.0f, -2.79f),Quaternion.identity);p.MovementLocked=false;p.enabled=false;
             p.GetComponent<ShoulderCameraRig>().SetPerspective(PlayerPerspective.FirstPerson);
             var camItem=Item(AtmajaAction.Handycam);
             var cdelta=camItem.GetComponent<Collider>().bounds.center-p.cameraPivot.position;var cflat=Vector3.ProjectOnPlane(cdelta,Vector3.up);
             p.transform.rotation=Quaternion.LookRotation(cflat);p.SetViewPitch(-Mathf.Atan2(cdelta.y,cflat.magnitude)*Mathf.Rad2Deg);p.GetComponent<ShoulderCameraRig>().RefreshCameraPose();
             yield return null;yield return null;Physics.SyncTransforms();
-            Assert.That(p.GetComponent<InteractionInteractor>().CurrentTarget,Is.SameAs(camItem),"Hidden handycam is framed from the nook mouth");
-            // The far wardrobe hides Raka and lets him back out.
-            d.PlacePlayer(d.P(10.3f,10.5f,-2.79f),Quaternion.identity);
-            var ward3=GameObject.Find("CellarWardrobe3").GetComponent<AtmajaItem>();
-            Assert.That(ward3,Is.Not.Null,"Third wardrobe stands in the south-east");
-            ward3.Interact();yield return null;
-            Assert.That(d.basement.IsHidden,Is.True,"Far wardrobe conceals Raka");
-            yield return new WaitForSeconds(.4f);
-            yield return Press(Key.E);yield return null;
-            Assert.That(d.basement.IsHidden,Is.False,"Raka leaves the far wardrobe");
-            Assert.That(Vector3.Distance(p.transform.position,d.basement.exitAnchor3.position),Is.LessThan(.3f));
+            Assert.That(p.GetComponent<InteractionInteractor>().CurrentTarget,Is.SameAs(camItem),"Hidden handycam is framed from the crypt aisle");
+            // Each hiding locker conceals Raka and lets him back out.
+            foreach(var spot in new[]{(14.2f,4.4f,"MazeWardrobeA"),(9.5f,15.8f,"MazeWardrobeB"),(1.9f,10.0f,"MazeWardrobeC")})
+            {
+                d.PlacePlayer(d.P(spot.Item1,spot.Item2,-2.79f),Quaternion.identity);
+                var ward=GameObject.Find(spot.Item3).GetComponent<AtmajaItem>();
+                Assert.That(ward,Is.Not.Null,spot.Item3+" stands");
+                ward.Interact();yield return null;
+                Assert.That(d.basement.IsHidden,Is.True,spot.Item3+" conceals Raka");
+                yield return new WaitForSeconds(.4f);
+                yield return Press(Key.E);yield return null;
+                Assert.That(d.basement.IsHidden,Is.False,"Raka leaves "+spot.Item3);
+                yield return new WaitForSeconds(.9f);
+            }
+            // Damar's bag opens its note.
+            d.PlacePlayer(d.P(7.0f, 4.2f, -2.79f),Quaternion.identity);
+            var bagItem=GameObject.Find("DamarBagProp").GetComponent<AtmajaItem>();
+            Assert.That(bagItem,Is.Not.Null,"Damar's bag waits at the maze mouth");
+            bagItem.Interact();yield return null;
+            Assert.That(HudController.Instance.documentPanel.gameObject.activeSelf,Is.True,"Bag note opens");
+            HudController.Instance.documentCloseButton.onClick.Invoke();yield return null;
         }
         private IEnumerator CellarClimb47()
         {
