@@ -1,5 +1,5 @@
 {
-  "verifiedUtc": "2026-11-04T13:38:17.004411+00:00",
+  "verifiedUtc": "2026-11-04T15:00:38.718551+00:00",
   "unityExitCode": 0,
   "result": "Succeeded",
   "target": "StandaloneWindows64",
@@ -14,12 +14,12 @@
   },
   "unityReportedFilesVerified": 295,
   "scriptingAssembliesVerified": 112,
-  "unityReportedSizeBytes": 457154035,
+  "unityReportedSizeBytes": 457011827,
   "buildFileCount": 306,
-  "totalBuildSizeBytes": 457462754,
+  "totalBuildSizeBytes": 457320546,
   "archivePath": "/tmp/opencode/windows-build-r2/workspace/Builds/LayarTerakhir-Windows-x86_64-Prolog.zip",
-  "archiveSizeBytes": 254777400,
-  "archiveSha256": "ffa3892d23f9600f273f512cd3e710afa86264d859ab8edfaf55f2843a0ff409",
+  "archiveSizeBytes": 254729126,
+  "archiveSha256": "6ef94894d0861badc107277708ceb84a131a8341d50fbd40c19191d295973443",
   "zipCrcVerified": true,
   "zipContainsAllBuildFiles": true,
   "windowsRuntimeTested": false,
@@ -1605,14 +1605,14 @@
     {
       "path": "LayarTerakhir_Data/boot.config",
       "sizeBytes": 326,
-      "sha256": "ae710f73160c7d50648623cbc9b93058e0c72b52e5b3136f362d19bcbc494499",
-      "crc32": 764425041
+      "sha256": "8f595eff7019adbd55812d8c7b41f08d249638704789557f5e817d084dcbd744",
+      "crc32": 1036233276
     },
     {
       "path": "LayarTerakhir_Data/globalgamemanagers",
       "sizeBytes": 235972,
-      "sha256": "2862115e240ac1214915dd114aae59b099b8c0231fa1ec91d399632d611a1cb1",
-      "crc32": 1877959003
+      "sha256": "3f458b9b7d50987e27e5ab0e507e077c14aee3aa437b08e178799f5e95867a8b",
+      "crc32": 3053853294
     },
     {
       "path": "LayarTerakhir_Data/globalgamemanagers.assets",
@@ -1634,27 +1634,27 @@
     },
     {
       "path": "LayarTerakhir_Data/level1",
-      "sizeBytes": 1077836,
-      "sha256": "e2ffb1d772432032ddde2c218ffbe58e3b1ac171b1cd7621d72e15c6cc67cad6",
-      "crc32": 615876805
+      "sizeBytes": 1072124,
+      "sha256": "618a6876ec39237765460d91817c0cd163d029c57424ce5f4e5539f6ae108892",
+      "crc32": 3404707720
     },
     {
       "path": "LayarTerakhir_Data/level2",
-      "sizeBytes": 1355860,
-      "sha256": "402429986d0a71c10838c51feba43f6b7e95bbe4d3e172bedea837dd477f1b40",
-      "crc32": 849509408
+      "sizeBytes": 1306708,
+      "sha256": "32ba6a1175b7a558564eefc0b3ff122cf324021ab1857dd3efa03ce7b6142873",
+      "crc32": 3138135284
     },
     {
       "path": "LayarTerakhir_Data/level2.resS",
       "sizeBytes": 3381184,
-      "sha256": "0ea6cb49f7a5ec7cff91863296ba57ca45b783a5e0b0f10ec4ab52fb3d3b3ec2",
-      "crc32": 2207790419
+      "sha256": "90523a42e47e96ca2425958303dd1e4de4f9bc1251eed35c4e19f5a0236d180b",
+      "crc32": 3985401038
     },
     {
       "path": "LayarTerakhir_Data/resources.assets",
       "sizeBytes": 20617528,
-      "sha256": "1c706ff2ebfbe45242bc5a4eb294d776a32029da857bb7e94ef117620764f81f",
-      "crc32": 2607600857
+      "sha256": "fa7bd6df5b2d9b49023a945682e64852497c7ac7a20f118353a9f0c0f5bcecdc",
+      "crc32": 3838839962
     },
     {
       "path": "LayarTerakhir_Data/resources.assets.resS",
@@ -1688,9 +1688,9 @@
     },
     {
       "path": "LayarTerakhir_Data/sharedassets1.assets",
-      "sizeBytes": 13331492,
-      "sha256": "cdda8440eded9599388054e5390624e397e9839bd5b2ab38b80d15725aaeaf69",
-      "crc32": 3135249146
+      "sizeBytes": 13329764,
+      "sha256": "15d479f99d4687c3d03d09b69c6c6443fbcf5044d59486c40adfa471881d4023",
+      "crc32": 3553535667
     },
     {
       "path": "LayarTerakhir_Data/sharedassets1.assets.resS",
@@ -1700,9 +1700,9 @@
     },
     {
       "path": "LayarTerakhir_Data/sharedassets2.assets",
-      "sizeBytes": 3345108,
-      "sha256": "45c03ceab59b6622fcf7eaeeedbdf7d461ab4030a250330a79ab225b00b30200",
-      "crc32": 1679132673
+      "sizeBytes": 3259492,
+      "sha256": "c764cffa3e1e89b93baefdf9914236a7568073200eca801931416559af4ddd24",
+      "crc32": 2513992045
     },
     {
       "path": "LayarTerakhir_Data/sharedassets2.assets.resS",
@@ -1862,7 +1862,7 @@
     }
   ],
   "sourceSceneSha256": "a4c1379ee4603a64ebfd47315731800f9c583ea46fa37d0e9280651cd0396b4c",
-  "atmajaSceneSha256": "f895371567147daa11326e52b84359bc9c2e4aa9570e8d0cce98ae5f38ef94d4",
+  "atmajaSceneSha256": "04090922b99a0a4443f1f11b631d6aaa782ab20fdaeb2b2db180dcebe46f84e2",
   "sceneSpec": "prolog",
   "buildTag": "Prolog",
   "openingProtection": {
