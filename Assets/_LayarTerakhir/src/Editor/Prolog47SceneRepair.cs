@@ -2435,7 +2435,10 @@ namespace LayarTerakhir.Editor
             var floorMat = Find("CellarFloor").GetComponent<Renderer>().sharedMaterial;
             var ceilMat = Find("CellarCeiling").GetComponent<Renderer>().sharedMaterial;
             // Open the south wall into the flooded store (local x 2.0-3.0).
-            Delete("CellarWallS");
+            // Delete-first: without this every re-apply stacks another
+            // identical wall pair (17x found in the wild).
+            foreach (string dead in new[] { "CellarWallS", "CellarWallS_W", "CellarWallS_E" })
+                Delete(dead);
             var wallRot = Find("CellarWallN") ? Find("CellarWallN").transform.rotation : Quaternion.identity;
             var wallS1 = GameObject.CreatePrimitive(PrimitiveType.Cube);
             wallS1.name = "CellarWallS_W";
