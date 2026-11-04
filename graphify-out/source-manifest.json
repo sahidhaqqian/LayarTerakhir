@@ -1,16 +1,16 @@
 {
   "artifacts_sha256": {
-    "GRAPH_REPORT.md": "53dd029351c7c40deeaa6ad47cc09591490cadf1b1983e219fcf8a41f710eaee",
-    "graph.html": "2294fda30735868f1b1e171718dba0d41c713bfb825508265e865eb14d7dcdae",
-    "graph.json": "761a51d59ef499a4d0c88585d100353bd916b2660a2b7ec5e7408d40351aaf84"
+    "GRAPH_REPORT.md": "c82699a5687e225db0e338065b7bb23af6e9f6bf63a1e8d1c75fef61a138095d",
+    "graph.html": "19e052ae1bea949e8594c40ac5e10f8e5cbf557a3c6da6cc21cc0aa9d75d3e55",
+    "graph.json": "3665c4544025e705dfccb3d99c9c2ed11b84a794d27942cebbad83410ea4fbf1"
   },
   "asset_file_count": 0,
   "code_file_count": 430,
-  "edge_count": 20825,
+  "edge_count": 20839,
   "graphify_version": "graphify 0.9.92",
   "ignore_sha256": "05660cd7b7a81591931d5661fb73b7124598a04c44f843eda7a7ac2107f20e17",
   "mode": "local-code-only; no LLM/community labeling",
-  "node_count": 5456,
+  "node_count": 5460,
   "referenced_source_count": 430,
   "sources_sha256": {
     "Assets/_LayarTerakhir/src/Audio/AmbientAudioLoop.cs": "7de60fa68d2b45ec199754e8c16b8ac4827306cc38d7ad32a708d93a78e83514",
@@ -144,7 +144,7 @@
     "Assets/_LayarTerakhir/src/Editor/PlaytestRevisionBuilder.cs": "559fbc85b54af14f44030848e045bd7feb5492a5c9b9b6e768e635106e3f1383",
     "Assets/_LayarTerakhir/src/Editor/Prolog47InteractionTests.cs": "f1642a8b076a952bdb978263768686c4435d8d7689336136c44fbac0dff68bc2",
     "Assets/_LayarTerakhir/src/Editor/Prolog47MeshRepair.cs": "527f614c8cafaead05f89ceb9eeafe5086694de7b3595ca9de92e27ac417e681",
-    "Assets/_LayarTerakhir/src/Editor/Prolog47SceneRepair.cs": "5c6ded38d41606afef291eb80799ab1675001e133c4b72ca7152f1c16a3804f4",
+    "Assets/_LayarTerakhir/src/Editor/Prolog47SceneRepair.cs": "20ef372f92e376a3da418b741d550e19503419eaaeb08173cd671e167195a53a",
     "Assets/_LayarTerakhir/src/Editor/Prolog47VisualTests.cs": "97a623da2a73d76af6e55bf2ab0e3381d377bcf8576f863f88128011b1804a55",
     "Assets/_LayarTerakhir/src/Editor/PrologCompletionBuilder.cs": "96d2c1896405129e7af6832d6f087b1214bd1309188e14a030d2537bbf02c617",
     "Assets/_LayarTerakhir/src/Editor/PrologEasyPlayTests.cs": "2ce15608cd7618f43f80b5dca5dc881c26193ec3d90c4442e8fa2266fbac8ffa",
@@ -365,7 +365,7 @@
     "Tools/fetch_phase5_motion.py": "3fd204bb8105b682aa685aa701666dcbc1975dffe80962eb2b35f01aa610f3e8",
     "Tools/fit_designer_phone_grip.py": "6166ece61d64e8acdbcd8cefad2d86511d2e671f12d74be17d6d08606ea86518",
     "Tools/fix_phase5_legacy_materials.py": "523eafd14a8dcfcff87ed6f0078276776fefe7960e01d118243af193371cef39",
-    "Tools/gen_crimson_scratches.py": "96454f5dee81ac0a45fba6e9a09edf5827cbcef3a648435ba01bf940ee8fccf1",
+    "Tools/gen_crimson_scratches.py": "3452f712e2fa7a13b120ec5c4a9fb90f49ece155b1d07aa41defbbb586443e8f",
     "Tools/gen_ritual_circle.py": "77b06ce8f9e794cba6929177bc028217d15bc2222fe6ba724bbddd05c583909e",
     "Tools/generate_footstep_surfaces.py": "81f678038f37f9b75162f671972c4840e8aad5b00d627904b148d4ee3bfd4ce8",
     "Tools/generate_nyonya_wounds.py": "f655bbbaaf20fed4949b4ef3ae02171a48fe77eea8ff6646df7859ad8172d1e9",

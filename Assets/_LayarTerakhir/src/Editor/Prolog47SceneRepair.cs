@@ -1481,6 +1481,39 @@ namespace LayarTerakhir.Editor
             Debug.Log("WELL_COVER_APPLIED round cover + fine chain only");
         }
 
+        [MenuItem("LayarTerakhir/Prolog/Capture scratch proof")]
+        public static void CaptureScratchProof()
+        {
+            // No-save photo of the bathroom claw wall (goal: cakaran_yang_aku_inginkan.jpg).
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var target = GameObject.Find("BathScratchTarget");
+            if (!target) throw new InvalidOperationException("BathScratchTarget missing");
+            Vector3 fwd = target.transform.forward;
+            Vector3 up = Vector3.up;
+            Vector3 side = Vector3.Cross(up, fwd).normalized;
+            var shots = new (string, Vector3, Vector3)[]
+            {
+                ("scratch-proof-wide", target.transform.position + fwd * 1.9f + up * 0.12f, target.transform.position),
+                ("scratch-proof-close", target.transform.position + fwd * 1.05f + up * 0.03f, target.transform.position),
+                ("scratch-proof-angle", target.transform.position + fwd * 1.4f + side * 1.1f + up * 0.15f, target.transform.position),
+            };
+            const string folder = "Audit/Visuals/House-Sweep";
+            var camGo = new GameObject("ScratchProofCam", typeof(Camera));
+            var cam = camGo.GetComponent<Camera>();
+            cam.enabled = false; cam.nearClipPlane = .05f; cam.farClipPlane = 120f;
+            cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = Color.black;
+            var fill = camGo.AddComponent<Light>();
+            fill.type = LightType.Point; fill.range = 6f; fill.intensity = 1.4f;
+            fill.color = new Color(1f, 1f, 1f); fill.shadows = LightShadows.None;
+            foreach (var s in shots)
+            {
+                camGo.transform.SetPositionAndRotation(s.Item2, Quaternion.LookRotation(s.Item3 - s.Item2));
+                KosRenderDiagnosis.Capture(cam, s.Item1, false, folder);
+            }
+            Object.DestroyImmediate(camGo);
+            Debug.Log("SCRATCH_PROOF_CAPTURED no-save");
+        }
+
         [MenuItem("LayarTerakhir/Prolog/Capture well proof")]
         public static void CaptureWellProof()
         {
@@ -2468,10 +2501,9 @@ namespace LayarTerakhir.Editor
             src.outputAudioMixerGroup = d.audioProfile.effectsBus;
         }
 
-        // Designer Nov: the designer's own Meshy crimson-rupture relief stands
-        // on the bathroom west wall — real torn ridges under the flashlight,
-        // painted to the reference (bloody fan slashes over the bathroom's
-        // own tile, wet-glossy slashes on a rough wall). Idempotent.
+        // Designer Nov + fix: bathroom claw wall is a FLAT 1.5m x 0.95m panel
+        // painted 1:1 to the goal photo (R2 asset/cakaran_yang_aku_inginkan.jpg).
+        // Idempotent.
         public static void ApplyScratchRelief()
         {
             EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
@@ -3882,21 +3914,33 @@ namespace LayarTerakhir.Editor
                 mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
                 AssetDatabase.CreateAsset(mat, mPath);
             }
-            var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(dir + "CrimsonRuptureWall_albedo.png");
-            if (!albedo) throw new InvalidOperationException("Missing designer crimson rupture albedo");
+            // Designer Meshy asset FIRST: the original GLB blood texture
+            // over the original rupture relief geometry (star-fan claws +
+            // drips, exactly the goal silhouette). Repaint PNGs retired.
+            var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(dir + "CrimsonRuptureMeshy_albedo.jpg");
+            if (!albedo) throw new InvalidOperationException("Missing designer Meshy crimson albedo");
             mat.SetTexture("_BaseMap", albedo);
+            // Meshy normal map (torn ridges catch the flashlight like the goal).
             var nor = AssetDatabase.LoadAssetAtPath<Texture2D>(dir + "CrimsonRuptureWall_normal.jpg");
             if (nor) { mat.SetTexture("_BumpMap", nor); mat.SetFloat("_BumpScale", .7f); mat.EnableKeyword("_NORMALMAP"); }
-            mat.SetTexture("_MetallicGlossMap", AssetDatabase.LoadAssetAtPath<Texture2D>(dir + "CrimsonRuptureWall_mask.png"));
-            mat.EnableKeyword("_METALLICSPECGLOSSMAP");
+            mat.SetTexture("_MetallicGlossMap", null); mat.DisableKeyword("_METALLICSPECGLOSSMAP");
+            // Meshy albedo is already arterial dark-red (avg 59,11,11):
+            // keep it unmultiplied; the pale wash was specular, not albedo.
             mat.SetColor("_BaseColor", Color.white);
             mat.SetFloat("_Metallic", 0f);
-            mat.SetFloat("_Smoothness", 1f);
-            mat.SetFloat("_Cull", 0f);
+            // Wet blood like the goal: strong gloss streaks separate the
+            // spikes (matte made them merge into one blob); backfaces culled.
+            mat.SetFloat("_Smoothness", 0.5f);
+            mat.SetFloat("_EnvironmentReflections", 0f);
+            mat.SetFloat("_GlossyReflections", 1f);
+            mat.SetFloat("_Cull", 2f);
             EditorUtility.SetDirty(mat);
 
             Delete("BathWallScratches");
             Delete("CrimsonScratchRelief");
+            // The designer's Meshy rupture relief (1.9m x 1.2m star-fan claw
+            // chunk, ~355k tris): re-exported with consistent outward normals
+            // so it shades glossy blood-red instead of white spikes.
             var asset = AssetDatabase.LoadAssetAtPath<GameObject>(dir + "CrimsonRuptureWall.fbx");
             if (!asset) throw new InvalidOperationException("Missing designer crimson rupture FBX");
             var holder = new GameObject("CrimsonScratchRelief");
@@ -3904,13 +3948,12 @@ namespace LayarTerakhir.Editor
             var child = (GameObject)PrefabUtility.InstantiatePrefab(asset);
             if (!child) throw new InvalidOperationException("InstantiatePrefab returned null for CrimsonRuptureWall.fbx");
             child.transform.SetParent(holder.transform, false);
-            // Batch-mode instantiate leaves a prefab link the saver drops:
-            // unpack so the relief persists as plain scene objects.
             PrefabUtility.UnpackPrefabInstance(child, PrefabUnpackMode.OutermostRoot, InteractionMode.AutomatedAction);
             foreach (var r in child.GetComponentsInChildren<Renderer>())
                 r.sharedMaterials = Enumerable.Repeat(mat, r.sharedMaterials.Length).ToArray();
             // The Meshy panel lies in XZ (thin Y): stand it on the west wall
             // facing east — local width to the wall tangent, thin axis east.
+            // (Known-good mount: same basis as the wardrobe Meshy roots.)
             var east = d.east; east.y = 0; east.Normalize();
             var right = Vector3.Cross(east, Vector3.up).normalized;
             var basis = Matrix4x4.identity;
@@ -3918,10 +3961,7 @@ namespace LayarTerakhir.Editor
             basis.SetColumn(1, new Vector4(east.x, east.y, east.z, 0));
             basis.SetColumn(2, new Vector4(0, 1, 0, 0));
             holder.transform.rotation = basis.rotation;
-            // FitWorldSize (not Resize): the basis rotation above is not a yaw,
-            // so Resize's yaw heuristic mis-routes axes (19m streak, crushed
-            // height). Same Meshy-pitched-root case as the wardrobe.
-            KosVisualV2.FitWorldSize(holder, new Vector3(.05f, .95f, 1.5f));
+            KosVisualV2.FitWorldSize(holder, new Vector3(.06f, 1.15f, 2.0f));
             Vector3 center = d.P(-2.27f, 2.9f, 4.94f);
             KosVisualV2.SetCenter(holder, center);
             // Re-seat the AR trace + aim + inspect target on the relief face.
@@ -3939,7 +3979,7 @@ namespace LayarTerakhir.Editor
             var target = new GameObject("BathScratchTarget", typeof(BoxCollider), typeof(AtmajaItem));
             target.transform.SetParent(root, true);
             target.transform.SetPositionAndRotation(center, Quaternion.LookRotation(east));
-            target.GetComponent<BoxCollider>().size = new Vector3(1.5f, .95f, .06f);
+            target.GetComponent<BoxCollider>().size = new Vector3(2.0f, 1.15f, .06f);
             var item = target.GetComponent<AtmajaItem>();
             item.director = d; item.action = AtmajaAction.BathScratches; item.label = "Periksa bekas cakaran di dinding";
         }
