@@ -1,5 +1,5 @@
 {
-    "sceneTriangles": 861267,
+    "sceneTriangles": 861297,
     "meshes": [
         {
             "name": "CrimsonRuptureWall",
@@ -2712,6 +2712,11 @@
             "triangles": 104
         },
         {
+            "name": "Static__House_MAT_BrickBase",
+            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/WellOpening_Static__House_MAT_BrickBase.asset",
+            "triangles": 102
+        },
+        {
             "name": "geo_arm_2_a",
             "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/LodDeskLamp_geo_arm_2_a.asset",
             "triangles": 98
@@ -2985,11 +2990,6 @@
             "name": "alarm_clock_01_second_hand",
             "path": "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/alarm_clock_01/alarm_clock_01.fbx",
             "triangles": 73
-        },
-        {
-            "name": "Static__House_MAT_BrickBase",
-            "path": "Assets/_LayarTerakhir/assets/Art/Review/Models/WellOpening_Static__House_MAT_BrickBase.asset",
-            "triangles": 72
         },
         {
             "name": "BagMetal",
@@ -6332,66 +6332,6 @@
             "triangles": 12
         },
         {
-            "name": "SmallBloodyFingermark",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "SmallBloodyFingermark",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "SmallBloodyFingermark",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "SmallBloodyFingermark",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "SmallBloodyFingermark",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "SmallBloodyFingermark",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "SmallBloodyFingermark",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "SmallBloodyFingermark",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "SmallBloodyFingermark",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "SmallBloodyFingermark",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "SmallBloodyFingermark",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
-            "name": "SmallBloodyFingermark",
-            "path": "Library/unity default resources",
-            "triangles": 12
-        },
-        {
             "name": "Cube",
             "path": "Assets/_LayarTerakhir/assets/Art/Original/Models/Prolog47/VentGrille.fbx",
             "triangles": 12
@@ -6658,6 +6598,66 @@
         },
         {
             "name": "KitchenCounter",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
+            "path": "Library/unity default resources",
+            "triangles": 12
+        },
+        {
+            "name": "SmallBloodyFingermark",
             "path": "Library/unity default resources",
             "triangles": 12
         },
