@@ -7,17 +7,17 @@
     "outputPath": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir.exe",
     "sceneSpec": "prolog",
     "buildTag": "Prolog",
-    "startedUtc": "2026-11-04T13:08:54.8499120Z",
-    "endedUtc": "2026-11-04T13:11:21.0076900Z",
+    "startedUtc": "2026-11-04T13:33:56.7714420Z",
+    "endedUtc": "2026-11-04T13:36:41.8858360Z",
     "scenes": [
         "Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity",
         "Assets/_LayarTerakhir/assets/Scenes/Prolog_RumahAtmaja.unity",
         "Assets/_LayarTerakhir/assets/Scenes/Prolog_KoridorKos.unity"
     ],
-    "totalSizeBytes": 407211347,
+    "totalSizeBytes": 457154035,
     "totalErrors": 0,
-    "totalWarnings": 17,
-    "durationSeconds": 146.157778,
+    "totalWarnings": 22,
+    "durationSeconds": 165.114394,
     "files": [
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/Resources/unity_builtin_extra",
@@ -37,7 +37,7 @@
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/globalgamemanagers",
             "role": "GlobalGameManagers",
-            "sizeBytes": 241908
+            "sizeBytes": 235972
         },
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/globalgamemanagers.assets",
@@ -72,12 +72,12 @@
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/resources.assets",
             "role": "ResourcesFile",
-            "sizeBytes": 11966072
+            "sizeBytes": 20617528
         },
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/resources.assets.resS",
             "role": "StreamingResourceFile",
-            "sizeBytes": 7842016
+            "sizeBytes": 9889568
         },
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/resources.resource",
@@ -102,22 +102,22 @@
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/sharedassets1.assets",
             "role": "SharedAssets",
-            "sizeBytes": 13315556
+            "sizeBytes": 13331492
         },
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/sharedassets1.assets.resS",
             "role": "StreamingResourceFile",
-            "sizeBytes": 82588544
+            "sizeBytes": 134407392
         },
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/sharedassets2.assets",
             "role": "SharedAssets",
-            "sizeBytes": 3347092
+            "sizeBytes": 3345108
         },
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/sharedassets2.assets.resS",
             "role": "StreamingResourceFile",
-            "sizeBytes": 49862464
+            "sizeBytes": 37279280
         },
         {
             "path": "/tmp/opencode/windows-build-r2/workspace/Builds/Windows-Prolog/LayarTerakhir_Data/boot.config",
