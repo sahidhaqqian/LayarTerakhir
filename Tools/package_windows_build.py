@@ -82,7 +82,7 @@ scene_data=(out/'LayarTerakhir_Data/level0').read_bytes()
 for marker in ['Kos_Environment_Art','Kos_V2_Details','KosDeskFan','KosCurtains','CeramicTileFloor','WeakTungstenCeiling','CalendarAugust','vintage_day_bed','GoldenHUD','GoldenAudioRig','Golden_Dressing','BedsideWornStool','Compact_Kos_Details','StreamerGreenScreen','BudgetStreamingWebcam','ReadingPadOnStool','BedsidePlasticThermos','WiredGamepadOnBed']:assert marker.encode() in scene_data,marker
 assert b'Prolog_KamarKos' in (out/'LayarTerakhir_Data/globalgamemanagers').read_bytes()
 atmaja_data=(out/'LayarTerakhir_Data/level1').read_bytes()
-for marker in ['Atmaja_Environment_Art','DamarParkedScooter','FallenKamboja','KitchenVaultOutside','LongDiningTable','GrandfatherClock','AR_SeatedSriAtmaja','ChildBedroomDoor','VentPassGate','DamarHandycam','Spawn_Basement','Spawn_Chase','DamarSurveyInsideDining','EmptyARScareChair','DesignerReviewEnvironment','WellCover','ExpandedCellarEastWall']:
+for marker in ['Atmaja_Environment_Art','DamarParkedScooter','FallenKamboja','KitchenVaultOutside','LongDiningTable','GrandfatherClock','AR_SeatedSriAtmaja','ChildBedroomDoor','VentPassGate','DamarHandycam','Spawn_Basement','Spawn_Chase','DamarSurveyInsideDining','EmptyARScareChair','DesignerReviewEnvironment','WellCover','MazeEastWall_N','MazeEastWall_M','MazeEastWall_S']:
  assert marker.encode() in atmaja_data,marker
 if 'prolog' in args.source_record.lower():
  for marker in ['PrologCompletionArt','DamarRecordedMirrorSet','CompletionCellarExit','CompletionTableLanding','ScratchedFamilyPhotograph1']:
