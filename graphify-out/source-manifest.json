@@ -1,16 +1,16 @@
 {
   "artifacts_sha256": {
-    "GRAPH_REPORT.md": "5be23f2f2e8602156daa801f09696665850abac93eb1e3d67de0d4a7dda19a74",
-    "graph.html": "045a1f4d75efe431b10cfed9b604517d752154012cfe579ba31e4762bc5b672a",
-    "graph.json": "0ee3827c3a3cafc6a6e70ad70a5a87f85c24b0cabfb48fa27938dbfe34343410"
+    "GRAPH_REPORT.md": "4375ebf24f6c195b1209e3482869c111dee1eca546f16dac0c309bf8f5910aab",
+    "graph.html": "0bd54b3341c3a5ce339ed6341bca4aedd3c2ac359b853324adf249a68cafb581",
+    "graph.json": "cba72e941bfbaeb66c8dc9c8b8b0a7400148473e2b550114d440577ef6b48987"
   },
   "asset_file_count": 0,
   "code_file_count": 430,
-  "edge_count": 20803,
+  "edge_count": 20809,
   "graphify_version": "graphify 0.9.92",
   "ignore_sha256": "05660cd7b7a81591931d5661fb73b7124598a04c44f843eda7a7ac2107f20e17",
   "mode": "local-code-only; no LLM/community labeling",
-  "node_count": 5453,
+  "node_count": 5454,
   "referenced_source_count": 430,
   "sources_sha256": {
     "Assets/_LayarTerakhir/src/Audio/AmbientAudioLoop.cs": "7de60fa68d2b45ec199754e8c16b8ac4827306cc38d7ad32a708d93a78e83514",
@@ -144,7 +144,7 @@
     "Assets/_LayarTerakhir/src/Editor/PlaytestRevisionBuilder.cs": "559fbc85b54af14f44030848e045bd7feb5492a5c9b9b6e768e635106e3f1383",
     "Assets/_LayarTerakhir/src/Editor/Prolog47InteractionTests.cs": "f1642a8b076a952bdb978263768686c4435d8d7689336136c44fbac0dff68bc2",
     "Assets/_LayarTerakhir/src/Editor/Prolog47MeshRepair.cs": "527f614c8cafaead05f89ceb9eeafe5086694de7b3595ca9de92e27ac417e681",
-    "Assets/_LayarTerakhir/src/Editor/Prolog47SceneRepair.cs": "1e52e4e2097e5f8bdbe1bf31dcc2e0231aec17d04d6674a887b16f4158263d28",
+    "Assets/_LayarTerakhir/src/Editor/Prolog47SceneRepair.cs": "436fc577d12e4fe921b5e27f97f7fed9a9a16ceab2ba45dc0efcfb7f572f9d3b",
     "Assets/_LayarTerakhir/src/Editor/Prolog47VisualTests.cs": "97a623da2a73d76af6e55bf2ab0e3381d377bcf8576f863f88128011b1804a55",
     "Assets/_LayarTerakhir/src/Editor/PrologCompletionBuilder.cs": "96d2c1896405129e7af6832d6f087b1214bd1309188e14a030d2537bbf02c617",
     "Assets/_LayarTerakhir/src/Editor/PrologEasyPlayTests.cs": "2ce15608cd7618f43f80b5dca5dc881c26193ec3d90c4442e8fa2266fbac8ffa",

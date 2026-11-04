@@ -2787,6 +2787,30 @@ namespace LayarTerakhir.Editor
             Debug.Log("DINING_DIAG2_CAPTURED no-save");
         }
 
+        [MenuItem("LayarTerakhir/Prolog/Ensure courtyard ground")]
+        public static void EnsureCourtyardGround()
+        {
+            // West courtyard lost all ground colliders (review subdivision
+            // deleted its parts; the spanning slab stayed disabled). Lay four
+            // explicit boxes covering the slab rect minus the south well hole
+            // (x[-3.28,-2.42] z[-11.63,-10.77] stays OPEN for the well).
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var env = Find("Atmaja_Environment_Art").transform;
+            foreach (var n in new[] { "CourtyardGroundWest", "CourtyardGroundEast", "CourtyardGroundNorth", "CourtyardGroundSouth" }) Delete(n);
+            void Part(string n, Vector3 c, Vector3 s)
+            {
+                var g = new GameObject(n); g.transform.SetParent(env, false); g.transform.position = c;
+                var b = g.AddComponent<BoxCollider>(); b.center = Vector3.zero; b.size = s;
+            }
+            const float y = -.025f, h = .05f;
+            Part("CourtyardGroundWest", new Vector3(-7.89f, y, -1f), new Vector3(9.22f, h, 31f));
+            Part("CourtyardGroundEast", new Vector3(5.04f, y, -1f), new Vector3(14.92f, h, 31f));
+            Part("CourtyardGroundNorth", new Vector3(-2.85f, y, 1.865f), new Vector3(.86f, h, 25.27f));
+            Part("CourtyardGroundSouth", new Vector3(-2.85f, y, -14.065f), new Vector3(.86f, h, 4.87f));
+            Save();
+            Debug.Log("COURTYARD_GROUND_APPLIED 4 parts, well hole stays open");
+        }
+
         public static void CaptureHouseExterior()
         {
             EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
