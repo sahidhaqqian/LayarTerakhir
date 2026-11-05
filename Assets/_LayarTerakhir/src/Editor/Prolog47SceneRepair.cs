@@ -2839,6 +2839,47 @@ namespace LayarTerakhir.Editor
         }
 
         [MenuItem("LayarTerakhir/Prolog/Capture hunter proof")]
+        public static void CaptureHunterAnimProof()
+        {
+            // Replicates PlayMode: sample the real clips, then render. No-save.
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            var hunter = d && d.basement ? d.basement.nyonya : null;
+            if (!hunter) { Debug.Log("HUNTER_ANIM_MISSING no nyonya"); return; }
+            hunter.SetActive(true);
+            var pose = hunter.GetComponent<AtmajaThreatPresentation>();
+            var model = pose.authoredMotion.gameObject;
+            var skin = model.GetComponentInChildren<SkinnedMeshRenderer>(true);
+            Debug.Log("HUNTER_ANIM clipCount=" + pose.authoredMotion.GetClipCount());
+            foreach (AnimationState st in pose.authoredMotion) Debug.Log("HUNTER_ANIM state=" + st.name + " clip=" + (st.clip ? st.clip.name + " @ " + AssetDatabase.GetAssetPath(st.clip) : "NULL"));
+            const string folder = "Audit/Visuals/House-Sweep";
+            var camGo = new GameObject("HunterAnimCam", typeof(Camera));
+            var cam = camGo.GetComponent<Camera>();
+            cam.enabled = false; cam.nearClipPlane = .05f; cam.farClipPlane = 70f;
+            cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = Color.black;
+            var fill = camGo.AddComponent<Light>();
+            fill.type = LightType.Point; fill.range = 9f; fill.intensity = 1.6f;
+            fill.color = new Color(1f, 1f, 1f); fill.shadows = LightShadows.None;
+            Vector3 focus = hunter.transform.position + Vector3.up * 1f;
+            Vector3 camPos = focus + new Vector3(1.6f, .4f, 1.6f);
+            camGo.transform.SetPositionAndRotation(camPos, Quaternion.LookRotation(focus - camPos));
+            foreach (string clipName in new[] { "Idle", "Walk", "Run" })
+            {
+                var clip = pose.authoredMotion[clipName] ? pose.authoredMotion[clipName].clip : null;
+                if (!clip) { Debug.Log("HUNTER_ANIM clip missing " + clipName); continue; }
+                clip.SampleAnimation(model, clip.length * .5f);
+                var body = model.GetComponentsInChildren<Transform>(true).FirstOrDefault(x => x.name == "NyonyaDesignerBody");
+                var hips = model.GetComponentsInChildren<Transform>(true).FirstOrDefault(x => x.name == "Hips");
+                var foot = model.GetComponentsInChildren<Transform>(true).FirstOrDefault(x => x.name == "Foot_L");
+                var rig = model.GetComponentsInChildren<Transform>(true).FirstOrDefault(x => x.name == "CharacterRig");
+                Debug.Log("HUNTER_ANIM " + clipName + " rigScale=" + (rig ? rig.localScale.ToString("F2") : "none") + " rigPos=" + (rig ? rig.localPosition.ToString("F3") : "none") + " modelScale=" + model.transform.localScale.ToString("F2"));
+                Debug.Log("HUNTER_ANIM " + clipName + " skinBounds center=" + skin.bounds.center.ToString("F2") + " size=" + skin.bounds.size.ToString("F2") + " bodyScale=" + (body ? body.localScale.ToString("F2") : "none") + " hipsLocal=" + (hips ? hips.localPosition.ToString("F3") : "none") + " hipsWorld=" + (hips ? hips.position.ToString("F2") : "none") + " footWorld=" + (foot ? foot.position.ToString("F2") : "none"));
+                KosRenderDiagnosis.Capture(cam, "hunter-anim-" + clipName.ToLowerInvariant(), false, folder);
+            }
+            Object.DestroyImmediate(camGo);
+            Debug.Log("HUNTER_ANIM_CAPTURED no-save");
+        }
+
         public static void CaptureHunterProof()
         {
             // Basement hunter close-up, no-save. Proves the body exists.

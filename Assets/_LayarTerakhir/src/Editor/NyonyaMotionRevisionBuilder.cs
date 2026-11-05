@@ -37,8 +37,8 @@ namespace LayarTerakhir.Editor
             var pose=d.basement.nyonya.GetComponent<AtmajaThreatPresentation>();var motion=pose.authoredMotion;
             if(!motion||!pose.body||!pose.weapon)throw new InvalidOperationException("Existing hunter rig bindings missing");
             foreach(var name in motion.Cast<AnimationState>().Select(s=>s.name).ToArray())motion.RemoveClip(name);
-            foreach(var clip in clips)motion.AddClip(clip,clip.name);
-            motion.clip=clips.Single(c=>c.name=="Idle");motion.playAutomatically=false;motion.cullingType=AnimationCullingType.AlwaysAnimate;
+            foreach(var clip in clips)motion.AddClip(Sanitized(clip),clip.name);
+            motion.clip=Sanitized(clips.Single(c=>c.name=="Idle"));motion.playAutomatically=false;motion.cullingType=AnimationCullingType.AlwaysAnimate;
             foreach(var skin in motion.GetComponentsInChildren<SkinnedMeshRenderer>(true))skin.updateWhenOffscreen=true;
             var metrics=new List<Metric>();
             // Measure a temporary copy: never leave the serialized scene in a sampled pose.
@@ -84,6 +84,93 @@ namespace LayarTerakhir.Editor
             foreach(var skin in motion.GetComponentsInChildren<SkinnedMeshRenderer>(true))PrefabUtility.RecordPrefabInstancePropertyModifications(skin);
             EditorUtility.SetDirty(pose);EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene);AssetDatabase.SaveAssets();
             Debug.Log("NYONYA_MOTION_APPLIED walk="+pose.walkStrideSpeed+" run="+pose.runStrideSpeed+" existingAIAndCollision=true");
+        }
+
+        // The FBX takes bake a 100x unit-conversion scale curve onto
+        // CharacterRig. The scene rig is pinned to unit scale (see
+        // DesignerVrmBuilder.Replace), so every played frame re-applies
+        // 100x and the hunter's body explodes into an invisible blob.
+        // Strip every m_LocalScale curve; bones never need scale animation.
+        public const string ClipFolder=DesignerVrmBuilder.Root+"Clips/";
+        public static AnimationClip Sanitized(AnimationClip source)
+        {
+            Directory.CreateDirectory(ClipFolder);
+            string dest=ClipFolder+"Nyonya"+source.name+".anim";
+            var copy=new AnimationClip{name=source.name,legacy=source.legacy,wrapMode=source.wrapMode,frameRate=source.frameRate};
+            AnimationUtility.SetAnimationClipSettings(copy,AnimationUtility.GetAnimationClipSettings(source));
+            foreach(var binding in AnimationUtility.GetCurveBindings(source))
+            {
+                if(binding.propertyName.StartsWith("m_LocalScale"))continue;
+                copy.SetCurve(binding.path,binding.type,binding.propertyName,AnimationUtility.GetEditorCurve(source,binding));
+            }
+            foreach(var binding in AnimationUtility.GetObjectReferenceCurveBindings(source))
+                AnimationUtility.SetObjectReferenceCurve(copy,binding,AnimationUtility.GetObjectReferenceCurve(source,binding));
+            AnimationUtility.SetAnimationEvents(copy,AnimationUtility.GetAnimationEvents(source));
+            copy.EnsureQuaternionContinuity();
+            if(AssetDatabase.LoadAssetAtPath<AnimationClip>(dest))AssetDatabase.DeleteAsset(dest);
+            AssetDatabase.CreateAsset(copy,dest);
+            var saved=AssetDatabase.LoadAssetAtPath<AnimationClip>(dest);
+            // CreateAsset renames the object after its file; the game looks
+            // states up by the original clip names (Idle/Walk/Run/...).
+            saved.name=source.name;EditorUtility.SetDirty(saved);AssetDatabase.SaveAssets();
+            return saved;
+        }
+
+        [MenuItem("LayarTerakhir/Characters/Sanitize Nyonya hunter clips")]
+        public static void ApplySanitizedClips()
+        {
+            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+            // The designer's Gemini claw texture is 2752px wide; force a
+            // reimport so the 2048 importer cap actually applies (golden
+            // texture budget).
+            const string clawPath="Assets/_LayarTerakhir/assets/Art/Imported/Meshy/CrimsonRupture/CrimsonGoalDecal.png";
+            var clawImporter=(TextureImporter)AssetImporter.GetAtPath(clawPath);
+            clawImporter.maxTextureSize=1024;clawImporter.SaveAndReimport();
+            var clawTex=AssetDatabase.LoadAssetAtPath<Texture2D>(clawPath);
+            Debug.Log("CLAW_TEXTURE_SIZE "+(clawTex?clawTex.width+"x"+clawTex.height:"missing"));
+            const string path=DesignerVrmBuilder.Root+"Models/NyonyaDesigner.fbx";
+            var clips=AssetDatabase.LoadAllAssetsAtPath(path).OfType<AnimationClip>().Where(c=>!c.name.StartsWith("__preview__")).ToArray();
+            if(clips.Length!=5||new[]{"Idle","Walk","Run","Windup","Stun"}.Any(n=>clips.All(c=>c.name!=n)))throw new InvalidOperationException("The hunter must retain its five existing animation bindings");
+            // Phase 1: (re)build the sanitized clip assets and flush them to
+            // disk so phase 2 binds persistent assets, never in-memory copies
+            // (those get embedded into the scene file on save).
+            foreach(var c in clips)Sanitized(c);
+            AssetDatabase.SaveAssets();AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+            // Phase 2: reload fresh from disk and verify persistence.
+            var clean=new System.Collections.Generic.List<KeyValuePair<string,AnimationClip>>();
+            foreach(var c in clips)
+            {
+                var loaded=AssetDatabase.LoadAssetAtPath<AnimationClip>(ClipFolder+"Nyonya"+c.name+".anim");
+                if(!loaded||!EditorUtility.IsPersistent(loaded))throw new InvalidOperationException("Sanitized clip not persistent: "+c.name);
+                if(AnimationUtility.GetCurveBindings(loaded).Any(b=>b.propertyName.StartsWith("m_LocalScale")))throw new InvalidOperationException("Sanitized clip still has scale curves: "+c.name);
+                clean.Add(new KeyValuePair<string,AnimationClip>(c.name,loaded));
+            }
+            var scene=EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            int rebound=0;
+            foreach(var pose in UnityEngine.Object.FindObjectsByType<AtmajaThreatPresentation>(FindObjectsInactive.Include,FindObjectsSortMode.None))
+            {
+                var motion=pose?pose.authoredMotion:null;if(!motion)continue;
+                // Clear via SerializedObject: RemoveClip(name) silently keeps
+                // clips whose state names came from FBX takes.
+                // Write clip references directly: legacy Animation.AddClip
+                // clones clips into the scene file instead of referencing
+                // the .anim assets.
+                var so=new SerializedObject(motion);
+                var list=so.FindProperty("m_Animations");
+                list.arraySize=clean.Count;
+                for(int i=0;i<clean.Count;i++)list.GetArrayElementAtIndex(i).objectReferenceValue=clean[i].Value;
+                so.FindProperty("m_Animation").objectReferenceValue=clean.Single(c=>c.Key=="Idle").Value;
+                so.ApplyModifiedPropertiesWithoutUndo();
+                motion.playAutomatically=false;motion.cullingType=AnimationCullingType.AlwaysAnimate;
+                if(motion.GetClipCount()!=5)throw new InvalidOperationException("Hunter clip count after rebind: "+motion.GetClipCount());
+                foreach(AnimationState st in motion)
+                    if(!st.clip||!EditorUtility.IsPersistent(st.clip))throw new InvalidOperationException("Hunter state clip not a persistent asset: "+st.name);
+                foreach(var skin in motion.GetComponentsInChildren<SkinnedMeshRenderer>(true))skin.updateWhenOffscreen=true;
+                EditorUtility.SetDirty(motion);rebound++;
+            }
+            if(rebound==0)throw new InvalidOperationException("No hunter authoredMotion found to rebind");
+            EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene);AssetDatabase.SaveAssets();
+            Debug.Log("NYONYA_CLIPS_SANITIZED rebound="+rebound+" scaleCurvesStripped=true");
         }
     }
 }

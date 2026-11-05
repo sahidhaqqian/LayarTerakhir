@@ -2,7 +2,9 @@
 using System.Linq;
 using NUnit.Framework;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using LayarTerakhir.Prolog;
 
 namespace LayarTerakhir.Editor.Tests
 {
@@ -36,6 +38,37 @@ namespace LayarTerakhir.Editor.Tests
                 Assert.That(maximumDeformation,Is.GreaterThan(minimumDeformation),"A translated rigid statue cannot pass this check");
             }
             finally{Object.DestroyImmediate(actor);}
+        }
+
+        // Regression: the FBX takes bake a 100x scale curve onto CharacterRig.
+        // The scene rig is pinned to unit scale, so playing a raw FBX clip
+        // exploded the basement hunter's body 100x (invisible in game, fine
+        // in bind pose). The clips bound in the scene must carry no scale
+        // curves and sampling them must keep the mesh human-sized.
+        [Test]
+        public void HunterBoundClipsKeepRigAtUnitScale()
+        {
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            var pose = d.basement.nyonya.GetComponent<AtmajaThreatPresentation>();
+            var model = pose.authoredMotion.gameObject;
+            var copy = Object.Instantiate(model);
+            try
+            {
+                copy.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+                var skin = copy.GetComponentInChildren<SkinnedMeshRenderer>();
+                var rig = copy.GetComponentsInChildren<Transform>(true).Single(x => x.name == "CharacterRig");
+                foreach (AnimationState state in pose.authoredMotion)
+                {
+                    var clip = state.clip;
+                    Assert.That(AnimationUtility.GetCurveBindings(clip).Any(b => b.propertyName.StartsWith("m_LocalScale")), Is.False, clip.name + " still carries an m_LocalScale curve");
+                    clip.SampleAnimation(copy, clip.length * .5f);
+                    Assert.That(rig.localScale, Is.EqualTo(Vector3.one), clip.name + " rescaled CharacterRig");
+                    var vertices = SkinPositions(skin, copy.transform);
+                    Assert.That(vertices.Max(v => v.magnitude), Is.LessThan(5f), clip.name + " exploded the hunter mesh");
+                }
+            }
+            finally { Object.DestroyImmediate(copy); }
         }
 
         // Use the same bone/bind-pose matrices as skinning. BakeMesh(false)
