@@ -615,10 +615,10 @@ namespace LayarTerakhir.Prolog
             // Iter10: mesh thumb sits on the glass in bind (nudged+flattened
             // pad: guide 16mm onto the glass, 16mm above the rim), runtime
             // presses it 3deg forward (~1mm proud, hidden body clip, feed
-            // clear, wrist 42mm behind) and lifts 13mm so the whole pad
+            // clear, wrist 42mm behind) and lifts 25mm so the whole pad
             // sits on the lower glass instead of dangling below the rim.
             // Sleeve gate has room (cuff projects below-frame, y -0.23).
-            const float wristDownDeg=3f,wristOutDeg=0f,wristRollDeg=0f,gripShrink=1f,gripRaiseMetres=.013f;
+            const float wristDownDeg=3f,wristOutDeg=0f,wristRollDeg=0f,gripShrink=1f,gripRaiseMetres=.025f;
             firstPersonHand.transform.position=phoneCentre+edge+handRotation*(new Vector3(-.0050251f,-.0325639f,-.0083271f)*(1-t)+Vector3.up*gripRaiseMetres*t);
             // Scale is applied with the landscape wrist below (gripShrink).
             // Source grasp origin is the edge, in metres. Mirror around the
