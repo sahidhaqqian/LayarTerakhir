@@ -612,20 +612,24 @@ namespace LayarTerakhir.Prolog
             float gripOffset=physicalWidth*.5f;
             Quaternion handRotation=playerCamera.transform.rotation*handsetRect.localRotation;
             Vector3 edge=handRotation*Vector3.right*gripOffset;
-            // Iter9: drop 16->11mm + pitch 26->28.5. Thumbs net +3mm further
-            // onto the glass; far fingertips net ~0, top stays clean.
-            const float wristDownDeg=28.5f,wristOutDeg=-22f,wristRollDeg=-25f,gripShrink=0.92f,gripDropMetres=.011f;
-            firstPersonHand.transform.position=phoneCentre+edge+handRotation*(new Vector3(-.0050251f,-.0325639f,-.0083271f)*(1-t)+Vector3.down*gripDropMetres*t);
+            // Iter10: mesh thumb sits on the glass in bind (nudged+flattened
+            // pad: guide 16mm onto the glass, 16mm above the rim), runtime
+            // presses it 3deg forward (~1mm proud, hidden body clip, feed
+            // clear, wrist 42mm behind) and lifts 13mm so the whole pad
+            // sits on the lower glass instead of dangling below the rim.
+            // Sleeve gate has room (cuff projects below-frame, y -0.23).
+            const float wristDownDeg=3f,wristOutDeg=0f,wristRollDeg=0f,gripShrink=1f,gripRaiseMetres=.013f;
+            firstPersonHand.transform.position=phoneCentre+edge+handRotation*(new Vector3(-.0050251f,-.0325639f,-.0083271f)*(1-t)+Vector3.up*gripRaiseMetres*t);
             // Scale is applied with the landscape wrist below (gripShrink).
             // Source grasp origin is the edge, in metres. Mirror around the
             // handset centre; never enlarge the hand to fill a stretched UI.
-            // Landscape (DreadOut target): yaw the wrists outward and pitch them
-            // down around the fixed edge contact. Origins stay on the bezels
-            // (distance/projection tests preserved) while forearms swing out of
-            // the viewfinder centre and thumbs rest on the side bezels.
+            // Landscape (DreadOut target): press the wrists forward around the
+            // fixed edge contact. Origins stay on the bezels while the mesh
+            // thumb pads rest on the front glass and the fingers wrap the
+            // rear, clear of the feed.
             firstPersonHand.transform.rotation=handRotation*Quaternion.Euler(wristDownDeg*t,80*(1-t)+wristOutDeg*t,wristRollDeg*t);
             firstPersonHand.transform.localScale=handScale*Mathf.Lerp(1f,gripShrink,t);
-            if(both){supportHand.transform.position=phoneCentre-edge+handRotation*(Vector3.down*gripDropMetres*t);supportHand.transform.rotation=handRotation*Quaternion.Euler(wristDownDeg*t,wristOutDeg*t,wristRollDeg*t);supportHand.transform.localScale=supportScale*Mathf.Lerp(1f,gripShrink,t);}
+            if(both){supportHand.transform.position=phoneCentre-edge+handRotation*(Vector3.up*gripRaiseMetres*t);supportHand.transform.rotation=handRotation*Quaternion.Euler(wristDownDeg*t,wristOutDeg*t,wristRollDeg*t);supportHand.transform.localScale=supportScale*Mathf.Lerp(1f,gripShrink,t);}
             if(gripOccluder){gripOccluder.transform.SetPositionAndRotation(phoneCentre,handRotation);gripOccluder.transform.localScale=Vector3.Scale(depthMaskScale,new Vector3(physicalWidth/.078f,physicalHeight/.165f,Mathf.Lerp(1,.008f/.014f,t)));}
         }
         public void AddChat(string author,string text){if(ChatFrozen)return;pendingMessages.Enqueue($"<color=#C0AA7A>{author}</color> {text}");while(pendingMessages.Count>18)pendingMessages.Dequeue();}

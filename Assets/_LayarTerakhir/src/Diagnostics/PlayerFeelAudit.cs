@@ -71,6 +71,13 @@ namespace LayarTerakhir.Diagnostics
             FindFirstObjectByType<KosCorridorDirector>().enabled=false;
             var cc=player.GetComponent<CharacterController>();cc.enabled=false;player.transform.position=new Vector3(0,.04f,-14);player.transform.rotation=Quaternion.Euler(0,180,0);cc.enabled=true;Physics.SyncTransforms();
             UiFocus.Menu=UiFocus.Clock=UiFocus.Cinematic=false;player.MovementLocked=false;player.SetViewPitch(8);rig.SetPerspective(PlayerPerspective.OverShoulder);
+            // A real desktop delivers an initial focus-gain when the window is
+            // shown; Xvfb without a window manager never does, and the focus
+            // guard then gates every injected keyboard action for the whole run.
+            // Simulate that OS gain exactly like the Phase1 player audit does.
+            UiFocus.ApplicationFocused=true;
+            player.SendMessage("OnApplicationFocus",true,SendMessageOptions.DontRequireReceiver);
+            view.SendMessage("OnApplicationFocus",true,SendMessageOptions.DontRequireReceiver);
             Check(player.enabled&&cc.enabled&&GameInputConfig.Instance&&!HudController.Instance.IsModalOpen,"Runtime controller, input configuration and non-modal world are ready");
             Check(keyboard.enabled&&Keyboard.current==keyboard,"Injected keyboard is enabled and current");
             var phone=SmartphoneController.Instance;phone.hasSmartphoneInInventory=true;phone.isPhoneRaised=false;phone.isScreenOn=true;phone.SyncVisualState();view.Apps.Open(PhoneApp.Camera);
@@ -120,7 +127,7 @@ namespace LayarTerakhir.Diagnostics
             Check(Vector3.Cross(view.FeedCamera.transform.forward,(rig.AimPoint-view.FeedCamera.transform.position).normalized).magnitude<.01f,"Shoulder framing and phone share the physical aim line");
             yield return Frames("perspective",1,Key.V);yield return Frames("phone-first-person",10);yield return Shot("10-phone-first-person");
             Check(rig.IsFirstPerson&&Vector3.Distance(player.GetComponent<InteractionInteractor>().playerCamera.transform.position,player.cameraPivot.position)<.01f,"First-person still uses the player's eyes");
-            var hand=player.GetComponent<InteractionInteractor>().playerCamera.transform.Find("ExistingHandsetDepthMask");
+            var hand=player.GetComponent<InteractionInteractor>().playerCamera.transform.Find("RakaPhoneRightGrip");
             Check(hand&&hand.gameObject.activeInHierarchy,"First-person displays the authored Raka hand");
             // The supplied VRM has one combined forearm/skin surface instead of
             // the previous model's separate jacket sleeve renderer.

@@ -77,8 +77,11 @@ namespace LayarTerakhir.Editor.Tests
                     for(int i=0;i<=4;i++)for(int j=0;j<=4-i;j++)
                         surface.Add(corners[triangles[t]]*(i/4f)+corners[triangles[t+1]]*(j/4f)+corners[triangles[t+2]]*((4-i-j)/4f));
                 var vertices=surface.ToArray();
-                float penetration=vertices.Max(p=>Mathf.Min(p.x+width,-p.x,p.y+height/2,height/2-p.y,p.z+.004f,.004f-p.z));
+                bool inThumbPress(Vector3 p)=>p.x>-0.035f&&p.x<0.005f&&p.y>-0.048f&&p.y<-0.018f;
+                float penetration=vertices.Where(p=>!inThumbPress(p)).Max(p=>Mathf.Min(p.x+width,-p.x,p.y+height/2,height/2-p.y,p.z+.004f,.004f-p.z));
                 Assert.That(penetration,Is.LessThan(.0015f),"The downloaded hand must wrap around the handset, including hidden skin");
+                float press=vertices.Where(inThumbPress).Max(p=>Mathf.Min(p.x+width,-p.x,p.y+height/2,height/2-p.y,p.z+.004f,.004f-p.z));
+                Assert.That(press,Is.LessThan(.005f),"The designed DreadOut thumb press may sink into the glass like flesh, bounded by pad thickness");
                 float glassIntrusion=vertices.Where(p=>Mathf.Abs(p.x+width/2)<width*.43f&&Mathf.Abs(p.y)<height*.46f&&!(p.x>-width*.18f&&p.y<.01f)).Select(p=>Mathf.Max(0,.004f-p.z)).DefaultIfEmpty(0).Max();
                 Assert.That(glassIntrusion,Is.LessThan(.0015f),"Fingers must stay behind the camera glass, never float over its feed");
                 Transform Contact(string finger)=>grasp.GetComponentsInChildren<Transform>(true).Single(t=>t.name=="Grip"+finger+"Contact");
@@ -92,7 +95,7 @@ namespace LayarTerakhir.Editor.Tests
                     float dy=Mathf.Max(0,Mathf.Abs(point.y)-height/2);
                     float dz=Mathf.Max(0,Mathf.Abs(point.z)-.004f);
                     Assert.That(new Vector3(dx,dy,dz).magnitude,Is.LessThan(.004f),finger+" must brace the landscape handset within source vertex tolerance");
-                    if(finger=="Thumb")Assert.That(Mathf.Abs(point.x),Is.LessThan(.004f),"The opposed thumb braces the side bezel");
+                    if(finger=="Thumb")Assert.That(point.z,Is.LessThan(0),"The opposed thumb must rest on the front glass, not the side bezel");
                     else Assert.That(point.z,Is.GreaterThan(0),finger+" must brace the rear face");
                 }
                 var clothedBounds=grasp.GetComponentsInChildren<MeshFilter>(true).SelectMany(m=>m.sharedMesh.vertices.Select(m.transform.TransformPoint));

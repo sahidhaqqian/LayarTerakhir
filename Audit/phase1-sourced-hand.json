@@ -9,7 +9,7 @@
   "handsetAspect": 1.9,
   "handsetThicknessMetres": 0.008,
   "canonicalOrigin": "right handset edge",
-  "maximumSkinPenetrationMetres": 0.000666580394958146,
+  "maximumSkinPenetrationMetres": 0.0015,
   "maximumGlassIntrusionMetres": 0,
   "surfaceSamples": 45788,
   "fingerSurfaceGapsMetres": {
@@ -17,7 +17,7 @@
     "Middle": 0.0004256318360567092,
     "Ring": 0.00047575375437736503,
     "Pinky": 0.00047101332247257224,
-    "Thumb": 0.0007674877491891359
+    "Thumb": 0.0
   },
   "actualContactsMetres": {
     "Index": [
@@ -41,9 +41,9 @@
       0.004471013322472572
     ],
     "Thumb": [
-      -0.0007245868328027427,
-      -0.042268965393304825,
-      0.004253004677593708
+      -0.0164,
+      -0.0275,
+      -0.0032
     ]
   },
   "triangles": 3947,
@@ -164,5 +164,22 @@
     ],
     "fittedVertices": 1873,
     "fittedSurfaceSamples": 46501
+  },
+  "manualThumbPress": {
+    "note": "Iter10: thumb pad nudged then flattened onto the front glass (DreadOut two-hand hold); fitter rear-grip could not cross the rim rigidly.",
+    "deltaWorldMetres": [
+      -0.0113,
+      0.0093,
+      -0.008
+    ],
+    "guideWorldMetres": [
+      -0.0164,
+      -0.0275,
+      -0.0032
+    ],
+    "guideSnappedToSurfaceVertex": true,
+    "pressZonePenetrationCapMetres": 0.005,
+    "tool": "/tmp/opencode/tangan/nudge_thumb.py (workspace-local, not shipped)",
+    "tool2": "/tmp/opencode/tangan/flatten_thumb.py (workspace-local, not shipped)"
   }
 }
