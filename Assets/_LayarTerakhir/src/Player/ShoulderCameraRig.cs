@@ -287,7 +287,7 @@ namespace LayarTerakhir.Player
             var night=GetComponent<AbandonedLocationLighting>();
             var phone=SmartphoneController.Instance;
             if(night&&night.NightActive)
-                return phone&&phone.isPhoneRaised&&phone.isScreenOn&&phone.HasCameraPower ? (firstPerson?.55f:.14f) : .035f;
+                return phone&&phone.isPhoneRaised&&phone.isScreenOn&&phone.HasCameraPower ? (firstPerson?(PhoneAimOverride?.85f:.55f):.14f) : .035f;
             return .55f;
         }
 

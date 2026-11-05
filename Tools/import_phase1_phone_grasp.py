@@ -52,7 +52,7 @@ def calibrated_pose(rig,defs,kind,phase,female):
     bpy.context.view_layer.update()
 
 width=.165;height=width/1.9;thickness=.008
-fit=solve(rig,mesh,defs,calibrated_pose,hand_frame,handset_extents=[width/2,height/2,thickness/2],contact_faces=['side',-1,-1,-1,-1])
+fit=solve(rig,mesh,defs,calibrated_pose,hand_frame,handset_extents=[width/2,height/2,thickness/2],contact_faces=[1,-1,-1,-1,-1])
 assert fit['maxPenetrationMetres']<.0012 and fit['maxGlassIntrusionMetres']<.0015,fit
 assert max(fit['fingerContactGapsMetres'])<.004,fit
 longitudinal,palm,sideways=hand_frame(defs,'R')
@@ -88,7 +88,9 @@ sample_weights=sample_surface(np.array(digit_weights),triangles)
 for values,weights in zip(canonical_points,sample_weights):
     point=Vector(values)
     for finger,name in enumerate(['Thumb','Index','Middle','Ring','Pinky']):
-        face_gap=math.sqrt(point.x**2+max(0,abs(point.y)-height/2)**2+max(0,abs(point.z)-thickness/2)**2) if finger==0 else math.sqrt(max(0,-width-point.x,point.x)**2+max(0,abs(point.y)-height/2)**2+(point.z-thickness/2)**2)
+        # Thumb opposes onto the FRONT glass near the gripped edge (DreadOut
+        # two-hand hold); fingers stay braced on the rear face as before.
+        face_gap=math.sqrt(point.x**2+max(0,abs(point.y)-height/2)**2+(point.z-thickness/2)**2) if finger==0 else math.sqrt(max(0,-width-point.x,point.x)**2+max(0,abs(point.y)-height/2)**2+(point.z-thickness/2)**2)
         if weights[finger]>.25 and face_gap<gaps.get(name,float('inf')):gaps[name]=face_gap;contacts[name]=tuple(point)
 penetration=max(min(p[0]+width,-p[0],p[1]+height/2,height/2-p[1],p[2]+thickness/2,thickness/2-p[2]) for p in canonical_points)
 glass=max([max(0,thickness/2-p[2]) for p in canonical_points if abs(p[0]+width/2)<width*.43 and abs(p[1])<height*.46 and not (p[0]>-width*.18 and p[1]<.01)]+[0])
