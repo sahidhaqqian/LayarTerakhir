@@ -183,15 +183,18 @@ namespace LayarTerakhir.Editor.Tests
             // never a door that swings open and shut again.
             Assert.That(CampaignState.Instance.HasInventoryItem("EVENT_P0_VENT_PRIZED"),Is.True,"Prying registers");
             Assert.That(d.upper.ventDoor.gameObject.activeInHierarchy,Is.False,"Prized grille is gone, not left swinging");
-            // Crawling through still needs AR + crouch at the open grille.
-            device.currentScanMode=ScanVisualMode.AR;device.SyncVisualState();
+            // Crawling through needs only crouch at the prized grille
+            // (Nov 5 regression: AR is no longer required after prying).
+            device.currentScanMode=ScanVisualMode.Normal;device.SyncVisualState();
             yield return new WaitForSeconds(.3f);
             p.enabled=true;
             InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftCtrl));yield return new WaitForSeconds(.6f);
             Assert.That(p.IsCrouching,Is.True);
             p.enabled=false;
             yield return new WaitForSeconds(.3f);
-            Assert.That(d.upper.ventGate.enabled,Is.False);yield return Prolog47VisualTests.Capture(d.phoneView.playerCamera,"24-vent-open-ar-crouched");
+            Assert.That(d.upper.ventGate.enabled,Is.False,"Vent gate opens for a crouched crawl without AR");
+            device.currentScanMode=ScanVisualMode.AR;device.SyncVisualState();
+            yield return Prolog47VisualTests.Capture(d.phoneView.playerCamera,"24-vent-open-ar-crouched");
             yield return WalkCapsule(p,d.P(-3,4.5f,3.83f));
             Assert.That(d.LocalPosition(p.transform.position).y,Is.LessThan(4.7f),"Raka physically passes through the opening");
             device.currentScanMode=ScanVisualMode.Normal;

@@ -267,12 +267,15 @@ namespace LayarTerakhir.Prolog
             // The rusted vent cover only pries open with the worker's crowbar.
             // Without it the hinge stays locked no matter the stance or camera.
             if(ventDoor)ventDoor.locked=!Has("ITEM_P0_CROWBAR");
-            // Child vent pass: AR transparency + crouch walk lets the capsule through the cabinet hole.
+            // Child vent pass: once the grille is prized, a crouched walk
+            // through the hole is enough. AR used to be required here too,
+            // which locked players out after prying (designer bug Nov 5:
+            // "sudah buka ventilasi tapi tidak bisa masuk kamar anak").
             if(ventGate&&ventMouth)
             {
                 bool near=Vector3.Distance(director.player.transform.position,ventMouth.position)<2.1f;
                 // A prized grille is gone for good, so the open/closed swing no longer gates anything.
-                bool pass=ar&&director.player.IsCrouching&&near&&childDoor&&!childDoor.IsOpen&&(Has("EVENT_P0_VENT_PRIZED")||!ventDoor||ventDoor.IsOpen);
+                bool pass=director.player.IsCrouching&&near&&childDoor&&!childDoor.IsOpen&&(Has("EVENT_P0_VENT_PRIZED")||!ventDoor||ventDoor.IsOpen);
                 ventGate.enabled=!pass;
                 if(ventCabinet&&!ventDoor)ventCabinet.SetActive(!pass);
             }

@@ -124,7 +124,7 @@ namespace LayarTerakhir.Editor
             var go=GameObject.CreatePrimitive(PrimitiveType.Cube);go.name=name;go.transform.SetParent(root,false);go.transform.SetPositionAndRotation(center,Quaternion.LookRotation(d.north));go.transform.localScale=size;go.GetComponent<Renderer>().sharedMaterial=material;if(!collision)Object.DestroyImmediate(go.GetComponent<Collider>());return go;
         }
         private static void Center(string name,float x,float depth,float height,Vector3? size=null)
-        {var go=Find(name);if(!go)return;if(size.HasValue)KosVisualV2.Resize(go,size.Value);KosVisualV2.SetCenter(go,P(x,depth,height));var box=go.GetComponent<BoxCollider>();if(box)KosVisualV2.FitBox(box,KosVisualV2.BoundsOf(go));}
+        {var go=Find(name);if(!go)return;if(size.HasValue)KosVisualV2.FitWorldSize(go,size.Value);KosVisualV2.SetCenter(go,P(x,depth,height));var box=go.GetComponent<BoxCollider>();if(box)KosVisualV2.FitBox(box,KosVisualV2.BoundsOf(go));}
         private static void FurnishHome()
         {
             var main=ReviewModel("FamilyLivingSofa","AtmajaFamilySofa",root,P(-3.4f,3.0f,1.07f),new Vector3(2.5f,1.1f,.85f));main.transform.Rotate(Vector3.up,180);KosVisualV2.SetCenter(main,P(-3.4f,3.0f,1.07f));

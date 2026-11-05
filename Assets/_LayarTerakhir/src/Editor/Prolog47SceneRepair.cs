@@ -1459,7 +1459,7 @@ namespace LayarTerakhir.Editor
             var mesh = new Mesh { name = "Circular jointed well cover" };
             var vertices = new List<Vector3>();
             var triangles = new List<int>();
-            const float radius = .50f;
+            const float radius = .62f;
             for (int board = 0; board < 7; board++)
             {
                 float z0 = -radius + board * (radius * 2 / 7) + .003f, z1 = -radius + (board + 1) * (radius * 2 / 7) - .003f;
@@ -1476,7 +1476,7 @@ namespace LayarTerakhir.Editor
             mesh.SetUVs(0, vertices.Select(v => new Vector2(v.x, v.z)).ToList());
             mesh.RecalculateNormals(); mesh.RecalculateBounds();
             MeshObject("WellCoverBoards47", well.transform, d.P(2.85f, 11.2f, 1.10f), StoreMesh(mesh, "CircularWellCover"), Old("House_MAT_WoodDoor"));
-            Chain("WellRustChain", well.transform, d.P(2.85f, 11.2f, 1.137f), d.east, Vector3.zero, .94f);
+            Chain("WellRustChain", well.transform, d.P(2.85f, 11.2f, 1.137f), d.east, Vector3.zero, .94f, .5f);
             Save();
             Debug.Log("WELL_COVER_APPLIED round cover + fine chain only");
         }
@@ -1900,13 +1900,20 @@ namespace LayarTerakhir.Editor
             const string source = "Assets/_LayarTerakhir/assets/Art/Phase3/Imported/Modules/modular_fire_escape/modular_fire_escape_ladder_bottom.fbx";
             var ladder = new GameObject("CellarExitLadder");
             ladder.transform.SetParent(root, true);
-            var body = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(source));
-            body.transform.SetParent(ladder.transform, false);
             ladder.transform.rotation = Quaternion.LookRotation(d.north);
-            foreach (var r in ladder.GetComponentsInChildren<Renderer>())
-                r.sharedMaterials = Enumerable.Repeat(Material("Repair_Iron"), r.sharedMaterials.Length).ToArray();
-            KosVisualV2.Resize(ladder, new Vector3(.64f, 6.66f, .075f));
-            KosVisualV2.SetCenter(ladder, d.P(1.025f, .64f, .55f));
+            // Nov 5 bug: one ladder segment stretched to 6.66m read as a
+            // distorted asset spanning basement to upper floor. Stack three
+            // natural-height segments instead (same total span/centre).
+            for (int seg = 0; seg < 3; seg++)
+            {
+                var body = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(source));
+                body.name = "CellarLadderSegment" + seg;
+                body.transform.SetParent(ladder.transform, false);
+                foreach (var r in body.GetComponentsInChildren<Renderer>())
+                    r.sharedMaterials = Enumerable.Repeat(Material("Repair_Iron"), r.sharedMaterials.Length).ToArray();
+                KosVisualV2.Resize(body, new Vector3(.64f, 2.22f, .075f));
+                KosVisualV2.SetCenter(body, d.P(1.025f, .64f, .55f + (seg - 1) * 2.22f));
+            }
 
             // Bug 43: Iron wall-anchor brackets tying the ladder rails flush into the north shaft masonry + masonry rim collar sealing upper floor gap!
             for (int bi = 0; bi < 4; bi++)
@@ -2120,11 +2127,11 @@ namespace LayarTerakhir.Editor
             return StoreMesh(mesh, "ConcaveDish");
         }
 
-        private static Mesh BuildChainMesh(string storeName, Vector3 along, Vector3 sag, float length)
+        private static Mesh BuildChainMesh(string storeName, Vector3 along, Vector3 sag, float length, float linkScale = 1f)
         {
             var v = new List<Vector3>();
             var t = new List<int>();
-            int links = Mathf.RoundToInt(length / .04f);
+            int links = Mathf.RoundToInt(length / (.04f * linkScale));
             Vector3 up = Mathf.Abs(Vector3.Dot(along.normalized, Vector3.up)) > .9f ? Vector3.forward : Vector3.up;
             for (int link = 0; link < links; link++)
             {
@@ -2135,13 +2142,13 @@ namespace LayarTerakhir.Editor
                 for (int i = 0; i < 20; i++)
                 {
                     float a = i * Mathf.PI * 2 / 20;
-                    Vector3 ring = along * (Mathf.Cos(a) * .024f) + side * (Mathf.Sin(a) * .0115f);
+                    Vector3 ring = along * (Mathf.Cos(a) * .024f * linkScale) + side * (Mathf.Sin(a) * .0115f * linkScale);
                     Vector3 radial = (along * Mathf.Cos(a) + side * Mathf.Sin(a)).normalized;
                     Vector3 normal = Vector3.Cross(along, side).normalized;
                     for (int k = 0; k < 6; k++)
                     {
                         float b = k * Mathf.PI * 2 / 6;
-                        v.Add(c + ring + (radial * Mathf.Cos(b) + normal * Mathf.Sin(b)) * .0032f);
+                        v.Add(c + ring + (radial * Mathf.Cos(b) + normal * Mathf.Sin(b)) * .0032f * linkScale);
                     }
                 }
                 for (int i = 0; i < 20; i++)
@@ -2156,9 +2163,9 @@ namespace LayarTerakhir.Editor
             return StoreMesh(mesh, storeName);
         }
 
-        private static void Chain(string name, Transform parent, Vector3 position, Vector3 along, Vector3 sag, float length)
+        private static void Chain(string name, Transform parent, Vector3 position, Vector3 along, Vector3 sag, float length, float linkScale = 1f)
         {
-            MeshObject(name, parent, position, BuildChainMesh(name + "Links", along, sag, length), Old("House_MAT_RustMetal"));
+            MeshObject(name, parent, position, BuildChainMesh(name + "Links", along, sag, length, linkScale), Old("House_MAT_RustMetal"));
         }
 
         private static GameObject Imported(string id, string name, Transform root, Vector3 foot, Vector3 size, Quaternion rotation)
@@ -2878,6 +2885,157 @@ namespace LayarTerakhir.Editor
             }
             Object.DestroyImmediate(camGo);
             Debug.Log("HUNTER_ANIM_CAPTURED no-save");
+        }
+
+        public static void DiagnoseBugSweep()
+        {
+            // Bug sweep Nov 5: street/gate, well, vent, bathroom, stretched assets. No-save.
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            foreach (var r in Object.FindObjectsByType<Renderer>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            {
+                var b = r.bounds;
+                if (b.size.y > 3.2f) Debug.Log("STRETCH " + r.name + " center=" + b.center.ToString("F2") + " size=" + b.size.ToString("F2") + " minY=" + b.min.y.ToString("F2") + " maxY=" + b.max.y.ToString("F2") + " path=" + ParentChain(r.transform));
+                if (b.max.y > 7.4f && b.size.x < 3f && b.size.z < 3f) Debug.Log("TALLPOLE " + r.name + " center=" + b.center.ToString("F2") + " size=" + b.size.ToString("F2") + " path=" + ParentChain(r.transform));
+            }
+            foreach (string n in new[] { "FrontBoundary", "GatePillar", "BathCurtain", "WellCoverBoards47", "WellRustChain", "OldChainedKitchenWell", "VentPassGate", "VentGrilleDoor" })
+            {
+                var go = GameObject.Find(n);
+                var rr = go ? go.GetComponent<Renderer>() : null;
+                Debug.Log("STATE " + n + " found=" + (go != null) + " active=" + (go && go.activeInHierarchy) + " rendEnabled=" + (rr && rr.enabled) + " bounds=" + (rr ? rr.bounds.center.ToString("F2") + "/" + rr.bounds.size.ToString("F2") : "-"));
+            }
+            const string folder = "Audit/Visuals/BugSweep";
+            System.IO.Directory.CreateDirectory(folder);
+            var camGo = new GameObject("BugSweepCam", typeof(Camera));
+            var cam = camGo.GetComponent<Camera>();
+            cam.enabled = false; cam.nearClipPlane = .05f; cam.farClipPlane = 120f;
+            cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = Color.black;
+            var fill = camGo.AddComponent<Light>();
+            fill.type = LightType.Point; fill.range = 14f; fill.intensity = 1.2f;
+            fill.color = new Color(1f, 1f, 1f); fill.shadows = LightShadows.None;
+            var shots = new (string, Vector3, Vector3)[]
+            {
+                ("01-street-gate", new Vector3(0f, 1.7f, 17.5f), new Vector3(0f, 1.6f, 0f)),
+                ("02-well-top", new Vector3(-2.85f, 3.4f, -8.6f), new Vector3(-2.85f, 0.9f, -11.3f)),
+                ("03-corridor-vent", new Vector3(3f, 5.1f, -3.6f), new Vector3(3f, 4.5f, -5.3f)),
+                ("04-child-vent-inside", new Vector3(3f, 4.7f, -7.2f), new Vector3(3f, 4.5f, -5.1f)),
+                ("05-bathroom-tub", new Vector3(1.1f, 4.9f, -3.6f), new Vector3(1.1f, 4.5f, -1.0f)),
+                ("06-upper-corridor-wide", new Vector3(-1f, 5.2f, -3.4f), new Vector3(4f, 4.6f, -5.4f)),
+            };
+            foreach (var s in shots)
+            {
+                camGo.transform.SetPositionAndRotation(s.Item2, Quaternion.LookRotation(s.Item3 - s.Item2));
+                KosRenderDiagnosis.Capture(cam, s.Item1, false, folder);
+            }
+            Object.DestroyImmediate(camGo);
+            Debug.Log("BUG_SWEEP_DONE");
+        }
+
+        public static void ApplyBathCurtainCC0()
+        {
+            // Nov 5: replace the BathCurtain slab (never covered the tub) with
+            // the CC0 shower curtain (Grab3D, 1.54x1.84m, rod + rings) hung
+            // along the tub's long side, hem dipping below the rim.
+            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            var d = Object.FindFirstObjectByType<AtmajaDirector>();
+            var root = Find("Atmaja_Environment_Art").transform;
+            var tub = Find("BathTub");
+            if (!tub) throw new InvalidOperationException("Missing BathTub");
+            var tubBounds = KosVisualV2.BoundsOf(tub);
+            Delete("BathCurtain"); Delete("BathCurtainRod");
+            const string src = "Assets/_LayarTerakhir/assets/Art/Imported/ShowerCurtainCC0/ShowerCurtainCC0.fbx";
+            var holder = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(src));
+            if (!holder) throw new InvalidOperationException("CC0 shower curtain FBX missing");
+            holder.name = "BathCurtain";
+            holder.transform.SetParent(root, true);
+            PrefabUtility.UnpackPrefabInstance(holder, PrefabUnpackMode.OutermostRoot, InteractionMode.AutomatedAction);
+            bool tubAlongX = tubBounds.size.x >= tubBounds.size.z;
+            var b0 = KosVisualV2.BoundsOf(holder);
+            bool curtainAlongX = b0.size.x >= b0.size.z;
+            if (curtainAlongX != tubAlongX) holder.transform.rotation = Quaternion.Euler(0, 90, 0);
+            float tubLong = tubAlongX ? tubBounds.size.x : tubBounds.size.z;
+            float tubShort = tubAlongX ? tubBounds.size.z : tubBounds.size.x;
+            var cur = KosVisualV2.BoundsOf(holder);
+            KosVisualV2.Resize(holder, new Vector3(tubAlongX ? tubLong + .08f : cur.size.x, 1.84f, tubAlongX ? cur.size.z : tubLong + .08f));
+            var after = KosVisualV2.BoundsOf(holder);
+            Vector3 targetCenter = tubBounds.center;
+            // Hang along the long edge facing the room (south = -z in world).
+            if (tubAlongX) targetCenter.z = tubBounds.center.z - (tubShort / 2 - .07f);
+            else targetCenter.x = tubBounds.center.x - (tubShort / 2 - .07f);
+            targetCenter.y = after.center.y; // keep, fixed below via bottom
+            KosVisualV2.SetCenter(holder, new Vector3(targetCenter.x, after.center.y, targetCenter.z));
+            var placed = KosVisualV2.BoundsOf(holder);
+            holder.transform.position += Vector3.up * ((tubBounds.max.y - .5f) - placed.min.y);
+            foreach (var mf in holder.GetComponentsInChildren<MeshFilter>())
+                if (!mf.GetComponent<Collider>()) mf.gameObject.AddComponent<MeshCollider>();
+            var item = holder.AddComponent<AtmajaItem>();
+            item.director = d; item.action = AtmajaAction.BathCurtain; item.label = "Buka tirai bak mandi";
+            if (d.upper) d.upper.bathCurtain = holder;
+            var fin = KosVisualV2.BoundsOf(holder);
+            Save();
+            Debug.Log("BATH_CURTAIN_CC0_APPLIED tub=" + tubBounds.center.ToString("F2") + "/" + tubBounds.size.ToString("F2") + " curtain=" + fin.center.ToString("F2") + "/" + fin.size.ToString("F2"));
+        }
+
+        public static void CaptureBugProof()
+        {
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            const string folder = "Audit/Visuals/BugSweep";
+            System.IO.Directory.CreateDirectory(folder);
+            var camGo = new GameObject("BugProofCam", typeof(Camera));
+            var cam = camGo.GetComponent<Camera>();
+            cam.enabled = false; cam.nearClipPlane = .05f; cam.farClipPlane = 120f;
+            cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = Color.black;
+            var fill = camGo.AddComponent<Light>();
+            fill.type = LightType.Point; fill.range = 14f; fill.intensity = 1.2f;
+            fill.color = new Color(1f, 1f, 1f); fill.shadows = LightShadows.None;
+            var shots = new (string, Vector3, Vector3)[]
+            {
+                ("11-street-gate-after", new Vector3(0f, 1.7f, 17.5f), new Vector3(0f, 1.6f, 0f)),
+                ("12-well-after", new Vector3(-2.85f, 4.4f, -9.2f), new Vector3(-2.85f, 1.0f, -11.25f)),
+                ("13-vent-after", new Vector3(3f, 5.1f, -3.6f), new Vector3(3f, 4.5f, -5.3f)),
+                ("14-bathroom-curtain-after", new Vector3(1.1f, 4.9f, -3.6f), new Vector3(1.1f, 4.5f, -1.0f)),
+                ("15-ladder-basement-after", new Vector3(-1.03f, -1.2f, 1.8f), new Vector3(-1.03f, 0.9f, -0.7f)),
+                ("16-ladder-top-after", new Vector3(0.6f, 5.4f, -2.6f), new Vector3(-1.03f, 3.4f, -0.6f)),
+            };
+            foreach (var s in shots)
+            {
+                camGo.transform.SetPositionAndRotation(s.Item2, Quaternion.LookRotation(s.Item3 - s.Item2));
+                KosRenderDiagnosis.Capture(cam, s.Item1, false, folder);
+            }
+            Object.DestroyImmediate(camGo);
+            Debug.Log("BUG_PROOF_DONE");
+        }
+
+        public static void RemoveStretchedMattress()
+        {
+            // Bug 4 (Nov 5): one ChildMattress instance carries prefab
+            // scale overrides (90, 3.5e-15, 7e9) -> 16M-meter pole from
+            // basement to upper floor. Designer order: just delete it.
+            EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
+            int removed = 0;
+            foreach (var tr in Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            {
+                if (tr.name != "ChildMattress") continue;
+                var r = tr.GetComponent<Renderer>();
+                float h = r ? r.bounds.size.y : 0f;
+                float m = tr.localScale.magnitude + tr.lossyScale.magnitude;
+                if (h > 100f || m > 50f || float.IsInfinity(h) || float.IsNaN(h))
+                {
+                    Debug.Log("STRETCH_DELETE ChildMattress scale=" + tr.localScale.ToString("E2") + " boundsY=" + h.ToString("E2") + " path=" + ParentChain(tr));
+                    Object.DestroyImmediate(tr.gameObject);
+                    removed++;
+                }
+            }
+            // Fallback: exact prefab-override victim under ChildBedSet.
+            if (removed == 0)
+            {
+                var bed = GameObject.Find("ChildBedSet");
+                var inner = bed ? bed.GetComponentsInChildren<Transform>(true).FirstOrDefault(x => x.name == "ChildMattress") : null;
+                if (inner) { Debug.Log("STRETCH_DELETE fallback under ChildBedSet"); Object.DestroyImmediate(inner.gameObject); removed++; }
+            }
+            Save();
+            Debug.Log("STRETCH_DELETED removed=" + removed);
         }
 
         public static void CaptureHunterProof()
