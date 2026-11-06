@@ -18,8 +18,8 @@ set -x
 
 STEP="init"
 finish() {
-  set +e
   local code=$?
+  set +e
   trap - EXIT
   set +x
   jset "$RUN_DIR" finishedUtc "\"$(utc_now)\"" 2>/dev/null || true
