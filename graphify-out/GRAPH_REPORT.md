@@ -9,7 +9,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `25be2458`
+- Built from commit: `36846614`
 - Commit above is the pre-commit base, not a freshness check. Verify source/artifact hashes with `python3 Tools/update_graphify.py --check`.
 - Regenerate safely with `python3 Tools/update_graphify.py` before commit/push.
 
@@ -732,7 +732,7 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.055) - this node is a cross-community bridge._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.042451612903225806 - nodes in this community are weakly interconnected._
-- **Why does `Phase4Director` connect `Community 25` to `Community 0`, `Community 1`, `Community 6`, `Community 9`, `Community 10`, `Community 139`, `Community 13`, `Community 15`, `Community 18`, `Community 19`, `Community 21`, `Community 24`, `Community 27`, `Community 37`, `Community 44`, `Community 46`, `Community 49`, `Community 53`, `Community 55`, `Community 57`, `Community 63`, `Community 65`, `Community 69`, `Community 79`, `Community 87`, `Community 88`, `Community 93`, `Community 95`, `Community 108`, `Community 110`, `Community 113`, `Community 118`?**
+- **Why does `CampaignState` connect `Community 6` to `Community 2`, `Community 7`, `Community 9`, `Community 11`, `Community 13`, `Community 14`, `Community 23`, `Community 25`, `Community 28`, `Community 29`, `Community 31`, `Community 33`, `Community 42`, `Community 46`, `Community 47`, `Community 49`, `Community 50`, `Community 92`, `Community 95`, `Community 102`?**
   _High betweenness centrality (0.049) - this node is a cross-community bridge._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.02989771833202203 - nodes in this community are weakly interconnected._

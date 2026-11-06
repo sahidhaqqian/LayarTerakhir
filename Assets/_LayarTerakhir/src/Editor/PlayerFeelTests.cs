@@ -69,6 +69,7 @@ namespace LayarTerakhir.Editor.Tests
                 const float width=.165f,height=width/1.9f;
                 var skin=grasp.GetComponentsInChildren<MeshFilter>(true).Single(m=>m.name=="PhoneHand_VisibleSkin");
                 var material=skin.GetComponent<Renderer>().sharedMaterial;
+                Assert.That(material,Is.Not.Null,"Skin renderer must carry a material after fresh reimport, else AtmajaPhoneView.Start dies and the phone never powers on");
                 var meshyDiffuse=UnityEditor.AssetDatabase.LoadAssetAtPath<Texture>("Assets/_LayarTerakhir/assets/Art/Phase1/Characters/Meshy_Hands_Diffuse.png");
                 if(meshyDiffuse!=null&&grasp.GetComponentsInChildren<Renderer>(true).All(r=>!r.name.Contains("Jacket")))
                     Assert.That(material.GetTexture("_BaseMap"),Is.SameAs(meshyDiffuse),"Meshy grasp must carry the Meshy diffuse, never a broken override");

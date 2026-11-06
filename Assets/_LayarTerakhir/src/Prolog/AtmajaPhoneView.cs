@@ -172,7 +172,17 @@ namespace LayarTerakhir.Prolog
                 foreach(var renderer in handRenderers.Concat(supportRenderers))
                     if(renderer.name.Contains("VisibleSkin"))
                     {
-                        var material=new Material(renderer.sharedMaterial);material.name="PhoneGripSurface_Runtime";
+                        // Fresh Library reimports of a material-less FBX can leave
+                        // a null binding; never let a missing skin kill Start()
+                        // (dead phone with visible mesh). Fall back to a plain
+                        // lit material so aim setup always completes.
+                        var source=renderer.sharedMaterial;
+                        if(source==null)
+                        {
+                            source=new Material(Shader.Find("Universal Render Pipeline/Lit"));
+                            renderer.sharedMaterial=source;
+                        }
+                        var material=new Material(source);material.name="PhoneGripSurface_Runtime";
                         material.SetFloat("_Smoothness",.22f);material.SetFloat("_BumpScale",.45f);
                         if(material.HasProperty("_Metallic"))material.SetFloat("_Metallic",0);
                         material.DisableKeyword("_METALLICSPECGLOSSMAP");
