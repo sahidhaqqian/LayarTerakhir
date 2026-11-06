@@ -41,9 +41,18 @@ namespace LayarTerakhir.Editor
             surface.SetTexture("_BaseMap",characterSurface.GetTexture("_BaseMap"));
             surface.SetTexture("_BumpMap",characterSurface.GetTexture("_BumpMap"));
             surface.SetFloat("_BumpScale",.45f);if(surface.GetTexture("_BumpMap"))surface.EnableKeyword("_NORMALMAP");else surface.DisableKeyword("_NORMALMAP");surface.SetFloat("_Cull",0);
+            // User-supplied Meshy AI grasp has no Jacket/TShirt parts; give its
+            // skin the Meshy diffuse instead of the Raka skin texture.
+            var handSurface=surface;
+            var meshyDiffuse=AssetDatabase.LoadAssetAtPath<Texture2D>(Art+"Characters/Meshy_Hands_Diffuse.png");
+            if(meshyDiffuse!=null&&!model.GetComponentsInChildren<Renderer>(true).Any(r=>r.name.Contains("Jacket")||r.name.Contains("TShirt")))
+            {
+                handSurface=Plain("SourcedMeshyHands",Color.white,.32f);
+                handSurface.SetTexture("_BaseMap",meshyDiffuse);handSurface.DisableKeyword("_NORMALMAP");handSurface.SetFloat("_Cull",0);
+            }
             foreach(var renderer in model.GetComponentsInChildren<Renderer>(true))
                 renderer.sharedMaterial=renderer.name.Contains("Jacket")?AssetDatabase.LoadAssetAtPath<Material>(materials+"Raka_Clothes.mat"):
-                    renderer.name.Contains("TShirt")?AssetDatabase.LoadAssetAtPath<Material>(materials+"Raka_TShirt.mat"):surface;
+                    renderer.name.Contains("TShirt")?AssetDatabase.LoadAssetAtPath<Material>(materials+"Raka_TShirt.mat"):handSurface;
             PrefabUtility.SaveAsPrefabAsset(root,"Assets/Resources/RakaCameraGrip.prefab");Object.DestroyImmediate(root);
         }
 

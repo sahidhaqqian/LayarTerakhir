@@ -23,10 +23,19 @@ pose mentah KECUALI ibu jari (di bawah).
 - Posisi: tengah x=0, slab y di belakang jari, tepi bawah z=+18mm (jari di tepi atas).
 - Material preview: bodi abu gelap, layar biru muda (basic, bukan tekstur game).
 - File: `Audit/Visuals/Feel-Meshy/mentah_hp_nyata_depan.png` = R2 `tangan/mentah_hp_nyata_depan.png`.
-- Skrip: `/tmp/opencode/tangan/mentah/hp_nyata.py`.
+- Skrip repo: `Tools/meshy_grasp_redbox.py` (proxy) dan
+  `Tools/meshy_grasp_realphone.py` (HP nyata); kamera (0,-0.9,0.060) lens 50.
 
-## Render preview
-- Kamera: (0, -0.9, 0.060), target (0, -0.031, 0.060), lens 50, 1280x720.
-- Lampu: Key (0.5,0.5,1.0) 5.0, Fill (-0.5,-0.5,0.3) 2.0 (SUN).
-- File: `Audit/Visuals/Feel-Meshy/mentah_hp_gede_depan.png` = R2 `tangan/mentah_hp_gede_depan.png`.
-- Skrip: `/tmp/opencode/tangan/mentah/thumb_down.py` (pose+bake+shift+box+render).
+## Masuk game (final, disetujui user)
+- Tangan kanan saja di-export (`Tools/export_meshy_grasp_game.py`):
+  pose approved + similarity s=165/180 ke box game 165mm + guides
+  (Thumb/Index/Middle snap permukaan + Wrist + Origin/Right/Up/Forward).
+- Builder mirror untuk tangan kiri; material `SourcedMeshyHands`
+  (diffuse Meshy) via `Phase1EnvironmentBuilder.cs`.
+- Runtime `AtmajaPhoneView.cs`: `gripRaiseMetres=.005f` (tangan turun 25mm,
+  HP turun 5mm relatif — net sesuai foto R2 `after-meshy-phonedown5`).
+- Foto game: R2 `tangan/after-meshy-10a-viewfinder.png` (spike, dibuang),
+  `tangan/after-meshy-lowered-10a-viewfinder.png`,
+  `tangan/after-meshy-phonedown5-10a-viewfinder.png` (final).
+- Jujur: gate `SourcedLandscapeGrasp...` masih merah 4.0mm
+  (selaput webbing lewat bodi, nol verteks di dalam) — visual disetujui user.

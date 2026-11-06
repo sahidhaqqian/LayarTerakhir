@@ -618,7 +618,9 @@ namespace LayarTerakhir.Prolog
             // clear, wrist 42mm behind) and lifts 25mm so the whole pad
             // sits on the lower glass instead of dangling below the rim.
             // Sleeve gate has room (cuff projects below-frame, y -0.23).
-            const float wristDownDeg=3f,wristOutDeg=0f,wristRollDeg=0f,gripShrink=1f,gripRaiseMetres=.025f;
+            // Meshy grasp: mesh already seats digits on the glass in bind;
+            // small 5mm lift so the chin clears the thumbs (was 25mm).
+            const float wristDownDeg=3f,wristOutDeg=0f,wristRollDeg=0f,gripShrink=1f,gripRaiseMetres=.005f;
             firstPersonHand.transform.position=phoneCentre+edge+handRotation*(new Vector3(-.0050251f,-.0325639f,-.0083271f)*(1-t)+Vector3.up*gripRaiseMetres*t);
             // Scale is applied with the landscape wrist below (gripShrink).
             // Source grasp origin is the edge, in metres. Mirror around the
