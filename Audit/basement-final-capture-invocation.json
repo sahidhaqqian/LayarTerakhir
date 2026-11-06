@@ -1,0 +1,27 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-job-worker-count",
+    "1",
+    "-projectPath",
+    "/root/projects/LayarTerakhir/.qoder/worktrees/basement-wide-corridors",
+    "-logFile",
+    "Audit/basement-final-capture.log",
+    "-executeMethod",
+    "LayarTerakhir.Editor.Prolog47SceneRepair.CaptureBasementRooms",
+    "-quit"
+  ],
+  "startedUtc": "2026-11-06T07:39:55.081074+00:00",
+  "status": "Finished",
+  "unit": "lt-unity-20261106-073954-2043746",
+  "memoryLimitBytes": 5368709120,
+  "memoryHighBytes": 4294967296,
+  "endedUtc": "2026-11-06T07:40:36.136784+00:00",
+  "exitCode": 0,
+  "systemdServiceResult": "success"
+}

@@ -430,11 +430,44 @@ namespace LayarTerakhir.Editor.Tests
         }
         private IEnumerator ExpandedCellarNavigation()
         {
-            yield return new WaitForSeconds(2);var d=SeedBasement();d.basement.enabled=false;d.basement.nyonya.SetActive(false);d.PlacePlayer(d.P(2.2f,6.3f,-2.79f),Quaternion.identity);
-            // Maze-aware loop: straight pre-maze rectangle is cut by spine/cross
-            // walls by design — route through the staggered gaps proven by
-            // CellarWalk87 (spine gaps z 4-5 / 8.5-9.5, cross gap x 9-10).
-            foreach(var p in new[]{d.P(3.2f,5.6f,-2.79f),d.P(1.7f,6.0f,-2.79f),d.P(1.5f,2.6f,-2.79f),d.P(1.5f,3.8f,-2.79f),d.P(4.2f,3.8f,-2.79f),d.P(4.2f,4.2f,-2.79f),d.P(6.0f,4.2f,-2.79f),d.P(7.0f,4.5f,-2.79f),d.P(7.0f,5.8f,-2.79f),d.P(9.3f,5.8f,-2.79f),d.P(9.5f,7.5f,-2.79f),d.P(9.0f,9.2f,-2.79f),d.P(6.0f,9.0f,-2.79f),d.P(6.0f,7.7f,-2.79f),d.P(2.5f,7.5f,-2.79f)})yield return WalkCapsule(d.player,p);
+            yield return new WaitForSeconds(2);var d=SeedBasement();var b=d.basement;b.enabled=false;b.nyonya.SetActive(false);
+            Vector3 P(float x,float z)=>d.P(x,z,-2.79f);
+            d.PlacePlayer(P(2.2f,6.3f),Quaternion.identity);
+            var route=new[]
+            {
+                new Vector2(3.2f,5.6f),new Vector2(1.7f,6f),new Vector2(1.5f,2.6f),new Vector2(1.5f,3.8f),
+                new Vector2(4.2f,3.8f),new Vector2(4.2f,4.5f),new Vector2(5.5f,4.5f),new Vector2(5.5f,3.8f),
+                new Vector2(4.2f,3.8f),new Vector2(2.5f,3.8f),new Vector2(2.5f,5.8f),new Vector2(3.2f,5.6f),
+                new Vector2(2.2f,6.3f),new Vector2(3.2f,5.6f),new Vector2(2.5f,5.8f),new Vector2(2.5f,3.8f),
+                new Vector2(4.2f,3.8f),new Vector2(5.5f,3.8f),new Vector2(5.5f,4.5f),new Vector2(7f,4.5f),
+                new Vector2(13.5f,4.5f),new Vector2(16.8f,4.5f),new Vector2(20f,4.5f),new Vector2(20f,7.5f),
+                new Vector2(19.2f,9f),new Vector2(19.2f,11.2f),new Vector2(22f,11.2f),new Vector2(22.5f,8.5f),
+                new Vector2(22.5f,4.4f),new Vector2(22.2f,4.4f),new Vector2(20f,4.5f),new Vector2(16.8f,4.5f),
+                new Vector2(13.5f,4.5f),new Vector2(13.5f,20f),new Vector2(13.5f,23f),new Vector2(13.5f,24.5f),
+                new Vector2(11f,23.5f),new Vector2(9.5f,24.5f),new Vector2(9.5f,26.4f),new Vector2(9.5f,28.5f),
+                new Vector2(11.7f,28.5f),new Vector2(11.7f,25.2f),new Vector2(14f,25.2f),new Vector2(14f,25.5f),
+                new Vector2(13.5f,24.5f),new Vector2(13.5f,23f),new Vector2(13.5f,4.5f),new Vector2(7f,4.5f),
+                new Vector2(5.5f,4.5f),new Vector2(5.9f,4.5f),new Vector2(5.9f,5.8f),new Vector2(5.9f,9.2f),
+                new Vector2(5.9f,10.7f),new Vector2(4.2f,10.7f),new Vector2(4.2f,12.2f),new Vector2(1.2f,12.2f),
+                new Vector2(1.2f,14f),new Vector2(1f,16f),new Vector2(2.5f,15.5f),new Vector2(3.8f,14f),
+                new Vector2(4.2f,12.2f),new Vector2(4.2f,10.7f),new Vector2(5.9f,10.7f),new Vector2(5.9f,9.2f),
+                new Vector2(5.9f,5.8f)
+            };
+            foreach(var point in route)yield return WalkCapsule(d.player,P(point.x,point.y),-2.45f);
+            b.nyonya.SetActive(true);var hunter=b.nyonya.transform;hunter.position=d.chase.rail[0].position;Physics.SyncTransforms();
+            IEnumerator HuntTo(Vector2 point,string room)
+            {
+                var goal=P(point.x,point.y);
+                for(int frame=0;frame<2400&&Vector3.Distance(hunter.position,goal)>.25f;frame++)
+                {
+                    b.PursueForChase(goal,2.8f,.05f);yield return null;
+                }
+                Assert.That(Vector3.Distance(hunter.position,goal),Is.LessThan(.3f),"Nyonya reaches "+room+" through the shared waypoint graph; stopped at "+hunter.position);
+            }
+            yield return HuntTo(new Vector2(20f,4.5f),"archive");
+            yield return HuntTo(new Vector2(13.5f,24.5f),"crypt");
+            yield return HuntTo(new Vector2(2.5f,15.5f),"flooded storage");
+            yield return HuntTo(new Vector2(2.5f,3.8f),"sewing room");
         }
         private IEnumerator NeighborhoodShop()
         {

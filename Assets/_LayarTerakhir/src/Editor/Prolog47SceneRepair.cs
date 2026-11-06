@@ -2566,13 +2566,6 @@ namespace LayarTerakhir.Editor
             Debug.Log("PROLOG47_SCRATCH_RELIEF_APPLIED designer rupture relief, reference-matched paint");
         }
 
-        // Designer Nov: the cellar is a big but empty box — its gameplay all
-        // sits in the west corner. Carve an interconnected maze inside the
-        // existing 12x12 footprint (no new digging): a spine wall and a cross
-        // wall with staggered gaps form a full loop, the flooded south room
-        // gets puddle + crates, and Damar's handycam hides in the south-east
-        // nook so it is earned, not stumbled upon. West room, chase rail,
-        // ladder and audit anchors are untouched.
         public static void ApplyBasementBranches()
         {
             EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
@@ -2580,7 +2573,7 @@ namespace LayarTerakhir.Editor
             var root = Find("Atmaja_Environment_Art").transform;
             RebuildBasementBranches(d, root);
             Save();
-            Debug.Log("PROLOG47_BASEMENT_BRANCHES_APPLIED maze loop, flooded storage, hidden handycam");
+            Debug.Log("PROLOG47_BASEMENT_BRANCHES_APPLIED four wide enclosed rooms with straight corridors");
         }
 
         // Review-only capture: one framebuffer per basement room with a
@@ -3183,25 +3176,31 @@ namespace LayarTerakhir.Editor
         {
             EditorSceneManager.OpenScene(AtmajaSceneBuilder.ScenePath);
             var d = Object.FindFirstObjectByType<AtmajaDirector>();
-            const string folder = "Audit/Visuals/Basement-Review";
+            const string folder = "Audit/Visuals/Basement-Wide-Corridors/After";
             System.IO.Directory.CreateDirectory(folder);
             var camGo = new GameObject("BasementReviewCam", typeof(Camera));
             var cam = camGo.GetComponent<Camera>();
-            cam.enabled = false; cam.nearClipPlane = .05f; cam.farClipPlane = 60f;
+            cam.enabled = false; cam.nearClipPlane = .05f; cam.farClipPlane = 80f;
             cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = Color.black;
             var fill = camGo.AddComponent<Light>();
-            fill.type = LightType.Point; fill.range = 7f; fill.intensity = 1.0f;
+            fill.type = LightType.Point; fill.range = 10f; fill.intensity = 1.25f;
             fill.color = new Color(1f, 1f, 1f); fill.shadows = LightShadows.None;
             var shots = new (string, float, float, float, float, float, float)[]
             {
-                ("01-west-original", 2.2f, 6.3f, 3.7f, 6.5f, -1.9f, 0f),
+                ("01-west-original", -.8f, 4.8f, 3.7f, 6.5f, -1.4f, 0f),
                 ("02-emergence-curtain", 2.2f, 5.0f, 3.3f, 6.0f, -1.8f, 0f),
-                ("03-spine-lane", 6.0f, 4.5f, 6.5f, 7.5f, -1.9f, 0f),
-                ("04-r1-archive", 12.5f, 6.5f, 14.6f, 10.2f, -2.0f, 0f),
-                ("05-r1-props", 12.3f, 5.8f, 12.8f, 3.2f, -2.5f, 0f),
-                ("06-r2-crypt", 13.5f, 12.8f, 11.0f, 15.3f, -2.6f, 0f),
-                ("07-r2-handycam", 13.8f, 14.0f, 14.8f, 15.2f, -2.5f, 0f),
-                ("08-r3-flooded", 3.5f, 9.0f, 5.6f, 11.5f, -2.5f, 0f),
+                ("03-main-corridor", 6.9f, 4.5f, 15.8f, 4.5f, -1.2f, 0f),
+                ("04-r1-archive", 17f, 4.7f, 21.2f, 9.5f, -1.5f, 0f),
+                ("05-r1-props", 18f, 11.5f, 21f, 6f, -1.8f, 0f),
+                ("06-r2-crypt", 13.2f, 22.8f, 11f, 26.8f, -2.3f, 0f),
+                ("07-r2-handycam", 12.8f, 24.8f, 14.8f, 26.7f, -2.2f, 0f),
+                ("08-r3-flooded", 5.5f, 10.8f, 3f, 15f, -2f, 0f),
+                ("09-crypt-corridor", 13.5f, 5.8f, 13.5f, 20f, -1.2f, 0f),
+                ("10-flood-corridor", 5.9f, 7.1f, 5.9f, 9.8f, -1.2f, 0f),
+                ("11-door-r0-sewing", 3.8f, 4.5f, 6.5f, 4.5f, -1.55f, 0f),
+                ("12-door-r1-archive", 13.2f, 4.5f, 16f, 4.5f, -1.55f, 0f),
+                ("13-door-r2-crypt", 13.5f, 19f, 13.5f, 22f, -1.55f, 0f),
+                ("14-door-r3-flooded", 5.6f, 7.2f, 5.6f, 10f, -1.55f, 0f),
             };
             foreach (var s in shots)
             {
@@ -3210,8 +3209,16 @@ namespace LayarTerakhir.Editor
                     Quaternion.LookRotation(d.P(s.Item4, s.Item5, s.Item6) - d.P(s.Item2, s.Item3, -1.19f)));
                 KosRenderDiagnosis.Capture(cam, s.Item1, false, folder);
             }
+            var ceilings = Object.FindObjectsByType<Renderer>(FindObjectsInactive.Include, FindObjectsSortMode.None)
+                .Where(r => r && r.enabled && (r.name.Contains("Ceiling") || r.name.Contains("Ceil")) && r.bounds.center.y < .2f && r.bounds.center.y > -.8f).ToArray();
+            foreach (var ceiling in ceilings) ceiling.enabled = false;
+            cam.orthographic = true; cam.orthographicSize = 17.5f;
+            fill.range = 55f; fill.intensity = 2.2f;
+            camGo.transform.SetPositionAndRotation(d.P(11f, 15f, -.55f), Quaternion.LookRotation(Vector3.down, d.north));
+            KosRenderDiagnosis.Capture(cam, "00-layout-overview", false, folder);
+            foreach (var ceiling in ceilings) ceiling.enabled = true;
             Object.DestroyImmediate(camGo);
-            Debug.Log("BASEMENT_REVIEW_CAPTURED " + shots.Length + " rooms -> " + folder);
+            Debug.Log("BASEMENT_REVIEW_CAPTURED " + (shots.Length + 1) + " views -> " + folder);
         }
 
         private static GameObject MazeBox(string name, Transform root, Vector3 pos, Vector3 size, Material mat, bool solid = true)
@@ -3233,126 +3240,103 @@ namespace LayarTerakhir.Editor
             var wallMat = Find("CellarWallW").GetComponent<Renderer>().sharedMaterial;
             var floorMat = Find("CellarFloor").GetComponent<Renderer>().sharedMaterial;
             var ceilMat = Find("CellarCeiling").GetComponent<Renderer>().sharedMaterial;
-            // Open the south wall into the flooded store (local x 2.0-3.0).
-            // Delete-first: without this every re-apply stacks another
-            // identical wall pair (17x found in the wild).
-            foreach (string dead in new[] { "CellarWallS", "CellarWallS_W", "CellarWallS_E" })
-                Delete(dead);
-            var wallRot = Find("CellarWallN") ? Find("CellarWallN").transform.rotation : Quaternion.identity;
-            var wallS1 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            wallS1.name = "CellarWallS_W";
-            wallS1.transform.SetParent(root, true);
-            wallS1.transform.SetPositionAndRotation(d.P(1.1f, 6.9f, -1.575f), wallRot);
-            wallS1.transform.localScale = new Vector3(1.8f, 2.45f, .16f);
-            wallS1.GetComponent<Renderer>().sharedMaterial = wallMat;
-            var wallS2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            wallS2.name = "CellarWallS_E";
-            wallS2.transform.SetParent(root, true);
-            wallS2.transform.SetPositionAndRotation(d.P(4.3f, 6.9f, -1.575f), wallRot);
-            wallS2.transform.localScale = new Vector3(2.6f, 2.45f, .16f);
-            wallS2.GetComponent<Renderer>().sharedMaterial = wallMat;
+            foreach (string dead in new[]
+            {
+                "CellarFloor", "CellarCeiling", "CellarWallN", "CellarWallW", "CellarWallE", "CellarWallS", "CellarWallS_W", "CellarWallS_E",
+                "ExpandedCellarEastCeiling", "ExpandedCellarSouthCeiling", "ExpandedCellarEastWall", "ExpandedCellarSouthWall",
+                "CellarSpineNorth", "CellarSpineSouth", "CellarReturnPartition", "MazeSpineW1", "MazeSpineW2", "MazeSpineW3",
+                "MazeCrossS1", "MazeCrossS2", "MazeSouthWestWall", "MazeEastWall_N", "MazeEastWall_M", "MazeEastWall_S",
+                "MazeR1Floor", "MazeR1Ceil", "MazeR1East", "MazeR1North", "MazeR1South_W", "MazeR1South_E", "MazeR1PillarA", "MazeR1PillarB",
+                "MazeR2Floor", "MazeR2Ceil", "MazeR2West", "MazeR2East", "MazeR2South", "MazeR2North_W", "MazeR2North_E",
+                "MazeR3West", "MazeR3South", "CellarUtilityFixture"
+            }) Delete(dead);
+
+            void Plan(string name, float x0, float x1, float z0, float z1, float y, float height, Material mat)
+            {
+                MazeBox(name, root, d.P((x0 + x1) * .5f, (z0 + z1) * .5f, y), new Vector3(x1 - x0, height, z1 - z0), mat);
+            }
+            void Floor(string name, float x0, float x1, float z0, float z1) => Plan(name, x0, x1, z0, z1, -2.825f, .05f, floorMat);
+            void Ceiling(string name, float x0, float x1, float z0, float z1) => Plan(name, x0, x1, z0, z1, -.325f, .35f, ceilMat);
+            void Wall(string name, float x0, float x1, float z0, float z1) => Plan(name, x0, x1, z0, z1, -1.575f, 2.45f, wallMat);
+
+            Floor("CellarFloor", -1.8f, 6.5f, .6f, 6.9f);
+            Ceiling("CellarCeiling", -1.8f, 6.5f, .6f, 6.9f);
+            Wall("CellarWallN", -1.88f, 6.58f, .52f, .68f);
+            Wall("CellarWallW", -1.88f, -1.72f, .6f, 6.9f);
+            Wall("CellarWallE_N", 6.42f, 6.58f, .6f, 3.8f);
+            Wall("CellarWallE_S", 6.42f, 6.58f, 5.2f, 6.9f);
+            Wall("CellarWallS_W", -1.8f, 4.9f, 6.82f, 6.98f);
+            Wall("CellarWallS_E", 6.3f, 6.5f, 6.82f, 6.98f);
+
+            Floor("WideMainCorridorFloor", 6.5f, 16f, 3.6f, 5.4f);
+            Ceiling("WideMainCorridorCeiling", 6.5f, 16f, 3.6f, 5.4f);
+            Wall("WideMainCorridorNorth", 6.5f, 16f, 3.52f, 3.68f);
+            Wall("WideMainCorridorSouthW", 6.5f, 12.6f, 5.32f, 5.48f);
+            Wall("WideMainCorridorSouthE", 14.4f, 16f, 5.32f, 5.48f);
+
+            Floor("WideCryptCorridorFloor", 12.6f, 14.4f, 5.4f, 22f);
+            Ceiling("WideCryptCorridorCeiling", 12.6f, 14.4f, 5.4f, 22f);
+            Wall("WideCryptCorridorWest", 12.52f, 12.68f, 5.4f, 22f);
+            Wall("WideCryptCorridorEast", 14.32f, 14.48f, 5.4f, 22f);
+
+            Floor("WideFloodCorridorFloor", 4.7f, 6.5f, 6.9f, 10f);
+            Ceiling("WideFloodCorridorCeiling", 4.7f, 6.5f, 6.9f, 10f);
+            Wall("WideFloodCorridorWest", 4.62f, 4.78f, 6.9f, 10f);
+            Wall("WideFloodCorridorEast", 6.42f, 6.58f, 6.9f, 10f);
+
+            Floor("MazeR1Floor", 16f, 24f, 2.5f, 12.5f);
+            Ceiling("MazeR1Ceiling", 16f, 24f, 2.5f, 12.5f);
+            Wall("MazeR1West_N", 15.92f, 16.08f, 2.5f, 3.8f);
+            Wall("MazeR1West_S", 15.92f, 16.08f, 5.2f, 12.5f);
+            Wall("MazeR1East", 23.92f, 24.08f, 2.5f, 12.5f);
+            Wall("MazeR1North", 16f, 24f, 2.42f, 2.58f);
+            Wall("MazeR1South", 16f, 24f, 12.42f, 12.58f);
+
+            Floor("MazeR2Floor", 8f, 16f, 22f, 30f);
+            Ceiling("MazeR2Ceiling", 8f, 16f, 22f, 30f);
+            Wall("MazeR2North_W", 8f, 12.8f, 21.92f, 22.08f);
+            Wall("MazeR2North_E", 14.2f, 16f, 21.92f, 22.08f);
+            Wall("MazeR2West", 7.92f, 8.08f, 22f, 30f);
+            Wall("MazeR2East", 15.92f, 16.08f, 22f, 30f);
+            Wall("MazeR2South", 8f, 16f, 29.92f, 30.08f);
+
+            // Four slabs retain the real well opening through both floor and ceiling.
+            Floor("MazeR3FloorW", -1.8f, 2.42f, 10f, 18f);
+            Floor("MazeR3FloorE", 3.28f, 6.5f, 10f, 18f);
+            Floor("MazeR3FloorN", 2.42f, 3.28f, 10f, 10.77f);
+            Floor("MazeR3FloorS", 2.42f, 3.28f, 11.63f, 18f);
+            Ceiling("MazeR3CeilingW", -1.8f, 2.42f, 10f, 18f);
+            Ceiling("MazeR3CeilingE", 3.28f, 6.5f, 10f, 18f);
+            Ceiling("MazeR3CeilingN", 2.42f, 3.28f, 10f, 10.77f);
+            Ceiling("MazeR3CeilingS", 2.42f, 3.28f, 11.63f, 18f);
+            Wall("MazeR3North_W", -1.8f, 4.9f, 9.92f, 10.08f);
+            Wall("MazeR3North_E", 6.3f, 6.5f, 9.92f, 10.08f);
+            Wall("MazeR3West", -1.88f, -1.72f, 10f, 18f);
+            Wall("MazeR3East", 6.42f, 6.58f, 10f, 18f);
+            Wall("MazeR3South", -1.8f, 6.5f, 17.92f, 18.08f);
+
+            var crateB = Find("CellarCrateB"); if (crateB) crateB.transform.position = d.P(-1.05f, 2.25f, -2.49f);
+            var crateD = Find("CellarCrateD"); if (crateD) crateD.transform.position = d.P(-1.05f, 3.25f, -2.49f);
+            var crateE = Find("CellarCrateE"); if (crateE) crateE.transform.position = d.P(-1.05f, 1.25f, -2.49f);
+            var extraCrate = Find("CellarExtraCrate_2"); if (extraCrate) extraCrate.transform.position = d.P(-1.05f, 4.25f, -2.79f);
+
             var wood = Material("Repair_BedWood");
             var iron = Material("Repair_Iron");
-            // Spine wall (local east 6.5, gaps at depth 4.0-5.0 and 8.5-9.5).
-            MazeBox("MazeSpineW1", root, d.P(6.5f, 1.5f, -1.575f), new Vector3(.16f, 2.45f, 5.0f), wallMat);
-            MazeBox("MazeSpineW2", root, d.P(6.5f, 6.75f, -1.575f), new Vector3(.16f, 2.45f, 3.5f), wallMat);
-            MazeBox("MazeSpineW3", root, d.P(6.5f, 10.5f, -1.575f), new Vector3(.16f, 2.45f, 2.0f), wallMat);
-            // Cross wall (local depth 7.2, gap at east 9.0-10.0).
-            MazeBox("MazeCrossS1", root, d.P(7.75f, 7.2f, -1.575f), new Vector3(2.5f, 2.45f, .16f), wallMat);
-            MazeBox("MazeCrossS2", root, d.P(11.0f, 7.2f, -1.575f), new Vector3(2.0f, 2.45f, .16f), wallMat);
-            // West cap of the flooded south room.
-            MazeBox("MazeSouthWestWall", root, d.P(0.2f, 8.05f, -1.575f), new Vector3(.16f, 2.45f, 2.3f), wallMat);
-            // Flooded storage: dark glossy puddle (visual only, walkable).
-            var puddle = MazeBox("MazeFloodPuddle", root, d.P(2.5f, 8.0f, -2.79f), new Vector3(2.0f, .012f, 1.4f), null, false);
-            var floodMat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
-            floodMat.SetColor("_BaseColor", new Color(.04f, .06f, .07f));
-            floodMat.SetFloat("_Smoothness", .95f);
-            floodMat.SetFloat("_Metallic", .1f);
-            EditorUtility.SetDirty(floodMat);
+            var puddle = MazeBox("MazeFloodPuddle", root, d.P(2.5f, 14f, -2.79f), new Vector3(4f, .012f, 3f), null, false);
+            var floodMat = MazeFlatMat("MazeFloodWater", new Color(.04f, .06f, .07f), .1f, .95f);
             puddle.GetComponent<Renderer>().sharedMaterial = floodMat;
-            // Crates dressing the new lanes (kept clear of walk lines).
             ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02.fbx", "MazeCrateA", root,
-                d.P(1.0f, 8.4f, -2.79f), Quaternion.Euler(0, 12, 0), new Vector3(.55f, .55f, .55f), wood);
+                d.P(0f, 16.5f, -2.79f), Quaternion.Euler(0, 12, 0), new Vector3(.55f, .55f, .55f), wood);
             ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02.fbx", "MazeCrateB", root,
-                d.P(2.3f, 8.5f, -2.79f), Quaternion.Euler(0, -9, 0), new Vector3(.55f, .55f, .55f), wood);
+                d.P(1.4f, 16.7f, -2.79f), Quaternion.Euler(0, -9, 0), new Vector3(.55f, .55f, .55f), wood);
             ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/old_military_crate/old_military_crate.fbx", "MazeCrateC", root,
-                d.P(8.5f, 6.9f, -2.79f), Quaternion.Euler(0, 30, 0), new Vector3(.6f, .5f, .5f), wood);
-            // Handycam hideout: low crate in the south-east nook, flanked.
-            ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02.fbx", "MazeHandycamCrate", root,
-                d.P(10.8f, 8.8f, -2.79f), Quaternion.identity, new Vector3(.5f, .5f, .5f), wood);
-            ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02.fbx", "MazeNookFlank", root,
-                d.P(10.5f, 7.4f, -2.79f), Quaternion.Euler(0, -14, 0), new Vector3(.5f, .9f, .5f), wood);
-            var cam = Find("DamarHandycam");
-            if (cam) cam.transform.SetPositionAndRotation(d.P(10.8f, 8.8f, -2.2f), Quaternion.LookRotation(d.north));
-            // Archive shelf dressing the north-east room.
-            var shelf = MazeBox("MazeArchiveShelf", root, d.P(8.5f, 4.5f, -1.9f), new Vector3(1.8f, 1.8f, .45f), iron);
-            MazeBox("MazeArchiveTop", root, d.P(8.5f, 4.5f, -1.15f), new Vector3(1.7f, .3f, .4f), wood);
-            // Third wardrobe so the far half has its own hiding spot.
-            var ward = ProjectAsset("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/painted_wooden_cabinet_02/painted_wooden_cabinet_02.fbx", "CellarWardrobe3", root,
-                d.P(11.3f, 10.5f, -2.79f), Quaternion.Euler(0, -90, 0), new Vector3(.95f, 1.9f, .45f));
-            var wardItem = ward.AddComponent<AtmajaItem>();
-            wardItem.director = d; wardItem.action = AtmajaAction.WardrobeHide; wardItem.label = "Sembunyi di lemari kayu #3";
-            d.basement.wardrobeCol3 = ward.GetComponent<BoxCollider>();
-            d.basement.hideAnchor3 = AnchorAt(root, "HideAnchor3", d.P(10.5f, 10.5f, -2.79f), d.P(11.3f, 10.5f, 0));
-            d.basement.exitAnchor3 = AnchorAt(root, "ExitAnchor3", d.P(10.0f, 9.7f, -2.79f), d.P(11.3f, 10.5f, 0));
-            // Hunter patrol covers the new loop (existing indices preserved).
-            // Rebuilt from scratch each run: stale maze posts from previous
-            // applies are removed, never accumulated.
-            foreach (var old in root.GetComponentsInChildren<Transform>(true).Where(t => t && (t.name.StartsWith("MazePatrol") || t.name.StartsWith("MazeBranchPatrol"))).ToArray())
-                Object.DestroyImmediate(old.gameObject);
-            var wps = new List<Transform>(d.basement.waypoints.Where(t => t && !t.name.StartsWith("MazePatrol") && !t.name.StartsWith("MazeBranchPatrol")));
-            int bi = 0;
-            foreach (var pt in new[] { d.P(6.5f, 9.0f, -2.79f), d.P(8.0f, 9.3f, -2.79f), d.P(10.0f, 8.4f, -2.79f), d.P(8.5f, 5.0f, -2.79f) })
-            {
-                var t = new GameObject("MazePatrol" + bi++).transform;
-                t.SetParent(root, true);
-                t.position = pt;
-                t.rotation = Quaternion.LookRotation(d.P(2.9f, 3.5f, 0) - pt);
-                wps.Add(t);
-            }
-            d.basement.waypoints = wps.ToArray();
-            // Dim lights for the new branches.
-            BranchLight(root, "MazeGapLight", d.P(6.5f, 9.0f, -1.7f), .55f, 5f, new Color(.72f, .76f, .65f));
-            BranchLight(root, "MazeNookLight", d.P(10.0f, 8.4f, -1.7f), .6f, 6f, new Color(1f, .85f, .6f));
-            // Designer Nov: the maze grows to three rooms, each with its own
-            // hiding locker. R1 east annex (x 12-16) opens through the east
-            // wall gaps; R2 south crypt (x 8-16, z 12.5-16.5) hides the
-            // handycam in its far corner; R3 flooded store gets a locker.
-            Delete("ExpandedCellarEastWall");
-            MazeBox("MazeEastWall_N", root, d.P(12f, 2.3f, -1.575f), new Vector3(.16f, 2.45f, 3.4f), wallMat);
-            MazeBox("MazeEastWall_M", root, d.P(12f, 6.25f, -1.575f), new Vector3(.16f, 2.45f, 2.5f), wallMat);
-            MazeBox("MazeEastWall_S", root, d.P(12f, 10.5f, -1.575f), new Vector3(.16f, 2.45f, 4.0f), wallMat);
-            // R1 east annex shell.
-            MazeBox("MazeR1Floor", root, d.P(14f, 7.5f, -2.825f), new Vector3(4.1f, .05f, 10.1f), floorMat);
-            MazeBox("MazeR1Ceil", root, d.P(14f, 7.5f, 0f), new Vector3(4.1f, 1.0f, 10.1f), ceilMat);
-            MazeBox("MazeR1East", root, d.P(16f, 7.5f, -1.575f), new Vector3(.16f, 2.45f, 10.1f), wallMat);
-            MazeBox("MazeR1North", root, d.P(14f, 2.5f, -1.575f), new Vector3(4.16f, 2.45f, .16f), wallMat);
-            MazeBox("MazeR1South_W", root, d.P(12.5f, 12.5f, -1.575f), new Vector3(1.0f, 2.45f, .16f), wallMat);
-            MazeBox("MazeR1South_E", root, d.P(15f, 12.5f, -1.575f), new Vector3(2.0f, 2.45f, .16f), wallMat);
-            MazeBox("MazeR1PillarA", root, d.P(13.2f, 5.2f, -1.575f), new Vector3(.5f, 2.45f, .5f), wallMat);
-            MazeBox("MazeR1PillarB", root, d.P(14.6f, 7.8f, -1.575f), new Vector3(.5f, 2.45f, .5f), wallMat);
-            BranchLight(root, "MazeR1Light", d.P(14f, 7.5f, -1.7f), .55f, 6f, new Color(.72f, .76f, .65f));
-            // R2 south crypt shell.
-            MazeBox("MazeR2Floor", root, d.P(12f, 14.5f, -2.825f), new Vector3(8.1f, .05f, 4.1f), floorMat);
-            MazeBox("MazeR2Ceil", root, d.P(12f, 14.5f, 0f), new Vector3(8.1f, 1.0f, 4.1f), ceilMat);
-            MazeBox("MazeR2West", root, d.P(8f, 14.5f, -1.575f), new Vector3(.16f, 2.45f, 4.1f), wallMat);
-            MazeBox("MazeR2East", root, d.P(16f, 14.5f, -1.575f), new Vector3(.16f, 2.45f, 4.1f), wallMat);
-            MazeBox("MazeR2South", root, d.P(12f, 16.5f, -1.575f), new Vector3(8.26f, 2.45f, .16f), wallMat);
-            MazeBox("MazeR2North_W", root, d.P(10.5f, 12.5f, -1.575f), new Vector3(5.0f, 2.45f, .16f), wallMat);
-            MazeBox("MazeR2North_E", root, d.P(15f, 12.5f, -1.575f), new Vector3(2.0f, 2.45f, .16f), wallMat);
-            BranchLight(root, "MazeR2Light", d.P(12f, 14.5f, -1.7f), .6f, 7f, new Color(.72f, .76f, .65f));
-            BranchLight(root, "MazeCamLight", d.P(14.8f, 14.0f, -1.7f), .5f, 5f, new Color(1f, .85f, .6f));
-            // R3 flooded store: west + south caps (north is WallS, east the spine).
-            MazeBox("MazeR3West", root, d.P(0.2f, 9.7f, -1.575f), new Vector3(.16f, 2.45f, 5.6f), wallMat);
-            MazeBox("MazeR3South", root, d.P(3.35f, 12.5f, -1.575f), new Vector3(6.3f, 2.45f, .16f), wallMat);
-            BranchLight(root, "MazeR3Light", d.P(3.0f, 9.5f, -1.7f), .55f, 6f, new Color(.72f, .76f, .65f));
-            // Handycam moves to the crypt far corner, on its own crate.
+                d.P(18f, 6.5f, -2.79f), Quaternion.Euler(0, 30, 0), new Vector3(.6f, .5f, .5f), wood);
+            MazeBox("MazeArchiveShelf", root, d.P(18f, 7.8f, -1.9f), new Vector3(1.8f, 1.8f, .45f), iron);
+            MazeBox("MazeArchiveTop", root, d.P(18f, 7.8f, -1.15f), new Vector3(1.7f, .3f, .4f), wood);
             Delete("MazeHandycamCrate"); Delete("MazeNookFlank");
-            // The legacy textile-chest row hugs the east wall and seals both
-            // new gaps: re-stack it along the crypt south wall instead.
             foreach (var old in FindAll("CellarTextileChest")) Object.DestroyImmediate(old);
             foreach (var old in FindAll("TextileChestLid")) Object.DestroyImmediate(old);
-            var chestSpots = new[] { new Vector3(12.5f, 0f, 15.9f), new Vector3(13.3f, 0f, 15.9f), new Vector3(14.5f, 0f, 15.9f), new Vector3(15.3f, 0f, 15.9f) };
+            var chestSpots = new[] { new Vector3(12.5f, 0f, 27.4f), new Vector3(13.3f, 0f, 27.4f), new Vector3(14.5f, 0f, 27.4f), new Vector3(15.3f, 0f, 27.4f) };
             for (int ci = 0; ci < chestSpots.Length; ci++)
             {
                 var cp = d.P(chestSpots[ci].x, chestSpots[ci].z, -2.35f);
@@ -3360,56 +3344,79 @@ namespace LayarTerakhir.Editor
                 MazeBox("MazeTextileLid_" + ci, root, cp + Vector3.up * .47f, new Vector3(.69f, .05f, .94f), wood);
             }
             ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02.fbx", "MazeHandycamCrate", root,
-                d.P(14.8f, 15.2f, -2.79f), Quaternion.identity, new Vector3(.5f, .5f, .5f), wood);
+                d.P(14.8f, 26.7f, -2.79f), Quaternion.identity, new Vector3(.5f, .5f, .5f), wood);
             ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02.fbx", "MazeCryptFlank", root,
-                d.P(14.0f, 15.4f, -2.79f), Quaternion.Euler(0, -14, 0), new Vector3(.6f, .5f, .5f), wood);
+                d.P(14f, 26.9f, -2.79f), Quaternion.Euler(0, -14, 0), new Vector3(.6f, .5f, .5f), wood);
             ProjectAsset("Assets/_LayarTerakhir/assets/Art/Phase3/Imported/PolyHaven/wooden_crate_02/wooden_crate_02.fbx", "MazeCryptBox", root,
-                d.P(11.0f, 16.0f, -2.79f), Quaternion.Euler(0, 20, 0), new Vector3(.55f, .55f, .55f), wood);
-            var cam2 = Find("DamarHandycam");
-            if (cam2) cam2.transform.SetPositionAndRotation(d.P(14.8f, 15.2f, -2.2f), Quaternion.LookRotation(d.north));
-            // Damar's torn bag at the maze mouth: the breadcrumb to the camera.
+                d.P(11f, 27.5f, -2.79f), Quaternion.Euler(0, 20, 0), new Vector3(.55f, .55f, .55f), wood);
+            var cam = Find("DamarHandycam");
+            if (cam) cam.transform.SetPositionAndRotation(d.P(14.8f, 26.7f, -2.2f), Quaternion.LookRotation(d.north));
+
             var bag = MazeBox("DamarBagProp", root, d.P(7.5f, 4.2f, -2.62f), new Vector3(.45f, .3f, .28f), Material("Repair_BookCloth"), false);
             var strap = GameObject.CreatePrimitive(PrimitiveType.Cube);
             strap.name = "DamarBagStrap"; strap.transform.SetParent(bag.transform, false);
             strap.transform.localPosition = Vector3.up * .18f; strap.transform.localScale = new Vector3(.2f, .06f, .3f);
-            strap.GetComponent<Renderer>().sharedMaterial = Material("Repair_Iron");
+            strap.GetComponent<Renderer>().sharedMaterial = iron;
             Object.DestroyImmediate(strap.GetComponent<Collider>());
             var bagItem = bag.AddComponent<AtmajaItem>();
             bagItem.director = d; bagItem.action = AtmajaAction.DamarBag; bagItem.label = "Periksa tas ransel Damar";
-            // One hiding locker per new room.
+
+            var ward = ProjectAsset("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/painted_wooden_cabinet_02/painted_wooden_cabinet_02.fbx", "CellarWardrobe3", root,
+                d.P(23.3f, 10.5f, -2.79f), Quaternion.Euler(0, -90, 0), new Vector3(.95f, 1.9f, .45f));
+            var wardItem = ward.AddComponent<AtmajaItem>();
+            wardItem.director = d; wardItem.action = AtmajaAction.WardrobeHide; wardItem.label = "Sembunyi di lemari kayu #3";
+            d.basement.wardrobeCol3 = ward.GetComponent<BoxCollider>();
+            d.basement.hideAnchor3 = AnchorAt(root, "HideAnchor3", d.P(22.5f, 10.5f, -2.79f), d.P(23.3f, 10.5f, 0));
+            d.basement.exitAnchor3 = AnchorAt(root, "ExitAnchor3", d.P(22f, 9.7f, -2.79f), d.P(23.3f, 10.5f, 0));
             var wardA = ProjectAsset("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/painted_wooden_cabinet_02/painted_wooden_cabinet_02.fbx", "MazeWardrobeA", root,
-                d.P(15.3f, 3.5f, -2.79f), Quaternion.Euler(0, -90, 0), new Vector3(.95f, 1.9f, .45f));
+                d.P(23.3f, 3.5f, -2.79f), Quaternion.Euler(0, -90, 0), new Vector3(.95f, 1.9f, .45f));
             var wardAItem = wardA.AddComponent<AtmajaItem>();
             wardAItem.director = d; wardAItem.action = AtmajaAction.WardrobeHide; wardAItem.label = "Sembunyi di lemari kayu #4";
             d.basement.wardrobeCol4 = wardA.GetComponent<BoxCollider>();
-            d.basement.hideAnchor4 = AnchorAt(root, "HideAnchor4", d.P(14.4f, 3.5f, -2.79f), d.P(15.3f, 3.5f, 0));
-            d.basement.exitAnchor4 = AnchorAt(root, "ExitAnchor4", d.P(14.2f, 4.4f, -2.79f), d.P(15.3f, 3.5f, 0));
+            d.basement.hideAnchor4 = AnchorAt(root, "HideAnchor4", d.P(22.4f, 3.5f, -2.79f), d.P(23.3f, 3.5f, 0));
+            d.basement.exitAnchor4 = AnchorAt(root, "ExitAnchor4", d.P(22.2f, 4.4f, -2.79f), d.P(23.3f, 3.5f, 0));
             var wardB = ProjectAsset("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/painted_wooden_cabinet_02/painted_wooden_cabinet_02.fbx", "MazeWardrobeB", root,
-                d.P(8.6f, 15.8f, -2.79f), Quaternion.identity, new Vector3(.95f, 1.9f, .45f));
+                d.P(8.6f, 27.3f, -2.79f), Quaternion.identity, new Vector3(.95f, 1.9f, .45f));
             var wardBItem = wardB.AddComponent<AtmajaItem>();
             wardBItem.director = d; wardBItem.action = AtmajaAction.WardrobeHide; wardBItem.label = "Sembunyi di lemari kayu #5";
             d.basement.wardrobeCol5 = wardB.GetComponent<BoxCollider>();
-            d.basement.hideAnchor5 = AnchorAt(root, "HideAnchor5", d.P(9.5f, 15.8f, -2.79f), d.P(8.6f, 15.8f, 0));
-            d.basement.exitAnchor5 = AnchorAt(root, "ExitAnchor5", d.P(9.5f, 14.9f, -2.79f), d.P(8.6f, 15.8f, 0));
+            d.basement.hideAnchor5 = AnchorAt(root, "HideAnchor5", d.P(9.5f, 27.3f, -2.79f), d.P(8.6f, 27.3f, 0));
+            d.basement.exitAnchor5 = AnchorAt(root, "ExitAnchor5", d.P(9.5f, 26.4f, -2.79f), d.P(8.6f, 27.3f, 0));
             var wardC = ProjectAsset("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/painted_wooden_cabinet_02/painted_wooden_cabinet_02.fbx", "MazeWardrobeC", root,
-                d.P(1.0f, 10.0f, -2.79f), Quaternion.identity, new Vector3(.95f, 1.9f, .45f));
+                d.P(-.9f, 16.8f, -2.79f), Quaternion.identity, new Vector3(.95f, 1.9f, .45f));
             var wardCItem = wardC.AddComponent<AtmajaItem>();
             wardCItem.director = d; wardCItem.action = AtmajaAction.WardrobeHide; wardCItem.label = "Sembunyi di lemari kayu #6";
             d.basement.wardrobeCol6 = wardC.GetComponent<BoxCollider>();
-            d.basement.hideAnchor6 = AnchorAt(root, "HideAnchor6", d.P(1.9f, 10.0f, -2.79f), d.P(1.0f, 10.0f, 0));
-            d.basement.exitAnchor6 = AnchorAt(root, "ExitAnchor6", d.P(1.9f, 9.2f, -2.79f), d.P(1.0f, 10.0f, 0));
-            // Patrol the new rooms too (existing indices preserved). The old
-            // kitchen-well shaft drops through R3 at (2.85,11.2), so the R3
-            // post stands east of it, clear of the stones.
-            foreach (var pt in new[] { d.P(13.0f, 6.0f, -2.79f), d.P(14.5f, 9.0f, -2.79f), d.P(10.0f, 13.5f, -2.79f), d.P(14.0f, 14.0f, -2.79f), d.P(3.2f, 8.5f, -2.79f), d.P(4.5f, 10.5f, -2.79f) })
+            d.basement.hideAnchor6 = AnchorAt(root, "HideAnchor6", d.P(0f, 16.8f, -2.79f), d.P(-.9f, 16.8f, 0));
+            d.basement.exitAnchor6 = AnchorAt(root, "ExitAnchor6", d.P(1f, 16f, -2.79f), d.P(-.9f, 16.8f, 0));
+
+            foreach (var old in root.GetComponentsInChildren<Transform>(true).Where(t => t && (t.name.StartsWith("MazePatrol") || t.name.StartsWith("MazeBranchPatrol") || t.name.StartsWith("CellarExpandedPatrol"))).ToArray())
+                Object.DestroyImmediate(old.gameObject);
+            var wps = new List<Transform>(d.basement.waypoints.Where(t => t && !t.name.StartsWith("MazePatrol") && !t.name.StartsWith("MazeBranchPatrol") && !t.name.StartsWith("CellarExpandedPatrol")));
+            var patrol = new[]
             {
-                var t = new GameObject("MazeBranchPatrol" + bi++).transform;
+                new Vector2(5.6f, 4.5f), new Vector2(7.2f, 4.5f), new Vector2(10.5f, 4.5f), new Vector2(13.5f, 4.5f),
+                new Vector2(16.8f, 4.5f), new Vector2(19f, 4.5f), new Vector2(20f, 7.5f), new Vector2(21.8f, 10.8f),
+                new Vector2(13.5f, 6.5f), new Vector2(13.5f, 10f), new Vector2(13.5f, 15f), new Vector2(13.5f, 20f),
+                new Vector2(13.5f, 22.8f), new Vector2(13.5f, 24.5f), new Vector2(11.5f, 25.5f), new Vector2(10f, 25.5f), new Vector2(14f, 25.5f),
+                new Vector2(5.5f, 4.5f), new Vector2(5.9f, 5.8f), new Vector2(5.9f, 7.8f), new Vector2(5.9f, 9.2f),
+                new Vector2(5.9f, 10.7f), new Vector2(4.2f, 10.7f), new Vector2(4.2f, 12.2f), new Vector2(3.8f, 14f), new Vector2(2.5f, 15.5f)
+            };
+            for (int bi = 0; bi < patrol.Length; bi++)
+            {
+                var t = new GameObject("MazeBranchPatrol" + bi).transform;
                 t.SetParent(root, true);
-                t.position = pt;
-                t.rotation = Quaternion.LookRotation(d.P(2.9f, 3.5f, 0) - pt);
+                t.position = d.P(patrol[bi].x, patrol[bi].y, -2.79f);
+                t.rotation = Quaternion.LookRotation(d.P(2.9f, 3.5f, 0) - t.position);
                 wps.Add(t);
             }
             d.basement.waypoints = wps.ToArray();
+            BranchLight(root, "MazeGapLight", d.P(10f, 4.5f, -.65f), .65f, 7f, new Color(.72f, .76f, .65f));
+            BranchLight(root, "MazeNookLight", d.P(13.5f, 13f, -.65f), .55f, 7f, new Color(.72f, .76f, .65f));
+            BranchLight(root, "MazeR1Light", d.P(20f, 7.5f, -.65f), .8f, 9f, new Color(.72f, .76f, .65f));
+            BranchLight(root, "MazeR2Light", d.P(12f, 25.5f, -.65f), .8f, 9f, new Color(.72f, .76f, .65f));
+            BranchLight(root, "MazeCamLight", d.P(14.8f, 26f, -.65f), .65f, 7f, new Color(1f, .85f, .6f));
+            BranchLight(root, "MazeR3Light", d.P(2.5f, 14f, -.65f), .8f, 9f, new Color(.72f, .76f, .65f));
             RebuildMazeRoom1(d, root);
             RebuildMazeDoors(d, root);
             RebuildMazeHorror(d, root);
@@ -3446,7 +3453,7 @@ namespace LayarTerakhir.Editor
                 panel.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
             }
             // Breadcrumb: robekan kain tas Damar dari mulut maze ke crypt.
-            var crumbs = new (float, float, float)[] { (7.0f, 5.8f, 20f), (10.5f, 5.8f, -15f), (13.5f, 8.0f, 35f), (13.5f, 12.5f, -30f) };
+            var crumbs = new (float, float, float)[] { (7.0f, 4.2f, 20f), (10.5f, 4.7f, -15f), (13.5f, 8.0f, 35f), (13.5f, 18f, -30f) };
             for (int ci = 0; ci < crumbs.Length; ci++)
             {
                 string nm = "MazeDamarScrap_" + ci;
@@ -3464,11 +3471,11 @@ namespace LayarTerakhir.Editor
             }
             // Rembesan R3: dua streak basah vertikal di dinding barat.
             var wet = MazeFlatMat("MazeWetStreak", new Color(.10f, .13f, .12f), 0f, .85f);
-            var streaks = new (float, float)[] { (8.5f, 1.1f), (10.0f, 1.4f) };
+            var streaks = new (float, float)[] { (12.5f, 1.1f), (14.5f, 1.4f) };
             for (int si = 0; si < streaks.Length; si++)
             {
                 Quad("MazeWetStreak_" + si, root,
-                    d.P(0.30f, streaks[si].Item1, -1.9f + streaks[si].Item2 * .1f),
+                    d.P(-1.70f, streaks[si].Item1, -1.9f + streaks[si].Item2 * .1f),
                     Quaternion.LookRotation(d.east),
                     new Vector2(.32f, 1.15f), wet);
             }
@@ -3479,10 +3486,10 @@ namespace LayarTerakhir.Editor
             var dust = MazeFlatMat("MazeDustSheet", new Color(.62f, .58f, .48f), 0f, .05f);
             var dustTops = new (string, float, float, float, float)[]
             {
-                ("MazeHandycamCrate", 14.8f, 15.2f, .52f, .42f),
-                ("MazeCryptBox", 11.0f, 16.0f, .57f, .47f),
-                ("MazeTextileLid_0", 12.5f, 15.9f, .69f, .94f),
-                ("MazeWoodBox_0", 15.35f, 9.0f, .55f, .55f),
+                ("MazeHandycamCrate", 14.8f, 26.7f, .52f, .42f),
+                ("MazeCryptBox", 11.0f, 27.5f, .57f, .47f),
+                ("MazeTextileLid_0", 12.5f, 27.4f, .69f, .94f),
+                ("MazeWoodBox_0", 21.35f, 9.0f, .55f, .55f),
             };
             for (int di = 0; di < dustTops.Length; di++)
             {
@@ -3494,15 +3501,15 @@ namespace LayarTerakhir.Editor
             }
             // Dust di atas meja riset: di sela kertas, bukan menutupinya.
             Quad("MazeDustTable", root,
-                d.P(14.35f, 10.35f, -2.79f + .782f),
+                d.P(20.35f, 10.35f, -2.79f + .782f),
                 Quaternion.Euler(90, 0, 8f),
                 new Vector2(.30f, .18f), dust);
             // Dust caps di atas semua lemari persembunyian (6): tanda
             // ruangan ditinggalkan, terlihat saat senter menyapu ke atas.
             var lockerTops = new (float, float)[]
             {
-                (2.6f, 1.3f), (4.95f, 1.05f), (11.3f, 10.5f),
-                (15.3f, 3.5f), (8.6f, 15.8f), (1.0f, 10.0f),
+                (2.6f, 1.3f), (4.95f, 1.05f), (23.3f, 10.5f),
+                (23.3f, 3.5f), (8.6f, 27.3f), (-.9f, 16.8f),
             };
             for (int li = 0; li < lockerTops.Length; li++)
             {
@@ -3514,8 +3521,8 @@ namespace LayarTerakhir.Editor
             var rust = MazeFlatMat("MazeRustStreak", new Color(.36f, .20f, .10f), .35f, .5f);
             var rustSpots = new (float, float, float)[]
             {
-                (14.05f, 2.75f, 0f), (14.95f, 2.75f, 0f),
-                (12.0f, 4.0f, 90f), (13.0f, 12.5f, 90f),
+                (20.05f, 2.75f, 0f), (20.95f, 2.75f, 0f),
+                (16.0f, 3.8f, 90f), (12.8f, 22f, 90f),
                 (2.85f, 11.2f, 0f), (5.1f, 2.2f, 0f),
             };
             for (int ri = 0; ri < rustSpots.Length; ri++)
@@ -3530,8 +3537,8 @@ namespace LayarTerakhir.Editor
             var mist = AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/assets/Art/Phase2/Materials/OperationMist.mat");
             var moteSpots = new (string, float, float)[]
             {
-                ("MazeDustWest", 2.9f, 3.5f), ("MazeDustR1", 14.0f, 7.5f),
-                ("MazeDustR2", 12.0f, 14.5f), ("MazeDustR3", 3.0f, 9.5f),
+                ("MazeDustWest", 2.9f, 3.5f), ("MazeDustR1", 20f, 7.5f),
+                ("MazeDustR2", 12f, 26f), ("MazeDustR3", 3f, 14f),
             };
             foreach (var ms in moteSpots)
             {
@@ -3612,8 +3619,8 @@ namespace LayarTerakhir.Editor
             var bagMat = MazeFlatMat("MazeTrashBag", new Color(.02f, .02f, .025f), 0f, .55f);
 
             // ---- R2 crypt: star circle, five candles, black tome ----
-            Quad("MazeRitualCircle", root, d.P(11f, 15.3f, -2.795f), Quaternion.Euler(90, 0, 0), new Vector2(2.4f, 2.4f), ritual);
-            var candleSpots = new[] { (11.00f, 14.22f), (9.97f, 14.97f), (10.36f, 16.17f), (11.64f, 16.17f), (12.03f, 14.97f) };
+            Quad("MazeRitualCircle", root, d.P(11f, 26.8f, -2.795f), Quaternion.Euler(90, 0, 0), new Vector2(2.4f, 2.4f), ritual);
+            var candleSpots = new[] { (11.00f, 25.72f), (9.97f, 26.47f), (10.36f, 27.67f), (11.64f, 27.67f), (12.03f, 26.47f) };
             for (int ci = 0; ci < candleSpots.Length; ci++)
             {
                 Delete("MazeCandle_" + ci); Delete("MazeFlame_" + ci);
@@ -3638,14 +3645,14 @@ namespace LayarTerakhir.Editor
             var tome = GameObject.CreatePrimitive(PrimitiveType.Cube);
             tome.name = "MazeRitualBook";
             tome.transform.SetParent(root, true);
-            tome.transform.position = d.P(11f, 15.3f, -2.79f + .025f);
+            tome.transform.position = d.P(11f, 26.8f, -2.79f + .025f);
             tome.transform.localScale = new Vector3(.32f, .05f, .24f);
             tome.GetComponent<Renderer>().sharedMaterial = cloth;
             tome.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
             var pages = GameObject.CreatePrimitive(PrimitiveType.Cube);
             pages.name = "MazeRitualPages";
             pages.transform.SetParent(root, true);
-            pages.transform.position = d.P(11f, 15.3f, -2.79f + .07f);
+            pages.transform.position = d.P(11f, 26.8f, -2.79f + .07f);
             pages.transform.localScale = new Vector3(.28f, .04f, .20f);
             pages.GetComponent<Renderer>().sharedMaterial = paper;
             pages.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
@@ -3663,7 +3670,7 @@ namespace LayarTerakhir.Editor
                 var bag = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 bag.name = "MazeTrashBag_" + b;
                 bag.transform.SetParent(root, true);
-                bag.transform.position = d.P(5.6f + Mathf.Cos(ang) * rr, 11.5f + Mathf.Sin(ang) * rr, -2.79f + .20f * sc + (top ? .38f : 0f));
+                bag.transform.position = d.P(5.2f + Mathf.Cos(ang) * rr, 16.2f + Mathf.Sin(ang) * rr, -2.79f + .20f * sc + (top ? .38f : 0f));
                 bag.transform.localScale = new Vector3(.55f * sc, .42f * sc, .55f * sc);
                 bag.transform.rotation = Quaternion.Euler(0, k * 37f, 0);
                 bag.GetComponent<Renderer>().sharedMaterial = bagMat;
@@ -3684,11 +3691,11 @@ namespace LayarTerakhir.Editor
             var shroud = GameObject.CreatePrimitive(PrimitiveType.Capsule);
             shroud.name = "MazeShroud";
             shroud.transform.SetParent(root, true);
-            shroud.transform.SetPositionAndRotation(d.P(5.5f, 11.3f, -2.79f + .18f), Quaternion.Euler(0, 10f, 90f));
+            shroud.transform.SetPositionAndRotation(d.P(5.1f, 16f, -2.79f + .18f), Quaternion.Euler(0, 10f, 90f));
             shroud.transform.localScale = new Vector3(.36f, .55f, .36f);
             shroud.GetComponent<Renderer>().sharedMaterial = linen;
             shroud.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
-            Quad("MazeBloodPool", root, d.P(5.3f, 11.1f, -2.795f), Quaternion.Euler(90, 20, 0), new Vector2(.9f, .7f), DecalMaterial("BloodSpatter", false, true));
+            Quad("MazeBloodPool", root, d.P(4.9f, 15.8f, -2.795f), Quaternion.Euler(90, 20, 0), new Vector2(.9f, .7f), DecalMaterial("BloodSpatter", false, true));
             // Stink smoke: same proven puff rig as the feast, sickly green.
             Delete("MazeStinkSmoke");
             var mist = AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/assets/Art/Phase2/Materials/OperationMist.mat");
@@ -3706,7 +3713,7 @@ namespace LayarTerakhir.Editor
             EditorUtility.SetDirty(stink);
             var stinkGo = new GameObject("MazeStinkSmoke");
             stinkGo.transform.SetParent(root, true);
-            stinkGo.transform.position = d.P(5.6f, 11.5f, -2.2f);
+            stinkGo.transform.position = d.P(5.2f, 16.2f, -2.2f);
             var ps = stinkGo.AddComponent<ParticleSystem>();
             ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
             var main = ps.main;
@@ -3733,7 +3740,7 @@ namespace LayarTerakhir.Editor
             var tableTop = GameObject.CreatePrimitive(PrimitiveType.Cube);
             tableTop.name = "MazeResearchTable";
             tableTop.transform.SetParent(root, true);
-            tableTop.transform.position = d.P(14.6f, 10.2f, -2.79f + .75f);
+            tableTop.transform.position = d.P(20.6f, 10.2f, -2.79f + .75f);
             tableTop.transform.localScale = new Vector3(.9f, .06f, .6f);
             tableTop.GetComponent<Renderer>().sharedMaterial = wood;
             tableTop.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
@@ -3743,7 +3750,7 @@ namespace LayarTerakhir.Editor
                 var leg = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 leg.name = "MazeTableLeg_" + li;
                 leg.transform.SetParent(root, true);
-                leg.transform.position = d.P(14.6f + (li % 2 == 0 ? -.4f : .4f), 10.2f + (li < 2 ? -.25f : .25f), -2.79f + .36f);
+                leg.transform.position = d.P(20.6f + (li % 2 == 0 ? -.4f : .4f), 10.2f + (li < 2 ? -.25f : .25f), -2.79f + .36f);
                 leg.transform.localScale = new Vector3(.06f, .72f, .06f);
                 leg.GetComponent<Renderer>().sharedMaterial = wood;
                 leg.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
@@ -3757,14 +3764,14 @@ namespace LayarTerakhir.Editor
                 sheet.name = "MazeResearchPaper_" + pi;
                 sheet.transform.SetParent(root, true);
                 sheet.transform.SetPositionAndRotation(
-                    d.P(14.6f + ((pi * 37) % 5 - 2) * .09f, 10.2f + ((pi * 53) % 3 - 1) * .1f, -2.79f + .782f + pi * .0015f),
+                    d.P(20.6f + ((pi * 37) % 5 - 2) * .09f, 10.2f + ((pi * 53) % 3 - 1) * .1f, -2.79f + .782f + pi * .0015f),
                     Quaternion.Euler(0, paperYaw[pi], 0));
                 sheet.transform.localScale = new Vector3(.21f, .004f, .3f);
                 sheet.GetComponent<Renderer>().sharedMaterial = paper;
                 sheet.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
                 Object.DestroyImmediate(sheet.GetComponent<Collider>());
             }
-            var boxSpots = new[] { (15.35f, 9.0f, .55f, 0f), (15.55f, 9.35f, .5f, 0f), (15.3f, 8.95f, .45f, .55f) };
+            var boxSpots = new[] { (21.35f, 9.0f, .55f, 0f), (21.55f, 9.35f, .5f, 0f), (21.3f, 8.95f, .45f, .55f) };
             for (int wi = 0; wi < boxSpots.Length; wi++)
             {
                 Delete("MazeWoodBox_" + wi);
@@ -3782,7 +3789,7 @@ namespace LayarTerakhir.Editor
             Delete("MazeStandingRack");
             var rack = new GameObject("MazeStandingRack");
             rack.transform.SetParent(root, true);
-            rack.transform.position = d.P(14.5f, 2.75f, -2.79f);
+            rack.transform.position = d.P(20.5f, 2.75f, -2.79f);
             foreach (float px in new[] { -.55f, .55f })
             {
                 var post = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -3834,7 +3841,7 @@ namespace LayarTerakhir.Editor
             Delete("MazeFallenRack");
             var fallen = new GameObject("MazeFallenRack");
             fallen.transform.SetParent(root, true);
-            fallen.transform.position = d.P(14.8f, 11.5f, -2.79f);
+            fallen.transform.position = d.P(17.2f, 11.5f, -2.79f);
             foreach (float rz in new[] { -.2f, .2f })
             {
                 var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -3902,9 +3909,9 @@ namespace LayarTerakhir.Editor
         }
 
         // Designer Nov: every maze room gets a real wooden plank door in its
-        // main doorway — never a bare corridor gap. Leaves serialize OPEN
-        // (flat into their rooms, clear of every walk lane); Raka toggles
-        // them with E while Nyonya shoulders through via MazeDoor.
+        // main doorway — never a bare corridor gap. Leaves park flat beside
+        // their jambs, clear of every walk lane; Raka toggles them with E
+        // while Nyonya shoulders through via MazeDoor.
         private static void RebuildMazeDoors(AtmajaDirector d, Transform root)
         {
             var wood = Material("Repair_BedWood");
@@ -3922,20 +3929,21 @@ namespace LayarTerakhir.Editor
             EditorUtility.SetDirty(iron);
             var east = d.east; east.y = 0; east.Normalize();
             var north = d.north; north.y = 0; north.Normalize();
-            // R3 flooded store: WallS opening x2.0-3.0, leaf opens south in.
-            MazeDoorLeaf("MazeDoorR3", root, d, d.P(2.0f, 6.9f, -2.79f), east, north, wood, iron);
-            // R1 archive: east-wall north gap z4.0-5.0, leaf opens east in.
-            MazeDoorLeaf("MazeDoorR1", root, d, d.P(12f, 4.0f, -2.79f), north, east, wood, iron);
-            // R2 crypt: north opening x13-14; leaf parks NORTH into R1 so the
-            // crypt-west lane behind it stays clear.
-            MazeDoorLeaf("MazeDoorR2", root, d, d.P(13f, 12.5f, -2.79f), east, -north, wood, iron);
+            var archiveWood = MazeFlatMat("MazeDoorArchive", new Color(.32f, .25f, .17f), 0f, .28f);
+            var cryptWood = MazeFlatMat("MazeDoorCrypt", new Color(.20f, .09f, .065f), 0f, .32f);
+            var floodWood = MazeFlatMat("MazeDoorFlood", new Color(.16f, .27f, .24f), 0f, .62f);
+            MazeDoorLeaf("MazeDoorR0", root, d, d.P(6.5f, 3.8f, -2.79f), north, east, wood, iron, 0);
+            MazeDoorLeaf("MazeDoorR1", root, d, d.P(16f, 3.8f, -2.79f), north, east, archiveWood, iron, 1);
+            MazeDoorLeaf("MazeDoorR2", root, d, d.P(12.8f, 22f, -2.79f), east, north, cryptWood, iron, 2);
+            MazeDoorLeaf("MazeDoorR3", root, d, d.P(4.9f, 10f, -2.79f), east, -north, floodWood, iron, 3);
         }
 
         // jambFloor = hinge-side floor point; closedL = leaf direction when
         // shut (along the wall); openDir = where the leaf parks when open.
-        private static void MazeDoorLeaf(string name, Transform root, AtmajaDirector d, Vector3 jambFloor, Vector3 closedL, Vector3 openDir, Material wood, Material iron)
+        private static void MazeDoorLeaf(string name, Transform root, AtmajaDirector d, Vector3 jambFloor, Vector3 closedL, Vector3 openDir, Material wood, Material iron, int variant)
         {
-            const float openingW = 1.0f, leafW = .92f, leafH = 2.1f;
+            const float openingW = 1.4f, leafW = 1.32f, leafH = 2.1f;
+            float face = variant >= 2 ? -1f : 1f;
             Delete(name); Delete(name + "Hinge"); Delete(name + "Frame");
             var L0 = closedL; L0.y = 0; L0.Normalize();
             var O0 = openDir; O0.y = 0; O0.Normalize();
@@ -3952,21 +3960,46 @@ namespace LayarTerakhir.Editor
             leaf.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
             // Ledged planks + rusty knob ride the hinge beside the leaf (visual
             // only, meter units — never scaled children of the leaf slab).
-            foreach (float fy in new[] { .65f, 1.45f })
+            var battenRows = variant == 1 ? new[] { .4f, 1.0f, 1.6f } : new[] { .65f, 1.45f };
+            foreach (float fy in battenRows)
             {
                 var batten = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 batten.name = name + "Batten";
                 batten.transform.SetParent(hinge, false);
-                batten.transform.localPosition = new Vector3(leafW / 2 - .02f, fy, .045f);
-                batten.transform.localScale = new Vector3(.82f, .12f, .03f);
+                batten.transform.localPosition = new Vector3(leafW / 2 - .02f, fy, .045f * face);
+                batten.transform.localScale = new Vector3(leafW - .1f, .12f, .03f);
                 batten.GetComponent<Renderer>().sharedMaterial = wood;
                 batten.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
                 Object.DestroyImmediate(batten.GetComponent<Collider>());
             }
+            if (variant == 2)
+            {
+                var brace = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                brace.name = name + "DiagonalBrace";
+                brace.transform.SetParent(hinge, false);
+                brace.transform.localPosition = new Vector3(leafW / 2 - .02f, 1.05f, .065f * face);
+                brace.transform.localRotation = Quaternion.Euler(0, 0, 43f);
+                brace.transform.localScale = new Vector3(1.45f, .13f, .035f);
+                brace.GetComponent<Renderer>().sharedMaterial = iron;
+                Object.DestroyImmediate(brace.GetComponent<Collider>());
+            }
+            if (variant == 3)
+            {
+                foreach (float px in new[] { .22f, 1.1f })
+                {
+                    var stile = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    stile.name = name + "Stile";
+                    stile.transform.SetParent(hinge, false);
+                    stile.transform.localPosition = new Vector3(px, 1.05f, .05f * face);
+                    stile.transform.localScale = new Vector3(.09f, 1.85f, .035f);
+                    stile.GetComponent<Renderer>().sharedMaterial = iron;
+                    Object.DestroyImmediate(stile.GetComponent<Collider>());
+                }
+            }
             var knob = GameObject.CreatePrimitive(PrimitiveType.Cube);
             knob.name = name + "Knob";
             knob.transform.SetParent(hinge, false);
-            knob.transform.localPosition = new Vector3(leafW - .12f, 1.0f, .07f);
+            knob.transform.localPosition = new Vector3(leafW - .12f, 1.0f, .07f * face);
             knob.transform.localScale = new Vector3(.06f, .12f, .08f);
             knob.GetComponent<Renderer>().sharedMaterial = iron;
             knob.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
@@ -4033,15 +4066,15 @@ namespace LayarTerakhir.Editor
             var cementMat = MazePropMaterial("MazeCementBag", PH + "cement_bag/cement_bag_diff_1k.jpg",
                 PH + "cement_bag/cement_bag_nor_gl_1k.exr", 0f, .1f, .35f);
             var box1 = MazeProp(PH + "cardboard_box_01/cardboard_box_01_1k.fbx", "MazeCardboardBox_1", root,
-                d.P(13.0f, 3.0f, -2.79f), 12f, new[] { cardMat });
+                d.P(19f, 3f, -2.79f), 12f, new[] { cardMat });
             float stacked = SafeBounds(box1).max.y + .002f;
             var box1b = SafeBounds(box1);
             MazeProp(PH + "cardboard_box_01/cardboard_box_01_1k.fbx", "MazeCardboardBox_2", root,
                 new Vector3(box1b.center.x, stacked, box1b.center.z), -8f, new[] { cardMat });
             MazeProp(PH + "vintage_suitcase/vintage_suitcase_1k.fbx", "MazeSuitcasePair", root,
-                d.P(15.3f, 6.0f, -2.79f), 90f, new[] { caseMat1, caseMat2 });
+                d.P(21.3f, 6f, -2.79f), 90f, new[] { caseMat1, caseMat2 });
             MazeProp(PH + "cement_bag/cement_bag_1k.fbx", "MazeCementBag", root,
-                d.P(12.6f, 3.4f, -2.79f), -20f, new[] { cementMat });
+                d.P(18.6f, 3.4f, -2.79f), -20f, new[] { cementMat });
         }
 
         // Designer Nov: Rumah Atmaja has stood abandoned for decades — every
