@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Passed" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-06 07:39:46Z" end-time="2026-11-06 07:39:48Z" duration="2.3059562">
+  <test-suite type="TestSuite" id="1000" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="594" result="Passed" start-time="2026-11-06 07:39:46Z" end-time="2026-11-06 07:39:48Z" duration="2.305956" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1685" name="Assembly-CSharp-Editor.dll" fullname="/root/projects/LayarTerakhir/.qoder/worktrees/basement-wide-corridors/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="594" result="Passed" start-time="2026-11-06 07:39:46Z" end-time="2026-11-06 07:39:48Z" duration="2.197162" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="2043470" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1686" name="LayarTerakhir" fullname="LayarTerakhir" runstate="Runnable" testcasecount="594" result="Passed" start-time="2026-11-06 07:39:46Z" end-time="2026-11-06 07:39:48Z" duration="2.194344" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1687" name="Editor" fullname="LayarTerakhir.Editor" runstate="Runnable" testcasecount="594" result="Passed" start-time="2026-11-06 07:39:46Z" end-time="2026-11-06 07:39:48Z" duration="2.192311" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1688" name="Tests" fullname="LayarTerakhir.Editor.Tests" runstate="Runnable" testcasecount="594" result="Passed" start-time="2026-11-06 07:39:46Z" end-time="2026-11-06 07:39:48Z" duration="2.190069" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1011" name="AtmajaPlayTests" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" testcasecount="46" result="Passed" start-time="2026-11-06 07:39:46Z" end-time="2026-11-06 07:39:48Z" duration="2.158246" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1033" name="ExpandedCellarHasRunnableConnectedCorridors" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.ExpandedCellarHasRunnableConnectedCorridors" methodname="ExpandedCellarHasRunnableConnectedCorridors" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="1810561975" result="Passed" start-time="2026-11-06 07:39:24Z" end-time="2026-11-06 07:39:38Z" duration="14.205537" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                </properties>
+              </test-case>
+              <test-case id="1057" name="Prolog47CellarFloorRoutesStayWalkable" fullname="LayarTerakhir.Editor.Tests.AtmajaPlayTests.Prolog47CellarFloorRoutesStayWalkable" methodname="Prolog47CellarFloorRoutesStayWalkable" classname="LayarTerakhir.Editor.Tests.AtmajaPlayTests" runstate="Runnable" seed="137726072" result="Passed" start-time="2026-11-06 07:39:38Z" end-time="2026-11-06 07:39:48Z" duration="9.784768" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CELLAR_SWEEP r=0.32 h=1.75 blocked=[]
+Saving results to: /root/.config/unity3d/DefaultCompany/LayarTerakhir/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

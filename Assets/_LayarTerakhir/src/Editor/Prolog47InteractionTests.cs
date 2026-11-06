@@ -237,41 +237,28 @@ namespace LayarTerakhir.Editor.Tests
                 (P(1.2f,1.7f),P(1.5f,2.6f),"approach-mid"),(P(1.5f,2.6f),P(1.5f,3.8f),"mid-north"),
                 (P(1.5f,3.8f),P(4.2f,3.8f),"mid-east"),(P(4.2f,3.8f),P(4.15f,1.7f),"east-drop"),
                 (P(4.15f,1.7f),P(4.05f,1.05f),"ward2-exit2"),(P(4.05f,1.05f),P(4.15f,1.7f),"exit2-back"),
-                (P(4.15f,1.7f),P(4.2f,3.8f),"north-return"),(P(4.2f,3.8f),P(1.5f,3.8f),"east-mid-return"),
-                (P(1.5f,3.8f),P(1.1f,1.5f),"mid-ladder"),
-                (P(2.2f,6.3f),P(2.5f,6.9f),"spawn-arch"),(P(2.5f,6.9f),P(2.5f,7.5f),"arch-flood"),(P(2.5f,7.5f),P(2.5f,6.9f),"flood-center"),(P(2.5f,6.9f),P(2.1f,5.45f),"center-back"),
-                (P(2.5f,7.5f),P(6.0f,7.7f),"flood-lane"),(P(6.0f,7.7f),P(6.0f,9.0f),"lane-gapS"),
-                (P(6.0f,9.0f),P(7.5f,9.0f),"gapS-east"),(P(7.5f,9.0f),P(9.0f,9.2f),"east-lane"),
-                (P(9.0f,9.2f),P(9.6f,8.3f),"lane-nook"),(P(9.6f,8.3f),P(9.5f,7.5f),"nook-cross"),
-                (P(9.5f,7.5f),P(9.3f,6.2f),"cross-north"),(P(9.3f,6.2f),P(9.3f,6.0f),"cross-south"),
-                (P(9.3f,6.0f),P(9.3f,5.8f),"north-room"),(P(9.3f,5.8f),P(7.0f,5.8f),"room-east"),
-                (P(7.0f,5.8f),P(7.0f,4.5f),"room-gap"),(P(7.0f,4.5f),P(6.0f,4.5f),"gap-cross"),(P(6.0f,4.5f),P(6.0f,4.2f),"gap-south"),
-                (P(6.0f,4.2f),P(5.0f,4.2f),"lane-crate"),(P(5.0f,4.2f),P(4.2f,4.2f),"lane-main"),
-                (P(4.2f,3.8f),P(4.2f,4.2f),"main-return"),
-                (P(4.2f,4.2f),P(5.0f,4.2f),"lane-main"),(P(5.0f,4.2f),P(6.0f,4.2f),"main-gap"),
-                (P(6.0f,4.2f),P(6.0f,4.5f),"gap-approach"),(P(6.0f,4.5f),P(7.0f,4.5f),"gap-east"),
-                (P(7.0f,4.5f),P(7.0f,5.8f),"east-north"),(P(7.0f,5.8f),P(9.3f,5.8f),"north-maze"),(P(9.3f,5.8f),P(10.5f,5.8f),"maze-room"),
-                (P(10.5f,5.8f),P(10.5f,4.5f),"maze-drop"),(P(10.5f,4.5f),P(11.5f,4.5f),"drop-gap"),
-                (P(11.5f,4.5f),P(12.5f,4.5f),"gap-r1"),(P(12.5f,4.5f),P(12.5f,6.5f),"r1-west"),
-                (P(12.5f,6.5f),P(13.5f,6.5f),"r1-center"),(P(13.5f,6.5f),P(14.2f,6.5f),"center-warda"),
-                (P(14.2f,6.5f),P(14.2f,4.4f),"warda-drop"),(P(14.2f,4.4f),P(13.5f,4.4f),"warda-back"),
-                (P(13.5f,4.4f),P(12.5f,4.4f),"back-gap"),(P(12.5f,4.4f),P(12.5f,6.5f),"gap-north"),
-                (P(12.5f,6.5f),P(13.5f,6.5f),"north-center"),(P(13.5f,6.5f),P(13.5f,8.0f),"center-south"),(P(13.5f,8.0f),P(13.5f,11.0f),"south-crypt"),
-                (P(13.5f,11.0f),P(13.5f,12.5f),"crypt-gate"),(P(13.5f,12.5f),P(13.5f,13.5f),"gate-crypt"),
-                (P(13.5f,13.5f),P(10.0f,13.5f),"crypt-west"),(P(10.0f,13.5f),P(9.5f,14.9f),"west-niche"),
-                (P(9.5f,14.9f),P(10.5f,14.9f),"niche-back"),(P(10.5f,14.9f),P(13.0f,14.5f),"niche-east"),
-                (P(13.0f,14.5f),P(14.0f,14.0f),"east-cam"),(P(14.0f,14.0f),P(13.5f,13.5f),"cam-back"),
-                (P(13.5f,13.5f),P(13.5f,12.5f),"crypt-exit"),(P(13.5f,12.5f),P(13.5f,11.0f),"exit-r1"),
-                (P(13.5f,11.0f),P(12.5f,11.0f),"r1-west2"),(P(12.5f,11.0f),P(12.5f,8.0f),"west-nook"),
-                (P(12.5f,8.0f),P(12.5f,4.5f),"r1-drop"),(P(12.5f,4.5f),P(11.5f,4.5f),"drop-east"),
-                (P(11.5f,4.5f),P(10.5f,4.5f),"east-maze"),(P(10.5f,4.5f),P(10.5f,5.8f),"maze-north"),
-                (P(10.5f,5.8f),P(9.3f,5.8f),"north-west"),(P(9.3f,5.8f),P(9.5f,7.5f),"west-cross"),
-                (P(9.5f,7.5f),P(9.5f,7.9f),"cross-south"),(P(9.5f,7.9f),P(7.0f,9.0f),"south-lane"),
-                (P(7.0f,9.0f),P(6.0f,9.0f),"lane-gap"),(P(6.0f,9.0f),P(5.0f,9.0f),"gap-flood"),
-                (P(5.0f,9.0f),P(3.5f,9.0f),"flood-mid"),(P(3.5f,9.0f),P(2.4f,9.2f),"mid-ward"),
-                (P(2.4f,9.2f),P(2.4f,10.0f),"ward-hide"),(P(2.4f,10.0f),P(2.4f,9.2f),"hide-exit"),
-                (P(2.4f,9.2f),P(3.5f,9.2f),"exit-mid"),(P(3.5f,9.2f),P(3.5f,7.5f),"mid-north"),
-                (P(3.5f,7.5f),P(2.5f,7.5f),"north-arch"),(P(2.5f,7.5f),P(2.5f,6.9f),"arch-main"),
+                (P(4.15f,1.7f),P(4.2f,3.8f),"north-return"),(P(4.2f,3.8f),P(4.2f,4.5f),"main-loop-turn"),
+                (P(4.2f,4.5f),P(4.2f,3.8f),"main-loop-back"),(P(4.2f,3.8f),P(5.5f,3.8f),"main-approach"),
+                (P(5.5f,3.8f),P(5.5f,4.5f),"main-turn"),(P(5.5f,4.5f),P(7f,4.5f),"main-entry"),
+                (P(7f,4.5f),P(13.5f,4.5f),"main-straight"),(P(13.5f,4.5f),P(16.8f,4.5f),"archive-corridor"),
+                (P(16.8f,4.5f),P(20f,4.5f),"archive-entry"),(P(20f,4.5f),P(20f,7.5f),"archive-center"),
+                (P(20f,7.5f),P(19.2f,9f),"archive-west"),(P(19.2f,9f),P(19.2f,11.2f),"archive-table-clear"),
+                (P(19.2f,11.2f),P(22f,11.2f),"archive-south"),(P(22f,11.2f),P(22.5f,8.5f),"archive-locker3"),
+                (P(22.5f,8.5f),P(22.5f,4.4f),"archive-east"),(P(22.5f,4.4f),P(22.2f,4.4f),"archive-locker4"),
+                (P(22.2f,4.4f),P(20f,4.5f),"archive-return"),(P(20f,4.5f),P(16.8f,4.5f),"archive-exit"),
+                (P(16.8f,4.5f),P(13.5f,4.5f),"main-junction"),(P(13.5f,4.5f),P(13.5f,20f),"crypt-straight"),
+                (P(13.5f,20f),P(13.5f,23f),"crypt-door"),(P(13.5f,23f),P(13.5f,24.5f),"crypt-entry"),
+                (P(13.5f,24.5f),P(11.5f,25.5f),"crypt-center"),(P(11.5f,25.5f),P(9.5f,26.4f),"crypt-locker"),
+                (P(9.5f,26.4f),P(11.5f,25.5f),"crypt-return"),(P(11.5f,25.5f),P(14f,25.5f),"crypt-camera"),
+                (P(14f,25.5f),P(13.5f,24.5f),"crypt-camera-back"),(P(13.5f,24.5f),P(13.5f,4.5f),"crypt-exit"),
+                (P(13.5f,4.5f),P(5.5f,4.5f),"main-return"),(P(5.5f,4.5f),P(5.9f,4.5f),"flood-turn"),
+                (P(5.9f,4.5f),P(5.9f,5.8f),"flood-approach"),(P(5.9f,5.8f),P(5.9f,9.2f),"flood-straight"),
+                (P(5.9f,9.2f),P(5.9f,10.7f),"flood-door"),(P(5.9f,10.7f),P(4.2f,10.7f),"flood-entry"),
+                (P(4.2f,10.7f),P(4.2f,12.2f),"well-east"),(P(4.2f,12.2f),P(1.2f,12.2f),"well-south"),
+                (P(1.2f,12.2f),P(1.2f,14f),"flood-west"),(P(1.2f,14f),P(1f,16f),"flood-locker-approach"),
+                (P(1f,16f),P(2.5f,15.5f),"flood-locker"),(P(2.5f,15.5f),P(3.8f,14f),"flood-wide"),
+                (P(3.8f,14f),P(4.2f,12.2f),"flood-return"),(P(4.2f,12.2f),P(4.2f,10.7f),"well-return"),
+                (P(4.2f,10.7f),P(5.9f,10.7f),"well-door"),(P(5.9f,10.7f),P(5.9f,5.8f),"flood-exit"),
             };
             bool all=true;
             foreach(var s in tour)all=Seg(s.Item1,s.Item2,s.Item3)&&all;
@@ -299,7 +286,7 @@ namespace LayarTerakhir.Editor.Tests
             }
             // Damar's handycam hides in the crypt far corner: reachable and
             // visible from the crypt aisle, not from the main rooms.
-            d.PlacePlayer(d.P(14.0f, 14.0f, -2.79f),Quaternion.identity);p.MovementLocked=false;p.enabled=false;
+            d.PlacePlayer(d.P(13.5f, 24.5f, -2.79f),Quaternion.identity);p.MovementLocked=false;p.enabled=false;
             p.GetComponent<ShoulderCameraRig>().SetPerspective(PlayerPerspective.FirstPerson);
             var camItem=Item(AtmajaAction.Handycam);
             var cdelta=camItem.GetComponent<Collider>().bounds.center-p.cameraPivot.position;var cflat=Vector3.ProjectOnPlane(cdelta,Vector3.up);
@@ -312,7 +299,7 @@ namespace LayarTerakhir.Editor.Tests
             Assert.That(blink.ShouldShow(),Is.True,"Handycam blinks so explorers notice it");
             Assert.That(AtmajaBasementHorror.DamarNoteText.ToLowerInvariant(),Does.Not.Contain("umpetin").And.Not.Contain("paling ujung"),"Bag note never names the hiding place");
             // Each hiding locker conceals Raka and lets him back out.
-            foreach(var spot in new[]{(14.2f,4.4f,"MazeWardrobeA"),(9.5f,15.8f,"MazeWardrobeB"),(1.9f,10.0f,"MazeWardrobeC")})
+            foreach(var spot in new[]{(22.2f,4.4f,"MazeWardrobeA"),(9.5f,26.4f,"MazeWardrobeB"),(1f,16f,"MazeWardrobeC")})
             {
                 d.PlacePlayer(d.P(spot.Item1,spot.Item2,-2.79f),Quaternion.identity);
                 var ward=GameObject.Find(spot.Item3).GetComponent<AtmajaItem>();
@@ -331,22 +318,23 @@ namespace LayarTerakhir.Editor.Tests
             bagItem.Interact();yield return null;
             Assert.That(HudController.Instance.documentPanel.gameObject.activeSelf,Is.True,"Bag note opens");
             HudController.Instance.documentCloseButton.onClick.Invoke();yield return null;
-            // Every maze room has a wooden door, serialized open.
-            foreach(var dn in new[]{"MazeDoorR1","MazeDoorR2","MazeDoorR3"})
+            // Every maze room has a distinct wooden door, open at runtime.
+            foreach(var dn in new[]{"MazeDoorR0","MazeDoorR1","MazeDoorR2","MazeDoorR3"})
             {
                 var leaf=GameObject.Find(dn);
                 Assert.That(leaf,Is.Not.Null,dn+" leaf stands in its doorway");
                 var hd=leaf.GetComponent<HingedDoor>();
                 Assert.That(hd,Is.Not.Null,dn+" swings on a hinge");
                 Assert.That(hd.IsOpen,Is.True,dn+" serializes open so lanes stay walkable");
-                Assert.That(leaf.GetComponent<Renderer>().sharedMaterial.name,Does.Contain("BedWood"),dn+" leaf is wood");
+                Assert.That(leaf.GetComponent<Renderer>().sharedMaterial.shader.name,Is.EqualTo("Universal Render Pipeline/Lit"),dn+" uses a lit door material");
                 Assert.That(hd.GetInteractionPrompt(),Does.Contain("pintu"),dn+" prompt names the door");
                 Assert.That(leaf.transform.parent.GetComponent<MazeDoor>(),Is.Not.Null,dn+" auto-opens for the hunter");
             }
+            Assert.That(new[]{"MazeDoorR0","MazeDoorR1","MazeDoorR2","MazeDoorR3"}.Select(dn=>GameObject.Find(dn).GetComponent<Renderer>().sharedMaterial).Distinct().Count(),Is.EqualTo(4),"Each room has a visually distinct door");
             // Nyonya shoulders a closed maze door open on approach.
             d.basement.enabled=false;
             d.basement.nyonya.SetActive(true);
-            d.basement.nyonya.transform.position=d.P(2.5f,6.5f,-2.79f);
+            d.basement.nyonya.transform.position=d.P(5.6f,9f,-2.79f);
             var r3=GameObject.Find("MazeDoorR3").GetComponent<HingedDoor>();
             r3.SetOpenImmediate(false);Physics.SyncTransforms();yield return null;
             float dend=Time.time+4;
