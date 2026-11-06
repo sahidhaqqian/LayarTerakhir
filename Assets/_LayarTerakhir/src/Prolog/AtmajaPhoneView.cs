@@ -42,6 +42,7 @@ namespace LayarTerakhir.Prolog
         private HudPresentation hudPresentation;
         private RectTransform handsetRect;
         private float raiseAmount,viewfinderBlend;
+        private float thumbPumpStart=-10f;
         // A stowed handset rises and lowers in its aiming pose. It must not
         // first appear as a portrait app panel and then stretch across the eye.
         private bool landscapeFromStowed;
@@ -293,7 +294,11 @@ namespace LayarTerakhir.Prolog
         public void CaptureFlash()
         {
             Phone.PulseShutter();flashUntil=Time.unscaledTime+.22f;
+            if(!shutterClip)shutterClip=Resources.Load<AudioClip>("KosAudio/CameraShutterReal");
             if(!shutterClip)shutterClip=AtmajaSynth.Shutter();if(shutterAudio)shutterAudio.PlayOneShot(shutterClip,.65f);
+            // Thumb-up pump on shutter: up 4mm and back over 0.5s.
+            // Double-click within 2s plays it only once (cooldown gate).
+            if(Time.unscaledTime-thumbPumpStart>=2f)thumbPumpStart=Time.unscaledTime;
         }
         public void Glitch(float seconds,float strength=.8f){glitchUntil=Time.unscaledTime+seconds;GlitchStrength=strength;}
         private static bool LensFocusHeld()
@@ -621,7 +626,11 @@ namespace LayarTerakhir.Prolog
             // Meshy grasp: mesh already seats digits on the glass in bind;
             // small 5mm lift so the chin clears the thumbs (was 25mm).
             const float wristDownDeg=3f,wristOutDeg=0f,wristRollDeg=0f,gripShrink=1f,gripRaiseMetres=.005f;
-            firstPersonHand.transform.position=phoneCentre+edge+handRotation*(new Vector3(-.0050251f,-.0325639f,-.0083271f)*(1-t)+Vector3.up*gripRaiseMetres*t);
+            // Thumb-up pump on shutter: +4mm up and back over 0.5s (sine),
+            // aim-gated like the raise so it never fires while stowed.
+            float thumbPump=0f;float pumpAge=Time.unscaledTime-thumbPumpStart;
+            if(pumpAge>=0f&&pumpAge<.5f)thumbPump=Mathf.Sin(pumpAge/.5f*Mathf.PI)*.004f*t;
+            firstPersonHand.transform.position=phoneCentre+edge+handRotation*(new Vector3(-.0050251f,-.0325639f,-.0083271f)*(1-t)+Vector3.up*(gripRaiseMetres*t+thumbPump));
             // Scale is applied with the landscape wrist below (gripShrink).
             // Source grasp origin is the edge, in metres. Mirror around the
             // handset centre; never enlarge the hand to fill a stretched UI.
@@ -631,7 +640,7 @@ namespace LayarTerakhir.Prolog
             // rear, clear of the feed.
             firstPersonHand.transform.rotation=handRotation*Quaternion.Euler(wristDownDeg*t,80*(1-t)+wristOutDeg*t,wristRollDeg*t);
             firstPersonHand.transform.localScale=handScale*Mathf.Lerp(1f,gripShrink,t);
-            if(both){supportHand.transform.position=phoneCentre-edge+handRotation*(Vector3.up*gripRaiseMetres*t);supportHand.transform.rotation=handRotation*Quaternion.Euler(wristDownDeg*t,wristOutDeg*t,wristRollDeg*t);supportHand.transform.localScale=supportScale*Mathf.Lerp(1f,gripShrink,t);}
+            if(both){supportHand.transform.position=phoneCentre-edge+handRotation*(Vector3.up*(gripRaiseMetres*t+thumbPump));supportHand.transform.rotation=handRotation*Quaternion.Euler(wristDownDeg*t,wristOutDeg*t,wristRollDeg*t);supportHand.transform.localScale=supportScale*Mathf.Lerp(1f,gripShrink,t);}
             if(gripOccluder){gripOccluder.transform.SetPositionAndRotation(phoneCentre,handRotation);gripOccluder.transform.localScale=Vector3.Scale(depthMaskScale,new Vector3(physicalWidth/.078f,physicalHeight/.165f,Mathf.Lerp(1,.008f/.014f,t)));}
         }
         public void AddChat(string author,string text){if(ChatFrozen)return;pendingMessages.Enqueue($"<color=#C0AA7A>{author}</color> {text}");while(pendingMessages.Count>18)pendingMessages.Dequeue();}

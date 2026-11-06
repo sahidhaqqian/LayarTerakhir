@@ -76,14 +76,29 @@ namespace LayarTerakhir.Prolog
         }
         public static AudioClip Shutter(int rate=22050)
         {
-            // Heavy analog camera shutter: two mechanical clacks.
+            // Analog camera shutter: mirror slap thump, first-curtain clack,
+            // second-curtain clack with a faint spring ping ("cekrek").
             int n=(int)(.5f*rate);var samples=new float[n];var random=new System.Random(90210);
             void Click(float at,float dur,float gain)
             {
                 int start=(int)(at*rate),len=(int)(dur*rate);
                 for(int i=0;i<len&&start+i<n;i++){float t=i/(float)len;samples[start+i]+=((float)random.NextDouble()*2-1)*(float)Math.Exp(-26*t)*gain;}
             }
-            Click(0,.06f,.85f);Click(.09f,.09f,.6f);
+            void Thump(float at,float freq,float dur,float gain)
+            {
+                int start=(int)(at*rate),len=(int)(dur*rate);double phase=0;
+                for(int i=0;i<len&&start+i<n;i++)
+                {
+                    float t=i/(float)len;phase+=2*Math.PI*(freq*(1-.55*t))/rate;
+                    samples[start+i]+=((float)Math.Sin(phase)*(float)Math.Exp(-14*t)*.8f+(float)(random.NextDouble()*2-1)*(float)Math.Exp(-30*t)*.2f)*gain;
+                }
+            }
+            void Ping(float at,float freq,float dur,float gain)
+            {
+                int start=(int)(at*rate),len=(int)(dur*rate);double phase=0;
+                for(int i=0;i<len&&start+i<n;i++){float t=i/(float)len;phase+=2*Math.PI*freq/rate;samples[start+i]+=(float)Math.Sin(phase)*(float)Math.Exp(-40*t)*gain;}
+            }
+            Thump(0,190f,.12f,.9f);Click(.015f,.05f,.8f);Click(.10f,.08f,.65f);Ping(.10f,2600f,.05f,.12f);
             var clip=AudioClip.Create("AtmajaSynth_Shutter",n,1,rate,false);clip.SetData(samples,0);return clip;
         }
         public static AudioClip ChaseLoop(int rate=22050,float bpm=186)
