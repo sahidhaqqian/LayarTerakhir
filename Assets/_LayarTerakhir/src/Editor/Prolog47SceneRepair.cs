@@ -64,6 +64,12 @@ namespace LayarTerakhir.Editor
                 case "Repair_ClockWood":
                     customTex = "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/grandfather_clock/vintage_grandfather_clock_01_diff_1k.jpg";
                     color = Color.white; smooth = .3f; break;
+                case "Repair_DiningTableWood":
+                    customTex = "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/dining_table/dining_table_diff_1k.jpg";
+                    color = Color.white; smooth = .3f; break;
+                case "Repair_CrowbarSteel":
+                    customTex = "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/crowbar/crowbar_01_diff_1k.jpg";
+                    color = Color.white; metal = .65f; smooth = .5f; break;
                 case "Repair_VentRust":
                     customTex = "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/metal_grate_rusty/metal_grate_rusty_diff_1k.jpg";
                     color = Color.white; metal = .38f; smooth = .52f; break;
@@ -1996,10 +2002,18 @@ namespace LayarTerakhir.Editor
                 Part(Mathf.Max(x0, cx0), Mathf.Min(x1, cx1), z0, Mathf.Min(cz0, z1));
                 Part(Mathf.Max(x0, cx0), Mathf.Min(x1, cx1), Mathf.Max(cz1, z0), z1);
             }
+            // Radio stays parked south of the door-to-hands flow (depth 0).
+            // Never drag it west into the path; converge both axes home.
             var cabinet = Find("FamilyRadioCabinet");
-            if (cabinet && d.LocalPosition(cabinet.transform.position).x > 0)
-                foreach (var t in root.GetComponentsInChildren<Transform>().Where(t => t.name == "FamilyRadioCabinet" || t.name == "FamilyRadioBody" || t.name == "FamilyCabinetPanel" || t.name == "RadioSpeakerGrille"))
-                    t.position -= d.east * 1.9f;
+            if (cabinet)
+            {
+                var cl0 = d.LocalPosition(cabinet.transform.position);
+                var target0 = d.P(.65f, 0f, 0f) - d.P(cl0.x, cl0.y, 0f);
+                target0.y = 0f;
+                if (target0.magnitude > .01f)
+                    foreach (var t in root.GetComponentsInChildren<Transform>().Where(t => t.name == "FamilyRadioCabinet" || t.name == "FamilyRadioBody" || t.name == "FamilyCabinetPanel" || t.name == "RadioSpeakerGrille"))
+                        t.position += target0;
+            }
 
             // Designer Nov: the basement needs a way back up outside the
             // chase — a visible iron grab-handle at the ladder base. The
@@ -2295,6 +2309,23 @@ namespace LayarTerakhir.Editor
             var tableChild = (GameObject)PrefabUtility.InstantiatePrefab(tableAsset);
             tableChild.transform.SetParent(table.transform, false);
             tableChild.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+            // The Poly Haven export does not resolve its textures on import, so wire
+            // the CC0 diffuse + normal explicitly (idempotent: same asset, re-set).
+            // Without this the table renders flat gray ("meja gak ke load").
+            {
+                const string tableDir = "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/dining_table/";
+                var tableNorImport = AssetImporter.GetAtPath(tableDir + "dining_table_nor_gl_1k.jpg") as TextureImporter;
+                if (tableNorImport && tableNorImport.textureType != TextureImporterType.NormalMap)
+                {
+                    tableNorImport.textureType = TextureImporterType.NormalMap;
+                    tableNorImport.SaveAndReimport();
+                }
+                var tableMat = Material("Repair_DiningTableWood");
+                var tableNor = AssetDatabase.LoadAssetAtPath<Texture2D>(tableDir + "dining_table_nor_gl_1k.jpg");
+                if (tableNor) { tableMat.SetTexture("_BumpMap", tableNor); tableMat.SetFloat("_BumpScale", .55f); tableMat.EnableKeyword("_NORMALMAP"); EditorUtility.SetDirty(tableMat); }
+                foreach (var r in tableChild.GetComponentsInChildren<Renderer>())
+                    r.sharedMaterials = Enumerable.Repeat(tableMat, r.sharedMaterials.Length).ToArray();
+            }
             KosVisualV2.Resize(table, new Vector3(1.5f, .9f, 3.8f));
             KosVisualV2.SetCenter(table, d.P(3.7f, 4.9f, .52f) + Vector3.up * .45f);
             // Sole physics stays in the invisible DiningTableTopCollision box;
@@ -2385,14 +2416,14 @@ namespace LayarTerakhir.Editor
             }
             // The west-shifted radio cabinet (local x -1.25) seals the door-to-hands
             // desire line for a 0.32-radius capsule ("meja menghalangi jarum jam").
-            // Park it flush against the sitting partition so the flow stays clear.
+            // Park it south of the door-to-hands flow (depth 0), x parked east.
             // Delta is recomputed from the live position, so reruns converge.
             {
                 var cab0 = Find("FamilyRadioCabinet");
                 if (cab0)
                 {
                     var cl = d.LocalPosition(cab0.transform.position);
-                    var target = d.P(.35f, 1.72f, 0f) - d.P(cl.x, cl.y, 0f);
+                    var target = d.P(.65f, 0f, 0f) - d.P(cl.x, cl.y, 0f);
                     target.y = 0f;
                     if (target.magnitude > .01f)
                         foreach (var t in env.GetComponentsInChildren<Transform>(true).Where(t =>
@@ -2492,7 +2523,11 @@ namespace LayarTerakhir.Editor
                 for (int ci = 0; ci < cm.Length; ci++)
                 {
                     if (!cm[ci]) continue;
-                    cm[ci] = cm[ci].name.IndexOf("glass", StringComparison.OrdinalIgnoreCase) >= 0 ? glassMat : wood;
+                    // Blender ground truth: Body slot 0 = case wood, slot 1 = door glass.
+                    // Import-time material names are unreliable, so map the glass
+                    // slot by index (name match kept as fallback).
+                    bool isGlassSlot = r.name == "vintage_grandfather_clock_01_Body" && ci == 1;
+                    cm[ci] = (isGlassSlot || cm[ci].name.IndexOf("glass", StringComparison.OrdinalIgnoreCase) >= 0) ? glassMat : wood;
                 }
                 r.sharedMaterials = cm;
             }
@@ -4351,6 +4386,17 @@ namespace LayarTerakhir.Editor
             item.director = d;
             item.action = AtmajaAction.Crowbar;
             item.label = "Ambil linggis tua";
+            // The Poly Haven export does not resolve its textures on import, so wire
+            // the CC0 diffuse + normal explicitly (idempotent: same asset, re-set).
+            // Runs for pre-existing instances too, not only fresh creates.
+            {
+                const string crowDir = "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/crowbar/";
+                var crowNor = AssetDatabase.LoadAssetAtPath<Texture2D>(crowDir + "crowbar_01_nor_gl_1k.jpg");
+                var crowMat = Material("Repair_CrowbarSteel");
+                if (crowNor) { crowMat.SetTexture("_BumpMap", crowNor); crowMat.SetFloat("_BumpScale", .55f); crowMat.EnableKeyword("_NORMALMAP"); EditorUtility.SetDirty(crowMat); }
+                foreach (var r in d.crowbar.GetComponentsInChildren<Renderer>())
+                    r.sharedMaterials = Enumerable.Repeat(crowMat, r.sharedMaterials.Length).ToArray();
+            }
             // Normalize every run, not only on create: the bar must lie flat on
             // the floor under the stairs even if an earlier pass left it
             // standing on end or out on the open nook floor.

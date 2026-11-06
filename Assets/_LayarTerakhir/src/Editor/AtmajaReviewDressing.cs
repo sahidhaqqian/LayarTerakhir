@@ -37,6 +37,7 @@ namespace LayarTerakhir.Editor
             // the same on saved scenes.
             var dtable=new GameObject("LongDiningTable");dtable.transform.SetParent(environment,false);dtable.transform.SetPositionAndRotation(P(3.7f,4.9f,.52f),Quaternion.identity);
             var dchild=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/dining_table/dining_table_1k.fbx"));dchild.transform.SetParent(dtable.transform,false);dchild.transform.rotation=Quaternion.Euler(0,90,0);
+            foreach(var r in dchild.GetComponentsInChildren<Renderer>())r.sharedMaterials=Enumerable.Repeat(DiningTableWood(),r.sharedMaterials.Length).ToArray();
             KosVisualV2.Resize(dtable,new Vector3(1.5f,.9f,3.8f));KosVisualV2.SetCenter(dtable,P(3.7f,4.9f,.52f)+Vector3.up*.45f);
             var top=Box("DiningTableTopCollision",P(3.7f,4.9f,1.42f),new Vector3(1.5f,.075f,3.8f),wood);top.GetComponent<Renderer>().enabled=false;
             foreach(float x in new[]{3.09f,4.31f})foreach(float z in new[]{2.9f,6.9f})Box("DiningTableLegCollision",P(x,z,.95f),new Vector3(.09f,.86f,.09f),wood).GetComponent<Renderer>().enabled=false;
@@ -75,6 +76,7 @@ namespace LayarTerakhir.Editor
             // the rusted child-room vent. Repair ensures the same on saved scenes.
             var crowRoot=new GameObject("StorageCrowbar");crowRoot.transform.SetParent(environment,false);
             var crowChild=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/crowbar/crowbar_01_1k.fbx"));crowChild.transform.SetParent(crowRoot.transform,false);
+            foreach(var r in crowChild.GetComponentsInChildren<Renderer>())r.sharedMaterials=Enumerable.Repeat(CrowbarSteel(),r.sharedMaterials.Length).ToArray();
             crowRoot.transform.SetPositionAndRotation(P(-.6f,7.9f,.56f),Quaternion.Euler(0,35,0));
             for(int fi=0;fi<2;fi++){var fb=KosVisualV2.BoundsOf(crowRoot);if(fb.size.y>fb.size.x&&fb.size.y>fb.size.z)crowRoot.transform.rotation=crowRoot.transform.rotation*Quaternion.Euler(90,0,0);else break;}
             crowRoot.transform.position+=Vector3.up*(.5f-KosVisualV2.BoundsOf(crowRoot).min.y);
@@ -103,7 +105,8 @@ namespace LayarTerakhir.Editor
                 for(int ci=0;ci<cm.Length;ci++)
                 {
                     if(!cm[ci])continue;
-                    cm[ci]=cm[ci].name.IndexOf("glass",System.StringComparison.OrdinalIgnoreCase)>=0?clockGlass:clockWood;
+                    bool isGlassSlot=r.name=="vintage_grandfather_clock_01_Body"&&ci==1;
+                    cm[ci]=(isGlassSlot||cm[ci].name.IndexOf("glass",System.StringComparison.OrdinalIgnoreCase)>=0)?clockGlass:clockWood;
                 }
                 r.sharedMaterials=cm;
             }
@@ -140,6 +143,16 @@ namespace LayarTerakhir.Editor
             if(cti&&cti.textureType!=TextureImporterType.NormalMap){cti.textureType=TextureImporterType.NormalMap;cti.SaveAndReimport();}
             var vti=AssetImporter.GetAtPath("Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/metal_grate_rusty/metal_grate_rusty_nor_gl_1k.jpg") as TextureImporter;
             if(vti&&vti.textureType!=TextureImporterType.NormalMap){vti.textureType=TextureImporterType.NormalMap;vti.SaveAndReimport();}
+        }
+        private static Material DiningTableWood()=>CC0Wood("Repair_DiningTableWood","Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/dining_table/dining_table_diff_1k.jpg","Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/dining_table/dining_table_nor_gl_1k.jpg",.3f,0f);
+        private static Material CrowbarSteel()=>CC0Wood("Repair_CrowbarSteel","Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/crowbar/crowbar_01_diff_1k.jpg","Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/crowbar/crowbar_01_nor_gl_1k.jpg",.5f,.65f);
+        private static Material CC0Wood(string name,string diff,string nor,float smooth,float metal)
+        {
+            string path="Assets/_LayarTerakhir/assets/Art/Generated/Materials/Prolog47/"+name+".mat";var m=AssetDatabase.LoadAssetAtPath<Material>(path);
+            if(!m){m=new Material(Shader.Find("Universal Render Pipeline/Lit"));AssetDatabase.CreateAsset(m,path);}
+            var dt=AssetDatabase.LoadAssetAtPath<Texture2D>(diff);if(dt)m.SetTexture("_BaseMap",dt);
+            var nt=AssetDatabase.LoadAssetAtPath<Texture2D>(nor);if(nt){m.SetTexture("_BumpMap",nt);m.SetFloat("_BumpScale",.55f);m.EnableKeyword("_NORMALMAP");}
+            m.SetColor("_BaseColor",Color.white);m.SetFloat("_Smoothness",smooth);m.SetFloat("_Metallic",metal);EditorUtility.SetDirty(m);return m;
         }
         private static void Chair(string name,Vector3 where,Vector3 target)
         {
