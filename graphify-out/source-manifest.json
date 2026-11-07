@@ -1,12 +1,12 @@
 {
   "artifacts_sha256": {
-    "GRAPH_REPORT.md": "3dd86ff97189b22b2c3eaa39ea3f508951fd168f77af18e11a436c3770234328",
-    "graph.html": "ecacac500d95ee15cd0b82edb14ec2e71cf99c20bde6e48232820926bcede6ce",
-    "graph.json": "1e2b348c7e2b2ac602c7128067fda36d8344cec8bad9424f50514e54d6eefa5d"
+    "GRAPH_REPORT.md": "a55bbdbd493083bbb6fbbff1462257b3f667ea44708687a58c909f127c3fe2dd",
+    "graph.html": "7f2f2ffd04bf1fbd30b7c4cec79955c1c225ee429a77919041aa3902c58ae1b1",
+    "graph.json": "b78a860ed0a121cc85e7d55d21abed42c4feba2eb78fb485a08adae6c0207621"
   },
   "asset_file_count": 0,
   "code_file_count": 434,
-  "edge_count": 20979,
+  "edge_count": 20982,
   "graphify_version": "graphify 0.9.92",
   "ignore_sha256": "05660cd7b7a81591931d5661fb73b7124598a04c44f843eda7a7ac2107f20e17",
   "mode": "local-code-only; no LLM/community labeling",
@@ -144,7 +144,7 @@
     "Assets/_LayarTerakhir/src/Editor/PlaytestRevisionBuilder.cs": "559fbc85b54af14f44030848e045bd7feb5492a5c9b9b6e768e635106e3f1383",
     "Assets/_LayarTerakhir/src/Editor/Prolog47InteractionTests.cs": "64d67a69b5a76ed09e8f7d11b6d62900815d521bdfba391a32b58509e5259a06",
     "Assets/_LayarTerakhir/src/Editor/Prolog47MeshRepair.cs": "527f614c8cafaead05f89ceb9eeafe5086694de7b3595ca9de92e27ac417e681",
-    "Assets/_LayarTerakhir/src/Editor/Prolog47SceneRepair.cs": "2c76618a4ca8674adb127cca77ed3a9226a0844d65357ab177a1f18e72d8eb29",
+    "Assets/_LayarTerakhir/src/Editor/Prolog47SceneRepair.cs": "f574b09944ea6eff55ec719c43bc76a717e000d672d54829ca4dc76de3661aad",
     "Assets/_LayarTerakhir/src/Editor/Prolog47VisualTests.cs": "97a623da2a73d76af6e55bf2ab0e3381d377bcf8576f863f88128011b1804a55",
     "Assets/_LayarTerakhir/src/Editor/PrologCompletionBuilder.cs": "96d2c1896405129e7af6832d6f087b1214bd1309188e14a030d2537bbf02c617",
     "Assets/_LayarTerakhir/src/Editor/PrologEasyPlayTests.cs": "2ce15608cd7618f43f80b5dca5dc881c26193ec3d90c4442e8fa2266fbac8ffa",

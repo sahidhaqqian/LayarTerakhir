@@ -70,6 +70,9 @@ namespace LayarTerakhir.Editor
                 case "Repair_CrowbarSteel":
                     customTex = "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/crowbar/crowbar_01_diff_1k.jpg";
                     color = Color.white; metal = .65f; smooth = .5f; break;
+                case "Repair_ShowerCurtain":
+                    customTex = "Assets/_LayarTerakhir/assets/Art/Atmaja/Textures/shower_curtain_diff_1k.jpg";
+                    color = Color.white; smooth = .55f; break;
                 case "Repair_VentRust":
                     customTex = "Assets/_LayarTerakhir/assets/Art/Imported/PolyHaven/metal_grate_rusty/metal_grate_rusty_diff_1k.jpg";
                     color = Color.white; metal = .38f; smooth = .52f; break;
@@ -2979,6 +2982,19 @@ namespace LayarTerakhir.Editor
             holder.name = "BathCurtain";
             holder.transform.SetParent(root, true);
             PrefabUtility.UnpackPrefabInstance(holder, PrefabUnpackMode.OutermostRoot, InteractionMode.AutomatedAction);
+            // The CC0 FBX ships no textures (gray/invisible in builds): wire the
+            // ambientCG fabric diffuse + normal explicitly (idempotent).
+            {
+                const string curDir = "Assets/_LayarTerakhir/assets/Art/Atmaja/Textures/";
+                var curNor = AssetDatabase.LoadAssetAtPath<Texture2D>(curDir + "shower_curtain_nor_gl_1k.jpg");
+                var curMat = Material("Repair_ShowerCurtain");
+                if (curNor) { curMat.SetTexture("_BumpMap", curNor); curMat.SetFloat("_BumpScale", .4f); curMat.EnableKeyword("_NORMALMAP"); EditorUtility.SetDirty(curMat); }
+                foreach (var r in holder.GetComponentsInChildren<Renderer>())
+                {
+                    if (r is LineRenderer) continue;
+                    r.sharedMaterials = Enumerable.Repeat(curMat, Mathf.Max(1, r.sharedMaterials.Length)).ToArray();
+                }
+            }
             bool tubAlongX = tubBounds.size.x >= tubBounds.size.z;
             var b0 = KosVisualV2.BoundsOf(holder);
             bool curtainAlongX = b0.size.x >= b0.size.z;

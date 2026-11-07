@@ -1,0 +1,34 @@
+[
+  {
+    "name": "ShowerCurtainCC0",
+    "page": "https://www.grabcad.com (free CC0 shower curtain with rod and rings, 1.54x1.84m)",
+    "author": "GrabCAD community (CC0)",
+    "license": "CC0-1.0",
+    "files": [
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Imported/ShowerCurtainCC0/ShowerCurtainCC0.fbx"
+      }
+    ]
+  },
+  {
+    "name": "Fabric 001",
+    "page": "https://ambientcg.com/view?id=Fabric001",
+    "author": "ambientCG / Lennart Demes",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://ambientcg.com/license",
+    "files": [
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Textures/shower_curtain_diff_1k.jpg",
+        "url": "https://ambientcg.com/get?file=Fabric001_1K-JPG.zip",
+        "sha256": "e4d03bf5210d01b4b21a846b0256b5d322104094688a7f2f7babb84e8140a20a",
+        "bytes": 1010706
+      },
+      {
+        "path": "Assets/_LayarTerakhir/assets/Art/Atmaja/Textures/shower_curtain_nor_gl_1k.jpg",
+        "url": "https://ambientcg.com/get?file=Fabric001_1K-JPG.zip",
+        "sha256": "c2b8a5e28b31b330095500eb2d4b03c635e62d526f2fac0781f1409309be1d63",
+        "bytes": 1381923
+      }
+    ]
+  }
+]
