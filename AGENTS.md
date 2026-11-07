@@ -14,6 +14,7 @@
 - Upload ke Cloudflare R2 hanya jika pengguna memintanya secara eksplisit, dan hanya melalui skill `windows-build-r2` (upload otomatis hanya setelah build dan validasi ZIP sukses; skill mencegah overwrite rilis).
 - Jangan menjalankan build Windows langsung di direktori kerja aktif atau mengunggah manual via `rclone`; snapshot terisolasi + sesi tmux detached wajib agar development bisa lanjut.
 - Jika upload diminta, pastikan upload berhasil sebelum melaporkan selesai.
+- Setiap rebuild/build harus dipantau sampai selesai: pakai loop `for` cek status setiap 90 detik di background hingga Succeeded/Failed, lalu laporkan hasilnya. Jangan lepas tanpa pantauan.
 - Jangan upload ulang jika tidak ada build baru.
 
 ## Pembagian peran dan pelaksanaan revisi
