@@ -1,16 +1,16 @@
 {
   "artifacts_sha256": {
-    "GRAPH_REPORT.md": "a56acb6b23d7bd055ae458ccd3180e76a19f4d09866178416318f29ea6dfc3fd",
-    "graph.html": "71e1cf6036bb13ffeeeec9fe6071b9170f6acba26d2c5a96baf4ac35cca22068",
-    "graph.json": "aab4465c7a2a66087e26adb906737ce994677a4b7b13ad57c39a88715617b65f"
+    "GRAPH_REPORT.md": "3dd86ff97189b22b2c3eaa39ea3f508951fd168f77af18e11a436c3770234328",
+    "graph.html": "ecacac500d95ee15cd0b82edb14ec2e71cf99c20bde6e48232820926bcede6ce",
+    "graph.json": "1e2b348c7e2b2ac602c7128067fda36d8344cec8bad9424f50514e54d6eefa5d"
   },
   "asset_file_count": 0,
   "code_file_count": 434,
-  "edge_count": 20977,
+  "edge_count": 20979,
   "graphify_version": "graphify 0.9.92",
   "ignore_sha256": "05660cd7b7a81591931d5661fb73b7124598a04c44f843eda7a7ac2107f20e17",
   "mode": "local-code-only; no LLM/community labeling",
-  "node_count": 5448,
+  "node_count": 5449,
   "referenced_source_count": 434,
   "sources_sha256": {
     "Assets/_LayarTerakhir/src/Audio/AmbientAudioLoop.cs": "7de60fa68d2b45ec199754e8c16b8ac4827306cc38d7ad32a708d93a78e83514",
@@ -149,7 +149,7 @@
     "Assets/_LayarTerakhir/src/Editor/PrologCompletionBuilder.cs": "96d2c1896405129e7af6832d6f087b1214bd1309188e14a030d2537bbf02c617",
     "Assets/_LayarTerakhir/src/Editor/PrologEasyPlayTests.cs": "2ce15608cd7618f43f80b5dca5dc881c26193ec3d90c4442e8fa2266fbac8ffa",
     "Assets/_LayarTerakhir/src/Editor/PrologEasySceneRepair.cs": "b2ed3269faf50efe668565d97845d3a2d41bc42997e25b65d2d16d29abfe8849",
-    "Assets/_LayarTerakhir/src/Editor/PrologKosSceneBuilder.cs": "198634f489dfb26d7164e25995d1e1d1fb40d0958b0ca4f3330632df9c2aae27",
+    "Assets/_LayarTerakhir/src/Editor/PrologKosSceneBuilder.cs": "ba5fcb68a54bef43eb245c223bd3c1165a171378fa0cdea9f7be01399b5c6fc2",
     "Assets/_LayarTerakhir/src/Editor/PrologMilestoneValidator.cs": "c40bee5623d17b0c4472931ae29b856129393040ab7231e5a94ff24c8be3ef03",
     "Assets/_LayarTerakhir/src/Editor/PrologPresentationBuilder.cs": "0ba3886a002ece7a369c8fcc28aa2565c4e8d1bd2d9ef8013dd4e4e4741b1eb2",
     "Assets/_LayarTerakhir/src/Editor/RakaPresentationRevisionBuilder.cs": "af8f035213f8e776f2d034294871473a9e91a1a94670cb6ea950515343c32e31",

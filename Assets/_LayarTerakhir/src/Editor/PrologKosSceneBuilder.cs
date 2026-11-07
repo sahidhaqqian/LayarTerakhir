@@ -172,6 +172,10 @@ namespace LayarTerakhir.Editor
                 "Buka Pintu Kamar Kos (Berangkat ke Rumah Atmaja)",
                 director
             );
+            // Pintu keluar kost modern bertekstur (bukan flat): pakai material
+            // KosModernDoor bersama koridor agar rebuild tidak mengembalikan flat.
+            var kosExitMat = AssetDatabase.LoadAssetAtPath<Material>("Assets/_LayarTerakhir/assets/Art/Atmaja/Materials/KosModernDoor.mat");
+            if (kosExitMat) director.kosDoorItem.GetComponent<Renderer>().sharedMaterial = kosExitMat;
 
             director.jacketItem = CreateInteractableBox(
                 "Interactable_JaketDiBalikPintu",
