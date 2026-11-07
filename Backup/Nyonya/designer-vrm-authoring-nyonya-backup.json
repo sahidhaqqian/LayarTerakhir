@@ -1,0 +1,203 @@
+{
+  "characters": {
+    "Raka": {
+      "role": "Raka",
+      "sourceFile": "Raka.vrm",
+      "sourceSha256": "4d74346ab8232a1bdcb97b2d547300b0c47896d812e9312fc13fe7c374c0da0e",
+      "sourceBytes": 46912984,
+      "originalTriangles": 793072,
+      "gameTriangles": 32000,
+      "gameVertices": 30409,
+      "bones": 55,
+      "heightMetres": 1.74,
+      "textures": {
+        "Albedo": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/RakaAlbedo.png",
+        "Normal": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/RakaNormal.png",
+        "MetalSmooth": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/RakaMetalSmooth.png"
+      },
+      "clips": [
+        "Idle",
+        "Walk",
+        "Run",
+        "Crouch",
+        "CrouchWalk",
+        "PhoneIdle",
+        "PhoneWalk",
+        "PhoneRun",
+        "PhoneCrouch",
+        "PhoneCrouchWalk",
+        "LowCrouch",
+        "LowCrouchWalk",
+        "PhoneLowCrouch",
+        "PhoneLowCrouchWalk",
+        "Riding",
+        "InstallCard"
+      ],
+      "sharedPoseSourceSha256": "ec0b31acb94415bdbd53e2c76d23a7a322f041b0f762e88ec4a38fa2da540174",
+      "fixedOutfit": true,
+      "rightThumbReskinnedVertices": 57,
+      "appliedToGameplay": true,
+      "outputs": {
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Materials/RakaDesignerSurface.mat": {
+          "sha256": "d602262cc4f16c98f5d8e86257bda6f87b92bb750ba609cca04dcf721e210af0",
+          "sizeBytes": 4074
+        },
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Materials/DesignerPhoneScreen.mat": {
+          "sha256": "bdf6e8140c13fcfd646da716639af97ee5294c97a90c8ea59100d558a08d6a8e",
+          "sizeBytes": 3849
+        },
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Materials/DesignerPhone.mat": {
+          "sha256": "85a1cc8ec4a32311e7bef170cdc475b7533621a399295d9b58f24b722dd6bf19",
+          "sizeBytes": 3830
+        },
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/RakaDesigner.fbx": {
+          "sha256": "d39639b9d1e89bca89817d0bcddc6444282f5acf9d07e510504406b65d9dbd3f",
+          "sizeBytes": 9428252
+        },
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/RakaDesignerPhoneHand.fbx": {
+          "sha256": "7ab65e8bdc31c7738fe3da0500a652c6d79bea26e40b9861dd594c139dd1dd7f",
+          "sizeBytes": 62956
+        },
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/RakaAlbedo.png": {
+          "sha256": "d3fa39df36dacee0f498fe01c8a3b06f4d7763610a58b4c04ae5f46bf5b1078b",
+          "sizeBytes": 6868206
+        },
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/RakaMetalSmooth.png": {
+          "sha256": "5a9b0b8305a364d0f65e53d91fbaf4d4b599e89521e4fc31a3556142e203fffa",
+          "sizeBytes": 1033924
+        },
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/RakaNormal.png": {
+          "sha256": "32574f345971ce55898ae4b516f2e536381b8e80ed7e944764e9172210493803",
+          "sizeBytes": 1596496
+        }
+      }
+    },
+    "Nyonya": {
+      "role": "Nyonya",
+      "sourceFile": "Nyonya.vrm",
+      "sourceSha256": "64230c3dbd3601def329df08b557c581d13b139fd5d31685acbac15e74f6ce75",
+      "sourceBytes": 118051156,
+      "originalTriangles": 2137712,
+      "gameTriangles": 21999,
+      "gameVertices": 28047,
+      "bones": 56,
+      "heightMetres": 1.64,
+      "textures": {
+        "Albedo": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/NyonyaAlbedo.png",
+        "Normal": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/NyonyaNormal.png",
+        "MetalSmooth": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/NyonyaMetalSmooth.png"
+      },
+      "clips": [
+        "Idle",
+        "Walk",
+        "Run",
+        "Windup",
+        "Stun"
+      ],
+      "sharedPoseSourceSha256": "ec0b31acb94415bdbd53e2c76d23a7a322f041b0f762e88ec4a38fa2da540174",
+      "sourceHumanoidBones": 55,
+      "weaponHook": "Source sculpted shears weighted to the existing Shears presentation bone; no duplicate mesh.",
+      "appliedToGameplay": true,
+      "outputs": {
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Materials/NyonyaDesignerSurface.mat": {
+          "sha256": "36efdd587deb83ba2814a9b6bfece889ac8cc7b7dbef8173b61da773e5cdda89",
+          "sizeBytes": 4076
+        },
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/NyonyaDesigner.fbx": {
+          "sha256": "d307ad0d637504cbcaf8baff91391a12dddc7cebf5600a8669b1e62c00d4847b",
+          "sizeBytes": 4063004
+        },
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/NyonyaDesignerEcho.fbx": {
+          "sha256": "f295933f2d02a2e0e3a7ee638fe791c28cb838707c25d7d19b7ec1525e9099f5",
+          "sizeBytes": 465164
+        },
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/NyonyaDesignerSeated.fbx": {
+          "sha256": "0979586d18042f4a07bcfeda5ca70c48413e43ccd1328e4e5bd4bc897ba7ca41",
+          "sizeBytes": 465564
+        },
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/NyonyaNormal.png": {
+          "sha256": "97c869479fa9d8a961a5c177e890a3ac7036fdab26ceda723fbc021722904506",
+          "sizeBytes": 1505271
+        },
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/NyonyaMetalSmooth.png": {
+          "sha256": "308ca928b7a62a6c1f68280da2aa4bc3235a528eaba0a9275ba916621954dc11",
+          "sizeBytes": 1254828
+        },
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/NyonyaAlbedo.png": {
+          "sha256": "d2cfabb360e4d9d251948f0bd548dd09d5a69d0dd16dfb727eeec795863da61b",
+          "sizeBytes": 5724228
+        }
+      }
+    },
+    "Damar": {
+      "role": "Damar",
+      "sourceFile": "Damar.vrm",
+      "sourceSha256": "5d8f58583f11e92f05b0962d4727d37f7cb9c6393d0fe7e253e6cd3cc44978cd",
+      "sourceBytes": 54039848,
+      "originalTriangles": 933765,
+      "gameTriangles": 22000,
+      "gameVertices": 23178,
+      "bones": 55,
+      "heightMetres": 1.76,
+      "textures": {
+        "Albedo": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/DamarAlbedo.png",
+        "Normal": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/DamarNormal.png",
+        "MetalSmooth": "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/DamarMetalSmooth.png"
+      },
+      "clips": [
+        "Idle",
+        "Walk",
+        "Run",
+        "Crouch",
+        "CrouchWalk",
+        "PhoneIdle",
+        "PhoneWalk",
+        "PhoneRun",
+        "PhoneCrouch",
+        "PhoneCrouchWalk",
+        "LowCrouch",
+        "LowCrouchWalk",
+        "PhoneLowCrouch",
+        "PhoneLowCrouchWalk",
+        "Riding",
+        "InstallCard"
+      ],
+      "sharedPoseSourceSha256": "ec0b31acb94415bdbd53e2c76d23a7a322f041b0f762e88ec4a38fa2da540174",
+      "appliedToGameplay": false,
+      "outputs": {
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Materials/DamarDesignerSurface.mat": {
+          "sha256": "736128e7a3421c936c2128893405f84610fa0da74818c154f7cc5d2c502965d6",
+          "sizeBytes": 4076
+        },
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Prefabs/DamarDesignerCharacter.prefab": {
+          "sha256": "b4a2c40e60f87441d597a8cadb809fd6af3a9e42cd943865c9d702bba06a704a",
+          "sizeBytes": 3307
+        },
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Models/DamarDesigner.fbx": {
+          "sha256": "a7a870eceb95e72db838b17efc052caeb7fe2783ce3e50f18c9507ad1f433eb8",
+          "sizeBytes": 8718348
+        },
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/DamarAlbedo.png": {
+          "sha256": "2cc668a22402da8429ccc4c36d2ad56a8b60b6b774985c5736b7178e359a24a0",
+          "sizeBytes": 6683847
+        },
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/DamarNormal.png": {
+          "sha256": "c8c87e97a11082b1b6cfb54e2ea0591832c5da7aee8ae1b0413b49a04c1a9ee7",
+          "sizeBytes": 1605677
+        },
+        "Assets/_LayarTerakhir/assets/Art/DesignerCharacters/Textures/DamarMetalSmooth.png": {
+          "sha256": "19cf9ff6ec7247f1c89df2622df366e67b57515022de6650fbb3b1f07e0f2b70",
+          "sizeBytes": 1048599
+        }
+      }
+    }
+  },
+  "method": "Designer-supplied VRM -> normalized, decimated FBX, URP textures and baked legacy clips; original VRMs read only.",
+  "exporterSourceSha256": "fac0db86cff738ea46d17b504ece6912ce36c37a1ac053aefb19075d646bd7b6",
+  "gripSourceSha256": "1123e3e680e4d8039e8a6932d2ce88b03774288156462338bb695b4f2ededd2a",
+  "runtimePresentationSha256": {
+    "Assets/_LayarTerakhir/src/Player/AnimatedRakaAvatar.cs": "a11302452b890378a1a2e3c18009368c5d5a9dfdaf55ff400ef7ec5f25cc56fe",
+    "Assets/_LayarTerakhir/src/Player/ShoulderCameraRig.cs": "f42c53dcd8722faeea635258f30922f1df212f721b9a7fa4a0e37dba1913ca45",
+    "Assets/_LayarTerakhir/src/Player/MotorcycleRiderAlignment.cs": "0aeb30c326ed3e1eebd63a2e40d8f1bdaae693fe4666f36dc8a8d8a6d7369c32"
+  }
+}

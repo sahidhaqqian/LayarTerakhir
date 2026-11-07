@@ -200,3 +200,101 @@
 {"kind": "validation", "label": "?:sweep5-invocation.json", "seconds": 41.1, "detail": "", "source": "receipt", "utc": "2026-11-04T12:03:57.155318+00:00"}
 {"kind": "validation", "label": "?:verify-fixes-invocation.json", "seconds": 31.6, "detail": "", "source": "receipt", "utc": "2026-11-04T12:03:57.155459+00:00"}
 {"kind": "validation", "label": "?:wall-dedup-invocation.json", "seconds": 42.1, "detail": "", "source": "receipt", "utc": "2026-11-04T12:03:57.155779+00:00"}
+{"kind": "explore", "label": "aim rightclick query", "seconds": 0.0, "detail": "", "source": "agent", "utc": "2026-11-05T08:03:02.121831+00:00"}
+{"kind": "implement", "label": "backup aim branch done", "seconds": 30.0, "detail": "", "source": "agent", "utc": "2026-11-05T08:07:11.062485+00:00"}
+{"kind": "test", "label": "PlayerFeelTests grasp after wrist fix", "seconds": 44.0, "detail": "", "source": "agent", "utc": "2026-11-05T08:09:09.549310+00:00"}
+{"kind": "test", "label": "CameraShortcut after wrist fix", "seconds": 25.0, "detail": "", "source": "agent", "utc": "2026-11-05T08:09:40.426936+00:00"}
+{"kind": "test", "label": "RightMouse aim placement after wrist fix", "seconds": 38.0, "detail": "", "source": "agent", "utc": "2026-11-05T08:10:20.187833+00:00"}
+{"kind": "test", "label": "RightMouse baseline tanpa wrist fix", "seconds": 45.0, "detail": "", "source": "agent", "utc": "2026-11-05T08:11:22.047369+00:00"}
+{"kind": "test", "label": "PhoneFocusRecovery capture after", "seconds": 46.0, "detail": "", "source": "agent", "utc": "2026-11-05T08:12:34.589194+00:00"}
+{"kind": "test", "label": "feel-player after wrist fix", "seconds": 269.0, "detail": "", "source": "agent", "utc": "2026-11-05T08:17:19.959772+00:00"}
+{"kind": "test", "label": "feel-player iter2", "seconds": 256.0, "detail": "", "source": "agent", "utc": "2026-11-05T08:24:18.477896+00:00"}
+{"kind": "test", "label": "feel-player iter3 roll", "seconds": 253.0, "detail": "", "source": "agent", "utc": "2026-11-05T08:30:15.853491+00:00"}
+{"kind": "test", "label": "blender edgewrap fit", "seconds": 134.0, "detail": "", "source": "agent", "utc": "2026-11-05T08:37:57.192432+00:00"}
+{"kind": "test", "label": "feel-player iter4", "seconds": 254.0, "detail": "", "source": "agent", "utc": "2026-11-05T08:42:54.942464+00:00"}
+{"kind": "test", "label": "feel-player iter5 rollflip", "seconds": 249.0, "detail": "", "source": "agent", "utc": "2026-11-05T10:05:17.414798+00:00"}
+{"kind": "test", "label": "blender thumbfront fit", "seconds": 151.0, "detail": "", "source": "agent", "utc": "2026-11-05T10:08:25.660113+00:00"}
+{"kind": "test", "label": "rebuild grasp prefab", "seconds": 25.0, "detail": "", "source": "agent", "utc": "2026-11-05T10:09:04.764004+00:00"}
+{"kind": "test", "label": "PlayerFeelTests new mesh", "seconds": 36.0, "detail": "", "source": "agent", "utc": "2026-11-05T10:09:44.639613+00:00"}
+{"kind": "test", "label": "feel-player newmesh", "seconds": 253.0, "detail": "", "source": "agent", "utc": "2026-11-05T10:14:01.358805+00:00"}
+{"kind": "test", "label": "feel-player iter6 gentle", "seconds": 252.0, "detail": "", "source": "agent", "utc": "2026-11-05T10:18:40.347036+00:00"}
+{"kind": "test", "label": "RightMouse lowgrip check", "seconds": 10.0, "detail": "", "source": "agent", "utc": "2026-11-05T10:19:36.726057+00:00"}
+{"kind": "test", "label": "RightMouse lowgrip recheck", "seconds": 42.0, "detail": "", "source": "agent", "utc": "2026-11-05T10:20:36.291576+00:00"}
+{"kind": "test", "label": "feel-player iter7 lowgrip", "seconds": 250.0, "detail": "", "source": "agent", "utc": "2026-11-05T10:24:54.538159+00:00"}
+{"kind": "test", "label": "feel-player iter8", "seconds": 250.0, "detail": "", "source": "agent", "utc": "2026-11-05T10:29:28.049431+00:00"}
+{"kind": "test", "label": "feel-player iter9", "seconds": 257.0, "detail": "", "source": "agent", "utc": "2026-11-05T11:10:11.124372+00:00"}
+{"kind": "test", "label": "feel-player iter10 zero", "seconds": 252.0, "detail": "", "source": "agent", "utc": "2026-11-05T11:19:34.888810+00:00"}
+{"kind": "test", "label": "PlayerFeelTests OGA asset", "seconds": 38.0, "detail": "", "source": "agent", "utc": "2026-11-05T13:49:45.343949+00:00"}
+{"kind": "test", "label": "PlayerFeelTests OGA v2", "seconds": 25.0, "detail": "", "source": "agent", "utc": "2026-11-05T13:52:16.446627+00:00"}
+{"kind": "test", "label": "PlayerFeelTests OGA fresh", "seconds": 25.0, "detail": "", "source": "agent", "utc": "2026-11-05T13:55:52.441687+00:00"}
+{"kind": "test", "label": "PlayerFeelTests baseline iter9", "seconds": 36.0, "detail": "", "source": "agent", "utc": "2026-11-05T14:54:50.555981+00:00"}
+{"kind": "test", "label": "PlayerFeelTests iter10 pitch11", "seconds": 54.0, "detail": "", "source": "agent", "utc": "2026-11-05T15:18:40.766209+00:00"}
+{"kind": "build", "label": "Linux player rebuild iter10", "seconds": 201.0, "detail": "", "source": "agent", "utc": "2026-11-05T15:22:05.740094+00:00"}
+{"kind": "test", "label": "feel-player capture iter10", "seconds": 273.0, "detail": "", "source": "agent", "utc": "2026-11-05T15:26:42.397333+00:00"}
+{"kind": "test", "label": "feel-player capture iter10 retry", "seconds": 264.0, "detail": "", "source": "agent", "utc": "2026-11-05T15:31:55.259742+00:00"}
+{"kind": "build", "label": "Linux rebuild iter10+focusfix", "seconds": 68.0, "detail": "", "source": "agent", "utc": "2026-11-05T15:36:20.575689+00:00"}
+{"kind": "test", "label": "feel-player capture iter10 focusfix", "seconds": 260.0, "detail": "", "source": "agent", "utc": "2026-11-05T15:40:40.730107+00:00"}
+{"kind": "build", "label": "Linux rebuild iter10 raise2", "seconds": 66.0, "detail": "", "source": "agent", "utc": "2026-11-05T15:43:00.701681+00:00"}
+{"kind": "test", "label": "feel-player capture iter10 raise2", "seconds": 253.0, "detail": "", "source": "agent", "utc": "2026-11-05T15:47:13.092271+00:00"}
+{"kind": "test", "label": "PlayerFeelTests nudged thumb", "seconds": 30.0, "detail": "", "source": "agent", "utc": "2026-11-05T15:53:54.299355+00:00"}
+{"kind": "test", "label": "PlayerFeelTests zoned press", "seconds": 36.0, "detail": "", "source": "agent", "utc": "2026-11-05T15:55:28.457383+00:00"}
+{"kind": "build", "label": "Linux rebuild iter10 nudgedmesh", "seconds": 59.0, "detail": "", "source": "agent", "utc": "2026-11-05T15:56:47.628926+00:00"}
+{"kind": "test", "label": "feel-player capture iter10 nudgedmesh", "seconds": 252.0, "detail": "", "source": "agent", "utc": "2026-11-05T16:00:59.703344+00:00"}
+{"kind": "build", "label": "Linux rebuild sleeve-instrumented", "seconds": 66.0, "detail": "", "source": "agent", "utc": "2026-11-05T16:03:35.573330+00:00"}
+{"kind": "test", "label": "feel-player sleeve numbers", "seconds": 218.0, "detail": "", "source": "agent", "utc": "2026-11-05T16:07:13.841810+00:00"}
+{"kind": "build", "label": "Linux rebuild sleeve-target-fix", "seconds": 61.0, "detail": "", "source": "agent", "utc": "2026-11-05T16:12:35.737955+00:00"}
+{"kind": "test", "label": "feel-player sleeve-target-fix", "seconds": 260.0, "detail": "", "source": "agent", "utc": "2026-11-05T16:16:55.307479+00:00"}
+{"kind": "test", "label": "PlayerFeelTests flattened", "seconds": 41.0, "detail": "", "source": "agent", "utc": "2026-11-05T16:21:43.874246+00:00"}
+{"kind": "build", "label": "Linux rebuild flattened", "seconds": 46.0, "detail": "", "source": "agent", "utc": "2026-11-05T16:22:37.533998+00:00"}
+{"kind": "test", "label": "feel-player flattened", "seconds": 259.0, "detail": "", "source": "agent", "utc": "2026-11-05T16:26:56.573832+00:00"}
+{"kind": "build", "label": "Linux rebuild sleeve-log", "seconds": 62.0, "detail": "", "source": "agent", "utc": "2026-11-05T16:28:56.386014+00:00"}
+{"kind": "test", "label": "feel-player sleeve-log", "seconds": 256.0, "detail": "", "source": "agent", "utc": "2026-11-05T16:33:12.105987+00:00"}
+{"kind": "build", "label": "Linux rebuild raise9", "seconds": 64.0, "detail": "", "source": "agent", "utc": "2026-11-05T16:34:58.761673+00:00"}
+{"kind": "test", "label": "feel-player raise9", "seconds": 257.0, "detail": "", "source": "agent", "utc": "2026-11-05T16:39:15.935470+00:00"}
+{"kind": "build", "label": "Linux rebuild raise13", "seconds": 10.0, "detail": "", "source": "agent", "utc": "2026-11-05T16:40:13.845898+00:00"}
+{"kind": "test", "label": "feel-player raise13", "seconds": 260.0, "detail": "", "source": "agent", "utc": "2026-11-05T16:44:33.727823+00:00"}
+{"kind": "build", "label": "Linux rebuild raise13 fixed", "seconds": 61.0, "detail": "", "source": "agent", "utc": "2026-11-05T16:46:18.595044+00:00"}
+{"kind": "test", "label": "feel-player raise13 fixed", "seconds": 254.0, "detail": "", "source": "agent", "utc": "2026-11-05T16:50:32.331998+00:00"}
+{"kind": "test", "label": "Full EditMode suite iter10", "seconds": 402.0, "detail": "", "source": "agent", "utc": "2026-11-05T16:57:39.023128+00:00"}
+{"kind": "test", "label": "Full EditMode suite retry", "seconds": 400.0, "detail": "", "source": "agent", "utc": "2026-11-05T17:04:36.913092+00:00"}
+{"kind": "test", "label": "AtmajaPlayTests iter10", "seconds": 375.0, "detail": "", "source": "agent", "utc": "2026-11-05T17:11:43.340884+00:00"}
+{"kind": "build", "label": "Linux rebuild raise20", "seconds": 66.0, "detail": "", "source": "agent", "utc": "2026-11-05T21:27:06.980551+00:00"}
+{"kind": "test", "label": "feel-player raise20", "seconds": 259.0, "detail": "", "source": "agent", "utc": "2026-11-05T21:31:25.427822+00:00"}
+{"kind": "build", "label": "Linux rebuild raise25", "seconds": 67.0, "detail": "", "source": "agent", "utc": "2026-11-05T21:33:19.225784+00:00"}
+{"kind": "test", "label": "feel-player raise25", "seconds": 256.0, "detail": "", "source": "agent", "utc": "2026-11-05T21:37:35.689235+00:00"}
+{"kind": "test", "label": "PlayerFeelTests Meshy v1", "seconds": 31.0, "detail": "", "source": "agent", "utc": "2026-11-06T00:53:17.228660+00:00"}
+{"kind": "test", "label": "PlayerFeelTests Meshy v2 eased", "seconds": 26.0, "detail": "", "source": "agent", "utc": "2026-11-06T00:58:02.430554+00:00"}
+{"kind": "test", "label": "PlayerFeelTests Meshy v3 eased2", "seconds": 25.0, "detail": "", "source": "agent", "utc": "2026-11-06T00:59:50.556728+00:00"}
+{"kind": "test", "label": "PlayerFeelTests Meshy shift", "seconds": 26.0, "detail": "", "source": "agent", "utc": "2026-11-06T01:01:59.840647+00:00"}
+{"kind": "test", "label": "PlayerFeelTests Meshy full", "seconds": 36.0, "detail": "", "source": "agent", "utc": "2026-11-06T01:10:15.643434+00:00"}
+{"kind": "test", "label": "PlayerFeelTests Meshy relief", "seconds": 40.0, "detail": "", "source": "agent", "utc": "2026-11-06T01:13:01.787012+00:00"}
+{"kind": "test", "label": "PlayerFeelTests Meshy current", "seconds": 26.0, "detail": "", "source": "agent", "utc": "2026-11-06T01:16:22.801508+00:00"}
+{"kind": "test", "label": "PlayerFeelTests Meshy current2", "seconds": 51.0, "detail": "", "source": "agent", "utc": "2026-11-06T01:21:23.592626+00:00"}
+{"kind": "test", "label": "PlayerFeelTests Meshy clearance", "seconds": 31.0, "detail": "", "source": "agent", "utc": "2026-11-06T01:24:07.223838+00:00"}
+{"kind": "test", "label": "PlayerFeelTests pen location", "seconds": 31.0, "detail": "", "source": "agent", "utc": "2026-11-06T01:25:01.346715+00:00"}
+{"kind": "test", "label": "PlayerFeelTests Meshy full-density", "seconds": 41.0, "detail": "", "source": "agent", "utc": "2026-11-06T01:27:31.114594+00:00"}
+{"kind": "test", "label": "PlayerFeelTests Meshy palmpush", "seconds": 26.0, "detail": "", "source": "agent", "utc": "2026-11-06T01:29:58.132460+00:00"}
+{"kind": "test", "label": "PlayerFeelTests approved raw", "seconds": 26.0, "detail": "", "source": "agent", "utc": "2026-11-06T03:12:46.203193+00:00"}
+{"kind": "test", "label": "PlayerFeelTests webbing clamp", "seconds": 26.0, "detail": "", "source": "agent", "utc": "2026-11-06T03:15:38.150095+00:00"}
+{"kind": "build", "label": "linux player approved grasp", "seconds": 62.0, "detail": "", "source": "agent", "utc": "2026-11-06T03:20:36.076673+00:00"}
+{"kind": "test", "label": "feel-player approved grasp", "seconds": 264.0, "detail": "", "source": "agent", "utc": "2026-11-06T03:25:05.161186+00:00"}
+{"kind": "build", "label": "linux player clean grasp", "seconds": 40.0, "detail": "", "source": "agent", "utc": "2026-11-06T03:35:31.968902+00:00"}
+{"kind": "test", "label": "feel-player clean grasp", "seconds": 266.0, "detail": "", "source": "agent", "utc": "2026-11-06T03:40:18.625650+00:00"}
+{"kind": "build", "label": "linux player hands lowered", "seconds": 67.0, "detail": "", "source": "agent", "utc": "2026-11-06T03:54:02.107977+00:00"}
+{"kind": "test", "label": "feel-player hands lowered", "seconds": 261.0, "detail": "", "source": "agent", "utc": "2026-11-06T03:58:28.096910+00:00"}
+{"kind": "build", "label": "linux player phone down 5", "seconds": 66.0, "detail": "", "source": "agent", "utc": "2026-11-06T04:02:33.880070+00:00"}
+{"kind": "test", "label": "feel-player phone down 5", "seconds": 253.0, "detail": "", "source": "agent", "utc": "2026-11-06T04:06:52.313289+00:00"}
+{"kind": "test", "label": "grasp null-guard", "seconds": 41.0, "detail": "", "source": "agent", "utc": "2026-11-06T10:02:58.200200+00:00"}
+{"kind": "test", "label": "radio desire line", "seconds": 41.0, "detail": "", "source": "agent", "utc": "2026-11-06T12:06:33.415971+00:00"}
+{"kind": "test", "label": "lounge refine radio move", "seconds": 35.0, "detail": "", "source": "agent", "utc": "2026-11-06T12:09:48.736289+00:00"}
+{"kind": "test", "label": "radio desire line retry", "seconds": 30.0, "detail": "", "source": "agent", "utc": "2026-11-06T12:10:24.891847+00:00"}
+{"kind": "test", "label": "kos validation keyboard", "seconds": 37.0, "detail": "", "source": "agent", "utc": "2026-11-06T14:02:36.909495+00:00"}
+{"kind": "test", "label": "kosvisualv2 keyboard", "seconds": 26.0, "detail": "", "source": "agent", "utc": "2026-11-06T14:03:28.723388+00:00"}
+{"kind": "test", "label": "kosvisualv2 retry", "seconds": 36.0, "detail": "", "source": "agent", "utc": "2026-11-06T14:06:46.236216+00:00"}
+{"kind": "test", "label": "kosvisualv2 clean", "seconds": 41.0, "detail": "", "source": "agent", "utc": "2026-11-06T14:13:34.376297+00:00"}
+{"kind": "test", "label": "kos contact retry", "seconds": 35.0, "detail": "", "source": "agent", "utc": "2026-11-06T14:18:57.884908+00:00"}
+{"kind": "test", "label": "rumah atmaja dining", "seconds": 46.0, "detail": "", "source": "agent", "utc": "2026-11-06T23:47:50.398171+00:00"}
+{"kind": "test", "label": "rumah atmaja dining verify", "seconds": 40.0, "detail": "", "source": "agent", "utc": "2026-11-06T23:51:00.045542+00:00"}
+{"kind": "test", "label": "rumah atmaja dining verify2", "seconds": 43.0, "detail": "", "source": "agent", "utc": "2026-11-06T23:54:02.802593+00:00"}
+{"kind": "test", "label": "rumah atmaja dining verify3", "seconds": 42.0, "detail": "", "source": "agent", "utc": "2026-11-07T00:26:24.361488+00:00"}
+{"kind": "test", "label": "rumah atmaja minimal wire verify", "seconds": 40.0, "detail": "", "source": "agent", "utc": "2026-11-07T00:28:47.001834+00:00"}

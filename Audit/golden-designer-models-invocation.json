@@ -5,19 +5,15 @@
     "-batchmode",
     "-nographics",
     "-projectPath",
-    "/root/Projects/LayarTerakhir-review",
+    "/root/projects/LayarTerakhir",
     "-quit",
     "-executeMethod",
     "LayarTerakhir.Editor.DesignerVrmBuilder.Apply",
     "-logFile",
-    "/root/Projects/LayarTerakhir-review/Audit/golden-designer-models.log"
+    "/root/projects/LayarTerakhir/Audit/golden-designer-models.log"
   ],
-  "startedUtc": "2026-10-22T10:36:24.781263+00:00",
-  "hostEnvironmentOverrides": {
-    "UNITY_BURST_DISABLE_COMPILATION": "1",
-    "LD_BIND_NOW": "1"
-  },
+  "startedUtc": "2026-11-04T12:42:31.506103+00:00",
   "status": "Finished",
-  "endedUtc": "2026-10-22T10:36:54.429117+00:00",
+  "endedUtc": "2026-11-04T12:43:30.287962+00:00",
   "exitCode": 0
 }

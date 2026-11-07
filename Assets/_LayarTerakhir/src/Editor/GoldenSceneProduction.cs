@@ -133,18 +133,8 @@ namespace LayarTerakhir.Editor
             foreach(var r in mic.GetComponentsInChildren<Renderer>())if(r.name.Contains("Grille"))r.sharedMaterial=Plain("GoldenMicGrille",new Color(.25f,.27f,.25f),.35f);
             mic.transform.position+=Vector3.up*(KosVisualV2.SurfaceHeight(Find("wooden_table_02"),-1.74f,1.36f)+.001f-KosVisualV2.BoundsOf(mic).min.y);
             PrefabUtility.SaveAsPrefabAsset(mic,Production+"Prefabs/BudgetMicrophone.prefab");
-            // Keys share one mesh/renderer. The existing keyboard shell and its material remain intact.
-            var keys=new GameObject("KeyboardKeycaps",typeof(MeshFilter),typeof(MeshRenderer));keys.transform.SetParent(dressing,false);
-            var keyboard=KosVisualV2.BoundsOf(Find("computerKeyboard"));var combines=new System.Collections.Generic.List<CombineInstance>();
-            var cube=GameObject.CreatePrimitive(PrimitiveType.Cube);var cubeMesh=cube.GetComponent<MeshFilter>().sharedMesh;Object.DestroyImmediate(cube);
-            for(int row=0;row<4;row++)for(int col=0;col<14;col++)
-            {
-                var pos=new Vector3(keyboard.min.x+.018f+col*(keyboard.size.x-.036f)/13,keyboard.max.y+.0025f,keyboard.min.z+.012f+row*(keyboard.size.z-.024f)/3);
-                combines.Add(new CombineInstance{mesh=cubeMesh,transform=Matrix4x4.TRS(pos,Quaternion.identity,new Vector3(.014f,.005f,.012f))});
-            }
-            string meshPath=Art+"Generated/GoldenKeyboardKeys.asset";var mesh=AssetDatabase.LoadAssetAtPath<Mesh>(meshPath);
-            if(!mesh){mesh=new Mesh();AssetDatabase.CreateAsset(mesh,meshPath);}else mesh.Clear();mesh.CombineMeshes(combines.ToArray());EditorUtility.SetDirty(mesh);
-            keys.GetComponent<MeshFilter>().sharedMesh=mesh;keys.GetComponent<Renderer>().sharedMaterial=Plain("GoldenKeycaps",new Color(.19f,.20f,.18f),.25f);
+            // RealKeyboard.fbx carries its own caps+legends; the old overlay is retired.
+            var staleKeys=GameObject.Find("KeyboardKeycaps");if(staleKeys)Object.DestroyImmediate(staleKeys);
         }
         private static void Lighting()
         {

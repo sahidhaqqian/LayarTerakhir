@@ -13,7 +13,11 @@ namespace LayarTerakhir.Editor
             ['W']="0,1 .2,0 .5,.65 .8,0 1,1",['A']="0,0 .5,1 1,0;.2,.4 .8,.4",['K']="0,0 0,1;1,1 0,.45 1,0",['T']="0,1 1,1;.5,1 .5,0",
             ['U']="0,1 0,.2 .2,0 .8,0 1,.2 1,1",['E']="1,1 0,1 0,0 1,0;0,.5 .75,.5",['M']="0,0 0,1 .5,.4 1,1 1,0",['I']=".5,0 .5,1",
             ['N']="0,0 0,1 1,0 1,1",['D']="0,0 0,1 .6,1 1,.7 1,.3 .6,0 0,0",['L']="0,1 0,0 1,0",['H']="0,0 0,1;1,0 1,1;0,.5 1,.5",
-            ['C']="1,.9 .75,1 .2,1 0,.8 0,.2 .2,0 .75,0 1,.1",['X']="0,0 1,1;0,1 1,0",['V']="0,1 .5,0 1,1",[':']=".5,.7 .5,.73;.5,.25 .5,.28"};
+            ['C']="1,.9 .75,1 .2,1 0,.8 0,.2 .2,0 .75,0 1,.1",['X']="0,0 1,1;0,1 1,0",['V']="0,1 .5,0 1,1",[':']=".5,.7 .5,.73;.5,.25 .5,.28",
+            ['G']="1,.9 .75,1 .2,1 0,.8 0,.2 .2,0 .75,0 1,.1 1,.5;.55,.5 1,.5",['O']="0,.2 .2,0 .8,0 1,.2 1,.8 .8,1 .2,1 0,.8 0,.2",
+            ['R']="0,0 0,1 .7,1 1,.8 1,.6 .7,.45 0,.45;0,.45 .9,0",['B']="0,0 0,1 .6,1 .9,.85 .9,.65 .6,.5 .9,.35 .9,.15 .6,0 0,0",
+            ['S']="1,.9 .7,1 .25,1 0,.8 0,.65 .25,.55 .75,.45 1,.35 1,.2 .75,0 .25,0 0,.1",['P']="0,0 0,1 .7,1 1,.8 1,.6 .7,.45 0,.45",
+            ['F']="0,0 0,1 1,1;0,.55 .7,.55",['J']=".8,1 .8,.2 .6,0 .3,0 .15,.15",['-']=".25,.5 .75,.5"};
         public static GameObject Build(Transform parent,Vector3 origin,Vector3 right,Vector3 up,Vector3 normal)
         {
             var vertices=new List<Vector3>();var triangles=new List<int>();var random=new System.Random(3451998);
@@ -23,7 +27,7 @@ namespace LayarTerakhir.Editor
                 foreach(var p in new[]{a+across,a-across,b+across,b-across})vertices.Add(right*p.x+up*p.y+normal*(.0035f+(float)random.NextDouble()*.001f));
                 triangles.AddRange(new[]{s,s+2,s+1,s+2,s+3,s+1});
             }
-            string[] lines={"WAKTU KEMATIAN KAMI","ADALAH KUNCI","III : XLV"};
+            string[] lines={"TIGA KALI LONCENG","BERDENTANG DI","SEPERTIGA MALAM","LIMA BELAS MENIT","SEBELUM FAJAR","KE-EMPAT MENELAN KAMI"};
             for(int row=0;row<lines.Length;row++)
             {
                 string words=lines[row];float advance=.079f,start=-words.Length*advance*.5f;

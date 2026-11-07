@@ -2340,9 +2340,10 @@ namespace LayarTerakhir.Editor
                     topCol.transform.position = d.P(3.7f, 4.9f, 1.42f);
                     topCol.transform.localScale = new Vector3(1.5f, .075f, 3.8f);
                 }
-                foreach (var n in new[] { "DiningTableLegCollision" })
-                    foreach (var go in env.GetComponentsInChildren<Transform>(true).Where(t => t && t.name == n).ToArray())
-                        Object.DestroyImmediate(go.GetComponent<Collider>());
+                // Idempotent: delete all previous leg boxes first. Older passes only
+                // stripped their colliders, leaving invisible duplicates behind.
+                foreach (var go in env.GetComponentsInChildren<Transform>(true).Where(t => t && t.name == "DiningTableLegCollision").ToArray())
+                    Object.DestroyImmediate(go.gameObject);
                 foreach (float x in new[] { 3.09f, 4.31f }) foreach (float z in new[] { 2.9f, 6.9f })
                 {
                     var leg = new GameObject("DiningTableLegCollision");

@@ -1,0 +1,27 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-job-worker-count",
+    "1",
+    "-projectPath",
+    "/root/projects/LayarTerakhir",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.Prolog47SceneRepair.ApplyArchitecture",
+    "-logFile",
+    "Audit/arch-fix3.log"
+  ],
+  "startedUtc": "2026-11-04T08:20:04.336571+00:00",
+  "status": "Finished",
+  "unit": "lt-unity-20261104-082004-1449285",
+  "memoryLimitBytes": 5368709120,
+  "memoryHighBytes": 4294967296,
+  "endedUtc": "2026-11-04T08:20:35.593537+00:00",
+  "exitCode": 0,
+  "systemdServiceResult": "success"
+}

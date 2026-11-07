@@ -165,7 +165,7 @@ Pemain membuka pintu penghubung menuju **Ruang Makan Panjang** yang dipenuhi pir
 * Pemain menuju **Ruang Tamu Utama**. Pintu kayu besar menuju area tangga Lantai 2 terkunci rapat; di sebelahnya terdapat **Jam Bandul Tua (Grandfather Clock)** yang jarumnya copot.
 
 * **Cara Menyelesaikan Puzzle Ruang Tamu:**
-1. Pemain menyalakan **Mode AR (`[Q]`)** dan mengarahkan kamera HP ke dinding di samping pintu tangga. Terlihat tulisan darah yang hanya muncul di layar AR: ***"WAKTU KEMATIAN KAMI ADALAH KUNCI."*** Di bawahnya tertera angka Romawi **`III : XLV` (03:45)**.
+1. Pemain menyalakan **Mode AR (`[Q]`)** dan mengarahkan kamera HP ke dinding di samping pintu tangga. Terlihat tulisan darah yang hanya muncul di layar AR: ***"Tiga kali lonceng berdentang di sepertiga malam, Lima belas menit sebelum fajar ke-empat menelan kami."***
 2. Pemain mengambil **Jarum Jam Kuningan** di atas meja tamu (di samping asbak tua).
 3. Pemain berinteraksi dengan **Jam Bandul Tua**, memasang jarumnya, dan memutarnya ke pukul **03:45**.
 4. Laci bawah jam bandul berbunyi *"KLIK"* dan terbuka, berisi **Kunci Pintu Tangga Tengah** serta **Catatan Koran Tahun 1998 (Item Dokumen #3)**:

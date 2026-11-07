@@ -25,6 +25,7 @@
 - Folder `Bugs` sudah dihapus (17 Oktober 2026) karena tidak dipakai lagi; gunakan catatan playtest terbaru di `goal.md` sebagai referensi.
 - Aturan produktivitas agen (validasi berlapis, delegasi subagent, eksplorasi terarah, pelestarian cache, regression test, pencatatan durasi): `.opencode/skills/dev-workflow/SKILL.md`. Status ringkas per babak: `PROGRESS.md`.
 - Laporan akhir harus membedakan perubahan yang benar-benar diterapkan dan diverifikasi dari hal yang masih tertunda. Jangan mengaku selesai hanya karena sudah membuat daftar rencana.
+- DILARANG fix di luar scope yang diminta. Temuan tambahan (tes merah lain, visual aneh, kode beraroma) TIDAK boleh langsung diperbaiki: tanyakan dulu ke pengguna sambil menunjukkan bukti screenshot/capture yang sudah dibaca agen. Perbaiki hanya setelah pengguna bilang iya.
 
 ## Graphify — wajib setiap sesi sebelum commit dan push
 

@@ -5,15 +5,15 @@
     "-batchmode",
     "-nographics",
     "-projectPath",
-    "/root/Projects/LayarTerakhir-main",
+    "/root/projects/LayarTerakhir",
     "-quit",
     "-executeMethod",
     "LayarTerakhir.Editor.DesignerReviewBuilder.RefineLounge",
     "-logFile",
-    "/root/Projects/LayarTerakhir-main/Audit/golden-lounge-refine.log"
+    "/root/projects/LayarTerakhir/Audit/golden-lounge-refine.log"
   ],
-  "startedUtc": "2026-10-18T07:54:31.891001+00:00",
+  "startedUtc": "2026-11-06T12:09:13.137183+00:00",
   "status": "Finished",
-  "endedUtc": "2026-10-18T07:54:57.328157+00:00",
+  "endedUtc": "2026-11-06T12:09:48.673118+00:00",
   "exitCode": 0
 }

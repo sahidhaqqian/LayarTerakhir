@@ -132,10 +132,12 @@ namespace LayarTerakhir.Editor
             Box("FamilyLivingRug",P(-3.4f,3.9f,.54f),new Vector3(3.5f,.018f,2.1f),Mat("Upper_RedCarpet"),false);
             Box("FamilyCoffeeTable",P(-3.4f,3.75f,1.02f),new Vector3(1.2f,.08f,.42f),Mat("Upper_PineTable"));
             foreach(float x in new[]{-3.89f,-2.91f})foreach(float z in new[]{3.62f,3.88f})Box("FamilyCoffeeTableLeg",P(x,z,.77f),new Vector3(.055f,.46f,.055f),Mat("House_MAT_WoodDoor"),false);
-            Box("FamilyRadioCabinet",P(.65f,1.2f,.99f),new Vector3(.72f,.94f,1.4f),Mat("House_MAT_WoodDoor"));
-            foreach(float z in new[]{.75f,1.25f,1.65f})Box("FamilyCabinetPanel",P(.26f,z,1.0f),new Vector3(.025f,.59f,.32f),Mat("Upper_PineTable"),false);
-            Box("FamilyRadioBody",P(.55f,1.1f,1.63f),new Vector3(.34f,.28f,.5f),Mat("Upper_HandycamBody"));
-            foreach(float z in new[]{.96f,1.24f})Box("RadioSpeakerGrille",P(.35f,z,1.64f),new Vector3(.015f,.18f,.17f),Mat("Upper_SteelRust"),false);
+            // Parked south of the door-to-hands flow (depth 0): capsule path
+            // at depth 1.5 stays clear. See SittingRadioClearsHandsDesireLine.
+            Box("FamilyRadioCabinet",P(.65f,0f,.99f),new Vector3(.72f,.94f,1.4f),Mat("House_MAT_WoodDoor"));
+            foreach(float z in new[]{-.45f,.05f,.45f})Box("FamilyCabinetPanel",P(.26f,z,1.0f),new Vector3(.025f,.59f,.32f),Mat("Upper_PineTable"),false);
+            Box("FamilyRadioBody",P(.55f,-.1f,1.63f),new Vector3(.34f,.28f,.5f),Mat("Upper_HandycamBody"));
+            foreach(float z in new[]{-.24f,.04f})Box("RadioSpeakerGrille",P(.35f,z,1.64f),new Vector3(.015f,.18f,.17f),Mat("Upper_SteelRust"),false);
             // The far chair is visibly empty without AR, as required by the scripted scare.
             Remove("SeatedDollOnEndChair");
             if(d.arFigure)

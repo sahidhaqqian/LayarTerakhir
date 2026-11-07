@@ -1,0 +1,27 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-job-worker-count",
+    "1",
+    "-projectPath",
+    "/root/projects/LayarTerakhir",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.Prolog47SceneRepair.CaptureHunterProof",
+    "-logFile",
+    "Audit/hunter-proof8.log"
+  ],
+  "startedUtc": "2026-11-04T14:51:20.510049+00:00",
+  "status": "Finished",
+  "unit": "lt-unity-20261104-145120-1581471",
+  "memoryLimitBytes": 5368709120,
+  "memoryHighBytes": 4294967296,
+  "endedUtc": "2026-11-04T14:52:02.792992+00:00",
+  "exitCode": 0,
+  "systemdServiceResult": "success"
+}

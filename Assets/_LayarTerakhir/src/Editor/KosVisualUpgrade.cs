@@ -47,6 +47,19 @@ namespace LayarTerakhir.Editor
             UpgradeRoomGreyboxDimensions();
 
             var existing = GameObject.Find("Kos_Environment_Art");
+            var roomEarly = GameObject.Find("KamarKos_4x3m_Greybox") ?? GameObject.Find("KamarKos_4x3m");
+            // Interaction roots (monitor, phone, drawer...), lights and cables
+            // must survive the env-art wipe; Golden_Workstation nests some
+            // of them under it. Visuals are regenerated below.
+            if (existing && roomEarly)
+            {
+                foreach (var item in existing.GetComponentsInChildren<KosInteractableItem>(true).ToArray())
+                    item.transform.SetParent(roomEarly.transform, true);
+                foreach (var l in existing.GetComponentsInChildren<Light>(true).ToArray())
+                    l.transform.SetParent(roomEarly.transform, true);
+                foreach (var c in existing.GetComponentsInChildren<LineRenderer>(true).ToArray())
+                    c.transform.SetParent(roomEarly.transform, true);
+            }
             if (existing) Object.DestroyImmediate(existing);
             root = new GameObject("Kos_Environment_Art").transform;
             var room = GameObject.Find("KamarKos_4x3m_Greybox") ?? GameObject.Find("KamarKos_4x3m");
@@ -409,8 +422,11 @@ namespace LayarTerakhir.Editor
             Ph("wooden_bookshelf_worn", new Vector3(-2.88f, 1.94f, .95f), new Vector3(.21f, .64f, .68f), 90);
             Ph("desk_lamp_arm_01", new Vector3(-1.75f, .99f, 1.98f), new Vector3(.28f, .48f, .26f), 30);
             Own("OldPCTower", new Vector3(-1.49f, .215f, 2.04f), new Vector3(.19f, .42f, .38f), plastic, 180);
-            Ken("computerKeyboard", new Vector3(-1.39f, .770f, 1.74f), new Vector3(.40f, .025f, .14f), plastic);
             Ken("computerMouse", new Vector3(-.92f, .775f, 1.73f), new Vector3(.055f, .035f, .095f), plastic);
+            // Real keyboard mesh (base + keycaps + legends) replaces the flat Kenney shell.
+            var legendTex=AssetDatabase.LoadAssetAtPath<Texture2D>(Art+"/Generated/Textures/KeyboardLegends.png");
+            var legendMat=Plain("RealKeyboardLegends",Color.white);legendMat.SetTexture("_BaseMap",legendTex);
+            Model(Art+"/Original/Models/RealKeyboard.fbx","computerKeyboard",new Vector3(-1.39f,.770f,1.74f),new Vector3(.40f,.028f,.14f),0,legendMat);
             Ken("speakerSmall", new Vector3(-1.61f, .82f, 2.06f), new Vector3(.09f, .14f, .085f), plastic);
             Ken("speakerSmall", new Vector3(-.80f, .82f, 2.06f), new Vector3(.09f, .14f, .085f), plastic);
         }
@@ -419,7 +435,9 @@ namespace LayarTerakhir.Editor
         {
             var d = Object.FindFirstObjectByType<KamarKosPrologDirector>();
             Ken("computerScreen", new Vector3(-1.25f, .99f, 1.97f), new Vector3(.57f, .45f, .15f), plastic, 0, d.pcMonitorItem.transform);
-            Quad("MonitorDashboard", new Vector3(-1.25f, 1.05f, 1.887f), new Vector2(.49f, .279f), Vector3.zero, Print("MonitorDashboard", true), null, d.pcMonitorItem.transform);
+            // Fit the viewable glass (Ken bezel eats the edges) at exact
+            // texture aspect so nothing crops or stretches.
+            Quad("MonitorDashboard", new Vector3(-1.25f, 1.05f, 1.885f), new Vector2(.42f, .2625f), Vector3.zero, Print("MonitorDashboard", true), null, d.pcMonitorItem.transform);
             Quad("CalendarAugust", new Vector3(.95f, 1.45f, 2.208f), new Vector2(.38f, .52f), Vector3.zero, Print("CalendarAugust"), null, d.wallCalendarItem.transform);
             Quad("StickyNote", new Vector3(-.87f, .783f, 1.80f), new Vector2(.14f, .14f), new Vector3(90, 0, -8), Print("StickyNote"), null, d.stickyNoteItem.transform);
             Quad("RentWarning", new Vector3(1.25f, .033f, -2.07f), new Vector2(.28f, .22f), new Vector3(90, 0, -5), Print("RentWarning"), null, d.suratKosItem.transform);

@@ -5,7 +5,7 @@
     "-a",
     "-s",
     "-screen 0 1280x720x24",
-    "/root/Projects/LayarTerakhir-review/Builds/LinuxAudit/LayarTerakhir.x86_64",
+    "/root/projects/LayarTerakhir/Builds/LinuxAudit/LayarTerakhir.x86_64",
     "-force-glcore",
     "-screen-fullscreen",
     "0",
@@ -14,19 +14,18 @@
     "-screen-height",
     "720",
     "-feelAudit",
-    "/root/Projects/LayarTerakhir-review/Audit/Visuals/Designer-VRM-Feel",
+    "/root/projects/LayarTerakhir/Audit/Visuals/Review-Linux",
     "-logFile",
-    "/root/Projects/LayarTerakhir-review/Audit/golden-feel-player.log"
+    "/root/projects/LayarTerakhir/Audit/golden-feel-player.log"
   ],
-  "startedUtc": "2026-10-22T10:55:37.615076+00:00",
+  "startedUtc": "2026-11-06T04:02:39.243580+00:00",
   "rendererEnvironment": {
     "LIBGL_ALWAYS_SOFTWARE": "1",
     "LP_NUM_THREADS": "2"
   },
   "audioBackend": "Private clocked PulseAudio null sink; virtual audio device; this fixture does not measure listener audio, no physical audio hardware",
   "status": "Finished",
-  "endedUtc": "2026-10-22T11:00:10.448333+00:00",
-  "exitCode": 0,
-  "screenCapturesVerified": 17,
-  "completedSmokeReceiptVerified": true
+  "endedUtc": "2026-11-06T04:06:52.228727+00:00",
+  "exitCode": 1,
+  "validationError": "Incomplete/stale smoke evidence: "
 }

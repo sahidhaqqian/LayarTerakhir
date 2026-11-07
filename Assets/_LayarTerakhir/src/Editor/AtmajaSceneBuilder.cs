@@ -261,7 +261,7 @@ namespace LayarTerakhir.Editor
             var face=Plaque("ClockDial","XII\nIX          III\nVI",P(-4.85f,5.28f,2.30f),.36f);face.transform.rotation=Facing(north);
             var door=Box("LockedCentralStairDoor",P(-3.55f,7.7f,1.8f),new Vector3(1.25f,2.6f,.14f),Mat("House_MAT_WoodDoor"));Item(door,AtmajaAction.StairDoor,"Buka pintu tangga tengah");
             Box("StairHallWall",P(-3.55f,7.9f,2.2f),new Vector3(4.5f,3.4f,.16f),wall);
-            director.arClue=Plaque("ARDeathTimeClue","WAKTU KEMATIAN KAMI\nADALAH KUNCI.\nIII : XLV",P(-1.6f,7.76f,2.05f),.40f);director.arClue.transform.rotation=Facing(north);Layer(director.arClue,AtmajaPhoneView.ARLayer);director.arClue.SetActive(false);
+            director.arClue=Plaque("ARDeathTimeClue","Tiga kali lonceng berdentang di sepertiga malam,\nLima belas menit sebelum fajar ke-empat menelan kami",P(-1.6f,7.76f,2.05f),.40f);director.arClue.transform.rotation=Facing(north);Layer(director.arClue,AtmajaPhoneView.ARLayer);director.arClue.SetActive(false);
             var endChair=Model("plastic_monobloc_chair_01","EmptyARScareChair",P(3.7f,4.05f,.52f));endChair.transform.rotation=Quaternion.Euler(0,180,0);Ground(endChair,.52f);FitCollider(endChair);
             director.arFigure=Model("ARSeatedAtmaja","AR_SeatedSriAtmaja",P(3.7f,4.05f,.52f));director.arFigure.transform.rotation=Quaternion.Euler(0,180,0);Layer(director.arFigure,AtmajaPhoneView.ARLayer);director.arFigure.SetActive(false);
         }

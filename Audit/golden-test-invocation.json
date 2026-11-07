@@ -10,21 +10,15 @@
     "-testPlatform",
     "EditMode",
     "-testFilter",
-    "KosBathroomRevisionTests|KosBothStairFlightsAndSharedRoomsAreContinuouslyWalkable",
+    "RumahAtmajaDiningTests",
     "-testResults",
     "/root/projects/LayarTerakhir/Audit/golden-tests.xml",
     "-logFile",
     "/root/projects/LayarTerakhir/Audit/golden-test.log"
   ],
-  "startedUtc": "2026-11-01T11:57:45.953568+00:00",
+  "startedUtc": "2026-11-07T00:28:06.652214+00:00",
   "audioBackend": "Private clocked PulseAudio null sink; headless test audio device, no physical audio hardware",
   "status": "Finished",
-  "endedUtc": "2026-11-01T11:58:25.712815+00:00",
-  "exitCode": 0,
-  "testsVerified": {
-    "total": 8,
-    "passed": 8,
-    "failed": 0,
-    "skipped": 0
-  }
+  "endedUtc": "2026-11-07T00:28:46.931321+00:00",
+  "exitCode": 2
 }

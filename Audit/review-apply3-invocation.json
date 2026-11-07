@@ -1,0 +1,27 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24",
+    "/root/Unity/Hub/Editor/6000.3.26f1/Editor/Unity",
+    "-batchmode",
+    "-job-worker-count",
+    "1",
+    "-projectPath",
+    "/root/projects/LayarTerakhir",
+    "-quit",
+    "-executeMethod",
+    "LayarTerakhir.Editor.DesignerReviewBuilder.Apply",
+    "-logFile",
+    "Audit/review-apply3.log"
+  ],
+  "startedUtc": "2026-11-04T15:08:27.607644+00:00",
+  "status": "Finished",
+  "unit": "lt-unity-20261104-150827-1588648",
+  "memoryLimitBytes": 5368709120,
+  "memoryHighBytes": 4294967296,
+  "endedUtc": "2026-11-04T15:09:20.652837+00:00",
+  "exitCode": 0,
+  "systemdServiceResult": "success"
+}

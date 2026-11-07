@@ -228,7 +228,7 @@ namespace LayarTerakhir.UI
             if(c.HasInventoryItem("DIARY_RAKA"))entries.Add(("Buku harian Raka",KosDialogue.Diary));
             if(c.HasInventoryItem(AtmajaDirector.SurveyId))entries.Add(("Catatan survei Damar",AtmajaDirector.SurveyText));
             if(c.HasInventoryItem("DOC_PROLOG_03_KORAN_1998"))entries.Add(("Koran tragedi 1998",AtmajaDirector.NewspaperText));
-            if(c.HasInventoryItem("EVENT_P0_AR_CLUE_READ"))entries.Add(("Tulisan di dinding","WAKTU KEMATIAN KAMI ADALAH KUNCI.\nIII : XLV"));
+            if(c.HasInventoryItem("EVENT_P0_AR_CLUE_READ"))entries.Add(("Tulisan di dinding","Tiga kali lonceng berdentang di sepertiga malam,\nLima belas menit sebelum fajar ke-empat menelan kami"));
             if(c.HasInventoryItem(AtmajaUpperDirector.DiaryId))entries.Add(("Buku harian Bima",AtmajaUpperDirector.DiaryText));
             if(c.HasInventoryItem(AtmajaUpperDirector.WillId))entries.Add(("Surat wasiat Nyonya",AtmajaUpperDirector.WillText));
             if(c.HasInventoryItem("EVENT_P0_CHAIN1_BROKEN"))entries.Add(("Foto cangkir retak","Bukti: cangkir susu yang ditinggalkan di kamar anak. Ada aura yang tidak terlihat tanpa kamera."));
