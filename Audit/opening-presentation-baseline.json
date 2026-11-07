@@ -1,7 +1,7 @@
 {
-  "baseCommit": "442bbc6fb82c490c8cf1240c7d85a6b417d95222",
+  "baseCommit": "74130fab321b5c0ffd31d22508922f26d9d5a0be",
   "protectedGoldenSceneSha256": "4b73b117b832fb753b92d3de885c163bc1dd3f6225101867f7b4e2437c8b793a",
-  "structureSha256": "48542726fa2d294ead7547ad7f7b39a2fb330bf180c2c657cdf26050592d434e",
-  "description": "Approved Prolog KamarKos structure at HEAD: own-mesh RealKeyboard with CC0 legends (replaces Kenney placeholder), monitor quad resized to viewable aspect, keyboard holder cleaned to single instance under Golden_Workstation. Only camera color-volume and AA/dithering settings remain outside the structural fingerprint; future gameplay, geometry, collider, or transform edits fail validation.",
+  "structureSha256": "6534b95fccee70829887e0043d6b5e04451886876253ca1ed5ecb0d5e932044b",
+  "description": "Approved Prolog KamarKos structure: exit door wears shared KosModernDoor (PaintedWood007A CC0 navy + normal) instead of per-box flat brown; keyboard/monitor revisions kept. Only camera color-volume and AA/dithering settings remain outside the structural fingerprint.",
   "source": "git show HEAD:Assets/_LayarTerakhir/assets/Scenes/Prolog_KamarKos.unity"
 }
